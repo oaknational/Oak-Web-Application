@@ -1,4 +1,4 @@
-import handler from "./hello";
+import handler from "../../../pages/api/hello";
 
 describe("hello api", () => {
   it("has a handler", () => {
