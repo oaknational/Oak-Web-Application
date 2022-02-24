@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "format": "prettier */**/*.t{s,sx} --write",
     "lint": "next lint",
+    "prepare": "husky install",
+    "start": "next start",
     "test": "jest --watch",
-    "test:ci": "jest",
-    "format": "prettier */**/*.t{s,sx} --write"
+    "test:ci": "jest"
   },
   "dependencies": {
     "next": "12.1.0",
@@ -29,7 +30,9 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "lint-staged": "^12.3.4",
     "prettier": "2.5.1",
     "typescript": "4.5.5",
     "typescript-plugin-css-modules": "^3.4.0"
@@ -37,5 +40,9 @@
   "engines": {
     "node": "14",
     "npm": ">=6 <8"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.--write": "prettier --write"
   }
 }
