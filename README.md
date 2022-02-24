@@ -6,6 +6,8 @@ A really good remote education app.
 
 Unit tests only for now, please no note write any tests dependent on a network connection, a database, a filesystem or any other IO.
 
+Tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
+
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.
 
