@@ -1,0 +1,24 @@
+name: Deployment Checks
+
+on:
+  deployment_status:
+
+jobs:
+  # A placeholder workflow triggered by deployment events.
+  deployment_placeholder:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    if: ${{ github.event.deployment_status.state == 'success' }}
+    name: deployment placeholder workflow
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+          cache: "npm"
+      - run: npm ci
+
+      - name: Log out URL
+        run: echo "${{ github.event.deployment_status.target_url }}"
