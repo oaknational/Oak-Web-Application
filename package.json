@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest",
     "format": "prettier */**/*.t{s,sx} --write"
   },
