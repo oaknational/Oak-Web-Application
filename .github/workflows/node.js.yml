@@ -3,8 +3,8 @@ name: Code checks
 on: push
 
 jobs:
-  lint_and_test:
-    name: Lint and test
+  lint_test_sonar:
+    name: lint, test, Sonar
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
