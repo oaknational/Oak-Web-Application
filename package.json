@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "cc": "commit",
+    "cca": "git add . && commit",
     "dev": "next dev",
     "format": "prettier */**/*.t{s,sx} --write",
     "lint": "next lint",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "@commitlint/prompt-cli": "^16.2.1",
     "@next/eslint-plugin-next": "^12.1.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
