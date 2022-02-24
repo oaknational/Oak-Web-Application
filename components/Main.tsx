@@ -1,12 +1,7 @@
 import { FC } from "react";
+import styles from "../styles/Home.module.css";
 
-type MyComponentProps = {
-  styles: any;
-};
-
-const Main: FC<MyComponentProps> = (props) => {
-  const { styles } = props;
-
+const Main: FC = () => {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>

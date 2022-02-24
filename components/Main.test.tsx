@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Main from "./Main";
 
 import styles from "../styles/Home.module.css";
+import Main from "./Main";
 
 describe("Main", () => {
   it("renders a heading", () => {
