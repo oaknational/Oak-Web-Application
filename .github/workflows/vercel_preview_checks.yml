@@ -14,7 +14,7 @@ jobs:
       - uses: aaimio/vercel-preview-url-action@v1
         id: vercel_preview_url
         with:
-          preview_url_regexp: "[pP]review:\\s+(.*)"
+          preview_url_regexp: "[pP]review: (.*)"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Below is merely an example of what you could do with the preview URL.
       # The preview URL is accessed through ${{ steps.<step_id>.outputs.vercel_preview_url }}
