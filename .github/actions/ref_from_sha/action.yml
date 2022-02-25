@@ -8,5 +8,5 @@ outputs:
   pr_head_ref:
     description: "The ref of the PR with the SHA as the head commit"
 runs:
-  using: "node14"
+  using: "node16"
   main: "index.js"
