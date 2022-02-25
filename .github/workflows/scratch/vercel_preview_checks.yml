@@ -1,5 +1,7 @@
-# Note, this only works for preview URLs
-# we'll need a different mechanism for production URLs.
+# Note, this only works for preview URLs,
+# only work if the workflow is on the default branch,
+# and the ref will always be the default branch.
+# The PR part of the event will have the source branch ref.
 name: Capture Vercel preview URL
 
 on: issue_comment

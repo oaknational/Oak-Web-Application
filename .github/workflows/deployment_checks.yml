@@ -1,0 +1,30 @@
+name: Deployment Checks
+
+on:
+  deployment_status:
+
+jobs:
+  dump_github_event:
+    uses: ./.github/workflows/dump_event.yml
+
+  # A placeholder workflow triggered by deployment events.
+  deployment_placeholder:
+    #   # Only want to run on success, otherwise it might be "pending", or "failure".
+    if: ${{ github.event.deployment_status.state == 'success' }}
+    name: deployment placeholder workflow
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - run: npm ci
+
+      - name: Log out URL
+        run: echo "${{ github.event.deployment_status.target_url }}"
