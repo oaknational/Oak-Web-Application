@@ -11,6 +11,22 @@ Tests live next to the code they are testing wherever possible. Next does not al
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.
 
+## Pre-commit and Commit Message Hooks
+
+We use [Husky to run pre-commit and commit message validating hooks](.husky).
+
+### Pre-commit
+
+Currently this hook
+
+- Formats the code using Prettier
+- Runs the linting
+- Runs the unit tests
+
+## Commit Message Validation
+
+We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `npm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
+
 ## Original Next docs
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
