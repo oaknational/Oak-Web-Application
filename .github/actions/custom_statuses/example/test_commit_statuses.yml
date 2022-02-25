@@ -1,0 +1,31 @@
+name: Custom check setting
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: "npm"
+
+      - run: npm ci
+
+      - uses: ./.github/actions/custom_statuses
+        with:
+          description: fake status 1
+          state: success
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: ./.github/actions/custom_statuses
+        with:
+          description: fake status 2
+          state: failure
+          github_token: ${{ secrets.GITHUB_TOKEN }}

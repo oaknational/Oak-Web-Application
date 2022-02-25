@@ -28,3 +28,11 @@ jobs:
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.target_url }}"
+
+      - uses: ./.github/actions/ref_from_sha
+        name: Get PR Ref from SHA
+        id: ref_from_sha
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: print ref from sha
+        run: echo "${{ steps.ref_from_sha.outputs.pr_head_ref }}"
