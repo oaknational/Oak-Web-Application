@@ -1,6 +1,6 @@
 const { Octokit } = require("octokit");
 
-const prFromSha = require("./pr_from_sha");
+const prFromSha = require("../pr_from_sha");
 
 if (!process.env.GITHUB_TOKEN) {
   throw new Error("Need Github token");
@@ -12,7 +12,7 @@ const repoInfo = {
   repo: "samara",
 };
 
-// Set this to the head commit on a branch in a PR
+// Set this to the head commit on a branch in a PR, short SHAs are fine.
 const sha = "c6458f3";
 
 prFromSha(octokit, repoInfo, sha).then((pr) => {
