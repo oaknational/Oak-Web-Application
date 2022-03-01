@@ -11,7 +11,7 @@
     "lint": "next lint",
     "prepare": "husky install",
     "start": "next start",
-    "test": "jest --watch",
+    "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest"
   },
   "dependencies": {
@@ -38,6 +38,7 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.4",
+    "node-mocks-http": "^1.11.0",
     "prettier": "2.5.1",
     "typescript": "4.5.5",
     "typescript-plugin-css-modules": "^3.4.0"
