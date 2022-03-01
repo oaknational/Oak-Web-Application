@@ -2,9 +2,9 @@
 
 - List of changes
 
-## Ticket(s)
+## Issue(s)
 
-https://thenational-academy.atlassian.net/browse/OAK-XXXX
+Fixes #
 
 ## How to test
 
