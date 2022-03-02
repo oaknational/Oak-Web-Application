@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "pa11y": "pa11y-ci -c pa11yci.config.js",
     "test": "jest --watch",
     "test:ci": "jest",
     "format": "prettier */**/*.t{s,sx} --write"
@@ -33,6 +34,7 @@
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.5.1",
     "octokit": "^1.7.1",
+    "pa11y-ci": "^3.0.1",
     "prettier": "2.5.1",
     "typescript": "4.5.5",
     "typescript-plugin-css-modules": "^3.4.0"
