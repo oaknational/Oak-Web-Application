@@ -1,9 +1,8 @@
 import { render } from "@testing-library/react";
 
-import styles from "../styles/Home.module.css";
-import Main from "./Main";
+import Home from "../../pages/index";
 
 it("renders homepage unchanged", () => {
-  const { container } = render(<Main styles={styles} />);
+  const { container } = render(<Home />);
   expect(container).toMatchSnapshot();
 });

@@ -3,8 +3,8 @@ name: Code checks
 on: push
 
 jobs:
-  lint_and_test:
-    name: Lint and test
+  lint_test_sonar:
+    name: lint, test, Sonar
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,6 +13,19 @@ jobs:
         with:
           node-version: 14.x
           cache: "npm"
+
+      # Install.
       - run: npm ci
+
+      # Lint.
       - run: npm run lint
+
+      # Unit tests, no integration tests.
       - run: npm run test:ci
+
+      # Manually run the SonarCloud scan so we can send test coverage information.
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
