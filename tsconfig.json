@@ -18,6 +18,6 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/__tests__/__helpers__/renderWithProviders.tsz"],
   "exclude": ["node_modules"]
 }
