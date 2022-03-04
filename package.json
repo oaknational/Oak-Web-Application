@@ -12,7 +12,8 @@
     "prepare": "husky install",
     "start": "next start",
     "test": "jest --watch --collectCoverage=false",
-    "test:ci": "jest"
+    "test:ci": "jest",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "next": "12.1.0",
@@ -46,9 +47,5 @@
   "engines": {
     "node": "14",
     "npm": ">=6 <8"
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.--write": "prettier --write"
   }
 }
