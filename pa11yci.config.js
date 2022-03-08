@@ -10,7 +10,6 @@ const config = {
 };
 
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
-// console.log("baseUrl", baseUrl);
 
 // URLs should end with a `/` to avoid redirects from
 // e.g. `/unit` to `/unit/index.html` during tests.
