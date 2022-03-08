@@ -36,7 +36,13 @@ module.exports = {
         "@typescript-eslint/no-explicit-any": "error",
         "import/first": "error",
         "import/no-unresolved": "error",
-        "import/order": "error",
+        "import/order": [
+          "error",
+          {
+            "newlines-between": "always",
+            warnOnUnassignedImports: true,
+          },
+        ],
       },
       settings: {
         "import/parsers": {
