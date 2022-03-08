@@ -1,3 +1,15 @@
+const importRules = {
+  "import/first": "error",
+  "import/no-unresolved": "error",
+  "import/order": [
+    "error",
+    {
+      "newlines-between": "always",
+      warnOnUnassignedImports: true,
+    },
+  ],
+};
+
 module.exports = {
   root: true,
   env: {
@@ -14,9 +26,7 @@ module.exports = {
     "prettier",
   ],
   rules: {
-    "import/first": "error",
-    "import/no-unresolved": "error",
-    "import/order": "error",
+    ...importRules,
   },
 
   // Put the Typescript config in an override, so we can still lint js files.
@@ -34,15 +44,7 @@ module.exports = {
       rules: {
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-explicit-any": "error",
-        "import/first": "error",
-        "import/no-unresolved": "error",
-        "import/order": [
-          "error",
-          {
-            "newlines-between": "always",
-            warnOnUnassignedImports: true,
-          },
-        ],
+        ...importRules,
       },
       settings: {
         "import/parsers": {
