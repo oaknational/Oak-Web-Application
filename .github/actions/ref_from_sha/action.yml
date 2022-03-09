@@ -1,0 +1,12 @@
+name: "Get PR Ref from SHA"
+description: "Given a SHA, find a PR with a matching head, and return the ref."
+inputs:
+  github_token:
+    description: "A Github token, e.g. secrets.GITHUB_TOKEN"
+    required: true
+outputs:
+  pr_head_ref:
+    description: "The ref of the PR with the SHA as the head commit"
+runs:
+  using: "node16"
+  main: "index.js"
