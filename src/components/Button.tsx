@@ -5,8 +5,13 @@ import clsx from "clsx";
 import styles from "./Button.module.css";
 import Icon, { IconName } from "./Icon";
 
-type Color = "primary";
-type ButtonVariant = "primary" | "text-link";
+type Color =
+  | "teachers-primary"
+  | "teachers-secondary"
+  | "pupils-primary"
+  | "pupils-secondary";
+
+type ButtonVariant = "rounded" | "text-link";
 
 export type ButtonProps = {
   variant?: ButtonVariant;
@@ -16,15 +21,14 @@ export type ButtonProps = {
   background?: Color;
 };
 const Button: FC<ButtonProps> = (props) => {
-  const { variant = "primary", href, label, icon, background } = props;
+  const { variant = "rounded", href, label, icon, background } = props;
 
   if (href) {
     return (
       <Link href={href} passHref>
         <button
-          className={clsx(styles.button, {
-            [`${styles["variant--primary"]}`]: variant === "primary",
-            [`${styles["background--primary"]}`]: background === "primary",
+          className={clsx(styles.button, styles[`background--${background}`], {
+            [`${styles["variant--rounded"]}`]: variant === "rounded",
           })}
         >
           <span className={styles["button-label"]}>{label}</span>

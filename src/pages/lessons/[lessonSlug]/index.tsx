@@ -47,7 +47,7 @@ const data = {
 const Lesson: NextPage = () => {
   const lesson = data;
 
-  const buttons: ButtonProps[] = [
+  const buttons: Omit<ButtonProps, "background">[] = [
     { href: "/", label: "Unit Quiz" },
     { href: "/", label: "View In Classroom", icon: "OpenExternal" },
     { href: "/", label: "Foundation Curriculum (PDF)", icon: "Download" },
@@ -66,13 +66,13 @@ const Lesson: NextPage = () => {
       />
       <div className={styles["primary-buttons"]}>
         <Button
-          background="primary"
+          background="teachers-primary"
           href="/"
           label="Download"
           icon="Download"
         />
         <Button
-          background="primary"
+          background="teachers-primary"
           href="/"
           label="Share Lesson"
           icon="Share"

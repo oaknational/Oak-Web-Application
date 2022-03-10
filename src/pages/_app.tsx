@@ -1,14 +1,20 @@
+import { FC } from "react";
 import type { AppProps } from "next/app";
 
+import theme from "../styles/theme";
+import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
+import useTheme from "../hooks/useTheme";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  useTheme(theme);
+
   return (
     <>
       <Component {...pageProps} />
     </>
   );
-}
+};
 
 export default MyApp;

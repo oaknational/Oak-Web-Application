@@ -1,5 +1,5 @@
 .button {
-  composes: button-unstyle from "../styles/button-unstyle.css";
+  composes: button-unstyle from "../styles/button-unstyle.module.css";
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -13,14 +13,14 @@
 }
 
 .button-label {
-  composes: ellipsis from "../styles/ellipsis.css";
+  composes: ellipsis from "../styles/ellipsis.module.css";
 }
 
 .button-icon-wrapper {
   margin-left: 8px;
 }
 
-.variant--primary {
+.variant--rounded {
   border-radius: 24px;
   height: 48px;
   padding: 0 24px;
@@ -30,7 +30,18 @@
   text-decoration: underline;
 }
 
-.background--primary {
-  color: white;
-  background-color: rgb(92 60 203);
+.background--teachers-primary {
+  composes: background--teachers-primary from "../styles/colors.module.css";
+}
+
+.background--teachers-secondary {
+  composes: background--teachers-primary from "../styles/colors.module.css";
+}
+
+.background--pupils-primary {
+  composes: background--pupils-primary from "../styles/colors.module.css";
+}
+
+.background--pupil-secondary {
+  composes: background--pupil-primary from "../styles/colors.module.css";
 }
