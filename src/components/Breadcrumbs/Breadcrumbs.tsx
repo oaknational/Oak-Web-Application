@@ -1,8 +1,9 @@
 import { FC } from "react";
 import Link from "next/link";
 
+import Icon from "../Icon";
+
 import styles from "./Breadcrumbs.module.css";
-import Icon from "./Icon";
 
 type Breadcrumb = {
   href: string;

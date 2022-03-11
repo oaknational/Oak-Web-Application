@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../../components/Button";
 import Card from "../../../components/Card";
+import Layout from "../../../components/Layout/Layout";
 
 import styles from "./index.module.css";
 
@@ -55,7 +56,7 @@ const Lesson: NextPage = () => {
   ];
 
   return (
-    <main className={styles.main}>
+    <Layout>
       <Breadcrumbs
         breadcrumbs={[
           { href: "/", label: lesson.keyStage.name },
@@ -89,7 +90,7 @@ const Lesson: NextPage = () => {
         })}
       </div>
       <Card>Lesson content</Card>
-    </main>
+    </Layout>
   );
 };
 

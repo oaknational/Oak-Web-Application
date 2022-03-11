@@ -1,4 +1,4 @@
-@value mobile from "../styles/breakpoints.css";
+@value mobile from "../../styles/breakpoints.css";
 
 .card {
   background-color: var(--color-bw-95);

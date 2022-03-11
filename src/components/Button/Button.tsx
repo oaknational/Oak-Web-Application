@@ -2,8 +2,9 @@ import { FC } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 
+import Icon, { IconName } from "../Icon";
+
 import styles from "./Button.module.css";
-import Icon, { IconName } from "./Icon";
 
 type Color =
   | "teachers-primary"

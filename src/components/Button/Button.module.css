@@ -1,5 +1,5 @@
 .button {
-  composes: button-unstyle from "../styles/button-unstyle.module.css";
+  composes: button-unstyle from "../../styles/button-unstyle.module.css";
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@
 }
 
 .button-label {
-  composes: ellipsis from "../styles/ellipsis.module.css";
+  composes: ellipsis from "../../styles/ellipsis.module.css";
 }
 
 .button-icon-wrapper {
@@ -31,17 +31,17 @@
 }
 
 .background--teachers-primary {
-  composes: background--teachers-primary from "../styles/colors.module.css";
+  composes: background--teachers-primary from "../../styles/colors.module.css";
 }
 
 .background--teachers-secondary {
-  composes: background--teachers-primary from "../styles/colors.module.css";
+  composes: background--teachers-primary from "../../styles/colors.module.css";
 }
 
 .background--pupils-primary {
-  composes: background--pupils-primary from "../styles/colors.module.css";
+  composes: background--pupils-primary from "../../styles/colors.module.css";
 }
 
 .background--pupil-secondary {
-  composes: background--pupil-primary from "../styles/colors.module.css";
+  composes: background--pupil-primary from "../../styles/colors.module.css";
 }
