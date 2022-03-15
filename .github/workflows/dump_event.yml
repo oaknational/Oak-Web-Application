@@ -1,4 +1,11 @@
 # Re-usable workflow for examining contents of the triggering GitHub event.
+# Use like
+# ```
+# jobs:
+#  dump_github_event:
+#    uses: ./.github/workflows/dump_event.yml
+# ```
+
 on:
   workflow_call:
 
