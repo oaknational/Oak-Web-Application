@@ -6,18 +6,14 @@ describe("Layout", () => {
   it("renders a header", () => {
     render(<Layout />);
 
-    const header = screen.getByRole("header", {
-      name: /welcome to next\.js!/i,
-    });
+    const header = screen.getByRole("banner");
 
     expect(header).toBeInTheDocument();
   });
   it("renders a main", () => {
     render(<Layout />);
 
-    const main = screen.getByRole("main", {
-      name: /welcome to next\.js!/i,
-    });
+    const main = screen.getByRole("main");
 
     expect(main).toBeInTheDocument();
   });

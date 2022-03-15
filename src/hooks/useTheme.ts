@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 
-import { Theme } from "../styles/theme";
+import { Theme } from "../styles/themes";
 
 const useTheme = (theme: Theme) => {
   useLayoutEffect(() => {
