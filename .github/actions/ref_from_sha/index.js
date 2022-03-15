@@ -34,7 +34,7 @@ async function run() {
       core.error(`Could not find pull request for SHA: ${sha}`);
     } else {
       const headRef = pullRequest.head.ref;
-      const fullHeadRef = `refs/head/${headRef}`;
+      const fullHeadRef = `refs/heads/${headRef}`;
       core.info(
         `Found pull request for for SHA: ${sha} with ref: ${fullHeadRef}`
       );
