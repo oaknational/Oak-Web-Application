@@ -1,4 +1,4 @@
-@value mobile from "../../../styles/breakpoints.css";
+@value mobile from "../../styles/breakpoints.css";
 
 .main {
   max-width: 1200px;

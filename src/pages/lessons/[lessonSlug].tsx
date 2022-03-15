@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
-import Button, { ButtonProps } from "../../../components/Button";
-import Card from "../../../components/Card";
-import Layout from "../../../components/Layout/Layout";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import Button, { ButtonProps } from "../../components/Button";
+import Card from "../../components/Card";
+import Layout from "../../components/Layout/Layout";
 
-import styles from "./index.module.css";
+import styles from "./[lessonSlug].module.css";
 
 const data = {
   name: "Food tests",
