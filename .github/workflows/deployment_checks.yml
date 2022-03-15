@@ -11,7 +11,7 @@ jobs:
   get_ref:
     # We only want to run on success, otherwise it might be "pending", or "failure".
     if: ${{ github.event.deployment_status.state == 'success' }}
-    name: deployment placeholder workflow
+    name: calculate ref
     runs-on: ubuntu-latest
     outputs:
       calculated_ref: ${{ steps.ref_from_sha.outputs.pr_head_ref }}
@@ -45,6 +45,8 @@ jobs:
     needs: get_ref
     name: Run Pa11y
     runs-on: ubuntu-latest
+    env:
+      GITHUB_REF: ${{needs.get_ref.outputs.calculated_ref}}
 
     steps:
       - uses: actions/checkout@v2
@@ -55,8 +57,6 @@ jobs:
         with:
           node-version: 14.x
           cache: npm
-        env:
-          GITHUB_REF: ${{needs.get_ref.outputs.calculated_ref}}
 
       - run: npm ci
 
