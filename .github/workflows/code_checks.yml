@@ -5,13 +5,17 @@ on: push
 jobs:
   # DEBUG
   dump_github_event:
-    uses: ./.github/workflows/dump_event.yml
+    uses: ./.github/workflows/reusable_dump_event.yml
 
   lint_test_sonar:
     name: lint, test, Sonar
     runs-on: ubuntu-latest
     steps:
+      # DEBUG
+      - run: env
+
       - uses: actions/checkout@v2
+
       - name: Use Node.js 14
         uses: actions/setup-node@v2
         with:

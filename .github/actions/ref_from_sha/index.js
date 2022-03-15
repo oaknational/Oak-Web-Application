@@ -34,8 +34,11 @@ async function run() {
       core.error(`Could not find pull request for SHA: ${sha}`);
     } else {
       const headRef = pullRequest.head.ref;
-      core.info(`Found pull request for for SHA: ${sha} with ref: ${headRef}`);
-      core.setOutput("pr_head_ref", headRef);
+      const fullHeadRef = `refs/head/${headRef}`;
+      core.info(
+        `Found pull request for for SHA: ${sha} with ref: ${fullHeadRef}`
+      );
+      core.setOutput("pr_head_ref", fullHeadRef);
     }
   } catch (error) {
     core.error(error);

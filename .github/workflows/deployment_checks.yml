@@ -49,6 +49,9 @@ jobs:
       GITHUB_REF: ${{needs.get_ref.outputs.calculated_ref}}
 
     steps:
+      # DEBUG
+      - run: env
+
       - uses: actions/checkout@v2
 
       # Set up Node WITH caching because we have the `ref` now.
