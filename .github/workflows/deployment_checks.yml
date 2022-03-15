@@ -49,10 +49,10 @@ jobs:
     needs: get_ref
     name: Run Pa11y
     runs-on: ubuntu-latest
-    env:
-      GITHUB_REF: ${{needs.get_ref.outputs.calculated_ref}}
 
     steps:
+      # Set env variables
+      - run: echo "GITHUB_REF=${{needs.get_ref.outputs.calculated_ref}}" >> $GITHUB_ENV
       # DEBUG
       - run: env
 
