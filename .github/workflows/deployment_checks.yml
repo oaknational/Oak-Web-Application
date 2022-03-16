@@ -1,5 +1,8 @@
 name: Deployment Checks
 
+# TO DO: we have more than one Vercel project deploying from this repo, so we'll need to
+# use the custom status action to report results, otherwise later deployment results
+# will overwrite earlier deployment results, see example in Acorn.
 on:
   deployment_status:
 
@@ -8,38 +11,8 @@ jobs:
     uses: ./.github/workflows/dump_event.yml
 
   # A placeholder workflow triggered by deployment events.
-  deployment_placeholder:
-    #   # Only want to run on success, otherwise it might be "pending", or "failure".
-    if: ${{ github.event.deployment_status.state == 'success' }}
-    name: deployment placeholder workflow
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-      # branch or pull request.
-      # https://github.com/actions/cache/issues/319
-      - name: Use Node.js 14
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
-      - run: npm ci
-
-      - name: Log out URL
-        run: echo "${{ github.event.deployment_status.target_url }}"
-
-      - uses: ./.github/actions/ref_from_sha
-        name: Get PR Ref from SHA
-        id: ref_from_sha
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: print ref from sha
-        run: echo "${{ steps.ref_from_sha.outputs.pr_head_ref }}"
-
-  # A placeholder workflow triggered by deployment events.
   run_pa11y:
-    #   # Only want to run on success, otherwise it might be "pending", or "failure".
+    # Only want to run on success, otherwise it might be "pending", or "failure".
     if: ${{ github.event.deployment_status.state == 'success' }}
     name: Run Pa11y
     runs-on: ubuntu-latest
@@ -64,3 +37,37 @@ jobs:
         run: npm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.target_url }}
+
+  # A placeholder workflow triggered by deployment events.
+  percy:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    # TO DO: filter out alt theme deployments
+    if: ${{ github.event.deployment_status.state == 'success' }}
+    name: Percy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - run: npm ci
+
+      - name: Log out URL
+        run: echo "${{ github.event.deployment_status.target_url }}"
+
+      - uses: ./.github/actions/ref_from_sha
+        name: Get PR Ref from SHA
+        id: ref_from_sha
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: print ref from sha
+        run: echo "${{ steps.ref_from_sha.outputs.head_ref }}"
+
+      - name: run percy
+        run: "echo 'do some Percy things'"
