@@ -1,8 +1,5 @@
 name: Deployment Checks
 
-# TO DO: we have more than one Vercel project deploying from this repo, so we'll need to
-# use the custom status action to report results, otherwise later deployment results
-# will overwrite earlier deployment results, see example in Acorn.
 on:
   deployment_status:
 
@@ -34,15 +31,28 @@ jobs:
 
       # Run pa11y
       - name: Pa11y CI
+        id: run_pa11y
         run: npm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.target_url }}
 
+      # Set a custom status because there may be more than one deployment_status
+      # event due to alternatively themed deployments, and multiple runs of this
+      # workflow will overwrite each other in the PR checks UI, but custom statuses
+      # will remain
+      - uses: ./.github/actions/custom_statuses
+        name: Set Pa11y check result
+        if: ${{ always() }}
+        with:
+          description: Pa11y (${{github.event.deployment_status.environment}})
+          state: ${{ steps.run_pa11y.outcome }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
   # A placeholder workflow triggered by deployment events.
   percy:
     # Only want to run on success, otherwise it might be "pending", or "failure".
-    # TO DO: filter out alt theme deployments
-    if: ${{ github.event.deployment_status.state == 'success' }}
+    # Filter out alt theme deployments
+    if: ${{ github.event.deployment_status.state == 'success' && !contains(github.event.deployment_status.environment, 'alt-theme')}}
     name: Percy
     runs-on: ubuntu-latest
 
@@ -70,4 +80,15 @@ jobs:
         run: echo "${{ steps.ref_from_sha.outputs.head_ref }}"
 
       - name: run percy
+        id: run_percy
         run: "echo 'do some Percy things'"
+
+      # Set custom status so results preserved between multiple
+      # deployment events from same commit
+      - uses: ./.github/actions/custom_statuses
+        name: Set Percy check result
+        if: ${{ always() }}
+        with:
+          description: Percy (${{github.event.deployment_status.environment}})
+          state: ${{ steps.run_percy.outcome }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
