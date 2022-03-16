@@ -1,17 +1,16 @@
 name: Deployment Checks
 
-on:
-  deployment_status:
+on: deployment_status
 
 jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml
 
   # A placeholder workflow triggered by deployment events.
-  run_pa11y:
+  pa11y:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     if: ${{ github.event.deployment_status.state == 'success' }}
-    name: Run Pa11y
+    name: Pa11y
     runs-on: ubuntu-latest
 
     steps:
@@ -76,6 +75,7 @@ jobs:
         id: ref_from_sha
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: print ref from sha
         run: echo "${{ steps.ref_from_sha.outputs.head_ref }}"
 
