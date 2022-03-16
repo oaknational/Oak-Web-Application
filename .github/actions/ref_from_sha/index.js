@@ -35,7 +35,6 @@ async function run() {
     let headRef;
     if (pullRequest !== null) {
       headRef = pullRequest.head.ref;
-      core.setOutput("pr_head_ref", fullHeadRef);
     } else {
       // The SHA is not on a branch in a PR, get from first matching branch, prefer `main`.
       const branch = await branchFromSha(octokit, { owner, repo }, sha);
@@ -49,6 +48,7 @@ async function run() {
 
     // TO DO: handle release tags? v1.2.3
     const fullHeadRef = `refs/heads/${headRef}`;
+    core.setOutput("pr_head_ref", fullHeadRef);
     core.info(
       `Found pull request for for SHA: ${sha} with ref: ${fullHeadRef}`
     );
