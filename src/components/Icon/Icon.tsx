@@ -6,14 +6,19 @@ import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
 import Share from "./Share.icon";
 
-const icons = {
+export const ICON_NAMES = [
+  "ChevronRight",
+  "OpenExternal",
+  "Download",
+  "Share",
+] as const;
+export type IconName = typeof ICON_NAMES[number];
+export const icons: Record<IconName, FC> = {
   ChevronRight,
   OpenExternal,
   Download,
   Share,
 };
-
-export type IconName = keyof typeof icons;
 
 type IconProps = {
   name: IconName;

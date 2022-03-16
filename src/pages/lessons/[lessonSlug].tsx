@@ -86,7 +86,13 @@ const Lesson: NextPage = () => {
       </h1>
       <div className={styles["secondary-buttons"]}>
         {buttons.map((buttonProps) => {
-          return <Button variant="text-link" {...buttonProps} />;
+          return (
+            <Button
+              key={buttonProps.label}
+              variant="text-link"
+              {...buttonProps}
+            />
+          );
         })}
       </div>
       <Card>Lesson content</Card>
