@@ -22,6 +22,7 @@ async function run() {
     const baseUrl = core.getInput("base_url");
     const branchName = core.getInput("branch_name");
     const prNumber = core.getInput("pr_number");
+    const percyToken = core.getInput("percy_token");
 
     // https://docs.percy.io/docs/environment-variables
     // Presumably the Percy CLI picks up the SHA from the GITHUB_SHA variable.
@@ -37,8 +38,8 @@ async function run() {
       PERCY_PULL_REQUEST: prNumber || undefined,
       // Should always be main, no need to override.
       // PERCY_TARGET_BRANCH: 'main',
-      // The percy token should already be set as a secret and available to the CLI.
-      // PERCY_TOKEN: percyTokenForWorkspace,
+      // The Percy project token.
+      PERCY_TOKEN: percyToken,
     });
 
     await exec.exec(

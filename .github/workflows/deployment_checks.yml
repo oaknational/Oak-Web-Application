@@ -92,6 +92,7 @@ jobs:
           base_url: ${{ github.event.deployment_status.target_url }}
           branch_name: ${{ steps.ref_from_sha.outputs.head_ref }}
           pr_number: ${{ steps.ref_from_sha.outputs.pr_number }}
+          percy_token: ${{ secrets.PERCY_TOKEN }}
 
       # Set custom status so results preserved between multiple
       # deployment events from same commit
