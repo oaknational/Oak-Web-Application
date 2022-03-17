@@ -8,7 +8,7 @@ const exec = require("@actions/exec");
 
 const setEnvVariables = (envVars) => {
   core.debug(`
-  Percy envVars:
+  Percy run env vars:
   ${JSON.stringify(envVars, null, 2)}
   `);
 
@@ -23,6 +23,36 @@ async function run() {
     const branchName = core.getInput("branch_name");
     const prNumber = core.getInput("pr_number");
     const percyToken = core.getInput("percy_token");
+    const vercelPassword = core.getInput("vercel_password");
+
+    // Get the auth cookie for password protected deployments.
+    // https://vercel.com/docs/errors#errors/bypassing-password-protection-programmatically
+    let authCookie;
+    if (vercelPassword) {
+      let authStdOut = "";
+      let authStdErr = "";
+      const options = {};
+      options.listeners = {
+        stdout: (data) => {
+          authStdOut += data.toString();
+        },
+        stderr: (data) => {
+          authStdErr += data.toString();
+        },
+      };
+      // https://vercel.com/docs/errors#errors/bypassing-password-protection-programmatically
+      const madCookieParsingCommand = `cookie="$(curl -s -D - -o /dev/null -X POST -d "_vercel_password=${vercelPassword}" ${baseUrl} | grep -i Set-Cookie | grep _vercel_jwt | awk {'print $2'})"; echo $cookie`;
+      await exec.exec(madCookieParsingCommand, undefined, options);
+
+      core.debug(
+        `cookie auth std out:\n${JSON.stringify(authStdOut, null, 2)}`
+      );
+      core.debug(
+        `cookie auth std err:\n${JSON.stringify(authStdErr, null, 2)}`
+      );
+
+      // TO DO: parse out the cookie value from stdOut.
+    }
 
     // https://docs.percy.io/docs/environment-variables
     // Presumably the Percy CLI picks up the SHA from the GITHUB_SHA variable.
@@ -40,6 +70,9 @@ async function run() {
       // PERCY_TARGET_BRANCH: 'main',
       // The Percy project token.
       PERCY_TOKEN: percyToken,
+      // Vercel JWT cookie to allow access to password protected sites.
+      // Used in percy.config.js
+      VERCEL_AUTH_COOKIE: authCookie,
     });
 
     await exec.exec(
