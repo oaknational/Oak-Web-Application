@@ -23,8 +23,10 @@ async function run() {
     const branchName = core.getInput("branch_name");
     const prNumber = core.getInput("pr_number");
 
+    // https://docs.percy.io/docs/environment-variables
     // Presumably the Percy CLI picks up the SHA from the GITHUB_SHA variable.
     setEnvVariables({
+      // Used to construct absolute URLs in the snapshot list.
       PERCY_BASE_URL: baseUrl,
       // Need to figure this out because the Vercel deployment events lack a proper `ref`,
       // and Percy needs to know what branch we are comparing to the baseline.

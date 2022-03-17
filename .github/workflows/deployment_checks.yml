@@ -85,9 +85,13 @@ jobs:
       # base_url -> github.event.deployment_status.target_url
       # branch_name -> available as steps.ref_from_sha.outputs.head_ref
       # pr_number -> available as steps.ref_from_sha.outputs.pr_number
-      - name: run percy
+      - uses: ./.github/actions/percy_snapshots
+        name: run percy
         id: run_percy
-        run: "echo 'do some Percy things'"
+        with:
+          base_url: ${{ github.event.deployment_status.target_url }}
+          branch_name: ${{ steps.ref_from_sha.outputs.head_ref }}
+          pr_number: ${{ steps.ref_from_sha.outputs.pr_number }
 
       # Set custom status so results preserved between multiple
       # deployment events from same commit
