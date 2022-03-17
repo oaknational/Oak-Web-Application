@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders <Card> unchanged 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    lesson content
+  </div>
+</div>
+`;

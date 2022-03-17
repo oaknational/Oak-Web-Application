@@ -1,0 +1,7 @@
+.outer-wrapper {
+  display: inline-flex;
+}
+
+.inner-wrapper {
+  display: inline-flex;
+}

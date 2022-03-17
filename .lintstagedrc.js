@@ -30,5 +30,9 @@ const checkTypes = [
 ];
 
 module.exports = {
-  "*.{js,jsx,ts,tsx}": [buildEslintCommand, ...checkTypes],
+  "*.{js,jsx,ts,tsx}": [
+    buildEslintCommand,
+    "npm run lint:styles",
+    ...checkTypes,
+  ],
 };

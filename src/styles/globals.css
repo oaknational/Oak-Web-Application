@@ -2,13 +2,21 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: sans-serif;
+}
+
+body,
+/* stylelint-disable-next-line selector-id-pattern */
+#__next {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  font-family: inherit;
 }
 
 * {
