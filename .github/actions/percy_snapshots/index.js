@@ -41,7 +41,8 @@ async function run() {
         },
       };
       // https://vercel.com/docs/errors#errors/bypassing-password-protection-programmatically
-      const madCookieParsingCommand = `sh -c cookie="$(curl -s -D - -o /dev/null -X POST -d "_vercel_password=${vercelPassword}" ${baseUrl} | grep -i Set-Cookie | grep _vercel_jwt | awk {'print $2'})"; echo $cookie`;
+      // eslint-disable-next-line no-useless-escape
+      const madCookieParsingCommand = `sh -c cookie=\"$(curl -s -D - -o /dev/null -X POST -d '_vercel_password=${vercelPassword}' ${baseUrl} | grep -i Set-Cookie | grep _vercel_jwt | awk {'print $2'})\"; echo $cookie`;
       await exec.exec(madCookieParsingCommand, undefined, options);
 
       core.debug(
