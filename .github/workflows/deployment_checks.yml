@@ -77,8 +77,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: print ref and PR number from sha
-        run: echo "${{ steps.ref_from_sha.outputs.head_ref }}"
-        run: echo "${{ steps.ref_from_sha.outputs.pr_number }}"
+        run: |
+          echo "${{ steps.ref_from_sha.outputs.head_ref }}"
+          echo "${{ steps.ref_from_sha.outputs.pr_number }}"
 
       # TO DO: use the custom percy_snapshots action
       # base_url -> github.event.deployment_status.target_url
