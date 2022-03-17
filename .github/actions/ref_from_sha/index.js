@@ -30,13 +30,18 @@ async function run() {
       throw new Error(`SHA not supplied.`);
     }
 
-    // Get the PR that has the given SHA as the head of the feature branch.
+    // Get the *first* PR that has the given SHA as the head of the feature branch.
     const pullRequest = await prFromSha(octokit, { owner, repo }, sha);
     let headRef;
+    let prNumber = undefined;
     if (pullRequest !== null) {
+      // There is a PR with this SHA as the head of the feature branch
       headRef = pullRequest.head.ref;
+      // DEBUG
+      core.debug(`Pull Request:\n${JSON.stringify(pullRequest, null, 2)}`);
+      prNumber = pullRequest.number;
     } else {
-      // The SHA is not on a branch in a PR, get from first matching branch, prefer `main`.
+      // The SHA is not on a PR feature branch, get from first matching general branch, prefer `main`.
       const branch = await branchFromSha(octokit, { owner, repo }, sha);
       if (branch !== null) {
         headRef = branch.name;
@@ -46,11 +51,14 @@ async function run() {
       }
     }
 
-    // TO DO: handle release tags? v1.2.3
+    /** @todo handle release tags? v1.2.3 */
     const fullHeadRef = `refs/heads/${headRef}`;
-    core.setOutput("pr_head_ref", fullHeadRef);
+    core.setOutput("head_ref", fullHeadRef);
+    core.setOutput("pr_number", prNumber);
     core.info(
-      `Found pull request for for SHA: ${sha} with ref: ${fullHeadRef}`
+      `Found pull request or branch for for SHA: ${sha} with ref: ${fullHeadRef}.${
+        prNumber ? `Found PR number: ${prNumber}` : ""
+      }`
     );
   } catch (error) {
     core.error(error);

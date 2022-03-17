@@ -11,7 +11,7 @@ inputs:
     description: "A Github token, e.g. secrets.GITHUB_TOKEN"
     required: true
   target_url:
-    description: "[optional] A link to further details on the status, e.g. the workflow run that caused it"
+    description: "[optional] A link to further details on the status, e.g. the workflow run that caused it. Sensible default."
 runs:
   using: "node16"
   main: "index.js"

@@ -8,6 +8,8 @@
  * @returns {Object|null} The matched PR, or null.
  */
 async function prFromSha(octokit, repoInfo, sha) {
+  // https://octokit.github.io/rest.js/v18
+  // https://docs.github.com/en/rest/reference/pulls#list-pull-requests
   const { data: pullRequests } = await octokit.rest.pulls.list(repoInfo);
 
   return (

@@ -8,6 +8,7 @@
  * @returns {Object|null} The matched branch, or null.
  */
 async function branchFromSha(octokit, repoInfo, sha) {
+  // https://octokit.github.io/rest.js/v18
   const { data: branches } = await octokit.rest.repos.listBranchesForHeadCommit(
     {
       ...repoInfo,

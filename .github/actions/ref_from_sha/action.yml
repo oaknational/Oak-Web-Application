@@ -6,7 +6,9 @@ inputs:
     required: true
 outputs:
   head_ref:
-    description: "The ref of the PR or `main` branch with the SHA as the head commit"
+    description: "The ref of the PR with the SHA as the head commit, or branch if there is no PR (typically 'main')"
+  pr_number:
+    description: "The number of the PR if one is found"
 runs:
   using: "node16"
   main: "index.js"
