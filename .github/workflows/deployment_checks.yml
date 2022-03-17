@@ -76,13 +76,14 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: print ref from sha
+      - name: print ref and PR number from sha
         run: echo "${{ steps.ref_from_sha.outputs.head_ref }}"
+        run: echo "${{ steps.ref_from_sha.outputs.pr_number }}"
 
       # TO DO: use the custom percy_snapshots action
       # base_url -> github.event.deployment_status.target_url
-      # branch_name -> already available as steps.ref_from_sha.outputs.head_ref
-      # pr_number -> extend functionality in custom ref_from_sha action to optionally output a PR number if one exists.
+      # branch_name -> available as steps.ref_from_sha.outputs.head_ref
+      # pr_number -> available as steps.ref_from_sha.outputs.pr_number
       - name: run percy
         id: run_percy
         run: "echo 'do some Percy things'"
