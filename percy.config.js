@@ -9,7 +9,7 @@ module.exports = {
   snapshot: {
     widths: [375, 1280],
     minHeight: 1024,
-    percyCss: "",
+    percyCSS: "",
   },
   discovery: {
     allowedHostnames: [],
