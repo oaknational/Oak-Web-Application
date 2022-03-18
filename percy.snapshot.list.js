@@ -14,10 +14,10 @@ const snapshotRelativeUrls = ["/", "/lessons/made_up_slug/"];
 
 const urls = snapshotRelativeUrls.map((relUrl) => {
   if (typeof relUrl === "string") {
-    let url = new URL(relUrl, baseUrl).href;
+    const url = new URL(relUrl, baseUrl).href;
     return { name: url, url };
   } else {
-    let url = new URL(relUrl.url, baseUrl).href;
+    const url = new URL(relUrl.url, baseUrl).href;
     return {
       // Pass through any fancy config.
       ...relUrl,
