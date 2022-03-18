@@ -1,5 +1,7 @@
 import MyApp from "../../pages/_app";
 
+jest.mock("../../hooks/useTheme");
+
 describe("<MyApp>", () => {
   it("Doesn't throw", () => {
     const Component = () => {

@@ -1,0 +1,19 @@
+.background--teachers-primary {
+  background-color: var(--color-teachers-primary);
+  color: var(--color-teachers-primary-contrast);
+}
+
+.background--teachers-secondary {
+  background-color: var(--color-teachers-secondary);
+  color: var(--color-teachers-secondary-contrast);
+}
+
+.background--pupils-primary {
+  background-color: var(--color-pupils-primary);
+  color: var(--color-pupils-primary-contrast);
+}
+
+.background--pupils-secondary {
+  background-color: var(--color-pupils-secondary);
+  color: var(--color-pupils-secondary-contrast);
+}
