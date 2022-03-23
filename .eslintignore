@@ -6,5 +6,6 @@ public
 out
 
 firebase/functions/lib
+firebase/functions/src/hasura/generated
 
 !.github
