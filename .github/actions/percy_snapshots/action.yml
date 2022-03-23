@@ -1,0 +1,17 @@
+name: "Percy Snapshots"
+description: "Take and report Percy snapshots"
+inputs:
+  base_url:
+    description: "The URL of the deployment to operate against"
+    required: true
+  branch_name:
+    description: "The branch that triggered the deployment"
+    required: true
+  percy_token:
+    description: "The Percy project token"
+    required: true
+  pr_number:
+    description: "[optional] The pull request number to report back to, not defined for baseline snapshots on 'main'"
+runs:
+  using: "node16"
+  main: "index.js"
