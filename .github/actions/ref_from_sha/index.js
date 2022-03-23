@@ -53,6 +53,7 @@ async function run() {
 
     /** @todo handle release tags? v1.2.3 */
     const fullHeadRef = `refs/heads/${headRef}`;
+    core.setOutput("branch_name", headRef);
     core.setOutput("head_ref", fullHeadRef);
     core.setOutput("pr_number", prNumber);
     core.info(
