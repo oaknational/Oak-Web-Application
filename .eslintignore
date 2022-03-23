@@ -5,4 +5,6 @@ package-lock.json
 public
 out
 
+firebase/functions/lib
+
 !.github
