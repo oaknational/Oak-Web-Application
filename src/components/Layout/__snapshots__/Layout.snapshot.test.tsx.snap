@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders <Layout> unchanged 1`] = `
+<div>
+  <header
+    class="header"
+  >
+    <div
+      class="title"
+    >
+      Oak
+    </div>
+    <input
+      placeholder="Search"
+      type="text"
+    />
+  </header>
+  <main
+    class="main"
+  />
+  <footer
+    class="footer"
+  >
+    © Oak National Academy 
+    2022
+  </footer>
+</div>
+`;

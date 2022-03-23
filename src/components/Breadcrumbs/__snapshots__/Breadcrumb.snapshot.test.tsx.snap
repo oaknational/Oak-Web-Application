@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders <Breadcrumb> unchanged 1`] = `
+<div>
+  <nav
+    aria-label="Breadcrumb"
+    class="nav"
+  >
+    <ol
+      class="ol"
+    >
+      <li
+        class="li"
+      >
+        <a
+          href="/"
+        >
+          Unit Quiz
+        </a>
+      </li>
+      <li
+        class="li"
+      >
+        <span
+          class="outer-wrapper"
+          style="height: 20px; width: 20px;"
+        >
+          <span
+            class="inner-wrapper"
+            style="height: 20px; width: 20px;"
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <a
+          href="/"
+        >
+          View In Classroom
+        </a>
+      </li>
+      <li
+        class="li"
+      >
+        <span
+          class="outer-wrapper"
+          style="height: 20px; width: 20px;"
+        >
+          <span
+            class="inner-wrapper"
+            style="height: 20px; width: 20px;"
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <a
+          href="/"
+        >
+          Foundation Curriculum (PDF)
+        </a>
+      </li>
+      <li
+        class="li"
+      >
+        <span
+          class="outer-wrapper"
+          style="height: 20px; width: 20px;"
+        >
+          <span
+            class="inner-wrapper"
+            style="height: 20px; width: 20px;"
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <a
+          href="/"
+        >
+          Higher Curriculum (PDF)
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+`;

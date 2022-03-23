@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders <Button> unchanged 1`] = `
+<div>
+  <button
+    class="button background--teachers-primary variant--rounded"
+    href="/"
+  >
+    <span
+      class="button-label"
+    >
+      Download
+    </span>
+    <span
+      class="button-icon-wrapper"
+    >
+      <span
+        class="outer-wrapper"
+        style="height: 16px; width: 16px;"
+      >
+        <span
+          class="inner-wrapper"
+          style="height: 16px; width: 16px;"
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
+        </span>
+      </span>
+    </span>
+  </button>
+</div>
+`;

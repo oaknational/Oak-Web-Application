@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 72px;
+  padding: 12px;
+  background: var(--color-bw-95);
+}
+
+.title {
+  margin-right: 12px;
+}

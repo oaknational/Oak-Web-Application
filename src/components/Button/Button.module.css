@@ -1,0 +1,47 @@
+.button {
+  composes: button-unstyle from "../../styles/button-unstyle.module.css";
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.button:not(:last-of-type) {
+  margin-right: 12px;
+}
+
+.button-label {
+  composes: ellipsis from "../../styles/ellipsis.module.css";
+}
+
+.button-icon-wrapper {
+  margin-left: 8px;
+}
+
+.variant--rounded {
+  border-radius: 24px;
+  height: 48px;
+  padding: 0 24px;
+}
+
+.variant--text-link:focus {
+  text-decoration: underline;
+}
+
+.background--teachers-primary {
+  composes: background--teachers-primary from "../../styles/colors.module.css";
+}
+
+.background--teachers-secondary {
+  composes: background--teachers-primary from "../../styles/colors.module.css";
+}
+
+.background--pupils-primary {
+  composes: background--pupils-primary from "../../styles/colors.module.css";
+}
+
+.background--pupil-secondary {
+  composes: background--pupil-primary from "../../styles/colors.module.css";
+}

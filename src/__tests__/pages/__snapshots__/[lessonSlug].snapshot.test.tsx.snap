@@ -1,0 +1,438 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <header
+    class="header"
+  >
+    <div
+      class="title"
+    >
+      Oak
+    </div>
+    <input
+      placeholder="Search"
+      type="text"
+    />
+  </header>
+  <main
+    class="main"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      class="nav"
+    >
+      <ol
+        class="ol"
+      >
+        <li
+          class="li"
+        >
+          <a
+            href="/"
+          >
+            Key Stage 4
+          </a>
+        </li>
+        <li
+          class="li"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 20px; width: 20px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 20px; width: 20px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+          >
+            Subjects
+          </a>
+        </li>
+        <li
+          class="li"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 20px; width: 20px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 20px; width: 20px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+          >
+            Combined Science
+          </a>
+        </li>
+        <li
+          class="li"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 20px; width: 20px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 20px; width: 20px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+          >
+            Organisation (HT)
+          </a>
+        </li>
+      </ol>
+    </nav>
+    <div
+      class="primary-buttons"
+    >
+      <button
+        class="button background--teachers-primary variant--rounded"
+        href="/"
+      >
+        <span
+          class="button-label"
+        >
+          Download
+        </span>
+        <span
+          class="button-icon-wrapper"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 16px; width: 16px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="button background--teachers-primary variant--rounded"
+        href="/"
+      >
+        <span
+          class="button-label"
+        >
+          Share Lesson
+        </span>
+        <span
+          class="button-icon-wrapper"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 16px; width: 16px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="18"
+                  cy="5"
+                  r="3"
+                />
+                <circle
+                  cx="6"
+                  cy="12"
+                  r="3"
+                />
+                <circle
+                  cx="18"
+                  cy="19"
+                  r="3"
+                />
+                <line
+                  x1="8.59"
+                  x2="15.42"
+                  y1="13.51"
+                  y2="17.49"
+                />
+                <line
+                  x1="15.41"
+                  x2="8.59"
+                  y1="6.51"
+                  y2="10.49"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <h1
+      class="title"
+    >
+      <span
+        class="lesson-overview-text"
+      >
+        Lesson overview:
+      </span>
+      <br />
+      Food tests
+    </h1>
+    <div
+      class="secondary-buttons"
+    >
+      <button
+        class="button background--undefined"
+        href="/"
+      >
+        <span
+          class="button-label"
+        >
+          Unit Quiz
+        </span>
+      </button>
+      <button
+        class="button background--undefined"
+        href="/"
+      >
+        <span
+          class="button-label"
+        >
+          View In Classroom
+        </span>
+        <span
+          class="button-icon-wrapper"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 16px; width: 16px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                />
+                <polyline
+                  points="15 3 21 3 21 9"
+                />
+                <line
+                  x1="10"
+                  x2="21"
+                  y1="14"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="button background--undefined"
+        href="/"
+      >
+        <span
+          class="button-label"
+        >
+          Foundation Curriculum (PDF)
+        </span>
+        <span
+          class="button-icon-wrapper"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 16px; width: 16px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="button background--undefined"
+        href="/"
+      >
+        <span
+          class="button-label"
+        >
+          Higher Curriculum (PDF)
+        </span>
+        <span
+          class="button-icon-wrapper"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 16px; width: 16px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div
+      class="card"
+    >
+      Lesson content
+    </div>
+  </main>
+  <footer
+    class="footer"
+  >
+    © Oak National Academy 
+    2022
+  </footer>
+</div>
+`;

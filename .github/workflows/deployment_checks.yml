@@ -1,17 +1,58 @@
 name: Deployment Checks
 
-on:
-  deployment_status:
+on: deployment_status
 
 jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml
 
   # A placeholder workflow triggered by deployment events.
-  deployment_placeholder:
-    #   # Only want to run on success, otherwise it might be "pending", or "failure".
+  pa11y:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
     if: ${{ github.event.deployment_status.state == 'success' }}
-    name: deployment placeholder workflow
+    name: Pa11y
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - run: npm ci
+
+      - name: Log out URL
+        run: echo "${{ github.event.deployment_status.target_url }}"
+
+      # Run pa11y
+      - name: Pa11y CI
+        id: run_pa11y
+        run: npm run pa11y
+        env:
+          BASE_URL: ${{ github.event.deployment_status.target_url }}
+
+      # Set a custom status because there may be more than one deployment_status
+      # event due to alternatively themed deployments, and multiple runs of this
+      # workflow will overwrite each other in the PR checks UI, but custom statuses
+      # will remain
+      - uses: ./.github/actions/custom_statuses
+        name: Set Pa11y check result
+        if: ${{ always() }}
+        with:
+          description: Pa11y (${{github.event.deployment_status.environment}})
+          state: ${{ steps.run_pa11y.outcome }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # A placeholder workflow triggered by deployment events.
+  percy:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    # Filter out alt theme deployments
+    if: ${{ github.event.deployment_status.state == 'success' && !contains(github.event.deployment_status.environment, 'alt-theme')}}
+    name: Percy
     runs-on: ubuntu-latest
 
     steps:
@@ -34,33 +75,27 @@ jobs:
         id: ref_from_sha
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: print ref from sha
-        run: echo "${{ steps.ref_from_sha.outputs.pr_head_ref }}"
 
-  # A placeholder workflow triggered by deployment events.
-  run_pa11y:
-    #   # Only want to run on success, otherwise it might be "pending", or "failure".
-    if: ${{ github.event.deployment_status.state == 'success' }}
-    name: Run Pa11y
-    runs-on: ubuntu-latest
+      - name: print branch name and PR number from sha
+        run: |
+          echo "${{ steps.ref_from_sha.outputs.branch_name }}"
+          echo "${{ steps.ref_from_sha.outputs.pr_number }}"
 
-    steps:
-      - uses: actions/checkout@v2
-      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-      # branch or pull request.
-      # https://github.com/actions/cache/issues/319
-      - name: Use Node.js 14
-        uses: actions/setup-node@v2
+      - uses: ./.github/actions/percy_snapshots
+        name: run percy
+        id: run_percy
         with:
-          node-version: 14.x
-      - run: npm ci
+          base_url: ${{ github.event.deployment_status.target_url }}
+          branch_name: ${{ steps.ref_from_sha.outputs.branch_name }}
+          pr_number: ${{ steps.ref_from_sha.outputs.pr_number }}
+          percy_token: ${{ secrets.PERCY_TOKEN }}
 
-      - name: Log out URL
-        run: echo "${{ github.event.deployment_status.target_url }}"
-
-      # Run pa11y
-      - name: Pa11y CI
-        run: npm run pa11y
-        env:
-          BASE_URL: ${{ github.event.deployment_status.target_url }}
+      # Set custom status so results preserved between multiple
+      # deployment events from same commit
+      - uses: ./.github/actions/custom_statuses
+        name: Set Percy check result
+        if: ${{ always() }}
+        with:
+          description: Percy (${{github.event.deployment_status.environment}})
+          state: ${{ steps.run_percy.outcome }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
