@@ -1,11 +1,13 @@
 import { FC } from "react";
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 import api from "../data-layer/graphql/api";
 import Layout from "../components/Layout";
 import { useLessonsBySlugQuery } from "../data-layer/graphql/generated/apollo";
 
-const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  props
+) => {
   const { loading, data, error } = useLessonsBySlugQuery({
     variables: { slug: "physics-only-review-chj3cd" },
   });
@@ -25,7 +27,7 @@ const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await api.lessonsBySlug({ slug: "physics-only-review-chj3cd" });
   const [lesson = null] = res.lesson;
   return {
