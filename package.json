@@ -1,22 +1,23 @@
 {
   "name": "samara",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "private": true,
   "license": "MIT",
   "scripts": {
     "build": "next build",
     "cc": "commit",
     "cca": "git add . && commit",
+    "check-types": "tsc --noEmit",
     "dev": "next dev",
     "format": "prettier */**/*.t{s,sx} --write",
     "lint": "next lint",
     "lint:styles": "stylelint src/*/**/*.css --fix",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
     "prepare": "husky install",
+    "semantic-release": "semantic-release",
     "start": "next start",
     "test": "jest --watch --collectCoverage=false",
-    "test:ci": "jest",
-    "check-types": "tsc --noEmit"
+    "test:ci": "jest"
   },
   "dependencies": {
     "clsx": "^1.1.1",
@@ -33,6 +34,8 @@
     "@commitlint/prompt-cli": "^16.2.1",
     "@next/eslint-plugin-next": "^12.1.0",
     "@percy/cli": "^1.0.0-beta.76",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@types/node": "17.0.20",
@@ -51,6 +54,7 @@
     "octokit": "^1.7.1",
     "pa11y-ci": "^3.0.1",
     "prettier": "2.5.1",
+    "semantic-release": "^19.0.2",
     "stylelint": "^14.5.3",
     "stylelint-config-css-modules": "^3.0.0",
     "stylelint-config-standard": "^25.0.0",
@@ -60,5 +64,12 @@
   "engines": {
     "node": "14",
     "npm": ">=6 <8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oaknational/Samara.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
