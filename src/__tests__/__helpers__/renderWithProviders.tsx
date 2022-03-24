@@ -5,8 +5,8 @@
  *
  * @see https://testing-library.com/docs/react-testing-library/setup#custom-render
  */
-import React, { FC } from "react";
-import { render } from "@testing-library/react";
+import React, { FC, ReactElement } from "react";
+import { render, RenderOptions } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 
 import { LessonsBySlugDocument } from "../../data-layer/graphql/generated/apollo";
@@ -38,11 +38,9 @@ const AllTheProviders: FC = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const renderWithProviders: typeof render = (
-  ui: Parameters<typeof render>[0],
-  options: Parameters<typeof render>[1]
+const renderWithProviders = (
+  ui: ReactElement,
+  options?: Omit<RenderOptions, "wrapper">
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
 export default renderWithProviders;
