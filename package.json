@@ -7,6 +7,7 @@
     "build": "next build",
     "cc": "commit",
     "cca": "git add . && commit",
+    "check-types": "tsc --noEmit",
     "dev": "next dev",
     "format": "prettier */**/*.t{s,sx} --write",
     "lint": "next lint",
@@ -15,8 +16,7 @@
     "prepare": "husky install",
     "start": "next start",
     "test": "jest --watch --collectCoverage=false",
-    "test:ci": "jest",
-    "check-types": "tsc --noEmit"
+    "test:ci": "jest"
   },
   "dependencies": {
     "clsx": "^1.1.1",
