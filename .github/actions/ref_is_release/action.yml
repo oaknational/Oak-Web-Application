@@ -1,6 +1,5 @@
 name: "Determine is a ref relates to a Github release"
 description: "Given a ref, determine if it is a release (matches the release tag format)."
-inputs:
 outputs:
   is_release:
     description: "Boolean string, 'true' if it matches a release tag format, 'false' otherwise."
