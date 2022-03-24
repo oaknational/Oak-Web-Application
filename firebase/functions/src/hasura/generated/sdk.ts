@@ -66,6 +66,8 @@ export type Bookmarked_Lesson = {
   __typename?: 'bookmarked_lesson';
   lesson?: Maybe<Lesson>;
   lesson_id: Scalars['Int'];
+  /** An object relationship */
+  user: User;
   user_id: Scalars['Int'];
 };
 
@@ -140,6 +142,7 @@ export type Bookmarked_Lesson_Bool_Exp = {
   _not?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
   _or?: InputMaybe<Array<Bookmarked_Lesson_Bool_Exp>>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  user?: InputMaybe<User_Bool_Exp>;
   user_id?: InputMaybe<Int_Comparison_Exp>;
 };
 
@@ -158,6 +161,7 @@ export type Bookmarked_Lesson_Inc_Input = {
 /** input type for inserting data into table "bookmarked_lesson" */
 export type Bookmarked_Lesson_Insert_Input = {
   lesson_id?: InputMaybe<Scalars['Int']>;
+  user?: InputMaybe<User_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['Int']>;
 };
 
@@ -206,6 +210,7 @@ export type Bookmarked_Lesson_On_Conflict = {
 /** Ordering options when selecting data from "bookmarked_lesson". */
 export type Bookmarked_Lesson_Order_By = {
   lesson_id?: InputMaybe<Order_By>;
+  user?: InputMaybe<User_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -760,6 +765,13 @@ export type User_Mutation_Response = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<User>;
+};
+
+/** input type for inserting object relation for remote table "user" */
+export type User_Obj_Rel_Insert_Input = {
+  data: User_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<User_On_Conflict>;
 };
 
 /** on_conflict condition type for table "user" */
