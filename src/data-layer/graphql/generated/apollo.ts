@@ -66,6 +66,8 @@ export type Bookmarked_Lesson = {
   __typename?: 'bookmarked_lesson';
   lesson?: Maybe<Lesson>;
   lesson_id: Scalars['Int'];
+  /** An object relationship */
+  user: User;
   user_id: Scalars['Int'];
 };
 
@@ -99,11 +101,39 @@ export type Bookmarked_Lesson_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Aggregate_Order_By = {
+  avg?: InputMaybe<Bookmarked_Lesson_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Bookmarked_Lesson_Max_Order_By>;
+  min?: InputMaybe<Bookmarked_Lesson_Min_Order_By>;
+  stddev?: InputMaybe<Bookmarked_Lesson_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Bookmarked_Lesson_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Bookmarked_Lesson_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Bookmarked_Lesson_Sum_Order_By>;
+  var_pop?: InputMaybe<Bookmarked_Lesson_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Bookmarked_Lesson_Var_Samp_Order_By>;
+  variance?: InputMaybe<Bookmarked_Lesson_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Arr_Rel_Insert_Input = {
+  data: Array<Bookmarked_Lesson_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Bookmarked_Lesson_On_Conflict>;
+};
+
 /** aggregate avg on columns */
 export type Bookmarked_Lesson_Avg_Fields = {
   __typename?: 'bookmarked_lesson_avg_fields';
   lesson_id?: Maybe<Scalars['Float']>;
   user_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Avg_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "bookmarked_lesson". All fields are combined with a logical 'AND'. */
@@ -112,6 +142,7 @@ export type Bookmarked_Lesson_Bool_Exp = {
   _not?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
   _or?: InputMaybe<Array<Bookmarked_Lesson_Bool_Exp>>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  user?: InputMaybe<User_Bool_Exp>;
   user_id?: InputMaybe<Int_Comparison_Exp>;
 };
 
@@ -130,6 +161,7 @@ export type Bookmarked_Lesson_Inc_Input = {
 /** input type for inserting data into table "bookmarked_lesson" */
 export type Bookmarked_Lesson_Insert_Input = {
   lesson_id?: InputMaybe<Scalars['Int']>;
+  user?: InputMaybe<User_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['Int']>;
 };
 
@@ -140,11 +172,23 @@ export type Bookmarked_Lesson_Max_Fields = {
   user_id?: Maybe<Scalars['Int']>;
 };
 
+/** order by max() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Max_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate min on columns */
 export type Bookmarked_Lesson_Min_Fields = {
   __typename?: 'bookmarked_lesson_min_fields';
   lesson_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Min_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "bookmarked_lesson" */
@@ -166,6 +210,7 @@ export type Bookmarked_Lesson_On_Conflict = {
 /** Ordering options when selecting data from "bookmarked_lesson". */
 export type Bookmarked_Lesson_Order_By = {
   lesson_id?: InputMaybe<Order_By>;
+  user?: InputMaybe<User_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -196,11 +241,23 @@ export type Bookmarked_Lesson_Stddev_Fields = {
   user_id?: Maybe<Scalars['Float']>;
 };
 
+/** order by stddev() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Stddev_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate stddev_pop on columns */
 export type Bookmarked_Lesson_Stddev_Pop_Fields = {
   __typename?: 'bookmarked_lesson_stddev_pop_fields';
   lesson_id?: Maybe<Scalars['Float']>;
   user_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Stddev_Pop_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -210,11 +267,23 @@ export type Bookmarked_Lesson_Stddev_Samp_Fields = {
   user_id?: Maybe<Scalars['Float']>;
 };
 
+/** order by stddev_samp() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Stddev_Samp_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate sum on columns */
 export type Bookmarked_Lesson_Sum_Fields = {
   __typename?: 'bookmarked_lesson_sum_fields';
   lesson_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Sum_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "bookmarked_lesson" */
@@ -232,6 +301,12 @@ export type Bookmarked_Lesson_Var_Pop_Fields = {
   user_id?: Maybe<Scalars['Float']>;
 };
 
+/** order by var_pop() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Var_Pop_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate var_samp on columns */
 export type Bookmarked_Lesson_Var_Samp_Fields = {
   __typename?: 'bookmarked_lesson_var_samp_fields';
@@ -239,11 +314,23 @@ export type Bookmarked_Lesson_Var_Samp_Fields = {
   user_id?: Maybe<Scalars['Float']>;
 };
 
+/** order by var_samp() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Var_Samp_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate variance on columns */
 export type Bookmarked_Lesson_Variance_Fields = {
   __typename?: 'bookmarked_lesson_variance_fields';
   lesson_id?: Maybe<Scalars['Float']>;
   user_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "bookmarked_lesson" */
+export type Bookmarked_Lesson_Variance_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "lesson" */
@@ -558,9 +645,33 @@ export type Subscription_RootUser_By_PkArgs = {
 /** columns and relationships of "user" */
 export type User = {
   __typename?: 'user';
+  /** An array relationship */
+  bookmarked_lessons: Array<Bookmarked_Lesson>;
+  /** An aggregate relationship */
+  bookmarked_lessons_aggregate: Bookmarked_Lesson_Aggregate;
   email: Scalars['String'];
   firebase_id: Scalars['String'];
   id: Scalars['Int'];
+};
+
+
+/** columns and relationships of "user" */
+export type UserBookmarked_LessonsArgs = {
+  distinct_on?: InputMaybe<Array<Bookmarked_Lesson_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Bookmarked_Lesson_Order_By>>;
+  where?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
+};
+
+
+/** columns and relationships of "user" */
+export type UserBookmarked_Lessons_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Bookmarked_Lesson_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Bookmarked_Lesson_Order_By>>;
+  where?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
 };
 
 /** aggregated selection of "user" */
@@ -604,6 +715,7 @@ export type User_Bool_Exp = {
   _and?: InputMaybe<Array<User_Bool_Exp>>;
   _not?: InputMaybe<User_Bool_Exp>;
   _or?: InputMaybe<Array<User_Bool_Exp>>;
+  bookmarked_lessons?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
   firebase_id?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
@@ -624,6 +736,7 @@ export type User_Inc_Input = {
 
 /** input type for inserting data into table "user" */
 export type User_Insert_Input = {
+  bookmarked_lessons?: InputMaybe<Bookmarked_Lesson_Arr_Rel_Insert_Input>;
   email?: InputMaybe<Scalars['String']>;
   firebase_id?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
@@ -654,6 +767,13 @@ export type User_Mutation_Response = {
   returning: Array<User>;
 };
 
+/** input type for inserting object relation for remote table "user" */
+export type User_Obj_Rel_Insert_Input = {
+  data: User_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<User_On_Conflict>;
+};
+
 /** on_conflict condition type for table "user" */
 export type User_On_Conflict = {
   constraint: User_Constraint;
@@ -663,6 +783,7 @@ export type User_On_Conflict = {
 
 /** Ordering options when selecting data from "user". */
 export type User_Order_By = {
+  bookmarked_lessons_aggregate?: InputMaybe<Bookmarked_Lesson_Aggregate_Order_By>;
   email?: InputMaybe<Order_By>;
   firebase_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
