@@ -1,23 +1,23 @@
-/* eslint-disable import/namespace */
-
-import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
+/* eslint-disable import/no-unresolved */
+import { config, auth } from "firebase-functions";
+import { initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+import { getDatabase } from 'firebase-admin/database'
 
 import hasura from "./hasura";
 
-admin.initializeApp(functions.config().firebase);
+initializeApp(config().firebase);
 
 // On sign up.
-exports.processSignUp = functions.auth.user().onCreate(async (user) => {
+exports.processSignUp = auth.user().onCreate(async (user) => {
   try {
-    console.log(user);
-    
     const { uid: firebase_id, email } = user;
 
     if (!email) {
       throw new Error("No email in onCreate hook");
     }
-    // Create user in hasura
+
+    // Create user in hasura.
     const res = await hasura.CreateUser({
       user: {
         firebase_id,
@@ -39,10 +39,12 @@ exports.processSignUp = functions.auth.user().onCreate(async (user) => {
       },
     };
 
-    await admin.auth().setCustomUserClaims(user.uid, customClaims);
+    // Set custom user claims on this newly created user.
+    await getAuth().setCustomUserClaims(user.uid, customClaims);
 
     // Update real-time database to notify client to force refresh.
-    const metadataRef = admin.database().ref("metadata/" + user.uid);
+    const metadataRef = getDatabase().ref("metadata/" + user.uid);
+
     // Set the refresh time to the current UTC timestamp.
     // This will be captured on the client to force a token refresh.
     await metadataRef.set({ refreshTime: new Date().getTime() });
