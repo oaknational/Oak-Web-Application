@@ -1,0 +1,31 @@
+# Create a semantic release, including
+# - a package.json version number
+# - an updated change log file
+# - a Github release, which will trigger a deployment
+name: Create Github Release
+
+# All changes to `main` have gone through
+# automated checks and should have gone
+# through code review and manual checks
+# where appropriate.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  semantic_release:
+    name: semantic release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+          cache: "npm"
+
+      # Install.
+      # - run: npm ci
+      - run: |
+          echo "do some semantic release stuff"

@@ -14,6 +14,7 @@ module.exports = {
       },
     ],
     // Update the package.json version and commit the change log.
+    // Note the `[skip ci]` part of the message, to avoid running pointless checks.
     [
       "@semantic-release/git",
       {

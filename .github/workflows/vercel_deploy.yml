@@ -7,7 +7,6 @@ on:
       - published
   push:
     branches:
-      - dev
   workflow_dispatch:
 
 jobs:
@@ -23,7 +22,7 @@ jobs:
           node-version: 14.x
           cache: "npm"
 
-      # Determin if the current ref is a release tag.
+      # Determine if the current ref is a release tag.
       - uses: ./.github/actions/ref_is_release
         id: is_release
 
