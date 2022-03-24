@@ -16,7 +16,7 @@ const configGet = (key: ConfigKey) => {
 
   if (!configValue) {
     /**
-     * @TODO we should perform this check at build time
+     * @TODO we should perform this check at build time, and validate formats eg urls
      */
     throw new Error(`No config value found for ${key}`);
   }
