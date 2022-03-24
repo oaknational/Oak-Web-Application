@@ -13,6 +13,8 @@
     "lint": "next lint",
     "lint:styles": "stylelint src/*/**/*.css --fix",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
+    "prebuild": "npm run gql:codegen",
+    "predev": "npm run gql:codegen",
     "prepare": "husky install",
     "start": "next start",
     "test": "jest --watch --collectCoverage=false",
