@@ -20,7 +20,7 @@ module.exports = {
       {
         assets: ["CHANGE_LOG.md", "package.json"],
         message:
-          "chore(release): set package.json version to ${nextRelease.version} [skip ci]\n\nSee CHANGE_LOG.md",
+          "build(release v${nextRelease.version}): set package.json version to ${nextRelease.version} [skip ci]\n\nSee CHANGE_LOG.md",
       },
     ],
 
