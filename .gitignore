@@ -26,6 +26,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -39,3 +40,6 @@ yarn-error.log*
 
 # tool files to ignore
 .eslintcache
+
+# graphql-codegen generated types
+src/data-layer/graphql/generated

@@ -7,3 +7,4 @@ out
 
 firebase/functions/lib
 firebase/functions/src/hasura/generated
+src/data-layer/graphql/generated

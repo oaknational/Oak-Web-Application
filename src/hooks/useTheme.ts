@@ -1,9 +1,9 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 import { Theme } from "../styles/themes";
 
 const useTheme = (theme: Theme) => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     Object.entries(theme).forEach(([key, value]) => {
       document.documentElement.style.setProperty(`--${key}`, value);
     });

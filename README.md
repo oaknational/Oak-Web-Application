@@ -33,7 +33,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### Getting Started
 
-First, run the development server:
+First, run:
+
+```bash
+cp .env.example .env
+```
+
+and fill in the incomplete values by asking another member of the team.
+
+Then, run the development server:
 
 ```bash
 npm run dev
