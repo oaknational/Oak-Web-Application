@@ -2,6 +2,22 @@
 
 A really good remote education app.
 
+## Getting started
+
+First, run:
+
+```bash
+cp .env.example .env
+```
+
+and fill in the incomplete values by asking another member of the team.
+
+Then, run the development server:
+
+```bash
+npm run dev
+```
+
 ## Testing
 
 Unit tests only for now, please no note write any tests dependent on a network connection, a database, a filesystem or any other IO.
@@ -35,8 +51,3 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release (and updates the package.json version number).
 - The creation of a Github release will trigger the `vercel_deployment` workflow.
 - The Vercel deployment will trigger the `deployment_checks` Github workflow.
-
-### TO DO
-
-- Make sure the Github release created from the workflow actually triggers the `vercel_deployment` workflow. Workflows are generally prevented from triggering other workflows, to avoid infinite loops and leaking of secure info. If this is a problem, set the github token to be a Github PAT with appropriate permissions.
-- Create the actual `semantic_release` workflow steps. Note, this will need to be run with a PAT from the machine user, and the machine user given permissions to commit directly to the `main` branch, otherwise the semantic-release tooling won't be able to update the package.json version file or commit to changelog file.

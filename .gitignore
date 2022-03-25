@@ -40,3 +40,6 @@ yarn-error.log*
 
 # tool files to ignore
 .eslintcache
+
+# graphql-codegen generated types
+src/data-layer/graphql/generated
