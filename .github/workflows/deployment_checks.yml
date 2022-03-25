@@ -24,6 +24,9 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
+        env:
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.target_url }}"
@@ -66,6 +69,9 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
+        env:
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.target_url }}"

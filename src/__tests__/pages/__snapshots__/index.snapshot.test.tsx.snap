@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders homepage unchanged 1`] = `
+exports[`pages/index.tsx renders homepage unchanged 1`] = `
 <div>
   <header
     class="header"
@@ -17,7 +17,15 @@ exports[`renders homepage unchanged 1`] = `
   </header>
   <main
     class="main"
-  />
+  >
+    <h1
+      data-test-id="lesson-title"
+    />
+    <p>
+      Status: 
+      loading
+    </p>
+  </main>
   <footer
     class="footer"
   >
