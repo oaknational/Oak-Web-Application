@@ -1,4 +1,5 @@
-# Deploy a release tag or branch to Vercel
+# Deploy a release tag or branch to Vercel using the Vercel CLI
+# Note, this means losing the Github metadata like the PR links in the Vercel console
 name: "Deploy"
 
 on:
