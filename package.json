@@ -9,7 +9,7 @@
     "check-types": "tsc --noEmit",
     "dev": "next dev",
     "format": "prettier */**/*.t{s,sx} --write",
-    "gql:codegen": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --config codegen.yml -r dotenv/config",
+    "gql:codegen": "graphql-codegen --config codegen.yml -r dotenv/config",
     "lint": "next lint",
     "lint:styles": "stylelint src/*/**/*.css --fix",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
