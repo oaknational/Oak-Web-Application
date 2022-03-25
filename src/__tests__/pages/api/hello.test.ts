@@ -8,13 +8,21 @@ describe("hello api", () => {
 
     const { req, res } = createMocks();
 
-    res.status = () => {
-      return {
-        json: spy,
-      };
+    const spiedRes = {
+      ...res,
+      status: () => {
+        return {
+          json: spy,
+        };
+      },
     };
 
-    handler(req, res);
+    /**
+     * @see https://github.com/howardabrams/node-mocks-http/issues/245
+     */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    handler(req, spiedRes);
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
