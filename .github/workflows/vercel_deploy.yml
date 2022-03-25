@@ -24,6 +24,9 @@ jobs:
 
       # Install.
       - run: npm ci
+        env:
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       # Determine if the current ref is a release tag.
       - uses: ./.github/actions/ref_is_release
