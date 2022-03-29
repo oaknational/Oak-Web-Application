@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { LS_KEY_THEME } from "../config/localStorageKeys";
 import { Theme, defaultTheme, ausTheme } from "../styles/themes";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
@@ -13,9 +14,6 @@ declare global {
     oakThemes?: WindowOakThemes;
   }
 }
-
-// @TODO move to centralised local storage keys list
-export const LS_KEY_THEME = "theme";
 
 export const themeNames = ["default", "aus"] as const;
 type ThemeNames = typeof themeNames;

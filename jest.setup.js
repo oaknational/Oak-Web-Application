@@ -7,7 +7,9 @@ jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(),
   onAuthStateChanged: jest.fn(() => () => undefined),
   isSignInWithEmailLink: jest.fn(() => true),
-  signInWithEmailLink: jest.fn(async () => ({})),
+  signInWithEmailLink: jest.fn(async () => ({
+    user: { email: "test@thenational.academy" },
+  })),
   sendSignInLinkToEmail: jest.fn(async () => undefined),
   signOut: jest.fn(async () => undefined),
 }));

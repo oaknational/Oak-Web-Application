@@ -1,12 +1,10 @@
 import { act, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
+import { LS_KEY_THEME } from "../config/localStorageKeys";
+
 import useLocalStorage from "./useLocalStorage";
-import useTheme, {
-  LS_KEY_THEME,
-  themeNames,
-  WindowOakThemes,
-} from "./useTheme";
+import useTheme, { themeNames, WindowOakThemes } from "./useTheme";
 
 declare global {
   interface WindowEventMap {
