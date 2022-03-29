@@ -3,13 +3,19 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import useEventListener from "./useEventListener";
 
+const LOCAL_STORAGE_EVENT = "local-storage";
+
 declare global {
   interface WindowEventMap {
-    "local-storage": CustomEvent;
+    [LOCAL_STORAGE_EVENT]: CustomEvent;
   }
 }
 
 type SetValue<T> = Dispatch<SetStateAction<T>>;
+
+export const dispatchLocalStorageEvent = () => {
+  window.dispatchEvent(new Event(LOCAL_STORAGE_EVENT));
+};
 
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   // Get from local storage then
@@ -54,7 +60,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
       setStoredValue(newValue);
 
       // We dispatch a custom event so every useLocalStorage hook are notified
-      window.dispatchEvent(new Event("local-storage"));
+      dispatchLocalStorageEvent();
     } catch (error) {
       console.warn(`Error setting localStorage key “${key}”:`, error);
     }
@@ -73,7 +79,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
 
   // this is a custom event, triggered in writeValueToLocalStorage
   // See: useLocalStorage()
-  useEventListener("local-storage", handleStorageChange);
+  useEventListener(LOCAL_STORAGE_EVENT, handleStorageChange);
 
   return [storedValue, setValue];
 }

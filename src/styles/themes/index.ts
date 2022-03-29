@@ -1,15 +1,3 @@
-import { themeName } from "../../constants/themeName";
-
-import defaultTheme from "./default.theme";
-import ausTheme from "./aus.theme";
-import { Theme } from "./types";
-
-const themes: Record<string, Theme> = {
-  defaultTheme,
-  ausTheme,
-};
-
-const theme = themes[themeName || "defaultTheme"] || defaultTheme;
-
-export default theme;
-export type { Theme };
+export { default as defaultTheme } from "./default.theme";
+export { default as ausTheme } from "./aus.theme";
+export type { Theme } from "./types";
