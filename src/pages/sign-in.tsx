@@ -61,6 +61,7 @@ const SignIn: NextPage = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          data-testid="sign-in-email-input"
         />
         <button onClick={requestMagicLink} disabled={loading}>
           Sign up/ sign in
