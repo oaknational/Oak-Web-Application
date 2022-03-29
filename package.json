@@ -26,6 +26,8 @@
     "test:ci": "jest"
   },
   "dependencies": {
+    "@bugsnag/js": "^7.16.2",
+    "@bugsnag/plugin-react": "^7.16.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.11",
     "clsx": "^1.1.1",
     "firebase": "^9.6.10",
