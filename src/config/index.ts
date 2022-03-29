@@ -11,14 +11,20 @@ const envVars = {
 
 type ConfigKey = keyof typeof envVars;
 
+for (const [key, value] of Object.entries(envVars)) {
+  /**
+   * @TODO we decide which var is required, etc, and set defaults and validations
+   */
+  if (!value) {
+    throw new Error(`No config value found for ${key}`);
+  }
+}
+
 const configGet = (key: ConfigKey) => {
   const configValue = envVars[key];
 
   if (!configValue) {
-    /**
-     * @TODO we should perform this check at build time, and validate formats eg urls
-     */
-    throw new Error(`No config value found for ${key}`);
+    console.warn(`Tried to get config value for ${key}, but none was found`);
   }
 
   return configValue;
