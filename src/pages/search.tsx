@@ -3,6 +3,27 @@ import { NextPage } from "next";
 
 import Layout from "../components/Layout";
 
+interface SearchHit {
+  _source: {
+    id: number;
+    is_sensitive: boolean;
+    // is_specialist: null
+    key_stage_slug: string;
+    key_stage_title: string;
+    lesson_description: string;
+    slug: string;
+    subject_slug: string;
+    subject_title: string;
+    theme_title: string;
+    title: string;
+    topic_slug: string;
+    topic_title: string;
+    type: string;
+    year_slug: string;
+    year_title: string;
+  };
+}
+
 const constructQuery = (queryTerms = "macbeth") => {
   return {
     query: {
@@ -14,7 +35,7 @@ const constructQuery = (queryTerms = "macbeth") => {
 };
 
 const SearchPage: NextPage = () => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<SearchHit[]>([]);
   // const [isLoading, setLoading] = useState(false);
 
   //TODO: a better way of handling env variables type
@@ -37,16 +58,16 @@ const SearchPage: NextPage = () => {
       .then((res) => res.json())
       .then((data) => {
         const { hits } = data;
-        const hitList: [] = hits.hits;
+        const hitList: SearchHit[] = hits.hits;
         setResults(hitList);
       });
   }, []);
 
   const resultElements: JSX.Element[] = [];
-  results.map((hit) => {
+  results.map((hit: SearchHit) => {
     const { _source } = hit;
-    const { title } = _source;
-    resultElements.push(<li>{title}</li>);
+    const { title, id } = _source;
+    resultElements.push(<li key={id}>{title}</li>);
   });
 
   return (
