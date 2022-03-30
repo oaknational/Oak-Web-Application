@@ -2,6 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 
+import { AuthProvider } from "../auth/useAuth";
 import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
@@ -14,9 +15,11 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
-      <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
-      </ApolloProvider>
+      <AuthProvider>
+        <ApolloProvider client={apolloClient}>
+          <Component {...pageProps} />
+        </ApolloProvider>
+      </AuthProvider>
     </>
   );
 };

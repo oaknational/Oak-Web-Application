@@ -1,7 +1,10 @@
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import useTheme, { WindowOakThemes } from "./useTheme";
+import { LS_KEY_THEME } from "../config/localStorageKeys";
+
+import useLocalStorage from "./useLocalStorage";
+import useTheme, { themeNames, WindowOakThemes } from "./useTheme";
 
 declare global {
   interface WindowEventMap {
@@ -23,6 +26,8 @@ const documentStyleSetPropertySpy = jest.spyOn(
   document.documentElement.style,
   "setProperty"
 );
+
+const consoleErrorSpy = jest.spyOn(console, "error");
 
 describe("useTheme()", () => {
   afterEach(() => {
@@ -50,15 +55,50 @@ describe("useTheme()", () => {
 
       expect(window.oakThemes?.availableThemes).toEqual(["default", "aus"]);
     });
-    it("should have functioning setTheme() method", async () => {
+    it("setTheme() should console.error if theme not valid", async () => {
       renderHook(() => useTheme());
+      jest.clearAllMocks();
+      act(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        window.oakThemes?.setTheme("not a theme");
+      });
 
-      // Clear mocks to test setTheme() functionality
+      await waitFor(() => {
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+          `Theme name must be one of: ${themeNames.join(", ")}`
+        );
+        expect(documentStyleSetPropertySpy).not.toHaveBeenCalled();
+      });
+    });
+    it("should console.error if local-storage manually changed to invalid theme", async () => {
+      renderHook(() => useTheme());
       jest.clearAllMocks();
 
-      window.oakThemes?.setTheme("aus");
+      const invalidTheme = "not a theme";
+      const { result } = renderHook(() =>
+        useLocalStorage(LS_KEY_THEME, "default")
+      );
+      act(() => {
+        const setTheme = result.current[1];
+        setTheme(invalidTheme);
+      });
 
-      waitFor(() => {
+      await waitFor(() => {
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+          `No theme found for theme name: ${invalidTheme}`
+        );
+      });
+    });
+    it("setTheme() should change the theme if valid", async () => {
+      renderHook(() => useTheme());
+      jest.clearAllMocks();
+
+      act(() => {
+        window.oakThemes?.setTheme("aus");
+      });
+
+      await waitFor(() => {
         expect(documentStyleSetPropertySpy).toHaveBeenCalledWith(
           `--color-teachers-primary`,
           "lightgreen"

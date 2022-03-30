@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { LS_KEY_THEME } from "../config/localStorageKeys";
 import { Theme, defaultTheme, ausTheme } from "../styles/themes";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
@@ -14,10 +15,7 @@ declare global {
   }
 }
 
-// @TODO move to centralised local storage keys list
-const LS_KEY_THEME = "theme";
-
-const themeNames = ["default", "aus"] as const;
+export const themeNames = ["default", "aus"] as const;
 type ThemeNames = typeof themeNames;
 type ThemeName = ThemeNames[number];
 
@@ -47,7 +45,7 @@ const useTheme = () => {
 
   useEffect(() => {
     if (!theme) {
-      console.error(`No theme found for theme name: ${selectedTheme}`);
+      return console.error(`No theme found for theme name: ${selectedTheme}`);
     }
     Object.entries(theme).forEach(([key, value]) => {
       document.documentElement.style.setProperty(`--${key}`, value);

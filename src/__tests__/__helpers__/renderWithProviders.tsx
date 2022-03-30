@@ -7,9 +7,10 @@
  */
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
-import { MockedProvider } from "@apollo/client/testing";
+import { MockedProvider as MockedApolloProvider } from "@apollo/client/testing";
 
 import { LessonsBySlugDocument } from "../../data-layer/graphql/generated/apollo";
+import { AuthProvider } from "../../auth/useAuth";
 
 const mocks = [
   {
@@ -32,9 +33,11 @@ const mocks = [
 ];
 const AllTheProviders: FC = ({ children }) => {
   return (
-    <MockedProvider mocks={mocks} addTypename={false}>
-      {children}
-    </MockedProvider>
+    <AuthProvider>
+      <MockedApolloProvider mocks={mocks} addTypename={false}>
+        {children}
+      </MockedApolloProvider>
+    </AuthProvider>
   );
 };
 
