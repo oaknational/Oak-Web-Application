@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream
-import React from "react";
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
-=======
 import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
->>>>>>> Stashed changes
 
 import Layout from "../components/Layout";
 
@@ -22,10 +16,6 @@ const constructQuery = (queryTerms = "macbeth") => {
 const SearchPage: NextPage = () => {
   const [results, setResults] = useState([]);
   // const [isLoading, setLoading] = useState(false);
-
-  if (typeof process.env.SEARCH_API_ENDPOINT === undefined) {
-    console.error("SEARCH_API_ENDPOINT not defined");
-  }
 
   //TODO: a better way of handling env variables type
   const apiRoute: RequestInfo =
