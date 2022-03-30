@@ -1,59 +1,69 @@
-import { GetServerSideProps, NextPage } from "next";
+<<<<<<< Updated upstream
+import React from "react";
+import { NextPage } from "next";
+import { useEffect, useState } from "react";
+=======
+import React, { useEffect, useState } from "react";
+import { NextPage } from "next";
+>>>>>>> Stashed changes
 
 import Layout from "../components/Layout";
 
-const SearchPage: NextPage = () => {
-  return <Layout></Layout>;
-};
-
-const constructQuery = (queryTerms = "") => {
+const constructQuery = (queryTerms = "macbeth") => {
   return {
     query: {
-      bool: {
-        must: [
-          {
-            multi_match: {
-              query: queryTerms,
-            },
-          },
-        ],
+      multi_match: {
+        query: queryTerms,
       },
     },
   };
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { query } = context;
-  let { text } = query;
-  text = Array.isArray(text) ? text[0] : text;
+const SearchPage: NextPage = () => {
+  const [results, setResults] = useState([]);
+  // const [isLoading, setLoading] = useState(false);
 
-  const elasticQuery = constructQuery(text);
+  if (typeof process.env.SEARCH_API_ENDPOINT === undefined) {
+    console.error("SEARCH_API_ENDPOINT not defined");
+  }
 
-  const btoa = (str: string) => Buffer.from(str).toString("base64");
+  //TODO: a better way of handling env variables type
+  const apiRoute: RequestInfo =
+    "https://search-staging.oaknational.workers.dev";
 
-  const requestOptions = {
+  const requestOptions: RequestInit = {
     method: "POST",
+    redirect: "follow",
     headers: new Headers({
-      Authorization: `Basic ${btoa(
-        `${process.env.ELASTIC_USER}:${process.env.ELASTIC_PASS}`
-      )}`,
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(elasticQuery),
+    body: JSON.stringify(constructQuery()),
   };
 
-  const response = await fetch(
-    `https://${process.env.ELASTIC_USER}:${process.env.ELASTIC_PASS}@${process.env.ELASTIC_DOMAIN}.europe-west2.gcp.elastic-cloud.com:9243/units_production,subjects_production,lessons_production/_search`,
-    requestOptions
+  useEffect(() => {
+    // setLoading(true);
+
+    fetch(apiRoute, requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        const { hits } = data;
+        const hitList: [] = hits.hits;
+        setResults(hitList);
+      });
+  }, []);
+
+  const resultElements: JSX.Element[] = [];
+  results.map((hit) => {
+    const { _source } = hit;
+    const { title } = _source;
+    resultElements.push(<li>{title}</li>);
+  });
+
+  return (
+    <Layout>
+      <ul>{resultElements}</ul>
+    </Layout>
   );
-
-  const json = await response.json();
-
-  console.log(json);
-
-  const props = {};
-
-  return { props };
 };
 
 export default SearchPage;
