@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import type { AppProps } from "next/app";
 
 import theme from "../styles/themes";
@@ -10,8 +10,8 @@ import { SearchContext, SearchTerm } from "../context/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme(theme);
-
-  const searchTerm: SearchTerm = { text: "" };
+  const [searchText, setSearchText] = useState("foo");
+  const searchTerm: SearchTerm = { text: searchText, setText: setSearchText };
 
   return (
     <>

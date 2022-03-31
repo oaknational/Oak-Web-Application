@@ -11,6 +11,10 @@ exports[`renders homepage unchanged 1`] = `
       Oak
     </div>
     <form>
+      <input
+        type="search"
+        value=""
+      />
       <button
         type="submit"
       >

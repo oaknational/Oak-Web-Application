@@ -1,25 +1,27 @@
-import { FC } from "react";
-// import { useRouter } from "next/router";
+import { FC, useContext, useState } from "react";
+import { useRouter } from "next/router";
 
-// import { SearchContext } from "../../context/SearchContext";
-// import Button from "../Button";
+import { SearchContext } from "../../context/SearchContext";
 
 const SearchForm: FC = () => {
-  //   const router = useRouter();
-  //   const text = useContext(SearchContext);
+  const { text, setText } = useContext(SearchContext);
+  const [value, setValue] = useState(text);
+  const router = useRouter();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget.value);
-    // useContext({ term: "" });
+    setText(value);
+    router.push("/search");
+  };
 
-    // router.push("/search");
+  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setValue(e.currentTarget.value);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <input value={text} type="search" /> */}
+      <input value={value} type="search" onChange={onChange} />
       <button type="submit">Submit</button>
-      {/* <Button label="Submit">Submit</Button> */}
     </form>
   );
 };

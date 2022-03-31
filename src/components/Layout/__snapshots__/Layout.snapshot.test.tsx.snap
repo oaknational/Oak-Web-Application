@@ -11,6 +11,10 @@ exports[`renders <Layout> unchanged 1`] = `
       Oak
     </div>
     <form>
+      <input
+        type="search"
+        value=""
+      />
       <button
         type="submit"
       >
