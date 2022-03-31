@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { NextPage } from "next";
 
+import { SearchContext } from "../context/SearchContext";
 import Layout from "../components/Layout";
 
 interface SearchHit {
@@ -44,6 +45,7 @@ function handleFetchError(response: Response) {
 
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
+  const { text } = useContext(SearchContext);
   // const [isLoading, setLoading] = useState(false);
 
   //TODO: a better way of handling env variables type
@@ -56,7 +58,7 @@ const Search: NextPage = () => {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(constructQuery()),
+    body: JSON.stringify(constructQuery(text)),
   };
 
   useEffect(() => {
@@ -70,7 +72,7 @@ const Search: NextPage = () => {
         const hitList: SearchHit[] = hits.hits;
         setResults(hitList);
       });
-  }, []);
+  }, [text]);
 
   const resultElements: JSX.Element[] = [];
   results.forEach((hit: SearchHit) => {
