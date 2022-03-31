@@ -34,6 +34,14 @@ const constructQuery = (queryTerms = "macbeth") => {
   };
 };
 
+function handleFetchError(response: Response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+
+  return response;
+}
+
 const SearchPage: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   // const [isLoading, setLoading] = useState(false);
@@ -55,6 +63,7 @@ const SearchPage: NextPage = () => {
     // setLoading(true);
 
     fetch(apiRoute, requestOptions)
+      .then(handleFetchError)
       .then((res) => res.json())
       .then((data) => {
         const { hits } = data;
