@@ -7,7 +7,7 @@ interface SearchHit {
   _source: {
     id: number;
     is_sensitive: boolean;
-    // is_specialist: null
+    is_specialist: boolean;
     key_stage_slug: string;
     key_stage_title: string;
     lesson_description: string;
@@ -42,7 +42,7 @@ function handleFetchError(response: Response) {
   return response;
 }
 
-const SearchPage: NextPage = () => {
+const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   // const [isLoading, setLoading] = useState(false);
 
@@ -73,7 +73,7 @@ const SearchPage: NextPage = () => {
   }, []);
 
   const resultElements: JSX.Element[] = [];
-  results.map((hit: SearchHit) => {
+  results.forEach((hit: SearchHit) => {
     const { _source } = hit;
     const { title, id } = _source;
     resultElements.push(<li key={id}>{title}</li>);
@@ -86,4 +86,4 @@ const SearchPage: NextPage = () => {
   );
 };
 
-export default SearchPage;
+export default Search;
