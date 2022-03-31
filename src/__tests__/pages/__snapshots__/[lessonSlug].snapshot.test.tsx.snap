@@ -10,10 +10,13 @@ exports[`renders homepage unchanged 1`] = `
     >
       Oak
     </div>
-    <input
-      placeholder="Search"
-      type="text"
-    />
+    <form>
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
   </header>
   <main
     class="main"

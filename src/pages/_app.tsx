@@ -6,13 +6,18 @@ import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
 import useTheme from "../hooks/useTheme";
+import { SearchContext, SearchTerm } from "../context/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme(theme);
 
+  const searchTerm: SearchTerm = { text: "" };
+
   return (
     <>
-      <Component {...pageProps} />
+      <SearchContext.Provider value={searchTerm}>
+        <Component {...pageProps} />
+      </SearchContext.Provider>
     </>
   );
 };
