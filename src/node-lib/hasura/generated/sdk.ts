@@ -13,6 +13,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  timestamptz: any;
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
@@ -64,8 +65,10 @@ export type String_Comparison_Exp = {
 /** columns and relationships of "bookmarked_lesson" */
 export type Bookmarked_Lesson = {
   __typename?: 'bookmarked_lesson';
+  created_at?: Maybe<Scalars['timestamptz']>;
   lesson?: Maybe<Lesson>;
   lesson_id: Scalars['Int'];
+  updated_at?: Maybe<Scalars['timestamptz']>;
   /** An object relationship */
   user: User;
   user_id: Scalars['Int'];
@@ -141,7 +144,9 @@ export type Bookmarked_Lesson_Bool_Exp = {
   _and?: InputMaybe<Array<Bookmarked_Lesson_Bool_Exp>>;
   _not?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
   _or?: InputMaybe<Array<Bookmarked_Lesson_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   user?: InputMaybe<User_Bool_Exp>;
   user_id?: InputMaybe<Int_Comparison_Exp>;
 };
@@ -160,7 +165,9 @@ export type Bookmarked_Lesson_Inc_Input = {
 
 /** input type for inserting data into table "bookmarked_lesson" */
 export type Bookmarked_Lesson_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
   lesson_id?: InputMaybe<Scalars['Int']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
   user?: InputMaybe<User_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['Int']>;
 };
@@ -168,26 +175,34 @@ export type Bookmarked_Lesson_Insert_Input = {
 /** aggregate max on columns */
 export type Bookmarked_Lesson_Max_Fields = {
   __typename?: 'bookmarked_lesson_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
   lesson_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['Int']>;
 };
 
 /** order by max() on columns of table "bookmarked_lesson" */
 export type Bookmarked_Lesson_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Bookmarked_Lesson_Min_Fields = {
   __typename?: 'bookmarked_lesson_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
   lesson_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
   user_id?: Maybe<Scalars['Int']>;
 };
 
 /** order by min() on columns of table "bookmarked_lesson" */
 export type Bookmarked_Lesson_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -209,7 +224,9 @@ export type Bookmarked_Lesson_On_Conflict = {
 
 /** Ordering options when selecting data from "bookmarked_lesson". */
 export type Bookmarked_Lesson_Order_By = {
+  created_at?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
   user?: InputMaybe<User_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -223,14 +240,20 @@ export type Bookmarked_Lesson_Pk_Columns_Input = {
 /** select columns of table "bookmarked_lesson" */
 export enum Bookmarked_Lesson_Select_Column {
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   LessonId = 'lesson_id',
+  /** column name */
+  UpdatedAt = 'updated_at',
   /** column name */
   UserId = 'user_id'
 }
 
 /** input type for updating data in table "bookmarked_lesson" */
 export type Bookmarked_Lesson_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
   lesson_id?: InputMaybe<Scalars['Int']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
   user_id?: InputMaybe<Scalars['Int']>;
 };
 
@@ -289,7 +312,11 @@ export type Bookmarked_Lesson_Sum_Order_By = {
 /** update columns of table "bookmarked_lesson" */
 export enum Bookmarked_Lesson_Update_Column {
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   LessonId = 'lesson_id',
+  /** column name */
+  UpdatedAt = 'updated_at',
   /** column name */
   UserId = 'user_id'
 }
@@ -642,6 +669,19 @@ export type Subscription_RootUser_By_PkArgs = {
   id: Scalars['Int'];
 };
 
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type Timestamptz_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['timestamptz']>;
+  _gt?: InputMaybe<Scalars['timestamptz']>;
+  _gte?: InputMaybe<Scalars['timestamptz']>;
+  _in?: InputMaybe<Array<Scalars['timestamptz']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['timestamptz']>;
+  _lte?: InputMaybe<Scalars['timestamptz']>;
+  _neq?: InputMaybe<Scalars['timestamptz']>;
+  _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
+};
+
 /** columns and relationships of "user" */
 export type User = {
   __typename?: 'user';
@@ -649,9 +689,11 @@ export type User = {
   bookmarked_lessons: Array<Bookmarked_Lesson>;
   /** An aggregate relationship */
   bookmarked_lessons_aggregate: Bookmarked_Lesson_Aggregate;
+  created_at?: Maybe<Scalars['timestamptz']>;
   email: Scalars['String'];
   firebase_id: Scalars['String'];
   id: Scalars['Int'];
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 
@@ -716,9 +758,11 @@ export type User_Bool_Exp = {
   _not?: InputMaybe<User_Bool_Exp>;
   _or?: InputMaybe<Array<User_Bool_Exp>>;
   bookmarked_lessons?: InputMaybe<Bookmarked_Lesson_Bool_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
   firebase_id?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "user" */
@@ -737,25 +781,31 @@ export type User_Inc_Input = {
 /** input type for inserting data into table "user" */
 export type User_Insert_Input = {
   bookmarked_lessons?: InputMaybe<Bookmarked_Lesson_Arr_Rel_Insert_Input>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
   email?: InputMaybe<Scalars['String']>;
   firebase_id?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type User_Max_Fields = {
   __typename?: 'user_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
   firebase_id?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate min on columns */
 export type User_Min_Fields = {
   __typename?: 'user_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
   firebase_id?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** response of any mutation on the table "user" */
@@ -784,9 +834,11 @@ export type User_On_Conflict = {
 /** Ordering options when selecting data from "user". */
 export type User_Order_By = {
   bookmarked_lessons_aggregate?: InputMaybe<Bookmarked_Lesson_Aggregate_Order_By>;
+  created_at?: InputMaybe<Order_By>;
   email?: InputMaybe<Order_By>;
   firebase_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: user */
@@ -797,18 +849,24 @@ export type User_Pk_Columns_Input = {
 /** select columns of table "user" */
 export enum User_Select_Column {
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Email = 'email',
   /** column name */
   FirebaseId = 'firebase_id',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "user" */
 export type User_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
   email?: InputMaybe<Scalars['String']>;
   firebase_id?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
 /** aggregate stddev on columns */
@@ -838,11 +896,15 @@ export type User_Sum_Fields = {
 /** update columns of table "user" */
 export enum User_Update_Column {
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Email = 'email',
   /** column name */
   FirebaseId = 'firebase_id',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** aggregate var_pop on columns */
@@ -870,6 +932,13 @@ export type CreateUserMutationVariables = Exact<{
 
 export type CreateUserMutation = { __typename?: 'mutation_root', insert_user_one?: { __typename?: 'user', email: string, firebase_id: string, id: number } | null };
 
+export type GetUsersByEmailQueryVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type GetUsersByEmailQuery = { __typename?: 'query_root', user: Array<{ __typename?: 'user', id: number, firebase_id: string, email: string }> };
+
 
 export const CreateUserDocument = gql`
     mutation CreateUser($user: user_insert_input!) {
@@ -880,16 +949,28 @@ export const CreateUserDocument = gql`
   }
 }
     `;
+export const GetUsersByEmailDocument = gql`
+    query GetUsersByEmail($email: String!) {
+  user(where: {email: {_eq: $email}}) {
+    id
+    firebase_id
+    email
+  }
+}
+    `;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     CreateUser(variables: CreateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateUserMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CreateUserMutation>(CreateUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreateUser', 'mutation');
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateUserMutation>(CreateUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreateUser');
+    },
+    GetUsersByEmail(variables: GetUsersByEmailQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUsersByEmailQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUsersByEmailQuery>(GetUsersByEmailDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetUsersByEmail');
     }
   };
 }

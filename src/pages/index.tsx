@@ -5,15 +5,10 @@ import api from "../data-layer/graphql/api";
 import Layout from "../components/Layout";
 import { useLessonsBySlugQuery } from "../data-layer/graphql/generated/apollo";
 
-const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
-  props
-) => {
-  const { loading, data, error } = useLessonsBySlugQuery({
+const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
+  const { loading, data } = useLessonsBySlugQuery({
     variables: { slug: "physics-only-review-chj3cd" },
   });
-
-  console.log({ staticProps: props });
-  console.log({ loading, data, error });
 
   const title = data?.lesson[0]?.title;
 

@@ -43,3 +43,6 @@ yarn-error.log*
 
 # graphql-codegen generated types
 src/data-layer/graphql/generated
+
+# firebase credentials
+firebase-admin-service-account.json

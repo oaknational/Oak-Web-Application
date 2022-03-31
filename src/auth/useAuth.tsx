@@ -4,7 +4,6 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
-  User as FirebaseUser,
   isSignInWithEmailLink,
   signInWithEmailLink,
   sendSignInLinkToEmail,
@@ -14,6 +13,9 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 import config from "../config";
 import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../config/localStorageKeys";
+import useConfirmNewUser from "../browser-lib/auth/useConfirmNewUser";
+
+import useAccessToken from "./useAccessToken";
 
 const firebaseConfig = {
   apiKey: config.get("firebaseApiKey"),
@@ -32,8 +34,9 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-type OakUser = {
+export type OakUser = {
   email: string;
+  id: number;
 };
 
 type OakAuth = {
@@ -42,29 +45,36 @@ type OakAuth = {
   signInWithEmail: (email: string) => Promise<void>;
   signInWithEmailCallback: () => Promise<OakUser>;
 };
-const firebaseUserToOakUser = ({ email }: FirebaseUser): OakUser => {
-  if (!email) {
-    // @TODO is this a plausible case? some openid/oauth2 providers may not use email
-    throw new Error("User has no email");
-  }
-  return {
-    email,
-  };
-};
+
 const authContext = createContext<OakAuth | null>(null);
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
 export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<OakUser | null>("user", null);
-  console.log(user);
+  const [, setAccessToken] = useAccessToken();
+  const confirmNewUser = useConfirmNewUser();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       console.log("onAuthStateChanged", user);
+      if (!user) {
+        // Logout
+        return setUser(null);
+      }
 
-      if (user) {
-        setUser(firebaseUserToOakUser(user));
-      } else {
+      if (!user.email) {
+        // Inconsistent state -- shouldn't happen as all signups require email
+        // @TODO handle error
+        return setUser(null);
+      }
+
+      try {
+        const freshToken = await user.getIdToken();
+        const oakUser = await confirmNewUser(freshToken);
+        setAccessToken(freshToken);
+        setUser(oakUser);
+      } catch (error) {
+        // @TODO error service
         setUser(null);
       }
     });
@@ -109,7 +119,7 @@ export const AuthProvider: FC = ({ children }) => {
 
       try {
         // The client SDK will parse the code from the link for you.
-        const response = await signInWithEmailLink(
+        const { user } = await signInWithEmailLink(
           auth,
           email,
           window.location.href
@@ -122,8 +132,12 @@ export const AuthProvider: FC = ({ children }) => {
         // result.additionalUserInfo.isNewUser
 
         window.localStorage.removeItem(LS_KEY_EMAIL_FOR_SIGN_IN);
+        const accessToken = await user.getIdToken();
+        const oakUser = await confirmNewUser(accessToken);
+        const freshToken = await user.getIdToken(true);
+        setAccessToken(freshToken);
 
-        const oakUser = firebaseUserToOakUser(response.user);
+        // const oakUser = firebaseUserToOakUser(response.user);
         setUser(oakUser);
         return oakUser;
       } catch (error) {

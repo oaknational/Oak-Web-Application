@@ -5,6 +5,5 @@ package-lock.json
 public
 out
 
-firebase/functions/lib
-firebase/functions/src/hasura/generated
 src/data-layer/graphql/generated
+src/node-lib/hasura/generated

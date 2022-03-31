@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
-function createApolloClient({ accessToken }: { accessToken?: string }) {
+import useAccessToken from "../../auth/useAccessToken";
+
+function createApolloClient({ accessToken }: { accessToken: string | null }) {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
@@ -10,19 +12,26 @@ function createApolloClient({ accessToken }: { accessToken?: string }) {
         ? {
             headers: {
               Authorization: `Bearer ${accessToken}`,
-              credentials: "same-origin",
             },
           }
-        : {
-            credentials: "same-origin",
-          }),
+        : {}),
     }),
     cache: new InMemoryCache(),
   });
 }
 
-export function useApolloClient({ accessToken }: { accessToken?: string }) {
+export function useApolloClient() {
+  const [accessToken] = useAccessToken();
+
   const [client] = useState(createApolloClient({ accessToken }));
+
+  useEffect(() => {
+    console.log("token change", accessToken);
+  }, [accessToken]);
+
+  useEffect(() => {
+    console.log("client change", client);
+  }, [client]);
 
   return client;
 }

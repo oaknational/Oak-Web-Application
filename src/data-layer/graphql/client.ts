@@ -1,10 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 
-const client = new GraphQLClient(
-  process.env.NEXT_PUBLIC_GRAPHQL_API_URL || "",
-  {
-    credentials: "same-origin",
-  }
-);
+import config from "../../config";
+
+const client = new GraphQLClient(config.get("graphqlApiUrl"));
 
 export default client;

@@ -18,6 +18,10 @@ const camelCasePromiseResponse =
  */
 const api = {
   lessonsBySlug: camelCasePromiseResponse(snakeCaseApi.lessonsBySlug),
+  allLessons: camelCasePromiseResponse(snakeCaseApi.allLessons),
+  bookmarkedLessonAdd: camelCasePromiseResponse(snakeCaseApi.bookmarkedLessonAdd),
+  bookmarkedLessonRemove: camelCasePromiseResponse(snakeCaseApi.bookmarkedLessonRemove),
+  bookmarkedLessons: camelCasePromiseResponse(snakeCaseApi.bookmarkedLessons),
 };
 for (const key in snakeCaseApi) {
   if (!(key in api)) {

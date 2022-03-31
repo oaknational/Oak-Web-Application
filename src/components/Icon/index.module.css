@@ -1,7 +1,11 @@
 .outer-wrapper {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .inner-wrapper {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }

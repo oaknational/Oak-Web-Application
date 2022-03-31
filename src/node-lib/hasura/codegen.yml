@@ -1,11 +1,11 @@
 overwrite: true
 schema:
-  - ${HASURA_GRAPHQL_API_URL}:
+  - ${NEXT_PUBLIC_GRAPHQL_API_URL}:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
-documents: "src/hasura/**/*.{graphql,gql}"
+documents: "src/node-lib/**/*.{graphql,gql}"
 generates:
-  src/hasura/generated/sdk.ts:
+  src/node-lib/hasura/generated/sdk.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
