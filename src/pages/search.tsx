@@ -8,7 +8,7 @@ interface SearchHit {
   _source: {
     id: number;
     is_sensitive: boolean;
-    is_specialist: boolean;
+    is_specialist: boolean | null;
     key_stage_slug: string;
     key_stage_title: string;
     lesson_description: string;
