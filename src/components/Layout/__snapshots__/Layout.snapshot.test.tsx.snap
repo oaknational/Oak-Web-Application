@@ -20,6 +20,31 @@ exports[`renders <Layout> unchanged 1`] = `
       >
         Submit
       </button>
+      <button
+        type="button"
+      >
+        Key Stage 1
+      </button>
+      <button
+        type="button"
+      >
+        Key Stage 2
+      </button>
+      <button
+        type="button"
+      >
+        Key Stage 3
+      </button>
+      <button
+        type="button"
+      >
+        Key Stage 4
+      </button>
+      <button
+        type="button"
+      >
+        All
+      </button>
     </form>
   </header>
   <main
