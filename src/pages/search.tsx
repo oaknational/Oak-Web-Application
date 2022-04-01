@@ -25,7 +25,15 @@ interface SearchHit {
   };
 }
 
-const constructQuery = (query = "macbeth") => {
+const constructQuery = (query: string, keystage: string) => {
+  const filter = keystage
+    ? {
+        term: {
+          key_stage_slug: keystage,
+        },
+      }
+    : null;
+
   return {
     query: {
       bool: {
@@ -55,8 +63,8 @@ const constructQuery = (query = "macbeth") => {
             },
           },
         ],
-        // sensitive filter
-        // filter,
+        // keystage filter
+        filter,
         /* if this is not set in a "should" any filtered content will appear
         not just those in the multi-matches above */
         minimum_should_match: 1,
@@ -75,7 +83,7 @@ function handleFetchError(response: Response) {
 
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
-  const { text } = useContext(SearchContext);
+  const { text, keystage } = useContext(SearchContext);
   // const [isLoading, setLoading] = useState(false);
 
   //TODO: a better way of handling env variables type
@@ -88,7 +96,7 @@ const Search: NextPage = () => {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(constructQuery(text)),
+    body: JSON.stringify(constructQuery(text, keystage)),
   };
 
   useEffect(() => {
@@ -102,7 +110,7 @@ const Search: NextPage = () => {
         const hitList: SearchHit[] = hits.hits;
         setResults(hitList);
       });
-  }, [text]);
+  }, [text, keystage]);
 
   const resultElements: JSX.Element[] = [];
   results.forEach((hit: SearchHit) => {

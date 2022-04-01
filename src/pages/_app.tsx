@@ -10,8 +10,14 @@ import { SearchContext, SearchTerm } from "../context/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme(theme);
-  const [searchText, setSearchText] = useState("foo");
-  const searchTerm: SearchTerm = { text: searchText, setText: setSearchText };
+  const [searchText, setSearchText] = useState("");
+  const [keystage, setKeystage] = useState("");
+  const searchTerm: SearchTerm = {
+    text: searchText,
+    setText: setSearchText,
+    keystage,
+    setKeystage,
+  };
 
   return (
     <>
