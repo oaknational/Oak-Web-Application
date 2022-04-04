@@ -95,7 +95,7 @@ for (const [key, { value, required, availableInBrowser }] of Object.entries(
 }
 
 const configGet = (key: ConfigKey) => {
-  const { value, default: defaultValue } = envVars[key];
+  const { value, default: defaultValue } = envVars[key] || {};
 
   if (value) {
     return value;

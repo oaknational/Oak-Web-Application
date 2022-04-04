@@ -23,8 +23,9 @@ export default async function handler(
   }
 
   try {
+    const body = JSON.parse(req.body);
     // @TODO: do this in a middlewares
-    const { accessToken } = firebaseUserSchema.parse(req.body);
+    const { accessToken } = firebaseUserSchema.parse(body);
 
     const oakUser = await confirmNewUser(accessToken);
 

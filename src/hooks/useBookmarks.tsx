@@ -1,11 +1,4 @@
-import {
-  createContext,
-  FC,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, FC, useCallback, useContext, useEffect } from "react";
 
 import useAuth from "../auth/useAuth";
 import {
@@ -14,6 +7,7 @@ import {
   useBookmarkedLessonsQuery,
 } from "../data-layer/graphql/generated/apollo";
 import truthy from "../utils/truthy";
+
 import useLocalStorage from "./useLocalStorage";
 
 type Bookmark = {
@@ -23,7 +17,7 @@ type Bookmark = {
     title: string;
   };
 };
-type BookmarksContext = {
+export type BookmarksContext = {
   bookmarks: Bookmark[];
   loading: boolean;
   error: string | null;
@@ -139,7 +133,7 @@ export const BookmarksProvider: FC = ({ children }) => {
 const useBookmarks = () => {
   const bookmarksContextValue = useContext(bookmarksContext);
   if (!bookmarksContextValue) {
-    throw new Error("useAuth called outside of AuthProvider");
+    throw new Error("useBookmarks called outside of BookmarksProvider");
   }
   return bookmarksContextValue;
 };

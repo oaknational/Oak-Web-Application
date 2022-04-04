@@ -12,6 +12,8 @@ import serviceAccount from "./firebase-admin-service-account.json";
 
 try {
   initializeApp({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     credential: cert(serviceAccount),
     databaseURL: config.get("firebaseDatabaseUrl"),
   });
@@ -21,6 +23,8 @@ try {
    * not an actual error when we're hot-reloading.
    * @see https://rishi.app/blog/using-firebase-admin-with-next-js
    */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   if (!/already exists/u.test(error.message)) {
     // @TODO bugsnag
   }

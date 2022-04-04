@@ -30,7 +30,7 @@ export function useApolloClient() {
   }, [accessToken]);
 
   useEffect(() => {
-    console.log("client change", client);
+    // console.log("client change", client);
   }, [client]);
 
   return client;

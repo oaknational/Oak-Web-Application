@@ -9,7 +9,6 @@ type BookmarkLessonButtonProps = {
 };
 const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
   const { lessonId } = props;
-  const [error, setError] = useState<string>();
   // @TODO this button should only show for users?
   const { user } = useAuth();
   const { bookmarks, addBookmark, removeBookmark, isBookmarked } =
@@ -37,7 +36,6 @@ const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
       return;
     }
     setLoading(true);
-    console.log("adding");
     try {
       if (!isBookmarked(lessonId)) {
         await addBookmark(lessonId);
@@ -46,13 +44,10 @@ const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
       }
     } catch (error) {
       // @TODO: bugsnag
-      setError("Failed");
     } finally {
       setLoading(false);
     }
   };
-
-  console.log("button render");
 
   return (
     <Button

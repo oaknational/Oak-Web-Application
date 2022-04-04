@@ -46,26 +46,30 @@ type OakAuth = {
   signInWithEmailCallback: () => Promise<OakUser>;
 };
 
-const authContext = createContext<OakAuth | null>(null);
-// Provider component that wraps your app and makes auth object ...
-// ... available to any child component that calls useAuth().
+export const authContext = createContext<OakAuth | null>(null);
+
 export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<OakUser | null>("user", null);
   const [, setAccessToken] = useAccessToken();
   const confirmNewUser = useConfirmNewUser();
+
+  const resetAuthState = () => {
+    setUser(null);
+    setAccessToken(null);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       console.log("onAuthStateChanged", user);
       if (!user) {
         // Logout
-        return setUser(null);
+        return resetAuthState();
       }
 
       if (!user.email) {
         // Inconsistent state -- shouldn't happen as all signups require email
         // @TODO handle error
-        return setUser(null);
+        return resetAuthState();
       }
 
       try {
@@ -75,7 +79,7 @@ export const AuthProvider: FC = ({ children }) => {
         setUser(oakUser);
       } catch (error) {
         // @TODO error service
-        setUser(null);
+        resetAuthState();
       }
     });
     // Cleanup subscription on unmount
@@ -84,7 +88,10 @@ export const AuthProvider: FC = ({ children }) => {
   // Return the user object and auth methods
   const value = {
     user,
-    signOut: () => signOut(auth).then(() => setUser(null)),
+    signOut: async () => {
+      await signOut(auth);
+      resetAuthState();
+    },
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {

@@ -1,6 +1,7 @@
 const importRules = {
   "import/first": "error",
   "import/no-unresolved": "error",
+  "import/no-named-as-default": "off",
   "import/order": [
     "error",
     {

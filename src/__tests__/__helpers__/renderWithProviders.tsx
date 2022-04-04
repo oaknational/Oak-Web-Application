@@ -9,35 +9,18 @@ import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { MockedProvider as MockedApolloProvider } from "@apollo/client/testing";
 
-import { LessonsBySlugDocument } from "../../data-layer/graphql/generated/apollo";
-import { AuthProvider } from "../../auth/useAuth";
+import { BookmarksProvider } from "../../hooks/useBookmarks";
 
-const mocks = [
-  {
-    request: {
-      query: LessonsBySlugDocument,
-      variables: { slug: "physics-only-review-chj3cd" },
-    },
-    result: {
-      data: {
-        lesson: [
-          {
-            id: 1,
-            slug: "physics-only-review-chj3cd",
-            title: "Physics only review",
-          },
-        ],
-      },
-    },
-  },
-];
+import MockedAuthProvider from "./MockedAuthProvider";
+import apolloMocks from "./apolloMocks";
+
 const AllTheProviders: FC = ({ children }) => {
   return (
-    <AuthProvider>
-      <MockedApolloProvider mocks={mocks} addTypename={false}>
-        {children}
+    <MockedAuthProvider>
+      <MockedApolloProvider mocks={apolloMocks} addTypename={false}>
+        <BookmarksProvider>{children}</BookmarksProvider>
       </MockedApolloProvider>
-    </AuthProvider>
+    </MockedAuthProvider>
   );
 };
 

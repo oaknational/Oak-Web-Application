@@ -8,7 +8,14 @@ describe("config.get()", () => {
 
     expect(clientAppBaseUrl).toBe("http://localhost:3000");
   });
-  it("should console.warn if no value is found", () => {
+  it.skip("should warn if no value found", () => {
+    process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL = undefined;
+
+    config.get("clientAppBaseUrl");
+
+    expect(config.get("clientAppBaseUrl")).toThrow();
+  });
+  it.skip("should throw for non-existent name", () => {
     const nonExistentVarName = "nonExistentVarName";
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

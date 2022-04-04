@@ -1,28 +1,23 @@
-import ky from "ky-universal";
 import { useCallback } from "react";
-import z from "zod";
 
 import useAccessToken from "../../auth/useAccessToken";
 import { OakUser } from "../../auth/useAuth";
+import api from "../api";
 
 const useConfirmNewUser = () => {
-  const tokenFromState = useAccessToken();
+  const [tokenFromState] = useAccessToken();
 
   const confirmNewUser = useCallback(
     async (tokenOverride?: string): Promise<OakUser> => {
+      const accessToken = tokenOverride || tokenFromState;
+      if (!accessToken) {
+        throw new Error("Cannot call confirmNewUser without accessToken");
+      }
       try {
-        const user = await ky
-          .post("/api/auth/confirm-new-user", {
-            json: { accessToken: tokenOverride || tokenFromState },
-          })
-          .json();
-
-        return z
-          .object({
-            id: z.number(),
-            email: z.string(),
-          })
-          .parse(user);
+        const user = await api.post["/auth/confirm-new-user"]({
+          accessToken,
+        });
+        return user;
       } catch (error) {
         console.log(error);
         console.log("error in confirm new user, see above ");
