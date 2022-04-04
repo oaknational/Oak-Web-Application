@@ -10,7 +10,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../components/Button";
 import Card from "../../components/Card";
 import Layout from "../../components/Layout/Layout";
-import api from "../../data-layer/graphql/api";
+import graphqlApi from "../../node-lib/graphql";
 
 import styles from "./[lessonSlug].module.css";
 
@@ -75,7 +75,7 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 export default Lesson;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await api.allLessons();
+  const res = await graphqlApi.allLessons();
   const paths = res.lesson.map((l) => ({ params: { lessonSlug: l.slug } }));
 
   return {
@@ -96,7 +96,7 @@ export const getStaticProps: GetStaticProps<
 
   const { lessonSlug } = params;
 
-  const res = await api.lessonsBySlug({ slug: lessonSlug });
+  const res = await graphqlApi.lessonsBySlug({ slug: lessonSlug });
   const [lesson] = res.lesson;
 
   if (!lesson) {

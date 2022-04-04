@@ -7,10 +7,10 @@ import { getSdk } from "./generated/sdk";
 // if (!graphqlApiUrl) {
 //   throw new Error("Please set process.env.HASURA_GRAPHQL_API_URL");
 // }
-const client = new GraphQLClient(config.get("graphqlApiUrl"), {
+export const client = new GraphQLClient(config.get("graphqlApiUrl"), {
   headers: { "x-hasura-admin-secret": config.get("hasuraAdminSecret") },
 });
 
-const hasura = getSdk(client);
+const graphqlApi = getSdk(client);
 
-export default hasura;
+export default graphqlApi;

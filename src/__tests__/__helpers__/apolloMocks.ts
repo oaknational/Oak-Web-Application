@@ -3,7 +3,7 @@ import {
   BookmarkedLessonsDocument,
   BookmarkedLessonAddDocument,
   BookmarkedLessonRemoveDocument,
-} from "../../data-layer/graphql/generated/apollo";
+} from "../../browser-lib/graphql/generated/apollo";
 
 const testLesson = {
   id: 1,

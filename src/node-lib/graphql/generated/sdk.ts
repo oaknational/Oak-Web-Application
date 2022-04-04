@@ -925,6 +925,11 @@ export type User_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+export type AllLessonsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllLessonsQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'lesson', id: number, slug: string, title: string }> };
+
 export type CreateUserMutationVariables = Exact<{
   user: User_Insert_Input;
 }>;
@@ -939,9 +944,25 @@ export type GetUsersByEmailQueryVariables = Exact<{
 
 export type GetUsersByEmailQuery = { __typename?: 'query_root', user: Array<{ __typename?: 'user', id: number, firebase_id: string, email: string }> };
 
+export type LessonsBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
 
+
+export type LessonsBySlugQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'lesson', id: number, slug: string, title: string }> };
+
+
+export const AllLessonsDocument = gql`
+    query allLessons {
+  lesson {
+    id
+    slug
+    title
+  }
+}
+    `;
 export const CreateUserDocument = gql`
-    mutation CreateUser($user: user_insert_input!) {
+    mutation createUser($user: user_insert_input!) {
   insert_user_one(object: $user) {
     email
     firebase_id
@@ -950,11 +971,20 @@ export const CreateUserDocument = gql`
 }
     `;
 export const GetUsersByEmailDocument = gql`
-    query GetUsersByEmail($email: String!) {
+    query getUsersByEmail($email: String!) {
   user(where: {email: {_eq: $email}}) {
     id
     firebase_id
     email
+  }
+}
+    `;
+export const LessonsBySlugDocument = gql`
+    query lessonsBySlug($slug: String!) {
+  lesson(where: {slug: {_eq: $slug}}) {
+    id
+    slug
+    title
   }
 }
     `;
@@ -966,11 +996,17 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    CreateUser(variables: CreateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateUserMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CreateUserMutation>(CreateUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreateUser');
+    allLessons(variables?: AllLessonsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AllLessonsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AllLessonsQuery>(AllLessonsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'allLessons');
     },
-    GetUsersByEmail(variables: GetUsersByEmailQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUsersByEmailQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetUsersByEmailQuery>(GetUsersByEmailDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetUsersByEmail');
+    createUser(variables: CreateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateUserMutation>(CreateUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createUser');
+    },
+    getUsersByEmail(variables: GetUsersByEmailQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUsersByEmailQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUsersByEmailQuery>(GetUsersByEmailDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUsersByEmail');
+    },
+    lessonsBySlug(variables: LessonsBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonsBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonsBySlugQuery>(LessonsBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonsBySlug');
     }
   };
 }

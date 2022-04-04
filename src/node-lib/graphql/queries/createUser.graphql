@@ -1,4 +1,4 @@
-mutation CreateUser($user: user_insert_input!) {
+mutation createUser($user: user_insert_input!) {
   insert_user_one(object: $user) {
     email
     firebase_id

@@ -5,5 +5,5 @@ package-lock.json
 public
 out
 
-src/data-layer/graphql/generated
-src/node-lib/hasura/generated
+src/browser-lib/graphql/generated
+src/node-lib/graphql/generated

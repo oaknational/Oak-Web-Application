@@ -7,7 +7,7 @@ import { getDatabase } from "firebase-admin/database";
 import { OakUser } from "../auth/useAuth";
 import config from "../config";
 
-import hasura from "./hasura";
+import graphqlApi from "./graphql";
 import serviceAccount from "./firebase-admin-service-account.json";
 
 try {
@@ -44,7 +44,7 @@ export const confirmNewUser = async (accessToken: string): Promise<OakUser> => {
       throw new Error("No email in access token");
     }
 
-    const { user: users } = await hasura.GetUsersByEmail({ email });
+    const { user: users } = await graphqlApi.getUsersByEmail({ email });
 
     if (users.length > 1) {
       // More than one user with this email, this is a problem
@@ -54,8 +54,8 @@ export const confirmNewUser = async (accessToken: string): Promise<OakUser> => {
     let [user] = users;
 
     if (!user) {
-      // Create user in hasura.
-      const res = await hasura.CreateUser({
+      // Create user in hasura
+      const res = await graphqlApi.createUser({
         user: {
           firebase_id,
           email,

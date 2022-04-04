@@ -5,7 +5,7 @@ import {
   useBookmarkedLessonAddMutation,
   useBookmarkedLessonRemoveMutation,
   useBookmarkedLessonsQuery,
-} from "../data-layer/graphql/generated/apollo";
+} from "../browser-lib/graphql/generated/apollo";
 import truthy from "../utils/truthy";
 
 import useLocalStorage from "./useLocalStorage";

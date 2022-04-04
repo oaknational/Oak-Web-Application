@@ -3,10 +3,10 @@ schema:
   - ${NEXT_PUBLIC_GRAPHQL_API_URL}:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
-documents: "src/node-lib/**/*.{graphql,gql}"
+documents: "src/browser-lib/graphql/**/*.{ts,graphql,gql}"
 generates:
-  src/node-lib/hasura/generated/sdk.ts:
+  src/browser-lib/graphql/generated/apollo.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
-      - "typescript-graphql-request"
+      - "typescript-react-apollo"
