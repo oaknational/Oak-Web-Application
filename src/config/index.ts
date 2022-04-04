@@ -5,10 +5,15 @@ const CONFIG_KEYS = [
   "firebaseStorageBucket",
   "firebaseMessagingSenderId",
   "firebaseAppId",
-  "firebaseDatabaseUrl",
   "clientAppBaseUrl",
   "graphqlApiUrl",
   "hasuraAdminSecret",
+  "firebaseAdminDatabaseUrl",
+  "firebaseAdminPrivateKeyId",
+  "firebaseAdminPrivateKey",
+  "firebaseAdminClientId",
+  "firebaseAdminClientEmail",
+  "firebaseAdminX509CertUrl",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -57,7 +62,7 @@ const envVars: Record<ConfigKey, EnvVar> = {
     availableInBrowser: true,
     default: null,
   },
-  firebaseDatabaseUrl: {
+  firebaseAdminDatabaseUrl: {
     value: process.env.FIREBASE_DATABASE_URL,
     required: true,
     availableInBrowser: false,
@@ -77,6 +82,36 @@ const envVars: Record<ConfigKey, EnvVar> = {
   },
   hasuraAdminSecret: {
     value: process.env.HASURA_ADMIN_SECRET,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  firebaseAdminPrivateKeyId: {
+    value: process.env.FIREBASE_ADMIN_PRIVATE_KEY_ID,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  firebaseAdminPrivateKey: {
+    value: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  firebaseAdminClientEmail: {
+    value: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  firebaseAdminClientId: {
+    value: process.env.FIREBASE_ADMIN_CLIENT_ID,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  firebaseAdminX509CertUrl: {
+    value: process.env.FIREBASE_ADMIN_X509_CERT_URL,
     required: true,
     availableInBrowser: false,
     default: null,

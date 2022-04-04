@@ -8,14 +8,14 @@ import { OakUser } from "../auth/useAuth";
 import config from "../config";
 
 import graphqlApi from "./graphql";
-import serviceAccount from "./firebase-admin-service-account.json";
+import serviceAccount from "./firebaseAdminServiceAccount";
 
 try {
   initializeApp({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     credential: cert(serviceAccount),
-    databaseURL: config.get("firebaseDatabaseUrl"),
+    databaseURL: config.get("firebaseAdminDatabaseUrl"),
   });
 } catch (error) {
   /*
