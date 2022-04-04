@@ -1,5 +1,4 @@
 import {
-  LessonsBySlugDocument,
   BookmarkedLessonsDocument,
   BookmarkedLessonAddDocument,
   BookmarkedLessonRemoveDocument,
@@ -15,17 +14,6 @@ const testBookmark = {
   created_at: new Date().toISOString(),
 };
 const apolloMocks = [
-  {
-    request: {
-      query: LessonsBySlugDocument,
-      variables: { slug: "physics-only-review-chj3cd" },
-    },
-    result: {
-      data: {
-        lesson: [testLesson],
-      },
-    },
-  },
   {
     request: {
       query: BookmarkedLessonsDocument,
