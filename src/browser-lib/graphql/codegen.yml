@@ -3,6 +3,7 @@ schema:
   - ${NEXT_PUBLIC_GRAPHQL_API_URL}:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
+        x-hasura-role: "user"
 documents: "src/browser-lib/graphql/**/*.{ts,graphql,gql}"
 generates:
   src/browser-lib/graphql/generated/apollo.ts:
