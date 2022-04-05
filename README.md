@@ -45,8 +45,6 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 ## Release Mechanism
 
-[DRAFT]
-
 - All changes to the `main` branch must happen through pull requests.
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
 - All commits on `main` will trigger a Vercel deploy, but non-release commits ([according to the commit message structure](scripts/build/cancel_vercel_build.js)), will be cancelled.

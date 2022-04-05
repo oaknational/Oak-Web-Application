@@ -2,7 +2,14 @@ module.exports = {
   branches: ["main"],
   plugins: [
     // Analyse commits.
-    "@semantic-release/commit-analyzer",
+    // https://github.com/semantic-release/commit-analyzer/#rules-definition
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        preset: "angular",
+        releaseRules: [{ type: "chore", release: "patch" }],
+      },
+    ],
     // Create release notes.
     "@semantic-release/release-notes-generator",
 
