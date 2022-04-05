@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/oaknational/Samara/compare/v0.2.2...v0.2.3) (2022-04-05)
+
+
+### Bug Fixes
+
+* **semantic release:** don't cancel production builds in Vercel ([2f3e3c8](https://github.com/oaknational/Samara/commit/2f3e3c8f1ff6ce102d5de2ce9e9fda38f227af8e))
+
 ## [0.2.2](https://github.com/oaknational/Samara/compare/v0.2.1...v0.2.2) (2022-04-05)
 
 ## [0.2.1](https://github.com/oaknational/Samara/compare/v0.2.0...v0.2.1) (2022-04-05)
