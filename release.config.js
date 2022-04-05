@@ -13,6 +13,13 @@ module.exports = {
         changelogFile: "CHANGE_LOG.md",
       },
     ],
+    // Update the package.json version.
+    [
+      "@semantic-release/npm",
+      {
+        npmPublish: false,
+      },
+    ],
     // Update the package.json version and commit the change log.
     // Note the `[skip ci]` part of the message, to avoid running pointless checks.
     [
