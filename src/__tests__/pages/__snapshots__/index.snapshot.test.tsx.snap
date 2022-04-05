@@ -12,6 +12,8 @@ exports[`renders homepage unchanged 1`] = `
     </div>
     <form>
       <input
+        aria-label="Search"
+        placeholder="Search"
         type="search"
         value=""
       />

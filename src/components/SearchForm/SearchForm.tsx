@@ -20,7 +20,13 @@ const SearchForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={value} type="search" onChange={onChange} />
+      <input
+        value={value}
+        type="search"
+        onChange={onChange}
+        aria-label="Search"
+        placeholder="Search"
+      />
       <button type="submit">Submit</button>
       {/* TODO: add key stage filter UI */}
     </form>
