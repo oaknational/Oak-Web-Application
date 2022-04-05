@@ -1,10 +1,19 @@
 @value mobile from "../../styles/breakpoints.css";
 
 .card {
-  background-color: var(--color-bw-95);
   height: 250px;
   border-radius: 12px;
   padding: 24px;
+}
+
+.card--teacher {
+  composes: card;
+  composes: background--teachers-primary from "../../styles/colors.module.css";
+}
+
+.card--pupil {
+  composes: card;
+  composes: background--pupils-primary from "../../styles/colors.module.css";
 }
 
 @media mobile {

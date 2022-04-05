@@ -5,15 +5,18 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
   <header
     class="header"
   >
-    <div
-      class="title"
-    >
-      Oak
+    <div>
+      <span
+        class="title"
+      >
+        Oak
+      </span>
+      <input
+        placeholder="Search"
+        type="text"
+      />
     </div>
-    <input
-      placeholder="Search"
-      type="text"
-    />
+    <button />
   </header>
   <main
     class="main"
@@ -25,6 +28,11 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
       Status: 
       loading
     </p>
+    <div
+      class="card--undefined"
+    >
+      I am a card
+    </div>
   </main>
   <footer
     class="footer"

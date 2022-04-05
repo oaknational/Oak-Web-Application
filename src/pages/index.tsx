@@ -1,6 +1,7 @@
 import { FC } from "react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
+import Card from "../components/Card";
 import api from "../data-layer/graphql/api";
 import Layout from "../components/Layout";
 import { useLessonsBySlugQuery } from "../data-layer/graphql/generated/apollo";
@@ -21,6 +22,7 @@ const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
     <Layout>
       <h1 data-test-id="lesson-title">{title}</h1>
       <p>Status: {loading ? "loading" : "idle"}</p>
+      <Card>I am a card</Card>
     </Layout>
   );
 };

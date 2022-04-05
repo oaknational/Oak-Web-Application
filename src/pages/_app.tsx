@@ -8,6 +8,7 @@ import "../styles/reset.css";
 import "../styles/globals.css";
 import { useApolloClient } from "../data-layer/graphql/apolloClient";
 import useTheme from "../hooks/useTheme";
+import { UserStyleContextProvider } from "../context/UserStyleContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme();
@@ -17,7 +18,9 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     <>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
+          <UserStyleContextProvider>
+            <Component {...pageProps} />
+          </UserStyleContextProvider>
         </ApolloProvider>
       </AuthProvider>
     </>

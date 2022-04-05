@@ -5,15 +5,18 @@ exports[`renders <Layout> unchanged 1`] = `
   <header
     class="header"
   >
-    <div
-      class="title"
-    >
-      Oak
+    <div>
+      <span
+        class="title"
+      >
+        Oak
+      </span>
+      <input
+        placeholder="Search"
+        type="text"
+      />
     </div>
-    <input
-      placeholder="Search"
-      type="text"
-    />
+    <button />
   </header>
   <main
     class="main"

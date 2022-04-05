@@ -3,7 +3,7 @@
 exports[`renders <Card> unchanged 1`] = `
 <div>
   <div
-    class="card"
+    class="card--undefined"
   >
     lesson content
   </div>
