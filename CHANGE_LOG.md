@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/oaknational/Samara/compare/v0.2.0...v0.2.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* **semantic release:** poke Github to test semantic release with reduced machine user permissions ([c941b3f](https://github.com/oaknational/Samara/commit/c941b3f4f299cbf5c24baffa631e340137a524ec))
+
 # [0.2.0](https://github.com/oaknational/Samara/compare/v0.1.0...v0.2.0) (2022-04-05)
 
 
