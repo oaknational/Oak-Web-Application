@@ -28,6 +28,7 @@ jobs:
       # Install.
       - run: npm ci
         env:
+          # Need these because there is a post-install step to generate types from the GraphQL queries.
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
@@ -37,7 +38,9 @@ jobs:
       # Also updates the version number in the package.json file,
       # and updates the changelog file.
       - name: do release
-        run: npx semantic-release
+        run: |
+          env
+          npx semantic-release --debug
         env:
           GH_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
           # Don't run pre-commit or commit message hooks on this commit
