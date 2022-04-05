@@ -2,7 +2,7 @@
 import { config, auth } from "firebase-functions";
 import { initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
-import { getDatabase } from 'firebase-admin/database'
+import { getDatabase } from "firebase-admin/database";
 
 import hasura from "./hasura";
 
