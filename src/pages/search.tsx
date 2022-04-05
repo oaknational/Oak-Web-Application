@@ -77,14 +77,13 @@ function handleFetchError(response: Response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
-
+  // TODO: handle error in UI in a meaningful way
   return response;
 }
 
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const { text, keystage } = useContext(SearchContext);
-  // const [isLoading, setLoading] = useState(false);
 
   //TODO: a better way of handling env variables type
   const apiRoute: RequestInfo =
@@ -100,8 +99,7 @@ const Search: NextPage = () => {
   };
 
   useEffect(() => {
-    // setLoading(true);
-
+    // TODO: add loading UI
     fetch(apiRoute, requestOptions)
       .then(handleFetchError)
       .then((res) => res.json())
@@ -121,6 +119,7 @@ const Search: NextPage = () => {
 
   return (
     <Layout>
+      <h2>Key Stage: {keystage}</h2>
       <ul>{resultElements}</ul>
     </Layout>
   );
