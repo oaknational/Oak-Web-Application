@@ -1,4 +1,4 @@
-name: Deployment Checks
+name: Deployment Actions
 
 on: deployment_status
 
@@ -6,11 +6,43 @@ jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml
 
+  # Add the deployed domain to a Firebase Auth allow list.
+  firebase_auth:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    # Filter out alt theme deployments
+    if: ${{ github.event.deployment_status.state == 'success' }}
+    name: Firebase Auth
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      # Install
+      - run: npm ci
+        env:
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
+
+      - uses: ./.github/actions/firebase_auth_domains
+        name: configure firebase auth
+        with:
+          url: ${{ github.event.deployment_status.target_url }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          
+
   # A placeholder workflow triggered by deployment events.
   pa11y:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     if: ${{ github.event.deployment_status.state == 'success' }}
     name: Pa11y
+    needs: firebase_auth
     runs-on: ubuntu-latest
 
     steps:
@@ -57,6 +89,7 @@ jobs:
     # Filter out alt theme deployments
     if: ${{ github.event.deployment_status.state == 'success' && !contains(github.event.deployment_status.environment, 'alt-theme')}}
     name: Percy
+    needs: firebase_auth
     runs-on: ubuntu-latest
 
     steps:
