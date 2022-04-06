@@ -38,16 +38,18 @@ const addAuthorizedDomain = async ({ url, firebaseServiceAccount }) => {
     method: "GET",
   });
 
+  const authorizedDomains = Array.from(
+    // eslint-disable-next-line no-undef
+    new Set([...currentConfig.data.authorizedDomains, domain])
+  );
+
   // Update the config based on the values that already exist
   await idToolkit.setProjectConfig(undefined, {
     url: idToolkitConfigUrl,
     method: "PATCH",
     params: { updateMask: "authorizedDomains" },
     body: JSON.stringify({
-      authorizedDomains: [
-        ...(currentConfig.data.authorizedDomains || []),
-        domain,
-      ],
+      authorizedDomains,
     }),
   });
 };
