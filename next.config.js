@@ -1,3 +1,4 @@
+/** @todo on production builds extract version number from package.json, else use commit SHA. */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
