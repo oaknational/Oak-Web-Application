@@ -1,0 +1,8 @@
+name: "Add domain to firebase authorized list"
+inputs:
+  domain:
+    description: "Authorized domain"
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"
