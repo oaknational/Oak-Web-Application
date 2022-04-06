@@ -3,7 +3,7 @@ inputs:
   domain:
     description: "Authorized domain"
     required: true
-  credentials:
+  firebaseServiceAccount:
     description: "Firebase credentials"
     required: true
 runs:

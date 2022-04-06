@@ -3,29 +3,15 @@
  */
 
 const core = require("@actions/core");
-const exec = require("@actions/exec");
 
-const setEnvVariables = (envVars) => {
-  core.debug(`
-  Percy envVars:
-  ${JSON.stringify(envVars, null, 2)}
-  `);
-
-  for (const [key, value] of Object.entries(envVars)) {
-    core.exportVariable(key, value);
-  }
-};
+const addAuthorizedDomain = require("./addAuthorizedDomain");
 
 async function run() {
   try {
     const domain = core.getInput("domain");
-    const credentials = core.getInput("credentials");
+    const firebaseServiceAccount = core.getInput("firebaseServiceAccount");
 
-    setEnvVariables({
-      CREDENTIALS: credentials,
-    });
-
-    await exec.exec(`npx firebase_cli --domain  ${domain}`);
+    addAuthorizedDomain({ domain, firebaseServiceAccount });
 
     // The script ran to completion, a success state for this action
     // will be set. The actual snapshot states will be set by Percy itself.

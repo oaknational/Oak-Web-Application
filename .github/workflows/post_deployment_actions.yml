@@ -34,7 +34,8 @@ jobs:
         name: configure firebase auth
         with:
           domain: ${{ github.event.deployment_status.target_url }}
-          credentials: ${{ secrets.SOME_CREDENTIALS }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          
 
   # A placeholder workflow triggered by deployment events.
   pa11y:
