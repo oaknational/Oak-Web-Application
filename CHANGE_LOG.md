@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/oaknational/Samara/compare/v0.2.3...v0.3.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* add unique authorized domain list ([b574c26](https://github.com/oaknational/Samara/commit/b574c261a505d3b48ccd2adc3fa36088a248295a))
+* extract domain from url ([aff90db](https://github.com/oaknational/Samara/commit/aff90dbb29e67f813d941b6ecf4b0b9d13f4a26b))
+* **firebase auth config:** typo ([085b64b](https://github.com/oaknational/Samara/commit/085b64b9865124efb94b062378b0102a4f222c4e))
+
+
+### Features
+
+* **firebase auth config:** skeleton for telling firebase auth about dynamic Vercel domains ([ff9e9e0](https://github.com/oaknational/Samara/commit/ff9e9e0db930a536add141d9a9593b19f78ab356))
+
 ## [0.2.3](https://github.com/oaknational/Samara/compare/v0.2.2...v0.2.3) (2022-04-05)
 
 
