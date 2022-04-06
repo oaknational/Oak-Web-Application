@@ -12,7 +12,6 @@ jobs:
     # Filter out alt theme deployments
     if: ${{ github.event.deployment_status.state == 'success' }}
     name: Firebase Auth
-    id: firebase_auth
     runs-on: ubuntu-latest
 
     steps:
