@@ -9,11 +9,7 @@ const CONFIG_KEYS = [
   "graphqlApiUrl",
   "hasuraAdminSecret",
   "firebaseAdminDatabaseUrl",
-  "firebaseAdminPrivateKeyId",
-  "firebaseAdminPrivateKey",
-  "firebaseAdminClientId",
-  "firebaseAdminClientEmail",
-  "firebaseAdminX509CertUrl",
+  "firebaseServiceAccount",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -86,32 +82,8 @@ const envVars: Record<ConfigKey, EnvVar> = {
     availableInBrowser: false,
     default: null,
   },
-  firebaseAdminPrivateKeyId: {
-    value: process.env.FIREBASE_ADMIN_PRIVATE_KEY_ID,
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  firebaseAdminPrivateKey: {
-    value: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  firebaseAdminClientEmail: {
-    value: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  firebaseAdminClientId: {
-    value: process.env.FIREBASE_ADMIN_CLIENT_ID,
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  firebaseAdminX509CertUrl: {
-    value: process.env.FIREBASE_ADMIN_X509_CERT_URL,
+  firebaseServiceAccount: {
+    value: process.env.FIREBASE_SERVICE_ACCOUNT,
     required: true,
     availableInBrowser: false,
     default: null,

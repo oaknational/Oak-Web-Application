@@ -10,11 +10,9 @@ import { getAuth } from "firebase-admin/auth";
 
 import config from "../config";
 
-import serviceAccount from "./firebaseAdminServiceAccount";
+const serviceAccount = JSON.parse(config.get("firebaseServiceAccount"));
 
 const options: AppOptions = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   credential: cert(serviceAccount),
   databaseURL: config.get("firebaseAdminDatabaseUrl"),
 };
