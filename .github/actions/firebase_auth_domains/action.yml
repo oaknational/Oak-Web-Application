@@ -3,6 +3,9 @@ inputs:
   domain:
     description: "Authorized domain"
     required: true
+  credentials:
+    description: "Firebase credentials"
+    required: true
 runs:
   using: "node16"
   main: "index.js"
