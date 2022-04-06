@@ -63,7 +63,7 @@ const envVars: Record<ConfigKey, EnvVar> = {
     default: null,
   },
   firebaseAdminDatabaseUrl: {
-    value: process.env.FIREBASE_DATABASE_URL,
+    value: process.env.FIREBASE_ADMIN_DATABASE_URL,
     required: true,
     availableInBrowser: false,
     default: null,

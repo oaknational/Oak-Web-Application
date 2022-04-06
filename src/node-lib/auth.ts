@@ -1,34 +1,35 @@
 /* eslint-disable import/no-unresolved */
-import { initializeApp, cert } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
+// import { initializeApp, cert } from "firebase-admin/app";
+// import { getAuth } from "firebase-admin/auth";
 import { getDatabase } from "firebase-admin/database";
 // import { getApps } from "firebase/app";
 
 import { OakUser } from "../auth/useAuth";
-import config from "../config";
 
+import firebaseAdmin from "./firebaseAdmin";
+// import config from "../config";
 import graphqlApi from "./graphql";
-import serviceAccount from "./firebaseAdminServiceAccount";
+// import serviceAccount from "./firebaseAdminServiceAccount";
 
-try {
-  initializeApp({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    credential: cert(serviceAccount),
-    databaseURL: config.get("firebaseAdminDatabaseUrl"),
-  });
-} catch (error) {
-  /*
-   * We skip the "already exists" message which is
-   * not an actual error when we're hot-reloading.
-   * @see https://rishi.app/blog/using-firebase-admin-with-next-js
-   */
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  if (!/already exists/u.test(error.message)) {
-    // @TODO bugsnag
-  }
-}
+// try {
+//   initializeApp({
+//     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//     // @ts-ignore
+//     credential: cert(serviceAccount),
+//     databaseURL: config.get("firebaseAdminDatabaseUrl"),
+//   });
+// } catch (error) {
+//   /*
+//    * We skip the "already exists" message which is
+//    * not an actual error when we're hot-reloading.
+//    * @see https://rishi.app/blog/using-firebase-admin-with-next-js
+//    */
+//   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//   // @ts-ignore
+//   if (!/already exists/u.test(error.message)) {
+//     // @TODO bugsnag
+//   }
+// }
 
 /**
  *
@@ -37,7 +38,7 @@ try {
  */
 export const confirmNewUser = async (accessToken: string): Promise<OakUser> => {
   try {
-    const accessTokenData = await getAuth().verifyIdToken(accessToken);
+    const accessTokenData = await firebaseAdmin.verifyIdToken(accessToken);
     const { uid: firebase_id, email } = accessTokenData;
 
     if (!email) {
@@ -78,7 +79,7 @@ export const confirmNewUser = async (accessToken: string): Promise<OakUser> => {
     };
 
     // Set custom user claims on this newly created user.
-    await getAuth().setCustomUserClaims(firebase_id, customClaims);
+    await firebaseAdmin.setCustomUserClaims(firebase_id, customClaims);
 
     // Update real-time database to notify client to force refresh.
     const metadataRef = getDatabase().ref("metadata/" + firebase_id);
