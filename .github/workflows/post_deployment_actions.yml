@@ -33,7 +33,7 @@ jobs:
       - uses: ./.github/actions/firebase_auth_domains
         name: configure firebase auth
         with:
-          domain: ${{ github.event.deployment_status.target_url }}
+          url: ${{ github.event.deployment_status.target_url }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           
 

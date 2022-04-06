@@ -5,7 +5,7 @@ const firebaseServiceAccount = require("./serviceAccount");
 (async () => {
   try {
     await addAuthorizedDomain({
-      domain: "samara-f9gw24crl-oak-national-academy.vercel.app",
+      url: "https://samara-f9gw24crl-oak-national-academy.vercel.app",
       firebaseServiceAccount: JSON.stringify(firebaseServiceAccount),
     });
   } catch (err) {

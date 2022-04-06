@@ -8,10 +8,10 @@ const addAuthorizedDomain = require("./addAuthorizedDomain");
 
 async function run() {
   try {
-    const domain = core.getInput("domain");
+    const url = core.getInput("url");
     const firebaseServiceAccount = core.getInput("firebaseServiceAccount");
 
-    addAuthorizedDomain({ domain, firebaseServiceAccount });
+    addAuthorizedDomain({ url, firebaseServiceAccount });
 
     // The script ran to completion, a success state for this action
     // will be set. The actual snapshot states will be set by Percy itself.

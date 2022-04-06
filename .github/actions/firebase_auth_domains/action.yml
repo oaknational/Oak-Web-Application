@@ -1,7 +1,7 @@
 name: "Add domain to firebase authorized list"
 inputs:
-  domain:
-    description: "Authorized domain"
+  url:
+    description: "Deployment url"
     required: true
   firebaseServiceAccount:
     description: "Firebase credentials"

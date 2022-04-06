@@ -2,7 +2,9 @@ const { writeFileSync } = require("fs");
 
 const { google } = require("googleapis");
 
-const addAuthorizedDomain = async ({ domain, firebaseServiceAccount }) => {
+const addAuthorizedDomain = async ({ url, firebaseServiceAccount }) => {
+  const urlObject = new URL(url);
+  const domain = urlObject.host;
   const FILE_NAME = "./serviceAccount.json";
   writeFileSync(FILE_NAME, firebaseServiceAccount);
 
