@@ -43,7 +43,19 @@ Currently this hook
 
 We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `npm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
 
-## Release Mechanism
+## CI/CD
+
+### Pull Requests and Automated Checks
+
+#### Required Github Secrets for Workflows
+
+- `A_SECRET_VALUE` - Some config or tool auth.
+
+#### Required Environment Variables for Builds
+
+- `SOMETHING_TO_DO_WITH_HASURA` - So secret.
+
+### Release Mechanism
 
 - All changes to the `main` branch must happen through pull requests.
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
