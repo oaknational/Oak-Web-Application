@@ -1,9 +1,21 @@
-import { apiAuthConfirmNewUser } from "./auth-confirm-new-user";
+import { z } from "zod";
 
-const api = {
-  post: {
-    "/auth/confirm-new-user": apiAuthConfirmNewUser,
-  },
+import useOakFetch from "./useOakFetch";
+
+const useApi = () => {
+  const oakFetch = useOakFetch();
+
+  return {
+    "/login": () =>
+      oakFetch({
+        url: "/api/login",
+        method: "POST",
+        responseDataSchema: z.object({
+          id: z.number(),
+          email: z.string(),
+        }),
+      }),
+  };
 };
 
-export default api;
+export default useApi;

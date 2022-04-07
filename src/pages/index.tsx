@@ -12,7 +12,7 @@ const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <Layout>
-      <h1 data-test-id="lesson-title">{title}</h1>
+      <h1 data-testid="lesson-title">{title}</h1>
     </Layout>
   );
 };

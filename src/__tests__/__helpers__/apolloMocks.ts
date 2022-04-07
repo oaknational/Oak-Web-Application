@@ -4,7 +4,7 @@ import {
   BookmarkedLessonRemoveDocument,
 } from "../../browser-lib/graphql/generated/apollo";
 
-const testLesson = {
+export const testLesson = {
   id: 1,
   slug: "physics-only-review-chj3cd",
   title: "Physics only review",

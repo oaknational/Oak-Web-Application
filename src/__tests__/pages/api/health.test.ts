@@ -1,8 +1,8 @@
 import { createMocks } from "node-mocks-http";
 
-import handler from "../../../pages/api/hello";
+import handler from "../../../pages/api/health";
 
-describe("hello api", () => {
+describe("/api/health", () => {
   it("has a handler", () => {
     const spy = jest.fn();
 

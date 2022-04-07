@@ -12,22 +12,24 @@ const BookmarksPage: NextPage = () => {
 
   return (
     <Layout>
-      <h1>
-        Bookmarks
+      <header>
+        <h1>Bookmarks</h1>
         {loading && <LoadingSpinner />}
-      </h1>
+      </header>
       <p>Here are all your bookmarked lessons</p>
 
       {error && <p color="red">{error}</p>}
       <ul>
-        {bookmarks?.map(({ lesson }) => {
+        {bookmarks?.map(({ lesson }, i) => {
           if (!lesson) {
             return null;
           }
           const { slug } = lesson;
           return (
             <li key={slug}>
-              <Link href={`/lessons/${slug}`}>{lesson.title}</Link>
+              <Link href={`/lessons/${slug}`}>
+                <a data-testid={`bookmark-${i}`}>{lesson.title}</a>
+              </Link>
               <button onClick={() => removeBookmark(lesson.id)}>remove</button>
             </li>
           );

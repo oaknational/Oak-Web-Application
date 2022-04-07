@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   isSignInWithEmailLink,
   signInWithEmailLink,
+  onIdTokenChanged,
   sendSignInLinkToEmail,
   signOut,
 } from "firebase/auth";
@@ -13,7 +14,7 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 import config from "../config";
 import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../config/localStorageKeys";
-import useConfirmNewUser from "../browser-lib/auth/useConfirmNewUser";
+import useApi from "../browser-lib/api";
 
 import useAccessToken from "./useAccessToken";
 
@@ -43,15 +44,28 @@ type OakAuth = {
   user: OakUser | null;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
-  signInWithEmailCallback: () => Promise<OakUser>;
+  signInWithEmailCallback: () => Promise<void>;
 };
 
 export const authContext = createContext<OakAuth | null>(null);
 
 export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<OakUser | null>("user", null);
-  const [, setAccessToken] = useAccessToken();
-  const confirmNewUser = useConfirmNewUser();
+  const [accessToken, setAccessToken] = useAccessToken();
+  const api = useApi();
+  const apiLogin = api["/login"];
+
+  const onLogin = async () => {
+    const oakUser = await apiLogin();
+    setUser(oakUser);
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      // @TODO catch errors
+      onLogin();
+    }
+  }, [accessToken]);
 
   const resetAuthState = () => {
     setUser(null);
@@ -59,32 +73,51 @@ export const AuthProvider: FC = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log("onAuthStateChanged", user);
+    const unsubscribe = onIdTokenChanged(auth, async (user) => {
       if (!user) {
-        // Logout
+        return resetAuthState();
+      } else {
+        const token = await user.getIdToken();
+        setAccessToken(token);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
         return resetAuthState();
       }
 
       if (!user.email) {
-        // Inconsistent state -- shouldn't happen as all signups require email
-        // @TODO handle error
+        // shouldn't happen as all signups require email
         return resetAuthState();
       }
 
       try {
-        const freshToken = await user.getIdToken();
-        const oakUser = await confirmNewUser(freshToken);
-        setAccessToken(freshToken);
-        setUser(oakUser);
+        const accessToken = await user.getIdToken();
+        setAccessToken(accessToken);
       } catch (error) {
         // @TODO error service
-        resetAuthState();
+        return resetAuthState();
       }
     });
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
+
+  // force refresh the token every 10 minutes
+  useEffect(() => {
+    const handle = setInterval(async () => {
+      const user = auth.currentUser;
+      if (user) {
+        await user.getIdToken(true);
+      }
+    }, 10 * 60 * 1000);
+    return () => clearInterval(handle);
+  }, []);
+
   // Return the user object and auth methods
   const value = {
     user,
@@ -126,27 +159,16 @@ export const AuthProvider: FC = ({ children }) => {
 
       try {
         // The client SDK will parse the code from the link for you.
-        const { user } = await signInWithEmailLink(
+        const userCredential = await signInWithEmailLink(
           auth,
           email,
           window.location.href
         );
         // Clear email from storage.
-        // You can access the new user via result.user
-        // Additional user info profile not available via:
-        // result.additionalUserInfo.profile == null
-        // You can check if the user is new or existing:
-        // result.additionalUserInfo.isNewUser
-
         window.localStorage.removeItem(LS_KEY_EMAIL_FOR_SIGN_IN);
-        const accessToken = await user.getIdToken();
-        const oakUser = await confirmNewUser(accessToken);
-        const freshToken = await user.getIdToken(true);
-        setAccessToken(freshToken);
 
-        // const oakUser = firebaseUserToOakUser(response.user);
-        setUser(oakUser);
-        return oakUser;
+        const accessToken = await userCredential.user.getIdToken();
+        setAccessToken(accessToken);
       } catch (error) {
         // @TODO error service
         // Some error occurred, you can inspect the code: error.code

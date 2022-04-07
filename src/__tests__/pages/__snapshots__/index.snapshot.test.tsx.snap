@@ -25,7 +25,7 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
     class="main"
   >
     <h1
-      data-test-id="lesson-title"
+      data-testid="lesson-title"
     >
       Physics only review
     </h1>

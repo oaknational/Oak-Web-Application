@@ -7,6 +7,7 @@ import {
   initializeApp,
 } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
+import { getDatabase } from "firebase-admin/database";
 
 import config from "../config";
 
@@ -17,7 +18,7 @@ const options: AppOptions = {
   databaseURL: config.get("firebaseAdminDatabaseUrl"),
 };
 
-function createFirebaseAdminApp(config: AppOptions) {
+const createFirebaseAdminApp = (config: AppOptions) => {
   try {
     if (getApps().length === 0) {
       return initializeApp(config);
@@ -36,8 +37,9 @@ function createFirebaseAdminApp(config: AppOptions) {
       // @TODO bugsnag
     }
   }
-}
+};
 
-const firebaseAdmin = getAuth(createFirebaseAdminApp(options));
+const firebaseAdminApp = createFirebaseAdminApp(options);
 
-export default firebaseAdmin;
+export const firebaseAdminAuth = getAuth(firebaseAdminApp);
+export const firebaseAdminDatabase = getDatabase(firebaseAdminApp);

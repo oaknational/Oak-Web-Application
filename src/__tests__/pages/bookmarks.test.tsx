@@ -1,22 +1,25 @@
-import { screen, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
-import Home from "../../pages";
+import Bookmarks from "../../pages/bookmarks";
+import { testLesson } from "../__helpers__/apolloMocks";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-const testLesson = { id: 1, title: "Physics only review", slug: "lesson-slug" };
 describe("pages/bookmarks.tsx", () => {
-  it.skip("Renders 'loading' during fetch", async () => {
-    renderWithProviders(<Home lesson={testLesson} />);
+  it("Renders the page title", async () => {
+    const { getByRole } = renderWithProviders(<Bookmarks />);
 
-    expect(screen.getByText(/^Status:/).textContent).toBe("Status: loading");
+    expect(getByRole("heading", { level: 1 }).textContent).toBe("Bookmarks");
   });
-  it.skip("Renders lesson title after fetch", async () => {
-    renderWithProviders(<Home lesson={testLesson} />);
+  it("Renders loading spinner during fetch", async () => {
+    const { getByText } = renderWithProviders(<Bookmarks />);
+
+    expect(getByText(/^Loading/).textContent).toBe("Loading");
+  });
+  it("Renders bookmarked lesson after fetch", async () => {
+    const { getByTestId } = renderWithProviders(<Bookmarks />);
 
     await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        testLesson.title
-      );
+      expect(getByTestId("bookmark-0").textContent).toBe(testLesson.title);
     });
   });
 });
