@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/oaknational/Samara/compare/v0.4.0...v0.5.0) (2022-04-07)
+
+
+### Features
+
+* **docs:** slightly more docs in prep for OSSing ([48afda2](https://github.com/oaknational/Samara/commit/48afda2e8db6e2d5068796d4a0da7140e27ced07))
+
 # [0.4.0](https://github.com/oaknational/Samara/compare/v0.3.0...v0.4.0) (2022-04-07)
 
 
