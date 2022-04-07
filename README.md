@@ -18,7 +18,7 @@ Then, run the development server:
 npm run dev
 ```
 
-## Testing
+## Automatic Checks
 
 Unit tests only for now, please no note write any tests dependent on a network connection, a database, a filesystem or any other IO.
 
@@ -27,7 +27,7 @@ Tests live next to the code they are testing wherever possible. Next does not al
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.
 
-## Pre-commit and Commit Message Hooks
+### Pre-commit and Commit Message Hooks
 
 We use [Husky to run pre-commit and commit message validating hooks](.husky).
 
@@ -50,6 +50,11 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 #### Required Github Secrets for Workflows
 
 - `A_SECRET_VALUE` - Some config or tool auth.
+
+### Builds and Deployments
+
+- Preview builds on Vercel
+- Production builds on Vercel
 
 #### Required Environment Variables for Builds
 
