@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/oaknational/Samara/compare/v0.3.0...v0.4.0) (2022-04-07)
+
+
+### Features
+
+* **docs:** skeleton for info for open sourcing ([ac70651](https://github.com/oaknational/Samara/commit/ac7065178a2352cc307a8953110c04d247cbf632))
+
 # [0.3.0](https://github.com/oaknational/Samara/compare/v0.2.3...v0.3.0) (2022-04-06)
 
 
