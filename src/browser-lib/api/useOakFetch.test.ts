@@ -10,13 +10,14 @@ jest.mock("../../auth/useAccessToken", () => ({
 }));
 const fetchSpy = jest.fn(async () => {
   const response = createResponse();
+
   return {
     ...response,
     ok: true,
     json: async () => ({ foo: "bar" }),
   };
 });
-global.fetch = fetchSpy;
+global.fetch = fetchSpy as jest.Mock;
 
 describe("useOakFetch", () => {
   it("should add the accessToken to the headers", async () => {

@@ -18,7 +18,8 @@ export const login = async (accessToken: string): Promise<OakUser> => {
     }
 
     const getUserRes = await graphqlApi.getUser({ firebaseId, email });
-    let user = getUserRes?.user?.[0];
+    let user: OakUser | null = null;
+    user = getUserRes?.user?.[0] || null;
 
     if (!user) {
       const upsertUserRes = await graphqlApi.upsertUser({
@@ -30,7 +31,7 @@ export const login = async (accessToken: string): Promise<OakUser> => {
 
       console.log(upsertUserRes);
 
-      user = upsertUserRes.insert_user_one;
+      user = upsertUserRes.insert_user_one || null;
     }
 
     if (!user) {

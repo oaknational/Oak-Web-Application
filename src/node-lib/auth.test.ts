@@ -25,9 +25,13 @@ jest.mock("./firebase", () => ({
 const upsertUserSpy = jest.fn(async () => ({
   insert_user_one: testOakUser,
 }));
+const getUserSpy = jest.fn(async () => ({
+  user: testOakUser,
+}));
 jest.mock("./graphql", () => ({
   upsertUser: (...args: Parameters<typeof upsertUserSpy>) =>
     upsertUserSpy(...args),
+  getUser: (...args: Parameters<typeof upsertUserSpy>) => getUserSpy(...args),
 }));
 
 describe("node-lib/auth.ts", () => {
