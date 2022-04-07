@@ -1,3 +1,31 @@
+# [0.5.0](https://github.com/oaknational/Samara/compare/v0.4.0...v0.5.0) (2022-04-07)
+
+
+### Features
+
+* **docs:** slightly more docs in prep for OSSing ([48afda2](https://github.com/oaknational/Samara/commit/48afda2e8db6e2d5068796d4a0da7140e27ced07))
+
+# [0.4.0](https://github.com/oaknational/Samara/compare/v0.3.0...v0.4.0) (2022-04-07)
+
+
+### Features
+
+* **docs:** skeleton for info for open sourcing ([ac70651](https://github.com/oaknational/Samara/commit/ac7065178a2352cc307a8953110c04d247cbf632))
+
+# [0.3.0](https://github.com/oaknational/Samara/compare/v0.2.3...v0.3.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* add unique authorized domain list ([b574c26](https://github.com/oaknational/Samara/commit/b574c261a505d3b48ccd2adc3fa36088a248295a))
+* extract domain from url ([aff90db](https://github.com/oaknational/Samara/commit/aff90dbb29e67f813d941b6ecf4b0b9d13f4a26b))
+* **firebase auth config:** typo ([085b64b](https://github.com/oaknational/Samara/commit/085b64b9865124efb94b062378b0102a4f222c4e))
+
+
+### Features
+
+* **firebase auth config:** skeleton for telling firebase auth about dynamic Vercel domains ([ff9e9e0](https://github.com/oaknational/Samara/commit/ff9e9e0db930a536add141d9a9593b19f78ab356))
+
 ## [0.2.3](https://github.com/oaknational/Samara/compare/v0.2.2...v0.2.3) (2022-04-05)
 
 
