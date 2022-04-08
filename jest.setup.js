@@ -1,8 +1,7 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 
-// require("jest-fetch-mock").enableMocks();
-
+// @todo move thes mocks into __mocks__ folder and import into tests that use them
 jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(),
   onIdTokenChanged: jest.fn(() => () => undefined),
