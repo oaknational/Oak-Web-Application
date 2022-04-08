@@ -17,6 +17,15 @@ export const dispatchLocalStorageEvent = () => {
   window.dispatchEvent(new Event(LOCAL_STORAGE_EVENT));
 };
 
+/**
+ * @TODO we should add zod schema argument to this hook, so that if the value
+ * changes shape, it sets the value to null, rather than passing back an
+ * incorrect value which could then lead to an unhandled exception.
+ * The other option would be to use versioning, in a solution such as
+ * indexdb. But that is much more involved and likely beyond what we need.
+ * The case fall indexdb will arise when we want to use local storage to
+ * facilitate "personalisation" features for visitors who aren't logged in.
+ */
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue

@@ -4,9 +4,9 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
-  User as FirebaseUser,
   isSignInWithEmailLink,
   signInWithEmailLink,
+  onIdTokenChanged,
   sendSignInLinkToEmail,
   signOut,
 } from "firebase/auth";
@@ -14,6 +14,9 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 import config from "../config";
 import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../config/localStorageKeys";
+import useApi from "../browser-lib/api";
+
+import useAccessToken from "./useAccessToken";
 
 const firebaseConfig = {
   apiKey: config.get("firebaseApiKey"),
@@ -32,49 +35,96 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-type OakUser = {
+export type OakUser = {
   email: string;
+  id: number;
 };
 
 type OakAuth = {
   user: OakUser | null;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
-  signInWithEmailCallback: () => Promise<OakUser>;
+  signInWithEmailCallback: () => Promise<void>;
 };
-const firebaseUserToOakUser = ({ email }: FirebaseUser): OakUser => {
-  if (!email) {
-    // @TODO is this a plausible case? some openid/oauth2 providers may not use email
-    throw new Error("User has no email");
-  }
-  return {
-    email,
-  };
-};
-const authContext = createContext<OakAuth | null>(null);
-// Provider component that wraps your app and makes auth object ...
-// ... available to any child component that calls useAuth().
+
+export const authContext = createContext<OakAuth | null>(null);
+
 export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<OakUser | null>("user", null);
-  console.log(user);
+  const [accessToken, setAccessToken] = useAccessToken();
+  const api = useApi();
+  const apiLogin = api["/login"];
+
+  const onLogin = async () => {
+    const oakUser = await apiLogin();
+    setUser(oakUser);
+  };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("onAuthStateChanged", user);
+    if (accessToken) {
+      // @TODO catch errors
+      onLogin();
+    }
+  }, [accessToken]);
 
-      if (user) {
-        setUser(firebaseUserToOakUser(user));
+  const resetAuthState = () => {
+    setUser(null);
+    setAccessToken(null);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onIdTokenChanged(auth, async (user) => {
+      if (!user) {
+        return resetAuthState();
       } else {
-        setUser(null);
+        const token = await user.getIdToken();
+        setAccessToken(token);
       }
     });
-    // Cleanup subscription on unmount
+
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        return resetAuthState();
+      }
+
+      if (!user.email) {
+        // shouldn't happen as all signups require email
+        return resetAuthState();
+      }
+
+      try {
+        const accessToken = await user.getIdToken();
+        setAccessToken(accessToken);
+      } catch (error) {
+        // @TODO error service
+        return resetAuthState();
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // force refresh the token every 10 minutes
+  useEffect(() => {
+    const handle = setInterval(async () => {
+      const user = auth.currentUser;
+      if (user) {
+        await user.getIdToken(true);
+      }
+    }, 10 * 60 * 1000);
+    return () => clearInterval(handle);
+  }, []);
+
   // Return the user object and auth methods
   const value = {
     user,
-    signOut: () => signOut(auth).then(() => setUser(null)),
+    signOut: async () => {
+      await signOut(auth);
+      resetAuthState();
+    },
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
@@ -109,23 +159,16 @@ export const AuthProvider: FC = ({ children }) => {
 
       try {
         // The client SDK will parse the code from the link for you.
-        const response = await signInWithEmailLink(
+        const userCredential = await signInWithEmailLink(
           auth,
           email,
           window.location.href
         );
         // Clear email from storage.
-        // You can access the new user via result.user
-        // Additional user info profile not available via:
-        // result.additionalUserInfo.profile == null
-        // You can check if the user is new or existing:
-        // result.additionalUserInfo.isNewUser
-
         window.localStorage.removeItem(LS_KEY_EMAIL_FOR_SIGN_IN);
 
-        const oakUser = firebaseUserToOakUser(response.user);
-        setUser(oakUser);
-        return oakUser;
+        const accessToken = await userCredential.user.getIdToken();
+        setAccessToken(accessToken);
       } catch (error) {
         // @TODO error service
         // Some error occurred, you can inspect the code: error.code

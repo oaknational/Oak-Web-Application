@@ -1,9 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import mockRouter from "next-router-mock";
+import { ReactNode } from "react";
 
 import MyApp from "../../pages/_app";
 
+
 jest.mock("../../hooks/useTheme");
+jest.mock("../../auth/useAuth", () => ({
+  __esModule: true,
+  // ...jest.requireActual("../../auth/useAuth"),
+  AuthProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
+}));
 
 describe("<MyApp>", () => {
   it("Renders Component", () => {

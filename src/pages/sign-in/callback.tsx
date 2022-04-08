@@ -3,21 +3,19 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import useAuth from "../../auth/useAuth";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const SignInCallback: NextPage = () => {
   const { signInWithEmailCallback } = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const attemptSignInCallback = async () => {
     try {
-      const user = await signInWithEmailCallback();
-      console.log(user);
+      await signInWithEmailCallback();
 
       router.replace("/sign-in/success", undefined, { shallow: true });
     } catch (error) {
-      setError("An error occurred");
       router.replace("/sign-in/error", undefined, { shallow: true });
     } finally {
       setLoading(false);
@@ -28,7 +26,9 @@ const SignInCallback: NextPage = () => {
     attemptSignInCallback();
   }, []);
 
-  console.log({ loading, error });
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return <div>Thanks for signing in</div>;
 };

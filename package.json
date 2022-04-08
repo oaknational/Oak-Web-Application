@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,14 +10,17 @@
     "check-types": "tsc --noEmit",
     "dev": "next dev",
     "format": "prettier */**/*.t{s,sx} --write",
-    "gql:codegen": "graphql-codegen --config codegen.yml -r dotenv/config",
+    "gql-codegen": "npm run gql-codegen:browser && npm run gql-codegen:node",
+    "gql-codegen:browser": "graphql-codegen --config src/browser-lib/graphql/codegen.yml -r dotenv/config",
+    "gql-codegen:node": "graphql-codegen --config src/node-lib/graphql/codegen.yml -r dotenv/config",
     "lint": "next lint",
     "lint:styles": "stylelint src/*/**/*.css --fix",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
-    "postinstall": "npm run gql:codegen",
-    "prebuild": "npm run gql:codegen",
-    "predev": "npm run gql:codegen",
+    "postinstall": "npm run gql-codegen",
+    "prebuild": "npm run gql-codegen",
+    "predev": "npm run gql-codegen",
     "prepare": "husky install",
+    "semantic-release": "semantic-release",
     "start": "next start",
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest"
@@ -26,9 +29,12 @@
     "@graphql-codegen/typescript-react-apollo": "^3.2.8",
     "clsx": "^1.1.1",
     "firebase": "^9.6.9",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "zod": "^3.14.3"
   },
   "devDependencies": {
     "@actions/core": "^1.6.0",
@@ -44,6 +50,8 @@
     "@graphql-codegen/typescript-operations": "^2.3.2",
     "@next/eslint-plugin-next": "^12.1.0",
     "@percy/cli": "^1.0.0-beta.76",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/react-hooks": "^7.0.2",
@@ -57,6 +65,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
+    "googleapis": "^100.0.0",
     "graphql": "^16.3.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
@@ -67,6 +76,7 @@
     "octokit": "^1.7.1",
     "pa11y-ci": "^3.0.1",
     "prettier": "2.5.1",
+    "semantic-release": "^19.0.2",
     "stylelint": "^14.5.3",
     "stylelint-config-css-modules": "^3.0.0",
     "stylelint-config-standard": "^25.0.0",
@@ -76,5 +86,12 @@
   "engines": {
     "node": "14",
     "npm": ">=6 <8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oaknational/Samara.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
