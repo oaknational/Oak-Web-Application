@@ -42,4 +42,5 @@ yarn-error.log*
 .eslintcache
 
 # graphql-codegen generated types
-src/data-layer/graphql/generated
+src/browser-lib/graphql/generated
+src/node-lib/graphql/generated

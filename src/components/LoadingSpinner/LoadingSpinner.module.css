@@ -1,0 +1,31 @@
+.loading-spinner {
+  --width: 20px;
+  --inner-width: calc(var(--width) / 10 * 8);
+  --thickness: calc(var(--width) / 10);
+
+  display: inline-block;
+  width: var(--width);
+  height: var(--width);
+}
+
+.loading-spinner::after {
+  content: " ";
+  display: block;
+  width: var(--inner-width);
+  height: var(--inner-width);
+  margin: var(--thickness);
+  border-radius: 50%;
+  border: var(--thickness) solid currentcolor;
+  border-color: currentcolor transparent;
+  animation: loading-spinner 1.2s linear infinite;
+}
+
+@keyframes loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

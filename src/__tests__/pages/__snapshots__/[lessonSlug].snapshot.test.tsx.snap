@@ -11,9 +11,15 @@ exports[`renders homepage unchanged 1`] = `
       Oak
     </div>
     <input
+      class="search-input"
       placeholder="Search"
       type="text"
     />
+    <a
+      href="/sign-in"
+    >
+      Sign in
+    </a>
   </header>
   <main
     class="main"
@@ -31,7 +37,7 @@ exports[`renders homepage unchanged 1`] = `
           <a
             href="/"
           >
-            Key Stage 4
+            [key-stage]
           </a>
         </li>
         <li
@@ -99,7 +105,7 @@ exports[`renders homepage unchanged 1`] = `
           <a
             href="/"
           >
-            Combined Science
+            [subject-name]
           </a>
         </li>
         <li
@@ -133,7 +139,7 @@ exports[`renders homepage unchanged 1`] = `
           <a
             href="/"
           >
-            Organisation (HT)
+            [unit-name]
           </a>
         </li>
       </ol>
@@ -141,6 +147,48 @@ exports[`renders homepage unchanged 1`] = `
     <div
       class="primary-buttons"
     >
+      <button
+        class="button background--undefined variant--rounded"
+      >
+        <span
+          class="button-label"
+        >
+          Add Bookmark
+        </span>
+        <span
+          class="button-icon-wrapper"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 16px; width: 16px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <svg
+                fill="currentColor"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+      </button>
       <button
         class="button background--teachers-primary variant--rounded"
         href="/"
@@ -262,7 +310,7 @@ exports[`renders homepage unchanged 1`] = `
         Lesson overview:
       </span>
       <br />
-      Food tests
+      Test lesson
     </h1>
     <div
       class="secondary-buttons"

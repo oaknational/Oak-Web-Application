@@ -1,10 +1,11 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 
-require("jest-fetch-mock").enableMocks();
+// require("jest-fetch-mock").enableMocks();
 
 jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(),
+  onIdTokenChanged: jest.fn(() => () => undefined),
   onAuthStateChanged: jest.fn(() => () => undefined),
   isSignInWithEmailLink: jest.fn(() => true),
   signInWithEmailLink: jest.fn(async () => ({
