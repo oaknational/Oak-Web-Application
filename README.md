@@ -18,7 +18,7 @@ Then, run the development server:
 npm run dev
 ```
 
-## Testing
+## Automatic Checks
 
 Unit tests only for now, please no note write any tests dependent on a network connection, a database, a filesystem or any other IO.
 
@@ -27,7 +27,7 @@ Tests live next to the code they are testing wherever possible. Next does not al
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.
 
-## Pre-commit and Commit Message Hooks
+### Pre-commit and Commit Message Hooks
 
 We use [Husky to run pre-commit and commit message validating hooks](.husky).
 
@@ -43,7 +43,24 @@ Currently this hook
 
 We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `npm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
 
-## Release Mechanism
+## CI/CD
+
+### Pull Requests and Automated Checks
+
+#### Required Github Secrets for Workflows
+
+- `A_SECRET_VALUE` - Some config or tool auth.
+
+### Builds and Deployments
+
+- Preview builds on Vercel
+- Production builds on Vercel
+
+#### Required Environment Variables for Builds
+
+- `SOMETHING_TO_DO_WITH_HASURA` - So secret.
+
+### Release Mechanism
 
 - All changes to the `main` branch must happen through pull requests.
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
