@@ -100,11 +100,10 @@ function getReleaseStage(candidateReleaseStage = RELEASE_STAGE_NOT_DEFINED) {
       console.log('No release stage defined, falling back to "development"');
       return RELEASE_STAGE_DEVELOPMENT;
     default:
-      console.warn(`
-      Unsupported release stage: "${candidateReleaseStage}"
-      Falling back to "development".
+      throw new TypeError(`
+      Unsupported release stage: "${candidateReleaseStage}".
+      Available stages are: ${RELEASE_STAGE_DEVELOPMENT}, ${RELEASE_STAGE_PREVIEW} and ${RELEASE_STAGE_PRODUCTION}.
       `);
-      return RELEASE_STAGE_DEVELOPMENT;
   }
 }
 
