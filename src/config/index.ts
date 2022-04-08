@@ -21,6 +21,14 @@ type EnvVar = {
   default: string | null;
 };
 
+const parseValue = (value: string | undefined) => {
+  if (value === "undefined") {
+    return undefined;
+  }
+
+  return value;
+};
+
 const envVars: Record<ConfigKey, EnvVar> = {
   firebaseApiKey: {
     value: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -104,8 +112,11 @@ for (const [key, { value, required, availableInBrowser }] of Object.entries(
 const configGet = (key: ConfigKey) => {
   const { value, default: defaultValue } = envVars[key] || {};
 
-  if (value) {
-    return value;
+  // Without parsing, undefined gets stringified as "undefined"
+  const parsedValue = parseValue(value);
+
+  if (parsedValue) {
+    return parsedValue;
   }
 
   if (defaultValue) {
