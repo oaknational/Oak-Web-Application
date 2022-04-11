@@ -3,6 +3,7 @@ import { NextPage } from "next";
 
 import { SearchContext } from "../context/SearchContext";
 import Layout from "../components/Layout";
+import SearchResults from "../components/SearchResults";
 
 export interface SearchHit {
   _source: {
@@ -83,7 +84,7 @@ function handleFetchError(response: Response) {
 
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [setLoading] = useState(true);
   const { text, keystage } = useContext(SearchContext);
 
   //TODO: a better way of handling env variables type
@@ -110,7 +111,7 @@ const Search: NextPage = () => {
         const hitList: SearchHit[] = hits.hits;
         if (!isCancelled) {
           setResults(hitList);
-          setLoading(false);
+          // setLoading(false);
         }
       });
 
@@ -119,18 +120,10 @@ const Search: NextPage = () => {
     };
   }, [text, keystage]);
 
-  const resultElements: JSX.Element[] = [];
-  results.forEach((hit: SearchHit) => {
-    const { _source } = hit;
-    const { title, id } = _source;
-    resultElements.push(<li key={id}>{title}</li>);
-  });
-
   return (
     <Layout>
       <h2>Key Stage: {keystage}</h2>
-      {loading && <p>Loading...</p>}
-      <ul>{resultElements}</ul>
+      <SearchResults hits={results} />
     </Layout>
   );
 };
