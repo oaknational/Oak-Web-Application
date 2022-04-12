@@ -10,6 +10,8 @@ const CONFIG_KEYS = [
   "hasuraAdminSecret",
   "firebaseAdminDatabaseUrl",
   "firebaseServiceAccount",
+  "releaseStage",
+  "appVersion",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -94,6 +96,18 @@ const envVars: Record<ConfigKey, EnvVar> = {
     value: process.env.FIREBASE_SERVICE_ACCOUNT,
     required: true,
     availableInBrowser: false,
+    default: null,
+  },
+  releaseStage: {
+    value: process.env.NEXT_PUBLIC_RELEASE_STAGE,
+    required: true,
+    availableInBrowser: true,
+    default: "development",
+  },
+  appVersion: {
+    value: process.env.NEXT_PUBLIC_APP_VERSION,
+    required: true,
+    availableInBrowser: true,
     default: null,
   },
 };

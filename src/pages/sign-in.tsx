@@ -2,10 +2,11 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 import useAuth from "../auth/useAuth";
+import Layout from "../components/Layout";
 
 type SignInStep = "NOT_ASKED" | "LINK_REQUESTED";
 
-const SignIn: NextPage = () => {
+const SignIn = () => {
   const [step, setStep] = useState<SignInStep>("NOT_ASKED");
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -56,6 +57,7 @@ const SignIn: NextPage = () => {
   if (step === "NOT_ASKED") {
     return (
       <>
+        <label htmlFor="email">Email</label>
         <input
           name="email"
           type="email"
@@ -85,4 +87,12 @@ const SignIn: NextPage = () => {
   return null;
 };
 
-export default SignIn;
+const SignInPage: NextPage = () => {
+  return (
+    <Layout>
+      <SignIn />
+    </Layout>
+  );
+};
+
+export default SignInPage;
