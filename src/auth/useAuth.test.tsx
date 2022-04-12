@@ -43,6 +43,12 @@ Object.defineProperty(window, "localStorage", {
   value: new LocalStorageMock(),
 });
 
+let triggerIdTokenChange: (user: typeof testUser | null) => void;
+const idTokenChanged = () =>
+  new Promise((resolve) => {
+    triggerIdTokenChange = resolve;
+  });
+
 jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
 }));
@@ -53,7 +59,10 @@ jest.mock("firebase/auth", () => ({
   signInWithEmailLink: jest.fn(() => ({
     user: { getIdToken: () => Promise.resolve(testToken) },
   })),
-  onIdTokenChanged: jest.fn(),
+  onIdTokenChanged: jest.fn(async (auth, callback) => {
+    const user = await idTokenChanged();
+    callback(user);
+  }),
   sendSignInLinkToEmail: jest.fn(),
   signOut: jest.fn(),
 }));
@@ -109,6 +118,16 @@ describe("auth/useAuth.tsx", () => {
     await act(async () => {
       await result.current.signInWithEmailCallback();
       await result.current.signOut();
+    });
+
+    expect(result.current.user).toBeNull();
+    expect(getLocalStorageAccessToken()).toBeNull();
+    expect(getLocalStorageUser()).toBeNull();
+  });
+  it("should reset state and clear local storage when firebase tells it to log out", async () => {
+    const { result } = renderHook(useAuth, { wrapper: AuthProvider });
+    await act(async () => {
+      triggerIdTokenChange(null);
     });
 
     expect(result.current.user).toBeNull();

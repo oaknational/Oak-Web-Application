@@ -1,7 +1,6 @@
 describe("config.get()", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.restoreAllMocks();
     jest.resetModules();
   });
   it("should retrieve the correct value from env", async () => {
