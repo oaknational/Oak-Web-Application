@@ -8,17 +8,24 @@ const { version: packageJsonVersion } = require("../../package.json");
  * @returns {(string|null)} The SHA or `null` if it cannot be determined.
  */
 function getLocalGitRef() {
-  if (existsSync(".git")) {
-    const rev = readFileSync(".git/HEAD")
-      .toString()
-      .trim()
-      .split(/.*[: ]/)
-      .slice(-1)[0];
-    if (rev.indexOf("/") === -1) {
-      return rev;
-    } else {
-      return readFileSync(`.git/${rev}`).toString().trim();
+  try {
+    if (existsSync(".git")) {
+      const rev = readFileSync(".git/HEAD")
+        .toString()
+        .trim()
+        .split(/.*[: ]/)
+        .slice(-1)[0];
+      if (rev.indexOf("/") === -1) {
+        return rev;
+      } else {
+        return readFileSync(`.git/${rev}`).toString().trim();
+      }
     }
+  } catch (error) {
+    console.error(error);
+    console.log(
+      "The above error was caught in getLocalGitRef().\nIf this you are seeing this mid-merge or mid-rebase, then likely it is not of concern."
+    );
   }
   console.warn("Could not determine local Git ref.");
   return null;
