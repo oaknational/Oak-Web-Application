@@ -26,9 +26,9 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     <>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
-            <SearchContext.Provider value={searchTerm}>
-              <Component {...pageProps} />
-            </SearchContext.Provider>
+          <SearchContext.Provider value={searchTerm}>
+            <Component {...pageProps} />
+          </SearchContext.Provider>
         </ApolloProvider>
       </AuthProvider>
     </>
