@@ -1,3 +1,11 @@
+## [0.6.2](https://github.com/oaknational/Samara/compare/v0.6.1...v0.6.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **a11y:** fix label id in sign in email input ([ceaa5b5](https://github.com/oaknational/Samara/commit/ceaa5b56be8e01efa13495d4d864138129962f41))
+* authenticated requests ([0d1004f](https://github.com/oaknational/Samara/commit/0d1004f086f8a493de14645aa24c16564216c013))
+
 ## [0.6.1](https://github.com/oaknational/Samara/compare/v0.6.0...v0.6.1) (2022-04-12)
 
 # [0.6.0](https://github.com/oaknational/Samara/compare/v0.5.0...v0.6.0) (2022-04-11)
