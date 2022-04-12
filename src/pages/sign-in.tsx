@@ -54,11 +54,14 @@ const SignIn = () => {
     );
   }
 
+  const emailInputId = "email-input-id";
+
   if (step === "NOT_ASKED") {
     return (
       <>
-        <label htmlFor="email">Email</label>
+        <label htmlFor={emailInputId}>Email</label>
         <input
+          id={emailInputId}
           name="email"
           type="email"
           value={email}
