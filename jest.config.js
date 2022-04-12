@@ -11,8 +11,11 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: [
     "./src/**",
-    "!**/__snapshots__/**",
     "!src/pages/_document.tsx",
+    "!src/styles/themes/types.ts",
+    "!e2e_tests/browser/engineering/*",
+    "!**/__snapshots__/**",
+    "!**/*.config.{js,ts}",
   ],
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
