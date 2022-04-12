@@ -1,4 +1,6 @@
-import { test, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
+
+import { test } from "../fixtures";
 
 // Because of config in "playwright.config.ts",
 // `PLAYWRIGHT_TEST_BASE_URL` will be `localhost:3000` in local test environments.

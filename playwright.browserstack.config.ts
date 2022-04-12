@@ -1,5 +1,16 @@
+/**
+ * Config for running Playwright tests against Browserstack.
+ */
+
+/**
+ * Read environment variables from file.
+ * https://github.com/motdotla/dotenv
+ */
+// see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+// We do this so people can put their BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY
+// in an env file for local Browserstack testing.
+import "dotenv/config";
 import type { PlaywrightTestConfig } from "@playwright/test";
-import { devices } from "@playwright/test";
 
 const LOCAL_TESTING = process.env.LOCAL_E2E === "on";
 
@@ -38,71 +49,30 @@ const config: PlaywrightTestConfig = {
 
   /* Configure projects for major browsers */
   projects: [
+    // -- BrowserStack Projects --
+    // name should be of the format browser@browser_version:os os_version@browserstack
     {
-      name: "chromium",
+      name: "chrome@latest:Windows 10@browserstack",
       use: {
-        ...devices["Desktop Chrome"],
+        browserName: "chromium",
+        channel: "chrome",
       },
     },
-
-    {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"],
-      },
-    },
-
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-      },
-    },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
   ],
-
-  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   port: 3000,
-  // },
 };
 
 if (LOCAL_TESTING) {
+  // Start the dev server before the tests run.
   config.webServer = {
     command: "npm run dev",
     port: 3000,
   };
+
+  // Start and stop Browserstack-local so the local server
+  // can be tested on Browserstack.
+  // The parameters take the value of the path to the files to run.
+  config.globalSetup = require.resolve("e2e_tests/browser/start_bs_local.js");
+  config.globalTeardown = require.resolve("e2e_tests/browser/stop_bs_local.js");
 }
 
 export default config;

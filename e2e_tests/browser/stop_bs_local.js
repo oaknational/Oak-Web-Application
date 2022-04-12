@@ -1,0 +1,25 @@
+/**
+ * Stop Browserstack-local.
+ *
+ * Based on https://github.com/browserstack/playwright-browserstack/blob/main/playwright-test/global-teardown.js
+ */
+
+const { promisify } = require("util");
+
+const { bsLocal } = require("./fixtures");
+
+const sleep = promisify(setTimeout);
+module.exports = async () => {
+  // Stop the Local instance after your test run is completed, i.e after driver.quit
+  let localStopped = false;
+
+  if (bsLocal && bsLocal.isRunning()) {
+    bsLocal.stop(() => {
+      localStopped = true;
+      console.log("Stopped BrowserStackLocal");
+    });
+    while (!localStopped) {
+      await sleep(1000);
+    }
+  }
+};
