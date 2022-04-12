@@ -23,15 +23,11 @@ function createApolloClient({ accessToken }: { accessToken: string | null }) {
 export function useApolloClient() {
   const [accessToken] = useAccessToken();
 
-  const [client] = useState(createApolloClient({ accessToken }));
+  const [client, setClient] = useState(createApolloClient({ accessToken }));
 
   useEffect(() => {
-    console.log("token change", accessToken);
+    setClient(createApolloClient({ accessToken }));
   }, [accessToken]);
-
-  useEffect(() => {
-    // console.log("client change", client);
-  }, [client]);
 
   return client;
 }

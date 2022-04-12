@@ -11,12 +11,20 @@ import { MockedProvider as MockedApolloProvider } from "@apollo/client/testing";
 
 import { BookmarksProvider } from "../../hooks/useBookmarks";
 
-import MockedAuthProvider from "./MockedAuthProvider";
+import MockedAuthProvider, {
+  MockedAuthProviderProps,
+} from "./MockedAuthProvider";
 import apolloMocks from "./apolloMocks";
 
-const AllTheProviders: FC = ({ children }) => {
+type ProviderProps = {
+  authProviderProps?: MockedAuthProviderProps;
+};
+const AllTheProviders: FC<ProviderProps> = ({
+  children,
+  authProviderProps,
+}) => {
   return (
-    <MockedAuthProvider>
+    <MockedAuthProvider {...authProviderProps}>
       <MockedApolloProvider mocks={apolloMocks} addTypename={false}>
         <BookmarksProvider>{children}</BookmarksProvider>
       </MockedApolloProvider>
@@ -26,7 +34,13 @@ const AllTheProviders: FC = ({ children }) => {
 
 const renderWithProviders = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-) => render(ui, { wrapper: AllTheProviders, ...options });
+  options?: Omit<RenderOptions, "wrapper">,
+  providerProps?: ProviderProps
+) => {
+  const wrapper: FC = (props) => (
+    <AllTheProviders {...props} {...providerProps} />
+  );
+  return render(ui, { wrapper, ...options });
+};
 
 export default renderWithProviders;

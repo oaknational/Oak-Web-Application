@@ -19,7 +19,9 @@ export default async function handler(
     switch (method) {
       case "POST": {
         // @TODO: do this in a middlewares
-        const accessToken = z.string().parse(headers.token);
+        const accessToken = z
+          .string()
+          .parse(headers.authorization?.split("Bearer ")[1]);
 
         const oakUser = await login(accessToken);
 

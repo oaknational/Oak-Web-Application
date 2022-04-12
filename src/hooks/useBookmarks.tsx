@@ -4,8 +4,9 @@ import useAuth from "../auth/useAuth";
 import {
   useBookmarkedLessonAddMutation,
   useBookmarkedLessonRemoveMutation,
-  useBookmarkedLessonsQuery,
+  useBookmarkedLessonsLazyQuery,
 } from "../browser-lib/graphql/generated/apollo";
+import { LS_KEY_BOOKMARKS } from "../config/localStorageKeys";
 import truthy from "../utils/truthy";
 
 import useLocalStorage from "./useLocalStorage";
@@ -17,6 +18,11 @@ type Bookmark = {
     title: string;
   };
 };
+
+export const useBookmarksCache = () => {
+  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, []);
+};
+
 export type BookmarksContext = {
   bookmarks: Bookmark[];
   loading: boolean;
@@ -38,25 +44,31 @@ const bookmarksContext = createContext<BookmarksContext | null>(null);
  */
 export const BookmarksProvider: FC = ({ children }) => {
   const { user } = useAuth();
-  /**
-   * @TODO do we want to have this as null for when initial bookmarks not yet loaded?
-   * Do we want to store bookmarks in local-storage for cache? Or let apollo handle
-   * a local storage cache?
-   */
-  const [bookmarks, setBookmarks] = useLocalStorage<Bookmark[]>(
-    "bookmarks",
-    []
-  );
 
+  const [bookmarks, setBookmarks] = useBookmarksCache();
   const [addBookmarkMutation] = useBookmarkedLessonAddMutation();
   const [removeBookmarkMutation] = useBookmarkedLessonRemoveMutation();
 
-  const { data, refetch, loading, error } = useBookmarkedLessonsQuery();
+  const [fetchBookmarks, { data, refetch, loading, error }] =
+    useBookmarkedLessonsLazyQuery();
 
   useEffect(() => {
-    console.log("bookmarm data changed");
+    if (user) {
+      fetchBookmarks();
+    }
+  }, [user]);
 
+  useEffect(() => {
+    /**
+     * @todo: we filter by truthy here. In future we will want to monitor this,
+     * and likely action it. If a bookmark has a null lesson, it's likely that the lesson
+     * is no longer available, or that there was an error connecting to the curriculum
+     * data.
+     *
+     */
     if (data?.bookmarked_lesson) {
+      console.log("setting bms ls", data.bookmarked_lesson);
+
       setBookmarks(
         data?.bookmarked_lesson
           ?.map(({ lesson }) => lesson)

@@ -8,7 +8,7 @@ import styles from "./ScreenReaderOnly.module.css";
  * to screen readers, assitive technology, and scrapers.
  */
 const ScreenReaderOnly: FC = (props) => {
-  return <div {...props} className={styles.visuallyHidden} />;
+  return <span {...props} className={styles.screenReaderOnly} />;
 };
 
 export default ScreenReaderOnly;
