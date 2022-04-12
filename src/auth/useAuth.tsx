@@ -13,7 +13,10 @@ import {
 
 import useLocalStorage from "../hooks/useLocalStorage";
 import config from "../config";
-import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../config/localStorageKeys";
+import {
+  LS_KEY_EMAIL_FOR_SIGN_IN,
+  LS_KEY_USER,
+} from "../config/localStorageKeys";
 import useApi from "../browser-lib/api";
 
 import useAccessToken from "./useAccessToken";
@@ -50,7 +53,7 @@ type OakAuth = {
 export const authContext = createContext<OakAuth | null>(null);
 
 export const AuthProvider: FC = ({ children }) => {
-  const [user, setUser] = useLocalStorage<OakUser | null>("user", null);
+  const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
   const [accessToken, setAccessToken] = useAccessToken();
   const api = useApi();
   const apiLogin = api["/login"];

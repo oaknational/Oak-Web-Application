@@ -35,6 +35,7 @@ const createFirebaseAdminApp = (config: AppOptions) => {
     // @ts-ignore
     if (!/already exists/u.test(error.message)) {
       // @TODO bugsnag
+      console.warn("Firebase failed to init");
     }
   }
 };
