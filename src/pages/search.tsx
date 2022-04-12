@@ -84,7 +84,7 @@ function handleFetchError(response: Response) {
 
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
-  // const [setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const { text, keystage } = useContext(SearchContext);
 
   //TODO: a better way of handling env variables type
@@ -102,7 +102,6 @@ const Search: NextPage = () => {
 
   useEffect(() => {
     let isCancelled = false;
-    // TODO: add loading UI
     fetch(apiRoute, requestOptions)
       .then(handleFetchError)
       .then((res) => res.json())
@@ -111,7 +110,7 @@ const Search: NextPage = () => {
         const hitList: SearchHit[] = hits.hits;
         if (!isCancelled) {
           setResults(hitList);
-          // setLoading(false);
+          setLoading(false);
         }
       });
 
@@ -123,6 +122,7 @@ const Search: NextPage = () => {
   return (
     <Layout>
       <h2>Key Stage: {keystage}</h2>
+      {loading && <p>Loading...</p>}
       <SearchResults hits={results} />
     </Layout>
   );
