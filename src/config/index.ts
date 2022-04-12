@@ -1,35 +1,143 @@
-const envVars = {
-  appVersion: process.env.NEXT_PUBLIC_APP_VERSION,
-  clientAppBaseUrl: process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL,
-  firebaseApiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  firebaseAuthDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  firebaseProjectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  firebaseStorageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  firebaseMessagingSenderId:
-    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  firebaseAppId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  releaseStage: process.env.NEXT_PUBLIC_RELEASE_STAGE,
+const CONFIG_KEYS = [
+  "firebaseApiKey",
+  "firebaseAuthDomain",
+  "firebaseProjectId",
+  "firebaseStorageBucket",
+  "firebaseMessagingSenderId",
+  "firebaseAppId",
+  "clientAppBaseUrl",
+  "graphqlApiUrl",
+  "hasuraAdminSecret",
+  "firebaseAdminDatabaseUrl",
+  "firebaseServiceAccount",
+  "releaseStage",
+  "appVersion",
+] as const;
+
+type ConfigKey = typeof CONFIG_KEYS[number];
+
+type EnvVar = {
+  value: string | undefined;
+  required: boolean;
+  availableInBrowser: boolean;
+  default: string | null;
 };
 
-type ConfigKey = keyof typeof envVars;
+const parseValue = (value: string | undefined) => {
+  if (value === "undefined") {
+    return undefined;
+  }
 
-for (const [key, value] of Object.entries(envVars)) {
+  return value;
+};
+
+const envVars: Record<ConfigKey, EnvVar> = {
+  firebaseApiKey: {
+    value: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  firebaseAuthDomain: {
+    value: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  firebaseProjectId: {
+    value: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  firebaseStorageBucket: {
+    value: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  firebaseMessagingSenderId: {
+    value: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  firebaseAppId: {
+    value: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  firebaseAdminDatabaseUrl: {
+    value: process.env.FIREBASE_ADMIN_DATABASE_URL,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  clientAppBaseUrl: {
+    value: process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL,
+    required: true,
+    availableInBrowser: true,
+    default: "http://localhost:3000",
+  },
+  graphqlApiUrl: {
+    value: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  hasuraAdminSecret: {
+    value: process.env.HASURA_ADMIN_SECRET,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  firebaseServiceAccount: {
+    value: process.env.FIREBASE_SERVICE_ACCOUNT,
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  releaseStage: {
+    value: process.env.NEXT_PUBLIC_RELEASE_STAGE,
+    required: true,
+    availableInBrowser: true,
+    default: "development",
+  },
+  appVersion: {
+    value: process.env.NEXT_PUBLIC_APP_VERSION,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+};
+
+for (const [key, { value, required, availableInBrowser }] of Object.entries(
+  envVars
+)) {
   /**
    * @TODO we decide which var is required, etc, and set defaults and validations
    */
-  if (!value) {
+  if (required && availableInBrowser && !value) {
     throw new Error(`No config value found for ${key}`);
   }
 }
 
 const configGet = (key: ConfigKey) => {
-  const configValue = envVars[key];
+  const { value, default: defaultValue } = envVars[key] || {};
 
-  if (!configValue) {
-    console.warn(`Tried to get config value for ${key}, but none was found`);
+  // Without parsing, undefined gets stringified as "undefined"
+  const parsedValue = parseValue(value);
+
+  if (parsedValue) {
+    return parsedValue;
   }
 
-  return configValue;
+  if (defaultValue) {
+    return defaultValue;
+  }
+
+  throw new Error(`Tried to get config value for ${key}, but none was found`);
 };
 
 const config = {

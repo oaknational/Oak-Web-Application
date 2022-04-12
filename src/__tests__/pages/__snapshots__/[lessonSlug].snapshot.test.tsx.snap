@@ -40,7 +40,7 @@ exports[`renders homepage unchanged 1`] = `
           <a
             href="/"
           >
-            Key Stage 4
+            [key-stage]
           </a>
         </li>
         <li
@@ -108,7 +108,7 @@ exports[`renders homepage unchanged 1`] = `
           <a
             href="/"
           >
-            Combined Science
+            [subject-name]
           </a>
         </li>
         <li
@@ -142,7 +142,7 @@ exports[`renders homepage unchanged 1`] = `
           <a
             href="/"
           >
-            Organisation (HT)
+            [unit-name]
           </a>
         </li>
       </ol>
@@ -271,7 +271,7 @@ exports[`renders homepage unchanged 1`] = `
         Lesson overview:
       </span>
       <br />
-      Food tests
+      Test lesson
     </h1>
     <div
       class="secondary-buttons"
