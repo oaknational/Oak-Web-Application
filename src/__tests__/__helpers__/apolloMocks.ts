@@ -9,7 +9,7 @@ export const testLesson = {
   slug: "physics-only-review-chj3cd",
   title: "Physics only review",
 };
-const testBookmark = {
+export const testBookmark = {
   lesson: testLesson,
   created_at: new Date().toISOString(),
 };
@@ -27,6 +27,7 @@ const apolloMocks = [
   {
     request: {
       query: BookmarkedLessonAddDocument,
+      variables: { lessonId: 1 },
     },
     result: {
       data: {

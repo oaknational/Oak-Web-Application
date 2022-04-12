@@ -7,14 +7,13 @@
  */
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
-import { MockedProvider as MockedApolloProvider } from "@apollo/client/testing";
 
 import { BookmarksProvider } from "../../hooks/useBookmarks";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
 } from "./MockedAuthProvider";
-import apolloMocks from "./apolloMocks";
+import MockedApolloProvider from "./MockedApolloProvider";
 
 type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
@@ -25,7 +24,7 @@ const AllTheProviders: FC<ProviderProps> = ({
 }) => {
   return (
     <MockedAuthProvider {...authProviderProps}>
-      <MockedApolloProvider mocks={apolloMocks} addTypename={false}>
+      <MockedApolloProvider>
         <BookmarksProvider>{children}</BookmarksProvider>
       </MockedApolloProvider>
     </MockedAuthProvider>
