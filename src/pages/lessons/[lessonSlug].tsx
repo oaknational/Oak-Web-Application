@@ -1,52 +1,22 @@
-import { NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../components/Button";
 import Card from "../../components/Card";
 import Layout from "../../components/Layout/Layout";
+import graphqlApi from "../../node-lib/graphql";
 
 import styles from "./[lessonSlug].module.css";
 
-const data = {
-  name: "Food tests",
-  subject: {
-    name: "Combined Science",
-  },
-  keyStage: {
-    name: "Key Stage 4",
-  },
-  unit: {
-    name: "Organisation (HT)",
-    lessons: [
-      { name: "Food tests" },
-      { name: "Digestive enzymes" },
-      { name: "Digestion" },
-      { name: "Absorption" },
-      { name: "Investigating enzymes" },
-      { name: "pH and enzymes (Part 1)" },
-      { name: "pH and enzymes (Part 2)" },
-      { name: "The lungs" },
-      { name: "Blood and blood vessels" },
-      { name: "The heart" },
-      { name: "Heart rate" },
-      { name: "Heart disease" },
-      { name: "Non-communicable disease" },
-      { name: "Cancer" },
-      { name: "Plant tissue" },
-      { name: "Plant roots" },
-      { name: "Transport in plants" },
-      { name: "Investigating transpiration" },
-      { name: "Review (Part 1)" },
-      { name: "Review (Part 2)" },
-      { name: "Maud Leonora Menten" },
-      { name: "Exam technique" },
-      { name: "Maths skills" },
-    ],
-  },
-};
-
-const Lesson: NextPage = () => {
-  const lesson = data;
+const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props
+) => {
+  const { lesson } = props;
 
   const buttons: Omit<ButtonProps, "background">[] = [
     { href: "/", label: "Unit Quiz" },
@@ -59,10 +29,10 @@ const Lesson: NextPage = () => {
     <Layout>
       <Breadcrumbs
         breadcrumbs={[
-          { href: "/", label: lesson.keyStage.name },
+          { href: "/", label: "[key-stage]" },
           { href: "/", label: "Subjects" },
-          { href: "/", label: lesson.subject.name },
-          { href: "/", label: lesson.unit.name },
+          { href: "/", label: "[subject-name]" },
+          { href: "/", label: "[unit-name]" },
         ]}
       />
       <div className={styles["primary-buttons"]}>
@@ -82,7 +52,7 @@ const Lesson: NextPage = () => {
       <h1 className={styles["title"]}>
         <span className={styles["lesson-overview-text"]}>Lesson overview:</span>
         <br />
-        {lesson.name}
+        {lesson.title}
       </h1>
       <div className={styles["secondary-buttons"]}>
         {buttons.map((buttonProps) => {
@@ -101,3 +71,40 @@ const Lesson: NextPage = () => {
 };
 
 export default Lesson;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await graphqlApi.allLessons();
+  const paths = res.lesson.map((l) => ({ params: { lessonSlug: l.slug } }));
+
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps<
+  {
+    lesson: { id: number; slug: string; title: string };
+  },
+  { lessonSlug: string }
+> = async ({ params }) => {
+  if (!params || !params.lessonSlug) {
+    throw new Error("No params which we thought were there");
+  }
+
+  const { lessonSlug } = params;
+
+  const res = await graphqlApi.lessonsBySlug({ slug: lessonSlug });
+  const [lesson] = res.lesson;
+
+  if (!lesson) {
+    // @TODO consistently figure a way to handle 404s etc
+    throw new Error("404 Not found");
+  }
+
+  return {
+    props: {
+      lesson,
+    },
+  };
+};
