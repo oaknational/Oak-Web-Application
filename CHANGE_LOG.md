@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/oaknational/Samara/compare/v0.5.0...v0.6.0) (2022-04-11)
+
+
+### Features
+
+* **app versioning:** determine app version and release stage at build time ([3969e27](https://github.com/oaknational/Samara/commit/3969e276b43ca31ac91d3031207b9adea45885b6))
+
 # [0.5.0](https://github.com/oaknational/Samara/compare/v0.4.0...v0.5.0) (2022-04-07)
 
 
