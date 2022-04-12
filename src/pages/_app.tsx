@@ -19,15 +19,12 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     setKeystage,
   };
 
-  const apolloClient = useApolloClient({});
   return (
     <>
       <AuthProvider>
-        <ApolloProvider client={apolloClient}>
-          <SearchContext.Provider value={searchTerm}>
-            <Component {...pageProps} />
-          </SearchContext.Provider>
-        </ApolloProvider>
+        <SearchContext.Provider value={searchTerm}>
+          <Component {...pageProps} />
+        </SearchContext.Provider>
       </AuthProvider>
     </>
   );
