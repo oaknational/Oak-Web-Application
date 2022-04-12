@@ -1,0 +1,7 @@
+query lessonsBySlug($slug: String!) {
+  lesson(where: { slug: { _eq: $slug } }) {
+    id
+    slug
+    title
+  }
+}

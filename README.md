@@ -2,7 +2,23 @@
 
 A really good remote education app.
 
-## Testing
+## Getting started
+
+First, run:
+
+```bash
+cp .env.example .env
+```
+
+and fill in the incomplete values by asking another member of the team.
+
+Then, run the development server:
+
+```bash
+npm run dev
+```
+
+## Automatic Checks
 
 Unit tests only for now, please no note write any tests dependent on a network connection, a database, a filesystem or any other IO.
 
@@ -11,7 +27,7 @@ Tests live next to the code they are testing wherever possible. Next does not al
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.
 
-## Pre-commit and Commit Message Hooks
+### Pre-commit and Commit Message Hooks
 
 We use [Husky to run pre-commit and commit message validating hooks](.husky).
 
@@ -23,41 +39,30 @@ Currently this hook
 - Runs the linting
 - Runs the unit tests
 
-## Commit Message Validation
+### Commit Message Validation
 
 We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `npm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
 
-## Original Next docs
+## CI/CD
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Pull Requests and Automated Checks
 
-### Getting Started
+#### Required Github Secrets for Workflows
 
-First, run the development server:
+- `A_SECRET_VALUE` - Some config or tool auth.
 
-```bash
-npm run dev
-```
+### Builds and Deployments
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Preview builds on Vercel
+- Production builds on Vercel
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#### Required Environment Variables for Builds
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- `SOMETHING_TO_DO_WITH_HASURA` - So secret.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Release Mechanism
 
-### Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-### Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- All changes to the `main` branch must happen through pull requests.
+- Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
+- All commits on `main` will trigger a Vercel deploy, but non-release commits ([according to the commit message structure](scripts/build/cancel_vercel_build.js)), will be cancelled.
+- The Vercel deployment will trigger the `deployment_checks` Github workflow.

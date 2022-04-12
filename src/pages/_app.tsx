@@ -1,15 +1,17 @@
 import { FC, useState } from "react";
 import type { AppProps } from "next/app";
+import { ApolloProvider } from "@apollo/client";
 
-import theme from "../styles/themes";
+import { AuthProvider } from "../auth/useAuth";
 import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
+import { useApolloClient } from "../data-layer/graphql/apolloClient";
 import useTheme from "../hooks/useTheme";
 import { SearchContext, SearchTerm } from "../context/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
-  useTheme(theme);
+  useTheme();
   const [searchText, setSearchText] = useState("");
   const [keystage, setKeystage] = useState("");
   const searchTerm: SearchTerm = {
@@ -19,11 +21,16 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     setKeystage,
   };
 
+  const apolloClient = useApolloClient({});
   return (
     <>
-      <SearchContext.Provider value={searchTerm}>
-        <Component {...pageProps} />
-      </SearchContext.Provider>
+      <AuthProvider>
+        <ApolloProvider client={apolloClient}>
+            <SearchContext.Provider value={searchTerm}>
+              <Component {...pageProps} />
+            </SearchContext.Provider>
+        </ApolloProvider>
+      </AuthProvider>
     </>
   );
 };

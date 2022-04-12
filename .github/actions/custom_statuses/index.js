@@ -5,7 +5,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 
-const allowedStates = ["error", "failure", "pending", "success"];
+const allowedStates = ["error", "failure", "skipped", "pending", "success"];
 
 async function run() {
   try {

@@ -1,8 +1,9 @@
-import { render } from "@testing-library/react";
-
 import Home from "../../pages/index";
+import renderWithProviders from "../__helpers__/renderWithProviders";
 
-it("renders homepage unchanged", () => {
-  const { container } = render(<Home />);
-  expect(container).toMatchSnapshot();
+describe("pages/index.tsx", () => {
+  it("renders homepage unchanged", () => {
+    const { container } = renderWithProviders(<Home />);
+    expect(container).toMatchSnapshot();
+  });
 });
