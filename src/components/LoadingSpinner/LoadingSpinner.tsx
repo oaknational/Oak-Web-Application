@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import VisuallyHidden from "../VisuallyHidden";
+import ScreenReaderOnly from "../ScreenReaderOnly";
 
 import styles from "./LoadingSpinner.module.css";
 
@@ -8,7 +8,7 @@ const LoadingSpinner: FC = () => {
   //@TODO: implement a SrOnly "Loading" inner text
   return (
     <div className={styles["loading-spinner"]}>
-      <VisuallyHidden>Loading</VisuallyHidden>
+      <ScreenReaderOnly>Loading</ScreenReaderOnly>
     </div>
   );
 };

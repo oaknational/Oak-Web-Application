@@ -1,6 +1,7 @@
 const addAuthorizedDomain = require("../addAuthorizedDomain");
 
 /**
+ * @see https://cloud.google.com/iam/docs/service-accounts#service_account_keys
  * You will need to create a serviceAccount.js file in this directory which looks like:
 module.exports = {
   type: "*",
