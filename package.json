@@ -23,7 +23,7 @@
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook-build": "build-storybook"
   },
   "dependencies": {
     "@graphql-codegen/typescript-react-apollo": "^3.2.8",

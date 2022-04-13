@@ -43,3 +43,6 @@ yarn-error.log*
 
 # graphql-codegen generated types
 src/data-layer/graphql/generated
+
+# storybook
+/storybook-static
