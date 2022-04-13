@@ -4,6 +4,7 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import api from "../data-layer/graphql/api";
 import Layout from "../components/Layout";
 import { useLessonsBySlugQuery } from "../data-layer/graphql/generated/apollo";
+import Text from "../components/Typography/Typography";
 
 const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   props
@@ -21,6 +22,13 @@ const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
     <Layout>
       <h1 data-test-id="lesson-title">{title}</h1>
       <p>Status: {loading ? "loading" : "idle"}</p>
+
+      <Text variant="h2">h2 - Heading</Text>
+      <Text variant="h3">h3 - Heading</Text>
+      <Text variant="h4">h4 - Heading</Text>
+      <Text variant="body1">body 1</Text>
+      <Text variant="body2">body 2</Text>
+      <Text variant="body3">body 3</Text>
     </Layout>
   );
 };
