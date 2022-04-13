@@ -7,8 +7,8 @@ import config from "../../config";
  * Test if a user agent matches any in a list of regex patterns.
  *
  */
-const matchesUserAgent = (ua: string) => {
-  const userAgentsToMatch = [/Detectify/, /Percy/];
+export const matchesUserAgent = (ua: string) => {
+  const userAgentsToMatch = [/Detectify/i, /Percy/i];
   return userAgentsToMatch.some((regex) => regex.test(ua));
 };
 
