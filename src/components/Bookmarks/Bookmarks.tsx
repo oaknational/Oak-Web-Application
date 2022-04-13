@@ -16,7 +16,7 @@ const Bookmarks: FC = () => {
         {loading && <LoadingSpinner />}
       </p>
       {error && <p color="red">{error}</p>}
-      <ul>
+      <ul data-testid="bookmarks-list">
         {bookmarks?.map(({ lesson }, i) => {
           if (!lesson) {
             return null;

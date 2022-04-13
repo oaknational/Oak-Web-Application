@@ -1,4 +1,4 @@
-import { waitFor } from "@testing-library/react";
+import { act, fireEvent, waitFor } from "@testing-library/react";
 
 import Bookmarks from "../../pages/bookmarks";
 import { testLesson } from "../__helpers__/apolloMocks";
@@ -33,6 +33,29 @@ describe("pages/bookmarks.tsx", () => {
 
     await waitFor(() => {
       expect(getByTestId("bookmark-0").textContent).toBe(testLesson.title);
+    });
+  });
+  it("Clicking 'remove' should remove the bookmark", async () => {
+    const { getByRole, getByTestId } = renderWithProviders(
+      <Bookmarks />,
+      undefined,
+      {
+        authProviderProps: { value: { user: testUser } },
+      }
+    );
+
+    let bookmarksList = await getByTestId("bookmarks-list");
+    const originalLength = bookmarksList.childNodes.length;
+
+    act(() => {
+      const remove = getByRole("button", { name: /remove/i });
+      fireEvent.click(remove);
+    });
+
+    await waitFor(() => {
+      bookmarksList = getByTestId("bookmarks-list");
+      const newLength = bookmarksList.childNodes.length;
+      expect(newLength).toBe(originalLength - 1);
     });
   });
 });

@@ -38,6 +38,7 @@ const apolloMocks = [
   {
     request: {
       query: BookmarkedLessonRemoveDocument,
+      variables: { lessonId: 1, userId: 123 },
     },
     result: {
       data: {
