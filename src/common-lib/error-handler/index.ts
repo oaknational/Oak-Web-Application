@@ -1,2 +1,4 @@
-
-import { NotifiableError, OnErrorCallback } from "@bugsnag/js";
+export {
+  createErrorHandler as default,
+  initialiseBugsnag,
+} from "./error-handler";

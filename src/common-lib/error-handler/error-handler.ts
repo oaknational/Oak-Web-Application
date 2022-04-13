@@ -16,11 +16,15 @@ const matchesUserAgent = (ua: string) => {
  * Generate bugsnag config.
  *
  */
-const getBugsnagConfig = (
-  apiKey: string,
-  appVersion: string,
-  releaseStage: string
-) => {
+const getBugsnagConfig = ({
+  apiKey,
+  appVersion,
+  releaseStage,
+}: {
+  apiKey: string;
+  appVersion: string;
+  releaseStage: string;
+}) => {
   return {
     apiKey,
     appVersion,
@@ -30,10 +34,10 @@ const getBugsnagConfig = (
     releaseStage,
     collectUserIp: true,
     // Route notifications via our domains for zero rating.
-    // endpoints: {
-    //   notify: "",
-    //   sessions: "",
-    // },
+    endpoints: {
+      notify: "https://bugsnag-notify.thenational.academy",
+      sessions: "https://bugsnag-sessions.thenational.academy",
+    },
     /**
      * with autoTrackSessions set to true bugsnag will fire a
      * session on every page change, this is also causing it to fire
@@ -58,14 +62,11 @@ const getBugsnagConfig = (
 };
 
 export const initialiseBugsnag = () => {
-  const bugsnagConfig = getBugsnagConfig(
-    config.get("bugsnagApiKey"),
-    config.get("appVersion"),
-    config.get("releaseStage")
-  );
-
-  // DEBUG
-  // console.log({ bugsnagConfig });
+  const bugsnagConfig = getBugsnagConfig({
+    apiKey: config.get("bugsnagApiKey"),
+    appVersion: config.get("appVersion"),
+    releaseStage: config.get("releaseStage"),
+  });
 
   // Start Bugsnag
   Bugsnag.start(bugsnagConfig);
@@ -103,14 +104,13 @@ const errorify = (maybeError: unknown): Error => {
   }
 };
 
-const createErrorHandler =
-  (context: string, metadata: Record<string, unknown>) =>
+export const createErrorHandler =
+  (context: string, metadata?: Record<string, unknown>) =>
   async (maybeError: Error | unknown, data?: ErrorData) => {
     // data argument can be null
     data = data || {};
     try {
       const err = errorify(maybeError);
-      console.log("Sending error: ", err.message);
 
       await bugsnagNotify(err, (event: Event) => {
         event.context = context;
@@ -130,15 +130,12 @@ const createErrorHandler =
         if (originalError && originalError instanceof Error) {
           // @TODO: Needs to be a bugsnag Error type (w/ stackframes etc)
           // event.errors.push(originalError);
-
-          event.addMetadata("Original error", serializeError(originalError));
+          // Previously we were using https://github.com/sindresorhus/serialize-error
+          // event.addMetadata("Original error", serializeError(originalError));
         }
-
-        console.log("meta", metaFields);
 
         event.addMetadata("Meta", metaFields);
       });
-      console.log("Error sent");
     } catch (bugsnagErr) {
       console.log("Failed to send error to bugsnag:");
       console.error(bugsnagErr);
@@ -146,5 +143,3 @@ const createErrorHandler =
       console.error(maybeError);
     }
   };
-
-export default createErrorHandler;
