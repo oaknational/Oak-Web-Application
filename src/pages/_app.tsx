@@ -6,7 +6,7 @@ import { AuthProvider } from "../auth/useAuth";
 import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
-import { useApolloClient } from "../browser-lib/graphql/apolloClient";
+import useApolloClient from "../browser-lib/graphql/useApolloClient";
 import useTheme from "../hooks/useTheme";
 import { BookmarksProvider } from "../hooks/useBookmarks";
 

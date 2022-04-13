@@ -20,7 +20,7 @@ function createApolloClient({ accessToken }: { accessToken: string | null }) {
   });
 }
 
-export function useApolloClient() {
+function useApolloClient() {
   const [accessToken] = useAccessToken();
 
   const [client, setClient] = useState(createApolloClient({ accessToken }));
@@ -31,3 +31,5 @@ export function useApolloClient() {
 
   return client;
 }
+
+export default useApolloClient;
