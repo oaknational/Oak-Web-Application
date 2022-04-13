@@ -268,25 +268,6 @@ exports[`Storyshots Components/Button Button Example With Icon 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components/Button/ButtonAccessibleTest Accessible 1`] = `
-<button>
-  Accessible button
-</button>
-`;
-
-exports[`Storyshots Components/Button/ButtonAccessibleTest Inaccessible 1`] = `
-<button
-  style={
-    Object {
-      "backgroundColor": "red",
-      "color": "darkRed",
-    }
-  }
->
-  Inaccessible button
-</button>
-`;
-
 exports[`Storyshots Components/Card Card Default 1`] = `
 <div>
   <div
