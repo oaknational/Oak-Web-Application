@@ -1,5 +1,13 @@
 import { createContext } from "react";
 
+export enum KeyStages {
+  foundation = "foundation",
+  keystage1 = "1",
+  keystage2 = "2",
+  keystage3 = "3",
+  keystage4 = "4",
+}
+
 export type SearchTerm = {
   text: string;
   setText: (text: string) => void;

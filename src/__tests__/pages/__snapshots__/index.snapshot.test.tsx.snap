@@ -10,7 +10,9 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
     >
       Oak
     </div>
-    <form>
+    <form
+      class="search"
+    >
       <input
         aria-label="Search"
         placeholder="Search"
@@ -22,6 +24,71 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
       >
         Submit
       </button>
+      <div>
+        <input
+          id="custom-checkbox-foundation"
+          name="foundation"
+          type="checkbox"
+          value="foundation"
+        />
+        <label
+          for="foundation"
+        >
+          foundation
+        </label>
+      </div>
+      <div>
+        <input
+          id="custom-checkbox-1"
+          name="1"
+          type="checkbox"
+          value="1"
+        />
+        <label
+          for="1"
+        >
+          1
+        </label>
+      </div>
+      <div>
+        <input
+          id="custom-checkbox-2"
+          name="2"
+          type="checkbox"
+          value="2"
+        />
+        <label
+          for="2"
+        >
+          2
+        </label>
+      </div>
+      <div>
+        <input
+          id="custom-checkbox-3"
+          name="3"
+          type="checkbox"
+          value="3"
+        />
+        <label
+          for="3"
+        >
+          3
+        </label>
+      </div>
+      <div>
+        <input
+          id="custom-checkbox-4"
+          name="4"
+          type="checkbox"
+          value="4"
+        />
+        <label
+          for="4"
+        >
+          4
+        </label>
+      </div>
     </form>
   </header>
   <main
