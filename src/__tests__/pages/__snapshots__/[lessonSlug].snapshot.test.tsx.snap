@@ -11,9 +11,15 @@ exports[`renders homepage unchanged 1`] = `
       Oak
     </div>
     <input
+      class="search-input"
       placeholder="Search"
       type="text"
     />
+    <a
+      href="/sign-in"
+    >
+      Sign in
+    </a>
   </header>
   <main
     class="main"

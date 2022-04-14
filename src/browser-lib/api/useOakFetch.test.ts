@@ -31,7 +31,7 @@ describe("useOakFetch", () => {
 
     expect(fetchSpy).toHaveBeenCalledWith("/test/url", {
       method: "POST",
-      headers: { token: TOKEN_VALUE },
+      headers: { Authorization: `Bearer ${TOKEN_VALUE}` },
     });
   });
   it.todo("should throw an error if unexpected data is returned");

@@ -5,12 +5,14 @@ import ChevronRight from "./ChevronRight.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
 import Share from "./Share.icon";
+import Star from "./Star.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
   "OpenExternal",
   "Download",
   "Share",
+  "Star",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -18,6 +20,7 @@ export const icons: Record<IconName, FC> = {
   OpenExternal,
   Download,
   Share,
+  Star,
 };
 
 type IconProps = {

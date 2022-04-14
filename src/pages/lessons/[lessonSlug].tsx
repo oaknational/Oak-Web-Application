@@ -5,6 +5,7 @@ import {
   NextPage,
 } from "next";
 
+import BookmarkLessonButton from "../../components/BookmarkLessonButton";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../components/Button";
 import Card from "../../components/Card";
@@ -36,6 +37,7 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         ]}
       />
       <div className={styles["primary-buttons"]}>
+        <BookmarkLessonButton lessonId={lesson.id} />
         <Button
           background="teachers-primary"
           href="/"
