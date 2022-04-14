@@ -1,3 +1,16 @@
+# [0.7.0](https://github.com/oaknational/Samara/compare/v0.6.2...v0.7.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* bookmarks tests ([9110030](https://github.com/oaknational/Samara/commit/9110030a8dac4c8410505bd8ddf871d68f296555))
+
+
+### Features
+
+* bookmarks ([de92379](https://github.com/oaknational/Samara/commit/de92379a6f0f9aa1f2462b737e2346006868dd81))
+* bookmarks ([69ee2bb](https://github.com/oaknational/Samara/commit/69ee2bb6c6cf0139bac9b05d8311d61819bdceb6))
+
 ## [0.6.2](https://github.com/oaknational/Samara/compare/v0.6.1...v0.6.2) (2022-04-12)
 
 
