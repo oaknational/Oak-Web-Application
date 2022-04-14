@@ -2,6 +2,7 @@ import handler from "../../../pages/api/login";
 import { createNextApiMocks } from "../../__helpers__/createNextApiMocks";
 
 const testTokenValue = "test";
+const authHeaders = { authorization: `Bearer ${testTokenValue}` };
 const okResponseData = {
   id: 1,
   email: "test@thenational.academy",
@@ -21,7 +22,7 @@ describe("/api/login", () => {
   it("should respond with an oak user object when all is well", async () => {
     const { req, res } = createNextApiMocks({
       method: "POST",
-      headers: { token: testTokenValue },
+      headers: authHeaders,
     });
     await handler(req, res);
 
@@ -31,7 +32,7 @@ describe("/api/login", () => {
   it("should call the auth/login function", async () => {
     const { req, res } = createNextApiMocks({
       method: "POST",
-      headers: { token: testTokenValue },
+      headers: authHeaders,
     });
     await handler(req, res);
 
@@ -46,7 +47,7 @@ describe("/api/login", () => {
   it("should respond with an oak error if the login function fails", async () => {
     const { req, res } = createNextApiMocks({
       method: "POST",
-      headers: { token: testTokenValue },
+      headers: authHeaders,
     });
     loginSpy.mockImplementationOnce(
       jest.fn(() => Promise.reject("something went wrong"))
@@ -59,7 +60,7 @@ describe("/api/login", () => {
   it("should respond 405 if incorrect method passed", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
-      headers: { token: testTokenValue },
+      headers: authHeaders,
     });
     await handler(req, res);
 

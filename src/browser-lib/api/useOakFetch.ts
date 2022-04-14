@@ -23,8 +23,8 @@ function useOakFetch() {
   }: OakFetchProps<ResponseData>) {
     // @TODO handle errors in this function
     headers = {
+      ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
       ...headers,
-      ...(accessToken ? { token: accessToken } : {}),
     };
 
     const response = await fetch(url, { method, body, headers });
