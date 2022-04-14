@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders search page unchanged 1`] = `
+<div>
+  <ul>
+    <li>
+      The Tragedy of Macbeth
+    </li>
+  </ul>
+</div>
+`;
