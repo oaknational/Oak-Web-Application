@@ -9,32 +9,21 @@ type BookmarkLessonButtonProps = {
 };
 const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
   const { lessonId } = props;
-  // @TODO this button should only show for users?
   const { user } = useAuth();
   const { bookmarks, addBookmark, removeBookmark, isBookmarked } =
     useBookmarks();
   const [loading, setLoading] = useState(typeof bookmarks === "undefined");
 
-  // console.log({
-  //   lessonId,
-  //   bookmarks,
-  //   isBookmarked,
-  //   loading,
-  // });
-
-  // if (!user) {
-  //   // Bookmarks only for logged in users?
-  //   return null;
-  // }
+  if (!user) {
+    // Bookmarks only for logged in
+    return null;
+  }
 
   const toggleBookmark = async () => {
     if (loading) {
       return;
     }
-    if (!user) {
-      // @TODO error user must be signed in
-      return;
-    }
+
     setLoading(true);
     try {
       if (!isBookmarked(lessonId)) {
