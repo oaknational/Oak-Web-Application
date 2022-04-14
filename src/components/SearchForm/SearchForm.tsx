@@ -6,11 +6,12 @@ import { SearchContext, KeyStages } from "../../context/SearchContext";
 import styles from "./SearchForm.module.css";
 
 const SearchForm: FC = () => {
-  const { text, setText } = useContext(SearchContext);
+  const { text, setText, keystage, setKeystage } = useContext(SearchContext);
   const [value, setValue] = useState(text);
-  const [checks, setChecks] = useState(
-    new Array(Object.keys(KeyStages).length)
-  );
+
+  const initialChecks = Array(Object.keys(KeyStages).length).fill(false);
+  const [checks, setChecks] = useState(initialChecks);
+
   const router = useRouter();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const SearchForm: FC = () => {
     setValue(e.currentTarget.value);
   };
 
-  const handleOnCheck = (position: number) => {
+  const handleOnCheck = (position: number, ks: string) => {
     const updatedChecks = checks.map((item: boolean, index: number) =>
       // reverse the boolean of the checkbox we have selected
       // keep the others the same
@@ -31,22 +32,29 @@ const SearchForm: FC = () => {
     );
 
     setChecks(updatedChecks);
+
+    if (!checks[position]) {
+      setKeystage(keystage.add(ks));
+    } else {
+      keystage.delete(ks);
+      setKeystage(keystage);
+    }
   };
 
   const keyStageChecks: Array<JSX.Element> = (
     Object.values(KeyStages) as Array<keyof typeof KeyStages>
-  ).map((key: string, index: number) => {
+  ).map((ks: string, index: number) => {
     return (
-      <div key={key}>
+      <div key={ks}>
         <input
           type="checkbox"
-          id={`custom-checkbox-${key}`}
-          name={key}
-          value={key}
+          id={`custom-checkbox-${ks}`}
+          name={ks}
+          value={ks}
           checked={checks[index]}
-          onChange={() => handleOnCheck(index)}
+          onChange={() => handleOnCheck(index, ks)}
         />
-        <label htmlFor={key}>{key}</label>
+        <label htmlFor={value}>{ks}</label>
       </div>
     );
   });

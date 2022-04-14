@@ -32,7 +32,7 @@ exports[`renders homepage unchanged 1`] = `
           value="foundation"
         />
         <label
-          for="foundation"
+          for=""
         >
           foundation
         </label>
@@ -45,7 +45,7 @@ exports[`renders homepage unchanged 1`] = `
           value="1"
         />
         <label
-          for="1"
+          for=""
         >
           1
         </label>
@@ -58,7 +58,7 @@ exports[`renders homepage unchanged 1`] = `
           value="2"
         />
         <label
-          for="2"
+          for=""
         >
           2
         </label>
@@ -71,7 +71,7 @@ exports[`renders homepage unchanged 1`] = `
           value="3"
         />
         <label
-          for="3"
+          for=""
         >
           3
         </label>
@@ -84,7 +84,7 @@ exports[`renders homepage unchanged 1`] = `
           value="4"
         />
         <label
-          for="4"
+          for=""
         >
           4
         </label>

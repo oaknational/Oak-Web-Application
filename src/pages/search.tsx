@@ -26,14 +26,20 @@ export interface SearchHit {
   };
 }
 
-const constructQuery = (query: string, keystage: string) => {
-  const filter = keystage
+const constructQuery = (query: string, keystages: Set<string>) => {
+  const keyStageString = Array.from(keystages).join(",");
+
+  console.log(keyStageString);
+
+  const filter = keyStageString
     ? {
         term: {
-          key_stage_slug: keystage,
+          key_stage_slug: `[${keyStageString}]`,
         },
       }
     : null;
+
+  console.log(filter);
 
   return {
     query: {
@@ -121,7 +127,6 @@ const Search: NextPage = () => {
 
   return (
     <Layout>
-      <h2>Key Stage: {keystage}</h2>
       {loading && <p>Loading...</p>}
       <SearchResults hits={results} />
     </Layout>
