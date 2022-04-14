@@ -11,20 +11,24 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
       Oak
     </div>
     <input
+      class="search-input"
       placeholder="Search"
       type="text"
     />
+    <a
+      href="/sign-in"
+    >
+      Sign in
+    </a>
   </header>
   <main
     class="main"
   >
     <h1
-      data-test-id="lesson-title"
-    />
-    <p>
-      Status: 
-      loading
-    </p>
+      data-testid="lesson-title"
+    >
+      Physics only review
+    </h1>
   </main>
   <footer
     class="footer"

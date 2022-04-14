@@ -1,0 +1,13 @@
+overwrite: true
+schema:
+  - ${NEXT_PUBLIC_GRAPHQL_API_URL}:
+      headers:
+        x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
+        x-hasura-role: "user"
+documents: "src/browser-lib/graphql/**/*.{graphql,gql}"
+generates:
+  src/browser-lib/graphql/generated/apollo.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

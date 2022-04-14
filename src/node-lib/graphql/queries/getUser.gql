@@ -1,0 +1,7 @@
+query getUser($firebaseId: String!, $email: String!) {
+  user(where: { firebase_id: { _eq: $firebaseId }, email: { _eq: $email } }) {
+    email
+    firebase_id
+    id
+  }
+}

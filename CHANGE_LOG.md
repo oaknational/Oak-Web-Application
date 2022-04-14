@@ -1,3 +1,24 @@
+# [0.7.0](https://github.com/oaknational/Samara/compare/v0.6.2...v0.7.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* bookmarks tests ([9110030](https://github.com/oaknational/Samara/commit/9110030a8dac4c8410505bd8ddf871d68f296555))
+
+
+### Features
+
+* bookmarks ([de92379](https://github.com/oaknational/Samara/commit/de92379a6f0f9aa1f2462b737e2346006868dd81))
+* bookmarks ([69ee2bb](https://github.com/oaknational/Samara/commit/69ee2bb6c6cf0139bac9b05d8311d61819bdceb6))
+
+## [0.6.2](https://github.com/oaknational/Samara/compare/v0.6.1...v0.6.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **a11y:** fix label id in sign in email input ([ceaa5b5](https://github.com/oaknational/Samara/commit/ceaa5b56be8e01efa13495d4d864138129962f41))
+* authenticated requests ([0d1004f](https://github.com/oaknational/Samara/commit/0d1004f086f8a493de14645aa24c16564216c013))
+
 ## [0.6.1](https://github.com/oaknational/Samara/compare/v0.6.0...v0.6.1) (2022-04-12)
 
 # [0.6.0](https://github.com/oaknational/Samara/compare/v0.5.0...v0.6.0) (2022-04-11)
