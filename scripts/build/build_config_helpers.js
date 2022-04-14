@@ -5,27 +5,25 @@ const { version: packageJsonVersion } = require("../../package.json");
 /**
  * Attempt to read the SHA of the current Git HEAD from the local file system.
  *
- * @returns {(string|null)} The SHA or `null` if it cannot be determined.
+ * @returns {(string|null)} The SHA if found, or "no_git_state" if mid-merge, or `null` if it cannot be determined.
  */
 function getLocalGitRef() {
-  try {
-    if (existsSync(".git")) {
-      const rev = readFileSync(".git/HEAD")
-        .toString()
-        .trim()
-        .split(/.*[: ]/)
-        .slice(-1)[0];
-      if (rev.indexOf("/") === -1) {
-        return rev;
-      } else {
+  if (existsSync(".git")) {
+    const rev = readFileSync(".git/HEAD")
+      .toString()
+      .trim()
+      .split(/.*[: ]/)
+      .slice(-1)[0];
+    if (rev.indexOf("/") === -1) {
+      return rev;
+    } else {
+      try {
         return readFileSync(`.git/${rev}`).toString().trim();
+      } catch (error) {
+        // Likely mid-merge
+        return "no_git_state";
       }
     }
-  } catch (error) {
-    console.error(error);
-    console.log(
-      "The above error was caught in getLocalGitRef().\nIf this you are seeing this mid-merge or mid-rebase, then likely it is not of concern."
-    );
   }
   console.warn("Could not determine local Git ref.");
   return null;
