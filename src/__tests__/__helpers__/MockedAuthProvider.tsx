@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { authContext } from "../../auth/useAuth";
+import { authContext, OakAuth } from "../../auth/useAuth";
 
 export const defaultMockedAuthProviderValue = {
   user: null,
@@ -10,8 +10,8 @@ export const defaultMockedAuthProviderValue = {
   signInWithEmailCallback: async () => undefined,
 };
 
-type MockedAuthProviderProps = {
-  value?: Partial<typeof defaultMockedAuthProviderValue>;
+export type MockedAuthProviderProps = {
+  value?: Partial<OakAuth>;
 };
 const MockedAuthProvider: FC<MockedAuthProviderProps> = ({
   children,
