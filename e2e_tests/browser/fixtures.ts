@@ -7,7 +7,7 @@
 import cp from "child_process";
 
 import BrowserStackLocal from "browserstack-local";
-import base from "@playwright/test";
+import baseTest from "@playwright/test";
 
 // Detect the Playwright version so we can pass it to Browserstack.
 const clientPlaywrightVersion = cp
@@ -75,29 +75,28 @@ const patchCaps = (name: string, title: string) => {
   caps.name = title;
 };
 
-const isHash = (entity: Record<string, string>) =>
-  Boolean(entity && typeof entity === "object" && !Array.isArray(entity));
-/** @todo solve this typescript nightmare. */
-const nestedKeyValue = (hash: Record<string, string>, keys: Array<string>) =>
-  keys.reduce((_hash, key) => (isHash(_hash) ? _hash[key] : undefined), hash);
-
-exports.test = base.test.extend({
+export const test = baseTest.extend({
   page: async ({ page, playwright }, use, testInfo) => {
     // Use BrowserStack Launched Browser according to capabilities for cross-browser testing.
     if (testInfo.project.name.match(/browserstack/)) {
       patchCaps(testInfo.project.name, `${testInfo.file} - ${testInfo.title}`);
-      const vBrowser = await playwright.chromium.connect({
-        wsEndpoint:
-          `wss://cdp.browserstack.com/playwright?caps=` +
-          `${encodeURIComponent(JSON.stringify(caps))}`,
-      });
+      const wsEndpoint =
+        `wss://cdp.browserstack.com/playwright?caps=` +
+        `${encodeURIComponent(JSON.stringify(caps))}`;
+      const vBrowser = await playwright.chromium.connect(wsEndpoint);
       const vPage = await vBrowser.newPage(testInfo.project.use);
+      const testError = testInfo.error;
+      const testMessage = testInfo.annotations;
+      const testReason = `
+      ${testError ? `error: ${testError}` : ""}
+      ${testMessage ? `message: ${testMessage}` : ""}
+      `;
       await use(vPage);
       const testResult = {
         action: "setSessionStatus",
         arguments: {
           status: testInfo.status,
-          reason: nestedKeyValue(testInfo, ["error", "message"]),
+          reason: testReason,
         },
       };
       await vPage.evaluate(() => {
