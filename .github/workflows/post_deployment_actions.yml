@@ -186,14 +186,6 @@ jobs:
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
 
-      # Upload the Playwright HTML test report to Github so we can review it
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
-
       # Set custom status so results preserved between multiple
       # deployment events from same commit
       - uses: ./.github/actions/custom_statuses

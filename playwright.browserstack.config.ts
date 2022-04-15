@@ -1,5 +1,5 @@
 /**
- * Config for running Playwright tests against Browserstack.
+ * Config for running Playwright tests against Browserstack, locally or in CI.
  */
 
 /**
@@ -12,7 +12,11 @@
 import "dotenv/config";
 import type { PlaywrightTestConfig } from "@playwright/test";
 
-import { IS_CI, LOCAL_TESTING, PLAYWRIGHT_REPORTER } from "./e2e_tests/browser/fixtures/flags";
+import {
+  IS_CI,
+  LOCAL_TESTING,
+  PLAYWRIGHT_REPORTER,
+} from "./e2e_tests/browser/fixtures/flags";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -35,7 +39,7 @@ const config: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: IS_CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: PLAYWRIGHT_REPORTER || (IS_CI ? "line" : "html"),
+  reporter: PLAYWRIGHT_REPORTER || (IS_CI ? "github" : "line"),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */

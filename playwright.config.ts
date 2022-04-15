@@ -1,7 +1,14 @@
+/**
+ * Local testing against downloaded Playwright browsers.
+ */
+
 import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
 
-const LOCAL_TESTING = process.env.LOCAL_E2E === "on";
+import {
+  LOCAL_TESTING,
+  PLAYWRIGHT_REPORTER,
+} from "./e2e_tests/browser/fixtures/flags";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -24,7 +31,7 @@ const config: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  reporter: PLAYWRIGHT_REPORTER || "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
