@@ -43,7 +43,7 @@ const config: PlaywrightTestConfig = {
    */
   workers: IS_CI ? 4 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: PLAYWRIGHT_REPORTER || (IS_CI ? "github" : "line"),
+  reporter: PLAYWRIGHT_REPORTER || "list",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
