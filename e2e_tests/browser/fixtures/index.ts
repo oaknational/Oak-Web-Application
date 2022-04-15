@@ -165,8 +165,9 @@ export const test = baseTest.extend({
           return "";
         }, 'browserstack_executor: {"action": "getSessionDetails"}');
         const sessionDetails = JSON.parse(sessionDetailsJson);
+        // Needs newlines because some Playwright reporters delete previous lines to keep the output concise.
         console.log(
-          `For Browserstack details see: ${sessionDetails.browser_url}`
+          `\n***\nFor Browserstack details see: ${sessionDetails.browser_url}\n***\n`
         );
         // eslint-disable-next-line
         // @ts-ignore
