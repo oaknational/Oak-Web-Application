@@ -60,7 +60,7 @@ const caps = {
   "browserstack.accessKey": browserstackAccessKey,
   // Will only affect runs where the Playwright project includes `@browserstack`
   // otherwise local testing will run against local Playwright browser instances.
-  "browserstack.local": process.env.LOCAL_E2E === "on" || false,
+  "browserstack.local": LOCAL_TESTING || false,
   "client.playwrightVersion": clientPlaywrightVersion,
 };
 
