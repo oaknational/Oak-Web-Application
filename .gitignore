@@ -8,6 +8,9 @@
 # testing
 /coverage
 playwright-report/
+test-results/
+# Browserstack Local log
+local.log
 
 # next.js
 /.next/
@@ -46,4 +49,3 @@ yarn-error.log*
 src/data-layer/graphql/generated
 src/browser-lib/graphql/generated
 src/node-lib/graphql/generated
-test-results/

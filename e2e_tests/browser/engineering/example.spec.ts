@@ -5,13 +5,14 @@ import { test } from "../fixtures";
 // Because of config in "playwright.config.ts",
 // `PLAYWRIGHT_TEST_BASE_URL` will be `localhost:3000` in local test environments.
 // The string default is to keep Typescript happy.
-const frontPageUrl =
+const baseUrl =
   process.env.BASE_URL ||
   process.env.PLAYWRIGHT_TEST_BASE_URL ||
   "localhost:3000";
+const frontPageUrl = new URL(baseUrl).href;
 
 const locators = {
-  lessonTitle: "[data-test-id='lesson-title']",
+  lessonTitle: "[data-testid='lesson-title']",
 };
 
 test.beforeEach(async ({ page }) => {

@@ -12,7 +12,7 @@
 import "dotenv/config";
 import type { PlaywrightTestConfig } from "@playwright/test";
 
-const LOCAL_TESTING = process.env.LOCAL_E2E === "on";
+import { IS_CI, LOCAL_TESTING, PLAYWRIGHT_REPORTER } from "./e2e_tests/browser/fixtures/flags";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -29,13 +29,13 @@ const config: PlaywrightTestConfig = {
     timeout: LOCAL_TESTING ? 30000 : 5000,
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  forbidOnly: IS_CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: IS_CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: IS_CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  reporter: PLAYWRIGHT_REPORTER || (IS_CI ? "line" : "html"),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -71,8 +71,13 @@ if (LOCAL_TESTING) {
   // Start and stop Browserstack-local so the local server
   // can be tested on Browserstack.
   // The parameters take the value of the path to the files to run.
-  config.globalSetup = require.resolve("e2e_tests/browser/start_bs_local.js");
-  config.globalTeardown = require.resolve("e2e_tests/browser/stop_bs_local.js");
+  /** @todo create set up and tear down files. */
+  config.globalSetup = require.resolve(
+    "./e2e_tests/browser/fixtures/global_setup.ts"
+  );
+  config.globalTeardown = require.resolve(
+    "./e2e_tests/browser/fixtures/global_teardown.ts"
+  );
 }
 
 export default config;
