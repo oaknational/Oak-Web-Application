@@ -30,8 +30,15 @@ const clientPlaywrightVersion = cp
  */
 function getBuild() {
   if (IS_CI) {
-    const ref = process.env.GITHUB_REF;
-    return ref || "Could not determine build";
+    const branchName = process.env.BRANCH_NAME;
+    const prNumber = process.env.PR_NUMBER;
+    if (prNumber) {
+      return `${branchName} - PR: ${prNumber}`;
+    } else if (branchName) {
+      return branchName === "main" ? "production" : branchName;
+    } else {
+      return "Could not determine build";
+    }
   } else {
     return "Unknown build";
   }

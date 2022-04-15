@@ -178,7 +178,7 @@ jobs:
       # Run Playwright
       - name: run Playwright
         id: run_playwright
-        run: true #npx playwright test
+        run: npm run playwright:test:ci
         env:
           BASE_URL: ${{ github.event.deployment_status.target_url }}
           BRANCH_NAME: ${{ steps.ref_from_sha.outputs.branch_name }}
