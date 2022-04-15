@@ -36,8 +36,12 @@ const config: PlaywrightTestConfig = {
   forbidOnly: IS_CI,
   /* Retry on CI only */
   retries: IS_CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: IS_CI ? 1 : undefined,
+  /*
+    Our Browserstack subscription level supports 4 parallel test connections.
+    GitHub Linux runners have two cores, so should manageable but need to keep
+    an eye on it.
+   */
+  workers: IS_CI ? 4 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: PLAYWRIGHT_REPORTER || (IS_CI ? "github" : "line"),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
