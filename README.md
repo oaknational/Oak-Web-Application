@@ -20,16 +20,24 @@ npm run dev
 
 ## Automatic Checks
 
-Unit tests only for now, please no note write any tests dependent on a network connection, a database, a filesystem or any other IO.
+For more detail please see the [test documentation](docs/testing.md).
 
-Tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
+### Unit tests
+
+Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
 - `npm run test` will run the tests using `--watch`
 - `npm run test:ci` will run the tests once and create a coverage report.
 
+### End-to-End Browser Tests
+
+[Playwright](https://playwright.dev/) tests live [here](e2e_tests/browser), and can be run locally against Playwright binaries, locally against Browserstack, or in CI against Browserstack.
+
+See the [testing docs for further details](./docs/testing.md#e2e-browser-tests).
+
 ### Pre-commit and Commit Message Hooks
 
-We use [Husky to run pre-commit and commit message validating hooks](.husky).
+We use [Husky to run pre-commit and commit message validating hooks](.husky), including unit tests, code linting, type checking, and commit message format checking.
 
 ### Pre-commit
 
@@ -49,6 +57,8 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 #### Required Github Secrets for Workflows
 
+**TO DO**
+
 - `A_SECRET_VALUE` - Some config or tool auth.
 
 ### Builds and Deployments
@@ -57,6 +67,8 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 - Production builds on Vercel
 
 #### Required Environment Variables for Builds
+
+**TO DO**
 
 - `SOMETHING_TO_DO_WITH_HASURA` - So secret.
 
