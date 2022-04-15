@@ -69,7 +69,7 @@ jest.mock("firebase/auth", () => ({
 jest.mock("../browser-lib/api", () => ({
   __esModule: true,
   default: () => ({
-    "/login": jest.fn(() => Promise.resolve(testUser)),
+    "/user": jest.fn(() => Promise.resolve(testUser)),
   }),
 }));
 

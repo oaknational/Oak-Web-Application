@@ -31,10 +31,6 @@ const firebaseConfig = {
   appId: config.get("firebaseAppId"),
 };
 
-const SIGN_IN_CALLBACK_URL = `${config.get(
-  "clientAppBaseUrl"
-)}/sign-in/callback`;
-
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
@@ -58,10 +54,10 @@ export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
   const [accessToken, setAccessToken] = useAccessToken();
   const api = useApi();
-  const apiLogin = api["/login"];
+  const apiGetOrCreateUser = api["/user"];
 
   const onLogin = async ({ accessToken }: { accessToken: string }) => {
-    const oakUser = await apiLogin({ accessToken });
+    const oakUser = await apiGetOrCreateUser({ accessToken });
     setUser(oakUser);
   };
 
@@ -134,7 +130,7 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: SIGN_IN_CALLBACK_URL,
+          url: `${window.location.host}/sign-in/callback`,
           // This must be true.
           handleCodeInApp: true,
         });
