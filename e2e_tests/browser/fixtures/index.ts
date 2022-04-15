@@ -14,6 +14,8 @@ import cp from "child_process";
 import BrowserStackLocal from "browserstack-local";
 import baseTest from "@playwright/test";
 
+import { name as packageJsonName } from "../../../package.json";
+
 import { IS_CI, LOCAL_TESTING } from "./flags";
 
 // Detect the Playwright version so we can pass it to Browserstack.
@@ -49,11 +51,13 @@ const browserstackAccessKey = process.env.BROWSERSTACK_ACCESS_KEY;
 const browserstackUsername = process.env.BROWSERSTACK_USERNAME;
 
 // BrowserStack Specific Capabilities.
+// https://www.browserstack.com/automate/capabilities
 const caps = {
   browser: "chrome",
   browser_version: "latest",
   os: "osx",
   os_version: "catalina",
+  project: packageJsonName,
   name: "PLACEHOLDER TEST NAME",
   build: LOCAL_TESTING ? "local testing" : getBuild(),
   "browserstack.username": browserstackUsername,
