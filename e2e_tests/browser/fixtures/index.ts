@@ -107,8 +107,14 @@ export const test = baseTest.extend({
         const wsEndpoint =
           `wss://cdp.browserstack.com/playwright?caps=` +
           `${encodeURIComponent(JSON.stringify(caps))}`;
+
+        /** @todo is this hardwiring the test to Chromium? */
         vBrowser = await playwright.chromium.connect(wsEndpoint);
+
         vPage = await vBrowser.newPage(testInfo.project.use);
+        await use(vPage);
+
+        // Construct the test info to report to Browserstack.
         const testError = `${
           testInfo.error ? `Errors: ${testInfo.errors.join("\n")} .` : ""
         }`;
@@ -119,7 +125,6 @@ export const test = baseTest.extend({
           ""
         );
         const testReason = `${testError}${testAnnotationsString}`;
-        await use(vPage);
         const testResult = {
           action: "setSessionStatus",
           arguments: {
@@ -127,6 +132,7 @@ export const test = baseTest.extend({
             reason: testReason,
           },
         };
+        // Report the test results to Browserstack.
         await vPage.evaluate(() => {
           // No-op
         }, `browserstack_executor: ${JSON.stringify(testResult)}`);
@@ -147,6 +153,17 @@ export const test = baseTest.extend({
           // No-op
         }, `browserstack_executor: ${JSON.stringify(testResult)}`);
       } finally {
+        // Get and report the Browserstack session details.
+        // eslint-disable-next-line
+        // @ts-ignore
+        const sessionDetailsJson = await vPage.evaluate(() => {
+          // No-op, have to return a string to keep Typescript happy.
+          return "";
+        }, 'browserstack_executor: {"action": "getSessionDetails"}');
+        const sessionDetails = JSON.parse(sessionDetailsJson);
+        console.log(
+          `For Browserstack details see: ${sessionDetails.browser_url}`
+        );
         // eslint-disable-next-line
         // @ts-ignore
         await vPage.close();
