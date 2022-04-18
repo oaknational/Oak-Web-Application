@@ -6,7 +6,7 @@ All of our automation, including automated checks, are events driven. Diagram 1.
 
 ![Key events driving automated checks in this repository](./images/sdlc_events.excalidraw.svg#gh-light-mode-only)
 ![Key events driving automated checks in this repository](./images/sdlc_events_dark.excalidraw.svg#gh-dark-mode-only)
-_Diagram 1. The key events driving automated checks and tests in this repository._
+_Diagram 1. The key events driving automated checks and tests in this repository. Note that preview and production deployments trigger the same deployment status checks._
 
 ## Linting and Style Checks
 
