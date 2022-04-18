@@ -1,6 +1,19 @@
 # Testing
 
-## Code Tests
+Note, this document is about automated tests and checks. Manual testing is beyond the scope of this document, and somewhat exists outside of the lifecycle of this code base. We regard the human evaluation of the subjective experience of our apps as vital, as well as appreciating the irreplaceable value of human exploratory testing.
+
+All of our automation, including automated checks, are events driven. Diagram 1. shows the current key events.
+
+![Key events driving automated checks in this repository](./sdlc_events.excalidraw.svg)
+_Diagram 1. The key events driving automated checks and tests in this repository._
+
+## Linting and Style Checks
+
+- Prettier
+- ESlint
+- Stylelint
+
+## Code Checks
 
 We use [Jest](https://jestjs.io/), with the [NextJS Jest Config](../jest.config.js).
 
