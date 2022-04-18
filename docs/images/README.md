@@ -12,7 +12,7 @@ If you want to provide an image for each theme, Excalidraw can switch themes in 
 
 ### Recommended Workflow
 
-Directly importing the original Excalidraw SVG will result in it using the light theme (at least in the VSCode Excaldraw editor), so treat the original as the light theme image, and from that export another image (with background) in the dark theme, and name that `<original_name>_dark.excalidraw.svg`. Then in the GitHub markdown file use it like
+Directly importing the original Excalidraw SVG will result in it using the light theme (at least in the VSCode Excalidraw editor), so treat the original as the light theme image, and from that export another image (with background) in the dark theme, and name that `<original_name>_dark.excalidraw.svg`. Then in the GitHub markdown file use it like
 
 ```markdown
 ![An informative alt text](./images/my_drawing.excalidraw.svg#gh-light-mode-only)
