@@ -4,7 +4,8 @@ Note, this document is about automated tests and checks. Manual testing is beyon
 
 All of our automation, including automated checks, are events driven. Diagram 1. shows the current key events.
 
-![Key events driving automated checks in this repository](./sdlc_events.excalidraw.svg)
+![Key events driving automated checks in this repository](./images/sdlc_events.excalidraw.svg#gh-light-mode-only)
+![Key events driving automated checks in this repository](./images/sdlc_events_dark.excalidraw.svg#gh-dark-mode-only)
 _Diagram 1. The key events driving automated checks and tests in this repository._
 
 ## Linting and Style Checks
