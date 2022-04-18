@@ -4,6 +4,10 @@ Images are SVGs, usually created with [Excalidraw](https://excalidraw.com/), whi
 
 Do not commit binary images to the code base, Git was not designed to deal with binary file formats and it will blow up the size of the repository.
 
+## Excalidraw Limitations
+
+The web fonts embedded in the SVG output of Excalidraw do not load inside the GitHub Markdown renderer, so the images don't match exactly, but they still look good.
+
 ## Light and Dark Themes
 
 GitHub flavour markdown supports [showing images only for light or dark themes](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to).
