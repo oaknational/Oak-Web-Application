@@ -1,3 +1,83 @@
+## [0.9.1](https://github.com/oaknational/Samara/compare/v0.9.0...v0.9.1) (2022-04-19)
+
+# [0.9.0](https://github.com/oaknational/Samara/compare/v0.8.0...v0.9.0) (2022-04-19)
+
+
+### Features
+
+* add bugsnag error handling ([3305f45](https://github.com/oaknational/Samara/commit/3305f45696862fb9271acada8860f60de8daf11d))
+* bugsnag ([d98b31a](https://github.com/oaknational/Samara/commit/d98b31a8e302fbdae47aad141ada47ade65ec2d6))
+
+# [0.8.0](https://github.com/oaknational/Samara/compare/v0.7.0...v0.8.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* remove as casting type ([4c79948](https://github.com/oaknational/Samara/commit/4c799486b0ec121e36780db02642aca916bd7f8c))
+
+
+### Features
+
+* adds typography component ([265aa3c](https://github.com/oaknational/Samara/commit/265aa3c31c46a64fbe1ad8a2e7f85bd442a4517d))
+
+# [0.7.0](https://github.com/oaknational/Samara/compare/v0.6.2...v0.7.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* bookmarks tests ([9110030](https://github.com/oaknational/Samara/commit/9110030a8dac4c8410505bd8ddf871d68f296555))
+
+
+### Features
+
+* bookmarks ([de92379](https://github.com/oaknational/Samara/commit/de92379a6f0f9aa1f2462b737e2346006868dd81))
+* bookmarks ([69ee2bb](https://github.com/oaknational/Samara/commit/69ee2bb6c6cf0139bac9b05d8311d61819bdceb6))
+
+## [0.6.2](https://github.com/oaknational/Samara/compare/v0.6.1...v0.6.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **a11y:** fix label id in sign in email input ([ceaa5b5](https://github.com/oaknational/Samara/commit/ceaa5b56be8e01efa13495d4d864138129962f41))
+* authenticated requests ([0d1004f](https://github.com/oaknational/Samara/commit/0d1004f086f8a493de14645aa24c16564216c013))
+
+## [0.6.1](https://github.com/oaknational/Samara/compare/v0.6.0...v0.6.1) (2022-04-12)
+
+# [0.6.0](https://github.com/oaknational/Samara/compare/v0.5.0...v0.6.0) (2022-04-11)
+
+
+### Features
+
+* **app versioning:** determine app version and release stage at build time ([3969e27](https://github.com/oaknational/Samara/commit/3969e276b43ca31ac91d3031207b9adea45885b6))
+
+# [0.5.0](https://github.com/oaknational/Samara/compare/v0.4.0...v0.5.0) (2022-04-07)
+
+
+### Features
+
+* **docs:** slightly more docs in prep for OSSing ([48afda2](https://github.com/oaknational/Samara/commit/48afda2e8db6e2d5068796d4a0da7140e27ced07))
+
+# [0.4.0](https://github.com/oaknational/Samara/compare/v0.3.0...v0.4.0) (2022-04-07)
+
+
+### Features
+
+* **docs:** skeleton for info for open sourcing ([ac70651](https://github.com/oaknational/Samara/commit/ac7065178a2352cc307a8953110c04d247cbf632))
+
+# [0.3.0](https://github.com/oaknational/Samara/compare/v0.2.3...v0.3.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* add unique authorized domain list ([b574c26](https://github.com/oaknational/Samara/commit/b574c261a505d3b48ccd2adc3fa36088a248295a))
+* extract domain from url ([aff90db](https://github.com/oaknational/Samara/commit/aff90dbb29e67f813d941b6ecf4b0b9d13f4a26b))
+* **firebase auth config:** typo ([085b64b](https://github.com/oaknational/Samara/commit/085b64b9865124efb94b062378b0102a4f222c4e))
+
+
+### Features
+
+* **firebase auth config:** skeleton for telling firebase auth about dynamic Vercel domains ([ff9e9e0](https://github.com/oaknational/Samara/commit/ff9e9e0db930a536add141d9a9593b19f78ab356))
+
 ## [0.2.3](https://github.com/oaknational/Samara/compare/v0.2.2...v0.2.3) (2022-04-05)
 
 

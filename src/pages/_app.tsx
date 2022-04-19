@@ -6,20 +6,26 @@ import { AuthProvider } from "../auth/useAuth";
 import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
-import { useApolloClient } from "../data-layer/graphql/apolloClient";
+import useApolloClient from "../browser-lib/graphql/useApolloClient";
 import useTheme from "../hooks/useTheme";
+import ErrorBoundary from "../components/ErrorBoundary";
+import { BookmarksProvider } from "../hooks/useBookmarks";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme();
-  const apolloClient = useApolloClient({});
+  const apolloClient = useApolloClient();
 
   return (
     <>
-      <AuthProvider>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <ApolloProvider client={apolloClient}>
+            <BookmarksProvider>
+              <Component {...pageProps} />
+            </BookmarksProvider>
+          </ApolloProvider>
+        </AuthProvider>
+      </ErrorBoundary>
     </>
   );
 };

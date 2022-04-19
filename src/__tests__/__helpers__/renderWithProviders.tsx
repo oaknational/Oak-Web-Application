@@ -7,43 +7,39 @@
  */
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
-import { MockedProvider as MockedApolloProvider } from "@apollo/client/testing";
 
-import { LessonsBySlugDocument } from "../../data-layer/graphql/generated/apollo";
-import { AuthProvider } from "../../auth/useAuth";
+import { BookmarksProvider } from "../../hooks/useBookmarks";
 
-const mocks = [
-  {
-    request: {
-      query: LessonsBySlugDocument,
-      variables: { slug: "physics-only-review-chj3cd" },
-    },
-    result: {
-      data: {
-        lesson: [
-          {
-            id: 1,
-            slug: "physics-only-review-chj3cd",
-            title: "Physics only review",
-          },
-        ],
-      },
-    },
-  },
-];
-const AllTheProviders: FC = ({ children }) => {
+import MockedAuthProvider, {
+  MockedAuthProviderProps,
+} from "./MockedAuthProvider";
+import MockedApolloProvider from "./MockedApolloProvider";
+
+type ProviderProps = {
+  authProviderProps?: MockedAuthProviderProps;
+};
+const AllTheProviders: FC<ProviderProps> = ({
+  children,
+  authProviderProps,
+}) => {
   return (
-    <AuthProvider>
-      <MockedApolloProvider mocks={mocks} addTypename={false}>
-        {children}
+    <MockedAuthProvider {...authProviderProps}>
+      <MockedApolloProvider>
+        <BookmarksProvider>{children}</BookmarksProvider>
       </MockedApolloProvider>
-    </AuthProvider>
+    </MockedAuthProvider>
   );
 };
 
 const renderWithProviders = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-) => render(ui, { wrapper: AllTheProviders, ...options });
+  options?: Omit<RenderOptions, "wrapper">,
+  providerProps?: ProviderProps
+) => {
+  const wrapper: FC = (props) => (
+    <AllTheProviders {...props} {...providerProps} />
+  );
+  return render(ui, { wrapper, ...options });
+};
 
 export default renderWithProviders;
