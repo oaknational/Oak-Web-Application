@@ -8,6 +8,7 @@ import "../styles/reset.css";
 import "../styles/globals.css";
 import useApolloClient from "../browser-lib/graphql/useApolloClient";
 import useTheme from "../hooks/useTheme";
+import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../hooks/useBookmarks";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
@@ -16,13 +17,15 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
-      <AuthProvider>
-        <ApolloProvider client={apolloClient}>
-          <BookmarksProvider>
-            <Component {...pageProps} />
-          </BookmarksProvider>
-        </ApolloProvider>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <ApolloProvider client={apolloClient}>
+            <BookmarksProvider>
+              <Component {...pageProps} />
+            </BookmarksProvider>
+          </ApolloProvider>
+        </AuthProvider>
+      </ErrorBoundary>
     </>
   );
 };
