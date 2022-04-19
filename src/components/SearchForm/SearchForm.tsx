@@ -1,12 +1,12 @@
 import { FC, useContext, useState } from "react";
 import { useRouter } from "next/router";
 
-import { SearchContext, KeyStages } from "../../context/SearchContext";
+import { searchContext, KeyStages } from "../../context/SearchContext";
 
 import styles from "./SearchForm.module.css";
 
 const SearchForm: FC = () => {
-  const { text, setText, keystage, setKeystage } = useContext(SearchContext);
+  const { text, setText, keystage, setKeystage } = useContext(searchContext);
   const [value, setValue] = useState(text);
 
   const initialChecks = Array(Object.keys(KeyStages).length).fill(false);

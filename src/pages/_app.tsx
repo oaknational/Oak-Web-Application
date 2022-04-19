@@ -6,7 +6,7 @@ import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
 import useTheme from "../hooks/useTheme";
-import { SearchContext, SearchTerm } from "../context/SearchContext";
+import { searchContext, SearchTerm } from "../context/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme();
@@ -22,9 +22,9 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <AuthProvider>
-        <SearchContext.Provider value={searchTerm}>
+        <searchContext.Provider value={searchTerm}>
           <Component {...pageProps} />
-        </SearchContext.Provider>
+        </searchContext.Provider>
       </AuthProvider>
     </>
   );

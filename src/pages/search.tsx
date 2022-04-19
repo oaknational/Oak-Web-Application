@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NextPage } from "next";
 
-import { SearchContext } from "../context/SearchContext";
+import { searchContext } from "../context/SearchContext";
 import Layout from "../components/Layout";
 import SearchResults from "../components/SearchResults";
 
@@ -86,7 +86,7 @@ function handleFetchError(response: Response) {
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [loading, setLoading] = useState(true);
-  const { text, keystage } = useContext(SearchContext);
+  const { text, keystage } = useContext(searchContext);
 
   //TODO: a better way of handling env variables type
   const apiRoute: RequestInfo =

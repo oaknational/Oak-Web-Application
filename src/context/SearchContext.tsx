@@ -15,7 +15,7 @@ export type SearchTerm = {
   setKeystage: (keystage: Set<string>) => void;
 };
 
-export const SearchContext = createContext<SearchTerm>({
+export const searchContext = createContext<SearchTerm>({
   text: "",
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setText: () => {},
