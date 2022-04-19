@@ -426,7 +426,7 @@ exports[`renders homepage unchanged 1`] = `
       </button>
     </div>
     <div
-      class="card--undefined"
+      class="card-primary"
     >
       Lesson content
     </div>

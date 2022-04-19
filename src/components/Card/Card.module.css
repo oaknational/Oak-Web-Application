@@ -6,14 +6,16 @@
   padding: 24px;
 }
 
-.card--teacher {
+.card-primary {
   composes: card;
-  composes: background--teachers-primary from "../../styles/colors.module.css";
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
-.card--pupil {
+.card-secondary {
   composes: card;
-  composes: background--pupils-primary from "../../styles/colors.module.css";
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-contrast);
 }
 
 @media mobile {

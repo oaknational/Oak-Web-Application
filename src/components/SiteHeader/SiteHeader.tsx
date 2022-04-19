@@ -8,9 +8,9 @@ const SiteHeader: FC = () => {
   const userStyleContext = useContext(UserStyleContext);
 
   const handleClick = () => {
-    userStyleContext.user === "teacher"
-      ? userStyleContext.setUser("pupil")
-      : userStyleContext.setUser("teacher");
+    userStyleContext.user === "teachers"
+      ? userStyleContext.setUser("pupils")
+      : userStyleContext.setUser("teachers");
   };
 
   return (

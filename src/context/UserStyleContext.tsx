@@ -1,10 +1,12 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC } from "react";
 
-type userType = "teacher" | "pupil";
+import useLocalStorage from "../hooks/useLocalStorage";
+
+type UserType = "teachers" | "pupils";
 
 export interface UserContextInterface {
-  user: userType;
-  setUser: (user: userType) => void;
+  user: UserType;
+  setUser: (user: UserType) => void;
 }
 
 export const UserStyleContext = createContext<UserContextInterface>(
@@ -12,7 +14,7 @@ export const UserStyleContext = createContext<UserContextInterface>(
 );
 
 export const UserStyleContextProvider: FC = (props) => {
-  const [user, setUser] = useState<userType>("teacher");
+  const [user, setUser] = useLocalStorage<UserType>("userTheme", "pupils");
 
   return (
     <UserStyleContext.Provider value={{ user, setUser }}>

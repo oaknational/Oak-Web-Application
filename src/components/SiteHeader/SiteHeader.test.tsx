@@ -12,15 +12,15 @@ function renderUserContext() {
   );
 }
 
-test("Renders teacher as default user", () => {
+test("Renders pupil as default user", () => {
   renderUserContext();
-  expect(screen.getByText("teacher")).toBeInTheDocument();
+  expect(screen.getByText("pupils")).toBeInTheDocument();
 });
 
-test("User changes to pupil when button is clicked", () => {
+test("User changes to teacher when button is clicked", () => {
   renderUserContext();
-  const buttonElement = screen.getByRole("button", { name: /teacher/i });
+  const buttonElement = screen.getByRole("button", { name: /pupils/i });
   fireEvent.click(buttonElement);
 
-  expect(screen.getByText("pupil")).toBeInTheDocument();
+  expect(screen.getByText("teachers")).toBeInTheDocument();
 });

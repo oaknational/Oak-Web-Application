@@ -2,17 +2,22 @@ import { Theme } from "./types";
 
 // In theory this could be a json passed in as config
 const ausTheme: Theme = {
-  "color-teachers-primary": "lightgreen",
-  "color-teachers-primary-contrast": "black",
-
-  "color-teachers-secondary": "lightblue",
-  "color-teachers-secondary-contrast": "black",
-
-  "color-pupils-primary": "darkpurple",
-  "color-pupils-primary-contrast": "lightgrey",
-
-  "color-pupils-secondary": "mauve",
-  "color-pupils-secondary-contrast": "white",
+  common: {
+    "button-border-radius": "12px",
+    // general theme, which doesn't depend on pupil/teacher
+  },
+  teachers: {
+    "color-primary": "lightgreen",
+    "color-primary-contrast": "black",
+    "color-secondary": "lightblue",
+    "color-secondary-contrast": "black",
+  },
+  pupils: {
+    "color-primary": "darkpurple",
+    "color-primary-contrast": "lightgrey",
+    "color-secondary": "mauve",
+    "color-secondary-contrast": "white",
+  },
 };
 
 export default ausTheme;

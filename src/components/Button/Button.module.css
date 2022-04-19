@@ -24,24 +24,10 @@
   border-radius: 24px;
   height: 48px;
   padding: 0 24px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
 .variant--text-link:focus {
   text-decoration: underline;
-}
-
-.background--teachers-primary {
-  composes: background--teachers-primary from "../../styles/colors.module.css";
-}
-
-.background--teachers-secondary {
-  composes: background--teachers-primary from "../../styles/colors.module.css";
-}
-
-.background--pupils-primary {
-  composes: background--pupils-primary from "../../styles/colors.module.css";
-}
-
-.background--pupil-secondary {
-  composes: background--pupil-primary from "../../styles/colors.module.css";
 }

@@ -29,7 +29,7 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
       loading
     </p>
     <div
-      class="card--undefined"
+      class="card-primary"
     >
       I am a card
     </div>
