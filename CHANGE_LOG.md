@@ -1,3 +1,15 @@
+# [0.8.0](https://github.com/oaknational/Samara/compare/v0.7.0...v0.8.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* remove as casting type ([4c79948](https://github.com/oaknational/Samara/commit/4c799486b0ec121e36780db02642aca916bd7f8c))
+
+
+### Features
+
+* adds typography component ([265aa3c](https://github.com/oaknational/Samara/commit/265aa3c31c46a64fbe1ad8a2e7f85bd442a4517d))
+
 # [0.7.0](https://github.com/oaknational/Samara/compare/v0.6.2...v0.7.0) (2022-04-14)
 
 
