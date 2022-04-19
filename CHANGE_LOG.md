@@ -1,3 +1,11 @@
+# [0.9.0](https://github.com/oaknational/Samara/compare/v0.8.0...v0.9.0) (2022-04-19)
+
+
+### Features
+
+* add bugsnag error handling ([3305f45](https://github.com/oaknational/Samara/commit/3305f45696862fb9271acada8860f60de8daf11d))
+* bugsnag ([d98b31a](https://github.com/oaknational/Samara/commit/d98b31a8e302fbdae47aad141ada47ade65ec2d6))
+
 # [0.8.0](https://github.com/oaknational/Samara/compare/v0.7.0...v0.8.0) (2022-04-19)
 
 
