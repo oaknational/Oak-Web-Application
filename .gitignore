@@ -9,6 +9,7 @@
 /coverage
 # stryker temp files
 .stryker-tmp
+stryker.log
 
 # next.js
 /.next/

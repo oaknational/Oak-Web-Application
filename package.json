@@ -23,7 +23,7 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "stryker": "stryker run",
+    "stryker": "GIT_SHA_OVERRIDE=testing stryker run --logLevel debug",
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest"
   },

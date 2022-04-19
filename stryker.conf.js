@@ -1,3 +1,5 @@
+const path = require("path");
+
 /**
  * @type {import('@stryker-mutator/api/core').StrykerOptions}
  */
@@ -7,6 +9,10 @@ module.exports = {
   packageManager: "npm",
   reporters: ["html", "clear-text", "progress"],
   testRunner: "jest",
+  jest: {
+    projectType: "custom",
+    configFile: path.resolve(__dirname, "jest.config.js"),
+  },
   coverageAnalysis: "perTest",
   checkers: ["typescript"],
   tsconfigFile: "tsconfig.json",
