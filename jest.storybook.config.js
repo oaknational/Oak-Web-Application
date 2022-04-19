@@ -8,7 +8,7 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     "./src/**",
     "!**/__snapshots__/**",
@@ -19,10 +19,8 @@ const customJestConfig = {
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testEnvironment: "jest-environment-jsdom",
-  testPathIgnorePatterns: [
-    "src/__tests__/__helpers__/*",
-    ".storybook/storybook.*.test.js$",
-  ],
+  testPathIgnorePatterns: ["src/__tests__/__helpers__/*"],
+  testRegex: ".storybook/storybook.*.test.js$",
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
