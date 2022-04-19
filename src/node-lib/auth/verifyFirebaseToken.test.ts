@@ -1,3 +1,5 @@
+import OakError from "../../errors/OakError";
+
 import verifyFirebaseToken from "./verifyFirebaseToken";
 
 const testTokenValue = "token";
@@ -18,5 +20,12 @@ describe("node-lib/auth/verifyFirebaseToken.ts", () => {
     await verifyFirebaseToken({ accessToken: testTokenValue });
     expect(verifyIdTokenSpy).toHaveBeenCalledWith(testTokenValue);
   });
-  it.todo("should throw the correct OakError if verifyIdToken fails");
+  it("should throw the correct OakError if verifyIdToken fails", async () => {
+    verifyIdTokenSpy.mockImplementationOnce(() =>
+      Promise.reject(new Error("bad thing happened"))
+    );
+    await expect(
+      async () => await verifyFirebaseToken({ accessToken: testTokenValue })
+    ).rejects.toThrowError(new OakError({ code: "auth/token-error-unknown" }));
+  });
 });
