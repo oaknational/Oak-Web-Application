@@ -27,19 +27,14 @@ export interface SearchHit {
 }
 
 const constructQuery = (query: string, keystages: Set<string>) => {
-  const keyStageString = Array.from(keystages).join(",");
-
-  console.log(keyStageString);
-
-  const filter = keyStageString
-    ? {
-        term: {
-          key_stage_slug: `[${keyStageString}]`,
-        },
-      }
-    : null;
-
-  console.log(filter);
+  const filter =
+    keystages.size > 0
+      ? {
+          terms: {
+            key_stage_slug: Array.from(keystages),
+          },
+        }
+      : null;
 
   return {
     query: {
@@ -114,6 +109,7 @@ const Search: NextPage = () => {
       .then((data) => {
         const { hits } = data;
         const hitList: SearchHit[] = hits.hits;
+
         if (!isCancelled) {
           setResults(hitList);
           setLoading(false);
@@ -123,7 +119,7 @@ const Search: NextPage = () => {
     return () => {
       isCancelled = true;
     };
-  }, [text, keystage]);
+  }, [text, JSON.stringify(Array.from(keystage))]);
 
   return (
     <Layout>
