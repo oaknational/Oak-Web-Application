@@ -2,12 +2,15 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import z from "zod";
 
 import { OakUser } from "../../auth/useAuth";
+import createErrorHandler from "../../common-lib/error-handler";
 import { login } from "../../node-lib/auth";
 
 type ResponseError = {
   message: string;
 };
 type ResponseData = OakUser | ResponseError;
+
+const errorHandler = createErrorHandler("/api/login");
 
 export default async function handler(
   req: NextApiRequest,
@@ -33,9 +36,8 @@ export default async function handler(
         res.status(405).end(`Method ${method} Not Allowed`);
     }
   } catch (error) {
-    console.log(error);
+    errorHandler(error);
 
-    // @TODO handle error
     return res.status(403).json({
       message: "Failed to POST to /user",
     });
