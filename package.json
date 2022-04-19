@@ -20,13 +20,13 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:static-serve": "build-storybook && http-server ./storybook-static --port=6006",
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
-    "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook",
-    "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook",
-    "storybook:static-serve": "build-storybook && http-server ./storybook-static --port=6006"
+    "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "dependencies": {
     "@graphql-codegen/typescript-react-apollo": "^3.2.8",
