@@ -26,12 +26,18 @@ export interface SearchHit {
   };
 }
 
-const constructQuery = (query: string, keystages: Set<string>) => {
+type ConstructQueryParams = {
+  term: string;
+  keyStages: Set<string>;
+};
+
+const constructQuery = (query: ConstructQueryParams) => {
+  const { term, keyStages } = query;
   const filter =
-    keystages.size > 0
+    keyStages.size > 0
       ? {
           terms: {
-            key_stage_slug: Array.from(keystages),
+            key_stage_slug: Array.from(keyStages),
           },
         }
       : null;
@@ -45,7 +51,7 @@ const constructQuery = (query: string, keystages: Set<string>) => {
             // exact matches in titles and intro text first
             // boosting titles highest
             multi_match: {
-              query,
+              query: term,
               type: "phrase",
               // boost title highest, then other titles, then intro text
               fields: ["title^10", "*_title^6", "lesson_description^3"],
@@ -54,7 +60,7 @@ const constructQuery = (query: string, keystages: Set<string>) => {
           // then search everything with fuzzy
           {
             multi_match: {
-              query,
+              query: term,
               fields: ["*"],
               type: "most_fields",
               /* Search terms <=4 characters have to be an exact match
@@ -96,7 +102,7 @@ const Search: NextPage = () => {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(constructQuery(text, keyStages)),
+    body: JSON.stringify(constructQuery({ term: text, keyStages })),
   };
 
   useEffect(() => {
