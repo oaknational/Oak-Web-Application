@@ -5,6 +5,10 @@ exports[`renders search page unchanged 1`] = `
   <ul>
     <li>
       The Tragedy of Macbeth
+       - 
+      <i>
+        Key Stage 4
+      </i>
     </li>
   </ul>
 </div>
