@@ -4,21 +4,30 @@ import clsx from "clsx";
 import styles from "../../styles/Typography.module.css";
 
 // Defining the HTML tag that the component will support
-const variantsMapping = {
+type variantsType =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "body1"
+  | "body2"
+  | "body3"
+  | "body4";
+
+const variantsMapping: Record<variantsType, keyof JSX.IntrinsicElements> = {
   h1: "h1",
   h2: "h2",
   h3: "h3",
   h4: "h4",
   h5: "h5",
   h6: "h6",
-  h7: "h7",
   body1: "p",
   body2: "p",
   body3: "p",
   body4: "p",
 };
-
-type variantsType = keyof typeof variantsMapping;
 
 type TypographyProps = {
   variant: variantsType;
@@ -26,9 +35,7 @@ type TypographyProps = {
 };
 
 const Text: FC<TypographyProps> = ({ variant, children, ...props }) => {
-  const Component = variant
-    ? (variantsMapping[variant] as keyof JSX.IntrinsicElements)
-    : ("p" as keyof JSX.IntrinsicElements);
+  const Component = variantsMapping[variant];
 
   return (
     <Component
