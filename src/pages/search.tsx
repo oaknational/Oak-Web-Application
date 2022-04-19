@@ -79,8 +79,6 @@ function handleFetchError(response: Response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
-  // TODO: handle error in UI in a meaningful way
-  return response;
 }
 
 const Search: NextPage = () => {
@@ -103,10 +101,12 @@ const Search: NextPage = () => {
 
   useEffect(() => {
     let isCancelled = false;
-    fetch(apiRoute, requestOptions)
-      .then(handleFetchError)
-      .then((res) => res.json())
-      .then((data) => {
+
+    const fetchSearchResults = async () => {
+      const response = await fetch(apiRoute, requestOptions);
+      handleFetchError(response);
+      const data = await response.json();
+      if (data) {
         const { hits } = data;
         const hitList: SearchHit[] = hits.hits;
 
@@ -114,7 +114,10 @@ const Search: NextPage = () => {
           setResults(hitList);
           setLoading(false);
         }
-      });
+      }
+    };
+
+    fetchSearchResults();
 
     return () => {
       isCancelled = true;
