@@ -1,10 +1,10 @@
 import { SearchHit } from "../../pages/search";
 
-interface IProps {
+interface SearchResultsProps {
   hits: Array<SearchHit>;
 }
 
-const SearchResults = (props: IProps) => {
+const SearchResults = (props: SearchResultsProps) => {
   const { hits } = props;
   const resultElements: Array<JSX.Element> = hits.map((hit: SearchHit) => {
     const { _source } = hit;
