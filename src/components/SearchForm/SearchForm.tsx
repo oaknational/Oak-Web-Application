@@ -6,7 +6,7 @@ import { searchContext, KeyStages } from "../../context/SearchContext";
 import styles from "./SearchForm.module.css";
 
 const SearchForm: FC = () => {
-  const { text, setText, keystage, setKeystage } = useContext(searchContext);
+  const { text, setText, keyStages, setKeyStages } = useContext(searchContext);
   const [value, setValue] = useState(text);
 
   const initialChecks = Array(Object.keys(KeyStages).length).fill(false);
@@ -34,10 +34,10 @@ const SearchForm: FC = () => {
     setChecks(updatedChecks);
 
     if (!checks[position]) {
-      setKeystage(keystage.add(ks));
+      setKeyStages(keyStages.add(ks));
     } else {
-      keystage.delete(ks);
-      setKeystage(keystage);
+      keyStages.delete(ks);
+      setKeyStages(keyStages);
     }
   };
 

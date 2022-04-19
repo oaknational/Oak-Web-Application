@@ -11,15 +11,15 @@ export enum KeyStages {
 export type SearchTerm = {
   text: string;
   setText: (text: string) => void;
-  keystage: Set<string>;
-  setKeystage: (keystage: Set<string>) => void;
+  keyStages: Set<string>;
+  setKeyStages: (keystage: Set<string>) => void;
 };
 
 export const searchContext = createContext<SearchTerm>({
   text: "",
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setText: () => {},
-  keystage: new Set(),
+  keyStages: new Set(),
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setKeystage: () => {},
+  setKeyStages: () => {},
 });

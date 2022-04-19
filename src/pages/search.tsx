@@ -86,7 +86,7 @@ function handleFetchError(response: Response) {
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [loading, setLoading] = useState(true);
-  const { text, keystage } = useContext(searchContext);
+  const { text, keyStages } = useContext(searchContext);
 
   //TODO: a better way of handling env variables type
   const apiRoute: RequestInfo =
@@ -98,7 +98,7 @@ const Search: NextPage = () => {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(constructQuery(text, keystage)),
+    body: JSON.stringify(constructQuery(text, keyStages)),
   };
 
   useEffect(() => {
@@ -119,7 +119,7 @@ const Search: NextPage = () => {
     return () => {
       isCancelled = true;
     };
-  }, [text, JSON.stringify(Array.from(keystage))]);
+  }, [text, JSON.stringify(Array.from(keyStages))]);
 
   return (
     <Layout>
