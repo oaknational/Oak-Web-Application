@@ -15,7 +15,9 @@ exports[`renders <Layout> unchanged 1`] = `
       placeholder="Search"
       type="text"
     />
-    <button />
+    <button>
+      pupils
+    </button>
     <a
       href="/sign-in"
     >

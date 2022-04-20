@@ -1,4 +1,4 @@
-import { createContext, FC } from "react";
+import { createContext, useContext, FC } from "react";
 
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -9,16 +9,26 @@ export interface UserContextInterface {
   setUser: (user: UserType) => void;
 }
 
-export const UserStyleContext = createContext<UserContextInterface>(
-  {} as UserContextInterface
+export const UserStyleContext = createContext<UserContextInterface | null>(
+  null
 );
 
-export const UserStyleContextProvider: FC = (props) => {
+export const UserStyleContextProvider: FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<UserType>("userTheme", "pupils");
 
   return (
     <UserStyleContext.Provider value={{ user, setUser }}>
-      {props.children}
+      {children}
     </UserStyleContext.Provider>
   );
+};
+
+export const useUserStyleContext = () => {
+  const userStyleContext = useContext(UserStyleContext);
+  if (!userStyleContext) {
+    throw new Error(
+      "useStyleContext() called outside of user style context provider"
+    );
+  }
+  return userStyleContext;
 };

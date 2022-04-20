@@ -1,14 +1,14 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import Link from "next/link";
 
-import { UserStyleContext } from "../../context/UserStyleContext";
+import { useUserStyleContext } from "../../context/UserStyleContext";
 import useAuth from "../../auth/useAuth";
 
 import styles from "./SiteHeader.module.css";
 
 const SiteHeader: FC = () => {
   const { user, signOut } = useAuth();
-  const userStyleContext = useContext(UserStyleContext);
+  const userStyleContext = useUserStyleContext();
 
   const handleClick = () => {
     userStyleContext.user === "teachers"

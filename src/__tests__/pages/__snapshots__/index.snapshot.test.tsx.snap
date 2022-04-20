@@ -15,7 +15,9 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
       placeholder="Search"
       type="text"
     />
-    <button />
+    <button>
+      pupils
+    </button>
     <a
       href="/sign-in"
     >
