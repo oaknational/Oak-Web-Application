@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { AuthProvider } from "../../auth/useAuth";
+import { SearchProvider } from "../../context/SearchContext";
 
 import SiteHeader from "./SiteHeader";
 
@@ -14,7 +15,9 @@ export default {
 const Template: ComponentStory<typeof SiteHeader> = (args) => (
   <div>
     <AuthProvider>
-      <SiteHeader {...args} />
+      <SearchProvider>
+        <SiteHeader {...args} />
+      </SearchProvider>
     </AuthProvider>
   </div>
 );
