@@ -5,34 +5,31 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
   <header
     class="header"
   >
-    <div>
-      <span
-        class="title"
-      >
-        Oak
-      </span>
-      <input
-        placeholder="Search"
-        type="text"
-      />
-    </div>
     <button />
+    <div
+      class="title"
+    >
+      Oak
+    </div>
+    <input
+      class="search-input"
+      placeholder="Search"
+      type="text"
+    />
+    <a
+      href="/sign-in"
+    >
+      Sign in
+    </a>
   </header>
   <main
     class="main"
   >
     <h1
-      data-test-id="lesson-title"
-    />
-    <p>
-      Status: 
-      loading
-    </p>
-    <div
-      class="card-primary"
+      data-testid="lesson-title"
     >
-      I am a card
-    </div>
+      Physics only review
+    </h1>
   </main>
   <footer
     class="footer"

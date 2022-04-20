@@ -2,7 +2,14 @@ module.exports = {
   branches: ["main"],
   plugins: [
     // Analyse commits.
-    "@semantic-release/commit-analyzer",
+    // https://github.com/semantic-release/commit-analyzer/#rules-definition
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        preset: "angular",
+        releaseRules: [{ type: "chore", release: "patch" }],
+      },
+    ],
     // Create release notes.
     "@semantic-release/release-notes-generator",
 
@@ -11,6 +18,13 @@ module.exports = {
       "@semantic-release/changelog",
       {
         changelogFile: "CHANGE_LOG.md",
+      },
+    ],
+    // Update the package.json version.
+    [
+      "@semantic-release/npm",
+      {
+        npmPublish: false,
       },
     ],
     // Update the package.json version and commit the change log.

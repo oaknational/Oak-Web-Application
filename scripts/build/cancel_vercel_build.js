@@ -52,8 +52,9 @@ const isMain = ref === "main";
 console.log(`isMain: ${isMain}`);
 
 // Release commit format defined in release.config.js
-const releaseCommitFormat = /^build\(release [vV]\d+.\d+.\d+}\):/;
+const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
 const isReleaseCommit = releaseCommitFormat.test(commitMessage);
+console.log(`isReleaseCommit: ${isReleaseCommit}`);
 
 // Cancel `main` branch builds that aren't release commits.
 const shouldCancel = isMain && !isReleaseCommit;
