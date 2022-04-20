@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NextPage } from "next";
 
-import { searchContext } from "../context/SearchContext";
+import { useSearchQuery } from "../context/SearchContext";
 import Layout from "../components/Layout";
 import SearchResults from "../components/SearchResults";
 
@@ -90,7 +90,7 @@ function handleFetchError(response: Response) {
 const Search: NextPage = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [loading, setLoading] = useState(true);
-  const { text, keyStages } = useContext(searchContext);
+  const { text, keyStages } = useSearchQuery();
 
   //TODO: a better way of handling env variables type
   const apiRoute: RequestInfo =
@@ -109,17 +109,23 @@ const Search: NextPage = () => {
     let isCancelled = false;
 
     const fetchSearchResults = async () => {
-      const response = await fetch(apiRoute, requestOptions);
-      handleFetchError(response);
-      const data = await response.json();
-      if (data) {
-        const { hits } = data;
-        const hitList: SearchHit[] = hits.hits;
+      try {
+        const response = await fetch(apiRoute, requestOptions);
+        handleFetchError(response);
+        const data = await response.json();
+        if (data) {
+          const { hits } = data;
+          const hitList: SearchHit[] = hits.hits;
 
-        if (!isCancelled) {
-          setResults(hitList);
-          setLoading(false);
+          if (!isCancelled) {
+            setResults(hitList);
+            setLoading(false);
+          }
         }
+      } catch (error) {
+        //TODO: handle error
+        console.error(error);
+        throw error;
       }
     };
 

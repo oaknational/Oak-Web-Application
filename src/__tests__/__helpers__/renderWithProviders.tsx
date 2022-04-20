@@ -8,10 +8,16 @@
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 
+import { SearchProvider } from "../../context/SearchContext";
+
 import MockedAuthProvider from "./MockedAuthProvider";
 
 const AllTheProviders: FC = ({ children }) => {
-  return <MockedAuthProvider>{children}</MockedAuthProvider>;
+  return (
+    <MockedAuthProvider>
+      <SearchProvider>{children}</SearchProvider>
+    </MockedAuthProvider>
+  );
 };
 
 const renderWithProviders = (

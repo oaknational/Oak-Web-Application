@@ -1,16 +1,17 @@
-import { FC, useContext, useState } from "react";
+import { FC, useState } from "react";
 import { useRouter } from "next/router";
 
-import { searchContext, KeyStages } from "../../context/SearchContext";
+import {
+  KeyStages,
+  KeyStage,
+  useSearchQuery,
+} from "../../context/SearchContext";
 
 import styles from "./SearchForm.module.css";
 
 const SearchForm: FC = () => {
-  const { text, setText, keyStages, setKeyStages } = useContext(searchContext);
+  const { text, setText, keyStages, setKeyStages } = useSearchQuery();
   const [value, setValue] = useState(text);
-
-  const initialChecks = Array(Object.keys(KeyStages).length).fill(false);
-  const [checks, setChecks] = useState(initialChecks);
 
   const router = useRouter();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,42 +25,35 @@ const SearchForm: FC = () => {
     setValue(e.currentTarget.value);
   };
 
-  const handleOnCheck = (position: number, ks: string) => {
-    const updatedChecks = checks.map((item: boolean, index: number) =>
-      // reverse the boolean of the checkbox we have selected
-      // keep the others the same
-      index === position ? !item : item
-    );
-
-    setChecks(updatedChecks);
-
-    if (!checks[position]) {
-      setKeyStages(keyStages.add(ks));
+  const handleOnCheck = (ks: KeyStage) => {
+    const newKeyStages = new Set(keyStages);
+    if (!keyStages.has(ks)) {
+      newKeyStages.add(ks);
     } else {
-      keyStages.delete(ks);
-      setKeyStages(keyStages);
+      newKeyStages.delete(ks);
     }
+    setKeyStages(newKeyStages);
   };
 
-  const keyStageChecks: Array<JSX.Element> = (
-    Object.values(KeyStages) as Array<keyof typeof KeyStages>
-  ).map((ks: string, index: number) => {
-    return (
-      <div key={ks}>
-        <label>
-          &nbsp;Key Stage {ks}
-          <input
-            type="checkbox"
-            id={`custom-checkbox-${ks}`}
-            name={ks}
-            value={ks}
-            checked={checks[index]}
-            onChange={() => handleOnCheck(index, ks)}
-          />
-        </label>
-      </div>
-    );
-  });
+  const keyStageChecks: Array<JSX.Element> = Object.values(KeyStages).map(
+    (ks: KeyStage) => {
+      return (
+        <div key={ks}>
+          <label>
+            &nbsp;Key Stage {ks}
+            <input
+              type="checkbox"
+              id={`custom-checkbox-${ks}`}
+              name={ks}
+              value={ks}
+              checked={keyStages.has(ks)}
+              onChange={() => handleOnCheck(ks)}
+            />
+          </label>
+        </div>
+      );
+    }
+  );
 
   return (
     <form onSubmit={handleSubmit} className={styles.search}>
