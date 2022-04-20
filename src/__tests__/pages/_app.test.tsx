@@ -12,12 +12,10 @@ jest.mock("../../browser-lib/graphql/useApolloClient");
 jest.mock("../../hooks/useTheme");
 jest.mock("../../hooks/useBookmarks", () => ({
   __esModule: true,
-  // ...jest.requireActual("../../hooks/useBookmarks"),
   BookmarksProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 jest.mock("../../auth/useAuth", () => ({
   __esModule: true,
-  // ...jest.requireActual("../../auth/useAuth"),
   AuthProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 

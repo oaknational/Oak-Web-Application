@@ -9,11 +9,11 @@ jest.mock("./useOakFetch", () => ({
 
 const api = useApi();
 describe("browser-lib/api/index", () => {
-  it("should have /login method which calls /api/login", () => {
-    api["/login"]({ accessToken: "123" });
+  it("should have /user method which calls /api/user", () => {
+    api["/user"]({ accessToken: "123" });
     expect(oakFetchSpy).toHaveBeenCalledWith(
       expect.objectContaining({
-        url: "/api/login",
+        url: "/api/user",
       })
     );
   });
