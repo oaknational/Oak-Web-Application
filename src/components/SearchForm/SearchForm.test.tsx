@@ -2,47 +2,48 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import * as routerBits from "next/router";
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import { SearchProvider } from "../../context/SearchContext";
 
 import SearchForm from "./SearchForm";
 
 const setTextSpy = jest.fn();
-// const setKeyStagesSpy =
-// eslint-disable-next-line
-// @ts-ignore
-React.useContext = () => {
-  return {
+
+jest.mock("next/router", () => ({
+  __esModule: true,
+  ...jest.requireActual("next/router"),
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
+jest.mock("../../context/SearchContext", () => ({
+  __esModule: true,
+  ...jest.requireActual("../../context/SearchContext"),
+  useSearchQuery: () => ({
     text: "",
     setText: setTextSpy,
-  };
-};
-/* eslint-disable */
-// @ts-ignore
-routerBits.useRouter = () => {
-  return {
-    push: jest.fn(),
-  };
-};
-/* eslint-enable */
+    keyStages: new Set(),
+    setKeyStages: jest.fn(),
+  }),
+}));
 
 describe("The <SearchForm> Component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.resetModules();
   });
 
   it("renders", () => {
-    renderWithProviders(<SearchForm />);
+    render(<SearchForm />, { wrapper: SearchProvider });
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
   });
 
   it("updates the text of the search context", async () => {
     const text = "Macbeth";
-    renderWithProviders(<SearchForm />);
+    render(<SearchForm />, { wrapper: SearchProvider });
     const user = userEvent.setup();
 
     const searchField = screen.getByRole("searchbox");
@@ -52,6 +53,6 @@ describe("The <SearchForm> Component", () => {
     const searchButton = screen.getByRole("button");
     await user.click(searchButton);
 
-    expect(setTextSpy).toBeCalledWith(text);
+    expect(setTextSpy).toHaveBeenCalledWith(text);
   });
 });
