@@ -13,6 +13,7 @@ const customJestConfig = {
     "./src/**",
     "!**/__snapshots__/**",
     "!src/pages/_document.tsx",
+    "!**/*.stories.*",
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
