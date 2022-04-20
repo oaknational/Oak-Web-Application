@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 
 import { useSearchQuery } from "../context/SearchContext";
