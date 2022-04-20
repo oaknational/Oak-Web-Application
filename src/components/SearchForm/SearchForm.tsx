@@ -54,7 +54,7 @@ const SearchForm: FC = () => {
           checked={checks[index]}
           onChange={() => handleOnCheck(index, ks)}
         />
-        <label htmlFor={value}>{ks}</label>
+        <label htmlFor={ks}>{ks}</label>
       </div>
     );
   });
