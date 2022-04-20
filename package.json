@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -72,6 +72,7 @@
     "@storybook/testing-library": "^0.0.9",
     "babel-loader": "^8.2.4",
     "eslint-plugin-storybook": "^0.5.7",
+    "@testing-library/user-event": "^14.1.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^7.0.2",
