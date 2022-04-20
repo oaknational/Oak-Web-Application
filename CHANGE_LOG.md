@@ -1,3 +1,42 @@
+# [0.10.0](https://github.com/oaknational/Samara/compare/v0.9.1...v0.10.0) (2022-04-20)
+
+
+### Bug Fixes
+
+* add error handling to fetch ([b607b66](https://github.com/oaknational/Samara/commit/b607b66c423445320e8f33803e3ab99c32356318))
+* add label for accessibility and placeholder for search ([d9c87a0](https://github.com/oaknational/Samara/commit/d9c87a0b7036e966d564b38404c022066c7bd0ba))
+* broken lock file ([6210bcc](https://github.com/oaknational/Samara/commit/6210bcc52c98c2946e4e97f5081d5f52dd645e20))
+* change map to foreach ([7469962](https://github.com/oaknational/Samara/commit/74699623fe2a4fe8b81f84b8be364203a99825d9))
+* check if search page is unmounted before request completes ([2c63c18](https://github.com/oaknational/Samara/commit/2c63c186d0003fc0720c12fef58eaa401291b9cf))
+* correct indentation ([6e39012](https://github.com/oaknational/Samara/commit/6e3901267a046cb1c46adff77fb7733776afcf82))
+* implicitly give labels for checkboxes by wrapping them in label tags ([63d490a](https://github.com/oaknational/Samara/commit/63d490ae715fe65e0aaf9bd369832cdde20976d0))
+* is_specialist can be null ([63b77b0](https://github.com/oaknational/Samara/commit/63b77b0d00e273f928877dd6ac13801a36cedd90))
+* remove apollo ([ffe150e](https://github.com/oaknational/Samara/commit/ffe150ed82de8727987d2cd5c486cc13d03db5c1))
+* remove elastic from lock ([f9c9278](https://github.com/oaknational/Samara/commit/f9c9278e9cff97aea380e673fed5f1fa391bd797))
+* remove yarn lock ([a7fd3cc](https://github.com/oaknational/Samara/commit/a7fd3cc074c217e0802bea7c262aba84e2e5af68))
+* rename Search to search ([fe9d139](https://github.com/oaknational/Samara/commit/fe9d13955a5f43dfb169c5318f5306f378cd1d2c))
+* rename snapshot from 'text' to 'test' and run snapshot ([60f8ed1](https://github.com/oaknational/Samara/commit/60f8ed11b07c70aeef077c6ef1d791f05e67765c))
+* **Sonar:** remove comment from multiline properties file list ([5b1fe74](https://github.com/oaknational/Samara/commit/5b1fe740226e7b774838f4a2167e218bc1dd7491))
+* **Sonar:** syntax typo ([cc4afec](https://github.com/oaknational/Samara/commit/cc4afec3b4af84acbd8b8d9be72d8fbd8efd84bf))
+* **typo:** remove unused import ([341548c](https://github.com/oaknational/Samara/commit/341548cd356abe30ee56d0cf7aafb33d4a9d2aef))
+* update 'for' attribute for label to not be undefined ([3e4e3a7](https://github.com/oaknational/Samara/commit/3e4e3a73a7e5c8e99befbb79dd30119aaed5ec99))
+
+
+### Features
+
+* add checkboxes for key stages ([827e2c3](https://github.com/oaknational/Samara/commit/827e2c3d0968f3efcb5b615a271a3b9cef93bc9a))
+* add fuzzy search and title boosting ([5e8f859](https://github.com/oaknational/Samara/commit/5e8f85905a0bb04e509e456872a2dcbbcbd5588d))
+* add keystage filter to search ([28e6dcb](https://github.com/oaknational/Samara/commit/28e6dcbc7e494c8cd3584aa3087478a8f69ad40e))
+* add keystage to search results list ([6228ef6](https://github.com/oaknational/Samara/commit/6228ef6576752e337176571c591a8b444e75561f))
+* add loading status ([34b8011](https://github.com/oaknational/Samara/commit/34b80117b32dc35b1054d0f6de79e4cc61112c0f))
+* add search context and update test ([64022f8](https://github.com/oaknational/Samara/commit/64022f8b5d0dd69d475d680766e92cb815807927))
+* add search fetch ([1394e24](https://github.com/oaknational/Samara/commit/1394e24f7fe07ff15841d82d91166f6a50a3c7d1))
+* add search hit interface ([010d9e5](https://github.com/oaknational/Samara/commit/010d9e5933056a025e24e9c3aef4bb281fd33721))
+* add search page ([412228d](https://github.com/oaknational/Samara/commit/412228d9c0f89f93c45245db94dd37d49affe2ca))
+* construct query with keystage set ([8a6029b](https://github.com/oaknational/Samara/commit/8a6029b6155faab993eed2818fa07e7af9db6564))
+* send search query from search context ([a2adaad](https://github.com/oaknational/Samara/commit/a2adaad8b803be843f012db39cbb1758e707ee09))
+* update set of keystage filters ([97be677](https://github.com/oaknational/Samara/commit/97be6775c8b18037eeb23823ddba4082a1b2296d))
+
 ## [0.9.1](https://github.com/oaknational/Samara/compare/v0.9.0...v0.9.1) (2022-04-19)
 
 # [0.9.0](https://github.com/oaknational/Samara/compare/v0.8.0...v0.9.0) (2022-04-19)
