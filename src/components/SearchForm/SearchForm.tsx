@@ -46,15 +46,17 @@ const SearchForm: FC = () => {
   ).map((ks: string, index: number) => {
     return (
       <div key={ks}>
-        <input
-          type="checkbox"
-          id={`custom-checkbox-${ks}`}
-          name={ks}
-          value={ks}
-          checked={checks[index]}
-          onChange={() => handleOnCheck(index, ks)}
-        />
-        <label htmlFor={ks}>{ks}</label>
+        <label>
+          &nbsp;Key Stage {ks}
+          <input
+            type="checkbox"
+            id={`custom-checkbox-${ks}`}
+            name={ks}
+            value={ks}
+            checked={checks[index]}
+            onChange={() => handleOnCheck(index, ks)}
+          />
+        </label>
       </div>
     );
   });
