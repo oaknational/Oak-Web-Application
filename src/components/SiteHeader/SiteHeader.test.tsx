@@ -1,11 +1,12 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 
 import { UserStyleContextProvider } from "../../context/UserStyleContext";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import SiteHeader from "./SiteHeader";
 
 function renderUserContext() {
-  return render(
+  return renderWithProviders(
     <UserStyleContextProvider>
       <SiteHeader />
     </UserStyleContextProvider>

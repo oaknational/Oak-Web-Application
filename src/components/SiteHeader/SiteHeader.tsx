@@ -18,13 +18,13 @@ const SiteHeader: FC = () => {
 
   return (
     <header className={styles.header}>
-      <button onClick={handleClick}>{userStyleContext.user}</button>
       <div className={styles.title}>Oak</div>
       <input
         className={styles["search-input"]}
         type="text"
         placeholder="Search"
       />
+      <button onClick={handleClick}>{userStyleContext.user}</button>
       {user ? (
         <button onClick={signOut}>Sign out</button>
       ) : (

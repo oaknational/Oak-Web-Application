@@ -5,7 +5,6 @@ exports[`renders <Layout> unchanged 1`] = `
   <header
     class="header"
   >
-    <button />
     <div
       class="title"
     >
@@ -16,6 +15,7 @@ exports[`renders <Layout> unchanged 1`] = `
       placeholder="Search"
       type="text"
     />
+    <button />
     <a
       href="/sign-in"
     >
