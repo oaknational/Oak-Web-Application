@@ -1,6 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import { AuthProvider } from "../../auth/useAuth";
+
 import SiteHeader from "./SiteHeader";
 
 export default {
@@ -11,7 +13,9 @@ export default {
 
 const Template: ComponentStory<typeof SiteHeader> = (args) => (
   <div>
-    <SiteHeader {...args} />
+    <AuthProvider>
+      <SiteHeader {...args} />
+    </AuthProvider>
   </div>
 );
 
