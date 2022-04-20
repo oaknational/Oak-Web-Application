@@ -3,7 +3,7 @@ schema:
   - ${NEXT_PUBLIC_GRAPHQL_API_URL}:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
-documents: "src/node-lib/**/*.{graphql,gql}"
+documents: "src/node-lib/graphql/**/*.{graphql,gql}"
 generates:
   src/node-lib/graphql/generated/sdk.ts:
     plugins:

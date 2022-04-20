@@ -1,0 +1,6 @@
+mutation bookmarkedLessonRemove($lessonId: Int!, $userId: Int!) {
+  delete_bookmarked_lesson_by_pk(lesson_id: $lessonId, user_id: $userId) {
+    lesson_id
+    user_id
+  }
+}

@@ -1,3 +1,38 @@
+## [0.9.1](https://github.com/oaknational/Samara/compare/v0.9.0...v0.9.1) (2022-04-19)
+
+# [0.9.0](https://github.com/oaknational/Samara/compare/v0.8.0...v0.9.0) (2022-04-19)
+
+
+### Features
+
+* add bugsnag error handling ([3305f45](https://github.com/oaknational/Samara/commit/3305f45696862fb9271acada8860f60de8daf11d))
+* bugsnag ([d98b31a](https://github.com/oaknational/Samara/commit/d98b31a8e302fbdae47aad141ada47ade65ec2d6))
+
+# [0.8.0](https://github.com/oaknational/Samara/compare/v0.7.0...v0.8.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* remove as casting type ([4c79948](https://github.com/oaknational/Samara/commit/4c799486b0ec121e36780db02642aca916bd7f8c))
+
+
+### Features
+
+* adds typography component ([265aa3c](https://github.com/oaknational/Samara/commit/265aa3c31c46a64fbe1ad8a2e7f85bd442a4517d))
+
+# [0.7.0](https://github.com/oaknational/Samara/compare/v0.6.2...v0.7.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* bookmarks tests ([9110030](https://github.com/oaknational/Samara/commit/9110030a8dac4c8410505bd8ddf871d68f296555))
+
+
+### Features
+
+* bookmarks ([de92379](https://github.com/oaknational/Samara/commit/de92379a6f0f9aa1f2462b737e2346006868dd81))
+* bookmarks ([69ee2bb](https://github.com/oaknational/Samara/commit/69ee2bb6c6cf0139bac9b05d8311d61819bdceb6))
+
 ## [0.6.2](https://github.com/oaknational/Samara/compare/v0.6.1...v0.6.2) (2022-04-12)
 
 

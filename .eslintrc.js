@@ -9,6 +9,7 @@ const importRules = {
       warnOnUnassignedImports: true,
     },
   ],
+  "@typescript-eslint/no-unused-vars": ["error", { ignoreRestSiblings: true }],
 };
 
 module.exports = {

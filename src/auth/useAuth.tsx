@@ -18,6 +18,7 @@ import {
   LS_KEY_USER,
 } from "../config/localStorageKeys";
 import useApi from "../browser-lib/api";
+import { useBookmarksCache } from "../hooks/useBookmarks";
 
 import useAccessToken from "./useAccessToken";
 
@@ -30,10 +31,6 @@ const firebaseConfig = {
   appId: config.get("firebaseAppId"),
 };
 
-const SIGN_IN_CALLBACK_URL = `${config.get(
-  "clientAppBaseUrl"
-)}/sign-in/callback`;
-
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
@@ -43,7 +40,7 @@ export type OakUser = {
   id: number;
 };
 
-type OakAuth = {
+export type OakAuth = {
   user: OakUser | null;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
@@ -53,26 +50,28 @@ type OakAuth = {
 export const authContext = createContext<OakAuth | null>(null);
 
 export const AuthProvider: FC = ({ children }) => {
+  const [, setBookmarks] = useBookmarksCache();
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
   const [accessToken, setAccessToken] = useAccessToken();
   const api = useApi();
-  const apiLogin = api["/login"];
+  const apiGetOrCreateUser = api["/user"];
 
-  const onLogin = async () => {
-    const oakUser = await apiLogin();
+  const onLogin = async ({ accessToken }: { accessToken: string }) => {
+    const oakUser = await apiGetOrCreateUser({ accessToken });
     setUser(oakUser);
   };
 
   useEffect(() => {
     if (accessToken) {
       // @TODO catch errors
-      onLogin();
+      onLogin({ accessToken });
     }
   }, [accessToken]);
 
   const resetAuthState = () => {
     setUser(null);
     setAccessToken(null);
+    setBookmarks([]);
   };
 
   useEffect(() => {
@@ -131,7 +130,7 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: SIGN_IN_CALLBACK_URL,
+          url: `${window.location.host}/sign-in/callback`,
           // This must be true.
           handleCodeInApp: true,
         });

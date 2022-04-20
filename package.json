@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.6.2",
+  "version": "0.9.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -11,7 +11,8 @@
     "dev": "next dev",
     "format": "prettier */**/*.t{s,sx} --write",
     "format:check": "prettier */**/*.t{s,sx} --check",
-    "gql-codegen": "npm run gql-codegen:node",
+    "gql-codegen": "npm run gql-codegen:browser && npm run gql-codegen:node",
+    "gql-codegen:browser": "graphql-codegen --config src/browser-lib/graphql/codegen.yml -r dotenv/config",
     "gql-codegen:node": "graphql-codegen --config src/node-lib/graphql/codegen.yml -r dotenv/config",
     "lint": "next lint",
     "lint:styles": "stylelint src/*/**/*.css --fix",
@@ -26,6 +27,8 @@
     "test:ci": "jest"
   },
   "dependencies": {
+    "@bugsnag/js": "^7.16.2",
+    "@bugsnag/plugin-react": "^7.16.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.11",
     "clsx": "^1.1.1",
     "firebase": "^9.6.10",

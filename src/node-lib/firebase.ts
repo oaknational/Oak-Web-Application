@@ -43,4 +43,5 @@ const createFirebaseAdminApp = (config: AppOptions) => {
 const firebaseAdminApp = createFirebaseAdminApp(options);
 
 export const firebaseAdminAuth = getAuth(firebaseAdminApp);
+
 export const firebaseAdminDatabase = getDatabase(firebaseAdminApp);

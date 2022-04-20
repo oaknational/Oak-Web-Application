@@ -1,11 +1,17 @@
 .button {
   composes: button-unstyle from "../../styles/button-unstyle.module.css";
+  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;
   margin-bottom: 12px;
   max-width: 100%;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .button:not(:last-of-type) {
@@ -18,6 +24,8 @@
 
 .button-icon-wrapper {
   margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .variant--rounded {

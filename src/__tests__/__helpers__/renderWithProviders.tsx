@@ -8,21 +8,42 @@
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 
+import { BookmarksProvider } from "../../hooks/useBookmarks";
 import { SearchProvider } from "../../context/SearchContext";
 
-import MockedAuthProvider from "./MockedAuthProvider";
+import MockedAuthProvider, {
+  MockedAuthProviderProps,
+} from "./MockedAuthProvider";
+import MockedApolloProvider from "./MockedApolloProvider";
 
-const AllTheProviders: FC = ({ children }) => {
+type ProviderProps = {
+  authProviderProps?: MockedAuthProviderProps;
+};
+
+const AllTheProviders: FC<ProviderProps> = ({
+  children,
+  authProviderProps,
+}) => {
   return (
-    <MockedAuthProvider>
-      <SearchProvider>{children}</SearchProvider>
+    <MockedAuthProvider {...authProviderProps}>
+      <MockedApolloProvider>
+        <BookmarksProvider>
+          <SearchProvider>{children}</SearchProvider>
+        </BookmarksProvider>
+      </MockedApolloProvider>
     </MockedAuthProvider>
   );
 };
 
 const renderWithProviders = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-) => render(ui, { wrapper: AllTheProviders, ...options });
+  options?: Omit<RenderOptions, "wrapper">,
+  providerProps?: ProviderProps
+) => {
+  const wrapper: FC = (props) => (
+    <AllTheProviders {...props} {...providerProps} />
+  );
+  return render(ui, { wrapper, ...options });
+};
 
 export default renderWithProviders;

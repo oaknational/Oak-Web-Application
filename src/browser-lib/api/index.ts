@@ -6,14 +6,15 @@ const useApi = () => {
   const oakFetch = useOakFetch();
 
   return {
-    "/login": () =>
+    "/user": ({ accessToken }: { accessToken: string }) =>
       oakFetch({
-        url: "/api/login",
+        url: "/api/user",
         method: "POST",
         responseDataSchema: z.object({
           id: z.number(),
           email: z.string(),
         }),
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
       }),
   };
 };
