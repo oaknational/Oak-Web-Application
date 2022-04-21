@@ -7,7 +7,7 @@ import {
   LS_KEY_USER,
 } from "../config/localStorageKeys";
 
-import useAuth, { AuthProvider } from "./useAuth";
+import useAuth, { AuthProvider, SIGN_IN_CALLBACK_URL } from "./useAuth";
 
 const testUser = { id: 1, email: "test email", firebase_id: "123" };
 const testToken = "test token";
@@ -133,5 +133,8 @@ describe("auth/useAuth.tsx", () => {
     expect(result.current.user).toBeNull();
     expect(getLocalStorageAccessToken()).toBeNull();
     expect(getLocalStorageUser()).toBeNull();
+  });
+  it("should have the correct sign in callback url", () => {
+    expect(SIGN_IN_CALLBACK_URL).toEqual("http://localhost/sign-in/callback");
   });
 });
