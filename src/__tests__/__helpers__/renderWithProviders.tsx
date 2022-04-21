@@ -9,6 +9,7 @@ import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 
 import { BookmarksProvider } from "../../hooks/useBookmarks";
+import { SearchProvider } from "../../context/SearchContext";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
@@ -18,6 +19,7 @@ import MockedApolloProvider from "./MockedApolloProvider";
 type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
 };
+
 const AllTheProviders: FC<ProviderProps> = ({
   children,
   authProviderProps,
@@ -25,7 +27,9 @@ const AllTheProviders: FC<ProviderProps> = ({
   return (
     <MockedAuthProvider {...authProviderProps}>
       <MockedApolloProvider>
-        <BookmarksProvider>{children}</BookmarksProvider>
+        <BookmarksProvider>
+          <SearchProvider>{children}</SearchProvider>
+        </BookmarksProvider>
       </MockedApolloProvider>
     </MockedAuthProvider>
   );

@@ -2,6 +2,7 @@ import { FC } from "react";
 import Link from "next/link";
 
 import useAuth from "../../auth/useAuth";
+import SearchForm from "../SearchForm";
 
 import styles from "./SiteHeader.module.css";
 
@@ -11,6 +12,7 @@ const SiteHeader: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.title}>Oak</div>
+      <SearchForm />
       <input
         className={styles["search-input"]}
         type="text"
