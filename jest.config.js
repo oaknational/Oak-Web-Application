@@ -13,6 +13,7 @@ const customJestConfig = {
     "./src/**",
     "!**/__snapshots__/**",
     "!src/pages/_document.tsx",
+    "!**/*.stories.*",
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
@@ -26,7 +27,10 @@ const customJestConfig = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
-  testPathIgnorePatterns: ["src/__tests__/__helpers__/*"],
+  testPathIgnorePatterns: [
+    "src/__tests__/__helpers__/*",
+    ".storybook/storybook.*.test.js$",
+  ],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

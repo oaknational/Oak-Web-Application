@@ -1,0 +1,675 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Breadcrumbs Breadcrumb Example 1`] = `
+<div>
+  <div>
+    <h1>
+      Breadcrumbs
+    </h1>
+    <p>
+      Pass me an array of 
+      { href, text }
+       and the Link component, and I'll put chevrons between them.
+    </p>
+    <h2>
+      Examples
+    </h2>
+    <nav
+      aria-label="Breadcrumb"
+      className="nav"
+    >
+      <ol
+        className="ol"
+      >
+        <li
+          className="li"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Unit Quiz
+          </a>
+        </li>
+        <li
+          className="li"
+        >
+          <span
+            className="outer-wrapper"
+            style={
+              Object {
+                "height": "20px",
+                "width": "20px",
+              }
+            }
+          >
+            <span
+              className="inner-wrapper"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            View In Classroom
+          </a>
+        </li>
+        <li
+          className="li"
+        >
+          <span
+            className="outer-wrapper"
+            style={
+              Object {
+                "height": "20px",
+                "width": "20px",
+              }
+            }
+          >
+            <span
+              className="inner-wrapper"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Foundation Curriculum (PDF)
+          </a>
+        </li>
+        <li
+          className="li"
+        >
+          <span
+            className="outer-wrapper"
+            style={
+              Object {
+                "height": "20px",
+                "width": "20px",
+              }
+            }
+          >
+            <span
+              className="inner-wrapper"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Higher Curriculum (PDF)
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Button Button Example 1`] = `
+<div>
+  <div>
+    <h1>
+      Buttons
+    </h1>
+    <button
+      className="button background--teachers-primary variant--rounded"
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <span
+        className="button-label"
+      >
+        Button rounded
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Button Button Example With Icon 1`] = `
+<div>
+  <div>
+    <h1>
+      Buttons
+    </h1>
+    <button
+      className="button background--pupils-secondary variant--rounded"
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <span
+        className="button-label"
+      >
+        Button
+      </span>
+      <span
+        className="button-icon-wrapper"
+      >
+        <span
+          className="outer-wrapper"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <span
+            className="inner-wrapper"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+              />
+              <polyline
+                points="7 10 12 15 17 10"
+              />
+              <line
+                x1="12"
+                x2="12"
+                y1="15"
+                y2="3"
+              />
+            </svg>
+          </span>
+        </span>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Card Card Default 1`] = `
+<div>
+  <div
+    className="card"
+  >
+    <h2>
+      Card title
+    </h2>
+    <p>
+      You can put anything you like in here.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Icon Icon Example 1`] = `
+<div>
+  <h1>
+    Icon Example
+  </h1>
+  <span
+    className="outer-wrapper"
+    style={
+      Object {
+        "height": "100px",
+        "width": "100px",
+      }
+    }
+  >
+    <span
+      className="inner-wrapper"
+      style={
+        Object {
+          "height": "100px",
+          "width": "100px",
+        }
+      }
+    >
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polyline
+          points="9 18 15 12 9 6"
+        />
+      </svg>
+    </span>
+  </span>
+  <h2>
+    Available Icons
+  </h2>
+  <span
+    className="outer-wrapper"
+    style={
+      Object {
+        "height": "24px",
+        "width": "24px",
+      }
+    }
+  >
+    <span
+      className="inner-wrapper"
+      style={
+        Object {
+          "height": "24px",
+          "width": "24px",
+        }
+      }
+    >
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polyline
+          points="9 18 15 12 9 6"
+        />
+      </svg>
+    </span>
+  </span>
+  <span
+    className="outer-wrapper"
+    style={
+      Object {
+        "height": "24px",
+        "width": "24px",
+      }
+    }
+  >
+    <span
+      className="inner-wrapper"
+      style={
+        Object {
+          "height": "24px",
+          "width": "24px",
+        }
+      }
+    >
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+        />
+        <polyline
+          points="15 3 21 3 21 9"
+        />
+        <line
+          x1="10"
+          x2="21"
+          y1="14"
+          y2="3"
+        />
+      </svg>
+    </span>
+  </span>
+  <span
+    className="outer-wrapper"
+    style={
+      Object {
+        "height": "24px",
+        "width": "24px",
+      }
+    }
+  >
+    <span
+      className="inner-wrapper"
+      style={
+        Object {
+          "height": "24px",
+          "width": "24px",
+        }
+      }
+    >
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+        />
+        <polyline
+          points="7 10 12 15 17 10"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="15"
+          y2="3"
+        />
+      </svg>
+    </span>
+  </span>
+  <span
+    className="outer-wrapper"
+    style={
+      Object {
+        "height": "24px",
+        "width": "24px",
+      }
+    }
+  >
+    <span
+      className="inner-wrapper"
+      style={
+        Object {
+          "height": "24px",
+          "width": "24px",
+        }
+      }
+    >
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="18"
+          cy="5"
+          r="3"
+        />
+        <circle
+          cx="6"
+          cy="12"
+          r="3"
+        />
+        <circle
+          cx="18"
+          cy="19"
+          r="3"
+        />
+        <line
+          x1="8.59"
+          x2="15.42"
+          y1="13.51"
+          y2="17.49"
+        />
+        <line
+          x1="15.41"
+          x2="8.59"
+          y1="6.51"
+          y2="10.49"
+        />
+      </svg>
+    </span>
+  </span>
+  <span
+    className="outer-wrapper"
+    style={
+      Object {
+        "height": "24px",
+        "width": "24px",
+      }
+    }
+  >
+    <span
+      className="inner-wrapper"
+      style={
+        Object {
+          "height": "24px",
+          "width": "24px",
+        }
+      }
+    >
+      <svg
+        fill="currentColor"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+        />
+      </svg>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Storyshots Components/SiteFooter Site Footer Example 1`] = `
+<div>
+  <footer
+    className="footer"
+  >
+    © Oak National Academy 
+    2022
+  </footer>
+</div>
+`;
+
+exports[`Storyshots Components/SiteHeader Site Footer Example 1`] = `
+<div>
+  <header
+    className="header"
+  >
+    <div
+      className="title"
+    >
+      Oak
+    </div>
+    <form
+      className="search"
+      onSubmit={[Function]}
+    >
+      <input
+        aria-label="Search"
+        onChange={[Function]}
+        placeholder="Search"
+        type="search"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+      <div>
+        <label>
+           Key Stage 
+          foundation
+          <input
+            checked={false}
+            id="custom-checkbox-foundation"
+            name="foundation"
+            onChange={[Function]}
+            type="checkbox"
+            value="foundation"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          1
+          <input
+            checked={false}
+            id="custom-checkbox-1"
+            name="1"
+            onChange={[Function]}
+            type="checkbox"
+            value="1"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          2
+          <input
+            checked={false}
+            id="custom-checkbox-2"
+            name="2"
+            onChange={[Function]}
+            type="checkbox"
+            value="2"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          3
+          <input
+            checked={false}
+            id="custom-checkbox-3"
+            name="3"
+            onChange={[Function]}
+            type="checkbox"
+            value="3"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          4
+          <input
+            checked={false}
+            id="custom-checkbox-4"
+            name="4"
+            onChange={[Function]}
+            type="checkbox"
+            value="4"
+          />
+        </label>
+      </div>
+    </form>
+    <input
+      className="search-input"
+      placeholder="Search"
+      type="text"
+    />
+    <a
+      href="/sign-in"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Sign in
+    </a>
+  </header>
+</div>
+`;
