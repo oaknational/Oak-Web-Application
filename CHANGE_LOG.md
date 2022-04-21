@@ -1,3 +1,15 @@
+# [0.11.0](https://github.com/oaknational/Samara/compare/v0.10.0...v0.11.0) (2022-04-21)
+
+
+### Bug Fixes
+
+* add search provider to siteHeader stories ([80106a9](https://github.com/oaknational/Samara/commit/80106a9a144a7bd138a0c5bda194d08f9b74700e))
+
+
+### Features
+
+* adding storybook ([4c9fa07](https://github.com/oaknational/Samara/commit/4c9fa07fd8a1f865df6b66174251db5c9f1a66ee))
+
 # [0.10.0](https://github.com/oaknational/Samara/compare/v0.9.1...v0.10.0) (2022-04-20)
 
 
