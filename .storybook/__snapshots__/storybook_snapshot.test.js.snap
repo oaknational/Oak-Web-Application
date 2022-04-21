@@ -658,18 +658,17 @@ exports[`Storyshots Components/SiteHeader Site Footer Example 1`] = `
         </label>
       </div>
     </form>
-    <input
-      className="search-input"
-      placeholder="Search"
-      type="text"
-    />
-    <a
-      href="/sign-in"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
+    <div
+      className="signInButtonWrapper"
     >
-      Sign in
-    </a>
+      <a
+        href="/sign-in"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Sign in
+      </a>
+    </div>
   </header>
 </div>
 `;
