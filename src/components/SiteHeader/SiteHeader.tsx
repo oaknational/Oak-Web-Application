@@ -2,6 +2,7 @@ import { FC } from "react";
 import Link from "next/link";
 
 import useAuth from "../../auth/useAuth";
+import SearchForm from "../SearchForm";
 
 import styles from "./SiteHeader.module.css";
 
@@ -11,16 +12,14 @@ const SiteHeader: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.title}>Oak</div>
-      <input
-        className={styles["search-input"]}
-        type="text"
-        placeholder="Search"
-      />
-      {user ? (
-        <button onClick={signOut}>Sign out</button>
-      ) : (
-        <Link href="/sign-in">Sign in</Link>
-      )}
+      <SearchForm />
+      <div className={styles.signInButtonWrapper}>
+        {user ? (
+          <button onClick={signOut}>Sign out</button>
+        ) : (
+          <Link href="/sign-in">Sign in</Link>
+        )}
+      </div>
     </header>
   );
 };

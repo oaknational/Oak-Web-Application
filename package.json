@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.7.0",
+  "version": "0.11.3",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -17,6 +17,11 @@
     "lint": "next lint",
     "lint:styles": "stylelint src/*/**/*.css --fix",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
+    "playwright:install": "npx playwright install #install Playwright binaries on system",
+    "playwright:test": "LOCAL_E2E=on npx playwright test",
+    "playwright:test:ci": "npx playwright test --config=playwright.browserstack.config.ts",
+    "playwright:test:bs_local": "LOCAL_E2E=on npx playwright test --config=playwright.browserstack.config.ts",
+    "playwright:show": "npx playwright show-report",
     "postinstall": "npm run gql-codegen",
     "prebuild": "npm run gql-codegen",
     "predev": "npm run gql-codegen",
@@ -24,10 +29,19 @@
     "semantic-release": "semantic-release",
     "start": "next start",
     "stryker": "GIT_SHA_OVERRIDE=testing stryker run --logLevel debug",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:static-serve": "build-storybook --quiet && http-server ./storybook-static --port=6006",
     "test": "jest --watch --collectCoverage=false",
-    "test:ci": "jest"
+    "test:ci": "jest",
+    "test:storybook": "jest --config=jest.storybook.config.js",
+    "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "dependencies": {
+    "@storybook/addon-a11y": "^6.4.20",
+    "@storybook/addon-storysource": "^6.4.20",
+    "@bugsnag/js": "^7.16.2",
+    "@bugsnag/plugin-react": "^7.16.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.11",
     "clsx": "^1.1.1",
     "firebase": "^9.6.10",
@@ -42,6 +56,7 @@
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.0.1",
     "@apollo/client": "^3.5.10",
+    "@babel/core": "^7.17.8",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@commitlint/prompt-cli": "^16.2.3",
@@ -51,11 +66,23 @@
     "@graphql-codegen/typescript-operations": "^2.3.5",
     "@next/eslint-plugin-next": "^12.1.4",
     "@percy/cli": "^1.0.6",
+    "@playwright/test": "^1.20.2",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@stryker-mutator/core": "^5.6.1",
     "@stryker-mutator/jest-runner": "^5.6.1",
     "@stryker-mutator/typescript-checker": "^5.6.1",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/addon-storyshots": "^6.4.21",
+    "@storybook/addon-storyshots-puppeteer": "^6.4.21",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
+    "babel-loader": "^8.2.4",
+    "eslint-plugin-storybook": "^0.5.7",
+    "@testing-library/user-event": "^14.1.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^7.0.2",
@@ -63,6 +90,7 @@
     "@types/react": "^17.0.44",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
+    "browserstack-local": "^1.4.9",
     "dotenv": "^16.0.0",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.4",
@@ -71,6 +99,7 @@
     "eslint-plugin-import": "^2.26.0",
     "googleapis": "^100.0.0",
     "graphql": "^16.3.0",
+    "http-server": "^14.1.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "jest-fetch-mock": "^3.0.3",
@@ -80,6 +109,10 @@
     "node-mocks-http": "^1.11.0",
     "octokit": "^1.7.1",
     "pa11y-ci": "^3.0.1",
+    "puppeteer": "^13.5.2",
+    "start-server-and-test": "^1.14.0",
+    "storybook-addon-themes": "^6.1.0",
+    "storybook-css-modules-preset": "^1.1.1",
     "prettier": "^2.6.2",
     "semantic-release": "^19.0.2",
     "stylelint": "^14.6.1",
@@ -88,13 +121,13 @@
     "typescript": "^4.6.3",
     "typescript-plugin-css-modules": "^3.4.0"
   },
-  "engines": {
-    "node": "14",
-    "npm": ">=6 <8"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/oaknational/Samara.git"
+  },
+  "engines": {
+    "node": "14",
+    "npm": ">=6 <8"
   },
   "publishConfig": {
     "access": "restricted"

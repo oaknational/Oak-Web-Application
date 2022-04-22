@@ -12,6 +12,7 @@ const CONFIG_KEYS = [
   "firebaseServiceAccount",
   "releaseStage",
   "appVersion",
+  "bugsnagApiKey",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -106,6 +107,12 @@ const envVars: Record<ConfigKey, EnvVar> = {
   },
   appVersion: {
     value: process.env.NEXT_PUBLIC_APP_VERSION,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  bugsnagApiKey: {
+    value: process.env.NEXT_PUBLIC_BUGSNAG_API_KEY,
     required: true,
     availableInBrowser: true,
     default: null,
