@@ -49,3 +49,7 @@ yarn-error.log*
 src/data-layer/graphql/generated
 src/browser-lib/graphql/generated
 src/node-lib/graphql/generated
+src/data-layer/graphql/generated
+
+# storybook
+/storybook-static

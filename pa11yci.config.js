@@ -13,7 +13,12 @@ const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
 // URLs should end with a `/` to avoid redirects from
 // e.g. `/unit` to `/unit/index.html` during tests.
-const relativeUrls = ["/", "/lessons/physics-only-review-chj3cd/", "/sign-in"];
+const relativeUrls = [
+  "/",
+  "/lessons/physics-only-review-chj3cd/",
+  "/sign-in",
+  "/search",
+];
 
 // Add the base URL to the relative URLs.
 config.urls = relativeUrls.map((relUrl) => {

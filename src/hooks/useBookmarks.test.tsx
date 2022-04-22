@@ -40,14 +40,18 @@ const Providers: FC = ({ children }) => {
 };
 
 const testUser = { id: 123, email: "test email" };
+const useAuth = jest.fn<{ user: typeof testUser | null }, []>(() => ({
+  user: testUser,
+}));
 jest.mock("../auth/useAuth", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ user: testUser })),
+  default: (...args: []) => useAuth(...args),
 }));
 
 describe("hooks/useBookmarks.tsx", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    jest.clearAllMocks();
   });
   it("should default bookmarks to empty array", () => {
     const { result } = renderHook(useBookmarks, {
@@ -72,5 +76,8 @@ describe("hooks/useBookmarks.tsx", () => {
   });
   it.todo("should be able to remove a bookmark");
   it.todo("should expose a working isBookmarked functioned");
-  it.todo("should not fetch bookmarks if visitor is anonymous");
+  it.skip("should not fetch bookmarks if visitor is anonymous", async () => {
+    useAuth.mockImplementationOnce(() => ({ user: null }));
+    // @todo
+  });
 });
