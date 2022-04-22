@@ -13,16 +13,13 @@ const SiteHeader: FC = () => {
     <header className={styles.header}>
       <div className={styles.title}>Oak</div>
       <SearchForm />
-      <input
-        className={styles["search-input"]}
-        type="text"
-        placeholder="Search"
-      />
-      {user ? (
-        <button onClick={signOut}>Sign out</button>
-      ) : (
-        <Link href="/sign-in">Sign in</Link>
-      )}
+      <div className={styles.signInButtonWrapper}>
+        {user ? (
+          <button onClick={signOut}>Sign out</button>
+        ) : (
+          <Link href="/sign-in">Sign in</Link>
+        )}
+      </div>
     </header>
   );
 };
