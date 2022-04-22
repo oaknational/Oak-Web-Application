@@ -1,4 +1,4 @@
-# Hasura Users Instance
+# Hasura Curriculum Instance
 
 ## Prerequisites
 
@@ -8,12 +8,21 @@ You'll need the following installed on your machine to run this instance locally
 
 ## Getting Started
 
-1. The first time you run this instance locally, you'll have to create a postgres database:
+1. To pull down the docker images (if necessary), and build and start them, run:
 ```sh
-createdb oak_hasura_users_local
+npm run hasura:curriculum:start
 ```
-2. Build the docker container:
+1. The first time you run this service (or any time it gets out of sync), run:
+```
+npm run hasura:curriculum:migrations:apply
+# then
+npm run hasura:curriculum:metadata:apply
+```
+1. If you want to make any changes to the database, you must do it through the console (so that migrations and metadata are tracked), run:
+```
+npm run hasura:curriculum:console
+```
+1. To stop the instances, you can run:
 ```sh
-npm run hasura:users:setup
+npm run hasura:curriculum:stop
 ```
-3. 
