@@ -1,0 +1,8 @@
+- name: default
+  kind: postgres
+  configuration:
+    connection_info:
+      use_prepared_statements: false
+      database_url: postgres://postgres:postgrespassword@postgres:5432/users
+      isolation_level: read-committed
+  tables: "!include default/tables/tables.yaml"
