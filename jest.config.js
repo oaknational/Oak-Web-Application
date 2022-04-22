@@ -1,4 +1,5 @@
 // jest.config.js
+// See https://nextjs.org/docs/testing#setting-up-jest-with-the-rust-compiler
 const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
@@ -11,8 +12,11 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: [
     "./src/**",
-    "!**/__snapshots__/**",
     "!src/pages/_document.tsx",
+    "!src/styles/themes/types.ts",
+    "!e2e_tests/browser/engineering/*",
+    "!**/__snapshots__/**",
+    "!**/*.config.{js,ts}",
     "!**/*.stories.*",
   ],
   coveragePathIgnorePatterns: [
@@ -30,6 +34,7 @@ const customJestConfig = {
   testPathIgnorePatterns: [
     "src/__tests__/__helpers__/*",
     ".storybook/storybook.*.test.js$",
+    "e2e_tests/browser/engineering/*",
   ],
 };
 

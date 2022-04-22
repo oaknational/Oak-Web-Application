@@ -18,6 +18,11 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "e2e_tests/browser/fixtures.ts"
+  ],
   "exclude": ["node_modules", "firebase"]
 }
