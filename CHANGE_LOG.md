@@ -1,3 +1,10 @@
+## [0.11.2](https://github.com/oaknational/Samara/compare/v0.11.1...v0.11.2) (2022-04-22)
+
+
+### Bug Fixes
+
+* **security:** prevent Samara being discoverable before launch ([43fe73b](https://github.com/oaknational/Samara/commit/43fe73b7a7bea29b392fcbe25058dd3ff90da71f))
+
 ## [0.11.1](https://github.com/oaknational/Samara/compare/v0.11.0...v0.11.1) (2022-04-21)
 
 # [0.11.0](https://github.com/oaknational/Samara/compare/v0.10.0...v0.11.0) (2022-04-21)
