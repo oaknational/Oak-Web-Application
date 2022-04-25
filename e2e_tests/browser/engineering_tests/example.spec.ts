@@ -1,23 +1,14 @@
 import { expect } from "@playwright/test";
 
+import { getPageUrl } from "../pages/helpers";
 import { test } from "../fixtures";
-
-const baseUrl =
-  // Set in the CI env.
-  /** @todo move to config file? */
-  process.env.BASE_URL ||
-  // Because of config in "playwright.config.ts",
-  // `PLAYWRIGHT_TEST_BASE_URL` will be `localhost:3000` in local test environments.
-  process.env.PLAYWRIGHT_TEST_BASE_URL ||
-  // The string default is to keep Typescript happy.
-  "localhost:3000";
-const frontPageUrl = new URL(baseUrl).href;
 
 const locators = {
   lessonTitle: "[data-testid='lesson-title']",
 };
 
 test.beforeEach(async ({ page }) => {
+  const frontPageUrl = getPageUrl("/");
   await page.goto(frontPageUrl);
 });
 

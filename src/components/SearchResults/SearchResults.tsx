@@ -16,7 +16,7 @@ const SearchResults = (props: SearchResultsProps) => {
     );
   });
 
-  return <ul>{resultElements}</ul>;
+  return <ul data-testid="search-results">{resultElements}</ul>;
 };
 
 export default SearchResults;
