@@ -72,13 +72,15 @@ jest.mock("../browser-lib/api", () => ({
   }),
 }));
 
+const windowSpy = jest.spyOn(global, "window", "get");
+
 window.prompt = jest.fn(() => testUser.email);
 
 describe("auth/useAuth.tsx", () => {
   beforeEach(() => {
-    window.localStorage.clear();
-
+    jest.resetModules();
     jest.clearAllMocks();
+    window.localStorage.clear();
   });
   it("should default user to null", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
@@ -132,5 +134,20 @@ describe("auth/useAuth.tsx", () => {
     expect(result.current.user).toBeNull();
     expect(getLocalStorageAccessToken()).toBeNull();
     expect(getLocalStorageUser()).toBeNull();
+  });
+  it("should have the correct sign in callback url on client-side", async () => {
+    const { SIGN_IN_CALLBACK_URL } = await import("./useAuth");
+
+    expect(SIGN_IN_CALLBACK_URL).toEqual("http://localhost/sign-in/callback");
+  });
+  it("should have the correct sign in callback url on server-side", async () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    windowSpy.mockImplementationOnce(() => undefined);
+    const { SIGN_IN_CALLBACK_URL } = await import("./useAuth");
+
+    expect(SIGN_IN_CALLBACK_URL).toEqual(
+      "http://localhost:3000/sign-in/callback"
+    );
   });
 });
