@@ -7,6 +7,10 @@
 
 # testing
 /coverage
+playwright-report/
+test-results/
+# Browserstack Local log
+local.log
 
 # next.js
 /.next/
@@ -42,6 +46,7 @@ yarn-error.log*
 .eslintcache
 
 # graphql-codegen generated types
+src/data-layer/graphql/generated
 src/browser-lib/graphql/generated
 src/node-lib/graphql/generated
 src/data-layer/graphql/generated
