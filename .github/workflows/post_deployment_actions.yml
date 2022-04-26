@@ -35,7 +35,6 @@ jobs:
         with:
           url: ${{ github.event.deployment_status.target_url }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          
 
   # A placeholder workflow triggered by deployment events.
   pa11y:
@@ -83,11 +82,10 @@ jobs:
           state: ${{ steps.run_pa11y.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  # A placeholder workflow triggered by deployment events.
+  # Run Percy visual regression tests against preview and production deployments.
   percy:
     # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out alt theme deployments
-    if: ${{ github.event.deployment_status.state == 'success' && !contains(github.event.deployment_status.environment, 'alt-theme')}}
+    if: ${{ github.event.deployment_status.state == 'success' }}
     name: Percy
     needs: firebase_auth
     runs-on: ubuntu-latest
@@ -138,4 +136,62 @@ jobs:
         with:
           description: Percy (${{github.event.deployment_status.environment}})
           state: ${{ steps.run_percy.outcome }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # Run browser e2e tests (engineering) with Playwright on Browserstack.
+  browser_e2e_eng:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    if: ${{ github.event.deployment_status.state == 'success' }}
+    name: Browser E2E Eng
+    needs: firebase_auth
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - run: npm ci
+        env:
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
+
+      # Get branch name and PR number for deployment so we
+      # can send the info to Browserstack to make analysis
+      # easier.
+      - uses: ./.github/actions/ref_from_sha
+        name: Get PR Ref from SHA
+        id: ref_from_sha
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: print branch name and PR number from sha
+        run: |
+          echo "${{ steps.ref_from_sha.outputs.branch_name }}"
+          echo "${{ steps.ref_from_sha.outputs.pr_number }}"
+
+      # Run Playwright
+      - name: run Playwright
+        id: run_playwright
+        run: npm run playwright:test:ci
+        env:
+          BASE_URL: ${{ github.event.deployment_status.target_url }}
+          BRANCH_NAME: ${{ steps.ref_from_sha.outputs.branch_name }}
+          PR_NUMBER: ${{ steps.ref_from_sha.outputs.pr_number }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+
+      # Set custom status so results preserved between multiple
+      # deployment events from same commit
+      - uses: ./.github/actions/custom_statuses
+        name: Set Playwright check result
+        if: ${{ always() }}
+        with:
+          description: E2E Browser Eng (${{github.event.deployment_status.environment}})
+          state: ${{ steps.run_playwright.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}

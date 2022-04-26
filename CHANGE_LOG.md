@@ -1,3 +1,10 @@
+## [0.11.3](https://github.com/oaknational/Samara/compare/v0.11.2...v0.11.3) (2022-04-22)
+
+
+### Bug Fixes
+
+* **test:** restore coverage exclusion lost in merge ([ba9c662](https://github.com/oaknational/Samara/commit/ba9c662067001e02c675388d559f6ba18a4b5095))
+
 ## [0.11.2](https://github.com/oaknational/Samara/compare/v0.11.1...v0.11.2) (2022-04-22)
 
 
