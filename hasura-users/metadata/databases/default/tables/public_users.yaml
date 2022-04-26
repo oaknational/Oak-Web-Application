@@ -1,3 +1,11 @@
 table:
   schema: public
   name: users
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+      filter:
+        id:
+          _eq: X-Hasura-User-Id

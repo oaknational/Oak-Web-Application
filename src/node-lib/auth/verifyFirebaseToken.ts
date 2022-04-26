@@ -10,13 +10,13 @@ const verifyFirebaseToken = async ({
 }) => {
   try {
     const accessTokenData = await firebaseAdminAuth.verifyIdToken(accessToken);
-    const { uid: firebaseId, email } = accessTokenData;
+    const { uid: firebaseUid, email } = accessTokenData;
 
     if (!email) {
       throw new Error("No email in access token");
     }
 
-    return { firebaseId, email };
+    return { firebaseUid, email };
   } catch (error) {
     if (
       error instanceof FirebaseError &&

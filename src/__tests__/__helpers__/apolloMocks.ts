@@ -19,7 +19,7 @@ export const testLessons = [
 
 export const testBookmarks = testLessons.map((lesson) => ({
   lesson,
-  created_at: new Date().toISOString(),
+  createdAt: new Date().toISOString(),
 }));
 
 export const bookmarkToAdd = testBookmarks[0];
@@ -32,7 +32,7 @@ const apolloMocks = [
     },
     result: {
       data: {
-        bookmarked_lesson: testBookmarks,
+        bookmarkedLessons: testBookmarks,
       },
     },
   },
@@ -43,7 +43,7 @@ const apolloMocks = [
     },
     result: {
       data: {
-        insert_bookmarked_lesson_one: testBookmarks[0],
+        insert_bookmarkedLessons_one: testBookmarks[0],
       },
     },
   },
@@ -54,9 +54,9 @@ const apolloMocks = [
     },
     result: {
       data: {
-        delete_bookmarked_lesson_by_pk: {
-          lesson_id: bookmarkToAdd?.lesson.id,
-          user_id: 123,
+        delete_bookmarkedLessons_by_pk: {
+          lessonId: bookmarkToAdd?.lesson.id,
+          userId: 123,
         },
       },
     },

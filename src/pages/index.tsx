@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<{
   const res = await graphqlApi.lessonsBySlug({
     slug: "physics-only-review-chj3cd",
   });
-  const [lesson = null] = res.lesson;
+  const [lesson = null] = res.lessons;
   if (!lesson) {
     // @TODO not found
     throw new Error("404");

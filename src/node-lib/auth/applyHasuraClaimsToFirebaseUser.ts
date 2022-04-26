@@ -13,18 +13,18 @@ export const createHasuraClaims = ({ user }: { user: OakUser }) => {
 };
 
 const applyHasuraClaimsToFirebaseUser = async ({
-  firebaseId,
+  firebaseUid,
   user,
 }: {
-  firebaseId: string;
+  firebaseUid: string;
   user: OakUser;
 }) => {
   const customClaims = createHasuraClaims({ user });
 
   // Set custom user claims on this newly created user.
-  await firebaseAdminAuth.setCustomUserClaims(firebaseId, customClaims);
+  await firebaseAdminAuth.setCustomUserClaims(firebaseUid, customClaims);
   // Update real-time database to notify client to force refresh.
-  const metadataRef = firebaseAdminDatabase.ref("metadata/" + firebaseId);
+  const metadataRef = firebaseAdminDatabase.ref("metadata/" + firebaseUid);
   // Set the refresh time to the current UTC timestamp.
   // This will be captured on the client to force a token refresh.
   await metadataRef.set({ refreshTime: new Date().getTime() });

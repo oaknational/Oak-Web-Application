@@ -1,5 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
-import { act } from "react-dom/test-utils";
+import { renderHook, act } from "@testing-library/react-hooks";
 
 import {
   LS_KEY_ACCESS_TOKEN,
@@ -9,7 +8,7 @@ import {
 
 import useAuth, { AuthProvider } from "./useAuth";
 
-const testUser = { id: 1, email: "test email", firebase_id: "123" };
+const testUser = { id: 1, email: "test email", firebaseUid: "123" };
 const testToken = "test token";
 
 class LocalStorageMock {

@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
-import { renderHook } from "@testing-library/react-hooks";
-import { act } from "@testing-library/react";
+import { renderHook, act } from "@testing-library/react-hooks";
 
 import "../__tests__/__helpers__/LocalStorageMock";
 
@@ -85,7 +84,7 @@ const useBookmarkedLessonAddMutation = () => {
       bookmarksStore.addBookmark(variables);
       return {
         data: {
-          insert_bookmarked_lesson_one: getBookmarkFixture(variables),
+          insert_bookmarkedLessons_one: getBookmarkFixture(variables),
         },
       };
     },

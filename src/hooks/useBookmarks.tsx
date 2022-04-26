@@ -66,12 +66,12 @@ export const BookmarksProvider: FC = ({ children }) => {
      * data.
      *
      */
-    if (data?.bookmarked_lesson) {
-      console.log("setting bms ls", data.bookmarked_lesson);
+    if (data?.bookmarkedLessons) {
+      console.log("setting bms ls", data.bookmarkedLessons);
 
       setBookmarks(
-        data?.bookmarked_lesson
-          ?.map(({ lesson }) => lesson)
+        data.bookmarkedLessons
+          .map(({ lesson }) => lesson)
           .filter(truthy)
           .map((lesson) => ({ lesson }))
       );
@@ -85,7 +85,7 @@ export const BookmarksProvider: FC = ({ children }) => {
         return console.warn("Add bookmark called without user in scope");
       }
       const res = await addBookmarkMutation({ variables: { lessonId } });
-      const bookmark = res.data?.insert_bookmarked_lesson_one;
+      const bookmark = res.data?.insert_bookmarkedLessons_one;
       if (!bookmark || !bookmark.lesson) {
         // @TODO bugsnag
         return;

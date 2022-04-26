@@ -1,9 +1,9 @@
 import applyHasuraClaimsToFirebaseUser from "./applyHasuraClaimsToFirebaseUser";
 
-const firebaseId = "123";
+const firebaseUid = "123";
 const testOakUser = {
   id: 1,
-  firebase_id: firebaseId,
+  firebase_id: firebaseUid,
   email: "abc",
 };
 const setCustomUserClaimsSpy = jest.fn();
@@ -24,7 +24,7 @@ describe("node-lib/auth/applyHasuraClaimsToFirebaseUser.ts", () => {
     jest.clearAllMocks();
   });
   it("should call setCustomUserCalims with the correct payload", async () => {
-    await applyHasuraClaimsToFirebaseUser({ firebaseId, user: testOakUser });
+    await applyHasuraClaimsToFirebaseUser({ firebaseUid, user: testOakUser });
     expect(setCustomUserClaimsSpy).toHaveBeenCalledWith("123", {
       "https://hasura.io/jwt/claims": {
         "x-hasura-default-role": "user",
