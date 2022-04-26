@@ -94,7 +94,7 @@ export const BookmarksProvider: FC = ({ children }) => {
       setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
       refetch();
     },
-    [user]
+    [user, addBookmarkMutation]
   );
 
   const removeBookmark = useCallback(
@@ -112,7 +112,7 @@ export const BookmarksProvider: FC = ({ children }) => {
       );
       refetch();
     },
-    [user]
+    [user, removeBookmarkMutation]
   );
 
   const refetchBookmarks = async () => {
