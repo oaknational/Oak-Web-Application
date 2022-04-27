@@ -4,7 +4,7 @@ import Bookmarks from "../../pages/bookmarks";
 import { testLessons } from "../__helpers__/apolloMocks";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-const testUser = { id: 123, email: "test email" };
+const testUser = { id: "123", email: "test email" };
 
 describe("pages/bookmarks.tsx", () => {
   it("Renders the page title", async () => {

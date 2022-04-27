@@ -50,9 +50,11 @@ const clientAppBaseUrl =
 
 export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
 
+export type UserId = string;
+
 export type OakUser = {
   email: string;
-  id: number;
+  id: UserId;
 };
 
 export type OakAuth = {

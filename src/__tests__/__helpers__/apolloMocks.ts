@@ -6,12 +6,12 @@ import {
 
 export const testLessons = [
   {
-    id: 1,
+    id: "1",
     slug: "physics-only-review-chj3cd",
     title: "Physics only review",
   },
   {
-    id: 2,
+    id: "2",
     slug: "macbeth-chj3cd",
     title: "Macbeth",
   },
@@ -50,13 +50,13 @@ const apolloMocks = [
   {
     request: {
       query: BookmarkedLessonRemoveDocument,
-      variables: { lessonId: bookmarkToAdd?.lesson.id, userId: 123 },
+      variables: { lessonId: bookmarkToAdd?.lesson.id, userId: "123" },
     },
     result: {
       data: {
         delete_bookmarkedLessons_by_pk: {
           lessonId: bookmarkToAdd?.lesson.id,
-          userId: 123,
+          userId: "123",
         },
       },
     },

@@ -2,7 +2,7 @@ import applyHasuraClaimsToFirebaseUser from "./applyHasuraClaimsToFirebaseUser";
 
 const firebaseUid = "123";
 const testOakUser = {
-  id: 1,
+  id: "1",
   firebase_id: firebaseUid,
   email: "abc",
 };

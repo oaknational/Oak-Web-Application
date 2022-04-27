@@ -8,7 +8,7 @@ import {
 
 import useAuth, { AuthProvider } from "./useAuth";
 
-const testUser = { id: 1, email: "test email", firebaseUid: "123" };
+const testUser = { id: "1", email: "test email", firebaseUid: "123" };
 const testToken = "test token";
 
 class LocalStorageMock {

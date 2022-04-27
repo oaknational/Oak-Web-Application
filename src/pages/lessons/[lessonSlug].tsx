@@ -10,6 +10,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../components/Button";
 import Card from "../../components/Card";
 import Layout from "../../components/Layout/Layout";
+import { LessonId } from "../../hooks/useBookmarks";
 import graphqlApi from "../../node-lib/graphql";
 
 import styles from "./[lessonSlug].module.css";
@@ -86,7 +87,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<
   {
-    lesson: { id: number; slug: string; title: string };
+    lesson: { id: LessonId; slug: string; title: string };
   },
   { lessonSlug: string }
 > = async ({ params }) => {

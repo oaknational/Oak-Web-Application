@@ -107,6 +107,7 @@ const errorify = (maybeError: unknown): Error => {
 export const createErrorHandler =
   (context: string, metadata?: Record<string, unknown>) =>
   async (maybeError: Error | unknown, data?: ErrorData) => {
+    console.error(maybeError);
     // data argument can be null
     data = data || {};
     try {

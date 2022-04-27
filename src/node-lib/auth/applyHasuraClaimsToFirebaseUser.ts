@@ -7,7 +7,7 @@ export const createHasuraClaims = ({ user }: { user: OakUser }) => {
       "x-hasura-default-role": "user",
       "x-hasura-allowed-roles": ["user"],
       // Hasura requires that we use type string
-      "x-hasura-user-id": String(user.id),
+      "x-hasura-user-id": user.id,
     },
   };
 };
