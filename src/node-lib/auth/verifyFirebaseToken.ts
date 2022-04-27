@@ -22,9 +22,12 @@ const verifyFirebaseToken = async ({
       error instanceof FirebaseError &&
       error.code === "auth/id-token-expired"
     ) {
-      throw new OakError({ code: "auth/token-expired" });
+      throw new OakError({ code: "auth/token-expired", originalError: error });
     }
-    throw new OakError({ code: "auth/token-error-unknown" });
+    throw new OakError({
+      code: "auth/token-error-unknown",
+      originalError: error,
+    });
   }
 };
 

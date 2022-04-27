@@ -1,3 +1,11 @@
 table:
   schema: public
   name: lessons
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - slug
+        - title
+      filter: {}

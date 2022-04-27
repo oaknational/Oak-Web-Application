@@ -5,4 +5,6 @@
     headers:
       - name: x-hasura-admin-secret
         value_from_env: CURRICULUM_DATA_HASURA_ADMIN_SECRET
+      - value: user
+        name: x-hasura-role
   comment: ""
