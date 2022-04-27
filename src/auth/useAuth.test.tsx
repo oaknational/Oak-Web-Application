@@ -1,5 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
-import { act } from "react-dom/test-utils";
+import { renderHook, act } from "@testing-library/react-hooks";
 
 import {
   LS_KEY_ACCESS_TOKEN,
@@ -66,11 +65,20 @@ jest.mock("firebase/auth", () => ({
   sendSignInLinkToEmail: jest.fn(),
   signOut: jest.fn(),
 }));
+const apiPostUserMock = jest.fn(() => Promise.resolve(testUser));
 jest.mock("../browser-lib/api", () => ({
   __esModule: true,
   default: () => ({
-    "/user": jest.fn(() => Promise.resolve(testUser)),
+    "/user": (...args: []) => apiPostUserMock(...args),
   }),
+}));
+const errorHandlerMock = jest.fn();
+jest.mock("../common-lib/error-handler", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      errorHandlerMock(...args),
 }));
 
 const windowSpy = jest.spyOn(global, "window", "get");
@@ -150,5 +158,16 @@ describe("auth/useAuth.tsx", () => {
     expect(SIGN_IN_CALLBACK_URL).toEqual(
       "http://localhost:3000/sign-in/callback"
     );
+  });
+  it("should handle error if POST /user route fails on login", async () => {
+    const { result } = renderHook(useAuth, { wrapper: AuthProvider });
+    apiPostUserMock.mockImplementationOnce(() =>
+      Promise.reject("something bad")
+    );
+    await act(async () => {
+      await result.current.signInWithEmailCallback();
+    });
+
+    expect(errorHandlerMock).toHaveBeenCalledWith("something bad");
   });
 });
