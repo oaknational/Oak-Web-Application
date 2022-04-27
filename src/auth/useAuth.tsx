@@ -19,6 +19,7 @@ import {
 } from "../config/localStorageKeys";
 import useApi from "../browser-lib/api";
 import { useBookmarksCache } from "../hooks/useBookmarks";
+import createErrorHandler from "../common-lib/error-handler";
 
 import useAccessToken from "./useAccessToken";
 
@@ -33,7 +34,21 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
+const errorHandler = createErrorHandler("useAuth");
+
 const auth = getAuth();
+
+/**
+ * @todo we should be able to pick this up from the environment
+ * but there was an issue on one of the deployment so it needs
+ * a bit further investigation
+ */
+const clientAppBaseUrl =
+  typeof window !== "undefined"
+    ? window.location.origin
+    : config.get("clientAppBaseUrl");
+
+export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
 
 export type OakUser = {
   email: string;
@@ -57,8 +72,13 @@ export const AuthProvider: FC = ({ children }) => {
   const apiGetOrCreateUser = api["/user"];
 
   const onLogin = async ({ accessToken }: { accessToken: string }) => {
-    const oakUser = await apiGetOrCreateUser({ accessToken });
-    setUser(oakUser);
+    try {
+      const oakUser = await apiGetOrCreateUser({ accessToken });
+      setUser(oakUser);
+    } catch (error) {
+      errorHandler(error);
+      resetAuthState();
+    }
   };
 
   useEffect(() => {
@@ -130,7 +150,7 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: `${window.location.host}/sign-in/callback`,
+          url: SIGN_IN_CALLBACK_URL,
           // This must be true.
           handleCodeInApp: true,
         });
