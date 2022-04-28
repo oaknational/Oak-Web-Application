@@ -1,72 +1,50 @@
-import {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  FC,
-  MouseEventHandler,
-} from "react";
-import Link from "next/link";
+import { FC } from "react";
 import clsx from "clsx";
 
 import Icon, { IconName } from "../Icon";
+import { ButtonOrLink, ButtonOrLinkProps } from "../ButtonOrLink/ButtonOrLink";
 
 import styles from "./Button.module.css";
 
-type Color =
-  | "teachers-primary"
-  | "teachers-secondary"
-  | "pupils-primary"
-  | "pupils-secondary";
+type ButtonVariant = "primary" | "secondary" | "tertiary";
+type ButtonSize = "small" | "large";
+type IconPosition = "leading" | "trailing";
 
-type ButtonVariant = "rounded" | "text-link";
-
-export type ButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
+export type ButtonProps = ButtonOrLinkProps & {
   variant?: ButtonVariant;
-  href?: string;
   label: string;
+  size?: ButtonSize;
   icon?: IconName;
-  background?: Color;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  iconPosition?: IconPosition;
 };
 const Button: FC<ButtonProps> = (props) => {
   const {
-    variant = "rounded",
-    onClick,
-    href,
+    variant = "primary",
+    size = "large",
     label,
     icon,
-    background,
-    ...buttonHtmlProps
+    iconPosition = "leading",
+    ...buttonOrLinkProps
   } = props;
 
-  const buttonInner = (
-    <button
-      onClick={onClick}
-      className={clsx(styles.button, styles[`background--${background}`], {
-        [`${styles["variant--rounded"]}`]: variant === "rounded",
-      })}
-      {...buttonHtmlProps}
+  return (
+    <ButtonOrLink
+      {...buttonOrLinkProps}
+      className={clsx(
+        styles.button,
+        styles[variant],
+        styles[size],
+        styles[`${iconPosition}Icon`]
+      )}
     >
-      <span className={styles["button-label"]}>{label}</span>
       {icon && (
-        <span className={styles["button-icon-wrapper"]}>
+        <span className={styles.iconWrapper}>
           <Icon name={icon} size={16} />
         </span>
       )}
-    </button>
+      <span className={styles.labelSpan}>{label}</span>
+    </ButtonOrLink>
   );
-
-  if (href) {
-    return (
-      <Link href={href} passHref>
-        {buttonInner}
-      </Link>
-    );
-  }
-
-  return buttonInner;
 };
 
 export default Button;

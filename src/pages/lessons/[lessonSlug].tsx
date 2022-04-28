@@ -5,11 +5,9 @@ import {
   NextPage,
 } from "next";
 
-import BookmarkLessonButton from "../../components/BookmarkLessonButton";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import Button, { ButtonProps } from "../../components/Button";
-import Card from "../../components/Card";
 import Layout from "../../components/Layout/Layout";
+import LessonHeader from "../../components/LessonHeader/LessonHeader";
 import { LessonId } from "../../hooks/useBookmarks";
 import graphqlApi from "../../node-lib/graphql";
 
@@ -19,13 +17,6 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   props
 ) => {
   const { lesson } = props;
-
-  const buttons: Omit<ButtonProps, "background">[] = [
-    { href: "/", label: "Unit Quiz" },
-    { href: "/", label: "View In Classroom", icon: "OpenExternal" },
-    { href: "/", label: "Foundation Curriculum (PDF)", icon: "Download" },
-    { href: "/", label: "Higher Curriculum (PDF)", icon: "Download" },
-  ];
 
   return (
     <Layout>
@@ -37,38 +28,8 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           { href: "/", label: "[unit-name]" },
         ]}
       />
-      <div className={styles["primary-buttons"]}>
-        <BookmarkLessonButton lessonId={lesson.id} />
-        <Button
-          background="teachers-primary"
-          href="/"
-          label="Download"
-          icon="Download"
-        />
-        <Button
-          background="teachers-primary"
-          href="/"
-          label="Share Lesson"
-          icon="Share"
-        />
-      </div>
-      <h1 className={styles["title"]}>
-        <span className={styles["lesson-overview-text"]}>Lesson overview:</span>
-        <br />
-        {lesson.title}
-      </h1>
-      <div className={styles["secondary-buttons"]}>
-        {buttons.map((buttonProps) => {
-          return (
-            <Button
-              key={buttonProps.label}
-              variant="text-link"
-              {...buttonProps}
-            />
-          );
-        })}
-      </div>
-      <Card>Lesson content</Card>
+      <LessonHeader {...lesson} />
+      <div className={styles["primary-buttons"]}></div>
     </Layout>
   );
 };

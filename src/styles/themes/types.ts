@@ -1,12 +1,10 @@
 const themeVarKeys = [
-  "color-teachers-primary",
-  "color-teachers-primary-contrast",
-  "color-teachers-secondary",
-  "color-teachers-secondary-contrast",
-  "color-pupils-primary",
-  "color-pupils-primary-contrast",
-  "color-pupils-secondary",
-  "color-pupils-secondary-contrast",
+  "color-button-primary",
+  "color-button-primary-contrast",
+  "color-button-secondary",
+  "color-button-secondary-contrast",
+  "color-button-tertiary",
+  "color-button-tertiary-contrast",
 ] as const;
 
 type ThemeVarKey = typeof themeVarKeys[number];

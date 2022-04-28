@@ -2,17 +2,12 @@
 
 exports[`renders <Button> unchanged 1`] = `
 <div>
-  <button
-    class="button background--teachers-primary variant--rounded"
+  <a
+    class="button primary large leadingIcon"
     href="/"
   >
     <span
-      class="button-label"
-    >
-      Download
-    </span>
-    <span
-      class="button-icon-wrapper"
+      class="iconWrapper"
     >
       <span
         class="outer-wrapper"
@@ -49,6 +44,11 @@ exports[`renders <Button> unchanged 1`] = `
         </span>
       </span>
     </span>
-  </button>
+    <span
+      class="labelSpan"
+    >
+      Download
+    </span>
+  </a>
 </div>
 `;

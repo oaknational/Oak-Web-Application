@@ -218,295 +218,162 @@ exports[`renders homepage unchanged 1`] = `
         </li>
       </ol>
     </nav>
+    <header
+      class="header"
+    >
+      <h1>
+        Test lesson
+      </h1>
+      <div>
+        <a
+          class="button primary large leadingIcon"
+          href="/"
+        >
+          <span
+            class="iconWrapper"
+          >
+            <span
+              class="outer-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <span
+                class="inner-wrapper"
+                style="height: 16px; width: 16px;"
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                  />
+                  <polyline
+                    points="7 10 12 15 17 10"
+                  />
+                  <line
+                    x1="12"
+                    x2="12"
+                    y1="15"
+                    y2="3"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            class="labelSpan"
+          >
+            Download
+          </span>
+        </a>
+        <a
+          class="button primary large leadingIcon"
+          href="/"
+        >
+          <span
+            class="iconWrapper"
+          >
+            <span
+              class="outer-wrapper"
+              style="height: 16px; width: 16px;"
+            >
+              <span
+                class="inner-wrapper"
+                style="height: 16px; width: 16px;"
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="18"
+                    cy="5"
+                    r="3"
+                  />
+                  <circle
+                    cx="6"
+                    cy="12"
+                    r="3"
+                  />
+                  <circle
+                    cx="18"
+                    cy="19"
+                    r="3"
+                  />
+                  <line
+                    x1="8.59"
+                    x2="15.42"
+                    y1="13.51"
+                    y2="17.49"
+                  />
+                  <line
+                    x1="15.41"
+                    x2="8.59"
+                    y1="6.51"
+                    y2="10.49"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            class="labelSpan"
+          >
+            Share
+          </span>
+        </a>
+        <a
+          href="/"
+        >
+          <span
+            class="outer-wrapper"
+            style="height: 24px; width: 24px;"
+          >
+            <span
+              class="inner-wrapper"
+              style="height: 24px; width: 24px;"
+            >
+              <svg
+                fill="currentColor"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                />
+              </svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </header>
     <div
       class="primary-buttons"
-    >
-      <button
-        class="button background--teachers-primary variant--rounded"
-        href="/"
-      >
-        <span
-          class="button-label"
-        >
-          Download
-        </span>
-        <span
-          class="button-icon-wrapper"
-        >
-          <span
-            class="outer-wrapper"
-            style="height: 16px; width: 16px;"
-          >
-            <span
-              class="inner-wrapper"
-              style="height: 16px; width: 16px;"
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="button background--teachers-primary variant--rounded"
-        href="/"
-      >
-        <span
-          class="button-label"
-        >
-          Share Lesson
-        </span>
-        <span
-          class="button-icon-wrapper"
-        >
-          <span
-            class="outer-wrapper"
-            style="height: 16px; width: 16px;"
-          >
-            <span
-              class="inner-wrapper"
-              style="height: 16px; width: 16px;"
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="18"
-                  cy="5"
-                  r="3"
-                />
-                <circle
-                  cx="6"
-                  cy="12"
-                  r="3"
-                />
-                <circle
-                  cx="18"
-                  cy="19"
-                  r="3"
-                />
-                <line
-                  x1="8.59"
-                  x2="15.42"
-                  y1="13.51"
-                  y2="17.49"
-                />
-                <line
-                  x1="15.41"
-                  x2="8.59"
-                  y1="6.51"
-                  y2="10.49"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-      </button>
-    </div>
-    <h1
-      class="title"
-    >
-      <span
-        class="lesson-overview-text"
-      >
-        Lesson overview:
-      </span>
-      <br />
-      Test lesson
-    </h1>
-    <div
-      class="secondary-buttons"
-    >
-      <button
-        class="button background--undefined"
-        href="/"
-      >
-        <span
-          class="button-label"
-        >
-          Unit Quiz
-        </span>
-      </button>
-      <button
-        class="button background--undefined"
-        href="/"
-      >
-        <span
-          class="button-label"
-        >
-          View In Classroom
-        </span>
-        <span
-          class="button-icon-wrapper"
-        >
-          <span
-            class="outer-wrapper"
-            style="height: 16px; width: 16px;"
-          >
-            <span
-              class="inner-wrapper"
-              style="height: 16px; width: 16px;"
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                />
-                <polyline
-                  points="15 3 21 3 21 9"
-                />
-                <line
-                  x1="10"
-                  x2="21"
-                  y1="14"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="button background--undefined"
-        href="/"
-      >
-        <span
-          class="button-label"
-        >
-          Foundation Curriculum (PDF)
-        </span>
-        <span
-          class="button-icon-wrapper"
-        >
-          <span
-            class="outer-wrapper"
-            style="height: 16px; width: 16px;"
-          >
-            <span
-              class="inner-wrapper"
-              style="height: 16px; width: 16px;"
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="button background--undefined"
-        href="/"
-      >
-        <span
-          class="button-label"
-        >
-          Higher Curriculum (PDF)
-        </span>
-        <span
-          class="button-icon-wrapper"
-        >
-          <span
-            class="outer-wrapper"
-            style="height: 16px; width: 16px;"
-          >
-            <span
-              class="inner-wrapper"
-              style="height: 16px; width: 16px;"
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-      </button>
-    </div>
-    <div
-      class="card"
-    >
-      Lesson content
-    </div>
+    />
   </main>
   <footer
     class="footer"

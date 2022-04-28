@@ -38,8 +38,8 @@ describe("useTheme()", () => {
     renderHook(() => useTheme());
 
     expect(documentStyleSetPropertySpy).toHaveBeenCalledWith(
-      `--color-teachers-primary`,
-      "#5C3CCB"
+      `--color-button-primary`,
+      "#1A1A1A"
     );
   });
 
@@ -100,7 +100,7 @@ describe("useTheme()", () => {
 
       await waitFor(() => {
         expect(documentStyleSetPropertySpy).toHaveBeenCalledWith(
-          `--color-teachers-primary`,
+          `--color-button-primary`,
           "lightgreen"
         );
       });
