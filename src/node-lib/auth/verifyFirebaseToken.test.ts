@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { FirebaseError } from "../../../jest.setup.js";
 import OakError from "../../errors/OakError";
 
 import verifyFirebaseToken from "./verifyFirebaseToken";
@@ -27,5 +30,17 @@ describe("node-lib/auth/verifyFirebaseToken.ts", () => {
     await expect(
       async () => await verifyFirebaseToken({ accessToken: testTokenValue })
     ).rejects.toThrowError(new OakError({ code: "auth/token-error-unknown" }));
+  });
+  it("should throw the correct OakError if token has expired", async () => {
+    const originalError = new FirebaseError();
+    originalError.code = "auth/id-token-expired";
+    verifyIdTokenSpy.mockImplementationOnce(() =>
+      Promise.reject(originalError)
+    );
+    await expect(
+      async () => await verifyFirebaseToken({ accessToken: testTokenValue })
+    ).rejects.toThrowError(
+      new OakError({ code: "auth/token-expired", originalError })
+    );
   });
 });
