@@ -15,10 +15,6 @@
   cursor: not-allowed;
 }
 
-.button:not(:last-of-type) {
-  margin-right: 12px;
-}
-
 /* button size */
 
 .small {
@@ -62,7 +58,7 @@
   margin-left: 8px;
 }
 
-/* button variant */
+/* button variant @todo export to dedupe with Button */
 
 .primary {
   background-color: var(--color-button-primary);

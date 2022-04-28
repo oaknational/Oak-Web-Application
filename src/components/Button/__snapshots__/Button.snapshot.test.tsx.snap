@@ -3,7 +3,7 @@
 exports[`renders <Button> unchanged 1`] = `
 <div>
   <a
-    class="button primary large leadingIcon"
+    class="button primary small leadingIcon"
     href="/"
   >
     <span

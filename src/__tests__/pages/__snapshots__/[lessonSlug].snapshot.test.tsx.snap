@@ -224,9 +224,11 @@ exports[`renders homepage unchanged 1`] = `
       <h1>
         Test lesson
       </h1>
-      <div>
+      <div
+        class="buttonGroup"
+      >
         <a
-          class="button primary large leadingIcon"
+          class="button primary small leadingIcon"
           href="/"
         >
           <span
@@ -274,7 +276,7 @@ exports[`renders homepage unchanged 1`] = `
           </span>
         </a>
         <a
-          class="button primary large leadingIcon"
+          class="button primary small leadingIcon"
           href="/"
         >
           <span
@@ -337,15 +339,16 @@ exports[`renders homepage unchanged 1`] = `
           </span>
         </a>
         <a
+          class="iconButton primary small"
           href="/"
         >
           <span
             class="outer-wrapper"
-            style="height: 24px; width: 24px;"
+            style="height: 16px; width: 16px;"
           >
             <span
               class="inner-wrapper"
-              style="height: 24px; width: 24px;"
+              style="height: 16px; width: 16px;"
             >
               <svg
                 fill="currentColor"

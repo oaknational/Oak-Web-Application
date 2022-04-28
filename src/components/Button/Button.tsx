@@ -6,9 +6,15 @@ import { ButtonOrLink, ButtonOrLinkProps } from "../ButtonOrLink/ButtonOrLink";
 
 import styles from "./Button.module.css";
 
-type ButtonVariant = "primary" | "secondary" | "tertiary";
-type ButtonSize = "small" | "large";
+export type ButtonVariant = "primary" | "secondary" | "tertiary";
 type IconPosition = "leading" | "trailing";
+export type ButtonSize = "small" | "large";
+export const buttonIconSizeMap: Record<ButtonSize, number> = {
+  small: 16,
+  large: 24,
+};
+export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
+export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "primary";
 
 export type ButtonProps = ButtonOrLinkProps & {
   variant?: ButtonVariant;
@@ -19,8 +25,8 @@ export type ButtonProps = ButtonOrLinkProps & {
 };
 const Button: FC<ButtonProps> = (props) => {
   const {
-    variant = "primary",
-    size = "large",
+    variant = DEFAULT_BUTTON_VARIANT,
+    size = DEFAULT_BUTTON_SIZE,
     label,
     icon,
     iconPosition = "leading",
@@ -39,7 +45,7 @@ const Button: FC<ButtonProps> = (props) => {
     >
       {icon && (
         <span className={styles.iconWrapper}>
-          <Icon name={icon} size={16} />
+          <Icon name={icon} size={buttonIconSizeMap[size]} />
         </span>
       )}
       <span className={styles.labelSpan}>{label}</span>

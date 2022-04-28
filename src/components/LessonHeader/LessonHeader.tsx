@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import Button from "../Button";
+import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import IconButton from "../IconButton/IconButton";
 
 import styles from "./LessonHeader.module.css";
@@ -15,11 +16,11 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
   return (
     <header className={styles.header}>
       <h1>{title}</h1>
-      <div>
+      <ButtonGroup>
         <Button href="/" label="Download" icon="Download" />
         <Button href="/" label="Share" icon="Share" />
-        <IconButton href="/" icon="Star" />
-      </div>
+        <IconButton href="/" icon="Star" aria-label="Add/remove bookmark" />
+      </ButtonGroup>
     </header>
   );
 };

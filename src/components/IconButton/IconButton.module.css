@@ -1,0 +1,36 @@
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small {
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+  border-radius: 20px;
+}
+
+.large {
+  height: 48px;
+  width: 48px;
+  min-width: 48px;
+  border-radius: 24px;
+}
+
+/* button variant @todo export to dedupe with Button */
+
+.primary {
+  background-color: var(--color-button-primary);
+  color: var(--color-button-primary-contrast);
+}
+
+.secondary {
+  background-color: var(--color-button-secondary);
+  color: var(--color-button-secondary-contrast);
+}
+
+.tertiary {
+  background-color: var(--color-button-tertiary);
+  color: var(--color-button-tertiary-contrast);
+}

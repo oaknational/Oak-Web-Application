@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import styles from "./index.module.css";
+import styles from "./Icon.module.css";
 import ChevronRight from "./ChevronRight.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
