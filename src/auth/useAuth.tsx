@@ -42,6 +42,8 @@ export type OakUser = {
 
 export type OakAuth = {
   user: OakUser | null;
+  // Convenience property, and primative, so useful in hook dependency arrays
+  isLoggedIn: boolean;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
   signInWithEmailCallback: () => Promise<void>;
@@ -53,6 +55,8 @@ export const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
   const [accessToken, setAccessToken] = useAccessToken();
+  const isLoggedIn = Boolean(user);
+
   const api = useApi();
   const apiGetOrCreateUser = api["/user"];
 
@@ -123,6 +127,7 @@ export const AuthProvider: FC = ({ children }) => {
   // Return the user object and auth methods
   const value = {
     user,
+    isLoggedIn,
     signOut: async () => {
       await signOut(auth);
       resetAuthState();
@@ -140,6 +145,7 @@ export const AuthProvider: FC = ({ children }) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
         console.log(error);
+        throw error;
       }
     },
     signInWithEmailCallback: async () => {
