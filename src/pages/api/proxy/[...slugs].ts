@@ -1,11 +1,21 @@
-import { NextApiRequest } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const allowedHostnames = [
   "identitytoolkit.googleapis.com",
   "securetoken.googleapis.com",
 ];
 
-export default async function handler(req: NextApiRequest) {
+/**
+ *
+ * Takes a route of the form /api/proxy/{hostname}/some/external/api/route?q
+ * and forwards the url to: https://{hostname}/some/external/api/route?q,
+ * passing through the response.
+ *
+ */
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const slugs = req.query.slugs;
   if (!Array.isArray(slugs)) {
     throw new Error("Expected req.query.slugs to be Array");
@@ -13,8 +23,7 @@ export default async function handler(req: NextApiRequest) {
   if (!req.url) {
     throw new Error("No url in req object");
   }
-  console.log(">>>>>>>.", slugs);
-  console.log(">>>>>>>.", req.url);
+
   const [newHostname] = slugs;
 
   if (typeof newHostname !== "string") {
@@ -27,15 +36,24 @@ export default async function handler(req: NextApiRequest) {
 
   const reqUrl = req.url.split(newHostname)[1];
 
-  console.log("reqUrl,__________", reqUrl);
-
   const url = new URL(`https://${newHostname}${reqUrl}`);
 
-  console.log(url);
+  const response = await fetch(url.toString(), {
+    method: req.method,
+    body: JSON.stringify(req.body),
+  });
 
-  // url.hostname = newHostname;
+  if (!response.ok) {
+    // console.log(response.status, response.statusText);
+    // res.writeHead(response.status, response.headers);
+    // res.end()
+    /**
+     * @todo pass through error etc/ or just use cloudflare
+     */
+    throw new Error("Failed")
+  }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return fetch(url.toString(), req);
+  const json = await response.json();
+
+  res.json(json);
 }
