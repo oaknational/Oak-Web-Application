@@ -18,7 +18,7 @@ jest.mock("@bugsnag/js", () => ({
 }));
 // @todo move thes mocks into __mocks__ folder and import into tests that use them
 jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(),
+  getAuth: jest.fn(() => ({ config: {} })),
   onIdTokenChanged: jest.fn(() => () => undefined),
   onAuthStateChanged: jest.fn(() => () => undefined),
   isSignInWithEmailLink: jest.fn(() => true),

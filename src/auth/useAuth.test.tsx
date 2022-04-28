@@ -52,7 +52,7 @@ jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
 }));
 jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(),
+  getAuth: jest.fn(() => ({ config: {} })),
   onAuthStateChanged: jest.fn(),
   isSignInWithEmailLink: jest.fn(() => true),
   signInWithEmailLink: jest.fn(() => ({

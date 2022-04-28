@@ -1,6 +1,6 @@
 // Adapted from https://usehooks.com/useAuth/
 import { useEffect, useContext, createContext, FC } from "react";
-import { initializeApp } from "firebase/app";
+import { FirebaseOptions, initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
@@ -23,7 +23,7 @@ import createErrorHandler from "../common-lib/error-handler";
 
 import useAccessToken from "./useAccessToken";
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: config.get("firebaseApiKey"),
   authDomain: config.get("firebaseAuthDomain"),
   projectId: config.get("firebaseProjectId"),
@@ -48,6 +48,19 @@ const clientAppBaseUrl =
     ? window.location.origin
     : config.get("clientAppBaseUrl");
 
+/**
+ * Proxying for zero-rating
+ */
+const clientAppUrlObject = new URL(clientAppBaseUrl);
+const clientAppScheme = clientAppUrlObject.protocol.split(":")[0];
+if (!clientAppScheme) {
+  throw new Error("Malfored clientAppBaseUrl");
+}
+const clientAppHost = clientAppUrlObject.host;
+auth.config.apiScheme = clientAppScheme;
+auth.config.apiHost = `${clientAppHost}/api/proxy/identitytoolkit.googleapis.com`;
+auth.config.tokenApiHost = `${clientAppHost}/api/proxy/securetoken.googleapis.com`;
+console.log(auth.config);
 export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
 
 export type UserId = string;
