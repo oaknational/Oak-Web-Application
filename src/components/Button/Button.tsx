@@ -2,7 +2,9 @@ import { FC } from "react";
 import clsx from "clsx";
 
 import Icon, { IconName } from "../Icon";
-import { ButtonOrLink, ButtonOrLinkProps } from "../ButtonOrLink/ButtonOrLink";
+import UnstyledButtonOrLink, {
+  UnstyledButtonOrLinkProps,
+} from "../UnstyledButtonOrLink";
 
 import styles from "./Button.module.css";
 
@@ -16,7 +18,7 @@ export const buttonIconSizeMap: Record<ButtonSize, number> = {
 export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
 export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "primary";
 
-export type ButtonProps = ButtonOrLinkProps & {
+export type ButtonProps = UnstyledButtonOrLinkProps & {
   variant?: ButtonVariant;
   label: string;
   size?: ButtonSize;
@@ -30,12 +32,16 @@ const Button: FC<ButtonProps> = (props) => {
     label,
     icon,
     iconPosition = "leading",
+    "aria-label": ariaLabel,
+    title,
     ...buttonOrLinkProps
   } = props;
 
   return (
-    <ButtonOrLink
+    <UnstyledButtonOrLink
       {...buttonOrLinkProps}
+      title={title || ariaLabel || label}
+      aria-label={ariaLabel || label}
       className={clsx(
         styles.button,
         styles[variant],
@@ -49,7 +55,7 @@ const Button: FC<ButtonProps> = (props) => {
         </span>
       )}
       <span className={styles.labelSpan}>{label}</span>
-    </ButtonOrLink>
+    </UnstyledButtonOrLink>
   );
 };
 

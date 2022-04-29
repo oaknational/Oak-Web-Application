@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.iconButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .small {
   height: 40px;
   width: 40px;

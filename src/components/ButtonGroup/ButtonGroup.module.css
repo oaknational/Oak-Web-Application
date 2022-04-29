@@ -7,6 +7,6 @@
   margin-bottom: 8px;
 }
 
-.buttonGroup > *:not(:last-of-type) {
+.buttonGroup > *:not(:last-child) {
   margin-right: 12px;
 }

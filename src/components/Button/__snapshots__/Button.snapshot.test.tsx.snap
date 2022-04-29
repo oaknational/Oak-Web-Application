@@ -3,18 +3,20 @@
 exports[`renders <Button> unchanged 1`] = `
 <div>
   <a
+    aria-label="Download"
     class="button primary small leadingIcon"
     href="/"
+    title="Download"
   >
     <span
       class="iconWrapper"
     >
       <span
-        class="outer-wrapper"
+        class="outerWrapper"
         style="height: 16px; width: 16px;"
       >
         <span
-          class="inner-wrapper"
+          class="innerWrapper"
           style="height: 16px; width: 16px;"
         >
           <svg

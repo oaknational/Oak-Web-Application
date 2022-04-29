@@ -1,4 +1,8 @@
+const iconColorOverrides = ["color-icon-bookmarked"] as const;
+export type IconColorOverride = typeof iconColorOverrides[number];
+
 const themeVarKeys = [
+  ...iconColorOverrides,
   "color-button-primary",
   "color-button-primary-contrast",
   "color-button-secondary",

@@ -1,11 +1,15 @@
-.outer-wrapper {
+.outerWrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.inner-wrapper {
+.innerWrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.color-icon-bookmarked {
+  color: var(--color-icon-bookmarked);
 }

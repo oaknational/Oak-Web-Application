@@ -5,7 +5,7 @@ const Star: FC = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="24px"
-      viewBox="0 0 24 24"
+      viewBox="2 2 20 20"
       width="24px"
       fill="currentColor"
     >
