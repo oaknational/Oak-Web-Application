@@ -1,10 +1,10 @@
-mutation upsertUser($user: user_insert_input!) {
-  insert_user_one(
+mutation upsertUser($user: users_insert_input!) {
+  insert_users_one(
     object: $user
-    on_conflict: { constraint: user_firebase_id_key, update_columns: [] }
+    on_conflict: { constraint: users_firebaseUid_key, update_columns: [] }
   ) {
     email
-    firebase_id
+    firebaseUid
     id
   }
 }

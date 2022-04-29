@@ -3,7 +3,11 @@ import { screen, waitFor } from "@testing-library/react";
 import Home from "../../pages";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-const testLesson = { id: 1, title: "Physics only review", slug: "lesson-slug" };
+const testLesson = {
+  id: "1",
+  title: "Physics only review",
+  slug: "lesson-slug",
+};
 describe("pages/index.tsx", () => {
   it("Renders lesson title ", async () => {
     renderWithProviders(<Home lesson={testLesson} />);

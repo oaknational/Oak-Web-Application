@@ -50,9 +50,11 @@ const clientAppBaseUrl =
 
 export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
 
+export type UserId = string;
+
 export type OakUser = {
   email: string;
-  id: number;
+  id: UserId;
 };
 
 export type OakAuth = {
@@ -67,26 +69,15 @@ export const authContext = createContext<OakAuth | null>(null);
 export const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
-  const [accessToken, setAccessToken] = useAccessToken();
+  const [, setAccessToken] = useAccessToken();
   const api = useApi();
   const apiGetOrCreateUser = api["/user"];
 
-  const onLogin = async ({ accessToken }: { accessToken: string }) => {
-    try {
-      const oakUser = await apiGetOrCreateUser({ accessToken });
-      setUser(oakUser);
-    } catch (error) {
-      errorHandler(error);
-      resetAuthState();
-    }
-  };
-
   useEffect(() => {
-    if (accessToken) {
-      // @TODO catch errors
-      onLogin({ accessToken });
-    }
-  }, [accessToken]);
+    /**
+     * @todo on load, check access key expired and get new one if necessary
+     */
+  }, []);
 
   const resetAuthState = () => {
     setUser(null);
@@ -190,12 +181,19 @@ export const AuthProvider: FC = ({ children }) => {
         window.localStorage.removeItem(LS_KEY_EMAIL_FOR_SIGN_IN);
 
         const accessToken = await userCredential.user.getIdToken();
-        setAccessToken(accessToken);
+        const oakUser = await apiGetOrCreateUser({ accessToken });
+        const accessTokenWithNewClaims = await userCredential.user.getIdToken(
+          true
+        );
+        setAccessToken(accessTokenWithNewClaims);
+        setUser(oakUser);
       } catch (error) {
-        // @TODO error service
-        // Some error occurred, you can inspect the code: error.code
-        // Common errors could be invalid email and invalid or expired OTPs.
-        console.log(error);
+        /**
+         * @todo check if error for code/detail, throw OakError
+         */
+        errorHandler(error);
+        resetAuthState();
+
         throw new Error("Invalid email or expired OTP");
       }
     },

@@ -5,6 +5,7 @@
 
 const ERROR_CODES = [
   "misc/unknown",
+  "misc/network-error",
   "auth/token-expired",
   "auth/token-error-unknown",
   "graphql/validation", // for this we actually want more details when the error is thrown
@@ -23,6 +24,12 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/unknown": {
     message: "An unknown error has occurred",
     responseStatusCode: 500,
+    shouldNotify: true,
+  },
+  "misc/network-error": {
+    message: "Network error",
+    responseStatusCode: 500,
+    // If a network error occurs on the server, we want to know about it, maybe not on the client
     shouldNotify: true,
   },
   "auth/token-expired": {
@@ -55,6 +62,7 @@ type ErrorMeta = Record<string, unknown>;
  */
 export interface ErrorInfo {
   code: ErrorCode;
+  originalError?: Error | unknown;
   // Extra data to aid the debug process
   meta?: ErrorMeta;
 }

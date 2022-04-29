@@ -11,9 +11,13 @@ import truthy from "../utils/truthy";
 
 import useLocalStorage from "./useLocalStorage";
 
+/**
+ * @todo LessonId should be live with Lesson related code
+ */
+export type LessonId = string;
 type Bookmark = {
   lesson: {
-    id: number;
+    id: LessonId;
     slug: string;
     title: string;
   };
@@ -27,10 +31,10 @@ export type BookmarksContext = {
   bookmarks: Bookmark[];
   loading: boolean;
   error: string | null;
-  addBookmark: (lessonId: number) => Promise<void>;
-  removeBookmark: (lessonId: number) => Promise<void>;
+  addBookmark: (lessonId: LessonId) => Promise<void>;
+  removeBookmark: (lessonId: LessonId) => Promise<void>;
   refetchBookmarks: () => Promise<void>;
-  isBookmarked: (lessonId: number) => boolean;
+  isBookmarked: (lessonId: LessonId) => boolean;
 };
 const bookmarksContext = createContext<BookmarksContext | null>(null);
 
@@ -66,12 +70,12 @@ export const BookmarksProvider: FC = ({ children }) => {
      * data.
      *
      */
-    if (data?.bookmarked_lesson) {
-      console.log("setting bms ls", data.bookmarked_lesson);
+    if (data?.bookmarkedLessons) {
+      console.log("setting bms ls", data.bookmarkedLessons);
 
       setBookmarks(
-        data?.bookmarked_lesson
-          ?.map(({ lesson }) => lesson)
+        data.bookmarkedLessons
+          .map(({ lesson }) => lesson)
           .filter(truthy)
           .map((lesson) => ({ lesson }))
       );
@@ -79,13 +83,13 @@ export const BookmarksProvider: FC = ({ children }) => {
   }, [data]);
 
   const addBookmark = useCallback(
-    async (lessonId: number) => {
+    async (lessonId: LessonId) => {
       if (!user) {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
       const res = await addBookmarkMutation({ variables: { lessonId } });
-      const bookmark = res.data?.insert_bookmarked_lesson_one;
+      const bookmark = res.data?.insert_bookmarkedLessons_one;
       if (!bookmark || !bookmark.lesson) {
         // @TODO bugsnag
         return;
@@ -98,7 +102,7 @@ export const BookmarksProvider: FC = ({ children }) => {
   );
 
   const removeBookmark = useCallback(
-    async (lessonId: number) => {
+    async (lessonId: LessonId) => {
       if (!user) {
         // @TODO bugsnag
         return console.warn("Remove bookmark called without user in scope");
@@ -120,7 +124,7 @@ export const BookmarksProvider: FC = ({ children }) => {
   };
 
   const isBookmarked = useCallback(
-    (lessonId: number) => {
+    (lessonId: LessonId) => {
       return bookmarks.some((bookmark) => bookmark.lesson.id === lessonId);
     },
     [bookmarks]
