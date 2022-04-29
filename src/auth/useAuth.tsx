@@ -43,10 +43,15 @@ const auth = getAuth();
  * but there was an issue on one of the deployment so it needs
  * a bit further investigation
  */
-const clientAppBaseUrl =
-  typeof window !== "undefined"
-    ? window.location.origin
-    : config.get("clientAppBaseUrl");
+const getClientAppBaseUrl = () => {
+  if (typeof window === "undefined") {
+    throw new Error(
+      "Cannot call 'getClientAppBaseUrl()' on server. Each deployment has multiple domains, so each server must be able to serve multiple client addresses"
+    );
+  }
+
+  return window.location.origin;
+};
 
 /**
  * Proxying for zero-rating
@@ -55,7 +60,7 @@ auth.config.apiScheme = "https";
 auth.config.apiHost = config.get("firebaseConfigApiHost");
 auth.config.tokenApiHost = config.get("firebaseConfigTokenApiHost");
 
-export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
+export const SIGN_IN_CALLBACK_URL = `${getClientAppBaseUrl()}/sign-in/callback`;
 
 export type UserId = string;
 

@@ -40,3 +40,5 @@ jest.mock("firebase/app", () => ({
 process.env.NEXT_PUBLIC_APP_VERSION = "123";
 process.env.NEXT_PUBLIC_RELEASE_STAGE = "test";
 process.env.NEXT_PUBLIC_BUGSNAG_API_KEY = "test bugsnag api key";
+process.env.NEXT_PUBLIC_FIREBASE_API_HOST = "api host proxy";
+process.env.NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST = "token api host proxy";

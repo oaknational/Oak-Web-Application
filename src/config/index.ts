@@ -39,16 +39,16 @@ const parseValue = (value: string | undefined) => {
 
 const envVars: Record<ConfigKey, EnvVar> = {
   firebaseConfigApiHost: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_API_HOST,
-    envName: "NEXT_PUBLIC_FIREBASE_CONFIG_API_HOST",
+    value: process.env.NEXT_PUBLIC_FIREBASE_API_HOST,
+    envName: "NEXT_PUBLIC_FIREBASE_API_HOST",
     required: true,
     availableInBrowser: true,
     default: "identitytoolkit.googleapis.com",
     description: "Used for proxying firebase auth, for zero-rating",
   },
   firebaseConfigTokenApiHost: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_TOKEN_API_HOST,
-    envName: "NEXT_PUBLIC_FIREBASE_CONFIG_TOKEN_API_HOST",
+    value: process.env.NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST,
+    envName: "NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST",
     required: true,
     availableInBrowser: true,
     default: "securetoken.googleapis.com",
@@ -156,19 +156,29 @@ const envVars: Record<ConfigKey, EnvVar> = {
 
 for (const [
   ,
-  { value, required, availableInBrowser, default: defaultValue, envName },
+  {
+    value: envValue,
+    required,
+    availableInBrowser,
+    default: defaultValue,
+    envName,
+  },
 ] of Object.entries(envVars)) {
+  const isBrowser = typeof window !== "undefined";
+  const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
+  const isPresent = Boolean(envValue || defaultValue);
+
   /**
    * @TODO we decide which var is required, etc, and set defaults and validations
    */
-  if (required && availableInBrowser && !value && !defaultValue) {
+  if (shouldBePresent && !isPresent) {
     console.error(`- - - WARNING no config value found for required env var:
 - - - ${envName}`);
   }
 }
 
 const configGet = (key: ConfigKey) => {
-  const { value, default: defaultValue } = envVars[key] || {};
+  const { value, default: defaultValue, envName } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(value);
@@ -181,7 +191,9 @@ const configGet = (key: ConfigKey) => {
     return defaultValue;
   }
 
-  throw new Error(`Tried to get config value for ${key}, but none was found`);
+  throw new Error(
+    `configGet('${key}') failed because there is no env value ${envName}`
+  );
 };
 
 const config = {
