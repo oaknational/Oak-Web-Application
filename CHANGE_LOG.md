@@ -1,3 +1,28 @@
+# [0.12.0](https://github.com/oaknational/Samara/compare/v0.11.4...v0.12.0) (2022-04-29)
+
+
+### Bug Fixes
+
+* add specific auth tests for OakError ([44506d7](https://github.com/oaknational/Samara/commit/44506d754e2d2e4eb151930e45534c5e051a08cf))
+* catch exception in test ([fbaea7d](https://github.com/oaknational/Samara/commit/fbaea7da744a3453c1f36b8a2f87fb5d9222866c))
+* **hasura-auth:** force token refresh on log in to allow environments on the same firebase project ([e691f93](https://github.com/oaknational/Samara/commit/e691f9328660ebe0e86ab9c0b39717d3d43dbd74))
+* **hasura:** alter schema and fix types ([d233ac1](https://github.com/oaknational/Samara/commit/d233ac1e441ca81a8528fd94c9a77f1939d6cccb))
+* **hasura:** permissions ([cbb1f89](https://github.com/oaknational/Samara/commit/cbb1f89ae7236741b4aa43f00f138ee5a4a1265b))
+* update code to refect UserId: string ([a87ce39](https://github.com/oaknational/Samara/commit/a87ce39eff542aeb38873e6a1490ba94d62218d5))
+
+
+### Features
+
+* hasura ([461e4ad](https://github.com/oaknational/Samara/commit/461e4ad07561e756d59f0737ea036ee326caa842))
+
+## [0.11.4](https://github.com/oaknational/Samara/compare/v0.11.3...v0.11.4) (2022-04-27)
+
+
+### Bug Fixes
+
+* improve test coverage ([95acda1](https://github.com/oaknational/Samara/commit/95acda1a198e890b40d2ffba09754113e66ae4e4))
+* **sign-in:** use correct callback url ([c72d163](https://github.com/oaknational/Samara/commit/c72d1636cfafc08cb793a81a91c80afdddb6099a))
+
 ## [0.11.3](https://github.com/oaknational/Samara/compare/v0.11.2...v0.11.3) (2022-04-22)
 
 
