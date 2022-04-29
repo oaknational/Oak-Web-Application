@@ -161,17 +161,14 @@ describe("auth/useAuth.tsx", () => {
   });
   it("should handle error if POST /user route fails on login", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
-    apiPostUserMock.mockImplementationOnce(() =>
-      Promise.reject("something bad")
-    );
+    const error = new Error("something bad");
+    apiPostUserMock.mockImplementationOnce(() => Promise.reject(error));
     await act(async () => {
-      try {
-        await result.current.signInWithEmailCallback();
-      } catch (error) {
-        // catching exception so test doesn't blow up
-      }
+      await expect(
+        async () => await result.current.signInWithEmailCallback()
+      ).rejects.toThrowError(new Error("Invalid email or expired OTP"));
     });
 
-    expect(errorHandlerMock).toHaveBeenCalledWith("something bad");
+    expect(errorHandlerMock).toHaveBeenCalledWith(error);
   });
 });
