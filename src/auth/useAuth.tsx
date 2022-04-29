@@ -51,16 +51,10 @@ const clientAppBaseUrl =
 /**
  * Proxying for zero-rating
  */
-const clientAppUrlObject = new URL(clientAppBaseUrl);
-const clientAppScheme = clientAppUrlObject.protocol.split(":")[0];
-if (!clientAppScheme) {
-  throw new Error("Malfored clientAppBaseUrl");
-}
-const clientAppHost = clientAppUrlObject.host;
-auth.config.apiScheme = clientAppScheme;
-auth.config.apiHost = `${clientAppHost}/api/proxy/identitytoolkit.googleapis.com`;
-auth.config.tokenApiHost = `${clientAppHost}/api/proxy/securetoken.googleapis.com`;
-console.log(auth.config);
+auth.config.apiScheme = "https";
+auth.config.apiHost = config.get("firebaseConfigApiHost");
+auth.config.tokenApiHost = config.get("firebaseConfigTokenApiHost");
+
 export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
 
 export type UserId = string;
