@@ -10,6 +10,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../components/Button";
 import Card from "../../components/Card";
 import Layout from "../../components/Layout/Layout";
+import { LessonId } from "../../hooks/useBookmarks";
 import graphqlApi from "../../node-lib/graphql";
 
 import styles from "./[lessonSlug].module.css";
@@ -76,7 +77,7 @@ export default Lesson;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await graphqlApi.allLessons();
-  const paths = res.lesson.map((l) => ({ params: { lessonSlug: l.slug } }));
+  const paths = res.lessons.map((l) => ({ params: { lessonSlug: l.slug } }));
 
   return {
     paths,
@@ -86,7 +87,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<
   {
-    lesson: { id: number; slug: string; title: string };
+    lesson: { id: LessonId; slug: string; title: string };
   },
   { lessonSlug: string }
 > = async ({ params }) => {
@@ -97,7 +98,7 @@ export const getStaticProps: GetStaticProps<
   const { lessonSlug } = params;
 
   const res = await graphqlApi.lessonsBySlug({ slug: lessonSlug });
-  const [lesson] = res.lesson;
+  const [lesson] = res.lessons;
 
   if (!lesson) {
     // @TODO consistently figure a way to handle 404s etc

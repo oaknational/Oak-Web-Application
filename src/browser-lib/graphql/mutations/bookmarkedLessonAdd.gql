@@ -1,10 +1,10 @@
-mutation bookmarkedLessonAdd($lessonId: Int!) {
-  insert_bookmarked_lesson_one(object: { lesson_id: $lessonId }) {
+mutation bookmarkedLessonAdd($lessonId: uuid!) {
+  insert_bookmarkedLessons_one(object: { lessonId: $lessonId }) {
     lesson {
       id
       slug
       title
     }
-    created_at
+    createdAt
   }
 }

@@ -1,3 +1,11 @@
+## [0.11.4](https://github.com/oaknational/Samara/compare/v0.11.3...v0.11.4) (2022-04-27)
+
+
+### Bug Fixes
+
+* improve test coverage ([95acda1](https://github.com/oaknational/Samara/commit/95acda1a198e890b40d2ffba09754113e66ae4e4))
+* **sign-in:** use correct callback url ([c72d163](https://github.com/oaknational/Samara/commit/c72d1636cfafc08cb793a81a91c80afdddb6099a))
+
 ## [0.11.3](https://github.com/oaknational/Samara/compare/v0.11.2...v0.11.3) (2022-04-22)
 
 

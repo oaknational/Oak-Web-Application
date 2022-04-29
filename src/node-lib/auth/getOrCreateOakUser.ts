@@ -3,16 +3,16 @@ import OakError from "../../errors/OakError";
 import graphqlApi from "../graphql";
 
 const getOrCreateOakUser = async ({
-  firebaseId,
+  firebaseUid,
   email,
 }: {
-  firebaseId: string;
+  firebaseUid: string;
   email: string;
 }) => {
   try {
-    const getUserRes = await graphqlApi.getUser({ firebaseId, email });
+    const getUserRes = await graphqlApi.getUser({ firebaseUid, email });
     let user: OakUser | null = null;
-    user = getUserRes?.user?.[0] || null;
+    user = getUserRes?.users?.[0] || null;
 
     if (!user) {
       /**
@@ -24,12 +24,12 @@ const getOrCreateOakUser = async ({
        */
       const upsertUserRes = await graphqlApi.upsertUser({
         user: {
-          firebase_id: firebaseId,
+          firebaseUid,
           email,
         },
       });
 
-      user = upsertUserRes.insert_user_one || null;
+      user = upsertUserRes.insert_users_one || null;
     }
 
     if (!user) {
@@ -39,6 +39,8 @@ const getOrCreateOakUser = async ({
 
     return user;
   } catch (error) {
+    console.log(error);
+
     /**
      * @todo catch and decode graphql/hasura errors
      */

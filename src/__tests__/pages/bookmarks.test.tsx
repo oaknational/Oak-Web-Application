@@ -4,7 +4,10 @@ import Bookmarks from "../../pages/bookmarks";
 import { testLessons } from "../__helpers__/apolloMocks";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-const testUser = { id: 123, email: "test email" };
+const testUser = { id: "123", email: "test email" };
+const loggedInAuthProviderProps = {
+  value: { user: testUser, isLoggedIn: true },
+};
 
 describe("pages/bookmarks.tsx", () => {
   it("Renders the page title", async () => {
@@ -21,14 +24,14 @@ describe("pages/bookmarks.tsx", () => {
   });
   it("Renders loading spinner during fetch", async () => {
     const { getByText } = renderWithProviders(<Bookmarks />, undefined, {
-      authProviderProps: { value: { user: testUser } },
+      authProviderProps: loggedInAuthProviderProps,
     });
 
     expect(getByText(/^Loading/).textContent).toBe("Loading");
   });
   it("Renders bookmarked lesson after fetch", async () => {
     const { getByTestId } = renderWithProviders(<Bookmarks />, undefined, {
-      authProviderProps: { value: { user: testUser } },
+      authProviderProps: loggedInAuthProviderProps,
     });
 
     await waitFor(() => {
@@ -40,7 +43,7 @@ describe("pages/bookmarks.tsx", () => {
       <Bookmarks />,
       undefined,
       {
-        authProviderProps: { value: { user: testUser } },
+        authProviderProps: loggedInAuthProviderProps,
       }
     );
 

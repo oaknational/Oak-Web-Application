@@ -1,10 +1,10 @@
 query bookmarkedLessons {
-  bookmarked_lesson(order_by: { created_at: desc }) {
+  bookmarkedLessons(order_by: { createdAt: desc }) {
     lesson {
       id
       slug
       title
     }
-    created_at
+    createdAt
   }
 }

@@ -1,12 +1,12 @@
 import { FC, useState } from "react";
-import { renderHook } from "@testing-library/react-hooks";
-import { act } from "@testing-library/react";
+import { renderHook, act } from "@testing-library/react-hooks";
 
 import "../__tests__/__helpers__/LocalStorageMock";
+import { UserId } from "../auth/useAuth";
 
 import useBookmarks, { BookmarksProvider } from "./useBookmarks";
 
-type LessonId = 1 | 2;
+type LessonId = "1" | "2";
 type Bookmark = {
   lesson: {
     id: LessonId;
@@ -14,20 +14,19 @@ type Bookmark = {
     title: string;
   };
 };
-type UserId = number;
 type LessonUserTuple = { lessonId: LessonId; userId: UserId };
 
 const bookmarkFixtures: Record<LessonId, Bookmark> = {
-  1: {
+  "1": {
     lesson: {
-      id: 1,
+      id: "1",
       slug: "physics-only-review-chj3cd",
       title: "Physics only review",
     },
   },
-  2: {
+  "2": {
     lesson: {
-      id: 2,
+      id: "2",
       slug: "macbeth-chj3cd",
       title: "Macbeth",
     },
@@ -85,7 +84,7 @@ const useBookmarkedLessonAddMutation = () => {
       bookmarksStore.addBookmark(variables);
       return {
         data: {
-          insert_bookmarked_lesson_one: getBookmarkFixture(variables),
+          insert_bookmarkedLessons_one: getBookmarkFixture(variables),
         },
       };
     },
@@ -109,9 +108,13 @@ const Providers: FC = ({ children }) => {
   return <BookmarksProvider>{children}</BookmarksProvider>;
 };
 
-const testUser = { id: 123, email: "test email" };
+const testUser = { id: "123", email: "test email" };
+/**
+ * useAuth mock with logged in state
+ */
 const useAuth = jest.fn<{ user: typeof testUser | null }, []>(() => ({
   user: testUser,
+  isLoggedIn: true,
 }));
 jest.mock("../auth/useAuth", () => ({
   __esModule: true,
@@ -141,7 +144,7 @@ describe("hooks/useBookmarks.tsx", () => {
   it("should be able to add a bookmark", async () => {
     const { result } = renderHook(useBookmarks, { wrapper: Providers });
 
-    const lessonId = 1;
+    const lessonId = "1";
     await act(async () => {
       await result.current.addBookmark(lessonId);
     });
@@ -152,14 +155,14 @@ describe("hooks/useBookmarks.tsx", () => {
 
     // Add some bookmarks
     await act(async () => {
-      await result.current.addBookmark(2);
-      await result.current.addBookmark(1);
+      await result.current.addBookmark("2");
+      await result.current.addBookmark("1");
     });
     expect(result.current.bookmarks).toHaveLength(2);
 
     // Attempt remove a bookmark
     await act(async () => {
-      await result.current.removeBookmark(1);
+      await result.current.removeBookmark("1");
     });
 
     expect(result.current.bookmarks).toContainEqual(bookmarkFixtures[2]);
@@ -169,12 +172,12 @@ describe("hooks/useBookmarks.tsx", () => {
 
     // Add some bookmarks
     await act(async () => {
-      await result.current.addBookmark(1);
+      await result.current.addBookmark("1");
     });
     expect(result.current.bookmarks).toHaveLength(1);
 
-    expect(result.current.isBookmarked(1)).toEqual(true);
-    expect(result.current.isBookmarked(2)).toEqual(false);
+    expect(result.current.isBookmarked("1")).toEqual(true);
+    expect(result.current.isBookmarked("2")).toEqual(false);
   });
   it("should fetch bookmarks on load if visitor is logged in", async () => {
     await renderHook(useBookmarks, { wrapper: Providers });

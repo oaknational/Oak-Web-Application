@@ -19,6 +19,7 @@ import {
 } from "../config/localStorageKeys";
 import useApi from "../browser-lib/api";
 import { useBookmarksCache } from "../hooks/useBookmarks";
+import createErrorHandler from "../common-lib/error-handler";
 
 import useAccessToken from "./useAccessToken";
 
@@ -33,11 +34,27 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
+const errorHandler = createErrorHandler("useAuth");
+
 const auth = getAuth();
+
+/**
+ * @todo we should be able to pick this up from the environment
+ * but there was an issue on one of the deployment so it needs
+ * a bit further investigation
+ */
+const clientAppBaseUrl =
+  typeof window !== "undefined"
+    ? window.location.origin
+    : config.get("clientAppBaseUrl");
+
+export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
+
+export type UserId = string;
 
 export type OakUser = {
   email: string;
-  id: number;
+  id: UserId;
 };
 
 export type OakAuth = {
@@ -54,23 +71,16 @@ export const authContext = createContext<OakAuth | null>(null);
 export const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
-  const [accessToken, setAccessToken] = useAccessToken();
   const isLoggedIn = Boolean(user);
-
+  const [, setAccessToken] = useAccessToken();
   const api = useApi();
   const apiGetOrCreateUser = api["/user"];
 
-  const onLogin = async ({ accessToken }: { accessToken: string }) => {
-    const oakUser = await apiGetOrCreateUser({ accessToken });
-    setUser(oakUser);
-  };
-
   useEffect(() => {
-    if (accessToken) {
-      // @TODO catch errors
-      onLogin({ accessToken });
-    }
-  }, [accessToken]);
+    /**
+     * @todo on load, check access key expired and get new one if necessary
+     */
+  }, []);
 
   const resetAuthState = () => {
     setUser(null);
@@ -135,7 +145,7 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: `${window.location.host}/sign-in/callback`,
+          url: SIGN_IN_CALLBACK_URL,
           // This must be true.
           handleCodeInApp: true,
         });
@@ -176,12 +186,19 @@ export const AuthProvider: FC = ({ children }) => {
         window.localStorage.removeItem(LS_KEY_EMAIL_FOR_SIGN_IN);
 
         const accessToken = await userCredential.user.getIdToken();
-        setAccessToken(accessToken);
+        const oakUser = await apiGetOrCreateUser({ accessToken });
+        const accessTokenWithNewClaims = await userCredential.user.getIdToken(
+          true
+        );
+        setAccessToken(accessTokenWithNewClaims);
+        setUser(oakUser);
       } catch (error) {
-        // @TODO error service
-        // Some error occurred, you can inspect the code: error.code
-        // Common errors could be invalid email and invalid or expired OTPs.
-        console.log(error);
+        /**
+         * @todo check if error for code/detail, throw OakError
+         */
+        errorHandler(error);
+        resetAuthState();
+
         throw new Error("Invalid email or expired OTP");
       }
     },
