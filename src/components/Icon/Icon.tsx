@@ -52,7 +52,6 @@ const Icon: FC<IconProps> = (props) => {
 
   const outerHeight = props.outerHeight || innerHeight;
   const outerWidth = props.outerWidth || innerWidth;
-  console.log(color);
 
   return (
     <span

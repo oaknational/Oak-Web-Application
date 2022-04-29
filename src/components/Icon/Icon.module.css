@@ -10,6 +10,7 @@
   justify-content: center;
 }
 
+/* @todo perhaps these should be utility classes */
 .color-icon-bookmarked {
   color: var(--color-icon-bookmarked);
 }
