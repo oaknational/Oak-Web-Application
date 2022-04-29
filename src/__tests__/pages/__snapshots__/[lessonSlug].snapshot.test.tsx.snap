@@ -2,6 +2,7 @@
 
 exports[`renders homepage unchanged 1`] = `
 <div>
+  ,
   <header
     class="header"
   >

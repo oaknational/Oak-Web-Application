@@ -13,6 +13,15 @@ const CONFIG_KEYS = [
   "releaseStage",
   "appVersion",
   "bugsnagApiKey",
+  "appName",
+  "appDescription",
+  "appLocale",
+  "appUrl",
+  "appLogo",
+  "appSocialSharingImg",
+  "appFacebook",
+  "appTwitter",
+  "appTwitterHandle",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -113,6 +122,60 @@ const envVars: Record<ConfigKey, EnvVar> = {
   },
   bugsnagApiKey: {
     value: process.env.NEXT_PUBLIC_BUGSNAG_API_KEY,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appName: {
+    value: process.env.NEXT_PUBLIC_APP_NAME,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appDescription: {
+    value: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appLocale: {
+    value: process.env.NEXT_PUBLIC_APP_LOCALE,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appUrl: {
+    value: process.env.NEXT_PUBLIC_APP_URL,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appLogo: {
+    value: process.env.NEXT_PUBLIC_APP_LOGO,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appSocialSharingImg: {
+    value: process.env.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appFacebook: {
+    value: process.env.NEXT_PUBLIC_APP_FACEBOOK,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appTwitter: {
+    value: process.env.NEXT_PUBLIC_APP_TWITTER,
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appTwitterHandle: {
+    value: process.env.NEXT_PUBLIC_APP_TWITTER_HANDLE,
     required: true,
     availableInBrowser: true,
     default: null,

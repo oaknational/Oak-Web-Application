@@ -5,6 +5,8 @@ import {
   NextPage,
 } from "next";
 
+import { CourseJsonLd } from "../../browser-lib/seo/getJsonLd";
+import Seo from "../../browser-lib/seo/Seo";
 import BookmarkLessonButton from "../../components/BookmarkLessonButton";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Button, { ButtonProps } from "../../components/Button";
@@ -27,48 +29,58 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   ];
 
   return (
-    <Layout>
-      <Breadcrumbs
-        breadcrumbs={[
-          { href: "/", label: "[key-stage]" },
-          { href: "/", label: "Subjects" },
-          { href: "/", label: "[subject-name]" },
-          { href: "/", label: "[unit-name]" },
-        ]}
+    <>
+      <Seo title={lesson.title} description={"lesson.description"} />,
+      <CourseJsonLd
+        courseName={lesson.title}
+        description={"lesson.description"}
+        provider
       />
-      <div className={styles["primary-buttons"]}>
-        <BookmarkLessonButton lessonId={lesson.id} />
-        <Button
-          background="teachers-primary"
-          href="/"
-          label="Download"
-          icon="Download"
+      <Layout>
+        <Breadcrumbs
+          breadcrumbs={[
+            { href: "/", label: "[key-stage]" },
+            { href: "/", label: "Subjects" },
+            { href: "/", label: "[subject-name]" },
+            { href: "/", label: "[unit-name]" },
+          ]}
         />
-        <Button
-          background="teachers-primary"
-          href="/"
-          label="Share Lesson"
-          icon="Share"
-        />
-      </div>
-      <h1 className={styles["title"]}>
-        <span className={styles["lesson-overview-text"]}>Lesson overview:</span>
-        <br />
-        {lesson.title}
-      </h1>
-      <div className={styles["secondary-buttons"]}>
-        {buttons.map((buttonProps) => {
-          return (
-            <Button
-              key={buttonProps.label}
-              variant="text-link"
-              {...buttonProps}
-            />
-          );
-        })}
-      </div>
-      <Card>Lesson content</Card>
-    </Layout>
+        <div className={styles["primary-buttons"]}>
+          <BookmarkLessonButton lessonId={lesson.id} />
+          <Button
+            background="teachers-primary"
+            href="/"
+            label="Download"
+            icon="Download"
+          />
+          <Button
+            background="teachers-primary"
+            href="/"
+            label="Share Lesson"
+            icon="Share"
+          />
+        </div>
+        <h1 className={styles["title"]}>
+          <span className={styles["lesson-overview-text"]}>
+            Lesson overview:
+          </span>
+          <br />
+          {lesson.title}
+        </h1>
+        <div className={styles["secondary-buttons"]}>
+          {buttons.map((buttonProps) => {
+            return (
+              <Button
+                key={buttonProps.label}
+                variant="text-link"
+                {...buttonProps}
+              />
+            );
+          })}
+        </div>
+        <Card>Lesson content</Card>
+      </Layout>
+    </>
   );
 };
 

@@ -3,6 +3,8 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 import graphqlApi from "../node-lib/graphql";
 import Layout from "../components/Layout";
+import config from "../config";
+import Seo from "../browser-lib/seo/Seo";
 
 const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   props
@@ -11,9 +13,15 @@ const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   const { title } = lesson;
 
   return (
-    <Layout>
-      <h1 data-testid="lesson-title">{title}</h1>
-    </Layout>
+    <>
+      <Seo
+        title={config.get("appName")}
+        description={config.get("appDescription")}
+      />
+      <Layout>
+        <h1 data-testid="lesson-title">{title}</h1>
+      </Layout>
+    </>
   );
 };
 
