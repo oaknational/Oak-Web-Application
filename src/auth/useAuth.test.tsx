@@ -165,7 +165,11 @@ describe("auth/useAuth.tsx", () => {
       Promise.reject("something bad")
     );
     await act(async () => {
-      await result.current.signInWithEmailCallback();
+      try {
+        await result.current.signInWithEmailCallback();
+      } catch (error) {
+        // catching exception so test doesn't blow up
+      }
     });
 
     expect(errorHandlerMock).toHaveBeenCalledWith("something bad");
