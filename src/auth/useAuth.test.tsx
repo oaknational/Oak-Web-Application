@@ -6,7 +6,7 @@ import {
   LS_KEY_USER,
 } from "../config/localStorageKeys";
 
-import useAuth, { AuthProvider } from "./useAuth";
+import useAuth, { AuthProvider, getSignInCallbackUrl } from "./useAuth";
 
 const testUser = { id: "1", email: "test email", firebaseUid: "123" };
 const testToken = "test token";
@@ -81,6 +81,8 @@ jest.mock("../common-lib/error-handler", () => ({
     (...args: []) =>
       errorHandlerMock(...args),
 }));
+
+const windowSpy = jest.spyOn(global, "window", "get");
 
 window.prompt = jest.fn(() => testUser.email);
 
@@ -173,9 +175,14 @@ describe("auth/useAuth.tsx", () => {
     expect(getLocalStorageUser()).toBeNull();
   });
   it("should have the correct sign in callback url on client-side", async () => {
-    const { SIGN_IN_CALLBACK_URL } = await import("./useAuth");
+    expect(getSignInCallbackUrl()).toEqual("http://localhost/sign-in/callback");
+  });
+  it("should throw if getSignInCallbackUrl() called on server-side", async () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    windowSpy.mockImplementationOnce(() => undefined);
 
-    expect(SIGN_IN_CALLBACK_URL).toEqual("http://localhost/sign-in/callback");
+    expect(getSignInCallbackUrl).toThrow();
   });
   it("should handle error if POST /user route fails on login", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });

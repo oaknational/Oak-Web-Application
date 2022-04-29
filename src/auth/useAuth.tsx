@@ -39,9 +39,14 @@ const errorHandler = createErrorHandler("useAuth");
 const auth = getAuth();
 
 /**
- * @todo we should be able to pick this up from the environment
- * but there was an issue on one of the deployment so it needs
- * a bit further investigation
+ * Proxying for zero-rating
+ */
+auth.config.apiScheme = "https";
+auth.config.apiHost = config.get("firebaseConfigApiHost");
+auth.config.tokenApiHost = config.get("firebaseConfigTokenApiHost");
+
+/**
+ * @todo move this to src/config
  */
 const getClientAppBaseUrl = () => {
   if (typeof window === "undefined") {
@@ -53,14 +58,8 @@ const getClientAppBaseUrl = () => {
   return window.location.origin;
 };
 
-/**
- * Proxying for zero-rating
- */
-auth.config.apiScheme = "https";
-auth.config.apiHost = config.get("firebaseConfigApiHost");
-auth.config.tokenApiHost = config.get("firebaseConfigTokenApiHost");
-
-export const SIGN_IN_CALLBACK_URL = `${getClientAppBaseUrl()}/sign-in/callback`;
+export const getSignInCallbackUrl = () =>
+  `${getClientAppBaseUrl()}/sign-in/callback`;
 
 export type UserId = string;
 
@@ -153,7 +152,7 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: SIGN_IN_CALLBACK_URL,
+          url: getSignInCallbackUrl(),
           // This must be true.
           handleCodeInApp: true,
         });
