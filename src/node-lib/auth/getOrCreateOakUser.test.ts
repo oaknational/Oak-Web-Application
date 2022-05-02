@@ -2,14 +2,14 @@ import getOrCreateOakUser from "./getOrCreateOakUser";
 
 const testOakUser = {
   id: 1,
-  firebase_id: "123",
+  firebaseUid: "123",
   email: "abc",
 };
 const testFirebaseUser = { uid: "123", email: "abc" };
-const testParams = { firebaseId: "123", email: "abc" };
+const testParams = { firebaseUid: "123", email: "abc" };
 
 const upsertUserSpy = jest.fn(async () => ({
-  insert_user_one: testOakUser,
+  insert_users_one: testOakUser,
 }));
 const getUserSpy = jest.fn();
 jest.mock("../graphql", () => ({
@@ -22,29 +22,29 @@ describe("node-lib/auth/getOrCreateOakUser", () => {
     jest.clearAllMocks();
   });
   it("should return the result oakUser if user found", async () => {
-    getUserSpy.mockImplementationOnce(async () => ({ user: [testOakUser] }));
+    getUserSpy.mockImplementationOnce(async () => ({ users: [testOakUser] }));
     const user = await getOrCreateOakUser(testParams);
     expect(user).toBe(testOakUser);
   });
 
   it("should not call upsertUser if user found", async () => {
-    getUserSpy.mockImplementationOnce(async () => ({ user: [testOakUser] }));
+    getUserSpy.mockImplementationOnce(async () => ({ users: [testOakUser] }));
     await getOrCreateOakUser(testParams);
     expect(upsertUserSpy).not.toHaveBeenCalled();
   });
 
   it("should return the result oakUser if user not found", async () => {
-    getUserSpy.mockImplementationOnce(async () => ({ user: [] }));
+    getUserSpy.mockImplementationOnce(async () => ({ users: [] }));
     const user = await getOrCreateOakUser(testParams);
     expect(user).toBe(testOakUser);
   });
 
   it("should call upsertUser if user not found", async () => {
-    getUserSpy.mockImplementationOnce(async () => ({ user: [] }));
+    getUserSpy.mockImplementationOnce(async () => ({ users: [] }));
     await getOrCreateOakUser(testParams);
     expect(upsertUserSpy).toHaveBeenCalledWith({
       user: {
-        firebase_id: testFirebaseUser.uid,
+        firebaseUid: testFirebaseUser.uid,
         email: testFirebaseUser.email,
       },
     });

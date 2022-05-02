@@ -36,19 +36,19 @@ export default async function handler(
          * Authenticate
          * @todo do this in a middleware
          */
-        const { firebaseId, email } = await verifyFirebaseToken({
+        const { firebaseUid, email } = await verifyFirebaseToken({
           accessToken,
         });
 
         /**
          * Get/create user in hasura
          */
-        const user = await getOrCreateOakUser({ firebaseId, email });
+        const user = await getOrCreateOakUser({ firebaseUid, email });
 
         /**
          * Set custom claims for hasura on the firebase user
          */
-        await applyHasuraClaimsToFirebaseUser({ firebaseId, user });
+        await applyHasuraClaimsToFirebaseUser({ firebaseUid, user });
 
         /**
          * Respond with the oak user object

@@ -4,10 +4,14 @@ import mockRouter from "next-router-mock";
 import LessonPage from "../../pages/lessons/[lessonSlug]";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-const testLesson = { id: 1, title: "Physics only review", slug: "lesson-slug" };
+const testLesson = {
+  id: "1",
+  title: "Physics only review",
+  slug: "lesson-slug",
+};
 
-const graphqlAllLessons = jest.fn(() => ({ lesson: [testLesson] }));
-const graphqlLessonsBySlug = jest.fn(() => ({ lesson: [testLesson] }));
+const graphqlAllLessons = jest.fn(() => ({ lessons: [testLesson] }));
+const graphqlLessonsBySlug = jest.fn(() => ({ lessons: [testLesson] }));
 
 describe("pages/lessons/[lessonSlug].tsx", () => {
   beforeEach(() => {

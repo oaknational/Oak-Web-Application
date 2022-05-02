@@ -1,0 +1,41 @@
+table:
+  schema: public
+  name: bookmarkedLessons
+remote_relationships:
+  - definition:
+      remote_field:
+        lessons_by_pk:
+          arguments:
+            id: $lessonId
+      hasura_fields:
+        - lessonId
+      remote_schema: curriculum-data
+    name: lesson
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        userId:
+          _eq: X-Hasura-User-Id
+      set:
+        userId: x-hasura-User-Id
+      columns:
+        - lessonId
+      backend_only: false
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - createdAt
+        - updatedAt
+        - lessonId
+        - userId
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id

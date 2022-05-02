@@ -4,11 +4,15 @@ exports[`renders search page unchanged 1`] = `
 <div>
   <ul>
     <li>
-      The Tragedy of Macbeth
-       - 
-      <i>
-        Key Stage 4
-      </i>
+      <a
+        href="/lessons/the-tragedy-of-macbeth-cdjpac"
+      >
+        The Tragedy of Macbeth
+         - 
+        <i>
+          Key Stage 4
+        </i>
+      </a>
     </li>
   </ul>
 </div>

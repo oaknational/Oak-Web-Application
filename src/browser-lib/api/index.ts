@@ -11,7 +11,7 @@ const useApi = () => {
         url: "/api/user",
         method: "POST",
         responseDataSchema: z.object({
-          id: z.number(),
+          id: z.string(),
           email: z.string(),
         }),
         headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},

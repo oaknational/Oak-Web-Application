@@ -10,21 +10,24 @@ const verifyFirebaseToken = async ({
 }) => {
   try {
     const accessTokenData = await firebaseAdminAuth.verifyIdToken(accessToken);
-    const { uid: firebaseId, email } = accessTokenData;
+    const { uid: firebaseUid, email } = accessTokenData;
 
     if (!email) {
       throw new Error("No email in access token");
     }
 
-    return { firebaseId, email };
+    return { firebaseUid, email };
   } catch (error) {
     if (
       error instanceof FirebaseError &&
       error.code === "auth/id-token-expired"
     ) {
-      throw new OakError({ code: "auth/token-expired" });
+      throw new OakError({ code: "auth/token-expired", originalError: error });
     }
-    throw new OakError({ code: "auth/token-error-unknown" });
+    throw new OakError({
+      code: "auth/token-error-unknown",
+      originalError: error,
+    });
   }
 };
 
