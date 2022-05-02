@@ -23,8 +23,6 @@ const Seo: FC<SEOProps> = ({ title, description, image = "default" }) => {
 
   const sharingImage = IMAGES[image] ? IMAGES[image] : IMAGES["default"];
 
-  console.log(router.asPath);
-
   return (
     <NextSeo
       title={title}

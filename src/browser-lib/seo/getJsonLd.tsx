@@ -28,7 +28,7 @@ export const OrganizationJsonLd = () => {
   );
 };
 
-// Course
+// Course logo
 
 interface CourseProps extends CourseJsonLdProps {
   provider: boolean;
