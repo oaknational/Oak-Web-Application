@@ -1,7 +1,7 @@
-query getUser($firebaseId: String!, $email: String!) {
-  user(where: { firebase_id: { _eq: $firebaseId }, email: { _eq: $email } }) {
+query getUser($firebaseUid: String!, $email: String!) {
+  users(where: { firebaseUid: { _eq: $firebaseUid }, email: { _eq: $email } }) {
     email
-    firebase_id
+    firebaseUid
     id
   }
 }

@@ -1,31 +1,8 @@
-import { act } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react-hooks";
+
+import "../__tests__/__helpers__/LocalStorageMock";
 
 import useLocalStorage from "./useLocalStorage";
-
-class LocalStorageMock {
-  store: Record<string, unknown> = {};
-
-  clear() {
-    this.store = {};
-  }
-
-  getItem(key: string) {
-    return this.store[key] || null;
-  }
-
-  setItem(key: string, value: unknown) {
-    this.store[key] = value + "";
-  }
-
-  removeItem(key: string) {
-    delete this.store[key];
-  }
-}
-
-Object.defineProperty(window, "localStorage", {
-  value: new LocalStorageMock(),
-});
 
 describe("useLocalStorage()", () => {
   beforeEach(() => {
