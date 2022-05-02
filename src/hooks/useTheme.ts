@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { LS_KEY_THEME, LS_KEY_THEME_USER } from "../config/localStorageKeys";
+import { UserType } from "../context/UserStyleContext";
 import { Theme, defaultTheme, ausTheme } from "../styles/themes";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
@@ -19,10 +20,6 @@ export const themeNames = ["default", "aus"] as const;
 type ThemeNames = typeof themeNames;
 type ThemeName = ThemeNames[number];
 
-export const userNames = ["pupils", "teachers"] as const;
-type UserNames = typeof userNames;
-type UserName = UserNames[number];
-
 const themes: Record<ThemeName, Theme> = {
   default: defaultTheme,
   aus: ausTheme,
@@ -30,7 +27,8 @@ const themes: Record<ThemeName, Theme> = {
 
 const useTheme = () => {
   const [selectedTheme] = useLocalStorage<ThemeName>(LS_KEY_THEME, "default");
-  const [selectedUser] = useLocalStorage<UserName>(LS_KEY_THEME_USER, "pupils");
+  const [selectedUser] = useLocalStorage<UserType>(LS_KEY_THEME_USER, "pupils");
+
   const theme = themes[selectedTheme];
 
   useEffect(() => {

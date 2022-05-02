@@ -2,7 +2,9 @@ import { createContext, useContext, FC } from "react";
 
 import useLocalStorage from "../hooks/useLocalStorage";
 
-type UserType = "teachers" | "pupils";
+export const userTypes = ["pupils", "teachers"] as const;
+type UserTypes = typeof userTypes;
+export type UserType = UserTypes[number];
 
 export interface UserContextInterface {
   user: UserType;

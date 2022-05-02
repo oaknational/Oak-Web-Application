@@ -15,7 +15,9 @@ exports[`renders <Layout> unchanged 1`] = `
       placeholder="Search"
       type="text"
     />
-    <button>
+    <button
+      class="button"
+    >
       pupils
     </button>
     <a

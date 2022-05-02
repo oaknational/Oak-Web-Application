@@ -19,7 +19,3 @@ export type Theme = {
   pupils: Record<ThemeUserVarKey, string>;
   teachers: Record<ThemeUserVarKey, string>;
 };
-
-// export type Theme = Record<ThemeName, ThemeInterface>;
-
-// theme is record with

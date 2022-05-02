@@ -24,7 +24,11 @@ const SiteHeader: FC = () => {
         type="text"
         placeholder="Search"
       />
-      <button onClick={handleClick}>{userStyleContext.user}</button>
+
+      <button className={styles.button} onClick={handleClick}>
+        {userStyleContext.user}
+      </button>
+
       {user ? (
         <button onClick={signOut}>Sign out</button>
       ) : (
