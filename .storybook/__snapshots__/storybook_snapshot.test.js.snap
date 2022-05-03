@@ -192,7 +192,9 @@ Array [
         className="button primary small leadingIcon"
         href="/"
         onClick={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
+        role="button"
         title="Button rounded"
       >
         <span
@@ -220,7 +222,9 @@ Array [
         className="button secondary small leadingIcon"
         href="/"
         onClick={[Function]}
+        onKeyDown={[Function]}
         onMouseEnter={[Function]}
+        role="button"
         title="Button"
       >
         <span

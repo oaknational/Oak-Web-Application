@@ -236,6 +236,7 @@ exports[`renders homepage unchanged 1`] = `
           aria-label="Download Lesson"
           class="button primary small leadingIcon"
           href="/"
+          role="button"
           title="Download Lesson"
         >
           <span
@@ -286,6 +287,7 @@ exports[`renders homepage unchanged 1`] = `
           aria-label="Share Lesson"
           class="button primary small leadingIcon"
           href="/"
+          role="button"
           title="Share Lesson"
         >
           <span
