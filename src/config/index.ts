@@ -1,3 +1,5 @@
+import seoConfig from "../../next-seo.config";
+
 const CONFIG_KEYS = [
   "firebaseApiKey",
   "firebaseAuthDomain",
@@ -127,55 +129,55 @@ const envVars: Record<ConfigKey, EnvVar> = {
     default: null,
   },
   appName: {
-    value: process.env.NEXT_PUBLIC_APP_NAME,
+    value: seoConfig.NEXT_PUBLIC_APP_NAME,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appDescription: {
-    value: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
+    value: seoConfig.NEXT_PUBLIC_APP_DESCRIPTION,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appLocale: {
-    value: process.env.NEXT_PUBLIC_APP_LOCALE,
+    value: seoConfig.NEXT_PUBLIC_APP_LOCALE,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appUrl: {
-    value: process.env.NEXT_PUBLIC_APP_URL,
+    value: seoConfig.NEXT_PUBLIC_APP_URL,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appLogo: {
-    value: process.env.NEXT_PUBLIC_APP_LOGO,
+    value: seoConfig.NEXT_PUBLIC_APP_LOGO,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appSocialSharingImg: {
-    value: process.env.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
+    value: seoConfig.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appFacebook: {
-    value: process.env.NEXT_PUBLIC_APP_FACEBOOK,
+    value: seoConfig.NEXT_PUBLIC_APP_FACEBOOK,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appTwitter: {
-    value: process.env.NEXT_PUBLIC_APP_TWITTER,
+    value: seoConfig.NEXT_PUBLIC_APP_TWITTER,
     required: true,
     availableInBrowser: true,
     default: null,
   },
   appTwitterHandle: {
-    value: process.env.NEXT_PUBLIC_APP_TWITTER_HANDLE,
+    value: seoConfig.NEXT_PUBLIC_APP_TWITTER_HANDLE,
     required: true,
     availableInBrowser: true,
     default: null,
