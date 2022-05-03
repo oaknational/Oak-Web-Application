@@ -1,3 +1,6 @@
+/**
+ * Journeys that start on the /search page.
+ */
 import { expect } from "@playwright/test";
 
 import { test } from "../fixtures";
