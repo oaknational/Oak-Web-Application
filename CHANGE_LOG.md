@@ -1,3 +1,10 @@
+## [0.14.2](https://github.com/oaknational/Samara/compare/v0.14.1...v0.14.2) (2022-05-03)
+
+
+### Bug Fixes
+
+* use isLoggedIn to prevent excess bookmark requests ([d114c37](https://github.com/oaknational/Samara/commit/d114c373995e48a039d2591aafa8cf6624b9a349))
+
 ## [0.14.1](https://github.com/oaknational/Samara/compare/v0.14.0...v0.14.1) (2022-05-03)
 
 # [0.14.0](https://github.com/oaknational/Samara/compare/v0.13.0...v0.14.0) (2022-05-03)
