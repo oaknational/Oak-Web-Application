@@ -10,6 +10,7 @@ import { render, RenderOptions } from "@testing-library/react";
 
 import { BookmarksProvider } from "../../hooks/useBookmarks";
 import { UserStyleContextProvider } from "../../context/UserStyleContext";
+import { SearchProvider } from "../../context/SearchContext";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
@@ -19,6 +20,7 @@ import MockedApolloProvider from "./MockedApolloProvider";
 type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
 };
+
 const AllTheProviders: FC<ProviderProps> = ({
   children,
   authProviderProps,
@@ -27,7 +29,9 @@ const AllTheProviders: FC<ProviderProps> = ({
     <MockedAuthProvider {...authProviderProps}>
       <MockedApolloProvider>
         <UserStyleContextProvider>
-          <BookmarksProvider>{children}</BookmarksProvider>
+          <BookmarksProvider>
+            <SearchProvider>{children}</SearchProvider>
+          </BookmarksProvider>
         </UserStyleContextProvider>
       </MockedApolloProvider>
     </MockedAuthProvider>

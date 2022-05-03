@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
 
 import useAuth from "../../auth/useAuth";
-import useBookmarks from "../../hooks/useBookmarks";
+import useBookmarks, { LessonId } from "../../hooks/useBookmarks";
 import Button from "../Button";
 
 type BookmarkLessonButtonProps = {
-  lessonId: number;
+  lessonId: LessonId;
 };
 const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
   const { lessonId } = props;

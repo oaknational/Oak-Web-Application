@@ -1,4 +1,5 @@
 // jest.config.js
+// See https://nextjs.org/docs/testing#setting-up-jest-with-the-rust-compiler
 const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
@@ -11,8 +12,12 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: [
     "./src/**",
-    "!**/__snapshots__/**",
     "!src/pages/_document.tsx",
+    "!src/styles/themes/types.ts",
+    "!e2e_tests/browser/engineering/*",
+    "!**/__snapshots__/**",
+    "!**/*.config.{js,ts}",
+    "!**/*.stories.*",
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
@@ -26,7 +31,11 @@ const customJestConfig = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
-  testPathIgnorePatterns: ["src/__tests__/__helpers__/*"],
+  testPathIgnorePatterns: [
+    "src/__tests__/__helpers__/*",
+    ".storybook/storybook.*.test.js$",
+    "e2e_tests/browser/engineering/*",
+  ],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

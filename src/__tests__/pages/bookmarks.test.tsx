@@ -1,10 +1,10 @@
 import { act, fireEvent, waitFor } from "@testing-library/react";
 
 import Bookmarks from "../../pages/bookmarks";
-import { testLesson } from "../__helpers__/apolloMocks";
+import { testLessons } from "../__helpers__/apolloMocks";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-const testUser = { id: 123, email: "test email" };
+const testUser = { id: "123", email: "test email" };
 
 describe("pages/bookmarks.tsx", () => {
   it("Renders the page title", async () => {
@@ -32,11 +32,11 @@ describe("pages/bookmarks.tsx", () => {
     });
 
     await waitFor(() => {
-      expect(getByTestId("bookmark-0").textContent).toBe(testLesson.title);
+      expect(getByTestId("bookmark-0").textContent).toBe(testLessons[0]?.title);
     });
   });
   it("Clicking 'remove' should remove the bookmark", async () => {
-    const { getByRole, getByTestId } = renderWithProviders(
+    const { getAllByRole, getByTestId } = renderWithProviders(
       <Bookmarks />,
       undefined,
       {
@@ -48,8 +48,11 @@ describe("pages/bookmarks.tsx", () => {
     const originalLength = bookmarksList.childNodes.length;
 
     act(() => {
-      const remove = getByRole("button", { name: /remove/i });
-      fireEvent.click(remove);
+      const [firstRemoveButton] = getAllByRole("button", { name: /remove/i });
+      if (!firstRemoveButton) {
+        throw new Error("no 'remove bookmark' button not found");
+      }
+      fireEvent.click(firstRemoveButton);
     });
 
     await waitFor(() => {

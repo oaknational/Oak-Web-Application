@@ -10,21 +10,95 @@ exports[`renders <Layout> unchanged 1`] = `
     >
       Oak
     </div>
-    <input
-      class="search-input"
-      placeholder="Search"
-      type="text"
-    />
+    <form
+      class="search"
+    >
+      <input
+        aria-label="Search"
+        placeholder="Search"
+        type="search"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+      <div>
+        <label>
+           Key Stage 
+          foundation
+          <input
+            id="custom-checkbox-foundation"
+            name="foundation"
+            type="checkbox"
+            value="foundation"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          1
+          <input
+            id="custom-checkbox-1"
+            name="1"
+            type="checkbox"
+            value="1"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          2
+          <input
+            id="custom-checkbox-2"
+            name="2"
+            type="checkbox"
+            value="2"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          3
+          <input
+            id="custom-checkbox-3"
+            name="3"
+            type="checkbox"
+            value="3"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+           Key Stage 
+          4
+          <input
+            id="custom-checkbox-4"
+            name="4"
+            type="checkbox"
+            value="4"
+          />
+        </label>
+      </div>
+    </form>
     <button
-      class="button"
+      class="userThemeButton"
     >
       pupils
     </button>
-    <a
-      href="/sign-in"
+    <div
+      class="signInButtonWrapper"
     >
-      Sign in
-    </a>
+      <a
+        href="/sign-in"
+      >
+        Sign in
+      </a>
+    </div>
   </header>
   <main
     class="main"

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { useUserStyleContext } from "../../context/UserStyleContext";
 import useAuth from "../../auth/useAuth";
+import SearchForm from "../SearchForm";
 
 import styles from "./SiteHeader.module.css";
 
@@ -19,21 +20,17 @@ const SiteHeader: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.title}>Oak</div>
-      <input
-        className={styles["search-input"]}
-        type="text"
-        placeholder="Search"
-      />
-
-      <button className={styles.button} onClick={handleClick}>
+      <SearchForm />
+      <button className={styles.userThemeButton} onClick={handleClick}>
         {userStyleContext.user}
       </button>
-
-      {user ? (
-        <button onClick={signOut}>Sign out</button>
-      ) : (
-        <Link href="/sign-in">Sign in</Link>
-      )}
+      <div className={styles.signInButtonWrapper}>
+        {user ? (
+          <button onClick={signOut}>Sign out</button>
+        ) : (
+          <Link href="/sign-in">Sign in</Link>
+        )}
+      </div>
     </header>
   );
 };

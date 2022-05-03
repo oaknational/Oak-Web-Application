@@ -1,5 +1,5 @@
-import { act, waitFor } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { waitFor } from "@testing-library/react";
+import { renderHook, act } from "@testing-library/react-hooks";
 
 import { LS_KEY_THEME } from "../config/localStorageKeys";
 

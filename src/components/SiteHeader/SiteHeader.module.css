@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 72px;
+  min-height: 72px;
   padding: 12px;
   background: var(--color-bw-95);
 }
@@ -12,11 +12,11 @@
   margin-right: 12px;
 }
 
-.search-input {
-  margin-right: auto;
+.signInButtonWrapper {
+  margin-left: auto;
 }
 
-.button {
+.userThemeButton {
   composes: button-unstyle from "../../styles/button-unstyle.module.css";
   padding-right: 24px;
 }

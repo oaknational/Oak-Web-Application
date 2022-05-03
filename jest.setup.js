@@ -29,8 +29,10 @@ jest.mock("firebase/auth", () => ({
   signOut: jest.fn(async () => undefined),
 }));
 
+export class FirebaseError extends Error {}
 jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
+  FirebaseError,
 }));
 
 // In development and production, these env variables
