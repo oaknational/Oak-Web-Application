@@ -6,7 +6,7 @@ import {
   LS_KEY_USER,
 } from "../config/localStorageKeys";
 
-import useAuth, { AuthProvider } from "./useAuth";
+import useAuth, { AuthProvider, getSignInCallbackUrl } from "./useAuth";
 
 const testUser = { id: "1", email: "test email", firebaseUid: "123" };
 const testToken = "test token";
@@ -51,8 +51,9 @@ const idTokenChanged = () =>
 jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
 }));
+
 jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(),
+  getAuth: jest.fn(() => ({ config: {} })),
   onAuthStateChanged: jest.fn(),
   isSignInWithEmailLink: jest.fn(() => true),
   signInWithEmailLink: jest.fn(() => ({
@@ -90,6 +91,35 @@ describe("auth/useAuth.tsx", () => {
     jest.resetModules();
     jest.clearAllMocks();
     window.localStorage.clear();
+  });
+  it("should set config.apiHost and config.tokenApiHost from env", async () => {
+    const firebaseAuthConfig = {
+      apiHost: "",
+      tokenApiHost: "",
+    };
+    jest.mock("firebase/auth", () => ({
+      getAuth: jest.fn(() => ({ config: firebaseAuthConfig })),
+      onAuthStateChanged: jest.fn(),
+      isSignInWithEmailLink: jest.fn(() => true),
+      signInWithEmailLink: jest.fn(() => ({
+        user: { getIdToken: () => Promise.resolve(testToken) },
+      })),
+      onIdTokenChanged: jest.fn(async (auth, callback) => {
+        const user = await idTokenChanged();
+        callback(user);
+      }),
+      sendSignInLinkToEmail: jest.fn(),
+      signOut: jest.fn(),
+    }));
+    const { default: useAuth, AuthProvider } = await import("./useAuth");
+
+    renderHook(useAuth, { wrapper: AuthProvider });
+    expect(firebaseAuthConfig.apiHost).toBe(
+      process.env.NEXT_PUBLIC_FIREBASE_API_HOST
+    );
+    expect(firebaseAuthConfig.tokenApiHost).toBe(
+      process.env.NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST
+    );
   });
   it("should default user to null", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
@@ -145,19 +175,14 @@ describe("auth/useAuth.tsx", () => {
     expect(getLocalStorageUser()).toBeNull();
   });
   it("should have the correct sign in callback url on client-side", async () => {
-    const { SIGN_IN_CALLBACK_URL } = await import("./useAuth");
-
-    expect(SIGN_IN_CALLBACK_URL).toEqual("http://localhost/sign-in/callback");
+    expect(getSignInCallbackUrl()).toEqual("http://localhost/sign-in/callback");
   });
-  it("should have the correct sign in callback url on server-side", async () => {
+  it("should throw if getSignInCallbackUrl() called on server-side", async () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     windowSpy.mockImplementationOnce(() => undefined);
-    const { SIGN_IN_CALLBACK_URL } = await import("./useAuth");
 
-    expect(SIGN_IN_CALLBACK_URL).toEqual(
-      "http://localhost:3000/sign-in/callback"
-    );
+    expect(getSignInCallbackUrl).toThrow();
   });
   it("should handle error if POST /user route fails on login", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
