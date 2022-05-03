@@ -1,6 +1,6 @@
 // Adapted from https://usehooks.com/useAuth/
 import { useEffect, useContext, createContext, FC } from "react";
-import { initializeApp } from "firebase/app";
+import { FirebaseOptions, initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
@@ -23,7 +23,7 @@ import createErrorHandler from "../common-lib/error-handler";
 
 import useAccessToken from "./useAccessToken";
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: config.get("firebaseApiKey"),
   authDomain: config.get("firebaseAuthDomain"),
   projectId: config.get("firebaseProjectId"),
@@ -39,16 +39,27 @@ const errorHandler = createErrorHandler("useAuth");
 const auth = getAuth();
 
 /**
- * @todo we should be able to pick this up from the environment
- * but there was an issue on one of the deployment so it needs
- * a bit further investigation
+ * Proxying for zero-rating
  */
-const clientAppBaseUrl =
-  typeof window !== "undefined"
-    ? window.location.origin
-    : config.get("clientAppBaseUrl");
+auth.config.apiScheme = "https";
+auth.config.apiHost = config.get("firebaseConfigApiHost");
+auth.config.tokenApiHost = config.get("firebaseConfigTokenApiHost");
 
-export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
+/**
+ * @todo move this to src/config
+ */
+const getClientAppBaseUrl = () => {
+  if (typeof window === "undefined") {
+    throw new Error(
+      "Cannot call 'getClientAppBaseUrl()' on server. Each deployment has multiple domains, so each server must be able to serve multiple client addresses"
+    );
+  }
+
+  return window.location.origin;
+};
+
+export const getSignInCallbackUrl = () =>
+  `${getClientAppBaseUrl()}/sign-in/callback`;
 
 export type UserId = string;
 
@@ -141,7 +152,7 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: SIGN_IN_CALLBACK_URL,
+          url: getSignInCallbackUrl(),
           // This must be true.
           handleCodeInApp: true,
         });
