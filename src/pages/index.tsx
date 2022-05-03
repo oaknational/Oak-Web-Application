@@ -7,7 +7,6 @@ import config from "../config";
 import Seo from "../browser-lib/seo/Seo";
 import { LessonId } from "../hooks/useBookmarks";
 
-
 const Home: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   props
 ) => {
