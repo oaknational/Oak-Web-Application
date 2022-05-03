@@ -1,3 +1,10 @@
+## [0.14.3](https://github.com/oaknational/Samara/compare/v0.14.2...v0.14.3) (2022-05-03)
+
+
+### Bug Fixes
+
+* use recommended Nextjs env patterns ([19eba82](https://github.com/oaknational/Samara/commit/19eba82c63b86ee7fe009d4355cca9829635099a))
+
 ## [0.14.2](https://github.com/oaknational/Samara/compare/v0.14.1...v0.14.2) (2022-05-03)
 
 
