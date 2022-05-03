@@ -58,19 +58,16 @@
   margin-left: 8px;
 }
 
-/* button variant @todo export to dedupe with Button */
+/* button variant */
 
 .primary {
-  background-color: var(--color-button-primary);
-  color: var(--color-button-primary-contrast);
+  composes: bg-primary from "../../styles/colors.module.css";
 }
 
 .secondary {
-  background-color: var(--color-button-secondary);
-  color: var(--color-button-secondary-contrast);
+  composes: bg-secondary from "../../styles/colors.module.css";
 }
 
 .tertiary {
-  background-color: var(--color-button-tertiary);
-  color: var(--color-button-tertiary-contrast);
+  composes: bg-tertiary from "../../styles/colors.module.css";
 }

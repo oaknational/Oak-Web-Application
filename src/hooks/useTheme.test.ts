@@ -37,9 +37,10 @@ describe("useTheme()", () => {
   it("should call setProperty with default theme values", () => {
     renderHook(() => useTheme());
 
-    expect(documentStyleSetPropertySpy).toHaveBeenCalledWith(
-      `--color-button-primary`,
-      "#1A1A1A"
+    expect(documentStyleSetPropertySpy).toHaveBeenNthCalledWith(
+      1,
+      "--button-border-radius",
+      "12px"
     );
   });
 
@@ -99,9 +100,10 @@ describe("useTheme()", () => {
       });
 
       await waitFor(() => {
-        expect(documentStyleSetPropertySpy).toHaveBeenCalledWith(
-          `--color-button-primary`,
-          "lightgreen"
+        expect(documentStyleSetPropertySpy).toHaveBeenNthCalledWith(
+          9,
+          "--color-primary",
+          "darkpurple"
         );
       });
     });

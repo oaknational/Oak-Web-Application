@@ -1,10 +1,24 @@
 @value mobile from "../../styles/breakpoints.css";
 
 .card {
-  background-color: var(--color-bw-95);
   height: 250px;
   border-radius: 12px;
   padding: 24px;
+}
+
+.card-primary {
+  composes: card;
+  composes: bg-primary from "../../styles/colors.module.css";
+}
+
+.card-secondary {
+  composes: card;
+  composes: bg-secondary from "../../styles/colors.module.css";
+}
+
+.card-tertiary {
+  composes: card;
+  composes: bg-tertiary from "../../styles/colors.module.css";
 }
 
 @media mobile {

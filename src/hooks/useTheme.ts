@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
-import { LS_KEY_THEME } from "../config/localStorageKeys";
+import { LS_KEY_THEME, LS_KEY_THEME_USER } from "../config/localStorageKeys";
+import { UserType } from "../context/UserStyleContext";
 import { Theme, defaultTheme, ausTheme } from "../styles/themes";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
@@ -26,6 +27,8 @@ const themes: Record<ThemeName, Theme> = {
 
 const useTheme = () => {
   const [selectedTheme] = useLocalStorage<ThemeName>(LS_KEY_THEME, "default");
+  const [selectedUser] = useLocalStorage<UserType>(LS_KEY_THEME_USER, "pupils");
+
   const theme = themes[selectedTheme];
 
   useEffect(() => {
@@ -36,6 +39,7 @@ const useTheme = () => {
             `Theme name must be one of: ${themeNames.join(", ")}`
           );
         }
+
         window.localStorage.setItem(LS_KEY_THEME, JSON.stringify(themeName));
         dispatchLocalStorageEvent();
       },
@@ -47,10 +51,13 @@ const useTheme = () => {
     if (!theme) {
       return console.error(`No theme found for theme name: ${selectedTheme}`);
     }
-    Object.entries(theme).forEach(([key, value]) => {
+    Object.entries(theme.common).forEach(([key, value]) => {
       document.documentElement.style.setProperty(`--${key}`, value);
     });
-  }, [theme]);
+    Object.entries(theme[selectedUser]).forEach(([key, value]) => {
+      document.documentElement.style.setProperty(`--${key}`, value);
+    });
+  }, [theme, selectedUser]);
 };
 
 export default useTheme;
