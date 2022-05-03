@@ -1,14 +1,21 @@
-const themeVarKeys = [
-  "color-teachers-primary",
-  "color-teachers-primary-contrast",
-  "color-teachers-secondary",
-  "color-teachers-secondary-contrast",
-  "color-pupils-primary",
-  "color-pupils-primary-contrast",
-  "color-pupils-secondary",
-  "color-pupils-secondary-contrast",
+const themeUserVarKeys = [
+  "color-primary",
+  "color-primary-contrast",
+  "color-secondary",
+  "color-secondary-contrast",
+  "color-primary",
+  "color-primary-contrast",
+  "color-secondary",
+  "color-secondary-contrast",
 ] as const;
 
-type ThemeVarKey = typeof themeVarKeys[number];
+const themeCommonVarKeys = ["button-border-radius"] as const;
 
-export type Theme = Record<ThemeVarKey, string>;
+type ThemeUserVarKey = typeof themeUserVarKeys[number];
+type ThemeCommonVarKey = typeof themeCommonVarKeys[number];
+
+export type Theme = {
+  common: Record<ThemeCommonVarKey, string>;
+  pupils: Record<ThemeUserVarKey, string>;
+  teachers: Record<ThemeUserVarKey, string>;
+};

@@ -1,6 +1,7 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   min-height: 72px;
   padding: 12px;
@@ -13,4 +14,9 @@
 
 .signInButtonWrapper {
   margin-left: auto;
+}
+
+.userThemeButton {
+  composes: button-unstyle from "../../styles/button-unstyle.module.css";
+  padding-right: 24px;
 }
