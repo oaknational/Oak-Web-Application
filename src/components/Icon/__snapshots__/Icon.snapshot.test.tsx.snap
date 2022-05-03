@@ -3,11 +3,11 @@
 exports[`'icons' component renders <Icon> ChevronRight unchanged 1`] = `
 <div>
   <span
-    class="outer-wrapper"
+    class="outerWrapper"
     style="height: 20px; width: 20px;"
   >
     <span
-      class="inner-wrapper"
+      class="innerWrapper"
       style="height: 20px; width: 20px;"
     >
       <svg
@@ -33,11 +33,11 @@ exports[`'icons' component renders <Icon> ChevronRight unchanged 1`] = `
 exports[`'icons' component renders <Icon> Download unchanged 1`] = `
 <div>
   <span
-    class="outer-wrapper"
+    class="outerWrapper"
     style="height: 20px; width: 20px;"
   >
     <span
-      class="inner-wrapper"
+      class="innerWrapper"
       style="height: 20px; width: 20px;"
     >
       <svg
@@ -72,11 +72,11 @@ exports[`'icons' component renders <Icon> Download unchanged 1`] = `
 exports[`'icons' component renders <Icon> OpenExternal unchanged 1`] = `
 <div>
   <span
-    class="outer-wrapper"
+    class="outerWrapper"
     style="height: 20px; width: 20px;"
   >
     <span
-      class="inner-wrapper"
+      class="innerWrapper"
       style="height: 20px; width: 20px;"
     >
       <svg
@@ -111,11 +111,11 @@ exports[`'icons' component renders <Icon> OpenExternal unchanged 1`] = `
 exports[`'icons' component renders <Icon> Share unchanged 1`] = `
 <div>
   <span
-    class="outer-wrapper"
+    class="outerWrapper"
     style="height: 20px; width: 20px;"
   >
     <span
-      class="inner-wrapper"
+      class="innerWrapper"
       style="height: 20px; width: 20px;"
     >
       <svg
@@ -165,18 +165,16 @@ exports[`'icons' component renders <Icon> Share unchanged 1`] = `
 exports[`'icons' component renders <Icon> Star unchanged 1`] = `
 <div>
   <span
-    class="outer-wrapper"
+    class="outerWrapper"
     style="height: 20px; width: 20px;"
   >
     <span
-      class="inner-wrapper"
+      class="innerWrapper"
       style="height: 20px; width: 20px;"
     >
       <svg
         fill="currentColor"
-        height="24px"
-        viewBox="0 0 24 24"
-        width="24px"
+        viewBox="2 2 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

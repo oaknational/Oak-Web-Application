@@ -14,6 +14,14 @@ export const defaultMockedAuthProviderValue = {
 export type MockedAuthProviderProps = {
   value?: Partial<OakAuth>;
 };
+export const loggedInAuthProviderProps: MockedAuthProviderProps = {
+  value: {
+    user: {
+      id: "4395834",
+      email: "2593485932@324359483u534.com",
+    },
+  },
+};
 const MockedAuthProvider: FC<MockedAuthProviderProps> = ({
   children,
   value,

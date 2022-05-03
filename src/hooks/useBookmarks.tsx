@@ -71,8 +71,6 @@ export const BookmarksProvider: FC = ({ children }) => {
      *
      */
     if (data?.bookmarkedLessons) {
-      console.log("setting bms ls", data.bookmarkedLessons);
-
       setBookmarks(
         data.bookmarkedLessons
           .map(({ lesson }) => lesson)

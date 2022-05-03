@@ -2,24 +2,22 @@
 
 exports[`renders <Button> unchanged 1`] = `
 <div>
-  <button
-    class="button background--teachers-primary variant--rounded"
+  <a
+    aria-label="Download"
+    class="button primary small leadingIcon"
     href="/"
+    role="button"
+    title="Download"
   >
     <span
-      class="button-label"
-    >
-      Download
-    </span>
-    <span
-      class="button-icon-wrapper"
+      class="iconWrapper"
     >
       <span
-        class="outer-wrapper"
+        class="outerWrapper"
         style="height: 16px; width: 16px;"
       >
         <span
-          class="inner-wrapper"
+          class="innerWrapper"
           style="height: 16px; width: 16px;"
         >
           <svg
@@ -49,6 +47,11 @@ exports[`renders <Button> unchanged 1`] = `
         </span>
       </span>
     </span>
-  </button>
+    <span
+      class="labelSpan"
+    >
+      Download
+    </span>
+  </a>
 </div>
 `;
