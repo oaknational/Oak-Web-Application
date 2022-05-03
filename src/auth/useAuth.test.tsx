@@ -1,4 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
+import { sendSignInLinkToEmail } from "firebase/auth";
 
 import {
   LS_KEY_ACCESS_TOKEN,
@@ -170,5 +171,18 @@ describe("auth/useAuth.tsx", () => {
     });
 
     expect(errorHandlerMock).toHaveBeenCalledWith(error);
+  });
+  it("signInWithEmail should throw if sendSignInLinkToEmail() fails", async () => {
+    const originalError = new Error("bad thing happened");
+    const { result } = renderHook(useAuth, { wrapper: AuthProvider });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    sendSignInLinkToEmail.mockImplementationOnce(() =>
+      Promise.reject(originalError)
+    );
+    await expect(async () => {
+      await result.current.signInWithEmail("test email");
+    }).rejects.toThrow("Could not send sign in link to provided email");
   });
 });

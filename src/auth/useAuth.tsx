@@ -20,6 +20,7 @@ import {
 import useApi from "../browser-lib/api";
 import { useBookmarksCache } from "../hooks/useBookmarks";
 import createErrorHandler from "../common-lib/error-handler";
+import OakError from "../errors/OakError";
 
 import useAccessToken from "./useAccessToken";
 
@@ -151,11 +152,10 @@ export const AuthProvider: FC = ({ children }) => {
         });
         window.localStorage.setItem(LS_KEY_EMAIL_FOR_SIGN_IN, email);
       } catch (error) {
-        // @TODO error service
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log(error);
-        throw error;
+        throw new OakError({
+          code: "auth/send-sign-in-link",
+          originalError: error,
+        });
       }
     },
     signInWithEmailCallback: async () => {
