@@ -6,6 +6,8 @@ import config from "../../config";
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
+      title={config.get("appName")}
+      description={config.get("appDescription")}
       openGraph={{
         url: config.get("appName"),
         locale: config.get("appLocale"),

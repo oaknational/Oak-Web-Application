@@ -31,7 +31,12 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 
   return (
     <>
-      <Seo title={lesson.title} description={"lesson.description"} />,
+      <Seo
+        title={`${lesson.title} lesson | Oak National Academy`}
+        description={
+          "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions."
+        }
+      />
       <CourseJsonLd
         courseName={lesson.title}
         description={"lesson.description"}
