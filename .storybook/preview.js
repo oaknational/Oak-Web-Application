@@ -2,6 +2,7 @@ import React from "react";
 import "../src/styles/constants.css";
 import "../src/styles/colors.module.css";
 import useTheme from "../src/hooks/useTheme";
+import { UserStyleContextProvider } from "../src/context/UserStyleContext";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -16,7 +17,11 @@ export const parameters = {
 const withThemeProvider = (Story, context) => {
   // pass in context.globals.theme if useTheme() is changed to except theme name
   useTheme();
-  return <Story {...context} />;
+  return (
+    <UserStyleContextProvider>
+      <Story {...context} />;
+    </UserStyleContextProvider>
+  );
 };
 export const decorators = [withThemeProvider];
 

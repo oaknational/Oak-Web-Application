@@ -85,6 +85,11 @@ exports[`renders homepage unchanged 1`] = `
         </label>
       </div>
     </form>
+    <button
+      class="userThemeButton"
+    >
+      pupils
+    </button>
     <div
       class="signInButtonWrapper"
     >
@@ -503,7 +508,7 @@ exports[`renders homepage unchanged 1`] = `
       </button>
     </div>
     <div
-      class="card"
+      class="card-primary"
     >
       Lesson content
     </div>
