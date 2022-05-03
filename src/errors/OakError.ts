@@ -6,6 +6,7 @@
 const ERROR_CODES = [
   "misc/unknown",
   "misc/network-error",
+  "misc/unexpected-type",
   "auth/send-sign-in-link",
   "auth/token-expired",
   "auth/token-error-unknown",
@@ -50,6 +51,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "auth/send-sign-in-link": {
     message: "Could not send sign in link to provided email",
+    shouldNotify: true,
+  },
+  "misc/unexpected-type": {
+    message:
+      "An unexpected type was encountered, so action may not have completed successfully",
     shouldNotify: true,
   },
 };

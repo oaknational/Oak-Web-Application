@@ -4,9 +4,14 @@ import {
   ButtonHTMLAttributes,
   FC,
   AnchorHTMLAttributes,
+  KeyboardEvent,
 } from "react";
 
+import createErrorHandler from "../../common-lib/error-handler";
+import OakError from "../../errors/OakError";
 import UnstyledButton from "../UnstyledButton";
+
+const errorHandler = createErrorHandler("UnstyledButtonOrLink");
 
 export type UnstyledButtonOrLinkProps = { className?: string } & (
   | (LinkProps &
@@ -42,9 +47,20 @@ const UnstyledButtonOrLink: FC<UnstyledButtonOrLinkProps> = (props) => {
       prefetch,
       locale,
     };
+    const onKeyDown = (e: KeyboardEvent<HTMLAnchorElement>) => {
+      if (e.code === "Space" || e.keyCode === 32) {
+        e.preventDefault();
+        // trigger the target's click event
+        if (!(e.target instanceof HTMLElement)) {
+          const error = new OakError({ code: "misc/unexpected-type" });
+          return errorHandler(error);
+        }
+        e.target.click();
+      }
+    };
     return (
       <Link {...nextLinkProps} passHref>
-        <a {...anchorProps} />
+        <a {...anchorProps} role="button" onKeyDown={onKeyDown} />
       </Link>
     );
   }
