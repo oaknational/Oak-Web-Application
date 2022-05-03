@@ -7,10 +7,10 @@ A really good remote education app.
 First, run:
 
 ```bash
-cp .env.example .env
+cp .env.test .env.development.local
 ```
 
-and fill in the incomplete values by asking another member of the team.
+and fill in the values by asking another member of the team.
 
 Then, run the development server:
 
