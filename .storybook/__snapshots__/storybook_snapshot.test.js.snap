@@ -25,25 +25,6 @@ Array [
           <li
             className="li"
           >
-<<<<<<< HEAD
-            Unit Quiz
-          </a>
-        </li>
-        <li
-          className="li"
-        >
-          <span
-            className="outerWrapper"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
-          >
-            <span
-              className="innerWrapper"
-=======
             <a
               href="/"
               onClick={[Function]}
@@ -56,8 +37,7 @@ Array [
             className="li"
           >
             <span
-              className="outer-wrapper"
->>>>>>> main
+              className="outerWrapper"
               style={
                 Object {
                   "height": "20px",
@@ -66,7 +46,7 @@ Array [
               }
             >
               <span
-                className="inner-wrapper"
+                className="innerWrapper"
                 style={
                   Object {
                     "height": "20px",
@@ -91,31 +71,6 @@ Array [
                 </svg>
               </span>
             </span>
-<<<<<<< HEAD
-          </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            View In Classroom
-          </a>
-        </li>
-        <li
-          className="li"
-        >
-          <span
-            className="outerWrapper"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
-          >
-            <span
-              className="innerWrapper"
-=======
             <a
               href="/"
               onClick={[Function]}
@@ -128,8 +83,7 @@ Array [
             className="li"
           >
             <span
-              className="outer-wrapper"
->>>>>>> main
+              className="outerWrapper"
               style={
                 Object {
                   "height": "20px",
@@ -138,7 +92,7 @@ Array [
               }
             >
               <span
-                className="inner-wrapper"
+                className="innerWrapper"
                 style={
                   Object {
                     "height": "20px",
@@ -163,31 +117,6 @@ Array [
                 </svg>
               </span>
             </span>
-<<<<<<< HEAD
-          </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Foundation Curriculum (PDF)
-          </a>
-        </li>
-        <li
-          className="li"
-        >
-          <span
-            className="outerWrapper"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
-          >
-            <span
-              className="innerWrapper"
-=======
             <a
               href="/"
               onClick={[Function]}
@@ -200,8 +129,7 @@ Array [
             className="li"
           >
             <span
-              className="outer-wrapper"
->>>>>>> main
+              className="outerWrapper"
               style={
                 Object {
                   "height": "20px",
@@ -210,7 +138,7 @@ Array [
               }
             >
               <span
-                className="inner-wrapper"
+                className="innerWrapper"
                 style={
                   Object {
                     "height": "20px",
@@ -254,103 +182,52 @@ Array [
 exports[`Storyshots Components/Button Button Example 1`] = `
 Array [
   <div>
-<<<<<<< HEAD
-    <h1>
-      Buttons
-    </h1>
-    <a
-      aria-label="Button rounded"
-      background="teachers-primary"
-      className="button primary small leadingIcon"
-      href="/"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      title="Button rounded"
-    >
-      <span
-        className="labelSpan"
-      >
-        Button rounded
-      </span>
-    </a>
-  </div>
-</div>
-=======
     <div>
       <h1>
         Buttons
       </h1>
-      <button
-        className="button background--teachers-primary variant--rounded"
+      <a
+        aria-label="Button rounded"
+        background="teachers-primary"
+        className="button primary small leadingIcon"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
+        title="Button rounded"
       >
         <span
-          className="button-label"
+          className="labelSpan"
         >
           Button rounded
         </span>
-      </button>
+      </a>
     </div>
   </div>,
   ";",
 ]
->>>>>>> main
 `;
 
 exports[`Storyshots Components/Button Button Example With Icon 1`] = `
 Array [
   <div>
-<<<<<<< HEAD
-    <h1>
-      Buttons
-    </h1>
-    <a
-      aria-label="Button"
-      background="teachers-primary"
-      className="button secondary small leadingIcon"
-      href="/"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      title="Button"
-    >
-      <span
-        className="iconWrapper"
-      >
-        <span
-          className="outerWrapper"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
-        >
-          <span
-            className="innerWrapper"
-=======
     <div>
       <h1>
         Buttons
       </h1>
-      <button
-        className="button background--pupils-secondary variant--rounded"
+      <a
+        aria-label="Button"
+        background="teachers-primary"
+        className="button secondary small leadingIcon"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
+        title="Button"
       >
         <span
-          className="button-label"
-        >
-          Button
-        </span>
-        <span
-          className="button-icon-wrapper"
+          className="iconWrapper"
         >
           <span
-            className="outer-wrapper"
->>>>>>> main
+            className="outerWrapper"
             style={
               Object {
                 "height": "16px",
@@ -359,7 +236,7 @@ Array [
             }
           >
             <span
-              className="inner-wrapper"
+              className="innerWrapper"
               style={
                 Object {
                   "height": "16px",
@@ -394,23 +271,16 @@ Array [
             </span>
           </span>
         </span>
-<<<<<<< HEAD
-      </span>
-      <span
-        className="labelSpan"
-      >
-        Button
-      </span>
-    </a>
-  </div>
-</div>
-=======
-      </button>
+        <span
+          className="labelSpan"
+        >
+          Button
+        </span>
+      </a>
     </div>
   </div>,
   ";",
 ]
->>>>>>> main
 `;
 
 exports[`Storyshots Components/Card Card Default 1`] = `
@@ -432,31 +302,13 @@ Array [
 `;
 
 exports[`Storyshots Components/Icon Icon Example 1`] = `
-<<<<<<< HEAD
-<div>
-  <h1>
-    Icon Example
-  </h1>
-  <span
-    className="outerWrapper"
-    style={
-      Object {
-        "height": "100px",
-        "width": "100px",
-      }
-    }
-  >
-    <span
-      className="innerWrapper"
-=======
 Array [
   <div>
     <h1>
       Icon Example
     </h1>
     <span
-      className="outer-wrapper"
->>>>>>> main
+      className="outerWrapper"
       style={
         Object {
           "height": "100px",
@@ -464,235 +316,16 @@ Array [
         }
       }
     >
-<<<<<<< HEAD
-      <svg
-        fill="none"
-        height="100%"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <polyline
-          points="9 18 15 12 9 6"
-        />
-      </svg>
-    </span>
-  </span>
-  <h2>
-    Available Icons
-  </h2>
-  <span
-    className="outerWrapper"
-    style={
-      Object {
-        "height": "24px",
-        "width": "24px",
-      }
-    }
-  >
-    <span
-      className="innerWrapper"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-=======
       <span
-        className="inner-wrapper"
+        className="innerWrapper"
         style={
           Object {
             "height": "100px",
             "width": "100px",
           }
->>>>>>> main
         }
       >
-<<<<<<< HEAD
-        <polyline
-          points="9 18 15 12 9 6"
-        />
-      </svg>
-    </span>
-  </span>
-  <span
-    className="outerWrapper"
-    style={
-      Object {
-        "height": "24px",
-        "width": "24px",
-      }
-    }
-  >
-    <span
-      className="innerWrapper"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <svg
-        fill="none"
-        height="100%"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-        />
-        <polyline
-          points="15 3 21 3 21 9"
-        />
-        <line
-          x1="10"
-          x2="21"
-          y1="14"
-          y2="3"
-        />
-      </svg>
-    </span>
-  </span>
-  <span
-    className="outerWrapper"
-    style={
-      Object {
-        "height": "24px",
-        "width": "24px",
-      }
-    }
-  >
-    <span
-      className="innerWrapper"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <svg
-        fill="none"
-        height="100%"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-        />
-        <polyline
-          points="7 10 12 15 17 10"
-        />
-        <line
-          x1="12"
-          x2="12"
-          y1="15"
-          y2="3"
-        />
-      </svg>
-    </span>
-  </span>
-  <span
-    className="outerWrapper"
-    style={
-      Object {
-        "height": "24px",
-        "width": "24px",
-      }
-    }
-  >
-    <span
-      className="innerWrapper"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <svg
-        fill="none"
-        height="100%"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          cx="18"
-          cy="5"
-          r="3"
-        />
-        <circle
-          cx="6"
-          cy="12"
-          r="3"
-        />
-        <circle
-          cx="18"
-          cy="19"
-          r="3"
-        />
-        <line
-          x1="8.59"
-          x2="15.42"
-          y1="13.51"
-          y2="17.49"
-        />
-        <line
-          x1="15.41"
-          x2="8.59"
-          y1="6.51"
-          y2="10.49"
-        />
-      </svg>
-    </span>
-  </span>
-  <span
-    className="outerWrapper"
-    style={
-      Object {
-        "height": "24px",
-        "width": "24px",
-      }
-    }
-  >
-    <span
-      className="innerWrapper"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <svg
-        fill="currentColor"
-        viewBox="2 2 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 0h24v24H0z"
-=======
         <svg
->>>>>>> main
           fill="none"
           height="100%"
           stroke="currentColor"
@@ -713,7 +346,7 @@ Array [
       Available Icons
     </h2>
     <span
-      className="outer-wrapper"
+      className="outerWrapper"
       style={
         Object {
           "height": "24px",
@@ -722,7 +355,7 @@ Array [
       }
     >
       <span
-        className="inner-wrapper"
+        className="innerWrapper"
         style={
           Object {
             "height": "24px",
@@ -748,7 +381,7 @@ Array [
       </span>
     </span>
     <span
-      className="outer-wrapper"
+      className="outerWrapper"
       style={
         Object {
           "height": "24px",
@@ -757,7 +390,7 @@ Array [
       }
     >
       <span
-        className="inner-wrapper"
+        className="innerWrapper"
         style={
           Object {
             "height": "24px",
@@ -792,7 +425,7 @@ Array [
       </span>
     </span>
     <span
-      className="outer-wrapper"
+      className="outerWrapper"
       style={
         Object {
           "height": "24px",
@@ -801,7 +434,7 @@ Array [
       }
     >
       <span
-        className="inner-wrapper"
+        className="innerWrapper"
         style={
           Object {
             "height": "24px",
@@ -836,7 +469,7 @@ Array [
       </span>
     </span>
     <span
-      className="outer-wrapper"
+      className="outerWrapper"
       style={
         Object {
           "height": "24px",
@@ -845,7 +478,7 @@ Array [
       }
     >
       <span
-        className="inner-wrapper"
+        className="innerWrapper"
         style={
           Object {
             "height": "24px",
@@ -895,7 +528,7 @@ Array [
       </span>
     </span>
     <span
-      className="outer-wrapper"
+      className="outerWrapper"
       style={
         Object {
           "height": "24px",
@@ -904,7 +537,7 @@ Array [
       }
     >
       <span
-        className="inner-wrapper"
+        className="innerWrapper"
         style={
           Object {
             "height": "24px",
@@ -914,9 +547,7 @@ Array [
       >
         <svg
           fill="currentColor"
-          height="24px"
-          viewBox="0 0 24 24"
-          width="24px"
+          viewBox="2 2 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
