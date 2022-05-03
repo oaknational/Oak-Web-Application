@@ -28,9 +28,11 @@ npm run hasura:users:start
 1. The first time you run this service (or any time it gets out of sync), run:
 
 ```bash
+npm run hasura:users:metadata:apply
+# then
 npm run hasura:users:migrations:apply
 # then
-npm run hasura:users:metadata:apply
+npm run hasura:users:metadata:reload
 ```
 
 1. If you want to make any changes to the database, you must do it through the console (so that migrations and metadata are tracked), run:
