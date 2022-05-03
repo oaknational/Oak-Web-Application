@@ -51,10 +51,16 @@ class ConfigValue {
    */
   get value() {
     const envValue = this._value;
+    const defaultValue = this.default;
     if (envValue && envValue.length > 0 && envValue !== "undefined") {
       return envValue;
+    } else if (defaultValue) {
+      console.log(
+        `Env ${this.env} undefined, using default value: ${defaultValue}`
+      );
+      return defaultValue;
     } else {
-      return this.default;
+      return;
     }
   }
 
