@@ -1,3 +1,19 @@
+## [0.14.1](https://github.com/oaknational/Samara/compare/v0.14.0...v0.14.1) (2022-05-03)
+
+# [0.14.0](https://github.com/oaknational/Samara/compare/v0.13.0...v0.14.0) (2022-05-03)
+
+
+### Bug Fixes
+
+* firebse-proxy ([46bc698](https://github.com/oaknational/Samara/commit/46bc698bcd6e64037510911209f581465063b671))
+* fix broken useAuth file ([1f56ffd](https://github.com/oaknational/Samara/commit/1f56ffda712a8ef1da220ce187ed9f1e568691dc))
+* put firebase proxy hosts in env ([b10a7e2](https://github.com/oaknational/Samara/commit/b10a7e231e850c94ea8349023a4ab4485b9f8109))
+
+
+### Features
+
+* proxy firebase WIP ([a09f6d3](https://github.com/oaknational/Samara/commit/a09f6d36d656f2f02ad267d54d328e5accdb5146))
+
 # [0.13.0](https://github.com/oaknational/Samara/compare/v0.12.0...v0.13.0) (2022-05-03)
 
 
