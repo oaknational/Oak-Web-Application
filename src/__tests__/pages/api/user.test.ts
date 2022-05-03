@@ -3,10 +3,10 @@ import { createNextApiMocks } from "../../__helpers__/createNextApiMocks";
 
 const testTokenValue = "test";
 const testEmail = "test@thenational.academy";
-const firebaseId = "123";
+const firebaseUid = "123";
 const testOakUser = {
   id: 1,
-  firebase_id: firebaseId,
+  firebaseUid,
   email: testEmail,
 };
 const authHeaders = { authorization: `Bearer ${testTokenValue}` };
@@ -18,13 +18,13 @@ const createReqRes = () =>
 const okResponseData = {
   id: 1,
   email: testEmail,
-  firebase_id: firebaseId,
+  firebaseUid,
 };
 const errorResponseData = {
   message: "Failed to POST to /user",
 };
 const verifyFirebaseToken = jest.fn(async () => ({
-  firebaseId,
+  firebaseUid,
   email: testEmail,
 }));
 const getOrCreateOakUser = jest.fn(async () => testOakUser);
@@ -73,7 +73,7 @@ describe("POST /api/user", () => {
     await handler(req, res);
 
     expect(getOrCreateOakUser).toHaveBeenCalledWith({
-      firebaseId,
+      firebaseUid,
       email: testEmail,
     });
   });
@@ -82,7 +82,7 @@ describe("POST /api/user", () => {
     await handler(req, res);
 
     expect(applyHasuraClaimsToFirebaseUser).toHaveBeenCalledWith({
-      firebaseId,
+      firebaseUid,
       user: testOakUser,
     });
   });

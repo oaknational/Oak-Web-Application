@@ -4,15 +4,27 @@ import {
   BookmarkedLessonRemoveDocument,
 } from "../../browser-lib/graphql/generated/apollo";
 
-export const testLesson = {
-  id: 1,
-  slug: "physics-only-review-chj3cd",
-  title: "Physics only review",
-};
-export const testBookmark = {
-  lesson: testLesson,
-  created_at: new Date().toISOString(),
-};
+export const testLessons = [
+  {
+    id: "1",
+    slug: "physics-only-review-chj3cd",
+    title: "Physics only review",
+  },
+  {
+    id: "2",
+    slug: "macbeth-chj3cd",
+    title: "Macbeth",
+  },
+];
+
+export const testBookmarks = testLessons.map((lesson) => ({
+  lesson,
+  createdAt: new Date().toISOString(),
+}));
+
+export const bookmarkToAdd = testBookmarks[0];
+export const bookmarkToRemove = testBookmarks[1];
+
 const apolloMocks = [
   {
     request: {
@@ -20,29 +32,32 @@ const apolloMocks = [
     },
     result: {
       data: {
-        bookmarked_lesson: [testBookmark],
+        bookmarkedLessons: testBookmarks,
       },
     },
   },
   {
     request: {
       query: BookmarkedLessonAddDocument,
-      variables: { lessonId: 1 },
+      variables: { lessonId: bookmarkToAdd?.lesson.id },
     },
     result: {
       data: {
-        insert_bookmarked_lesson_one: testBookmark,
+        insert_bookmarkedLessons_one: testBookmarks[0],
       },
     },
   },
   {
     request: {
       query: BookmarkedLessonRemoveDocument,
-      variables: { lessonId: 1, userId: 123 },
+      variables: { lessonId: bookmarkToAdd?.lesson.id, userId: "123" },
     },
     result: {
       data: {
-        delete_bookmarked_lesson_by_pk: {},
+        delete_bookmarkedLessons_by_pk: {
+          lessonId: bookmarkToAdd?.lesson.id,
+          userId: "123",
+        },
       },
     },
   },
