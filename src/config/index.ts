@@ -184,9 +184,6 @@ if (missingValues.length > 0) {
 const configGet = (key: ConfigKey) => {
   const configVar = envVars[key] || {};
 
-  // DEBUG
-  console.log("config value:", configVar.value);
-
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(configVar.value);
 
