@@ -47,7 +47,7 @@ const bookmarksContext = createContext<BookmarksContext | null>(null);
  * meaning latest first.
  */
 export const BookmarksProvider: FC = ({ children }) => {
-  const { user } = useAuth();
+  const { user, isLoggedIn } = useAuth();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
   const [addBookmarkMutation] = useBookmarkedLessonAddMutation();
@@ -57,10 +57,10 @@ export const BookmarksProvider: FC = ({ children }) => {
     useBookmarkedLessonsLazyQuery();
 
   useEffect(() => {
-    if (user) {
+    if (isLoggedIn) {
       fetchBookmarks();
     }
-  }, [user]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     /**
@@ -82,7 +82,7 @@ export const BookmarksProvider: FC = ({ children }) => {
 
   const addBookmark = useCallback(
     async (lessonId: LessonId) => {
-      if (!user) {
+      if (!isLoggedIn) {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
@@ -96,7 +96,7 @@ export const BookmarksProvider: FC = ({ children }) => {
       setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
       refetch();
     },
-    [user, addBookmarkMutation]
+    [isLoggedIn, addBookmarkMutation]
   );
 
   const removeBookmark = useCallback(
