@@ -1,4 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
+import { sendSignInLinkToEmail } from "firebase/auth";
 
 import {
   LS_KEY_ACCESS_TOKEN,
@@ -186,17 +187,27 @@ describe("auth/useAuth.tsx", () => {
   });
   it("should handle error if POST /user route fails on login", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
-    apiPostUserMock.mockImplementationOnce(() =>
-      Promise.reject("something bad")
-    );
+    const error = new Error("something bad");
+    apiPostUserMock.mockImplementationOnce(() => Promise.reject(error));
     await act(async () => {
-      try {
-        await result.current.signInWithEmailCallback();
-      } catch (error) {
-        // catching exception so test doesn't blow up
-      }
+      await expect(
+        async () => await result.current.signInWithEmailCallback()
+      ).rejects.toThrowError(new Error("Invalid email or expired OTP"));
     });
 
-    expect(errorHandlerMock).toHaveBeenCalledWith("something bad");
+    expect(errorHandlerMock).toHaveBeenCalledWith(error);
+  });
+  it("signInWithEmail should throw if sendSignInLinkToEmail() fails", async () => {
+    const originalError = new Error("bad thing happened");
+    const { result } = renderHook(useAuth, { wrapper: AuthProvider });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    sendSignInLinkToEmail.mockImplementationOnce(() =>
+      Promise.reject(originalError)
+    );
+    await expect(async () => {
+      await result.current.signInWithEmail("test email");
+    }).rejects.toThrow("Could not send sign in link to provided email");
   });
 });
