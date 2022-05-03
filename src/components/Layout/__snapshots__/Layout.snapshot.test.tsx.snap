@@ -85,6 +85,11 @@ exports[`renders <Layout> unchanged 1`] = `
         </label>
       </div>
     </form>
+    <button
+      class="userThemeButton"
+    >
+      pupils
+    </button>
     <div
       class="signInButtonWrapper"
     >

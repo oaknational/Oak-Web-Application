@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.12.0",
+  "version": "0.14.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -51,11 +51,11 @@
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "dependencies": {
-    "@storybook/addon-a11y": "^6.4.20",
-    "@storybook/addon-storysource": "^6.4.20",
     "@bugsnag/js": "^7.16.2",
     "@bugsnag/plugin-react": "^7.16.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.11",
+    "@storybook/addon-a11y": "^6.4.20",
+    "@storybook/addon-storysource": "^6.4.20",
     "clsx": "^1.1.1",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",

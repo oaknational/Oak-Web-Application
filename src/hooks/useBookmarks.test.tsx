@@ -109,8 +109,12 @@ const Providers: FC = ({ children }) => {
 };
 
 const testUser = { id: "123", email: "test email" };
+/**
+ * useAuth mock with logged in state
+ */
 const useAuth = jest.fn<{ user: typeof testUser | null }, []>(() => ({
   user: testUser,
+  isLoggedIn: true,
 }));
 jest.mock("../auth/useAuth", () => ({
   __esModule: true,
