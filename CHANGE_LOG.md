@@ -1,3 +1,11 @@
+# [0.13.0](https://github.com/oaknational/Samara/compare/v0.12.0...v0.13.0) (2022-05-03)
+
+
+### Features
+
+* switch between pupil and teacher style context in site header ([6c8a23e](https://github.com/oaknational/Samara/commit/6c8a23e3ef80b54986d06a9a8f986aadb3d33375))
+* teachers pupils variations from theme ([2a0d7c3](https://github.com/oaknational/Samara/commit/2a0d7c3d293c16777f96891781c53e7678f4509b))
+
 # [0.12.0](https://github.com/oaknational/Samara/compare/v0.11.4...v0.12.0) (2022-04-29)
 
 
