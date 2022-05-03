@@ -20,6 +20,7 @@ import {
 import useApi from "../browser-lib/api";
 import { useBookmarksCache } from "../hooks/useBookmarks";
 import createErrorHandler from "../common-lib/error-handler";
+import OakError from "../errors/OakError";
 
 import useAccessToken from "./useAccessToken";
 
@@ -70,6 +71,8 @@ export type OakUser = {
 
 export type OakAuth = {
   user: OakUser | null;
+  // Convenience property, and primative, so useful in hook dependency arrays
+  isLoggedIn: boolean;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
   signInWithEmailCallback: () => Promise<void>;
@@ -80,6 +83,7 @@ export const authContext = createContext<OakAuth | null>(null);
 export const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
+  const isLoggedIn = Boolean(user);
   const [, setAccessToken] = useAccessToken();
   const api = useApi();
   const apiGetOrCreateUser = api["/user"];
@@ -145,6 +149,7 @@ export const AuthProvider: FC = ({ children }) => {
   // Return the user object and auth methods
   const value = {
     user,
+    isLoggedIn,
     signOut: async () => {
       await signOut(auth);
       resetAuthState();
@@ -158,10 +163,10 @@ export const AuthProvider: FC = ({ children }) => {
         });
         window.localStorage.setItem(LS_KEY_EMAIL_FOR_SIGN_IN, email);
       } catch (error) {
-        // @TODO error service
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log(error);
+        throw new OakError({
+          code: "auth/send-sign-in-link",
+          originalError: error,
+        });
       }
     },
     signInWithEmailCallback: async () => {
