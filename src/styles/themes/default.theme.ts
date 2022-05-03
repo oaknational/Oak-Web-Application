@@ -1,19 +1,24 @@
 import { Theme } from "./types";
 
 // In theory this could be a json passed in as config
+
 const defaultTheme: Theme = {
-  // purple
-  "color-teachers-primary": "#5C3CCB",
-  "color-teachers-primary-contrast": "#fff",
-  // light blue
-  "color-teachers-secondary": "#46C7E1",
-  "color-teachers-secondary-contrast": "#fff",
-  // light green
-  "color-pupils-primary": "#96D200",
-  "color-pupils-primary-contrast": "#371E2D",
-  // brown
-  "color-pupils-secondary": "#371E2D",
-  "color-pupils-secondary-contrast": "#fff",
+  common: {
+    "button-border-radius": "12px",
+    // general theme, which doesn't depend on pupil/teacher
+  },
+  teachers: {
+    "color-primary": "#5C3CCB",
+    "color-primary-contrast": "#fff",
+    "color-secondary": "#46C7E1",
+    "color-secondary-contrast": "#fff",
+  },
+  pupils: {
+    "color-primary": "#96D200",
+    "color-primary-contrast": "#371E2D",
+    "color-secondary": "#371E2D",
+    "color-secondary-contrast": "#fff",
+  },
 };
 
 export default defaultTheme;
