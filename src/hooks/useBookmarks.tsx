@@ -1,6 +1,6 @@
 import { createContext, FC, useCallback, useContext, useEffect } from "react";
 
-import useAuth from "../auth/useAuth";
+import { useUser } from "../context/Auth";
 import {
   useBookmarkedLessonAddMutation,
   useBookmarkedLessonRemoveMutation,
@@ -23,8 +23,18 @@ type Bookmark = {
   };
 };
 
+// Shallow compare function
+const areBookmarksEqual = (old: Bookmark[], _new: Bookmark[]) => {
+  return (
+    old.length === _new.length &&
+    old.reduce<boolean>(
+      (accum, curr, i) => accum && curr.lesson.id === _new[i]?.lesson.id,
+      true
+    )
+  );
+};
 export const useBookmarksCache = () => {
-  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, []);
+  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, [], areBookmarksEqual);
 };
 
 export type BookmarksContext = {
@@ -47,20 +57,39 @@ const bookmarksContext = createContext<BookmarksContext | null>(null);
  * meaning latest first.
  */
 export const BookmarksProvider: FC = ({ children }) => {
-  const { user, isLoggedIn } = useAuth();
+  const user = useUser();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
-  const [addBookmarkMutation] = useBookmarkedLessonAddMutation();
-  const [removeBookmarkMutation] = useBookmarkedLessonRemoveMutation();
+  const [addBookmarkMutation, { loading: adding }] =
+    useBookmarkedLessonAddMutation();
+  const [removeBookmarkMutation, { loading: removing }] =
+    useBookmarkedLessonRemoveMutation();
 
-  const [fetchBookmarks, { data, refetch, loading, error }] =
-    useBookmarkedLessonsLazyQuery();
+  const [fetchBookmarks, { data, loading: fetching, error, refetch }] =
+    useBookmarkedLessonsLazyQuery({
+      fetchPolicy: "cache-and-network",
+      nextFetchPolicy: "network-only",
+      notifyOnNetworkStatusChange: true,
+    });
+
+  // const bookmarks = useMemo(
+  //   () =>
+  //     data?.bookmarkedLessons
+  //       .map(({ lesson }) => lesson)
+  //       .filter(truthy)
+  //       .map((lesson) => ({ lesson })) || [],
+  //   [data]
+  // );
+
+  const loading = fetching || removing || adding;
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (user) {
+      console.log(">>>>>>>>>>fetching?");
+
       fetchBookmarks();
     }
-  }, [isLoggedIn]);
+  }, [user, fetchBookmarks]);
 
   useEffect(() => {
     /**
@@ -78,11 +107,17 @@ export const BookmarksProvider: FC = ({ children }) => {
           .map((lesson) => ({ lesson }))
       );
     }
-  }, [data]);
+  }, [data, setBookmarks]);
+
+  const refetchBookmarks = useCallback(async () => {
+    if (refetch) {
+      await refetch();
+    }
+  }, [refetch]);
 
   const addBookmark = useCallback(
     async (lessonId: LessonId) => {
-      if (!isLoggedIn) {
+      if (!user) {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
@@ -94,9 +129,9 @@ export const BookmarksProvider: FC = ({ children }) => {
       }
       const lesson = bookmark.lesson;
       setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
-      refetch();
+      refetchBookmarks();
     },
-    [isLoggedIn, addBookmarkMutation]
+    [user, addBookmarkMutation, refetchBookmarks, setBookmarks]
   );
 
   const removeBookmark = useCallback(
@@ -112,14 +147,10 @@ export const BookmarksProvider: FC = ({ children }) => {
       setBookmarks((bookmarks) =>
         bookmarks.filter((bookmark) => bookmark.lesson.id !== lessonId)
       );
-      refetch();
+      refetchBookmarks();
     },
-    [user, removeBookmarkMutation]
+    [user, removeBookmarkMutation, refetchBookmarks, setBookmarks]
   );
-
-  const refetchBookmarks = async () => {
-    await refetch();
-  };
 
   const isBookmarked = useCallback(
     (lessonId: LessonId) => {

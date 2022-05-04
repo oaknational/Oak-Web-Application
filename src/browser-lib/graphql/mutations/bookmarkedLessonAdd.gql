@@ -1,5 +1,7 @@
 mutation bookmarkedLessonAdd($lessonId: uuid!) {
   insert_bookmarkedLessons_one(object: { lessonId: $lessonId }) {
+    lessonId
+    userId
     lesson {
       id
       slug
