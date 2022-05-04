@@ -62,8 +62,9 @@ export const getStaticProps: GetStaticProps<
   const [lesson] = res.lessons;
 
   if (!lesson) {
-    // @TODO consistently figure a way to handle 404s etc
-    throw new Error("404 Not found");
+    return {
+      notFound: true,
+    };
   }
 
   return {
