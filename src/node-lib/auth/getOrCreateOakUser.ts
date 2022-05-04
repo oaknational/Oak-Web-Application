@@ -1,4 +1,4 @@
-import { OakUser } from "../../auth/useAuth";
+import { OakUser } from "../../context/Auth";
 import OakError from "../../errors/OakError";
 import graphqlApi from "../graphql";
 

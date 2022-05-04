@@ -1,7 +1,8 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
-import useAuth from "../../auth/useAuth";
-import useBookmarks, { LessonId } from "../../hooks/useBookmarks";
+import { useUser } from "../../context/Auth";
+import { LessonId } from "../../hooks/useBookmarks";
+import useToggleBookmark from "../../hooks/useToggleBookmark";
 import IconButton from "../IconButton/IconButton";
 
 type BookmarkLessonButtonProps = {
@@ -9,44 +10,26 @@ type BookmarkLessonButtonProps = {
 };
 const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
   const { lessonId } = props;
-  const { user } = useAuth();
-  const { bookmarks, addBookmark, removeBookmark, isBookmarked } =
-    useBookmarks();
-  const [loading, setLoading] = useState(typeof bookmarks === "undefined");
+  const user = useUser();
+
+  const { toggleBookmark, bookmarked, loading } = useToggleBookmark({
+    lessonId,
+  });
+
+  console.log("bookmarked", bookmarked);
 
   if (!user) {
     // Bookmarks only for logged in
     return null;
   }
 
-  const toggleBookmark = async () => {
-    if (loading) {
-      return;
-    }
-
-    setLoading(true);
-    try {
-      if (!isBookmarked(lessonId)) {
-        await addBookmark(lessonId);
-      } else {
-        await removeBookmark(lessonId);
-      }
-    } catch (error) {
-      // @TODO: bugsnag
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <IconButton
       onClick={toggleBookmark}
       icon="Star"
-      aria-label={`${isBookmarked(lessonId) ? "Remove" : "Add"} Bookmark`}
+      aria-label={`${bookmarked ? "Remove" : "Add"} Bookmark`}
       disabled={loading}
-      iconColorOverride={
-        isBookmarked(lessonId) ? "color-icon-bookmarked" : undefined
-      }
+      iconColorOverride={bookmarked ? "color-icon-bookmarked" : undefined}
     />
   );
 };

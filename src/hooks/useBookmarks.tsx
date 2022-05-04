@@ -1,6 +1,6 @@
 import { createContext, FC, useCallback, useContext, useEffect } from "react";
 
-import useAuth from "../auth/useAuth";
+import { useUser } from "../context/Auth";
 import {
   useBookmarkedLessonAddMutation,
   useBookmarkedLessonRemoveMutation,
@@ -23,8 +23,18 @@ type Bookmark = {
   };
 };
 
+// Shallow compare function
+const areBookmarksEqual = (old: Bookmark[], _new: Bookmark[]) => {
+  return (
+    old.length === _new.length &&
+    old.reduce<boolean>(
+      (accum, curr, i) => accum && curr.lesson.id === _new[i]?.lesson.id,
+      true
+    )
+  );
+};
 export const useBookmarksCache = () => {
-  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, []);
+  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, [], areBookmarksEqual);
 };
 
 export type BookmarksContext = {
@@ -47,7 +57,7 @@ const bookmarksContext = createContext<BookmarksContext | null>(null);
  * meaning latest first.
  */
 export const BookmarksProvider: FC = ({ children }) => {
-  const { user, isLoggedIn } = useAuth();
+  const user = useUser();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
   const [addBookmarkMutation] = useBookmarkedLessonAddMutation();
@@ -57,10 +67,10 @@ export const BookmarksProvider: FC = ({ children }) => {
     useBookmarkedLessonsLazyQuery();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (user) {
       fetchBookmarks();
     }
-  }, [isLoggedIn]);
+  }, [user, fetchBookmarks]);
 
   useEffect(() => {
     /**
@@ -78,11 +88,11 @@ export const BookmarksProvider: FC = ({ children }) => {
           .map((lesson) => ({ lesson }))
       );
     }
-  }, [data]);
+  }, [data, setBookmarks]);
 
   const addBookmark = useCallback(
     async (lessonId: LessonId) => {
-      if (!isLoggedIn) {
+      if (!user) {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
@@ -96,7 +106,7 @@ export const BookmarksProvider: FC = ({ children }) => {
       setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
       refetch();
     },
-    [isLoggedIn, addBookmarkMutation]
+    [user, addBookmarkMutation, setBookmarks, refetch]
   );
 
   const removeBookmark = useCallback(
@@ -114,7 +124,7 @@ export const BookmarksProvider: FC = ({ children }) => {
       );
       refetch();
     },
-    [user, removeBookmarkMutation]
+    [user, removeBookmarkMutation, setBookmarks, refetch]
   );
 
   const refetchBookmarks = async () => {
@@ -123,6 +133,8 @@ export const BookmarksProvider: FC = ({ children }) => {
 
   const isBookmarked = useCallback(
     (lessonId: LessonId) => {
+      console.log("isBookmarked", bookmarks, lessonId);
+
       return bookmarks.some((bookmark) => bookmark.lesson.id === lessonId);
     },
     [bookmarks]

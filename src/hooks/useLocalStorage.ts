@@ -1,5 +1,11 @@
 // https://usehooks-ts.com/react-hook/use-local-storage
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import useEventListener from "./useEventListener";
 
@@ -26,10 +32,15 @@ export const dispatchLocalStorageEvent = () => {
  * The case fall indexdb will arise when we want to use local storage to
  * facilitate "personalisation" features for visitors who aren't logged in.
  */
-function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+  // pass an areEqual function to ensure state doesn't get updated too often
+  areEqual?: (a: T, b: T) => boolean
+): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
-  const readValue = (): T => {
+  const readValue = useCallback((): T => {
     // Prevent build error "window is undefined" but keep keep working
     if (typeof window === "undefined") {
       return initialValue;
@@ -42,7 +53,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return initialValue;
     }
-  };
+  }, [key]);
 
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
@@ -50,34 +61,54 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValue: SetValue<T> = (value) => {
-    // Prevent build error "window is undefined" but keeps working
-    if (typeof window == "undefined") {
-      console.warn(
-        `Tried setting localStorage key “${key}” even though environment is not a client`
-      );
-    }
+  const setValue: SetValue<T> = useCallback(
+    (value) => {
+      // Prevent build error "window is undefined" but keeps working
+      if (typeof window == "undefined") {
+        console.warn(
+          `Tried setting localStorage key “${key}” even though environment is not a client`
+        );
+      }
 
-    try {
-      // Allow value to be a function so we have the same API as useState
-      const newValue = value instanceof Function ? value(storedValue) : value;
+      try {
+        // Allow value to be a function so we have the same API as useState
+        const newValue = value instanceof Function ? value(storedValue) : value;
 
-      // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(newValue));
+        // console.log(storedValue, newValue);
 
-      // Save state
-      setStoredValue(newValue);
+        if (newValue === storedValue) {
+          console.log(key, "same");
 
-      // We dispatch a custom event so every useLocalStorage hook are notified
-      dispatchLocalStorageEvent();
-    } catch (error) {
-      console.warn(`Error setting localStorage key “${key}”:`, error);
-    }
-  };
+          return;
+        }
+
+        if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
+          // If areEqual function is passed, and old/new values are equal, don't update
+          console.log(key, "equivalent");
+
+          return;
+        }
+
+        console.log(key, "update");
+
+        // Save to local storage
+        window.localStorage.setItem(key, JSON.stringify(newValue));
+
+        // Save state
+        setStoredValue(newValue);
+
+        // We dispatch a custom event so every useLocalStorage hook are notified
+        dispatchLocalStorageEvent();
+      } catch (error) {
+        console.warn(`Error setting localStorage key “${key}”:`, error);
+      }
+    },
+    [storedValue, areEqual, key]
+  );
 
   useEffect(() => {
     setStoredValue(readValue());
-  }, []);
+  }, [readValue]);
 
   const handleStorageChange = () => {
     setStoredValue(readValue());
