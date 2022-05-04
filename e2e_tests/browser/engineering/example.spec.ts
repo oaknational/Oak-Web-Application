@@ -14,7 +14,7 @@ const baseUrl =
 const frontPageUrl = new URL(baseUrl).href;
 
 const locators = {
-  lessonTitle: "[data-testid='lesson-title']",
+  homePageTitle: "[data-testid='home-page-title']",
 };
 
 test.beforeEach(async ({ page }) => {
@@ -23,8 +23,8 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("Does Playwright work", () => {
   test("we can do things on the front page", async ({ page }) => {
-    await expect(page.locator(locators.lessonTitle)).toHaveText([
-      "Physics only review",
+    await expect(page.locator(locators.homePageTitle)).toHaveText([
+      "Oak National Academy",
     ]);
   });
 });

@@ -104,7 +104,7 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
     class="main"
   >
     <h1
-      data-testid="lesson-title"
+      data-testid="home-page-title"
     >
       Oak National Academy
     </h1>
