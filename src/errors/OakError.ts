@@ -6,6 +6,8 @@
 const ERROR_CODES = [
   "misc/unknown",
   "misc/network-error",
+  "misc/unexpected-type",
+  "auth/send-sign-in-link",
   "auth/token-expired",
   "auth/token-error-unknown",
   "graphql/validation", // for this we actually want more details when the error is thrown
@@ -45,6 +47,15 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "graphql/validation": {
     message: "Graphql validation error",
     responseStatusCode: 500,
+    shouldNotify: true,
+  },
+  "auth/send-sign-in-link": {
+    message: "Could not send sign in link to provided email",
+    shouldNotify: true,
+  },
+  "misc/unexpected-type": {
+    message:
+      "An unexpected type was encountered, so action may not have completed successfully",
     shouldNotify: true,
   },
 };

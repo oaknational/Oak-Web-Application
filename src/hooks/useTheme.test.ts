@@ -101,7 +101,7 @@ describe("useTheme()", () => {
 
       await waitFor(() => {
         expect(documentStyleSetPropertySpy).toHaveBeenNthCalledWith(
-          2,
+          9,
           "--color-primary",
           "darkpurple"
         );

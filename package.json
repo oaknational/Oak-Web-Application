@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.14.1",
+  "version": "0.15.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -16,14 +16,16 @@
     "gql-codegen:node": "graphql-codegen --config src/node-lib/graphql/codegen.yml -r dotenv/config",
     "hasura:users": "hasura --project hasura-users --skip-update-check",
     "hasura:users:console": "npm run hasura:users console -- --no-browser",
-    "hasura:users:migrations:apply": "npm run hasura:users migrate apply",
+    "hasura:users:migrations:apply": "npm run hasura:users migrate apply -- --all-databases",
     "hasura:users:metadata:apply": "npm run hasura:users metadata apply",
+    "hasura:users:metadata:reload": "npm run hasura:users metadata reload",
     "hasura:users:start": "docker-compose -f 'hasura-users/docker-compose.yaml' up -d",
     "hasura:users:stop": "docker-compose -f 'hasura-users/docker-compose.yaml' stop",
     "hasura:curriculum": "hasura --project hasura-curriculum --skip-update-check",
     "hasura:curriculum:console": "npm run hasura:curriculum console -- --no-browser --console-port 4741 --api-port 4739",
-    "hasura:curriculum:migrations:apply": "npm run hasura:curriculum migrate apply",
+    "hasura:curriculum:migrations:apply": "npm run hasura:curriculum migrate apply -- --all-databases",
     "hasura:curriculum:metadata:apply": "npm run hasura:curriculum metadata apply",
+    "hasura:curriculum:metadata:reload": "npm run hasura:curriculum metadata reload",
     "hasura:curriculum:start": "docker-compose -f 'hasura-curriculum/docker-compose.yaml' up -d",
     "hasura:curriculum:stop": "docker-compose -f 'hasura-curriculum/docker-compose.yaml' stop",
     "lint": "next lint",
@@ -46,6 +48,7 @@
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
+    "test:storybook:update": "npm run test:storybook -- -u",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "dependencies": {

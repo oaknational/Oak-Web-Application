@@ -8,14 +8,17 @@
 
 .card-primary {
   composes: card;
-  background-color: var(--color-primary);
-  color: var(--color-primary-contrast);
+  composes: bg-primary from "../../styles/colors.module.css";
 }
 
 .card-secondary {
   composes: card;
-  background-color: var(--color-secondary);
-  color: var(--color-secondary-contrast);
+  composes: bg-secondary from "../../styles/colors.module.css";
+}
+
+.card-tertiary {
+  composes: card;
+  composes: bg-tertiary from "../../styles/colors.module.css";
 }
 
 @media mobile {

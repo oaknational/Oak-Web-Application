@@ -1,0 +1,12 @@
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttonGroup > * {
+  margin-bottom: 8px;
+}
+
+.buttonGroup > *:not(:last-child) {
+  margin-right: 12px;
+}

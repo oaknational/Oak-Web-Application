@@ -22,11 +22,11 @@ exports[`renders <Breadcrumb> unchanged 1`] = `
         class="li"
       >
         <span
-          class="outer-wrapper"
+          class="outerWrapper"
           style="height: 20px; width: 20px;"
         >
           <span
-            class="inner-wrapper"
+            class="innerWrapper"
             style="height: 20px; width: 20px;"
           >
             <svg
@@ -56,11 +56,11 @@ exports[`renders <Breadcrumb> unchanged 1`] = `
         class="li"
       >
         <span
-          class="outer-wrapper"
+          class="outerWrapper"
           style="height: 20px; width: 20px;"
         >
           <span
-            class="inner-wrapper"
+            class="innerWrapper"
             style="height: 20px; width: 20px;"
           >
             <svg
@@ -90,11 +90,11 @@ exports[`renders <Breadcrumb> unchanged 1`] = `
         class="li"
       >
         <span
-          class="outer-wrapper"
+          class="outerWrapper"
           style="height: 20px; width: 20px;"
         >
           <span
-            class="inner-wrapper"
+            class="innerWrapper"
             style="height: 20px; width: 20px;"
           >
             <svg

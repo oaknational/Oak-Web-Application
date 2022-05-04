@@ -1,19 +1,14 @@
-.background--teachers-primary {
-  background-color: var(--color-teachers-primary);
-  color: var(--color-teachers-primary-contrast);
+.bg-primary {
+  background-color: var(--color-button-primary);
+  color: var(--color-button-primary-contrast);
 }
 
-.background--teachers-secondary {
-  background-color: var(--color-teachers-secondary);
-  color: var(--color-teachers-secondary-contrast);
+.bg-secondary {
+  background-color: var(--color-button-secondary);
+  color: var(--color-button-secondary-contrast);
 }
 
-.background--pupils-primary {
-  background-color: var(--color-pupils-primary);
-  color: var(--color-pupils-primary-contrast);
-}
-
-.background--pupils-secondary {
-  background-color: var(--color-pupils-secondary);
-  color: var(--color-pupils-secondary-contrast);
+.bg-tertiary {
+  background-color: var(--color-button-tertiary);
+  color: var(--color-button-tertiary-contrast);
 }

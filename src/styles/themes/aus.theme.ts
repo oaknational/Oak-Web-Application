@@ -1,10 +1,15 @@
 import { Theme } from "./types";
 
-// In theory this could be a json passed in as config
 const ausTheme: Theme = {
   common: {
     "button-border-radius": "12px",
-    // general theme, which doesn't depend on pupil/teacher
+    "color-icon-bookmarked": "pink",
+    "color-button-primary": "lightgreen",
+    "color-button-primary-contrast": "black",
+    "color-button-secondary": "lightblue",
+    "color-button-secondary-contrast": "black",
+    "color-button-tertiary": "black",
+    "color-button-tertiary-contrast": "white",
   },
   teachers: {
     "color-primary": "lightgreen",

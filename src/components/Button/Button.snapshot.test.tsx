@@ -4,12 +4,7 @@ import Button from "./Button";
 
 it("renders <Button> unchanged", () => {
   const { container } = render(
-    <Button
-      background="teachers-primary"
-      href="/"
-      label="Download"
-      icon="Download"
-    >
+    <Button href="/" label="Download" icon="Download">
       Download
     </Button>
   );

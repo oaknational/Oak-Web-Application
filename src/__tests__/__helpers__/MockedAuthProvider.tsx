@@ -4,6 +4,7 @@ import { authContext, OakAuth } from "../../auth/useAuth";
 
 export const defaultMockedAuthProviderValue = {
   user: null,
+  isLoggedIn: false,
   signOut: async () => undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   signInWithEmail: async (email: string) => undefined,
@@ -12,6 +13,14 @@ export const defaultMockedAuthProviderValue = {
 
 export type MockedAuthProviderProps = {
   value?: Partial<OakAuth>;
+};
+export const loggedInAuthProviderProps: MockedAuthProviderProps = {
+  value: {
+    user: {
+      id: "4395834",
+      email: "2593485932@324359483u534.com",
+    },
+  },
 };
 const MockedAuthProvider: FC<MockedAuthProviderProps> = ({
   children,

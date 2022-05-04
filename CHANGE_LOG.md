@@ -1,3 +1,37 @@
+## [0.15.1](https://github.com/oaknational/Samara/compare/v0.15.0...v0.15.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* remove lesson data from home page ([98499bb](https://github.com/oaknational/Samara/commit/98499bbbdfa3516ad22a2006282b2eed2236dbdf))
+
+# [0.15.0](https://github.com/oaknational/Samara/compare/v0.14.3...v0.15.0) (2022-05-03)
+
+
+### Bug Fixes
+
+* **button-link:** links styled as buttons should have role='button' ([8db2808](https://github.com/oaknational/Samara/commit/8db280801a1b51dc1a83ae3aa68b1ab7828c6d4a))
+
+
+### Features
+
+* **components:** new button component ([557b9ec](https://github.com/oaknational/Samara/commit/557b9ec9f3cd1786a578778385b2df0cf03b6550))
+* create IconButton and ButtonGroup components ([e68ad4c](https://github.com/oaknational/Samara/commit/e68ad4c75c4a902f6338839b4a677be3bc2d5b84))
+
+## [0.14.3](https://github.com/oaknational/Samara/compare/v0.14.2...v0.14.3) (2022-05-03)
+
+
+### Bug Fixes
+
+* use recommended Nextjs env patterns ([19eba82](https://github.com/oaknational/Samara/commit/19eba82c63b86ee7fe009d4355cca9829635099a))
+
+## [0.14.2](https://github.com/oaknational/Samara/compare/v0.14.1...v0.14.2) (2022-05-03)
+
+
+### Bug Fixes
+
+* use isLoggedIn to prevent excess bookmark requests ([d114c37](https://github.com/oaknational/Samara/commit/d114c373995e48a039d2591aafa8cf6624b9a349))
+
 ## [0.14.1](https://github.com/oaknational/Samara/compare/v0.14.0...v0.14.1) (2022-05-03)
 
 # [0.14.0](https://github.com/oaknational/Samara/compare/v0.13.0...v0.14.0) (2022-05-03)
