@@ -1,3 +1,10 @@
+## [0.15.1](https://github.com/oaknational/Samara/compare/v0.15.0...v0.15.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* remove lesson data from home page ([98499bb](https://github.com/oaknational/Samara/commit/98499bbbdfa3516ad22a2006282b2eed2236dbdf))
+
 # [0.15.0](https://github.com/oaknational/Samara/compare/v0.14.3...v0.15.0) (2022-05-03)
 
 
