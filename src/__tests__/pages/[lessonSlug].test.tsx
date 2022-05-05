@@ -1,4 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
+import mockRouter from "next-router-mock";
 
 import LessonPage from "../../pages/lessons/[lessonSlug]";
 import renderWithProviders from "../__helpers__/renderWithProviders";
@@ -25,7 +26,12 @@ describe("pages/lessons/[lessonSlug].tsx", () => {
     }));
   });
 
+  jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
   describe("LessonPage", () => {
+    beforeEach(() => {
+      mockRouter.setCurrentUrl("/initial");
+    });
     it("Renders lesson title ", async () => {
       renderWithProviders(<LessonPage lesson={testLesson} />);
 

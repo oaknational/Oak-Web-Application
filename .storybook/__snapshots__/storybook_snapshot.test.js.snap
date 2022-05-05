@@ -685,15 +685,15 @@ Array [
           </label>
         </div>
       </form>
-      <button
-        className="userThemeButton"
-        onClick={[Function]}
-      >
-        pupils
-      </button>
       <div
         className="signInButtonWrapper"
       >
+        <button
+          className="userThemeButton"
+          onClick={[Function]}
+        >
+          pupils
+        </button>
         <a
           href="/sign-in"
           onClick={[Function]}

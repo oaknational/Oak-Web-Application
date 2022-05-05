@@ -5,6 +5,8 @@ import {
   NextPage,
 } from "next";
 
+import { CourseJsonLd } from "../../browser-lib/seo/getJsonLd";
+import Seo from "../../browser-lib/seo/Seo";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/Layout/Layout";
 import LessonHeader from "../../components/LessonHeader/LessonHeader";
@@ -19,18 +21,31 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   const { lesson } = props;
 
   return (
-    <Layout>
-      <Breadcrumbs
-        breadcrumbs={[
-          { href: "/", label: "[key-stage]" },
-          { href: "/", label: "Subjects" },
-          { href: "/", label: "[subject-name]" },
-          { href: "/", label: "[unit-name]" },
-        ]}
+    <>
+      <Seo
+        title={`${lesson.title} lesson | Oak National Academy`}
+        description={
+          "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions."
+        }
       />
-      <LessonHeader {...lesson} />
-      <div className={styles["primary-buttons"]}></div>
-    </Layout>
+      <CourseJsonLd
+        courseName={lesson.title}
+        description={"lesson.description"}
+        provider
+      />
+      <Layout>
+        <Breadcrumbs
+          breadcrumbs={[
+            { href: "/", label: "[key-stage]" },
+            { href: "/", label: "Subjects" },
+            { href: "/", label: "[subject-name]" },
+            { href: "/", label: "[unit-name]" },
+          ]}
+        />
+        <LessonHeader {...lesson} />
+        <div className={styles["primary-buttons"]}></div>
+      </Layout>
+    </>
   );
 };
 
