@@ -1,6 +1,11 @@
 // Import the Secret Manager client and instantiate it:
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
-const client = new SecretManagerServiceClient();
+const client = new SecretManagerServiceClient({
+  credentials: {
+    client_email: process.env.GOOGLE_SECRET_MANAGER_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_SECRET_MANAGER_PRIVATE_KEY,
+  },
+});
 
 /**
  * @description Takes a secret name as given on creation of the secret
@@ -69,6 +74,8 @@ async function fetchSecrets({ projectId, secretNames }) {
   });
 
   // Fetch all secret values in parallel
+  // @todo use correct settings for uslint so Promise is allowed
+  // eslint-disable-next-line no-undef
   return await Promise.all(latestSecretValuePromises);
 }
 
