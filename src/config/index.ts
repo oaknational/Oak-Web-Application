@@ -1,3 +1,5 @@
+import seoConfig from "../../next-seo.config";
+
 const CONFIG_KEYS = [
   "firebaseConfigApiHost",
   "firebaseConfigTokenApiHost",
@@ -15,6 +17,15 @@ const CONFIG_KEYS = [
   "releaseStage",
   "appVersion",
   "bugsnagApiKey",
+  "appName",
+  "appDescription",
+  "appLocale",
+  "appUrl",
+  "appLogo",
+  "appSocialSharingImg",
+  "appFacebook",
+  "appTwitter",
+  "appTwitterHandle",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -148,6 +159,69 @@ const envVars: Record<ConfigKey, EnvVar> = {
   bugsnagApiKey: {
     value: process.env.NEXT_PUBLIC_BUGSNAG_API_KEY,
     envName: "NEXT_PUBLIC_BUGSNAG_API_KEY",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appName: {
+    value: seoConfig.NEXT_PUBLIC_APP_NAME,
+    envName: "NEXT_PUBLIC_APP_NAME",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appDescription: {
+    value: seoConfig.NEXT_PUBLIC_APP_DESCRIPTION,
+    envName: "NEXT_PUBLIC_APP_DESCRIPTION",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appLocale: {
+    value: seoConfig.NEXT_PUBLIC_APP_LOCALE,
+    envName: "NEXT_PUBLIC_APP_LOCALE",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appUrl: {
+    value: seoConfig.NEXT_PUBLIC_APP_URL,
+    envName: "NEXT_PUBLIC_APP_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appLogo: {
+    value: seoConfig.NEXT_PUBLIC_APP_LOGO,
+    envName: "NEXT_PUBLIC_APP_LOGO",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appSocialSharingImg: {
+    value: seoConfig.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
+    envName: "NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appFacebook: {
+    value: seoConfig.NEXT_PUBLIC_APP_FACEBOOK,
+    envName: "NEXT_PUBLIC_APP_FACEBOOK",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appTwitter: {
+    value: seoConfig.NEXT_PUBLIC_APP_TWITTER,
+    envName: "NEXT_PUBLIC_APP_TWITTER",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  appTwitterHandle: {
+    value: seoConfig.NEXT_PUBLIC_APP_TWITTER_HANDLE,
+    envName: "NEXT_PUBLIC_APP_TWITTER_HANDLE",
     required: true,
     availableInBrowser: true,
     default: null,

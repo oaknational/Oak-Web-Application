@@ -21,10 +21,10 @@ const SiteHeader: FC = () => {
     <header className={styles.header}>
       <div className={styles.title}>Oak</div>
       <SearchForm />
-      <button className={styles.userThemeButton} onClick={handleClick}>
-        {userStyleContext.user}
-      </button>
       <div className={styles.signInButtonWrapper}>
+        <button className={styles.userThemeButton} onClick={handleClick}>
+          {userStyleContext.user}
+        </button>
         {user ? (
           <button onClick={signOut}>Sign out</button>
         ) : (

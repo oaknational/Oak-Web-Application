@@ -85,14 +85,14 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
         </label>
       </div>
     </form>
-    <button
-      class="userThemeButton"
-    >
-      pupils
-    </button>
     <div
       class="signInButtonWrapper"
     >
+      <button
+        class="userThemeButton"
+      >
+        pupils
+      </button>
       <a
         href="/sign-in"
       >

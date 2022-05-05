@@ -7,6 +7,7 @@
  */
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
+import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 
 import { BookmarksProvider } from "../../hooks/useBookmarks";
 import { UserStyleContextProvider } from "../../context/UserStyleContext";
@@ -29,9 +30,11 @@ const AllTheProviders: FC<ProviderProps> = ({
     <MockedAuthProvider {...authProviderProps}>
       <MockedApolloProvider>
         <UserStyleContextProvider>
-          <BookmarksProvider>
-            <SearchProvider>{children}</SearchProvider>
-          </BookmarksProvider>
+          <MemoryRouterProvider>
+            <BookmarksProvider>
+              <SearchProvider>{children}</SearchProvider>
+            </BookmarksProvider>
+          </MemoryRouterProvider>
         </UserStyleContextProvider>
       </MockedApolloProvider>
     </MockedAuthProvider>

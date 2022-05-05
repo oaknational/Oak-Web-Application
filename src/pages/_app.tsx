@@ -12,6 +12,7 @@ import { UserStyleContextProvider } from "../context/UserStyleContext";
 import { SearchProvider } from "../context/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../hooks/useBookmarks";
+import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme();
@@ -25,6 +26,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
             <UserStyleContextProvider>
               <BookmarksProvider>
                 <SearchProvider>
+                  <DefaultSeo />
                   <Component {...pageProps} />
                 </SearchProvider>
               </BookmarksProvider>
