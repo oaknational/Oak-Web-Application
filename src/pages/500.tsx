@@ -1,14 +1,5 @@
-import Button from "../components/Button";
-import Layout from "../components/Layout";
+import ErrorPage from "./_error";
 
 export default function Custom500() {
-  return (
-    <Layout>
-      <h1 data-testid="500Heading">500 - Server-side error occurred</h1>
-      <h3>Get back on track</h3>
-      <Button href="/" label={"Homepage"}>
-        Homepage
-      </Button>
-    </Layout>
-  );
+  return <ErrorPage statusCode={500} />;
 }

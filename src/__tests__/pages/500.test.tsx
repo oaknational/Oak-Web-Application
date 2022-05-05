@@ -6,8 +6,8 @@ import Custom500 from "../../pages/500";
 describe("pages/500.tsx", () => {
   it("Renders 500 message ", async () => {
     renderWithProviders(<Custom500 />);
-    expect(screen.getByTestId("500Heading")).toHaveTextContent(
-      "500 - Server-side error occurred"
+    expect(screen.getByTestId("errorStatus")).toHaveTextContent(
+      "An error 500 occurred on server"
     );
   });
   it("contains a button with link to homepage", () => {
