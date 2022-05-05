@@ -1,3 +1,10 @@
+# [0.16.0](https://github.com/oaknational/Samara/compare/v0.15.1...v0.16.0) (2022-05-05)
+
+
+### Features
+
+* nextseo component and json ld ([2d65c65](https://github.com/oaknational/Samara/commit/2d65c6535bfd5fcaa8d2ae57b7c71ddbb4003682))
+
 ## [0.15.1](https://github.com/oaknational/Samara/compare/v0.15.0...v0.15.1) (2022-05-04)
 
 
