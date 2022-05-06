@@ -1,0 +1,9 @@
+.imageWrapper {
+  position: relative;
+
+  /* max-width: fit-content; */
+}
+
+.image {
+  height: 100px;
+}

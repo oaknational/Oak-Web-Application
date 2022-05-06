@@ -108,6 +108,308 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
     >
       Physics only review
     </h1>
+    <div
+      style="width: 308px;"
+    >
+      <div
+        class="cardContainer"
+      >
+        <div
+          class="imageWrapper"
+        >
+          <span
+            style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+          >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 100% 0px 0px 0px;"
+            />
+            <img
+              class="image"
+              data-nimg="responsive"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+            />
+            <noscript />
+          </span>
+        </div>
+        <div
+          class="card-secondary"
+        >
+          <div
+            class="cardText"
+          >
+            <div
+              class="textIconWrapper"
+            >
+              <h5
+                class="typography--variant-h5"
+              >
+                Title
+              </h5>
+            </div>
+          </div>
+          <div
+            class="cardText"
+          >
+            <div
+              class="textIconWrapper"
+            >
+              <p
+                class="typography--variant-body3"
+              >
+                Short snappy description of what this card is about.
+              </p>
+            </div>
+          </div>
+          <a
+            aria-label="label"
+            class="button primary small leadingIcon"
+            href="/"
+            role="button"
+            title="label"
+          >
+            <span
+              class="labelSpan"
+            >
+              label
+            </span>
+          </a>
+        </div>
+      </div>
+      <p>
+        -----
+      </p>
+      <div>
+        <div
+          class="cardContainer"
+        >
+          <div
+            class="imageWrapper"
+          >
+            <span
+              style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 100% 0px 0px 0px;"
+              />
+              <img
+                class="image"
+                data-nimg="responsive"
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </span>
+          </div>
+          <div
+            class="card-secondary"
+          >
+            <div
+              class="cardText"
+            >
+              <div
+                class="textIconWrapper"
+              >
+                <h5
+                  class="typography--variant-h5"
+                >
+                  Title
+                </h5>
+              </div>
+            </div>
+            <div
+              class="cardText"
+            >
+              <div
+                class="textIconWrapper"
+              >
+                <p
+                  class="typography--variant-body3"
+                >
+                  Short snappy description of what this card is about.
+                </p>
+              </div>
+            </div>
+            <a
+              aria-label="Label"
+              class="button primary small leadingIcon"
+              href="/"
+              role="button"
+              title="Label"
+            >
+              <span
+                class="labelSpan"
+              >
+                Label
+              </span>
+            </a>
+          </div>
+        </div>
+        <p>
+          -----
+        </p>
+        <div
+          class="card-secondary cardRadius"
+        >
+          <div
+            class="cardText alignCenter"
+          >
+            <div
+              class="aboveIconWrap"
+            >
+              <span
+                class="outerWrapper"
+                style="height: 90px; width: 90px;"
+              >
+                <span
+                  class="innerWrapper color-icon-bookmarked"
+                  style="height: 90px; width: 90px;"
+                >
+                  <svg
+                    fill="currentColor"
+                    viewBox="2 2 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+            <div
+              class=""
+            >
+              <h5
+                class="typography--variant-h5"
+              >
+                Title
+              </h5>
+            </div>
+          </div>
+          <div
+            class="cardText alignCenter"
+          >
+            <div
+              class="textIconWrapper"
+            >
+              <p
+                class="typography--variant-body3"
+              >
+                Short snappy description of what this card is about.
+              </p>
+            </div>
+          </div>
+          <a
+            aria-label="Label"
+            class="button primary small leadingIcon"
+            href="/"
+            role="button"
+            title="Label"
+          >
+            <span
+              class="labelSpan"
+            >
+              Label
+            </span>
+          </a>
+        </div>
+        <p>
+          ---
+        </p>
+        <div
+          class="card-secondary cardRadius"
+        >
+          <div
+            class="cardText"
+          >
+            <div
+              class="textIconWrapper"
+            >
+              <span
+                class="iconWrapper"
+              >
+                <span
+                  class="outerWrapper"
+                  style="height: 24px; width: 24px;"
+                >
+                  <span
+                    class="innerWrapper"
+                    style="height: 24px; width: 24px;"
+                  >
+                    <svg
+                      fill="none"
+                      height="100%"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2.5"
+                      viewBox="0 0 24 24"
+                      width="100%"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                      />
+                      <polyline
+                        points="7 10 12 15 17 10"
+                      />
+                      <line
+                        x1="12"
+                        x2="12"
+                        y1="15"
+                        y2="3"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </span>
+              <h5
+                class="typography--variant-h5"
+              >
+                Need some help?
+              </h5>
+            </div>
+          </div>
+          <div
+            class="cardText"
+          >
+            <div
+              class="textIconWrapper"
+            >
+              <p
+                class="typography--variant-body3"
+              >
+                Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
+              </p>
+            </div>
+          </div>
+          <a
+            aria-label="Label"
+            class="button primary small leadingIcon"
+            href="/"
+            role="button"
+            title="Label"
+          >
+            <span
+              class="labelSpan"
+            >
+              Label
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
   </main>
   <footer
     class="footer"

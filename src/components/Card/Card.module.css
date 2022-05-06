@@ -1,9 +1,13 @@
 @value mobile from "../../styles/breakpoints.css";
 
 .card {
-  height: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px;
+}
+
+.cardRadius {
   border-radius: 12px;
-  padding: 24px;
 }
 
 .card-primary {

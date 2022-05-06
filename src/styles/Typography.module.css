@@ -1,8 +1,15 @@
+.common {
+  margin: 0px;
+  padding: 0px;
+}
+
 .family-1 {
+  composes: common;
   font-family: Lexend, sans-serif;
 }
 
 .family-2 {
+  composes: common;
   font-family: ABeeZee, sans-serif;
 }
 

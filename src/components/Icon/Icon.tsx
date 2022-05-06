@@ -26,7 +26,7 @@ export const icons: Record<IconName, FC> = {
   Star,
 };
 
-type IconProps = {
+export type IconProps = {
   name: IconName;
   /**
    * size in pixels is the value for width and height if they are not separately provided

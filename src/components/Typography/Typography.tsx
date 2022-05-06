@@ -4,7 +4,7 @@ import clsx from "clsx";
 import styles from "../../styles/Typography.module.css";
 
 // Defining the HTML tag that the component will support
-type VariantsType =
+export type VariantsType =
   | "h1"
   | "h2"
   | "h3"
