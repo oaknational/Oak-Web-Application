@@ -1,7 +1,4 @@
 {
-  "bugsnag": {
-    "apiKey": "123abc"
-  },
   "firebase": {
     "apiHost": "example.com",
     "apiKey": "123abc",
