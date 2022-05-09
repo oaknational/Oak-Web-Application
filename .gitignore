@@ -36,6 +36,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# local config
+oak.config.js
+oak.config.json
+oak.config.ts
+
 # vercel
 .vercel
 

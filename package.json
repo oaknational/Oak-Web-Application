@@ -37,8 +37,6 @@
     "playwright:test:bs_local": "LOCAL_E2E=on npx playwright test --config=playwright.browserstack.config.ts",
     "playwright:show": "npx playwright show-report",
     "postinstall": "npm run gql-codegen",
-    "prebuild": "npm run gql-codegen",
-    "predev": "npm run gql-codegen",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "start": "next start",
