@@ -39,6 +39,9 @@ module.exports = async (phase) => {
 
       // Values read from the config file.
 
+      // Bugsnag
+      NEXT_PUBLIC_BUGSNAG_API_KEY: oakConfig.bugsnag.apiKey,
+
       // Firebase
       NEXT_PUBLIC_FIREBASE_API_HOST: oakConfig.firebase.apiHost,
       NEXT_PUBLIC_FIREBASE_API_KEY: oakConfig.firebase.apiKey,
