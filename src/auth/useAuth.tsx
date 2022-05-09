@@ -1,6 +1,6 @@
 // Adapted from https://usehooks.com/useAuth/
 import { useEffect, useContext, createContext, FC } from "react";
-import { initializeApp } from "firebase/app";
+import { FirebaseOptions, initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
@@ -20,10 +20,11 @@ import {
 import useApi from "../browser-lib/api";
 import { useBookmarksCache } from "../hooks/useBookmarks";
 import createErrorHandler from "../common-lib/error-handler";
+import OakError from "../errors/OakError";
 
 import useAccessToken from "./useAccessToken";
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: config.get("firebaseApiKey"),
   authDomain: config.get("firebaseAuthDomain"),
   projectId: config.get("firebaseProjectId"),
@@ -39,16 +40,27 @@ const errorHandler = createErrorHandler("useAuth");
 const auth = getAuth();
 
 /**
- * @todo we should be able to pick this up from the environment
- * but there was an issue on one of the deployment so it needs
- * a bit further investigation
+ * Proxying for zero-rating
  */
-const clientAppBaseUrl =
-  typeof window !== "undefined"
-    ? window.location.origin
-    : config.get("clientAppBaseUrl");
+auth.config.apiScheme = "https";
+auth.config.apiHost = config.get("firebaseConfigApiHost");
+auth.config.tokenApiHost = config.get("firebaseConfigTokenApiHost");
 
-export const SIGN_IN_CALLBACK_URL = `${clientAppBaseUrl}/sign-in/callback`;
+/**
+ * @todo move this to src/config
+ */
+const getClientAppBaseUrl = () => {
+  if (typeof window === "undefined") {
+    throw new Error(
+      "Cannot call 'getClientAppBaseUrl()' on server. Each deployment has multiple domains, so each server must be able to serve multiple client addresses"
+    );
+  }
+
+  return window.location.origin;
+};
+
+export const getSignInCallbackUrl = () =>
+  `${getClientAppBaseUrl()}/sign-in/callback`;
 
 export type UserId = string;
 
@@ -59,6 +71,8 @@ export type OakUser = {
 
 export type OakAuth = {
   user: OakUser | null;
+  // Convenience property, and primative, so useful in hook dependency arrays
+  isLoggedIn: boolean;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
   signInWithEmailCallback: () => Promise<void>;
@@ -69,6 +83,7 @@ export const authContext = createContext<OakAuth | null>(null);
 export const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
   const [user, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
+  const isLoggedIn = Boolean(user);
   const [, setAccessToken] = useAccessToken();
   const api = useApi();
   const apiGetOrCreateUser = api["/user"];
@@ -134,6 +149,7 @@ export const AuthProvider: FC = ({ children }) => {
   // Return the user object and auth methods
   const value = {
     user,
+    isLoggedIn,
     signOut: async () => {
       await signOut(auth);
       resetAuthState();
@@ -141,16 +157,16 @@ export const AuthProvider: FC = ({ children }) => {
     signInWithEmail: async (email: string) => {
       try {
         await sendSignInLinkToEmail(auth, email, {
-          url: SIGN_IN_CALLBACK_URL,
+          url: getSignInCallbackUrl(),
           // This must be true.
           handleCodeInApp: true,
         });
         window.localStorage.setItem(LS_KEY_EMAIL_FOR_SIGN_IN, email);
       } catch (error) {
-        // @TODO error service
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log(error);
+        throw new OakError({
+          code: "auth/send-sign-in-link",
+          originalError: error,
+        });
       }
     },
     signInWithEmailCallback: async () => {

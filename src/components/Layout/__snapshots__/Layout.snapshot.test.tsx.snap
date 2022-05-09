@@ -88,6 +88,11 @@ exports[`renders <Layout> unchanged 1`] = `
     <div
       class="signInButtonWrapper"
     >
+      <button
+        class="userThemeButton"
+      >
+        pupils
+      </button>
       <a
         href="/sign-in"
       >

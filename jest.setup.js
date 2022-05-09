@@ -18,7 +18,7 @@ jest.mock("@bugsnag/js", () => ({
 }));
 // @todo move thes mocks into __mocks__ folder and import into tests that use them
 jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(),
+  getAuth: jest.fn(() => ({ config: {} })),
   onIdTokenChanged: jest.fn(() => () => undefined),
   onAuthStateChanged: jest.fn(() => () => undefined),
   isSignInWithEmailLink: jest.fn(() => true),
@@ -34,9 +34,3 @@ jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
   FirebaseError,
 }));
-
-// In development and production, these env variables
-// are determined at build time in next.config.js
-process.env.NEXT_PUBLIC_APP_VERSION = "123";
-process.env.NEXT_PUBLIC_RELEASE_STAGE = "test";
-process.env.NEXT_PUBLIC_BUGSNAG_API_KEY = "test bugsnag api key";

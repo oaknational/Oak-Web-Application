@@ -1,14 +1,28 @@
-const themeVarKeys = [
-  "color-teachers-primary",
-  "color-teachers-primary-contrast",
-  "color-teachers-secondary",
-  "color-teachers-secondary-contrast",
-  "color-pupils-primary",
-  "color-pupils-primary-contrast",
-  "color-pupils-secondary",
-  "color-pupils-secondary-contrast",
+const iconColorOverrides = ["color-icon-bookmarked"] as const;
+export type IconColorOverride = typeof iconColorOverrides[number];
+
+const themeCommonVarKeys = [
+  ...iconColorOverrides,
+  "color-button-primary",
+  "color-button-primary-contrast",
+  "color-button-secondary",
+  "color-button-secondary-contrast",
+  "color-button-tertiary",
+  "color-button-tertiary-contrast",
+  "button-border-radius",
 ] as const;
+type ThemeCommonVarKey = typeof themeCommonVarKeys[number];
 
-type ThemeVarKey = typeof themeVarKeys[number];
+const themeUserVarKeys = [
+  "color-primary",
+  "color-primary-contrast",
+  "color-secondary",
+  "color-secondary-contrast",
+] as const;
+type ThemeUserVarKey = typeof themeUserVarKeys[number];
 
-export type Theme = Record<ThemeVarKey, string>;
+export type Theme = {
+  common: Record<ThemeCommonVarKey, string>;
+  pupils: Record<ThemeUserVarKey, string>;
+  teachers: Record<ThemeUserVarKey, string>;
+};

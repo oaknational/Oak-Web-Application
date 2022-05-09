@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import useAuth from "../../auth/useAuth";
 import useBookmarks, { LessonId } from "../../hooks/useBookmarks";
-import Button from "../Button";
+import IconButton from "../IconButton/IconButton";
 
 type BookmarkLessonButtonProps = {
   lessonId: LessonId;
@@ -39,11 +39,14 @@ const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
   };
 
   return (
-    <Button
+    <IconButton
       onClick={toggleBookmark}
       icon="Star"
-      label={`${isBookmarked(lessonId) ? "Remove" : "Add"} Bookmark`}
+      aria-label={`${isBookmarked(lessonId) ? "Remove" : "Add"} Bookmark`}
       disabled={loading}
+      iconColorOverride={
+        isBookmarked(lessonId) ? "color-icon-bookmarked" : undefined
+      }
     />
   );
 };

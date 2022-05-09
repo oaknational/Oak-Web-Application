@@ -5,11 +5,11 @@ import {
   NextPage,
 } from "next";
 
-import BookmarkLessonButton from "../../components/BookmarkLessonButton";
+import { CourseJsonLd } from "../../browser-lib/seo/getJsonLd";
+import Seo from "../../browser-lib/seo/Seo";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import Button, { ButtonProps } from "../../components/Button";
-import Card from "../../components/Card";
 import Layout from "../../components/Layout/Layout";
+import LessonHeader from "../../components/LessonHeader/LessonHeader";
 import { LessonId } from "../../hooks/useBookmarks";
 import graphqlApi from "../../node-lib/graphql";
 
@@ -20,56 +20,32 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 ) => {
   const { lesson } = props;
 
-  const buttons: Omit<ButtonProps, "background">[] = [
-    { href: "/", label: "Unit Quiz" },
-    { href: "/", label: "View In Classroom", icon: "OpenExternal" },
-    { href: "/", label: "Foundation Curriculum (PDF)", icon: "Download" },
-    { href: "/", label: "Higher Curriculum (PDF)", icon: "Download" },
-  ];
-
   return (
-    <Layout>
-      <Breadcrumbs
-        breadcrumbs={[
-          { href: "/", label: "[key-stage]" },
-          { href: "/", label: "Subjects" },
-          { href: "/", label: "[subject-name]" },
-          { href: "/", label: "[unit-name]" },
-        ]}
+    <>
+      <Seo
+        title={`${lesson.title} lesson | Oak National Academy`}
+        description={
+          "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions."
+        }
       />
-      <div className={styles["primary-buttons"]}>
-        <BookmarkLessonButton lessonId={lesson.id} />
-        <Button
-          background="teachers-primary"
-          href="/"
-          label="Download"
-          icon="Download"
+      <CourseJsonLd
+        courseName={lesson.title}
+        description={"lesson.description"}
+        provider
+      />
+      <Layout>
+        <Breadcrumbs
+          breadcrumbs={[
+            { href: "/", label: "[key-stage]" },
+            { href: "/", label: "Subjects" },
+            { href: "/", label: "[subject-name]" },
+            { href: "/", label: "[unit-name]" },
+          ]}
         />
-        <Button
-          background="teachers-primary"
-          href="/"
-          label="Share Lesson"
-          icon="Share"
-        />
-      </div>
-      <h1 className={styles["title"]}>
-        <span className={styles["lesson-overview-text"]}>Lesson overview:</span>
-        <br />
-        {lesson.title}
-      </h1>
-      <div className={styles["secondary-buttons"]}>
-        {buttons.map((buttonProps) => {
-          return (
-            <Button
-              key={buttonProps.label}
-              variant="text-link"
-              {...buttonProps}
-            />
-          );
-        })}
-      </div>
-      <Card>Lesson content</Card>
-    </Layout>
+        <LessonHeader {...lesson} />
+        <div className={styles["primary-buttons"]}></div>
+      </Layout>
+    </>
   );
 };
 

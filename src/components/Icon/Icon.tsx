@@ -1,6 +1,9 @@
 import { FC } from "react";
+import clsx from "clsx";
 
-import styles from "./index.module.css";
+import { IconColorOverride } from "../../styles/themes/types";
+
+import styles from "./Icon.module.css";
 import ChevronRight from "./ChevronRight.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
@@ -33,9 +36,15 @@ type IconProps = {
   height?: number;
   outerWidth?: number;
   outerHeight?: number;
+  /**
+   * by default, the color will take the css `color` value of its closest ancester
+   * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
+   * override this value.
+   */
+  color?: IconColorOverride;
 };
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height } = props;
+  const { name, size = 24, width, height, color } = props;
   const IconComponent = icons[name];
 
   const innerWidth = width || size;
@@ -46,11 +55,11 @@ const Icon: FC<IconProps> = (props) => {
 
   return (
     <span
-      className={styles["outer-wrapper"]}
+      className={styles.outerWrapper}
       style={{ height: `${outerHeight}px`, width: `${outerWidth}px` }}
     >
       <span
-        className={styles["inner-wrapper"]}
+        className={clsx(styles.innerWrapper, color && styles[color])}
         style={{ height: `${innerHeight}px`, width: `${innerWidth}px` }}
       >
         <IconComponent />

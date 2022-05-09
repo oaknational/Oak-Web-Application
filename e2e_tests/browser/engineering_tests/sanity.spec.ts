@@ -14,6 +14,6 @@ test.describe("Sanity Tests", () => {
     await page.goto(frontPageUrl);
 
     const pageTitle = page.locator(frontPageLocators.pageTitle);
-    await expect(pageTitle).toHaveText(["Physics only review"]);
+    await expect(pageTitle).toHaveText(["Oak National Academy"]);
   });
 });

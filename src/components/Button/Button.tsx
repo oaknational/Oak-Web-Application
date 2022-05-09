@@ -1,72 +1,62 @@
-import {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  FC,
-  MouseEventHandler,
-} from "react";
-import Link from "next/link";
+import { FC } from "react";
 import clsx from "clsx";
 
 import Icon, { IconName } from "../Icon";
+import UnstyledButtonOrLink, {
+  UnstyledButtonOrLinkProps,
+} from "../UnstyledButtonOrLink";
 
 import styles from "./Button.module.css";
 
-type Color =
-  | "teachers-primary"
-  | "teachers-secondary"
-  | "pupils-primary"
-  | "pupils-secondary";
+export type ButtonVariant = "primary" | "secondary" | "tertiary";
+type IconPosition = "leading" | "trailing";
+export type ButtonSize = "small" | "large";
+export const buttonIconSizeMap: Record<ButtonSize, number> = {
+  small: 16,
+  large: 24,
+};
+export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
+export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "primary";
 
-type ButtonVariant = "rounded" | "text-link";
-
-export type ButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
+export type ButtonProps = UnstyledButtonOrLinkProps & {
   variant?: ButtonVariant;
-  href?: string;
   label: string;
+  size?: ButtonSize;
   icon?: IconName;
-  background?: Color;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  iconPosition?: IconPosition;
 };
 const Button: FC<ButtonProps> = (props) => {
   const {
-    variant = "rounded",
-    onClick,
-    href,
+    variant = DEFAULT_BUTTON_VARIANT,
+    size = DEFAULT_BUTTON_SIZE,
     label,
     icon,
-    background,
-    ...buttonHtmlProps
+    iconPosition = "leading",
+    "aria-label": ariaLabel,
+    title,
+    ...buttonOrLinkProps
   } = props;
 
-  const buttonInner = (
-    <button
-      onClick={onClick}
-      className={clsx(styles.button, styles[`background--${background}`], {
-        [`${styles["variant--rounded"]}`]: variant === "rounded",
-      })}
-      {...buttonHtmlProps}
+  return (
+    <UnstyledButtonOrLink
+      {...buttonOrLinkProps}
+      title={title || ariaLabel || label}
+      aria-label={ariaLabel || label}
+      className={clsx(
+        styles.button,
+        styles[variant],
+        styles[size],
+        styles[`${iconPosition}Icon`]
+      )}
     >
-      <span className={styles["button-label"]}>{label}</span>
       {icon && (
-        <span className={styles["button-icon-wrapper"]}>
-          <Icon name={icon} size={16} />
+        <span className={styles.iconWrapper}>
+          <Icon name={icon} size={buttonIconSizeMap[size]} />
         </span>
       )}
-    </button>
+      <span className={styles.labelSpan}>{label}</span>
+    </UnstyledButtonOrLink>
   );
-
-  if (href) {
-    return (
-      <Link href={href} passHref>
-        {buttonInner}
-      </Link>
-    );
-  }
-
-  return buttonInner;
 };
 
 export default Button;

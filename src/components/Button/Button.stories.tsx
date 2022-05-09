@@ -36,13 +36,12 @@ ButtonExample.args = {
   label: "Button rounded",
   children: "Button rounded",
   icon: undefined,
-  variant: "rounded",
-  background: "teachers-primary",
+  variant: "primary",
   href: "/",
 };
 
 export const ButtonExampleWithIcon = Template.bind({});
 ButtonExampleWithIcon.args = {
-  background: "pupils-secondary",
+  variant: "secondary",
   icon: "Download",
 };

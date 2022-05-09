@@ -1,3 +1,5 @@
+/* button core */
+
 .button {
   composes: button-unstyle from "../../styles/button-unstyle.module.css";
   position: relative;
@@ -5,7 +7,6 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  margin-bottom: 12px;
   max-width: 100%;
 }
 
@@ -14,42 +15,59 @@
   cursor: not-allowed;
 }
 
-.button:not(:last-of-type) {
-  margin-right: 12px;
+/* button size */
+
+.small {
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 12px;
 }
 
-.button-label {
+.large {
+  height: 48px;
+  border-radius: 24px;
+  padding: 0 16px;
+}
+
+/* button label */
+
+.labelSpan {
   composes: ellipsis from "../../styles/ellipsis.module.css";
 }
 
-.button-icon-wrapper {
-  margin-left: 8px;
+/* button icon */
+
+.leadingIcon {
+  flex-direction: row;
+}
+
+.trailingIcon {
+  flex-direction: row-reverse;
+}
+
+.iconWrapper {
   display: inline-flex;
   align-items: center;
 }
 
-.variant--rounded {
-  border-radius: 24px;
-  height: 48px;
-  padding: 0 24px;
+.leadingIcon .iconWrapper {
+  margin-right: 8px;
 }
 
-.variant--text-link:focus {
-  text-decoration: underline;
+.trailingIcon .iconWrapper {
+  margin-left: 8px;
 }
 
-.background--teachers-primary {
-  composes: background--teachers-primary from "../../styles/colors.module.css";
+/* button variant */
+
+.primary {
+  composes: bg-primary from "../../styles/colors.module.css";
 }
 
-.background--teachers-secondary {
-  composes: background--teachers-primary from "../../styles/colors.module.css";
+.secondary {
+  composes: bg-secondary from "../../styles/colors.module.css";
 }
 
-.background--pupils-primary {
-  composes: background--pupils-primary from "../../styles/colors.module.css";
-}
-
-.background--pupil-secondary {
-  composes: background--pupil-primary from "../../styles/colors.module.css";
+.tertiary {
+  composes: bg-tertiary from "../../styles/colors.module.css";
 }

@@ -88,6 +88,11 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
     <div
       class="signInButtonWrapper"
     >
+      <button
+        class="userThemeButton"
+      >
+        pupils
+      </button>
       <a
         href="/sign-in"
       >
@@ -99,10 +104,13 @@ exports[`pages/index.tsx renders homepage unchanged 1`] = `
     class="main"
   >
     <h1
-      data-testid="lesson-title"
+      data-testid="home-page-title"
     >
-      Physics only review
+      Oak National Academy
     </h1>
+    <p>
+      Welcome to the Oak National Academy rebuild
+    </p>
   </main>
   <footer
     class="footer"
