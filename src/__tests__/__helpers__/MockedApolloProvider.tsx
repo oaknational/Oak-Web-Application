@@ -11,7 +11,7 @@ import apolloMocks from "./apolloMocks";
  * This implementation suffices for the most part, but when testing mutations, you will
  * need to create a mocked store within that test file. As an example, of this
  * see useBookmarks.test.tsx
- * 
+ *
  * */
 const MockedApolloProvider: FC = (props) => {
   return <MockedProvider mocks={apolloMocks} addTypename={false} {...props} />;

@@ -23,4 +23,4 @@ Object.defineProperty(window, "localStorage", {
 });
 
 // To ensure file is a module
-export {}
+export {};
