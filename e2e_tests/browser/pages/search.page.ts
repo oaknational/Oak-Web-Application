@@ -8,6 +8,7 @@
  */
 
 import { getPageUrl } from "./helpers";
+import { locators as headerLocators } from "./sections/header.section";
 
 // Note, this won't work for dynamic routes. We could provide a pattern
 // to check against, but programmatic navigation would require a URL
@@ -17,8 +18,10 @@ export const pageUrl = getPageUrl(RELATIVE_URL);
 
 // CSS selectors to find elements on a page. Used to construct Playwright `Locators`.
 export const locators = {
-  headerSearchInput: "css=header input[type='search']",
-  headerSearchSubmit: "css=header button[type='submit']",
-  // Could nest child selectors?
-  searchResults: { list: "css=[data-testid='search-results']", item: "css=li" },
+  ...headerLocators,
+  searchResults: {
+    list: "css=[data-testid='search-results']",
+    item: "css=li",
+    itemLink: "css=a",
+  },
 };
