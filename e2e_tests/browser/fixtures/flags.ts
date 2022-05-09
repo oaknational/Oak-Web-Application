@@ -3,8 +3,7 @@ export const LOCAL_TESTING = process.env.LOCAL_E2E === "on";
 export const PLAYWRIGHT_REPORTER = process.env.PLAYWRIGHT_REPORTER;
 
 /**
- * @todo split this between BASE_URL in the config files with the fallback (including port),
- * and PLAYWRIGHT_TEST_BASE_URL here.
+ * Determine the domain to construct absolute URLs from.
  **/
 export const BASE_URL =
   // Set in the CI env.
