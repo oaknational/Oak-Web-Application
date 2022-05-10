@@ -28,7 +28,7 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
   );
 };
 
-ErrorPage.getInitialProps = ({ res, err }: NextPageContext) => {
+export const getInitialProps = ({ res, err }: NextPageContext) => {
   let statusCode;
   if (res) {
     statusCode = res.statusCode;
