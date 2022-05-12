@@ -18,12 +18,16 @@ module.exports = async (phase) => {
 
   // If we are in a test phase use the fake test config values.
   if (phase === PHASE_TEST) {
-    oakConfig = await fetchConfig("oak.config.test.json");
+    oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
     appVersion = RELEASE_STAGE_TESTING;
   } else {
-    oakConfig = await fetchConfig();
+    const configLocation = process.env.OAK_CONFIG_LOCATION;
+    oakConfig = await fetchConfig(configLocation);
+
+    // DEBUG
+    console.log("Next Oak Config", oakConfig);
 
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
