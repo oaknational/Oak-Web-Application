@@ -72,21 +72,10 @@ export const BookmarksProvider: FC = ({ children }) => {
       notifyOnNetworkStatusChange: true,
     });
 
-  // const bookmarks = useMemo(
-  //   () =>
-  //     data?.bookmarkedLessons
-  //       .map(({ lesson }) => lesson)
-  //       .filter(truthy)
-  //       .map((lesson) => ({ lesson })) || [],
-  //   [data]
-  // );
-
   const loading = fetching || removing || adding;
 
   useEffect(() => {
     if (user) {
-      console.log(">>>>>>>>>>fetching?");
-
       fetchBookmarks();
     }
   }, [user, fetchBookmarks]);
@@ -121,6 +110,9 @@ export const BookmarksProvider: FC = ({ children }) => {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
+      // Optimistically addd bookmark. Assumption made here that sort order is by createdAt DESC
+      setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
+      // Attempt add bookmark to database
       const res = await addBookmarkMutation({ variables: { lessonId } });
       const bookmark = res.data?.insert_bookmarkedLessons_one;
       if (!bookmark || !bookmark.lesson) {
@@ -128,7 +120,6 @@ export const BookmarksProvider: FC = ({ children }) => {
         return;
       }
       const lesson = bookmark.lesson;
-      setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
       refetchBookmarks();
     },
     [user, addBookmarkMutation, refetchBookmarks, setBookmarks]
@@ -140,13 +131,15 @@ export const BookmarksProvider: FC = ({ children }) => {
         // @TODO bugsnag
         return console.warn("Remove bookmark called without user in scope");
       }
-      await removeBookmarkMutation({
-        variables: { lessonId, userId: user.id },
-      });
-      // Question do we want to optimistically remove these?
+      // Optimistically remove bookmark
       setBookmarks((bookmarks) =>
         bookmarks.filter((bookmark) => bookmark.lesson.id !== lessonId)
       );
+      // Attempt remove bookmark from database
+      await removeBookmarkMutation({
+        variables: { lessonId, userId: user.id },
+      });
+      // Refetch to ensure consistency
       refetchBookmarks();
     },
     [user, removeBookmarkMutation, refetchBookmarks, setBookmarks]
