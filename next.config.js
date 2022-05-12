@@ -1,4 +1,5 @@
 const { PHASE_TEST } = require("next/constants");
+const shell = require("shelljs");
 
 const {
   getAppVersion,
@@ -28,6 +29,13 @@ module.exports = async (phase) => {
 
     // DEBUG
     console.log("Next Oak Config", oakConfig);
+
+    // Special workaround so we can generate GQL codegen files with Hasura data types.
+    console.log("\nGenerating GQL types.");
+    shell.exec(
+      `NEXT_PUBLIC_GRAPHQL_API_URL=${oakConfig.hasura.graphqlApiUrl} npm run gql-codegen`
+    );
+    console.log("GQL types generated.\n");
 
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
