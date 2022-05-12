@@ -22,7 +22,7 @@ import {
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: "./e2e_tests/browser/engineering",
+  testDir: "./e2e_tests/browser/engineering_tests",
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -79,7 +79,6 @@ if (LOCAL_TESTING) {
   // Start and stop Browserstack-local so the local server
   // can be tested on Browserstack.
   // The parameters take the value of the path to the files to run.
-  /** @todo create set up and tear down files. */
   config.globalSetup = require.resolve(
     "./e2e_tests/browser/fixtures/global_setup.ts"
   );

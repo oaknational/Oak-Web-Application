@@ -2,7 +2,9 @@
 
 exports[`renders search page unchanged 1`] = `
 <div>
-  <ul>
+  <ul
+    data-testid="search-results"
+  >
     <li>
       <a
         href="/lessons/the-tragedy-of-macbeth-cdjpac"
