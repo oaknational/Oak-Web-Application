@@ -1,4 +1,5 @@
 const { PHASE_TEST } = require("next/constants");
+const shell = require("shelljs");
 
 const {
   getAppVersion,
@@ -17,8 +18,9 @@ module.exports = async (phase) => {
   let releaseStage;
   let appVersion;
 
-  // If we are in a test phase use the fake test config values.
-  if (phase === PHASE_TEST) {
+  // If we are in a test phase (or have explicitly declared a this is a test)
+  // then use the fake test config values.
+  if (phase === PHASE_TEST || process.env.NODE_ENV === "test") {
     oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
@@ -29,6 +31,13 @@ module.exports = async (phase) => {
 
     // DEBUG
     console.log("Next Oak Config", oakConfig);
+
+    // Special workaround so we can generate GQL codegen files with Hasura data types.
+    console.log("\nGenerating GQL types.");
+    shell.exec(
+      `NEXT_PUBLIC_GRAPHQL_API_URL=${oakConfig.hasura.graphqlApiUrl} npm run gql-codegen`
+    );
+    console.log("GQL types generated.\n");
 
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
@@ -87,6 +96,8 @@ module.exports = async (phase) => {
   };
 
   // DEBUG
+  // @todo this reveals all keys and secrets, so we should remove this before merging
+  // in feat/config branch
   console.log("Next config", nextConfig);
 
   return nextConfig;

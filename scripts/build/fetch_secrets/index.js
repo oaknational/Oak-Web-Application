@@ -12,20 +12,31 @@ function fetchSecrets(oakConfig) {
     return {};
   }
 
-  if (oakConfig.googleSecretManager.projectId) {
+  if (
+    oakConfig.googleSecretManager &&
+    oakConfig.googleSecretManager.projectId
+  ) {
     const { projectId } = oakConfig.googleSecretManager;
+
     console.log(
       `Fetching secrets from Google Secret Manager project: ${projectId}`
     );
+    /**
+     * @todo currently this will throw if a secret is not found in the secret manager.
+     * We proobably just want to return the found ones and hanfle missing ones later
+     * as desired
+     */
     return googleSecretManager.fetchSecrets({
       projectId,
       secretNames,
     });
   }
 
-  throw new Error(
+  console.warn(
     "Secrets have been specified in Oak config but no secret manager config found, eg. config.googleSecretManager.projectId"
   );
+
+  return {};
 }
 
 module.exports = fetchSecrets;
