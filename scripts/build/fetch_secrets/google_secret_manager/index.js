@@ -78,9 +78,9 @@ async function fetchSecrets({ projectId, secretNames }) {
     });
 
     // Extract the payload as a string.
-    const payload = version.payload.data.toString();
+    const secretValue = version.payload.data.toString();
 
-    return [secretName, payload];
+    return [secretName, secretValue];
   });
 
   // Fetch all secret values in parallel
