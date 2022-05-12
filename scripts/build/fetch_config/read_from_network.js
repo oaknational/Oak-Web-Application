@@ -31,7 +31,4 @@ const readConfigFromNetwork = async (fileUrl) => {
   return configJson;
 };
 
-// DEBUG
-readConfigFromNetwork("http://localhost:4444/oak.config.test.json");
-
 module.exports = readConfigFromNetwork;
