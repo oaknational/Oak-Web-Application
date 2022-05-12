@@ -7,6 +7,7 @@ const {
   RELEASE_STAGE_TESTING,
 } = require("./scripts/build/build_config_helpers");
 const fetchConfig = require("./scripts/build/fetch_config");
+const fetchSecrets = require("./scripts/build/fetch_secrets");
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = async (phase) => {
@@ -40,6 +41,8 @@ module.exports = async (phase) => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
+  const secrets = await fetchSecrets(oakConfig);
+
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     poweredByHeader: false,
@@ -64,9 +67,17 @@ module.exports = async (phase) => {
       NEXT_PUBLIC_FIREBASE_PROJECT_ID: oakConfig.firebase.projectId,
       NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: oakConfig.firebase.storageBucket,
       NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: oakConfig.firebase.tokenHost,
+      FIREBASE_SERVICE_ACCOUNT:
+        process.env.FIREBASE_SERVICE_ACCOUNT ||
+        secrets.FIREBASE_SERVICE_ACCOUNT,
+      FIREBASE_ADMIN_DATABASE_URL:
+        process.env.FIREBASE_ADMIN_DATABASE_URL ||
+        secrets.FIREBASE_ADMIN_DATABASE_URL,
 
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
+      HASURA_ADMIN_SECRET:
+        process.env.HASURA_ADMIN_SECRET || secrets.HASURA_ADMIN_SECRET,
 
       // Oak
       NEXT_PUBLIC_CLIENT_APP_BASE_URL: process.env.NEXT_PUBLIC_VERCEL_URL

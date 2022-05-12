@@ -1,28 +1,38 @@
 // Import the Secret Manager client and instantiate it:
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
-const client = new SecretManagerServiceClient({
-  credentials: {
-    client_email: process.env.GOOGLE_SECRET_MANAGER_CLIENT_EMAIL,
-    private_key: process.env.GOOGLE_SECRET_MANAGER_PRIVATE_KEY,
-  },
-});
+
+const { getFullSecretName } = require("../helpers");
 
 /**
- * @description Takes a secret name as given on creation of the secret
- * and returns the full name, including the path at which it is stored.
- * @param {string} projectId
- * @param {string} secretName
+ * Verify credentials exist and return secret manager client
  */
-const getFullSecretName = (projectId, secretName) =>
-  `projects/${projectId}/secrets/${secretName}`;
+const getClient = () => {
+  if (!process.env.GOOGLE_SECRET_MANAGER_CLIENT_EMAIL) {
+    throw new Error("Please set env for GOOGLE_SECRET_MANAGER_CLIENT_EMAIL");
+  }
+  if (!process.env.GOOGLE_SECRET_MANAGER_PRIVATE_KEY) {
+    throw new Error("Please set env for GOOGLE_SECRET_MANAGER_PRIVATE_KEY");
+  }
+
+  return new SecretManagerServiceClient({
+    credentials: {
+      client_email: process.env.GOOGLE_SECRET_MANAGER_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_SECRET_MANAGER_PRIVATE_KEY,
+    },
+  });
+};
 
 /**
  * @typedef {Object} FetchSecretsProps
  * @property {string} projectId - Google Cloud projectId.
  * @property {string[]} secretNames - List of secret names to be fetched.
  * @param {FetchSecretsProps} props
+ * @typedef {Object.<string, string>} Secrets
+ * @returns {Secrets}
  */
 async function fetchSecrets({ projectId, secretNames }) {
+  const client = getClient();
+
   // List secrets
   const [allAvailableSecrets] = await client.listSecrets({
     parent: `projects/${projectId}`,
@@ -70,13 +80,15 @@ async function fetchSecrets({ projectId, secretNames }) {
     // Extract the payload as a string.
     const payload = version.payload.data.toString();
 
-    return { name: secretName, value: payload };
+    return [secretName, payload];
   });
 
   // Fetch all secret values in parallel
   // @todo use correct settings for uslint so Promise is allowed
   // eslint-disable-next-line no-undef
-  return await Promise.all(latestSecretValuePromises);
+  const secrets = await Promise.all(latestSecretValuePromises);
+
+  return Object.fromEntries(secrets);
 }
 
-module.exports = fetchSecrets;
+module.exports = { fetchSecrets };
