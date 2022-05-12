@@ -17,8 +17,9 @@ module.exports = async (phase) => {
   let releaseStage;
   let appVersion;
 
-  // If we are in a test phase use the fake test config values.
-  if (phase === PHASE_TEST) {
+  // If we are in a test phase (or have explicitly declared a this is a test)
+  // then use the fake test config values.
+  if (phase === PHASE_TEST || process.env.NODE_ENV === "test") {
     oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
