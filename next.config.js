@@ -4,28 +4,36 @@ const {
   getAppVersion,
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
+  RELEASE_STAGE_TESTING,
 } = require("./scripts/build/build_config_helpers");
 const fetchConfig = require("./scripts/build/fetch_config");
-
-// With this set up, "production" builds can only happen on Vercel.
-// When we come to sort out a failover we may need to tweak this functionality.
-// Defaults to "development".
-const releaseStage = getReleaseStage(process.env.VERCEL_ENV);
-const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
-
-const appVersion = getAppVersion(isProductionBuild);
-console.log(`Found app version: "${appVersion}"`);
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = async (phase) => {
   /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
   let oakConfig;
 
+  let releaseStage;
+  let appVersion;
+
   // If we are in a test phase use the fake test config values.
   if (phase === PHASE_TEST) {
     oakConfig = await fetchConfig("oak.config.test.json");
+
+    releaseStage = RELEASE_STAGE_TESTING;
+    appVersion = RELEASE_STAGE_TESTING;
   } else {
     oakConfig = await fetchConfig();
+
+    // Figure out the release stage and app version.
+    // With this set up, "production" builds can only happen on Vercel because they
+    // depend on a Vercel specific env variable.
+    // When we come to sort out a failover we may need to tweak this functionality.
+    // Defaults to "development".
+    releaseStage = getReleaseStage(process.env.VERCEL_ENV);
+    const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
+    appVersion = getAppVersion(isProductionBuild);
+    console.log(`Found app version: "${appVersion}"`);
   }
 
   /** @type {import('next').NextConfig} */

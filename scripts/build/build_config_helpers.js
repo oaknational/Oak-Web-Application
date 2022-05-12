@@ -80,6 +80,7 @@ function getAppVersion(isProductionBuild) {
   }
 }
 
+const RELEASE_STAGE_TESTING = "testing";
 const RELEASE_STAGE_DEVELOPMENT = "development";
 const RELEASE_STAGE_PREVIEW = "preview";
 const RELEASE_STAGE_PRODUCTION = "production";
@@ -115,6 +116,7 @@ function getReleaseStage(candidateReleaseStage = RELEASE_STAGE_NOT_DEFINED) {
 module.exports = {
   getAppVersion,
   getReleaseStage,
+  RELEASE_STAGE_TESTING,
   RELEASE_STAGE_DEVELOPMENT,
   RELEASE_STAGE_PREVIEW,
   RELEASE_STAGE_PRODUCTION,
