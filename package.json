@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -37,10 +37,9 @@
     "playwright:test:bs_local": "LOCAL_E2E=on npx playwright test --config=playwright.browserstack.config.ts",
     "playwright:show": "npx playwright show-report",
     "postinstall": "npm run gql-codegen",
-    "prebuild": "npm run gql-codegen",
-    "predev": "npm run gql-codegen",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
+    "serve:test-config": "http-server -p 4444 oak-config",
     "start": "next start",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
@@ -62,6 +61,7 @@
     "firebase-admin": "^10.0.2",
     "next": "^12.1.4",
     "next-seo": "^5.4.0",
+    "node-fetch": "^2.6.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "zod": "^3.14.3"
