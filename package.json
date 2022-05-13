@@ -36,7 +36,6 @@
     "playwright:test:ci": "npx playwright test --config=playwright.browserstack.config.ts",
     "playwright:test:bs_local": "LOCAL_E2E=on npx playwright test --config=playwright.browserstack.config.ts",
     "playwright:show": "npx playwright show-report",
-    "posttest:ci": "npm run check-types",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "serve:test-config": "http-server -p 4444 oak-config",
@@ -64,7 +63,6 @@
     "node-fetch": "^2.6.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "shelljs": "^0.8.5",
     "zod": "^3.14.3"
   },
   "devDependencies": {
