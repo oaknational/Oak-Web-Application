@@ -110,8 +110,6 @@ export const BookmarksProvider: FC = ({ children }) => {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
-      // Optimistically addd bookmark. Assumption made here that sort order is by createdAt DESC
-      setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
       // Attempt add bookmark to database
       const res = await addBookmarkMutation({ variables: { lessonId } });
       const bookmark = res.data?.insert_bookmarkedLessons_one;
@@ -120,6 +118,8 @@ export const BookmarksProvider: FC = ({ children }) => {
         return;
       }
       const lesson = bookmark.lesson;
+      // @todo Optimistically add bookmark. Assumption made here that sort order is by createdAt DESC
+      setBookmarks((bookmarks) => [{ lesson: lesson }, ...bookmarks]);
       refetchBookmarks();
     },
     [user, addBookmarkMutation, refetchBookmarks, setBookmarks]

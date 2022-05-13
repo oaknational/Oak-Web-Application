@@ -1,4 +1,7 @@
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /**
  * Similar to https://github.com/reactjs/rfcs/pull/220 (and other similar
@@ -12,7 +15,7 @@ import { useCallback, useLayoutEffect, useRef } from "react";
 const useStableCallback = <T,>(handler: T): T => {
   const handlerRef = useRef<T>(handler);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     handlerRef.current = handler;
 
     return () => {
