@@ -147,8 +147,6 @@ export const BookmarksProvider: FC = ({ children }) => {
 
   const isBookmarked = useCallback(
     (lessonId: LessonId) => {
-      console.log("isBookmarked", bookmarks, lessonId);
-
       return bookmarks.some((bookmark) => bookmark.lesson.id === lessonId);
     },
     [bookmarks]

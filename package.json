@@ -69,7 +69,7 @@
     "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.0.1",
-    "@apollo/client": "^3.6.2",
+    "@apollo/client": "3.5.10",
     "@babel/core": "^7.17.8",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",

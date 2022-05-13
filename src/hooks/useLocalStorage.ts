@@ -81,19 +81,14 @@ function useLocalStorage<T>(
       window.localStorage.setItem(key, JSON.stringify(newValue));
 
       if (newValue === storedValue) {
-        console.log(key, "same");
-
+        // Don't update if old and new values same
         return;
       }
 
       if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
-        // If areEqual function is passed, and old/new values are equal, don't update
-        console.log(key, "equivalent");
-
+        // If areEqual function is passed, and old/new values are equivalent, don't update
         return;
       }
-
-      console.log(key, "update");
 
       // Save to local storage
       window.localStorage.setItem(key, JSON.stringify(newValue));

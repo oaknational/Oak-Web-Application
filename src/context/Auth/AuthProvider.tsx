@@ -94,7 +94,6 @@ const AuthProvider: FC = ({ children }) => {
     const unsubscribe = firebaseOnIdTokenChanged(
       firebaseAuth,
       async (firebaseUser) => {
-        console.log("firebaseOnIdTokenChanged");
         if (!firebaseUser) {
           return resetAuthState();
         } else {
