@@ -1,7 +1,7 @@
 // https://usehooks-ts.com/react-hook/use-local-storage
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
-import useEvent from "./useEvent";
+import useStableCallback from "./useStableCallback";
 import useEventListener from "./useEventListener";
 
 const LOCAL_STORAGE_EVENT = "local-storage";
@@ -56,7 +56,7 @@ function useLocalStorage<T>(
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValueCallback: SetValue<T> = (value) => {
+  const onValueChange: SetValue<T> = (value) => {
     // Prevent build error "window is undefined" but keeps working
     if (typeof window == "undefined") {
       console.warn(
@@ -90,9 +90,7 @@ function useLocalStorage<T>(
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const setValue = useEvent(setValueCallback);
+  const setValue = useStableCallback(onValueChange);
 
   useEffect(() => {
     setStoredValue(readValue());
