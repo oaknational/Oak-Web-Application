@@ -1,4 +1,4 @@
-const getSecretNamesFromPublicConfig = require("./helpers");
+const { getSecretNamesFromPublicConfig } = require("./helpers");
 
 describe("get_secret_names_from_public_config.js", () => {
   test("it correcly gets the secret names", () => {

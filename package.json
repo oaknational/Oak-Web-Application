@@ -36,7 +36,7 @@
     "playwright:test:ci": "npx playwright test --config=playwright.browserstack.config.ts",
     "playwright:test:bs_local": "LOCAL_E2E=on npx playwright test --config=playwright.browserstack.config.ts",
     "playwright:show": "npx playwright show-report",
-    "postinstall": "npm run gql-codegen",
+    "posttest:ci": "npm run check-types",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "serve:test-config": "http-server -p 4444 oak-config",
