@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.16.0",
+  "version": "0.16.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -70,7 +70,7 @@
     "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.0.1",
-    "@apollo/client": "^3.5.10",
+    "@apollo/client": "^3.6.2",
     "@babel/core": "^7.17.8",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
@@ -140,8 +140,8 @@
     "url": "https://github.com/oaknational/Samara.git"
   },
   "engines": {
-    "node": "14",
-    "npm": ">=6 <8"
+    "node": "16",
+    "npm": "8"
   },
   "publishConfig": {
     "access": "restricted"

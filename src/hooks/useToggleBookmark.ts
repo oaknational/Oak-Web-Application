@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import useBookmarks, { LessonId } from "./useBookmarks";
 
 type UseToggleBookmarkProps = {
@@ -7,16 +5,13 @@ type UseToggleBookmarkProps = {
 };
 const useToggleBookmark = (props: UseToggleBookmarkProps) => {
   const { lessonId } = props;
-  const { bookmarks, addBookmark, removeBookmark, isBookmarked } =
-    useBookmarks();
-  const [loading, setLoading] = useState(typeof bookmarks === "undefined");
+  const { addBookmark, removeBookmark, isBookmarked, loading } = useBookmarks();
 
   const toggleBookmark = async () => {
     if (loading) {
       return;
     }
 
-    setLoading(true);
     try {
       if (!isBookmarked(lessonId)) {
         await addBookmark(lessonId);
@@ -25,8 +20,6 @@ const useToggleBookmark = (props: UseToggleBookmarkProps) => {
       }
     } catch (error) {
       // @TODO: bugsnag
-    } finally {
-      setLoading(false);
     }
   };
 

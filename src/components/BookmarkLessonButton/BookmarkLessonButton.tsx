@@ -16,8 +16,6 @@ const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
     lessonId,
   });
 
-  console.log("bookmarked", bookmarked);
-
   if (!user) {
     // Bookmarks only for logged in
     return null;

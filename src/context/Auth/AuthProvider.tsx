@@ -1,4 +1,4 @@
-import { useEffect, FC, useCallback } from "react";
+import { useEffect, FC, useCallback, useMemo } from "react";
 import { FirebaseOptions, initializeApp } from "firebase/app";
 import {
   getAuth as firebaseGetAuth,
@@ -20,7 +20,6 @@ import useApi from "../../browser-lib/api";
 import { useBookmarksCache } from "../../hooks/useBookmarks";
 import createErrorHandler from "../../common-lib/error-handler";
 import OakError from "../../errors/OakError";
-import isPrimitive from "../../utils/isPrimitive";
 
 import useAccessToken from "./useAccessToken";
 import authContext, { OakUser } from "./authContext";
@@ -63,40 +62,19 @@ const getClientAppBaseUrl = () => {
 export const getSignInCallbackUrl = () =>
   `${getClientAppBaseUrl()}/sign-in/callback`;
 
-const areUsersEqual = (oldUser: OakUser | null, newUser: OakUser | null) => {
-  console.log("areUsersEqual", oldUser, newUser);
-
-  if (oldUser === newUser) {
-    return true;
-  }
-  if (newUser === null) {
-    return false;
-  }
-  if (oldUser === null) {
-    return false;
-  }
-  return Object.entries(oldUser).reduce<boolean>((accum, [key, val]) => {
-    if (!isPrimitive(val)) {
-      // We expect all properties of user to be primitives
-      throw new OakError({ code: "misc/unexpected-type" });
-    }
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return accum && newUser[key] === val;
-  }, true);
-};
-
 const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
-  const [user, setUser] = useLocalStorage<OakUser | null>(
-    LS_KEY_USER,
-    null,
-    areUsersEqual
-  );
+  const [userRaw, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
   const [, setAccessToken] = useAccessToken();
   const api = useApi();
   const apiGetOrCreateUser = api["/user"];
+  const user: OakUser | null = useMemo(() => {
+    if (!userRaw?.email || !userRaw?.id) {
+      return null;
+    }
+
+    return { email: userRaw.email, id: userRaw.id };
+  }, [userRaw?.email, userRaw?.id]);
 
   useEffect(() => {
     /**
@@ -126,8 +104,6 @@ const AuthProvider: FC = ({ children }) => {
       }
     );
 
-    console.log(">>>>>>>>>>>>", unsubscribe);
-
     return () => unsubscribe();
   }, [setAccessToken, resetAuthState]);
 
@@ -136,8 +112,6 @@ const AuthProvider: FC = ({ children }) => {
     const unsubscribe = firebaseOnAuthStateChanged(
       firebaseAuth,
       async (firebaseUser) => {
-        console.log("firebaseOnAuthStateChanged", firebaseUser);
-
         if (!firebaseUser) {
           return resetAuthState();
         }

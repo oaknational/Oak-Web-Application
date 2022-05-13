@@ -76,6 +76,7 @@ const useBookmarkedLessonRemoveMutation = () => {
     ({ variables }: { variables: LessonUserTuple }) => {
       bookmarksStore.removeBookmark(variables.lessonId);
     },
+    { loading: false },
   ];
 };
 const useBookmarkedLessonAddMutation = () => {
@@ -88,6 +89,7 @@ const useBookmarkedLessonAddMutation = () => {
         },
       };
     },
+    { loading: false },
   ];
 };
 

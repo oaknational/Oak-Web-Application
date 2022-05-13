@@ -60,11 +60,19 @@ export const BookmarksProvider: FC = ({ children }) => {
   const user = useUser();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
-  const [addBookmarkMutation] = useBookmarkedLessonAddMutation();
-  const [removeBookmarkMutation] = useBookmarkedLessonRemoveMutation();
+  const [addBookmarkMutation, { loading: adding }] =
+    useBookmarkedLessonAddMutation();
+  const [removeBookmarkMutation, { loading: removing }] =
+    useBookmarkedLessonRemoveMutation();
 
-  const [fetchBookmarks, { data, refetch, loading, error }] =
-    useBookmarkedLessonsLazyQuery();
+  const [fetchBookmarks, { data, loading: fetching, error, refetch }] =
+    useBookmarkedLessonsLazyQuery({
+      fetchPolicy: "cache-and-network",
+      nextFetchPolicy: "network-only",
+      notifyOnNetworkStatusChange: true,
+    });
+
+  const loading = fetching || removing || adding;
 
   useEffect(() => {
     if (user) {
@@ -90,12 +98,21 @@ export const BookmarksProvider: FC = ({ children }) => {
     }
   }, [data, setBookmarks]);
 
+  const refetchBookmarks = useCallback(async () => {
+    if (refetch) {
+      await refetch();
+    }
+  }, [refetch]);
+
   const addBookmark = useCallback(
     async (lessonId: LessonId) => {
       if (!user) {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
+      // Optimistically addd bookmark. Assumption made here that sort order is by createdAt DESC
+      setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
+      // Attempt add bookmark to database
       const res = await addBookmarkMutation({ variables: { lessonId } });
       const bookmark = res.data?.insert_bookmarkedLessons_one;
       if (!bookmark || !bookmark.lesson) {
@@ -103,10 +120,9 @@ export const BookmarksProvider: FC = ({ children }) => {
         return;
       }
       const lesson = bookmark.lesson;
-      setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
-      refetch();
+      refetchBookmarks();
     },
-    [user, addBookmarkMutation, setBookmarks, refetch]
+    [user, addBookmarkMutation, refetchBookmarks, setBookmarks]
   );
 
   const removeBookmark = useCallback(
@@ -115,21 +131,19 @@ export const BookmarksProvider: FC = ({ children }) => {
         // @TODO bugsnag
         return console.warn("Remove bookmark called without user in scope");
       }
-      await removeBookmarkMutation({
-        variables: { lessonId, userId: user.id },
-      });
-      // Question do we want to optimistically remove these?
+      // Optimistically remove bookmark
       setBookmarks((bookmarks) =>
         bookmarks.filter((bookmark) => bookmark.lesson.id !== lessonId)
       );
-      refetch();
+      // Attempt remove bookmark from database
+      await removeBookmarkMutation({
+        variables: { lessonId, userId: user.id },
+      });
+      // Refetch to ensure consistency
+      refetchBookmarks();
     },
-    [user, removeBookmarkMutation, setBookmarks, refetch]
+    [user, removeBookmarkMutation, refetchBookmarks, setBookmarks]
   );
-
-  const refetchBookmarks = async () => {
-    await refetch();
-  };
 
   const isBookmarked = useCallback(
     (lessonId: LessonId) => {

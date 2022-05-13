@@ -1,12 +1,7 @@
 // https://usehooks-ts.com/react-hook/use-local-storage
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
+import useStableCallback from "./useStableCallback";
 import useEventListener from "./useEventListener";
 
 const LOCAL_STORAGE_EVENT = "local-storage";
@@ -40,7 +35,7 @@ function useLocalStorage<T>(
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
-  const readValue = useCallback((): T => {
+  const readValue = useRef((): T => {
     // Prevent build error "window is undefined" but keep keep working
     if (typeof window === "undefined") {
       return initialValue;
@@ -53,7 +48,7 @@ function useLocalStorage<T>(
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return initialValue;
     }
-  }, [key]);
+  }).current;
 
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
@@ -61,50 +56,59 @@ function useLocalStorage<T>(
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValue: SetValue<T> = useCallback(
-    (value) => {
-      // Prevent build error "window is undefined" but keeps working
-      if (typeof window == "undefined") {
-        console.warn(
-          `Tried setting localStorage key “${key}” even though environment is not a client`
-        );
+  const onValueChange: SetValue<T> = (value) => {
+    // Prevent build error "window is undefined" but keeps working
+    if (typeof window == "undefined") {
+      console.warn(
+        `Tried setting localStorage key “${key}” even though environment is not a client`
+      );
+    }
+
+    try {
+      // Allow value to be a function so we have the same API as useState
+      const newValue = value instanceof Function ? value(storedValue) : value;
+
+      if (newValue === storedValue) {
+        return;
       }
 
-      try {
-        // Allow value to be a function so we have the same API as useState
-        const newValue = value instanceof Function ? value(storedValue) : value;
-
-        // console.log(storedValue, newValue);
-
-        if (newValue === storedValue) {
-          console.log(key, "same");
-
-          return;
-        }
-
-        if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
-          // If areEqual function is passed, and old/new values are equal, don't update
-          console.log(key, "equivalent");
-
-          return;
-        }
-
-        console.log(key, "update");
-
-        // Save to local storage
-        window.localStorage.setItem(key, JSON.stringify(newValue));
-
-        // Save state
-        setStoredValue(newValue);
-
-        // We dispatch a custom event so every useLocalStorage hook are notified
-        dispatchLocalStorageEvent();
-      } catch (error) {
-        console.warn(`Error setting localStorage key “${key}”:`, error);
+      if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
+        // If areEqual function is passed, and old/new values are equal, don't update
+        return;
       }
-    },
-    [storedValue, areEqual, key]
-  );
+
+      // Save to local storage
+      window.localStorage.setItem(key, JSON.stringify(newValue));
+
+      if (newValue === storedValue) {
+        console.log(key, "same");
+
+        return;
+      }
+
+      if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
+        // If areEqual function is passed, and old/new values are equal, don't update
+        console.log(key, "equivalent");
+
+        return;
+      }
+
+      console.log(key, "update");
+
+      // Save to local storage
+      window.localStorage.setItem(key, JSON.stringify(newValue));
+
+      // Save state
+      setStoredValue(newValue);
+
+      // We dispatch a custom event so every useLocalStorage hook are notified
+      dispatchLocalStorageEvent();
+    } catch (error) {
+      console.warn(`Error setting localStorage key “${key}”:`, error);
+    }
+  };
+
+  const setValue = useStableCallback(onValueChange);
 
   useEffect(() => {
     setStoredValue(readValue());
