@@ -1,5 +1,4 @@
 const { PHASE_TEST } = require("next/constants");
-const shell = require("shelljs");
 
 const {
   getAppVersion,
@@ -8,6 +7,7 @@ const {
   RELEASE_STAGE_TESTING,
 } = require("./scripts/build/build_config_helpers");
 const fetchConfig = require("./scripts/build/fetch_config");
+const fetchSecrets = require("./scripts/build/fetch_secrets");
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = async (phase) => {
@@ -31,13 +31,6 @@ module.exports = async (phase) => {
     // DEBUG
     console.log("Next Oak Config", oakConfig);
 
-    // Special workaround so we can generate GQL codegen files with Hasura data types.
-    console.log("\nGenerating GQL types.");
-    shell.exec(
-      `NEXT_PUBLIC_GRAPHQL_API_URL=${oakConfig.hasura.graphqlApiUrl} npm run gql-codegen`
-    );
-    console.log("GQL types generated.\n");
-
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
     // depend on a Vercel specific env variable.
@@ -48,6 +41,8 @@ module.exports = async (phase) => {
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
   }
+
+  const secrets = await fetchSecrets(oakConfig);
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -73,9 +68,17 @@ module.exports = async (phase) => {
       NEXT_PUBLIC_FIREBASE_PROJECT_ID: oakConfig.firebase.projectId,
       NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: oakConfig.firebase.storageBucket,
       NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: oakConfig.firebase.tokenHost,
+      FIREBASE_SERVICE_ACCOUNT:
+        process.env.FIREBASE_SERVICE_ACCOUNT ||
+        secrets.FIREBASE_SERVICE_ACCOUNT,
+      FIREBASE_ADMIN_DATABASE_URL:
+        process.env.FIREBASE_ADMIN_DATABASE_URL ||
+        secrets.FIREBASE_ADMIN_DATABASE_URL,
 
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
+      HASURA_ADMIN_SECRET:
+        process.env.HASURA_ADMIN_SECRET || secrets.HASURA_ADMIN_SECRET,
 
       // Oak
       NEXT_PUBLIC_CLIENT_APP_BASE_URL: process.env.NEXT_PUBLIC_VERCEL_URL
@@ -85,6 +88,8 @@ module.exports = async (phase) => {
   };
 
   // DEBUG
+  // @todo this reveals all keys and secrets, so we should remove this before merging
+  // in feat/config branch
   console.log("Next config", nextConfig);
 
   return nextConfig;
