@@ -46,11 +46,11 @@ async function fetchSecrets({ projectId, secretNames }) {
         .includes(getFullSecretName(secretName))
   );
   if (missingSecrets.length > 0) {
-    throw new Error(
-      `Could not fetch secrets, as the following secrets could not be found: \n${missingSecrets.join(
-        `\n`
-      )}`
-    );
+    const message = `Oak.google_secret_manager the following secrets could not be found: \n${missingSecrets.join(
+      `\n`
+    )}`;
+
+    console.warn(message);
   }
 
   const latestSecretValuePromises = secretNames.map(async (secretName) => {
@@ -66,9 +66,9 @@ async function fetchSecrets({ projectId, secretNames }) {
     );
 
     if (!latestEnabledSecretVersion) {
-      throw new Error(
-        `Could not fetch secrets, as there was no enabled version found for ${secretName}`
-      );
+      const message = `Oak.google_secret_manager: no enabled version found for ${secretName}`;
+      console.warn(message);
+      return [secretName, null];
     }
 
     const versionName = latestEnabledSecretVersion.name;
