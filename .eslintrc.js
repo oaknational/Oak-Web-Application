@@ -61,5 +61,11 @@ module.exports = {
         },
       },
     },
+    {
+      files: ["**/*.test.{js,ts,tsx}"],
+      env: {
+        jest: true,
+      },
+    },
   ],
 };
