@@ -8,7 +8,13 @@ import Layout from "../components/Layout";
 const BookmarksPage: NextPage = () => {
   const { user } = useAuth();
   return (
-    <Layout>
+    <Layout
+      seoProps={{
+        title: "Lesson bookmarks page : Oak National Academy",
+        description:
+          "Bookmarks - giving you quick and easy access to Oak National Academy lessons and resources",
+      }}
+    >
       <header>
         <h1>Bookmarks</h1>
       </header>

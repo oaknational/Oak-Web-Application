@@ -3,6 +3,7 @@ import Bugsnag from "@bugsnag/js";
 
 import Layout from "../Layout";
 import { initialiseBugsnag } from "../../common-lib/error-handler";
+import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 
 type FallbackComponentProps = {
   error: Error;
@@ -13,7 +14,7 @@ const FallbackComponent: FC<FallbackComponentProps> = (props) => {
   console.log(props);
 
   return (
-    <Layout>
+    <Layout seoProps={DEFAULT_SEO_PROPS}>
       <h1>Error</h1>
       <p>
         Sorry, what a mess. Looks like something's gone wrong, the team has been

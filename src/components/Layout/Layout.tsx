@@ -4,17 +4,23 @@ import { FC } from "react";
 import SiteHeader from "../SiteHeader";
 import SiteFooter from "../SiteFooter";
 import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
-import config from "../../config";
+import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 
 import styles from "./Layout.module.css";
 
-const Layout: FC = (props) => {
-  const { children } = props;
+interface LayoutProps {
+  seoProps: SeoProps;
+}
+
+/** 1. Titles for SEO should be between 50-60 characters long 
+    2. Title should contain app name
+    3. SEO descriptions should be between 150-300 characters long */
+const Layout: FC<LayoutProps> = (props) => {
+  const { children, seoProps } = props;
   return (
     <>
+      <Seo {...seoProps} />
       <Head>
-        <title>{config.get("appName")}</title>
-        <meta name={config.get("appDescription")} content="Education Tech" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <OrganizationJsonLd />

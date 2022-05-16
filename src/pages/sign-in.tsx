@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import useAuth from "../auth/useAuth";
 import Layout from "../components/Layout";
+import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 
 type SignInStep = "NOT_ASKED" | "LINK_REQUESTED";
 
@@ -92,7 +93,7 @@ const SignIn = () => {
 
 const SignInPage: NextPage = () => {
   return (
-    <Layout>
+    <Layout seoProps={DEFAULT_SEO_PROPS}>
       <SignIn />
     </Layout>
   );
