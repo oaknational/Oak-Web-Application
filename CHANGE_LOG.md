@@ -1,3 +1,16 @@
+# [0.18.0](https://github.com/oaknational/Samara/compare/v0.17.0...v0.18.0) (2022-05-17)
+
+
+### Bug Fixes
+
+* add react-hooks eslint plugin ([8e002b7](https://github.com/oaknational/Samara/commit/8e002b7790e598b5ea87f18943bcf7c78da40b05))
+* add react-hooks eslint plugin ([4635ede](https://github.com/oaknational/Samara/commit/4635edeba1bf37255908cc1205e5f76c984ed1a1))
+
+
+### Features
+
+* **bookmarks:** optimistically add/remove bookmark ([524a874](https://github.com/oaknational/Samara/commit/524a874fd735748a248f06cb43f0f387f397ee9f))
+
 # [0.17.0](https://github.com/oaknational/Samara/compare/v0.16.2...v0.17.0) (2022-05-13)
 
 

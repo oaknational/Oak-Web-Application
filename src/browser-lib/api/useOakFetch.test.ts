@@ -4,7 +4,7 @@ import { z } from "zod";
 import useOakFetch from "./useOakFetch";
 
 const TOKEN_VALUE = "value";
-jest.mock("../../auth/useAccessToken", () => ({
+jest.mock("../../context/Auth/useAccessToken", () => ({
   __esModule: true,
   default: () => [TOKEN_VALUE],
 }));

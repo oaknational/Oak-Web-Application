@@ -13,7 +13,7 @@ const TestDocument = gql`
 `;
 
 const TOKEN_VALUE = "token value";
-jest.mock("../../auth/useAccessToken", () => ({
+jest.mock("../../context/Auth/useAccessToken", () => ({
   __esModule: true,
   default: () => [TOKEN_VALUE],
 }));

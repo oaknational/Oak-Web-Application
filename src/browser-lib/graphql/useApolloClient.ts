@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
-import useAccessToken from "../../auth/useAccessToken";
+import useAccessToken from "../../context/Auth/useAccessToken";
 
 function createApolloClient({ accessToken }: { accessToken: string | null }) {
   return new ApolloClient({
