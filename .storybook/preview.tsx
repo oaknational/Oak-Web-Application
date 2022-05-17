@@ -1,6 +1,6 @@
 import React from "react";
-import "../src/styles/constants.css";
-import "../src/styles/colors.module.css";
+
+import "../src/styles";
 import useTheme from "../src/hooks/useTheme";
 import { UserStyleContextProvider } from "../src/context/UserStyleContext";
 
@@ -19,6 +19,14 @@ const withThemeProvider = (Story, context) => {
   useTheme();
   return (
     <UserStyleContextProvider>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+        rel="stylesheet"
+      />
       <Story {...context} />
     </UserStyleContextProvider>
   );
