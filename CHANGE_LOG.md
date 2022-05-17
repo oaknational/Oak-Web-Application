@@ -1,3 +1,10 @@
+# [0.19.0](https://github.com/oaknational/Samara/compare/v0.18.0...v0.19.0) (2022-05-17)
+
+
+### Features
+
+* custom 404 and 500 pages ([eb6ee76](https://github.com/oaknational/Samara/commit/eb6ee760b69f50c62259d1e29bda97a98169b9dc))
+
 # [0.18.0](https://github.com/oaknational/Samara/compare/v0.17.0...v0.18.0) (2022-05-17)
 
 
