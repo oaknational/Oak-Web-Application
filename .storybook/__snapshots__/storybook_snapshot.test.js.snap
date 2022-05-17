@@ -351,214 +351,24 @@ exports[`Storyshots Components/Card Card Default 1`] = `
   <div
     style={
       Object {
-        "width": "308px",
+        "display": "grid",
+        "gap": "12px",
+        "gridTemplateColumns": "1fr 1fr 1fr ",
+        "paddingTop": "12px",
       }
     }
   >
-    <div>
+    <div
+      className="cardContainer"
+    >
       <div
-        className="cardContainer"
+        className="card-secondary"
       >
         <div
-          className="imageWrapper"
-        >
-          <span
-            style={
-              Object {
-                "background": "none",
-                "border": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": "initial",
-                "margin": 0,
-                "opacity": 1,
-                "overflow": "hidden",
-                "padding": 0,
-                "position": "relative",
-                "width": "initial",
-              }
-            }
-          >
-            <span
-              style={
-                Object {
-                  "background": "none",
-                  "border": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": "initial",
-                  "margin": 0,
-                  "opacity": 1,
-                  "padding": 0,
-                  "paddingTop": "100%",
-                  "width": "initial",
-                }
-              }
-            />
-            <img
-              className="image"
-              data-nimg="responsive"
-              decoding="async"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-              style={
-                Object {
-                  "border": "none",
-                  "bottom": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": 0,
-                  "left": 0,
-                  "margin": "auto",
-                  "maxHeight": "100%",
-                  "maxWidth": "100%",
-                  "minHeight": "100%",
-                  "minWidth": "100%",
-                  "objectFit": undefined,
-                  "objectPosition": undefined,
-                  "padding": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 0,
-                }
-              }
-            />
-            <noscript>
-              <img
-                className="image"
-                data-nimg="responsive"
-                decoding="async"
-                loading="lazy"
-                sizes="100vw"
-                src="/_next/image?url=%2Fimg.jpg&w=3840&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 640w, /_next/image?url=%2Fimg.jpg&w=750&q=75 750w, /_next/image?url=%2Fimg.jpg&w=828&q=75 828w, /_next/image?url=%2Fimg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fimg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fimg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fimg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fimg.jpg&w=3840&q=75 3840w"
-                style={
-                  Object {
-                    "border": "none",
-                    "bottom": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": 0,
-                    "left": 0,
-                    "margin": "auto",
-                    "maxHeight": "100%",
-                    "maxWidth": "100%",
-                    "minHeight": "100%",
-                    "minWidth": "100%",
-                    "objectFit": undefined,
-                    "objectPosition": undefined,
-                    "padding": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 0,
-                  }
-                }
-              />
-            </noscript>
-          </span>
-        </div>
-        <div
-          className="card-secondary"
+          className="cardText"
         >
           <div
-            className="cardText"
-          >
-            <div
-              className="textIconWrapper"
-            >
-              <h5
-                className="typography--variant-h5"
-              >
-                Title
-              </h5>
-            </div>
-          </div>
-          <div
-            className="cardText"
-          >
-            <div
-              className="textIconWrapper"
-            >
-              <p
-                className="typography--variant-body3"
-              >
-                Short snappy description of what this card is about.
-              </p>
-            </div>
-          </div>
-          <a
-            aria-label="Label"
-            className="button primary small leadingIcon"
-            href="/"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            onMouseEnter={[Function]}
-            role="button"
-            title="Label"
-          >
-            <span
-              className="labelSpan"
-            >
-              Label
-            </span>
-          </a>
-        </div>
-      </div>
-      <p>
-        -----
-      </p>
-      <div
-        className="card-secondary cardRadius"
-      >
-        <div
-          className="cardText alignCenter"
-        >
-          <div
-            className="aboveIconWrap"
-          >
-            <span
-              className="outerWrapper"
-              style={
-                Object {
-                  "height": "90px",
-                  "width": "90px",
-                }
-              }
-            >
-              <span
-                className="innerWrapper color-icon-bookmarked"
-                style={
-                  Object {
-                    "height": "90px",
-                    "width": "90px",
-                  }
-                }
-              >
-                <svg
-                  fill="currentColor"
-                  viewBox="2 2 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path
-                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-          <div
-            className=""
+            className="textIconWrapper"
           >
             <h5
               className="typography--variant-h5"
@@ -568,7 +378,57 @@ exports[`Storyshots Components/Card Card Default 1`] = `
           </div>
         </div>
         <div
-          className="cardText alignCenter"
+          className="cardText"
+        >
+          <div
+            className="textIconWrapper"
+          >
+            <p
+              className="typography--variant-body3"
+            >
+              CardImageButtonVariant component.
+            </p>
+          </div>
+        </div>
+        <a
+          aria-label="Label"
+          className="button primary small leadingIcon"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          title="Label"
+        >
+          <span
+            className="labelSpan"
+          >
+            Label
+          </span>
+        </a>
+      </div>
+    </div>
+    <div
+      className="cardContainer"
+    >
+      <div
+        className="card-secondary"
+      >
+        <div
+          className="cardText"
+        >
+          <div
+            className="textIconWrapper"
+          >
+            <h5
+              className="typography--variant-h5"
+            >
+              Title
+            </h5>
+          </div>
+        </div>
+        <div
+          className="cardText"
         >
           <div
             className="textIconWrapper"
@@ -597,23 +457,30 @@ exports[`Storyshots Components/Card Card Default 1`] = `
           </span>
         </a>
       </div>
-      <p>
-        ---
-      </p>
+    </div>
+    <div
+      className="card-secondary cardRadius"
+    >
       <div
-        className="card-secondary cardRadius"
+        className="cardText"
       >
         <div
-          className="cardText"
+          className="textIconWrapper"
         >
-          <div
-            className="textIconWrapper"
+          <span
+            className="iconWrapper"
           >
             <span
-              className="iconWrapper"
+              className="outerWrapper"
+              style={
+                Object {
+                  "height": "24px",
+                  "width": "24px",
+                }
+              }
             >
               <span
-                className="outerWrapper"
+                className="innerWrapper"
                 style={
                   Object {
                     "height": "24px",
@@ -621,79 +488,156 @@ exports[`Storyshots Components/Card Card Default 1`] = `
                   }
                 }
               >
-                <span
-                  className="innerWrapper"
-                  style={
-                    Object {
-                      "height": "24px",
-                      "width": "24px",
-                    }
-                  }
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    fill="none"
-                    height="100%"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    viewBox="0 0 24 24"
-                    width="100%"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                    />
-                    <polyline
-                      points="7 10 12 15 17 10"
-                    />
-                    <line
-                      x1="12"
-                      x2="12"
-                      y1="15"
-                      y2="3"
-                    />
-                  </svg>
-                </span>
+                  <path
+                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                  />
+                  <polyline
+                    points="7 10 12 15 17 10"
+                  />
+                  <line
+                    x1="12"
+                    x2="12"
+                    y1="15"
+                    y2="3"
+                  />
+                </svg>
               </span>
             </span>
-            <h5
-              className="typography--variant-h5"
-            >
-              Need some help?
-            </h5>
-          </div>
-        </div>
-        <div
-          className="cardText"
-        >
-          <div
-            className="textIconWrapper"
+          </span>
+          <h5
+            className="typography--variant-h5"
           >
-            <p
-              className="typography--variant-body3"
-            >
-              Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
-            </p>
-          </div>
+            Need some help?
+          </h5>
         </div>
-        <a
-          aria-label="Label"
-          className="button primary small leadingIcon"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          title="Label"
+      </div>
+      <div
+        className="cardText"
+      >
+        <div
+          className="textIconWrapper"
+        >
+          <p
+            className="typography--variant-body3"
+          >
+            Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
+          </p>
+        </div>
+      </div>
+      <a
+        aria-label="Label"
+        className="button primary small leadingIcon"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        title="Label"
+      >
+        <span
+          className="labelSpan"
+        >
+          Label
+        </span>
+      </a>
+    </div>
+    <div
+      className="card-secondary cardRadius"
+    >
+      <div
+        className="cardText alignCenter"
+      >
+        <div
+          className="aboveIconWrap"
         >
           <span
-            className="labelSpan"
+            className="outerWrapper"
+            style={
+              Object {
+                "height": "90px",
+                "width": "90px",
+              }
+            }
           >
-            Label
+            <span
+              className="innerWrapper color-icon-bookmarked"
+              style={
+                Object {
+                  "height": "90px",
+                  "width": "90px",
+                }
+              }
+            >
+              <svg
+                fill="currentColor"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                />
+              </svg>
+            </span>
           </span>
-        </a>
+        </div>
+        <div
+          className=""
+        >
+          <h5
+            className="typography--variant-h5"
+          >
+            Title
+          </h5>
+        </div>
       </div>
+      <div
+        className="cardText alignCenter"
+      >
+        <div
+          className="textIconWrapper"
+        >
+          <p
+            className="typography--variant-body3"
+          >
+            Short snappy description of what this card is about.
+          </p>
+        </div>
+      </div>
+      <a
+        aria-label="Label"
+        className="button primary small leadingIcon"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        title="Label"
+      >
+        <span
+          className="labelSpan"
+        >
+          Label
+        </span>
+      </a>
     </div>
   </div>
 </div>
