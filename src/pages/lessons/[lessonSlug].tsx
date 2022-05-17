@@ -10,7 +10,7 @@ import Seo from "../../browser-lib/seo/Seo";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/Layout/Layout";
 import LessonHeader from "../../components/LessonHeader/LessonHeader";
-import { LessonId } from "../../hooks/useBookmarks";
+import { LessonId } from "../../context/Bookmarks";
 import graphqlApi from "../../node-lib/graphql";
 
 import styles from "./[lessonSlug].module.css";

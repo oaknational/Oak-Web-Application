@@ -11,7 +11,7 @@ import useTheme from "../hooks/useTheme";
 import { UserStyleContextProvider } from "../context/UserStyleContext";
 import { SearchProvider } from "../context/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
-import { BookmarksProvider } from "../hooks/useBookmarks";
+import { BookmarksProvider } from "../context/Bookmarks";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {

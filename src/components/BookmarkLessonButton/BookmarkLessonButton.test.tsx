@@ -11,9 +11,9 @@ const addBookmark = jest.fn();
 const removeBookmark = jest.fn();
 const isBookmarked = jest.fn();
 
-jest.mock("../../hooks/useBookmarks.tsx", () => ({
+jest.mock("../../context/Bookmarks", () => ({
   __esModule: true,
-  default: () => ({
+  useBookmarks: () => ({
     bookmarks: [],
     addBookmark,
     removeBookmark,
