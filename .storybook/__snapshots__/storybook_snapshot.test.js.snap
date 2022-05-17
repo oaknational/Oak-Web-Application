@@ -1,7 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Components/BookmarkLessonButton Bookmark Lesson Button Example 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div>
+    <div>
+      <h1>
+        BookmarkLessonButton
+      </h1>
+      <button
+        aria-label="Add Bookmark"
+        className="iconButton primary small unstyledButton"
+        disabled={false}
+        onClick={[Function]}
+        title="Add Bookmark"
+      >
+        <span
+          className="outerWrapper"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <span
+            className="innerWrapper"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <svg
+              fill="currentColor"
+              viewBox="2 2 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>,
+]
+`;
+
 exports[`Storyshots Components/Breadcrumbs Breadcrumb Example 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <div>
       <h1>
@@ -175,12 +248,19 @@ Array [
       </nav>
     </div>
   </div>,
-  ";",
 ]
 `;
 
 exports[`Storyshots Components/Button Button Example 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <div>
       <h1>
@@ -205,12 +285,19 @@ Array [
       </a>
     </div>
   </div>,
-  ";",
 ]
 `;
 
 exports[`Storyshots Components/Button Button Example With Icon 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <div>
       <h1>
@@ -283,12 +370,19 @@ Array [
       </a>
     </div>
   </div>,
-  ";",
 ]
 `;
 
 exports[`Storyshots Components/Card Card Default 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <div
       className="card-primary"
@@ -301,12 +395,19 @@ Array [
       </p>
     </div>
   </div>,
-  ";",
 ]
 `;
 
 exports[`Storyshots Components/Icon Icon Example 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <h1>
       Icon Example
@@ -569,12 +670,19 @@ Array [
       </span>
     </span>
   </div>,
-  ";",
 ]
 `;
 
 exports[`Storyshots Components/SiteFooter Site Footer Example 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <footer
       className="footer"
@@ -583,12 +691,19 @@ Array [
       2022
     </footer>
   </div>,
-  ";",
 ]
 `;
 
 exports[`Storyshots Components/SiteHeader Site Footer Example 1`] = `
 Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
   <div>
     <header
       className="header"
@@ -704,6 +819,5 @@ Array [
       </div>
     </header>
   </div>,
-  ";",
 ]
 `;

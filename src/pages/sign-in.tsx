@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
-import useAuth from "../auth/useAuth";
+import useAuth from "../context/Auth/useAuth";
 import Layout from "../components/Layout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 

@@ -1,9 +1,8 @@
 import React, { ErrorInfo, FC } from "react";
 import Bugsnag from "@bugsnag/js";
 
-import Layout from "../Layout";
 import { initialiseBugsnag } from "../../common-lib/error-handler";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import ErrorPage from "../../pages/_error";
 
 type FallbackComponentProps = {
   error: Error;
@@ -13,15 +12,7 @@ type FallbackComponentProps = {
 const FallbackComponent: FC<FallbackComponentProps> = (props) => {
   console.log(props);
 
-  return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
-      <h1>Error</h1>
-      <p>
-        Sorry, what a mess. Looks like something's gone wrong, the team has been
-        notified!
-      </p>
-    </Layout>
-  );
+  return <ErrorPage />;
 };
 
 // This should happen once per app load.

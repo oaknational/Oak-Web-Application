@@ -14,7 +14,7 @@ jest.mock("../../hooks/useBookmarks", () => ({
   __esModule: true,
   BookmarksProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
-jest.mock("../../auth/useAuth", () => ({
+jest.mock("../../context/Auth", () => ({
   __esModule: true,
   AuthProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));

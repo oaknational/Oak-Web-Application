@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { NextPage } from "next";
 
 import { useSearchQuery } from "../context/SearchContext";
@@ -97,14 +97,17 @@ const Search: NextPage = () => {
   const apiRoute: RequestInfo =
     "https://search-staging.oaknational.workers.dev";
 
-  const requestOptions: RequestInit = {
-    method: "POST",
-    redirect: "follow",
-    headers: new Headers({
-      "Content-Type": "application/json",
+  const requestOptions: RequestInit = useMemo(
+    () => ({
+      method: "POST",
+      redirect: "follow",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(constructQuery({ term: text, keyStages })),
     }),
-    body: JSON.stringify(constructQuery({ term: text, keyStages })),
-  };
+    [text, keyStages]
+  );
 
   useEffect(() => {
     let isCancelled = false;
@@ -135,7 +138,7 @@ const Search: NextPage = () => {
     return () => {
       isCancelled = true;
     };
-  }, [text, JSON.stringify(Array.from(keyStages))]);
+  }, [requestOptions]);
 
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>

@@ -1,7 +1,7 @@
 import { RequestMethod } from "node-mocks-http";
 import { ZodSchema } from "zod";
 
-import useAccessToken from "../../auth/useAccessToken";
+import useAccessToken from "../../context/Auth/useAccessToken";
 
 type OakFetchProps<ResponseData> = {
   url: string;

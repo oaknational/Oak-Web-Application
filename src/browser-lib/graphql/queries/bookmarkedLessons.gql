@@ -1,5 +1,7 @@
 query bookmarkedLessons {
   bookmarkedLessons(order_by: { createdAt: desc }) {
+    lessonId
+    userId
     lesson {
       id
       slug
