@@ -1,3 +1,18 @@
+## [0.19.1](https://github.com/oaknational/Samara/compare/v0.19.0...v0.19.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* **global-imports:** global css imports to be at top of _app.tsx ([3f0e4cd](https://github.com/oaknational/Samara/commit/3f0e4cd4ac7b9f188f3b825077b905d72c1d8479))
+* **storybook:** add fonts and global styles to storybook preview ([88aab14](https://github.com/oaknational/Samara/commit/88aab1472bdbd7e2c0f8780dfa6ecd6d6d236242))
+
+# [0.19.0](https://github.com/oaknational/Samara/compare/v0.18.0...v0.19.0) (2022-05-17)
+
+
+### Features
+
+* custom 404 and 500 pages ([eb6ee76](https://github.com/oaknational/Samara/commit/eb6ee760b69f50c62259d1e29bda97a98169b9dc))
+
 # [0.18.0](https://github.com/oaknational/Samara/compare/v0.17.0...v0.18.0) (2022-05-17)
 
 
