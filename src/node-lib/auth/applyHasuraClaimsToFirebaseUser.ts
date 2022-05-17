@@ -1,6 +1,6 @@
 import { FirebaseError } from "firebase/app";
 
-import { OakUser } from "../../auth/useAuth";
+import { OakUser } from "../../context/Auth";
 import OakError from "../../errors/OakError";
 import { firebaseAdminAuth, firebaseAdminDatabase } from "../firebase";
 
