@@ -1,9 +1,8 @@
 import { FC } from "react";
-import clsx from "clsx";
+import styled from "styled-components";
 
 import { IconColorOverride } from "../../styles/themes/types";
 
-import styles from "./Icon.module.css";
 import ChevronRight from "./ChevronRight.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
@@ -25,6 +24,18 @@ export const icons: Record<IconName, FC> = {
   Share,
   Star,
 };
+
+const IconOuterWrapper = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+`;
+const IconInnerWrapper = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--${(props) => props.color});
+`;
 
 type IconProps = {
   name: IconName;
@@ -54,17 +65,16 @@ const Icon: FC<IconProps> = (props) => {
   const outerWidth = props.outerWidth || innerWidth;
 
   return (
-    <span
-      className={styles.outerWrapper}
+    <IconOuterWrapper
       style={{ height: `${outerHeight}px`, width: `${outerWidth}px` }}
     >
-      <span
-        className={clsx(styles.innerWrapper, color && styles[color])}
+      <IconInnerWrapper
+        color={color}
         style={{ height: `${innerHeight}px`, width: `${innerWidth}px` }}
       >
         <IconComponent />
-      </span>
-    </span>
+      </IconInnerWrapper>
+    </IconOuterWrapper>
   );
 };
 

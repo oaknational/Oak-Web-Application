@@ -1,17 +1,13 @@
-import clsx from "clsx";
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
+import styled from "styled-components";
 
-import styles from "./UnstyledButton.module.css";
-
-type UnstyledButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
-const UnstyledButton: FC<UnstyledButtonProps> = (props) => {
-  const { className } = props;
-  return (
-    <button {...props} className={clsx(className, styles.unstyledButton)} />
-  );
-};
+const UnstyledButton = styled.button`
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+`;
 
 export default UnstyledButton;

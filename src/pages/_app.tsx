@@ -2,9 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 
-import "../styles/constants.css";
-import "../styles/reset.css";
-import "../styles/globals.css";
+import GlobalStyle from "../styles/GlobalStyle";
 import { AuthProvider } from "../context/Auth";
 import useApolloClient from "../browser-lib/graphql/useApolloClient";
 import useTheme from "../hooks/useTheme";
@@ -21,6 +19,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <ErrorBoundary>
+        <GlobalStyle />
         <AuthProvider>
           <ApolloProvider client={apolloClient}>
             <UserStyleContextProvider>

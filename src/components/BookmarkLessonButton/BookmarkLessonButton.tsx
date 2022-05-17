@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useUser } from "../../context/Auth";
 import { LessonId } from "../../hooks/useBookmarks";
 import useToggleBookmark from "../../hooks/useToggleBookmark";
-import IconButton from "../IconButton/IconButton";
+import IconButton from "../Button/IconButton";
 
 type BookmarkLessonButtonProps = {
   lessonId: LessonId;

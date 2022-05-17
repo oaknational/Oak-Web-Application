@@ -63,6 +63,7 @@
     "node-fetch": "^2.6.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "styled-components": "^5.3.5",
     "zod": "^3.14.3"
   },
   "devDependencies": {
@@ -98,6 +99,7 @@
     "@testing-library/user-event": "^14.1.0",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.44",
+    "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "babel-loader": "^8.2.4",
