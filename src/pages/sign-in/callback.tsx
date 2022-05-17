@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import useAuth from "../../auth/useAuth";
+import useAuth from "../../context/Auth/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 const SignInCallback: NextPage = () => {
@@ -10,7 +10,7 @@ const SignInCallback: NextPage = () => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  const attemptSignInCallback = async () => {
+  const attemptSignInCallback = useCallback(async () => {
     try {
       await signInWithEmailCallback();
 
@@ -20,11 +20,11 @@ const SignInCallback: NextPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router, signInWithEmailCallback]);
 
   useEffect(() => {
     attemptSignInCallback();
-  }, []);
+  }, [attemptSignInCallback]);
 
   if (loading) {
     return <LoadingSpinner />;

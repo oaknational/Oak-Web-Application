@@ -1,13 +1,11 @@
 import { FC } from "react";
 
-import { authContext, OakAuth } from "../../auth/useAuth";
+import { authContext, OakAuth } from "../../context/Auth";
 
 export const defaultMockedAuthProviderValue = {
   user: null,
-  isLoggedIn: false,
   signOut: async () => undefined,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  signInWithEmail: async (email: string) => undefined,
+  signInWithEmail: async () => undefined,
   signInWithEmailCallback: async () => undefined,
 };
 

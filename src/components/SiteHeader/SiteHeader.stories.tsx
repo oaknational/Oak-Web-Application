@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { AuthProvider } from "../../auth/useAuth";
+import { AuthProvider } from "../../context/Auth";
 import { SearchProvider } from "../../context/SearchContext";
 
 import SiteHeader from "./SiteHeader";

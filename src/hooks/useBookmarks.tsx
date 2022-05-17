@@ -1,6 +1,6 @@
 import { createContext, FC, useCallback, useContext, useEffect } from "react";
 
-import useAuth from "../auth/useAuth";
+import { useUser } from "../context/Auth";
 import {
   useBookmarkedLessonAddMutation,
   useBookmarkedLessonRemoveMutation,
@@ -23,8 +23,18 @@ type Bookmark = {
   };
 };
 
+// Shallow compare function
+const areBookmarksEqual = (old: Bookmark[], _new: Bookmark[]) => {
+  return (
+    old.length === _new.length &&
+    old.reduce<boolean>(
+      (accum, curr, i) => accum && curr.lesson.id === _new[i]?.lesson.id,
+      true
+    )
+  );
+};
 export const useBookmarksCache = () => {
-  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, []);
+  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, [], areBookmarksEqual);
 };
 
 export type BookmarksContext = {
@@ -47,20 +57,28 @@ const bookmarksContext = createContext<BookmarksContext | null>(null);
  * meaning latest first.
  */
 export const BookmarksProvider: FC = ({ children }) => {
-  const { user, isLoggedIn } = useAuth();
+  const user = useUser();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
-  const [addBookmarkMutation] = useBookmarkedLessonAddMutation();
-  const [removeBookmarkMutation] = useBookmarkedLessonRemoveMutation();
+  const [addBookmarkMutation, { loading: adding }] =
+    useBookmarkedLessonAddMutation();
+  const [removeBookmarkMutation, { loading: removing }] =
+    useBookmarkedLessonRemoveMutation();
 
-  const [fetchBookmarks, { data, refetch, loading, error }] =
-    useBookmarkedLessonsLazyQuery();
+  const [fetchBookmarks, { data, loading: fetching, error, refetch }] =
+    useBookmarkedLessonsLazyQuery({
+      fetchPolicy: "cache-and-network",
+      nextFetchPolicy: "network-only",
+      notifyOnNetworkStatusChange: true,
+    });
+
+  const loading = fetching || removing || adding;
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (user) {
       fetchBookmarks();
     }
-  }, [isLoggedIn]);
+  }, [user, fetchBookmarks]);
 
   useEffect(() => {
     /**
@@ -78,14 +96,21 @@ export const BookmarksProvider: FC = ({ children }) => {
           .map((lesson) => ({ lesson }))
       );
     }
-  }, [data]);
+  }, [data, setBookmarks]);
+
+  const refetchBookmarks = useCallback(async () => {
+    if (refetch) {
+      await refetch();
+    }
+  }, [refetch]);
 
   const addBookmark = useCallback(
     async (lessonId: LessonId) => {
-      if (!isLoggedIn) {
+      if (!user) {
         // @TODO bugsnag
         return console.warn("Add bookmark called without user in scope");
       }
+      // Attempt add bookmark to database
       const res = await addBookmarkMutation({ variables: { lessonId } });
       const bookmark = res.data?.insert_bookmarkedLessons_one;
       if (!bookmark || !bookmark.lesson) {
@@ -93,10 +118,11 @@ export const BookmarksProvider: FC = ({ children }) => {
         return;
       }
       const lesson = bookmark.lesson;
-      setBookmarks((bookmarks) => [{ lesson }, ...bookmarks]);
-      refetch();
+      // @todo Optimistically add bookmark. Assumption made here that sort order is by createdAt DESC
+      setBookmarks((bookmarks) => [{ lesson: lesson }, ...bookmarks]);
+      refetchBookmarks();
     },
-    [isLoggedIn, addBookmarkMutation]
+    [user, addBookmarkMutation, refetchBookmarks, setBookmarks]
   );
 
   const removeBookmark = useCallback(
@@ -105,21 +131,19 @@ export const BookmarksProvider: FC = ({ children }) => {
         // @TODO bugsnag
         return console.warn("Remove bookmark called without user in scope");
       }
-      await removeBookmarkMutation({
-        variables: { lessonId, userId: user.id },
-      });
-      // Question do we want to optimistically remove these?
+      // Optimistically remove bookmark
       setBookmarks((bookmarks) =>
         bookmarks.filter((bookmark) => bookmark.lesson.id !== lessonId)
       );
-      refetch();
+      // Attempt remove bookmark from database
+      await removeBookmarkMutation({
+        variables: { lessonId, userId: user.id },
+      });
+      // Refetch to ensure consistency
+      refetchBookmarks();
     },
-    [user, removeBookmarkMutation]
+    [user, removeBookmarkMutation, refetchBookmarks, setBookmarks]
   );
-
-  const refetchBookmarks = async () => {
-    await refetch();
-  };
 
   const isBookmarked = useCallback(
     (lessonId: LessonId) => {
