@@ -36,6 +36,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# local config
+oak.config.js
+oak.config.json
+oak.config.ts
+
 # vercel
 .vercel
 
@@ -44,12 +49,6 @@ yarn-error.log*
 
 # tool files to ignore
 .eslintcache
-
-# graphql-codegen generated types
-src/data-layer/graphql/generated
-src/browser-lib/graphql/generated
-src/node-lib/graphql/generated
-src/data-layer/graphql/generated
 
 # storybook
 /storybook-static

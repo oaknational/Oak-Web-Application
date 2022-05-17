@@ -1,36 +1,53 @@
 import { act, fireEvent, waitFor } from "@testing-library/react";
 
-import Bookmarks from "../../pages/bookmarks";
-import { testLessons } from "../__helpers__/apolloMocks";
+import BookmarksPage from "../../pages/bookmarks";
+import { testBookmarks, testLessons } from "../__helpers__/apolloMocks";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
 const testUser = { id: "123", email: "test email" };
 const loggedInAuthProviderProps = {
-  value: { user: testUser, isLoggedIn: true },
+  value: { user: testUser },
 };
 
+const removeBookmark = jest.fn();
+const useBookmarks = () => ({
+  bookmarks: testBookmarks,
+  loading: true,
+  removeBookmark: (...args: []) => removeBookmark(...args),
+});
+jest.mock("../../hooks/useBookmarks", () => ({
+  __esModule: true,
+  ...jest.requireActual("../../hooks/useBookmarks"),
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  default: (...args: []) => useBookmarks(...args),
+}));
+
 describe("pages/bookmarks.tsx", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
   it("Renders the page title", async () => {
-    const { getByRole } = renderWithProviders(<Bookmarks />);
+    const { getByRole } = renderWithProviders(<BookmarksPage />);
 
     expect(getByRole("heading", { level: 1 }).textContent).toBe("Bookmarks");
   });
   it("Shows message if visitor is anonymous", () => {
-    const { getByTestId } = renderWithProviders(<Bookmarks />);
+    const { getByTestId } = renderWithProviders(<BookmarksPage />);
 
     expect(getByTestId("anonymous-vistor-message")).toHaveTextContent(
       "bookmarks are only available for logged in users"
     );
   });
   it("Renders loading spinner during fetch", async () => {
-    const { getByText } = renderWithProviders(<Bookmarks />, undefined, {
+    const { getByText } = renderWithProviders(<BookmarksPage />, undefined, {
       authProviderProps: loggedInAuthProviderProps,
     });
 
     expect(getByText(/^Loading/).textContent).toBe("Loading");
   });
   it("Renders bookmarked lesson after fetch", async () => {
-    const { getByTestId } = renderWithProviders(<Bookmarks />, undefined, {
+    const { getByTestId } = renderWithProviders(<BookmarksPage />, undefined, {
       authProviderProps: loggedInAuthProviderProps,
     });
 
@@ -38,18 +55,12 @@ describe("pages/bookmarks.tsx", () => {
       expect(getByTestId("bookmark-0").textContent).toBe(testLessons[0]?.title);
     });
   });
-  it("Clicking 'remove' should remove the bookmark", async () => {
-    const { getAllByRole, getByTestId } = renderWithProviders(
-      <Bookmarks />,
-      undefined,
-      {
-        authProviderProps: loggedInAuthProviderProps,
-      }
-    );
+  it("Clicking 'remove' should call 'useBookmark()' with correct lessonId", async () => {
+    const { getAllByRole } = renderWithProviders(<BookmarksPage />, undefined, {
+      authProviderProps: loggedInAuthProviderProps,
+    });
 
-    let bookmarksList = await getByTestId("bookmarks-list");
-    const originalLength = bookmarksList.childNodes.length;
-
+    const firstLessonId = testLessons[0]?.id;
     act(() => {
       const [firstRemoveButton] = getAllByRole("button", { name: /remove/i });
       if (!firstRemoveButton) {
@@ -59,9 +70,7 @@ describe("pages/bookmarks.tsx", () => {
     });
 
     await waitFor(() => {
-      bookmarksList = getByTestId("bookmarks-list");
-      const newLength = bookmarksList.childNodes.length;
-      expect(newLength).toBe(originalLength - 1);
+      expect(removeBookmark).toHaveBeenCalledWith(firstLessonId);
     });
   });
 });

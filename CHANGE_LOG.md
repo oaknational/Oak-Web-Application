@@ -1,3 +1,36 @@
+# [0.18.0](https://github.com/oaknational/Samara/compare/v0.17.0...v0.18.0) (2022-05-17)
+
+
+### Bug Fixes
+
+* add react-hooks eslint plugin ([8e002b7](https://github.com/oaknational/Samara/commit/8e002b7790e598b5ea87f18943bcf7c78da40b05))
+* add react-hooks eslint plugin ([4635ede](https://github.com/oaknational/Samara/commit/4635edeba1bf37255908cc1205e5f76c984ed1a1))
+
+
+### Features
+
+* **bookmarks:** optimistically add/remove bookmark ([524a874](https://github.com/oaknational/Samara/commit/524a874fd735748a248f06cb43f0f387f397ee9f))
+
+# [0.17.0](https://github.com/oaknational/Samara/compare/v0.16.2...v0.17.0) (2022-05-13)
+
+
+### Bug Fixes
+
+* **config-secrets:** don't throw from fetch_secrets if some secrets are unavailable ([22bd9ec](https://github.com/oaknational/Samara/commit/22bd9ecffb12c9eb9d43e167e9d260978a0a2fd4))
+* **config:** remove debug code ([5b7ff94](https://github.com/oaknational/Samara/commit/5b7ff9458c5c861cd28f8a5985223be48f4fc71d))
+
+
+### Features
+
+* **config:** function which fetches secrets from google secret manager ([7668d52](https://github.com/oaknational/Samara/commit/7668d52a39fd934cf0a8a0ba54aea31da95ec84b))
+* **config:** read Oak config from config file for app building ([d51420d](https://github.com/oaknational/Samara/commit/d51420dfa8da7c3ded09dff309049a0395a61b2e))
+* **config:** support fetching Oak config over the network ([e8ce0d7](https://github.com/oaknational/Samara/commit/e8ce0d7632d79b8b754a254bc22b45352525f681))
+* **GQL:** generate types when Nextjs started ([673595b](https://github.com/oaknational/Samara/commit/673595bfc8e5b68815cc9568871d30b2ee12e47d))
+
+## [0.16.2](https://github.com/oaknational/Samara/compare/v0.16.1...v0.16.2) (2022-05-12)
+
+## [0.16.1](https://github.com/oaknational/Samara/compare/v0.16.0...v0.16.1) (2022-05-12)
+
 # [0.16.0](https://github.com/oaknational/Samara/compare/v0.15.1...v0.16.0) (2022-05-05)
 
 

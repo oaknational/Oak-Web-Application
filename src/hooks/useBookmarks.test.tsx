@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
 
 import "../__tests__/__helpers__/LocalStorageMock";
-import { UserId } from "../auth/useAuth";
+import { UserId } from "../context/Auth";
 
 import useBookmarks, { BookmarksProvider } from "./useBookmarks";
 
@@ -76,6 +76,7 @@ const useBookmarkedLessonRemoveMutation = () => {
     ({ variables }: { variables: LessonUserTuple }) => {
       bookmarksStore.removeBookmark(variables.lessonId);
     },
+    { loading: false },
   ];
 };
 const useBookmarkedLessonAddMutation = () => {
@@ -88,6 +89,7 @@ const useBookmarkedLessonAddMutation = () => {
         },
       };
     },
+    { loading: false },
   ];
 };
 
@@ -114,10 +116,10 @@ const testUser = { id: "123", email: "test email" };
  */
 const useAuth = jest.fn<{ user: typeof testUser | null }, []>(() => ({
   user: testUser,
-  isLoggedIn: true,
 }));
-jest.mock("../auth/useAuth", () => ({
+jest.mock("../context/Auth/useAuth", () => ({
   __esModule: true,
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   default: (...args: []) => useAuth(...args),
 }));
 
