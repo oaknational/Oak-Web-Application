@@ -1,3 +1,11 @@
+## [0.19.3](https://github.com/oaknational/Samara/compare/v0.19.2...v0.19.3) (2022-05-17)
+
+
+### Bug Fixes
+
+* remove swc darwin package so that node builds on linux ([4087376](https://github.com/oaknational/Samara/commit/4087376d158386918a8b331402d04417baf332e2))
+* swc failed to load error on M1 macs ([2808c9b](https://github.com/oaknational/Samara/commit/2808c9b0a169e58e3547c6541ce450915f3934a8))
+
 ## [0.19.2](https://github.com/oaknational/Samara/compare/v0.19.1...v0.19.2) (2022-05-17)
 
 ## [0.19.1](https://github.com/oaknational/Samara/compare/v0.19.0...v0.19.1) (2022-05-17)
