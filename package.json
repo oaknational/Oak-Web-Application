@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.19.0",
+  "version": "0.19.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -124,7 +124,7 @@
     "octokit": "^1.7.1",
     "pa11y-ci": "^3.0.1",
     "prettier": "^2.6.2",
-    "puppeteer": "^13.5.2",
+    "puppeteer": "13.0.0",
     "semantic-release": "^19.0.2",
     "start-server-and-test": "^1.14.0",
     "storybook-addon-themes": "^6.1.0",
