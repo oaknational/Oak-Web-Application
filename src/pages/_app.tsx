@@ -2,7 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 
-import { AuthProvider } from "../auth/useAuth";
+import { AuthProvider } from "../context/Auth";
 import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";

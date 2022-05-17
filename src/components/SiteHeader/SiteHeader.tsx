@@ -2,7 +2,7 @@ import { FC } from "react";
 import Link from "next/link";
 
 import { useUserStyleContext } from "../../context/UserStyleContext";
-import useAuth from "../../auth/useAuth";
+import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
 
 import styles from "./SiteHeader.module.css";
