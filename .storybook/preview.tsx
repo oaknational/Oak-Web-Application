@@ -1,6 +1,8 @@
 import React from "react";
 
-import "../src/styles";
+import "../src/styles/constants.css";
+import "../src/styles/reset.css";
+import "../src/styles/globals.css";
 import useTheme from "../src/hooks/useTheme";
 import { UserStyleContextProvider } from "../src/context/UserStyleContext";
 
