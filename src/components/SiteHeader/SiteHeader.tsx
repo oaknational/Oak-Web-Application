@@ -2,7 +2,7 @@ import { FC } from "react";
 import Link from "next/link";
 
 import { useUserStyleContext } from "../../context/UserStyleContext";
-import useAuth from "../../auth/useAuth";
+import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
 
 import styles from "./SiteHeader.module.css";
@@ -21,10 +21,10 @@ const SiteHeader: FC = () => {
     <header className={styles.header}>
       <div className={styles.title}>Oak</div>
       <SearchForm />
-      <button className={styles.userThemeButton} onClick={handleClick}>
-        {userStyleContext.user}
-      </button>
       <div className={styles.signInButtonWrapper}>
+        <button className={styles.userThemeButton} onClick={handleClick}>
+          {userStyleContext.user}
+        </button>
         {user ? (
           <button onClick={signOut}>Sign out</button>
         ) : (

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import z from "zod";
 
-import { OakUser } from "../../auth/useAuth";
+import { OakUser } from "../../context/Auth";
 import createErrorHandler from "../../common-lib/error-handler";
 import OakError, { ErrorCode } from "../../errors/OakError";
 import applyHasuraClaimsToFirebaseUser from "../../node-lib/auth/applyHasuraClaimsToFirebaseUser";

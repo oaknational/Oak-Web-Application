@@ -19,7 +19,7 @@ const withThemeProvider = (Story, context) => {
   useTheme();
   return (
     <UserStyleContextProvider>
-      <Story {...context} />;
+      <Story {...context} />
     </UserStyleContextProvider>
   );
 };

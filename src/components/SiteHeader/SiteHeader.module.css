@@ -18,6 +18,7 @@
 .userThemeButton {
   composes: button-unstyle from "../../styles/button-unstyle.module.css";
   padding-right: 24px;
+  text-transform: capitalize;
 }
 
 @media (min-width: 900px) {

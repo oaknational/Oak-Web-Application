@@ -2,7 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 
-import { AuthProvider } from "../auth/useAuth";
+import { AuthProvider } from "../context/Auth";
 import "../styles/constants.css";
 import "../styles/reset.css";
 import "../styles/globals.css";
@@ -12,6 +12,7 @@ import { UserStyleContextProvider } from "../context/UserStyleContext";
 import { SearchProvider } from "../context/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../hooks/useBookmarks";
+import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useTheme();
@@ -25,6 +26,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
             <UserStyleContextProvider>
               <BookmarksProvider>
                 <SearchProvider>
+                  <DefaultSeo />
                   <Component {...pageProps} />
                 </SearchProvider>
               </BookmarksProvider>
