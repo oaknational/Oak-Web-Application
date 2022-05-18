@@ -1,4 +1,4 @@
-import useBookmarks, { LessonId } from "./useBookmarks";
+import { useBookmarks, LessonId } from ".";
 
 type UseToggleBookmarkProps = {
   lessonId: LessonId;

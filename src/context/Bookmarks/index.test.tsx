@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
 
-import "../__tests__/__helpers__/LocalStorageMock";
-import { UserId } from "../context/Auth";
+import "../../__tests__/__helpers__/LocalStorageMock";
+import { UserId } from "../Auth";
 
-import useBookmarks, { BookmarksProvider } from "./useBookmarks";
+import { useBookmarks, BookmarksProvider } from ".";
 
 type LessonId = "1" | "2";
 type Bookmark = {
@@ -117,13 +117,13 @@ const testUser = { id: "123", email: "test email" };
 const useAuth = jest.fn<{ user: typeof testUser | null }, []>(() => ({
   user: testUser,
 }));
-jest.mock("../context/Auth/useAuth", () => ({
+jest.mock("../Auth/useAuth", () => ({
   __esModule: true,
   // eslint-disable-next-line react-hooks/rules-of-hooks
   default: (...args: []) => useAuth(...args),
 }));
 
-jest.mock("../browser-lib/graphql/generated/apollo", () => ({
+jest.mock("../../browser-lib/graphql/generated/apollo", () => ({
   useBookmarkedLessonAddMutation: (...args: []) =>
     useBookmarkedLessonAddMutation(...args),
   useBookmarkedLessonRemoveMutation: (...args: []) =>
@@ -131,7 +131,7 @@ jest.mock("../browser-lib/graphql/generated/apollo", () => ({
   useBookmarkedLessonsLazyQuery: (...args: []) =>
     useBookmarkedLessonsLazyQuery(...args),
 }));
-describe("hooks/useBookmarks.tsx", () => {
+describe("context/Bookmarks", () => {
   beforeEach(() => {
     window.localStorage.clear();
     bookmarksStore.clear();

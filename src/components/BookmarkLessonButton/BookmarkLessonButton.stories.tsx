@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import MockedAuthProvider, {
   loggedInAuthProviderProps,
 } from "../../__tests__/__helpers__/MockedAuthProvider";
-import { BookmarksProvider } from "../../hooks/useBookmarks";
+import { BookmarksProvider } from "../../context/Bookmarks";
 import MockedApolloProvider from "../../__tests__/__helpers__/MockedApolloProvider";
 
 import BookmarkLessonButton from ".";
