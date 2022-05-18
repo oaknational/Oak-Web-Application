@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import { useSearchQuery } from "../context/SearchContext";
 import Layout from "../components/Layout";
 import SearchResults from "../components/SearchResults";
+import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 
 export interface SearchHit {
   _source: {
@@ -140,7 +141,7 @@ const Search: NextPage = () => {
   }, [requestOptions]);
 
   return (
-    <Layout>
+    <Layout seoProps={DEFAULT_SEO_PROPS}>
       {loading && <p>Loading...</p>}
       <SearchResults hits={results} />
     </Layout>

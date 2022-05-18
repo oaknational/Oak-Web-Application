@@ -2,6 +2,7 @@ import { NextPage, NextPageContext } from "next";
 
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Layout from "../components/Layout";
+import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 
 interface Props {
   statusCode?: number;
@@ -9,7 +10,7 @@ interface Props {
 
 const ErrorPage: NextPage<Props> = ({ statusCode }) => {
   return (
-    <Layout>
+    <Layout seoProps={DEFAULT_SEO_PROPS}>
       {statusCode === 404 ? (
         <h1 data-testid="404Heading">Page not found</h1>
       ) : (
