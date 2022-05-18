@@ -8,10 +8,15 @@ const IMAGES = {
   default: config.get("appSocialSharingImg"),
 };
 
+export const DEFAULT_SEO_PROPS = {
+  title: config.get("appName"),
+  description: config.get("appDescription"),
+};
+
 type Images = typeof IMAGES;
 type Image = keyof Images;
 
-type SEOProps = {
+export type SeoProps = {
   title: string;
   description: string;
   noIndex?: boolean;
@@ -21,7 +26,7 @@ type SEOProps = {
 /** 1.Seo titles should be between 50-60 characters long 
     2. Seo title should contain app name
     3. Seo descriptions should be between 150-300 characters long */
-const Seo: FC<SEOProps> = ({ title, description, image = "default" }) => {
+const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
   const router = useRouter();
 
   const sharingImage = IMAGES[image] ? IMAGES[image] : IMAGES["default"];
