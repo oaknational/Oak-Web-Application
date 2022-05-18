@@ -14,10 +14,10 @@ type TestProps = { pl: number | number[] | string | string[] };
  *
  * @description outputs from styled-components css function can vary in value
  * whilst still representing the same css.
- * For this reason we need to "simplify" the css that we get from responsive
+ * For this reason we need to "stringify" (and minify) the css that we get from responsive
  * in order to compare it with the expected css values.
  */
-const simplify = (
+const stringify = (
   cssArray:
     | FlattenSimpleInterpolation
     | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>
@@ -69,16 +69,16 @@ describe("responsive", () => {
     )(props);
     const expected = css`
       padding-left: 0px;
-      @media (min-width: 100px) {
+      @media (min-width: 600px) {
         padding-left: 12px;
       }
     `;
 
-    expect(simplify(actual)).toEqual(simplify(expected));
+    expect(stringify(actual)).toEqual(stringify(expected));
   });
   it("should handle the case where the last value is a zero", async () => {
     const props = {
-      pl: [36, 0],
+      pl: [36, 12, 0],
     };
 
     const actual = responsive(
@@ -88,11 +88,14 @@ describe("responsive", () => {
     )(props);
     const expected = css`
       padding-left: 36px;
-      @media (min-width: 100px) {
+      @media (min-width: 600px) {
+        padding-left: 12px;
+      }
+      @media (min-width: 1200px) {
         padding-left: 0px;
       }
     `;
-    expect(simplify(actual)).toEqual(simplify(expected));
+    expect(stringify(actual)).toEqual(stringify(expected));
   });
   it("should default parseValue to be identity fn", () => {
     const props = {
@@ -106,6 +109,6 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0.5em;
     `;
-    expect(simplify(actual)).toEqual(simplify(expected));
+    expect(stringify(actual)).toEqual(stringify(expected));
   });
 });

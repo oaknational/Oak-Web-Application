@@ -7,7 +7,7 @@ import {
 
 import truthy from "../../utils/truthy";
 
-const breakpoints = [100, 900, 1200];
+const breakpoints = [600, 1200];
 
 export type ResponsiveValues<Value> = Value | Value[];
 

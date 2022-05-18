@@ -120,7 +120,6 @@
     "jest": "^27.5.1",
     "jest-fetch-mock": "^3.0.3",
     "jest-node-exports-resolver": "^1.1.6",
-    "jest-styled-components": "^7.0.8",
     "lint-staged": "^12.3.7",
     "next-router-mock": "^0.6.5",
     "node-mocks-http": "^1.11.0",
