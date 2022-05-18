@@ -17,22 +17,17 @@ Array [
       </h1>
       <button
         aria-label="Add Bookmark"
-        className="iconButton primary small unstyledButton"
+        className="sc-bczRLJ bprpIx"
         disabled={false}
         onClick={[Function]}
         title="Add Bookmark"
       >
-        <span
-          className="outerWrapper"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+        <div
+          className="sc-hKMtZM dzHdVU"
+          size="small"
         >
           <span
-            className="innerWrapper"
+            className="sc-gsnTZi hhriQA"
             style={
               Object {
                 "height": "16px",
@@ -40,25 +35,35 @@ Array [
               }
             }
           >
-            <svg
-              fill="currentColor"
-              viewBox="2 2 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "16px",
+                  "width": "16px",
+                }
+              }
             >
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-              <path
-                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-              />
-            </svg>
+              <svg
+                fill="currentColor"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                />
+              </svg>
+            </span>
           </span>
-        </span>
+        </div>
       </button>
     </div>
   </div>,
@@ -110,7 +115,7 @@ Array [
             className="li"
           >
             <span
-              className="outerWrapper"
+              className="sc-gsnTZi hhriQA"
               style={
                 Object {
                   "height": "20px",
@@ -119,7 +124,7 @@ Array [
               }
             >
               <span
-                className="innerWrapper"
+                className="sc-dkzDqf iDtTay"
                 style={
                   Object {
                     "height": "20px",
@@ -156,7 +161,7 @@ Array [
             className="li"
           >
             <span
-              className="outerWrapper"
+              className="sc-gsnTZi hhriQA"
               style={
                 Object {
                   "height": "20px",
@@ -165,7 +170,7 @@ Array [
               }
             >
               <span
-                className="innerWrapper"
+                className="sc-dkzDqf iDtTay"
                 style={
                   Object {
                     "height": "20px",
@@ -202,7 +207,7 @@ Array [
             className="li"
           >
             <span
-              className="outerWrapper"
+              className="sc-gsnTZi hhriQA"
               style={
                 Object {
                   "height": "20px",
@@ -211,7 +216,7 @@ Array [
               }
             >
               <span
-                className="innerWrapper"
+                className="sc-dkzDqf iDtTay"
                 style={
                   Object {
                     "height": "20px",
@@ -251,7 +256,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Components/Button Button Example 1`] = `
+exports[`Storyshots Components/Buttons/Button As Link Button As Link 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -261,34 +266,30 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <div>
-      <h1>
-        Buttons
-      </h1>
-      <a
-        aria-label="Button rounded"
-        background="teachers-primary"
-        className="button primary small leadingIcon"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        title="Button rounded"
+  <a
+    aria-label="Click me"
+    href="/"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+    title="Click me"
+  >
+    <div
+      className="sc-gKXOVf iDuyjb"
+      size="small"
+    >
+      <span
+        className="sc-jSMfEi CCzaz"
       >
-        <span
-          className="labelSpan"
-        >
-          Button rounded
-        </span>
-      </a>
+        Click me
+      </span>
     </div>
-  </div>,
+  </a>,
 ]
 `;
 
-exports[`Storyshots Components/Button Button Example With Icon 1`] = `
+exports[`Storyshots Components/Buttons/Button Button 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -298,78 +299,161 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <div>
-      <h1>
-        Buttons
-      </h1>
-      <a
-        aria-label="Button"
-        background="teachers-primary"
-        className="button secondary small leadingIcon"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        title="Button"
+  <button
+    aria-label="Click me"
+    className="sc-bczRLJ bprpIx"
+    title="Click me"
+  >
+    <div
+      className="sc-gKXOVf iDuyjb"
+      size="small"
+    >
+      <span
+        className="sc-jSMfEi CCzaz"
+      >
+        Click me
+      </span>
+    </div>
+  </button>,
+]
+`;
+
+exports[`Storyshots Components/Buttons/Icon Button As Link Icon Button As Link 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <a
+    aria-label="Click me"
+    href="/"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  >
+    <div
+      className="sc-hKMtZM dzHdVU"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi hhriQA"
+        style={
+          Object {
+            "height": "16px",
+            "width": "16px",
+          }
+        }
       >
         <span
-          className="iconWrapper"
-        >
-          <span
-            className="outerWrapper"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
+          className="sc-dkzDqf iDtTay"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
             }
-          >
-            <span
-              className="innerWrapper"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-        <span
-          className="labelSpan"
+          }
         >
-          Button
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
         </span>
-      </a>
+      </span>
     </div>
-  </div>,
+  </a>,
+]
+`;
+
+exports[`Storyshots Components/Buttons/Icon Button Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <button
+    aria-label="Click me"
+    className="sc-bczRLJ bprpIx"
+    title="Click me"
+  >
+    <div
+      className="sc-hKMtZM dzHdVU"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi hhriQA"
+        style={
+          Object {
+            "height": "16px",
+            "width": "16px",
+          }
+        }
+      >
+        <span
+          className="sc-dkzDqf iDtTay"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </button>,
 ]
 `;
 
@@ -413,7 +497,7 @@ Array [
       Icon Example
     </h1>
     <span
-      className="outerWrapper"
+      className="sc-gsnTZi hhriQA"
       style={
         Object {
           "height": "100px",
@@ -422,7 +506,7 @@ Array [
       }
     >
       <span
-        className="innerWrapper"
+        className="sc-dkzDqf iDtTay"
         style={
           Object {
             "height": "100px",
@@ -451,7 +535,7 @@ Array [
       Available Icons
     </h2>
     <span
-      className="outerWrapper"
+      className="sc-gsnTZi hhriQA"
       style={
         Object {
           "height": "24px",
@@ -460,7 +544,7 @@ Array [
       }
     >
       <span
-        className="innerWrapper"
+        className="sc-dkzDqf iDtTay"
         style={
           Object {
             "height": "24px",
@@ -486,7 +570,7 @@ Array [
       </span>
     </span>
     <span
-      className="outerWrapper"
+      className="sc-gsnTZi hhriQA"
       style={
         Object {
           "height": "24px",
@@ -495,7 +579,7 @@ Array [
       }
     >
       <span
-        className="innerWrapper"
+        className="sc-dkzDqf iDtTay"
         style={
           Object {
             "height": "24px",
@@ -530,7 +614,7 @@ Array [
       </span>
     </span>
     <span
-      className="outerWrapper"
+      className="sc-gsnTZi hhriQA"
       style={
         Object {
           "height": "24px",
@@ -539,7 +623,7 @@ Array [
       }
     >
       <span
-        className="innerWrapper"
+        className="sc-dkzDqf iDtTay"
         style={
           Object {
             "height": "24px",
@@ -574,7 +658,7 @@ Array [
       </span>
     </span>
     <span
-      className="outerWrapper"
+      className="sc-gsnTZi hhriQA"
       style={
         Object {
           "height": "24px",
@@ -583,7 +667,7 @@ Array [
       }
     >
       <span
-        className="innerWrapper"
+        className="sc-dkzDqf iDtTay"
         style={
           Object {
             "height": "24px",
@@ -633,7 +717,7 @@ Array [
       </span>
     </span>
     <span
-      className="outerWrapper"
+      className="sc-gsnTZi hhriQA"
       style={
         Object {
           "height": "24px",
@@ -642,7 +726,7 @@ Array [
       }
     >
       <span
-        className="innerWrapper"
+        className="sc-dkzDqf iDtTay"
         style={
           Object {
             "height": "24px",

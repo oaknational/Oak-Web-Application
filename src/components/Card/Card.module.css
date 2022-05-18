@@ -6,7 +6,7 @@
   padding: 24px;
 }
 
-.card-primary {
+/* .card-primary {
   composes: card;
   composes: bg-primary from "../../styles/colors.module.css";
 }
@@ -19,7 +19,7 @@
 .card-tertiary {
   composes: card;
   composes: bg-tertiary from "../../styles/colors.module.css";
-}
+} */
 
 @media mobile {
   .card {

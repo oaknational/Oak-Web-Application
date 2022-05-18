@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { LessonId } from "../../context/Bookmarks";
 import BookmarkLessonButton from "../BookmarkLessonButton";
-import Button from "../Button";
+import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 
 import styles from "./LessonHeader.module.css";
@@ -18,13 +18,18 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
     <header className={styles.header}>
       <h1>{title}</h1>
       <ButtonGroup>
-        <Button
+        <ButtonAsLink
           href="/"
           label="Download"
           aria-label="Download Lesson"
           icon="Download"
         />
-        <Button href="/" label="Share" aria-label="Share Lesson" icon="Share" />
+        <ButtonAsLink
+          href="/"
+          label="Share"
+          aria-label="Share Lesson"
+          icon="Share"
+        />
         <BookmarkLessonButton lessonId={id} />
       </ButtonGroup>
     </header>

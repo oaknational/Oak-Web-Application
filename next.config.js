@@ -29,7 +29,7 @@ module.exports = async (phase) => {
     oakConfig = await fetchConfig(configLocation);
 
     // DEBUG
-    console.log("Next Oak Config", oakConfig);
+    // console.log("Next Oak Config", oakConfig);
 
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
@@ -48,6 +48,9 @@ module.exports = async (phase) => {
   const nextConfig = {
     poweredByHeader: false,
     reactStrictMode: true,
+    compiler: {
+      styledComponents: true,
+    },
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
@@ -90,7 +93,7 @@ module.exports = async (phase) => {
   // DEBUG
   // @todo this reveals all keys and secrets, so we should remove this before merging
   // in feat/config branch
-  console.log("Next config", nextConfig);
+  // console.log("Next config", nextConfig);
 
   return nextConfig;
 };

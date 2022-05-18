@@ -1,6 +1,6 @@
 import { NextPage, NextPageContext } from "next";
 
-import Button from "../components/Button";
+import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Layout from "../components/Layout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 
@@ -22,9 +22,9 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
           : "An error occurred on client"}
       </p>
       <p>Get back on track</p>
-      <Button href="/" label={"Homepage"}>
+      <ButtonAsLink href="/" label={"Homepage"}>
         Homepage
-      </Button>
+      </ButtonAsLink>
     </Layout>
   );
 };

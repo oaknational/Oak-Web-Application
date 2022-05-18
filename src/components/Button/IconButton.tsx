@@ -7,48 +7,49 @@ import {
 
 import UnstyledButton from "../UnstyledButton";
 
-import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
+import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
 
-export type ButtonProps = ButtonInnerProps & {
+type IconButtonProps = IconButtonInnerProps & {
   onClick: MouseEventHandler<HTMLButtonElement>;
-  "aria-label"?: string;
+  "aria-label": string;
+  disabled?: boolean;
   htmlButtonProps?: Omit<
     DetailedHTMLProps<
       ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
     >,
-    "ref"
+    "ref" | "onClick" | "disabled"
   >;
 };
 
-const Button: FC<ButtonProps> = (props) => {
+const IconButton: FC<IconButtonProps> = (props) => {
   const {
-    onClick,
     variant,
     size,
-    label,
     icon,
-    iconPosition = "leading",
+    iconColorOverride,
     "aria-label": ariaLabel,
+    disabled,
+    onClick,
     htmlButtonProps = {},
   } = props;
 
   return (
     <UnstyledButton
       {...htmlButtonProps}
-      title={htmlButtonProps.title || ariaLabel || label}
-      aria-label={ariaLabel || label}
       onClick={onClick}
+      title={htmlButtonProps.title || ariaLabel}
+      aria-label={ariaLabel}
+      disabled={disabled}
     >
-      <ButtonInner
-        variant={variant}
-        label={label}
+      <IconButtonInner
         icon={icon}
-        iconPosition={iconPosition}
         size={size}
+        variant={variant}
+        iconColorOverride={iconColorOverride}
       />
     </UnstyledButton>
   );
 };
 
-export default Button;
+export default IconButton;

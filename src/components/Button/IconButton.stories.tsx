@@ -1,15 +1,18 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./Button";
+import Component from "./IconButton";
 
 export default {
-  title: "Components/Buttons/Button",
+  title: "Components/Buttons/Icon Button",
   component: Component,
   argTypes: {
     argTypes: { onClick: { action: "clicked" } },
-    label: {
+    "aria-label": {
       defaultValue: "Click me",
+    },
+    icon: {
+      defaultValue: "Download",
     },
     variant: {
       defaultValue: "primary",
@@ -21,4 +24,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const Button = Template.bind({});
+export const IconButton = Template.bind({});
