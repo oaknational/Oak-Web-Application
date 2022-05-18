@@ -15,9 +15,8 @@ const useBookmarks = () => ({
   loading: true,
   removeBookmark: (...args: []) => removeBookmark(...args),
 });
-jest.mock("../../hooks/useBookmarks", () => ({
+jest.mock("../../context/Bookmarks/useBookmarks", () => ({
   __esModule: true,
-  ...jest.requireActual("../../hooks/useBookmarks"),
   // eslint-disable-next-line react-hooks/rules-of-hooks
   default: (...args: []) => useBookmarks(...args),
 }));

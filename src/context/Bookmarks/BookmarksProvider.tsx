@@ -1,52 +1,19 @@
-import { createContext, FC, useCallback, useContext, useEffect } from "react";
+import { FC, useEffect, useCallback } from "react";
 
-import { useUser } from "../context/Auth";
 import {
   useBookmarkedLessonAddMutation,
   useBookmarkedLessonRemoveMutation,
   useBookmarkedLessonsLazyQuery,
-} from "../browser-lib/graphql/generated/apollo";
-import { LS_KEY_BOOKMARKS } from "../config/localStorageKeys";
-import truthy from "../utils/truthy";
+} from "../../browser-lib/graphql/generated/apollo";
+import truthy from "../../utils/truthy";
+import { useUser } from "../Auth";
 
-import useLocalStorage from "./useLocalStorage";
-
-/**
- * @todo LessonId should be live with Lesson related code
- */
-export type LessonId = string;
-type Bookmark = {
-  lesson: {
-    id: LessonId;
-    slug: string;
-    title: string;
-  };
-};
-
-// Shallow compare function
-const areBookmarksEqual = (old: Bookmark[], _new: Bookmark[]) => {
-  return (
-    old.length === _new.length &&
-    old.reduce<boolean>(
-      (accum, curr, i) => accum && curr.lesson.id === _new[i]?.lesson.id,
-      true
-    )
-  );
-};
-export const useBookmarksCache = () => {
-  return useLocalStorage<Bookmark[]>(LS_KEY_BOOKMARKS, [], areBookmarksEqual);
-};
-
-export type BookmarksContext = {
-  bookmarks: Bookmark[];
-  loading: boolean;
-  error: string | null;
-  addBookmark: (lessonId: LessonId) => Promise<void>;
-  removeBookmark: (lessonId: LessonId) => Promise<void>;
-  refetchBookmarks: () => Promise<void>;
-  isBookmarked: (lessonId: LessonId) => boolean;
-};
-const bookmarksContext = createContext<BookmarksContext | null>(null);
+import {
+  bookmarksContext,
+  useBookmarksCache,
+  LessonId,
+  BookmarksContext,
+} from ".";
 
 /**
  *
@@ -56,7 +23,7 @@ const bookmarksContext = createContext<BookmarksContext | null>(null);
  * important. Currently in the query it is set to order_by: { created_at: desc },
  * meaning latest first.
  */
-export const BookmarksProvider: FC = ({ children }) => {
+const BookmarksProvider: FC = ({ children }) => {
   const user = useUser();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
@@ -168,12 +135,4 @@ export const BookmarksProvider: FC = ({ children }) => {
   );
 };
 
-const useBookmarks = () => {
-  const bookmarksContextValue = useContext(bookmarksContext);
-  if (!bookmarksContextValue) {
-    throw new Error("useBookmarks called outside of BookmarksProvider");
-  }
-  return bookmarksContextValue;
-};
-
-export default useBookmarks;
+export default BookmarksProvider;
