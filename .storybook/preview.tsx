@@ -12,6 +12,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  viewMode: "docs"
 };
 
 const withThemeProvider = (Story, context) => {

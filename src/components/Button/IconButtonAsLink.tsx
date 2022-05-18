@@ -1,17 +1,8 @@
-import {
-  AnchorHTMLAttributes,
-  DetailedHTMLProps,
-  FC,
-  KeyboardEvent,
-} from "react";
+import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import Link, { LinkProps } from "next/link";
 
-import createErrorHandler from "../../common-lib/error-handler";
-import OakError from "../../errors/OakError";
-
 import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
-
-const handleError = createErrorHandler("IconButtonAsLink");
+import useButtonAsLinkProps from "./useButtonAsLinkProps";
 
 type IconButtonAsLinkProps = IconButtonInnerProps & {
   "aria-label": string;
@@ -38,26 +29,9 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     anchorProps,
   } = props;
 
-  const onKeyDown = (e: KeyboardEvent<HTMLAnchorElement>) => {
-    if (e.code === "Space" || e.keyCode === 32) {
-      e.preventDefault();
-      // trigger the target's click event
-      if (!(e.target instanceof HTMLElement)) {
-        const error = new OakError({ code: "misc/unexpected-type" });
-        return handleError(error);
-      }
-      e.target.click();
-    }
-  };
-
   return (
     <Link {...nextLinkProps} href={href} passHref>
-      <a
-        {...anchorProps}
-        aria-label={ariaLabel}
-        role="button"
-        onKeyDown={onKeyDown}
-      >
+      <a {...anchorProps} {...useButtonAsLinkProps()} aria-label={ariaLabel}>
         <IconButtonInner
           icon={icon}
           size={size}
