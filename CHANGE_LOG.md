@@ -1,3 +1,10 @@
+## [0.19.6](https://github.com/oaknational/Samara/compare/v0.19.5...v0.19.6) (2022-05-18)
+
+
+### Bug Fixes
+
+* **storybook:** default to docs mode and props sort alpha ([d197d90](https://github.com/oaknational/Samara/commit/d197d90c01e6a851829d27cb31a71aca4c6744e6))
+
 ## [0.19.5](https://github.com/oaknational/Samara/compare/v0.19.4...v0.19.5) (2022-05-18)
 
 
