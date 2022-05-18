@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FC } from "react";
 
-import useBookmarks from "../../hooks/useBookmarks";
+import { useBookmarks } from "../../context/Bookmarks";
 import LoadingSpinner from "../LoadingSpinner";
 
 const Bookmarks: FC = () => {

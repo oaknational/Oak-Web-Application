@@ -13,7 +13,7 @@ import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
 
 const handleError = createErrorHandler("IconButtonAsLink");
 
-type IconButtonProps = IconButtonInnerProps & {
+type IconButtonAsLinkProps = IconButtonInnerProps & {
   "aria-label": string;
   href: string;
   nextLinkProps?: Omit<LinkProps, "href">;
@@ -26,7 +26,7 @@ type IconButtonProps = IconButtonInnerProps & {
   >;
 };
 
-const IconButton: FC<IconButtonProps> = (props) => {
+const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
   const {
     variant,
     size,
@@ -69,4 +69,4 @@ const IconButton: FC<IconButtonProps> = (props) => {
   );
 };
 
-export default IconButton;
+export default IconButtonAsLink;

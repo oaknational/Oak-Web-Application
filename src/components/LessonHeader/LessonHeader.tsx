@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LessonId } from "../../hooks/useBookmarks";
+import { LessonId } from "../../context/Bookmarks";
 import BookmarkLessonButton from "../BookmarkLessonButton";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";

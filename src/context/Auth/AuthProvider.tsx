@@ -17,7 +17,7 @@ import {
   LS_KEY_USER,
 } from "../../config/localStorageKeys";
 import useApi from "../../browser-lib/api";
-import { useBookmarksCache } from "../../hooks/useBookmarks";
+import { useBookmarksCache } from "../../context/Bookmarks";
 import createErrorHandler from "../../common-lib/error-handler";
 import OakError from "../../errors/OakError";
 

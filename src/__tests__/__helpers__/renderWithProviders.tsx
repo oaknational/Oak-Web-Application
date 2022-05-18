@@ -9,7 +9,7 @@ import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 
-import { BookmarksProvider } from "../../hooks/useBookmarks";
+import { BookmarksProvider } from "../../context/Bookmarks";
 import { UserStyleContextProvider } from "../../context/UserStyleContext";
 import { SearchProvider } from "../../context/SearchContext";
 
