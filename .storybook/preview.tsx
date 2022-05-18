@@ -7,12 +7,15 @@ import GlobalStyle from "../src/styles/GlobalStyle";
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
+    // sorts component props into alphbetical order 
+    sort: "alpha",
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
-  viewMode: "docs"
+  // defaults to "docs" view
+  viewMode: "docs",
 };
 
 const withThemeProvider = (Story, context) => {
