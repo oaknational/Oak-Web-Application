@@ -26,6 +26,20 @@ export const buttonSizeHeightMap: Record<ButtonSize, number> = {
   large: LARGE_BUTTON_HEIGHT,
 };
 export const getButtonHeight = (size: ButtonSize) => buttonSizeHeightMap[size];
+export const buttonBackroundMap: Record<ButtonVariant, string> = {
+  primary: "var(--color-button-primary)",
+  secondary: "var(--color-button-secondary)",
+  tertiary: "var(--color-button-tertiary)",
+};
+export const getButtonBackground = (variant: ButtonVariant) =>
+  buttonBackroundMap[variant];
+export const buttonColorMap: Record<ButtonVariant, string> = {
+  primary: "var(--color-button-primary-contrast)",
+  secondary: "var(--color-button-secondary-contrast)",
+  tertiary: "var(--color-button-tertiary-contrast)",
+};
+export const getButtonColor = (variant: ButtonVariant) =>
+  buttonColorMap[variant];
 const buttonPaddingMap: Record<ButtonSize, number> = {
   small: SMALL_BUTTON_PADDING_X,
   large: LARGE_BUTTON_PADDING_X,

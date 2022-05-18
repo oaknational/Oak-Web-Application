@@ -1,14 +1,14 @@
-.bg-primary {
+import { css } from "styled-components";
+
+export const buttonBgPrimary = css`
   background-color: var(--color-button-primary);
   color: var(--color-button-primary-contrast);
-}
-
-.bg-secondary {
+`;
+export const buttonBgSecondary = css`
   background-color: var(--color-button-secondary);
   color: var(--color-button-secondary-contrast);
-}
-
-.bg-tertiary {
+`;
+export const buttonBgTertiary = css`
   background-color: var(--color-button-tertiary);
   color: var(--color-button-tertiary-contrast);
-}
+`;

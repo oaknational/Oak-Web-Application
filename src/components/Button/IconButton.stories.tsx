@@ -1,31 +1,28 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ButtonComponent from "./Button";
+import Component from "./IconButton";
 
 export default {
-  title: "Components/Buttons/Button",
-  component: ButtonComponent,
+  title: "Components/Buttons/IconButton",
+  component: Component,
   argTypes: {
     argTypes: { onClick: { action: "clicked" } },
-    label: {
-      defaultValue: "Button",
-    },
-    variant: {
-      defaultValue: "primary",
+    "aria-label": {
+      defaultValue: "Click me",
     },
     background: {
       defaultValue: "teachers-primary",
     },
   },
-} as ComponentMeta<typeof ButtonComponent>;
+} as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof ButtonComponent> = (args) => (
+const Template: ComponentStory<typeof Component> = (args) => (
   <div>
     <div>
       <h1>Button</h1>
 
-      <ButtonComponent {...args} />
+      <Component {...args} />
     </div>
   </div>
 );
@@ -33,6 +30,6 @@ const Template: ComponentStory<typeof ButtonComponent> = (args) => (
 export const Example = Template.bind({});
 
 Example.args = {
-  label: "Click me",
+  icon: "Download",
   variant: "primary",
 };

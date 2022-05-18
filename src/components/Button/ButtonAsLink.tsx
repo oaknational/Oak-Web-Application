@@ -15,6 +15,7 @@ const handleError = createErrorHandler("ButtonAsLink");
 
 type ButtonAsLinkProps = ButtonInnerProps & {
   href: string;
+  "aria-label"?: string;
   nextLinkProps?: Omit<LinkProps, "href">;
   anchorProps?: Omit<
     DetailedHTMLProps<
@@ -25,8 +26,17 @@ type ButtonAsLinkProps = ButtonInnerProps & {
   >;
 };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
-  const { href, label, icon, iconPosition, size, nextLinkProps, anchorProps } =
-    props;
+  const {
+    variant,
+    href,
+    label,
+    icon,
+    iconPosition,
+    "aria-label": ariaLabel,
+    size,
+    nextLinkProps,
+    anchorProps = {},
+  } = props;
 
   const onKeyDown = (e: KeyboardEvent<HTMLAnchorElement>) => {
     if (e.code === "Space" || e.keyCode === 32) {
@@ -41,8 +51,15 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   };
   return (
     <Link {...nextLinkProps} href={href} passHref>
-      <a {...anchorProps} role="button" onKeyDown={onKeyDown}>
+      <a
+        {...anchorProps}
+        role="button"
+        onKeyDown={onKeyDown}
+        title={anchorProps.title || ariaLabel || label}
+        aria-label={ariaLabel || label}
+      >
         <ButtonInner
+          variant={variant}
           label={label}
           icon={icon}
           iconPosition={iconPosition}

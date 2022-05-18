@@ -8,7 +8,6 @@ import {
 import UnstyledButton from "../UnstyledButton";
 
 import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
-import { DEFAULT_BUTTON_SIZE } from "./common";
 
 export type ButtonProps = ButtonInnerProps & {
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -25,7 +24,8 @@ export type ButtonProps = ButtonInnerProps & {
 const Button: FC<ButtonProps> = (props) => {
   const {
     onClick,
-    size = DEFAULT_BUTTON_SIZE,
+    variant,
+    size,
     label,
     icon,
     iconPosition = "leading",
@@ -41,6 +41,7 @@ const Button: FC<ButtonProps> = (props) => {
       onClick={onClick}
     >
       <ButtonInner
+        variant={variant}
         label={label}
         icon={icon}
         iconPosition={iconPosition}
