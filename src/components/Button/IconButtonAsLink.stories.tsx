@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./IconButtonAsLink";
 
 export default {
-  title: "Components/Buttons/Icon Button As Link",
+  title: "Buttons/Button/Icon Button As Link",
   component: Component,
   argTypes: {
     "aria-label": {

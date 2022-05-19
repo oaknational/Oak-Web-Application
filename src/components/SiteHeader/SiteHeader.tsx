@@ -1,11 +1,38 @@
 import { FC } from "react";
 import Link from "next/link";
+import styled from "styled-components";
 
 import { useUserStyleContext } from "../../context/UserStyleContext";
 import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
+import UnstyledButton from "../UnstyledButton/UnstyledButton";
 
-import styles from "./SiteHeader.module.css";
+const StyledSiteHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px;
+  background: var(--color-bw-95);
+  @media (min-width: 900px) {
+    flex-direction: row;
+    align-items: center;
+  }
+`;
+
+const Title = styled.div`
+  margin-right: 12px;
+`;
+
+const HeaderButton = styled(UnstyledButton)`
+  padding-right: 24px;
+  text-transform: capitalize;
+`;
+
+const HeaderButtonWrapper = styled.div`
+  margin-left: auto;
+  font-weight: normal;
+`;
 
 const SiteHeader: FC = () => {
   const { user, signOut } = useAuth();
@@ -18,20 +45,20 @@ const SiteHeader: FC = () => {
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.title}>Oak</div>
+    <StyledSiteHeader>
+      <Title>Oak</Title>
       <SearchForm />
-      <div className={styles.signInButtonWrapper}>
-        <button className={styles.userThemeButton} onClick={handleClick}>
+      <HeaderButtonWrapper>
+        <HeaderButton onClick={handleClick}>
           {userStyleContext.user}
-        </button>
+        </HeaderButton>
         {user ? (
-          <button onClick={signOut}>Sign out</button>
+          <HeaderButton onClick={signOut}>Sign out</HeaderButton>
         ) : (
           <Link href="/sign-in">Sign in</Link>
         )}
-      </div>
-    </header>
+      </HeaderButtonWrapper>
+    </StyledSiteHeader>
   );
 };
 

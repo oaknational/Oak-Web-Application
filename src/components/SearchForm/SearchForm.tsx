@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 import {
   KeyStages,
@@ -7,7 +8,10 @@ import {
   useSearchQuery,
 } from "../../context/SearchContext";
 
-import styles from "./SearchForm.module.css";
+const StyledForm = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const SearchForm: FC = () => {
   const { text, setText, keyStages, setKeyStages } = useSearchQuery();
@@ -56,7 +60,7 @@ const SearchForm: FC = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className={styles.search}>
+    <StyledForm onSubmit={handleSubmit}>
       <input
         value={value}
         type="search"
@@ -67,7 +71,7 @@ const SearchForm: FC = () => {
 
       <button type="submit">Submit</button>
       {keyStageChecks}
-    </form>
+    </StyledForm>
   );
 };
 

@@ -1,10 +1,34 @@
 import { FC } from "react";
 import Link from "next/link";
+import styled from "styled-components";
 
 import { BreadcrumbJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Icon from "../Icon";
 
-import styles from "./Breadcrumbs.module.css";
+const BreadcrumbsNav = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const BreadcrumbsOl = styled.ol`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const BreadcrumbsLi = styled.li`
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  max-width: 100%;
+`;
 
 export type Breadcrumb = {
   href: string;
@@ -17,19 +41,19 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
     <>
       <BreadcrumbJsonLd itemListElements={breadcrumbs} />
-      <nav className={styles.nav} aria-label="Breadcrumb">
-        <ol className={styles.ol}>
+      <BreadcrumbsNav aria-label="Breadcrumb">
+        <BreadcrumbsOl>
           {breadcrumbs.map((breadcrumb, i) => {
             const { href, label } = breadcrumb;
             return (
-              <li className={styles.li} key={`${i}-${breadcrumb.href}`}>
+              <BreadcrumbsLi key={`${i}-${breadcrumb.href}`}>
                 {i !== 0 && <Icon name="ChevronRight" size={20} />}
                 <Link href={href}>{label}</Link>
-              </li>
+              </BreadcrumbsLi>
             );
           })}
-        </ol>
-      </nav>
+        </BreadcrumbsOl>
+      </BreadcrumbsNav>
     </>
   );
 };

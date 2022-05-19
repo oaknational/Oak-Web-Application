@@ -1,9 +1,14 @@
 import { FC } from "react";
+import styled from "styled-components";
 
-import styles from "./Card.module.css";
+const StyledCard = styled.div`
+  height: 250px;
+  border-radius: 12px;
+  padding: 24px;
+`;
 
 const Card: FC = ({ children }) => {
-  return <div className={styles[`card-primary`]}>{children}</div>;
+  return <StyledCard>{children}</StyledCard>;
 };
 
 export default Card;

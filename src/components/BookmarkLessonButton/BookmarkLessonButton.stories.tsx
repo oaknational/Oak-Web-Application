@@ -10,7 +10,7 @@ import MockedApolloProvider from "../../__tests__/__helpers__/MockedApolloProvid
 import BookmarkLessonButton from ".";
 
 export default {
-  title: "Components/BookmarkLessonButton",
+  title: "Buttons/Button",
   component: BookmarkLessonButton,
   argTypes: {
     argTypes: { onClick: { action: "clicked" } },
@@ -23,8 +23,6 @@ export default {
 const Template: ComponentStory<typeof BookmarkLessonButton> = (args) => (
   <div>
     <div>
-      <h1>BookmarkLessonButton</h1>
-
       <MockedAuthProvider {...loggedInAuthProviderProps}>
         <MockedApolloProvider>
           <BookmarksProvider>

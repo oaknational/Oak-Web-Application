@@ -4,19 +4,19 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { AuthProvider } from "../../context/Auth";
 import { SearchProvider } from "../../context/SearchContext";
 
-import SiteHeader from "./SiteHeader";
+import Component from "./SiteHeader";
 
 export default {
-  title: "Components/SiteHeader",
-  component: SiteHeader,
+  title: "Headers & Footers/SiteHeader",
+  component: Component,
   argTypes: {},
-} as ComponentMeta<typeof SiteHeader>;
+} as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof SiteHeader> = (args) => (
+const Template: ComponentStory<typeof Component> = (args) => (
   <div>
     <AuthProvider>
       <SearchProvider>
-        <SiteHeader {...args} />
+        <Component {...args} />
       </SearchProvider>
     </AuthProvider>
   </div>

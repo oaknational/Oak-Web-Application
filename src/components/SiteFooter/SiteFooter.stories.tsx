@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import SiteFooter from "./SiteFooter";
 
 export default {
-  title: "Components/SiteFooter",
+  title: "Headers & Footers/SiteFooter",
   component: SiteFooter,
   argTypes: {},
 } as ComponentMeta<typeof SiteFooter>;

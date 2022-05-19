@@ -4,22 +4,14 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Breadcrumbs from "./Breadcrumbs";
 
 export default {
-  title: "Components/Breadcrumbs",
+  title: "Navigation/Breadcrumbs",
   component: Breadcrumbs,
   argTypes: {},
 } as ComponentMeta<typeof Breadcrumbs>;
 
 const Template: ComponentStory<typeof Breadcrumbs> = (args) => (
   <div>
-    <div>
-      <h1>Breadcrumbs</h1>
-      <p>
-        Pass me an array of {"{ href, text }"} and the Link component, and
-        I&apos;ll put chevrons between them.
-      </p>
-      <h2>Examples</h2>
-      <Breadcrumbs breadcrumbs={args.breadcrumbs} />
-    </div>
+    <Breadcrumbs breadcrumbs={args.breadcrumbs} />
   </div>
 );
 

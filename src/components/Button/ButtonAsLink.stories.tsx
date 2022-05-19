@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./ButtonAsLink";
 
 export default {
-  title: "Components/Buttons/Button As Link",
+  title: "Buttons/Button/Button As Link",
   component: Component,
   argTypes: {
     label: {
