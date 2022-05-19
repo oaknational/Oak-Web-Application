@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Accessibility/VisuallyHidden Visually Hidden Example 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div>
+    <div
+      className="sc-idiyUo maA-dp"
+    />
+  </div>,
+]
+`;
+
 exports[`Storyshots Buttons/Button Bookmark Lesson Button Example 1`] = `
 Array [
   <link
