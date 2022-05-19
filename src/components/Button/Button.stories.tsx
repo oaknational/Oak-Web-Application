@@ -7,7 +7,7 @@ export default {
   title: "Buttons/Button/Button",
   component: Component,
   argTypes: {
-    argTypes: { onClick: { action: "clicked" } },
+    onClick: { action: "clicked" },
     label: {
       defaultValue: "Click me",
     },

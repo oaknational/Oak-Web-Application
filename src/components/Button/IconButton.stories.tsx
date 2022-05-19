@@ -7,7 +7,7 @@ export default {
   title: "Buttons/Button/Icon Button",
   component: Component,
   argTypes: {
-    argTypes: { onClick: { action: "clicked" } },
+    onClick: { action: "clicked" },
     "aria-label": {
       defaultValue: "Click me",
     },

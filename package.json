@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.19.5",
+  "version": "0.19.6",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -86,6 +86,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-docs": "^6.5.0",
     "@storybook/addon-essentials": "^6.4.20",
     "@storybook/addon-interactions": "^6.4.20",
     "@storybook/addon-links": "^6.4.20",
