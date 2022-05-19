@@ -35,7 +35,7 @@ const paddingAll = css<{ pa?: SpacingValues }>`
 `;
 const paddingHorizontal = css<{ ph?: SpacingValues }>`
   ${responsive("padding-left", (props) => props.ph, parse)}
-  ${responsive("padding-right", (props) => props.ph)}
+  ${responsive("padding-right", (props) => props.ph, parse)}
 `;
 const paddingVertical = css<{ pv?: SpacingValues }>`
   ${responsive("padding-top", (props) => props.pv, parse)}

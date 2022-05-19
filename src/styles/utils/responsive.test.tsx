@@ -9,7 +9,7 @@ import { render } from "@testing-library/react";
 
 import responsive from "./responsive";
 
-type TestProps = { pl: number | number[] | string | string[] };
+type TestProps = { [k: string]: string | string[] | number | number[] };
 /**
  *
  * @description outputs from styled-components css function can vary in value
@@ -22,19 +22,16 @@ const stringify = (
     | FlattenSimpleInterpolation
     | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>
 ) =>
-  Array.isArray(cssArray)
-    ? cssArray
-        ?.flatMap((str: unknown) =>
-          typeof str === "string" ? str.trim() : str
-        )
-        .flat()
-        .join("")
-        .replace(/([^0-9a-zA-Z.#])\s+/g, "$1")
-        .replace(/\s([^0-9a-zA-Z.#]+)/g, "$1")
-        .replace(/;}/g, "}")
-        .replace(/\/\*.*?\*\//g, "")
-        .trim()
-    : "";
+  (Array.isArray(cssArray) ? cssArray : [cssArray])
+    ?.flatMap((str: unknown) => (typeof str === "string" ? str.trim() : str))
+    .flat()
+    .join("")
+    .replace(/([^0-9a-zA-Z.#])\s+/g, "$1")
+    .replace(/\s([^0-9a-zA-Z.#]+)/g, "$1")
+    .replace(/;}/g, "}")
+    .replace(/\/\*.*?\*\//g, "")
+    .trim();
+
 const pxOrUndefined = (value: number | unknown) =>
   typeof value === "number" ? `${value}px` : undefined;
 
@@ -97,7 +94,7 @@ describe("responsive", () => {
     `;
     expect(stringify(actual)).toEqual(stringify(expected));
   });
-  it("should default parseValue to be identity fn", () => {
+  it("should default parse to be identity fn", () => {
     const props = {
       pl: "0.5em",
     };
@@ -109,6 +106,24 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0.5em;
     `;
+    expect(stringify(actual)).toEqual(stringify(expected));
+  });
+  test.each([
+    ["pl", "padding-left", "1em", "padding-left: 1em;"],
+    ["pr", "padding-right", "1em", "padding-right: 1em;"],
+    ["pt", "padding-top", "1em", "padding-top: 1em;"],
+    ["pb", "padding-bottom", "1em", "padding-bottom: 1em;"],
+    ["ml", "margin-left", "1em", "margin-left: 1em;"],
+    ["mr", "margin-right", "1em", "margin-right: 1em;"],
+    ["mt", "margin-top", "1em", "margin-top: 1em;"],
+    ["mb", "margin-bottom", "1em", "margin-bottom: 1em;"],
+  ])("should correctly handle prop %s", (prop, attr, value, expected) => {
+    const props = {
+      [prop]: value,
+    };
+
+    const actual = responsive(attr, (props: TestProps) => props[prop])(props);
+
     expect(stringify(actual)).toEqual(stringify(expected));
   });
 });
