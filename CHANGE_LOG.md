@@ -1,3 +1,10 @@
+# [0.21.0](https://github.com/oaknational/Samara/compare/v0.20.0...v0.21.0) (2022-05-19)
+
+
+### Features
+
+* **styled-components:** responsive style props ([14d3490](https://github.com/oaknational/Samara/commit/14d349017e2485e3620b53c03eede1b03ce980df))
+
 # [0.20.0](https://github.com/oaknational/Samara/compare/v0.19.6...v0.20.0) (2022-05-19)
 
 

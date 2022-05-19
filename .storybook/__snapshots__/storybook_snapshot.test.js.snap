@@ -12,7 +12,7 @@ Array [
   />,
   <div>
     <div
-      className="sc-idiyUo maA-dp"
+      className="sc-dIouRR elXJDh"
     />
   </div>,
 ]
@@ -479,6 +479,24 @@ Array [
 ]
 `;
 
+exports[`Storyshots Components/Base/Flex Flex 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-iqcoie ermnzs"
+  >
+    Flex box
+  </div>,
+]
+`;
+
 exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
 Array [
   <link
@@ -490,10 +508,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-evZas gKBAUq"
+    className="sc-breuTD kaEWGd"
   >
     <span
-      className="sc-crXcEl dotaGp"
+      className="sc-evZas kkWCKh"
     >
       Loading
     </span>
@@ -532,7 +550,7 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-iqcoie dlpbQT"
+    className="sc-crXcEl UyEmo"
   >
     <h1 />
     <div
@@ -756,7 +774,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-ksZaOG iXGais"
+      className="sc-hAZoDl chUgQf"
     >
       © Oak National Academy 
       2022
@@ -777,15 +795,15 @@ Array [
   />,
   <div>
     <header
-      className="sc-hAZoDl bvfFhh"
+      className="sc-fnykZs fjnuZi"
     >
       <div
-        className="sc-fnykZs bDCbZL"
+        className="sc-fEOsli lahLyi"
       >
         Oak
       </div>
       <form
-        className="sc-breuTD kTOiHc"
+        className="sc-ksZaOG fzwvNX"
         onSubmit={[Function]}
       >
         <input
@@ -872,10 +890,10 @@ Array [
         </div>
       </form>
       <div
-        className="sc-bjUoiL CQHoK"
+        className="sc-idiyUo fqPHCC"
       >
         <button
-          className="sc-bczRLJ sc-fEOsli bprpIx decobD"
+          className="sc-bczRLJ sc-bjUoiL bprpIx kvqZSC"
           onClick={[Function]}
         >
           pupils
@@ -904,7 +922,7 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-breuTD kTOiHc"
+    className="sc-ksZaOG fzwvNX"
     onSubmit={[Function]}
   >
     <input
