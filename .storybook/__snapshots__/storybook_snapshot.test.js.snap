@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Components/Base/Flex Flex 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-iBkjds QUnBN"
+  >
+    Flex box
+  </div>,
+]
+`;
+
 exports[`Storyshots Components/BookmarkLessonButton Bookmark Lesson Button Example 1`] = `
 Array [
   <link
