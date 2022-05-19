@@ -7,7 +7,7 @@ import GlobalStyle from "../src/styles/GlobalStyle";
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
-    // sorts component props into alphbetical order 
+    // sorts component props into alphbetical order
     sort: "alpha",
     matchers: {
       color: /(background|color)$/i,
@@ -16,6 +16,9 @@ export const parameters = {
   },
   // defaults to "docs" view
   viewMode: "docs",
+  previewTabs: {
+    canvas: { hidden: true },
+  },
 };
 
 const withThemeProvider = (Story, context) => {
