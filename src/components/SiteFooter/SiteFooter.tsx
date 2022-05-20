@@ -1,12 +1,16 @@
 import { FC } from "react";
+import styled from "styled-components";
 
-import styles from "./SiteFooter.module.css";
+const StyledSiteFooter = styled.footer`
+  padding: 12px;
+  width: 100%;
+`;
 
 const SiteFooter: FC = () => {
   return (
-    <footer className={styles.footer}>
+    <StyledSiteFooter>
       © Oak National Academy {new Date().getFullYear()}
-    </footer>
+    </StyledSiteFooter>
   );
 };
 

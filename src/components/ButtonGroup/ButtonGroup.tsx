@@ -1,6 +1,16 @@
 import { FC } from "react";
+import styled from "styled-components";
 
-import styles from "./ButtonGroup.module.css";
+const Group = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  & > * {
+    margin-bottom: 8px;
+  }
+  & *:not(:last-child) {
+    margin-right: 12px;
+  }
+`;
 
 /**
  * @todo run time check that all children are Button or IconButton components
@@ -8,7 +18,7 @@ import styles from "./ButtonGroup.module.css";
 const ButtonGroup: FC = (props) => {
   const { children } = props;
 
-  return <div className={styles.buttonGroup}>{children}</div>;
+  return <Group>{children}</Group>;
 };
 
 export default ButtonGroup;

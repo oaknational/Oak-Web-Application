@@ -1,11 +1,19 @@
 import { FC } from "react";
+import styled from "styled-components";
 
 import { LessonId } from "../../context/Bookmarks";
 import BookmarkLessonButton from "../BookmarkLessonButton";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 
-import styles from "./LessonHeader.module.css";
+const StyledLessonHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 900px) {
+    flex-direction: row;
+    justify-content: space-between;
+
+`;
 
 type LessonHeaderProps = {
   id: LessonId;
@@ -15,7 +23,7 @@ type LessonHeaderProps = {
 const LessonHeader: FC<LessonHeaderProps> = (props) => {
   const { title, id } = props;
   return (
-    <header className={styles.header}>
+    <StyledLessonHeader>
       <h1>{title}</h1>
       <ButtonGroup>
         <ButtonAsLink
@@ -32,7 +40,7 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
         />
         <BookmarkLessonButton lessonId={id} />
       </ButtonGroup>
-    </header>
+    </StyledLessonHeader>
   );
 };
 

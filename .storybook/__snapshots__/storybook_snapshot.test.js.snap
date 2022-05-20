@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Base/Flex Flex 1`] = `
+exports[`Storyshots Accessibility/VisuallyHidden Visually Hidden Example 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -10,15 +10,15 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div
-    className="sc-iBkjds QUnBN"
-  >
-    Flex box
+  <div>
+    <div
+      className="sc-dIouRR elXJDh"
+    />
   </div>,
 ]
 `;
 
-exports[`Storyshots Components/BookmarkLessonButton Bookmark Lesson Button Example 1`] = `
+exports[`Storyshots Buttons/Button Bookmark Lesson Button Example 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -30,9 +30,6 @@ Array [
   />,
   <div>
     <div>
-      <h1>
-        BookmarkLessonButton
-      </h1>
       <button
         aria-label="Add Bookmark"
         className="sc-bczRLJ bprpIx"
@@ -88,7 +85,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Components/Breadcrumbs Breadcrumb Example 1`] = `
+exports[`Storyshots Buttons/Button/Button As Link Button As Link 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -98,384 +95,366 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <div>
-      <h1>
-        Breadcrumbs
-      </h1>
-      <p>
-        Pass me an array of 
-        { href, text }
-         and the Link component, and I'll put chevrons between them.
-      </p>
-      <h2>
-        Examples
-      </h2>
-      <nav
-        aria-label="Breadcrumb"
-        className="nav"
+  <a
+    aria-label="Click me"
+    href="/"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+    title="Click me"
+  >
+    <div
+      className="sc-papXJ eImoDj"
+      size="small"
+    >
+      <span
+        className="sc-ftvSup gyzHhj"
       >
-        <ol
-          className="ol"
-        >
-          <li
-            className="li"
-          >
-            <a
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Unit Quiz
-            </a>
-          </li>
-          <li
-            className="li"
-          >
-            <span
-              className="sc-gsnTZi hhriQA"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
-            >
-              <span
-                className="sc-dkzDqf iDtTay"
-                style={
-                  Object {
-                    "height": "20px",
-                    "width": "20px",
-                  }
-                }
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polyline
-                    points="9 18 15 12 9 6"
-                  />
-                </svg>
-              </span>
-            </span>
-            <a
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              View In Classroom
-            </a>
-          </li>
-          <li
-            className="li"
-          >
-            <span
-              className="sc-gsnTZi hhriQA"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
-            >
-              <span
-                className="sc-dkzDqf iDtTay"
-                style={
-                  Object {
-                    "height": "20px",
-                    "width": "20px",
-                  }
-                }
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polyline
-                    points="9 18 15 12 9 6"
-                  />
-                </svg>
-              </span>
-            </span>
-            <a
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Foundation Curriculum (PDF)
-            </a>
-          </li>
-          <li
-            className="li"
-          >
-            <span
-              className="sc-gsnTZi hhriQA"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
-            >
-              <span
-                className="sc-dkzDqf iDtTay"
-                style={
-                  Object {
-                    "height": "20px",
-                    "width": "20px",
-                  }
-                }
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polyline
-                    points="9 18 15 12 9 6"
-                  />
-                </svg>
-              </span>
-            </span>
-            <a
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Higher Curriculum (PDF)
-            </a>
-          </li>
-        </ol>
-      </nav>
+        Click me
+      </span>
     </div>
+  </a>,
+]
+`;
+
+exports[`Storyshots Buttons/Button/Button Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <button
+    aria-label="Click me"
+    className="sc-bczRLJ bprpIx"
+    title="Click me"
+  >
+    <div
+      className="sc-papXJ eImoDj"
+      size="small"
+    >
+      <span
+        className="sc-ftvSup gyzHhj"
+      >
+        Click me
+      </span>
+    </div>
+  </button>,
+]
+`;
+
+exports[`Storyshots Buttons/Button/Icon Button As Link Icon Button As Link 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <a
+    aria-label="Click me"
+    href="/"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  >
+    <div
+      className="sc-hKMtZM dzHdVU"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi hhriQA"
+        style={
+          Object {
+            "height": "16px",
+            "width": "16px",
+          }
+        }
+      >
+        <span
+          className="sc-dkzDqf iDtTay"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </a>,
+]
+`;
+
+exports[`Storyshots Buttons/Button/Icon Button Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <button
+    aria-label="Click me"
+    className="sc-bczRLJ bprpIx"
+    title="Click me"
+  >
+    <div
+      className="sc-hKMtZM dzHdVU"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi hhriQA"
+        style={
+          Object {
+            "height": "16px",
+            "width": "16px",
+          }
+        }
+      >
+        <span
+          className="sc-dkzDqf iDtTay"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </button>,
+]
+`;
+
+exports[`Storyshots Buttons/Buttons Button Group 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-jqUVSM kKkhXV"
+  >
+    <a
+      aria-label="Download Lesson"
+      href="/"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      role="button"
+      title="Download Lesson"
+    >
+      <div
+        className="sc-papXJ eImoDj"
+        size="small"
+      >
+        <span
+          className="sc-iBkjds kyChGO"
+        >
+          <span
+            className="sc-gsnTZi hhriQA"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "16px",
+                  "width": "16px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+        <span
+          className="sc-ftvSup gyzHhj"
+        >
+          Download
+        </span>
+      </div>
+    </a>
+    <a
+      aria-label="Share Lesson"
+      href="/"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      role="button"
+      title="Share Lesson"
+    >
+      <div
+        className="sc-papXJ eImoDj"
+        size="small"
+      >
+        <span
+          className="sc-iBkjds kyChGO"
+        >
+          <span
+            className="sc-gsnTZi hhriQA"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "16px",
+                  "width": "16px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="18"
+                  cy="5"
+                  r="3"
+                />
+                <circle
+                  cx="6"
+                  cy="12"
+                  r="3"
+                />
+                <circle
+                  cx="18"
+                  cy="19"
+                  r="3"
+                />
+                <line
+                  x1="8.59"
+                  x2="15.42"
+                  y1="13.51"
+                  y2="17.49"
+                />
+                <line
+                  x1="15.41"
+                  x2="8.59"
+                  y1="6.51"
+                  y2="10.49"
+                />
+              </svg>
+            </span>
+          </span>
+        </span>
+        <span
+          className="sc-ftvSup gyzHhj"
+        >
+          Share
+        </span>
+      </div>
+    </a>
   </div>,
 ]
 `;
 
-exports[`Storyshots Components/Buttons/Button As Link Button As Link 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <a
-    aria-label="Click me"
-    href="/"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    onMouseEnter={[Function]}
-    role="button"
-    title="Click me"
-  >
-    <div
-      className="sc-gKXOVf iDuyjb"
-      size="small"
-    >
-      <span
-        className="sc-jSMfEi CCzaz"
-      >
-        Click me
-      </span>
-    </div>
-  </a>,
-]
-`;
-
-exports[`Storyshots Components/Buttons/Button Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <button
-    aria-label="Click me"
-    className="sc-bczRLJ bprpIx"
-    title="Click me"
-  >
-    <div
-      className="sc-gKXOVf iDuyjb"
-      size="small"
-    >
-      <span
-        className="sc-jSMfEi CCzaz"
-      >
-        Click me
-      </span>
-    </div>
-  </button>,
-]
-`;
-
-exports[`Storyshots Components/Buttons/Icon Button As Link Icon Button As Link 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <a
-    aria-label="Click me"
-    href="/"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    onMouseEnter={[Function]}
-    role="button"
-  >
-    <div
-      className="sc-hKMtZM dzHdVU"
-      size="small"
-    >
-      <span
-        className="sc-gsnTZi hhriQA"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
-      >
-        <span
-          className="sc-dkzDqf iDtTay"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
-        >
-          <svg
-            fill="none"
-            height="100%"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2.5"
-            viewBox="0 0 24 24"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-            />
-            <polyline
-              points="7 10 12 15 17 10"
-            />
-            <line
-              x1="12"
-              x2="12"
-              y1="15"
-              y2="3"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-  </a>,
-]
-`;
-
-exports[`Storyshots Components/Buttons/Icon Button Icon Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <button
-    aria-label="Click me"
-    className="sc-bczRLJ bprpIx"
-    title="Click me"
-  >
-    <div
-      className="sc-hKMtZM dzHdVU"
-      size="small"
-    >
-      <span
-        className="sc-gsnTZi hhriQA"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
-      >
-        <span
-          className="sc-dkzDqf iDtTay"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
-        >
-          <svg
-            fill="none"
-            height="100%"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2.5"
-            viewBox="0 0 24 24"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-            />
-            <polyline
-              points="7 10 12 15 17 10"
-            />
-            <line
-              x1="12"
-              x2="12"
-              y1="15"
-              y2="3"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-  </button>,
-]
-`;
-
-exports[`Storyshots Components/Card Card Default 1`] = `
+exports[`Storyshots Cards/Card Card Default 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -487,7 +466,7 @@ Array [
   />,
   <div>
     <div
-      className="card-primary"
+      className="sc-kDDrLX kYUOGg"
     >
       <h2>
         Card title
@@ -500,7 +479,47 @@ Array [
 ]
 `;
 
-exports[`Storyshots Components/Icon Icon Example 1`] = `
+exports[`Storyshots Components/Base/Flex Flex 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-iqcoie ermnzs"
+  >
+    Flex box
+  </div>,
+]
+`;
+
+exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <span
+    className="sc-breuTD kaEWGd"
+  >
+    <span
+      className="sc-evZas kkWCKh"
+    >
+      Loading
+    </span>
+  </span>,
+]
+`;
+
+exports[`Storyshots Foundations/Typography Typography Example 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -511,271 +530,239 @@ Array [
     rel="stylesheet"
   />,
   <div>
-    <h1>
-      Icon Example
-    </h1>
-    <span
-      className="sc-gsnTZi hhriQA"
-      style={
-        Object {
-          "height": "100px",
-          "width": "100px",
-        }
-      }
+    <h2
+      className="typography--variant-h2"
     >
-      <span
-        className="sc-dkzDqf iDtTay"
-        style={
-          Object {
-            "height": "100px",
-            "width": "100px",
-          }
-        }
-      >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polyline
-            points="9 18 15 12 9 6"
-          />
-        </svg>
-      </span>
-    </span>
-    <h2>
-      Available Icons
+      h2
     </h2>
-    <span
-      className="sc-gsnTZi hhriQA"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <span
-        className="sc-dkzDqf iDtTay"
-        style={
-          Object {
-            "height": "24px",
-            "width": "24px",
-          }
-        }
-      >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polyline
-            points="9 18 15 12 9 6"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="sc-gsnTZi hhriQA"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <span
-        className="sc-dkzDqf iDtTay"
-        style={
-          Object {
-            "height": "24px",
-            "width": "24px",
-          }
-        }
-      >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-          />
-          <polyline
-            points="15 3 21 3 21 9"
-          />
-          <line
-            x1="10"
-            x2="21"
-            y1="14"
-            y2="3"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="sc-gsnTZi hhriQA"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <span
-        className="sc-dkzDqf iDtTay"
-        style={
-          Object {
-            "height": "24px",
-            "width": "24px",
-          }
-        }
-      >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-          />
-          <polyline
-            points="7 10 12 15 17 10"
-          />
-          <line
-            x1="12"
-            x2="12"
-            y1="15"
-            y2="3"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="sc-gsnTZi hhriQA"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <span
-        className="sc-dkzDqf iDtTay"
-        style={
-          Object {
-            "height": "24px",
-            "width": "24px",
-          }
-        }
-      >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="18"
-            cy="5"
-            r="3"
-          />
-          <circle
-            cx="6"
-            cy="12"
-            r="3"
-          />
-          <circle
-            cx="18"
-            cy="19"
-            r="3"
-          />
-          <line
-            x1="8.59"
-            x2="15.42"
-            y1="13.51"
-            y2="17.49"
-          />
-          <line
-            x1="15.41"
-            x2="8.59"
-            y1="6.51"
-            y2="10.49"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="sc-gsnTZi hhriQA"
-      style={
-        Object {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
-    >
-      <span
-        className="sc-dkzDqf iDtTay"
-        style={
-          Object {
-            "height": "24px",
-            "width": "24px",
-          }
-        }
-      >
-        <svg
-          fill="currentColor"
-          viewBox="2 2 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-          <path
-            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-          />
-        </svg>
-      </span>
-    </span>
   </div>,
 ]
 `;
 
-exports[`Storyshots Components/SiteFooter Site Footer Example 1`] = `
+exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <header
+    className="sc-crXcEl UyEmo"
+  >
+    <h1 />
+    <div
+      className="sc-jqUVSM kKkhXV"
+    >
+      <a
+        aria-label="Download Lesson"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        title="Download Lesson"
+      >
+        <div
+          className="sc-papXJ eImoDj"
+          size="small"
+        >
+          <span
+            className="sc-iBkjds kyChGO"
+          >
+            <span
+              className="sc-gsnTZi hhriQA"
+              style={
+                Object {
+                  "height": "16px",
+                  "width": "16px",
+                }
+              }
+            >
+              <span
+                className="sc-dkzDqf iDtTay"
+                style={
+                  Object {
+                    "height": "16px",
+                    "width": "16px",
+                  }
+                }
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                  />
+                  <polyline
+                    points="7 10 12 15 17 10"
+                  />
+                  <line
+                    x1="12"
+                    x2="12"
+                    y1="15"
+                    y2="3"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-ftvSup gyzHhj"
+          >
+            Download
+          </span>
+        </div>
+      </a>
+      <a
+        aria-label="Share Lesson"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        title="Share Lesson"
+      >
+        <div
+          className="sc-papXJ eImoDj"
+          size="small"
+        >
+          <span
+            className="sc-iBkjds kyChGO"
+          >
+            <span
+              className="sc-gsnTZi hhriQA"
+              style={
+                Object {
+                  "height": "16px",
+                  "width": "16px",
+                }
+              }
+            >
+              <span
+                className="sc-dkzDqf iDtTay"
+                style={
+                  Object {
+                    "height": "16px",
+                    "width": "16px",
+                  }
+                }
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="18"
+                    cy="5"
+                    r="3"
+                  />
+                  <circle
+                    cx="6"
+                    cy="12"
+                    r="3"
+                  />
+                  <circle
+                    cx="18"
+                    cy="19"
+                    r="3"
+                  />
+                  <line
+                    x1="8.59"
+                    x2="15.42"
+                    y1="13.51"
+                    y2="17.49"
+                  />
+                  <line
+                    x1="15.41"
+                    x2="8.59"
+                    y1="6.51"
+                    y2="10.49"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-ftvSup gyzHhj"
+          >
+            Share
+          </span>
+        </div>
+      </a>
+      <button
+        aria-label="Add Bookmark"
+        className="sc-bczRLJ bprpIx"
+        disabled={false}
+        onClick={[Function]}
+        title="Add Bookmark"
+      >
+        <div
+          className="sc-hKMtZM dzHdVU"
+          size="small"
+        >
+          <span
+            className="sc-gsnTZi hhriQA"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "16px",
+                  "width": "16px",
+                }
+              }
+            >
+              <svg
+                fill="currentColor"
+                viewBox="2 2 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
+      </button>
+    </div>
+  </header>,
+]
+`;
+
+exports[`Storyshots Headers & Footers/SiteFooter Site Footer Example 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -787,7 +774,7 @@ Array [
   />,
   <div>
     <footer
-      className="footer"
+      className="sc-hAZoDl chUgQf"
     >
       © Oak National Academy 
       2022
@@ -796,7 +783,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Components/SiteHeader Site Footer Example 1`] = `
+exports[`Storyshots Headers & Footers/SiteHeader Site Footer Example 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -808,15 +795,15 @@ Array [
   />,
   <div>
     <header
-      className="header"
+      className="sc-fnykZs fjnuZi"
     >
       <div
-        className="title"
+        className="sc-fEOsli lahLyi"
       >
         Oak
       </div>
       <form
-        className="search"
+        className="sc-ksZaOG fzwvNX"
         onSubmit={[Function]}
       >
         <input
@@ -903,10 +890,10 @@ Array [
         </div>
       </form>
       <div
-        className="signInButtonWrapper"
+        className="sc-idiyUo fqPHCC"
       >
         <button
-          className="userThemeButton"
+          className="sc-bczRLJ sc-bjUoiL bprpIx kvqZSC"
           onClick={[Function]}
         >
           pupils
@@ -920,6 +907,329 @@ Array [
         </a>
       </div>
     </header>
+  </div>,
+]
+`;
+
+exports[`Storyshots Inputs/search Search Form 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <form
+    className="sc-ksZaOG fzwvNX"
+    onSubmit={[Function]}
+  >
+    <input
+      aria-label="Search"
+      onChange={[Function]}
+      placeholder="Search"
+      type="search"
+      value=""
+    />
+    <button
+      type="submit"
+    >
+      Submit
+    </button>
+    <div>
+      <label>
+         Key Stage 
+        foundation
+        <input
+          checked={false}
+          id="custom-checkbox-foundation"
+          name="foundation"
+          onChange={[Function]}
+          type="checkbox"
+          value="foundation"
+        />
+      </label>
+    </div>
+    <div>
+      <label>
+         Key Stage 
+        1
+        <input
+          checked={false}
+          id="custom-checkbox-1"
+          name="1"
+          onChange={[Function]}
+          type="checkbox"
+          value="1"
+        />
+      </label>
+    </div>
+    <div>
+      <label>
+         Key Stage 
+        2
+        <input
+          checked={false}
+          id="custom-checkbox-2"
+          name="2"
+          onChange={[Function]}
+          type="checkbox"
+          value="2"
+        />
+      </label>
+    </div>
+    <div>
+      <label>
+         Key Stage 
+        3
+        <input
+          checked={false}
+          id="custom-checkbox-3"
+          name="3"
+          onChange={[Function]}
+          type="checkbox"
+          value="3"
+        />
+      </label>
+    </div>
+    <div>
+      <label>
+         Key Stage 
+        4
+        <input
+          checked={false}
+          id="custom-checkbox-4"
+          name="4"
+          onChange={[Function]}
+          type="checkbox"
+          value="4"
+        />
+      </label>
+    </div>
+  </form>,
+]
+`;
+
+exports[`Storyshots Media/Icon Icon Example 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div>
+    <span
+      className="sc-gsnTZi hhriQA"
+      style={
+        Object {
+          "height": "100px",
+          "width": "100px",
+        }
+      }
+    >
+      <span
+        className="sc-dkzDqf iDtTay"
+        style={
+          Object {
+            "height": "100px",
+            "width": "100px",
+          }
+        }
+      >
+        <svg
+          fill="none"
+          height="100%"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2.5"
+          viewBox="0 0 24 24"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polyline
+            points="9 18 15 12 9 6"
+          />
+        </svg>
+      </span>
+    </span>
+  </div>,
+]
+`;
+
+exports[`Storyshots Navigation/Breadcrumbs Breadcrumb Example 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div>
+    <nav
+      aria-label="Breadcrumb"
+      className="sc-eCYdqJ gnWbIo"
+    >
+      <ol
+        className="sc-jSMfEi fQHTXe"
+      >
+        <li
+          className="sc-gKXOVf XuDYs"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Unit Quiz
+          </a>
+        </li>
+        <li
+          className="sc-gKXOVf XuDYs"
+        >
+          <span
+            className="sc-gsnTZi hhriQA"
+            style={
+              Object {
+                "height": "20px",
+                "width": "20px",
+              }
+            }
+          >
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            View In Classroom
+          </a>
+        </li>
+        <li
+          className="sc-gKXOVf XuDYs"
+        >
+          <span
+            className="sc-gsnTZi hhriQA"
+            style={
+              Object {
+                "height": "20px",
+                "width": "20px",
+              }
+            }
+          >
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Foundation Curriculum (PDF)
+          </a>
+        </li>
+        <li
+          className="sc-gKXOVf XuDYs"
+        >
+          <span
+            className="sc-gsnTZi hhriQA"
+            style={
+              Object {
+                "height": "20px",
+                "width": "20px",
+              }
+            }
+          >
+            <span
+              className="sc-dkzDqf iDtTay"
+              style={
+                Object {
+                  "height": "20px",
+                  "width": "20px",
+                }
+              }
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
+          </span>
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Higher Curriculum (PDF)
+          </a>
+        </li>
+      </ol>
+    </nav>
   </div>,
 ]
 `;

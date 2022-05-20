@@ -7,6 +7,7 @@ import Text from "../components/Typography/Typography";
 const Typography: FC = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
+      <Text semanticVariant="h1">h1 - Heading</Text>
       <Text semanticVariant="h2">h2 - Heading</Text>
       <Text semanticVariant="h3">h3 - Heading</Text>
       <Text semanticVariant="h4">h4 - Heading</Text>

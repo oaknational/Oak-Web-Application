@@ -14,10 +14,17 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  // defaults to "docs" view
-  viewMode: "docs",
-  previewTabs: {
-    canvas: { hidden: true },
+
+  options: {
+    storySort: {
+      method: "alphabetical",
+      order: ["Foundations"],
+    },
+    // defaults to "docs" view
+    viewMode: "docs",
+    previewTabs: {
+      canvas: { hidden: true },
+    },
   },
 };
 

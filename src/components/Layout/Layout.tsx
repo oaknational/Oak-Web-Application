@@ -1,12 +1,21 @@
 import Head from "next/head";
 import { FC } from "react";
+import styled from "styled-components";
 
 import SiteHeader from "../SiteHeader";
 import SiteFooter from "../SiteFooter";
 import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 
-import styles from "./Layout.module.css";
+const StyledLayout = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 24px 12px;
+  max-width: 1200px;
+  width: 100%;
+  align-self: center;
+`;
 
 interface LayoutProps {
   seoProps: SeoProps;
@@ -25,7 +34,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <SiteHeader />
-      <main className={styles.main}>{children}</main>
+      <StyledLayout>{children}</StyledLayout>
       <SiteFooter />
     </>
   );

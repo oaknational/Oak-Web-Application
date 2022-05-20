@@ -1,9 +1,15 @@
-import { FC } from "react";
+import styled from "styled-components";
 
-import styles from "./Card.module.css";
+import spacing from "../../styles/utils/spacing";
 
-const Card: FC = ({ children }) => {
-  return <div className={styles[`card-primary`]}>{children}</div>;
+const Card = styled.div`
+  ${spacing}
+  height: 250px;
+  border-radius: 12px;
+`;
+
+Card.defaultProps = {
+  pa: 24,
 };
 
 export default Card;

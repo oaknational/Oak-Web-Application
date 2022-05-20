@@ -3,18 +3,20 @@ import clsx from "clsx";
 
 import styles from "../../styles/Typography.module.css";
 
-// Defining the HTML tag that the component will support
-type VariantsType =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "body1"
-  | "body2"
-  | "body3"
-  | "body4";
+export const VARIANTS_TYPE = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "body1",
+  "body2",
+  "body3",
+  "body4",
+] as const;
+
+export type VariantsType = typeof VARIANTS_TYPE[number];
 
 const variantsMapping: Record<VariantsType, keyof JSX.IntrinsicElements> = {
   h1: "h1",
