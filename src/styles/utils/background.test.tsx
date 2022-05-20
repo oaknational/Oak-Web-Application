@@ -3,24 +3,24 @@ import { render } from "@testing-library/react";
 
 import background from "./background";
 
-describe("spacing", () => {
-  test("should correctly handle prop 'bg' as string", async () => {
+describe("background", () => {
+  test("should correctly handle prop 'background' as string", async () => {
     const StyledComponent = styled.div`
       ${background}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" bg="calmAndWarm" />
+      <StyledComponent data-testid="test" background="calmAndWarm" />
     );
 
     expect(getByTestId("test")).toHaveStyle("background-color: #ffd166");
     expect(getByTestId("test")).toHaveStyle("color: #303030");
   });
-  test("should correctly handle prop 'bg' as array", async () => {
+  test("should correctly handle prop 'background' as array", async () => {
     const StyledComponent = styled.div`
       ${background}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" bg={["calmAndWarm"]} />
+      <StyledComponent data-testid="test" background={["calmAndWarm"]} />
     );
 
     expect(getByTestId("test")).toHaveStyle("background-color: #ffd166");

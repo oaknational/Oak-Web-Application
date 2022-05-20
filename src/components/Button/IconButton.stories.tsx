@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./IconButton";
 
 export default {
-  title: "Buttons/Button/Icon Button",
+  title: "Buttons/Icon Button",
   component: Component,
   argTypes: {
     onClick: { action: "clicked" },

@@ -6,7 +6,7 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Component from "./ButtonGroup";
 
 export default {
-  title: "Buttons/Buttons",
+  title: "Buttons/Button Group",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

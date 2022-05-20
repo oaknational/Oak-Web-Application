@@ -13,10 +13,14 @@ const getTextColorForBackground = (color?: OakColorName) => {
 
 type OakColorNames = ResponsiveValues<OakColorName>;
 
-export type BackgroundProps = { bg?: OakColorNames };
+export type BackgroundProps = { background?: OakColorNames };
 const background = css<BackgroundProps>`
-  ${responsive("background-color", (props) => props.bg, getBackgroundColor)}
-  ${responsive("color", (props) => props.bg, getTextColorForBackground)}
+  ${responsive(
+    "background-color",
+    (props) => props.background,
+    getBackgroundColor
+  )}
+  ${responsive("color", (props) => props.background, getTextColorForBackground)}
 `;
 
 export default background;

@@ -1,21 +1,27 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Card from "./Card";
+import Component from ".";
 
 export default {
   title: "Cards/Card",
-  component: Card,
-  argTypes: {},
-} as ComponentMeta<typeof Card>;
+  component: Component,
+  argTypes: {
+    background: {
+      defaultValue: "calmAndWarm",
+    },
+  },
+} as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof Card> = () => (
-  <div>
-    <Card>
+const Template: ComponentStory<typeof Component> = (args) => {
+  console.log(args);
+
+  return (
+    <Component {...args}>
       <h2>Card title</h2>
       <p>You can put anything you like in here.</p>
-    </Card>
-  </div>
-);
+    </Component>
+  );
+};
 
-export const CardDefault = Template.bind({});
+export const Card = Template.bind({});
