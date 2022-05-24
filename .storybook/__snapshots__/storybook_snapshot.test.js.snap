@@ -492,14 +492,33 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-dmRaPn cvdHTK"
+    className="sc-kgflAQ fXiRvw"
   >
     <span
-      className="sc-hHLeRK gUknUu"
+      className="sc-dmRaPn gZcHcW"
     >
       Loading
     </span>
   </span>,
+]
+`;
+
+exports[`Storyshots Form/BigInput Big Input 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <input
+    className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+    onChange={[Function]}
+    placeholder="Placeholder"
+    value=""
+  />,
 ]
 `;
 
@@ -514,7 +533,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-hAZoDl sc-fnykZs jiMYnn emnFDg"
+    className="sc-hAZoDl sc-fEOsli jiMYnn joIQuJ"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -551,7 +570,7 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-fEOsli eKOmln"
+    className="sc-bjUoiL khVuqK"
   >
     Heading
   </span>,
@@ -569,7 +588,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-bjUoiL gKLlTt"
+    className="sc-idiyUo fmCmhl"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
   </p>,
@@ -587,17 +606,17 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-dIouRR hqUpDK"
+    className="sc-hHLeRK VWFyV"
   >
     <div
       className="sc-evZas fuwPfM"
     >
       <h1
-        className="sc-fEOsli klxxma"
+        className="sc-bjUoiL gwJqXz"
         size={4}
       >
         <span
-          className="sc-idiyUo ioLWSY"
+          className="sc-dIouRR irmRTR"
           display="block"
           fontSize={24}
         >
@@ -892,7 +911,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-idiyUo jlpfRb"
+            className="sc-dIouRR kiqyZb"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -907,7 +926,7 @@ Array [
       >
         <input
           aria-label="Search"
-          className="sc-hAZoDl sc-kgflAQ jiMYnn bgQHFK"
+          className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
           onChange={[Function]}
           placeholder="Search"
           type="search"
@@ -996,7 +1015,7 @@ Array [
   >
     <input
       aria-label="Search"
-      className="sc-hAZoDl sc-kgflAQ jiMYnn bgQHFK"
+      className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
       onChange={[Function]}
       placeholder="Search"
       type="search"

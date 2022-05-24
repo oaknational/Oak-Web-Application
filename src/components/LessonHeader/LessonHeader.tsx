@@ -32,7 +32,7 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
     <StyledLessonHeader>
       <Flex>
         <Heading tag="h1" size={4}>
-          <Span display="block" fontSize={24}>
+          <Span display="block" fontSize={24} mb={8}>
             Lesson
           </Span>
           {title}
