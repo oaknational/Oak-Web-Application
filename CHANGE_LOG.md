@@ -1,3 +1,10 @@
+# [0.22.0](https://github.com/oaknational/Samara/compare/v0.21.1...v0.22.0) (2022-05-24)
+
+
+### Features
+
+* **typography:** convert typography components to sc ([70bbf91](https://github.com/oaknational/Samara/commit/70bbf91648aceedaf0f2835aa211e0ab97eed71f))
+
 ## [0.21.1](https://github.com/oaknational/Samara/compare/v0.21.0...v0.21.1) (2022-05-20)
 
 # [0.21.0](https://github.com/oaknational/Samara/compare/v0.20.0...v0.21.0) (2022-05-19)
