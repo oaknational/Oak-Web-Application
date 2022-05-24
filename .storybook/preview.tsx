@@ -1,5 +1,7 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
 
+import theme from "../src/styles/theme";
 import useTheme from "../src/hooks/useTheme";
 import { UserStyleContextProvider } from "../src/context/UserStyleContext";
 import GlobalStyle from "../src/styles/GlobalStyle";
@@ -33,18 +35,20 @@ const withThemeProvider = (Story, context) => {
   useTheme();
   return (
     <>
-      <GlobalStyle />
-      <UserStyleContextProvider>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-          rel="stylesheet"
-        />
-        <Story {...context} />
-      </UserStyleContextProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <UserStyleContextProvider>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+            rel="stylesheet"
+          />
+          <Story {...context} />
+        </UserStyleContextProvider>
+      </ThemeProvider>
     </>
   );
 };

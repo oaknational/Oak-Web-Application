@@ -1,10 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { NextPage } from "next";
 
-import { useSearchQuery } from "../context/SearchContext";
+import {
+  ALL_KEY_STAGES,
+  useSearchQuery,
+} from "../context/Search/SearchContext";
 import Layout from "../components/Layout";
 import SearchResults from "../components/SearchResults";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
+import BrowserWidthBar from "../components/BrowserWidthBar";
+import KeyStageFilter from "../components/SearchFilters/KeyStageFilter";
+import Flex from "../components/Flex";
 
 export interface SearchHit {
   _source: {
@@ -141,7 +147,14 @@ const Search: NextPage = () => {
   }, [requestOptions]);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} background="grey1">
+      <BrowserWidthBar background="white" pv={20}>
+        <Flex>
+          {ALL_KEY_STAGES.map((ks) => (
+            <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
+          ))}
+        </Flex>
+      </BrowserWidthBar>
       {loading && <p>Loading...</p>}
       <SearchResults hits={results} />
     </Layout>

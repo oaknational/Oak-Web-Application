@@ -7,7 +7,7 @@ export enum KeyStages {
   keystage3 = "3",
   keystage4 = "4",
 }
-
+export const ALL_KEY_STAGES = Object.values(KeyStages);
 export type KeyStage = `${KeyStages}`;
 
 export type SearchQuery = {

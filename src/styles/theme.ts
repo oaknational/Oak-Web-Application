@@ -84,9 +84,82 @@ const theme = {
       contrastBackground: "#fff",
     },
   },
-
+  input: {
+    height: "40px",
+    borderRadius: "8px",
+    borderWidth: "1px",
+  },
+  bigInput: {
+    height: "40px",
+    borderRadius: "20px",
+    borderWidth: "0",
+  },
   // palette are colors named by where they are used
   palette: {
+    input: {
+      default: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      active: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      valid: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      invalid: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      disabled: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+    },
+    bigInput: {
+      default: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      active: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      valid: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      invalid: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+      disabled: {
+        text: "black",
+        placeholder: "grey6",
+        icon: "grey6",
+        border: "grey8",
+      },
+    },
     button: {
       primary: {
         background: "#ef476f",

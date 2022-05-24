@@ -8,10 +8,12 @@
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
+import { ThemeProvider } from "styled-components";
 
 import { BookmarksProvider } from "../../context/Bookmarks";
 import { UserStyleContextProvider } from "../../context/UserStyleContext";
-import { SearchProvider } from "../../context/SearchContext";
+import { SearchProvider } from "../../context/Search/SearchContext";
+import theme from "../../styles/theme";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
@@ -29,13 +31,15 @@ const AllTheProviders: FC<ProviderProps> = ({
   return (
     <MockedAuthProvider {...authProviderProps}>
       <MockedApolloProvider>
-        <UserStyleContextProvider>
-          <MemoryRouterProvider>
-            <BookmarksProvider>
-              <SearchProvider>{children}</SearchProvider>
-            </BookmarksProvider>
-          </MemoryRouterProvider>
-        </UserStyleContextProvider>
+        <ThemeProvider theme={theme}>
+          <UserStyleContextProvider>
+            <MemoryRouterProvider>
+              <BookmarksProvider>
+                <SearchProvider>{children}</SearchProvider>
+              </BookmarksProvider>
+            </MemoryRouterProvider>
+          </UserStyleContextProvider>
+        </ThemeProvider>
       </MockedApolloProvider>
     </MockedAuthProvider>
   );

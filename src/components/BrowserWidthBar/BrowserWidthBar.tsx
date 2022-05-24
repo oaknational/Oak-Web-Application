@@ -26,7 +26,12 @@ const BrowserWidthBar: FC<BrowserWidthBarProps> = (props) => {
   const { background } = props;
   return (
     <FlexWithFullWidthPseudo background={background}>
-      <Flex {...props} position="relative" />
+      <Flex
+        position="relative"
+        flexDirection="column"
+        flexGrow={1}
+        {...props}
+      />
     </FlexWithFullWidthPseudo>
   );
 };

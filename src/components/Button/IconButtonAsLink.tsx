@@ -2,26 +2,29 @@ import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import Link, { LinkProps } from "next/link";
 import styled from "styled-components";
 
+import { MarginProps } from "../../styles/utils/spacing";
+
 import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
 import { outermostElementStyles } from "./common";
 
-const StyledA = styled.a`
+const StyledA = styled.a<MarginProps>`
   ${outermostElementStyles}
 `;
 
-type IconButtonAsLinkProps = IconButtonInnerProps & {
-  "aria-label": string;
-  href: string;
-  nextLinkProps?: Omit<LinkProps, "href">;
-  anchorProps?: Omit<
-    DetailedHTMLProps<
-      AnchorHTMLAttributes<HTMLAnchorElement>,
-      HTMLAnchorElement
-    >,
-    "ref" | "aria-label"
-  >;
-};
+type IconButtonAsLinkProps = MarginProps &
+  IconButtonInnerProps & {
+    "aria-label": string;
+    href: string;
+    nextLinkProps?: Omit<LinkProps, "href">;
+    anchorProps?: Omit<
+      DetailedHTMLProps<
+        AnchorHTMLAttributes<HTMLAnchorElement>,
+        HTMLAnchorElement
+      >,
+      "ref" | "aria-label"
+    >;
+  };
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
   const {
@@ -33,6 +36,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     href,
     nextLinkProps,
     anchorProps,
+    ...styleProps
   } = props;
 
   return (
@@ -41,6 +45,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
         {...anchorProps}
         {...useButtonAsLinkProps()}
         aria-label={ariaLabel}
+        {...styleProps}
       >
         <IconButtonInner
           icon={icon}

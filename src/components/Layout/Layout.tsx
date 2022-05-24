@@ -19,7 +19,7 @@ const StyledLayout = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 24px 12px;
+  padding: 0 12px;
   max-width: 1200px;
   width: 100%;
   align-self: center;

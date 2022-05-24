@@ -6,26 +6,28 @@ import {
 } from "react";
 import styled from "styled-components";
 
+import { MarginProps } from "../../styles/utils/spacing";
 import UnstyledButton from "../UnstyledButton";
 
 import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
 import { outermostElementStyles } from "./common";
 
-const StyledButton = styled(UnstyledButton)`
+const StyledButton = styled(UnstyledButton)<MarginProps>`
   ${outermostElementStyles}
 `;
 
-export type ButtonProps = ButtonInnerProps & {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  "aria-label"?: string;
-  htmlButtonProps?: Omit<
-    DetailedHTMLProps<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLButtonElement
-    >,
-    "ref"
-  >;
-};
+export type ButtonProps = MarginProps &
+  ButtonInnerProps & {
+    onClick: MouseEventHandler<HTMLButtonElement>;
+    "aria-label"?: string;
+    htmlButtonProps?: Omit<
+      DetailedHTMLProps<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+      >,
+      "ref"
+    >;
+  };
 
 const Button: FC<ButtonProps> = (props) => {
   const {
@@ -37,6 +39,7 @@ const Button: FC<ButtonProps> = (props) => {
     iconPosition = "leading",
     "aria-label": ariaLabel,
     htmlButtonProps = {},
+    ...styleProps
   } = props;
 
   return (
@@ -45,6 +48,7 @@ const Button: FC<ButtonProps> = (props) => {
       title={htmlButtonProps.title || ariaLabel || label}
       aria-label={ariaLabel || label}
       onClick={onClick}
+      {...styleProps}
     >
       <ButtonInner
         variant={variant}

@@ -6,27 +6,29 @@ import {
 } from "react";
 import styled from "styled-components";
 
+import { MarginProps } from "../../styles/utils/spacing";
 import UnstyledButton from "../UnstyledButton";
 
 import { outermostElementStyles } from "./common";
 import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
 
-const StyledButton = styled(UnstyledButton)`
+const StyledButton = styled(UnstyledButton)<MarginProps>`
   ${outermostElementStyles}
 `;
 
-type IconButtonProps = IconButtonInnerProps & {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  "aria-label": string;
-  disabled?: boolean;
-  htmlButtonProps?: Omit<
-    DetailedHTMLProps<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLButtonElement
-    >,
-    "ref" | "onClick" | "disabled"
-  >;
-};
+type IconButtonProps = MarginProps &
+  IconButtonInnerProps & {
+    onClick: MouseEventHandler<HTMLButtonElement>;
+    "aria-label": string;
+    disabled?: boolean;
+    htmlButtonProps?: Omit<
+      DetailedHTMLProps<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+      >,
+      "ref" | "onClick" | "disabled"
+    >;
+  };
 
 const IconButton: FC<IconButtonProps> = (props) => {
   const {
@@ -38,6 +40,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
     disabled,
     onClick,
     htmlButtonProps = {},
+    ...styleProps
   } = props;
 
   return (
@@ -47,6 +50,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
       title={htmlButtonProps.title || ariaLabel}
       aria-label={ariaLabel}
       disabled={disabled}
+      {...styleProps}
     >
       <IconButtonInner
         icon={icon}

@@ -7,7 +7,17 @@ import {
 
 import truthy from "../../utils/truthy";
 
-const breakpoints = [600, 1200];
+const breakpointsByName = {
+  small: 600,
+  medium: 900,
+  large: 1200,
+};
+const breakpoints = Object.values(breakpointsByName);
+export const getBreakpoint = (
+  breakpointName: keyof typeof breakpointsByName
+) => {
+  return breakpointsByName[breakpointName];
+};
 
 export type ResponsiveValues<Value> = Value | Value[];
 
@@ -15,7 +25,7 @@ const responsive =
   <Props, T extends string | number | undefined>(
     attr: string,
     getValues: (props: Props) => ResponsiveValues<T | undefined>,
-    parse: (unpared: T | undefined) => string | number | undefined = (x) => x
+    parse: (unparsed: T | undefined) => string | number | undefined = (x) => x
   ) =>
   (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
     const attrCss = (value: T | undefined) =>

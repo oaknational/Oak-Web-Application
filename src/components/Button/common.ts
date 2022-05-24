@@ -1,5 +1,7 @@
 import { css } from "styled-components";
 
+import { margin, MarginProps } from "../../styles/utils/spacing";
+
 export type ButtonVariant = "primary" | "secondary" | "tertiary";
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large";
@@ -55,6 +57,7 @@ export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
 export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "primary";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 
-export const outermostElementStyles = css`
+export const outermostElementStyles = css<MarginProps>`
   display: inline-flex;
+  ${margin}
 `;
