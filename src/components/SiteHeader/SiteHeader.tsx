@@ -6,14 +6,16 @@ import { useUserStyleContext } from "../../context/UserStyleContext";
 import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
 import UnstyledButton from "../UnstyledButton/UnstyledButton";
+import background, { BackgroundProps } from "../../styles/utils/background";
 
-const StyledSiteHeader = styled.header`
+const StyledSiteHeader = styled.header<BackgroundProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 72px;
   padding: 12px;
-  background: var(--color-bw-95);
+  ${background}
+
   @media (min-width: 900px) {
     flex-direction: row;
     align-items: center;
@@ -45,7 +47,7 @@ const SiteHeader: FC = () => {
   };
 
   return (
-    <StyledSiteHeader>
+    <StyledSiteHeader background="grey3">
       <Title>Oak</Title>
       <SearchForm />
       <HeaderButtonWrapper>

@@ -8,8 +8,10 @@ const oakStyles = css`
     font-family: sans-serif;
   }
 
+  /* stylelint-disable */
   body,
   #__next {
+    /* stylelint-enable */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -23,6 +25,8 @@ const oakStyles = css`
 
   * {
     box-sizing: border-box;
+    font-family: ABeeZee, sans-serif;
+    line-height: 1.4;
   }
 `;
 

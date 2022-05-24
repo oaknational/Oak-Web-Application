@@ -1,58 +1,53 @@
 import React, { FC } from "react";
-import clsx from "clsx";
+import styled, { css } from "styled-components";
 
-import styles from "../../styles/Typography.module.css";
+import display, { DisplayProps } from "../../styles/utils/display";
+import { margin, MarginProps } from "../../styles/utils/spacing";
+import typography, {
+  heading,
+  HeadingSize,
+  text,
+  TextSize,
+  TypographyProps,
+} from "../../styles/utils/typography";
 
-export const VARIANTS_TYPE = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "body1",
-  "body2",
-  "body3",
-  "body4",
-] as const;
+export const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
 
-export type VariantsType = typeof VARIANTS_TYPE[number];
+export type HeadingTag = typeof HEADING_TAGS[number];
 
-const variantsMapping: Record<VariantsType, keyof JSX.IntrinsicElements> = {
-  h1: "h1",
-  h2: "h2",
-  h3: "h3",
-  h4: "h4",
-  h5: "h5",
-  h6: "h6",
-  body1: "p",
-  body2: "p",
-  body3: "p",
-  body4: "p",
+const RawHeading = styled.span`
+  ${heading}
+`;
+
+type HeadingProps = {
+  tag: HeadingTag;
+  size: HeadingSize;
 };
 
-type TypographyProps = {
-  semanticVariant: VariantsType;
-  styleVariant?: VariantsType;
-  className?: string;
+export const Heading: FC<HeadingProps> = (props) => {
+  const { tag, ...htmlAttrs } = props;
+  return <RawHeading as={tag} {...htmlAttrs} />;
 };
 
-const Text: FC<TypographyProps> = ({
-  semanticVariant,
-  styleVariant,
-  children,
-  ...props
-}) => {
-  const Component = variantsMapping[semanticVariant];
-  const cssVariant = styleVariant || semanticVariant;
-  return (
-    <Component
-      className={clsx(styles[`typography--variant-${cssVariant}`])}
-      {...props}
-    >
-      {children}
-    </Component>
-  );
+type TextProps = {
+  size?: TextSize;
 };
+export const Text = styled.p<TextProps>`
+  ${text}
+`;
 
-export default Text;
+type BaseTextProps = MarginProps & TypographyProps & DisplayProps;
+const baseTextStyles = css<BaseTextProps>`
+  font-family: inherit;
+  font-weight: inherit;
+  margin: 0;
+  ${margin}
+  ${typography}
+  ${display}
+`;
+
+type SpanProps = BaseTextProps;
+export const Span = styled.span<SpanProps>`
+  color: inherit;
+  ${baseTextStyles}
+`;

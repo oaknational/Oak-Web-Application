@@ -4,10 +4,16 @@ import {
   FC,
   MouseEventHandler,
 } from "react";
+import styled from "styled-components";
 
 import UnstyledButton from "../UnstyledButton";
 
 import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
+import { outermostElementStyles } from "./common";
+
+const StyledButton = styled(UnstyledButton)`
+  ${outermostElementStyles}
+`;
 
 export type ButtonProps = ButtonInnerProps & {
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -34,7 +40,7 @@ const Button: FC<ButtonProps> = (props) => {
   } = props;
 
   return (
-    <UnstyledButton
+    <StyledButton
       {...htmlButtonProps}
       title={htmlButtonProps.title || ariaLabel || label}
       aria-label={ariaLabel || label}
@@ -47,7 +53,7 @@ const Button: FC<ButtonProps> = (props) => {
         iconPosition={iconPosition}
         size={size}
       />
-    </UnstyledButton>
+    </StyledButton>
   );
 };
 

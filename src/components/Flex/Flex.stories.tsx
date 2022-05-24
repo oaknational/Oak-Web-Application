@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Components/Base/Flex",
+  title: "Foundations/Flex",
   component: Component,
   argTypes: {
     children: {

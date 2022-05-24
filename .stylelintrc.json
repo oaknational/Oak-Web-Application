@@ -1,4 +1,17 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-css-modules"],
-  "rules": { "selector-class-pattern": null }
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-styled-components"
+  ],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "selector-type-no-unknown": [
+      true,
+      { "ignoreTypes": ["/-styled-mixin/", "/^\\$\\w+/"] }
+    ],
+    "value-keyword-case": ["lower", { "ignoreKeywords": ["dummyValue"] }],
+    "selector-max-empty-lines": null,
+    "keyframes-name-pattern": null
+  }
 }

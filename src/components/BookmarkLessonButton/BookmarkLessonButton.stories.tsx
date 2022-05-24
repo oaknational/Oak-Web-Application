@@ -7,26 +7,26 @@ import MockedAuthProvider, {
 import { BookmarksProvider } from "../../context/Bookmarks";
 import MockedApolloProvider from "../../__tests__/__helpers__/MockedApolloProvider";
 
-import BookmarkLessonButton from ".";
+import Component from ".";
 
 export default {
-  title: "Buttons/Button",
-  component: BookmarkLessonButton,
+  title: "Buttons/Bookmark Lesson Button",
+  component: Component,
   argTypes: {
     argTypes: { onClick: { action: "clicked" } },
     lessonId: {
       defaultValue: "123",
     },
   },
-} as ComponentMeta<typeof BookmarkLessonButton>;
+} as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof BookmarkLessonButton> = (args) => (
+const Template: ComponentStory<typeof Component> = (args) => (
   <div>
     <div>
       <MockedAuthProvider {...loggedInAuthProviderProps}>
         <MockedApolloProvider>
           <BookmarksProvider>
-            <BookmarkLessonButton {...args} />
+            <Component {...args} />
           </BookmarksProvider>
         </MockedApolloProvider>
       </MockedAuthProvider>
@@ -34,4 +34,4 @@ const Template: ComponentStory<typeof BookmarkLessonButton> = (args) => (
   </div>
 );
 
-export const BookmarkLessonButtonExample = Template.bind({});
+export const BookmarkLessonButton = Template.bind({});

@@ -4,17 +4,15 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./VisuallyHidden";
 
 export default {
-  title: "Accessibility/VisuallyHidden",
+  title: "Accessibility/Visually Hidden",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <div>
-    <Component {...args} />
-  </div>
+  <Component {...args}>A screen reader will read this but you can't see it</Component>
 );
 
-export const VisuallyHiddenExample = Template.bind({});
+export const VisuallyHidden = Template.bind({});
 
-VisuallyHiddenExample.args = {};
+VisuallyHidden.args = {};

@@ -8,12 +8,12 @@ import {
 import { CourseJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo from "../../browser-lib/seo/Seo";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import BrowserWidthBar from "../../components/BrowserWidthBar";
+import Flex from "../../components/Flex";
 import Layout from "../../components/Layout/Layout";
 import LessonHeader from "../../components/LessonHeader/LessonHeader";
 import { LessonId } from "../../context/Bookmarks";
 import graphqlApi from "../../node-lib/graphql";
-
-import styles from "./[lessonSlug].module.css";
 
 const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   props
@@ -39,17 +39,21 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           description:
             "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions.",
         }}
+        background="grey1"
       >
-        <Breadcrumbs
-          breadcrumbs={[
-            { href: "/", label: "[key-stage]" },
-            { href: "/", label: "Subjects" },
-            { href: "/", label: "[subject-name]" },
-            { href: "/", label: "[unit-name]" },
-          ]}
-        />
-        <LessonHeader {...lesson} />
-        <div className={styles["primary-buttons"]}></div>
+        <Flex pv={40}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/", label: "[key-stage]" },
+              { href: "/", label: "Subjects" },
+              { href: "/", label: "[subject-name]" },
+              { href: "/", label: "[unit-name]" },
+            ]}
+          />
+        </Flex>
+        <BrowserWidthBar pv={40} background="white">
+          <LessonHeader {...lesson} />
+        </BrowserWidthBar>
       </Layout>
     </>
   );
