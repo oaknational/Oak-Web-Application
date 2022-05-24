@@ -1,4 +1,2 @@
-*.ts
-*.tsx
-*.js
-*.jsx
+*.test.*
+*.spec.*

@@ -1,3 +1,5 @@
+import { css } from "styled-components";
+
 export type ButtonVariant = "primary" | "secondary" | "tertiary";
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large";
@@ -52,3 +54,7 @@ export const buttonIconSizeMap: Record<ButtonSize, number> = {
 export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
 export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "primary";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
+
+export const outermostElementStyles = css`
+  display: inline-flex;
+`;

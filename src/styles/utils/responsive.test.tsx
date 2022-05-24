@@ -66,6 +66,7 @@ describe("responsive", () => {
     )(props);
     const expected = css`
       padding-left: 0px;
+
       @media (min-width: 600px) {
         padding-left: 12px;
       }
@@ -85,9 +86,11 @@ describe("responsive", () => {
     )(props);
     const expected = css`
       padding-left: 36px;
+
       @media (min-width: 600px) {
         padding-left: 12px;
       }
+
       @media (min-width: 1200px) {
         padding-left: 0px;
       }

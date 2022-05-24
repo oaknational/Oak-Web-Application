@@ -81,7 +81,6 @@ export const margin = css<MarginProps>`
   ${marginAll}
   ${marginHorizontal}
   ${marginVertical}
-
   ${marginLeft}
   ${marginRight}
   ${marginTop}
@@ -92,7 +91,6 @@ export const padding = css<PaddingProps>`
   ${paddingAll}
   ${paddingHorizontal}
   ${paddingVertical}
-
   ${paddingLeft}
   ${paddingRight}
   ${paddingTop}

@@ -1,9 +1,14 @@
 import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import Link, { LinkProps } from "next/link";
+import styled from "styled-components";
 
 import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
+import { outermostElementStyles } from "./common";
 
+const StyledA = styled.a`
+  ${outermostElementStyles}
+`;
 type ButtonAsLinkProps = ButtonInnerProps & {
   href: string;
   "aria-label"?: string;
@@ -31,7 +36,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
 
   return (
     <Link {...nextLinkProps} href={href} passHref>
-      <a
+      <StyledA
         {...anchorProps}
         {...useButtonAsLinkProps()}
         title={anchorProps.title || ariaLabel || label}
@@ -44,7 +49,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           iconPosition={iconPosition}
           size={size}
         />
-      </a>
+      </StyledA>
     </Link>
   );
 };

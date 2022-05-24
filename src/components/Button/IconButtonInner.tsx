@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { IconColorOverride } from "../../styles/themes/types";
+import { OakColorName } from "../../styles/theme";
 import Icon, { IconName } from "../Icon";
 
 import {
@@ -16,7 +16,7 @@ export type IconButtonInnerProps = {
   variant?: ButtonVariant;
   icon: IconName;
   size?: ButtonSize;
-  iconColorOverride?: IconColorOverride;
+  iconColorOverride?: OakColorName;
 };
 const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
   const {

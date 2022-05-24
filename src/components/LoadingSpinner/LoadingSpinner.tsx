@@ -4,8 +4,12 @@ import styled, { keyframes } from "styled-components";
 import ScreenReaderOnly from "../ScreenReaderOnly";
 
 const SpinnerKeyframe = keyframes`
-    0% { transform: rotate(0deg);}
-    100% {transform: rotate(360deg);
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 `;
 const StyledLoadingSpinner = styled.span`
@@ -17,7 +21,8 @@ const StyledLoadingSpinner = styled.span`
   display: inline-flex;
   width: var(--width);
   height: var(--width);
-  &:after {
+
+  ::after {
     content: " ";
     display: block;
     width: var(--inner-width);

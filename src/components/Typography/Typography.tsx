@@ -1,11 +1,14 @@
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import {
+import display, { DisplayProps } from "../../styles/utils/display";
+import { margin, MarginProps } from "../../styles/utils/spacing";
+import typography, {
   heading,
   HeadingSize,
   text,
   TextSize,
+  TypographyProps,
 } from "../../styles/utils/typography";
 
 export const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
@@ -31,4 +34,20 @@ type TextProps = {
 };
 export const Text = styled.p<TextProps>`
   ${text}
+`;
+
+type BaseTextProps = MarginProps & TypographyProps & DisplayProps;
+const baseTextStyles = css<BaseTextProps>`
+  font-family: inherit;
+  font-weight: inherit;
+  margin: 0;
+  ${margin}
+  ${typography}
+  ${display}
+`;
+
+type SpanProps = BaseTextProps;
+export const Span = styled.span<SpanProps>`
+  color: inherit;
+  ${baseTextStyles}
 `;

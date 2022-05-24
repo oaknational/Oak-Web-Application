@@ -1,7 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { IconColorOverride } from "../../styles/themes/types";
+import getColor from "../../styles/themeHelpers/getColor";
+import { OakColorName } from "../../styles/theme";
 
 import ChevronRight from "./ChevronRight.icon";
 import OpenExternal from "./OpenExternal.icon";
@@ -30,11 +31,11 @@ const IconOuterWrapper = styled.span`
   align-items: center;
   justify-content: center;
 `;
-const IconInnerWrapper = styled.span`
+const IconInnerWrapper = styled.span<{ color?: OakColorName }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--${(props) => props.color});
+  color: ${(props) => getColor(props.color)};
 `;
 
 type IconProps = {
@@ -52,7 +53,7 @@ type IconProps = {
    * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
    * override this value.
    */
-  color?: IconColorOverride;
+  color?: OakColorName;
 };
 const Icon: FC<IconProps> = (props) => {
   const { name, size = 24, width, height, color } = props;

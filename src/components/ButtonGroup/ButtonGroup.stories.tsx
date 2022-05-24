@@ -11,22 +11,20 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <>
-    <Component {...args}>
-      <ButtonAsLink
-        href="/"
-        label="Download"
-        aria-label="Download Lesson"
-        icon="Download"
-      />
-      <ButtonAsLink
-        href="/"
-        label="Share"
-        aria-label="Share Lesson"
-        icon="Share"
-      />
-    </Component>
-  </>
+  <Component {...args}>
+    <ButtonAsLink
+      href="/"
+      label="Download"
+      aria-label="Download Lesson"
+      icon="Download"
+    />
+    <ButtonAsLink
+      href="/"
+      label="Share"
+      aria-label="Share Lesson"
+      icon="Share"
+    />
+  </Component>
 );
 
 export const ButtonGroup = Template.bind({});
