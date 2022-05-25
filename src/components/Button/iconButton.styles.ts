@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-import { MarginProps } from "../../styles/utils/spacing";
+import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import {
   ButtonSize,
@@ -43,6 +43,8 @@ const iconButtonStyles = css<IconButtonStylesProps>`
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  ${margin}
 `;
 
 export default iconButtonStyles;
