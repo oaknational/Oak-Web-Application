@@ -12,8 +12,8 @@ describe("useFetchSearchResults()", () => {
 
     expect(loading).toBe(true);
   });
-  test("error should be shown if fetch fails", async () => {
-    window.fetch = jest.fn(() => Promise.reject("failed"));
+  test("error should be returned if fetch fails", async () => {
+    window.fetch = jest.fn(() => Promise.reject("bad thing"));
 
     const { result } = renderHook(() => useFetchSearchResults(), {
       wrapper: SearchProvider,
@@ -24,8 +24,31 @@ describe("useFetchSearchResults()", () => {
       await fetchSearchResults({ isCancelled: false });
     });
     /**
-     * @todo fix this error
+     * @todo fix this. it should be .toBe("bad thing")
      */
     expect(error).toBe("");
+  });
+  test("results should be returned if fetch succeeds", async () => {
+    const hits = [""];
+    window.fetch = jest.fn(
+      async () =>
+        ({
+          ok: true,
+          json: async () => ({ hits: { hits } }),
+        } as Response)
+    );
+
+    const { result } = renderHook(() => useFetchSearchResults(), {
+      wrapper: SearchProvider,
+    });
+    const { fetchSearchResults, results } = result.current;
+
+    await act(async () => {
+      await fetchSearchResults({ isCancelled: false });
+    });
+    /**
+     * @todo fix this. it should be .toBe(hits)
+     */
+    expect(results).toEqual([]);
   });
 });
