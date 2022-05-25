@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { AuthProvider } from "../../context/Auth";
-import { SearchProvider } from "../../context/SearchContext";
+import { SearchProvider } from "../../context/Search/SearchContext";
 
 import Component from "./SiteHeader";
 

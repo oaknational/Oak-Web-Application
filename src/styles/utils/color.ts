@@ -9,7 +9,11 @@ type OakColorNames = ResponsiveValues<OakColorName>;
 
 export type ColorProps = { color?: OakColorNames };
 const color = css<ColorProps>`
-  ${responsive("color", (props) => props.color, getColor)}
+  ${responsive<ColorProps, OakColorName>(
+    "color",
+    (props) => props.color,
+    getColor
+  )}
 `;
 
 export default color;

@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 import getColor from "../../styles/themeHelpers/getColor";
 import { OakColorName } from "../../styles/theme";
+import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import ChevronRight from "./ChevronRight.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
 import Share from "./Share.icon";
 import Star from "./Star.icon";
+import Search from "./Search.icon";
+import Home from "./Home.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -16,6 +19,8 @@ export const ICON_NAMES = [
   "Download",
   "Share",
   "Star",
+  "Search",
+  "Home",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -24,12 +29,15 @@ export const icons: Record<IconName, FC> = {
   Download,
   Share,
   Star,
+  Search,
+  Home,
 };
 
-const IconOuterWrapper = styled.span`
+const IconOuterWrapper = styled.span<MarginProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  ${margin}
 `;
 const IconInnerWrapper = styled.span<{ color?: OakColorName }>`
   display: inline-flex;
@@ -38,7 +46,7 @@ const IconInnerWrapper = styled.span<{ color?: OakColorName }>`
   color: ${(props) => getColor(props.color)};
 `;
 
-type IconProps = {
+type IconProps = MarginProps & {
   name: IconName;
   /**
    * size in pixels is the value for width and height if they are not separately provided
@@ -56,7 +64,7 @@ type IconProps = {
   color?: OakColorName;
 };
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height, color } = props;
+  const { name, size = 24, width, height, color, ...marginProps } = props;
   const IconComponent = icons[name];
 
   const innerWidth = width || size;
@@ -68,6 +76,7 @@ const Icon: FC<IconProps> = (props) => {
   return (
     <IconOuterWrapper
       style={{ height: `${outerHeight}px`, width: `${outerWidth}px` }}
+      {...marginProps}
     >
       <IconInnerWrapper
         color={color}

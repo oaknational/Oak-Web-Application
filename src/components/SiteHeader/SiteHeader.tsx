@@ -7,6 +7,11 @@ import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
 import UnstyledButton from "../UnstyledButton/UnstyledButton";
 import background, { BackgroundProps } from "../../styles/utils/background";
+import { getBreakpoint } from "../../styles/utils/responsive";
+import Flex, { FlexProps } from "../Flex";
+import Icon from "../Icon";
+import flex from "../../styles/utils/flex";
+import { Span } from "../Typography/Typography";
 
 const StyledSiteHeader = styled.header<BackgroundProps>`
   display: flex;
@@ -16,14 +21,14 @@ const StyledSiteHeader = styled.header<BackgroundProps>`
   padding: 12px;
   ${background}
 
-  @media (min-width: 900px) {
+  @media (min-width: ${getBreakpoint("medium")}px) {
     flex-direction: row;
     align-items: center;
   }
 `;
 
-const Title = styled.div`
-  margin-right: 12px;
+const HomeLink = styled.a<FlexProps>`
+  ${flex}
 `;
 
 const HeaderButton = styled(UnstyledButton)`
@@ -48,7 +53,21 @@ const SiteHeader: FC = () => {
 
   return (
     <StyledSiteHeader background="grey3">
-      <Title>Oak</Title>
+      <Flex mr={40}>
+        <Link href={"/"} passHref>
+          <HomeLink alignItems="center">
+            <Icon name="Home" size={30} mr={8} />
+            <Span
+              fontFamily="heading"
+              fontWeight={600}
+              fontSize={20}
+              lineHeight={1}
+            >
+              Oak
+            </Span>
+          </HomeLink>
+        </Link>
+      </Flex>
       <SearchForm />
       <HeaderButtonWrapper>
         <HeaderButton onClick={handleClick}>

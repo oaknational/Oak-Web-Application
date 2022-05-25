@@ -1,13 +1,23 @@
 /**
  * @jest-environment jsdom
  */
-import React from "react";
+import React, { FC } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ThemeProvider } from "styled-components";
 
-import { SearchProvider } from "../../context/SearchContext";
+import { SearchProvider } from "../../context/Search/SearchContext";
+import theme from "../../styles/theme";
 
 import SearchForm from "./SearchForm";
+
+const Providers: FC = ({ children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <SearchProvider>{children}</SearchProvider>
+    </ThemeProvider>
+  );
+};
 
 const setTextSpy = jest.fn();
 
@@ -18,9 +28,9 @@ jest.mock("next/router", () => ({
     push: jest.fn(),
   }),
 }));
-jest.mock("../../context/SearchContext", () => ({
+jest.mock("../../context/Search/SearchContext", () => ({
   __esModule: true,
-  ...jest.requireActual("../../context/SearchContext"),
+  ...jest.requireActual("../../context/Search/SearchContext"),
   useSearchQuery: () => ({
     text: "",
     setText: setTextSpy,
@@ -36,14 +46,14 @@ describe("The <SearchForm> Component", () => {
   });
 
   it("renders", () => {
-    render(<SearchForm />, { wrapper: SearchProvider });
+    render(<SearchForm />, { wrapper: Providers });
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
   });
 
   it("updates the text of the search context", async () => {
     const text = "Macbeth";
-    render(<SearchForm />, { wrapper: SearchProvider });
+    render(<SearchForm />, { wrapper: Providers });
     const user = userEvent.setup();
 
     const searchField = screen.getByRole("searchbox");

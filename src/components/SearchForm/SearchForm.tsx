@@ -1,76 +1,49 @@
-import { FC, useState } from "react";
+import { FC, useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import {
-  KeyStages,
-  KeyStage,
-  useSearchQuery,
-} from "../../context/SearchContext";
+import { useSearchQuery } from "../../context/Search/SearchContext";
+import IconButton from "../Button/IconButton";
+import flex, { FlexCssProps } from "../../styles/utils/flex";
+import BigInput from "../Input/BigInput";
 
-const StyledForm = styled.form`
+const StyledForm = styled.form<FlexCssProps>`
+  ${flex}
   display: flex;
-  flex-wrap: wrap;
 `;
 
 const SearchForm: FC = () => {
-  const { text, setText, keyStages, setKeyStages } = useSearchQuery();
+  const { text, setText } = useSearchQuery();
   const [value, setValue] = useState(text);
 
   const router = useRouter();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     e.preventDefault();
     setText(value);
     router.push("/search");
   };
 
-  const onTextChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onTextChange = (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     setValue(e.currentTarget.value);
   };
 
-  const handleOnCheck = (ks: KeyStage) => {
-    const newKeyStages = new Set(keyStages);
-    if (!keyStages.has(ks)) {
-      newKeyStages.add(ks);
-    } else {
-      newKeyStages.delete(ks);
-    }
-    setKeyStages(newKeyStages);
-  };
-
-  const keyStageChecks: Array<JSX.Element> = Object.values(KeyStages).map(
-    (ks: KeyStage) => {
-      return (
-        <div key={ks}>
-          <label>
-            &nbsp;Key Stage {ks}
-            <input
-              type="checkbox"
-              id={`custom-checkbox-${ks}`}
-              name={ks}
-              value={ks}
-              checked={keyStages.has(ks)}
-              onChange={() => handleOnCheck(ks)}
-            />
-          </label>
-        </div>
-      );
-    }
-  );
-
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <input
+    <StyledForm flexWrap="nowrap" onSubmit={handleSubmit}>
+      <BigInput
         value={value}
         type="search"
         onChange={onTextChange}
         aria-label="Search"
         placeholder="Search"
       />
-
-      <button type="submit">Submit</button>
-      {keyStageChecks}
+      <IconButton
+        onClick={handleSubmit}
+        icon="Search"
+        aria-label="Submit"
+        htmlButtonProps={{ type: "submit" }}
+        ml={12}
+      />
     </StyledForm>
   );
 };

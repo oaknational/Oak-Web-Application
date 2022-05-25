@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { LessonId } from "../../context/Bookmarks";
+import { getBreakpoint } from "../../styles/utils/responsive";
 import BookmarkLessonButton from "../BookmarkLessonButton";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
@@ -13,7 +14,7 @@ const StyledLessonHeader = styled.header`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 900px) {
+  @media (min-width: ${getBreakpoint("medium")}px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -31,7 +32,7 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
     <StyledLessonHeader>
       <Flex>
         <Heading tag="h1" size={4}>
-          <Span display="block" fontSize={24}>
+          <Span display="block" fontSize={24} mb={8}>
             Lesson
           </Span>
           {title}
