@@ -10,7 +10,8 @@ import {
 import AuthProvider, { getSignInCallbackUrl } from "./AuthProvider";
 import useAuth from "./useAuth";
 
-const testUser = { id: "1", email: "test email", firebaseUid: "123" };
+const testEmail = "test email";
+const testUser = { id: "1", email: testEmail, firebaseUid: "123" };
 const testToken = "test token";
 
 class LocalStorageMock {
@@ -134,35 +135,35 @@ describe("auth/useAuth.tsx", () => {
   });
   it("should set email on local storage when email sent", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
-    await result.current.signInWithEmail("test email");
-    expect(getLocalStorageEmail()).toBe("test email");
+    await result.current.signInWithEmail(testEmail);
+    expect(getLocalStorageEmail()).toBe(testEmail);
   });
   it("should remove email from local storage on sign in", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
-    window.localStorage.setItem(LS_KEY_EMAIL_FOR_SIGN_IN, "test email");
+    window.localStorage.setItem(LS_KEY_EMAIL_FOR_SIGN_IN, testEmail);
     await act(async () => {
-      await result.current.signInWithEmailCallback();
+      await result.current.signInWithEmailCallback(testEmail);
     });
     expect(getLocalStorageEmail()).toBeNull();
   });
   it("should set user state on sign in", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
     await act(async () => {
-      await result.current.signInWithEmailCallback();
+      await result.current.signInWithEmailCallback(testEmail);
     });
     expect(getLocalStorageUser()).toEqual(testUser);
   });
   it("should set accessToken state on sign in", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
     await act(async () => {
-      await result.current.signInWithEmailCallback();
+      await result.current.signInWithEmailCallback(testEmail);
     });
     expect(getLocalStorageAccessToken()).toEqual(testToken);
   });
   it.skip("should reset state and clear local storage on sign out", async () => {
     const { result } = renderHook(useAuth, { wrapper: AuthProvider });
     await act(async () => {
-      await result.current.signInWithEmailCallback();
+      await result.current.signInWithEmailCallback(testEmail);
       await result.current.signOut();
     });
 
@@ -196,7 +197,7 @@ describe("auth/useAuth.tsx", () => {
     apiPostUserMock.mockImplementationOnce(() => Promise.reject(error));
     await act(async () => {
       await expect(
-        async () => await result.current.signInWithEmailCallback()
+        async () => await result.current.signInWithEmailCallback(testEmail)
       ).rejects.toThrowError(new Error("Invalid email or expired OTP"));
     });
 
@@ -212,7 +213,7 @@ describe("auth/useAuth.tsx", () => {
       Promise.reject(originalError)
     );
     await expect(async () => {
-      await result.current.signInWithEmail("test email");
+      await result.current.signInWithEmail(testEmail);
     }).rejects.toThrow("Could not send sign in link to provided email");
   });
 });

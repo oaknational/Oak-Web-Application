@@ -2,34 +2,33 @@ import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import Link, { LinkProps } from "next/link";
 import styled from "styled-components";
 
-import { MarginProps } from "../../styles/utils/spacing";
-
-import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
-import { outermostElementStyles } from "./common";
+import IconButtonInner from "./IconButtonInner";
+import { CommonIconButtonProps } from "./common";
+import iconButtonStyles, {
+  getIconButtonStylesProps,
+  IconButtonStylesProps,
+} from "./iconButton.styles";
 
-const StyledA = styled.a<MarginProps>`
-  ${outermostElementStyles}
+const StyledA = styled.a<IconButtonStylesProps>`
+  ${iconButtonStyles}
 `;
 
-type IconButtonAsLinkProps = MarginProps &
-  IconButtonInnerProps & {
-    "aria-label": string;
-    href: string;
-    nextLinkProps?: Omit<LinkProps, "href">;
-    anchorProps?: Omit<
-      DetailedHTMLProps<
-        AnchorHTMLAttributes<HTMLAnchorElement>,
-        HTMLAnchorElement
-      >,
-      "ref" | "aria-label"
-    >;
-  };
+type IconButtonAsLinkProps = CommonIconButtonProps & {
+  "aria-label": string;
+  href: string;
+  nextLinkProps?: Omit<LinkProps, "href">;
+  anchorProps?: Omit<
+    DetailedHTMLProps<
+      AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >,
+    "ref" | "aria-label"
+  >;
+};
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
   const {
-    variant,
-    size,
     icon,
     iconColorOverride,
     "aria-label": ariaLabel,
@@ -39,12 +38,16 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     ...styleProps
   } = props;
 
+  const { size, variant } = getIconButtonStylesProps(props);
+
   return (
     <Link {...nextLinkProps} href={href} passHref>
       <StyledA
         {...anchorProps}
         {...useButtonAsLinkProps()}
         aria-label={ariaLabel}
+        size={size}
+        variant={variant}
         {...styleProps}
       >
         <IconButtonInner

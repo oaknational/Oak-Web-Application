@@ -1,4 +1,7 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
+
+import getColor from "../../styles/themeHelpers/getColor";
+import margin, { MarginProps } from "../../styles/utils/spacing";
 
 import {
   ButtonSize,
@@ -9,14 +12,29 @@ import {
   getButtonBackground,
   getButtonColor,
   IconPosition,
+  CommonButtonProps,
+  DEFAULT_BUTTON_VARIANT,
+  DEFAULT_BUTTON_SIZE,
+  DEFAULT_ICON_POSITION,
 } from "./common";
 
-export type ButtonWrapperProps = {
+export type ButtonStylesProps = MarginProps & {
   size: ButtonSize;
   iconPosition: IconPosition;
   variant: ButtonVariant;
 };
-const ButtonWrapper = styled.div<ButtonWrapperProps>`
+export const getButtonStylesProps = (
+  props: CommonButtonProps
+): ButtonStylesProps => {
+  const {
+    variant = DEFAULT_BUTTON_VARIANT,
+    iconPosition = DEFAULT_ICON_POSITION,
+    size = DEFAULT_BUTTON_SIZE,
+  } = props;
+
+  return { size, iconPosition, variant };
+};
+const buttonStyles = css<ButtonStylesProps>`
   position: relative;
   display: inline-flex;
   justify-content: center;
@@ -34,9 +52,13 @@ const ButtonWrapper = styled.div<ButtonWrapperProps>`
   `}
 
   :disabled {
-    opacity: 0.5;
+    background-color: ${getColor(
+      (theme) => theme.palette.button.disabled.background
+    )};
     cursor: not-allowed;
   }
+
+  ${margin}
 `;
 
-export default ButtonWrapper;
+export default buttonStyles;
