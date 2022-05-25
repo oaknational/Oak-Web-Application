@@ -11,6 +11,7 @@ const ERROR_CODES = [
   "auth/token-expired",
   "auth/token-error-unknown",
   "graphql/validation", // for this we actually want more details when the error is thrown
+  "search/unknown",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -56,6 +57,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/unexpected-type": {
     message:
       "An unexpected type was encountered, so action may not have completed successfully",
+    shouldNotify: true,
+  },
+  "search/unknown": {
+    message: "Search doesn't seem to be working, we're looking into it.",
     shouldNotify: true,
   },
 };
