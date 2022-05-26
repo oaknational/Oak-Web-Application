@@ -39,6 +39,7 @@ const useFetchSearchResults = () => {
           config.get("searchApiUrl"),
           requestOptions
         );
+
         handleFetchError(response);
         const data = await response.json();
         if (data) {
@@ -55,6 +56,7 @@ const useFetchSearchResults = () => {
           code: "search/unknown",
           originalError: error,
         });
+
         handleError(oakError);
         setError(oakError.message);
       } finally {
