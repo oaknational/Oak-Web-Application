@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import styled from "styled-components";
 
 import useAuth from "../../context/Auth/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -11,10 +12,17 @@ import { useUser } from "../../context/Auth";
 import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../../config/localStorageKeys";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import useStableCallback from "../../hooks/useStableCallback";
+
+const Form = styled.form`
+  width: 100%;
+  max-width: 450px;
+`;
 
 const SignInCallback: NextPage = () => {
   const { signInWithEmailCallback } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const emailFromLocalStorage =
     typeof window !== "undefined"
       ? window.localStorage.getItem(LS_KEY_EMAIL_FOR_SIGN_IN)
@@ -24,30 +32,28 @@ const SignInCallback: NextPage = () => {
   const router = useRouter();
   const user = useUser();
 
-  const signInAndRedirect = useCallback(
-    async (email: string) => {
-      try {
-        setLoading(true);
-        await signInWithEmailCallback(email);
-        console.log("callback success");
-
-        router.replace("/sign-in/success", undefined, { shallow: true });
-      } catch (error) {
-        router.replace("/sign-in/error", undefined, { shallow: true });
-        console.log("callback error", error);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [router, signInWithEmailCallback]
-  );
+  const signInAndRedirect = useStableCallback(async (email: string) => {
+    try {
+      setLoading(true);
+      await signInWithEmailCallback(email);
+    } catch (error) {
+      setError("Login failed");
+    } finally {
+      setLoading(false);
+    }
+  });
 
   useEffect(() => {
-    console.log("callback user", user);
     if (user) {
-      // redirect here to /success
+      router.replace("/sign-in/success", undefined, { shallow: true });
     }
   }, [user, router]);
+
+  useEffect(() => {
+    if (error) {
+      router.replace("/sign-in/error", undefined, { shallow: true });
+    }
+  }, [error, router]);
 
   useEffect(() => {
     if (confirmedEmail) {
@@ -55,7 +61,8 @@ const SignInCallback: NextPage = () => {
     }
   }, [confirmedEmail, signInAndRedirect]);
 
-  const confirmEmail = () => {
+  const confirmEmail = (e: FormEvent | MouseEvent) => {
+    e.preventDefault();
     setConfirmedEmail(email);
   };
 
@@ -68,17 +75,24 @@ const SignInCallback: NextPage = () => {
         flexGrow={1}
       >
         {!confirmedEmail && (
-          <form onSubmit={confirmEmail}>
-            <Input
-              name="email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <Button onClick={confirmEmail} label="Sign in" />
-          </form>
+          <Form onSubmit={confirmEmail}>
+            <Flex>
+              <Input
+                name="email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+              <Button
+                data-testid="callback-signin-button"
+                onClick={confirmEmail}
+                label="Sign in"
+                ml={8}
+              />
+            </Flex>
+          </Form>
         )}
-        {loading ? <LoadingSpinner /> : <p>Thanks for signing in</p>}
+        {loading && <LoadingSpinner />}
       </Flex>
     </Layout>
   );

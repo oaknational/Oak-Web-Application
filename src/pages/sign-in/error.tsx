@@ -14,7 +14,7 @@ const SignInError: NextPage = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <p data-testid="sign-in-success-message">
+        <p data-testid="sign-in-error-message">
           There was an error signing you in.{" "}
           <Link href="/">
             <a>Take me home.</a>
