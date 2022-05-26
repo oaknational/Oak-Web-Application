@@ -43,7 +43,7 @@ describe("useFetchSearchResults()", () => {
   test("results should be returned if fetch succeeds", async () => {
     const hits = [""];
     const jsonMock = jest.fn(
-      async () => ({ hits: { hits } } as unknown as Response)
+      async () => ({ ok: true, hits: { hits } } as unknown as Response)
     );
     window.fetch = jsonMock;
 
