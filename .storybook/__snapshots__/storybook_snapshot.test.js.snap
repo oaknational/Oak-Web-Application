@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-gicCDI fIooWp"
+    className="sc-ezWOiH bIDeWQ"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -42,22 +42,14 @@ Array [
           size="small"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
                 fill="currentColor"
@@ -179,22 +171,14 @@ Array [
           className="sc-ftvSup cTDWXd"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
                 fill="none"
@@ -248,22 +232,14 @@ Array [
           className="sc-ftvSup cTDWXd"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
                 fill="none"
@@ -342,22 +318,14 @@ Array [
       size="small"
     >
       <span
-        className="sc-gsnTZi hnKkoM"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
+        className="sc-gsnTZi fiKuMT"
+        height={16}
+        width={16}
       >
         <span
-          className="sc-dkzDqf krVImC"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+          className="sc-dkzDqf hosfuE"
+          height={16}
+          width={16}
         >
           <svg
             fill="none"
@@ -410,22 +378,14 @@ Array [
       size="small"
     >
       <span
-        className="sc-gsnTZi hnKkoM"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
+        className="sc-gsnTZi fiKuMT"
+        height={16}
+        width={16}
       >
         <span
-          className="sc-dkzDqf krVImC"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+          className="sc-dkzDqf hosfuE"
+          height={16}
+          width={16}
         >
           <svg
             fill="none"
@@ -492,10 +452,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-kgflAQ fXiRvw"
+    className="sc-fLlhyt dsSxkN"
   >
     <span
-      className="sc-dmRaPn gZcHcW"
+      className="sc-kgflAQ hFofQI"
     >
       Loading
     </span>
@@ -532,12 +492,63 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <input
-    className="sc-hAZoDl sc-fEOsli jiMYnn kAybdt"
-    onChange={[Function]}
-    placeholder="Placeholder"
-    value=""
+  <div
+    className="sc-evZas egufdk"
+  >
+    <input
+      className="sc-hAZoDl sc-bjUoiL jiMYnn dBHOcF"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Input With Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
   />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-evZas egufdk"
+  >
+    <input
+      className="sc-hAZoDl sc-bjUoiL jiMYnn bHCMeq"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+    <span
+      className="sc-gsnTZi bzKDcl sc-fEOsli ceCKPs"
+      height={20}
+      width={40}
+    >
+      <span
+        className="sc-dkzDqf cSKBNc"
+        height={20}
+        width={20}
+      >
+        <svg
+          fill="none"
+          height="100%"
+          viewBox="0 0 17 17"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </span>
+  </div>,
 ]
 `;
 
@@ -570,7 +581,7 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-bjUoiL khVuqK"
+    className="sc-idiyUo RtBjW"
   >
     Heading
   </span>,
@@ -588,7 +599,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-idiyUo fmCmhl"
+    className="sc-dIouRR cKaJDt"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
   </p>,
@@ -606,17 +617,17 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-hHLeRK VWFyV"
+    className="sc-dmRaPn iZZlct"
   >
     <div
       className="sc-evZas fuwPfM"
     >
       <h1
-        className="sc-bjUoiL gwJqXz"
+        className="sc-idiyUo gRksxr"
         size={4}
       >
         <span
-          className="sc-dIouRR irmRTR"
+          className="sc-hHLeRK LbSuO"
           display="block"
           fontSize={24}
         >
@@ -645,22 +656,14 @@ Array [
             className="sc-ftvSup cTDWXd"
           >
             <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-gsnTZi fiKuMT"
+              height={16}
+              width={16}
             >
               <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+                className="sc-dkzDqf hosfuE"
+                height={16}
+                width={16}
               >
                 <svg
                   fill="none"
@@ -714,22 +717,14 @@ Array [
             className="sc-ftvSup cTDWXd"
           >
             <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-gsnTZi fiKuMT"
+              height={16}
+              width={16}
             >
               <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+                className="sc-dkzDqf hosfuE"
+                height={16}
+                width={16}
               >
                 <svg
                   fill="none"
@@ -792,22 +787,14 @@ Array [
           size="small"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
                 fill="currentColor"
@@ -847,7 +834,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-bBrHrO bgZYXQ"
+      className="sc-ivTmOn iWjAZI"
     >
       © Oak National Academy 
       2022
@@ -868,34 +855,26 @@ Array [
   />,
   <div>
     <header
-      className="sc-ivTmOn iaWnIp"
+      className="sc-cxabCf vAwdH"
     >
       <div
         className="sc-evZas htLSfa"
       >
         <a
-          className="sc-cxabCf eVVIkk"
+          className="sc-llJcti uocAZ"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <span
-            className="sc-gsnTZi lmSKEe"
-            style={
-              Object {
-                "height": "30px",
-                "width": "30px",
-              }
-            }
+            className="sc-gsnTZi dwUICx"
+            height={30}
+            width={30}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "30px",
-                  "width": "30px",
-                }
-              }
+              className="sc-dkzDqf fWLDlY"
+              height={30}
+              width={30}
             >
               <svg
                 height="100%"
@@ -911,7 +890,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-dIouRR kiqyZb"
+            className="sc-hHLeRK fjhMsY"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -921,17 +900,21 @@ Array [
         </a>
       </div>
       <form
-        className="sc-fLlhyt fbwRLO"
+        className="sc-bBrHrO eMSRru"
         onSubmit={[Function]}
       >
-        <input
-          aria-label="Search"
-          className="sc-hAZoDl sc-fEOsli jiMYnn kAybdt"
-          onChange={[Function]}
-          placeholder="Search"
-          type="search"
-          value=""
-        />
+        <div
+          className="sc-evZas egufdk"
+        >
+          <input
+            aria-label="Search"
+            className="sc-hAZoDl sc-bjUoiL jiMYnn dBHOcF"
+            onChange={[Function]}
+            placeholder="Search"
+            type="search"
+            value=""
+          />
+        </div>
         <button
           aria-label="Submit"
           className="sc-bczRLJ sc-eCYdqJ bprpIx dBkheU"
@@ -944,31 +927,24 @@ Array [
             size="small"
           >
             <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-gsnTZi fiKuMT"
+              height={16}
+              width={16}
             >
               <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+                className="sc-dkzDqf hosfuE"
+                height={16}
+                width={16}
               >
                 <svg
+                  fill="none"
                   height="100%"
-                  viewBox="6 6 36 36"
+                  viewBox="0 0 17 17"
                   width="100%"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M39.8 41.95 26.65 28.8q-1.5 1.3-3.5 2.025-2 .725-4.25.725-5.4 0-9.15-3.75T6 18.75q0-5.3 3.75-9.05 3.75-3.75 9.1-3.75 5.3 0 9.025 3.75 3.725 3.75 3.725 9.05 0 2.15-.7 4.15-.7 2-2.1 3.75L42 39.75Zm-20.95-13.4q4.05 0 6.9-2.875Q28.6 22.8 28.6 18.75t-2.85-6.925Q22.9 8.95 18.85 8.95q-4.1 0-6.975 2.875T9 18.75q0 4.05 2.875 6.925t6.975 2.875Z"
+                    d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
                     fill="currentColor"
                   />
                 </svg>
@@ -978,10 +954,10 @@ Array [
         </button>
       </form>
       <div
-        className="sc-iIPllB bkAhVn"
+        className="sc-gicCDI eJCmMa"
       >
         <button
-          className="sc-bczRLJ sc-llJcti bprpIx echjzB"
+          className="sc-bczRLJ sc-iIPllB bprpIx csUuob"
           onClick={[Function]}
         >
           pupils
@@ -1010,17 +986,21 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-fLlhyt fbwRLO"
+    className="sc-bBrHrO eMSRru"
     onSubmit={[Function]}
   >
-    <input
-      aria-label="Search"
-      className="sc-hAZoDl sc-fEOsli jiMYnn kAybdt"
-      onChange={[Function]}
-      placeholder="Search"
-      type="search"
-      value=""
-    />
+    <div
+      className="sc-evZas egufdk"
+    >
+      <input
+        aria-label="Search"
+        className="sc-hAZoDl sc-bjUoiL jiMYnn dBHOcF"
+        onChange={[Function]}
+        placeholder="Search"
+        type="search"
+        value=""
+      />
+    </div>
     <button
       aria-label="Submit"
       className="sc-bczRLJ sc-eCYdqJ bprpIx dBkheU"
@@ -1033,31 +1013,24 @@ Array [
         size="small"
       >
         <span
-          className="sc-gsnTZi hnKkoM"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+          className="sc-gsnTZi fiKuMT"
+          height={16}
+          width={16}
         >
           <span
-            className="sc-dkzDqf krVImC"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-dkzDqf hosfuE"
+            height={16}
+            width={16}
           >
             <svg
+              fill="none"
               height="100%"
-              viewBox="6 6 36 36"
+              viewBox="0 0 17 17"
               width="100%"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M39.8 41.95 26.65 28.8q-1.5 1.3-3.5 2.025-2 .725-4.25.725-5.4 0-9.15-3.75T6 18.75q0-5.3 3.75-9.05 3.75-3.75 9.1-3.75 5.3 0 9.025 3.75 3.725 3.75 3.725 9.05 0 2.15-.7 4.15-.7 2-2.1 3.75L42 39.75Zm-20.95-13.4q4.05 0 6.9-2.875Q28.6 22.8 28.6 18.75t-2.85-6.925Q22.9 8.95 18.85 8.95q-4.1 0-6.975 2.875T9 18.75q0 4.05 2.875 6.925t6.975 2.875Z"
+                d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
                 fill="currentColor"
               />
             </svg>
@@ -1081,22 +1054,14 @@ Array [
   />,
   <div>
     <span
-      className="sc-gsnTZi hnKkoM"
-      style={
-        Object {
-          "height": "100px",
-          "width": "100px",
-        }
-      }
+      className="sc-gsnTZi gjGDUD"
+      height={100}
+      width={100}
     >
       <span
-        className="sc-dkzDqf krVImC"
-        style={
-          Object {
-            "height": "100px",
-            "width": "100px",
-          }
-        }
+        className="sc-dkzDqf bPkBds"
+        height={100}
+        width={100}
       >
         <svg
           fill="none"
@@ -1152,22 +1117,14 @@ Array [
           className="sc-iBkjds djrcRa"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
+            className="sc-gsnTZi csDFFj"
+            height={20}
+            width={20}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
             >
               <svg
                 fill="none"
@@ -1198,22 +1155,14 @@ Array [
           className="sc-iBkjds djrcRa"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
+            className="sc-gsnTZi csDFFj"
+            height={20}
+            width={20}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
             >
               <svg
                 fill="none"
@@ -1244,22 +1193,14 @@ Array [
           className="sc-iBkjds djrcRa"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
+            className="sc-gsnTZi csDFFj"
+            height={20}
+            width={20}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
             >
               <svg
                 fill="none"
