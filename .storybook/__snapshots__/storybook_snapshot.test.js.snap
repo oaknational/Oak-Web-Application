@@ -533,7 +533,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-hAZoDl sc-fEOsli jiMYnn joIQuJ"
+    className="sc-hAZoDl sc-fEOsli jiMYnn kAybdt"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -926,7 +926,7 @@ Array [
       >
         <input
           aria-label="Search"
-          className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+          className="sc-hAZoDl sc-fEOsli jiMYnn kAybdt"
           onChange={[Function]}
           placeholder="Search"
           type="search"
@@ -1015,7 +1015,7 @@ Array [
   >
     <input
       aria-label="Search"
-      className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+      className="sc-hAZoDl sc-fEOsli jiMYnn kAybdt"
       onChange={[Function]}
       placeholder="Search"
       type="search"
