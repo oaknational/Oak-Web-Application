@@ -11,7 +11,7 @@ const KeyStageFilter: FC<KeyStageFilterProps> = (props) => {
   const { onChange, checked } = useKeyStageToggle(ks);
   return (
     <label>
-      &nbsp;Key Stage {ks}
+      Key Stage {ks}
       <input
         type="checkbox"
         id={`custom-checkbox-${ks}`}
