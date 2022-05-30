@@ -1,3 +1,10 @@
+## [0.22.2](https://github.com/oaknational/Samara/compare/v0.22.1...v0.22.2) (2022-05-30)
+
+
+### Bug Fixes
+
+* **test:** useFetchSearchResults.test happy path ([7a68030](https://github.com/oaknational/Samara/commit/7a680302424b20684ed2458f482320ff19c666ca))
+
 ## [0.22.1](https://github.com/oaknational/Samara/compare/v0.22.0...v0.22.1) (2022-05-25)
 
 # [0.22.0](https://github.com/oaknational/Samara/compare/v0.21.1...v0.22.0) (2022-05-24)
