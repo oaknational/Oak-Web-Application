@@ -11,7 +11,7 @@ export type OakAuth = {
   user: OakUser | null;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
-  signInWithEmailCallback: () => Promise<void>;
+  signInWithEmailCallback: (email: string) => Promise<void>;
 };
 
 const authContext = createContext<OakAuth | null>(null);

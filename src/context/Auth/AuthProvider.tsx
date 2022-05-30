@@ -20,6 +20,7 @@ import useApi from "../../browser-lib/api";
 import { useBookmarksCache } from "../../context/Bookmarks";
 import createErrorHandler from "../../common-lib/error-handler";
 import OakError from "../../errors/OakError";
+import useStableCallback from "../../hooks/useStableCallback";
 
 import useAccessToken from "./useAccessToken";
 import authContext, { OakUser } from "./authContext";
@@ -162,21 +163,13 @@ const AuthProvider: FC = ({ children }) => {
   }, []);
 
   // Function to call at the callback url of the one-time magic link
-  const signInWithEmailCallback = useCallback(async () => {
+  const signInWithEmailCallback = useStableCallback(async (email: string) => {
     if (!firebaseIsSignInWithEmailLink(firebaseAuth, window.location.href)) {
       throw new Error("Invalid sign in link");
     }
     // Additional state parameters can also be passed via URL.
     // This can be used to continue the user's intended action before triggering
     // the sign-in operation.
-    // Get the email if available. This should be available if the user completes
-    // the flow on the same device where they started it.
-    let email = window.localStorage.getItem(LS_KEY_EMAIL_FOR_SIGN_IN);
-    if (!email) {
-      // User opened the link on a different device. To prevent session fixation
-      // attacks, ask the user to provide the associated email again. For example:
-      email = window.prompt("Please provide your email for confirmation") || "";
-    }
 
     try {
       // The client SDK will parse the code from the link for you.
@@ -204,7 +197,7 @@ const AuthProvider: FC = ({ children }) => {
 
       throw new Error("Invalid email or expired OTP");
     }
-  }, [apiGetOrCreateUser, resetAuthState, setAccessToken, setUser]);
+  });
 
   const signOut = useCallback(async () => {
     await firebaseSignOut(firebaseAuth);

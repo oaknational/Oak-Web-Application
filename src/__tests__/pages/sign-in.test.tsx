@@ -20,7 +20,7 @@ describe("pages/sign-in.tsx", () => {
         getByRole("button", {
           name: /sign in/i,
         })
-      ).toHaveTextContent("Sign up/ sign in");
+      ).toHaveTextContent("Sign in");
     });
   });
 

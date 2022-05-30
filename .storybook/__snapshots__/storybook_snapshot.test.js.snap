@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-gicCDI fIooWp"
+    className="sc-iIPllB hsglYM"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -32,9 +32,10 @@ Array [
     <div>
       <button
         aria-label="Add Bookmark"
-        className="sc-bczRLJ sc-eCYdqJ bprpIx bgWoby"
+        className="sc-bczRLJ sc-eCYdqJ bprpIx eummaE"
         disabled={false}
         onClick={[Function]}
+        size="small"
         title="Add Bookmark"
       >
         <div
@@ -97,24 +98,20 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-iqcoie dYRntO"
+    className="sc-kDDrLX gshCnU"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
     onMouseEnter={[Function]}
     role="button"
+    size="small"
     title="Click me"
   >
-    <div
-      className="sc-jqUVSM jcrMkW"
-      size="small"
+    <span
+      className="sc-papXJ bdMMXR"
     >
-      <span
-        className="sc-papXJ bdMMXR"
-      >
-        Click me
-      </span>
-    </div>
+      Click me
+    </span>
   </a>,
 ]
 `;
@@ -131,19 +128,15 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-bczRLJ sc-kDDrLX bprpIx fzrCGb"
+    className="sc-bczRLJ sc-jqUVSM bprpIx giZbiP"
+    size="small"
     title="Click me"
   >
-    <div
-      className="sc-jqUVSM jcrMkW"
-      size="small"
+    <span
+      className="sc-papXJ bdMMXR"
     >
-      <span
-        className="sc-papXJ bdMMXR"
-      >
-        Click me
-      </span>
-    </div>
+      Click me
+    </span>
   </button>,
 ]
 `;
@@ -159,21 +152,478 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-evZas sc-breuTD fuwPfM fovvaV"
+    className="sc-crXcEl sc-evZas bAcObU eMIvTa"
   >
     <a
       aria-label="Download Lesson"
-      className="sc-iqcoie dYRntO"
+      className="sc-kDDrLX gshCnU"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
       onMouseEnter={[Function]}
       role="button"
+      size="small"
       title="Download Lesson"
     >
-      <div
-        className="sc-jqUVSM jcrMkW"
+      <span
+        className="sc-ftvSup cTDWXd"
+      >
+        <span
+          className="sc-gsnTZi hnKkoM"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <span
+            className="sc-dkzDqf krVImC"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+              />
+              <polyline
+                points="7 10 12 15 17 10"
+              />
+              <line
+                x1="12"
+                x2="12"
+                y1="15"
+                y2="3"
+              />
+            </svg>
+          </span>
+        </span>
+      </span>
+      <span
+        className="sc-papXJ bdMMXR"
+      >
+        Download
+      </span>
+    </a>
+    <a
+      aria-label="Share Lesson"
+      className="sc-kDDrLX gshCnU"
+      href="/"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      role="button"
+      size="small"
+      title="Share Lesson"
+    >
+      <span
+        className="sc-ftvSup cTDWXd"
+      >
+        <span
+          className="sc-gsnTZi hnKkoM"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <span
+            className="sc-dkzDqf krVImC"
+            style={
+              Object {
+                "height": "16px",
+                "width": "16px",
+              }
+            }
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="18"
+                cy="5"
+                r="3"
+              />
+              <circle
+                cx="6"
+                cy="12"
+                r="3"
+              />
+              <circle
+                cx="18"
+                cy="19"
+                r="3"
+              />
+              <line
+                x1="8.59"
+                x2="15.42"
+                y1="13.51"
+                y2="17.49"
+              />
+              <line
+                x1="15.41"
+                x2="8.59"
+                y1="6.51"
+                y2="10.49"
+              />
+            </svg>
+          </span>
+        </span>
+      </span>
+      <span
+        className="sc-papXJ bdMMXR"
+      >
+        Share
+      </span>
+    </a>
+  </div>,
+]
+`;
+
+exports[`Storyshots Buttons/Icon Button As Link Icon Button As Link 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <a
+    aria-label="Click me"
+    className="sc-iqcoie bJNxxk"
+    href="/"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+    size="small"
+  >
+    <div
+      className="sc-hKMtZM dzHdVU"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi hnKkoM"
+        style={
+          Object {
+            "height": "16px",
+            "width": "16px",
+          }
+        }
+      >
+        <span
+          className="sc-dkzDqf krVImC"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </a>,
+]
+`;
+
+exports[`Storyshots Buttons/Icon Button Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <button
+    aria-label="Click me"
+    className="sc-bczRLJ sc-eCYdqJ bprpIx eummaE"
+    size="small"
+    title="Click me"
+  >
+    <div
+      className="sc-hKMtZM dzHdVU"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi hnKkoM"
+        style={
+          Object {
+            "height": "16px",
+            "width": "16px",
+          }
+        }
+      >
+        <span
+          className="sc-dkzDqf krVImC"
+          style={
+            Object {
+              "height": "16px",
+              "width": "16px",
+            }
+          }
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <polyline
+              points="7 10 12 15 17 10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="15"
+              y2="3"
+            />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </button>,
+]
+`;
+
+exports[`Storyshots Cards/Card Card 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-breuTD lmLbkX"
+  >
+    <h2>
+      Card title
+    </h2>
+    <p>
+      You can put anything you like in here.
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <span
+    className="sc-dmRaPn cvdHTK"
+  >
+    <span
+      className="sc-hHLeRK gUknUu"
+    >
+      Loading
+    </span>
+  </span>,
+]
+`;
+
+exports[`Storyshots Form/BigInput Big Input 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <input
+    className="sc-ksZaOG sc-hAZoDl cVSOsg jQTiCY"
+    onChange={[Function]}
+    placeholder="Placeholder"
+    value=""
+  />,
+]
+`;
+
+exports[`Storyshots Form/Input Input 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <input
+    className="sc-ksZaOG sc-fnykZs cVSOsg emnFDg"
+    onChange={[Function]}
+    placeholder="Placeholder"
+    value=""
+  />,
+]
+`;
+
+exports[`Storyshots Foundations/Flex Flex 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-crXcEl ecZVAl"
+  >
+    Flex box
+  </div>,
+]
+`;
+
+exports[`Storyshots Foundations/Heading Heading 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <span
+    className="sc-fEOsli eKOmln"
+  >
+    Heading
+  </span>,
+]
+`;
+
+exports[`Storyshots Foundations/Text Text 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <p
+    className="sc-bjUoiL gKLlTt"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
+  </p>,
+]
+`;
+
+exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <header
+    className="sc-dIouRR hqUpDK"
+  >
+    <div
+      className="sc-crXcEl bAcObU"
+    >
+      <h1
+        className="sc-fEOsli klxxma"
+        size={4}
+      >
+        <span
+          className="sc-idiyUo egfftd"
+          display="block"
+          fontSize={24}
+        >
+          Lesson
+        </span>
+      </h1>
+    </div>
+    <div
+      className="sc-crXcEl sc-evZas bAcObU eMIvTa"
+    >
+      <a
+        aria-label="Download Lesson"
+        className="sc-kDDrLX iuNDPU"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
         size="small"
+        title="Download Lesson"
       >
         <span
           className="sc-ftvSup cTDWXd"
@@ -228,21 +678,17 @@ Array [
         >
           Download
         </span>
-      </div>
-    </a>
-    <a
-      aria-label="Share Lesson"
-      className="sc-iqcoie dYRntO"
-      href="/"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onMouseEnter={[Function]}
-      role="button"
-      title="Share Lesson"
-    >
-      <div
-        className="sc-jqUVSM jcrMkW"
+      </a>
+      <a
+        aria-label="Share Lesson"
+        className="sc-kDDrLX iuNDPU"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
         size="small"
+        title="Share Lesson"
       >
         <span
           className="sc-ftvSup cTDWXd"
@@ -312,479 +758,13 @@ Array [
         >
           Share
         </span>
-      </div>
-    </a>
-  </div>,
-]
-`;
-
-exports[`Storyshots Buttons/Icon Button As Link Icon Button As Link 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <a
-    aria-label="Click me"
-    className="sc-crXcEl cYDujB"
-    href="/"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    onMouseEnter={[Function]}
-    role="button"
-  >
-    <div
-      className="sc-hKMtZM dzHdVU"
-      size="small"
-    >
-      <span
-        className="sc-gsnTZi hnKkoM"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
-      >
-        <span
-          className="sc-dkzDqf krVImC"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
-        >
-          <svg
-            fill="none"
-            height="100%"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2.5"
-            viewBox="0 0 24 24"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-            />
-            <polyline
-              points="7 10 12 15 17 10"
-            />
-            <line
-              x1="12"
-              x2="12"
-              y1="15"
-              y2="3"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-  </a>,
-]
-`;
-
-exports[`Storyshots Buttons/Icon Button Icon Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <button
-    aria-label="Click me"
-    className="sc-bczRLJ sc-eCYdqJ bprpIx bgWoby"
-    title="Click me"
-  >
-    <div
-      className="sc-hKMtZM dzHdVU"
-      size="small"
-    >
-      <span
-        className="sc-gsnTZi hnKkoM"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
-      >
-        <span
-          className="sc-dkzDqf krVImC"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
-        >
-          <svg
-            fill="none"
-            height="100%"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2.5"
-            viewBox="0 0 24 24"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-            />
-            <polyline
-              points="7 10 12 15 17 10"
-            />
-            <line
-              x1="12"
-              x2="12"
-              y1="15"
-              y2="3"
-            />
-          </svg>
-        </span>
-      </span>
-    </div>
-  </button>,
-]
-`;
-
-exports[`Storyshots Cards/Card Card 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-ksZaOG iEMngk"
-  >
-    <h2>
-      Card title
-    </h2>
-    <p>
-      You can put anything you like in here.
-    </p>
-  </div>,
-]
-`;
-
-exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <span
-    className="sc-kgflAQ fXiRvw"
-  >
-    <span
-      className="sc-dmRaPn gZcHcW"
-    >
-      Loading
-    </span>
-  </span>,
-]
-`;
-
-exports[`Storyshots Form/BigInput Big Input 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <input
-    className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
-    onChange={[Function]}
-    placeholder="Placeholder"
-    value=""
-  />,
-]
-`;
-
-exports[`Storyshots Form/Input Input 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <input
-    className="sc-hAZoDl sc-fEOsli jiMYnn joIQuJ"
-    onChange={[Function]}
-    placeholder="Placeholder"
-    value=""
-  />,
-]
-`;
-
-exports[`Storyshots Foundations/Flex Flex 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-evZas fkNRqR"
-  >
-    Flex box
-  </div>,
-]
-`;
-
-exports[`Storyshots Foundations/Heading Heading 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <span
-    className="sc-bjUoiL khVuqK"
-  >
-    Heading
-  </span>,
-]
-`;
-
-exports[`Storyshots Foundations/Text Text 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <p
-    className="sc-idiyUo fmCmhl"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
-  </p>,
-]
-`;
-
-exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <header
-    className="sc-hHLeRK VWFyV"
-  >
-    <div
-      className="sc-evZas fuwPfM"
-    >
-      <h1
-        className="sc-bjUoiL gwJqXz"
-        size={4}
-      >
-        <span
-          className="sc-dIouRR irmRTR"
-          display="block"
-          fontSize={24}
-        >
-          Lesson
-        </span>
-      </h1>
-    </div>
-    <div
-      className="sc-evZas sc-breuTD fuwPfM fovvaV"
-    >
-      <a
-        aria-label="Download Lesson"
-        className="sc-iqcoie dYRntO"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        title="Download Lesson"
-      >
-        <div
-          className="sc-jqUVSM jDnmy"
-          size="small"
-        >
-          <span
-            className="sc-ftvSup cTDWXd"
-          >
-            <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
-            >
-              <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                  />
-                  <polyline
-                    points="7 10 12 15 17 10"
-                  />
-                  <line
-                    x1="12"
-                    x2="12"
-                    y1="15"
-                    y2="3"
-                  />
-                </svg>
-              </span>
-            </span>
-          </span>
-          <span
-            className="sc-papXJ bdMMXR"
-          >
-            Download
-          </span>
-        </div>
-      </a>
-      <a
-        aria-label="Share Lesson"
-        className="sc-iqcoie dYRntO"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        title="Share Lesson"
-      >
-        <div
-          className="sc-jqUVSM jDnmy"
-          size="small"
-        >
-          <span
-            className="sc-ftvSup cTDWXd"
-          >
-            <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
-            >
-              <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="18"
-                    cy="5"
-                    r="3"
-                  />
-                  <circle
-                    cx="6"
-                    cy="12"
-                    r="3"
-                  />
-                  <circle
-                    cx="18"
-                    cy="19"
-                    r="3"
-                  />
-                  <line
-                    x1="8.59"
-                    x2="15.42"
-                    y1="13.51"
-                    y2="17.49"
-                  />
-                  <line
-                    x1="15.41"
-                    x2="8.59"
-                    y1="6.51"
-                    y2="10.49"
-                  />
-                </svg>
-              </span>
-            </span>
-          </span>
-          <span
-            className="sc-papXJ bdMMXR"
-          >
-            Share
-          </span>
-        </div>
       </a>
       <button
         aria-label="Add Bookmark"
-        className="sc-bczRLJ sc-eCYdqJ bprpIx bgWoby"
+        className="sc-bczRLJ sc-eCYdqJ bprpIx eummaE"
         disabled={false}
         onClick={[Function]}
+        size="small"
         title="Add Bookmark"
       >
         <div
@@ -847,7 +827,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-bBrHrO bgZYXQ"
+      className="sc-fLlhyt hVsXvg"
     >
       © Oak National Academy 
       2022
@@ -868,13 +848,13 @@ Array [
   />,
   <div>
     <header
-      className="sc-ivTmOn iaWnIp"
+      className="sc-bBrHrO kbvXLt"
     >
       <div
-        className="sc-evZas htLSfa"
+        className="sc-crXcEl gPPRNa"
       >
         <a
-          className="sc-cxabCf eVVIkk"
+          className="sc-ivTmOn dCSYa"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -911,7 +891,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-dIouRR kiqyZb"
+            className="sc-idiyUo jlpfRb"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -921,12 +901,12 @@ Array [
         </a>
       </div>
       <form
-        className="sc-fLlhyt fbwRLO"
+        className="sc-kgflAQ jBnvzf"
         onSubmit={[Function]}
       >
         <input
           aria-label="Search"
-          className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+          className="sc-ksZaOG sc-hAZoDl cVSOsg jQTiCY"
           onChange={[Function]}
           placeholder="Search"
           type="search"
@@ -934,8 +914,9 @@ Array [
         />
         <button
           aria-label="Submit"
-          className="sc-bczRLJ sc-eCYdqJ bprpIx dBkheU"
+          className="sc-bczRLJ sc-eCYdqJ bprpIx eYVkiC"
           onClick={[Function]}
+          size="small"
           title="Submit"
           type="submit"
         >
@@ -978,10 +959,10 @@ Array [
         </button>
       </form>
       <div
-        className="sc-iIPllB bkAhVn"
+        className="sc-llJcti iSrdNt"
       >
         <button
-          className="sc-bczRLJ sc-llJcti bprpIx echjzB"
+          className="sc-bczRLJ sc-cxabCf bprpIx hqsEwE"
           onClick={[Function]}
         >
           pupils
@@ -1010,12 +991,12 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-fLlhyt fbwRLO"
+    className="sc-kgflAQ jBnvzf"
     onSubmit={[Function]}
   >
     <input
       aria-label="Search"
-      className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+      className="sc-ksZaOG sc-hAZoDl cVSOsg jQTiCY"
       onChange={[Function]}
       placeholder="Search"
       type="search"
@@ -1023,8 +1004,9 @@ Array [
     />
     <button
       aria-label="Submit"
-      className="sc-bczRLJ sc-eCYdqJ bprpIx dBkheU"
+      className="sc-bczRLJ sc-eCYdqJ bprpIx eYVkiC"
       onClick={[Function]}
+      size="small"
       title="Submit"
       type="submit"
     >
