@@ -1,46 +1,39 @@
-import {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  FC,
-  MouseEventHandler,
-} from "react";
+import { FC, MouseEventHandler } from "react";
 import styled from "styled-components";
 
-import { MarginProps } from "../../styles/utils/spacing";
 import UnstyledButton from "../UnstyledButton";
 
-import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
-import { outermostElementStyles } from "./common";
+import button, {
+  ButtonStylesProps,
+  getButtonStylesProps,
+} from "./button.styles";
+import ButtonInner from "./ButtonInner";
+import {
+  CommonButtonProps,
+  defaultButtonProps,
+  HTMLButtonProps,
+} from "./common";
 
-const StyledButton = styled(UnstyledButton)<MarginProps>`
-  ${outermostElementStyles}
+const StyledButton = styled(UnstyledButton)<ButtonStylesProps>`
+  ${button}
 `;
 
-export type ButtonProps = MarginProps &
-  ButtonInnerProps & {
-    onClick: MouseEventHandler<HTMLButtonElement>;
-    "aria-label"?: string;
-    htmlButtonProps?: Omit<
-      DetailedHTMLProps<
-        ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-      >,
-      "ref"
-    >;
-  };
+export type ButtonProps = CommonButtonProps & {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  htmlButtonProps?: HTMLButtonProps;
+};
 
 const Button: FC<ButtonProps> = (props) => {
   const {
     onClick,
-    variant,
-    size,
     label,
     icon,
-    iconPosition = "leading",
     "aria-label": ariaLabel,
     htmlButtonProps = {},
-    ...styleProps
+    ...spacingProps
   } = props;
+
+  const { size, variant, iconPosition } = getButtonStylesProps(props);
 
   return (
     <StyledButton
@@ -48,10 +41,12 @@ const Button: FC<ButtonProps> = (props) => {
       title={htmlButtonProps.title || ariaLabel || label}
       aria-label={ariaLabel || label}
       onClick={onClick}
-      {...styleProps}
+      size={size}
+      variant={variant}
+      iconPosition={iconPosition}
+      {...spacingProps}
     >
       <ButtonInner
-        variant={variant}
         label={label}
         icon={icon}
         iconPosition={iconPosition}
@@ -60,5 +55,7 @@ const Button: FC<ButtonProps> = (props) => {
     </StyledButton>
   );
 };
+
+Button.defaultProps = defaultButtonProps;
 
 export default Button;

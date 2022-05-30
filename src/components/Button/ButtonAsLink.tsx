@@ -1,54 +1,53 @@
-import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
+import { FC } from "react";
 import Link, { LinkProps } from "next/link";
 import styled from "styled-components";
 
-import { MarginProps } from "../../styles/utils/spacing";
-
-import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
+import ButtonInner from "./ButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
-import { outermostElementStyles } from "./common";
+import buttonStyles, {
+  ButtonStylesProps,
+  getButtonStylesProps,
+} from "./button.styles";
+import {
+  CommonButtonProps,
+  defaultButtonProps,
+  HTMLAnchorProps,
+} from "./common";
 
-const StyledA = styled.a<MarginProps>`
-  ${outermostElementStyles}
+const StyledA = styled.a<ButtonStylesProps>`
+  ${buttonStyles}
 `;
-type ButtonAsLinkProps = MarginProps &
-  ButtonInnerProps & {
-    href: string;
-    "aria-label"?: string;
-    nextLinkProps?: Omit<LinkProps, "href">;
-    anchorProps?: Omit<
-      DetailedHTMLProps<
-        AnchorHTMLAttributes<HTMLAnchorElement>,
-        HTMLAnchorElement
-      >,
-      "ref"
-    >;
-  };
+type ButtonAsLinkProps = CommonButtonProps & {
+  href: string;
+  nextLinkProps?: Omit<LinkProps, "href">;
+  htmlAnchorProps?: HTMLAnchorProps;
+};
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const {
-    variant,
     href,
     label,
     icon,
-    iconPosition,
     "aria-label": ariaLabel,
-    size,
     nextLinkProps,
-    anchorProps = {},
+    htmlAnchorProps = {},
     ...styleProps
   } = props;
+
+  const { size, variant, iconPosition } = getButtonStylesProps(props);
 
   return (
     <Link {...nextLinkProps} href={href} passHref>
       <StyledA
-        {...anchorProps}
+        {...htmlAnchorProps}
         {...useButtonAsLinkProps()}
-        title={anchorProps.title || ariaLabel || label}
+        title={htmlAnchorProps.title || ariaLabel || label}
         aria-label={ariaLabel || label}
+        size={size}
+        variant={variant}
+        iconPosition={iconPosition}
         {...styleProps}
       >
         <ButtonInner
-          variant={variant}
           label={label}
           icon={icon}
           iconPosition={iconPosition}
@@ -58,5 +57,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     </Link>
   );
 };
+
+ButtonAsLink.defaultProps = defaultButtonProps;
 
 export default ButtonAsLink;

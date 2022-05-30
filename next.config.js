@@ -84,9 +84,8 @@ module.exports = async (phase) => {
         process.env.HASURA_ADMIN_SECRET || secrets.HASURA_ADMIN_SECRET,
 
       // Oak
-      NEXT_PUBLIC_CLIENT_APP_BASE_URL: process.env.NEXT_PUBLIC_VERCEL_URL
-        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-        : oakConfig.oak.appBaseUrl,
+      NEXT_PUBLIC_CLIENT_APP_BASE_URL: oakConfig.oak.appBaseUrl,
+      NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
     },
   };
 

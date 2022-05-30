@@ -161,6 +161,9 @@ const theme = {
       },
     },
     button: {
+      disabled: {
+        background: "grey7",
+      },
       primary: {
         background: "#ef476f",
         text: "",

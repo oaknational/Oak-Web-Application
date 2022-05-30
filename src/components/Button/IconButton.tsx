@@ -6,34 +6,34 @@ import {
 } from "react";
 import styled from "styled-components";
 
-import { MarginProps } from "../../styles/utils/spacing";
 import UnstyledButton from "../UnstyledButton";
 
-import { outermostElementStyles } from "./common";
-import IconButtonInner, { IconButtonInnerProps } from "./IconButtonInner";
+import { CommonIconButtonProps } from "./common";
+import iconButtonStyles, {
+  getIconButtonStylesProps,
+  IconButtonStylesProps,
+} from "./iconButton.styles";
+import IconButtonInner from "./IconButtonInner";
 
-const StyledButton = styled(UnstyledButton)<MarginProps>`
-  ${outermostElementStyles}
+const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
+  ${iconButtonStyles}
 `;
 
-type IconButtonProps = MarginProps &
-  IconButtonInnerProps & {
-    onClick: MouseEventHandler<HTMLButtonElement>;
-    "aria-label": string;
-    disabled?: boolean;
-    htmlButtonProps?: Omit<
-      DetailedHTMLProps<
-        ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-      >,
-      "ref" | "onClick" | "disabled"
-    >;
-  };
+type IconButtonProps = CommonIconButtonProps & {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  "aria-label": string;
+  disabled?: boolean;
+  htmlButtonProps?: Omit<
+    DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    "ref" | "onClick" | "disabled"
+  >;
+};
 
 const IconButton: FC<IconButtonProps> = (props) => {
   const {
-    variant,
-    size,
     icon,
     iconColorOverride,
     "aria-label": ariaLabel,
@@ -43,6 +43,8 @@ const IconButton: FC<IconButtonProps> = (props) => {
     ...styleProps
   } = props;
 
+  const { size, variant } = getIconButtonStylesProps(props);
+
   return (
     <StyledButton
       {...htmlButtonProps}
@@ -50,6 +52,8 @@ const IconButton: FC<IconButtonProps> = (props) => {
       title={htmlButtonProps.title || ariaLabel}
       aria-label={ariaLabel}
       disabled={disabled}
+      size={size}
+      variant={variant}
       {...styleProps}
     >
       <IconButtonInner
