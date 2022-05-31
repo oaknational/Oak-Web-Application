@@ -1,3 +1,10 @@
+# [0.23.0](https://github.com/oaknational/Samara/compare/v0.22.3...v0.23.0) (2022-05-31)
+
+
+### Features
+
+* **input-icon:** adds optional icon to input component [#183](https://github.com/oaknational/Samara/issues/183) ([5b5625f](https://github.com/oaknational/Samara/commit/5b5625fd72981ce132c233f4c53d5947479ac01f))
+
 ## [0.22.3](https://github.com/oaknational/Samara/compare/v0.22.2...v0.22.3) (2022-05-30)
 
 ## [0.22.2](https://github.com/oaknational/Samara/compare/v0.22.1...v0.22.2) (2022-05-30)
