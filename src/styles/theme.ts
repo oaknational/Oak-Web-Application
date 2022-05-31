@@ -83,11 +83,33 @@ const theme = {
       contrastText: "#fff",
       contrastBackground: "#fff",
     },
+    transparent: {
+      color: "transparent",
+      contrastText: "inherit",
+      contrastBackground: null,
+    },
   },
   input: {
     height: "40px",
     borderRadius: "8px",
     borderWidth: "1px",
+  },
+  lessonControl: {
+    default: {
+      background: "white",
+      border: "2px solid",
+      borderColor: "transparent",
+    },
+    current: {
+      background: "grey3",
+      border: "2px dashed",
+      borderColor: "grey9",
+    },
+    complete: {
+      background: "grey7",
+      border: "2px solid",
+      borderColor: "transparent",
+    },
   },
   badge: {
     size: "54px",
@@ -206,10 +228,12 @@ const theme = {
     medium: 900,
   },
 };
+
 export type OakTheme = typeof theme;
 export type OakFontName = keyof OakTheme["fonts"];
 export type OakBreakpointName = keyof OakTheme["breakpoints"];
 export type OakColorName = keyof OakTheme["colors"];
+export const COLOR_NAMES = Object.keys(theme.colors) as OakColorName[];
 export type OakPaletteName = keyof OakTheme["palette"];
 export type OakPaletteOrColorName = OakPaletteName | OakColorName;
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

@@ -29,11 +29,12 @@ export const Heading: FC<HeadingProps> = (props) => {
   return <RawHeading as={tag} {...htmlAttrs} />;
 };
 
-type TextProps = {
+type TextProps = MarginProps & {
   size?: TextSize;
 };
 export const Text = styled.p<TextProps>`
   ${text}
+  ${margin}
 `;
 
 type BaseTextProps = MarginProps & TypographyProps & DisplayProps;
