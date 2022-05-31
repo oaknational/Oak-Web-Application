@@ -4,7 +4,7 @@ import {
   AnchorHTMLAttributes,
 } from "react";
 
-import { OakColorName } from "../../styles/theme";
+import { OakColorName, PropsWithTheme } from "../../styles/theme";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
@@ -36,20 +36,13 @@ export const buttonSizeHeightMap: Record<ButtonSize, number> = {
   large: LARGE_BUTTON_HEIGHT,
 };
 export const getButtonHeight = (size: ButtonSize) => buttonSizeHeightMap[size];
-export const buttonBackroundMap: Record<ButtonVariant, string> = {
-  primary: "var(--color-button-primary)",
-  secondary: "var(--color-button-secondary)",
-  tertiary: "var(--color-button-tertiary)",
-};
-export const getButtonBackground = (variant: ButtonVariant) =>
-  buttonBackroundMap[variant];
-export const buttonColorMap: Record<ButtonVariant, string> = {
-  primary: "var(--color-button-primary-contrast)",
-  secondary: "var(--color-button-secondary-contrast)",
-  tertiary: "var(--color-button-tertiary-contrast)",
-};
-export const getButtonColor = (variant: ButtonVariant) =>
-  buttonColorMap[variant];
+export const getButtonBackground =
+  (variant: ButtonVariant) => (props: PropsWithTheme) =>
+    props.theme.button[variant].background;
+export const getButtonColor =
+  (variant: ButtonVariant) => (props: PropsWithTheme) =>
+    props.theme.button[variant].text;
+
 const buttonPaddingMap: Record<ButtonSize, number> = {
   small: SMALL_BUTTON_PADDING_X,
   large: LARGE_BUTTON_PADDING_X,

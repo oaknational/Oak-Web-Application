@@ -9,7 +9,7 @@ import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 const inputStyles = css`
   height: ${(props) => props.theme.bigInput.height};
   border-radius: ${(props) => props.theme.bigInput.borderRadius};
-  border-color: ${getColor((props) => props.palette.bigInput.default.border)};
+  border-color: ${getColor((theme) => theme.bigInput.states.default.border)};
   border-width: ${(props) => props.theme.bigInput.borderWidth};
   border-style: solid;
   padding-left: 12px;
@@ -30,11 +30,11 @@ const inputStyles = css`
   }
 
   :valid:not([value=""]) {
-    border-color: ${getColor((props) => props.palette.bigInput.valid.border)};
+    border-color: ${getColor((theme) => theme.bigInput.states.valid.border)};
   }
 
   ::placeholder {
-    color: ${getColor((props) => props.palette.bigInput.valid.placeholder)};
+    color: ${getColor((theme) => theme.bigInput.states.valid.placeholder)};
     opacity: 1;
   }
 

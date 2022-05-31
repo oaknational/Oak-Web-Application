@@ -19,7 +19,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   color: ${getColor("black")};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
-  border-color: ${getColor((theme) => theme.palette.input.default.border)};
+  border-color: ${getColor((theme) => theme.input.states.default.border)};
   border-width: ${(props) => props.theme.input.borderWidth};
   border-style: solid;
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
@@ -36,26 +36,26 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 
   ::placeholder {
     font-family: ${getFontFamily("ui")};
-    color: ${getColor((props) => props.palette.input.default.placeholder)};
+    color: ${getColor((theme) => theme.input.states.default.placeholder)};
     opacity: 1;
   }
 
   :valid:not([value=""]) {
-    border-color: ${getColor((props) => props.palette.input.valid.border)};
+    border-color: ${getColor((theme) => theme.input.states.valid.border)};
 
     ::placeholder {
-      color: ${getColor((props) => props.palette.input.valid.placeholder)};
+      color: ${getColor((theme) => theme.input.states.valid.placeholder)};
     }
 
     ~ ${InputIcon} {
-      color: ${getColor((theme) => theme.palette.input.valid.icon)};
+      color: ${getColor((theme) => theme.input.states.valid.icon)};
     }
   }
 
   ${margin}
 
   ~ ${InputIcon} {
-    color: ${getColor((theme) => theme.palette.input.default.icon)};
+    color: ${getColor((theme) => theme.input.states.default.icon)};
   }
 `;
 

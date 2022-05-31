@@ -1,7 +1,7 @@
 import theme, { OakColorName, OakTheme } from "../theme";
 
 const getColor = (
-  colorNameOrFn?: OakColorName | ((theme: OakTheme) => OakColorName | string)
+  colorNameOrFn?: OakColorName | ((theme: OakTheme) => OakColorName)
 ): string | undefined => {
   if (!colorNameOrFn) {
     return;
@@ -10,9 +10,7 @@ const getColor = (
   const colorName =
     typeof colorNameOrFn === "function" ? colorNameOrFn(theme) : colorNameOrFn;
 
-  // eslint-disable-next-line
-  // @ts-ignore
-  return theme.colors[colorName].color;
+  return theme.colors[colorName];
 };
 
 export default getColor;

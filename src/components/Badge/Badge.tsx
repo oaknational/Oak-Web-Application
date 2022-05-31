@@ -26,15 +26,15 @@ const Star = styled(StarSvg)`
   position: absolute;
   top: 0;
   left: 0;
-  color: ${getColor((theme) => theme.palette.badge.starColor)};
+  color: ${getColor((theme) => theme.badge.starColor)};
 `;
 const Circle = styled(Flex)`
   position: relative;
   width: ${(props) => props.theme.badge.circleSize};
   height: ${(props) => props.theme.badge.circleSize};
   border-radius: 50%;
-  background: ${getColor((theme) => theme.palette.badge.circleColor)};
-  color: ${getColor((theme) => theme.palette.badge.textColor)};
+  background: ${getColor((theme) => theme.badge.circleColor)};
+  color: ${getColor((theme) => theme.badge.textColor)};
   font-family: ${getFontFamily("ui")};
   font-weight: 600;
   font-size: ${(props) => props.theme.badge.fontSize};

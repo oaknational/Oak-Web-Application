@@ -23,7 +23,7 @@ const UnstyledInput = styled.input`
   font-family: ${(props) => props.theme.fonts.ui};
 
   ::placeholder {
-    color: ${getColor((theme) => theme.palette.input.default.placeholder)};
+    color: ${getColor((theme) => theme.input.states.default.placeholder)};
   }
 
   ::-webkit-search-decoration,

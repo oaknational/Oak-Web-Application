@@ -1,14 +1,15 @@
 import { css } from "styled-components";
 
 import theme, { OakColorName } from "../theme";
+import getColor from "../themeHelpers/getColor";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
 const getBackgroundColor = (color?: OakColorName) => {
-  return color ? theme.colors[color].color : undefined;
+  return color ? theme.colors[color] : undefined;
 };
 const getTextColorForBackground = (color?: OakColorName) => {
-  return color ? theme.colors[color].contrastText : undefined;
+  return color ? getColor(theme.contrastColors[color]) : undefined;
 };
 
 type OakColorNames = ResponsiveValues<OakColorName>;
