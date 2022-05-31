@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useSearchQuery } from "../../context/Search/SearchContext";
 import IconButton from "../Button/IconButton";
 import flex, { FlexCssProps } from "../../styles/utils/flex";
-import BigInput from "../Input/BigInput";
+import Input from "../Input";
 
 const StyledForm = styled.form<FlexCssProps>`
   ${flex}
@@ -30,7 +30,7 @@ const SearchForm: FC = () => {
 
   return (
     <StyledForm flexWrap="nowrap" onSubmit={handleSubmit}>
-      <BigInput
+      <Input
         value={value}
         type="search"
         onChange={onTextChange}

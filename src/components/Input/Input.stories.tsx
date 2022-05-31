@@ -25,3 +25,5 @@ const Template: ComponentStory<typeof Component> = (args) => {
 };
 
 export const Input = Template.bind({});
+export const WithIcon = Template.bind({});
+WithIcon.args = { icon: "Search" };

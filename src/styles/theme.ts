@@ -101,7 +101,7 @@ const theme = {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
-        border: "grey8",
+        border: "grey6",
       },
       active: {
         text: "black",
@@ -112,7 +112,7 @@ const theme = {
       valid: {
         text: "black",
         placeholder: "grey6",
-        icon: "grey6",
+        icon: "grey8",
         border: "grey8",
       },
       invalid: {

@@ -1,7 +1,12 @@
+import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
 import getColor from "../../styles/themeHelpers/getColor";
 
+export type UnstyledInputProps = Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "ref"
+>;
 /**
  * Using `appearance none !important;` here because many style resets will set this
  * value to textfield, causing some browsers to implement undesirable styles.
