@@ -89,6 +89,12 @@ const theme = {
     borderRadius: "8px",
     borderWidth: "1px",
   },
+  badge: {
+    size: "54px",
+    circleSize: "48px",
+    fontSize: "16px",
+    iconSize: 20,
+  },
   bigInput: {
     height: "40px",
     borderRadius: "20px",
@@ -96,6 +102,11 @@ const theme = {
   },
   // palette are colors named by where they are used
   palette: {
+    badge: {
+      starColor: "grey6",
+      circleColor: "grey8",
+      textColor: "white",
+    },
     input: {
       default: {
         text: "black",
