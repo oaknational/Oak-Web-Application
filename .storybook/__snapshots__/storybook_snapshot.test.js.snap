@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-gicCDI fIooWp"
+    className="sc-kLLXSd fJUXcW"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -492,10 +492,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-kgflAQ fXiRvw"
+    className="sc-ivTmOn hhsiaB"
   >
     <span
-      className="sc-dmRaPn gZcHcW"
+      className="sc-bBrHrO kThuDh"
     >
       Loading
     </span>
@@ -514,11 +514,69 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+    className="sc-bjUoiL sc-idiyUo huCKQk fVMMHD"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
   />,
+]
+`;
+
+exports[`Storyshots Form/Checkbox Checkbox 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <label
+    className="sc-hAZoDl hczpL"
+    htmlFor="oak-checkbox"
+  >
+    <input
+      checked={true}
+      className="sc-fnykZs cnUwVh"
+      id="Click me"
+      type="checkbox"
+    />
+    <svg
+      aria-hidden="true"
+      fill="none"
+      focusable="false"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <rect
+        fill="white"
+        height="23"
+        rx="3.5"
+        width="23"
+        x="0.5"
+        y="0.5"
+      />
+      <path
+        d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
+        fill="#4D4D4D"
+      />
+      <rect
+        height="23"
+        rx="3.5"
+        stroke="#4D4D4D"
+        width="23"
+        x="0.5"
+        y="0.5"
+      />
+    </svg>
+    <span
+      className="sc-fEOsli ihLolo"
+    >
+      Click me
+    </span>
+  </label>,
 ]
 `;
 
@@ -533,7 +591,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-hAZoDl sc-fEOsli jiMYnn joIQuJ"
+    className="sc-bjUoiL sc-dIouRR huCKQk fqcJsg"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -570,7 +628,7 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-bjUoiL khVuqK"
+    className="sc-hHLeRK hNzYgl"
   >
     Heading
   </span>,
@@ -588,7 +646,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-idiyUo fmCmhl"
+    className="sc-dmRaPn fRxIjG"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
   </p>,
@@ -606,17 +664,17 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-hHLeRK VWFyV"
+    className="sc-fLlhyt kWMohG"
   >
     <div
       className="sc-evZas fuwPfM"
     >
       <h1
-        className="sc-bjUoiL gwJqXz"
+        className="sc-hHLeRK gEXTQY"
         size={4}
       >
         <span
-          className="sc-dIouRR irmRTR"
+          className="sc-kgflAQ YmZVc"
           display="block"
           fontSize={24}
         >
@@ -847,7 +905,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-bBrHrO bgZYXQ"
+      className="sc-llJcti hqaoxH"
     >
       © Oak National Academy 
       2022
@@ -868,13 +926,13 @@ Array [
   />,
   <div>
     <header
-      className="sc-ivTmOn iaWnIp"
+      className="sc-iIPllB eElEnU"
     >
       <div
         className="sc-evZas htLSfa"
       >
         <a
-          className="sc-cxabCf eVVIkk"
+          className="sc-gicCDI fpCrjO"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -911,7 +969,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-dIouRR kiqyZb"
+            className="sc-kgflAQ tZCRa"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -921,12 +979,12 @@ Array [
         </a>
       </div>
       <form
-        className="sc-fLlhyt fbwRLO"
+        className="sc-cxabCf ceHISY"
         onSubmit={[Function]}
       >
         <input
           aria-label="Search"
-          className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+          className="sc-bjUoiL sc-idiyUo huCKQk fVMMHD"
           onChange={[Function]}
           placeholder="Search"
           type="search"
@@ -978,10 +1036,10 @@ Array [
         </button>
       </form>
       <div
-        className="sc-iIPllB bkAhVn"
+        className="sc-bZkfAO ScHcO"
       >
         <button
-          className="sc-bczRLJ sc-llJcti bprpIx echjzB"
+          className="sc-bczRLJ sc-ezWOiH bprpIx cnoIZr"
           onClick={[Function]}
         >
           pupils
@@ -1010,12 +1068,12 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-fLlhyt fbwRLO"
+    className="sc-cxabCf ceHISY"
     onSubmit={[Function]}
   >
     <input
       aria-label="Search"
-      className="sc-hAZoDl sc-fnykZs jiMYnn eScGWL"
+      className="sc-bjUoiL sc-idiyUo huCKQk fVMMHD"
       onChange={[Function]}
       placeholder="Search"
       type="search"
