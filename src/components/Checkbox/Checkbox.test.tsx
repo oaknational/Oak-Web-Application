@@ -1,4 +1,5 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
@@ -38,15 +39,39 @@ describe("Checkbox", () => {
     expect(label).toBeInTheDocument();
   });
 
-  //   it("it changes on click", () => {
-  //     renderWithProviders(
-  //       <Checkbox
-  //         id="unique-123"
-  //         checked
-  //         onChange={() => {
-  //           console.log("on change");
-  //         }}
-  //       />
-  //     );
-  //   });
+  it("it changes on click on label", async () => {
+    let value = false;
+
+    const toggleValue = () => {
+      value = !value;
+    };
+
+    const { rerender } = render(
+      <Checkbox
+        id="unique-123"
+        labelText="Agree to terms"
+        checked={value}
+        onChange={() => toggleValue()}
+      />
+    );
+
+    const user = userEvent.setup();
+
+    const input = screen.getByRole("checkbox");
+    expect(input).not.toBeChecked();
+
+    const label = screen.getByText("Agree to terms");
+    await user.click(label);
+
+    rerender(
+      <Checkbox
+        id="unique-123"
+        labelText="Agree to terms"
+        checked={value}
+        onChange={() => toggleValue()}
+      />
+    );
+
+    expect(input).toBeChecked();
+  });
 });
