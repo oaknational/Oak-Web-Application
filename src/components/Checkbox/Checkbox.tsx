@@ -1,10 +1,10 @@
-import { FC, ChangeEvent } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 const CheckboxLabel = styled.label`
   cursor: pointer;
   display: flex;
-  align-items: start;
+  align-items: center;
 `;
 
 const ScreenReaderCheckbox = styled.input`
@@ -14,17 +14,22 @@ const ScreenReaderCheckbox = styled.input`
   opacity: 0.0001;
 `;
 
+const CheckboxLabelText = styled.span`
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+`;
+
 interface CheckboxProps {
   labelText: string;
   id: string;
   checked: boolean;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => null;
+  onChange: () => void;
 }
 
 const Checkbox: FC<CheckboxProps> = (props) => {
   const { labelText, checked, onChange, id } = props;
   return (
-    <CheckboxLabel htmlFor="oak-checkbox">
+    <CheckboxLabel htmlFor="oak-checkbox" onClick={onChange}>
       <ScreenReaderCheckbox
         type="checkbox"
         id={id}
@@ -58,7 +63,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           stroke="#4D4D4D"
         />
       </svg>
-      <span>{labelText}</span>
+      {labelText && <CheckboxLabelText>{labelText}</CheckboxLabelText>}
     </CheckboxLabel>
   );
 };
