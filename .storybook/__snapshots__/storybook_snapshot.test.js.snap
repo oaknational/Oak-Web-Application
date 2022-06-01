@@ -535,11 +535,13 @@ Array [
   <label
     className="sc-hAZoDl hczpL"
     htmlFor="oak-checkbox"
+    onClick={[Function]}
   >
     <input
       checked={true}
       className="sc-fnykZs cnUwVh"
       id="Click me"
+      onChange={[Function]}
       type="checkbox"
     />
     <svg
