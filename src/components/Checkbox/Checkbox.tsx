@@ -5,12 +5,18 @@ const CheckboxLabel = styled.label`
   cursor: pointer;
   display: flex;
   align-items: center;
+
+  input[type="checkbox"]:focus + svg {
+    // TODO: add focus ring component to replace this
+    outline: 0.25rem auto -webkit-focus-ring-color;
+    outline-offset: 0.25rem;
+  }
 `;
 
 const ScreenReaderCheckbox = styled.input`
   position: absolute;
-  width: 1em;
-  height: 1em;
+  width: 1.5rem;
+  height: 1.5rem;
   opacity: 0.0001;
 `;
 
