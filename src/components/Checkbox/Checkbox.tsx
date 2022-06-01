@@ -26,7 +26,7 @@ const CheckboxLabelText = styled.span`
 `;
 
 interface CheckboxProps {
-  labelText: string;
+  labelText?: string;
   id: string;
   checked: boolean;
   onChange: () => void;
