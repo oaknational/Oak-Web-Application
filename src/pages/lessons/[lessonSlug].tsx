@@ -41,19 +41,21 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         }}
         background="grey1"
       >
-        <Flex pv={40}>
-          <Breadcrumbs
-            breadcrumbs={[
-              { href: "/", label: "[key-stage]" },
-              { href: "/", label: "Subjects" },
-              { href: "/", label: "[subject-name]" },
-              { href: "/", label: "[unit-name]" },
-            ]}
-          />
-        </Flex>
-        <BrowserWidthBar pv={40} background="white">
-          <LessonHeader {...lesson} />
-        </BrowserWidthBar>
+        <header>
+          <Flex pv={40}>
+            <Breadcrumbs
+              breadcrumbs={[
+                { href: "/", label: "[key-stage]" },
+                { href: "/", label: "Subjects" },
+                { href: "/", label: "[subject-name]" },
+                { href: "/", label: "[unit-name]" },
+              ]}
+            />
+          </Flex>
+          <BrowserWidthBar pv={40} background="white">
+            <LessonHeader {...lesson} />
+          </BrowserWidthBar>
+        </header>
       </Layout>
     </>
   );

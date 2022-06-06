@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import getColor from "../../styles/themeHelpers/getColor";
 import { OakColorName } from "../../styles/theme";
@@ -33,17 +33,25 @@ export const icons: Record<IconName, FC> = {
   Home,
 };
 
-const IconOuterWrapper = styled.span<MarginProps>`
+type SizeProps = { height: number; width: number };
+const size = css<SizeProps>`
+  height: ${(props) => props.height}px;
+  width: ${(props) => props.width}px;
+`;
+
+const IconOuterWrapper = styled.span<SizeProps & MarginProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  ${size}
   ${margin}
 `;
-const IconInnerWrapper = styled.span<{ color?: OakColorName }>`
+const IconInnerWrapper = styled.span<SizeProps & { color?: OakColorName }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: ${(props) => getColor(props.color)};
+  ${size}
 `;
 
 type IconProps = MarginProps & {
@@ -64,7 +72,7 @@ type IconProps = MarginProps & {
   color?: OakColorName;
 };
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height, color, ...marginProps } = props;
+  const { name, size = 24, width, height, color, ...rootProps } = props;
   const IconComponent = icons[name];
 
   const innerWidth = width || size;
@@ -74,14 +82,8 @@ const Icon: FC<IconProps> = (props) => {
   const outerWidth = props.outerWidth || innerWidth;
 
   return (
-    <IconOuterWrapper
-      style={{ height: `${outerHeight}px`, width: `${outerWidth}px` }}
-      {...marginProps}
-    >
-      <IconInnerWrapper
-        color={color}
-        style={{ height: `${innerHeight}px`, width: `${innerWidth}px` }}
-      >
+    <IconOuterWrapper height={outerHeight} width={outerWidth} {...rootProps}>
+      <IconInnerWrapper color={color} height={innerHeight} width={innerWidth}>
         <IconComponent />
       </IconInnerWrapper>
     </IconOuterWrapper>

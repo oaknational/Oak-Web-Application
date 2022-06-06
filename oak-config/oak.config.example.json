@@ -22,6 +22,10 @@
   },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
-    "appName": "Samara"
+    "appName": "Samara",
+    "searchApiUrl": "https://example.com"
+  },
+  "googleSecretManager": {
+    "projectId": "test-project-584399384539"
   }
 }

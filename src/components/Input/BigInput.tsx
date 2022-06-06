@@ -4,7 +4,7 @@ import getColor from "../../styles/themeHelpers/getColor";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
-import UnstyledInput from "../UnstyledInput";
+import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 
 const inputStyles = css`
   height: ${(props) => props.theme.bigInput.height};
@@ -41,9 +41,10 @@ const inputStyles = css`
   ${margin}
 `;
 
-type InputProps = MarginProps & {
-  value: string;
-};
+type InputProps = UnstyledInputProps &
+  MarginProps & {
+    value: string;
+  };
 const Input = styled(UnstyledInput)<InputProps>`
   ${inputStyles}
 `;

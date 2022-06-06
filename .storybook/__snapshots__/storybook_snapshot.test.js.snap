@@ -32,9 +32,10 @@ Array [
     <div>
       <button
         aria-label="Add Bookmark"
-        className="sc-bczRLJ sc-eCYdqJ bprpIx bgWoby"
+        className="sc-bczRLJ sc-eCYdqJ bprpIx eummaE"
         disabled={false}
         onClick={[Function]}
+        size="small"
         title="Add Bookmark"
       >
         <div
@@ -42,22 +43,14 @@ Array [
           size="small"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
                 fill="currentColor"
@@ -97,24 +90,20 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-iqcoie dYRntO"
+    className="sc-kDDrLX gshCnU"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
     onMouseEnter={[Function]}
     role="button"
+    size="small"
     title="Click me"
   >
-    <div
-      className="sc-jqUVSM jcrMkW"
-      size="small"
+    <span
+      className="sc-papXJ bdMMXR"
     >
-      <span
-        className="sc-papXJ bdMMXR"
-      >
-        Click me
-      </span>
-    </div>
+      Click me
+    </span>
   </a>,
 ]
 `;
@@ -131,19 +120,15 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-bczRLJ sc-kDDrLX bprpIx fzrCGb"
+    className="sc-bczRLJ sc-jqUVSM bprpIx giZbiP"
+    size="small"
     title="Click me"
   >
-    <div
-      className="sc-jqUVSM jcrMkW"
-      size="small"
+    <span
+      className="sc-papXJ bdMMXR"
     >
-      <span
-        className="sc-papXJ bdMMXR"
-      >
-        Click me
-      </span>
-    </div>
+      Click me
+    </span>
   </button>,
 ]
 `;
@@ -159,160 +144,136 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-evZas sc-breuTD fuwPfM fovvaV"
+    className="sc-crXcEl sc-evZas bAcObU eMIvTa"
   >
     <a
       aria-label="Download Lesson"
-      className="sc-iqcoie dYRntO"
+      className="sc-kDDrLX gshCnU"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
       onMouseEnter={[Function]}
       role="button"
+      size="small"
       title="Download Lesson"
     >
-      <div
-        className="sc-jqUVSM jcrMkW"
-        size="small"
+      <span
+        className="sc-ftvSup cTDWXd"
       >
         <span
-          className="sc-ftvSup cTDWXd"
+          className="sc-gsnTZi fiKuMT"
+          height={16}
+          width={16}
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-dkzDqf hosfuE"
+            height={16}
+            width={16}
           >
-            <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
+              <path
+                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+              />
+              <polyline
+                points="7 10 12 15 17 10"
+              />
+              <line
+                x1="12"
+                x2="12"
+                y1="15"
+                y2="3"
+              />
+            </svg>
           </span>
         </span>
-        <span
-          className="sc-papXJ bdMMXR"
-        >
-          Download
-        </span>
-      </div>
+      </span>
+      <span
+        className="sc-papXJ bdMMXR"
+      >
+        Download
+      </span>
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-iqcoie dYRntO"
+      className="sc-kDDrLX gshCnU"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
       onMouseEnter={[Function]}
       role="button"
+      size="small"
       title="Share Lesson"
     >
-      <div
-        className="sc-jqUVSM jcrMkW"
-        size="small"
+      <span
+        className="sc-ftvSup cTDWXd"
       >
         <span
-          className="sc-ftvSup cTDWXd"
+          className="sc-gsnTZi fiKuMT"
+          height={16}
+          width={16}
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-dkzDqf hosfuE"
+            height={16}
+            width={16}
           >
-            <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="18"
-                  cy="5"
-                  r="3"
-                />
-                <circle
-                  cx="6"
-                  cy="12"
-                  r="3"
-                />
-                <circle
-                  cx="18"
-                  cy="19"
-                  r="3"
-                />
-                <line
-                  x1="8.59"
-                  x2="15.42"
-                  y1="13.51"
-                  y2="17.49"
-                />
-                <line
-                  x1="15.41"
-                  x2="8.59"
-                  y1="6.51"
-                  y2="10.49"
-                />
-              </svg>
-            </span>
+              <circle
+                cx="18"
+                cy="5"
+                r="3"
+              />
+              <circle
+                cx="6"
+                cy="12"
+                r="3"
+              />
+              <circle
+                cx="18"
+                cy="19"
+                r="3"
+              />
+              <line
+                x1="8.59"
+                x2="15.42"
+                y1="13.51"
+                y2="17.49"
+              />
+              <line
+                x1="15.41"
+                x2="8.59"
+                y1="6.51"
+                y2="10.49"
+              />
+            </svg>
           </span>
         </span>
-        <span
-          className="sc-papXJ bdMMXR"
-        >
-          Share
-        </span>
-      </div>
+      </span>
+      <span
+        className="sc-papXJ bdMMXR"
+      >
+        Share
+      </span>
     </a>
   </div>,
 ]
@@ -330,34 +291,27 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-crXcEl cYDujB"
+    className="sc-iqcoie bJNxxk"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
     onMouseEnter={[Function]}
     role="button"
+    size="small"
   >
     <div
       className="sc-hKMtZM dzHdVU"
       size="small"
     >
       <span
-        className="sc-gsnTZi hnKkoM"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
+        className="sc-gsnTZi fiKuMT"
+        height={16}
+        width={16}
       >
         <span
-          className="sc-dkzDqf krVImC"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+          className="sc-dkzDqf hosfuE"
+          height={16}
+          width={16}
         >
           <svg
             fill="none"
@@ -402,7 +356,8 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-bczRLJ sc-eCYdqJ bprpIx bgWoby"
+    className="sc-bczRLJ sc-eCYdqJ bprpIx eummaE"
+    size="small"
     title="Click me"
   >
     <div
@@ -410,22 +365,14 @@ Array [
       size="small"
     >
       <span
-        className="sc-gsnTZi hnKkoM"
-        style={
-          Object {
-            "height": "16px",
-            "width": "16px",
-          }
-        }
+        className="sc-gsnTZi fiKuMT"
+        height={16}
+        width={16}
       >
         <span
-          className="sc-dkzDqf krVImC"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+          className="sc-dkzDqf hosfuE"
+          height={16}
+          width={16}
         >
           <svg
             fill="none"
@@ -469,7 +416,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ksZaOG iEMngk"
+    className="sc-breuTD lmLbkX"
   >
     <h2>
       Card title
@@ -514,7 +461,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-dIouRR sc-hHLeRK eNFJvE kNrTTs"
+    className="sc-idiyUo sc-dIouRR jqonck hYGFir"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -533,14 +480,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-hAZoDl iZLdmI"
+    className="sc-ksZaOG cpUUtH"
     disabled={false}
     htmlFor="oak-checkbox"
     onClick={[Function]}
   >
     <input
       checked={true}
-      className="sc-fnykZs cnUwVh"
+      className="sc-hAZoDl jVBDqe"
       disabled={false}
       id="Click me"
       onChange={[Function]}
@@ -549,7 +496,7 @@ Array [
     />
     <svg
       aria-hidden="true"
-      className="sc-fEOsli"
+      className="sc-fnykZs"
       fill="none"
       focusable="false"
       height="24"
@@ -566,7 +513,7 @@ Array [
       />
       <path
         checked={true}
-        className="sc-bjUoiL jUsCwk"
+        className="sc-fEOsli iwHlxZ"
         d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
         fill="currentColor"
       />
@@ -580,7 +527,7 @@ Array [
       />
     </svg>
     <span
-      className="sc-idiyUo eOUfBR"
+      className="sc-bjUoiL iYDFnt"
     >
       Click me
     </span>
@@ -598,12 +545,63 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <input
-    className="sc-dIouRR sc-dmRaPn eNFJvE cTvoDP"
-    onChange={[Function]}
-    placeholder="Placeholder"
-    value=""
+  <div
+    className="sc-crXcEl jkDtYw"
+  >
+    <input
+      className="sc-idiyUo sc-dmRaPn jqonck ckLeme"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Input With Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
   />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-crXcEl jkDtYw"
+  >
+    <input
+      className="sc-idiyUo sc-dmRaPn jqonck isuoGt"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+    <span
+      className="sc-gsnTZi bzKDcl sc-hHLeRK fVeOMu"
+      height={20}
+      width={40}
+    >
+      <span
+        className="sc-dkzDqf cSKBNc"
+        height={20}
+        width={20}
+      >
+        <svg
+          fill="none"
+          height="100%"
+          viewBox="0 0 17 17"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </span>
+  </div>,
 ]
 `;
 
@@ -618,7 +616,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-evZas fkNRqR"
+    className="sc-crXcEl ecZVAl"
   >
     Flex box
   </div>,
@@ -675,7 +673,7 @@ Array [
     className="sc-ivTmOn cHXuAG"
   >
     <div
-      className="sc-evZas fuwPfM"
+      className="sc-crXcEl bAcObU"
     >
       <h1
         className="sc-kgflAQ djHaIK"
@@ -691,166 +689,143 @@ Array [
       </h1>
     </div>
     <div
-      className="sc-evZas sc-breuTD fuwPfM fovvaV"
+      className="sc-crXcEl sc-evZas bAcObU eMIvTa"
     >
       <a
         aria-label="Download Lesson"
-        className="sc-iqcoie dYRntO"
+        className="sc-kDDrLX iuNDPU"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseEnter={[Function]}
         role="button"
+        size="small"
         title="Download Lesson"
       >
-        <div
-          className="sc-jqUVSM jDnmy"
-          size="small"
+        <span
+          className="sc-ftvSup cTDWXd"
         >
           <span
-            className="sc-ftvSup cTDWXd"
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
-              <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                  />
-                  <polyline
-                    points="7 10 12 15 17 10"
-                  />
-                  <line
-                    x1="12"
-                    x2="12"
-                    y1="15"
-                    y2="3"
-                  />
-                </svg>
-              </span>
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
             </span>
           </span>
-          <span
-            className="sc-papXJ bdMMXR"
-          >
-            Download
-          </span>
-        </div>
+        </span>
+        <span
+          className="sc-papXJ bdMMXR"
+        >
+          Download
+        </span>
       </a>
       <a
         aria-label="Share Lesson"
-        className="sc-iqcoie dYRntO"
+        className="sc-kDDrLX iuNDPU"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseEnter={[Function]}
         role="button"
+        size="small"
         title="Share Lesson"
       >
-        <div
-          className="sc-jqUVSM jDnmy"
-          size="small"
+        <span
+          className="sc-ftvSup cTDWXd"
         >
           <span
-            className="sc-ftvSup cTDWXd"
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
-              <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="18"
-                    cy="5"
-                    r="3"
-                  />
-                  <circle
-                    cx="6"
-                    cy="12"
-                    r="3"
-                  />
-                  <circle
-                    cx="18"
-                    cy="19"
-                    r="3"
-                  />
-                  <line
-                    x1="8.59"
-                    x2="15.42"
-                    y1="13.51"
-                    y2="17.49"
-                  />
-                  <line
-                    x1="15.41"
-                    x2="8.59"
-                    y1="6.51"
-                    y2="10.49"
-                  />
-                </svg>
-              </span>
+                <circle
+                  cx="18"
+                  cy="5"
+                  r="3"
+                />
+                <circle
+                  cx="6"
+                  cy="12"
+                  r="3"
+                />
+                <circle
+                  cx="18"
+                  cy="19"
+                  r="3"
+                />
+                <line
+                  x1="8.59"
+                  x2="15.42"
+                  y1="13.51"
+                  y2="17.49"
+                />
+                <line
+                  x1="15.41"
+                  x2="8.59"
+                  y1="6.51"
+                  y2="10.49"
+                />
+              </svg>
             </span>
           </span>
-          <span
-            className="sc-papXJ bdMMXR"
-          >
-            Share
-          </span>
-        </div>
+        </span>
+        <span
+          className="sc-papXJ bdMMXR"
+        >
+          Share
+        </span>
       </a>
       <button
         aria-label="Add Bookmark"
-        className="sc-bczRLJ sc-eCYdqJ bprpIx bgWoby"
+        className="sc-bczRLJ sc-eCYdqJ bprpIx eummaE"
         disabled={false}
         onClick={[Function]}
+        size="small"
         title="Add Bookmark"
       >
         <div
@@ -858,22 +833,14 @@ Array [
           size="small"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
                 fill="currentColor"
@@ -937,7 +904,7 @@ Array [
       className="sc-ezWOiH tqVPI"
     >
       <div
-        className="sc-evZas htLSfa"
+        className="sc-crXcEl gPPRNa"
       >
         <a
           className="sc-bZkfAO iqmQHa"
@@ -946,22 +913,14 @@ Array [
           onMouseEnter={[Function]}
         >
           <span
-            className="sc-gsnTZi lmSKEe"
-            style={
-              Object {
-                "height": "30px",
-                "width": "30px",
-              }
-            }
+            className="sc-gsnTZi dwUICx"
+            height={30}
+            width={30}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "30px",
-                  "width": "30px",
-                }
-              }
+              className="sc-dkzDqf fWLDlY"
+              height={30}
+              width={30}
             >
               <svg
                 height="100%"
@@ -990,18 +949,23 @@ Array [
         className="sc-iIPllB gHVBpX"
         onSubmit={[Function]}
       >
-        <input
-          aria-label="Search"
-          className="sc-dIouRR sc-hHLeRK eNFJvE kNrTTs"
-          onChange={[Function]}
-          placeholder="Search"
-          type="search"
-          value=""
-        />
+        <div
+          className="sc-crXcEl jkDtYw"
+        >
+          <input
+            aria-label="Search"
+            className="sc-idiyUo sc-dmRaPn jqonck ckLeme"
+            onChange={[Function]}
+            placeholder="Search"
+            type="search"
+            value=""
+          />
+        </div>
         <button
           aria-label="Submit"
-          className="sc-bczRLJ sc-eCYdqJ bprpIx dBkheU"
+          className="sc-bczRLJ sc-eCYdqJ bprpIx eYVkiC"
           onClick={[Function]}
+          size="small"
           title="Submit"
           type="submit"
         >
@@ -1010,31 +974,24 @@ Array [
             size="small"
           >
             <span
-              className="sc-gsnTZi hnKkoM"
-              style={
-                Object {
-                  "height": "16px",
-                  "width": "16px",
-                }
-              }
+              className="sc-gsnTZi fiKuMT"
+              height={16}
+              width={16}
             >
               <span
-                className="sc-dkzDqf krVImC"
-                style={
-                  Object {
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+                className="sc-dkzDqf hosfuE"
+                height={16}
+                width={16}
               >
                 <svg
+                  fill="none"
                   height="100%"
-                  viewBox="6 6 36 36"
+                  viewBox="0 0 17 17"
                   width="100%"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M39.8 41.95 26.65 28.8q-1.5 1.3-3.5 2.025-2 .725-4.25.725-5.4 0-9.15-3.75T6 18.75q0-5.3 3.75-9.05 3.75-3.75 9.1-3.75 5.3 0 9.025 3.75 3.725 3.75 3.725 9.05 0 2.15-.7 4.15-.7 2-2.1 3.75L42 39.75Zm-20.95-13.4q4.05 0 6.9-2.875Q28.6 22.8 28.6 18.75t-2.85-6.925Q22.9 8.95 18.85 8.95q-4.1 0-6.975 2.875T9 18.75q0 4.05 2.875 6.925t6.975 2.875Z"
+                    d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
                     fill="currentColor"
                   />
                 </svg>
@@ -1079,18 +1036,23 @@ Array [
     className="sc-iIPllB gHVBpX"
     onSubmit={[Function]}
   >
-    <input
-      aria-label="Search"
-      className="sc-dIouRR sc-hHLeRK eNFJvE kNrTTs"
-      onChange={[Function]}
-      placeholder="Search"
-      type="search"
-      value=""
-    />
+    <div
+      className="sc-crXcEl jkDtYw"
+    >
+      <input
+        aria-label="Search"
+        className="sc-idiyUo sc-dmRaPn jqonck ckLeme"
+        onChange={[Function]}
+        placeholder="Search"
+        type="search"
+        value=""
+      />
+    </div>
     <button
       aria-label="Submit"
-      className="sc-bczRLJ sc-eCYdqJ bprpIx dBkheU"
+      className="sc-bczRLJ sc-eCYdqJ bprpIx eYVkiC"
       onClick={[Function]}
+      size="small"
       title="Submit"
       type="submit"
     >
@@ -1099,31 +1061,24 @@ Array [
         size="small"
       >
         <span
-          className="sc-gsnTZi hnKkoM"
-          style={
-            Object {
-              "height": "16px",
-              "width": "16px",
-            }
-          }
+          className="sc-gsnTZi fiKuMT"
+          height={16}
+          width={16}
         >
           <span
-            className="sc-dkzDqf krVImC"
-            style={
-              Object {
-                "height": "16px",
-                "width": "16px",
-              }
-            }
+            className="sc-dkzDqf hosfuE"
+            height={16}
+            width={16}
           >
             <svg
+              fill="none"
               height="100%"
-              viewBox="6 6 36 36"
+              viewBox="0 0 17 17"
               width="100%"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M39.8 41.95 26.65 28.8q-1.5 1.3-3.5 2.025-2 .725-4.25.725-5.4 0-9.15-3.75T6 18.75q0-5.3 3.75-9.05 3.75-3.75 9.1-3.75 5.3 0 9.025 3.75 3.725 3.75 3.725 9.05 0 2.15-.7 4.15-.7 2-2.1 3.75L42 39.75Zm-20.95-13.4q4.05 0 6.9-2.875Q28.6 22.8 28.6 18.75t-2.85-6.925Q22.9 8.95 18.85 8.95q-4.1 0-6.975 2.875T9 18.75q0 4.05 2.875 6.925t6.975 2.875Z"
+                d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
                 fill="currentColor"
               />
             </svg>
@@ -1147,22 +1102,14 @@ Array [
   />,
   <div>
     <span
-      className="sc-gsnTZi hnKkoM"
-      style={
-        Object {
-          "height": "100px",
-          "width": "100px",
-        }
-      }
+      className="sc-gsnTZi gjGDUD"
+      height={100}
+      width={100}
     >
       <span
-        className="sc-dkzDqf krVImC"
-        style={
-          Object {
-            "height": "100px",
-            "width": "100px",
-          }
-        }
+        className="sc-dkzDqf bPkBds"
+        height={100}
+        width={100}
       >
         <svg
           fill="none"
@@ -1218,22 +1165,14 @@ Array [
           className="sc-iBkjds djrcRa"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
+            className="sc-gsnTZi csDFFj"
+            height={20}
+            width={20}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
             >
               <svg
                 fill="none"
@@ -1264,22 +1203,14 @@ Array [
           className="sc-iBkjds djrcRa"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
+            className="sc-gsnTZi csDFFj"
+            height={20}
+            width={20}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
             >
               <svg
                 fill="none"
@@ -1310,22 +1241,14 @@ Array [
           className="sc-iBkjds djrcRa"
         >
           <span
-            className="sc-gsnTZi hnKkoM"
-            style={
-              Object {
-                "height": "20px",
-                "width": "20px",
-              }
-            }
+            className="sc-gsnTZi csDFFj"
+            height={20}
+            width={20}
           >
             <span
-              className="sc-dkzDqf krVImC"
-              style={
-                Object {
-                  "height": "20px",
-                  "width": "20px",
-                }
-              }
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
             >
               <svg
                 fill="none"

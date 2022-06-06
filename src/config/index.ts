@@ -26,6 +26,7 @@ const CONFIG_KEYS = [
   "appFacebook",
   "appTwitter",
   "appTwitterHandle",
+  "searchApiUrl",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -222,6 +223,13 @@ const envVars: Record<ConfigKey, EnvVar> = {
   appTwitterHandle: {
     value: seoConfig.NEXT_PUBLIC_APP_TWITTER_HANDLE,
     envName: "NEXT_PUBLIC_APP_TWITTER_HANDLE",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  searchApiUrl: {
+    value: process.env.NEXT_PUBLIC_SEARCH_API_URL,
+    envName: "NEXT_PUBLIC_SEARCH_API_URL",
     required: true,
     availableInBrowser: true,
     default: null,

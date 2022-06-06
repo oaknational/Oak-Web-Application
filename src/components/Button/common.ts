@@ -1,6 +1,12 @@
-import { css } from "styled-components";
+import {
+  DetailedHTMLProps,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+} from "react";
 
-import { margin, MarginProps } from "../../styles/utils/spacing";
+import { OakColorName } from "../../styles/theme";
+import { MarginProps } from "../../styles/utils/spacing";
+import { IconName } from "../Icon";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary";
 export type IconPosition = "leading" | "trailing";
@@ -57,7 +63,35 @@ export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
 export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "primary";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 
-export const outermostElementStyles = css<MarginProps>`
-  display: inline-flex;
-  ${margin}
-`;
+export type CommonButtonProps = MarginProps & {
+  label: string;
+  variant?: ButtonVariant;
+  icon?: IconName;
+  iconPosition?: IconPosition;
+  size?: ButtonSize;
+  "aria-label"?: string;
+};
+export const defaultButtonProps: Partial<CommonButtonProps> = {
+  variant: DEFAULT_BUTTON_VARIANT,
+  iconPosition: DEFAULT_ICON_POSITION,
+  size: DEFAULT_BUTTON_SIZE,
+};
+
+export type HTMLButtonProps = Omit<
+  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+  "ref"
+>;
+
+export type HTMLAnchorProps = Omit<
+  DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+  "ref"
+>;
+
+export type CommonIconButtonProps = Omit<
+  CommonButtonProps,
+  "label" | "iconPosition"
+> & {
+  icon: IconName;
+  "aria-label": string;
+  iconColorOverride?: OakColorName;
+};
