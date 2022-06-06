@@ -1,8 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-const CheckboxLabel = styled.label`
-  cursor: pointer;
+const CheckboxLabel = styled.label<{ disabled: boolean }>`
+  cursor: ${(props) => !props.disabled && "pointer"};
   display: flex;
   align-items: center;
 
@@ -13,7 +13,7 @@ const CheckboxLabel = styled.label`
   }
 `;
 
-const ScreenReaderCheckbox = styled.input`
+const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })`
   position: absolute;
   width: 1.5rem;
   height: 1.5rem;
@@ -34,21 +34,29 @@ const CheckboxLabelText = styled.span`
 `;
 
 interface CheckboxProps {
-  labelText?: string;
+  labelText: string;
   id: string;
   checked: boolean;
+  disabled?: boolean;
   onChange: () => void;
 }
 
 const Checkbox: FC<CheckboxProps> = (props) => {
-  const { labelText, checked, onChange, id } = props;
+  const { labelText, checked, disabled = false, onChange, id } = props;
+
   return (
-    <CheckboxLabel htmlFor="oak-checkbox" onClick={onChange}>
+    <CheckboxLabel
+      htmlFor="oak-checkbox"
+      onClick={onChange}
+      disabled={disabled}
+    >
       <ScreenReaderCheckbox
         type="checkbox"
         id={id}
-        checked={checked}
         onChange={onChange}
+        checked={checked}
+        disabled={disabled}
+        value={id}
       />
       <VisualCheckbox
         width="24"
@@ -74,6 +82,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           fill="currentColor"
           checked={checked}
         />
+        {/*  the border */}
         <rect
           x="0.5"
           y="0.5"

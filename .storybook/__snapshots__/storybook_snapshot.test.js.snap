@@ -533,16 +533,19 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-hAZoDl hczpL"
+    className="sc-hAZoDl iZLdmI"
+    disabled={false}
     htmlFor="oak-checkbox"
     onClick={[Function]}
   >
     <input
       checked={true}
       className="sc-fnykZs cnUwVh"
+      disabled={false}
       id="Click me"
       onChange={[Function]}
       type="checkbox"
+      value="Click me"
     />
     <svg
       aria-hidden="true"

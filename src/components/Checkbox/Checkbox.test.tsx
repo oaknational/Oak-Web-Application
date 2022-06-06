@@ -11,6 +11,7 @@ describe("Checkbox", () => {
       <Checkbox
         id="unique-123"
         checked
+        labelText="Agree to terms"
         onChange={() => {
           console.log("on change");
         }}
