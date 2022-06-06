@@ -1,10 +1,18 @@
 import { FC } from "react";
 import styled from "styled-components";
 
+import getColor from "../../styles/themeHelpers/getColor";
+import getFontFamily from "../../styles/themeHelpers/getFontFamily";
+
 const CheckboxLabel = styled.label<{ disabled: boolean }>`
   cursor: ${(props) => !props.disabled && "pointer"};
   display: flex;
   align-items: center;
+  font-family: ${getFontFamily("ui")};
+  color: ${(disabled) =>
+    disabled
+      ? getColor((theme) => theme.palette.input.disabled.text)
+      : getColor((theme) => theme.palette.input.default.text)};
 
   input[type="checkbox"]:focus + svg {
     // TODO: add focus ring component to replace this
@@ -13,7 +21,10 @@ const CheckboxLabel = styled.label<{ disabled: boolean }>`
   }
 `;
 
-const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })`
+const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
+  disabled: boolean;
+}>`
+  cursor: ${(props) => !props.disabled && "pointer"};
   position: absolute;
   width: 1.5rem;
   height: 1.5rem;

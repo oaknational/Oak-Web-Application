@@ -480,14 +480,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-ksZaOG cpUUtH"
+    className="sc-ksZaOG fjUqqe"
     disabled={false}
     htmlFor="oak-checkbox"
     onClick={[Function]}
   >
     <input
       checked={true}
-      className="sc-hAZoDl jVBDqe"
+      className="sc-hAZoDl jsYFjP"
       disabled={false}
       id="Click me"
       onChange={[Function]}
