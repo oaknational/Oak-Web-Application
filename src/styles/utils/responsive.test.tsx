@@ -7,9 +7,14 @@ import styled, {
 } from "styled-components";
 import { render } from "@testing-library/react";
 
+import { OakColorName } from "../theme";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+
 import responsive from "./responsive";
 
-type TestProps = { [k: string]: string | string[] | number | number[] };
+type TestProps = {
+  [k: string]: OakColorName | string | string[] | number | number[];
+};
 /**
  *
  * @description outputs from styled-components css function can vary in value
@@ -114,6 +119,20 @@ describe("responsive", () => {
       padding-left: 0.5em;
     `;
     expect(stringify(actual)).toEqual(stringify(expected));
+  });
+  test("should handle when parse fn gets from theme", async () => {
+    const StyledComponent = styled.div`
+      ${responsive(
+        "color",
+        (props) => props.color,
+        (colorName) => (props) => props.theme.colors[colorName as OakColorName]
+      )}
+    `;
+    const { getByTestId } = renderWithProviders(
+      <StyledComponent data-testid="test" color="calmAndWarm" />
+    );
+
+    expect(getByTestId("test")).toHaveStyle("color: #ffd166");
   });
   test.each([
     ["pl", "padding-left", "1em", "padding-left: 1em;"],

@@ -1,100 +1,10 @@
-import { DefaultTheme, ThemedStyledProps } from "styled-components";
-import { z } from "zod";
+import { OakTheme } from "./types";
 
-const OakColor = z.union([
-  z.literal("white"),
-  z.literal("black"),
-  z.literal("transparent"),
-  z.literal("inherit"),
-  z.literal("grey1"),
-  z.literal("grey2"),
-  z.literal("grey3"),
-  z.literal("grey4"),
-  z.literal("grey5"),
-  z.literal("grey6"),
-  z.literal("grey7"),
-  z.literal("grey8"),
-  z.literal("grey9"),
-  z.literal("grey10"),
-  z.literal("inYourFace"),
-  z.literal("calmAndWarm"),
-  z.literal("niceAndSharp"),
-  z.literal("deeperWins"),
-]);
-
-export type OakColorName = z.infer<typeof OakColor>;
-export type OakFontName = "body" | "ui" | "heading";
-/**
- * ColorValue could be hex, rgb, rgba, hsla, e.g. "#414243"
- */
-type ColorValue = string;
-/**
- * FontValue should be a font name with fallback(s), e.g. "Lexend, sans-serif"
- */
-type FontValue = string;
-
-type BadgeConfig = {
-  size: string;
-  circleSize: string;
-  fontSize: string;
-  // px currently in fitting with Icon api
-  iconSize: number;
-  starColor: OakColorName;
-  circleColor: OakColorName;
-  textColor: OakColorName;
-};
-type ButtonConfig = {
-  disabled: {
-    background: OakColorName;
-    text: OakColorName;
-  };
-  primary: {
-    background: OakColorName;
-    text: OakColorName;
-  };
-  secondary: {
-    background: OakColorName;
-    text: OakColorName;
-  };
-  tertiary: {
-    background: OakColorName;
-    text: OakColorName;
-  };
-};
-type InputConfig = {
-  height: string;
-  borderRadius: string;
-  borderWidth: string;
-  states: {
-    default: InputStateConfig;
-    active: InputStateConfig;
-    valid: InputStateConfig;
-    invalid: InputStateConfig;
-    disabled: InputStateConfig;
-  };
-};
-
-type InputStateConfig = {
-  text: OakColorName;
-  placeholder: OakColorName;
-  icon: OakColorName;
-  border: OakColorName;
-};
-
-export type OakTheme = {
-  colors: Record<OakColorName, ColorValue>;
-  contrastColors: Record<OakColorName, OakColorName>;
-  fonts: Record<OakFontName, FontValue>;
-  input: InputConfig;
-  bigInput: InputConfig;
-  button: ButtonConfig;
-  badge: BadgeConfig;
-};
-
-export const theme: OakTheme = {
+const theme: OakTheme = {
+  name: "default",
   colors: {
-    white: "white",
-    black: "black",
+    white: "#fff",
+    black: "#000",
     transparent: "transparent",
     inherit: "inherit",
     grey1: "#f2f2f2",
@@ -220,12 +130,12 @@ export const theme: OakTheme = {
       text: "white",
     },
     primary: {
-      background: "inYourFace",
+      background: "grey9",
       text: "white",
     },
     secondary: {
-      background: "transparent",
-      text: "inherit",
+      background: "grey6",
+      text: "white",
     },
     tertiary: {
       background: "grey3",
@@ -242,10 +152,5 @@ export const theme: OakTheme = {
     textColor: "white",
   },
 };
-
-export type PropsWithTheme<Props = unknown> = ThemedStyledProps<
-  Props,
-  DefaultTheme
->;
 
 export default theme;

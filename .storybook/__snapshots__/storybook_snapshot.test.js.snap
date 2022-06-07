@@ -32,14 +32,14 @@ Array [
     <div>
       <button
         aria-label="Add Bookmark"
-        className="sc-gKXOVf sc-ftvSup gwbEEZ cpjwLO"
+        className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
         disabled={false}
         onClick={[Function]}
         size="small"
         title="Add Bookmark"
       >
         <div
-          className="sc-iBkjds ciIqKQ"
+          className="sc-iBkjds bzkgWG"
           size="small"
         >
           <span
@@ -90,7 +90,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-breuTD dbOPQx"
+    className="sc-breuTD gxkugD"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -120,7 +120,7 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-gKXOVf sc-evZas gwbEEZ jevUae"
+    className="sc-gKXOVf sc-evZas gwbEEZ mIMNY"
     size="small"
     title="Click me"
   >
@@ -148,7 +148,7 @@ Array [
   >
     <a
       aria-label="Download Lesson"
-      className="sc-breuTD dbOPQx"
+      className="sc-breuTD gxkugD"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -205,7 +205,7 @@ Array [
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-breuTD dbOPQx"
+      className="sc-breuTD gxkugD"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -291,7 +291,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-ksZaOG dGaxRj"
+    className="sc-ksZaOG jkDsqV"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -300,7 +300,7 @@ Array [
     size="small"
   >
     <div
-      className="sc-iBkjds ciIqKQ"
+      className="sc-iBkjds bzkgWG"
       size="small"
     >
       <span
@@ -356,12 +356,12 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-gKXOVf sc-ftvSup gwbEEZ cpjwLO"
+    className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
     size="small"
     title="Click me"
   >
     <div
-      className="sc-iBkjds ciIqKQ"
+      className="sc-iBkjds bzkgWG"
       size="small"
     >
       <span
@@ -416,7 +416,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-fnykZs iDaQWk"
+    className="sc-fnykZs bLPrdU"
   >
     <h2>
       Card title
@@ -439,7 +439,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-jSMfEi hriXck klFDDa"
+    className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
   >
     <svg
       className="sc-hKMtZM juannJ"
@@ -455,7 +455,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-bczRLJ sc-eCYdqJ hriXck BeiNI"
+      className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
     >
       <span
         className="sc-gsnTZi csDFFj"
@@ -502,7 +502,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-jSMfEi hriXck klFDDa"
+    className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
   >
     <svg
       className="sc-hKMtZM juannJ"
@@ -518,7 +518,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-bczRLJ sc-eCYdqJ hriXck BeiNI"
+      className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
     >
       80%
     </div>
@@ -578,7 +578,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ hNVxkk"
+    className="sc-bczRLJ dgYqBg"
   >
     <input
       className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
@@ -601,7 +601,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ hNVxkk"
+    className="sc-bczRLJ dgYqBg"
   >
     <input
       className="sc-fEOsli sc-dIouRR cXHYUN jhtKsy"
@@ -648,7 +648,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ iLKnVt"
+    className="sc-bczRLJ hgrFFZ"
   >
     Flex box
   </div>,
@@ -712,7 +712,7 @@ Array [
         size={4}
       >
         <span
-          className="sc-kgflAQ YmZVc"
+          className="sc-kgflAQ aJguU"
           display="block"
           fontSize={24}
         >
@@ -725,7 +725,7 @@ Array [
     >
       <a
         aria-label="Download Lesson"
-        className="sc-breuTD hBuFPR"
+        className="sc-breuTD bIKsOo"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -782,7 +782,7 @@ Array [
       </a>
       <a
         aria-label="Share Lesson"
-        className="sc-breuTD hBuFPR"
+        className="sc-breuTD bIKsOo"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -854,14 +854,14 @@ Array [
       </a>
       <button
         aria-label="Add Bookmark"
-        className="sc-gKXOVf sc-ftvSup gwbEEZ cpjwLO"
+        className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
         disabled={false}
         onClick={[Function]}
         size="small"
         title="Add Bookmark"
       >
         <div
-          className="sc-iBkjds ciIqKQ"
+          className="sc-iBkjds bzkgWG"
           size="small"
         >
           <span
@@ -933,19 +933,19 @@ Array [
   />,
   <div>
     <header
-      className="sc-iIPllB eElEnU"
+      className="sc-iIPllB fMTdro"
     >
       <div
-        className="sc-bczRLJ kRDXqG"
+        className="sc-bczRLJ dWPLlK"
       >
         <a
-          className="sc-gicCDI fpCrjO"
+          className="sc-gicCDI ctaIni"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
         >
           <span
-            className="sc-gsnTZi dwUICx"
+            className="sc-gsnTZi gJAzYV"
             height={30}
             width={30}
           >
@@ -968,7 +968,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-kgflAQ tZCRa"
+            className="sc-kgflAQ dkFlGm"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -978,11 +978,11 @@ Array [
         </a>
       </div>
       <form
-        className="sc-cxabCf ceHISY"
+        className="sc-cxabCf bpkdfo"
         onSubmit={[Function]}
       >
         <div
-          className="sc-bczRLJ hNVxkk"
+          className="sc-bczRLJ dgYqBg"
         >
           <input
             aria-label="Search"
@@ -995,14 +995,14 @@ Array [
         </div>
         <button
           aria-label="Submit"
-          className="sc-gKXOVf sc-ftvSup gwbEEZ cAoFzk"
+          className="sc-gKXOVf sc-ftvSup gwbEEZ fzBOgC"
           onClick={[Function]}
           size="small"
           title="Submit"
           type="submit"
         >
           <div
-            className="sc-iBkjds ciIqKQ"
+            className="sc-iBkjds bzkgWG"
             size="small"
           >
             <span
@@ -1065,11 +1065,11 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-cxabCf ceHISY"
+    className="sc-cxabCf bpkdfo"
     onSubmit={[Function]}
   >
     <div
-      className="sc-bczRLJ hNVxkk"
+      className="sc-bczRLJ dgYqBg"
     >
       <input
         aria-label="Search"
@@ -1082,14 +1082,14 @@ Array [
     </div>
     <button
       aria-label="Submit"
-      className="sc-gKXOVf sc-ftvSup gwbEEZ cAoFzk"
+      className="sc-gKXOVf sc-ftvSup gwbEEZ fzBOgC"
       onClick={[Function]}
       size="small"
       title="Submit"
       type="submit"
     >
       <div
-        className="sc-iBkjds ciIqKQ"
+        className="sc-iBkjds bzkgWG"
         size="small"
       >
         <span

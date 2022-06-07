@@ -1,10 +1,37 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import { OakColorName, OakTheme, PropsWithTheme } from "../../styles/theme";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import Flex from "../Flex";
 import Icon, { IconName } from "../Icon";
+
+export type BadgeConfig = {
+  size: string;
+  circleSize: string;
+  fontSize: string;
+  // px currently in fitting with Icon api
+  iconSize: number;
+  starColor: OakColorName;
+  circleColor: OakColorName;
+  textColor: OakColorName;
+};
+
+const badgeConfig = (theme: OakTheme) => theme.badge;
+const badgeStarColor = ({ theme }: PropsWithTheme) =>
+  badgeConfig(theme).starColor;
+const badgeCircleColor = ({ theme }: PropsWithTheme) =>
+  badgeConfig(theme).circleColor;
+const badgeTextColor = ({ theme }: PropsWithTheme) =>
+  badgeConfig(theme).textColor;
+const badgeSize = ({ theme }: PropsWithTheme) => badgeConfig(theme).size;
+const badgeIconSize = ({ theme }: PropsWithTheme) =>
+  badgeConfig(theme).iconSize;
+const badgeFontSize = ({ theme }: PropsWithTheme) =>
+  badgeConfig(theme).fontSize;
+const badgeCircleSize = ({ theme }: PropsWithTheme) =>
+  badgeConfig(theme).circleSize;
 
 const StarSvg: FC = (props) => (
   <svg
@@ -26,23 +53,23 @@ const Star = styled(StarSvg)`
   position: absolute;
   top: 0;
   left: 0;
-  color: ${getColor((theme) => theme.badge.starColor)};
+  color: ${getColorByLocation(badgeStarColor)};
 `;
 const Circle = styled(Flex)`
   position: relative;
-  width: ${(props) => props.theme.badge.circleSize};
-  height: ${(props) => props.theme.badge.circleSize};
+  width: ${badgeCircleSize};
+  height: ${badgeCircleSize};
   border-radius: 50%;
-  background: ${getColor((theme) => theme.badge.circleColor)};
-  color: ${getColor((theme) => theme.badge.textColor)};
+  background: ${getColorByLocation(badgeCircleColor)};
+  color: ${getColorByLocation(badgeTextColor)};
   font-family: ${getFontFamily("ui")};
   font-weight: 600;
-  font-size: ${(props) => props.theme.badge.fontSize};
+  font-size: ${badgeFontSize};
 `;
 const Root = styled(Flex)`
   position: relative;
-  width: ${(props) => props.theme.badge.size};
-  height: ${(props) => props.theme.badge.size};
+  width: ${badgeSize};
+  height: ${badgeSize};
 `;
 
 type BadgeProps = {
@@ -57,7 +84,7 @@ const Badge: FC<BadgeProps> = (props) => {
     <Root alignItems="center" justifyContent="center" {...rootProps}>
       <Star />
       <Circle alignItems="center" justifyContent="center">
-        {icon ? <Icon name={icon} size={theme.badge.iconSize} /> : text}
+        {icon ? <Icon name={icon} size={badgeIconSize({ theme })} /> : text}
       </Circle>
     </Root>
   );

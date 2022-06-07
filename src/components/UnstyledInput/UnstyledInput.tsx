@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 
 export type UnstyledInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
@@ -23,7 +23,9 @@ const UnstyledInput = styled.input`
   font-family: ${(props) => props.theme.fonts.ui};
 
   ::placeholder {
-    color: ${getColor((theme) => theme.input.states.default.placeholder)};
+    color: ${getColorByLocation(
+      ({ theme }) => theme.input.states.default.placeholder
+    )};
   }
 
   ::-webkit-search-decoration,

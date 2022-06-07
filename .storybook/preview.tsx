@@ -1,8 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
-import theme from "../src/styles/theme";
-import useTheme from "../src/hooks/useTheme";
+import useOakTheme from "../src/hooks/useOakTheme";
 import { UserStyleContextProvider } from "../src/context/UserStyleContext";
 import GlobalStyle from "../src/styles/GlobalStyle";
 
@@ -32,7 +31,7 @@ export const parameters = {
 
 const withThemeProvider = (Story, context) => {
   // pass in context.globals.theme if useTheme() is changed to except theme name
-  useTheme();
+  const { theme } = useOakTheme();
   return (
     <>
       <ThemeProvider theme={theme}>

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { OakColorName } from "../../styles/theme";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 
@@ -50,7 +50,7 @@ const IconInnerWrapper = styled.span<SizeProps & { color?: OakColorName }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => getColor(props.color)};
+  color: ${(props) => getColorByName(props.color)};
   ${size}
 `;
 

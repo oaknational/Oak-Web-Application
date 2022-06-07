@@ -4,7 +4,8 @@ import {
   AnchorHTMLAttributes,
 } from "react";
 
-import { OakColorName, PropsWithTheme } from "../../styles/theme";
+import { OakColorName } from "../../styles/theme";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
@@ -36,12 +37,10 @@ export const buttonSizeHeightMap: Record<ButtonSize, number> = {
   large: LARGE_BUTTON_HEIGHT,
 };
 export const getButtonHeight = (size: ButtonSize) => buttonSizeHeightMap[size];
-export const getButtonBackground =
-  (variant: ButtonVariant) => (props: PropsWithTheme) =>
-    props.theme.button[variant].background;
-export const getButtonColor =
-  (variant: ButtonVariant) => (props: PropsWithTheme) =>
-    props.theme.button[variant].text;
+export const getButtonBackground = (variant: ButtonVariant) =>
+  getColorByLocation((props) => props.theme.button[variant].background);
+export const getButtonColor = (variant: ButtonVariant) =>
+  getColorByLocation((props) => props.theme.button[variant].text);
 
 const buttonPaddingMap: Record<ButtonSize, number> = {
   small: SMALL_BUTTON_PADDING_X,

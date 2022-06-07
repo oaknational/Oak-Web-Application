@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { LS_KEY_THEME, LS_KEY_THEME_USER } from "../config/localStorageKeys";
-import { UserType } from "../context/UserStyleContext";
-import { Theme, defaultTheme, ausTheme } from "../styles/themes";
+import { LS_KEY_THEME } from "../config/localStorageKeys";
+import theme, { OakTheme } from "../styles/theme";
+import ausTheme from "../styles/theme/aus.theme";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
 
@@ -20,16 +20,15 @@ export const themeNames = ["default", "aus"] as const;
 type ThemeNames = typeof themeNames;
 type ThemeName = ThemeNames[number];
 
-const themes: Record<ThemeName, Theme> = {
-  default: defaultTheme,
+const themes: Record<ThemeName, OakTheme> = {
+  default: theme,
   aus: ausTheme,
 };
 
-const useTheme = () => {
+const useOakTheme = () => {
   const [selectedTheme] = useLocalStorage<ThemeName>(LS_KEY_THEME, "default");
-  const [selectedUser] = useLocalStorage<UserType>(LS_KEY_THEME_USER, "pupils");
 
-  const theme = themes[selectedTheme];
+  const activeTheme = themes[selectedTheme];
 
   useEffect(() => {
     window.oakThemes = {
@@ -42,22 +41,24 @@ const useTheme = () => {
 
         window.localStorage.setItem(LS_KEY_THEME, JSON.stringify(themeName));
         dispatchLocalStorageEvent();
+        console.log(`Switched to theme: ${themeName}`);
       },
       availableThemes: themeNames,
     };
   }, []);
 
   useEffect(() => {
-    if (!theme) {
-      return console.error(`No theme found for theme name: ${selectedTheme}`);
+    if (!activeTheme) {
+      return console.error(
+        `No theme found for theme name: ${selectedTheme}, falling back to default.`
+      );
     }
-    Object.entries(theme.common).forEach(([key, value]) => {
-      document.documentElement.style.setProperty(`--${key}`, value);
-    });
-    Object.entries(theme[selectedUser]).forEach(([key, value]) => {
-      document.documentElement.style.setProperty(`--${key}`, value);
-    });
-  }, [theme, selectedUser]);
+  }, [selectedTheme, activeTheme]);
+
+  return {
+    theme: activeTheme || themes.default,
+    name: selectedTheme,
+  };
 };
 
-export default useTheme;
+export default useOakTheme;
