@@ -32,7 +32,7 @@ export const Heading: FC<HeadingProps> = (props) => {
 type TextProps = MarginProps & {
   size?: TextSize;
 };
-export const Text = styled.p<TextProps>`
+export const Text = styled.div<TextProps>`
   ${text}
   ${margin}
 `;

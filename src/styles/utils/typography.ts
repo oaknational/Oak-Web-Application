@@ -13,6 +13,7 @@ import responsive, { ResponsiveValues } from "./responsive";
 
 const reset = css`
   all: initial;
+  cursor: inherit;
 `;
 const headingSizes = {
   1: "56px",

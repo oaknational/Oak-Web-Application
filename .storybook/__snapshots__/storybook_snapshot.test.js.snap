@@ -666,7 +666,7 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-hHLeRK kluVGG"
+    className="sc-hHLeRK hegkxO"
   >
     Heading
   </span>,
@@ -683,11 +683,11 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <p
-    className="sc-dmRaPn pSHuE"
+  <div
+    className="sc-dmRaPn ekmtaQ"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
-  </p>,
+  </div>,
 ]
 `;
 
@@ -708,7 +708,7 @@ Array [
       className="sc-bczRLJ cRuYNc"
     >
       <h1
-        className="sc-hHLeRK eHitWj"
+        className="sc-hHLeRK fZezFb"
         size={4}
       >
         <span
@@ -1145,11 +1145,11 @@ Array [
         <div
           className="sc-bczRLJ sc-llJcti iaLUdP dNmMOR"
         >
-          <p
-            className="sc-dmRaPn sc-cxabCf gUjgon fjcTXg"
+          <div
+            className="sc-dmRaPn sc-cxabCf iwVrGr fjcTXg"
           >
             Intro
-          </p>
+          </div>
           <span
             className="sc-gsnTZi bNXYbZ"
             height={20}
@@ -1228,11 +1228,11 @@ Array [
               </svg>
             </span>
           </span>
-          <p
-            className="sc-dmRaPn sc-cxabCf gUjgon fjcTXg"
+          <div
+            className="sc-dmRaPn sc-cxabCf iwVrGr fjcTXg"
           >
             Intro
-          </p>
+          </div>
         </div>
       </div>
     </button>
@@ -1263,11 +1263,11 @@ Array [
         <div
           className="sc-bczRLJ sc-llJcti iaLUdP dNmMOR"
         >
-          <p
-            className="sc-dmRaPn sc-cxabCf gUjgon fjcTXg"
+          <div
+            className="sc-dmRaPn sc-cxabCf iwVrGr fjcTXg"
           >
             Intro
-          </p>
+          </div>
         </div>
       </div>
     </button>
@@ -1324,11 +1324,11 @@ Array [
         <div
           className="sc-bczRLJ sc-llJcti iaLUdP dNmMOR"
         >
-          <p
-            className="sc-dmRaPn sc-cxabCf gUjgon fjcTXg"
+          <div
+            className="sc-dmRaPn sc-cxabCf iwVrGr fjcTXg"
           >
             Intro
-          </p>
+          </div>
           <span
             className="sc-gsnTZi bNXYbZ"
             height={20}
@@ -1409,11 +1409,11 @@ Array [
         <div
           className="sc-bczRLJ sc-llJcti iaLUdP dNmMOR"
         >
-          <p
-            className="sc-dmRaPn sc-cxabCf gUjgon fjcTXg"
+          <div
+            className="sc-dmRaPn sc-cxabCf iwVrGr fjcTXg"
           >
             Very long label
-          </p>
+          </div>
           <span
             className="sc-gsnTZi bNXYbZ"
             height={20}
