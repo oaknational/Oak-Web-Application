@@ -130,11 +130,11 @@ const theme: OakTheme = {
       text: "white",
     },
     primary: {
-      background: "grey9",
+      background: "black",
       text: "white",
     },
     secondary: {
-      background: "grey6",
+      background: "grey9",
       text: "white",
     },
     tertiary: {

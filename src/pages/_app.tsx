@@ -6,7 +6,6 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/GlobalStyle";
 import { AuthProvider } from "../context/Auth";
 import useApolloClient from "../browser-lib/graphql/useApolloClient";
-import { UserStyleContextProvider } from "../context/UserStyleContext";
 import { SearchProvider } from "../context/Search/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../context/Bookmarks";
@@ -23,16 +22,14 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <GlobalStyle />
         <AuthProvider>
           <ApolloProvider client={apolloClient}>
-            <UserStyleContextProvider>
-              <BookmarksProvider>
-                <SearchProvider>
-                  <ThemeProvider theme={theme}>
-                    <DefaultSeo />
-                    <Component {...pageProps} />
-                  </ThemeProvider>
-                </SearchProvider>
-              </BookmarksProvider>
-            </UserStyleContextProvider>
+            <BookmarksProvider>
+              <SearchProvider>
+                <ThemeProvider theme={theme}>
+                  <DefaultSeo />
+                  <Component {...pageProps} />
+                </ThemeProvider>
+              </SearchProvider>
+            </BookmarksProvider>
           </ApolloProvider>
         </AuthProvider>
       </ErrorBoundary>
