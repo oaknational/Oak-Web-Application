@@ -16,8 +16,8 @@ const CheckboxLabel = styled.label<{ disabled: boolean }>`
 
   input[type="checkbox"]:focus + svg {
     // TODO: add focus ring component to replace this
-    outline: 0.25rem auto -webkit-focus-ring-color;
-    outline-offset: 0.25rem;
+    outline: 4px auto -webkit-focus-ring-color;
+    outline-offset: 4px;
   }
 `;
 
@@ -26,8 +26,8 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
 }>`
   cursor: ${(props) => !props.disabled && "pointer"};
   position: absolute;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 24px;
+  height: 24px;
   opacity: 0;
 `;
 
@@ -52,8 +52,8 @@ const CheckmarkBox = styled.rect`
 `;
 
 const CheckboxLabelText = styled.span`
-  margin-left: 0.5rem;
-  margin-right: 1rem;
+  margin-left: 8px;
+  margin-right: 16px;
 `;
 
 interface CheckboxProps {
@@ -67,12 +67,16 @@ interface CheckboxProps {
 const Checkbox: FC<CheckboxProps> = (props) => {
   const { labelText, checked, disabled = false, onChange, id } = props;
 
+  const select = () => {
+    if (!disabled) onChange();
+  };
+
   return (
-    <CheckboxLabel htmlFor={id} onClick={onChange} disabled={disabled}>
+    <CheckboxLabel htmlFor={id} onClick={select} disabled={disabled}>
       <ScreenReaderCheckbox
         type="checkbox"
         id={id}
-        onChange={onChange}
+        onChange={select}
         checked={checked}
         disabled={disabled}
       />

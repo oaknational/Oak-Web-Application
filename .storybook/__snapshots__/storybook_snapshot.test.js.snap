@@ -480,14 +480,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-ksZaOG fjUqqe"
+    className="sc-ksZaOG cHIBuK"
     disabled={false}
     htmlFor="Click me"
     onClick={[Function]}
   >
     <input
       checked={true}
-      className="sc-hAZoDl nYQnE"
+      className="sc-hAZoDl iercNw"
       disabled={false}
       id="Click me"
       onChange={[Function]}
@@ -525,7 +525,7 @@ Array [
       />
     </svg>
     <span
-      className="sc-idiyUo eOUfBR"
+      className="sc-idiyUo fSWWAk"
     >
       Click me
     </span>
