@@ -1,3 +1,10 @@
+# [0.24.0](https://github.com/oaknational/Samara/compare/v0.23.0...v0.24.0) (2022-06-07)
+
+
+### Features
+
+* **component:** badge ([d6e0e1d](https://github.com/oaknational/Samara/commit/d6e0e1df879081181e6b0298e2b986e23b036665))
+
 # [0.23.0](https://github.com/oaknational/Samara/compare/v0.22.3...v0.23.0) (2022-05-31)
 
 
