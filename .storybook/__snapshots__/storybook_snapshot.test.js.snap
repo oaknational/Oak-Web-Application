@@ -482,7 +482,7 @@ Array [
   <label
     className="sc-ksZaOG fjUqqe"
     disabled={false}
-    htmlFor="oak-checkbox"
+    htmlFor="Click me"
     onClick={[Function]}
   >
     <input
@@ -492,7 +492,6 @@ Array [
       id="Click me"
       onChange={[Function]}
       type="checkbox"
-      value="Click me"
     />
     <svg
       aria-hidden="true"

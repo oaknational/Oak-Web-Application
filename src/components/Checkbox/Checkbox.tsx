@@ -9,7 +9,7 @@ const CheckboxLabel = styled.label<{ disabled: boolean }>`
   display: flex;
   align-items: center;
   font-family: ${getFontFamily("ui")};
-  color: ${(disabled) =>
+  color: ${({ disabled }) =>
     disabled
       ? getColor((theme) => theme.palette.input.disabled.text)
       : getColor((theme) => theme.palette.input.default.text)};
@@ -56,18 +56,13 @@ const Checkbox: FC<CheckboxProps> = (props) => {
   const { labelText, checked, disabled = false, onChange, id } = props;
 
   return (
-    <CheckboxLabel
-      htmlFor="oak-checkbox"
-      onClick={onChange}
-      disabled={disabled}
-    >
+    <CheckboxLabel htmlFor={id} onClick={onChange} disabled={disabled}>
       <ScreenReaderCheckbox
         type="checkbox"
         id={id}
         onChange={onChange}
         checked={checked}
         disabled={disabled}
-        value={id}
       />
       <VisualCheckbox
         width="24"
