@@ -72,7 +72,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
   };
 
   return (
-    <CheckboxLabel htmlFor={id} onClick={select} disabled={disabled}>
+    <CheckboxLabel htmlFor={id} onClick={() => select} disabled={disabled}>
       <ScreenReaderCheckbox
         type="checkbox"
         id={id}
