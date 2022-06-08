@@ -9,7 +9,7 @@ describe("typography", () => {
       ${heading}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" size={5} />
+      <StyledComponent data-testid="test" size={56} />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
@@ -19,7 +19,7 @@ describe("typography", () => {
       ${text}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" size={1} />
+      <StyledComponent data-testid="test" size={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-family: ABeeZee,sans-serif");

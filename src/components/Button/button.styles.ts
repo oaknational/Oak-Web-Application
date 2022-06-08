@@ -35,7 +35,6 @@ export const getButtonStylesProps = (
   return { size, iconPosition, variant };
 };
 const buttonStyles = css<ButtonStylesProps>`
-  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;

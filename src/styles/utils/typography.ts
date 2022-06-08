@@ -12,37 +12,43 @@ import responsive, { ResponsiveValues } from "./responsive";
  */
 
 const reset = css`
-  all: initial;
+  /* all: initial; */
 `;
 const headingSizes = {
-  1: "56px",
-  2: "48px",
-  3: "40px",
-  4: "32px",
-  5: "24px",
-  6: "20px",
-  7: "16px",
+  56: "56px",
+  48: "48px",
+  40: "40px",
+  32: "32px",
+  24: "24px",
+  20: "20px",
+  16: "16px",
 };
 export type HeadingSize = keyof typeof headingSizes;
 export const heading = css<{ size: HeadingSize }>`
-  ${reset}
   font-weight: 600;
   font-family: Lexend, sans-serif;
   line-height: 1.2;
   font-size: ${(props) => headingSizes[props.size]};
 `;
 const textSizes = {
-  1: "18px",
-  2: "16px",
-  3: "14px",
-  4: "12px",
+  18: "18px",
+  16: "16px",
+  14: "14px",
+  12: "12px",
 };
 export type TextSize = keyof typeof textSizes;
-export const text = css<{ size?: TextSize }>`
-  ${reset}
+export const text = css<{ size?: TextSize; lineClamp?: number }>`
   font-family: ABeeZee, sans-serif;
   line-height: 1.4;
-  font-size: ${({ size = 1 }) => textSizes[size]};
+  font-size: ${({ size = 18 }) => textSizes[size]};
+  ${({ lineClamp }) =>
+    typeof lineClamp === "number" &&
+    css`
+      display: -webkit-box;
+      -webkit-line-clamp: ${lineClamp};
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    `}
 `;
 
 type FontSize = string | number;
@@ -63,6 +69,7 @@ export type TypographyProps = {
 } & BackgroundProps &
   ColorProps;
 const typography = css<TypographyProps>`
+  ${reset}
   font-family: ${(props) => getFontFamily(props.fontFamily)};
   font-weight: ${(props) => props.fontWeight};
   line-height: ${(props) => props.lineHeight};

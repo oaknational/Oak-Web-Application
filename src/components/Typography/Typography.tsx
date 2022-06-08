@@ -11,39 +11,43 @@ import typography, {
   TypographyProps,
 } from "../../styles/utils/typography";
 
-export const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
-
-export type HeadingTag = typeof HEADING_TAGS[number];
-
-const RawHeading = styled.span`
-  ${heading}
-`;
-
-type HeadingProps = {
-  tag: HeadingTag;
-  size: HeadingSize;
-};
-
-export const Heading: FC<HeadingProps> = (props) => {
-  const { tag, ...htmlAttrs } = props;
-  return <RawHeading as={tag} {...htmlAttrs} />;
-};
-
-type TextProps = {
-  size?: TextSize;
-};
-export const Text = styled.p<TextProps>`
-  ${text}
-`;
-
 type BaseTextProps = MarginProps & TypographyProps & DisplayProps;
 const baseTextStyles = css<BaseTextProps>`
+  ${typography}
   font-family: inherit;
   font-weight: inherit;
   margin: 0;
   ${margin}
-  ${typography}
   ${display}
+`;
+
+export const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+
+export type HeadingTag = typeof HEADING_TAGS[number];
+
+type HeadingTagProps = {
+  tag: HeadingTag;
+};
+const HeadingTag: FC<HeadingTagProps> = (props) => {
+  const { tag, ...otherProps } = props;
+  const Tag = tag;
+  return <Tag {...otherProps} />;
+};
+
+type HeadingProps = BaseTextProps & HeadingTagProps & { size: HeadingSize };
+
+export const Heading = styled(HeadingTag)<HeadingProps>`
+  ${baseTextStyles}
+  ${heading}
+`;
+
+type TextProps = BaseTextProps & {
+  size?: TextSize;
+  lineClamp?: number;
+};
+export const Text = styled.p<TextProps>`
+  ${baseTextStyles}
+  ${text}
 `;
 
 type SpanProps = BaseTextProps;
