@@ -6,7 +6,7 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 import Checkbox from "./Checkbox";
 
 describe("Checkbox", () => {
-  it("renders an checkbox", () => {
+  it("renders a checkbox", () => {
     renderWithProviders(
       <Checkbox
         id="unique-123"
@@ -76,7 +76,81 @@ describe("Checkbox", () => {
     expect(input).toBeChecked();
   });
 
-  it("has a label", async () => {
+  it("it can't be changed if disabled", async () => {
+    let value = false;
+
+    const toggleValue = () => {
+      value = !value;
+    };
+
+    const { rerender } = render(
+      <Checkbox
+        id="unique-123"
+        labelText="Agree to terms"
+        checked={value}
+        onChange={() => toggleValue()}
+        disabled
+      />
+    );
+
+    const user = userEvent.setup();
+
+    const input = screen.getByRole("checkbox");
+    expect(input).not.toBeChecked();
+
+    await user.tab();
+    await user.keyboard(" ");
+
+    rerender(
+      <Checkbox
+        id="unique-123"
+        labelText="Agree to terms"
+        checked={value}
+        onChange={() => toggleValue()}
+        disabled
+      />
+    );
+
+    expect(input).not.toBeChecked();
+  });
+
+  it("changes on keyboard input", async () => {
+    let value = false;
+
+    const toggleValue = () => {
+      value = !value;
+    };
+
+    const { rerender } = render(
+      <Checkbox
+        id="unique-123"
+        labelText="Agree to terms"
+        checked={value}
+        onChange={() => toggleValue()}
+      />
+    );
+
+    const user = userEvent.setup();
+
+    const input = screen.getByRole("checkbox");
+    expect(input).not.toBeChecked();
+
+    await user.tab();
+    await user.keyboard(" ");
+
+    rerender(
+      <Checkbox
+        id="unique-123"
+        labelText="Agree to terms"
+        checked={value}
+        onChange={() => toggleValue()}
+      />
+    );
+
+    expect(input).toBeChecked();
+  });
+
+  it("has a label associated with it", () => {
     render(
       <Checkbox
         id="unique-123"
