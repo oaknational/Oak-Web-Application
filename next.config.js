@@ -42,7 +42,9 @@ module.exports = async (phase) => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
-  const secrets = await fetchSecrets(oakConfig);
+  const secrets = process.env.USE_ONLY_LOCAL_SECRETS
+    ? {}
+    : await fetchSecrets(oakConfig);
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
