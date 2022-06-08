@@ -45,7 +45,7 @@ const Root = styled(Flex)`
   height: ${(props) => props.theme.badge.size};
 `;
 
-type BadgeProps = {
+export type BadgeProps = {
   icon?: IconName;
   text?: string;
 };

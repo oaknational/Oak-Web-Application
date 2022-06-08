@@ -13,6 +13,7 @@ import responsive, { ResponsiveValues } from "./responsive";
 
 const reset = css`
   all: initial;
+  cursor: inherit;
 `;
 const headingSizes = {
   1: "56px",
@@ -26,6 +27,7 @@ const headingSizes = {
 export type HeadingSize = keyof typeof headingSizes;
 export const heading = css<{ size: HeadingSize }>`
   ${reset}
+  color: inherit;
   font-weight: 600;
   font-family: Lexend, sans-serif;
   line-height: 1.2;
@@ -40,6 +42,7 @@ const textSizes = {
 export type TextSize = keyof typeof textSizes;
 export const text = css<{ size?: TextSize }>`
   ${reset}
+  color: inherit;
   font-family: ABeeZee, sans-serif;
   line-height: 1.4;
   font-size: ${({ size = 1 }) => textSizes[size]};
