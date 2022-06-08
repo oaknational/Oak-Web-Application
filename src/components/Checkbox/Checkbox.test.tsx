@@ -40,7 +40,7 @@ describe("Checkbox", () => {
     expect(label).toBeInTheDocument();
   });
 
-  it("it changes on click on label", async () => {
+  it("changes on click on label", async () => {
     let value = false;
 
     const toggleValue = () => {
@@ -74,5 +74,22 @@ describe("Checkbox", () => {
     );
 
     expect(input).toBeChecked();
+  });
+
+  it("has a label", async () => {
+    render(
+      <Checkbox
+        id="unique-123"
+        checked
+        labelText="Agree to terms"
+        onChange={() => {
+          console.log("on change");
+        }}
+      />
+    );
+
+    const checkboxElement = screen.getByLabelText("Agree to terms");
+    expect(checkboxElement.tagName).toEqual("INPUT");
+    expect(checkboxElement.getAttribute("type")).toEqual("checkbox");
   });
 });
