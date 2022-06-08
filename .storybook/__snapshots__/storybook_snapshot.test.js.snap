@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-kLLXSd fJUXcW"
+    className="sc-cCsOjp kDLuLM"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -405,6 +405,274 @@ Array [
 ]
 `;
 
+exports[`Storyshots Cards Card Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-kgflAQ gCPGAF"
+    >
+      <div
+        className="sc-fnykZs elYjOT"
+      >
+        <div
+          className="sc-dIouRR lbBslZ"
+        >
+          <div
+            className="sc-hHLeRK cMHzLN"
+          >
+            <span
+              className="sc-gsnTZi hKqnPH"
+              height={35}
+              width={35}
+            >
+              <span
+                className="sc-dkzDqf iNcIlc"
+                height={35}
+                width={35}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                  />
+                  <polyline
+                    points="7 10 12 15 17 10"
+                  />
+                  <line
+                    x1="12"
+                    x2="12"
+                    y1="15"
+                    y2="3"
+                  />
+                </svg>
+              </span>
+            </span>
+          </div>
+          <h4
+            className="sc-fEOsli eDGSZp"
+            color="grey10"
+            size={4}
+          >
+            Title
+          </h4>
+        </div>
+        <p
+          className="sc-bjUoiL jlXwZB"
+          color="grey6"
+          size={2}
+        >
+          Short snappy description of what this card is about.
+        </p>
+        <a
+          aria-label="Label"
+          className="sc-breuTD dbOPQx sc-fLlhyt jenEUZ"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Label"
+        >
+          <span
+            className="sc-crXcEl bgnSAh"
+          >
+            Label
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards Card Image Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-kgflAQ gCPGAF"
+    >
+      <div
+        className="sc-dmRaPn bbvlot"
+      >
+        <span
+          style={
+            Object {
+              "background": "none",
+              "border": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "height": "initial",
+              "margin": 0,
+              "opacity": 1,
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "relative",
+              "width": "initial",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": "initial",
+                "margin": 0,
+                "opacity": 1,
+                "padding": 0,
+                "paddingTop": "60%",
+                "width": "initial",
+              }
+            }
+          />
+          <img
+            data-nimg="responsive"
+            decoding="async"
+            onError={[Function]}
+            onLoad={[Function]}
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style={
+              Object {
+                "border": "none",
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": 0,
+                "left": 0,
+                "margin": "auto",
+                "maxHeight": "100%",
+                "maxWidth": "100%",
+                "minHeight": "100%",
+                "minWidth": "100%",
+                "objectFit": "cover",
+                "objectPosition": undefined,
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": 0,
+              }
+            }
+          />
+          <noscript>
+            <img
+              data-nimg="responsive"
+              decoding="async"
+              loading="lazy"
+              sizes="100vw"
+              src="/_next/image?url=%2F%5Bobject%20Object%5D&w=3840&q=75"
+              srcSet="/_next/image?url=%2F%5Bobject%20Object%5D&w=640&q=75 640w, /_next/image?url=%2F%5Bobject%20Object%5D&w=750&q=75 750w, /_next/image?url=%2F%5Bobject%20Object%5D&w=828&q=75 828w, /_next/image?url=%2F%5Bobject%20Object%5D&w=1080&q=75 1080w, /_next/image?url=%2F%5Bobject%20Object%5D&w=1200&q=75 1200w, /_next/image?url=%2F%5Bobject%20Object%5D&w=1920&q=75 1920w, /_next/image?url=%2F%5Bobject%20Object%5D&w=2048&q=75 2048w, /_next/image?url=%2F%5Bobject%20Object%5D&w=3840&q=75 3840w"
+              style={
+                Object {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": "cover",
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+          </noscript>
+        </span>
+      </div>
+      <div
+        className="sc-fnykZs elYjOT"
+      >
+        <div
+          className="sc-dIouRR lbBslZ"
+        >
+          
+          <h4
+            className="sc-fEOsli eDGSZp"
+            color="grey10"
+            size={4}
+          >
+            Title
+          </h4>
+        </div>
+        <p
+          className="sc-bjUoiL jlXwZB"
+          color="grey6"
+          size={2}
+        >
+          Short snappy description of what this card is about.
+        </p>
+        <a
+          aria-label="Label"
+          className="sc-breuTD dbOPQx sc-fLlhyt jenEUZ"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Label"
+        >
+          <span
+            className="sc-crXcEl bgnSAh"
+          >
+            Label
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`Storyshots Cards/Card Card 1`] = `
 Array [
   <link
@@ -416,7 +684,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-fnykZs iDaQWk"
+    className="sc-fnykZs zkiXu"
   >
     <h2>
       Card title
@@ -537,10 +805,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-ivTmOn hhsiaB"
+    className="sc-ezWOiH fQBvZU"
   >
     <span
-      className="sc-bBrHrO kThuDh"
+      className="sc-gicCDI fIooWp"
     >
       Loading
     </span>
@@ -559,7 +827,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-fEOsli sc-bjUoiL cXHYUN bgzdYj"
+    className="sc-bBrHrO sc-ivTmOn djAESs dzdGKH"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -581,7 +849,7 @@ Array [
     className="sc-bczRLJ hNVxkk"
   >
     <input
-      className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
+      className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -604,13 +872,13 @@ Array [
     className="sc-bczRLJ hNVxkk"
   >
     <input
-      className="sc-fEOsli sc-dIouRR cXHYUN jhtKsy"
+      className="sc-bBrHrO sc-llJcti djAESs kYdnV"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-gsnTZi bzKDcl sc-idiyUo eAQYSl"
+      className="sc-gsnTZi bzKDcl sc-cxabCf hsKsjn"
       height={20}
       width={40}
     >
@@ -666,7 +934,7 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-hHLeRK hNzYgl"
+    className="sc-fEOsli bAWlsM"
   >
     Heading
   </span>,
@@ -684,7 +952,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-dmRaPn fRxIjG"
+    className="sc-bjUoiL PfYXn"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
   </p>,
@@ -702,17 +970,17 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-fLlhyt kWMohG"
+    className="sc-iIPllB kBSKpX"
   >
     <div
       className="sc-bczRLJ cRuYNc"
     >
       <h1
-        className="sc-hHLeRK gEXTQY"
+        className="sc-fEOsli hKfEeh"
         size={4}
       >
         <span
-          className="sc-kgflAQ YmZVc"
+          className="sc-idiyUo egfftd"
           display="block"
           fontSize={24}
         >
@@ -912,7 +1180,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-llJcti hqaoxH"
+      className="sc-kLLXSd hRvhuD"
     >
       © Oak National Academy 
       2022
@@ -933,13 +1201,13 @@ Array [
   />,
   <div>
     <header
-      className="sc-iIPllB eElEnU"
+      className="sc-ikZpkk dgjJbK"
     >
       <div
         className="sc-bczRLJ kRDXqG"
       >
         <a
-          className="sc-gicCDI fpCrjO"
+          className="sc-jIZahH dXpCVl"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -968,7 +1236,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-kgflAQ tZCRa"
+            className="sc-idiyUo jlpfRb"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -978,7 +1246,7 @@ Array [
         </a>
       </div>
       <form
-        className="sc-cxabCf ceHISY"
+        className="sc-bZkfAO fBuGaK"
         onSubmit={[Function]}
       >
         <div
@@ -986,7 +1254,7 @@ Array [
         >
           <input
             aria-label="Search"
-            className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
+            className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
             onChange={[Function]}
             placeholder="Search"
             type="search"
@@ -1033,10 +1301,10 @@ Array [
         </button>
       </form>
       <div
-        className="sc-bZkfAO ScHcO"
+        className="sc-gXmSlM hoXXKB"
       >
         <button
-          className="sc-gKXOVf sc-ezWOiH gwbEEZ cnoIZr"
+          className="sc-gKXOVf sc-himrzO gwbEEZ bnFpyq"
           onClick={[Function]}
         >
           pupils
@@ -1065,7 +1333,7 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-cxabCf ceHISY"
+    className="sc-bZkfAO fBuGaK"
     onSubmit={[Function]}
   >
     <div
@@ -1073,7 +1341,7 @@ Array [
     >
       <input
         aria-label="Search"
-        className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
+        className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
         onChange={[Function]}
         placeholder="Search"
         type="search"

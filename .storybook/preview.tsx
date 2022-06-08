@@ -1,10 +1,20 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import * as NextImage from "next/image";
 
 import theme from "../src/styles/theme";
 import useTheme from "../src/hooks/useTheme";
 import { UserStyleContextProvider } from "../src/context/UserStyleContext";
 import GlobalStyle from "../src/styles/GlobalStyle";
+
+const OriginalNextImage = NextImage.default;
+
+Object.defineProperty(NextImage, "default", {
+  configurable: true,
+  value: (props) => {
+    return <img {...props} />;
+  },
+});
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

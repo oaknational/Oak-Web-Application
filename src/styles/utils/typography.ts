@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { CSSProperties } from "react";
 
 import { OakFontName } from "../theme";
 import getFontFamily from "../themeHelpers/getFontFamily";
@@ -38,8 +39,13 @@ const textSizes = {
   4: "12px",
 };
 export type TextSize = keyof typeof textSizes;
-export const text = css<{ size?: TextSize }>`
+export type TextStyleProps = {
+  size?: TextSize;
+  textAlign?: CSSProperties["textAlign"];
+};
+export const text = css<TextStyleProps>`
   ${reset}
+  ${responsive("text-align", (props) => props.textAlign)}
   font-family: ABeeZee, sans-serif;
   line-height: 1.4;
   font-size: ${({ size = 1 }) => textSizes[size]};
