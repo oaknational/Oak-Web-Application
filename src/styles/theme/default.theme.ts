@@ -151,6 +151,31 @@ const theme: OakTheme = {
     circleColor: "grey8",
     textColor: "white",
   },
+  lessonControl: {
+    default: {
+      background: "white",
+      border: "2px solid",
+      borderColor: "transparent",
+    },
+    current: {
+      background: "grey3",
+      border: "2px dashed",
+      borderColor: "grey9",
+    },
+    complete: {
+      background: "grey7",
+      border: "2px solid",
+      borderColor: "transparent",
+    },
+  },
+  checkbox: {
+    default: {
+      color: "black",
+    },
+    disabled: {
+      color: "grey4",
+    },
+  },
 };
 
 export default theme;

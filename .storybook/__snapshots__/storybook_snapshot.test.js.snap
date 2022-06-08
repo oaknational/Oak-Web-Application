@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-kLLXSd fJUXcW"
+    className="sc-cTQhss dExcJg"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -537,10 +537,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-ivTmOn hhsiaB"
+    className="sc-cCsOjp dsdyVo"
   >
     <span
-      className="sc-bBrHrO kThuDh"
+      className="sc-gXmSlM bhydmS"
     >
       Loading
     </span>
@@ -559,11 +559,75 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-fEOsli sc-bjUoiL cXHYUN bgzdYj"
+    className="sc-kgflAQ sc-fLlhyt gKZkSJ cuJATX"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
   />,
+]
+`;
+
+exports[`Storyshots Form/Checkbox Checkbox 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <label
+    className="sc-fEOsli eDrRya"
+    disabled={false}
+    htmlFor="Click me"
+    onClick={[Function]}
+  >
+    <input
+      checked={true}
+      className="sc-bjUoiL dXCUGH"
+      disabled={false}
+      id="Click me"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <svg
+      aria-hidden="true"
+      className="sc-idiyUo"
+      fill="none"
+      focusable="false"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <rect
+        fill="transparent"
+        height="23"
+        rx="3.5"
+        width="23"
+        x="0.5"
+        y="0.5"
+      />
+      <path
+        checked={true}
+        className="sc-dIouRR elfZFQ"
+        d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
+      />
+      <rect
+        className="sc-hHLeRK fmzPwB"
+        height="23"
+        rx="3.5"
+        width="23"
+        x="0.5"
+        y="0.5"
+      />
+    </svg>
+    <span
+      className="sc-dmRaPn eKHkYj"
+    >
+      Click me
+    </span>
+  </label>,
 ]
 `;
 
@@ -581,7 +645,7 @@ Array [
     className="sc-bczRLJ dgYqBg"
   >
     <input
-      className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
+      className="sc-kgflAQ sc-ivTmOn gKZkSJ dAaVLJ"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -604,13 +668,13 @@ Array [
     className="sc-bczRLJ dgYqBg"
   >
     <input
-      className="sc-fEOsli sc-dIouRR cXHYUN jhtKsy"
+      className="sc-kgflAQ sc-ivTmOn gKZkSJ bsjeW"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-gsnTZi bzKDcl sc-idiyUo eAQYSl"
+      className="sc-gsnTZi bzKDcl sc-bBrHrO hBhxXx"
       height={20}
       width={40}
     >
@@ -666,7 +730,7 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-hHLeRK hNzYgl"
+    className="sc-cxabCf gEdMzL"
   >
     Heading
   </span>,
@@ -683,11 +747,11 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <p
-    className="sc-dmRaPn fRxIjG"
+  <div
+    className="sc-llJcti miqzw"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
-  </p>,
+  </div>,
 ]
 `;
 
@@ -702,17 +766,17 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-fLlhyt kWMohG"
+    className="sc-himrzO kENhba"
   >
     <div
       className="sc-bczRLJ cRuYNc"
     >
       <h1
-        className="sc-hHLeRK gEXTQY"
+        className="sc-cxabCf igMRnC"
         size={4}
       >
         <span
-          className="sc-kgflAQ aJguU"
+          className="sc-iIPllB bCaCuk"
           display="block"
           fontSize={24}
         >
@@ -912,7 +976,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-llJcti hqaoxH"
+      className="sc-jdAMXn flvFdb"
     >
       © Oak National Academy 
       2022
@@ -933,13 +997,13 @@ Array [
   />,
   <div>
     <header
-      className="sc-iIPllB fMTdro"
+      className="sc-bZnhIo juribK"
     >
       <div
         className="sc-bczRLJ dWPLlK"
       >
         <a
-          className="sc-gicCDI ctaIni"
+          className="sc-iTONeN eCHOBC"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -968,7 +1032,7 @@ Array [
             </span>
           </span>
           <span
-            className="sc-kgflAQ dkFlGm"
+            className="sc-iIPllB fQnaOy"
             fontFamily="heading"
             fontSize={20}
             fontWeight={600}
@@ -978,7 +1042,7 @@ Array [
         </a>
       </div>
       <form
-        className="sc-cxabCf bpkdfo"
+        className="sc-ciZhAO obRAr"
         onSubmit={[Function]}
       >
         <div
@@ -986,7 +1050,7 @@ Array [
         >
           <input
             aria-label="Search"
-            className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
+            className="sc-kgflAQ sc-ivTmOn gKZkSJ dAaVLJ"
             onChange={[Function]}
             placeholder="Search"
             type="search"
@@ -1033,7 +1097,7 @@ Array [
         </button>
       </form>
       <div
-        className="sc-bZkfAO ScHcO"
+        className="sc-efBctP lhjQkv"
       >
         <a
           href="/sign-in"
@@ -1059,7 +1123,7 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-cxabCf bpkdfo"
+    className="sc-ciZhAO obRAr"
     onSubmit={[Function]}
   >
     <div
@@ -1067,7 +1131,7 @@ Array [
     >
       <input
         aria-label="Search"
-        className="sc-fEOsli sc-dIouRR cXHYUN jNJdbJ"
+        className="sc-kgflAQ sc-ivTmOn gKZkSJ dAaVLJ"
         onChange={[Function]}
         placeholder="Search"
         type="search"
@@ -1113,6 +1177,329 @@ Array [
       </div>
     </button>
   </form>,
+]
+`;
+
+exports[`Storyshots Interactive/Lesson Control Complete 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-jIZahH lghvBR"
+  >
+    <button
+      className="sc-gKXOVf sc-gicCDI gwbEEZ eYCUTh"
+      title="Intro"
+    >
+      <div
+        className="sc-bczRLJ sc-ezWOiH eRzTYf wVoNW"
+      >
+        <div
+          className="sc-bczRLJ sc-ikZpkk gaiNVj hxKtvd"
+        >
+          <div
+            className="sc-llJcti sc-kLLXSd fVRrRL kbuxWJ"
+          >
+            Intro
+          </div>
+          <span
+            className="sc-gsnTZi fBonKN"
+            height={20}
+            width={20}
+          >
+            <span
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 20 15"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.082 14.219a.934.934 0 0 0 1.3 0L18.72 3.883a.934.934 0 0 0 0-1.301l-1.266-1.266a.891.891 0 0 0-1.265 0L7.75 9.754 3.777 5.816a.891.891 0 0 0-1.265 0L1.246 7.082a.934.934 0 0 0 0 1.3l5.836 5.837Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
+      </div>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Lesson Control Current 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-jIZahH lghvBR"
+  >
+    <button
+      className="sc-gKXOVf sc-gicCDI gwbEEZ eYCUTh"
+      title="Intro"
+    >
+      <div
+        className="sc-bczRLJ sc-ezWOiH ctlayE hsjuEq"
+      >
+        <div
+          className="sc-bczRLJ sc-ikZpkk gaiNVj hxKtvd"
+        >
+          <span
+            className="sc-gsnTZi jancJa"
+            height={20}
+            width={20}
+          >
+            <span
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 16 16"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+          <div
+            className="sc-llJcti sc-kLLXSd fVRrRL kbuxWJ"
+          >
+            Intro
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Lesson Control Default 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-jIZahH lghvBR"
+  >
+    <button
+      className="sc-gKXOVf sc-gicCDI gwbEEZ eYCUTh"
+      title="Intro"
+    >
+      <div
+        className="sc-bczRLJ sc-ezWOiH fjxMaB wVoNW"
+      >
+        <div
+          className="sc-bczRLJ sc-ikZpkk gaiNVj hxKtvd"
+        >
+          <div
+            className="sc-llJcti sc-kLLXSd fVRrRL kbuxWJ"
+          >
+            Intro
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Lesson Control With Badge 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-jIZahH lghvBR"
+  >
+    <button
+      className="sc-gKXOVf sc-gicCDI gwbEEZ eYCUTh"
+      title="Intro"
+    >
+      <div
+        className="sc-bczRLJ sc-ezWOiH eRzTYf wVoNW"
+      >
+        <div
+          className="sc-bZkfAO"
+        >
+          <div
+            className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
+          >
+            <svg
+              className="sc-hKMtZM juannJ"
+              fill="none"
+              height="100%"
+              viewBox="0 0 54 54"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24.302.967a8 8 0 0 1 5.396 0l1.615.578a8 8 0 0 0 2.1.447l1.71.128a8 8 0 0 1 4.93 2.195l1.24 1.185c.52.497 1.105.921 1.737 1.262l1.511.813a8 8 0 0 1 3.611 4.01l.65 1.588c.273.665.634 1.29 1.074 1.859l1.05 1.357a8 8 0 0 1 1.667 5.132l-.051 1.715a8 8 0 0 0 .224 2.135l.407 1.667a8 8 0 0 1-.564 5.366l-.745 1.546a8.002 8.002 0 0 0-.663 2.042l-.306 1.688a8 8 0 0 1-2.698 4.673l-1.31 1.11a7.999 7.999 0 0 0-1.435 1.595l-.967 1.418a8 8 0 0 1-4.366 3.171l-1.647.482c-.69.201-1.35.495-1.96.873l-1.46.902a8 8 0 0 1-5.279 1.121l-1.7-.23a8.003 8.003 0 0 0-2.146 0l-1.7.23a8 8 0 0 1-5.279-1.121l-1.46-.902a8.004 8.004 0 0 0-1.96-.873l-1.647-.482a8 8 0 0 1-4.366-3.171l-.966-1.418a8.001 8.001 0 0 0-1.437-1.595l-1.309-1.11a8 8 0 0 1-2.698-4.673L2.8 35.992a8.001 8.001 0 0 0-.663-2.042l-.745-1.546a8 8 0 0 1-.564-5.366l.407-1.667a8 8 0 0 0 .224-2.135l-.051-1.715a8 8 0 0 1 1.667-5.132l1.05-1.357a8 8 0 0 0 1.073-1.86l.651-1.587a8 8 0 0 1 3.61-4.01l1.512-.813A8.001 8.001 0 0 0 12.706 5.5l1.24-1.185a8 8 0 0 1 4.93-2.195l1.711-.128a8 8 0 0 0 2.1-.447l1.615-.578Z"
+                fill="currentColor"
+              />
+            </svg>
+            <div
+              className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
+            >
+              33%
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ sc-ikZpkk gaiNVj hxKtvd"
+        >
+          <div
+            className="sc-llJcti sc-kLLXSd fVRrRL kbuxWJ"
+          >
+            Intro
+          </div>
+          <span
+            className="sc-gsnTZi fBonKN"
+            height={20}
+            width={20}
+          >
+            <span
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 20 15"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.082 14.219a.934.934 0 0 0 1.3 0L18.72 3.883a.934.934 0 0 0 0-1.301l-1.266-1.266a.891.891 0 0 0-1.265 0L7.75 9.754 3.777 5.816a.891.891 0 0 0-1.265 0L1.246 7.082a.934.934 0 0 0 0 1.3l5.836 5.837Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
+      </div>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Lesson Control With Overflowing Text 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-jIZahH lghvBR"
+  >
+    <button
+      className="sc-gKXOVf sc-gicCDI gwbEEZ eYCUTh"
+      title="Very long label"
+    >
+      <div
+        className="sc-bczRLJ sc-ezWOiH eRzTYf wVoNW"
+      >
+        <div
+          className="sc-bZkfAO"
+        >
+          <div
+            className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
+          >
+            <svg
+              className="sc-hKMtZM juannJ"
+              fill="none"
+              height="100%"
+              viewBox="0 0 54 54"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24.302.967a8 8 0 0 1 5.396 0l1.615.578a8 8 0 0 0 2.1.447l1.71.128a8 8 0 0 1 4.93 2.195l1.24 1.185c.52.497 1.105.921 1.737 1.262l1.511.813a8 8 0 0 1 3.611 4.01l.65 1.588c.273.665.634 1.29 1.074 1.859l1.05 1.357a8 8 0 0 1 1.667 5.132l-.051 1.715a8 8 0 0 0 .224 2.135l.407 1.667a8 8 0 0 1-.564 5.366l-.745 1.546a8.002 8.002 0 0 0-.663 2.042l-.306 1.688a8 8 0 0 1-2.698 4.673l-1.31 1.11a7.999 7.999 0 0 0-1.435 1.595l-.967 1.418a8 8 0 0 1-4.366 3.171l-1.647.482c-.69.201-1.35.495-1.96.873l-1.46.902a8 8 0 0 1-5.279 1.121l-1.7-.23a8.003 8.003 0 0 0-2.146 0l-1.7.23a8 8 0 0 1-5.279-1.121l-1.46-.902a8.004 8.004 0 0 0-1.96-.873l-1.647-.482a8 8 0 0 1-4.366-3.171l-.966-1.418a8.001 8.001 0 0 0-1.437-1.595l-1.309-1.11a8 8 0 0 1-2.698-4.673L2.8 35.992a8.001 8.001 0 0 0-.663-2.042l-.745-1.546a8 8 0 0 1-.564-5.366l.407-1.667a8 8 0 0 0 .224-2.135l-.051-1.715a8 8 0 0 1 1.667-5.132l1.05-1.357a8 8 0 0 0 1.073-1.86l.651-1.587a8 8 0 0 1 3.61-4.01l1.512-.813A8.001 8.001 0 0 0 12.706 5.5l1.24-1.185a8 8 0 0 1 4.93-2.195l1.711-.128a8 8 0 0 0 2.1-.447l1.615-.578Z"
+                fill="currentColor"
+              />
+            </svg>
+            <div
+              className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
+            >
+              33%
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ sc-ikZpkk gaiNVj hxKtvd"
+        >
+          <div
+            className="sc-llJcti sc-kLLXSd fVRrRL kbuxWJ"
+          >
+            Very long label
+          </div>
+          <span
+            className="sc-gsnTZi fBonKN"
+            height={20}
+            width={20}
+          >
+            <span
+              className="sc-dkzDqf cSKBNc"
+              height={20}
+              width={20}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 20 15"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.082 14.219a.934.934 0 0 0 1.3 0L18.72 3.883a.934.934 0 0 0 0-1.301l-1.266-1.266a.891.891 0 0 0-1.265 0L7.75 9.754 3.777 5.816a.891.891 0 0 0-1.265 0L1.246 7.082a.934.934 0 0 0 0 1.3l5.836 5.837Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
+      </div>
+    </button>
+  </div>,
 ]
 `;
 

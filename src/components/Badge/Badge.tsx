@@ -72,7 +72,7 @@ const Root = styled(Flex)`
   height: ${badgeSize};
 `;
 
-type BadgeProps = {
+export type BadgeProps = {
   icon?: IconName;
   text?: string;
 };
