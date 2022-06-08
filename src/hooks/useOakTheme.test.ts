@@ -4,7 +4,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { LS_KEY_THEME } from "../config/localStorageKeys";
 
 import useLocalStorage from "./useLocalStorage";
-import useOakTheme, { themeNames, WindowOakThemes } from "./useOakTheme";
+import useOakTheme, { THEME_NAMES, WindowOakThemes } from "./useOakTheme";
 
 declare global {
   interface WindowEventMap {
@@ -59,7 +59,7 @@ describe("useOakTheme()", () => {
 
       await waitFor(() => {
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          `Theme name must be one of: ${themeNames.join(", ")}`
+          `Theme name must be one of: ${THEME_NAMES.join(", ")}`
         );
       });
     });

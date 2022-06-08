@@ -16,8 +16,8 @@ declare global {
   }
 }
 
-export const themeNames = ["default", "aus"] as const;
-type ThemeNames = typeof themeNames;
+export const THEME_NAMES = ["default", "aus"] as const;
+type ThemeNames = typeof THEME_NAMES;
 type ThemeName = ThemeNames[number];
 
 const themes: Record<ThemeName, OakTheme> = {
@@ -25,17 +25,21 @@ const themes: Record<ThemeName, OakTheme> = {
   aus: ausTheme,
 };
 
-const useOakTheme = () => {
+type UseOakThemeProps = {
+  // Used in storybook where theme name must be passed externally
+  overrideTheme: ThemeName;
+};
+const useOakTheme = (props?: UseOakThemeProps) => {
   const [selectedTheme] = useLocalStorage<ThemeName>(LS_KEY_THEME, "default");
 
-  const activeTheme = themes[selectedTheme];
+  const activeTheme = themes[props?.overrideTheme || selectedTheme];
 
   useEffect(() => {
     window.oakThemes = {
       setTheme: (themeName: ThemeName) => {
-        if (!themeNames.includes(themeName)) {
+        if (!THEME_NAMES.includes(themeName)) {
           return console.error(
-            `Theme name must be one of: ${themeNames.join(", ")}`
+            `Theme name must be one of: ${THEME_NAMES.join(", ")}`
           );
         }
 
@@ -43,7 +47,7 @@ const useOakTheme = () => {
         dispatchLocalStorageEvent();
         console.log(`Switched to theme: ${themeName}`);
       },
-      availableThemes: themeNames,
+      availableThemes: THEME_NAMES,
     };
   }, []);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
-import useOakTheme from "../src/hooks/useOakTheme";
+import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
 import GlobalStyle from "../src/styles/GlobalStyle";
 
 export const parameters = {
@@ -14,7 +14,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-
   options: {
     storySort: {
       method: "alphabetical",
@@ -29,8 +28,7 @@ export const parameters = {
 };
 
 const withThemeProvider = (Story, context) => {
-  // pass in context.globals.theme if useTheme() is changed to except theme name
-  const { theme } = useOakTheme();
+  const { theme } = useOakTheme({ overrideTheme: context.globals.theme });
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -55,11 +53,11 @@ export const globalTypes = {
   theme: {
     name: "Theme",
     description: "Global theme for components",
-    defaultValue: "defaultTheme",
+    defaultValue: "default",
     toolbar: {
       icon: "circlehollow",
       // Array of plain string values or MenuItem shape (see below)
-      items: ["pupil", "teacher"],
+      items: THEME_NAMES,
       // Property that specifies if the name of the item will be displayed
       showName: true,
     },
