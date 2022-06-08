@@ -26,7 +26,7 @@ const CardTitleWrap = styled.div<
 
 const IconWrapper = styled.div<Pick<CardTitleProps, "iconPosition">>`
   position: relative;
-  top: 4px;
+  top: 3px;
 `;
 
 const CardTitle: FC<CardTitleProps> = ({
@@ -39,14 +39,18 @@ const CardTitle: FC<CardTitleProps> = ({
     <CardTitleWrap iconPosition={iconPosition} textCenter={textCenter}>
       {icon && (
         <IconWrapper iconPosition={iconPosition}>
-          <Icon name={icon} size={iconPosition === "aboveTitle" ? 100 : 35} />
+          <Icon
+            name={icon}
+            size={iconPosition === "aboveTitle" ? 80 : 35}
+            mb={iconPosition === "aboveTitle" ? 24 : 0}
+          />
         </IconWrapper>
       )}
       <Heading
         ml={iconPosition === (icon && "leading") ? 8 : 0}
         mr={iconPosition === (icon && "trailing") ? 8 : 0}
         color={"grey10"}
-        size={4}
+        size={5}
         tag={"h4"}
       >
         {title}

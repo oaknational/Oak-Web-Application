@@ -418,7 +418,7 @@ Array [
   <div
     style={
       Object {
-        "width": "300px",
+        "width": "308px",
       }
     }
   >
@@ -429,20 +429,20 @@ Array [
         className="sc-fnykZs elYjOT"
       >
         <div
-          className="sc-dIouRR juTpYm"
+          className="sc-dIouRR eYEfBh"
         >
           <div
-            className="sc-hHLeRK cMHzLN"
+            className="sc-hHLeRK irsnce"
           >
             <span
-              className="sc-gsnTZi hKqnPH"
-              height={35}
-              width={35}
+              className="sc-gsnTZi ipRhjs"
+              height={80}
+              width={80}
             >
               <span
-                className="sc-dkzDqf iNcIlc"
-                height={35}
-                width={35}
+                className="sc-dkzDqf fvccVY"
+                height={80}
+                width={80}
               >
                 <svg
                   fill="none"
@@ -472,15 +472,15 @@ Array [
             </span>
           </div>
           <h4
-            className="sc-fEOsli eDGSZp"
+            className="sc-fEOsli hBDnue"
             color="grey10"
-            size={4}
+            size={5}
           >
             Title
           </h4>
         </div>
         <p
-          className="sc-bjUoiL jlXwZB"
+          className="sc-bjUoiL dRHxcK"
           color="grey6"
           size={2}
         >
@@ -488,7 +488,7 @@ Array [
         </p>
         <a
           aria-label="Label"
-          className="sc-breuTD dbOPQx sc-fLlhyt jenEUZ"
+          className="sc-breuTD iLqnln sc-fLlhyt kcKqUg"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -522,7 +522,7 @@ Array [
   <div
     style={
       Object {
-        "width": "300px",
+        "width": "308px",
       }
     }
   >
@@ -543,11 +543,10 @@ Array [
         <div
           className="sc-dIouRR juTpYm"
         >
-          
           <h4
-            className="sc-fEOsli fnxLrF"
+            className="sc-fEOsli hBDnue"
             color="grey10"
-            size={4}
+            size={5}
           >
             Title
           </h4>
@@ -561,7 +560,7 @@ Array [
         </p>
         <a
           aria-label="Label"
-          className="sc-breuTD dbOPQx sc-fLlhyt jenEUZ"
+          className="sc-breuTD iLqnln sc-fLlhyt kcKqUg"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -574,6 +573,110 @@ Array [
             className="sc-crXcEl bgnSAh"
           >
             Label
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards Card Leading Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-bBrHrO rWMaJ"
+    >
+      <div
+        className="sc-fnykZs elYjOT"
+      >
+        <div
+          className="sc-dIouRR juTpYm"
+        >
+          <div
+            className="sc-hHLeRK irsnce"
+          >
+            <span
+              className="sc-gsnTZi JqauW"
+              height={35}
+              width={35}
+            >
+              <span
+                className="sc-dkzDqf iNcIlc"
+                height={35}
+                width={35}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  />
+                  <polyline
+                    points="15 3 21 3 21 9"
+                  />
+                  <line
+                    x1="10"
+                    x2="21"
+                    y1="14"
+                    y2="3"
+                  />
+                </svg>
+              </span>
+            </span>
+          </div>
+          <h4
+            className="sc-fEOsli gRMvbO"
+            color="grey10"
+            size={5}
+          >
+            Need Some Help?
+          </h4>
+        </div>
+        <p
+          className="sc-bjUoiL jlXwZB"
+          color="grey6"
+          size={2}
+        >
+          Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
+        </p>
+        <a
+          aria-label="Visit Help Centre"
+          className="sc-breuTD iLqnln sc-fLlhyt kcKqUg"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Visit Help Centre"
+        >
+          <span
+            className="sc-crXcEl bgnSAh"
+          >
+            Visit Help Centre
           </span>
         </a>
       </div>

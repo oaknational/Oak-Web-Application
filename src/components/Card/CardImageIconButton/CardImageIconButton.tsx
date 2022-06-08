@@ -24,7 +24,7 @@ const CardContainer = styled.div`
   border: thin solid grey;
 `;
 
-const CardImageButton: FC<CardImageIconButtonProps & CardTitleProps> = ({
+const CardImageIconButton: FC<CardImageIconButtonProps & CardTitleProps> = ({
   imageUrl,
   title,
   textCenter = false,
@@ -53,10 +53,10 @@ const CardImageButton: FC<CardImageIconButtonProps & CardTitleProps> = ({
           {text}
         </Text>
 
-        <CardButton label={buttonLabel} href={buttonHref} />
+        <CardButton mb={12} label={buttonLabel} href={buttonHref} />
       </Card>
     </CardContainer>
   );
 };
 
-export default CardImageButton;
+export default CardImageIconButton;
