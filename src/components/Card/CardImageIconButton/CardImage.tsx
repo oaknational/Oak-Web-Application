@@ -1,9 +1,8 @@
-import Image, { StaticImageData } from "next/image";
 import { FC } from "react";
 import styled from "styled-components";
 
 export type CardImageProps = {
-  src: string | StaticImageData;
+  src: string;
 };
 
 const CardImageWrap = styled.div`
@@ -13,16 +12,15 @@ const CardImageWrap = styled.div`
   object-fit: cover;
 `;
 
+const StyledImage = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
 const CardImage: FC<CardImageProps> = ({ src }) => {
   return (
     <CardImageWrap>
-      <Image
-        src={src}
-        width="100%"
-        height="60%"
-        layout="responsive"
-        objectFit="cover"
-      ></Image>
+      <StyledImage src={src} />
     </CardImageWrap>
   );
 };

@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-cCsOjp kDLuLM"
+    className="sc-ciZhAO cGqDXw"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -423,13 +423,13 @@ Array [
     }
   >
     <div
-      className="sc-kgflAQ gCPGAF"
+      className="sc-bBrHrO rWMaJ"
     >
       <div
         className="sc-fnykZs elYjOT"
       >
         <div
-          className="sc-dIouRR lbBslZ"
+          className="sc-dIouRR juTpYm"
         >
           <div
             className="sc-hHLeRK cMHzLN"
@@ -527,116 +527,25 @@ Array [
     }
   >
     <div
-      className="sc-kgflAQ gCPGAF"
+      className="sc-bBrHrO rWMaJ"
     >
       <div
         className="sc-dmRaPn bbvlot"
       >
-        <span
-          style={
-            Object {
-              "background": "none",
-              "border": 0,
-              "boxSizing": "border-box",
-              "display": "block",
-              "height": "initial",
-              "margin": 0,
-              "opacity": 1,
-              "overflow": "hidden",
-              "padding": 0,
-              "position": "relative",
-              "width": "initial",
-            }
-          }
-        >
-          <span
-            style={
-              Object {
-                "background": "none",
-                "border": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": "initial",
-                "margin": 0,
-                "opacity": 1,
-                "padding": 0,
-                "paddingTop": "60%",
-                "width": "initial",
-              }
-            }
-          />
-          <img
-            data-nimg="responsive"
-            decoding="async"
-            onError={[Function]}
-            onLoad={[Function]}
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={
-              Object {
-                "border": "none",
-                "bottom": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": 0,
-                "left": 0,
-                "margin": "auto",
-                "maxHeight": "100%",
-                "maxWidth": "100%",
-                "minHeight": "100%",
-                "minWidth": "100%",
-                "objectFit": "cover",
-                "objectPosition": undefined,
-                "padding": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "width": 0,
-              }
-            }
-          />
-          <noscript>
-            <img
-              data-nimg="responsive"
-              decoding="async"
-              loading="lazy"
-              sizes="100vw"
-              src="/_next/image?url=%2F%5Bobject%20Object%5D&w=3840&q=75"
-              srcSet="/_next/image?url=%2F%5Bobject%20Object%5D&w=640&q=75 640w, /_next/image?url=%2F%5Bobject%20Object%5D&w=750&q=75 750w, /_next/image?url=%2F%5Bobject%20Object%5D&w=828&q=75 828w, /_next/image?url=%2F%5Bobject%20Object%5D&w=1080&q=75 1080w, /_next/image?url=%2F%5Bobject%20Object%5D&w=1200&q=75 1200w, /_next/image?url=%2F%5Bobject%20Object%5D&w=1920&q=75 1920w, /_next/image?url=%2F%5Bobject%20Object%5D&w=2048&q=75 2048w, /_next/image?url=%2F%5Bobject%20Object%5D&w=3840&q=75 3840w"
-              style={
-                Object {
-                  "border": "none",
-                  "bottom": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": 0,
-                  "left": 0,
-                  "margin": "auto",
-                  "maxHeight": "100%",
-                  "maxWidth": "100%",
-                  "minHeight": "100%",
-                  "minWidth": "100%",
-                  "objectFit": "cover",
-                  "objectPosition": undefined,
-                  "padding": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 0,
-                }
-              }
-            />
-          </noscript>
-        </span>
+        <img
+          className="sc-kgflAQ bcngzX"
+          src="/[object Object]"
+        />
       </div>
       <div
         className="sc-fnykZs elYjOT"
       >
         <div
-          className="sc-dIouRR lbBslZ"
+          className="sc-dIouRR juTpYm"
         >
           
           <h4
-            className="sc-fEOsli eDGSZp"
+            className="sc-fEOsli fnxLrF"
             color="grey10"
             size={4}
           >
@@ -805,10 +714,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-ezWOiH fQBvZU"
+    className="sc-bZkfAO bvuPIV"
   >
     <span
-      className="sc-gicCDI fIooWp"
+      className="sc-ezWOiH bIDeWQ"
     >
       Loading
     </span>
@@ -827,7 +736,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-bBrHrO sc-ivTmOn djAESs dzdGKH"
+    className="sc-ivTmOn sc-cxabCf hJhfYk ifnsUZ"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -849,7 +758,7 @@ Array [
     className="sc-bczRLJ hNVxkk"
   >
     <input
-      className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
+      className="sc-ivTmOn sc-iIPllB hJhfYk epDEJM"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -872,13 +781,13 @@ Array [
     className="sc-bczRLJ hNVxkk"
   >
     <input
-      className="sc-bBrHrO sc-llJcti djAESs kYdnV"
+      className="sc-ivTmOn sc-iIPllB hJhfYk fdolTr"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-gsnTZi bzKDcl sc-cxabCf hsKsjn"
+      className="sc-gsnTZi bzKDcl sc-llJcti eMniPu"
       height={20}
       width={40}
     >
@@ -970,7 +879,7 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-iIPllB kBSKpX"
+    className="sc-gicCDI iWdeLi"
   >
     <div
       className="sc-bczRLJ cRuYNc"
@@ -1180,7 +1089,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-kLLXSd hRvhuD"
+      className="sc-ikZpkk eCuSTn"
     >
       © Oak National Academy 
       2022
@@ -1201,13 +1110,13 @@ Array [
   />,
   <div>
     <header
-      className="sc-ikZpkk dgjJbK"
+      className="sc-jIZahH ejHXqi"
     >
       <div
         className="sc-bczRLJ kRDXqG"
       >
         <a
-          className="sc-jIZahH dXpCVl"
+          className="sc-himrzO kpEeOe"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -1246,7 +1155,7 @@ Array [
         </a>
       </div>
       <form
-        className="sc-bZkfAO fBuGaK"
+        className="sc-kLLXSd fEXILx"
         onSubmit={[Function]}
       >
         <div
@@ -1254,7 +1163,7 @@ Array [
         >
           <input
             aria-label="Search"
-            className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
+            className="sc-ivTmOn sc-iIPllB hJhfYk epDEJM"
             onChange={[Function]}
             placeholder="Search"
             type="search"
@@ -1301,10 +1210,10 @@ Array [
         </button>
       </form>
       <div
-        className="sc-gXmSlM hoXXKB"
+        className="sc-cCsOjp iUyyZb"
       >
         <button
-          className="sc-gKXOVf sc-himrzO gwbEEZ bnFpyq"
+          className="sc-gKXOVf sc-gXmSlM gwbEEZ fwHBQZ"
           onClick={[Function]}
         >
           pupils
@@ -1333,7 +1242,7 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-bZkfAO fBuGaK"
+    className="sc-kLLXSd fEXILx"
     onSubmit={[Function]}
   >
     <div
@@ -1341,7 +1250,7 @@ Array [
     >
       <input
         aria-label="Search"
-        className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
+        className="sc-ivTmOn sc-iIPllB hJhfYk epDEJM"
         onChange={[Function]}
         placeholder="Search"
         type="search"

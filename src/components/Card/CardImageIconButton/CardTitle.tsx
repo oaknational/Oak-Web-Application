@@ -43,8 +43,8 @@ const CardTitle: FC<CardTitleProps> = ({
         </IconWrapper>
       )}
       <Heading
-        ml={iconPosition === "leading" ? 8 : 0}
-        mr={iconPosition === "trailing" ? 8 : 0}
+        ml={iconPosition === (icon && "leading") ? 8 : 0}
+        mr={iconPosition === (icon && "trailing") ? 8 : 0}
         color={"grey10"}
         size={4}
         tag={"h4"}
