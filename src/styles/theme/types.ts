@@ -2,7 +2,7 @@ import { ThemedStyledProps, DefaultTheme } from "styled-components";
 import { z } from "zod";
 
 import { BadgeConfig } from "../../components/Badge";
-import { CheckboxConfig } from "../../components/Checkbox/Checkbox";
+import { CheckboxConfig } from "../../components/Checkbox";
 import { LessonControlConfig } from "../../components/LessonControl";
 
 /**

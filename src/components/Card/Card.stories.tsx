@@ -14,8 +14,6 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  console.log(args);
-
   return (
     <Component {...args}>
       <h2>Card title</h2>

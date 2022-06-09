@@ -160,7 +160,7 @@ const theme: OakTheme = {
     current: {
       background: "grey3",
       border: "2px dashed",
-      borderColor: "grey9",
+      borderColor: "niceAndSharp",
     },
     complete: {
       background: "grey7",
