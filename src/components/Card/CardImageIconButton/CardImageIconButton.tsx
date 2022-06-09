@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { StaticImageData } from "next/image";
 import styled from "styled-components";
 
 import { Text } from "../../Typography/Typography";
@@ -12,7 +11,6 @@ import CardButton from "./CardButton";
 export type CardImageIconButtonProps = {
   text: string;
   imageUrl?: string;
-  src?: string | StaticImageData;
   buttonHref: string;
   buttonLabel: string;
 };
@@ -36,7 +34,7 @@ const CardImageIconButton: FC<CardImageIconButtonProps & CardTitleProps> = ({
 }) => {
   return (
     <CardContainer>
-      {imageUrl && <CardImage src={imageUrl} />}
+      {imageUrl && <CardImage src={imageUrl} alt={title} />}
       <Card>
         <CardTitle
           icon={icon}

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export type CardImageProps = {
   src: string;
+  alt: string;
 };
 
 const CardImageWrap = styled.div`
@@ -17,10 +18,10 @@ const StyledImage = styled.img`
   height: auto;
 `;
 
-const CardImage: FC<CardImageProps> = ({ src }) => {
+const CardImage: FC<CardImageProps> = ({ src, alt }) => {
   return (
     <CardImageWrap>
-      <StyledImage src={src} />
+      <StyledImage src={src} alt={alt} />
     </CardImageWrap>
   );
 };
