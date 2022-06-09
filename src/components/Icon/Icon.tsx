@@ -14,6 +14,7 @@ import Search from "./Search.icon";
 import Home from "./Home.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
+import Hamburger from "./HamburgerIcon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -25,6 +26,7 @@ export const ICON_NAMES = [
   "Home",
   "Tick",
   "ArrowRight",
+  "Hamburger",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -37,6 +39,7 @@ export const icons: Record<IconName, FC> = {
   Home,
   Tick,
   ArrowRight,
+  Hamburger,
 };
 
 type SizeProps = { height: number; width: number };
