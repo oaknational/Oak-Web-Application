@@ -13,6 +13,7 @@ const Menu: FC = (props) => {
         onClick={() => {
           console.log("Open menu");
         }}
+        iconColorOverride={"transparent"}
       />
       <div>{children}</div>
     </nav>
