@@ -41,13 +41,15 @@ export const Heading = styled(HeadingTag)<HeadingProps>`
   ${heading}
 `;
 
-type TextProps = BaseTextProps & {
-  size?: TextSize;
-  lineClamp?: number;
-};
+type TextProps = MarginProps &
+  BaseTextProps & {
+    size?: TextSize;
+    lineClamp?: number;
+  };
 export const Text = styled.p<TextProps>`
   ${baseTextStyles}
   ${text}
+  ${margin}
 `;
 
 type SpanProps = BaseTextProps;

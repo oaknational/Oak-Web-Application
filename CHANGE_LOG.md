@@ -1,3 +1,28 @@
+# [0.25.0](https://github.com/oaknational/Samara/compare/v0.24.0...v0.25.0) (2022-06-08)
+
+
+### Bug Fixes
+
+* allow clicking on checkbox ([f779d60](https://github.com/oaknational/Samara/commit/f779d605959d4ea5ac889581a36bf1016e9f9120))
+* correct attributes for label and checkbox, use disabled correctly for disabled ([e822a26](https://github.com/oaknational/Samara/commit/e822a260c1798832539362f1f7e2764af1867446))
+* make checkbox changeable in storybook ([4810f98](https://github.com/oaknational/Samara/commit/4810f986c105582761ff3f67ce261d23366ef6fb))
+
+
+### Features
+
+* add css transition to visual checkbox ([9a15383](https://github.com/oaknational/Samara/commit/9a1538328bda1ab200aab0a1711edc7b345ed300))
+* add disabled flag to checkbox ([c322bd2](https://github.com/oaknational/Samara/commit/c322bd2b8f43ebbff1a02986c08624213c8491cf))
+* add focus ring to checkbox ([3152911](https://github.com/oaknational/Samara/commit/315291111305fd1240fb02009ca8d68efdf07294))
+* add high contrast mode media queries ([82344ea](https://github.com/oaknational/Samara/commit/82344ea0adcbd90f0c2385e36aca020535c25a56))
+* add initial theming to checkbox ([6e6a375](https://github.com/oaknational/Samara/commit/6e6a37522b5893fbcbc005f80e00f7337f833fad))
+* add snap shot and storybook ([1cb0628](https://github.com/oaknational/Samara/commit/1cb06288d9429c3d9cb24fd20af3569dbb8f5d4c))
+* **component:** lesson controls ([35184b4](https://github.com/oaknational/Samara/commit/35184b4caaddf5b6845bcac275f36e95e7cea314))
+* create checkbox component ([8733c3c](https://github.com/oaknational/Samara/commit/8733c3cc4edf4525fc7d13c55ef584db4a6a8986))
+* create simple unstyled html checkbox ([ea5fe4b](https://github.com/oaknational/Samara/commit/ea5fe4b3f6b5c76a71546a5d950d3a4b4fd48f44))
+* hide html input but allow it's use for screen readers, add visible svg checkbox and mark ([3e7c2b3](https://github.com/oaknational/Samara/commit/3e7c2b3dbf89b2aadd817a1dc6e0672c19ec98fe))
+* make label clickable, style label text and use checkbox component in filters ([067db24](https://github.com/oaknational/Samara/commit/067db2480fe9c6c47f520f6229037254b78acc21))
+* update checkbox css for touch accessibility, hide visual tick when not checked ([a4d1b0e](https://github.com/oaknational/Samara/commit/a4d1b0e26466a70c474a0a4f66349c3003fc0ff4))
+
 # [0.24.0](https://github.com/oaknational/Samara/compare/v0.23.0...v0.24.0) (2022-06-07)
 
 

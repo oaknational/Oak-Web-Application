@@ -38,6 +38,7 @@ const textSizes = {
 };
 export type TextSize = keyof typeof textSizes;
 export const text = css<{ size?: TextSize; lineClamp?: number }>`
+  color: inherit;
   font-family: ABeeZee, sans-serif;
   line-height: 1.4;
   font-size: ${({ size = 18 }) => textSizes[size]};
