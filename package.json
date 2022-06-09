@@ -52,8 +52,6 @@
   "dependencies": {
     "@bugsnag/js": "^7.16.2",
     "@bugsnag/plugin-react": "^7.16.2",
-    "@graphql-codegen/typescript-react-apollo": "^3.2.11",
-    "clsx": "^1.1.1",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
     "next": "^12.1.4",
@@ -78,6 +76,7 @@
     "@graphql-codegen/typescript": "^2.4.8",
     "@graphql-codegen/typescript-graphql-request": "^4.4.5",
     "@graphql-codegen/typescript-operations": "^2.3.5",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.11",
     "@next/eslint-plugin-next": "^12.1.4",
     "@percy/cli": "^1.0.6",
     "@playwright/test": "^1.20.2",
