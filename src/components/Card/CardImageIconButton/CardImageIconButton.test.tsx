@@ -28,7 +28,7 @@ describe("Card Variants", () => {
         text="Short snappy description of what this card is about."
         buttonHref="/"
         buttonLabel="Label"
-        imageUrl={"images/Image.png"}
+        imageSrc={"images/Image.png"}
       />
     );
     const image = screen.getByRole("img");

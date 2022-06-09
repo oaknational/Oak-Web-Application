@@ -21,7 +21,7 @@ const CardTitleWrap = styled.div<
     (iconPosition === "aboveTitle" && "column")};
   justify-content: ${(props) => (props.textCenter ? "center" : "start")};
   align-items: center;
-  margin-bottom: 24px;
+  padding: 24px;
 `;
 
 const IconWrapper = styled.div<Pick<CardTitleProps, "iconPosition">>`
@@ -49,7 +49,6 @@ const CardTitle: FC<CardTitleProps> = ({
       <Heading
         ml={iconPosition === (icon && "leading") ? 8 : 0}
         mr={iconPosition === (icon && "trailing") ? 8 : 0}
-        color={"grey10"}
         size={5}
         tag={"h4"}
       >

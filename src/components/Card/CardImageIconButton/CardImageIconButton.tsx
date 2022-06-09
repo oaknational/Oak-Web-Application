@@ -1,29 +1,23 @@
 import { FC } from "react";
-import styled from "styled-components";
 
 import { Text } from "../../Typography/Typography";
 import Card from "../Card";
+import { OakColorName } from "../../../styles/theme";
 
 import CardTitle, { CardTitleProps } from "./CardTitle";
-import CardImage from "./CardImage";
-import CardButton from "./CardButton";
+import CardImage, { CardImageProps } from "./CardImage";
+import CardButton, { CardButtonProps } from "./CardButton";
+
 
 export type CardImageIconButtonProps = {
   text: string;
-  imageUrl?: string;
-  buttonHref: string;
-  buttonLabel: string;
+  background?: OakColorName;
 };
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  border: thin solid grey;
-`;
-
-const CardImageIconButton: FC<CardImageIconButtonProps & CardTitleProps> = ({
-  imageUrl,
+const CardImageIconButton: FC<
+  CardImageIconButtonProps & CardTitleProps & CardButtonProps & CardImageProps
+> = ({
+  imageSrc,
   title,
   textCenter = false,
   text,
@@ -31,29 +25,29 @@ const CardImageIconButton: FC<CardImageIconButtonProps & CardTitleProps> = ({
   iconPosition = "leading",
   buttonHref,
   buttonLabel,
+  background = "grey1",
 }) => {
   return (
-    <CardContainer>
-      {imageUrl && <CardImage src={imageUrl} alt={title} />}
-      <Card>
-        <CardTitle
-          icon={icon}
-          iconPosition={iconPosition}
-          title={title}
-          textCenter={textCenter}
-        />
-        <Text
-          size={2}
-          color="grey6"
-          textAlign={textCenter ? "center" : "start"}
-          mb={24}
-        >
-          {text}
-        </Text>
+    <Card background={background} pa={0}>
+      {imageSrc && <CardImage imageSrc={imageSrc} alt={title} />}
+      <CardTitle
+        icon={icon}
+        iconPosition={iconPosition}
+        title={title}
+        textCenter={textCenter}
+      />
+      <Text
+        size={2}
+        textAlign={textCenter ? "center" : "start"}
+        mb={24}
+        ml={24}
+        mr={24}
+      >
+        {text}
+      </Text>
 
-        <CardButton mb={12} label={buttonLabel} href={buttonHref} />
-      </Card>
-    </CardContainer>
+      <CardButton buttonLabel={buttonLabel} buttonHref={buttonHref} />
+    </Card>
   );
 };
 

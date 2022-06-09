@@ -2,8 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 
 export type CardImageProps = {
-  src: string;
-  alt: string;
+  imageSrc?: string;
+  alt?: string;
 };
 
 const CardImageWrap = styled.div`
@@ -18,10 +18,10 @@ const StyledImage = styled.img`
   height: auto;
 `;
 
-const CardImage: FC<CardImageProps> = ({ src, alt }) => {
+const CardImage: FC<CardImageProps> = ({ imageSrc, alt }) => {
   return (
     <CardImageWrap>
-      <StyledImage src={src} alt={alt} />
+      <StyledImage src={imageSrc} alt={alt} />
     </CardImageWrap>
   );
 };

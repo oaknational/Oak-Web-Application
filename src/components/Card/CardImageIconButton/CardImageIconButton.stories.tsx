@@ -46,7 +46,7 @@ CardImageButton.args = {
   text: "Short snappy description of what this card is about.",
   buttonHref: "/",
   buttonLabel: "Label",
-  imageUrl: "/" + image,
+  imageSrc: "/" + image,
   textCenter: false,
 };
 
