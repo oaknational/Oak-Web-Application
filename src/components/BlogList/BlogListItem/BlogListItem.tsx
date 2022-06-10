@@ -21,6 +21,7 @@ const BlogListItemImage = styled(Flex)`
   min-width: 228px;
   border-radius: 8px;
   margin-right: 24px;
+  min-height: 120px;
 `;
 
 type BlogListItemContentType = "blog-post" | "webinar";
@@ -47,11 +48,12 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { titleTag, title, snippet, href, contentType } = props;
 
   return (
-    <Flex position="relative">
+    <Flex flexDirection={["column", "row"]} position="relative">
       <BlogListItemImage
         background="grey3"
         alignItems="center"
         justifyContent="center"
+        mb={[24, 0]}
       >
         {contentType === "webinar" && (
           <Icon name="Play" color="white" size={48} />
