@@ -1,27 +1,18 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
-import { heading, text } from "./typography";
+import position from "./position";
 
 describe("typography", () => {
-  test("heading should render correct font", async () => {
+  test("should correctly handle prop 'position' as string", async () => {
     const StyledComponent = styled.div`
-      ${heading}
+      ${position}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" size={5} />
+      <StyledComponent data-testid="test" position="absolute" />
     );
 
-    expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
+    expect(getByTestId("test")).toHaveStyle("position: absolute");
   });
-  test("body should render correct font", async () => {
-    const StyledComponent = styled.div`
-      ${text}
-    `;
-    const { getByTestId } = render(
-      <StyledComponent data-testid="test" size={1} />
-    );
 
-    expect(getByTestId("test")).toHaveStyle("font-family: ABeeZee,sans-serif");
-  });
 });

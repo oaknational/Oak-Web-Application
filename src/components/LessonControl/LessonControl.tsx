@@ -4,7 +4,7 @@ import styled, { useTheme } from "styled-components";
 import Flex from "../Flex";
 import Icon from "../Icon";
 import Badge, { BadgeProps } from "../Badge";
-import { Text } from "../Typography/Typography";
+import { Text } from "../Typography";
 import ellipsis from "../../styles/ellipsis";
 import UnstyledButton from "../UnstyledButton";
 import { OakColorName } from "../../styles/theme";

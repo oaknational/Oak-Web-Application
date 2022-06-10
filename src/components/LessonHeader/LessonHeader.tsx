@@ -7,8 +7,7 @@ import BookmarkLessonButton from "../BookmarkLessonButton";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import Flex from "../Flex";
-import { Heading } from "../Typography";
-import { Span } from "../Typography/Typography";
+import { Heading, Span } from "../Typography";
 
 const StyledLessonHeader = styled.header`
   display: flex;
@@ -31,10 +30,8 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
   return (
     <StyledLessonHeader>
       <Flex>
-        <Heading tag="h1" size={4}>
-          <Span display="block" fontSize={24} mb={8}>
-            Lesson
-          </Span>
+        <Heading tag="h1" fontSize={32} mb={8}>
+          <Span fontSize={24}>Lesson</Span>
           {title}
         </Heading>
       </Flex>
