@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { render } from "@testing-library/react";
+
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import color, { ColorProps } from "./color";
 
@@ -8,7 +9,7 @@ describe("color", () => {
     const StyledComponent = styled.div<ColorProps>`
       ${color}
     `;
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithProviders(
       <StyledComponent data-testid="test" color="calmAndWarm" />
     );
 
@@ -18,12 +19,12 @@ describe("color", () => {
     const StyledComponent = styled.div<ColorProps>`
       ${color}
     `;
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithProviders(
       // eslint-disable-next-line
       // @ts-ignore
       <StyledComponent data-testid="test" color={["black"]} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("color: #000");
+    expect(getByTestId("test")).toHaveStyle("color: rgb(0, 0, 0)");
   });
 });

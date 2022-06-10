@@ -4,7 +4,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { LS_KEY_THEME } from "../config/localStorageKeys";
 
 import useLocalStorage from "./useLocalStorage";
-import useTheme, { themeNames, WindowOakThemes } from "./useTheme";
+import useOakTheme, { THEME_NAMES, WindowOakThemes } from "./useOakTheme";
 
 declare global {
   interface WindowEventMap {
@@ -22,43 +22,35 @@ declare global {
 const setDocumentStyleProperty = jest.fn();
 document.documentElement.style.setProperty = setDocumentStyleProperty;
 
-const documentStyleSetPropertySpy = jest.spyOn(
-  document.documentElement.style,
-  "setProperty"
-);
-
 const consoleErrorSpy = jest.spyOn(console, "error");
 
-describe("useTheme()", () => {
-  afterEach(() => {
+describe("useOakTheme()", () => {
+  beforeEach(() => {
     jest.clearAllMocks();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    window.oakThemes?.setTheme(null);
   });
 
-  it("should call setProperty with default theme values", () => {
-    renderHook(() => useTheme());
+  it("should default to 'default'", () => {
+    const {
+      result: { current },
+    } = renderHook(() => useOakTheme());
 
-    expect(documentStyleSetPropertySpy).toHaveBeenNthCalledWith(
-      1,
-      "--button-border-radius",
-      "12px"
-    );
+    expect(current.name).toBe("default");
   });
 
   it("should set oakThemes property on window object", () => {
-    renderHook(() => useTheme());
+    renderHook(() => useOakTheme());
 
     expect(window).toHaveProperty("oakThemes");
   });
 
   describe("window.oakThemes", () => {
     it("should have availableThemes property which lists themes", () => {
-      renderHook(() => useTheme());
-
       expect(window.oakThemes?.availableThemes).toEqual(["default", "aus"]);
     });
     it("setTheme() should console.error if theme not valid", async () => {
-      renderHook(() => useTheme());
-      jest.clearAllMocks();
       act(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -67,15 +59,12 @@ describe("useTheme()", () => {
 
       await waitFor(() => {
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          `Theme name must be one of: ${themeNames.join(", ")}`
+          `Theme name must be one of: ${THEME_NAMES.join(", ")}`
         );
-        expect(documentStyleSetPropertySpy).not.toHaveBeenCalled();
       });
     });
     it("should console.error if local-storage manually changed to invalid theme", async () => {
-      renderHook(() => useTheme());
-      jest.clearAllMocks();
-
+      renderHook(() => useOakTheme());
       const invalidTheme = "not a theme";
       const { result } = renderHook(() =>
         useLocalStorage(LS_KEY_THEME, "default")
@@ -85,27 +74,18 @@ describe("useTheme()", () => {
         setTheme(invalidTheme);
       });
 
-      await waitFor(() => {
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
-          `No theme found for theme name: ${invalidTheme}`
-        );
-      });
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        `No theme found for theme name: ${invalidTheme}, falling back to default.`
+      );
     });
     it("setTheme() should change the theme if valid", async () => {
-      renderHook(() => useTheme());
-      jest.clearAllMocks();
+      const { result } = renderHook(() => useOakTheme());
 
       act(() => {
         window.oakThemes?.setTheme("aus");
       });
 
-      await waitFor(() => {
-        expect(documentStyleSetPropertySpy).toHaveBeenNthCalledWith(
-          9,
-          "--color-primary",
-          "darkpurple"
-        );
-      });
+      expect(result.current.name).toBe("aus");
     });
   });
 });

@@ -6,6 +6,7 @@ import {
 } from "styled-components";
 
 import truthy from "../../utils/truthy";
+import { PropsWithTheme } from "../theme";
 
 const breakpointsByName = {
   small: 600,
@@ -25,11 +26,19 @@ const responsive =
   <Props, T extends string | number | undefined>(
     attr: string,
     getValues: (props: Props) => ResponsiveValues<T | undefined>,
-    parse: (unparsed: T | undefined) => string | number | undefined = (x) => x
+    parse:
+      | ((unparsed: T | undefined) => string | number | undefined)
+      | ((
+          unparsed: T | undefined
+        ) => (props: PropsWithTheme) => string | number | undefined) = (x) => x
   ) =>
   (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
     const attrCss = (value: T | undefined) =>
-      typeof value === "undefined" ? undefined : `${attr}: ${parse(value)};`;
+      typeof value === "undefined"
+        ? undefined
+        : css`
+            ${attr}: ${parse(value)};
+          `;
     const values = getValues(props);
     if (typeof values === "undefined") {
       return undefined;

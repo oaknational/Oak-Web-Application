@@ -1,3 +1,15 @@
+# [0.26.0](https://github.com/oaknational/Samara/compare/v0.25.0...v0.26.0) (2022-06-10)
+
+
+### Bug Fixes
+
+* **themes:** fix theme switcher in storybook ([cd5f87d](https://github.com/oaknational/Samara/commit/cd5f87d00e1455439531c1e5e08d341a703c5fff))
+
+
+### Features
+
+* new theme structure and helpers ([fa51cb7](https://github.com/oaknational/Samara/commit/fa51cb7c52ffc0978fc85c0fb64c1745fa951aba))
+
 # [0.25.0](https://github.com/oaknational/Samara/compare/v0.24.0...v0.25.0) (2022-06-08)
 
 
