@@ -12,6 +12,7 @@ import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
 import flex from "../../styles/utils/flex";
 import { Span } from "../Typography/Typography";
+import Menu from "../Menu";
 
 const StyledSiteHeader = styled.header<BackgroundProps>`
   display: flex;
@@ -37,6 +38,8 @@ const HeaderButton = styled(UnstyledButton)`
 `;
 
 const HeaderButtonWrapper = styled.div`
+  align-items: center;
+  display: flex;
   margin-left: auto;
   font-weight: normal;
 `;
@@ -78,6 +81,9 @@ const SiteHeader: FC = () => {
         ) : (
           <Link href="/sign-in">Sign in</Link>
         )}
+        <Menu>
+          <span>I'm in a menu</span>
+        </Menu>
       </HeaderButtonWrapper>
     </StyledSiteHeader>
   );

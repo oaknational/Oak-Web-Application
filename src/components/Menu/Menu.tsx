@@ -3,21 +3,34 @@ import styled from "styled-components";
 
 import IconButton from "../Button/IconButton";
 
+const MenuNav = styled.nav`
+  position: static;
+  display: block;
+`;
+
 interface FlyOutMenuProps {
   visible: boolean;
 }
 
 const FlyOutMenu = styled.div<FlyOutMenuProps>`
   // TODO: replace with sliding transition etc
-  display: ${(visible) => (visible ? "flex" : "none")};
+  display: ${(props) => (props.visible ? "block" : "none")};
+  position: absolute;
+  z-index: 1;
+  background: white;
+  left: 0;
+  top: 72px;
+  width: 100vw;
 `;
 
 const Menu: FC = (props) => {
   const [expanded, setExpanded] = useState(false);
   const { children } = props;
 
+  console.log(expanded);
+
   return (
-    <nav>
+    <MenuNav>
       <IconButton
         icon={"Hamburger"}
         background-color={"transparent"}
@@ -25,9 +38,10 @@ const Menu: FC = (props) => {
         onClick={() => {
           setExpanded(!expanded);
         }}
+        ml={"24px"}
       />
       <FlyOutMenu visible={expanded}>{children}</FlyOutMenu>
-    </nav>
+    </MenuNav>
   );
 };
 

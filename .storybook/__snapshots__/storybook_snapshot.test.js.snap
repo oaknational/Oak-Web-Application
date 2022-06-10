@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-jOrMOR iUQbgJ"
+    className="sc-dPyBCJ exouLM"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -976,7 +976,7 @@ Array [
   />,
   <div>
     <footer
-      className="sc-bZnhIo kkCjkj"
+      className="sc-iTONeN eMSpnA"
     >
       © Oak National Academy 
       2022
@@ -997,13 +997,13 @@ Array [
   />,
   <div>
     <header
-      className="sc-iTONeN kitSTt"
+      className="sc-iAvgwm inLRDp"
     >
       <div
         className="sc-bczRLJ kRDXqG"
       >
         <a
-          className="sc-iAvgwm kOyvi"
+          className="sc-efBctP fBmIyj"
           href="/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -1042,7 +1042,7 @@ Array [
         </a>
       </div>
       <form
-        className="sc-jdAMXn dKmMUZ"
+        className="sc-bZnhIo KqBqx"
         onSubmit={[Function]}
       >
         <div
@@ -1097,10 +1097,10 @@ Array [
         </button>
       </form>
       <div
-        className="sc-cTQhss fVmdPX"
+        className="sc-jOrMOR fRHmVW"
       >
         <button
-          className="sc-gKXOVf sc-efBctP gwbEEZ bmpEXz"
+          className="sc-gKXOVf sc-cTQhss gwbEEZ fWPeDb"
           onClick={[Function]}
         >
           pupils
@@ -1112,6 +1112,54 @@ Array [
         >
           Sign in
         </a>
+        <nav
+          className="sc-ciZhAO dtgqcT"
+        >
+          <button
+            aria-label="menu"
+            className="sc-gKXOVf sc-ftvSup gwbEEZ eAiZVV"
+            onClick={[Function]}
+            size="small"
+            title="menu"
+          >
+            <div
+              className="sc-iBkjds ciIqKQ"
+              size="small"
+            >
+              <span
+                className="sc-gsnTZi fiKuMT"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-dkzDqf hosfuE"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    viewBox="0 0 18 17"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.625 3.65625H16.875C17.1875 3.65625 17.5 3.38281 17.5 3.03125V1.46875C17.5 1.15625 17.1875 0.84375 16.875 0.84375H0.625C0.273438 0.84375 0 1.15625 0 1.46875V3.03125C0 3.38281 0.273438 3.65625 0.625 3.65625ZM0.625 9.90625H16.875C17.1875 9.90625 17.5 9.63281 17.5 9.28125V7.71875C17.5 7.40625 17.1875 7.09375 16.875 7.09375H0.625C0.273438 7.09375 0 7.40625 0 7.71875V9.28125C0 9.63281 0.273438 9.90625 0.625 9.90625ZM0.625 16.1562H16.875C17.1875 16.1562 17.5 15.8828 17.5 15.5312V13.9688C17.5 13.6562 17.1875 13.3438 16.875 13.3438H0.625C0.273438 13.3438 0 13.6562 0 13.9688V15.5312C0 15.8828 0.273438 16.1562 0.625 16.1562Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+          <div
+            className="sc-jdAMXn hSejii"
+          >
+            <span>
+              I'm in a menu
+            </span>
+          </div>
+        </nav>
       </div>
     </header>
   </div>,
@@ -1129,7 +1177,7 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-jdAMXn dKmMUZ"
+    className="sc-bZnhIo KqBqx"
     onSubmit={[Function]}
   >
     <div
@@ -1710,10 +1758,12 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <nav>
+  <nav
+    className="sc-ciZhAO dtgqcT"
+  >
     <button
       aria-label="menu"
-      className="sc-gKXOVf sc-ftvSup gwbEEZ cpjwLO"
+      className="sc-gKXOVf sc-ftvSup gwbEEZ eAiZVV"
       onClick={[Function]}
       size="small"
       title="menu"
@@ -1749,7 +1799,7 @@ Array [
       </div>
     </button>
     <div
-      className="sc-ciZhAO kcSPWt"
+      className="sc-jdAMXn hSejii"
     >
       <p>
         I'm in a menu
