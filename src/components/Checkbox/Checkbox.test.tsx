@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
@@ -47,7 +47,7 @@ describe("Checkbox", () => {
       value = !value;
     };
 
-    const { rerender } = render(
+    const { rerender } = renderWithProviders(
       <Checkbox
         id="unique-123"
         labelText="Agree to terms"
@@ -83,7 +83,7 @@ describe("Checkbox", () => {
       value = !value;
     };
 
-    const { rerender } = render(
+    const { rerender } = renderWithProviders(
       <Checkbox
         id="unique-123"
         labelText="Agree to terms"
@@ -121,7 +121,7 @@ describe("Checkbox", () => {
       value = !value;
     };
 
-    const { rerender } = render(
+    const { rerender } = renderWithProviders(
       <Checkbox
         id="unique-123"
         labelText="Agree to terms"
@@ -151,7 +151,7 @@ describe("Checkbox", () => {
   });
 
   it("has a label associated with it", () => {
-    render(
+    renderWithProviders(
       <Checkbox
         id="unique-123"
         checked
