@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 import Flex from "../Flex";
 import Icon from "../Icon";
@@ -8,7 +8,6 @@ import Hr from "../Typography/Hr";
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
 type BlogListProps = {
-  children: ReactNode;
   title: string;
   titleTag: HeadingTag;
   items: BlogListItemProps[];
