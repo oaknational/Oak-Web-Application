@@ -2,7 +2,6 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { useUserStyleContext } from "../../context/UserStyleContext";
 import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
 import UnstyledButton from "../UnstyledButton/UnstyledButton";
@@ -43,13 +42,6 @@ const HeaderButtonWrapper = styled.div`
 
 const SiteHeader: FC = () => {
   const { user, signOut } = useAuth();
-  const userStyleContext = useUserStyleContext();
-
-  const handleClick = () => {
-    userStyleContext.user === "teachers"
-      ? userStyleContext.setUser("pupils")
-      : userStyleContext.setUser("teachers");
-  };
 
   return (
     <StyledSiteHeader background="grey3">
@@ -70,9 +62,6 @@ const SiteHeader: FC = () => {
       </Flex>
       <SearchForm />
       <HeaderButtonWrapper>
-        <HeaderButton onClick={handleClick}>
-          {userStyleContext.user}
-        </HeaderButton>
         {user ? (
           <HeaderButton onClick={signOut}>Sign out</HeaderButton>
         ) : (
