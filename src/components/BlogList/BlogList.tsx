@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react";
-import styled from "styled-components";
 
 import Flex from "../Flex";
 import Icon from "../Icon";
@@ -8,18 +7,22 @@ import Hr from "../Typography/Hr";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
-const BlogListContainer = styled.div``;
-
 type BlogListProps = {
   children: ReactNode;
   title: string;
   titleTag: HeadingTag;
   items: BlogListItemProps[];
 };
+/**
+ * Contains a title of set size and a list of BlogListItem,
+ * with dividers between them.
+ * The title tag (h1, h2, ...) is passed as a prop.
+ *
+ */
 const BlogList: FC<BlogListProps> = (props) => {
   const { title, titleTag, items } = props;
   return (
-    <BlogListContainer>
+    <Flex flexDirection="column">
       <Flex mb={24} alignItems="center">
         <Icon name="Newspaper" mr={16} size={36} />
         <Heading size={24} tag={titleTag}>
@@ -32,7 +35,7 @@ const BlogList: FC<BlogListProps> = (props) => {
           {i < items.length - 1 && <Hr />}
         </>
       ))}
-    </BlogListContainer>
+    </Flex>
   );
 };
 

@@ -1,9 +1,9 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import getColor from "../../../styles/themeHelpers/getColor";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Flex from "../../Flex";
+import Icon from "../../Icon";
 import { Text, Heading, HeadingTag } from "../../Typography";
 
 const ActionButton = styled(ButtonAsLink)`
@@ -16,19 +16,18 @@ const ActionButton = styled(ButtonAsLink)`
     left: 0;
   }
 `;
-const BlogListItemImage = styled.div`
+const BlogListItemImage = styled(Flex)`
   width: 228px;
   min-width: 228px;
   border-radius: 8px;
-  background-color: ${getColor("grey3")};
   margin-right: 24px;
 `;
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
 const buttonLabelMap: Record<BlogListItemContentType, string> = {
-  "blog-post": "Watch Now",
-  webinar: "Read More",
+  "blog-post": "Read More",
+  webinar: "Watch Now",
 };
 
 export type BlogListItemProps = {
@@ -38,12 +37,26 @@ export type BlogListItemProps = {
   href: string;
   contentType: BlogListItemContentType;
 };
+/**
+ * Contains an image, title, and text snippet.
+ * The component contains a link styled as a button, which
+ * whose click target stretches across the entire component.
+ * The title tag (h1, h2, ...) is passed as a prop.
+ */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { titleTag, title, snippet, href, contentType } = props;
 
   return (
     <Flex position="relative">
-      <BlogListItemImage />
+      <BlogListItemImage
+        background="grey3"
+        alignItems="center"
+        justifyContent="center"
+      >
+        {contentType === "webinar" && (
+          <Icon name="Play" color="white" size={48} />
+        )}
+      </BlogListItemImage>
       <Flex flexDirection="column" alignItems="flex-start">
         <Heading tag={titleTag} size={20} mb={16}>
           {title}

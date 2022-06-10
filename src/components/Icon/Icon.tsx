@@ -15,6 +15,7 @@ import Home from "./Home.icon";
 import Newspaper from "./Newspaper.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
+import Play from "./Play.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -27,6 +28,7 @@ export const ICON_NAMES = [
   "Newspaper",
   "Tick",
   "ArrowRight",
+  "Play",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -40,6 +42,7 @@ export const icons: Record<IconName, FC> = {
   Newspaper,
   Tick,
   ArrowRight,
+  Play,
 };
 
 type SizeProps = { height: number; width: number };
@@ -80,6 +83,12 @@ type IconProps = MarginProps & {
    */
   color?: OakColorName;
 };
+/**
+ * The `<Icon />` component should be the go to component wherever you seen an
+ * icon.
+ * The exception to this is if the icon is clickable, in which case you should
+ * use an `<IconButton />` component (which uses `<Icon />` internally).
+ */
 const Icon: FC<IconProps> = (props) => {
   const { name, size = 24, width, height, color, ...rootProps } = props;
   const IconComponent = icons[name];
