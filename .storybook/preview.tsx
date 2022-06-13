@@ -31,8 +31,10 @@ export const parameters = {
     },
     // defaults to "docs" view
     viewMode: "docs",
-    previewTabs: {
-      canvas: { hidden: true },
+  },
+  previewTabs: {
+    canvas: {
+      hidden: true,
     },
   },
 };

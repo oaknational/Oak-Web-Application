@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-kgUAyh jBgivH"
+    className="sc-ikZpkk hOabxi"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -32,23 +32,23 @@ Array [
     <div>
       <button
         aria-label="Add Bookmark"
-        className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
+        className="sc-kDDrLX sc-crXcEl znPMp jxrQBl"
         disabled={false}
         onClick={[Function]}
         size="small"
         title="Add Bookmark"
       >
         <div
-          className="sc-iBkjds bzkgWG"
+          className="sc-iqcoie cqWLJz"
           size="small"
         >
           <span
-            className="sc-gsnTZi fiKuMT"
+            className="sc-dkzDqf duyNNI"
             height={16}
             width={16}
           >
             <span
-              className="sc-dkzDqf hosfuE"
+              className="sc-hKMtZM iyxfMn"
               height={16}
               width={16}
             >
@@ -90,7 +90,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-breuTD eCkqPc"
+    className="sc-papXJ cJutkB"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -100,7 +100,7 @@ Array [
     title="Click me"
   >
     <span
-      className="sc-crXcEl bgnSAh"
+      className="sc-ftvSup ezdXIg"
     >
       Click me
     </span>
@@ -120,12 +120,12 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-gKXOVf sc-evZas gwbEEZ iFWCoL"
+    className="sc-kDDrLX sc-hAZoDl znPMp fPcRUm"
     size="small"
     title="Click me"
   >
     <span
-      className="sc-crXcEl bgnSAh"
+      className="sc-ftvSup ezdXIg"
     >
       Click me
     </span>
@@ -144,11 +144,11 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-hAZoDl cRuYNc dcvfdp"
+    className="sc-bczRLJ sc-gsnTZi sc-fEOsli kzKShG iVslse iaHsef"
   >
     <a
       aria-label="Download Lesson"
-      className="sc-breuTD eCkqPc"
+      className="sc-papXJ cJutkB"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -158,15 +158,15 @@ Array [
       title="Download Lesson"
     >
       <span
-        className="sc-iqcoie eXSqpr"
+        className="sc-iBkjds kyChGO"
       >
         <span
-          className="sc-gsnTZi fiKuMT"
+          className="sc-dkzDqf duyNNI"
           height={16}
           width={16}
         >
           <span
-            className="sc-dkzDqf hosfuE"
+            className="sc-hKMtZM iyxfMn"
             height={16}
             width={16}
           >
@@ -198,14 +198,14 @@ Array [
         </span>
       </span>
       <span
-        className="sc-crXcEl bgnSAh"
+        className="sc-ftvSup ezdXIg"
       >
         Download
       </span>
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-breuTD eCkqPc"
+      className="sc-papXJ cJutkB"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -215,15 +215,15 @@ Array [
       title="Share Lesson"
     >
       <span
-        className="sc-iqcoie eXSqpr"
+        className="sc-iBkjds kyChGO"
       >
         <span
-          className="sc-gsnTZi fiKuMT"
+          className="sc-dkzDqf duyNNI"
           height={16}
           width={16}
         >
           <span
-            className="sc-dkzDqf hosfuE"
+            className="sc-hKMtZM iyxfMn"
             height={16}
             width={16}
           >
@@ -270,7 +270,7 @@ Array [
         </span>
       </span>
       <span
-        className="sc-crXcEl bgnSAh"
+        className="sc-ftvSup ezdXIg"
       >
         Share
       </span>
@@ -291,7 +291,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-ksZaOG gngfVq"
+    className="sc-fnykZs YLPSu"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -300,16 +300,16 @@ Array [
     size="small"
   >
     <div
-      className="sc-iBkjds edsMWJ"
+      className="sc-iqcoie hLgcWM"
       size="small"
     >
       <span
-        className="sc-gsnTZi fiKuMT"
+        className="sc-dkzDqf duyNNI"
         height={16}
         width={16}
       >
         <span
-          className="sc-dkzDqf hosfuE"
+          className="sc-hKMtZM iyxfMn"
           height={16}
           width={16}
         >
@@ -356,21 +356,21 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-gKXOVf sc-ftvSup gwbEEZ gaJxHr"
+    className="sc-kDDrLX sc-crXcEl znPMp faFdIS"
     size="small"
     title="Click me"
   >
     <div
-      className="sc-iBkjds edsMWJ"
+      className="sc-iqcoie hLgcWM"
       size="small"
     >
       <span
-        className="sc-gsnTZi fiKuMT"
+        className="sc-dkzDqf duyNNI"
         height={16}
         width={16}
       >
         <span
-          className="sc-dkzDqf hosfuE"
+          className="sc-hKMtZM iyxfMn"
           height={16}
           width={16}
         >
@@ -405,281 +405,6 @@ Array [
 ]
 `;
 
-exports[`Storyshots Cards Card Icon Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    style={
-      Object {
-        "width": "308px",
-      }
-    }
-  >
-    <div
-      className="sc-fnykZs CMvRG"
-    >
-      <div
-        className="sc-dIouRR gJyBXA"
-      >
-        <div
-          className="sc-hHLeRK irsnce"
-        >
-          <span
-            className="sc-gsnTZi ljDAWw"
-            height={80}
-            width={80}
-          >
-            <span
-              className="sc-dkzDqf fvccVY"
-              height={80}
-              width={80}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-        <h4
-          className="sc-fEOsli bWWrMu"
-          size={5}
-        >
-          Title
-        </h4>
-      </div>
-      <p
-        className="sc-bjUoiL hkAtR"
-        size={2}
-      >
-        Short snappy description of what this card is about.
-      </p>
-      <div
-        className="sc-fLlhyt eOtWcw"
-      >
-        <a
-          aria-label="Label"
-          className="sc-breuTD eCkqPc sc-bBrHrO iJhWd"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Label"
-        >
-          <span
-            className="sc-crXcEl bgnSAh"
-          >
-            Label
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>,
-]
-`;
-
-exports[`Storyshots Cards Card Image Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    style={
-      Object {
-        "width": "308px",
-      }
-    }
-  >
-    <div
-      className="sc-fnykZs CMvRG"
-    >
-      <div
-        className="sc-dmRaPn bbvlot"
-      >
-        <img
-          alt="Title"
-          className="sc-kgflAQ bcngzX"
-          src="/[object Object]"
-        />
-      </div>
-      <div
-        className="sc-dIouRR dRgRCP"
-      >
-        <h4
-          className="sc-fEOsli bWWrMu"
-          size={5}
-        >
-          Title
-        </h4>
-      </div>
-      <p
-        className="sc-bjUoiL hUnnSS"
-        size={2}
-      >
-        Short snappy description of what this card is about.
-      </p>
-      <div
-        className="sc-fLlhyt eOtWcw"
-      >
-        <a
-          aria-label="Label"
-          className="sc-breuTD eCkqPc sc-bBrHrO iJhWd"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Label"
-        >
-          <span
-            className="sc-crXcEl bgnSAh"
-          >
-            Label
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>,
-]
-`;
-
-exports[`Storyshots Cards Card Leading Icon Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    style={
-      Object {
-        "width": "308px",
-      }
-    }
-  >
-    <div
-      className="sc-fnykZs CMvRG"
-    >
-      <div
-        className="sc-dIouRR dRgRCP"
-      >
-        <div
-          className="sc-hHLeRK irsnce"
-        >
-          <span
-            className="sc-gsnTZi dzHzrC"
-            height={35}
-            width={35}
-          >
-            <span
-              className="sc-dkzDqf iNcIlc"
-              height={35}
-              width={35}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                />
-                <polyline
-                  points="15 3 21 3 21 9"
-                />
-                <line
-                  x1="10"
-                  x2="21"
-                  y1="14"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-        <h4
-          className="sc-fEOsli deWpye"
-          size={5}
-        >
-          Need Some Help?
-        </h4>
-      </div>
-      <p
-        className="sc-bjUoiL hUnnSS"
-        size={2}
-      >
-        Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
-      </p>
-      <div
-        className="sc-fLlhyt eOtWcw"
-      >
-        <a
-          aria-label="Visit Help Centre"
-          className="sc-breuTD eCkqPc sc-bBrHrO iJhWd"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Visit Help Centre"
-        >
-          <span
-            className="sc-crXcEl bgnSAh"
-          >
-            Visit Help Centre
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>,
-]
-`;
-
 exports[`Storyshots Cards/Card Card 1`] = `
 Array [
   <link
@@ -691,7 +416,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-fnykZs gyYvqO"
+    className="sc-bjUoiL cKZDDi"
   >
     <h2>
       Card title
@@ -714,10 +439,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
+    className="sc-bczRLJ sc-gsnTZi sc-gKXOVf kzKShG dyrBQy blNMGH"
   >
     <svg
-      className="sc-hKMtZM juannJ"
+      className="sc-eCYdqJ dRtcnw"
       fill="none"
       height="100%"
       viewBox="0 0 54 54"
@@ -730,15 +455,15 @@ Array [
       />
     </svg>
     <div
-      className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
+      className="sc-bczRLJ sc-gsnTZi sc-jSMfEi kzKShG dyrBQy ffTwbC"
     >
       <span
-        className="sc-gsnTZi csDFFj"
+        className="sc-dkzDqf cegtjA"
         height={20}
         width={20}
       >
         <span
-          className="sc-dkzDqf cSKBNc"
+          className="sc-hKMtZM dffNhz"
           height={20}
           width={20}
         >
@@ -777,10 +502,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
+    className="sc-bczRLJ sc-gsnTZi sc-gKXOVf kzKShG dyrBQy blNMGH"
   >
     <svg
-      className="sc-hKMtZM juannJ"
+      className="sc-eCYdqJ dRtcnw"
       fill="none"
       height="100%"
       viewBox="0 0 54 54"
@@ -793,7 +518,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
+      className="sc-bczRLJ sc-gsnTZi sc-jSMfEi kzKShG dyrBQy ffTwbC"
     >
       80%
     </div>
@@ -812,10 +537,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-efBctP hJcbWQ"
+    className="sc-gicCDI grCliV"
   >
     <span
-      className="sc-iAvgwm kLTkSF"
+      className="sc-iIPllB hsglYM"
     >
       Loading
     </span>
@@ -834,7 +559,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-bZkfAO sc-kLLXSd jNdVCE SStLE"
+    className="sc-bBrHrO sc-ivTmOn djAESs dzdGKH"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -853,14 +578,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-ivTmOn huCQeD"
+    className="sc-idiyUo cSESiT"
     disabled={false}
     htmlFor="Click me"
     onClick={[Function]}
   >
     <input
       checked={true}
-      className="sc-cxabCf jWtrzN"
+      className="sc-dIouRR kuTKab"
       disabled={false}
       id="Click me"
       onChange={[Function]}
@@ -868,7 +593,7 @@ Array [
     />
     <svg
       aria-hidden="true"
-      className="sc-llJcti"
+      className="sc-hHLeRK"
       fill="none"
       focusable="false"
       height="24"
@@ -885,11 +610,11 @@ Array [
       />
       <path
         checked={true}
-        className="sc-iIPllB lhfcaJ"
+        className="sc-dmRaPn gpaSuf"
         d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
       />
       <rect
-        className="sc-gicCDI jIIuQO"
+        className="sc-kgflAQ jqceqL"
         height="23"
         rx="3.5"
         width="23"
@@ -898,7 +623,7 @@ Array [
       />
     </svg>
     <span
-      className="sc-ezWOiH jdPfhx"
+      className="sc-fLlhyt hNTqcU"
     >
       Click me
     </span>
@@ -917,10 +642,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ dgYqBg"
+    className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
   >
     <input
-      className="sc-bZkfAO sc-jIZahH jNdVCE eeazzK"
+      className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -940,21 +665,21 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ dgYqBg"
+    className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
   >
     <input
-      className="sc-bZkfAO sc-jIZahH jNdVCE cylHUN"
+      className="sc-bBrHrO sc-llJcti djAESs kYdnV"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-gsnTZi bzKDcl sc-ikZpkk fmrxMm"
+      className="sc-dkzDqf fgIwZC sc-cxabCf hsKsjn"
       height={20}
       width={40}
     >
       <span
-        className="sc-dkzDqf cSKBNc"
+        className="sc-hKMtZM dffNhz"
         height={20}
         width={20}
       >
@@ -976,6 +701,24 @@ Array [
 ]
 `;
 
+exports[`Storyshots Foundations/Box Box 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-bczRLJ cdYuTy"
+  >
+    Box
+  </div>,
+]
+`;
+
 exports[`Storyshots Foundations/Flex Flex 1`] = `
 Array [
   <link
@@ -987,14 +730,14 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ hgrFFZ"
+    className="sc-bczRLJ sc-gsnTZi fBxaaT dwApCD"
   >
     Flex box
   </div>,
 ]
 `;
 
-exports[`Storyshots Foundations/Heading Heading 1`] = `
+exports[`Storyshots Foundations/Line Clamp Line Clamp 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -1004,238 +747,11 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <span
-    className="sc-fEOsli hPnZEb"
+  <div
+    className="sc-jqUVSM eDimOC"
   >
-    Heading
-  </span>,
-]
-`;
-
-exports[`Storyshots Foundations/Text Text 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <p
-    className="sc-bjUoiL gFBevY"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
-  </p>,
-]
-`;
-
-exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <header
-    className="sc-iTONeN jyelMW"
-  >
-    <div
-      className="sc-bczRLJ cRuYNc"
-    >
-      <h1
-        className="sc-fEOsli cPpoeq"
-        size={4}
-      >
-        <span
-          className="sc-idiyUo hcfsYh"
-          display="block"
-          fontSize={24}
-        >
-          Lesson
-        </span>
-      </h1>
-    </div>
-    <div
-      className="sc-bczRLJ sc-hAZoDl cRuYNc dcvfdp"
-    >
-      <a
-        aria-label="Download Lesson"
-        className="sc-breuTD gxkugD"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        size="small"
-        title="Download Lesson"
-      >
-        <span
-          className="sc-iqcoie eXSqpr"
-        >
-          <span
-            className="sc-gsnTZi fiKuMT"
-            height={16}
-            width={16}
-          >
-            <span
-              className="sc-dkzDqf hosfuE"
-              height={16}
-              width={16}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                />
-                <polyline
-                  points="7 10 12 15 17 10"
-                />
-                <line
-                  x1="12"
-                  x2="12"
-                  y1="15"
-                  y2="3"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-        <span
-          className="sc-crXcEl bgnSAh"
-        >
-          Download
-        </span>
-      </a>
-      <a
-        aria-label="Share Lesson"
-        className="sc-breuTD gxkugD"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        size="small"
-        title="Share Lesson"
-      >
-        <span
-          className="sc-iqcoie eXSqpr"
-        >
-          <span
-            className="sc-gsnTZi fiKuMT"
-            height={16}
-            width={16}
-          >
-            <span
-              className="sc-dkzDqf hosfuE"
-              height={16}
-              width={16}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="18"
-                  cy="5"
-                  r="3"
-                />
-                <circle
-                  cx="6"
-                  cy="12"
-                  r="3"
-                />
-                <circle
-                  cx="18"
-                  cy="19"
-                  r="3"
-                />
-                <line
-                  x1="8.59"
-                  x2="15.42"
-                  y1="13.51"
-                  y2="17.49"
-                />
-                <line
-                  x1="15.41"
-                  x2="8.59"
-                  y1="6.51"
-                  y2="10.49"
-                />
-              </svg>
-            </span>
-          </span>
-        </span>
-        <span
-          className="sc-crXcEl bgnSAh"
-        >
-          Share
-        </span>
-      </a>
-      <button
-        aria-label="Add Bookmark"
-        className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
-        disabled={false}
-        onClick={[Function]}
-        size="small"
-        title="Add Bookmark"
-      >
-        <div
-          className="sc-iBkjds bzkgWG"
-          size="small"
-        >
-          <span
-            className="sc-gsnTZi fiKuMT"
-            height={16}
-            width={16}
-          >
-            <span
-              className="sc-dkzDqf hosfuE"
-              height={16}
-              width={16}
-            >
-              <svg
-                fill="currentColor"
-                viewBox="2 2 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </button>
-    </div>
-  </header>,
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+  </div>,
 ]
 `;
 
@@ -1251,138 +767,11 @@ Array [
   />,
   <div>
     <footer
-      className="sc-jOrMOR gWBerk"
+      className="sc-bZkfAO iitfvo"
     >
       © Oak National Academy 
       2022
     </footer>
-  </div>,
-]
-`;
-
-exports[`Storyshots Headers & Footers/SiteHeader Site Footer Example 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div>
-    <header
-      className="sc-dPyBCJ xxXLs"
-    >
-      <div
-        className="sc-bczRLJ dWPLlK"
-      >
-        <a
-          className="sc-bBXxYQ OkqXt"
-          href="/"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-        >
-          <span
-            className="sc-gsnTZi gJAzYV"
-            height={30}
-            width={30}
-          >
-            <span
-              className="sc-dkzDqf fWLDlY"
-              height={30}
-              width={30}
-            >
-              <svg
-                height="100%"
-                viewBox="0 0 48 48"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </span>
-          <span
-            className="sc-idiyUo jmdRxX"
-            fontFamily="heading"
-            fontSize={20}
-            fontWeight={600}
-          >
-            Oak
-          </span>
-        </a>
-      </div>
-      <form
-        className="sc-cTQhss boqbNv"
-        onSubmit={[Function]}
-      >
-        <div
-          className="sc-bczRLJ dgYqBg"
-        >
-          <input
-            aria-label="Search"
-            className="sc-bZkfAO sc-jIZahH jNdVCE eeazzK"
-            onChange={[Function]}
-            placeholder="Search"
-            type="search"
-            value=""
-          />
-        </div>
-        <button
-          aria-label="Submit"
-          className="sc-gKXOVf sc-ftvSup gwbEEZ kKeqcp"
-          onClick={[Function]}
-          size="small"
-          title="Submit"
-          type="submit"
-        >
-          <div
-            className="sc-iBkjds edsMWJ"
-            size="small"
-          >
-            <span
-              className="sc-gsnTZi fiKuMT"
-              height={16}
-              width={16}
-            >
-              <span
-                className="sc-dkzDqf hosfuE"
-                height={16}
-                width={16}
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  viewBox="0 0 17 17"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-        </button>
-      </form>
-      <div
-        className="sc-BeQoi gtdLAt"
-      >
-        <a
-          href="/sign-in"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-        >
-          Sign in
-        </a>
-      </div>
-    </header>
   </div>,
 ]
 `;
@@ -1398,15 +787,15 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-cTQhss boqbNv"
+    className="sc-ezWOiH ewyVnL"
     onSubmit={[Function]}
   >
     <div
-      className="sc-bczRLJ dgYqBg"
+      className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
     >
       <input
         aria-label="Search"
-        className="sc-bZkfAO sc-jIZahH jNdVCE eeazzK"
+        className="sc-bBrHrO sc-llJcti djAESs jfkWLa"
         onChange={[Function]}
         placeholder="Search"
         type="search"
@@ -1415,23 +804,23 @@ Array [
     </div>
     <button
       aria-label="Submit"
-      className="sc-gKXOVf sc-ftvSup gwbEEZ kKeqcp"
+      className="sc-kDDrLX sc-crXcEl znPMp iZAWBk"
       onClick={[Function]}
       size="small"
       title="Submit"
       type="submit"
     >
       <div
-        className="sc-iBkjds edsMWJ"
+        className="sc-iqcoie hLgcWM"
         size="small"
       >
         <span
-          className="sc-gsnTZi fiKuMT"
+          className="sc-dkzDqf duyNNI"
           height={16}
           width={16}
         >
           <span
-            className="sc-dkzDqf hosfuE"
+            className="sc-hKMtZM iyxfMn"
             height={16}
             width={16}
           >
@@ -1455,329 +844,6 @@ Array [
 ]
 `;
 
-exports[`Storyshots Interactive/Lesson Control Complete 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-bZnhIo laWcGx"
-  >
-    <button
-      className="sc-gKXOVf sc-himrzO gwbEEZ ccCgzV"
-      title="Intro"
-    >
-      <div
-        className="sc-bczRLJ sc-gXmSlM eRzTYf QShuA"
-      >
-        <div
-          className="sc-bczRLJ sc-jdAMXn gaiNVj drhfSl"
-        >
-          <p
-            className="sc-bjUoiL sc-ciZhAO iwNKan eaBxZv"
-          >
-            Intro
-          </p>
-          <span
-            className="sc-gsnTZi fBonKN"
-            height={20}
-            width={20}
-          >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                viewBox="0 0 20 15"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.082 14.219a.934.934 0 0 0 1.3 0L18.72 3.883a.934.934 0 0 0 0-1.301l-1.266-1.266a.891.891 0 0 0-1.265 0L7.75 9.754 3.777 5.816a.891.891 0 0 0-1.265 0L1.246 7.082a.934.934 0 0 0 0 1.3l5.836 5.837Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </div>
-    </button>
-  </div>,
-]
-`;
-
-exports[`Storyshots Interactive/Lesson Control Current 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-bZnhIo laWcGx"
-  >
-    <button
-      className="sc-gKXOVf sc-himrzO gwbEEZ ccCgzV"
-      title="Intro"
-    >
-      <div
-        className="sc-bczRLJ sc-gXmSlM ctlayE hZeUqy"
-      >
-        <div
-          className="sc-bczRLJ sc-jdAMXn gaiNVj drhfSl"
-        >
-          <span
-            className="sc-gsnTZi jancJa"
-            height={20}
-            width={20}
-          >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                viewBox="0 0 16 16"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </span>
-          <p
-            className="sc-bjUoiL sc-ciZhAO iwNKan eaBxZv"
-          >
-            Intro
-          </p>
-        </div>
-      </div>
-    </button>
-  </div>,
-]
-`;
-
-exports[`Storyshots Interactive/Lesson Control Default 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-bZnhIo laWcGx"
-  >
-    <button
-      className="sc-gKXOVf sc-himrzO gwbEEZ ccCgzV"
-      title="Intro"
-    >
-      <div
-        className="sc-bczRLJ sc-gXmSlM fjxMaB QShuA"
-      >
-        <div
-          className="sc-bczRLJ sc-jdAMXn gaiNVj drhfSl"
-        >
-          <p
-            className="sc-bjUoiL sc-ciZhAO iwNKan eaBxZv"
-          >
-            Intro
-          </p>
-        </div>
-      </div>
-    </button>
-  </div>,
-]
-`;
-
-exports[`Storyshots Interactive/Lesson Control With Badge 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-bZnhIo laWcGx"
-  >
-    <button
-      className="sc-gKXOVf sc-himrzO gwbEEZ ccCgzV"
-      title="Intro"
-    >
-      <div
-        className="sc-bczRLJ sc-gXmSlM eRzTYf QShuA"
-      >
-        <div
-          className="sc-cCsOjp"
-        >
-          <div
-            className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
-          >
-            <svg
-              className="sc-hKMtZM juannJ"
-              fill="none"
-              height="100%"
-              viewBox="0 0 54 54"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24.302.967a8 8 0 0 1 5.396 0l1.615.578a8 8 0 0 0 2.1.447l1.71.128a8 8 0 0 1 4.93 2.195l1.24 1.185c.52.497 1.105.921 1.737 1.262l1.511.813a8 8 0 0 1 3.611 4.01l.65 1.588c.273.665.634 1.29 1.074 1.859l1.05 1.357a8 8 0 0 1 1.667 5.132l-.051 1.715a8 8 0 0 0 .224 2.135l.407 1.667a8 8 0 0 1-.564 5.366l-.745 1.546a8.002 8.002 0 0 0-.663 2.042l-.306 1.688a8 8 0 0 1-2.698 4.673l-1.31 1.11a7.999 7.999 0 0 0-1.435 1.595l-.967 1.418a8 8 0 0 1-4.366 3.171l-1.647.482c-.69.201-1.35.495-1.96.873l-1.46.902a8 8 0 0 1-5.279 1.121l-1.7-.23a8.003 8.003 0 0 0-2.146 0l-1.7.23a8 8 0 0 1-5.279-1.121l-1.46-.902a8.004 8.004 0 0 0-1.96-.873l-1.647-.482a8 8 0 0 1-4.366-3.171l-.966-1.418a8.001 8.001 0 0 0-1.437-1.595l-1.309-1.11a8 8 0 0 1-2.698-4.673L2.8 35.992a8.001 8.001 0 0 0-.663-2.042l-.745-1.546a8 8 0 0 1-.564-5.366l.407-1.667a8 8 0 0 0 .224-2.135l-.051-1.715a8 8 0 0 1 1.667-5.132l1.05-1.357a8 8 0 0 0 1.073-1.86l.651-1.587a8 8 0 0 1 3.61-4.01l1.512-.813A8.001 8.001 0 0 0 12.706 5.5l1.24-1.185a8 8 0 0 1 4.93-2.195l1.711-.128a8 8 0 0 0 2.1-.447l1.615-.578Z"
-                fill="currentColor"
-              />
-            </svg>
-            <div
-              className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
-            >
-              33%
-            </div>
-          </div>
-        </div>
-        <div
-          className="sc-bczRLJ sc-jdAMXn gaiNVj drhfSl"
-        >
-          <p
-            className="sc-bjUoiL sc-ciZhAO iwNKan eaBxZv"
-          >
-            Intro
-          </p>
-          <span
-            className="sc-gsnTZi fBonKN"
-            height={20}
-            width={20}
-          >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                viewBox="0 0 20 15"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.082 14.219a.934.934 0 0 0 1.3 0L18.72 3.883a.934.934 0 0 0 0-1.301l-1.266-1.266a.891.891 0 0 0-1.265 0L7.75 9.754 3.777 5.816a.891.891 0 0 0-1.265 0L1.246 7.082a.934.934 0 0 0 0 1.3l5.836 5.837Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </div>
-    </button>
-  </div>,
-]
-`;
-
-exports[`Storyshots Interactive/Lesson Control With Overflowing Text 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-bZnhIo laWcGx"
-  >
-    <button
-      className="sc-gKXOVf sc-himrzO gwbEEZ ccCgzV"
-      title="Very long label"
-    >
-      <div
-        className="sc-bczRLJ sc-gXmSlM eRzTYf QShuA"
-      >
-        <div
-          className="sc-cCsOjp"
-        >
-          <div
-            className="sc-bczRLJ sc-jSMfEi eSveEQ klFDDa"
-          >
-            <svg
-              className="sc-hKMtZM juannJ"
-              fill="none"
-              height="100%"
-              viewBox="0 0 54 54"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24.302.967a8 8 0 0 1 5.396 0l1.615.578a8 8 0 0 0 2.1.447l1.71.128a8 8 0 0 1 4.93 2.195l1.24 1.185c.52.497 1.105.921 1.737 1.262l1.511.813a8 8 0 0 1 3.611 4.01l.65 1.588c.273.665.634 1.29 1.074 1.859l1.05 1.357a8 8 0 0 1 1.667 5.132l-.051 1.715a8 8 0 0 0 .224 2.135l.407 1.667a8 8 0 0 1-.564 5.366l-.745 1.546a8.002 8.002 0 0 0-.663 2.042l-.306 1.688a8 8 0 0 1-2.698 4.673l-1.31 1.11a7.999 7.999 0 0 0-1.435 1.595l-.967 1.418a8 8 0 0 1-4.366 3.171l-1.647.482c-.69.201-1.35.495-1.96.873l-1.46.902a8 8 0 0 1-5.279 1.121l-1.7-.23a8.003 8.003 0 0 0-2.146 0l-1.7.23a8 8 0 0 1-5.279-1.121l-1.46-.902a8.004 8.004 0 0 0-1.96-.873l-1.647-.482a8 8 0 0 1-4.366-3.171l-.966-1.418a8.001 8.001 0 0 0-1.437-1.595l-1.309-1.11a8 8 0 0 1-2.698-4.673L2.8 35.992a8.001 8.001 0 0 0-.663-2.042l-.745-1.546a8 8 0 0 1-.564-5.366l.407-1.667a8 8 0 0 0 .224-2.135l-.051-1.715a8 8 0 0 1 1.667-5.132l1.05-1.357a8 8 0 0 0 1.073-1.86l.651-1.587a8 8 0 0 1 3.61-4.01l1.512-.813A8.001 8.001 0 0 0 12.706 5.5l1.24-1.185a8 8 0 0 1 4.93-2.195l1.711-.128a8 8 0 0 0 2.1-.447l1.615-.578Z"
-                fill="currentColor"
-              />
-            </svg>
-            <div
-              className="sc-bczRLJ sc-eCYdqJ eSveEQ BeiNI"
-            >
-              33%
-            </div>
-          </div>
-        </div>
-        <div
-          className="sc-bczRLJ sc-jdAMXn gaiNVj drhfSl"
-        >
-          <p
-            className="sc-bjUoiL sc-ciZhAO iwNKan eaBxZv"
-          >
-            Very long label
-          </p>
-          <span
-            className="sc-gsnTZi fBonKN"
-            height={20}
-            width={20}
-          >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
-            >
-              <svg
-                fill="none"
-                height="100%"
-                viewBox="0 0 20 15"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.082 14.219a.934.934 0 0 0 1.3 0L18.72 3.883a.934.934 0 0 0 0-1.301l-1.266-1.266a.891.891 0 0 0-1.265 0L7.75 9.754 3.777 5.816a.891.891 0 0 0-1.265 0L1.246 7.082a.934.934 0 0 0 0 1.3l5.836 5.837Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </div>
-    </button>
-  </div>,
-]
-`;
-
 exports[`Storyshots Media/Icon Icon Example 1`] = `
 Array [
   <link
@@ -1790,12 +856,12 @@ Array [
   />,
   <div>
     <span
-      className="sc-gsnTZi gjGDUD"
+      className="sc-dkzDqf duOgJI"
       height={100}
       width={100}
     >
       <span
-        className="sc-dkzDqf bPkBds"
+        className="sc-hKMtZM gcvcqv"
         height={100}
         width={100}
       >
@@ -1833,13 +899,13 @@ Array [
   <div>
     <nav
       aria-label="Breadcrumb"
-      className="sc-papXJ eWiGsn"
+      className="sc-evZas jQyVyn"
     >
       <ol
-        className="sc-jqUVSM cnqRzS"
+        className="sc-breuTD bDywPs"
       >
         <li
-          className="sc-kDDrLX fpzfzO"
+          className="sc-ksZaOG lhoEWQ"
         >
           <a
             href="/"
@@ -1850,15 +916,15 @@ Array [
           </a>
         </li>
         <li
-          className="sc-kDDrLX fpzfzO"
+          className="sc-ksZaOG lhoEWQ"
         >
           <span
-            className="sc-gsnTZi csDFFj"
+            className="sc-dkzDqf cegtjA"
             height={20}
             width={20}
           >
             <span
-              className="sc-dkzDqf cSKBNc"
+              className="sc-hKMtZM dffNhz"
               height={20}
               width={20}
             >
@@ -1888,15 +954,15 @@ Array [
           </a>
         </li>
         <li
-          className="sc-kDDrLX fpzfzO"
+          className="sc-ksZaOG lhoEWQ"
         >
           <span
-            className="sc-gsnTZi csDFFj"
+            className="sc-dkzDqf cegtjA"
             height={20}
             width={20}
           >
             <span
-              className="sc-dkzDqf cSKBNc"
+              className="sc-hKMtZM dffNhz"
               height={20}
               width={20}
             >
@@ -1926,15 +992,15 @@ Array [
           </a>
         </li>
         <li
-          className="sc-kDDrLX fpzfzO"
+          className="sc-ksZaOG lhoEWQ"
         >
           <span
-            className="sc-gsnTZi csDFFj"
+            className="sc-dkzDqf cegtjA"
             height={20}
             width={20}
           >
             <span
-              className="sc-dkzDqf cSKBNc"
+              className="sc-hKMtZM dffNhz"
               height={20}
               width={20}
             >
