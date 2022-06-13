@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Flex from "../Flex";
 import Icon from "../Icon";
-import { Heading, HeadingTag } from "../Typography";
+import Heading, { HeadingTag } from "../Typography/Heading";
 import Hr from "../Typography/Hr";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
@@ -24,7 +24,7 @@ const BlogList: FC<BlogListProps> = (props) => {
     <Flex flexDirection="column">
       <Flex mb={24} alignItems="center">
         <Icon name="Newspaper" mr={16} size={36} />
-        <Heading size={24} tag={titleTag}>
+        <Heading fontSize={24} tag={titleTag}>
           {title}
         </Heading>
       </Flex>

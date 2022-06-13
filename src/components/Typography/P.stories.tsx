@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Text as Component } from "./Typography";
+import Component from "./P";
 
 export default {
-  title: "Foundations/Text",
+  title: "Typography/P",
   component: Component,
 } as ComponentMeta<typeof Component>;
 
@@ -27,4 +27,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </Component>
 );
 
-export const Text = Template.bind({});
+export const P = Template.bind({});
+P.args = {
+  fontSize: 16,
+  color: "grey9",
+};

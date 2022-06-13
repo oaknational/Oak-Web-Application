@@ -1,10 +1,17 @@
-import theme, { OakFontName } from "../theme";
+import { OakFontName, PropsWithTheme } from "../theme";
 
-const getFontFamily = (fontName?: OakFontName) => {
+function getFontFamily(): "inherit";
+function getFontFamily(
+  fontName: OakFontName
+): (props: PropsWithTheme) => string;
+function getFontFamily(
+  fontName?: OakFontName
+): ((props: PropsWithTheme) => string) | "inherit";
+function getFontFamily(fontName?: OakFontName) {
   if (!fontName) {
     return "inherit";
   }
-  return theme.fonts[fontName];
-};
+  return ({ theme }: PropsWithTheme) => theme.fonts[fontName];
+}
 
 export default getFontFamily;

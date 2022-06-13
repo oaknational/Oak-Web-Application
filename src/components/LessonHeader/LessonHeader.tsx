@@ -1,25 +1,12 @@
 import { FC } from "react";
-import styled from "styled-components";
 
 import { LessonId } from "../../context/Bookmarks";
-import { getBreakpoint } from "../../styles/utils/responsive";
 import BookmarkLessonButton from "../BookmarkLessonButton";
+import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import Flex from "../Flex";
-import { Heading } from "../Typography";
-import { Span } from "../Typography/Typography";
-
-const StyledLessonHeader = styled.header`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: ${getBreakpoint("medium")}px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
+import { Heading, Span } from "../Typography";
 
 type LessonHeaderProps = {
   id: LessonId;
@@ -29,12 +16,16 @@ type LessonHeaderProps = {
 const LessonHeader: FC<LessonHeaderProps> = (props) => {
   const { title, id } = props;
   return (
-    <StyledLessonHeader>
+    <Flex
+      flexDirection={["column", "row"]}
+      justifyContent={["initial", "space-between"]}
+      alignItems={["initial", "center"]}
+    >
       <Flex>
-        <Heading tag="h1" size={32}>
-          <Span display="block" fontSize={24} mb={8}>
-            Lesson
-          </Span>
+        <Heading tag="h1" fontSize={32}>
+          <Box mb={8}>
+            <Span fontSize={24}>Lesson</Span>
+          </Box>
           {title}
         </Heading>
       </Flex>
@@ -55,7 +46,7 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
         />
         <BookmarkLessonButton lessonId={id} />
       </ButtonGroup>
-    </StyledLessonHeader>
+    </Flex>
   );
 };
 
