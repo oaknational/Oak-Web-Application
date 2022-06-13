@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Text as Component } from ".";
+import Component from "./Body";
 
 export default {
-  title: "Typography/Text",
+  title: "Typography/Body",
   component: Component,
 } as ComponentMeta<typeof Component>;
 
@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </Component>
 );
 
-export const Text = Template.bind({});
-Text.args = {
-  color: "grey9"
-}
+export const Body = Template.bind({});
+Body.args = {
+  color: "grey9",
+};
