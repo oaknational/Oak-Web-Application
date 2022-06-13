@@ -28,53 +28,49 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <div>
-      <button
-        aria-label="Add Bookmark"
-        className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
-        disabled={false}
-        onClick={[Function]}
-        size="small"
-        title="Add Bookmark"
+  <button
+    aria-label="Add Bookmark"
+    className="sc-gKXOVf sc-ftvSup gwbEEZ nztnc"
+    disabled={false}
+    onClick={[Function]}
+    size="small"
+    title="Add Bookmark"
+  >
+    <div
+      className="sc-iBkjds bzkgWG"
+      size="small"
+    >
+      <span
+        className="sc-gsnTZi fiKuMT"
+        height={16}
+        width={16}
       >
-        <div
-          className="sc-iBkjds bzkgWG"
-          size="small"
+        <span
+          className="sc-dkzDqf hosfuE"
+          height={16}
+          width={16}
         >
-          <span
-            className="sc-gsnTZi fiKuMT"
-            height={16}
-            width={16}
+          <svg
+            fill="currentColor"
+            viewBox="2 2 20 20"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              className="sc-dkzDqf hosfuE"
-              height={16}
-              width={16}
-            >
-              <svg
-                fill="currentColor"
-                viewBox="2 2 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </button>
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+        </span>
+      </span>
     </div>
-  </div>,
+  </button>,
 ]
 `;
 
@@ -526,7 +522,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
+exports[`Storyshots Feedback/Loading Spinner Loading Spinner 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -755,7 +751,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
+exports[`Storyshots Headers & Footers/Lesson Header Lesson Header 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -964,7 +960,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Headers & Footers/SiteFooter Site Footer Example 1`] = `
+exports[`Storyshots Headers & Footers/Site Footer Site Footer 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -974,18 +970,16 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <footer
-      className="sc-jdAMXn flvFdb"
-    >
-      © Oak National Academy 
-      2022
-    </footer>
-  </div>,
+  <footer
+    className="sc-jdAMXn flvFdb"
+  >
+    © Oak National Academy 
+    2022
+  </footer>,
 ]
 `;
 
-exports[`Storyshots Headers & Footers/SiteHeader Site Footer Example 1`] = `
+exports[`Storyshots Headers & Footers/Site Header Site Header 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -995,120 +989,118 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <header
-      className="sc-bZnhIo juribK"
+  <header
+    className="sc-bZnhIo juribK"
+  >
+    <div
+      className="sc-bczRLJ dWPLlK"
     >
-      <div
-        className="sc-bczRLJ dWPLlK"
+      <a
+        className="sc-iTONeN eCHOBC"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
-        <a
-          className="sc-iTONeN eCHOBC"
-          href="/"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
+        <span
+          className="sc-gsnTZi gJAzYV"
+          height={30}
+          width={30}
         >
           <span
-            className="sc-gsnTZi gJAzYV"
+            className="sc-dkzDqf fWLDlY"
             height={30}
             width={30}
           >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          className="sc-iIPllB fQnaOy"
+          fontFamily="heading"
+          fontSize={20}
+          fontWeight={600}
+        >
+          Oak
+        </span>
+      </a>
+    </div>
+    <form
+      className="sc-ciZhAO obRAr"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-bczRLJ dgYqBg"
+      >
+        <input
+          aria-label="Search"
+          className="sc-kgflAQ sc-ivTmOn gKZkSJ dAaVLJ"
+          onChange={[Function]}
+          placeholder="Search"
+          type="search"
+          value=""
+        />
+      </div>
+      <button
+        aria-label="Submit"
+        className="sc-gKXOVf sc-ftvSup gwbEEZ kKeqcp"
+        onClick={[Function]}
+        size="small"
+        title="Submit"
+        type="submit"
+      >
+        <div
+          className="sc-iBkjds edsMWJ"
+          size="small"
+        >
+          <span
+            className="sc-gsnTZi fiKuMT"
+            height={16}
+            width={16}
+          >
             <span
-              className="sc-dkzDqf fWLDlY"
-              height={30}
-              width={30}
+              className="sc-dkzDqf hosfuE"
+              height={16}
+              width={16}
             >
               <svg
+                fill="none"
                 height="100%"
-                viewBox="0 0 48 48"
+                viewBox="0 0 17 17"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                  d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
                   fill="currentColor"
                 />
               </svg>
             </span>
           </span>
-          <span
-            className="sc-iIPllB fQnaOy"
-            fontFamily="heading"
-            fontSize={20}
-            fontWeight={600}
-          >
-            Oak
-          </span>
-        </a>
-      </div>
-      <form
-        className="sc-ciZhAO obRAr"
-        onSubmit={[Function]}
-      >
-        <div
-          className="sc-bczRLJ dgYqBg"
-        >
-          <input
-            aria-label="Search"
-            className="sc-kgflAQ sc-ivTmOn gKZkSJ dAaVLJ"
-            onChange={[Function]}
-            placeholder="Search"
-            type="search"
-            value=""
-          />
         </div>
-        <button
-          aria-label="Submit"
-          className="sc-gKXOVf sc-ftvSup gwbEEZ kKeqcp"
-          onClick={[Function]}
-          size="small"
-          title="Submit"
-          type="submit"
-        >
-          <div
-            className="sc-iBkjds edsMWJ"
-            size="small"
-          >
-            <span
-              className="sc-gsnTZi fiKuMT"
-              height={16}
-              width={16}
-            >
-              <span
-                className="sc-dkzDqf hosfuE"
-                height={16}
-                width={16}
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  viewBox="0 0 17 17"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-        </button>
-      </form>
-      <div
-        className="sc-efBctP lhjQkv"
+      </button>
+    </form>
+    <div
+      className="sc-efBctP lhjQkv"
+    >
+      <a
+        href="/sign-in"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
-        <a
-          href="/sign-in"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-        >
-          Sign in
-        </a>
-      </div>
-    </header>
-  </div>,
+        Sign in
+      </a>
+    </div>
+  </header>,
 ]
 `;
 
@@ -1503,7 +1495,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Media/Icon Icon Example 1`] = `
+exports[`Storyshots Media/Icon Icon 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -1513,35 +1505,33 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
+  <span
+    className="sc-gsnTZi gjGDUD"
+    height={100}
+    width={100}
+  >
     <span
-      className="sc-gsnTZi gjGDUD"
+      className="sc-dkzDqf bPkBds"
       height={100}
       width={100}
     >
-      <span
-        className="sc-dkzDqf bPkBds"
-        height={100}
-        width={100}
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polyline
-            points="9 18 15 12 9 6"
-          />
-        </svg>
-      </span>
+        <polyline
+          points="9 18 15 12 9 6"
+        />
+      </svg>
     </span>
-  </div>,
+  </span>,
 ]
 `;
 
@@ -1555,141 +1545,139 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <nav
-      aria-label="Breadcrumb"
-      className="sc-papXJ eWiGsn"
+  <nav
+    aria-label="Breadcrumb"
+    className="sc-papXJ eWiGsn"
+  >
+    <ol
+      className="sc-jqUVSM cnqRzS"
     >
-      <ol
-        className="sc-jqUVSM cnqRzS"
+      <li
+        className="sc-kDDrLX fpzfzO"
       >
-        <li
-          className="sc-kDDrLX fpzfzO"
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Unit Quiz
-          </a>
-        </li>
-        <li
-          className="sc-kDDrLX fpzfzO"
+          Unit Quiz
+        </a>
+      </li>
+      <li
+        className="sc-kDDrLX fpzfzO"
+      >
+        <span
+          className="sc-gsnTZi csDFFj"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-gsnTZi csDFFj"
+            className="sc-dkzDqf cSKBNc"
             height={20}
             width={20}
           >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            View In Classroom
-          </a>
-        </li>
-        <li
-          className="sc-kDDrLX fpzfzO"
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          View In Classroom
+        </a>
+      </li>
+      <li
+        className="sc-kDDrLX fpzfzO"
+      >
+        <span
+          className="sc-gsnTZi csDFFj"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-gsnTZi csDFFj"
+            className="sc-dkzDqf cSKBNc"
             height={20}
             width={20}
           >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Foundation Curriculum (PDF)
-          </a>
-        </li>
-        <li
-          className="sc-kDDrLX fpzfzO"
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Foundation Curriculum (PDF)
+        </a>
+      </li>
+      <li
+        className="sc-kDDrLX fpzfzO"
+      >
+        <span
+          className="sc-gsnTZi csDFFj"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-gsnTZi csDFFj"
+            className="sc-dkzDqf cSKBNc"
             height={20}
             width={20}
           >
-            <span
-              className="sc-dkzDqf cSKBNc"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Higher Curriculum (PDF)
-          </a>
-        </li>
-      </ol>
-    </nav>
-  </div>,
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Higher Curriculum (PDF)
+        </a>
+      </li>
+    </ol>
+  </nav>,
 ]
 `;

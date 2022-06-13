@@ -11,11 +11,9 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <>
-    <SearchProvider>
-      <Component {...args} />
-    </SearchProvider>
-  </>
+  <SearchProvider>
+    <Component {...args} />
+  </SearchProvider>
 );
 
 export const SearchForm = Template.bind({});
