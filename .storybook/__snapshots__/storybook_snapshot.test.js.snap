@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bBXxYQ jarKK"
+    className="sc-jgbSNz ivMXbG"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -1507,6 +1507,114 @@ Array [
         </div>
       </div>
     </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Toggle Toggle 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "background": "lightGrey",
+        "padding": "100px",
+      }
+    }
+  >
+    <div
+      className="sc-bczRLJ sc-gsnTZi kzKShG escGQu"
+    >
+      <p
+        checked={false}
+        className="sc-breuTD sc-kgUAyh coFsGk bSPaCo"
+      >
+        Label
+      </p>
+      <label
+        className="sc-BeQoi isqBZi"
+      >
+        <input
+          checked={false}
+          className="sc-bBXxYQ kxa-Drq"
+          data-testid="toggle"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="sc-cOFTSb jggbby"
+        />
+      </label>
+      <p
+        checked={false}
+        className="sc-breuTD sc-hTtwUo jZBgAP dnpvEQ"
+      >
+        Label
+      </p>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Toggle Toggle Disabled 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "background": "lightGrey",
+        "padding": "100px",
+      }
+    }
+  >
+    <div
+      className="sc-bczRLJ sc-gsnTZi kzKShG escGQu"
+    >
+      <p
+        checked={false}
+        className="sc-breuTD sc-kgUAyh coFsGk bSPaCo"
+        disabled={true}
+      >
+        Label
+      </p>
+      <label
+        className="sc-BeQoi isqBZi"
+      >
+        <input
+          checked={false}
+          className="sc-bBXxYQ kxa-Drq"
+          data-testid="toggle"
+          disabled={true}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="sc-cOFTSb iuFWON"
+          disabled={true}
+        />
+      </label>
+      <p
+        checked={false}
+        className="sc-breuTD sc-hTtwUo jZBgAP dnpvEQ"
+        disabled={true}
+      >
+        Label
+      </p>
+    </div>
   </div>,
 ]
 `;

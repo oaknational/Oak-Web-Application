@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
 import Flex from "../Flex";
-import { Text } from "../Typography";
+import P from "../Typography/P";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 
 const SwitchInput = styled.input`
   opacity: 0.01;
@@ -16,7 +16,7 @@ const SwitchSlider = styled.span<Pick<ToggleProps, "disabled">>`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${getColor("white")};
+  background-color: ${getColorByName("white")};
   transition: 0.4s;
   border-radius: 16px;
 
@@ -27,9 +27,9 @@ const SwitchSlider = styled.span<Pick<ToggleProps, "disabled">>`
     height: 16px;
     left: ${(props) => (props.disabled ? "16px" : "4px")};
     bottom: 8px;
-    background-color: ${getColor("grey6")};
+    background-color: ${getColorByName("grey6")};
     background-color: ${(props) =>
-      props.disabled ? getColor("grey6") : getColor("grey8")};
+      props.disabled ? getColorByName("grey6") : getColorByName("grey8")};
     transition: 0.4s;
     border-radius: 50%;
   }
@@ -42,7 +42,7 @@ const ToggleSwitch = styled.label`
   vertical-align: top;
 
   ${SwitchInput}:checked + ${SwitchSlider} {
-    background-color: ${getColor("white")};
+    background-color: ${getColorByName("white")};
   }
 
   ${SwitchInput}:checked + ${SwitchSlider}::before {
@@ -50,14 +50,18 @@ const ToggleSwitch = styled.label`
   }
 `;
 
-const LabelOn = styled(Text)<Pick<ToggleProps, "checked" | "disabled">>`
+const LabelOn = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
   color: ${(props) =>
-    props.checked && !props.disabled ? getColor("grey8") : getColor("grey10")};
+    props.checked && !props.disabled
+      ? getColorByName("grey8")
+      : getColorByName("grey10")};
 `;
 
-const LabelOff = styled(Text)<Pick<ToggleProps, "checked" | "disabled">>`
+const LabelOff = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
   color: ${(props) =>
-    props.checked && !props.disabled ? getColor("grey10") : getColor("grey8")};
+    props.checked && !props.disabled
+      ? getColorByName("grey10")
+      : getColorByName("grey8")};
 `;
 
 type ToggleProps = {
