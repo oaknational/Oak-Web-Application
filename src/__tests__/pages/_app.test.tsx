@@ -9,7 +9,13 @@ jest.mock("@apollo/client", () => ({
   ApolloProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 jest.mock("../../browser-lib/graphql/useApolloClient");
-jest.mock("../../hooks/useTheme");
+jest.mock("../../hooks/useOakTheme", () => ({
+  __esModule: true,
+  default: () => ({
+    name: "default",
+    theme: {},
+  }),
+}));
 jest.mock("../../context/Bookmarks", () => ({
   __esModule: true,
   BookmarksProvider: ({ children }: { children: ReactNode }) => <>{children}</>,

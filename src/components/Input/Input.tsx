@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
@@ -16,10 +16,12 @@ type StyledInputProps = MarginProps & {
   icon?: IconName;
 };
 const StyledInput = styled(UnstyledInput)<StyledInputProps>`
-  color: ${getColor("black")};
+  color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
-  border-color: ${getColor((theme) => theme.palette.input.default.border)};
+  border-color: ${getColorByLocation(
+    ({ theme }) => theme.input.states.default.border
+  )};
   border-width: ${(props) => props.theme.input.borderWidth};
   border-style: solid;
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
@@ -36,26 +38,36 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 
   ::placeholder {
     font-family: ${getFontFamily("ui")};
-    color: ${getColor((props) => props.palette.input.default.placeholder)};
+    color: ${getColorByLocation(
+      ({ theme }) => theme.input.states.default.placeholder
+    )};
     opacity: 1;
   }
 
   :valid:not([value=""]) {
-    border-color: ${getColor((props) => props.palette.input.valid.border)};
+    border-color: ${getColorByLocation(
+      ({ theme }) => theme.input.states.valid.border
+    )};
 
     ::placeholder {
-      color: ${getColor((props) => props.palette.input.valid.placeholder)};
+      color: ${getColorByLocation(
+        ({ theme }) => theme.input.states.valid.placeholder
+      )};
     }
 
     ~ ${InputIcon} {
-      color: ${getColor((theme) => theme.palette.input.valid.icon)};
+      color: ${getColorByLocation(
+        ({ theme }) => theme.input.states.valid.icon
+      )};
     }
   }
 
   ${margin}
 
   ~ ${InputIcon} {
-    color: ${getColor((theme) => theme.palette.input.default.icon)};
+    color: ${getColorByLocation(
+      ({ theme }) => theme.input.states.default.icon
+    )};
   }
 `;
 

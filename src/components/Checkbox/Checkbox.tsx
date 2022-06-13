@@ -1,18 +1,30 @@
 import { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import { OakColorName } from "../../styles/theme";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
+
+export type CheckboxConfig = {
+  default: {
+    color: OakColorName;
+  };
+  disabled: {
+    color: OakColorName;
+  };
+};
 
 const CheckboxLabel = styled.label<{ disabled: boolean }>`
   cursor: ${(props) => !props.disabled && "pointer"};
   display: flex;
   align-items: center;
   font-family: ${getFontFamily("ui")};
-  color: ${({ disabled }) =>
-    disabled
-      ? getColor((theme) => theme.palette.input.disabled.text)
-      : getColor((theme) => theme.palette.input.default.text)};
+  color: ${getColorByLocation(({ theme }) => theme.checkbox.default.color)};
+  ${(props) =>
+    props.disabled &&
+    css`
+      color: ${getColorByLocation(({ theme }) => theme.checkbox.disabled.color)};
+    `}
 
   input[type="checkbox"]:focus + svg {
     // TODO: add focus ring component to replace this
@@ -56,13 +68,13 @@ const CheckboxLabelText = styled.span`
   margin-right: 16px;
 `;
 
-interface CheckboxProps {
+type CheckboxProps = {
   labelText: string;
   id: string;
   checked: boolean;
   disabled?: boolean;
   onChange: () => void;
-}
+};
 
 const Checkbox: FC<CheckboxProps> = (props) => {
   const { labelText, checked, disabled = false, onChange, id } = props;

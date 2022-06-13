@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import margin, { MarginProps } from "../../styles/utils/spacing";
 
 import {
@@ -35,7 +35,6 @@ export const getButtonStylesProps = (
   return { size, iconPosition, variant };
 };
 const buttonStyles = css<ButtonStylesProps>`
-  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -52,8 +51,8 @@ const buttonStyles = css<ButtonStylesProps>`
   `}
 
   :disabled {
-    background-color: ${getColor(
-      (theme) => theme.palette.button.disabled.background
+    background-color: ${getColorByLocation(
+      ({ theme }) => theme.button.disabled.background
     )};
     cursor: not-allowed;
   }

@@ -11,7 +11,6 @@ import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
 
 import { BookmarksProvider } from "../../context/Bookmarks";
-import { UserStyleContextProvider } from "../../context/UserStyleContext";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
 
@@ -32,13 +31,11 @@ const AllTheProviders: FC<ProviderProps> = ({
     <MockedAuthProvider {...authProviderProps}>
       <MockedApolloProvider>
         <ThemeProvider theme={theme}>
-          <UserStyleContextProvider>
-            <MemoryRouterProvider>
-              <BookmarksProvider>
-                <SearchProvider>{children}</SearchProvider>
-              </BookmarksProvider>
-            </MemoryRouterProvider>
-          </UserStyleContextProvider>
+          <MemoryRouterProvider>
+            <BookmarksProvider>
+              <SearchProvider>{children}</SearchProvider>
+            </BookmarksProvider>
+          </MemoryRouterProvider>
         </ThemeProvider>
       </MockedApolloProvider>
     </MockedAuthProvider>
