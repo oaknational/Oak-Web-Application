@@ -13,3 +13,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const Heading = Template.bind({});
+Heading.args = {
+  tag: "h1",
+};
