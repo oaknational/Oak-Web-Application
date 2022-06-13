@@ -29,7 +29,7 @@ export const Heading: FC<HeadingProps> = (props) => {
   return <RawHeading as={tag} {...htmlAttrs} />;
 };
 
-type TextProps = MarginProps & {
+export type TextProps = MarginProps & {
   size?: TextSize;
 };
 export const Text = styled.div<TextProps>`
