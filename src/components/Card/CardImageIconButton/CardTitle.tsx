@@ -49,7 +49,7 @@ const CardTitle: FC<CardTitleProps> = ({
       <Heading
         ml={iconPosition === (icon && "leading") ? 8 : 0}
         mr={iconPosition === (icon && "trailing") ? 8 : 0}
-        size={5}
+        fontSize={32}
         tag={"h4"}
       >
         {title}

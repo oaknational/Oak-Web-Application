@@ -1,13 +1,12 @@
 import { FC } from "react";
 
-import { Text } from "../../Typography/Typography";
+import P from "../../Typography/P";
 import Card from "../Card";
 import { OakColorName } from "../../../styles/theme";
 
 import CardTitle, { CardTitleProps } from "./CardTitle";
 import CardImage, { CardImageProps } from "./CardImage";
 import CardButton, { CardButtonProps } from "./CardButton";
-
 
 export type CardImageIconButtonProps = {
   text: string;
@@ -36,15 +35,15 @@ const CardImageIconButton: FC<
         title={title}
         textCenter={textCenter}
       />
-      <Text
-        size={2}
+      <P
+        fontSize={16}
         textAlign={textCenter ? "center" : "start"}
         mb={24}
         ml={24}
         mr={24}
       >
         {text}
-      </Text>
+      </P>
 
       <CardButton buttonLabel={buttonLabel} buttonHref={buttonHref} />
     </Card>
