@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
+export type LineClampProps = {
+  lines: number;
+};
 /**
  * Will limit number of lines displayed to `props.lines`.
  * ## Usage
- * Use sparingly, it is very much preferrable enforce a sensible character
+ * Use sparingly, it is very much preferrable to enforce a sensible character
  * limit when using content from a CMS.
  *
  * ## Caveat
@@ -12,9 +15,6 @@ import styled from "styled-components";
  *
  *
  */
-export type LineClampProps = {
-  lines: number;
-};
 const LineClamp = styled.div<LineClampProps>`
   /* stylelint-disable */
   display: -webkit-box;

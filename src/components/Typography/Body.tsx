@@ -20,12 +20,17 @@ type BodyProps = BoxProps &
 /**
  * Wrapper component from which children inherit typography styles.
  * ## Usage
- * Use this component whenever you want multiple paragraphs of the
- * same style.
+ * This should be the primary component to set a typography context.
+ * Use this component whenever you want to style blocks of 'body' text.
  */
 const Body = styled(Box)<BodyProps>`
   ${typography}
   font-family: ${getFontFamily("body")};
 `;
+
+Body.defaultProps = {
+  fontWeight: 400,
+  lineHeight: 1.4,
+};
 
 export default Body;

@@ -10,5 +10,4 @@ describe("Body", () => {
 
     expect(getByTestId("test")).toHaveStyle("font-size: 12px");
   });
-  test.todo("p descendants should inherit correct attributes");
 });

@@ -701,6 +701,24 @@ Array [
 ]
 `;
 
+exports[`Storyshots Foundations/Box Box 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-bczRLJ cdYuTy"
+  >
+    Box
+  </div>,
+]
+`;
+
 exports[`Storyshots Foundations/Flex Flex 1`] = `
 Array [
   <link
@@ -715,6 +733,24 @@ Array [
     className="sc-bczRLJ sc-gsnTZi fBxaaT dwApCD"
   >
     Flex box
+  </div>,
+]
+`;
+
+exports[`Storyshots Foundations/Line Clamp Line Clamp 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-iqcoie jSrVMA"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
   </div>,
 ]
 `;
@@ -1171,7 +1207,8 @@ Array [
           className="sc-bczRLJ sc-gsnTZi sc-jdAMXn kzKShG gPmbcF drhfSl"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB bGWLPS eaBxZv"
+            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB dcaAiW eaBxZv"
+            fontWeight={400}
           >
             Intro
           </div>
@@ -1254,7 +1291,8 @@ Array [
             </span>
           </span>
           <div
-            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB bGWLPS eaBxZv"
+            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB dcaAiW eaBxZv"
+            fontWeight={400}
           >
             Intro
           </div>
@@ -1289,7 +1327,8 @@ Array [
           className="sc-bczRLJ sc-gsnTZi sc-jdAMXn kzKShG gPmbcF drhfSl"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB bGWLPS eaBxZv"
+            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB dcaAiW eaBxZv"
+            fontWeight={400}
           >
             Intro
           </div>
@@ -1350,7 +1389,8 @@ Array [
           className="sc-bczRLJ sc-gsnTZi sc-jdAMXn kzKShG gPmbcF drhfSl"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB bGWLPS eaBxZv"
+            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB dcaAiW eaBxZv"
+            fontWeight={400}
           >
             Intro
           </div>
@@ -1435,7 +1475,8 @@ Array [
           className="sc-bczRLJ sc-gsnTZi sc-jdAMXn kzKShG gPmbcF drhfSl"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB bGWLPS eaBxZv"
+            className="sc-bczRLJ sc-crXcEl sc-ciZhAO iUCYBB dcaAiW eaBxZv"
+            fontWeight={400}
           >
             Very long label
           </div>
@@ -1534,7 +1575,7 @@ Array [
           The Long and Winding Road
         </h2>
         <p
-          className="sc-breuTD fMtRoZ"
+          className="sc-breuTD wiYvc"
           color="grey6"
           fontSize={18}
         >
@@ -1608,7 +1649,7 @@ Array [
           Penny Lane
         </h2>
         <p
-          className="sc-breuTD fMtRoZ"
+          className="sc-breuTD wiYvc"
           color="grey6"
           fontSize={18}
         >
@@ -1658,7 +1699,7 @@ Array [
           Strawberry Fields Forever
         </h2>
         <p
-          className="sc-breuTD fMtRoZ"
+          className="sc-breuTD wiYvc"
           color="grey6"
           fontSize={18}
         >
@@ -1718,7 +1759,7 @@ Array [
         The long and winding road
       </h3>
       <p
-        className="sc-breuTD fMtRoZ"
+        className="sc-breuTD wiYvc"
         color="grey6"
         fontSize={18}
       >
@@ -1952,8 +1993,9 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-crXcEl kzKShG fOZTse"
+    className="sc-bczRLJ sc-crXcEl kzKShG kENsZG"
     color="grey9"
+    fontWeight={400}
   >
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
@@ -1980,5 +2022,82 @@ Array [
   >
     Heading 1
   </h1>,
+]
+`;
+
+exports[`Storyshots Typography/Hr Hr 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-bczRLJ sc-crXcEl kzKShG dztcDN"
+    fontSize={18}
+    fontWeight={400}
+  >
+    <p>
+      See below
+    </p>
+    <hr
+      className="sc-ftvSup cVSQWB"
+      color="grey2"
+    />
+    <p>
+      For a horizontal rule
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Typography/P P 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <p
+    className="sc-breuTD dVVkTp"
+    color="grey9"
+    fontSize={16}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
+  </p>,
+]
+`;
+
+exports[`Storyshots Typography/Span Span 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-bczRLJ sc-crXcEl kzKShG dcaAiW"
+    fontWeight={400}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
+     
+    <span
+      className="sc-evZas jYoCDU"
+      color="inYourFace"
+      fontWeight={600}
+    >
+      tristique magna sit.
+    </span>
+     A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+  </div>,
 ]
 `;
