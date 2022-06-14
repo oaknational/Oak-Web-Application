@@ -105,7 +105,7 @@ const Toggle: FC<ToggleProps> = ({
   return (
     <label>
       <Flex justifyContent={"center"}>
-        <LabelText checked={!checked} disabled={disabled} mt={3} mr={8}>
+        <LabelText checked={!checked} disabled={disabled} mt={4} mr={8}>
           {labelOff}
         </LabelText>
 
@@ -120,7 +120,7 @@ const Toggle: FC<ToggleProps> = ({
           <SwitchSlider disabled={disabled} />
         </ToggleSwitch>
 
-        <LabelText checked={checked} disabled={disabled} mt={3} ml={8}>
+        <LabelText checked={checked} disabled={disabled} mt={4} ml={8}>
           {labelOn}
         </LabelText>
       </Flex>
