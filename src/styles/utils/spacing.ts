@@ -2,7 +2,22 @@ import { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SpacingValue = string | number;
+type SpacingValue =
+  | "auto"
+  | 0
+  | 4
+  | 8
+  | 12
+  | 16
+  | 20
+  | 24
+  | 32
+  | 40
+  | 48
+  | 56
+  | 64
+  | 72
+  | 80;
 type SpacingValues = ResponsiveValues<SpacingValue>;
 export type PaddingProps = {
   pa?: SpacingValues;
@@ -22,7 +37,7 @@ export type MarginProps = {
   mt?: SpacingValues;
   mb?: SpacingValues;
 };
-const parse = (value?: string | number) => {
+const parse = (value?: SpacingValue) => {
   switch (typeof value) {
     case "string":
       return value;
