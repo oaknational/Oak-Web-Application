@@ -4,7 +4,8 @@ import styled from "styled-components";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Flex from "../../Flex";
 import Icon from "../../Icon";
-import { Text, Heading, HeadingTag } from "../../Typography";
+import LineClamp from "../../LineClamp";
+import { P, Heading, HeadingTag } from "../../Typography";
 
 const ActionButton = styled(ButtonAsLink)`
   ::after {
@@ -60,12 +61,12 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         )}
       </BlogListItemImage>
       <Flex flexDirection="column" alignItems="flex-start">
-        <Heading tag={titleTag} size={20} mb={16}>
+        <Heading tag={titleTag} fontSize={20} mb={16}>
           {title}
         </Heading>
-        <Text size={18} color="grey6" lineClamp={2}>
-          {snippet}
-        </Text>
+        <P fontSize={18} color="grey6">
+          <LineClamp lines={2}>{snippet}</LineClamp>
+        </P>
         <ActionButton
           href={href}
           label={buttonLabelMap[contentType]}

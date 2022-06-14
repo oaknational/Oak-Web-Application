@@ -1,27 +1,33 @@
 import styled from "styled-components";
-import { render } from "@testing-library/react";
 
-import { heading, text } from "./typography";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+
+import typography from "./typography";
+
+const StyledComponent = styled.div`
+  ${typography}
+`;
 
 describe("typography", () => {
-  test("heading should render correct font", async () => {
-    const StyledComponent = styled.div`
-      ${heading}
-    `;
-    const { getByTestId } = render(
-      <StyledComponent data-testid="test" size={56} />
+  test("should correctly handle prop fontFamily='body'", async () => {
+    const { getByTestId } = renderWithProviders(
+      <StyledComponent data-testid="test" fontFamily="body" />
+    );
+
+    expect(getByTestId("test")).toHaveStyle("font-family: ABeeZee,sans-serif");
+  });
+  test("should correctly handle prop fontFamily='ui'", async () => {
+    const { getByTestId } = renderWithProviders(
+      <StyledComponent data-testid="test" fontFamily="ui" />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
   });
-  test("body should render correct font", async () => {
-    const StyledComponent = styled.div`
-      ${text}
-    `;
-    const { getByTestId } = render(
-      <StyledComponent data-testid="test" size={12} />
+  test("should correctly handle prop fontFamily='ui'", async () => {
+    const { getByTestId } = renderWithProviders(
+      <StyledComponent data-testid="test" fontFamily="heading" />
     );
 
-    expect(getByTestId("test")).toHaveStyle("font-family: ABeeZee,sans-serif");
+    expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
   });
 });

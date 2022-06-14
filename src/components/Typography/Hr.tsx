@@ -12,7 +12,9 @@ const Hr = styled.hr<HrProps>`
   border-top-color: ${(props) => getColorByName(props.color)};
   ${margin}
 `;
-
+/**
+ * Hr is a just a styled `hr` (Horizontal rule), which takes color and margin props.
+ */
 Hr.defaultProps = {
   color: "grey2",
   mv: 24,
