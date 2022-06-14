@@ -1,3 +1,10 @@
+# [0.28.0](https://github.com/oaknational/Samara/compare/v0.27.1...v0.28.0) (2022-06-14)
+
+
+### Features
+
+* **spacing:** add better types for spacing values based on figma designs ([d9526c2](https://github.com/oaknational/Samara/commit/d9526c2e5d0e906fb2a67c2c4d718056d8d2a7a9))
+
 ## [0.27.1](https://github.com/oaknational/Samara/compare/v0.27.0...v0.27.1) (2022-06-14)
 
 
