@@ -8,10 +8,10 @@ export default {
   component: Component,
   argTypes: {
     labelOn: {
-      defaultValue: "Label",
+      defaultValue: "Label on",
     },
     labelOff: {
-      defaultValue: "Label",
+      defaultValue: "Label off",
     },
   },
 } as ComponentMeta<typeof Component>;

@@ -23,12 +23,18 @@ const ausTheme: OakTheme = {
   toggle: {
     on: {
       labelColor: "grey10",
+      background: "white",
+      switchColor: "grey8",
     },
     off: {
       labelColor: "grey8",
+      background: "white",
+      switchColor: "grey8",
     },
     disabled: {
       labelColor: "grey3",
+      background: "white",
+      switchColor: "grey6",
     },
   },
 };
