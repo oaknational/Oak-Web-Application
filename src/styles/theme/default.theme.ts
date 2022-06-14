@@ -176,6 +176,17 @@ const theme: OakTheme = {
       color: "grey4",
     },
   },
+  toggle: {
+    on: {
+      labelColor: "grey10",
+    },
+    off: {
+      labelColor: "grey8",
+    },
+    disabled: {
+      labelColor: "grey3",
+    },
+  },
 };
 
 export default theme;

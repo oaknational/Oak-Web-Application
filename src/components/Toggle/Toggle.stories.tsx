@@ -19,7 +19,7 @@ export default {
 const Template: ComponentStory<typeof Component> = (args) => {
   const [value, setValue] = useState(false);
   return (
-    <div style={{ background: "lightGrey", padding: "100px" }}>
+    <div style={{ background: "lightBlue", padding: "100px" }}>
       <Component {...args} checked={value} onChange={() => setValue(!value)} />
     </div>
   );

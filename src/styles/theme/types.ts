@@ -4,6 +4,7 @@ import { z } from "zod";
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { LessonControlConfig } from "../../components/LessonControl";
+import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
 /**
  * @todo parse theme with zod
@@ -89,6 +90,7 @@ export type OakTheme = {
   badge: BadgeConfig;
   lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
+  toggle: ToggleStyleConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

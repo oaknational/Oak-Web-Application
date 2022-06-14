@@ -4,6 +4,20 @@ import styled from "styled-components";
 import Flex from "../Flex";
 import P from "../Typography/P";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import { OakColorName } from "../../styles/theme/types";
+
+export type ToggleStyleConfig = {
+  on: {
+    labelColor: OakColorName;
+  };
+  off: {
+    labelColor: OakColorName;
+  };
+  disabled: {
+    labelColor: OakColorName;
+  };
+};
 
 const SwitchInput = styled.input`
   opacity: 0.01;
@@ -34,7 +48,7 @@ const SwitchSlider = styled.span<Pick<ToggleProps, "disabled">>`
     border-radius: 50%;
   }
 `;
-const ToggleSwitch = styled.label`
+const ToggleSwitch = styled.div`
   position: relative;
   display: inline-block;
   width: 48px;
@@ -50,18 +64,16 @@ const ToggleSwitch = styled.label`
   }
 `;
 
-const LabelOn = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
+const LabelText = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
   color: ${(props) =>
-    props.checked && !props.disabled
-      ? getColorByName("grey8")
-      : getColorByName("grey10")};
-`;
-
-const LabelOff = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
+    props.checked &&
+    getColorByLocation(({ theme }) => theme.toggle.on.labelColor)};
   color: ${(props) =>
-    props.checked && !props.disabled
-      ? getColorByName("grey10")
-      : getColorByName("grey8")};
+    !props.checked &&
+    getColorByLocation(({ theme }) => theme.toggle.off.labelColor)};
+  color: ${(props) =>
+    props.disabled &&
+    getColorByLocation(({ theme }) => theme.toggle.disabled.labelColor)};
 `;
 
 type ToggleProps = {
@@ -72,8 +84,6 @@ type ToggleProps = {
   onChange: () => void;
 };
 
-//*Allow users to turn an single option on or off. They are usually used to activate or deactivate a specific setting. */
-
 const Toggle: FC<ToggleProps> = ({
   checked = false,
   labelOn,
@@ -82,26 +92,28 @@ const Toggle: FC<ToggleProps> = ({
   onChange,
 }) => {
   return (
-    <Flex justifyContent={"center"}>
-      <LabelOn checked={checked} disabled={disabled} mt={3} mr={8}>
-        {labelOn}
-      </LabelOn>
+    <label>
+      <Flex justifyContent={"center"}>
+        <LabelText checked={!checked} disabled={disabled} mt={3} mr={8}>
+          {labelOff}
+        </LabelText>
 
-      <ToggleSwitch>
-        <SwitchInput
-          data-testid="toggle"
-          type="checkbox"
-          checked={disabled ? false : checked}
-          disabled={disabled}
-          onChange={onChange}
-        />
-        <SwitchSlider disabled={disabled} />
-      </ToggleSwitch>
+        <ToggleSwitch>
+          <SwitchInput
+            data-testid="toggle"
+            type="checkbox"
+            checked={checked}
+            disabled={disabled}
+            onChange={onChange}
+          />
+          <SwitchSlider disabled={disabled} />
+        </ToggleSwitch>
 
-      <LabelOff checked={checked} disabled={disabled} mt={3} ml={8}>
-        {labelOff}
-      </LabelOff>
-    </Flex>
+        <LabelText checked={checked} disabled={disabled} mt={3} ml={8}>
+          {labelOn}
+        </LabelText>
+      </Flex>
+    </label>
   );
 };
 export default Toggle;

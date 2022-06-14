@@ -20,6 +20,17 @@ const ausTheme: OakTheme = {
       borderColor: "grey9",
     },
   },
+  toggle: {
+    on: {
+      labelColor: "grey10",
+    },
+    off: {
+      labelColor: "grey8",
+    },
+    disabled: {
+      labelColor: "grey3",
+    },
+  },
 };
 
 export default ausTheme;
