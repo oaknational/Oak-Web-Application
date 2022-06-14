@@ -3,10 +3,12 @@ import { FC } from "react";
 import P from "../../Typography/P";
 import Card from "../Card";
 import { OakColorName } from "../../../styles/theme";
+import ButtonAsLink from "../../Button/ButtonAsLink";
+import Flex from "../../Flex";
 
 import CardTitle, { CardTitleProps } from "./CardTitle";
 import CardImage, { CardImageProps } from "./CardImage";
-import CardButton, { CardButtonProps } from "./CardButton";
+import { CardButtonProps } from "./CardButton";
 
 export type CardImageIconButtonProps = {
   text: string;
@@ -25,6 +27,7 @@ const CardImageIconButton: FC<
   buttonHref,
   buttonLabel,
   background = "grey1",
+  tag,
 }) => {
   return (
     <Card background={background} pa={0}>
@@ -34,6 +37,7 @@ const CardImageIconButton: FC<
         iconPosition={iconPosition}
         title={title}
         textCenter={textCenter}
+        tag={tag}
       />
       <P
         fontSize={16}
@@ -41,11 +45,13 @@ const CardImageIconButton: FC<
         mb={24}
         ml={24}
         mr={24}
+        color={"grey6"}
       >
         {text}
       </P>
-
-      <CardButton buttonLabel={buttonLabel} buttonHref={buttonHref} />
+      <Flex ph={24} justifyContent="center">
+        <ButtonAsLink label={buttonLabel} href={buttonHref} mb={24} fullWidth />
+      </Flex>
     </Card>
   );
 };

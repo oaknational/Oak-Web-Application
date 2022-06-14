@@ -14,6 +14,7 @@ describe("Card Variants", () => {
         buttonLabel="Label"
         icon="Download"
         iconPosition="leading"
+        tag={"h3"}
       />
     );
 
@@ -29,6 +30,7 @@ describe("Card Variants", () => {
         buttonHref="/"
         buttonLabel="Label"
         imageSrc={"images/Image.png"}
+        tag={"h3"}
       />
     );
     const image = screen.getByRole("img");

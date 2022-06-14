@@ -9,30 +9,16 @@ export default {
   title: "Cards",
   component: Component,
   argTypes: {
-    // icon: {
-    //   defaultValue: "",
-    // },
     buttonLabel: {
       defaultValue: "Label",
     },
     buttonHref: {
       defaultValue: "/",
     },
-    // title: {
-    //   defaultValue: "title",
-    // },
-    // text: {
-    //   defaultValue: "A short snappy description about the card",
-    // },
-    // textCenter: {
-    //   defaultValue: false,
-    // },
   },
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  console.log(args);
-
   return (
     <div style={{ width: "308px" }}>
       <Component {...args} />
@@ -48,6 +34,7 @@ CardImageButton.args = {
   buttonLabel: "Label",
   imageSrc: "/" + image,
   textCenter: false,
+  tag: "h3",
 };
 
 export const CardIconButton = Template.bind({});
@@ -59,6 +46,7 @@ CardIconButton.args = {
   icon: "Download",
   iconPosition: "aboveTitle",
   textCenter: true,
+  tag: "h3",
 };
 
 export const CardLeadingIconButton = Template.bind({});
@@ -70,4 +58,5 @@ CardLeadingIconButton.args = {
   icon: "OpenExternal",
   iconPosition: "leading",
   textCenter: false,
+  tag: "h3",
 };
