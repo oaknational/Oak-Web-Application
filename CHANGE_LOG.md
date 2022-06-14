@@ -1,3 +1,30 @@
+# [0.28.0](https://github.com/oaknational/Samara/compare/v0.27.1...v0.28.0) (2022-06-14)
+
+
+### Features
+
+* **spacing:** add better types for spacing values based on figma designs ([d9526c2](https://github.com/oaknational/Samara/commit/d9526c2e5d0e906fb2a67c2c4d718056d8d2a7a9))
+
+## [0.27.1](https://github.com/oaknational/Samara/compare/v0.27.0...v0.27.1) (2022-06-14)
+
+
+### Bug Fixes
+
+* **secret-manager:** get config+secrets working with google secret manager ([d03abd6](https://github.com/oaknational/Samara/commit/d03abd6cee1ce93931da4a8ccdde807cf435582e))
+
+# [0.27.0](https://github.com/oaknational/Samara/compare/v0.26.0...v0.27.0) (2022-06-13)
+
+
+### Bug Fixes
+
+* **bloglistitem:** make BlogListItem responsive ([4053853](https://github.com/oaknational/Samara/commit/4053853267f11229175d54e03ad59dfa352c92dd))
+
+
+### Features
+
+* **component:** add play icon, document icon ([74a581d](https://github.com/oaknational/Samara/commit/74a581dedebdc384debbc03d8b8fd2b189a57721))
+* **component:** blog list ([ce16c22](https://github.com/oaknational/Samara/commit/ce16c22337b72cfd98cafaa36873949d630a2d0d))
+
 # [0.26.0](https://github.com/oaknational/Samara/compare/v0.25.0...v0.26.0) (2022-06-10)
 
 
