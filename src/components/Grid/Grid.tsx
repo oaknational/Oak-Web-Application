@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-const Grid = styled.div`
+import { gridGap, GridGapProps } from "../../styles/utils/spacing";
+
+const Grid = styled.div<GridGapProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-gap: 16px;
   width: 100%;
+  ${gridGap}
 `;
 
 export default Grid;
