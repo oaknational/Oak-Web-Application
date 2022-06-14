@@ -42,8 +42,9 @@ async function fetchSecrets({ projectId, secretNames }) {
     (secretName) =>
       !allAvailableSecrets
         .map((secret) => secret.name)
-        .includes(getFullSecretName(secretName))
+        .includes(getFullSecretName(projectId, secretName))
   );
+
   if (missingSecrets.length > 0) {
     const message = `Oak.google_secret_manager the following secrets could not be found:\n${missingSecrets.join(
       "\n"
@@ -52,7 +53,7 @@ async function fetchSecrets({ projectId, secretNames }) {
   }
 
   const latestSecretValuePromises = secretNames.map(async (secretName) => {
-    const fullSecretName = getFullSecretName(secretName);
+    const fullSecretName = getFullSecretName(projectId, secretName);
 
     const [versions] = await client.listSecretVersions({
       parent: `${fullSecretName}`,
