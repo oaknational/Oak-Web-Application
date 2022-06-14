@@ -42,7 +42,9 @@ module.exports = async (phase) => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
-  const secrets = await fetchSecrets(oakConfig);
+  const secretsFromNetwork = process.env.USE_ONLY_LOCAL_SECRETS
+    ? {}
+    : await fetchSecrets(oakConfig);
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -73,15 +75,16 @@ module.exports = async (phase) => {
       NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: oakConfig.firebase.tokenHost,
       FIREBASE_SERVICE_ACCOUNT:
         process.env.FIREBASE_SERVICE_ACCOUNT ||
-        secrets.FIREBASE_SERVICE_ACCOUNT,
+        secretsFromNetwork.FIREBASE_SERVICE_ACCOUNT,
       FIREBASE_ADMIN_DATABASE_URL:
         process.env.FIREBASE_ADMIN_DATABASE_URL ||
-        secrets.FIREBASE_ADMIN_DATABASE_URL,
+        secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
 
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
       HASURA_ADMIN_SECRET:
-        process.env.HASURA_ADMIN_SECRET || secrets.HASURA_ADMIN_SECRET,
+        process.env.HASURA_ADMIN_SECRET ||
+        secretsFromNetwork.HASURA_ADMIN_SECRET,
 
       // Oak
       NEXT_PUBLIC_CLIENT_APP_BASE_URL: oakConfig.oak.appBaseUrl,

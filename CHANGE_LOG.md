@@ -1,3 +1,10 @@
+## [0.27.1](https://github.com/oaknational/Samara/compare/v0.27.0...v0.27.1) (2022-06-14)
+
+
+### Bug Fixes
+
+* **secret-manager:** get config+secrets working with google secret manager ([d03abd6](https://github.com/oaknational/Samara/commit/d03abd6cee1ce93931da4a8ccdde807cf435582e))
+
 # [0.27.0](https://github.com/oaknational/Samara/compare/v0.26.0...v0.27.0) (2022-06-13)
 
 
