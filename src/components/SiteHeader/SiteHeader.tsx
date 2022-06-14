@@ -2,7 +2,6 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { useUserStyleContext } from "../../context/UserStyleContext";
 import { useAuth } from "../../context/Auth";
 import SearchForm from "../SearchForm";
 import UnstyledButton from "../UnstyledButton/UnstyledButton";
@@ -11,7 +10,7 @@ import { getBreakpoint } from "../../styles/utils/responsive";
 import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
 import flex from "../../styles/utils/flex";
-import { Span } from "../Typography/Typography";
+import { Span } from "../Typography";
 
 const StyledSiteHeader = styled.header<BackgroundProps>`
   display: flex;
@@ -31,25 +30,8 @@ const HomeLink = styled.a<FlexProps>`
   ${flex}
 `;
 
-const HeaderButton = styled(UnstyledButton)`
-  padding-right: 24px;
-  text-transform: capitalize;
-`;
-
-const HeaderButtonWrapper = styled.div`
-  margin-left: auto;
-  font-weight: normal;
-`;
-
 const SiteHeader: FC = () => {
   const { user, signOut } = useAuth();
-  const userStyleContext = useUserStyleContext();
-
-  const handleClick = () => {
-    userStyleContext.user === "teachers"
-      ? userStyleContext.setUser("pupils")
-      : userStyleContext.setUser("teachers");
-  };
 
   return (
     <StyledSiteHeader background="grey3">
@@ -69,16 +51,13 @@ const SiteHeader: FC = () => {
         </Link>
       </Flex>
       <SearchForm />
-      <HeaderButtonWrapper>
-        <HeaderButton onClick={handleClick}>
-          {userStyleContext.user}
-        </HeaderButton>
+      <Flex ml="auto">
         {user ? (
-          <HeaderButton onClick={signOut}>Sign out</HeaderButton>
+          <UnstyledButton onClick={signOut}>Sign out</UnstyledButton>
         ) : (
           <Link href="/sign-in">Sign in</Link>
         )}
-      </HeaderButtonWrapper>
+      </Flex>
     </StyledSiteHeader>
   );
 };

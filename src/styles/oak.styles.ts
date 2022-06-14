@@ -6,6 +6,8 @@ const oakStyles = css`
     padding: 0;
     margin: 0;
     font-family: sans-serif;
+    font-family: ABeeZee, sans-serif;
+    line-height: 1.4;
   }
 
   /* stylelint-disable */
@@ -21,12 +23,6 @@ const oakStyles = css`
     color: inherit;
     text-decoration: none;
     font-family: inherit;
-  }
-
-  * {
-    box-sizing: border-box;
-    font-family: ABeeZee, sans-serif;
-    line-height: 1.4;
   }
 `;
 

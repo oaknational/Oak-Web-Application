@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
-import getColor from "../../styles/themeHelpers/getColor";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { OakColorName } from "../../styles/theme";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 
@@ -12,8 +12,10 @@ import Share from "./Share.icon";
 import Star from "./Star.icon";
 import Search from "./Search.icon";
 import Home from "./Home.icon";
+import Newspaper from "./Newspaper.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
+import Play from "./Play.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -23,8 +25,10 @@ export const ICON_NAMES = [
   "Star",
   "Search",
   "Home",
+  "Newspaper",
   "Tick",
   "ArrowRight",
+  "Play",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -35,8 +39,10 @@ export const icons: Record<IconName, FC> = {
   Star,
   Search,
   Home,
+  Newspaper,
   Tick,
   ArrowRight,
+  Play,
 };
 
 type SizeProps = { height: number; width: number };
@@ -56,7 +62,7 @@ const IconInnerWrapper = styled.span<SizeProps & { color?: OakColorName }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => getColor(props.color)};
+  color: ${(props) => getColorByName(props.color)};
   ${size}
 `;
 
@@ -77,6 +83,12 @@ type IconProps = MarginProps & {
    */
   color?: OakColorName;
 };
+/**
+ * The `<Icon />` component should be the go to component wherever you seen an
+ * icon.
+ * The exception to this is if the icon is clickable, in which case you should
+ * use an `<IconButton />` component (which uses `<Icon />` internally).
+ */
 const Icon: FC<IconProps> = (props) => {
   const { name, size = 24, width, height, color, ...rootProps } = props;
   const IconComponent = icons[name];
