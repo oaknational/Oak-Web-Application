@@ -11,7 +11,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-BeQoi fJcmHO"
+    className="sc-26415b9b-0 ClhlW"
   >
     A screen reader will read this but you can't see it
   </div>,
@@ -28,53 +28,49 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <div>
-      <button
-        aria-label="Add Bookmark"
-        className="sc-fnykZs sc-bjUoiL cWusoX ipmBnF"
-        disabled={false}
-        onClick={[Function]}
-        size="small"
-        title="Add Bookmark"
+  <button
+    aria-label="Add Bookmark"
+    className="sc-da410035-0 sc-7c97ca8b-0 eaZurT dlmRQd"
+    disabled={false}
+    onClick={[Function]}
+    size="small"
+    title="Add Bookmark"
+  >
+    <div
+      className="sc-ef16a28e-0 jCQjNU"
+      size="small"
+    >
+      <span
+        className="sc-800c6ae4-0 jgGtC"
+        height={16}
+        width={16}
       >
-        <div
-          className="sc-fEOsli erMgfJ"
-          size="small"
+        <span
+          className="sc-800c6ae4-1 iRrixn"
+          height={16}
+          width={16}
         >
-          <span
-            className="sc-dkzDqf duyNNI"
-            height={16}
-            width={16}
+          <svg
+            fill="currentColor"
+            viewBox="2 2 20 20"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              className="sc-hKMtZM iyxfMn"
-              height={16}
-              width={16}
-            >
-              <svg
-                fill="currentColor"
-                viewBox="2 2 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </button>
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+        </span>
+      </span>
     </div>
-  </div>,
+  </button>,
 ]
 `;
 
@@ -90,7 +86,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-kDDrLX kbHbvm"
+    className="sc-fd2ec9d3-0 gdQNxS"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -100,7 +96,7 @@ Array [
     title="Click me"
   >
     <span
-      className="sc-jqUVSM cPSPRE"
+      className="sc-afa80c08-0 dokVaK"
     >
       Click me
     </span>
@@ -120,12 +116,12 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-fnykZs sc-dmRaPn cWusoX jXXxKP"
+    className="sc-da410035-0 sc-8b0ca929-0 eaZurT kHNHEI"
     size="small"
     title="Click me"
   >
     <span
-      className="sc-jqUVSM cPSPRE"
+      className="sc-afa80c08-0 dokVaK"
     >
       Click me
     </span>
@@ -144,11 +140,11 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi sc-fLlhyt kzKShG iVslse gkEYBq"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-c54a04ce-0 bsCxxD hMvcoF gYClZN"
   >
     <a
       aria-label="Download Lesson"
-      className="sc-kDDrLX kbHbvm"
+      className="sc-fd2ec9d3-0 gdQNxS"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -158,15 +154,15 @@ Array [
       title="Download Lesson"
     >
       <span
-        className="sc-papXJ kabPXs"
+        className="sc-bba76629-0 kRiOrX"
       >
         <span
-          className="sc-dkzDqf duyNNI"
+          className="sc-800c6ae4-0 jgGtC"
           height={16}
           width={16}
         >
           <span
-            className="sc-hKMtZM iyxfMn"
+            className="sc-800c6ae4-1 iRrixn"
             height={16}
             width={16}
           >
@@ -198,14 +194,14 @@ Array [
         </span>
       </span>
       <span
-        className="sc-jqUVSM cPSPRE"
+        className="sc-afa80c08-0 dokVaK"
       >
         Download
       </span>
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-kDDrLX kbHbvm"
+      className="sc-fd2ec9d3-0 gdQNxS"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -215,15 +211,15 @@ Array [
       title="Share Lesson"
     >
       <span
-        className="sc-papXJ kabPXs"
+        className="sc-bba76629-0 kRiOrX"
       >
         <span
-          className="sc-dkzDqf duyNNI"
+          className="sc-800c6ae4-0 jgGtC"
           height={16}
           width={16}
         >
           <span
-            className="sc-hKMtZM iyxfMn"
+            className="sc-800c6ae4-1 iRrixn"
             height={16}
             width={16}
           >
@@ -270,7 +266,7 @@ Array [
         </span>
       </span>
       <span
-        className="sc-jqUVSM cPSPRE"
+        className="sc-afa80c08-0 dokVaK"
       >
         Share
       </span>
@@ -291,7 +287,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-kgflAQ lgUEar"
+    className="sc-dde17d1c-0 gNAAZZ"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -300,16 +296,16 @@ Array [
     size="small"
   >
     <div
-      className="sc-fEOsli jUGUQC"
+      className="sc-ef16a28e-0 hbpwaj"
       size="small"
     >
       <span
-        className="sc-dkzDqf duyNNI"
+        className="sc-800c6ae4-0 jgGtC"
         height={16}
         width={16}
       >
         <span
-          className="sc-hKMtZM iyxfMn"
+          className="sc-800c6ae4-1 iRrixn"
           height={16}
           width={16}
         >
@@ -356,21 +352,21 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-fnykZs sc-bjUoiL cWusoX dSzOvm"
+    className="sc-da410035-0 sc-7c97ca8b-0 eaZurT eHJFne"
     size="small"
     title="Click me"
   >
     <div
-      className="sc-fEOsli jUGUQC"
+      className="sc-ef16a28e-0 hbpwaj"
       size="small"
     >
       <span
-        className="sc-dkzDqf duyNNI"
+        className="sc-800c6ae4-0 jgGtC"
         height={16}
         width={16}
       >
         <span
-          className="sc-hKMtZM iyxfMn"
+          className="sc-800c6ae4-1 iRrixn"
           height={16}
           width={16}
         >
@@ -423,18 +419,18 @@ Array [
     }
   >
     <div
-      className="sc-bBrHrO eiMdyi"
+      className="sc-bbd74799-0 ebVOno"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi fNhIpM YAxgE"
+        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ cpPaPz"
       >
         <span
-          className="sc-dkzDqf hxCmDj"
+          className="sc-800c6ae4-0 kcLUGl"
           height={64}
           width={64}
         >
           <span
-            className="sc-hKMtZM eaMdhz"
+            className="sc-800c6ae4-1 hlaYiz"
             height={64}
             width={64}
           >
@@ -465,7 +461,7 @@ Array [
           </span>
         </span>
         <h3
-          className="sc-iBkjds frMLoW"
+          className="sc-ef5f3f7-0 ckxtaA"
           color="grey8"
           fontSize={24}
           ml={0}
@@ -475,18 +471,18 @@ Array [
         </h3>
       </div>
       <p
-        className="sc-breuTD dIdPgw"
+        className="sc-20ccf123-0 hRLfix"
         color="grey6"
         fontSize={16}
       >
         Short snappy description of what this card is about.
       </p>
       <div
-        className="sc-bczRLJ sc-gsnTZi hhVJRR hbBtPJ"
+        className="sc-2f0613b5-0 sc-a3c34836-0 hgtpiY fmsRaC"
       >
         <a
           aria-label="Label"
-          className="sc-kDDrLX gchBOx"
+          className="sc-fd2ec9d3-0 goZuxJ"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -496,7 +492,7 @@ Array [
           title="Label"
         >
           <span
-            className="sc-jqUVSM cPSPRE"
+            className="sc-afa80c08-0 dokVaK"
           >
             Label
           </span>
@@ -525,22 +521,22 @@ Array [
     }
   >
     <div
-      className="sc-bBrHrO eiMdyi"
+      className="sc-bbd74799-0 ebVOno"
     >
       <div
-        className="sc-ivTmOn fmNLZS"
+        className="sc-5a3421c1-0 hKnMWG"
       >
         <img
           alt="Title"
-          className="sc-cxabCf kRhWdY"
+          className="sc-5a3421c1-1 jwUqsf"
           src="/[object Object]"
         />
       </div>
       <div
-        className="sc-bczRLJ sc-gsnTZi fNhIpM hOlRaH"
+        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ boOlEY"
       >
         <h3
-          className="sc-iBkjds frMLoW"
+          className="sc-ef5f3f7-0 ckxtaA"
           color="grey8"
           fontSize={24}
           ml={0}
@@ -550,18 +546,18 @@ Array [
         </h3>
       </div>
       <p
-        className="sc-breuTD gxYznb"
+        className="sc-20ccf123-0 flFgNa"
         color="grey6"
         fontSize={16}
       >
         Short snappy description of what this card is about.
       </p>
       <div
-        className="sc-bczRLJ sc-gsnTZi hhVJRR hbBtPJ"
+        className="sc-2f0613b5-0 sc-a3c34836-0 hgtpiY fmsRaC"
       >
         <a
           aria-label="Label"
-          className="sc-kDDrLX gchBOx"
+          className="sc-fd2ec9d3-0 goZuxJ"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -571,7 +567,7 @@ Array [
           title="Label"
         >
           <span
-            className="sc-jqUVSM cPSPRE"
+            className="sc-afa80c08-0 dokVaK"
           >
             Label
           </span>
@@ -600,18 +596,18 @@ Array [
     }
   >
     <div
-      className="sc-bBrHrO eiMdyi"
+      className="sc-bbd74799-0 ebVOno"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi fNhIpM hOlRaH"
+        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ boOlEY"
       >
         <span
-          className="sc-dkzDqf kDODQJ"
+          className="sc-800c6ae4-0 bnzycv"
           height={32}
           width={32}
         >
           <span
-            className="sc-hKMtZM gGeMQT"
+            className="sc-800c6ae4-1 bbQjsb"
             height={32}
             width={32}
           >
@@ -642,7 +638,7 @@ Array [
           </span>
         </span>
         <h3
-          className="sc-iBkjds kajJvC"
+          className="sc-ef5f3f7-0 gSUrhg"
           color="grey8"
           fontSize={24}
           ml={8}
@@ -652,18 +648,18 @@ Array [
         </h3>
       </div>
       <p
-        className="sc-breuTD gxYznb"
+        className="sc-20ccf123-0 flFgNa"
         color="grey6"
         fontSize={16}
       >
         Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
       </p>
       <div
-        className="sc-bczRLJ sc-gsnTZi hhVJRR hbBtPJ"
+        className="sc-2f0613b5-0 sc-a3c34836-0 hgtpiY fmsRaC"
       >
         <a
           aria-label="Visit Help Centre"
-          className="sc-kDDrLX gchBOx"
+          className="sc-fd2ec9d3-0 goZuxJ"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -673,7 +669,7 @@ Array [
           title="Visit Help Centre"
         >
           <span
-            className="sc-jqUVSM cPSPRE"
+            className="sc-afa80c08-0 dokVaK"
           >
             Visit Help Centre
           </span>
@@ -695,7 +691,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bBrHrO kxpjDy"
+    className="sc-bbd74799-0 gWoKqM"
   >
     <h2>
       Card title
@@ -718,10 +714,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi sc-gKXOVf kzKShG dyrBQy blNMGH"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
   >
     <svg
-      className="sc-eCYdqJ dRtcnw"
+      className="sc-6ab5f0da-0 bXwxJO"
       fill="none"
       height="100%"
       viewBox="0 0 54 54"
@@ -734,15 +730,15 @@ Array [
       />
     </svg>
     <div
-      className="sc-bczRLJ sc-gsnTZi sc-jSMfEi kzKShG dyrBQy ffTwbC"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
     >
       <span
-        className="sc-dkzDqf cegtjA"
+        className="sc-800c6ae4-0 bVeWcW"
         height={20}
         width={20}
       >
         <span
-          className="sc-hKMtZM dffNhz"
+          className="sc-800c6ae4-1 igHoiz"
           height={20}
           width={20}
         >
@@ -781,10 +777,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi sc-gKXOVf kzKShG dyrBQy blNMGH"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
   >
     <svg
-      className="sc-eCYdqJ dRtcnw"
+      className="sc-6ab5f0da-0 bXwxJO"
       fill="none"
       height="100%"
       viewBox="0 0 54 54"
@@ -797,7 +793,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-bczRLJ sc-gsnTZi sc-jSMfEi kzKShG dyrBQy ffTwbC"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
     >
       80%
     </div>
@@ -805,7 +801,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
+exports[`Storyshots Feedback/Loading Spinner Loading Spinner 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -816,10 +812,10 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-cTQhss blmvqI"
+    className="sc-7f9be300-0 chMNpH"
   >
     <span
-      className="sc-efBctP eLNQZo"
+      className="sc-ed9f0b56-0 gWcRbA"
     >
       Loading
     </span>
@@ -838,7 +834,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-ikZpkk sc-jIZahH besdpr bIGUmE"
+    className="sc-f4eaf512-0 sc-6947a58a-0 bsoZhI khzyMs"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -857,14 +853,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-llJcti dzKfWo"
+    className="sc-312daaf3-0 ddwjbs"
     disabled={false}
     htmlFor="Click me"
     onClick={[Function]}
   >
     <input
       checked={true}
-      className="sc-iIPllB dmwgXW"
+      className="sc-312daaf3-1 jUsCnh"
       disabled={false}
       id="Click me"
       onChange={[Function]}
@@ -872,7 +868,7 @@ Array [
     />
     <svg
       aria-hidden="true"
-      className="sc-gicCDI"
+      className="sc-312daaf3-2"
       fill="none"
       focusable="false"
       height="24"
@@ -889,11 +885,11 @@ Array [
       />
       <path
         checked={true}
-        className="sc-ezWOiH bzezah"
+        className="sc-312daaf3-3 jqZQPA"
         d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
       />
       <rect
-        className="sc-bZkfAO fhgaVC"
+        className="sc-312daaf3-4 jnANBF"
         height="23"
         rx="3.5"
         width="23"
@@ -902,7 +898,7 @@ Array [
       />
     </svg>
     <span
-      className="sc-kLLXSd ljLziH"
+      className="sc-312daaf3-5 dCllwe"
     >
       Click me
     </span>
@@ -921,10 +917,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
   >
     <input
-      className="sc-ikZpkk sc-gXmSlM besdpr bUdBGG"
+      className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI gAaOiB"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -944,21 +940,21 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
   >
     <input
-      className="sc-ikZpkk sc-gXmSlM besdpr fDaRPt"
+      className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI cZkuXi"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-dkzDqf fgIwZC sc-himrzO ctA-dex"
+      className="sc-800c6ae4-0 efsTZY sc-4047a183-0 hrNUBb"
       height={20}
       width={40}
     >
       <span
-        className="sc-hKMtZM dffNhz"
+        className="sc-800c6ae4-1 igHoiz"
         height={20}
         width={20}
       >
@@ -991,7 +987,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ cdYuTy"
+    className="sc-2f0613b5-0 broYQb"
   >
     Box
   </div>,
@@ -1009,7 +1005,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi fBxaaT dwApCD"
+    className="sc-2f0613b5-0 sc-a3c34836-0 esGUYW kPqkso"
   >
     Flex box
   </div>,
@@ -1027,14 +1023,14 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-iqcoie jSrVMA"
+    className="sc-dc108f60-0 eGcWAX"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
   </div>,
 ]
 `;
 
-exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
+exports[`Storyshots Headers & Footers/Lesson Header Lesson Header 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -1045,20 +1041,20 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi kzKShG loCXzk"
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gwEsUT"
   >
     <div
-      className="sc-bczRLJ sc-gsnTZi kzKShG iVslse"
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
     >
       <h1
-        className="sc-iBkjds dzPasC"
+        className="sc-ef5f3f7-0 bsRbCw"
         fontSize={32}
       >
         <div
-          className="sc-bczRLJ xaVBv"
+          className="sc-2f0613b5-0 kLzPmu"
         >
           <span
-            className="sc-evZas bmyzS"
+            className="sc-1a42a0ba-0 aPRTo"
             fontSize={24}
           >
             Lesson
@@ -1067,11 +1063,11 @@ Array [
       </h1>
     </div>
     <div
-      className="sc-bczRLJ sc-gsnTZi sc-fLlhyt kzKShG iVslse gkEYBq"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-c54a04ce-0 bsCxxD hMvcoF gYClZN"
     >
       <a
         aria-label="Download Lesson"
-        className="sc-kDDrLX krAGPV"
+        className="sc-fd2ec9d3-0 hWhuQJ"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1081,15 +1077,15 @@ Array [
         title="Download Lesson"
       >
         <span
-          className="sc-papXJ kabPXs"
+          className="sc-bba76629-0 kRiOrX"
         >
           <span
-            className="sc-dkzDqf duyNNI"
+            className="sc-800c6ae4-0 jgGtC"
             height={16}
             width={16}
           >
             <span
-              className="sc-hKMtZM iyxfMn"
+              className="sc-800c6ae4-1 iRrixn"
               height={16}
               width={16}
             >
@@ -1121,14 +1117,14 @@ Array [
           </span>
         </span>
         <span
-          className="sc-jqUVSM cPSPRE"
+          className="sc-afa80c08-0 dokVaK"
         >
           Download
         </span>
       </a>
       <a
         aria-label="Share Lesson"
-        className="sc-kDDrLX krAGPV"
+        className="sc-fd2ec9d3-0 hWhuQJ"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1138,15 +1134,15 @@ Array [
         title="Share Lesson"
       >
         <span
-          className="sc-papXJ kabPXs"
+          className="sc-bba76629-0 kRiOrX"
         >
           <span
-            className="sc-dkzDqf duyNNI"
+            className="sc-800c6ae4-0 jgGtC"
             height={16}
             width={16}
           >
             <span
-              className="sc-hKMtZM iyxfMn"
+              className="sc-800c6ae4-1 iRrixn"
               height={16}
               width={16}
             >
@@ -1193,30 +1189,30 @@ Array [
           </span>
         </span>
         <span
-          className="sc-jqUVSM cPSPRE"
+          className="sc-afa80c08-0 dokVaK"
         >
           Share
         </span>
       </a>
       <button
         aria-label="Add Bookmark"
-        className="sc-fnykZs sc-bjUoiL cWusoX ipmBnF"
+        className="sc-da410035-0 sc-7c97ca8b-0 eaZurT dlmRQd"
         disabled={false}
         onClick={[Function]}
         size="small"
         title="Add Bookmark"
       >
         <div
-          className="sc-fEOsli erMgfJ"
+          className="sc-ef16a28e-0 jCQjNU"
           size="small"
         >
           <span
-            className="sc-dkzDqf duyNNI"
+            className="sc-800c6ae4-0 jgGtC"
             height={16}
             width={16}
           >
             <span
-              className="sc-hKMtZM iyxfMn"
+              className="sc-800c6ae4-1 iRrixn"
               height={16}
               width={16}
             >
@@ -1246,7 +1242,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Headers & Footers/SiteFooter Site Footer Example 1`] = `
+exports[`Storyshots Headers & Footers/Site Footer Site Footer 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -1256,18 +1252,16 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <footer
-      className="sc-dPyBCJ djPDFd"
-    >
-      © Oak National Academy 
-      2022
-    </footer>
-  </div>,
+  <footer
+    className="sc-5eda28f9-0 jnppGu"
+  >
+    © Oak National Academy 
+    2022
+  </footer>,
 ]
 `;
 
-exports[`Storyshots Headers & Footers/SiteHeader Site Footer Example 1`] = `
+exports[`Storyshots Headers & Footers/Site Header Site Header 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -1277,120 +1271,118 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <header
-      className="sc-bBXxYQ kwrsuy"
+  <header
+    className="sc-ed2dc008-0 bvouKH"
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 iRseBR bzAnZD"
     >
-      <div
-        className="sc-bczRLJ sc-gsnTZi ejBdyI kXRZKI"
+      <a
+        className="sc-ed2dc008-1 gnbvDR"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
-        <a
-          className="sc-cOFTSb gvbpYi"
-          href="/"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
+        <span
+          className="sc-800c6ae4-0 iNSDWQ"
+          height={30}
+          width={30}
         >
           <span
-            className="sc-dkzDqf dXqKDy"
+            className="sc-800c6ae4-1 bTNYSP"
             height={30}
             width={30}
           >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          className="sc-1a42a0ba-0 bvhOJW"
+          fontFamily="heading"
+          fontSize={20}
+          fontWeight={600}
+        >
+          Oak
+        </span>
+      </a>
+    </div>
+    <form
+      className="sc-ea8229a0-0 dkinEo"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <input
+          aria-label="Search"
+          className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI gAaOiB"
+          onChange={[Function]}
+          placeholder="Search"
+          type="search"
+          value=""
+        />
+      </div>
+      <button
+        aria-label="Submit"
+        className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
+        onClick={[Function]}
+        size="small"
+        title="Submit"
+        type="submit"
+      >
+        <div
+          className="sc-ef16a28e-0 hbpwaj"
+          size="small"
+        >
+          <span
+            className="sc-800c6ae4-0 jgGtC"
+            height={16}
+            width={16}
+          >
             <span
-              className="sc-hKMtZM fbBuef"
-              height={30}
-              width={30}
+              className="sc-800c6ae4-1 iRrixn"
+              height={16}
+              width={16}
             >
               <svg
+                fill="none"
                 height="100%"
-                viewBox="0 0 48 48"
+                viewBox="0 0 17 17"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                  d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
                   fill="currentColor"
                 />
               </svg>
             </span>
           </span>
-          <span
-            className="sc-evZas bgJfKo"
-            fontFamily="heading"
-            fontSize={20}
-            fontWeight={600}
-          >
-            Oak
-          </span>
-        </a>
-      </div>
-      <form
-        className="sc-jOrMOR kBpjsa"
-        onSubmit={[Function]}
-      >
-        <div
-          className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
-        >
-          <input
-            aria-label="Search"
-            className="sc-ikZpkk sc-gXmSlM besdpr bUdBGG"
-            onChange={[Function]}
-            placeholder="Search"
-            type="search"
-            value=""
-          />
         </div>
-        <button
-          aria-label="Submit"
-          className="sc-fnykZs sc-bjUoiL cWusoX eufnXo"
-          onClick={[Function]}
-          size="small"
-          title="Submit"
-          type="submit"
-        >
-          <div
-            className="sc-fEOsli jUGUQC"
-            size="small"
-          >
-            <span
-              className="sc-dkzDqf duyNNI"
-              height={16}
-              width={16}
-            >
-              <span
-                className="sc-hKMtZM iyxfMn"
-                height={16}
-                width={16}
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  viewBox="0 0 17 17"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-        </button>
-      </form>
-      <div
-        className="sc-bczRLJ sc-gsnTZi gWeRSQ bilTkc"
+      </button>
+    </form>
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 gjwjEx lfYcjD"
+    >
+      <a
+        href="/sign-in"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
-        <a
-          href="/sign-in"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-        >
-          Sign in
-        </a>
-      </div>
-    </header>
-  </div>,
+        Sign in
+      </a>
+    </div>
+  </header>,
 ]
 `;
 
@@ -1405,15 +1397,15 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-jOrMOR kBpjsa"
+    className="sc-ea8229a0-0 dkinEo"
     onSubmit={[Function]}
   >
     <div
-      className="sc-bczRLJ sc-gsnTZi kzKShG hUqtia"
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
     >
       <input
         aria-label="Search"
-        className="sc-ikZpkk sc-gXmSlM besdpr bUdBGG"
+        className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI gAaOiB"
         onChange={[Function]}
         placeholder="Search"
         type="search"
@@ -1422,23 +1414,23 @@ Array [
     </div>
     <button
       aria-label="Submit"
-      className="sc-fnykZs sc-bjUoiL cWusoX eufnXo"
+      className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
       onClick={[Function]}
       size="small"
       title="Submit"
       type="submit"
     >
       <div
-        className="sc-fEOsli jUGUQC"
+        className="sc-ef16a28e-0 hbpwaj"
         size="small"
       >
         <span
-          className="sc-dkzDqf duyNNI"
+          className="sc-800c6ae4-0 jgGtC"
           height={16}
           width={16}
         >
           <span
-            className="sc-hKMtZM iyxfMn"
+            className="sc-800c6ae4-1 iRrixn"
             height={16}
             width={16}
           >
@@ -1473,31 +1465,31 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-iAvgwm fwJpYu"
+    className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-fnykZs sc-cCsOjp cWusoX gEENJc"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-ciZhAO iTJWiZ bUqLLB hvZuHy"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 hGgCuw fcwCAC crDrih"
       >
         <div
-          className="sc-bczRLJ sc-gsnTZi sc-iTONeN kzKShG gPmbcF bYSuqi"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-bZnhIo iUCYBB dcaAiW iKgKUx"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
             fontWeight={400}
           >
             Intro
           </div>
           <span
-            className="sc-dkzDqf iSWCpq"
+            className="sc-800c6ae4-0 jBdqpo"
             height={20}
             width={20}
           >
             <span
-              className="sc-hKMtZM dffNhz"
+              className="sc-800c6ae4-1 igHoiz"
               height={20}
               width={20}
             >
@@ -1533,25 +1525,25 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-iAvgwm fwJpYu"
+    className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-fnykZs sc-cCsOjp cWusoX gEENJc"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-ciZhAO eAJBhu ePoiUu jwvHgM"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 eqoKHr gjkcyN bAKKjH"
       >
         <div
-          className="sc-bczRLJ sc-gsnTZi sc-iTONeN kzKShG gPmbcF bYSuqi"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <span
-            className="sc-dkzDqf jZvGiN"
+            className="sc-800c6ae4-0 dgBwGH"
             height={20}
             width={20}
           >
             <span
-              className="sc-hKMtZM dffNhz"
+              className="sc-800c6ae4-1 igHoiz"
               height={20}
               width={20}
             >
@@ -1570,7 +1562,7 @@ Array [
             </span>
           </span>
           <div
-            className="sc-bczRLJ sc-crXcEl sc-bZnhIo iUCYBB dcaAiW iKgKUx"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
             fontWeight={400}
           >
             Intro
@@ -1593,20 +1585,20 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-iAvgwm fwJpYu"
+    className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-fnykZs sc-cCsOjp cWusoX gEENJc"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-ciZhAO eMgjiL ipMzqz hvZuHy"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 Fwloy kKPuLE crDrih"
       >
         <div
-          className="sc-bczRLJ sc-gsnTZi sc-iTONeN kzKShG gPmbcF bYSuqi"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-bZnhIo iUCYBB dcaAiW iKgKUx"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
             fontWeight={400}
           >
             Intro
@@ -1629,23 +1621,23 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-iAvgwm fwJpYu"
+    className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-fnykZs sc-cCsOjp cWusoX gEENJc"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-ciZhAO iTJWiZ bUqLLB hvZuHy"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 hGgCuw fcwCAC crDrih"
       >
         <div
-          className="sc-jdAMXn"
+          className="sc-9219bae4-2"
         >
           <div
-            className="sc-bczRLJ sc-gsnTZi sc-gKXOVf kzKShG dyrBQy blNMGH"
+            className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
           >
             <svg
-              className="sc-eCYdqJ dRtcnw"
+              className="sc-6ab5f0da-0 bXwxJO"
               fill="none"
               height="100%"
               viewBox="0 0 54 54"
@@ -1658,28 +1650,28 @@ Array [
               />
             </svg>
             <div
-              className="sc-bczRLJ sc-gsnTZi sc-jSMfEi kzKShG dyrBQy ffTwbC"
+              className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
             >
               33%
             </div>
           </div>
         </div>
         <div
-          className="sc-bczRLJ sc-gsnTZi sc-iTONeN kzKShG gPmbcF bYSuqi"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-bZnhIo iUCYBB dcaAiW iKgKUx"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
             fontWeight={400}
           >
             Intro
           </div>
           <span
-            className="sc-dkzDqf iSWCpq"
+            className="sc-800c6ae4-0 jBdqpo"
             height={20}
             width={20}
           >
             <span
-              className="sc-hKMtZM dffNhz"
+              className="sc-800c6ae4-1 igHoiz"
               height={20}
               width={20}
             >
@@ -1715,23 +1707,23 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-iAvgwm fwJpYu"
+    className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-fnykZs sc-cCsOjp cWusoX gEENJc"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Very long label"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-ciZhAO iTJWiZ bUqLLB hvZuHy"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 hGgCuw fcwCAC crDrih"
       >
         <div
-          className="sc-jdAMXn"
+          className="sc-9219bae4-2"
         >
           <div
-            className="sc-bczRLJ sc-gsnTZi sc-gKXOVf kzKShG dyrBQy blNMGH"
+            className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
           >
             <svg
-              className="sc-eCYdqJ dRtcnw"
+              className="sc-6ab5f0da-0 bXwxJO"
               fill="none"
               height="100%"
               viewBox="0 0 54 54"
@@ -1744,28 +1736,28 @@ Array [
               />
             </svg>
             <div
-              className="sc-bczRLJ sc-gsnTZi sc-jSMfEi kzKShG dyrBQy ffTwbC"
+              className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
             >
               33%
             </div>
           </div>
         </div>
         <div
-          className="sc-bczRLJ sc-gsnTZi sc-iTONeN kzKShG gPmbcF bYSuqi"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-bczRLJ sc-crXcEl sc-bZnhIo iUCYBB dcaAiW iKgKUx"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
             fontWeight={400}
           >
             Very long label
           </div>
           <span
-            className="sc-dkzDqf iSWCpq"
+            className="sc-800c6ae4-0 jBdqpo"
             height={20}
             width={20}
           >
             <span
-              className="sc-hKMtZM dffNhz"
+              className="sc-800c6ae4-1 igHoiz"
               height={20}
               width={20}
             >
@@ -1801,18 +1793,18 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi kzKShG dKNykm"
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD kXhHIh"
   >
     <div
-      className="sc-bczRLJ sc-gsnTZi jNusZJ eXtmwR"
+      className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc foVbBC"
     >
       <span
-        className="sc-dkzDqf kdCdOt"
+        className="sc-800c6ae4-0 hNUqLH"
         height={36}
         width={36}
       >
         <span
-          className="sc-hKMtZM cbprYD"
+          className="sc-800c6ae4-1 fGFEkr"
           height={36}
           width={36}
         >
@@ -1831,42 +1823,42 @@ Array [
         </span>
       </span>
       <h1
-        className="sc-iBkjds cAjqjp"
+        className="sc-ef5f3f7-0 gBeReX"
         fontSize={24}
       >
         Check out these things!
       </h1>
     </div>
     <div
-      className="sc-bczRLJ sc-gsnTZi GgTKa lhKOmA"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-hAZoDl cZWQtq fWXPtK jDGFJs"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
       />
       <div
-        className="sc-bczRLJ sc-gsnTZi kzKShG frgpwH"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
       >
         <h2
-          className="sc-iBkjds jDTZVz"
+          className="sc-ef5f3f7-0 hVVfDt"
           fontSize={20}
           mb={16}
         >
           The Long and Winding Road
         </h2>
         <p
-          className="sc-breuTD iEHNWJ"
+          className="sc-20ccf123-0 dksOPw"
           color="grey6"
           fontSize={18}
         >
           <div
-            className="sc-iqcoie eYUUwl"
+            className="sc-dc108f60-0 biVGWy"
           >
             The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
           </div>
         </p>
         <a
           aria-label="Read More"
-          className="sc-kDDrLX fmnOVP sc-ksZaOG cPToXS"
+          className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1876,7 +1868,7 @@ Array [
           title="Read More"
         >
           <span
-            className="sc-jqUVSM cPSPRE"
+            className="sc-afa80c08-0 dokVaK"
           >
             Read More
           </span>
@@ -1884,22 +1876,22 @@ Array [
       </div>
     </div>
     <hr
-      className="sc-ftvSup cVSQWB"
+      className="sc-cb4b0018-0 jBFrxo"
       color="grey2"
     />
     <div
-      className="sc-bczRLJ sc-gsnTZi GgTKa lhKOmA"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-hAZoDl cZWQtq fWXPtK jDGFJs"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
       >
         <span
-          className="sc-dkzDqf clcgDA"
+          className="sc-800c6ae4-0 gwxXru"
           height={48}
           width={48}
         >
           <span
-            className="sc-hKMtZM lAinm"
+            className="sc-800c6ae4-1 hrREuS"
             color="white"
             height={48}
             width={48}
@@ -1918,29 +1910,29 @@ Array [
         </span>
       </div>
       <div
-        className="sc-bczRLJ sc-gsnTZi kzKShG frgpwH"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
       >
         <h2
-          className="sc-iBkjds jDTZVz"
+          className="sc-ef5f3f7-0 hVVfDt"
           fontSize={20}
           mb={16}
         >
           Penny Lane
         </h2>
         <p
-          className="sc-breuTD iEHNWJ"
+          className="sc-20ccf123-0 dksOPw"
           color="grey6"
           fontSize={18}
         >
           <div
-            className="sc-iqcoie eYUUwl"
+            className="sc-dc108f60-0 biVGWy"
           >
             Penny Lane, there is a barber showing photographs Of every head he's had the pleasure to know And all the people that come and go Stop and say, "Hello"
           </div>
         </p>
         <a
           aria-label="Watch Now"
-          className="sc-kDDrLX fmnOVP sc-ksZaOG cPToXS"
+          className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1950,7 +1942,7 @@ Array [
           title="Watch Now"
         >
           <span
-            className="sc-jqUVSM cPSPRE"
+            className="sc-afa80c08-0 dokVaK"
           >
             Watch Now
           </span>
@@ -1958,39 +1950,39 @@ Array [
       </div>
     </div>
     <hr
-      className="sc-ftvSup cVSQWB"
+      className="sc-cb4b0018-0 jBFrxo"
       color="grey2"
     />
     <div
-      className="sc-bczRLJ sc-gsnTZi GgTKa lhKOmA"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
     >
       <div
-        className="sc-bczRLJ sc-gsnTZi sc-hAZoDl cZWQtq fWXPtK jDGFJs"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
       />
       <div
-        className="sc-bczRLJ sc-gsnTZi kzKShG frgpwH"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
       >
         <h2
-          className="sc-iBkjds jDTZVz"
+          className="sc-ef5f3f7-0 hVVfDt"
           fontSize={20}
           mb={16}
         >
           Strawberry Fields Forever
         </h2>
         <p
-          className="sc-breuTD iEHNWJ"
+          className="sc-20ccf123-0 dksOPw"
           color="grey6"
           fontSize={18}
         >
           <div
-            className="sc-iqcoie eYUUwl"
+            className="sc-dc108f60-0 biVGWy"
           >
             No one I think is in my tree I mean, it must be high or low That is, you can't, you know, tune in but it's all right That is, I think it's not too bad
           </div>
         </p>
         <a
           aria-label="Read More"
-          className="sc-kDDrLX fmnOVP sc-ksZaOG cPToXS"
+          className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2000,7 +1992,7 @@ Array [
           title="Read More"
         >
           <span
-            className="sc-jqUVSM cPSPRE"
+            className="sc-afa80c08-0 dokVaK"
           >
             Read More
           </span>
@@ -2022,35 +2014,35 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-gsnTZi GgTKa lhKOmA"
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
   >
     <div
-      className="sc-bczRLJ sc-gsnTZi sc-hAZoDl cZWQtq fWXPtK jDGFJs"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
     />
     <div
-      className="sc-bczRLJ sc-gsnTZi kzKShG frgpwH"
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
     >
       <h3
-        className="sc-iBkjds jDTZVz"
+        className="sc-ef5f3f7-0 hVVfDt"
         fontSize={20}
         mb={16}
       >
         The long and winding road
       </h3>
       <p
-        className="sc-breuTD iEHNWJ"
+        className="sc-20ccf123-0 dksOPw"
         color="grey6"
         fontSize={18}
       >
         <div
-          className="sc-iqcoie eYUUwl"
+          className="sc-dc108f60-0 biVGWy"
         >
           The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
         </div>
       </p>
       <a
         aria-label="Read More"
-        className="sc-kDDrLX fmnOVP sc-ksZaOG cPToXS"
+        className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2060,7 +2052,7 @@ Array [
         title="Read More"
       >
         <span
-          className="sc-jqUVSM cPSPRE"
+          className="sc-afa80c08-0 dokVaK"
         >
           Read More
         </span>
@@ -2070,7 +2062,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Media/Icon Icon Example 1`] = `
+exports[`Storyshots Media/Icon Icon 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -2080,35 +2072,33 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
+  <span
+    className="sc-800c6ae4-0 hVWbQa"
+    height={100}
+    width={100}
+  >
     <span
-      className="sc-dkzDqf duOgJI"
+      className="sc-800c6ae4-1 kAFeRD"
       height={100}
       width={100}
     >
-      <span
-        className="sc-hKMtZM gcvcqv"
-        height={100}
-        width={100}
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polyline
-            points="9 18 15 12 9 6"
-          />
-        </svg>
-      </span>
+        <polyline
+          points="9 18 15 12 9 6"
+        />
+      </svg>
     </span>
-  </div>,
+  </span>,
 ]
 `;
 
@@ -2122,142 +2112,140 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <nav
-      aria-label="Breadcrumb"
-      className="sc-idiyUo ghxRmH"
+  <nav
+    aria-label="Breadcrumb"
+    className="sc-2fa6374a-0 dyIhuP"
+  >
+    <ol
+      className="sc-2fa6374a-1 bgmmze"
     >
-      <ol
-        className="sc-dIouRR iREcMj"
+      <li
+        className="sc-2fa6374a-2 LyxUe"
       >
-        <li
-          className="sc-hHLeRK eEeSnT"
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Unit Quiz
-          </a>
-        </li>
-        <li
-          className="sc-hHLeRK eEeSnT"
+          Unit Quiz
+        </a>
+      </li>
+      <li
+        className="sc-2fa6374a-2 LyxUe"
+      >
+        <span
+          className="sc-800c6ae4-0 bVeWcW"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-dkzDqf cegtjA"
+            className="sc-800c6ae4-1 igHoiz"
             height={20}
             width={20}
           >
-            <span
-              className="sc-hKMtZM dffNhz"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            View In Classroom
-          </a>
-        </li>
-        <li
-          className="sc-hHLeRK eEeSnT"
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          View In Classroom
+        </a>
+      </li>
+      <li
+        className="sc-2fa6374a-2 LyxUe"
+      >
+        <span
+          className="sc-800c6ae4-0 bVeWcW"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-dkzDqf cegtjA"
+            className="sc-800c6ae4-1 igHoiz"
             height={20}
             width={20}
           >
-            <span
-              className="sc-hKMtZM dffNhz"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Foundation Curriculum (PDF)
-          </a>
-        </li>
-        <li
-          className="sc-hHLeRK eEeSnT"
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Foundation Curriculum (PDF)
+        </a>
+      </li>
+      <li
+        className="sc-2fa6374a-2 LyxUe"
+      >
+        <span
+          className="sc-800c6ae4-0 bVeWcW"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-dkzDqf cegtjA"
+            className="sc-800c6ae4-1 igHoiz"
             height={20}
             width={20}
           >
-            <span
-              className="sc-hKMtZM dffNhz"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Higher Curriculum (PDF)
-          </a>
-        </li>
-      </ol>
-    </nav>
-  </div>,
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Higher Curriculum (PDF)
+        </a>
+      </li>
+    </ol>
+  </nav>,
 ]
 `;
 
@@ -2272,7 +2260,7 @@ Array [
     rel="stylesheet"
   />,
   <h1
-    className="sc-iBkjds cGPvMp"
+    className="sc-ef5f3f7-0 jKEmNz"
   >
     Heading 1
   </h1>,
@@ -2290,7 +2278,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-crXcEl kzKShG dztcDN"
+    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD bqdWGm"
     fontSize={18}
     fontWeight={400}
   >
@@ -2298,7 +2286,7 @@ Array [
       See below
     </p>
     <hr
-      className="sc-ftvSup cVSQWB"
+      className="sc-cb4b0018-0 jBFrxo"
       color="grey2"
     />
     <p>
@@ -2319,7 +2307,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-breuTD jCHMSw"
+    className="sc-20ccf123-0 bAXLyp"
     color="grey9"
     fontSize={16}
   >
@@ -2339,16 +2327,16 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-crXcEl kzKShG dcaAiW"
+    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD hsAqMF"
     fontWeight={400}
   >
     <p
-      className="sc-breuTD hLytrB"
+      className="sc-20ccf123-0 lfGARk"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
        
       <span
-        className="sc-evZas jYoCDU"
+        className="sc-1a42a0ba-0 eLTjAy"
         color="inYourFace"
         fontWeight={600}
       >
@@ -2371,7 +2359,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bczRLJ sc-crXcEl kzKShG kENsZG"
+    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD gyOmHh"
     color="grey9"
     fontWeight={400}
   >
