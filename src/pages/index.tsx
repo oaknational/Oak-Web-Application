@@ -13,7 +13,7 @@ const Home: FC = () => {
   const user = useUser();
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
-      <Grid cg={16} rg={[16, 24, 80]}>
+      <Grid cg={16} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 8]}>
           <Heading fontSize={48} tag={"h1"} mt={64}>
             Oak National Academy
@@ -27,10 +27,10 @@ const Home: FC = () => {
           </Card>
         </GridArea>
 
-        <GridArea colSpan={[12, 6, 6]}>
+        <GridArea colSpan={[12, 12, 6]}>
           <Card background={"white"}>Classroom</Card>
         </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
+        <GridArea colSpan={[12, 12, 6]}>
           <Card background={"white"}>Teacherhub</Card>
         </GridArea>
 

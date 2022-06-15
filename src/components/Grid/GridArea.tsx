@@ -6,6 +6,7 @@ type ColSpans = 1 | 2 | 3 | 4 | 6 | 8 | 12;
 
 type GridAreaProps = {
   colSpan: Array<ColSpans>;
+  rowSpan?: number;
 };
 
 const GridArea = styled.div<GridAreaProps>`
@@ -13,6 +14,9 @@ const GridArea = styled.div<GridAreaProps>`
     "grid-column",
     (props) => props.colSpan,
     (value) => `span ${value}`
+  )};
+  ${responsive("grid-row", (props) =>
+    props.rowSpan ? `span ${props.rowSpan}` : "span 1"
   )};
 `;
 
