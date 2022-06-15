@@ -1970,31 +1970,6 @@ Array [
 ]
 `;
 
-exports[`Storyshots Typography/Body Body 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    className="sc-bczRLJ sc-crXcEl kzKShG kENsZG"
-    color="grey9"
-    fontWeight={400}
-  >
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
-    </p>
-    <p>
-      Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
-    </p>
-  </div>,
-]
-`;
-
 exports[`Storyshots Typography/Heading Heading 1`] = `
 Array [
   <link
@@ -2076,16 +2051,45 @@ Array [
     className="sc-bczRLJ sc-crXcEl kzKShG dcaAiW"
     fontWeight={400}
   >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
-     
-    <span
-      className="sc-evZas jYoCDU"
-      color="inYourFace"
-      fontWeight={600}
+    <p
+      className="sc-breuTD dHSWRo"
     >
-      tristique magna sit.
-    </span>
-     A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
+       
+      <span
+        className="sc-evZas jYoCDU"
+        color="inYourFace"
+        fontWeight={600}
+      >
+        tristique magna sit.
+      </span>
+       A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Typography/Typography Typography 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-bczRLJ sc-crXcEl kzKShG kENsZG"
+    color="grey9"
+    fontWeight={400}
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+    </p>
+    <p>
+      Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
+    </p>
   </div>,
 ]
 `;
