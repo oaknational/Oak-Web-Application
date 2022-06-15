@@ -62,6 +62,7 @@ export type CommonButtonProps = MarginProps & {
   iconPosition?: IconPosition;
   size?: ButtonSize;
   "aria-label"?: string;
+  fullWidth?: boolean;
 };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,

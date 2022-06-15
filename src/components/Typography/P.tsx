@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { margin, MarginProps } from "../../styles/utils/spacing";
@@ -9,6 +9,7 @@ import { BodyFontSize } from "./Typography";
 type PProps = MarginProps &
   Omit<TypographyProps, "fontSize" | "fontFamily"> & {
     fontSize?: BodyFontSize;
+    textAlign?: CSSProperties["textAlign"];
   };
 /**
  * Styled `p` (paragraph) component.
@@ -21,6 +22,7 @@ const P = styled.p<PProps>`
   ${typography}
   ${margin}
   font-family: ${getFontFamily("body")};
+  text-align: ${(props) => props.textAlign};
 `;
 
 export default P;

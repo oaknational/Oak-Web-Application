@@ -11,12 +11,12 @@ type CardProps = SpacingProps & BackgroundProps;
 const Card = styled.div<CardProps>`
   ${spacing}
   ${background}
-  height: 250px;
+  min-height: 200px;
   border-radius: 12px;
 `;
 
 Card.defaultProps = {
-  pa: 24
+  pa: 24,
   // background: "inYourFace",
 };
 
