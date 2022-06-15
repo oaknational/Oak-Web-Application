@@ -4,7 +4,7 @@ import styled, { useTheme } from "styled-components";
 import Flex from "../Flex";
 import Icon from "../Icon";
 import Badge, { BadgeProps } from "../Badge";
-import { Body } from "../Typography";
+import Typography from "../Typography";
 import ellipsis from "../../styles/ellipsis";
 import UnstyledButton from "../UnstyledButton";
 import { OakColorName } from "../../styles/theme";
@@ -48,7 +48,7 @@ const Wrapper = styled(Flex)<{ status: LessonControlStatus }>`
 `;
 
 const BadgeWrapper = styled.div``;
-const Label = styled(Body)`
+const Label = styled(Typography)`
   ${ellipsis}
 `;
 const TextWrapper = styled(Flex)`

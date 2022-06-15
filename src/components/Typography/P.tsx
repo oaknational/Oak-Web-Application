@@ -4,7 +4,7 @@ import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
-import { BodyFontSize } from "./Body";
+import { BodyFontSize } from "./Typography";
 
 type PProps = MarginProps &
   Omit<TypographyProps, "fontSize" | "fontFamily"> & {

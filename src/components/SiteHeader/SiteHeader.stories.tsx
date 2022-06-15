@@ -7,21 +7,18 @@ import { SearchProvider } from "../../context/Search/SearchContext";
 import Component from "./SiteHeader";
 
 export default {
-  title: "Headers & Footers/SiteHeader",
+  title: "Headers & Footers/Site Header",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <div>
-    <AuthProvider>
-      <SearchProvider>
-        <Component {...args} />
-      </SearchProvider>
-    </AuthProvider>
-  </div>
+  <AuthProvider>
+    <SearchProvider>
+      <Component {...args} />
+    </SearchProvider>
+  </AuthProvider>
 );
 
-export const SiteFooterExample = Template.bind({});
-
-SiteFooterExample.args = {};
+export const SiteHeader = Template.bind({});
+SiteHeader.args = {};

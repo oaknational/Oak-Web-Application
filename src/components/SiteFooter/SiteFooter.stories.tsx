@@ -1,20 +1,17 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import SiteFooter from "./SiteFooter";
+import Component from "./SiteFooter";
 
 export default {
-  title: "Headers & Footers/SiteFooter",
-  component: SiteFooter,
+  title: "Headers & Footers/Site Footer",
+  component: Component,
   argTypes: {},
-} as ComponentMeta<typeof SiteFooter>;
+} as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof SiteFooter> = (args) => (
-  <div>
-    <SiteFooter {...args} />
-  </div>
+const Template: ComponentStory<typeof Component> = (args) => (
+  <Component {...args} />
 );
 
-export const SiteFooterExample = Template.bind({});
-
-SiteFooterExample.args = {};
+export const SiteFooter = Template.bind({});
+SiteFooter.args = {};
