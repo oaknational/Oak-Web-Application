@@ -1,3 +1,10 @@
+## [0.28.1](https://github.com/oaknational/Samara/compare/v0.28.0...v0.28.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* fetch secrets from network ([de0a643](https://github.com/oaknational/Samara/commit/de0a6430948029d8e26b0ce7c1c16014e8ff2ea0))
+
 # [0.28.0](https://github.com/oaknational/Samara/compare/v0.27.1...v0.28.0) (2022-06-14)
 
 
