@@ -15,7 +15,12 @@ const Home: FC = () => {
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 8]}>
-          <Heading fontSize={48} tag={"h1"} mt={64}>
+          <Heading
+            fontSize={48}
+            tag={"h1"}
+            mt={64}
+            data-testid="home-page-title"
+          >
             Oak National Academy
           </Heading>
         </GridArea>
