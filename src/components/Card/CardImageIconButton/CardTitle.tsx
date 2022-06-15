@@ -4,7 +4,9 @@ import Flex from "../../Flex";
 import Icon, { IconName } from "../../Icon";
 import Heading, { HeadingTag } from "../../Typography/Heading";
 
-const getIconFlexPosition = (iconPosition: CardTitleProps["iconPosition"]) => {
+export const getIconFlexPosition = (
+  iconPosition: CardTitleProps["iconPosition"]
+) => {
   switch (iconPosition) {
     case "leading":
       return "row";
