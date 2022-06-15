@@ -54,7 +54,7 @@
     "@bugsnag/plugin-react": "^7.16.2",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
-    "next": "^12.1.4",
+    "next": "^12.1.6",
     "next-seo": "^5.4.0",
     "node-fetch": "^2.6.7",
     "react": "17.0.2",
