@@ -1438,6 +1438,40 @@ Array [
 ]
 `;
 
+exports[`Storyshots Foundations/Grid Grid Area 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-d6e5f0a5-0 bEBiBA"
+  >
+    <div
+      className="sc-130c8d01-0 fxxFSh"
+      colSpan={
+        Array [
+          12,
+          6,
+          4,
+        ]
+      }
+      rowSpan={1}
+    >
+      <div
+        className="sc-ed0ef33a-0 iQntQR"
+      >
+        Grid box
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`Storyshots Foundations/Line Clamp Line Clamp 1`] = `
 Array [
   <link
