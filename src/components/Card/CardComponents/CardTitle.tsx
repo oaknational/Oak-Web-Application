@@ -19,11 +19,14 @@ export const getIconFlexPosition = (
   }
 };
 
+type IconPosition = "leading" | "trailing" | "aboveTitle";
+
 export type CardTitleProps = {
   title: string;
   tag: HeadingTag;
   icon?: IconName;
-  iconPosition?: "leading" | "trailing" | "aboveTitle";
+  iconPosition?: IconPosition;
+  iconSize?: number;
   textCenter?: boolean;
 };
 
@@ -32,6 +35,7 @@ const CardTitle: FC<CardTitleProps> = ({
   textCenter,
   icon,
   iconPosition,
+  iconSize,
   tag,
 }) => {
   return (
@@ -39,22 +43,21 @@ const CardTitle: FC<CardTitleProps> = ({
       flexDirection={getIconFlexPosition(iconPosition)}
       justifyContent={textCenter ? "center" : "start"}
       alignItems="center"
-      pa={24}
+      mb={24}
     >
       {icon && (
         <Icon
           name={icon}
-          size={iconPosition === "aboveTitle" ? 64 : 32}
-          mb={iconPosition === "aboveTitle" ? 24 : 0}
+          size={
+            !iconSize ? (iconPosition === "aboveTitle" ? 64 : 32) : iconSize
+          }
+          mb={iconPosition === "aboveTitle" ? 12 : 0}
+          color={"grey8"}
+          mr={iconPosition === (icon && "leading") ? 8 : 0}
+          ml={iconPosition === (icon && "trailing") ? 8 : 0}
         />
       )}
-      <Heading
-        ml={iconPosition === (icon && "leading") ? 8 : 0}
-        mr={iconPosition === (icon && "trailing") ? 8 : 0}
-        fontSize={24}
-        tag={tag}
-        color={"grey8"}
-      >
+      <Heading fontSize={24} tag={tag} color={"grey8"}>
         {title}
       </Heading>
     </Flex>

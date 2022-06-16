@@ -86,7 +86,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-fd2ec9d3-0 gdQNxS"
+    className="sc-608180b1-0 gnMGOe"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -144,7 +144,7 @@ Array [
   >
     <a
       aria-label="Download Lesson"
-      className="sc-fd2ec9d3-0 gdQNxS"
+      className="sc-608180b1-0 gnMGOe"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -201,7 +201,7 @@ Array [
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-fd2ec9d3-0 gdQNxS"
+      className="sc-608180b1-0 gnMGOe"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -401,285 +401,6 @@ Array [
 ]
 `;
 
-exports[`Storyshots Cards Card Icon Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    style={
-      Object {
-        "width": "308px",
-      }
-    }
-  >
-    <div
-      className="sc-bbd74799-0 ebVOno"
-    >
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ cpPaPz"
-      >
-        <span
-          className="sc-800c6ae4-0 kcLUGl"
-          height={64}
-          width={64}
-        >
-          <span
-            className="sc-800c6ae4-1 hlaYiz"
-            height={64}
-            width={64}
-          >
-            <svg
-              fill="none"
-              height="100%"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-              />
-              <polyline
-                points="7 10 12 15 17 10"
-              />
-              <line
-                x1="12"
-                x2="12"
-                y1="15"
-                y2="3"
-              />
-            </svg>
-          </span>
-        </span>
-        <h3
-          className="sc-ef5f3f7-0 ckxtaA"
-          color="grey8"
-          fontSize={24}
-          ml={0}
-          mr={0}
-        >
-          Title
-        </h3>
-      </div>
-      <p
-        className="sc-20ccf123-0 hRLfix"
-        color="grey6"
-        fontSize={16}
-      >
-        Short snappy description of what this card is about.
-      </p>
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 hgtpiY fmsRaC"
-      >
-        <a
-          aria-label="Label"
-          className="sc-fd2ec9d3-0 goZuxJ"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Label"
-        >
-          <span
-            className="sc-afa80c08-0 dokVaK"
-          >
-            Label
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>,
-]
-`;
-
-exports[`Storyshots Cards Card Image Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    style={
-      Object {
-        "width": "308px",
-      }
-    }
-  >
-    <div
-      className="sc-bbd74799-0 ebVOno"
-    >
-      <div
-        className="sc-5a3421c1-0 hKnMWG"
-      >
-        <img
-          alt="Title"
-          className="sc-5a3421c1-1 jwUqsf"
-          src="/[object Object]"
-        />
-      </div>
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ boOlEY"
-      >
-        <h3
-          className="sc-ef5f3f7-0 ckxtaA"
-          color="grey8"
-          fontSize={24}
-          ml={0}
-          mr={0}
-        >
-          Title
-        </h3>
-      </div>
-      <p
-        className="sc-20ccf123-0 flFgNa"
-        color="grey6"
-        fontSize={16}
-      >
-        Short snappy description of what this card is about.
-      </p>
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 hgtpiY fmsRaC"
-      >
-        <a
-          aria-label="Label"
-          className="sc-fd2ec9d3-0 goZuxJ"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Label"
-        >
-          <span
-            className="sc-afa80c08-0 dokVaK"
-          >
-            Label
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>,
-]
-`;
-
-exports[`Storyshots Cards Card Leading Icon Button 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div
-    style={
-      Object {
-        "width": "308px",
-      }
-    }
-  >
-    <div
-      className="sc-bbd74799-0 ebVOno"
-    >
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ boOlEY"
-      >
-        <span
-          className="sc-800c6ae4-0 bnzycv"
-          height={32}
-          width={32}
-        >
-          <span
-            className="sc-800c6ae4-1 bbQjsb"
-            height={32}
-            width={32}
-          >
-            <svg
-              fill="none"
-              height="100%"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-              />
-              <polyline
-                points="15 3 21 3 21 9"
-              />
-              <line
-                x1="10"
-                x2="21"
-                y1="14"
-                y2="3"
-              />
-            </svg>
-          </span>
-        </span>
-        <h3
-          className="sc-ef5f3f7-0 gSUrhg"
-          color="grey8"
-          fontSize={24}
-          ml={8}
-          mr={0}
-        >
-          Need Some Help?
-        </h3>
-      </div>
-      <p
-        className="sc-20ccf123-0 flFgNa"
-        color="grey6"
-        fontSize={16}
-      >
-        Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
-      </p>
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 hgtpiY fmsRaC"
-      >
-        <a
-          aria-label="Visit Help Centre"
-          className="sc-fd2ec9d3-0 goZuxJ"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Visit Help Centre"
-        >
-          <span
-            className="sc-afa80c08-0 dokVaK"
-          >
-            Visit Help Centre
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>,
-]
-`;
-
 exports[`Storyshots Cards/Card Card 1`] = `
 Array [
   <link
@@ -691,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-bbd74799-0 gWoKqM"
+    className="sc-ed0ef33a-0 hWhEom"
   >
     <h2>
       Card title
@@ -699,6 +420,711 @@ Array [
     <p>
       You can put anything you like in here.
     </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card Card Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "height": "250px",
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 hWhEom"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+      >
+        <span
+          className="sc-800c6ae4-0 gpYfPQ"
+          height={34}
+          width={34}
+        >
+          <span
+            className="sc-800c6ae4-1 gaFUJo"
+            color="grey8"
+            height={34}
+            width={34}
+          >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <h4
+          className="sc-ef5f3f7-0 gzWvtf"
+          color="grey8"
+          fontSize={24}
+        >
+          Title
+        </h4>
+      </div>
+      <p
+        className="sc-5caf3f78-0 dFRzDD"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
+      <a
+        aria-label="Lable"
+        className="sc-608180b1-0 hSpxRK"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        size="small"
+        title="Lable"
+      >
+        <span
+          className="sc-afa80c08-0 dokVaK"
+        >
+          Lable
+        </span>
+      </a>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card Card Image Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "height": "400px",
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 emDsAk"
+    >
+      <div
+        className="sc-5a3421c1-0 hKnMWG"
+      >
+        <img
+          className="sc-5a3421c1-1 jwUqsf"
+          src="/[object Object]"
+        />
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ ftJGGH"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc cWTUKt"
+        >
+          <h4
+            className="sc-ef5f3f7-0 gzWvtf"
+            color="grey8"
+            fontSize={24}
+          >
+            Title
+          </h4>
+        </div>
+        <p
+          className="sc-5caf3f78-0 dFRzDD"
+          color="grey6"
+          fontSize={16}
+        >
+          Short snappy description of what this card is about.
+        </p>
+        <a
+          aria-label="Label"
+          className="sc-608180b1-0 hLXLDU"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Label"
+        >
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            Label
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card Card Large Icon Centered 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "height": "336px",
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 hWhEom"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
+      >
+        <span
+          className="sc-800c6ae4-0 sDlgT"
+          height={90}
+          width={90}
+        >
+          <span
+            className="sc-800c6ae4-1 hndecI"
+            color="grey8"
+            height={90}
+            width={90}
+          >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <h4
+          className="sc-ef5f3f7-0 gzWvtf"
+          color="grey8"
+          fontSize={24}
+        >
+          Title
+        </h4>
+      </div>
+      <p
+        className="sc-5caf3f78-0 gsUIgI"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
+      <a
+        aria-label="Label"
+        className="sc-608180b1-0 hLXLDU"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        size="small"
+        title="Label"
+      >
+        <span
+          className="sc-afa80c08-0 dokVaK"
+        >
+          Label
+        </span>
+      </a>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card as Link Card As Link 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-ed0ef33a-0 fyBKap"
+  >
+    <a
+      className="sc-805d6e3-0 iJUdcx"
+      href="/"
+      target="_self"
+    />
+    <h2>
+      Card title
+    </h2>
+    <p>
+      You can put anything you like in here. The whole card area is a link.
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card as Link Card As Link Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 fyBKap"
+    >
+      <a
+        className="sc-805d6e3-0 iJUdcx"
+        href="/"
+        target="_self"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
+      >
+        <span
+          className="sc-800c6ae4-0 hVWbQa"
+          height={100}
+          width={100}
+        >
+          <span
+            className="sc-800c6ae4-1 kAFeRD"
+            height={100}
+            width={100}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <h5
+          className="sc-ef5f3f7-0 laanRj"
+          color="grey8"
+          fontSize={24}
+          mb={0}
+          mt={0}
+        >
+          Classroom
+        </h5>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card as Link Card As Link Icon Text 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 fyBKap"
+    >
+      <a
+        className="sc-805d6e3-0 iJUdcx"
+        href="/"
+        target="_self"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
+      >
+        <span
+          className="sc-800c6ae4-0 hVWbQa"
+          height={100}
+          width={100}
+        >
+          <span
+            className="sc-800c6ae4-1 kAFeRD"
+            height={100}
+            width={100}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <h5
+          className="sc-ef5f3f7-0 mBYiJ"
+          color="grey8"
+          fontSize={24}
+          mb={24}
+          mt={0}
+        >
+          Classroom
+        </h5>
+      </div>
+      <p
+        className="sc-5caf3f78-0 kKREro"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Variants/Image Icon Button Card Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 iFkqrk"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
+        >
+          <span
+            className="sc-800c6ae4-0 erlBUT"
+            height={64}
+            width={64}
+          >
+            <span
+              className="sc-800c6ae4-1 bwLrmQ"
+              color="grey8"
+              height={64}
+              width={64}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+          <h4
+            className="sc-ef5f3f7-0 gzWvtf"
+            color="grey8"
+            fontSize={24}
+          >
+            Title
+          </h4>
+        </div>
+        <p
+          className="sc-5caf3f78-0 gsUIgI"
+          color="grey6"
+          fontSize={16}
+        >
+          Short snappy description of what this card is about.
+        </p>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        >
+          <a
+            aria-label="Label"
+            className="sc-608180b1-0 zTARh"
+            href="/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseEnter={[Function]}
+            role="button"
+            size="small"
+            title="Label"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Label
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Variants/Image Icon Button Card Image Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 iFkqrk"
+    >
+      <div
+        className="sc-5a3421c1-0 hKnMWG"
+      >
+        <img
+          alt="Title"
+          className="sc-5a3421c1-1 jwUqsf"
+          src="/[object Object]"
+        />
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 kqEpwE ljFhQO"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <h4
+            className="sc-ef5f3f7-0 gzWvtf"
+            color="grey8"
+            fontSize={24}
+          >
+            Title
+          </h4>
+        </div>
+        <p
+          className="sc-5caf3f78-0 ihGcCb"
+          color="grey6"
+          fontSize={16}
+        >
+          Short snappy description of what this card is about.
+        </p>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        >
+          <a
+            aria-label="Label"
+            className="sc-608180b1-0 zTARh"
+            href="/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseEnter={[Function]}
+            role="button"
+            size="small"
+            title="Label"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Label
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Variants/Image Icon Button Card Leading Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-ed0ef33a-0 iFkqrk"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <span
+            className="sc-800c6ae4-0 jXXqWo"
+            height={32}
+            width={32}
+          >
+            <span
+              className="sc-800c6ae4-1 fbKpwI"
+              color="grey8"
+              height={32}
+              width={32}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                />
+                <polyline
+                  points="15 3 21 3 21 9"
+                />
+                <line
+                  x1="10"
+                  x2="21"
+                  y1="14"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+          <h4
+            className="sc-ef5f3f7-0 gzWvtf"
+            color="grey8"
+            fontSize={24}
+          >
+            Need Some Help?
+          </h4>
+        </div>
+        <p
+          className="sc-5caf3f78-0 ihGcCb"
+          color="grey6"
+          fontSize={16}
+        >
+          Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
+        </p>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        >
+          <a
+            aria-label="Visit Help Centre"
+            className="sc-608180b1-0 zTARh"
+            href="/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseEnter={[Function]}
+            role="button"
+            size="small"
+            title="Visit Help Centre"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Visit Help Centre
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>,
 ]
 `;
@@ -1067,7 +1493,7 @@ Array [
     >
       <a
         aria-label="Download Lesson"
-        className="sc-fd2ec9d3-0 hWhuQJ"
+        className="sc-608180b1-0 gDGmiN"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1124,7 +1550,7 @@ Array [
       </a>
       <a
         aria-label="Share Lesson"
-        className="sc-fd2ec9d3-0 hWhuQJ"
+        className="sc-608180b1-0 gDGmiN"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1846,7 +2272,7 @@ Array [
           The Long and Winding Road
         </h2>
         <p
-          className="sc-20ccf123-0 dksOPw"
+          className="sc-5caf3f78-0 eIlCJq"
           color="grey6"
           fontSize={18}
         >
@@ -1858,7 +2284,7 @@ Array [
         </p>
         <a
           aria-label="Read More"
-          className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
+          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1920,7 +2346,7 @@ Array [
           Penny Lane
         </h2>
         <p
-          className="sc-20ccf123-0 dksOPw"
+          className="sc-5caf3f78-0 eIlCJq"
           color="grey6"
           fontSize={18}
         >
@@ -1932,7 +2358,7 @@ Array [
         </p>
         <a
           aria-label="Watch Now"
-          className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
+          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1970,7 +2396,7 @@ Array [
           Strawberry Fields Forever
         </h2>
         <p
-          className="sc-20ccf123-0 dksOPw"
+          className="sc-5caf3f78-0 eIlCJq"
           color="grey6"
           fontSize={18}
         >
@@ -1982,7 +2408,7 @@ Array [
         </p>
         <a
           aria-label="Read More"
-          className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
+          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2030,7 +2456,7 @@ Array [
         The long and winding road
       </h3>
       <p
-        className="sc-20ccf123-0 dksOPw"
+        className="sc-5caf3f78-0 eIlCJq"
         color="grey6"
         fontSize={18}
       >
@@ -2042,7 +2468,7 @@ Array [
       </p>
       <a
         aria-label="Read More"
-        className="sc-fd2ec9d3-0 fRoYdH sc-831fd669-0 bYDamN"
+        className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2307,7 +2733,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-20ccf123-0 bAXLyp"
+    className="sc-5caf3f78-0 dpbUKY"
     color="grey9"
     fontSize={16}
   >
@@ -2331,7 +2757,7 @@ Array [
     fontWeight={400}
   >
     <p
-      className="sc-20ccf123-0 lfGARk"
+      className="sc-5caf3f78-0 hpsVSx"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
        
