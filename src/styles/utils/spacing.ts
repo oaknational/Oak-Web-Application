@@ -37,6 +37,10 @@ export type MarginProps = {
   mt?: SpacingValues;
   mb?: SpacingValues;
 };
+export type GridGapProps = {
+  rg?: SpacingValues;
+  cg?: SpacingValues;
+};
 const parse = (value?: SpacingValue) => {
   switch (typeof value) {
     case "string":
@@ -91,6 +95,12 @@ const marginTop = css<{ mt?: SpacingValues }>`
 const marginBottom = css<{ mb?: SpacingValues }>`
   ${responsive("margin-bottom", (props) => props.mb, parse)}
 `;
+const gridRowGap = css<{ rg?: SpacingValues }>`
+  ${responsive("grid-row-gap", (props) => props.rg, parse)}
+`;
+const gridColGap = css<{ cg?: SpacingValues }>`
+  ${responsive("grid-column-gap", (props) => props.cg, parse)}
+`;
 
 export const margin = css<MarginProps>`
   ${marginAll}
@@ -110,6 +120,11 @@ export const padding = css<PaddingProps>`
   ${paddingRight}
   ${paddingTop}
   ${paddingBottom}
+`;
+
+export const gridGap = css<GridGapProps>`
+  ${gridRowGap}
+  ${gridColGap}
 `;
 
 export type SpacingProps = PaddingProps & MarginProps;

@@ -1,8 +1,7 @@
 import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
-
-import { getIconFlexPosition } from "./CardTitle";
+import { getIconFlexPosition } from "../CardComponents/CardTitle";
 
 import CardImageIconButton from ".";
 
@@ -12,8 +11,8 @@ describe("Card Variants", () => {
       <CardImageIconButton
         title="Title"
         text="Short snappy description of what this card is about."
-        buttonHref="/"
-        buttonLabel="Label"
+        href="/"
+        label="Label"
         textCenter={true}
         icon="Download"
         iconPosition="leading"
@@ -30,8 +29,8 @@ describe("Card Variants", () => {
       <CardImageIconButton
         title="Title"
         text="Short snappy description of what this card is about."
-        buttonHref="/"
-        buttonLabel="Label"
+        href="/"
+        label="Label"
         imageSrc={"images/Image.png"}
         tag={"h3"}
       />
