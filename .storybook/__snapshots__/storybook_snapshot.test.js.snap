@@ -2249,6 +2249,26 @@ Array [
 ]
 `;
 
+exports[`Storyshots Typography/A A 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <a
+    href="/jkj"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    Click me!.
+  </a>,
+]
+`;
+
 exports[`Storyshots Typography/Heading Heading 1`] = `
 Array [
   <link
