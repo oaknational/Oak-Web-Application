@@ -6,7 +6,7 @@ import image from "../../../../public/images/Image.png";
 import Component from ".";
 
 export default {
-  title: "Cards",
+  title: "Cards/Variants/Image Icon Button",
   component: Component,
   argTypes: {
     buttonLabel: {
@@ -14,6 +14,9 @@ export default {
     },
     buttonHref: {
       defaultValue: "/",
+    },
+    iconPosition: {
+      options: ["leading", "trailing", "aboveTitle"],
     },
   },
 } as ComponentMeta<typeof Component>;
@@ -30,33 +33,35 @@ export const CardImageButton = Template.bind({});
 CardImageButton.args = {
   title: "Title",
   text: "Short snappy description of what this card is about.",
-  buttonHref: "/",
-  buttonLabel: "Label",
+  href: "/",
+  label: "Label",
   imageSrc: "/" + image,
   textCenter: false,
-  tag: "h3",
+  tag: "h4",
 };
 
 export const CardIconButton = Template.bind({});
 CardIconButton.args = {
   title: "Title",
   text: "Short snappy description of what this card is about.",
-  buttonHref: "/",
-  buttonLabel: "Label",
+  href: "/",
+  label: "Label",
   icon: "Download",
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   iconPosition: "aboveTitle",
   textCenter: true,
-  tag: "h3",
+  tag: "h4",
 };
 
 export const CardLeadingIconButton = Template.bind({});
 CardLeadingIconButton.args = {
   title: "Need Some Help?",
   text: "Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.",
-  buttonHref: "/",
-  buttonLabel: "Visit Help Centre",
+  href: "/",
+  label: "Visit Help Centre",
   icon: "OpenExternal",
   iconPosition: "leading",
   textCenter: false,
-  tag: "h3",
+  tag: "h4",
 };
