@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { LS_KEY_THEME } from "../config/localStorageKeys";
 import theme, { OakTheme } from "../styles/theme";
 import ausTheme from "../styles/theme/aus.theme";
+import placeholderTheme from "../styles/theme/placeholder.theme";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
 
@@ -16,13 +17,14 @@ declare global {
   }
 }
 
-export const THEME_NAMES = ["default", "aus"] as const;
+export const THEME_NAMES = ["default", "aus", "placeholder"] as const;
 type ThemeNames = typeof THEME_NAMES;
 type ThemeName = ThemeNames[number];
 
 const themes: Record<ThemeName, OakTheme> = {
   default: theme,
   aus: ausTheme,
+  placeholder: placeholderTheme,
 };
 
 type UseOakThemeProps = {
