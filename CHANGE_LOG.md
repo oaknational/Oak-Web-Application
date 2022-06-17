@@ -1,3 +1,26 @@
+# [0.31.0](https://github.com/oaknational/Samara/compare/v0.30.0...v0.31.0) (2022-06-17)
+
+
+### Features
+
+* add placeholder theme colours from branding doc ([ada6f17](https://github.com/oaknational/Samara/commit/ada6f17a0b8fe3c413fbd1f1a32a944c6204c069))
+
+# [0.30.0](https://github.com/oaknational/Samara/compare/v0.29.0...v0.30.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* add back test id ([261a4db](https://github.com/oaknational/Samara/commit/261a4dbf4c7a1d49f4d9ce891c7d37901aa29dde))
+* broken css in grid area ([ff4bc4d](https://github.com/oaknational/Samara/commit/ff4bc4d674fbafdf746ce529dcb45ff00e0ae013))
+* conflicts ([6f288b1](https://github.com/oaknational/Samara/commit/6f288b1da05d64f7deb4b721259bce42d228ec9e))
+
+
+### Features
+
+* add new grid components ([b6b36d4](https://github.com/oaknational/Samara/commit/b6b36d43ca811e0396c3315c8aab6c06e840d586))
+* add storybook for grid ([fe00ef3](https://github.com/oaknational/Samara/commit/fe00ef34d7eb83b53e78f4050025035b9d88ce20))
+* make grid gaps responsive ([be35361](https://github.com/oaknational/Samara/commit/be35361304d7b509819094c667229d2969103975))
+
 # [0.29.0](https://github.com/oaknational/Samara/compare/v0.28.2...v0.29.0) (2022-06-15)
 
 
