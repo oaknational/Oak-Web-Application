@@ -25,11 +25,11 @@ const CardImageIconButton: FC<
   iconSize,
   href,
   label,
-  background = "grey1",
+  background,
   tag,
 }) => {
   return (
-    <Card position="relative" background={background} pa={0}>
+    <Card background={background} pa={0}>
       {imageSrc && <CardImage imageSrc={imageSrc} alt={title} />}
       <Flex ma={24} pt={!imageSrc ? 24 : 0} flexDirection={"column"}>
         <CardTitle
