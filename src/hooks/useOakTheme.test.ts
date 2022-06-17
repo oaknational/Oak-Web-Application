@@ -48,7 +48,11 @@ describe("useOakTheme()", () => {
 
   describe("window.oakThemes", () => {
     it("should have availableThemes property which lists themes", () => {
-      expect(window.oakThemes?.availableThemes).toEqual(["default", "aus"]);
+      expect(window.oakThemes?.availableThemes).toEqual([
+        "default",
+        "aus",
+        "placeholder",
+      ]);
     });
     it("setTheme() should console.error if theme not valid", async () => {
       act(() => {
