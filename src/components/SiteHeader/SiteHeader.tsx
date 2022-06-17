@@ -2,9 +2,6 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { useAuth } from "../../context/Auth";
-import SearchForm from "../SearchForm";
-import UnstyledButton from "../UnstyledButton/UnstyledButton";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import Flex, { FlexProps } from "../Flex";
@@ -31,8 +28,6 @@ const HomeLink = styled.a<FlexProps>`
 `;
 
 const SiteHeader: FC = () => {
-  const { user, signOut } = useAuth();
-
   return (
     <StyledSiteHeader background="grey3">
       <Flex mr={40}>
@@ -49,14 +44,6 @@ const SiteHeader: FC = () => {
             </Span>
           </HomeLink>
         </Link>
-      </Flex>
-      <SearchForm />
-      <Flex ml="auto">
-        {user ? (
-          <UnstyledButton onClick={signOut}>Sign out</UnstyledButton>
-        ) : (
-          <Link href="/sign-in">Sign in</Link>
-        )}
       </Flex>
     </StyledSiteHeader>
   );
