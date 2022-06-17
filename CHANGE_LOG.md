@@ -1,3 +1,10 @@
+# [0.31.0](https://github.com/oaknational/Samara/compare/v0.30.0...v0.31.0) (2022-06-17)
+
+
+### Features
+
+* add placeholder theme colours from branding doc ([ada6f17](https://github.com/oaknational/Samara/commit/ada6f17a0b8fe3c413fbd1f1a32a944c6204c069))
+
 # [0.30.0](https://github.com/oaknational/Samara/compare/v0.29.0...v0.30.0) (2022-06-16)
 
 
