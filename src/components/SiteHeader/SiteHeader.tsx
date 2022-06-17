@@ -2,25 +2,18 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import background, { BackgroundProps } from "../../styles/utils/background";
-import { getBreakpoint } from "../../styles/utils/responsive";
+import background from "../../styles/utils/background";
 import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
 import flex from "../../styles/utils/flex";
-import { Span } from "../Typography";
+import P, { Span } from "../Typography";
 
-const StyledSiteHeader = styled.header<BackgroundProps>`
-  display: flex;
-  flex-direction: column;
+const StyledSiteHeader = styled.header<FlexProps>`
   width: 100%;
   min-height: 72px;
   padding: 12px;
+  ${flex}
   ${background}
-
-  @media (min-width: ${getBreakpoint("medium")}px) {
-    flex-direction: row;
-    align-items: center;
-  }
 `;
 
 const HomeLink = styled.a<FlexProps>`
@@ -29,21 +22,34 @@ const HomeLink = styled.a<FlexProps>`
 
 const SiteHeader: FC = () => {
   return (
-    <StyledSiteHeader background="grey3">
-      <Flex mr={40}>
-        <Link href={"/"} passHref>
-          <HomeLink alignItems="center">
-            <Icon name="Home" size={30} mr={8} />
-            <Span
-              fontFamily="heading"
-              fontWeight={600}
-              fontSize={20}
-              lineHeight={1}
-            >
-              Oak
-            </Span>
-          </HomeLink>
-        </Link>
+    <StyledSiteHeader
+      background={"madangGreen"}
+      justifyContent={["left", "space-between"]}
+      alignItems={["flex-start", "center"]}
+      flexDirection={["column", "row"]}
+    >
+      <Link href={"/"} passHref>
+        <HomeLink alignItems="center">
+          <Icon name="Home" size={30} mr={8} />
+          <Span
+            fontFamily="heading"
+            fontWeight={600}
+            fontSize={20}
+            lineHeight={1}
+          >
+            Oak
+          </Span>
+        </HomeLink>
+      </Link>
+      <Flex alignItems={"center"} mt={[16, 0]}>
+        <P>
+          <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
+        </P>
+        <P ml={[48]}>
+          <Link href={"https://teachers.thenational.academy/"}>
+            Teacher Hub
+          </Link>
+        </P>
       </Flex>
     </StyledSiteHeader>
   );
