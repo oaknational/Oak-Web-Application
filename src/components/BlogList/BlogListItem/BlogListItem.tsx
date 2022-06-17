@@ -1,13 +1,12 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import ButtonAsLink from "../../Button/ButtonAsLink";
 import Flex from "../../Flex";
 import Icon from "../../Icon";
 import LineClamp from "../../LineClamp";
 import { P, Heading, HeadingTag } from "../../Typography";
 
-const ActionButton = styled(ButtonAsLink)`
+const ActionLink = styled.a`
   ::after {
     content: "";
     position: absolute;
@@ -49,7 +48,11 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { titleTag, title, snippet, href, contentType } = props;
 
   return (
-    <Flex flexDirection={["column", "row"]} position="relative">
+    <Flex
+      flexDirection={["column", "row"]}
+      alignItems={"center"}
+      position="relative"
+    >
       <BlogListItemImage
         background="grey3"
         alignItems="center"
@@ -67,12 +70,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         <P fontSize={18} color="grey6">
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
-        <ActionButton
-          href={href}
-          label={buttonLabelMap[contentType]}
-          mt={16}
-          variant="secondary"
-        />
+        <ActionLink href={href} title={buttonLabelMap[contentType]} />
       </Flex>
     </Flex>
   );
