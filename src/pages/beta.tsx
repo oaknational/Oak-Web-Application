@@ -6,7 +6,6 @@ import Bookmarks from "../components/Bookmarks";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
-import Card from "../components/Card";
 import { Heading } from "../components/Typography";
 
 const Beta: FC = () => {
@@ -21,35 +20,8 @@ const Beta: FC = () => {
             mt={64}
             data-testid="home-page-title"
           >
-            Oak National Academy
+            Oak National Academy BETA
           </Heading>
-        </GridArea>
-        <GridArea colSpan={[12, 12, 4]}>
-          <Card background={"white"} mt={48}>
-            <Heading fontSize={20} tag={"h2"}>
-              Use Oak in Beta
-            </Heading>
-          </Card>
-        </GridArea>
-
-        <GridArea colSpan={[12, 12, 6]}>
-          <Card background={"white"}>Classroom</Card>
-        </GridArea>
-        <GridArea colSpan={[12, 12, 6]}>
-          <Card background={"white"}>Teacherhub</Card>
-        </GridArea>
-
-        <GridArea colSpan={[12, 6, 3]}>
-          <Card background={"white"}>Personalise</Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 3]}>
-          <Card background={"white"}>Curriculum</Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 3]}>
-          <Card background={"white"}>Lesson Planning</Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 3]}>
-          <Card background={"white"}>Oak for School</Card>
         </GridArea>
       </Grid>
       {user && <Bookmarks />}
