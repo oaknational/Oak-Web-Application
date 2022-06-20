@@ -9,7 +9,6 @@ import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading } from "../components/Typography";
 import CardAsLink from "../components/Card/CardAsLink";
-import CardImageIconButton from "../components/Card/CardVariants/CardImageIconButton";
 import Flex from "../components/Flex";
 import Icon from "../components/Icon";
 
@@ -72,18 +71,7 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"ChevronRight"} size={100} />
-              <Heading mt={0} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Curriculum
-              </Heading>
-            </Flex>
-          </CardAsLink>
+          <Card background={"white"}>Lesson Planning</Card>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
           <Card background={"white"}>Lesson Planning</Card>
@@ -93,16 +81,7 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea colSpan={[12, 12, 4]}>
-          <CardImageIconButton
-            label={"Classroom"}
-            text={""}
-            title={"Classroom"}
-            href={"/"}
-            icon={"OpenExternal"}
-            iconPosition={"leading"}
-            textCenter={true}
-            tag={"h2"}
-          />
+          <Card />
         </GridArea>
         <GridArea colSpan={[12, 12, 8]}>
           <Card background={"white"}>Curriculum</Card>
