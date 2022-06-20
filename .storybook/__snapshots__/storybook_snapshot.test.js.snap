@@ -681,16 +681,17 @@ Array [
     className="sc-ed0ef33a-0 fyBKap"
   >
     <a
-      className="sc-805d6e3-0 iJUdcx"
+      className="sc-942d8905-0 eJnHbf"
       href="/"
       target="_self"
-    />
-    <h2>
-      Card title
-    </h2>
-    <p>
-      You can put anything you like in here. The whole card area is a link.
-    </p>
+    >
+      <h2>
+        Card title
+      </h2>
+      <p>
+        You can put anything you like in here. The whole card area is a link.
+      </p>
+    </a>
   </div>,
 ]
 `;
@@ -716,50 +717,51 @@ Array [
       className="sc-ed0ef33a-0 fyBKap"
     >
       <a
-        className="sc-805d6e3-0 iJUdcx"
+        className="sc-942d8905-0 eJnHbf"
         href="/"
         target="_self"
-      />
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
       >
-        <span
-          className="sc-6847304a-0 ilFvTQ"
-          height={100}
-          width={100}
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
         >
           <span
-            className="sc-6847304a-1 jAOJpJ"
+            className="sc-6847304a-0 ilFvTQ"
             height={100}
             width={100}
           >
-            <svg
-              fill="none"
-              height="100%"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
+            <span
+              className="sc-6847304a-1 jAOJpJ"
+              height={100}
+              width={100}
             >
-              <polyline
-                points="9 18 15 12 9 6"
-              />
-            </svg>
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
           </span>
-        </span>
-        <h5
-          className="sc-ef5f3f7-0 laanRj"
-          color="grey8"
-          fontSize={24}
-          mb={0}
-          mt={0}
-        >
-          Classroom
-        </h5>
-      </div>
+          <h5
+            className="sc-ef5f3f7-0 laanRj"
+            color="grey8"
+            fontSize={24}
+            mb={0}
+            mt={0}
+          >
+            Classroom
+          </h5>
+        </div>
+      </a>
     </div>
   </div>,
 ]
@@ -786,57 +788,58 @@ Array [
       className="sc-ed0ef33a-0 fyBKap"
     >
       <a
-        className="sc-805d6e3-0 iJUdcx"
+        className="sc-942d8905-0 eJnHbf"
         href="/"
         target="_self"
-      />
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
       >
-        <span
-          className="sc-6847304a-0 ilFvTQ"
-          height={100}
-          width={100}
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
         >
           <span
-            className="sc-6847304a-1 jAOJpJ"
+            className="sc-6847304a-0 ilFvTQ"
             height={100}
             width={100}
           >
-            <svg
-              fill="none"
-              height="100%"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
+            <span
+              className="sc-6847304a-1 jAOJpJ"
+              height={100}
+              width={100}
             >
-              <polyline
-                points="9 18 15 12 9 6"
-              />
-            </svg>
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                />
+              </svg>
+            </span>
           </span>
-        </span>
-        <h5
-          className="sc-ef5f3f7-0 mBYiJ"
-          color="grey8"
-          fontSize={24}
-          mb={24}
-          mt={0}
+          <h5
+            className="sc-ef5f3f7-0 mBYiJ"
+            color="grey8"
+            fontSize={24}
+            mb={24}
+            mt={0}
+          >
+            Classroom
+          </h5>
+        </div>
+        <p
+          className="sc-5caf3f78-0 kKREro"
+          color="grey6"
+          fontSize={16}
         >
-          Classroom
-        </h5>
-      </div>
-      <p
-        className="sc-5caf3f78-0 kKREro"
-        color="grey6"
-        fontSize={16}
-      >
-        Short snappy description of what this card is about.
-      </p>
+          Short snappy description of what this card is about.
+        </p>
+      </a>
     </div>
   </div>,
 ]
