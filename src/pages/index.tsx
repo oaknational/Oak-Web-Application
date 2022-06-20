@@ -46,7 +46,7 @@ const Home: FC = () => {
               justifyContent={"center"}
               alignItems="center"
             >
-              <Icon name={"GraduationCap"} size={100} />
+              <Icon name={"GraduationCap"} size={64} />
               <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
                 Classroom
               </Heading>
@@ -63,7 +63,7 @@ const Home: FC = () => {
               justifyContent={"center"}
               alignItems="center"
             >
-              <Icon name={"University"} size={100} />
+              <Icon name={"University"} size={64} />
               <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
                 Teacher Hub
               </Heading>
