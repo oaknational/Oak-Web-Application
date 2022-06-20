@@ -8,14 +8,11 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading } from "../components/Typography";
-import CardAsLink from "../components/Card/CardAsLink";
-import Flex from "../components/Flex";
-import Icon from "../components/Icon";
 
-const Home: FC = () => {
+const Beta: FC = () => {
   const user = useUser();
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"} isApp>
       <Grid cg={16} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 8]}>
           <Heading
@@ -36,61 +33,28 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
-          <CardAsLink
-            background={"white"}
-            href="https://classroom.thenational.academy/"
-          >
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Classroom
-              </Heading>
-            </Flex>
-          </CardAsLink>
+          <Card background={"white"}>Classroom</Card>
         </GridArea>
         <GridArea colSpan={[12, 12, 6]}>
-          <CardAsLink
-            background={"white"}
-            href="https://teachers.thenational.academy/"
-          >
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Teacher Hub
-              </Heading>
-            </Flex>
-          </CardAsLink>
+          <Card background={"white"}>Teacherhub</Card>
         </GridArea>
 
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card background={"white"}>Lesson Planning</Card>
+        <GridArea colSpan={[12, 6, 3]}>
+          <Card background={"white"}>Personalise</Card>
         </GridArea>
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card background={"white"}>Lesson Planning</Card>
-        </GridArea>
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card background={"white"}>Oak for School</Card>
-        </GridArea>
-
-        <GridArea colSpan={[12, 12, 4]}>
-          <Card />
-        </GridArea>
-        <GridArea colSpan={[12, 12, 8]}>
+        <GridArea colSpan={[12, 6, 3]}>
           <Card background={"white"}>Curriculum</Card>
         </GridArea>
+        <GridArea colSpan={[12, 6, 3]}>
+          <Card background={"white"}>Lesson Planning</Card>
+        </GridArea>
+        <GridArea colSpan={[12, 6, 3]}>
+          <Card background={"white"}>Oak for School</Card>
+        </GridArea>
       </Grid>
-
       {user && <Bookmarks />}
     </Layout>
   );
 };
 
-export default Home;
+export default Beta;
