@@ -3,6 +3,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import SiteHeader from "../SiteHeader";
+import AppHeader from "../AppHeader";
 import SiteFooter from "../SiteFooter";
 import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
@@ -28,13 +29,14 @@ const StyledLayout = styled.main`
 interface LayoutProps {
   seoProps: SeoProps;
   background?: OakColorName;
+  isApp?: boolean;
 }
 
 /** 1. Titles for SEO should be between 50-60 characters long 
     2. Title should contain app name
     3. SEO descriptions should be between 150-300 characters long */
 const Layout: FC<LayoutProps> = (props) => {
-  const { children, seoProps, background } = props;
+  const { children, seoProps, background, isApp } = props;
   return (
     <>
       <Seo {...seoProps} />
@@ -43,7 +45,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container background={background}>
-        <SiteHeader />
+        {isApp ? <AppHeader /> : <SiteHeader />}
         <StyledLayout>{children}</StyledLayout>
         <SiteFooter />
       </Container>
