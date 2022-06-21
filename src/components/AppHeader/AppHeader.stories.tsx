@@ -7,7 +7,7 @@ import { SearchProvider } from "../../context/Search/SearchContext";
 import Component from "./AppHeader";
 
 export default {
-  title: "Headers & Footers/Site Header",
+  title: "Headers & Footers/App Header",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

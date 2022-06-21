@@ -12,6 +12,12 @@ import Icon from "../Icon";
 import flex from "../../styles/utils/flex";
 import { Span } from "../Typography";
 
+/**
+ * Header for logging in and using search -
+ * header for the app, not a landing page
+ *
+ */
+
 const StyledAppHeader = styled.header<BackgroundProps>`
   display: flex;
   flex-direction: column;
