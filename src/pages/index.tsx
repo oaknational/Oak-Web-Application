@@ -100,7 +100,7 @@ const Home: FC = () => {
               tag="h2"
               title="About Oak Academy"
             />
-            <P color="grey6" fontSize={16} mb={24}>
+            <P fontSize={16} mb={24}>
               Preview, plan and customise each element of our lessons to meet
               your needs -
             </P>
@@ -115,7 +115,7 @@ const Home: FC = () => {
               tag="h4"
               title="Need some help?"
             />
-            <P color="grey6" fontSize={16} mb={24}>
+            <P fontSize={16} mb={24}>
               Preview, plan and customise each element of our lessons to meet
               your needs - whether inside and outside the classroom.
             </P>
