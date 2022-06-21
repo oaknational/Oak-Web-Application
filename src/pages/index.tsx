@@ -90,9 +90,11 @@ const Home: FC = () => {
         <GridArea colSpan={[12, 6, 3]}>
           <Card background={"white"}>Oak for School</Card>
         </GridArea>
+      </Grid>
 
-        <GridArea colSpan={[12, 12, 4]}>
-          <Card mb={16} background="white">
+      <Grid cg={16} rg={[16]} mt={[16, 48, 80]}>
+        <GridArea colSpan={[12, 6, 4]} order={[0, 0, 0]}>
+          <Card background="white">
             <CardTitle
               icon="Home"
               iconPosition="leading"
@@ -106,7 +108,19 @@ const Home: FC = () => {
             </P>
             <ButtonAsLink fullWidth href="/" label="Find out more" />
           </Card>
+        </GridArea>
 
+        <GridArea colSpan={[12, 12, 8]} rowSpan={2} order={[0, 1, 0]}>
+          <Flex background={"white"} pa={24}>
+            <BlogList
+              title={"Stay up to date!"}
+              items={items}
+              titleTag={"h2"}
+            />
+          </Flex>
+        </GridArea>
+
+        <GridArea colSpan={[12, 6, 4]} order={[0, 0, 0]}>
           <Card background="white">
             <CardTitle
               icon="Home"
@@ -121,16 +135,6 @@ const Home: FC = () => {
             </P>
             <ButtonAsLink fullWidth href="/" label="Visit Help Center" />
           </Card>
-        </GridArea>
-
-        <GridArea colSpan={[12, 12, 8]}>
-          <Flex background={"white"} pa={24}>
-            <BlogList
-              title={"Stay up to date!"}
-              items={items}
-              titleTag={"h2"}
-            />
-          </Flex>
         </GridArea>
       </Grid>
       {user && <Bookmarks />}

@@ -16,6 +16,7 @@ const Card = styled.div<CardProps>`
   ${position}
   min-height: 200px;
   border-radius: 12px;
+  flex-grow: 1;
 `;
 
 Card.defaultProps = {
