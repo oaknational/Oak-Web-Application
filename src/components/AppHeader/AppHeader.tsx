@@ -12,12 +12,6 @@ import Icon from "../Icon";
 import flex from "../../styles/utils/flex";
 import { Span } from "../Typography";
 
-/**
- * Header for logging in and using search -
- * header for the app, not a landing page
- *
- */
-
 const StyledAppHeader = styled.header<BackgroundProps>`
   display: flex;
   flex-direction: column;
@@ -36,6 +30,11 @@ const HomeLink = styled.a<FlexProps>`
   ${flex}
 `;
 
+/**
+ * Header for logging in and using search -
+ * header for the app, not a landing page
+ *
+ */
 const AppHeader: FC = () => {
   const { user, signOut } = useAuth();
 
