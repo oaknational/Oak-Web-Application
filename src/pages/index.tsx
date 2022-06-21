@@ -92,7 +92,7 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea colSpan={[12, 12, 4]}>
-          <Card mb={[0, 0, 16]} background="white">
+          <Card mb={16} background="white">
             <CardTitle
               icon="Home"
               iconPosition="leading"
@@ -123,7 +123,7 @@ const Home: FC = () => {
           </Card>
         </GridArea>
 
-        <GridArea colSpan={[4, 12, 8]}>
+        <GridArea colSpan={[12, 12, 8]}>
           <Flex background={"white"} pa={24}>
             <BlogList
               title={"Stay up to date!"}

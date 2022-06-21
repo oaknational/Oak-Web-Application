@@ -23,7 +23,12 @@ const BlogList: FC<BlogListProps> = (props) => {
   const { title, titleTag, items } = props;
   return (
     <Flex flexDirection="column">
-      <Flex mb={24} alignItems="center" justifyContent={"space-between"}>
+      <Flex
+        mb={24}
+        flexDirection={["column", "row", "row"]}
+        alignItems={["flex-start", "flex-start", "center"]}
+        justifyContent={"space-between"}
+      >
         <Flex flexDirection={"row"} alignItems="center">
           <Icon name="Newspaper" mr={16} size={36} />
           <Heading fontSize={24} tag={titleTag}>
