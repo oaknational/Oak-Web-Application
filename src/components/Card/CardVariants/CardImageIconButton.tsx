@@ -50,7 +50,13 @@ const CardImageIconButton: FC<
         </P>
 
         <Flex justifyContent="center">
-          <ButtonAsLink label={label} href={href} mb={24} fullWidth />
+          <ButtonAsLink
+            mt={"auto"}
+            label={label}
+            href={href}
+            mb={24}
+            fullWidth
+          />
         </Flex>
       </Flex>
     </Card>

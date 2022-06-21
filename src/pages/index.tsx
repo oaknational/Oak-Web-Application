@@ -106,7 +106,12 @@ const Home: FC = () => {
               Preview, plan and customise each element of our lessons to meet
               your needs -
             </P>
-            <ButtonAsLink fullWidth href="/" label="Find out more" />
+            <ButtonAsLink
+              mt={"auto"}
+              fullWidth
+              href="/"
+              label="Find out more"
+            />
           </Card>
         </GridArea>
 
@@ -133,7 +138,12 @@ const Home: FC = () => {
               Preview, plan and customise each element of our lessons to meet
               your needs - whether inside and outside the classroom.
             </P>
-            <ButtonAsLink fullWidth href="/" label="Visit Help Center" />
+            <ButtonAsLink
+              mt={"auto"}
+              fullWidth
+              href="/"
+              label="Visit Help Center"
+            />
           </Card>
         </GridArea>
       </Grid>

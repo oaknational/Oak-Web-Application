@@ -11,6 +11,8 @@ import { BoxProps } from "../Box";
  */
 export type CardProps = SpacingProps & BackgroundProps & BoxProps;
 const Card = styled.div<CardProps>`
+  display: flex;
+  flex-direction: column;
   ${spacing}
   ${background}
   ${position}
