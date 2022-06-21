@@ -67,7 +67,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         <Heading tag={titleTag} fontSize={20} mb={16}>
           {title}
         </Heading>
-        <P fontSize={18} color="grey6">
+        <P fontSize={18}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
         <ActionLink href={href} title={buttonLabelMap[contentType]} />

@@ -454,8 +454,7 @@ Array [
           width={34}
         >
           <span
-            className="sc-800c6ae4-1 gaFUJo"
-            color="grey8"
+            className="sc-800c6ae4-1 gyDtLf"
             height={34}
             width={34}
           >
@@ -473,8 +472,7 @@ Array [
           </span>
         </span>
         <h4
-          className="sc-ef5f3f7-0 gzWvtf"
-          color="grey8"
+          className="sc-ef5f3f7-0 gBeReX"
           fontSize={24}
         >
           Title
@@ -545,8 +543,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc cWTUKt"
         >
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Title
@@ -612,8 +609,7 @@ Array [
           width={90}
         >
           <span
-            className="sc-800c6ae4-1 hndecI"
-            color="grey8"
+            className="sc-800c6ae4-1 diETDf"
             height={90}
             width={90}
           >
@@ -631,8 +627,7 @@ Array [
           </span>
         </span>
         <h4
-          className="sc-ef5f3f7-0 gzWvtf"
-          color="grey8"
+          className="sc-ef5f3f7-0 gBeReX"
           fontSize={24}
         >
           Title
@@ -874,8 +869,7 @@ Array [
             width={64}
           >
             <span
-              className="sc-800c6ae4-1 bwLrmQ"
-              color="grey8"
+              className="sc-800c6ae4-1 hlaYiz"
               height={64}
               width={64}
             >
@@ -906,8 +900,7 @@ Array [
             </span>
           </span>
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Title
@@ -983,8 +976,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
         >
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Title
@@ -1056,8 +1048,7 @@ Array [
             width={32}
           >
             <span
-              className="sc-800c6ae4-1 fbKpwI"
-              color="grey8"
+              className="sc-800c6ae4-1 bbQjsb"
               height={32}
               width={32}
             >
@@ -1088,8 +1079,7 @@ Array [
             </span>
           </span>
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Need Some Help?
@@ -2329,7 +2319,7 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-f8b06312-1 cjOshT huYakt bCiPNa"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
       />
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2342,8 +2332,7 @@ Array [
           The Long and Winding Road
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
-          color="grey6"
+          className="sc-5caf3f78-0 bnhSIe"
           fontSize={18}
         >
           <div
@@ -2353,7 +2342,7 @@ Array [
           </div>
         </p>
         <a
-          className="sc-f8b06312-0 xgZyS"
+          className="sc-c3dcf7b4-0 hNjrwE"
           href="/"
           title="Read More"
         />
@@ -2367,7 +2356,7 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-f8b06312-1 cjOshT huYakt bCiPNa"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
       >
         <span
           className="sc-800c6ae4-0 gwxXru"
@@ -2404,8 +2393,7 @@ Array [
           Penny Lane
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
-          color="grey6"
+          className="sc-5caf3f78-0 bnhSIe"
           fontSize={18}
         >
           <div
@@ -2415,7 +2403,7 @@ Array [
           </div>
         </p>
         <a
-          className="sc-f8b06312-0 xgZyS"
+          className="sc-c3dcf7b4-0 hNjrwE"
           href="/"
           title="Watch Now"
         />
@@ -2429,7 +2417,7 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-f8b06312-1 cjOshT huYakt bCiPNa"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
       />
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2442,8 +2430,7 @@ Array [
           Strawberry Fields Forever
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
-          color="grey6"
+          className="sc-5caf3f78-0 bnhSIe"
           fontSize={18}
         >
           <div
@@ -2453,7 +2440,7 @@ Array [
           </div>
         </p>
         <a
-          className="sc-f8b06312-0 xgZyS"
+          className="sc-c3dcf7b4-0 hNjrwE"
           href="/"
           title="Read More"
         />
@@ -2477,7 +2464,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 sc-f8b06312-1 cjOshT huYakt bCiPNa"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
     />
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2490,8 +2477,7 @@ Array [
         The long and winding road
       </h3>
       <p
-        className="sc-5caf3f78-0 eIlCJq"
-        color="grey6"
+        className="sc-5caf3f78-0 bnhSIe"
         fontSize={18}
       >
         <div
@@ -2501,7 +2487,7 @@ Array [
         </div>
       </p>
       <a
-        className="sc-f8b06312-0 xgZyS"
+        className="sc-c3dcf7b4-0 hNjrwE"
         href="/"
         title="Read More"
       />
