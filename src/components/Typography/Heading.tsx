@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
+import color from "../../styles/utils/color";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
@@ -9,10 +10,10 @@ export const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
 
 export type HeadingTag = typeof HEADING_TAGS[number];
 
-type HeadingTagProps = {
+export type HeadingTagProps = {
   tag: HeadingTag;
 };
-const HeadingTag: FC<HeadingTagProps> = (props) => {
+const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
   const { tag, ...otherProps } = props;
   const Tag = tag;
   return <Tag {...otherProps} />;
@@ -39,10 +40,11 @@ type HeadingProps = Omit<TypographyProps, "fontSize"> &
     fontSize: ResponsiveValues<HeadingFontSize>;
   } & MarginProps;
 
-const Heading = styled(HeadingTag)<HeadingProps>`
+const Heading = styled(HeadingTagComponent)<HeadingProps>`
   ${headingDefaults}
   ${margin}
   ${typography}
+  ${color}
 `;
 
 export default Heading;

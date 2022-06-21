@@ -21,17 +21,13 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <div>
-    <div>
-      <MockedAuthProvider {...loggedInAuthProviderProps}>
-        <MockedApolloProvider>
-          <BookmarksProvider>
-            <Component {...args} />
-          </BookmarksProvider>
-        </MockedApolloProvider>
-      </MockedAuthProvider>
-    </div>
-  </div>
+  <MockedAuthProvider {...loggedInAuthProviderProps}>
+    <MockedApolloProvider>
+      <BookmarksProvider>
+        <Component {...args} />
+      </BookmarksProvider>
+    </MockedApolloProvider>
+  </MockedAuthProvider>
 );
 
 export const BookmarkLessonButton = Template.bind({});

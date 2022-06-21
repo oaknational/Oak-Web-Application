@@ -1,11 +1,11 @@
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import Body from "./Body";
+import Typography from "./Typography";
 
-describe("Body", () => {
-  test("Body should be the correct size", async () => {
+describe("Typography", () => {
+  test("Typography should be the correct size", async () => {
     const { getByTestId } = renderWithProviders(
-      <Body data-testid="test" fontSize={12} />
+      <Typography data-testid="test" fontSize={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-size: 12px");

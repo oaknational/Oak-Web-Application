@@ -16,7 +16,6 @@ type BlogListProps = {
  * Contains a title of set size and a list of BlogListItem,
  * with dividers between them.
  * The title tag (h1, h2, ...) is passed as a prop.
- *
  */
 const BlogList: FC<BlogListProps> = (props) => {
   const { title, titleTag, items } = props;

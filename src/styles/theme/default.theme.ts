@@ -21,6 +21,12 @@ const theme: OakTheme = {
     calmAndWarm: "#ffd166",
     niceAndSharp: "#06d6a0",
     deeperWins: "#073b4c",
+    limeade: "#32be00",
+    madangGreen: "#bef2bd",
+    mustard: "#ffe555",
+    peranoBlue: "#a0b6f2",
+    powderBlue: "#b0e2de",
+    melaniePink: "#deb7d5",
   },
   contrastColors: {
     white: "black",
@@ -41,6 +47,12 @@ const theme: OakTheme = {
     calmAndWarm: "grey9",
     niceAndSharp: "grey8",
     deeperWins: "white",
+    limeade: "black",
+    madangGreen: "black",
+    mustard: "black",
+    peranoBlue: "black",
+    powderBlue: "black",
+    melaniePink: "black",
   },
   fonts: {
     // Paragraphs etc.

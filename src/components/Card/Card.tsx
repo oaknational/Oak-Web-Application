@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
 import background, { BackgroundProps } from "../../styles/utils/background";
+import position from "../../styles/utils/position";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import { BoxProps } from "../Box";
 
 /**
  * @todo ts should be able to infer card props from e.g. 'spacing'
  * and 'background' util types
  */
-type CardProps = SpacingProps & BackgroundProps;
+export type CardProps = SpacingProps & BackgroundProps & BoxProps;
 const Card = styled.div<CardProps>`
   ${spacing}
   ${background}
-  height: 250px;
+  ${position}
+  min-height: 200px;
   border-radius: 12px;
 `;
 
 Card.defaultProps = {
-  pa: 24
+  pa: 24,
   // background: "inYourFace",
 };
 
