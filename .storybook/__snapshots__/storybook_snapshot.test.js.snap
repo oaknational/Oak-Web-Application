@@ -41,12 +41,12 @@ Array [
       size="small"
     >
       <span
-        className="sc-800c6ae4-0 jgGtC"
+        className="sc-558de299-0 lfWHmU"
         height={16}
         width={16}
       >
         <span
-          className="sc-800c6ae4-1 iRrixn"
+          className="sc-558de299-1 hpfTZd"
           height={16}
           width={16}
         >
@@ -86,7 +86,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-608180b1-0 gnMGOe"
+    className="sc-608180b1-0 ktjunw"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -116,7 +116,7 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-da410035-0 sc-8b0ca929-0 eaZurT kHNHEI"
+    className="sc-da410035-0 sc-5692a472-0 eaZurT kZLrig"
     size="small"
     title="Click me"
   >
@@ -144,7 +144,7 @@ Array [
   >
     <a
       aria-label="Download Lesson"
-      className="sc-608180b1-0 gnMGOe"
+      className="sc-608180b1-0 ktjunw"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -157,12 +157,12 @@ Array [
         className="sc-bba76629-0 kRiOrX"
       >
         <span
-          className="sc-800c6ae4-0 jgGtC"
+          className="sc-558de299-0 lfWHmU"
           height={16}
           width={16}
         >
           <span
-            className="sc-800c6ae4-1 iRrixn"
+            className="sc-558de299-1 hpfTZd"
             height={16}
             width={16}
           >
@@ -201,7 +201,7 @@ Array [
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-608180b1-0 gnMGOe"
+      className="sc-608180b1-0 ktjunw"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -214,12 +214,12 @@ Array [
         className="sc-bba76629-0 kRiOrX"
       >
         <span
-          className="sc-800c6ae4-0 jgGtC"
+          className="sc-558de299-0 lfWHmU"
           height={16}
           width={16}
         >
           <span
-            className="sc-800c6ae4-1 iRrixn"
+            className="sc-558de299-1 hpfTZd"
             height={16}
             width={16}
           >
@@ -300,12 +300,12 @@ Array [
       size="small"
     >
       <span
-        className="sc-800c6ae4-0 jgGtC"
+        className="sc-558de299-0 lfWHmU"
         height={16}
         width={16}
       >
         <span
-          className="sc-800c6ae4-1 iRrixn"
+          className="sc-558de299-1 hpfTZd"
           height={16}
           width={16}
         >
@@ -361,12 +361,12 @@ Array [
       size="small"
     >
       <span
-        className="sc-800c6ae4-0 jgGtC"
+        className="sc-558de299-0 lfWHmU"
         height={16}
         width={16}
       >
         <span
-          className="sc-800c6ae4-1 iRrixn"
+          className="sc-558de299-1 hpfTZd"
           height={16}
           width={16}
         >
@@ -449,12 +449,12 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
       >
         <span
-          className="sc-800c6ae4-0 gpYfPQ"
+          className="sc-558de299-0 UGhuy"
           height={34}
           width={34}
         >
           <span
-            className="sc-800c6ae4-1 gaFUJo"
+            className="sc-558de299-1 zpUyC"
             color="grey8"
             height={34}
             width={34}
@@ -481,7 +481,7 @@ Array [
         </h4>
       </div>
       <p
-        className="sc-5caf3f78-0 dFRzDD"
+        className="sc-20ccf123-0 frMFux"
         color="grey6"
         fontSize={16}
       >
@@ -489,7 +489,7 @@ Array [
       </p>
       <a
         aria-label="Lable"
-        className="sc-608180b1-0 hSpxRK"
+        className="sc-608180b1-0 lfaqbA"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -542,7 +542,7 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ ftJGGH"
       >
         <div
-          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc cWTUKt"
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
         >
           <h4
             className="sc-ef5f3f7-0 gzWvtf"
@@ -553,7 +553,7 @@ Array [
           </h4>
         </div>
         <p
-          className="sc-5caf3f78-0 dFRzDD"
+          className="sc-20ccf123-0 frMFux"
           color="grey6"
           fontSize={16}
         >
@@ -561,7 +561,7 @@ Array [
         </p>
         <a
           aria-label="Label"
-          className="sc-608180b1-0 hLXLDU"
+          className="sc-608180b1-0 deThWm"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -607,15 +607,15 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
       >
         <span
-          className="sc-800c6ae4-0 sDlgT"
-          height={90}
-          width={90}
+          className="sc-558de299-0 ggCcJN"
+          height={64}
+          width={64}
         >
           <span
-            className="sc-800c6ae4-1 hndecI"
+            className="sc-558de299-1 bNbbFG"
             color="grey8"
-            height={90}
-            width={90}
+            height={64}
+            width={64}
           >
             <svg
               height="100%"
@@ -639,7 +639,7 @@ Array [
         </h4>
       </div>
       <p
-        className="sc-5caf3f78-0 gsUIgI"
+        className="sc-20ccf123-0 gLchTO"
         color="grey6"
         fontSize={16}
       >
@@ -647,7 +647,7 @@ Array [
       </p>
       <a
         aria-label="Label"
-        className="sc-608180b1-0 hLXLDU"
+        className="sc-608180b1-0 deThWm"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -724,12 +724,12 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
       >
         <span
-          className="sc-800c6ae4-0 hVWbQa"
+          className="sc-558de299-0 jCRxuo"
           height={100}
           width={100}
         >
           <span
-            className="sc-800c6ae4-1 kAFeRD"
+            className="sc-558de299-1 ggVNQx"
             height={100}
             width={100}
           >
@@ -794,12 +794,12 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
       >
         <span
-          className="sc-800c6ae4-0 hVWbQa"
+          className="sc-558de299-0 jCRxuo"
           height={100}
           width={100}
         >
           <span
-            className="sc-800c6ae4-1 kAFeRD"
+            className="sc-558de299-1 ggVNQx"
             height={100}
             width={100}
           >
@@ -831,7 +831,7 @@ Array [
         </h5>
       </div>
       <p
-        className="sc-5caf3f78-0 kKREro"
+        className="sc-20ccf123-0 cpPQPW"
         color="grey6"
         fontSize={16}
       >
@@ -869,12 +869,12 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
         >
           <span
-            className="sc-800c6ae4-0 erlBUT"
+            className="sc-558de299-0 ggCcJN"
             height={64}
             width={64}
           >
             <span
-              className="sc-800c6ae4-1 bwLrmQ"
+              className="sc-558de299-1 bNbbFG"
               color="grey8"
               height={64}
               width={64}
@@ -914,7 +914,7 @@ Array [
           </h4>
         </div>
         <p
-          className="sc-5caf3f78-0 gsUIgI"
+          className="sc-20ccf123-0 gLchTO"
           color="grey6"
           fontSize={16}
         >
@@ -925,7 +925,7 @@ Array [
         >
           <a
             aria-label="Label"
-            className="sc-608180b1-0 zTARh"
+            className="sc-608180b1-0 dBBwtb"
             href="/"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -991,7 +991,7 @@ Array [
           </h4>
         </div>
         <p
-          className="sc-5caf3f78-0 ihGcCb"
+          className="sc-20ccf123-0 dipoQV"
           color="grey6"
           fontSize={16}
         >
@@ -1002,7 +1002,7 @@ Array [
         >
           <a
             aria-label="Label"
-            className="sc-608180b1-0 zTARh"
+            className="sc-608180b1-0 dBBwtb"
             href="/"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -1051,12 +1051,12 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
         >
           <span
-            className="sc-800c6ae4-0 jXXqWo"
+            className="sc-558de299-0 cIXBPu"
             height={32}
             width={32}
           >
             <span
-              className="sc-800c6ae4-1 fbKpwI"
+              className="sc-558de299-1 bzyWbO"
               color="grey8"
               height={32}
               width={32}
@@ -1096,7 +1096,7 @@ Array [
           </h4>
         </div>
         <p
-          className="sc-5caf3f78-0 ihGcCb"
+          className="sc-20ccf123-0 dipoQV"
           color="grey6"
           fontSize={16}
         >
@@ -1107,7 +1107,7 @@ Array [
         >
           <a
             aria-label="Visit Help Centre"
-            className="sc-608180b1-0 zTARh"
+            className="sc-608180b1-0 dBBwtb"
             href="/"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -1159,12 +1159,12 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
     >
       <span
-        className="sc-800c6ae4-0 bVeWcW"
+        className="sc-558de299-0 cSEHuU"
         height={20}
         width={20}
       >
         <span
-          className="sc-800c6ae4-1 igHoiz"
+          className="sc-558de299-1 cAvUpJ"
           height={20}
           width={20}
         >
@@ -1346,11 +1346,49 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
   >
     <input
-      className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI gAaOiB"
+      aria-invalid={false}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Input With Error 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+  >
+    <input
+      aria-describedby="undefined-error"
+      aria-invalid={true}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+  </div>,
+  <div
+    className="sc-2f0613b5-0 bwJOso"
+  >
+    <span
+      className="sc-1a42a0ba-0 eATzei"
+      color="error"
+      fontSize={12}
+      id="undefined-error"
+    >
+      Password should contain at least 8 characters
+    </span>
   </div>,
 ]
 `;
@@ -1369,18 +1407,19 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
   >
     <input
-      className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI cZkuXi"
+      aria-invalid={false}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI hApVOr"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-800c6ae4-0 efsTZY sc-4047a183-0 hrNUBb"
+      className="sc-558de299-0 IqJxS sc-4047a183-0 hrNUBb"
       height={20}
       width={40}
     >
       <span
-        className="sc-800c6ae4-1 igHoiz"
+        className="sc-558de299-1 cAvUpJ"
         height={20}
         width={20}
       >
@@ -1398,6 +1437,336 @@ Array [
         </svg>
       </span>
     </span>
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Input With Label 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-1a1b9f4b-0 bwJOso fJIBXc"
+  >
+    <label
+      className="sc-557d99b-0 kvHpjU"
+      fontSize={12}
+    >
+      Password
+    </label>
+  </div>,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+  >
+    <input
+      aria-invalid={false}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+  </div>,
+]
+`;
+
+exports[`Storyshots Forms/Newsletter Form Newsletter Form 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-d6e5f0a5-0 bEBiBA"
+  >
+    <div
+      className="sc-130c8d01-0 iRcofW"
+      colSpan={
+        Array [
+          12,
+          6,
+        ]
+      }
+    >
+      <div
+        className="sc-ed0ef33a-0 dtFxJk"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <span
+            className="sc-558de299-0 cIXBPu"
+            height={32}
+            width={32}
+          >
+            <span
+              className="sc-558de299-1 bzyWbO"
+              color="grey8"
+              height={32}
+              width={32}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 34 34"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 1.313 2 17.438C.562 18.25.687 20.375 2.188 21L11 24.625V31c0 1.938 2.313 2.75 3.5 1.313l3.813-4.626 7.875 3.25a2 2 0 0 0 2.75-1.562l4-26.063c.25-1.624-1.5-2.874-2.938-2ZM13 31v-5.5l3.375 1.375L13 31Zm14-1.875L14.062 23.75l12.5-14.688c.313-.374-.187-.874-.562-.562L10.062 22.125 3 19.187 31 3l-4 26.125Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+          <h2
+            className="sc-ef5f3f7-0 gzWvtf"
+            color="grey8"
+            fontSize={24}
+          >
+            Join The Community
+          </h2>
+        </div>
+        <p
+          className="sc-20ccf123-0 lfGARk"
+          id="newsletter-form-description"
+        >
+          Be among the first to get free lessons, resources and other helpful content by email. Unsubscribe at any time. Our privacy policy is
+           
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            here
+          </a>
+          .
+        </p>
+        <form
+          aria-describedby="newsletter-form-description"
+          onSubmit={[Function]}
+        >
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-name"
+              name="name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Name"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-email"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Email Address"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-user-role"
+              name="userRole"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="What describes you best?"
+            />
+          </div>
+          <button
+            aria-label="Sign Up"
+            className="sc-da410035-0 sc-5692a472-0 eaZurT dYFtA-D"
+            disabled={false}
+            size="small"
+            title="Sign Up"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Sign Up
+            </span>
+          </button>
+          <p
+            aria-live="assertive"
+            className="sc-20ccf123-0 kUFCdJ"
+            color="error"
+            fontSize={14}
+            role="alert"
+          >
+            
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Forms/Newsletter Form With Error 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-d6e5f0a5-0 bEBiBA"
+  >
+    <div
+      className="sc-130c8d01-0 iRcofW"
+      colSpan={
+        Array [
+          12,
+          6,
+        ]
+      }
+    >
+      <div
+        className="sc-ed0ef33a-0 dtFxJk"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <span
+            className="sc-558de299-0 cIXBPu"
+            height={32}
+            width={32}
+          >
+            <span
+              className="sc-558de299-1 bzyWbO"
+              color="grey8"
+              height={32}
+              width={32}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 34 34"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 1.313 2 17.438C.562 18.25.687 20.375 2.188 21L11 24.625V31c0 1.938 2.313 2.75 3.5 1.313l3.813-4.626 7.875 3.25a2 2 0 0 0 2.75-1.562l4-26.063c.25-1.624-1.5-2.874-2.938-2ZM13 31v-5.5l3.375 1.375L13 31Zm14-1.875L14.062 23.75l12.5-14.688c.313-.374-.187-.874-.562-.562L10.062 22.125 3 19.187 31 3l-4 26.125Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+          <h2
+            className="sc-ef5f3f7-0 gzWvtf"
+            color="grey8"
+            fontSize={24}
+          >
+            Join The Community
+          </h2>
+        </div>
+        <p
+          className="sc-20ccf123-0 lfGARk"
+          id="newsletter-form-description"
+        >
+          Be among the first to get free lessons, resources and other helpful content by email. Unsubscribe at any time. Our privacy policy is
+           
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            here
+          </a>
+          .
+        </p>
+        <form
+          aria-describedby="newsletter-form-description"
+          onSubmit={[Function]}
+        >
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-name"
+              name="name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Name"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-email"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Email Address"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-user-role"
+              name="userRole"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="What describes you best?"
+            />
+          </div>
+          <button
+            aria-label="Sign Up"
+            className="sc-da410035-0 sc-5692a472-0 eaZurT dYFtA-D"
+            disabled={false}
+            size="small"
+            title="Sign Up"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Sign Up
+            </span>
+          </button>
+          <p
+            aria-live="assertive"
+            className="sc-20ccf123-0 kUFCdJ"
+            color="error"
+            fontSize={14}
+            role="alert"
+          >
+            
+          </p>
+        </form>
+      </div>
+    </div>
   </div>,
 ]
 `;
@@ -1527,7 +1896,7 @@ Array [
     >
       <a
         aria-label="Download Lesson"
-        className="sc-608180b1-0 gDGmiN"
+        className="sc-608180b1-0 dNUFrv"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1540,12 +1909,12 @@ Array [
           className="sc-bba76629-0 kRiOrX"
         >
           <span
-            className="sc-800c6ae4-0 jgGtC"
+            className="sc-558de299-0 lfWHmU"
             height={16}
             width={16}
           >
             <span
-              className="sc-800c6ae4-1 iRrixn"
+              className="sc-558de299-1 hpfTZd"
               height={16}
               width={16}
             >
@@ -1584,7 +1953,7 @@ Array [
       </a>
       <a
         aria-label="Share Lesson"
-        className="sc-608180b1-0 gDGmiN"
+        className="sc-608180b1-0 dNUFrv"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1597,12 +1966,12 @@ Array [
           className="sc-bba76629-0 kRiOrX"
         >
           <span
-            className="sc-800c6ae4-0 jgGtC"
+            className="sc-558de299-0 lfWHmU"
             height={16}
             width={16}
           >
             <span
-              className="sc-800c6ae4-1 iRrixn"
+              className="sc-558de299-1 hpfTZd"
               height={16}
               width={16}
             >
@@ -1667,12 +2036,12 @@ Array [
           size="small"
         >
           <span
-            className="sc-800c6ae4-0 jgGtC"
+            className="sc-558de299-0 lfWHmU"
             height={16}
             width={16}
           >
             <span
-              className="sc-800c6ae4-1 iRrixn"
+              className="sc-558de299-1 hpfTZd"
               height={16}
               width={16}
             >
@@ -1744,12 +2113,12 @@ Array [
         onMouseEnter={[Function]}
       >
         <span
-          className="sc-800c6ae4-0 iNSDWQ"
+          className="sc-558de299-0 iEJuIe"
           height={30}
           width={30}
         >
           <span
-            className="sc-800c6ae4-1 bTNYSP"
+            className="sc-558de299-1 eobmqV"
             height={30}
             width={30}
           >
@@ -1777,15 +2146,17 @@ Array [
       </a>
     </div>
     <form
-      className="sc-ea8229a0-0 dkinEo"
+      className="sc-5e65f61e-0 igxcUD"
       onSubmit={[Function]}
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
       >
         <input
+          aria-invalid={false}
           aria-label="Search"
-          className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI gAaOiB"
+          className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+          id="search-form-search-input"
           onChange={[Function]}
           placeholder="Search"
           type="search"
@@ -1805,12 +2176,12 @@ Array [
           size="small"
         >
           <span
-            className="sc-800c6ae4-0 jgGtC"
+            className="sc-558de299-0 lfWHmU"
             height={16}
             width={16}
           >
             <span
-              className="sc-800c6ae4-1 iRrixn"
+              className="sc-558de299-1 hpfTZd"
               height={16}
               width={16}
             >
@@ -1857,15 +2228,17 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-ea8229a0-0 dkinEo"
+    className="sc-5e65f61e-0 igxcUD"
     onSubmit={[Function]}
   >
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
     >
       <input
+        aria-invalid={false}
         aria-label="Search"
-        className="sc-f4eaf512-0 sc-5a6f31b2-0 bsoZhI gAaOiB"
+        className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+        id="search-form-search-input"
         onChange={[Function]}
         placeholder="Search"
         type="search"
@@ -1885,12 +2258,12 @@ Array [
         size="small"
       >
         <span
-          className="sc-800c6ae4-0 jgGtC"
+          className="sc-558de299-0 lfWHmU"
           height={16}
           width={16}
         >
           <span
-            className="sc-800c6ae4-1 iRrixn"
+            className="sc-558de299-1 hpfTZd"
             height={16}
             width={16}
           >
@@ -1944,12 +2317,12 @@ Array [
             Intro
           </div>
           <span
-            className="sc-800c6ae4-0 jBdqpo"
+            className="sc-558de299-0 bmugpG"
             height={20}
             width={20}
           >
             <span
-              className="sc-800c6ae4-1 igHoiz"
+              className="sc-558de299-1 cAvUpJ"
               height={20}
               width={20}
             >
@@ -1998,12 +2371,12 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <span
-            className="sc-800c6ae4-0 dgBwGH"
+            className="sc-558de299-0 jOqOjd"
             height={20}
             width={20}
           >
             <span
-              className="sc-800c6ae4-1 igHoiz"
+              className="sc-558de299-1 cAvUpJ"
               height={20}
               width={20}
             >
@@ -2126,12 +2499,12 @@ Array [
             Intro
           </div>
           <span
-            className="sc-800c6ae4-0 jBdqpo"
+            className="sc-558de299-0 bmugpG"
             height={20}
             width={20}
           >
             <span
-              className="sc-800c6ae4-1 igHoiz"
+              className="sc-558de299-1 cAvUpJ"
               height={20}
               width={20}
             >
@@ -2212,12 +2585,12 @@ Array [
             Very long label
           </div>
           <span
-            className="sc-800c6ae4-0 jBdqpo"
+            className="sc-558de299-0 bmugpG"
             height={20}
             width={20}
           >
             <span
-              className="sc-800c6ae4-1 igHoiz"
+              className="sc-558de299-1 cAvUpJ"
               height={20}
               width={20}
             >
@@ -2266,7 +2639,7 @@ Array [
       >
         <p
           checked={true}
-          className="sc-5caf3f78-0 sc-56d2f2bf-3 hfelqa jlLAtS"
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bGwizT jlLAtS"
         >
           Label off
         </p>
@@ -2286,7 +2659,7 @@ Array [
         </div>
         <p
           checked={false}
-          className="sc-5caf3f78-0 sc-56d2f2bf-3 gZvqdp dKYeGi"
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bHKBgY dKYeGi"
         >
           Label on
         </p>
@@ -2320,7 +2693,7 @@ Array [
       >
         <p
           checked={true}
-          className="sc-5caf3f78-0 sc-56d2f2bf-3 hfelqa iIesTK"
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bGwizT iIesTK"
           disabled={true}
         >
           Label off
@@ -2343,7 +2716,7 @@ Array [
         </div>
         <p
           checked={false}
-          className="sc-5caf3f78-0 sc-56d2f2bf-3 gZvqdp iMpFkq"
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bHKBgY iMpFkq"
           disabled={true}
         >
           Label on
@@ -2371,12 +2744,12 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc foVbBC"
     >
       <span
-        className="sc-800c6ae4-0 hNUqLH"
+        className="sc-558de299-0 eAQkQl"
         height={36}
         width={36}
       >
         <span
-          className="sc-800c6ae4-1 fGFEkr"
+          className="sc-558de299-1 kzPzgN"
           height={36}
           width={36}
         >
@@ -2418,7 +2791,7 @@ Array [
           The Long and Winding Road
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
+          className="sc-20ccf123-0 dksOPw"
           color="grey6"
           fontSize={18}
         >
@@ -2430,7 +2803,7 @@ Array [
         </p>
         <a
           aria-label="Read More"
-          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
+          className="sc-608180b1-0 dQZtxZ sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2458,12 +2831,12 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
       >
         <span
-          className="sc-800c6ae4-0 gwxXru"
+          className="sc-558de299-0 gWbTKU"
           height={48}
           width={48}
         >
           <span
-            className="sc-800c6ae4-1 hrREuS"
+            className="sc-558de299-1 cyemII"
             color="white"
             height={48}
             width={48}
@@ -2492,7 +2865,7 @@ Array [
           Penny Lane
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
+          className="sc-20ccf123-0 dksOPw"
           color="grey6"
           fontSize={18}
         >
@@ -2504,7 +2877,7 @@ Array [
         </p>
         <a
           aria-label="Watch Now"
-          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
+          className="sc-608180b1-0 dQZtxZ sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2542,7 +2915,7 @@ Array [
           Strawberry Fields Forever
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
+          className="sc-20ccf123-0 dksOPw"
           color="grey6"
           fontSize={18}
         >
@@ -2554,7 +2927,7 @@ Array [
         </p>
         <a
           aria-label="Read More"
-          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
+          className="sc-608180b1-0 dQZtxZ sc-831fd669-0 bYDamN"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2602,7 +2975,7 @@ Array [
         The long and winding road
       </h3>
       <p
-        className="sc-5caf3f78-0 eIlCJq"
+        className="sc-20ccf123-0 dksOPw"
         color="grey6"
         fontSize={18}
       >
@@ -2614,7 +2987,7 @@ Array [
       </p>
       <a
         aria-label="Read More"
-        className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
+        className="sc-608180b1-0 dQZtxZ sc-831fd669-0 bYDamN"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2645,12 +3018,12 @@ Array [
     rel="stylesheet"
   />,
   <span
-    className="sc-800c6ae4-0 hVWbQa"
+    className="sc-558de299-0 jCRxuo"
     height={100}
     width={100}
   >
     <span
-      className="sc-800c6ae4-1 kAFeRD"
+      className="sc-558de299-1 ggVNQx"
       height={100}
       width={100}
     >
@@ -2706,12 +3079,12 @@ Array [
         className="sc-2fa6374a-2 LyxUe"
       >
         <span
-          className="sc-800c6ae4-0 bVeWcW"
+          className="sc-558de299-0 cSEHuU"
           height={20}
           width={20}
         >
           <span
-            className="sc-800c6ae4-1 igHoiz"
+            className="sc-558de299-1 cAvUpJ"
             height={20}
             width={20}
           >
@@ -2744,12 +3117,12 @@ Array [
         className="sc-2fa6374a-2 LyxUe"
       >
         <span
-          className="sc-800c6ae4-0 bVeWcW"
+          className="sc-558de299-0 cSEHuU"
           height={20}
           width={20}
         >
           <span
-            className="sc-800c6ae4-1 igHoiz"
+            className="sc-558de299-1 cAvUpJ"
             height={20}
             width={20}
           >
@@ -2782,12 +3155,12 @@ Array [
         className="sc-2fa6374a-2 LyxUe"
       >
         <span
-          className="sc-800c6ae4-0 bVeWcW"
+          className="sc-558de299-0 cSEHuU"
           height={20}
           width={20}
         >
           <span
-            className="sc-800c6ae4-1 igHoiz"
+            className="sc-558de299-1 cAvUpJ"
             height={20}
             width={20}
           >
@@ -2879,7 +3252,7 @@ Array [
     rel="stylesheet"
   />,
   <p
-    className="sc-5caf3f78-0 dpbUKY"
+    className="sc-20ccf123-0 bAXLyp"
     color="grey9"
     fontSize={16}
   >
@@ -2903,7 +3276,7 @@ Array [
     fontWeight={400}
   >
     <p
-      className="sc-5caf3f78-0 hpsVSx"
+      className="sc-20ccf123-0 lfGARk"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
        

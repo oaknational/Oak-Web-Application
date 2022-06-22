@@ -27,6 +27,7 @@ const theme: OakTheme = {
     peranoBlue: "#a0b6f2",
     powderBlue: "#b0e2de",
     melaniePink: "#deb7d5",
+    error: "red",
   },
   contrastColors: {
     white: "black",
@@ -53,6 +54,7 @@ const theme: OakTheme = {
     peranoBlue: "black",
     powderBlue: "black",
     melaniePink: "black",
+    error: "white",
   },
   fonts: {
     // Paragraphs etc.
@@ -138,7 +140,7 @@ const theme: OakTheme = {
   },
   button: {
     disabled: {
-      background: "grey7",
+      background: "grey6",
       text: "white",
     },
     primary: {

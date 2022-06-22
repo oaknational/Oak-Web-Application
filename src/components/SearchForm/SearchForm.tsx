@@ -31,6 +31,7 @@ const SearchForm: FC = () => {
   return (
     <StyledForm flexWrap="nowrap" onSubmit={handleSubmit}>
       <Input
+        id="search-form-search-input"
         value={value}
         type="search"
         onChange={onTextChange}
