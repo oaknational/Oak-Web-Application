@@ -1,3 +1,10 @@
+# [0.32.0](https://github.com/oaknational/Samara/compare/v0.31.0...v0.32.0) (2022-06-22)
+
+
+### Features
+
+* toggle component ([5b589e0](https://github.com/oaknational/Samara/commit/5b589e08f46221c5c2d489e546ffc79e715e8af2))
+
 # [0.31.0](https://github.com/oaknational/Samara/compare/v0.30.0...v0.31.0) (2022-06-17)
 
 
