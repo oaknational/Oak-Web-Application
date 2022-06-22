@@ -1,3 +1,16 @@
+# [0.34.0](https://github.com/oaknational/Samara/compare/v0.33.0...v0.34.0) (2022-06-22)
+
+
+### Bug Fixes
+
+* add test for beta page ([77a5c2e](https://github.com/oaknational/Samara/commit/77a5c2e264c816a23380df44ebddd41f9c0cddec))
+
+
+### Features
+
+* add blog list to landing page ([5fb6979](https://github.com/oaknational/Samara/commit/5fb6979802d99be923b9ad9b17a3ffe8473de41b))
+* use order and spacing for card layout ([a6f165c](https://github.com/oaknational/Samara/commit/a6f165c775a5ec185269ccc5864acf571fef3bb6))
+
 # [0.33.0](https://github.com/oaknational/Samara/compare/v0.32.0...v0.33.0) (2022-06-22)
 
 
