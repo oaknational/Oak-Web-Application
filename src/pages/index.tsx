@@ -15,7 +15,7 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 
 const items: BlogListProps["items"] = [
   {
-    titleTag: "h2",
+    titleTag: "h3",
     title: "Webinar about school",
     snippet:
       "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
@@ -23,7 +23,7 @@ const items: BlogListProps["items"] = [
     contentType: "webinar",
   },
   {
-    titleTag: "h2",
+    titleTag: "h3",
     title: "Blog about learning",
     snippet:
       "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
@@ -31,7 +31,7 @@ const items: BlogListProps["items"] = [
     contentType: "blog-post",
   },
   {
-    titleTag: "h2",
+    titleTag: "h3",
     title: "Webinar from a maths teacher",
     snippet:
       "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
@@ -39,7 +39,7 @@ const items: BlogListProps["items"] = [
     contentType: "webinar",
   },
   {
-    titleTag: "h2",
+    titleTag: "h3",
     title: "Blog post about making lunch break all day",
     snippet:
       "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
@@ -115,7 +115,7 @@ const Home: FC = () => {
           </Card>
         </GridArea>
 
-        <GridArea colSpan={[12, 12, 8]} rowSpan={2} order={[0, 1, 0]}>
+        <GridArea colSpan={[12, 12, 8]} rowSpan={2} order={[3, 1, 0]}>
           <Flex background={"white"} pa={24}>
             <BlogList
               title={"Stay up to date!"}
@@ -125,13 +125,13 @@ const Home: FC = () => {
           </Flex>
         </GridArea>
 
-        <GridArea colSpan={[12, 6, 4]} order={[0, 0, 0]}>
+        <GridArea colSpan={[12, 6, 4]} order={[2, 0, 0]}>
           <Card background="white">
             <CardTitle
               icon="Home"
               iconPosition="leading"
               iconSize={34}
-              tag="h4"
+              tag="h2"
               title="Need some help?"
             />
             <P fontSize={16} mb={24}>

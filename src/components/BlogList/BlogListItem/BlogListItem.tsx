@@ -26,11 +26,6 @@ const BlogListItemImage = styled(Flex)`
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
-const buttonLabelMap: Record<BlogListItemContentType, string> = {
-  "blog-post": "Read More",
-  webinar: "Watch Now",
-};
-
 export type BlogListItemProps = {
   titleTag: HeadingTag;
   title: string;
@@ -50,7 +45,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   return (
     <Flex
       flexDirection={["column", "row"]}
-      alignItems={"center"}
+      alignItems={["flex-start", "center"]}
       position="relative"
     >
       <BlogListItemImage
@@ -65,12 +60,13 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       </BlogListItemImage>
       <Flex flexDirection="column" alignItems="flex-start">
         <Heading tag={titleTag} fontSize={20} mb={16}>
-          {title}
+          <ActionLink href={href} title={title}>
+            {title}
+          </ActionLink>
         </Heading>
         <P fontSize={18}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
-        <ActionLink href={href} title={buttonLabelMap[contentType]} />
       </Flex>
     </Flex>
   );

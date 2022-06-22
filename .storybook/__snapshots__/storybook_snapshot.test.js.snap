@@ -2316,10 +2316,10 @@ Array [
       </div>
     </div>
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
       />
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2329,7 +2329,13 @@ Array [
           fontSize={20}
           mb={16}
         >
-          The Long and Winding Road
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="The Long and Winding Road"
+          >
+            The Long and Winding Road
+          </a>
         </h2>
         <p
           className="sc-5caf3f78-0 bnhSIe"
@@ -2341,11 +2347,6 @@ Array [
             The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
           </div>
         </p>
-        <a
-          className="sc-c3dcf7b4-0 hNjrwE"
-          href="/"
-          title="Read More"
-        />
       </div>
     </div>
     <hr
@@ -2353,10 +2354,10 @@ Array [
       color="grey2"
     />
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
       >
         <span
           className="sc-800c6ae4-0 gwxXru"
@@ -2390,7 +2391,13 @@ Array [
           fontSize={20}
           mb={16}
         >
-          Penny Lane
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="Penny Lane"
+          >
+            Penny Lane
+          </a>
         </h2>
         <p
           className="sc-5caf3f78-0 bnhSIe"
@@ -2402,11 +2409,6 @@ Array [
             Penny Lane, there is a barber showing photographs Of every head he's had the pleasure to know And all the people that come and go Stop and say, "Hello"
           </div>
         </p>
-        <a
-          className="sc-c3dcf7b4-0 hNjrwE"
-          href="/"
-          title="Watch Now"
-        />
       </div>
     </div>
     <hr
@@ -2414,10 +2416,10 @@ Array [
       color="grey2"
     />
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
       />
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2427,7 +2429,13 @@ Array [
           fontSize={20}
           mb={16}
         >
-          Strawberry Fields Forever
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="Strawberry Fields Forever"
+          >
+            Strawberry Fields Forever
+          </a>
         </h2>
         <p
           className="sc-5caf3f78-0 bnhSIe"
@@ -2439,11 +2447,6 @@ Array [
             No one I think is in my tree I mean, it must be high or low That is, you can't, you know, tune in but it's all right That is, I think it's not too bad
           </div>
         </p>
-        <a
-          className="sc-c3dcf7b4-0 hNjrwE"
-          href="/"
-          title="Read More"
-        />
       </div>
     </div>
   </div>,
@@ -2461,10 +2464,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL jWLIhb"
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 sc-c3dcf7b4-1 cjOshT huYakt gYIqXY"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
     />
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2474,7 +2477,13 @@ Array [
         fontSize={20}
         mb={16}
       >
-        The long and winding road
+        <a
+          className="sc-40cf0759-0 iKJgVW"
+          href="/"
+          title="The long and winding road"
+        >
+          The long and winding road
+        </a>
       </h3>
       <p
         className="sc-5caf3f78-0 bnhSIe"
@@ -2486,11 +2495,6 @@ Array [
           The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
         </div>
       </p>
-      <a
-        className="sc-c3dcf7b4-0 hNjrwE"
-        href="/"
-        title="Read More"
-      />
     </div>
   </div>,
 ]
