@@ -33,8 +33,9 @@ const CardAsLink: FC<CardAsLinkProps> = ({
 }) => {
   return (
     <Card position="relative" {...cardProps}>
-      <CardLink target={target} href={href}></CardLink>
-      {children}
+      <CardLink target={target} href={href}>
+        {children}
+      </CardLink>
     </Card>
   );
 };
