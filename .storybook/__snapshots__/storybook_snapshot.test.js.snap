@@ -412,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed0ef33a-0 hWhEom"
+    className="sc-4635a5a0-0 iEOGPl"
   >
     <h2>
       Card title
@@ -443,7 +443,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 hWhEom"
+      className="sc-4635a5a0-0 iEOGPl"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
@@ -454,8 +454,7 @@ Array [
           width={34}
         >
           <span
-            className="sc-6847304a-1 kerwZq"
-            color="grey8"
+            className="sc-6847304a-1 fkyqFZ"
             height={34}
             width={34}
           >
@@ -473,8 +472,7 @@ Array [
           </span>
         </span>
         <h4
-          className="sc-ef5f3f7-0 gzWvtf"
-          color="grey8"
+          className="sc-ef5f3f7-0 gBeReX"
           fontSize={24}
         >
           Title
@@ -489,7 +487,7 @@ Array [
       </p>
       <a
         aria-label="Lable"
-        className="sc-608180b1-0 hSpxRK"
+        className="sc-608180b1-0 bQvIdk"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -528,7 +526,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 emDsAk"
+      className="sc-4635a5a0-0 fgBcMr"
     >
       <div
         className="sc-5a3421c1-0 hKnMWG"
@@ -545,8 +543,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc cWTUKt"
         >
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Title
@@ -561,7 +558,7 @@ Array [
         </p>
         <a
           aria-label="Label"
-          className="sc-608180b1-0 hLXLDU"
+          className="sc-608180b1-0 fXoxzW"
           href="/"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -601,7 +598,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 hWhEom"
+      className="sc-4635a5a0-0 iEOGPl"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
@@ -612,8 +609,7 @@ Array [
           width={90}
         >
           <span
-            className="sc-6847304a-1 hXBeqm"
-            color="grey8"
+            className="sc-6847304a-1 ereGld"
             height={90}
             width={90}
           >
@@ -631,8 +627,7 @@ Array [
           </span>
         </span>
         <h4
-          className="sc-ef5f3f7-0 gzWvtf"
-          color="grey8"
+          className="sc-ef5f3f7-0 gBeReX"
           fontSize={24}
         >
           Title
@@ -647,7 +642,7 @@ Array [
       </p>
       <a
         aria-label="Label"
-        className="sc-608180b1-0 hLXLDU"
+        className="sc-608180b1-0 fXoxzW"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -678,7 +673,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed0ef33a-0 fyBKap"
+    className="sc-4635a5a0-0 byuxbW"
   >
     <a
       className="sc-942d8905-0 eJnHbf"
@@ -714,7 +709,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 fyBKap"
+      className="sc-4635a5a0-0 byuxbW"
     >
       <a
         className="sc-942d8905-0 eJnHbf"
@@ -785,7 +780,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 fyBKap"
+      className="sc-4635a5a0-0 byuxbW"
     >
       <a
         className="sc-942d8905-0 eJnHbf"
@@ -863,7 +858,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 iFkqrk"
+      className="sc-4635a5a0-0 kxnlZI"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
@@ -877,8 +872,7 @@ Array [
             width={64}
           >
             <span
-              className="sc-6847304a-1 cGUHy"
-              color="grey8"
+              className="sc-6847304a-1 iXoJxd"
               height={64}
               width={64}
             >
@@ -909,8 +903,7 @@ Array [
             </span>
           </span>
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Title
@@ -928,7 +921,7 @@ Array [
         >
           <a
             aria-label="Label"
-            className="sc-608180b1-0 zTARh"
+            className="sc-608180b1-0 jEAkQn"
             href="/"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -968,7 +961,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 iFkqrk"
+      className="sc-4635a5a0-0 kxnlZI"
     >
       <div
         className="sc-5a3421c1-0 hKnMWG"
@@ -986,8 +979,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
         >
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Title
@@ -1005,7 +997,7 @@ Array [
         >
           <a
             aria-label="Label"
-            className="sc-608180b1-0 zTARh"
+            className="sc-608180b1-0 jEAkQn"
             href="/"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -1045,7 +1037,7 @@ Array [
     }
   >
     <div
-      className="sc-ed0ef33a-0 iFkqrk"
+      className="sc-4635a5a0-0 kxnlZI"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
@@ -1059,8 +1051,7 @@ Array [
             width={32}
           >
             <span
-              className="sc-6847304a-1 leAyCC"
-              color="grey8"
+              className="sc-6847304a-1 jqvJHB"
               height={32}
               width={32}
             >
@@ -1091,8 +1082,7 @@ Array [
             </span>
           </span>
           <h4
-            className="sc-ef5f3f7-0 gzWvtf"
-            color="grey8"
+            className="sc-ef5f3f7-0 gBeReX"
             fontSize={24}
           >
             Need Some Help?
@@ -1110,7 +1100,7 @@ Array [
         >
           <a
             aria-label="Visit Help Centre"
-            className="sc-608180b1-0 zTARh"
+            className="sc-608180b1-0 jEAkQn"
             href="/"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -1452,10 +1442,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-d6e5f0a5-0 bEBiBA"
+    className="sc-61cd3008-0 dVghVz"
   >
     <div
-      className="sc-130c8d01-0 fxxFSh"
+      className="sc-8799d24a-0 iQUcfT"
       colSpan={
         Array [
           12,
@@ -1466,7 +1456,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-ed0ef33a-0 iQntQR"
+        className="sc-4635a5a0-0 jzCSDu"
       >
         Grid box
       </div>
@@ -2454,44 +2444,80 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD kXhHIh"
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc foVbBC"
+      className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc iBykG"
     >
-      <span
-        className="sc-6847304a-0 dbwhaZ"
-        height={36}
-        width={36}
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD lvAUx"
       >
         <span
-          className="sc-6847304a-1 eLGoPl"
+          className="sc-6847304a-0 dbwhaZ"
           height={36}
           width={36}
         >
-          <svg
-            fill="none"
-            height="100%"
-            viewBox="0 0 36 24"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            className="sc-6847304a-1 eLGoPl"
+            height={36}
+            width={36}
           >
-            <path
-              d="M34.5 0h-29C4.625 0 4 .688 4 1.5V2H1.5C.625 2 0 2.688 0 3.5V21c0 1.688 1.313 3 3 3h31.5c.813 0 1.5-.625 1.5-1.5v-21c0-.813-.688-1.5-1.5-1.5ZM2 21V4h2v17c0 .563-.5 1-1 1-.563 0-1-.438-1-1Zm32 1H5.812c.125-.25.125-.625.125-.938 0 0 .063 0 .063-.062V2h28v20ZM8.75 16h10.5a.76.76 0 0 0 .75-.75V4.75c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v10.5c0 .438.313.75.75.75ZM10 6h8v8h-8V6ZM8 19.25c0 .438.313.75.75.75h10.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v.5Zm14 0c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-8c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0 4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Z"
-              fill="currentColor"
-            />
-          </svg>
+            <svg
+              fill="none"
+              height="100%"
+              viewBox="0 0 36 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M34.5 0h-29C4.625 0 4 .688 4 1.5V2H1.5C.625 2 0 2.688 0 3.5V21c0 1.688 1.313 3 3 3h31.5c.813 0 1.5-.625 1.5-1.5v-21c0-.813-.688-1.5-1.5-1.5ZM2 21V4h2v17c0 .563-.5 1-1 1-.563 0-1-.438-1-1Zm32 1H5.812c.125-.25.125-.625.125-.938 0 0 .063 0 .063-.062V2h28v20ZM8.75 16h10.5a.76.76 0 0 0 .75-.75V4.75c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v10.5c0 .438.313.75.75.75ZM10 6h8v8h-8V6ZM8 19.25c0 .438.313.75.75.75h10.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v.5Zm14 0c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-8c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0 4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
         </span>
-      </span>
-      <h1
-        className="sc-ef5f3f7-0 gBeReX"
-        fontSize={24}
+        <h1
+          className="sc-ef5f3f7-0 gBeReX"
+          fontSize={24}
+        >
+          Check out these things!
+        </h1>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD cNFVlZ"
       >
-        Check out these things!
-      </h1>
+        <nav>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eYRlTh"
+          >
+            <p
+              className="sc-5caf3f78-0 kEsTPg"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                All Webinars
+              </a>
+            </p>
+            <p
+              className="sc-5caf3f78-0 hpsVSx"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                All Blogs
+              </a>
+            </p>
+          </div>
+        </nav>
+      </div>
     </div>
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
       />
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2501,11 +2527,16 @@ Array [
           fontSize={20}
           mb={16}
         >
-          The Long and Winding Road
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="The Long and Winding Road"
+          >
+            The Long and Winding Road
+          </a>
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
-          color="grey6"
+          className="sc-5caf3f78-0 bnhSIe"
           fontSize={18}
         >
           <div
@@ -2514,23 +2545,6 @@ Array [
             The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
           </div>
         </p>
-        <a
-          aria-label="Read More"
-          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Read More"
-        >
-          <span
-            className="sc-afa80c08-0 dokVaK"
-          >
-            Read More
-          </span>
-        </a>
       </div>
     </div>
     <hr
@@ -2538,10 +2552,10 @@ Array [
       color="grey2"
     />
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
       >
         <span
           className="sc-6847304a-0 dBmUuU"
@@ -2575,11 +2589,16 @@ Array [
           fontSize={20}
           mb={16}
         >
-          Penny Lane
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="Penny Lane"
+          >
+            Penny Lane
+          </a>
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
-          color="grey6"
+          className="sc-5caf3f78-0 bnhSIe"
           fontSize={18}
         >
           <div
@@ -2588,23 +2607,6 @@ Array [
             Penny Lane, there is a barber showing photographs Of every head he's had the pleasure to know And all the people that come and go Stop and say, "Hello"
           </div>
         </p>
-        <a
-          aria-label="Watch Now"
-          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Watch Now"
-        >
-          <span
-            className="sc-afa80c08-0 dokVaK"
-          >
-            Watch Now
-          </span>
-        </a>
       </div>
     </div>
     <hr
@@ -2612,10 +2614,10 @@ Array [
       color="grey2"
     />
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
       />
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2625,11 +2627,16 @@ Array [
           fontSize={20}
           mb={16}
         >
-          Strawberry Fields Forever
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="Strawberry Fields Forever"
+          >
+            Strawberry Fields Forever
+          </a>
         </h2>
         <p
-          className="sc-5caf3f78-0 eIlCJq"
-          color="grey6"
+          className="sc-5caf3f78-0 bnhSIe"
           fontSize={18}
         >
           <div
@@ -2638,23 +2645,6 @@ Array [
             No one I think is in my tree I mean, it must be high or low That is, you can't, you know, tune in but it's all right That is, I think it's not too bad
           </div>
         </p>
-        <a
-          aria-label="Read More"
-          className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
-          href="/"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseEnter={[Function]}
-          role="button"
-          size="small"
-          title="Read More"
-        >
-          <span
-            className="sc-afa80c08-0 dokVaK"
-          >
-            Read More
-          </span>
-        </a>
       </div>
     </div>
   </div>,
@@ -2672,10 +2662,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL cAvFQj"
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 sc-831fd669-1 cjOshT huYakt jysShR"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
     />
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
@@ -2685,11 +2675,16 @@ Array [
         fontSize={20}
         mb={16}
       >
-        The long and winding road
+        <a
+          className="sc-40cf0759-0 iKJgVW"
+          href="/"
+          title="The long and winding road"
+        >
+          The long and winding road
+        </a>
       </h3>
       <p
-        className="sc-5caf3f78-0 eIlCJq"
-        color="grey6"
+        className="sc-5caf3f78-0 bnhSIe"
         fontSize={18}
       >
         <div
@@ -2698,23 +2693,6 @@ Array [
           The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
         </div>
       </p>
-      <a
-        aria-label="Read More"
-        className="sc-608180b1-0 bcnrwP sc-831fd669-0 bYDamN"
-        href="/"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onMouseEnter={[Function]}
-        role="button"
-        size="small"
-        title="Read More"
-      >
-        <span
-          className="sc-afa80c08-0 dokVaK"
-        >
-          Read More
-        </span>
-      </a>
     </div>
   </div>,
 ]
