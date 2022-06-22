@@ -1288,7 +1288,7 @@ Array [
     onClick={[Function]}
   >
     <input
-      checked={true}
+      checked={false}
       className="sc-312daaf3-1 jUsCnh"
       disabled={false}
       id="Click me"
@@ -1313,8 +1313,8 @@ Array [
         y="0.5"
       />
       <path
-        checked={true}
-        className="sc-312daaf3-3 jqZQPA"
+        checked={false}
+        className="sc-312daaf3-3 eeDoQg"
         d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
       />
       <rect
@@ -2324,6 +2324,118 @@ Array [
         </div>
       </div>
     </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Toggle Toggle 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "background": "lightBlue",
+        "padding": "100px",
+      }
+    }
+  >
+    <label>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+      >
+        <p
+          checked={true}
+          className="sc-5caf3f78-0 sc-56d2f2bf-3 hfelqa jlLAtS"
+        >
+          Label off
+        </p>
+        <div
+          className="sc-56d2f2bf-2 haRHuu"
+        >
+          <input
+            checked={false}
+            className="sc-56d2f2bf-0 ekWfQm"
+            data-testid="toggle"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="sc-56d2f2bf-1 dPjkAC"
+          />
+        </div>
+        <p
+          checked={false}
+          className="sc-5caf3f78-0 sc-56d2f2bf-3 gZvqdp dKYeGi"
+        >
+          Label on
+        </p>
+      </div>
+    </label>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Toggle Toggle Disabled 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "background": "lightBlue",
+        "padding": "100px",
+      }
+    }
+  >
+    <label>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+      >
+        <p
+          checked={true}
+          className="sc-5caf3f78-0 sc-56d2f2bf-3 hfelqa iIesTK"
+          disabled={true}
+        >
+          Label off
+        </p>
+        <div
+          className="sc-56d2f2bf-2 haRHuu"
+        >
+          <input
+            checked={false}
+            className="sc-56d2f2bf-0 ekWfQm"
+            data-testid="toggle"
+            disabled={true}
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="sc-56d2f2bf-1 jFDbdt"
+            disabled={true}
+          />
+        </div>
+        <p
+          checked={false}
+          className="sc-5caf3f78-0 sc-56d2f2bf-3 gZvqdp iMpFkq"
+          disabled={true}
+        >
+          Label on
+        </p>
+      </div>
+    </label>
   </div>,
 ]
 `;
