@@ -35,7 +35,7 @@ const items: BlogListProps["items"] = [
     titleTag: "h3",
     title: "Webinar from a maths teacher",
     snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     href: "/",
     contentType: "webinar",
   },
@@ -43,7 +43,7 @@ const items: BlogListProps["items"] = [
     titleTag: "h3",
     title: "Webinar about making lunch break all day",
     snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     href: "/",
     contentType: "webinar",
   },
@@ -51,7 +51,7 @@ const items: BlogListProps["items"] = [
     titleTag: "h3",
     title: "Webinar about making rest in the evening",
     snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     href: "/",
     contentType: "webinar",
   },
@@ -59,7 +59,7 @@ const items: BlogListProps["items"] = [
     titleTag: "h3",
     title: "Blog post about hot to have fun at work",
     snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     href: "/",
     contentType: "blog-post",
   },
