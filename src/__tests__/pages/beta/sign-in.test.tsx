@@ -1,7 +1,7 @@
 import { fireEvent, waitFor } from "@testing-library/react";
 
-import renderWithProviders from "../__helpers__/renderWithProviders";
-import SignIn from "../../pages/sign-in";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
+import SignIn from "../../../pages/beta/sign-in";
 
 describe("pages/sign-in.tsx", () => {
   it("should contain email input", async () => {

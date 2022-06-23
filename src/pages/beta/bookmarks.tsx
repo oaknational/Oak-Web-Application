@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import Link from "next/link";
 
-import { useUser } from "../context/Auth";
-import Bookmarks from "../components/Bookmarks";
-import Layout from "../components/Layout";
+import { useUser } from "../../context/Auth";
+import Bookmarks from "../../components/Bookmarks";
+import Layout from "../../components/Layout";
 
 const BookmarksPage: NextPage = () => {
   const user = useUser();

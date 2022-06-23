@@ -1,9 +1,9 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__helpers__/renderWithProviders";
-import SignInCallback from "../../../pages/sign-in/callback";
-import { loggedInAuthProviderProps } from "../../__helpers__/MockedAuthProvider";
+import renderWithProviders from "../../../__helpers__/renderWithProviders";
+import SignInCallback from "../../../../pages/beta/sign-in/callback";
+import { loggedInAuthProviderProps } from "../../../__helpers__/MockedAuthProvider";
 
 const testEmail = "test@thenational.academy";
 const routerReplace = jest.fn();
