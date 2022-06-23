@@ -2,7 +2,7 @@ import Head from "next/head";
 import { FC } from "react";
 import styled from "styled-components";
 
-import AppHeader from "../AppHeader";
+import SiteHeader from "../SiteHeader";
 import SiteFooter from "../SiteFooter";
 import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
@@ -33,7 +33,7 @@ interface LayoutProps {
 /** 1. Titles for SEO should be between 50-60 characters long 
     2. Title should contain app name
     3. SEO descriptions should be between 150-300 characters long */
-const Layout: FC<LayoutProps> = (props) => {
+const LandingPageLayout: FC<LayoutProps> = (props) => {
   const { children, seoProps, background } = props;
   return (
     <>
@@ -43,7 +43,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container background={background}>
-        <AppHeader />
+        <SiteHeader />
         <StyledLayout>{children}</StyledLayout>
         <SiteFooter />
       </Container>
@@ -51,4 +51,4 @@ const Layout: FC<LayoutProps> = (props) => {
   );
 };
 
-export default Layout;
+export default LandingPageLayout;

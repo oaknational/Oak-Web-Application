@@ -50,12 +50,11 @@ const CardTitle: FC<CardTitleProps> = ({
           name={icon}
           size={iconPosition === "aboveTitle" ? 64 : iconSize}
           mb={iconPosition === "aboveTitle" ? 12 : 0}
-          color={"grey8"}
           mr={iconPosition === (icon && "leading") ? 8 : 0}
           ml={iconPosition === (icon && "trailing") ? 8 : 0}
         />
       )}
-      <Heading fontSize={24} tag={tag} color={"grey8"}>
+      <Heading fontSize={24} tag={tag}>
         {title}
       </Heading>
     </Flex>

@@ -11,7 +11,6 @@ import CardImage from "./CardComponents/CardImage";
 
 import Component from ".";
 
-
 export default {
   title: "Cards/Card",
   component: Component,
@@ -46,7 +45,12 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       <P fontSize={16} mb={24} color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
-      <ButtonAsLink label={"Lable"} fullWidth href={"/"}></ButtonAsLink>
+      <ButtonAsLink
+        mt={"auto"}
+        label={"Lable"}
+        fullWidth
+        href={"/"}
+      ></ButtonAsLink>
     </Component>
   </div>
 );
@@ -61,6 +65,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
           Short snappy description of what this card is about.
         </P>
         <ButtonAsLink
+          mt={"auto"}
           mb={16}
           label={"Label"}
           fullWidth
@@ -90,7 +95,13 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
       <P textAlign="center" fontSize={16} mb={24} color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
-      <ButtonAsLink mb={16} label={"Label"} fullWidth href={"/"}></ButtonAsLink>
+      <ButtonAsLink
+        mb={16}
+        mt={"auto"}
+        label={"Label"}
+        fullWidth
+        href={"/"}
+      ></ButtonAsLink>
     </Component>
   </div>
 );

@@ -16,6 +16,8 @@ import Newspaper from "./Newspaper.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
 import Play from "./Play.icon";
+import GraduationCap from "./GraduationCap.icon";
+import University from "./University.icon";
 import PaperPlane from "./PaperPlane.icon";
 
 export const ICON_NAMES = [
@@ -30,6 +32,8 @@ export const ICON_NAMES = [
   "Tick",
   "ArrowRight",
   "Play",
+  "GraduationCap",
+  "University",
   "PaperPlane",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
@@ -45,6 +49,8 @@ export const icons: Record<IconName, FC> = {
   Tick,
   ArrowRight,
   Play,
+  GraduationCap,
+  University,
   PaperPlane,
 };
 
