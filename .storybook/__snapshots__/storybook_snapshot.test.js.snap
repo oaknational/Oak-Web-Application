@@ -412,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4635a5a0-0 iEOGPl"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 fGoMXS ehrzwE jbauLX"
   >
     <h2>
       Card title
@@ -443,7 +443,7 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 iEOGPl"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 fGoMXS ehrzwE jbauLX"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
@@ -526,7 +526,7 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 fgBcMr"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 kLlrVA cAeApK jbauLX"
     >
       <div
         className="sc-5a3421c1-0 hKnMWG"
@@ -598,7 +598,7 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 iEOGPl"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 fGoMXS ehrzwE jbauLX"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
@@ -673,20 +673,19 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4635a5a0-0 byuxbW"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
   >
     <a
-      className="sc-942d8905-0 eJnHbf"
+      className="sc-22375a69-0 wooJT"
       href="/"
       target="_self"
-    >
-      <h2>
-        Card title
-      </h2>
-      <p>
-        You can put anything you like in here. The whole card area is a link.
-      </p>
-    </a>
+    />
+    <h2>
+      Card title
+    </h2>
+    <p>
+      You can put anything you like in here. The whole card area is a link.
+    </p>
   </div>,
 ]
 `;
@@ -709,54 +708,53 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 byuxbW"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
     >
       <a
-        className="sc-942d8905-0 eJnHbf"
+        className="sc-22375a69-0 wooJT"
         href="/"
         target="_self"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
       >
-        <div
-          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
+        <span
+          className="sc-6847304a-0 ilFvTQ"
+          height={100}
+          width={100}
         >
           <span
-            className="sc-6847304a-0 ilFvTQ"
+            className="sc-6847304a-1 jAOJpJ"
             height={100}
             width={100}
           >
-            <span
-              className="sc-6847304a-1 jAOJpJ"
-              height={100}
-              width={100}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <h5
-            className="sc-ef5f3f7-0 laanRj"
-            color="grey8"
-            fontSize={24}
-            mb={0}
-            mt={0}
-          >
-            Classroom
-          </h5>
-        </div>
-      </a>
+        </span>
+        <h5
+          className="sc-ef5f3f7-0 laanRj"
+          color="grey8"
+          fontSize={24}
+          mb={0}
+          mt={0}
+        >
+          Classroom
+        </h5>
+      </div>
     </div>
   </div>,
 ]
@@ -780,61 +778,60 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 byuxbW"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
     >
       <a
-        className="sc-942d8905-0 eJnHbf"
+        className="sc-22375a69-0 wooJT"
         href="/"
         target="_self"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
       >
-        <div
-          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
+        <span
+          className="sc-6847304a-0 ilFvTQ"
+          height={100}
+          width={100}
         >
           <span
-            className="sc-6847304a-0 ilFvTQ"
+            className="sc-6847304a-1 jAOJpJ"
             height={100}
             width={100}
           >
-            <span
-              className="sc-6847304a-1 jAOJpJ"
-              height={100}
-              width={100}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <h5
-            className="sc-ef5f3f7-0 mBYiJ"
-            color="grey8"
-            fontSize={24}
-            mb={24}
-            mt={0}
-          >
-            Classroom
-          </h5>
-        </div>
-        <p
-          className="sc-5caf3f78-0 kKREro"
-          color="grey6"
-          fontSize={16}
+        </span>
+        <h5
+          className="sc-ef5f3f7-0 mBYiJ"
+          color="grey8"
+          fontSize={24}
+          mb={24}
+          mt={0}
         >
-          Short snappy description of what this card is about.
-        </p>
-      </a>
+          Classroom
+        </h5>
+      </div>
+      <p
+        className="sc-5caf3f78-0 kKREro"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
     </div>
   </div>,
 ]
@@ -858,7 +855,7 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 kxnlZI"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 vzkWX eUxoxl jbauLX"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
@@ -961,7 +958,7 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 kxnlZI"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 vzkWX eUxoxl jbauLX"
     >
       <div
         className="sc-5a3421c1-0 hKnMWG"
@@ -1037,7 +1034,7 @@ Array [
     }
   >
     <div
-      className="sc-4635a5a0-0 kxnlZI"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 vzkWX eUxoxl jbauLX"
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
@@ -1456,7 +1453,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-4635a5a0-0 jzCSDu"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 goLdnZ cPULYj jbauLX"
       >
         Grid box
       </div>
