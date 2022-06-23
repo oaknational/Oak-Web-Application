@@ -1,3 +1,5 @@
+## [0.34.1](https://github.com/oaknational/Samara/compare/v0.34.0...v0.34.1) (2022-06-23)
+
 # [0.34.0](https://github.com/oaknational/Samara/compare/v0.33.0...v0.34.0) (2022-06-22)
 
 
