@@ -6,64 +6,14 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading, P } from "../components/Typography";
-import BlogList, { BlogListProps } from "../components/BlogList/BlogList";
+import BlogList from "../components/BlogList/BlogList";
 import Flex from "../components/Flex";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardAsLink from "../components/Card/CardAsLink";
 import Icon from "../components/Icon";
 import NewsletterForm from "../components/Forms/NewsletterForm";
-
-const items: BlogListProps["items"] = [
-  {
-    titleTag: "h3",
-    title: "Webinar about school",
-    snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
-    href: "/",
-    contentType: "webinar",
-  },
-  {
-    titleTag: "h3",
-    title: "Blog about learning",
-    snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
-    href: "/",
-    contentType: "blog-post",
-  },
-  {
-    titleTag: "h3",
-    title: "Webinar from a maths teacher",
-    snippet:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    href: "/",
-    contentType: "webinar",
-  },
-  {
-    titleTag: "h3",
-    title: "Webinar about making lunch break all day",
-    snippet:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    href: "/",
-    contentType: "webinar",
-  },
-  {
-    titleTag: "h3",
-    title: "Webinar about making rest in the evening",
-    snippet:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    href: "/",
-    contentType: "webinar",
-  },
-  {
-    titleTag: "h3",
-    title: "Blog post about hot to have fun at work",
-    snippet:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    href: "/",
-    contentType: "blog-post",
-  },
-];
+import blogListItems from "../browser-lib/fixtures/blogListItems";
 
 const Home: FC = () => {
   return (
@@ -193,7 +143,7 @@ const Home: FC = () => {
           <Flex background={"white"} pa={24}>
             <BlogList
               title={"Stay up to date!"}
-              items={items}
+              items={blogListItems}
               titleTag={"h2"}
             />
           </Flex>
