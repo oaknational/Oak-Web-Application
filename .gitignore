@@ -52,3 +52,6 @@ oak.config.ts
 
 # storybook
 /storybook-static
+
+# firebase
+firebase-debug.log
