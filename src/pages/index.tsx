@@ -1,8 +1,6 @@
 import { FC } from "react";
 
-import { useUser } from "../context/Auth";
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
-import Bookmarks from "../components/Bookmarks";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
@@ -14,6 +12,7 @@ import CardTitle from "../components/Card/CardComponents/CardTitle";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardAsLink from "../components/Card/CardAsLink";
 import Icon from "../components/Icon";
+import NewsletterForm from "../components/Forms/NewsletterForm";
 
 const items: BlogListProps["items"] = [
   {
@@ -42,16 +41,31 @@ const items: BlogListProps["items"] = [
   },
   {
     titleTag: "h3",
-    title: "Blog post about making lunch break all day",
+    title: "Webinar about making lunch break all day",
     snippet:
       "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
     href: "/",
     contentType: "webinar",
   },
+  {
+    titleTag: "h3",
+    title: "Webinar about making rest in the evening",
+    snippet:
+      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
+    href: "/",
+    contentType: "webinar",
+  },
+  {
+    titleTag: "h3",
+    title: "Blog post about hot to have fun at work",
+    snippet:
+      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
+    href: "/",
+    contentType: "blog-post",
+  },
 ];
 
 const Home: FC = () => {
-  const user = useUser();
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -175,7 +189,7 @@ const Home: FC = () => {
           </Card>
         </GridArea>
 
-        <GridArea colSpan={[12, 12, 8]} rowSpan={2} order={[3, 1, 0]}>
+        <GridArea colSpan={[12, 12, 8]} rowSpan={3} order={[3, 1, 0]}>
           <Flex background={"white"} pa={24}>
             <BlogList
               title={"Stay up to date!"}
@@ -206,8 +220,14 @@ const Home: FC = () => {
             />
           </Card>
         </GridArea>
+        <GridArea colSpan={[12, 6, 4]} order={[2, 0, 0]}>
+          <NewsletterForm
+            onSubmit={async (d) => {
+              console.log(d);
+            }}
+          />
+        </GridArea>
       </Grid>
-      {user && <Bookmarks />}
     </LandingPageLayout>
   );
 };
