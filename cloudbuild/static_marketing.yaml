@@ -1,0 +1,49 @@
+# Build and export the non-curriculum pages as static files.
+
+# Required substitutions
+# * Probably the google secret manager info.
+# * the Firebase _TARGET for the hosting, also implies existence of .firebaserc and firebase.json files.
+
+# Global options.
+options:
+  machineType: "E2_HIGHCPU_32"
+  # Shared env variables available to all steps.
+  env:
+    - "CONTENT_RELEASE=${_CONTENT_RELEASE}"
+
+steps:
+  - id: "remove-curriculum-pages"
+    name: "npm"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        rm -rf ./src/pages/beta
+
+
+  - id: "npm-ci"
+    name: 'npm'
+    args: ['ci']
+
+  - id: "next-build"
+    name: 'npm'
+    args: ['run', 'build']
+
+  - id: "next-export"
+    name: 'npm'
+    args: ['run', 'export']
+
+  - id: "deploy-to-firebase"
+      name: gcr.io/$PROJECT_ID/firebase
+      entrypoint: /bin/bash
+      args:
+        - "-c"
+        - >-
+          /usr/bin/firebase.bash
+          deploy
+          --project=$PROJECT_ID
+          --only=hosting:${_TARGET}
+          | tee /workspace/deploy.log
+  
+  # Possible Slack notification.
+
