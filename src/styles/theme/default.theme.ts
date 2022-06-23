@@ -72,30 +72,35 @@ const theme: OakTheme = {
         placeholder: "grey6",
         icon: "grey6",
         border: "grey6",
+        background: "white",
       },
       active: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "grey3",
       },
       valid: {
         text: "black",
         placeholder: "grey6",
         icon: "grey8",
         border: "grey8",
+        background: "white",
       },
       invalid: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "grey5",
       },
       disabled: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "grey5",
       },
     },
   },
@@ -109,30 +114,35 @@ const theme: OakTheme = {
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "white",
       },
       active: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "white",
       },
       valid: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "white",
       },
       invalid: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "white",
       },
       disabled: {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
         border: "grey8",
+        background: "white",
       },
     },
   },
@@ -186,6 +196,23 @@ const theme: OakTheme = {
     },
     disabled: {
       color: "grey4",
+    },
+  },
+  selectListBox: {
+    states: {
+      default: {
+        background: "white",
+      },
+      isFocused: {
+        background: "grey8",
+        color: "white",
+      },
+      isFocusedSelected: {
+        color: "grey10",
+      },
+      isFocusedNotSelected: {
+        color: "black",
+      },
     },
   },
 };
