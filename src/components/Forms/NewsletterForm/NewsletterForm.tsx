@@ -9,6 +9,7 @@ import CardTitle from "../../Card/CardComponents/CardTitle";
 import Input from "../../Input";
 import { P } from "../../Typography";
 import Button from "../../Button";
+import OakError from "../../../errors/OakError";
 
 const schema = z.object({
   name: z
@@ -69,10 +70,11 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           try {
             await onSubmit(data);
           } catch (error) {
-            if (error instanceof Error) {
+            if (error instanceof OakError) {
               setError(error.message);
             } else {
               // @todo bugsnag
+              setError("An unknown error occurred");
             }
           } finally {
             setLoading(false);
