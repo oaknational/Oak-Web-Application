@@ -19,6 +19,7 @@ const CardLink = styled.a`
 interface CardAsLinkProps extends FlexProps {
   href: string;
   target?: "_self" | "_blank";
+  ariaLabel: string;
 }
 
 /**
@@ -31,11 +32,12 @@ const CardAsLink: FC<CardAsLinkProps> = ({
   children,
   href,
   target = "_self",
+  ariaLabel,
   ...cardProps
 }) => {
   return (
     <Card position="relative" {...cardProps}>
-      <CardLink target={target} href={href} />
+      <CardLink aria-label={ariaLabel} target={target} href={href} />
       {children}
     </Card>
   );

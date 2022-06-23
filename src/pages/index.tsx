@@ -80,6 +80,7 @@ const Home: FC = () => {
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems="center"
+            ariaLabel="Classroom"
           >
             <Icon name={"GraduationCap"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
@@ -94,6 +95,7 @@ const Home: FC = () => {
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems="center"
+            ariaLabel="Teacher Hub"
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
@@ -109,6 +111,7 @@ const Home: FC = () => {
             alignItems="center"
             background={"white"}
             href="/"
+            ariaLabel="Curriculum"
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
@@ -123,6 +126,7 @@ const Home: FC = () => {
             alignItems={"center"}
             background={"white"}
             href="/"
+            ariaLabel="Lesson Planning"
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
@@ -137,6 +141,7 @@ const Home: FC = () => {
             alignItems="center"
             background={"white"}
             href="/"
+            ariaLabel="Oak for schools"
           >
             <Icon name={"GraduationCap"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
