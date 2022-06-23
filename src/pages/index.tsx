@@ -77,77 +77,76 @@ const Home: FC = () => {
           <CardAsLink
             background={"white"}
             href="https://classroom.thenational.academy/"
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            ariaLabel="Classroom"
           >
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Classroom
-              </Heading>
-            </Flex>
+            <Icon name={"GraduationCap"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Classroom
+            </Heading>
           </CardAsLink>
         </GridArea>
         <GridArea colSpan={[12, 12, 6]}>
           <CardAsLink
             background={"white"}
             href="https://teachers.thenational.academy/"
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            ariaLabel="Teacher Hub"
           >
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Teacher Hub
-              </Heading>
-            </Flex>
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Teacher Hub
+            </Heading>
           </CardAsLink>
         </GridArea>
 
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Curriculum
-              </Heading>
-            </Flex>
+          <CardAsLink
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            background={"white"}
+            href="/"
+            ariaLabel="Curriculum"
+          >
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Curriculum
+            </Heading>
           </CardAsLink>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Lesson Planning
-              </Heading>
-            </Flex>
+          <CardAsLink
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            background={"white"}
+            href="/"
+            ariaLabel="Lesson Planning"
+          >
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Lesson Planning
+            </Heading>
           </CardAsLink>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Oak for Schools
-              </Heading>
-            </Flex>
+          <CardAsLink
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            background={"white"}
+            href="/"
+            ariaLabel="Oak for schools"
+          >
+            <Icon name={"GraduationCap"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Oak for Schools
+            </Heading>
           </CardAsLink>
         </GridArea>
       </Grid>
@@ -201,7 +200,7 @@ const Home: FC = () => {
             <ButtonAsLink
               mt={"auto"}
               fullWidth
-              href="/"
+              href="https://support.thenational.academy/"
               label="Visit Help Center"
             />
           </Card>
