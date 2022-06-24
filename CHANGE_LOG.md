@@ -1,3 +1,10 @@
+# [0.35.0](https://github.com/oaknational/Samara/compare/v0.34.1...v0.35.0) (2022-06-24)
+
+
+### Features
+
+* newsletter signup form (front-end) ([7c5fe0c](https://github.com/oaknational/Samara/commit/7c5fe0cd4a1fdc7704d3572cca8b0d055f9114d2))
+
 ## [0.34.1](https://github.com/oaknational/Samara/compare/v0.34.0...v0.34.1) (2022-06-23)
 
 # [0.34.0](https://github.com/oaknational/Samara/compare/v0.33.0...v0.34.0) (2022-06-22)
