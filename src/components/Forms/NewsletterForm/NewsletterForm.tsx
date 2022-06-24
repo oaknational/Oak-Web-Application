@@ -29,7 +29,7 @@ const schema = z.object({
 
 type NewsletterFormValues = z.infer<typeof schema>;
 type NewsletterFormProps = {
-  onSubmit: (values: NewsletterFormValues) => Promise<void>;
+  onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
 };
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
@@ -39,6 +39,7 @@ type NewsletterFormProps = {
  */
 const NewsletterForm: FC<NewsletterFormProps> = (props) => {
   const { onSubmit } = props;
+  const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const {
@@ -67,8 +68,12 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         onSubmit={handleSubmit(async (data) => {
           setLoading(true);
           setError("");
+          setSuccessMessage("");
           try {
-            await onSubmit(data);
+            const successMessage = await onSubmit(data);
+            setSuccessMessage(
+              successMessage || "Thanks, that's been received!"
+            );
           } catch (error) {
             if (error instanceof OakError) {
               setError(error.message);
@@ -117,6 +122,11 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         >
           {error}
         </P>
+        {!error && successMessage && (
+          <P mt={12} fontSize={14}>
+            {successMessage}
+          </P>
+        )}
       </form>
     </Card>
   );

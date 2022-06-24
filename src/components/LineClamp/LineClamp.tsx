@@ -15,7 +15,7 @@ export type LineClampProps = {
  *
  *
  */
-const LineClamp = styled.div<LineClampProps>`
+const LineClamp = styled.span<LineClampProps>`
   /* stylelint-disable */
   display: -webkit-box;
   /* stylelint-enable */

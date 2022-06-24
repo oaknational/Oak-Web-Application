@@ -8,8 +8,8 @@ const getHubspotFormPayload = (props: {
   const snakeCaseData = {
     email: data.email,
     email_text_only: data.emailTextOnly,
-    full_name: data.fullName,
-    user_type: data.userType,
+    full_name: data.name,
+    user_type: data.userRole,
     oak_user_id: data.oakUserId,
   };
 

@@ -5,25 +5,15 @@
 import { z } from "zod";
 
 import createErrorHandler from "../../../common-lib/error-handler";
+import config from "../../../config";
 import OakError, { ErrorMeta } from "../../../errors/OakError";
 
 import getHubspotFormPayload from "./getHubspotFormPayload";
 import getHubspotUserToken from "./getHubspotUserToken";
 
-const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
-const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
+const hubspotPortalId = config.get("hubspotPortalId");
+const hubspotFallbackFormId = config.get("hubspotFallbackFormId");
 
-if (!hubspotPortalId) {
-  throw new Error(
-    "Environment variable: NEXT_PUBLIC_HUBSPOT_PORTAL_ID not found"
-  );
-}
-
-if (!hubspotFallbackFormId) {
-  throw new Error(
-    "Environment variable: NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID not found"
-  );
-}
 const reportError = createErrorHandler("hubspotSubmitForm", {
   hubspotPortalId,
   hubspotFallbackFormId,
@@ -72,9 +62,10 @@ export type HubspotFormData = {
   // when sending email to 'fallback' form
   emailTextOnly?: string;
   email?: string;
-  oakUserId: string;
-  fullName: string;
-  userType: string;
+  // @todo oakUserId
+  oakUserId?: string;
+  name: string;
+  userRole: string;
 };
 type HubspotSubmitFormProps = {
   hubspotFormId: string;

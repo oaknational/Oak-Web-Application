@@ -7,8 +7,8 @@ describe("getHubspotFormPayload()", () => {
         hutk: "hubspotutk value 123",
         data: {
           email: "email value",
-          fullName: "full_name value",
-          userType: "user_type value",
+          name: "full_name value",
+          userRole: "user_type value",
           oakUserId: "oak_user_id value",
         },
       })
@@ -32,8 +32,8 @@ describe("getHubspotFormPayload()", () => {
         hutk: "hubspotutk value 456",
         data: {
           emailTextOnly: "email value",
-          fullName: "full_name value",
-          userType: "user_type value",
+          name: "full_name value",
+          userRole: "user_type value",
           oakUserId: "oak_user_id value",
         },
       })

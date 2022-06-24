@@ -27,6 +27,9 @@ const CONFIG_KEYS = [
   "appTwitter",
   "appTwitterHandle",
   "searchApiUrl",
+  "hubspotPortalId",
+  "hubspotNewsletterFormId",
+  "hubspotFallbackFormId",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -230,6 +233,27 @@ const envVars: Record<ConfigKey, EnvVar> = {
   searchApiUrl: {
     value: process.env.NEXT_PUBLIC_SEARCH_API_URL,
     envName: "NEXT_PUBLIC_SEARCH_API_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  hubspotPortalId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_PORTAL_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  hubspotNewsletterFormId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  hubspotFallbackFormId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
     required: true,
     availableInBrowser: true,
     default: null,

@@ -3,7 +3,7 @@
  */
 const getHubspotUserToken = () => {
   // Cookies.get("hubspotutk");
-  return "123";
+  return undefined;
 };
 
 export default getHubspotUserToken;

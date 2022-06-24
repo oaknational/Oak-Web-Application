@@ -60,8 +60,8 @@ jest.mock("../../../common-lib/error-handler", () => ({
 
 const data = {
   email: "email value",
-  fullName: "full_name value",
-  userType: "user_type value",
+  name: "full_name value",
+  userRole: "user_type value",
   oakUserId: "oak_user_id value",
 };
 
@@ -155,9 +155,9 @@ describe("hubspotSubmitForm", () => {
           props: {
             data: {
               emailTextOnly: "email value",
-              fullName: "full_name value",
+              name: "full_name value",
               oakUserId: "oak_user_id value",
-              userType: "user_type value",
+              userRole: "user_type value",
             },
             hubspotFormId: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
             isFallbackAttempt: true,
@@ -196,9 +196,9 @@ describe("hubspotSubmitForm", () => {
           props: {
             data: {
               email: "email value",
-              fullName: "full_name value",
+              name: "full_name value",
               oakUserId: "oak_user_id value",
-              userType: "user_type value",
+              userRole: "user_type value",
             },
             hubspotFormId: "hubspot-test-form",
           },
