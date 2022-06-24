@@ -17,5 +17,5 @@ export const Icon = Template.bind({});
 
 Icon.args = {
   name: "ChevronRight",
-  size: 100,
+  size: 80,
 };
