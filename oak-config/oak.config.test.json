@@ -16,9 +16,6 @@
     "storageBucket": "bucket_uri",
     "tokenHost": "https://example.com"
   },
-  "googleSecretManager": {
-    "projectId": "test-project-584399384539"
-  },
   "hasura": {
     "graphqlApiUrl": "https://example.com",
     "requiredSecrets": ["HASURA_ADMIN_SECRET"]
