@@ -34,8 +34,8 @@ const CardTitle: FC<CardTitleProps> = ({
   title,
   textCenter,
   icon,
-  iconPosition,
-  iconSize,
+  iconPosition = "leading",
+  iconSize = 32,
   tag,
 }) => {
   return (
@@ -48,9 +48,7 @@ const CardTitle: FC<CardTitleProps> = ({
       {icon && (
         <Icon
           name={icon}
-          size={
-            !iconSize ? (iconPosition === "aboveTitle" ? 64 : 32) : iconSize
-          }
+          size={iconPosition === "aboveTitle" ? 64 : iconSize}
           mb={iconPosition === "aboveTitle" ? 12 : 0}
           mr={iconPosition === (icon && "leading") ? 8 : 0}
           ml={iconPosition === (icon && "trailing") ? 8 : 0}

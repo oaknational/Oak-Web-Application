@@ -52,6 +52,7 @@
   "dependencies": {
     "@bugsnag/js": "^7.16.2",
     "@bugsnag/plugin-react": "^7.16.2",
+    "@hookform/resolvers": "^2.9.1",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
     "next": "^12.1.6",
@@ -59,6 +60,7 @@
     "node-fetch": "^2.6.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.32.2",
     "styled-components": "^5.3.5",
     "zod": "^3.14.3"
   },
