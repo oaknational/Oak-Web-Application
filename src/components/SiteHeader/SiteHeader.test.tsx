@@ -1,27 +1,29 @@
-import { screen, fireEvent } from "@testing-library/react";
-
-import { UserStyleContextProvider } from "../../context/UserStyleContext";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import SiteHeader from "./SiteHeader";
+import SiteHeader from ".";
 
-function renderUserContext() {
-  return renderWithProviders(
-    <UserStyleContextProvider>
-      <SiteHeader />
-    </UserStyleContextProvider>
-  );
-}
+describe("components/SiteHeader", () => {
+  test("header should be in the document", () => {
+    const { getByRole } = renderWithProviders(<SiteHeader />);
 
-test("Renders pupil as default user", () => {
-  renderUserContext();
-  expect(screen.getByText("pupils")).toBeInTheDocument();
-});
+    expect(getByRole("banner")).toBeInTheDocument();
+  });
 
-test("User changes to teacher when button is clicked", () => {
-  renderUserContext();
-  const buttonElement = screen.getByRole("button", { name: /pupils/i });
-  fireEvent.click(buttonElement);
+  test("it should contain a link to classroom", () => {
+    const { getByText } = renderWithProviders(<SiteHeader />);
 
-  expect(screen.getByText("teachers")).toBeInTheDocument();
+    expect(getByText("Classroom").closest("a")).toHaveAttribute(
+      "href",
+      "https://classroom.thenational.academy/"
+    );
+  });
+
+  test("it should contain a link to teachers hub", () => {
+    const { getByText } = renderWithProviders(<SiteHeader />);
+
+    expect(getByText("Teacher Hub").closest("a")).toHaveAttribute(
+      "href",
+      "https://teachers.thenational.academy/"
+    );
+  });
 });

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { FC } from "react";
 import styled from "styled-components";
 
-import SiteHeader from "../SiteHeader";
+import AppHeader from "../AppHeader";
 import SiteFooter from "../SiteFooter";
 import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
@@ -43,7 +43,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container background={background}>
-        <SiteHeader />
+        <AppHeader />
         <StyledLayout>{children}</StyledLayout>
         <SiteFooter />
       </Container>

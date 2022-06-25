@@ -28,53 +28,49 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <div>
-      <button
-        aria-label="Add Bookmark"
-        className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda gdDmxv"
-        disabled={false}
-        onClick={[Function]}
-        size="small"
-        title="Add Bookmark"
+  <button
+    aria-label="Add Bookmark"
+    className="sc-da410035-0 sc-7c97ca8b-0 eaZurT dlmRQd"
+    disabled={false}
+    onClick={[Function]}
+    size="small"
+    title="Add Bookmark"
+  >
+    <div
+      className="sc-ef16a28e-0 jCQjNU"
+      size="small"
+    >
+      <span
+        className="sc-f36340aa-0 hEbPyH"
+        height={16}
+        width={16}
       >
-        <div
-          className="sc-ef16a28e-0 cNPOpe"
-          size="small"
+        <span
+          className="sc-f36340aa-1 jowvMO"
+          height={16}
+          width={16}
         >
-          <span
-            className="sc-9ed566ec-0 dhDvpY"
-            height={16}
-            width={16}
+          <svg
+            fill="currentColor"
+            viewBox="2 2 20 20"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              className="sc-9ed566ec-1 elEwip"
-              height={16}
-              width={16}
-            >
-              <svg
-                fill="currentColor"
-                viewBox="2 2 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                />
-              </svg>
-            </span>
-          </span>
-        </div>
-      </button>
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+        </span>
+      </span>
     </div>
-  </div>,
+  </button>,
 ]
 `;
 
@@ -90,7 +86,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-fd2ec9d3-0 cNXnvM"
+    className="sc-608180b1-0 ktjunw"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -120,7 +116,7 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-d104eff5-0 sc-8b0ca929-0 gGKCda iFBBve"
+    className="sc-da410035-0 sc-5692a472-0 eaZurT kZLrig"
     size="small"
     title="Click me"
   >
@@ -144,11 +140,11 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4d4db5e-0 sc-c54a04ce-0 iXVKds gYClZN"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-c54a04ce-0 bsCxxD hMvcoF gYClZN"
   >
     <a
       aria-label="Download Lesson"
-      className="sc-fd2ec9d3-0 cNXnvM"
+      className="sc-608180b1-0 ktjunw"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -161,12 +157,12 @@ Array [
         className="sc-bba76629-0 kRiOrX"
       >
         <span
-          className="sc-9ed566ec-0 dhDvpY"
+          className="sc-f36340aa-0 hEbPyH"
           height={16}
           width={16}
         >
           <span
-            className="sc-9ed566ec-1 elEwip"
+            className="sc-f36340aa-1 jowvMO"
             height={16}
             width={16}
           >
@@ -205,7 +201,7 @@ Array [
     </a>
     <a
       aria-label="Share Lesson"
-      className="sc-fd2ec9d3-0 cNXnvM"
+      className="sc-608180b1-0 ktjunw"
       href="/"
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -218,12 +214,12 @@ Array [
         className="sc-bba76629-0 kRiOrX"
       >
         <span
-          className="sc-9ed566ec-0 dhDvpY"
+          className="sc-f36340aa-0 hEbPyH"
           height={16}
           width={16}
         >
           <span
-            className="sc-9ed566ec-1 elEwip"
+            className="sc-f36340aa-1 jowvMO"
             height={16}
             width={16}
           >
@@ -291,7 +287,7 @@ Array [
   />,
   <a
     aria-label="Click me"
-    className="sc-dde17d1c-0 gUChKw"
+    className="sc-dde17d1c-0 gNAAZZ"
     href="/"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -300,16 +296,16 @@ Array [
     size="small"
   >
     <div
-      className="sc-ef16a28e-0 cNPOpe"
+      className="sc-ef16a28e-0 hbpwaj"
       size="small"
     >
       <span
-        className="sc-9ed566ec-0 dhDvpY"
+        className="sc-f36340aa-0 hEbPyH"
         height={16}
         width={16}
       >
         <span
-          className="sc-9ed566ec-1 elEwip"
+          className="sc-f36340aa-1 jowvMO"
           height={16}
           width={16}
         >
@@ -356,21 +352,21 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda gdDmxv"
+    className="sc-da410035-0 sc-7c97ca8b-0 eaZurT eHJFne"
     size="small"
     title="Click me"
   >
     <div
-      className="sc-ef16a28e-0 cNPOpe"
+      className="sc-ef16a28e-0 hbpwaj"
       size="small"
     >
       <span
-        className="sc-9ed566ec-0 dhDvpY"
+        className="sc-f36340aa-0 hEbPyH"
         height={16}
         width={16}
       >
         <span
-          className="sc-9ed566ec-1 elEwip"
+          className="sc-f36340aa-1 jowvMO"
           height={16}
           width={16}
         >
@@ -416,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-d443f78b-0 kkIozK"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 fGoMXS ehrzwE jbauLX"
   >
     <h2>
       Card title
@@ -428,7 +424,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Cards/More Lessons More Lessons 1`] = `
+exports[`Storyshots Cards/Card Card Icon Button 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -438,206 +434,684 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
+  <div
+    style={
+      Object {
+        "height": "250px",
+        "width": "300px",
+      }
+    }
+  >
     <div
-      className="sc-4d4db5e-0 gGhfmv"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 fGoMXS ehrzwE jbauLX"
     >
       <div
-        className="sc-4d4db5e-0 ezslgo"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
       >
-        <h3
-          className="sc-cfca0a14-0 hiHzNh"
-          size={4}
+        <span
+          className="sc-f36340aa-0 ctiFLZ"
+          height={34}
+          width={34}
         >
-          More lessons from this unit
-        </h3>
+          <span
+            className="sc-f36340aa-1 HNdxu"
+            height={34}
+            width={34}
+          >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <h4
+          className="sc-ef5f3f7-0 gBeReX"
+          fontSize={24}
+        >
+          Title
+        </h4>
+      </div>
+      <p
+        className="sc-20ccf123-0 frMFux"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
+      <a
+        aria-label="Lable"
+        className="sc-608180b1-0 kUMkmi"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        size="small"
+        title="Lable"
+      >
+        <span
+          className="sc-afa80c08-0 dokVaK"
+        >
+          Lable
+        </span>
+      </a>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card Card Image Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "height": "400px",
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 kLlrVA cAeApK jbauLX"
+    >
+      <div
+        className="sc-5a3421c1-0 hKnMWG"
+      >
+        <img
+          className="sc-5a3421c1-1 jwUqsf"
+          src="/[object Object]"
+        />
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ ftJGGH"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <h4
+            className="sc-ef5f3f7-0 gBeReX"
+            fontSize={24}
+          >
+            Title
+          </h4>
+        </div>
+        <p
+          className="sc-20ccf123-0 frMFux"
+          color="grey6"
+          fontSize={16}
+        >
+          Short snappy description of what this card is about.
+        </p>
         <a
-          href=""
+          aria-label="Label"
+          className="sc-608180b1-0 hiBlbg"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Label"
         >
-          see all
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            Label
+          </span>
         </a>
       </div>
-      <div
-        className="sc-4d4db5e-0 kPyrsc"
-      >
-        <button
-          aria-label="Show previous lesson"
-          className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda gdDmxv"
-          disabled={true}
-          onClick={[Function]}
-          size="small"
-          title="Show previous lesson"
-        >
-          <div
-            className="sc-ef16a28e-0 cNPOpe"
-            size="small"
-          >
-            <span
-              className="sc-9ed566ec-0 dhDvpY"
-              height={16}
-              width={16}
-            >
-              <span
-                className="sc-9ed566ec-1 elEwip"
-                height={16}
-                width={16}
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polyline
-                    points="9 18 15 12 9 6"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-        </button>
-        <button
-          aria-label="Show next lesson"
-          className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda gdDmxv"
-          disabled={false}
-          onClick={[Function]}
-          size="small"
-          title="Show next lesson"
-        >
-          <div
-            className="sc-ef16a28e-0 cNPOpe"
-            size="small"
-          >
-            <span
-              className="sc-9ed566ec-0 dhDvpY"
-              height={16}
-              width={16}
-            >
-              <span
-                className="sc-9ed566ec-1 elEwip"
-                height={16}
-                width={16}
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                  />
-                  <polyline
-                    points="7 10 12 15 17 10"
-                  />
-                  <line
-                    x1="12"
-                    x2="12"
-                    y1="15"
-                    y2="3"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-        </button>
-      </div>
     </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card Card Large Icon Centered 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "height": "336px",
+        "width": "300px",
+      }
+    }
+  >
     <div
-      className="sc-fff9ffe3-0 eTfeYY"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 fGoMXS ehrzwE jbauLX"
     >
       <div
-        className="sc-fff9ffe3-1 fRpHSS"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
+      >
+        <span
+          className="sc-f36340aa-0 giqixq"
+          height={64}
+          width={64}
+        >
+          <span
+            className="sc-f36340aa-1 gsZXwi"
+            height={64}
+            width={64}
+          >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <h4
+          className="sc-ef5f3f7-0 gBeReX"
+          fontSize={24}
+        >
+          Title
+        </h4>
+      </div>
+      <p
+        className="sc-20ccf123-0 gLchTO"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
+      <a
+        aria-label="Label"
+        className="sc-608180b1-0 hiBlbg"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        role="button"
+        size="small"
+        title="Label"
+      >
+        <span
+          className="sc-afa80c08-0 dokVaK"
+        >
+          Label
+        </span>
+      </a>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card as Link Card As Link 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
+  >
+    <a
+      className="sc-ebb794ea-0 eQtjsv"
+      href="/"
+      target="_self"
+    />
+    <h2>
+      Card title
+    </h2>
+    <p>
+      You can put anything you like in here. The whole card area is a link.
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card as Link Card As Link Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
+    >
+      <a
+        className="sc-ebb794ea-0 eQtjsv"
+        href="/"
+        target="_self"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
+      >
+        <span
+          className="sc-f36340aa-0 iCGVrn"
+          height={100}
+          width={100}
+        >
+          <span
+            className="sc-f36340aa-1 jcdGTS"
+            height={100}
+            width={100}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <h5
+          className="sc-ef5f3f7-0 laanRj"
+          color="grey8"
+          fontSize={24}
+          mb={0}
+          mt={0}
+        >
+          Classroom
+        </h5>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Card as Link Card As Link Icon Text 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
+    >
+      <a
+        className="sc-ebb794ea-0 eQtjsv"
+        href="/"
+        target="_self"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hnvucl"
+      >
+        <span
+          className="sc-f36340aa-0 iCGVrn"
+          height={100}
+          width={100}
+        >
+          <span
+            className="sc-f36340aa-1 jcdGTS"
+            height={100}
+            width={100}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
+          </span>
+        </span>
+        <h5
+          className="sc-ef5f3f7-0 mBYiJ"
+          color="grey8"
+          fontSize={24}
+          mb={24}
+          mt={0}
+        >
+          Classroom
+        </h5>
+      </div>
+      <p
+        className="sc-20ccf123-0 cpPQPW"
+        color="grey6"
+        fontSize={16}
+      >
+        Short snappy description of what this card is about.
+      </p>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Variants/Image Icon Button Card Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 vzkWX eUxoxl jbauLX"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
       >
         <div
-          className="sc-d443f78b-0 sc-b1d9756d-0 dLzBST hUakah"
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc gvJMPm"
         >
-          <h3
-            className="sc-cfca0a14-0 csxdGW"
-            size={6}
+          <span
+            className="sc-f36340aa-0 giqixq"
+            height={64}
+            width={64}
           >
-            Historical Context: James I, Witchcraft and Regicide
-          </h3>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
+            <span
+              className="sc-f36340aa-1 gsZXwi"
+              height={64}
+              width={64}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                />
+                <polyline
+                  points="7 10 12 15 17 10"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="15"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+          <h4
+            className="sc-ef5f3f7-0 gBeReX"
+            fontSize={24}
           >
-            KS3, English, Macbeth
-          </div>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
-          >
-            Lesson 1
-          </div>
+            Title
+          </h4>
         </div>
-        <div
-          className="sc-d443f78b-0 sc-b1d9756d-0 dLzBST hUakah"
+        <p
+          className="sc-20ccf123-0 gLchTO"
+          color="grey6"
+          fontSize={16}
         >
-          <h3
-            className="sc-cfca0a14-0 csxdGW"
-            size={6}
+          Short snappy description of what this card is about.
+        </p>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        >
+          <a
+            aria-label="Label"
+            className="sc-608180b1-0 llSJNp"
+            href="/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseEnter={[Function]}
+            role="button"
+            size="small"
+            title="Label"
           >
-            Historical Context: James I, Witchcraft and Regicide
-          </h3>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
-          >
-            KS3, English, Macbeth
-          </div>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
-          >
-            Lesson 2
-          </div>
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Label
+            </span>
+          </a>
         </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Variants/Image Icon Button Card Image Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 vzkWX eUxoxl jbauLX"
+    >
+      <div
+        className="sc-5a3421c1-0 hKnMWG"
+      >
+        <img
+          alt="Title"
+          className="sc-5a3421c1-1 jwUqsf"
+          src="/[object Object]"
+        />
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 kqEpwE ljFhQO"
+      >
         <div
-          className="sc-d443f78b-0 sc-b1d9756d-0 dLzBST hUakah"
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
         >
-          <h3
-            className="sc-cfca0a14-0 csxdGW"
-            size={6}
+          <h4
+            className="sc-ef5f3f7-0 gBeReX"
+            fontSize={24}
           >
-            Historical Context: James I, Witchcraft and Regicide
-          </h3>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
-          >
-            KS3, English, Macbeth
-          </div>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
-          >
-            Lesson 3
-          </div>
+            Title
+          </h4>
         </div>
-        <div
-          className="sc-d443f78b-0 sc-b1d9756d-0 dLzBST hUakah"
+        <p
+          className="sc-20ccf123-0 dipoQV"
+          color="grey6"
+          fontSize={16}
         >
-          <h3
-            className="sc-cfca0a14-0 csxdGW"
-            size={6}
+          Short snappy description of what this card is about.
+        </p>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        >
+          <a
+            aria-label="Label"
+            className="sc-608180b1-0 llSJNp"
+            href="/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseEnter={[Function]}
+            role="button"
+            size="small"
+            title="Label"
           >
-            Historical Context: James I, Witchcraft and Regicide
-          </h3>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Label
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Variants/Image Icon Button Card Leading Icon Button 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "width": "308px",
+      }
+    }
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 vzkWX eUxoxl jbauLX"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 cKQlXS gzfaKM"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <span
+            className="sc-f36340aa-0 eVpCWN"
+            height={32}
+            width={32}
           >
-            KS3, English, Macbeth
-          </div>
-          <div
-            className="sc-cfca0a14-1 fHvuxL"
+            <span
+              className="sc-f36340aa-1 jBWVKW"
+              height={32}
+              width={32}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                />
+                <polyline
+                  points="15 3 21 3 21 9"
+                />
+                <line
+                  x1="10"
+                  x2="21"
+                  y1="14"
+                  y2="3"
+                />
+              </svg>
+            </span>
+          </span>
+          <h4
+            className="sc-ef5f3f7-0 gBeReX"
+            fontSize={24}
           >
-            Lesson 4
-          </div>
+            Need Some Help?
+          </h4>
+        </div>
+        <p
+          className="sc-20ccf123-0 dipoQV"
+          color="grey6"
+          fontSize={16}
+        >
+          Preview, plan and customise each element of our lessons to meet your needs - whether inside and outside the classroom.
+        </p>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        >
+          <a
+            aria-label="Visit Help Centre"
+            className="sc-608180b1-0 llSJNp"
+            href="/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseEnter={[Function]}
+            role="button"
+            size="small"
+            title="Visit Help Centre"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Visit Help Centre
+            </span>
+          </a>
         </div>
       </div>
     </div>
@@ -656,10 +1130,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4d4db5e-0 sc-63019de4-2 itYBmc kSPFsf"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
   >
     <svg
-      className="sc-63019de4-0 ioeaXB"
+      className="sc-6ab5f0da-0 bXwxJO"
       fill="none"
       height="100%"
       viewBox="0 0 54 54"
@@ -672,15 +1146,15 @@ Array [
       />
     </svg>
     <div
-      className="sc-4d4db5e-0 sc-63019de4-1 itYBmc bxiHQI"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
     >
       <span
-        className="sc-9ed566ec-0 jbGIWo"
+        className="sc-f36340aa-0 bAgpHn"
         height={20}
         width={20}
       >
         <span
-          className="sc-9ed566ec-1 gyPYLl"
+          className="sc-f36340aa-1 hoGnwi"
           height={20}
           width={20}
         >
@@ -719,10 +1193,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4d4db5e-0 sc-63019de4-2 itYBmc kSPFsf"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
   >
     <svg
-      className="sc-63019de4-0 ioeaXB"
+      className="sc-6ab5f0da-0 bXwxJO"
       fill="none"
       height="100%"
       viewBox="0 0 54 54"
@@ -735,7 +1209,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-4d4db5e-0 sc-63019de4-1 itYBmc bxiHQI"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
     >
       80%
     </div>
@@ -743,7 +1217,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Feedback/LoadingSpinner Loading Spinner 1`] = `
+exports[`Storyshots Feedback/Loading Spinner Loading Spinner 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -776,7 +1250,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-92b99503-0 sc-a802942a-0 Uujbd hfCdRc"
+    className="sc-f4eaf512-0 sc-6947a58a-0 bsoZhI khzyMs"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -795,14 +1269,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-bb06bda0-0 kALRTV"
+    className="sc-312daaf3-0 ddwjbs"
     disabled={false}
     htmlFor="Click me"
     onClick={[Function]}
   >
     <input
-      checked={true}
-      className="sc-bb06bda0-1 lnQsXh"
+      checked={false}
+      className="sc-312daaf3-1 jUsCnh"
       disabled={false}
       id="Click me"
       onChange={[Function]}
@@ -810,7 +1284,7 @@ Array [
     />
     <svg
       aria-hidden="true"
-      className="sc-bb06bda0-2"
+      className="sc-312daaf3-2"
       fill="none"
       focusable="false"
       height="24"
@@ -826,12 +1300,12 @@ Array [
         y="0.5"
       />
       <path
-        checked={true}
-        className="sc-bb06bda0-3 fhbOiE"
+        checked={false}
+        className="sc-312daaf3-3 eeDoQg"
         d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
       />
       <rect
-        className="sc-bb06bda0-4 clbKgd"
+        className="sc-312daaf3-4 jnANBF"
         height="23"
         rx="3.5"
         width="23"
@@ -840,7 +1314,7 @@ Array [
       />
     </svg>
     <span
-      className="sc-bb06bda0-5 ebxvlq"
+      className="sc-312daaf3-5 dCllwe"
     >
       Click me
     </span>
@@ -859,14 +1333,52 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4d4db5e-0 iERHIQ"
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
   >
     <input
-      className="sc-92b99503-0 sc-cb16ef8a-0 Uujbd brBkaX"
+      aria-invalid={false}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Input With Error 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+  >
+    <input
+      aria-describedby="undefined-error"
+      aria-invalid={true}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+  </div>,
+  <div
+    className="sc-2f0613b5-0 bwJOso"
+  >
+    <span
+      className="sc-1a42a0ba-0 eATzei"
+      color="error"
+      fontSize={12}
+      id="undefined-error"
+    >
+      Password should contain at least 8 characters
+    </span>
   </div>,
 ]
 `;
@@ -882,21 +1394,22 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4d4db5e-0 iERHIQ"
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
   >
     <input
-      className="sc-92b99503-0 sc-cb16ef8a-0 Uujbd YFpyg"
+      aria-invalid={false}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI hApVOr"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
     <span
-      className="sc-9ed566ec-0 ONdnu sc-4047a183-0 hrNUBb"
+      className="sc-f36340aa-0 jMZVqh sc-4047a183-0 hrNUBb"
       height={20}
       width={40}
     >
       <span
-        className="sc-9ed566ec-1 gyPYLl"
+        className="sc-f36340aa-1 hoGnwi"
         height={20}
         width={20}
       >
@@ -918,6 +1431,350 @@ Array [
 ]
 `;
 
+exports[`Storyshots Form/Input With Label 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-1a1b9f4b-0 bwJOso fJIBXc"
+  >
+    <label
+      className="sc-557d99b-0 kvHpjU"
+      fontSize={12}
+    >
+      Password
+    </label>
+  </div>,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+  >
+    <input
+      aria-invalid={false}
+      className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value=""
+    />
+  </div>,
+]
+`;
+
+exports[`Storyshots Forms/Newsletter Form Newsletter Form 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-61cd3008-0 dVghVz"
+  >
+    <div
+      className="sc-8799d24a-0 kglzpg"
+      colSpan={
+        Array [
+          12,
+          6,
+        ]
+      }
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 QmDoQ iYRMXG jbauLX"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <span
+            className="sc-f36340aa-0 eVpCWN"
+            height={32}
+            width={32}
+          >
+            <span
+              className="sc-f36340aa-1 jBWVKW"
+              height={32}
+              width={32}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 34 34"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 1.313 2 17.438C.562 18.25.687 20.375 2.188 21L11 24.625V31c0 1.938 2.313 2.75 3.5 1.313l3.813-4.626 7.875 3.25a2 2 0 0 0 2.75-1.562l4-26.063c.25-1.624-1.5-2.874-2.938-2ZM13 31v-5.5l3.375 1.375L13 31Zm14-1.875L14.062 23.75l12.5-14.688c.313-.374-.187-.874-.562-.562L10.062 22.125 3 19.187 31 3l-4 26.125Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+          <h2
+            className="sc-ef5f3f7-0 gBeReX"
+            fontSize={24}
+          >
+            Join The Community
+          </h2>
+        </div>
+        <p
+          className="sc-20ccf123-0 lfGARk"
+          id="newsletter-form-description"
+        >
+          Be among the first to get free lessons, resources and other helpful content by email. Unsubscribe at any time. Our privacy policy is
+           
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            here
+          </a>
+          .
+        </p>
+        <form
+          aria-describedby="newsletter-form-description"
+          onSubmit={[Function]}
+        >
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-name"
+              name="name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Name"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-email"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Email Address"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-user-role"
+              name="userRole"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="What describes you best?"
+            />
+          </div>
+          <button
+            aria-label="Sign Up"
+            className="sc-da410035-0 sc-5692a472-0 eaZurT dYFtA-D"
+            disabled={false}
+            size="small"
+            title="Sign Up"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Sign Up
+            </span>
+          </button>
+          <p
+            aria-live="assertive"
+            className="sc-20ccf123-0 kUFCdJ"
+            color="error"
+            fontSize={14}
+            role="alert"
+          >
+            
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Forms/Newsletter Form With Error 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-61cd3008-0 dVghVz"
+  >
+    <div
+      className="sc-8799d24a-0 kglzpg"
+      colSpan={
+        Array [
+          12,
+          6,
+        ]
+      }
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 QmDoQ iYRMXG jbauLX"
+      >
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc hzyEbd"
+        >
+          <span
+            className="sc-f36340aa-0 eVpCWN"
+            height={32}
+            width={32}
+          >
+            <span
+              className="sc-f36340aa-1 jBWVKW"
+              height={32}
+              width={32}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 34 34"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 1.313 2 17.438C.562 18.25.687 20.375 2.188 21L11 24.625V31c0 1.938 2.313 2.75 3.5 1.313l3.813-4.626 7.875 3.25a2 2 0 0 0 2.75-1.562l4-26.063c.25-1.624-1.5-2.874-2.938-2ZM13 31v-5.5l3.375 1.375L13 31Zm14-1.875L14.062 23.75l12.5-14.688c.313-.374-.187-.874-.562-.562L10.062 22.125 3 19.187 31 3l-4 26.125Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+          <h2
+            className="sc-ef5f3f7-0 gBeReX"
+            fontSize={24}
+          >
+            Join The Community
+          </h2>
+        </div>
+        <p
+          className="sc-20ccf123-0 lfGARk"
+          id="newsletter-form-description"
+        >
+          Be among the first to get free lessons, resources and other helpful content by email. Unsubscribe at any time. Our privacy policy is
+           
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            here
+          </a>
+          .
+        </p>
+        <form
+          aria-describedby="newsletter-form-description"
+          onSubmit={[Function]}
+        >
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-name"
+              name="name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Name"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-email"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Email Address"
+            />
+          </div>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+          >
+            <input
+              aria-invalid={false}
+              className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI grFCsP"
+              id="newsletter-signup-user-role"
+              name="userRole"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="What describes you best?"
+            />
+          </div>
+          <button
+            aria-label="Sign Up"
+            className="sc-da410035-0 sc-5692a472-0 eaZurT dYFtA-D"
+            disabled={false}
+            size="small"
+            title="Sign Up"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              Sign Up
+            </span>
+          </button>
+          <p
+            aria-live="assertive"
+            className="sc-20ccf123-0 kUFCdJ"
+            color="error"
+            fontSize={14}
+            role="alert"
+          >
+            
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Foundations/Box Box 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 broYQb"
+  >
+    Box
+  </div>,
+]
+`;
+
 exports[`Storyshots Foundations/Flex Flex 1`] = `
 Array [
   <link
@@ -929,32 +1786,14 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-4d4db5e-0 gcnoBZ"
+    className="sc-2f0613b5-0 sc-a3c34836-0 esGUYW kPqkso"
   >
     Flex box
   </div>,
 ]
 `;
 
-exports[`Storyshots Foundations/Heading Heading 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <span
-    className="sc-cfca0a14-0 bphuos"
-  >
-    Heading
-  </span>,
-]
-`;
-
-exports[`Storyshots Foundations/Text Text 1`] = `
+exports[`Storyshots Foundations/Grid Grid Area 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -965,14 +1804,48 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-cfca0a14-1 fHvuxL"
+    className="sc-61cd3008-0 dVghVz"
   >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
+    <div
+      className="sc-8799d24a-0 iQUcfT"
+      colSpan={
+        Array [
+          12,
+          6,
+          4,
+        ]
+      }
+      rowSpan={1}
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 goLdnZ cPULYj jbauLX"
+      >
+        Grid box
+      </div>
+    </div>
   </div>,
 ]
 `;
 
-exports[`Storyshots Headers & Footers/LessonHeader Lesson Header 1`] = `
+exports[`Storyshots Foundations/Line Clamp Line Clamp 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-dc108f60-0 eGcWAX"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+  </div>,
+]
+`;
+
+exports[`Storyshots Headers & Footers/App Header App Header 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -983,30 +1856,160 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-1ddf5cf2-0 gsqPbd"
+    className="sc-4ede228b-0 fxOrOh"
   >
     <div
-      className="sc-4d4db5e-0 iXVKds"
+      className="sc-2f0613b5-0 sc-a3c34836-0 iRseBR bzAnZD"
     >
-      <h1
-        className="sc-cfca0a14-0 hiHzNh"
-        size={4}
+      <a
+        className="sc-4ede228b-1 egcemP"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
-          className="sc-cfca0a14-2 kSivza"
-          display="block"
-          fontSize={24}
+          className="sc-f36340aa-0 guZXzV"
+          height={30}
+          width={30}
         >
-          Lesson
+          <span
+            className="sc-f36340aa-1 hstsea"
+            height={30}
+            width={30}
+          >
+            <svg
+              height="100%"
+              viewBox="0 0 48 48"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
         </span>
+        <span
+          className="sc-1a42a0ba-0 bvhOJW"
+          fontFamily="heading"
+          fontSize={20}
+          fontWeight={600}
+        >
+          Oak
+        </span>
+      </a>
+    </div>
+    <form
+      className="sc-5e65f61e-0 igxcUD"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <input
+          aria-invalid={false}
+          aria-label="Search"
+          className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+          id="search-form-search-input"
+          onChange={[Function]}
+          placeholder="Search"
+          type="search"
+          value=""
+        />
+      </div>
+      <button
+        aria-label="Submit"
+        className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
+        onClick={[Function]}
+        size="small"
+        title="Submit"
+        type="submit"
+      >
+        <div
+          className="sc-ef16a28e-0 hbpwaj"
+          size="small"
+        >
+          <span
+            className="sc-f36340aa-0 hEbPyH"
+            height={16}
+            width={16}
+          >
+            <span
+              className="sc-f36340aa-1 jowvMO"
+              height={16}
+              width={16}
+            >
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="0 0 17 17"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
+      </button>
+    </form>
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 gjwjEx lfYcjD"
+    >
+      <a
+        href="/sign-in"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Sign in
+      </a>
+    </div>
+  </header>,
+]
+`;
+
+exports[`Storyshots Headers & Footers/Lesson Header Lesson Header 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gwEsUT"
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
+    >
+      <h1
+        className="sc-ef5f3f7-0 bsRbCw"
+        fontSize={32}
+      >
+        <div
+          className="sc-2f0613b5-0 kLzPmu"
+        >
+          <span
+            className="sc-1a42a0ba-0 aPRTo"
+            fontSize={24}
+          >
+            Lesson
+          </span>
+        </div>
       </h1>
     </div>
     <div
-      className="sc-4d4db5e-0 sc-c54a04ce-0 iXVKds gYClZN"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-c54a04ce-0 bsCxxD hMvcoF gYClZN"
     >
       <a
         aria-label="Download Lesson"
-        className="sc-fd2ec9d3-0 dmrBJU"
+        className="sc-608180b1-0 dNUFrv"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1019,12 +2022,12 @@ Array [
           className="sc-bba76629-0 kRiOrX"
         >
           <span
-            className="sc-9ed566ec-0 dhDvpY"
+            className="sc-f36340aa-0 hEbPyH"
             height={16}
             width={16}
           >
             <span
-              className="sc-9ed566ec-1 elEwip"
+              className="sc-f36340aa-1 jowvMO"
               height={16}
               width={16}
             >
@@ -1063,7 +2066,7 @@ Array [
       </a>
       <a
         aria-label="Share Lesson"
-        className="sc-fd2ec9d3-0 dmrBJU"
+        className="sc-608180b1-0 dNUFrv"
         href="/"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1076,12 +2079,12 @@ Array [
           className="sc-bba76629-0 kRiOrX"
         >
           <span
-            className="sc-9ed566ec-0 dhDvpY"
+            className="sc-f36340aa-0 hEbPyH"
             height={16}
             width={16}
           >
             <span
-              className="sc-9ed566ec-1 elEwip"
+              className="sc-f36340aa-1 jowvMO"
               height={16}
               width={16}
             >
@@ -1135,23 +2138,23 @@ Array [
       </a>
       <button
         aria-label="Add Bookmark"
-        className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda gdDmxv"
+        className="sc-da410035-0 sc-7c97ca8b-0 eaZurT dlmRQd"
         disabled={false}
         onClick={[Function]}
         size="small"
         title="Add Bookmark"
       >
         <div
-          className="sc-ef16a28e-0 cNPOpe"
+          className="sc-ef16a28e-0 jCQjNU"
           size="small"
         >
           <span
-            className="sc-9ed566ec-0 dhDvpY"
+            className="sc-f36340aa-0 hEbPyH"
             height={16}
             width={16}
           >
             <span
-              className="sc-9ed566ec-1 elEwip"
+              className="sc-f36340aa-1 jowvMO"
               height={16}
               width={16}
             >
@@ -1177,161 +2180,109 @@ Array [
         </div>
       </button>
     </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Headers & Footers/Site Footer Site Footer 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <footer
+    className="sc-5eda28f9-0 jnppGu"
+  >
+    © Oak National Academy 
+    2022
+  </footer>,
+]
+`;
+
+exports[`Storyshots Headers & Footers/Site Header Site Header 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <header
+    className="sc-639b986b-0 gxfXwO"
+  >
+    <a
+      className="sc-639b986b-1 jaHoUG"
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <span
+        className="sc-f36340aa-0 guZXzV"
+        height={30}
+        width={30}
+      >
+        <span
+          className="sc-f36340aa-1 hstsea"
+          height={30}
+          width={30}
+        >
+          <svg
+            height="100%"
+            viewBox="0 0 48 48"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </span>
+      <span
+        className="sc-1a42a0ba-0 bvhOJW"
+        fontFamily="heading"
+        fontSize={20}
+        fontWeight={600}
+      >
+        Oak
+      </span>
+    </a>
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 jaSFFS jqCRrg"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD hsAqMF"
+        fontWeight={400}
+      >
+        <a
+          href="https://classroom.thenational.academy/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Classroom
+        </a>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-3ce2e856-0 fQhjrW hsAqMF"
+        fontWeight={400}
+      >
+        <a
+          href="https://teachers.thenational.academy/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Teacher Hub
+        </a>
+      </div>
+    </div>
   </header>,
-]
-`;
-
-exports[`Storyshots Headers & Footers/SiteFooter Site Footer Example 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div>
-    <footer
-      className="sc-5eda28f9-0 jnppGu"
-    >
-      © Oak National Academy 
-      2022
-    </footer>
-  </div>,
-]
-`;
-
-exports[`Storyshots Headers & Footers/SiteHeader Site Footer Example 1`] = `
-Array [
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
-    rel="stylesheet"
-  />,
-  <link
-    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-    rel="stylesheet"
-  />,
-  <div>
-    <header
-      className="sc-aa5c2dc4-0 iaitEI"
-    >
-      <div
-        className="sc-4d4db5e-0 iAsbcy"
-      >
-        <a
-          className="sc-aa5c2dc4-1 kMFWvG"
-          href="/"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-        >
-          <span
-            className="sc-9ed566ec-0 fNHytW"
-            height={30}
-            width={30}
-          >
-            <span
-              className="sc-9ed566ec-1 coZIkN"
-              height={30}
-              width={30}
-            >
-              <svg
-                height="100%"
-                viewBox="0 0 48 48"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21.5 40h-10q-.65 0-1.075-.425Q10 39.15 10 38.5V24H5.95q-.5 0-.7-.475-.2-.475.2-.825L23 6.9q.4-.4 1-.4t1 .4l9 7.95V10.5q0-.65.425-1.075Q34.85 9 35.5 9h1q.65 0 1.075.425Q38 9.85 38 10.5v8.05l4.55 4.15q.4.35.225.825Q42.6 24 42.05 24H38v14.5q0 .65-.425 1.075Q37.15 40 36.5 40h-10V28h-5ZM13 37h5.5V26.5q0-.65.425-1.075Q19.35 25 20 25h8q.65 0 1.075.425.425.425.425 1.075V37H35V19.95l-11-10-11 10Zm6.75-17.5h8.5q0-1.65-1.275-2.725Q25.7 15.7 24 15.7q-1.7 0-2.975 1.075Q19.75 17.85 19.75 19.5ZM20 25h8-8Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </span>
-          <span
-            className="sc-cfca0a14-2 eIanc"
-            fontFamily="heading"
-            fontSize={20}
-            fontWeight={600}
-          >
-            Oak
-          </span>
-        </a>
-      </div>
-      <form
-        className="sc-ea8229a0-0 eSaHnc"
-        onSubmit={[Function]}
-      >
-        <div
-          className="sc-4d4db5e-0 iERHIQ"
-        >
-          <input
-            aria-label="Search"
-            className="sc-92b99503-0 sc-cb16ef8a-0 Uujbd brBkaX"
-            onChange={[Function]}
-            placeholder="Search"
-            type="search"
-            value=""
-          />
-        </div>
-        <button
-          aria-label="Submit"
-          className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda LFWrp"
-          onClick={[Function]}
-          size="small"
-          title="Submit"
-          type="submit"
-        >
-          <div
-            className="sc-ef16a28e-0 cNPOpe"
-            size="small"
-          >
-            <span
-              className="sc-9ed566ec-0 dhDvpY"
-              height={16}
-              width={16}
-            >
-              <span
-                className="sc-9ed566ec-1 elEwip"
-                height={16}
-                width={16}
-              >
-                <svg
-                  fill="none"
-                  height="100%"
-                  viewBox="0 0 17 17"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.875 14.6562L12.0938 10.875C12 10.8125 11.9062 10.75 11.8125 10.75H11.4062C12.375 9.625 13 8.125 13 6.5C13 2.9375 10.0625 0 6.5 0C2.90625 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.5 13C8.125 13 9.59375 12.4062 10.75 11.4375V11.8438C10.75 11.9375 10.7812 12.0312 10.8438 12.125L14.625 15.9062C14.7812 16.0625 15.0312 16.0625 15.1562 15.9062L15.875 15.1875C16.0312 15.0625 16.0312 14.8125 15.875 14.6562ZM6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </span>
-          </div>
-        </button>
-      </form>
-      <div
-        className="sc-aa5c2dc4-3 iWDEuI"
-      >
-        <button
-          className="sc-d104eff5-0 sc-aa5c2dc4-2 gGKCda gtOtkl"
-          onClick={[Function]}
-        >
-          pupils
-        </button>
-        <a
-          href="/sign-in"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-        >
-          Sign in
-        </a>
-      </div>
-    </header>
-  </div>,
 ]
 `;
 
@@ -1346,15 +2297,17 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-ea8229a0-0 eSaHnc"
+    className="sc-5e65f61e-0 igxcUD"
     onSubmit={[Function]}
   >
     <div
-      className="sc-4d4db5e-0 iERHIQ"
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
     >
       <input
+        aria-invalid={false}
         aria-label="Search"
-        className="sc-92b99503-0 sc-cb16ef8a-0 Uujbd brBkaX"
+        className="sc-f4eaf512-0 sc-1a1b9f4b-1 bsoZhI jkgcsE"
+        id="search-form-search-input"
         onChange={[Function]}
         placeholder="Search"
         type="search"
@@ -1363,23 +2316,23 @@ Array [
     </div>
     <button
       aria-label="Submit"
-      className="sc-d104eff5-0 sc-7c97ca8b-0 gGKCda LFWrp"
+      className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
       onClick={[Function]}
       size="small"
       title="Submit"
       type="submit"
     >
       <div
-        className="sc-ef16a28e-0 cNPOpe"
+        className="sc-ef16a28e-0 hbpwaj"
         size="small"
       >
         <span
-          className="sc-9ed566ec-0 dhDvpY"
+          className="sc-f36340aa-0 hEbPyH"
           height={16}
           width={16}
         >
           <span
-            className="sc-9ed566ec-1 elEwip"
+            className="sc-f36340aa-1 jowvMO"
             height={16}
             width={16}
           >
@@ -1417,27 +2370,28 @@ Array [
     className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-d104eff5-0 sc-5a6dcb4b-0 gGKCda jebEfa"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-4d4db5e-0 sc-5a6dcb4b-1 gcUyFX hMbeVl"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 hGgCuw fcwCAC crDrih"
       >
         <div
-          className="sc-4d4db5e-0 sc-5a6dcb4b-4 kTOVKf henOOx"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-cfca0a14-1 sc-5a6dcb4b-3 eTtHXg TFHGO"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            fontWeight={400}
           >
             Intro
           </div>
           <span
-            className="sc-9ed566ec-0 jrSZxq"
+            className="sc-f36340aa-0 cYOAKd"
             height={20}
             width={20}
           >
             <span
-              className="sc-9ed566ec-1 gyPYLl"
+              className="sc-f36340aa-1 hoGnwi"
               height={20}
               width={20}
             >
@@ -1476,22 +2430,22 @@ Array [
     className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-d104eff5-0 sc-5a6dcb4b-0 gGKCda jebEfa"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-4d4db5e-0 sc-5a6dcb4b-1 bJqlpI gEIglN"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 eqoKHr gjkcyN bAKKjH"
       >
         <div
-          className="sc-4d4db5e-0 sc-5a6dcb4b-4 kTOVKf henOOx"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <span
-            className="sc-9ed566ec-0 gWMcix"
+            className="sc-f36340aa-0 iXgxbK"
             height={20}
             width={20}
           >
             <span
-              className="sc-9ed566ec-1 gyPYLl"
+              className="sc-f36340aa-1 hoGnwi"
               height={20}
               width={20}
             >
@@ -1510,7 +2464,8 @@ Array [
             </span>
           </span>
           <div
-            className="sc-cfca0a14-1 sc-5a6dcb4b-3 eTtHXg TFHGO"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            fontWeight={400}
           >
             Intro
           </div>
@@ -1535,17 +2490,18 @@ Array [
     className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-d104eff5-0 sc-5a6dcb4b-0 gGKCda jebEfa"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-4d4db5e-0 sc-5a6dcb4b-1 hcdDYd hMbeVl"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 Fwloy kKPuLE crDrih"
       >
         <div
-          className="sc-4d4db5e-0 sc-5a6dcb4b-4 kTOVKf henOOx"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-cfca0a14-1 sc-5a6dcb4b-3 eTtHXg TFHGO"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            fontWeight={400}
           >
             Intro
           </div>
@@ -1570,20 +2526,20 @@ Array [
     className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-d104eff5-0 sc-5a6dcb4b-0 gGKCda jebEfa"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Intro"
     >
       <div
-        className="sc-4d4db5e-0 sc-5a6dcb4b-1 gcUyFX hMbeVl"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 hGgCuw fcwCAC crDrih"
       >
         <div
-          className="sc-5a6dcb4b-2"
+          className="sc-9219bae4-2"
         >
           <div
-            className="sc-4d4db5e-0 sc-63019de4-2 itYBmc kSPFsf"
+            className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
           >
             <svg
-              className="sc-63019de4-0 ioeaXB"
+              className="sc-6ab5f0da-0 bXwxJO"
               fill="none"
               height="100%"
               viewBox="0 0 54 54"
@@ -1596,27 +2552,28 @@ Array [
               />
             </svg>
             <div
-              className="sc-4d4db5e-0 sc-63019de4-1 itYBmc bxiHQI"
+              className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
             >
               33%
             </div>
           </div>
         </div>
         <div
-          className="sc-4d4db5e-0 sc-5a6dcb4b-4 kTOVKf henOOx"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-cfca0a14-1 sc-5a6dcb4b-3 eTtHXg TFHGO"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            fontWeight={400}
           >
             Intro
           </div>
           <span
-            className="sc-9ed566ec-0 jrSZxq"
+            className="sc-f36340aa-0 cYOAKd"
             height={20}
             width={20}
           >
             <span
-              className="sc-9ed566ec-1 gyPYLl"
+              className="sc-f36340aa-1 hoGnwi"
               height={20}
               width={20}
             >
@@ -1655,20 +2612,20 @@ Array [
     className="sc-136385f2-0 hnVyyS"
   >
     <button
-      className="sc-d104eff5-0 sc-5a6dcb4b-0 gGKCda jebEfa"
+      className="sc-da410035-0 sc-9219bae4-0 eaZurT jDObFO"
       title="Very long label"
     >
       <div
-        className="sc-4d4db5e-0 sc-5a6dcb4b-1 gcUyFX hMbeVl"
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-1 hGgCuw fcwCAC crDrih"
       >
         <div
-          className="sc-5a6dcb4b-2"
+          className="sc-9219bae4-2"
         >
           <div
-            className="sc-4d4db5e-0 sc-63019de4-2 itYBmc kSPFsf"
+            className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-2 bsCxxD eYRlTh jNZIhA"
           >
             <svg
-              className="sc-63019de4-0 ioeaXB"
+              className="sc-6ab5f0da-0 bXwxJO"
               fill="none"
               height="100%"
               viewBox="0 0 54 54"
@@ -1681,27 +2638,28 @@ Array [
               />
             </svg>
             <div
-              className="sc-4d4db5e-0 sc-63019de4-1 itYBmc bxiHQI"
+              className="sc-2f0613b5-0 sc-a3c34836-0 sc-6ab5f0da-1 bsCxxD eYRlTh bEa-DYP"
             >
               33%
             </div>
           </div>
         </div>
         <div
-          className="sc-4d4db5e-0 sc-5a6dcb4b-4 kTOVKf henOOx"
+          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-cfca0a14-1 sc-5a6dcb4b-3 eTtHXg TFHGO"
+            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            fontWeight={400}
           >
             Very long label
           </div>
           <span
-            className="sc-9ed566ec-0 jrSZxq"
+            className="sc-f36340aa-0 cYOAKd"
             height={20}
             width={20}
           >
             <span
-              className="sc-9ed566ec-1 gyPYLl"
+              className="sc-f36340aa-1 hoGnwi"
               height={20}
               width={20}
             >
@@ -1726,7 +2684,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Media/Icon Icon Example 1`] = `
+exports[`Storyshots Interactive/Toggle Toggle 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -1736,35 +2694,413 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
+  <div
+    style={
+      Object {
+        "background": "lightBlue",
+        "padding": "100px",
+      }
+    }
+  >
+    <label>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+      >
+        <p
+          checked={true}
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bGwizT jlLAtS"
+        >
+          Label off
+        </p>
+        <div
+          className="sc-56d2f2bf-2 haRHuu"
+        >
+          <input
+            checked={false}
+            className="sc-56d2f2bf-0 ekWfQm"
+            data-testid="toggle"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="sc-56d2f2bf-1 dPjkAC"
+          />
+        </div>
+        <p
+          checked={false}
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bHKBgY dKYeGi"
+        >
+          Label on
+        </p>
+      </div>
+    </label>
+  </div>,
+]
+`;
+
+exports[`Storyshots Interactive/Toggle Toggle Disabled 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    style={
+      Object {
+        "background": "lightBlue",
+        "padding": "100px",
+      }
+    }
+  >
+    <label>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+      >
+        <p
+          checked={true}
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bGwizT iIesTK"
+          disabled={true}
+        >
+          Label off
+        </p>
+        <div
+          className="sc-56d2f2bf-2 haRHuu"
+        >
+          <input
+            checked={false}
+            className="sc-56d2f2bf-0 ekWfQm"
+            data-testid="toggle"
+            disabled={true}
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="sc-56d2f2bf-1 jFDbdt"
+            disabled={true}
+          />
+        </div>
+        <p
+          checked={false}
+          className="sc-20ccf123-0 sc-56d2f2bf-3 bHKBgY iMpFkq"
+          disabled={true}
+        >
+          Label on
+        </p>
+      </div>
+    </label>
+  </div>,
+]
+`;
+
+exports[`Storyshots Lists/BlogList Blog List 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD kXhHIh"
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 bZqHUc iBykG"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD lvAUx"
+      >
+        <span
+          className="sc-f36340aa-0 SJHCS"
+          height={36}
+          width={36}
+        >
+          <span
+            className="sc-f36340aa-1 cRqHeq"
+            height={36}
+            width={36}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              viewBox="0 0 36 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M34.5 0h-29C4.625 0 4 .688 4 1.5V2H1.5C.625 2 0 2.688 0 3.5V21c0 1.688 1.313 3 3 3h31.5c.813 0 1.5-.625 1.5-1.5v-21c0-.813-.688-1.5-1.5-1.5ZM2 21V4h2v17c0 .563-.5 1-1 1-.563 0-1-.438-1-1Zm32 1H5.812c.125-.25.125-.625.125-.938 0 0 .063 0 .063-.062V2h28v20ZM8.75 16h10.5a.76.76 0 0 0 .75-.75V4.75c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v10.5c0 .438.313.75.75.75ZM10 6h8v8h-8V6ZM8 19.25c0 .438.313.75.75.75h10.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v.5Zm14 0c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-8c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0 4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <h1
+          className="sc-ef5f3f7-0 gBeReX"
+          fontSize={24}
+        >
+          Check out these things!
+        </h1>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD cNFVlZ"
+      >
+        <nav>
+          <div
+            className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eYRlTh"
+          >
+            <p
+              className="sc-20ccf123-0 cwZPlV"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                All Webinars
+              </a>
+            </p>
+            <p
+              className="sc-20ccf123-0 lfGARk"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                All Blogs
+              </a>
+            </p>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
+      >
+        <h2
+          className="sc-ef5f3f7-0 hVVfDt"
+          fontSize={20}
+          mb={16}
+        >
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="The Long and Winding Road"
+          >
+            The Long and Winding Road
+          </a>
+        </h2>
+        <p
+          className="sc-20ccf123-0 jfRSFr"
+          fontSize={18}
+        >
+          <div
+            className="sc-dc108f60-0 biVGWy"
+          >
+            The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
+          </div>
+        </p>
+      </div>
+    </div>
+    <hr
+      className="sc-cb4b0018-0 jBFrxo"
+      color="grey2"
+    />
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
+      >
+        <span
+          className="sc-f36340aa-0 btkCnn"
+          height={48}
+          width={48}
+        >
+          <span
+            className="sc-f36340aa-1 eCDIAT"
+            color="white"
+            height={48}
+            width={48}
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m34.781 22.313-16.5-10.032c-1.5-.75-3.281.281-3.281 1.969v19.5c0 1.781 1.781 2.813 3.281 1.969l16.5-9.469c1.594-.844 1.594-3 0-3.938ZM47.25 24C47.25 11.156 36.844.75 24 .75S.75 11.156.75 24 11.156 47.25 24 47.25 47.25 36.844 47.25 24Zm-42 0C5.25 13.687 13.594 5.25 24 5.25c10.313 0 18.75 8.438 18.75 18.75 0 10.406-8.438 18.75-18.75 18.75A18.685 18.685 0 0 1 5.25 24Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
+      >
+        <h2
+          className="sc-ef5f3f7-0 hVVfDt"
+          fontSize={20}
+          mb={16}
+        >
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="Penny Lane"
+          >
+            Penny Lane
+          </a>
+        </h2>
+        <p
+          className="sc-20ccf123-0 jfRSFr"
+          fontSize={18}
+        >
+          <div
+            className="sc-dc108f60-0 biVGWy"
+          >
+            Penny Lane, there is a barber showing photographs Of every head he's had the pleasure to know And all the people that come and go Stop and say, "Hello"
+          </div>
+        </p>
+      </div>
+    </div>
+    <hr
+      className="sc-cb4b0018-0 jBFrxo"
+      color="grey2"
+    />
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
+      />
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
+      >
+        <h2
+          className="sc-ef5f3f7-0 hVVfDt"
+          fontSize={20}
+          mb={16}
+        >
+          <a
+            className="sc-40cf0759-0 iKJgVW"
+            href="/"
+            title="Strawberry Fields Forever"
+          >
+            Strawberry Fields Forever
+          </a>
+        </h2>
+        <p
+          className="sc-20ccf123-0 jfRSFr"
+          fontSize={18}
+        >
+          <div
+            className="sc-dc108f60-0 biVGWy"
+          >
+            No one I think is in my tree I mean, it must be high or low That is, you can't, you know, tune in but it's all right That is, I think it's not too bad
+          </div>
+        </p>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Lists/BlogListItem Blog List Item 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL ctxNdk"
+  >
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-40cf0759-1 cjOshT huYakt gYpdEu"
+    />
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD jkcvGs"
+    >
+      <h3
+        className="sc-ef5f3f7-0 hVVfDt"
+        fontSize={20}
+        mb={16}
+      >
+        <a
+          className="sc-40cf0759-0 iKJgVW"
+          href="/"
+          title="The long and winding road"
+        >
+          The long and winding road
+        </a>
+      </h3>
+      <p
+        className="sc-20ccf123-0 jfRSFr"
+        fontSize={18}
+      >
+        <div
+          className="sc-dc108f60-0 biVGWy"
+        >
+          The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way
+        </div>
+      </p>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Media/Icon Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <span
+    className="sc-f36340aa-0 iCGVrn"
+    height={100}
+    width={100}
+  >
     <span
-      className="sc-9ed566ec-0 ixGQnQ"
+      className="sc-f36340aa-1 jcdGTS"
       height={100}
       width={100}
     >
-      <span
-        className="sc-9ed566ec-1 bXArHR"
-        height={100}
-        width={100}
+      <svg
+        fill="none"
+        height="100%"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          fill="none"
-          height="100%"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polyline
-            points="9 18 15 12 9 6"
-          />
-        </svg>
-      </span>
+        <polyline
+          points="9 18 15 12 9 6"
+        />
+      </svg>
     </span>
-  </div>,
+  </span>,
 ]
 `;
 
@@ -1778,141 +3114,263 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
-    <nav
-      aria-label="Breadcrumb"
-      className="sc-2fa6374a-0 dyIhuP"
+  <nav
+    aria-label="Breadcrumb"
+    className="sc-2fa6374a-0 dyIhuP"
+  >
+    <ol
+      className="sc-2fa6374a-1 bgmmze"
     >
-      <ol
-        className="sc-2fa6374a-1 bgmmze"
+      <li
+        className="sc-2fa6374a-2 LyxUe"
       >
-        <li
-          className="sc-2fa6374a-2 LyxUe"
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Unit Quiz
-          </a>
-        </li>
-        <li
-          className="sc-2fa6374a-2 LyxUe"
+          Unit Quiz
+        </a>
+      </li>
+      <li
+        className="sc-2fa6374a-2 LyxUe"
+      >
+        <span
+          className="sc-f36340aa-0 bAgpHn"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-9ed566ec-0 jbGIWo"
+            className="sc-f36340aa-1 hoGnwi"
             height={20}
             width={20}
           >
-            <span
-              className="sc-9ed566ec-1 gyPYLl"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            View In Classroom
-          </a>
-        </li>
-        <li
-          className="sc-2fa6374a-2 LyxUe"
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          View In Classroom
+        </a>
+      </li>
+      <li
+        className="sc-2fa6374a-2 LyxUe"
+      >
+        <span
+          className="sc-f36340aa-0 bAgpHn"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-9ed566ec-0 jbGIWo"
+            className="sc-f36340aa-1 hoGnwi"
             height={20}
             width={20}
           >
-            <span
-              className="sc-9ed566ec-1 gyPYLl"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Foundation Curriculum (PDF)
-          </a>
-        </li>
-        <li
-          className="sc-2fa6374a-2 LyxUe"
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Foundation Curriculum (PDF)
+        </a>
+      </li>
+      <li
+        className="sc-2fa6374a-2 LyxUe"
+      >
+        <span
+          className="sc-f36340aa-0 bAgpHn"
+          height={20}
+          width={20}
         >
           <span
-            className="sc-9ed566ec-0 jbGIWo"
+            className="sc-f36340aa-1 hoGnwi"
             height={20}
             width={20}
           >
-            <span
-              className="sc-9ed566ec-1 gyPYLl"
-              height={20}
-              width={20}
+            <svg
+              fill="none"
+              height="100%"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="none"
-                height="100%"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                />
-              </svg>
-            </span>
+              <polyline
+                points="9 18 15 12 9 6"
+              />
+            </svg>
           </span>
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Higher Curriculum (PDF)
-          </a>
-        </li>
-      </ol>
-    </nav>
+        </span>
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Higher Curriculum (PDF)
+        </a>
+      </li>
+    </ol>
+  </nav>,
+]
+`;
+
+exports[`Storyshots Typography/Heading Heading 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <h1
+    className="sc-ef5f3f7-0 jKEmNz"
+  >
+    Heading 1
+  </h1>,
+]
+`;
+
+exports[`Storyshots Typography/Hr Hr 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD bqdWGm"
+    fontSize={18}
+    fontWeight={400}
+  >
+    <p>
+      See below
+    </p>
+    <hr
+      className="sc-cb4b0018-0 jBFrxo"
+      color="grey2"
+    />
+    <p>
+      For a horizontal rule
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Typography/P P 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <p
+    className="sc-20ccf123-0 bAXLyp"
+    color="grey9"
+    fontSize={16}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
+  </p>,
+]
+`;
+
+exports[`Storyshots Typography/Span Span 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD hsAqMF"
+    fontWeight={400}
+  >
+    <p
+      className="sc-20ccf123-0 lfGARk"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
+       
+      <span
+        className="sc-1a42a0ba-0 eLTjAy"
+        color="inYourFace"
+        fontWeight={600}
+      >
+        tristique magna sit.
+      </span>
+       A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+    </p>
+  </div>,
+]
+`;
+
+exports[`Storyshots Typography/Typography Typography 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD gyOmHh"
+    color="grey9"
+    fontWeight={400}
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent tristique magna sit. A arcu cursus vitae congue mauris rhoncus aenean. Turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Vitae suscipit tellus mauris a diam maecenas.
+    </p>
+    <p>
+      Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Tortor vitae purus faucibus ornare. Bibendum est ultricies integer quis auctor elit. Massa id neque aliquam vestibulum morbi. Gravida neque convallis a cras semper auctor neque vitae. Massa tempor nec feugiat nisl pretium fusce id velit ut. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Id porta nibh venenatis cras sed felis eget. Pulvinar mattis nunc sed blandit libero volutpat sed cras. A diam maecenas sed enim ut sem viverra.
+    </p>
   </div>,
 ]
 `;

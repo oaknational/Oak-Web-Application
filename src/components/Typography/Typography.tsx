@@ -1,54 +1,44 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-import display, { DisplayProps } from "../../styles/utils/display";
-import { margin, MarginProps } from "../../styles/utils/spacing";
-import typography, {
-  heading,
-  HeadingSize,
-  text,
-  TextSize,
-  TypographyProps,
-} from "../../styles/utils/typography";
+import typography, { TypographyProps } from "../../styles/utils/typography";
+import Box, { BoxProps } from "../Box";
+import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 
-export const HEADING_TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
-
-export type HeadingTag = typeof HEADING_TAGS[number];
-
-const RawHeading = styled.span`
-  ${heading}
-`;
-
-type HeadingProps = {
-  tag: HeadingTag;
-  size: HeadingSize;
+const bodyFontSizes = {
+  18: "18px",
+  16: "16px",
+  14: "14px",
+  12: "12px",
 };
 
-export const Heading: FC<HeadingProps> = (props) => {
-  const { tag, ...htmlAttrs } = props;
-  return <RawHeading as={tag} {...htmlAttrs} />;
-};
+export type BodyFontSize = keyof typeof bodyFontSizes;
 
-type TextProps = MarginProps & {
-  size?: TextSize;
-};
-export const Text = styled.div<TextProps>`
-  ${text}
-  ${margin}
-`;
-
-type BaseTextProps = MarginProps & TypographyProps & DisplayProps;
-const baseTextStyles = css<BaseTextProps>`
-  font-family: inherit;
-  font-weight: inherit;
-  margin: 0;
-  ${margin}
+type TypographyComponent = BoxProps &
+  Omit<TypographyProps, "fontSize" | "fontFamily"> & {
+    fontSize?: BodyFontSize;
+  };
+/**
+ * The Typography component sets a typography style context from which children
+ * inherit style properties through the cascade.
+ * ## Usage
+ * This should be the primary component to set a typography context.
+ * Use this component whenever you want to style blocks of 'body' text.
+ */
+const Typography = styled(Box)<TypographyComponent>`
   ${typography}
-  ${display}
+  font-family: ${getFontFamily("body")};
 `;
 
-type SpanProps = BaseTextProps;
-export const Span = styled.span<SpanProps>`
-  color: inherit;
-  ${baseTextStyles}
-`;
+/**
+ * @todo do we even want to set defaults here? The issue with setting defaults
+ * is that if we place a Typography inside another Typography, the expected
+ * behaviour would be that it extends the current context, rather than 
+ * resetting certain defaults?
+ * Perhaps defaults should be in global css instead.
+ */
+Typography.defaultProps = {
+  fontWeight: 400,
+  lineHeight: 1.4,
+};
+
+export default Typography;

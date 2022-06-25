@@ -4,10 +4,29 @@ import styled, { useTheme } from "styled-components";
 import Flex from "../Flex";
 import Icon from "../Icon";
 import Badge, { BadgeProps } from "../Badge";
-import { Text } from "../Typography/Typography";
+import Typography from "../Typography";
 import ellipsis from "../../styles/ellipsis";
-import getColor, { colorNameOrThrow } from "../../styles/themeHelpers/getColor";
 import UnstyledButton from "../UnstyledButton";
+import { OakColorName } from "../../styles/theme";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+
+export type LessonControlConfig = {
+  default: {
+    background: OakColorName;
+    border: string;
+    borderColor: OakColorName;
+  };
+  current: {
+    background: OakColorName;
+    border: string;
+    borderColor: OakColorName;
+  };
+  complete: {
+    background: OakColorName;
+    border: string;
+    borderColor: OakColorName;
+  };
+};
 
 type LessonControlStatus = "default" | "current" | "complete";
 export type LessonControlProps = {
@@ -23,13 +42,13 @@ const Root = styled(UnstyledButton)`
 
 const Wrapper = styled(Flex)<{ status: LessonControlStatus }>`
   height: 64px;
-  border: ${(props) => props.theme.lessonControl[props.status].border};
-  border-color: ${(props) =>
-    getColor((theme) => theme.lessonControl[props.status].borderColor)};
+  border: ${({ status, theme }) => theme.lessonControl[status].border};
+  border-color: ${({ status }) =>
+    getColorByLocation(({ theme }) => theme.lessonControl[status].borderColor)};
 `;
 
 const BadgeWrapper = styled.div``;
-const Label = styled(Text)`
+const Label = styled(Typography)`
   ${ellipsis}
 `;
 const TextWrapper = styled(Flex)`
@@ -45,7 +64,7 @@ const LessonControl: FC<LessonControlProps> = (props) => {
       <Wrapper
         pa={4}
         alignItems="center"
-        background={colorNameOrThrow(theme.lessonControl[status].background)}
+        background={theme.lessonControl[status].background}
         status={status}
       >
         {badgeProps && (

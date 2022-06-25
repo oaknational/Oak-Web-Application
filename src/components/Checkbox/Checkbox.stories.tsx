@@ -14,7 +14,7 @@ export default {
       defaultValue: "Click me",
     },
     checked: {
-      defaultValue: true,
+      defaultValue: false,
     },
     onChange: {
       action: "changed",
@@ -23,7 +23,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  const [value, setValue] = useState(true);
+  const [value, setValue] = useState(false);
   return (
     <Component {...args} checked={value} onChange={() => setValue(!value)} />
   );
