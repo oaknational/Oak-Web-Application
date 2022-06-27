@@ -30,11 +30,19 @@ const Home: FC = () => {
           </Heading>
         </GridArea>
         <GridArea colSpan={[12, 12, 4]}>
-          <Card background={"white"} mt={48}>
-            <Heading fontSize={20} tag={"h2"}>
+          <CardAsLink
+            background={"white"}
+            href="/beta"
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            ariaLabel="Use Oak in Beta"
+            mt={48}
+          >
+            <Heading fontSize={24} tag={"h5"} color={"grey8"}>
               Use Oak in Beta
             </Heading>
-          </Card>
+          </CardAsLink>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
