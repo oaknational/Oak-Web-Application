@@ -59,7 +59,7 @@ describe("NewsletterForm", () => {
     await user.tab();
     const description = computeAccessibleDescription(input);
 
-    expect(description).toBe("Name must contain few than 60 charaters");
+    expect(description).toBe("Name must contain fewer than 60 charaters");
   });
   test("should display error hint on blur if no email is entered", async () => {
     const { getByPlaceholderText } = renderWithProviders(
