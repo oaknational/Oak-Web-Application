@@ -1,3 +1,11 @@
+# [0.36.0](https://github.com/oaknational/Samara/compare/v0.35.0...v0.36.0) (2022-06-28)
+
+
+### Features
+
+* connect newletter form with hubspot submit handler ([6a65716](https://github.com/oaknational/Samara/commit/6a6571600d5c395ce116dff528aa0de2d0a5a2f9))
+* hubspot form submit handler ([e20b3bb](https://github.com/oaknational/Samara/commit/e20b3bba9d0d70fb8a0169371d072e95c6a47ccf))
+
 # [0.35.0](https://github.com/oaknational/Samara/compare/v0.34.1...v0.35.0) (2022-06-24)
 
 
