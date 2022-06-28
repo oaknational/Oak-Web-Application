@@ -9,6 +9,7 @@ import CardTitle from "../../Card/CardComponents/CardTitle";
 import Input from "../../Input";
 import { P } from "../../Typography";
 import Button from "../../Button";
+import OakError from "../../../errors/OakError";
 
 const schema = z.object({
   name: z
@@ -28,7 +29,7 @@ const schema = z.object({
 
 type NewsletterFormValues = z.infer<typeof schema>;
 type NewsletterFormProps = {
-  onSubmit: (values: NewsletterFormValues) => Promise<void>;
+  onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
 };
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
@@ -38,6 +39,7 @@ type NewsletterFormProps = {
  */
 const NewsletterForm: FC<NewsletterFormProps> = (props) => {
   const { onSubmit } = props;
+  const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const {
@@ -66,13 +68,18 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         onSubmit={handleSubmit(async (data) => {
           setLoading(true);
           setError("");
+          setSuccessMessage("");
           try {
-            await onSubmit(data);
+            const successMessage = await onSubmit(data);
+            setSuccessMessage(
+              successMessage || "Thanks, that's been received!"
+            );
           } catch (error) {
-            if (error instanceof Error) {
+            if (error instanceof OakError) {
               setError(error.message);
             } else {
               // @todo bugsnag
+              setError("An unknown error occurred");
             }
           } finally {
             setLoading(false);
@@ -115,6 +122,11 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         >
           {error}
         </P>
+        {!error && successMessage && (
+          <P mt={12} fontSize={14}>
+            {successMessage}
+          </P>
+        )}
       </form>
     </Card>
   );
