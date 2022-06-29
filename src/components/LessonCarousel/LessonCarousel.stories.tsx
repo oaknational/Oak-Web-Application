@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { MoreLessonProps } from "./MoreLessons";
+import { LessonCarouselProps } from "./LessonCarousel";
 
 import Component from ".";
 
-const unit: MoreLessonProps["unit"] = [
+const unit: LessonCarouselProps["unit"] = [
   {
     lessonTitle: "Historical Context: James I, Witchcraft and Regicide",
     keyStage: "KS3",
@@ -65,15 +65,13 @@ const unit: MoreLessonProps["unit"] = [
 ];
 
 export default {
-  title: "Cards/More Lessons",
+  title: "Lists/Lesson Carousel",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  console.log(args);
-
-  return <Component unit={unit}></Component>;
+  return <Component {...args} unit={unit}></Component>;
 };
 
-export const MoreLessons = Template.bind({});
+export const LessonCarousel = Template.bind({});

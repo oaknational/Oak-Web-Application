@@ -5,7 +5,7 @@ import responsive from "../../styles/utils/responsive";
 type ColSpans = 1 | 2 | 3 | 4 | 6 | 8 | 12;
 
 type GridAreaProps = {
-  colSpan: Array<ColSpans>;
+  colSpan: Array<ColSpans> | number;
   rowSpan?: number;
   order?: Array<number>;
 };
