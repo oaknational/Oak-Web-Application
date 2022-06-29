@@ -1,57 +1,24 @@
 import { FC } from "react";
 
-import { useUser } from "../context/Auth";
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
-import Bookmarks from "../components/Bookmarks";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading, P } from "../components/Typography";
-import BlogList, { BlogListProps } from "../components/BlogList/BlogList";
+import BlogList from "../components/BlogList/BlogList";
 import Flex from "../components/Flex";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardAsLink from "../components/Card/CardAsLink";
 import Icon from "../components/Icon";
-
-const items: BlogListProps["items"] = [
-  {
-    titleTag: "h3",
-    title: "Webinar about school",
-    snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
-    href: "/",
-    contentType: "webinar",
-  },
-  {
-    titleTag: "h3",
-    title: "Blog about learning",
-    snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
-    href: "/",
-    contentType: "blog-post",
-  },
-  {
-    titleTag: "h3",
-    title: "Webinar from a maths teacher",
-    snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
-    href: "/",
-    contentType: "webinar",
-  },
-  {
-    titleTag: "h3",
-    title: "Blog post about making lunch break all day",
-    snippet:
-      "Preview, plan and customise each element of your work to meet your needs - in and out the classroom.",
-    href: "/",
-    contentType: "webinar",
-  },
-];
+import NewsletterForm, {
+  useNewsletterForm,
+} from "../components/Forms/NewsletterForm";
+import blogListItems from "../browser-lib/fixtures/blogListItems";
 
 const Home: FC = () => {
-  const user = useUser();
+  const { onSubmit } = useNewsletterForm();
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -77,77 +44,76 @@ const Home: FC = () => {
           <CardAsLink
             background={"white"}
             href="https://classroom.thenational.academy/"
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            ariaLabel="Classroom"
           >
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Classroom
-              </Heading>
-            </Flex>
+            <Icon name={"GraduationCap"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Classroom
+            </Heading>
           </CardAsLink>
         </GridArea>
         <GridArea colSpan={[12, 12, 6]}>
           <CardAsLink
             background={"white"}
             href="https://teachers.thenational.academy/"
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            ariaLabel="Teacher Hub"
           >
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Teacher Hub
-              </Heading>
-            </Flex>
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Teacher Hub
+            </Heading>
           </CardAsLink>
         </GridArea>
 
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Curriculum
-              </Heading>
-            </Flex>
+          <CardAsLink
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            background={"white"}
+            href="/"
+            ariaLabel="Curriculum"
+          >
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Curriculum
+            </Heading>
           </CardAsLink>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Lesson Planning
-              </Heading>
-            </Flex>
+          <CardAsLink
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            background={"white"}
+            href="/"
+            ariaLabel="Lesson Planning"
+          >
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Lesson Planning
+            </Heading>
           </CardAsLink>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink background={"white"} href="/">
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-            >
-              <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                Oak for Schools
-              </Heading>
-            </Flex>
+          <CardAsLink
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems="center"
+            background={"white"}
+            href="/"
+            ariaLabel="Oak for schools"
+          >
+            <Icon name={"GraduationCap"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              Oak for Schools
+            </Heading>
           </CardAsLink>
         </GridArea>
       </Grid>
@@ -175,11 +141,11 @@ const Home: FC = () => {
           </Card>
         </GridArea>
 
-        <GridArea colSpan={[12, 12, 8]} rowSpan={2} order={[3, 1, 0]}>
+        <GridArea colSpan={[12, 12, 8]} rowSpan={3} order={[3, 1, 0]}>
           <Flex background={"white"} pa={24}>
             <BlogList
               title={"Stay up to date!"}
-              items={items}
+              items={blogListItems}
               titleTag={"h2"}
             />
           </Flex>
@@ -201,13 +167,15 @@ const Home: FC = () => {
             <ButtonAsLink
               mt={"auto"}
               fullWidth
-              href="/"
+              href="https://support.thenational.academy/"
               label="Visit Help Center"
             />
           </Card>
         </GridArea>
+        <GridArea colSpan={[12, 6, 4]} order={[2, 0, 0]}>
+          <NewsletterForm onSubmit={onSubmit} />
+        </GridArea>
       </Grid>
-      {user && <Bookmarks />}
     </LandingPageLayout>
   );
 };

@@ -1,3 +1,27 @@
+## [0.36.1](https://github.com/oaknational/Samara/compare/v0.36.0...v0.36.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* typo in signup form feedback ([d2c5a43](https://github.com/oaknational/Samara/commit/d2c5a431b6de15f3cc3d011ade2d95ffb36b7ecd))
+
+# [0.36.0](https://github.com/oaknational/Samara/compare/v0.35.0...v0.36.0) (2022-06-28)
+
+
+### Features
+
+* connect newletter form with hubspot submit handler ([6a65716](https://github.com/oaknational/Samara/commit/6a6571600d5c395ce116dff528aa0de2d0a5a2f9))
+* hubspot form submit handler ([e20b3bb](https://github.com/oaknational/Samara/commit/e20b3bba9d0d70fb8a0169371d072e95c6a47ccf))
+
+# [0.35.0](https://github.com/oaknational/Samara/compare/v0.34.1...v0.35.0) (2022-06-24)
+
+
+### Features
+
+* newsletter signup form (front-end) ([7c5fe0c](https://github.com/oaknational/Samara/commit/7c5fe0cd4a1fdc7704d3572cca8b0d055f9114d2))
+
+## [0.34.1](https://github.com/oaknational/Samara/compare/v0.34.0...v0.34.1) (2022-06-23)
+
 # [0.34.0](https://github.com/oaknational/Samara/compare/v0.33.0...v0.34.0) (2022-06-22)
 
 

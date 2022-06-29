@@ -12,6 +12,8 @@ const ERROR_CODES = [
   "auth/token-error-unknown",
   "graphql/validation", // for this we actually want more details when the error is thrown
   "search/unknown",
+  "hubspot/invalid-email",
+  "hubspot/unknown",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -30,7 +32,7 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     shouldNotify: true,
   },
   "misc/network-error": {
-    message: "Network error",
+    message: "Failed to connect.",
     responseStatusCode: 500,
     // If a network error occurs on the server, we want to know about it, maybe not on the client
     shouldNotify: true,
@@ -63,6 +65,15 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Search doesn't seem to be working, we're looking into it.",
     shouldNotify: true,
   },
+  "hubspot/invalid-email": {
+    message:
+      "Thank you, that's been received, but please check as your email doesn't look quite right.",
+    shouldNotify: false,
+  },
+  "hubspot/unknown": {
+    message: "Sorry, we couldn't sign you up just now, try again later.",
+    shouldNotify: true,
+  },
 };
 
 const getErrorConfig = (code: ErrorCode) => errorConfigs[code];
@@ -72,7 +83,7 @@ export const getErrorMessage = (errorInfo: ErrorInfo) => {
   return errorConfig.message;
 };
 
-type ErrorMeta = Record<string, unknown>;
+export type ErrorMeta = Record<string, unknown>;
 /**
  * Defines error info type. It is the argument passed to the OakError constructor.
  */

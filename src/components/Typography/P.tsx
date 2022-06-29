@@ -1,7 +1,6 @@
 import styled, { CSSProperties } from "styled-components";
 
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import color from "../../styles/utils/color";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
@@ -22,7 +21,6 @@ type PProps = MarginProps &
 const P = styled.p<PProps>`
   ${typography}
   ${margin}
-  ${color}
   font-family: ${getFontFamily("body")};
   text-align: ${(props) => props.textAlign};
 `;

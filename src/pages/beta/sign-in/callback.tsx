@@ -78,6 +78,7 @@ const SignInCallback: NextPage = () => {
           <Form onSubmit={confirmEmail}>
             <Flex>
               <Input
+                id="sign-in-callback-email-inptu"
                 name="email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
