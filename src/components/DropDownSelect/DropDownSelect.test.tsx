@@ -7,7 +7,6 @@ import { SelectedKey } from "./DropDownSelect";
 
 import DropDownSelect from ".";
 
-
 const roles = [
   { id: 1, item: "Teacher" },
   { id: 2, item: "Parent" },
@@ -82,8 +81,6 @@ describe("select", () => {
 
     const user = userEvent.setup();
 
-    await user.tab();
-    await user.tab();
     await user.tab();
     await user.keyboard("{Enter}");
     await user.keyboard("{arrowdown}");

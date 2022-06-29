@@ -29,6 +29,7 @@ DropDownSelect.args = {
   ],
   name: "Role select dropdown",
   placeholder: "What describes you best?",
+  label: "Role select dropdown",
 };
 
 export const DropDownSelectIcon = Template.bind({});

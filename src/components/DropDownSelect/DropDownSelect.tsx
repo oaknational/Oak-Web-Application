@@ -1,10 +1,7 @@
 import { FC } from "react";
 
-import { Item, Select } from "../DropDownSelect/Select";
 import { IconName } from "../Icon/Icon";
-
-import { Label } from "./ListBox";
-export { Section, Item } from "react-stately";
+import { Select, Item, Label } from "../DropDownSelect/Select";
 
 export type SelectedKey = string | number | undefined;
 

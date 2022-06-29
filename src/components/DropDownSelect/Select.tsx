@@ -1,3 +1,4 @@
+import * as React from "react";
 import styled from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useSelectState } from "react-stately";
@@ -8,19 +9,28 @@ import {
   mergeProps,
   useFocusRing,
 } from "react-aria";
-import { useRef } from "react";
 
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
-import Icon from "../Icon";
 import Flex from "../Flex";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
+import Icon, { IconName } from "../Icon";
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
-import { IconName } from "../Icon/Icon";
+import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 
-import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";
+import { ListBox } from "./ListBox";
 
 export { Item } from "react-stately";
+
+interface ButtonProps {
+  isOpen?: boolean;
+  isFocusVisible?: boolean;
+}
+
+type SelectProps = {
+  placeholder: string;
+  name: string;
+  icon?: IconName;
+};
 
 const Button = styled(UnstyledButton)<ButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
@@ -55,16 +65,6 @@ export const Label = styled.label`
   font-size: 12px;
 `;
 
-interface ButtonProps {
-  isOpen?: boolean;
-  isFocusVisible?: boolean;
-}
-type SelectProps = {
-  placeholder: string;
-  name: string;
-  icon?: IconName;
-};
-
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
@@ -72,7 +72,7 @@ export function Select<T extends object>(
   const state = useSelectState(props);
 
   // Get props for child elements from useSelect
-  const ref = useRef(null);
+  const ref = React.useRef(null);
   const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
     props,
     state,
