@@ -55,3 +55,4 @@ oak.config.ts
 
 # firebase
 firebase-debug.log
+.firebase
