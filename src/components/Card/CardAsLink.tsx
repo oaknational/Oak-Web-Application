@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import Card, { CardProps } from "./Card";
+import { FlexProps } from "../Flex";
+
+import Card from "./Card";
 
 const CardLink = styled.a`
   ::after {
@@ -14,9 +16,10 @@ const CardLink = styled.a`
   }
 `;
 
-interface CardAsLinkProps extends CardProps {
+interface CardAsLinkProps extends FlexProps {
   href: string;
   target?: "_self" | "_blank";
+  ariaLabel: string;
 }
 
 /**
@@ -29,11 +32,12 @@ const CardAsLink: FC<CardAsLinkProps> = ({
   children,
   href,
   target = "_self",
+  ariaLabel,
   ...cardProps
 }) => {
   return (
     <Card position="relative" {...cardProps}>
-      <CardLink target={target} href={href}></CardLink>
+      <CardLink aria-label={ariaLabel} target={target} href={href} />
       {children}
     </Card>
   );

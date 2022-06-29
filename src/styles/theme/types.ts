@@ -5,6 +5,7 @@ import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropDownSelect/ListBox";
 import { LessonControlConfig } from "../../components/LessonControl";
+import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
 /**
  * @todo parse theme with zod
@@ -34,6 +35,7 @@ const OakColorNameZod = z.union([
   z.literal("peranoBlue"),
   z.literal("powderBlue"),
   z.literal("melaniePink"),
+  z.literal("error"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;
@@ -98,6 +100,7 @@ export type OakTheme = {
   lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
+  toggle: ToggleStyleConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

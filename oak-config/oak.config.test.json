@@ -20,6 +20,11 @@
     "graphqlApiUrl": "https://example.com",
     "requiredSecrets": ["HASURA_ADMIN_SECRET"]
   },
+  "hubspot": {
+    "portalId": "12345",
+    "newsletterFormId": "uuid-oijfeoe-ijfere-g-ererg",
+    "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9"
+  },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
     "appName": "Samara"

@@ -1,18 +1,25 @@
-import { FC } from "react";
+import { FC, forwardRef } from "react";
 import styled from "styled-components";
 
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
+import Box from "../Box";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
+import { Span } from "../Typography";
+import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 
 import InputIcon from "./InputIcon";
 
+const LabelWrapper = styled(Box)`
+  transform: translateY(-100%);
+`;
+
 type StyledInputProps = MarginProps & {
-  value: string;
+  value?: string;
   icon?: IconName;
 };
 const StyledInput = styled(UnstyledInput)<StyledInputProps>`
@@ -71,16 +78,47 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 `;
 
-type InputProps = UnstyledInputProps & StyledInputProps;
-const Input: FC<InputProps> = (props) => {
-  const { icon } = props;
+type InputProps = UnstyledInputProps &
+  StyledInputProps & {
+    id: string;
+    label?: string;
+    error?: string;
+  };
+const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
+    const { id, icon, label, error, ...inputProps } = props;
+    const errorId = `${id}-error`;
 
-  return (
-    <Flex alignItems="center">
-      <StyledInput {...props} />
-      {icon && <InputIcon outerWidth={40} size={20} name={icon} />}
-    </Flex>
-  );
-};
+    return (
+      <>
+        {label && (
+          <LabelWrapper position="absolute">
+            <Label fontSize={12} htmlFor={id}>
+              {label}
+            </Label>
+          </LabelWrapper>
+        )}
+        <Flex alignItems="center">
+          <StyledInput
+            {...inputProps}
+            icon={icon}
+            ref={ref}
+            id={id}
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? errorId : undefined}
+          />
+          {icon && <InputIcon outerWidth={40} size={20} name={icon} />}
+        </Flex>
+        {error && (
+          <Box position="absolute">
+            <Span color="error" fontSize={12} id={errorId}>
+              {error}
+            </Span>
+          </Box>
+        )}
+      </>
+    );
+  }
+);
 
 export default Input;
