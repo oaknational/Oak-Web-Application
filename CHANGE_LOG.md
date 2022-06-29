@@ -1,3 +1,10 @@
+## [0.36.1](https://github.com/oaknational/Samara/compare/v0.36.0...v0.36.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* typo in signup form feedback ([d2c5a43](https://github.com/oaknational/Samara/commit/d2c5a431b6de15f3cc3d011ade2d95ffb36b7ecd))
+
 # [0.36.0](https://github.com/oaknational/Samara/compare/v0.35.0...v0.36.0) (2022-06-28)
 
 
