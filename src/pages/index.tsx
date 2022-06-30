@@ -33,11 +33,16 @@ const Home: FC = () => {
           </Heading>
         </GridArea>
         <GridArea colSpan={[12, 12, 4]}>
-          <Card background={"white"} mt={48}>
+          <CardAsLink
+            ariaLabel="Onboarding page: Choose teacher or pupil view"
+            href={"/onBoarding"}
+            background={"white"}
+            mt={48}
+          >
             <Heading fontSize={20} tag={"h2"}>
               Use Oak in Beta
             </Heading>
-          </Card>
+          </CardAsLink>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
