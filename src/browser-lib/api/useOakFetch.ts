@@ -31,7 +31,7 @@ function useOakFetch() {
 
     if (!response.ok) {
       const error = await response.json();
-
+      // @todo OakError
       throw new Error(error.message);
     }
 

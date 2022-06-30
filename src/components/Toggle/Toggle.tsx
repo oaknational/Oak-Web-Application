@@ -24,6 +24,10 @@ export type ToggleStyleConfig = {
   };
 };
 
+const Label = styled.label<{ disabled?: boolean }>`
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+`;
+
 const SwitchInput = styled.input`
   opacity: 0.01;
 `;
@@ -46,8 +50,7 @@ const SwitchSlider = styled.span<Pick<ToggleProps, "disabled">>`
     position: absolute;
     width: 16px;
     height: 16px;
-    transform: ${(props) =>
-      props.disabled ? "translateX(16px)" : "translateX(4px)"};
+    transform: translateX(4px);
     bottom: 8px;
     background-color: ${(props) =>
       props.disabled
@@ -103,8 +106,8 @@ const Toggle: FC<ToggleProps> = ({
   onChange,
 }) => {
   return (
-    <label>
-      <Flex justifyContent={"center"}>
+    <Label disabled={disabled}>
+      <Flex justifyContent="flex-start">
         <LabelText checked={!checked} disabled={disabled} mt={4} mr={8}>
           {labelOff}
         </LabelText>
@@ -124,7 +127,7 @@ const Toggle: FC<ToggleProps> = ({
           {labelOn}
         </LabelText>
       </Flex>
-    </label>
+    </Label>
   );
 };
 export default Toggle;

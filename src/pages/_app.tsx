@@ -2,6 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
+import { OverlayProvider } from "@react-aria/overlays";
 
 import GlobalStyle from "../styles/GlobalStyle";
 import { AuthProvider } from "../context/Auth";
@@ -11,6 +12,8 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../context/Bookmarks";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
+import CookieBanner from "../components/CookieConsent/CookieBanner";
+import { CookieConsentsProvider } from "../context/CookieConsents/CookieConsents";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApolloClient();
@@ -25,8 +28,13 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
             <BookmarksProvider>
               <SearchProvider>
                 <ThemeProvider theme={theme}>
-                  <DefaultSeo />
-                  <Component {...pageProps} />
+                  <OverlayProvider>
+                    <CookieConsentsProvider>
+                      <DefaultSeo />
+                      <Component {...pageProps} />
+                      <CookieBanner />
+                    </CookieConsentsProvider>
+                  </OverlayProvider>
                 </ThemeProvider>
               </SearchProvider>
             </BookmarksProvider>

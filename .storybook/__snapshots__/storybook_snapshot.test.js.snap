@@ -2704,33 +2704,35 @@ Array [
       }
     }
   >
-    <label>
+    <label
+      className="sc-3e7bae67-0 bZucQR"
+    >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD fhFjVk"
       >
         <p
           checked={true}
-          className="sc-20ccf123-0 sc-56d2f2bf-3 bGwizT jlLAtS"
+          className="sc-20ccf123-0 sc-3e7bae67-4 bGwizT fMJidq"
         >
           Label off
         </p>
         <div
-          className="sc-56d2f2bf-2 haRHuu"
+          className="sc-3e7bae67-3 ePGxGg"
         >
           <input
             checked={false}
-            className="sc-56d2f2bf-0 ekWfQm"
+            className="sc-3e7bae67-1 BzwtQ"
             data-testid="toggle"
             onChange={[Function]}
             type="checkbox"
           />
           <span
-            className="sc-56d2f2bf-1 dPjkAC"
+            className="sc-3e7bae67-2 euvoBp"
           />
         </div>
         <p
           checked={false}
-          className="sc-20ccf123-0 sc-56d2f2bf-3 bHKBgY dKYeGi"
+          className="sc-20ccf123-0 sc-3e7bae67-4 bHKBgY fMvJbO"
         >
           Label on
         </p>
@@ -2758,36 +2760,39 @@ Array [
       }
     }
   >
-    <label>
+    <label
+      className="sc-3e7bae67-0 iEvA-dS"
+      disabled={true}
+    >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD eqImRB"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD fhFjVk"
       >
         <p
           checked={true}
-          className="sc-20ccf123-0 sc-56d2f2bf-3 bGwizT iIesTK"
+          className="sc-20ccf123-0 sc-3e7bae67-4 bGwizT iXwfku"
           disabled={true}
         >
           Label off
         </p>
         <div
-          className="sc-56d2f2bf-2 haRHuu"
+          className="sc-3e7bae67-3 ePGxGg"
         >
           <input
             checked={false}
-            className="sc-56d2f2bf-0 ekWfQm"
+            className="sc-3e7bae67-1 BzwtQ"
             data-testid="toggle"
             disabled={true}
             onChange={[Function]}
             type="checkbox"
           />
           <span
-            className="sc-56d2f2bf-1 jFDbdt"
+            className="sc-3e7bae67-2 gXfrnV"
             disabled={true}
           />
         </div>
         <p
           checked={false}
-          className="sc-20ccf123-0 sc-56d2f2bf-3 bHKBgY iMpFkq"
+          className="sc-20ccf123-0 sc-3e7bae67-4 bHKBgY jyKUce"
           disabled={true}
         >
           Label on
