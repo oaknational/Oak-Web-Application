@@ -10,7 +10,6 @@ type DropDownSelectProps = {
   name: string;
   placeholder: string;
   label: string;
-  selectedKey: SelectedKey;
   icon?: IconName;
   onChange: (key: SelectedKey) => void;
 };
@@ -21,7 +20,6 @@ const DropDownSelect: FC<DropDownSelectProps> = ({
   placeholder,
   label,
   onChange,
-  selectedKey,
   icon,
 }) => {
   return (
@@ -32,7 +30,6 @@ const DropDownSelect: FC<DropDownSelectProps> = ({
       name={name}
       items={listItems}
       icon={icon}
-      selectedKey={selectedKey}
       onSelectionChange={onChange}
     >
       {(item) => (

@@ -12,10 +12,8 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  const [selectedKey, setSelectedKey] = useState<SelectedKey>("");
-  return (
-    <Component {...args} selectedKey={selectedKey} onChange={setSelectedKey} />
-  );
+  const [, setSelectedKey] = useState<SelectedKey>("");
+  return <Component {...args} onChange={setSelectedKey} />;
 };
 
 export const DropDownSelect = Template.bind({});

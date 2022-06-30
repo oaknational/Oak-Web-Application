@@ -56,6 +56,11 @@ const Button = styled(UnstyledButton)<ButtonProps>`
   width: 100%;
   text-align: left;
   font-size: 16px;
+
+  &:focus {
+    outline: 1px dotted #212121;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
 `;
 
 export const Label = styled.label`

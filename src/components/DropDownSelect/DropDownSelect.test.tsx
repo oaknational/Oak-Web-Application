@@ -3,8 +3,6 @@ import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import { SelectedKey } from "./DropDownSelect";
-
 import DropDownSelect from ".";
 
 const roles = [
@@ -14,13 +12,11 @@ const roles = [
   { id: 4, item: "Other" },
 ];
 
+const setSelectedKey = () => {
+  console.log("press");
+};
 describe("select", () => {
   it("renders a drop down select", () => {
-    const value = "Teacher";
-    const setSelectedKey = () => {
-      console.log("press");
-    };
-
     renderWithProviders(
       <DropDownSelect
         data-testid={"select"}
@@ -28,7 +24,6 @@ describe("select", () => {
         name={"Name"}
         placeholder={"Placeholder"}
         label={"select me"}
-        selectedKey={value}
         onChange={setSelectedKey}
       />
     );
@@ -38,12 +33,7 @@ describe("select", () => {
     expect(select).toBeInTheDocument();
   });
 
-  it("renders a span with selected value", () => {
-    const value = "Teacher";
-    const setSelectedKey = () => {
-      console.log("press");
-    };
-
+  it("renders a span with selected value", async () => {
     renderWithProviders(
       <DropDownSelect
         data-testid={"select"}
@@ -51,22 +41,23 @@ describe("select", () => {
         name={"Name"}
         placeholder={"Placeholder"}
         label={"select me"}
-        selectedKey={value}
         onChange={setSelectedKey}
       />
     );
 
+    const user = userEvent.setup();
+
+    await user.tab();
+    await user.keyboard("{Enter}");
+    await user.keyboard("{arrowdown}");
+    await user.keyboard("{Enter}");
+
     const buttonSpan = screen.getByTestId("select-span").textContent;
 
-    expect(buttonSpan).toEqual("Teacher");
+    expect(buttonSpan).toEqual("Parent");
   });
 
   it("Button span value changes from keyboard controls ", async () => {
-    let value: SelectedKey = "Teacher";
-    const setSelectedKey = (key: SelectedKey) => {
-      value = key;
-    };
-
     const { rerender } = renderWithProviders(
       <DropDownSelect
         data-testid={"select"}
@@ -74,7 +65,6 @@ describe("select", () => {
         name={"Name"}
         placeholder={"Placeholder"}
         label={"select me"}
-        selectedKey={value}
         onChange={setSelectedKey}
       />
     );
@@ -93,7 +83,6 @@ describe("select", () => {
         name={"Name"}
         placeholder={"Placeholder"}
         label={"select me"}
-        selectedKey={value}
         onChange={setSelectedKey}
       />
     );
