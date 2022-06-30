@@ -1,5 +1,6 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
+import "whatwg-fetch";
 
 // Bugsnag.getPlugin("react")?.createErrorBoundary(React);
 jest.mock("@bugsnag/js", () => ({

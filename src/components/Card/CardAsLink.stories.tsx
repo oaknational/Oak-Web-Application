@@ -41,7 +41,7 @@ export const CardAsLinkIcon: ComponentStory<typeof Component> = (args) => (
         justifyContent={"center"}
         alignItems="center"
       >
-        <Icon name={"ChevronRight"} size={100} />
+        <Icon name={"ChevronRight"} size={80} />
         <Heading mt={0} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
           Classroom
         </Heading>
@@ -58,7 +58,7 @@ export const CardAsLinkIconText: ComponentStory<typeof Component> = (args) => (
         justifyContent={"center"}
         alignItems="center"
       >
-        <Icon name={"ChevronRight"} size={100} />
+        <Icon name={"ChevronRight"} size={80} />
         <Heading mt={0} mb={24} fontSize={24} tag={"h5"} color={"grey8"}>
           Classroom
         </Heading>

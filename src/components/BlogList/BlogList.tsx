@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, Fragment } from "react";
 
 import Flex from "../Flex";
 import Icon from "../Icon";
@@ -30,7 +30,7 @@ const BlogList: FC<BlogListProps> = (props) => {
         justifyContent={"space-between"}
       >
         <Flex flexDirection={"row"} alignItems="center">
-          <Icon name="Newspaper" mr={16} size={36} />
+          <Icon name="Newspaper" mr={16} size={40} />
           <Heading fontSize={24} tag={titleTag}>
             {title}
           </Heading>
@@ -49,10 +49,10 @@ const BlogList: FC<BlogListProps> = (props) => {
         </Flex>
       </Flex>
       {items.map((item, i) => (
-        <>
-          <BlogListItem key={`BlogList-BlogListItem-${item.href}`} {...item} />
+        <Fragment key={`BlogList-BlogListItem-${i}`}>
+          <BlogListItem {...item} />
           {i < items.length - 1 && <Hr />}
-        </>
+        </Fragment>
       ))}
     </Flex>
   );
