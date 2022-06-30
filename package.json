@@ -59,7 +59,9 @@
     "next-seo": "^5.4.0",
     "node-fetch": "^2.6.7",
     "react": "17.0.2",
+    "react-aria": "^3.17.0",
     "react-dom": "17.0.2",
+    "react-stately": "^3.15.0",
     "react-hook-form": "^7.32.2",
     "styled-components": "^5.3.5",
     "zod": "^3.14.3"
