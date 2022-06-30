@@ -76,10 +76,10 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" borderRadius={36} />
+      <StyledComponent data-testid="test" borderRadius={32} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("border-radius: 36px");
+    expect(getByTestId("test")).toHaveStyle("border-radius: 32px");
   });
   // test("should correctly handle prop 'borderStyle'", async () => {
   //   const StyledComponent = styled.div`

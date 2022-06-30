@@ -1,11 +1,11 @@
 import { css, CSSProperties } from "styled-components";
 
-import { OakColorName } from "../theme/types";
+import { OakColorName, PixelSpacing } from "../theme/types";
 import getColorByName from "../themeHelpers/getColorByName";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type BorderValue = string | number;
+type BorderValue = PixelSpacing;
 type BorderValueResponsive = ResponsiveValues<BorderValue>;
 
 type BorderStyleProps = CSSProperties["borderStyle"];
