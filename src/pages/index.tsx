@@ -26,7 +26,7 @@ const Home: FC = () => {
           <Heading
             fontSize={48}
             tag={"h1"}
-            mt={64}
+            mt={80}
             data-testid="home-page-title"
           >
             Oak National Academy
