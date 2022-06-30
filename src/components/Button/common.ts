@@ -5,6 +5,7 @@ import {
 } from "react";
 
 import { OakColorName } from "../../styles/theme";
+import { PixelSpacing } from "../../styles/theme/types";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
@@ -32,7 +33,7 @@ export const buttonFlexDirectionMap: Record<
 };
 export const getButtonFlexDirection = (iconPosition: IconPosition) =>
   buttonFlexDirectionMap[iconPosition];
-export const buttonSizeHeightMap: Record<ButtonSize, number> = {
+export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_HEIGHT,
   large: LARGE_BUTTON_HEIGHT,
 };
@@ -42,12 +43,12 @@ export const getButtonBackground = (variant: ButtonVariant) =>
 export const getButtonColor = (variant: ButtonVariant) =>
   getColorByLocation((props) => props.theme.button[variant].text);
 
-const buttonPaddingMap: Record<ButtonSize, number> = {
+const buttonPaddingMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_PADDING_X,
   large: LARGE_BUTTON_PADDING_X,
 };
 export const getButtonPadding = (size: ButtonSize) => buttonPaddingMap[size];
-export const buttonIconSizeMap: Record<ButtonSize, number> = {
+export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_ICON_SIZE,
   large: LARGE_BUTTON_ICON_SIZE,
 };
