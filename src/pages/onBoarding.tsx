@@ -39,7 +39,7 @@ const OnBoarding: FC = () => {
             alignItems={"center"}
             mh={[24, 0, 0]}
             background={"white"}
-            href={""}
+            href={"/teacherHome"}
             ariaLabel={""}
           >
             <CardTitle textCenter title={"Teacher"} tag={"h2"}></CardTitle>
@@ -54,7 +54,7 @@ const OnBoarding: FC = () => {
             justifyContent={"center"}
             mh={[24, 0, 0]}
             background={"white"}
-            href={""}
+            href={"/pupilHome"}
             ariaLabel={""}
           >
             <CardTitle textCenter title={"Pupil"} tag={"h2"}></CardTitle>
