@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import OnBoarding from "../../pages/onBoarding";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
-describe("pages/beta.tsx", () => {
+describe("pages/onBoarding.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(<OnBoarding />);
 
