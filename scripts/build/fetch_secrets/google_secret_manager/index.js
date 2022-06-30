@@ -1,24 +1,23 @@
 // Import the Secret Manager client and instantiate it:
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
 
-const { getFullSecretName } = require("../helpers");
+const { getFullSecretName } = require("./helpers");
 
 /**
  * Verify credentials exist and return secret manager client
  */
 const getClient = () => {
-  if (!process.env.GOOGLE_SECRET_MANAGER_CLIENT_EMAIL) {
-    throw new Error("Please set env for GOOGLE_SECRET_MANAGER_CLIENT_EMAIL");
-  }
-  if (!process.env.GOOGLE_SECRET_MANAGER_PRIVATE_KEY) {
-    throw new Error("Please set env for GOOGLE_SECRET_MANAGER_PRIVATE_KEY");
+  if (!process.env.GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT) {
+    throw new Error("Please set env for GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT");
   }
 
+  console.log("Parsing GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT value");
+  const serviceAccount = JSON.parse(
+    process.env.GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT
+  );
+
   return new SecretManagerServiceClient({
-    credentials: {
-      client_email: process.env.GOOGLE_SECRET_MANAGER_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_SECRET_MANAGER_PRIVATE_KEY,
-    },
+    credentials: serviceAccount,
   });
 };
 
@@ -28,7 +27,7 @@ const getClient = () => {
  * @property {string[]} secretNames - List of secret names to be fetched.
  * @param {FetchSecretsProps} props
  * @typedef {Object.<string, string>} Secrets
- * @returns {Secrets}
+ * @returns {Promise<Secrets>}
  */
 async function fetchSecrets({ projectId, secretNames }) {
   const client = getClient();
@@ -43,18 +42,18 @@ async function fetchSecrets({ projectId, secretNames }) {
     (secretName) =>
       !allAvailableSecrets
         .map((secret) => secret.name)
-        .includes(getFullSecretName(secretName))
+        .includes(getFullSecretName(projectId, secretName))
   );
-  if (missingSecrets.length > 0) {
-    const message = `Oak.google_secret_manager the following secrets could not be found: \n${missingSecrets.join(
-      `\n`
-    )}`;
 
+  if (missingSecrets.length > 0) {
+    const message = `Oak.google_secret_manager the following secrets could not be found:\n${missingSecrets.join(
+      "\n"
+    )}`;
     console.warn(message);
   }
 
   const latestSecretValuePromises = secretNames.map(async (secretName) => {
-    const fullSecretName = getFullSecretName(secretName);
+    const fullSecretName = getFullSecretName(projectId, secretName);
 
     const [versions] = await client.listSecretVersions({
       parent: `${fullSecretName}`,

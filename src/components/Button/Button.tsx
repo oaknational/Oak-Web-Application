@@ -19,7 +19,7 @@ const StyledButton = styled(UnstyledButton)<ButtonStylesProps>`
 `;
 
 export type ButtonProps = CommonButtonProps & {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   htmlButtonProps?: HTMLButtonProps;
 };
 

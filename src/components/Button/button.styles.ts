@@ -22,6 +22,7 @@ export type ButtonStylesProps = MarginProps & {
   size: ButtonSize;
   iconPosition: IconPosition;
   variant: ButtonVariant;
+  fullWidth?: boolean;
 };
 export const getButtonStylesProps = (
   props: CommonButtonProps
@@ -30,12 +31,12 @@ export const getButtonStylesProps = (
     variant = DEFAULT_BUTTON_VARIANT,
     iconPosition = DEFAULT_ICON_POSITION,
     size = DEFAULT_BUTTON_SIZE,
+    fullWidth,
   } = props;
 
-  return { size, iconPosition, variant };
+  return { size, iconPosition, variant, fullWidth };
 };
 const buttonStyles = css<ButtonStylesProps>`
-  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +44,7 @@ const buttonStyles = css<ButtonStylesProps>`
   max-width: 100%;
 
   ${(props) => css`
+    width: ${props.fullWidth && "100%"};
     flex-direction: ${getButtonFlexDirection(props.iconPosition)};
     height: ${getButtonHeight(props.size)}px;
     border-radius: ${getButtonHeight(props.size) / 2}px;

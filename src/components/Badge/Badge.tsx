@@ -1,7 +1,12 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
-import { OakColorName, OakTheme, PropsWithTheme } from "../../styles/theme";
+import {
+  OakColorName,
+  OakTheme,
+  PropsWithTheme,
+  PixelSpacing,
+} from "../../styles/theme";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import Flex from "../Flex";
@@ -12,7 +17,7 @@ export type BadgeConfig = {
   circleSize: string;
   fontSize: string;
   // px currently in fitting with Icon api
-  iconSize: number;
+  iconSize: PixelSpacing;
   starColor: OakColorName;
   circleColor: OakColorName;
   textColor: OakColorName;

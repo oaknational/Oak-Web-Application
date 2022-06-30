@@ -8,6 +8,7 @@ const UnstyledButton = styled.button`
   font: inherit;
   cursor: pointer;
   text-align: left;
+  font-family: unset;
 `;
 
 export default UnstyledButton;

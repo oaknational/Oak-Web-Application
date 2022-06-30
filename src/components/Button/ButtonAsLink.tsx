@@ -17,7 +17,7 @@ import {
 const StyledA = styled.a<ButtonStylesProps>`
   ${buttonStyles}
 `;
-type ButtonAsLinkProps = CommonButtonProps & {
+export type ButtonAsLinkProps = CommonButtonProps & {
   href: string;
   nextLinkProps?: Omit<LinkProps, "href">;
   htmlAnchorProps?: HTMLAnchorProps;

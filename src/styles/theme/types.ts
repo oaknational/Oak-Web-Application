@@ -4,7 +4,23 @@ import { z } from "zod";
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { LessonControlConfig } from "../../components/LessonControl";
+import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
+export type PixelSpacing =
+  | 0
+  | 4
+  | 8
+  | 12
+  | 16
+  | 20
+  | 24
+  | 32
+  | 40
+  | 48
+  | 56
+  | 64
+  | 72
+  | 80;
 /**
  * @todo parse theme with zod
  */
@@ -27,6 +43,13 @@ const OakColorNameZod = z.union([
   z.literal("calmAndWarm"),
   z.literal("niceAndSharp"),
   z.literal("deeperWins"),
+  z.literal("limeade"),
+  z.literal("madangGreen"),
+  z.literal("mustard"),
+  z.literal("peranoBlue"),
+  z.literal("powderBlue"),
+  z.literal("melaniePink"),
+  z.literal("error"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;
@@ -89,6 +112,7 @@ export type OakTheme = {
   badge: BadgeConfig;
   lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
+  toggle: ToggleStyleConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

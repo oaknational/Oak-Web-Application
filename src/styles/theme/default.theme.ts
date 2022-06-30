@@ -21,6 +21,13 @@ const theme: OakTheme = {
     calmAndWarm: "#ffd166",
     niceAndSharp: "#06d6a0",
     deeperWins: "#073b4c",
+    limeade: "#32be00",
+    madangGreen: "#bef2bd",
+    mustard: "#ffe555",
+    peranoBlue: "#a0b6f2",
+    powderBlue: "#b0e2de",
+    melaniePink: "#deb7d5",
+    error: "red",
   },
   contrastColors: {
     white: "black",
@@ -41,6 +48,13 @@ const theme: OakTheme = {
     calmAndWarm: "grey9",
     niceAndSharp: "grey8",
     deeperWins: "white",
+    limeade: "black",
+    madangGreen: "black",
+    mustard: "black",
+    peranoBlue: "black",
+    powderBlue: "black",
+    melaniePink: "black",
+    error: "white",
   },
   fonts: {
     // Paragraphs etc.
@@ -126,7 +140,7 @@ const theme: OakTheme = {
   },
   button: {
     disabled: {
-      background: "grey7",
+      background: "grey6",
       text: "white",
     },
     primary: {
@@ -174,6 +188,23 @@ const theme: OakTheme = {
     },
     disabled: {
       color: "grey4",
+    },
+  },
+  toggle: {
+    on: {
+      labelColor: "grey10",
+      background: "white",
+      switchColor: "grey8",
+    },
+    off: {
+      labelColor: "grey8",
+      background: "white",
+      switchColor: "grey8",
+    },
+    disabled: {
+      labelColor: "grey3",
+      background: "white",
+      switchColor: "grey6",
     },
   },
 };

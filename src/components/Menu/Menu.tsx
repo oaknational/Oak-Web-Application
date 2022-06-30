@@ -38,7 +38,7 @@ const Menu: FC = (props) => {
         onClick={() => {
           setExpanded(!expanded);
         }}
-        ml={"24px"}
+        ml={24}
       />
       <FlyOutMenu visible={expanded}>{children}</FlyOutMenu>
     </MenuNav>

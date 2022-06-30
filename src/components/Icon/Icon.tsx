@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "../../styles/themeHelpers/getColorByName";
-import { OakColorName } from "../../styles/theme";
+import { OakColorName, PixelSpacing } from "../../styles/theme";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import ChevronRight from "./ChevronRight.icon";
@@ -12,8 +12,13 @@ import Share from "./Share.icon";
 import Star from "./Star.icon";
 import Search from "./Search.icon";
 import Home from "./Home.icon";
+import Newspaper from "./Newspaper.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
+import Play from "./Play.icon";
+import GraduationCap from "./GraduationCap.icon";
+import University from "./University.icon";
+import PaperPlane from "./PaperPlane.icon";
 import Hamburger from "./HamburgerIcon";
 
 export const ICON_NAMES = [
@@ -24,8 +29,13 @@ export const ICON_NAMES = [
   "Star",
   "Search",
   "Home",
+  "Newspaper",
   "Tick",
   "ArrowRight",
+  "Play",
+  "GraduationCap",
+  "University",
+  "PaperPlane",
   "Hamburger",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
@@ -37,8 +47,13 @@ export const icons: Record<IconName, FC> = {
   Star,
   Search,
   Home,
+  Newspaper,
   Tick,
   ArrowRight,
+  Play,
+  GraduationCap,
+  University,
+  PaperPlane,
   Hamburger,
 };
 
@@ -68,11 +83,11 @@ type IconProps = MarginProps & {
   /**
    * size in pixels is the value for width and height if they are not separately provided
    */
-  size?: number;
-  width?: number;
-  height?: number;
-  outerWidth?: number;
-  outerHeight?: number;
+  size?: PixelSpacing;
+  width?: PixelSpacing;
+  height?: PixelSpacing;
+  outerWidth?: PixelSpacing;
+  outerHeight?: PixelSpacing;
   /**
    * by default, the color will take the css `color` value of its closest ancester
    * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
@@ -80,6 +95,12 @@ type IconProps = MarginProps & {
    */
   color?: OakColorName;
 };
+/**
+ * The `<Icon />` component should be the go to component wherever you seen an
+ * icon.
+ * The exception to this is if the icon is clickable, in which case you should
+ * use an `<IconButton />` component (which uses `<Icon />` internally).
+ */
 const Icon: FC<IconProps> = (props) => {
   const { name, size = 24, width, height, color, ...rootProps } = props;
   const IconComponent = icons[name];

@@ -10,9 +10,7 @@ export default {
 } as ComponentMeta<typeof Breadcrumbs>;
 
 const Template: ComponentStory<typeof Breadcrumbs> = (args) => (
-  <div>
-    <Breadcrumbs breadcrumbs={args.breadcrumbs} />
-  </div>
+  <Breadcrumbs {...args} />
 );
 
 export const BreadcrumbExample = Template.bind({});

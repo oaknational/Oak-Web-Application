@@ -1,29 +1,12 @@
-import { render } from "@testing-library/react";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import { HeadingTag } from "./Typography";
-
-import { Heading, Text } from ".";
+import Typography from "./Typography";
 
 describe("Typography", () => {
-  test.each([["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"]])(
-    "Heading should correctly render %s tag",
-    async (tag) => {
-      const { getByRole } = render(
-        <Heading tag={tag as HeadingTag} size={4} />
-      );
-
-      expect(getByRole("heading", { level: 1 })).toBeTruthy();
-    }
-  );
-  test("Heading should be correct size", async () => {
-    const { getByTestId } = render(
-      <Heading data-testid="test" size={1} tag="h1" />
+  test("Typography should be the correct size", async () => {
+    const { getByTestId } = renderWithProviders(
+      <Typography data-testid="test" fontSize={12} />
     );
-
-    expect(getByTestId("test")).toHaveStyle("font-size: 56px");
-  });
-  test("Text should be the correct size", async () => {
-    const { getByTestId } = render(<Text data-testid="test" size={4} />);
 
     expect(getByTestId("test")).toHaveStyle("font-size: 12px");
   });

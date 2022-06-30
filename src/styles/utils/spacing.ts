@@ -1,8 +1,10 @@
 import { css } from "styled-components";
 
+import { PixelSpacing } from "../theme/types";
+
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SpacingValue = string | number;
+type SpacingValue = "auto" | PixelSpacing;
 type SpacingValues = ResponsiveValues<SpacingValue>;
 export type PaddingProps = {
   pa?: SpacingValues;
@@ -22,7 +24,11 @@ export type MarginProps = {
   mt?: SpacingValues;
   mb?: SpacingValues;
 };
-const parse = (value?: string | number) => {
+export type GridGapProps = {
+  rg?: SpacingValues;
+  cg?: SpacingValues;
+};
+const parse = (value?: SpacingValue) => {
   switch (typeof value) {
     case "string":
       return value;
@@ -76,6 +82,12 @@ const marginTop = css<{ mt?: SpacingValues }>`
 const marginBottom = css<{ mb?: SpacingValues }>`
   ${responsive("margin-bottom", (props) => props.mb, parse)}
 `;
+const gridRowGap = css<{ rg?: SpacingValues }>`
+  ${responsive("grid-row-gap", (props) => props.rg, parse)}
+`;
+const gridColGap = css<{ cg?: SpacingValues }>`
+  ${responsive("grid-column-gap", (props) => props.cg, parse)}
+`;
 
 export const margin = css<MarginProps>`
   ${marginAll}
@@ -95,6 +107,11 @@ export const padding = css<PaddingProps>`
   ${paddingRight}
   ${paddingTop}
   ${paddingBottom}
+`;
+
+export const gridGap = css<GridGapProps>`
+  ${gridRowGap}
+  ${gridColGap}
 `;
 
 export type SpacingProps = PaddingProps & MarginProps;
