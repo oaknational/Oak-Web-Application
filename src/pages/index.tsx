@@ -124,7 +124,7 @@ const Home: FC = () => {
             <CardTitle
               icon="Home"
               iconPosition="leading"
-              iconSize={34}
+              iconSize={32}
               tag="h2"
               title="About Oak Academy"
             />
@@ -156,7 +156,7 @@ const Home: FC = () => {
             <CardTitle
               icon="Home"
               iconPosition="leading"
-              iconSize={34}
+              iconSize={32}
               tag="h2"
               title="Need some help?"
             />

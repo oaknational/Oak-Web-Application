@@ -6,6 +6,21 @@ import { CheckboxConfig } from "../../components/Checkbox";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
+export type PixelSpacing =
+  | 0
+  | 4
+  | 8
+  | 12
+  | 16
+  | 20
+  | 24
+  | 32
+  | 40
+  | 48
+  | 56
+  | 64
+  | 72
+  | 80;
 /**
  * @todo parse theme with zod
  */

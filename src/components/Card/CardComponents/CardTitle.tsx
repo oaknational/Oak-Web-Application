@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { PixelSpacing } from "../../../styles/theme";
 import Flex from "../../Flex";
 import Icon, { IconName } from "../../Icon";
 import Heading, { HeadingTag } from "../../Typography/Heading";
@@ -26,7 +27,7 @@ export type CardTitleProps = {
   tag: HeadingTag;
   icon?: IconName;
   iconPosition?: IconPosition;
-  iconSize?: number;
+  iconSize?: PixelSpacing;
   textCenter?: boolean;
 };
 
