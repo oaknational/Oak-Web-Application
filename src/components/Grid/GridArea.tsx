@@ -8,8 +8,6 @@ type GridAreaProps = {
   colSpan: Array<ColSpans>;
   rowSpan?: number;
   order?: Array<number>;
-  gridColumnStart?: Array<number>;
-  gridColumnEnd?: Array<number>;
 };
 
 const GridArea = styled.div<GridAreaProps>`
@@ -27,16 +25,6 @@ const GridArea = styled.div<GridAreaProps>`
   )};
   ${responsive("grid-row", (props) =>
     props.rowSpan ? `span ${props.rowSpan}` : "span 1"
-  )};
-  ${responsive(
-    "grid-column-start",
-    (props) => props.gridColumnStart,
-    (value) => `${value}`
-  )};
-  ${responsive(
-    "grid-column-end",
-    (props) => props.gridColumnStart,
-    (value) => `${value}`
   )};
 `;
 
