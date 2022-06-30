@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "../../styles/themeHelpers/getColorByName";
-import { OakColorName } from "../../styles/theme";
+import { OakColorName, PixelSpacing } from "../../styles/theme";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import ChevronRight from "./ChevronRight.icon";
@@ -80,11 +80,11 @@ type IconProps = MarginProps & {
   /**
    * size in pixels is the value for width and height if they are not separately provided
    */
-  size?: number;
-  width?: number;
-  height?: number;
-  outerWidth?: number;
-  outerHeight?: number;
+  size?: PixelSpacing;
+  width?: PixelSpacing;
+  height?: PixelSpacing;
+  outerWidth?: PixelSpacing;
+  outerHeight?: PixelSpacing;
   /**
    * by default, the color will take the css `color` value of its closest ancester
    * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
