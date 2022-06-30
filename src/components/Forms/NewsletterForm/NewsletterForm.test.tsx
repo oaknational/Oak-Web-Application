@@ -2,6 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
+import OakError from "../../../errors/OakError";
 
 import NewsletterForm from ".";
 
@@ -59,7 +60,7 @@ describe("NewsletterForm", () => {
     await user.tab();
     const description = computeAccessibleDescription(input);
 
-    expect(description).toBe("Name must contain few than 60 charaters");
+    expect(description).toBe("Name must contain fewer than 60 charaters");
   });
   test("should display error hint on blur if no email is entered", async () => {
     const { getByPlaceholderText } = renderWithProviders(
@@ -113,8 +114,9 @@ describe("NewsletterForm", () => {
 
     expect(onSubmit).not.toHaveBeenCalled();
   });
-  test("should display error if thrown from onSubmit() function", async () => {
-    const onSubmit = () => Promise.reject(new Error("Error from the api"));
+  test("should display correct message if OakError thrown from onSubmit()", async () => {
+    const onSubmit = () =>
+      Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByLabelText, getByPlaceholderText, getByRole } =
       renderWithProviders(<NewsletterForm onSubmit={onSubmit} />);
 
@@ -127,6 +129,24 @@ describe("NewsletterForm", () => {
     await user.click(submit);
 
     const error = getByRole("alert");
-    expect(error).toHaveTextContent("Error from the api");
+    expect(error).toHaveTextContent(
+      "Thank you, that's been received, but please check as your email doesn't look quite right."
+    );
+  });
+  test("should display default message if no OakError", async () => {
+    const onSubmit = () => Promise.reject();
+    const { getByLabelText, getByPlaceholderText, getByRole } =
+      renderWithProviders(<NewsletterForm onSubmit={onSubmit} />);
+
+    const user = userEvent.setup();
+    const name = getByPlaceholderText("Name");
+    await user.type(name, "joe bloggs");
+    const email = getByPlaceholderText("Email Address");
+    await user.type(email, "joebloggs@example.com");
+    const submit = getByLabelText("Sign Up");
+    await user.click(submit);
+
+    const error = getByRole("alert");
+    expect(error).toHaveTextContent("An unknown error occurred");
   });
 });

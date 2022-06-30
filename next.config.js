@@ -86,6 +86,12 @@ module.exports = async (phase) => {
         process.env.HASURA_ADMIN_SECRET ||
         secretsFromNetwork.HASURA_ADMIN_SECRET,
 
+      // Hubspot
+      NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
+      NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID:
+        oakConfig.hubspot.newsletterFormId,
+      NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
+
       // Oak
       NEXT_PUBLIC_CLIENT_APP_BASE_URL: oakConfig.oak.appBaseUrl,
       NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,

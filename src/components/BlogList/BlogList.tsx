@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, Fragment } from "react";
 
 import Flex from "../Flex";
 import Icon from "../Icon";
@@ -49,10 +49,10 @@ const BlogList: FC<BlogListProps> = (props) => {
         </Flex>
       </Flex>
       {items.map((item, i) => (
-        <>
-          <BlogListItem key={`BlogList-BlogListItem-${item.href}`} {...item} />
+        <Fragment key={`BlogList-BlogListItem-${i}`}>
+          <BlogListItem {...item} />
           {i < items.length - 1 && <Hr />}
-        </>
+        </Fragment>
       ))}
     </Flex>
   );
