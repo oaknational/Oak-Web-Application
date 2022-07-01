@@ -16,7 +16,7 @@ import { locators as headerLocators } from "./sections/header.section";
  * @returns The absolute URL of the lesson.
  */
 export const getPageUrl = (slug: string) => {
-  const relativeUrl = `/lessons/${slug}`;
+  const relativeUrl = `/beta/lessons/${slug}`;
   return _getPageUrl(relativeUrl);
 };
 
