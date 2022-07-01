@@ -3253,6 +3253,417 @@ Array [
 ]
 `;
 
+exports[`Storyshots Navigation/Key Stage Nav Big Input 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <nav>
+    <div
+      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gmIrXS"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE fYjUUm"
+      >
+        <a
+          aria-label="Early Years"
+          className="sc-608180b1-0 HsvRz"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Early Years"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-6748a30-0 bEThyA"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-6748a30-1 cMWOsJ"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polyline
+                    points="9 18 15 12 9 6"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            Early Years
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Reception
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE fYjUUm"
+      >
+        <a
+          aria-label="KS1"
+          className="sc-608180b1-0 HsvRz"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS1"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-6748a30-0 bEThyA"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-6748a30-1 cMWOsJ"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polyline
+                    points="9 18 15 12 9 6"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS1
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 1
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 2
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE fYjUUm"
+      >
+        <a
+          aria-label="KS2"
+          className="sc-608180b1-0 HsvRz"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS2"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-6748a30-0 bEThyA"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-6748a30-1 cMWOsJ"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polyline
+                    points="9 18 15 12 9 6"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS2
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 3
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 4
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 5
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 6
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE fYjUUm"
+      >
+        <a
+          aria-label="KS3"
+          className="sc-608180b1-0 HsvRz"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS3"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-6748a30-0 bEThyA"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-6748a30-1 cMWOsJ"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polyline
+                    points="9 18 15 12 9 6"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS3
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 7
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 8
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 9
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE fYjUUm"
+      >
+        <a
+          aria-label="KS4"
+          className="sc-608180b1-0 HsvRz"
+          href="/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS4"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-6748a30-0 bEThyA"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-6748a30-1 cMWOsJ"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polyline
+                    points="9 18 15 12 9 6"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS4
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 10
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 11
+          </a>
+        </p>
+      </div>
+    </div>
+  </nav>,
+]
+`;
+
 exports[`Storyshots Typography/Heading Heading 1`] = `
 Array [
   <link
