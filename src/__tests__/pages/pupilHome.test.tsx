@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import PupilHome from "../../pages/pupilHome";
+import PupilHome from "../../pages/beta/pupil";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
 describe("pages/pupilHome.tsx", () => {

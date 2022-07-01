@@ -18,6 +18,10 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const DropDownSelect = Template.bind({});
 
+DropDownSelect.parameters = {
+  storyshots: { disable: true },
+};
+
 DropDownSelect.args = {
   listItems: [
     { id: 1, item: "Teacher" },
@@ -32,6 +36,10 @@ DropDownSelect.args = {
 
 export const DropDownSelectIcon = Template.bind({});
 
+DropDownSelectIcon.parameters = {
+  storyshots: { disable: true },
+};
+
 DropDownSelectIcon.args = {
   listItems: [
     { id: 1, item: "Teacher" },
@@ -45,6 +53,10 @@ DropDownSelectIcon.args = {
 };
 
 export const DropDownSelectLabel = Template.bind({});
+
+DropDownSelectLabel.parameters = {
+  storyshots: { disable: true },
+};
 
 DropDownSelectLabel.args = {
   listItems: [

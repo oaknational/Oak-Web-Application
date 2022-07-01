@@ -1,20 +1,12 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Grid from "../components/Grid";
-import GridArea from "../components/Grid/GridArea";
-import CardAsLink from "../components/Card/CardAsLink";
-import CardTitle from "../components/Card/CardComponents/CardTitle";
-import { Heading, P } from "../components/Typography";
-import Flex from "../components/Flex";
-import getColorByName from "../styles/themeHelpers/getColorByName";
-
-const OnBoardingLayout = styled(Flex)`
-  width: 100vw;
-  height: 100vh;
-  margin: auto;
-  background-color: ${getColorByName("grey2")};
-`;
+import GridArea from "../../components/Grid/GridArea";
+import CardAsLink from "../../components/Card/CardAsLink";
+import CardTitle from "../../components/Card/CardComponents/CardTitle";
+import { Heading, P } from "../../components/Typography";
+import Flex from "../../components/Flex";
+import Grid from "../../components/Grid";
 
 const OnBoardingGrid = styled(Grid)`
   max-width: 648px;
@@ -22,10 +14,13 @@ const OnBoardingGrid = styled(Grid)`
 
 const OnBoarding: FC = () => {
   return (
-    <OnBoardingLayout
+    <Flex
+      width={"100%"}
+      flexGrow={1}
       flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"center"}
+      background={"grey2"}
     >
       <OnBoardingGrid rg={[16, 0, 0]} cg={16}>
         <GridArea colSpan={[12, 12, 12]}>
@@ -39,7 +34,7 @@ const OnBoarding: FC = () => {
             alignItems={"center"}
             mh={[24, 0, 0]}
             background={"white"}
-            href={"/teacherHome"}
+            href={"beta/teacher"}
             ariaLabel={""}
           >
             <CardTitle textCenter title={"Teacher"} tag={"h2"}></CardTitle>
@@ -54,7 +49,7 @@ const OnBoarding: FC = () => {
             justifyContent={"center"}
             mh={[24, 0, 0]}
             background={"white"}
-            href={"/pupilHome"}
+            href={"/beta/pupil"}
             ariaLabel={""}
           >
             <CardTitle textCenter title={"Pupil"} tag={"h2"}></CardTitle>
@@ -71,7 +66,7 @@ const OnBoarding: FC = () => {
           </P>
         </GridArea>
       </OnBoardingGrid>
-    </OnBoardingLayout>
+    </Flex>
   );
 };
 

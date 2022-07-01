@@ -35,7 +35,7 @@ const Home: FC = () => {
         <GridArea colSpan={[12, 12, 4]}>
           <CardAsLink
             ariaLabel="Onboarding page: Choose teacher or pupil view"
-            href={"/onBoarding"}
+            href={"/beta"}
             background={"white"}
             mt={48}
           >

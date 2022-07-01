@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import OnBoarding from "../../pages/onBoarding";
+import OnBoarding from "../../pages/beta";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
 describe("pages/onBoarding.tsx", () => {

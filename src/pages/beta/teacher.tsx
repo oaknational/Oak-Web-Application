@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import Layout from "../components/Layout";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import Grid from "../components/Grid";
-import GridArea from "../components/Grid/GridArea";
-import { Heading } from "../components/Typography";
+import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import Grid from "../../components/Grid";
+import GridArea from "../../components/Grid/GridArea";
+import Layout from "../../components/Layout";
+import { Heading } from "../../components/Typography";
 
-const PupilHome: FC = () => {
+const TeacherHome: FC = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -17,7 +17,7 @@ const PupilHome: FC = () => {
             mt={64}
             data-testid="home-page-title"
           >
-            Pupil Home
+            Teacher Home
           </Heading>
         </GridArea>
       </Grid>
@@ -25,4 +25,4 @@ const PupilHome: FC = () => {
   );
 };
 
-export default PupilHome;
+export default TeacherHome;

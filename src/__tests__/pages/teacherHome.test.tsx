@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
+import TeacherHome from "../../pages/beta/teacher";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import TeacherHome from "../../pages/teacherHome";
 
 describe("pages/teacherHome.tsx", () => {
   it("Renders correct title ", async () => {
