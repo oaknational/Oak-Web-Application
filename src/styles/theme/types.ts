@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
+import { SelectListBoxConfig } from "../../components/DropDownSelect/ListBox";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
@@ -99,6 +100,7 @@ type InputStateConfig = {
   placeholder: OakColorName;
   icon: OakColorName;
   border: OakColorName;
+  background: OakColorName;
 };
 
 export type OakTheme = {
@@ -112,6 +114,7 @@ export type OakTheme = {
   badge: BadgeConfig;
   lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
+  selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
 };
 
