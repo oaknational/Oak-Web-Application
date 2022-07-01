@@ -45,13 +45,13 @@ const SignInCallback: NextPage = () => {
 
   useEffect(() => {
     if (user) {
-      router.replace("/sign-in/success", undefined, { shallow: true });
+      router.replace("/beta/sign-in/success", undefined, { shallow: true });
     }
   }, [user, router]);
 
   useEffect(() => {
     if (error) {
-      router.replace("/sign-in/error", undefined, { shallow: true });
+      router.replace("/beta/sign-in/error", undefined, { shallow: true });
     }
   }, [error, router]);
 

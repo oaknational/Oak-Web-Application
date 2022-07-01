@@ -60,7 +60,7 @@ describe("pages/sign-in/callback.tsx", () => {
 
     await waitFor(() => {
       expect(routerReplace).toHaveBeenCalledWith(
-        "/sign-in/success",
+        "/beta/sign-in/success",
         undefined,
         {
           shallow: true,
@@ -91,7 +91,7 @@ describe("pages/sign-in/callback.tsx", () => {
     await user.click(button);
 
     await waitFor(() => {
-      expect(routerReplace).toHaveBeenCalledWith("/sign-in/error", undefined, {
+      expect(routerReplace).toHaveBeenCalledWith("/beta/sign-in/error", undefined, {
         shallow: true,
       });
     });
