@@ -1,13 +1,12 @@
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
 
-import useWindowDimensions from "../../hooks/useWindowsDimentions";
+import useWindowDimensions from "../../hooks/useWindowsSize";
 import IconButton from "../Button/IconButton";
 import CardAsLink from "../Card/CardAsLink";
 import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
 import { Heading, P, Span } from "../Typography";
-import { getBreakpoint } from "../../styles/utils/responsive";
 
 type LessonCardProps = {
   lessonTitle: string;
@@ -29,41 +28,40 @@ const LessonCarousel: FC<LessonCarouselProps> = ({
   currentLesson = 2,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { width } = useWindowDimensions();
+  const { breakpoint } = useWindowDimensions();
+
+  console.log("break", breakpoint);
 
   useEffect(() => {
     setCurrentIndex(currentLesson - 1);
   }, [currentLesson]);
 
-  const colSpan =
-    width <= getBreakpoint("small")
-      ? 12
-      : width < getBreakpoint("large")
-      ? 6
-      : 3;
+  // Sets the number of columns to display from window breakpoint
+  const carouselColSpan =
+    breakpoint === "small" ? 12 : breakpoint === "medium" ? 6 : 3; // large;
 
+  // Sets the number of lessosn to render into the carousel
   const numberOfLessons =
-    width <= getBreakpoint("small")
-      ? 1
-      : width < getBreakpoint("large")
-      ? 2
-      : 4;
+    breakpoint === "small" ? 1 : breakpoint === "medium" ? 2 : 4; // large;
 
+  // Slice lesson array by number of lessons
   const lessonsToShow = unit.slice(
     currentIndex,
     currentIndex + numberOfLessons
   );
 
+  // next lesson button
   const next = () => {
     setCurrentIndex(currentIndex + SLIDE_PER_CLICK);
   };
+  const shouldDisableNext =
+    currentIndex + SLIDE_PER_CLICK >= unit.length - (numberOfLessons - 1);
 
+  // prev lesson button
   const prev = () => {
     setCurrentIndex(currentIndex - SLIDE_PER_CLICK);
   };
 
-  const shouldDisableNext =
-    currentIndex + SLIDE_PER_CLICK >= unit.length - (numberOfLessons - 1);
   const shouldDisablePrev = currentIndex < SLIDE_PER_CLICK;
 
   return (
@@ -105,7 +103,7 @@ const LessonCarousel: FC<LessonCarouselProps> = ({
       <Grid role="group">
         {lessonsToShow.map(
           ({ lessonTitle, keyStage, subject, topic, index }) => (
-            <GridArea colSpan={colSpan}>
+            <GridArea colSpan={carouselColSpan}>
               <CardAsLink mr={8} background={"grey5"} href={"/"} ariaLabel={""}>
                 <Heading fontSize={16} tag={"h3"}>
                   {lessonTitle}

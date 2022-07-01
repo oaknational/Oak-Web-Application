@@ -3109,12 +3109,12 @@ Array [
         <p
           className="sc-20ccf123-0 lfGARk"
         >
-          1-2 / 8
+          2-3 / 8
         </p>
         <button
           aria-label="Show previous lesson"
           className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
-          disabled={true}
+          disabled={false}
           onClick={[Function]}
           size="small"
           title="Show previous lesson"
@@ -3226,7 +3226,7 @@ Array [
           <p
             className="sc-20ccf123-0 lfGARk"
           >
-            Lesson 1
+            Lesson 2
           </p>
         </div>
       </div>
@@ -3257,7 +3257,10 @@ Array [
           <p
             className="sc-20ccf123-0 lfGARk"
           >
-            Lesson 2
+            Lesson 3
+          </p>
+          <p>
+            ----
           </p>
         </div>
       </div>
