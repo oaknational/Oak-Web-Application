@@ -3263,7 +3263,9 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <nav>
+  <nav
+    aria-label="links to key stages and year groups."
+  >
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gmIrXS"
     >

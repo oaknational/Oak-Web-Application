@@ -26,7 +26,7 @@ type KeyStageNavProps = {
  */
 const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
   return (
-    <nav>
+    <nav aria-label="links to key stages and year groups.">
       <Flex flexDirection={["column", "row", "row"]}>
         {keyStages.map((keyStage) => (
           <Flex
