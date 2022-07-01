@@ -1337,7 +1337,7 @@ Array [
   >
     <label
       className="sc-5f02fb42-1 kwviDi"
-      id="react-aria7254741641-4"
+      id="react-aria-generated-id"
       onClick={[Function]}
     >
       Role select dropdown
@@ -1407,10 +1407,10 @@ Array [
       aria-controls={null}
       aria-expanded={false}
       aria-haspopup="listbox"
-      aria-labelledby="react-aria7254741641-4 react-aria7254741641-7"
+      aria-labelledby="react-aria-generated-id react-aria-generated-id"
       className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
       data-testid="select"
-      id="react-aria7254741641-3"
+      id="react-aria-generated-id"
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1432,7 +1432,7 @@ Array [
       >
         <span
           data-testid="select-span"
-          id="react-aria7254741641-7"
+          id="react-aria-generated-id"
         >
           What describes you best?
         </span>
@@ -1551,10 +1551,10 @@ Array [
       aria-controls={null}
       aria-expanded={false}
       aria-haspopup="listbox"
-      aria-labelledby="react-aria7254741641-14"
+      aria-labelledby="react-aria-generated-id"
       className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
       data-testid="select"
-      id="react-aria7254741641-10"
+      id="react-aria-generated-id"
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1600,7 +1600,7 @@ Array [
         </span>
         <span
           data-testid="select-span"
-          id="react-aria7254741641-14"
+          id="react-aria-generated-id"
         >
           What describes you best?
         </span>
@@ -1652,7 +1652,7 @@ Array [
   >
     <label
       className="sc-5f02fb42-1 kwviDi"
-      id="react-aria7254741641-18"
+      id="react-aria-generated-id"
       onClick={[Function]}
     >
       What describes you best?
@@ -1722,10 +1722,10 @@ Array [
       aria-controls={null}
       aria-expanded={false}
       aria-haspopup="listbox"
-      aria-labelledby="react-aria7254741641-18 react-aria7254741641-21"
+      aria-labelledby="react-aria-generated-id react-aria-generated-id"
       className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
       data-testid="select"
-      id="react-aria7254741641-17"
+      id="react-aria-generated-id"
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1747,7 +1747,7 @@ Array [
       >
         <span
           data-testid="select-span"
-          id="react-aria7254741641-21"
+          id="react-aria-generated-id"
         />
       </div>
       <span
