@@ -1,3 +1,16 @@
+# [0.37.0](https://github.com/oaknational/Samara/compare/v0.36.1...v0.37.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* single tab onto dropdown ([4f0d426](https://github.com/oaknational/Samara/commit/4f0d426c02027d93940a8e73bf635b016567eca9))
+* single tab onto dropdown ([d956ea7](https://github.com/oaknational/Samara/commit/d956ea70e3aff8ead4801e6883b4c6a4bd72309c))
+
+
+### Features
+
+* react aria select component ([50c4d23](https://github.com/oaknational/Samara/commit/50c4d2328708bb66fea4ec71cba08d15973e91ce))
+
 ## [0.36.1](https://github.com/oaknational/Samara/compare/v0.36.0...v0.36.1) (2022-06-29)
 
 

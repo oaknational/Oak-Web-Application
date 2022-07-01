@@ -4,4 +4,5 @@ export type {
   OakColorName,
   OakFontName,
   PropsWithTheme,
+  PixelSpacing,
 } from "./types";
