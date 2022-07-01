@@ -1322,6 +1322,466 @@ Array [
 ]
 `;
 
+exports[`Storyshots Form/Dropdown Drop Down Select 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
+  >
+    <label
+      className="sc-5f02fb42-1 kwviDi"
+      id="react-aria7254741641-4"
+      onClick={[Function]}
+    >
+      Role select dropdown
+    </label>
+    <div
+      aria-hidden={true}
+      onBlur={null}
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(50%)",
+          "height": 1,
+          "margin": "0 -1px -1px 0",
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    >
+      <input
+        onFocus={[Function]}
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+        tabIndex={-1}
+        type="text"
+      />
+      <label>
+        Role select dropdown
+        <select
+          name="Role select dropdown"
+          onChange={[Function]}
+          size={4}
+          tabIndex={-1}
+          value=""
+        >
+          <option />
+          <option
+            value="Teacher"
+          >
+            Teacher
+          </option>
+          <option
+            value="Parent"
+          >
+            Parent
+          </option>
+          <option
+            value="Pupil"
+          >
+            Pupil
+          </option>
+          <option
+            value="Other"
+          >
+            Other
+          </option>
+        </select>
+      </label>
+    </div>
+    <button
+      aria-controls={null}
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="react-aria7254741641-4 react-aria7254741641-7"
+      className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
+      data-testid="select"
+      id="react-aria7254741641-3"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <span
+          data-testid="select-span"
+          id="react-aria7254741641-7"
+        >
+          What describes you best?
+        </span>
+      </div>
+      <span
+        className="sc-6748a30-0 kBXscc"
+        height={24}
+        width={24}
+      >
+        <span
+          className="sc-6748a30-1 fsyIoZ"
+          height={24}
+          width={24}
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Dropdown Drop Down Select Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
+  >
+    <label
+      className="sc-5f02fb42-1 kwviDi"
+      onClick={[Function]}
+    />
+    <div
+      aria-hidden={true}
+      onBlur={null}
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(50%)",
+          "height": 1,
+          "margin": "0 -1px -1px 0",
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    >
+      <input
+        onFocus={[Function]}
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+        tabIndex={-1}
+        type="text"
+      />
+      <label>
+        What describes you best?
+        <select
+          name="Role select dropdown"
+          onChange={[Function]}
+          size={4}
+          tabIndex={-1}
+          value=""
+        >
+          <option />
+          <option
+            value="Teacher"
+          >
+            Teacher
+          </option>
+          <option
+            value="Parent"
+          >
+            Parent
+          </option>
+          <option
+            value="Pupil"
+          >
+            Pupil
+          </option>
+          <option
+            value="Other"
+          >
+            Other
+          </option>
+        </select>
+      </label>
+    </div>
+    <button
+      aria-controls={null}
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="react-aria7254741641-14"
+      className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
+      data-testid="select"
+      id="react-aria7254741641-10"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <span
+          className="sc-6748a30-0 cQHeUW"
+          height={24}
+          width={24}
+        >
+          <span
+            className="sc-6748a30-1 fsyIoZ"
+            height={24}
+            width={24}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              viewBox="0 0 36 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M34.5 0h-29C4.625 0 4 .688 4 1.5V2H1.5C.625 2 0 2.688 0 3.5V21c0 1.688 1.313 3 3 3h31.5c.813 0 1.5-.625 1.5-1.5v-21c0-.813-.688-1.5-1.5-1.5ZM2 21V4h2v17c0 .563-.5 1-1 1-.563 0-1-.438-1-1Zm32 1H5.812c.125-.25.125-.625.125-.938 0 0 .063 0 .063-.062V2h28v20ZM8.75 16h10.5a.76.76 0 0 0 .75-.75V4.75c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v10.5c0 .438.313.75.75.75ZM10 6h8v8h-8V6ZM8 19.25c0 .438.313.75.75.75h10.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v.5Zm14 0c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-8c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0 4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          data-testid="select-span"
+          id="react-aria7254741641-14"
+        >
+          What describes you best?
+        </span>
+      </div>
+      <span
+        className="sc-6748a30-0 kBXscc"
+        height={24}
+        width={24}
+      >
+        <span
+          className="sc-6748a30-1 fsyIoZ"
+          height={24}
+          width={24}
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Dropdown Drop Down Select Label 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
+  >
+    <label
+      className="sc-5f02fb42-1 kwviDi"
+      id="react-aria7254741641-18"
+      onClick={[Function]}
+    >
+      What describes you best?
+    </label>
+    <div
+      aria-hidden={true}
+      onBlur={null}
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(50%)",
+          "height": 1,
+          "margin": "0 -1px -1px 0",
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    >
+      <input
+        onFocus={[Function]}
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+        tabIndex={-1}
+        type="text"
+      />
+      <label>
+        What describes you best?
+        <select
+          name="Role select dropdown"
+          onChange={[Function]}
+          size={4}
+          tabIndex={-1}
+          value=""
+        >
+          <option />
+          <option
+            value="Teacher"
+          >
+            Teacher
+          </option>
+          <option
+            value="Parent"
+          >
+            Parent
+          </option>
+          <option
+            value="Pupil"
+          >
+            Pupil
+          </option>
+          <option
+            value="Other"
+          >
+            Other
+          </option>
+        </select>
+      </label>
+    </div>
+    <button
+      aria-controls={null}
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="react-aria7254741641-18 react-aria7254741641-21"
+      className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
+      data-testid="select"
+      id="react-aria7254741641-17"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <span
+          data-testid="select-span"
+          id="react-aria7254741641-21"
+        />
+      </div>
+      <span
+        className="sc-6748a30-0 kBXscc"
+        height={24}
+        width={24}
+      >
+        <span
+          className="sc-6748a30-1 fsyIoZ"
+          height={24}
+          width={24}
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </div>,
+]
+`;
+
 exports[`Storyshots Form/Input Input 1`] = `
 Array [
   <link
@@ -1858,13 +2318,13 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-2b2531d0-0 iuuLRW"
+    className="sc-b51aaf6d-0 bnDEYN"
   >
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 iRseBR bzAnZD"
     >
       <a
-        className="sc-2b2531d0-1 dOwEmI"
+        className="sc-b51aaf6d-1 jlBLNf"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
@@ -1963,7 +2423,7 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 gjwjEx lfYcjD"
     >
       <a
-        href="/sign-in"
+        href="/beta/sign-in"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >

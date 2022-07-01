@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import renderWithProviders from "../../../__helpers__/renderWithProviders";
 import SignInSuccess from "../../../../pages/beta/sign-in/success";
 
-describe("pages/sign-in/error.tsx", () => {
+describe("pages/beta/sign-in/error.tsx", () => {
   it("renders a success message", () => {
     renderWithProviders(<SignInSuccess />);
 

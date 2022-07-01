@@ -21,7 +21,7 @@ jest.mock("../../../context/Bookmarks/useBookmarks", () => ({
   default: (...args: []) => useBookmarks(...args),
 }));
 
-describe("pages/bookmarks.tsx", () => {
+describe("pages/beta/bookmarks.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();

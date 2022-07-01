@@ -24,7 +24,7 @@ const Bookmarks: FC = () => {
           const { slug } = lesson;
           return (
             <li key={slug}>
-              <Link href={`/lessons/${slug}`}>
+              <Link href={`beta/lessons/${slug}`}>
                 <a data-testid={`bookmark-${i}`}>{lesson.title}</a>
               </Link>
               <button onClick={() => removeBookmark(lesson.id)}>remove</button>

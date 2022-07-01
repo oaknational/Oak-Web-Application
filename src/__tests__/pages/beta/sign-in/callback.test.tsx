@@ -20,7 +20,7 @@ jest.mock("next/router", () => ({
   },
 }));
 
-describe("pages/sign-in/callback.tsx", () => {
+describe("pages/beta/sign-in/callback.tsx", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
@@ -51,7 +51,7 @@ describe("pages/sign-in/callback.tsx", () => {
       expect(signInWithEmailCallback).toHaveBeenCalledWith(testEmail);
     });
   });
-  it("redirects to /sign-in/success", async () => {
+  it("redirects to /beta/sign-in/success", async () => {
     renderWithProviders(
       <SignInCallback />,
       {},
@@ -69,7 +69,7 @@ describe("pages/sign-in/callback.tsx", () => {
     });
   });
 
-  it("redirects to /sign-in/error", async () => {
+  it("redirects to /beta/sign-in/error", async () => {
     const { getByRole, getByTestId } = renderWithProviders(
       <SignInCallback />,
       {},
@@ -91,9 +91,13 @@ describe("pages/sign-in/callback.tsx", () => {
     await user.click(button);
 
     await waitFor(() => {
-      expect(routerReplace).toHaveBeenCalledWith("/beta/sign-in/error", undefined, {
-        shallow: true,
-      });
+      expect(routerReplace).toHaveBeenCalledWith(
+        "/beta/sign-in/error",
+        undefined,
+        {
+          shallow: true,
+        }
+      );
     });
   });
 });

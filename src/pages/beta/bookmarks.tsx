@@ -21,7 +21,7 @@ const BookmarksPage: NextPage = () => {
       {!user ? (
         <p data-testid="anonymous-vistor-message">
           Currently bookmarks are only available for logged in users.{" "}
-          <Link href="/sign-in">Sign in</Link> to start adding bookmarks!
+          <Link href="/beta/sign-in">Sign in</Link> to start adding bookmarks!
         </p>
       ) : (
         <Bookmarks />

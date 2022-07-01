@@ -182,7 +182,9 @@ describe("auth/useAuth.tsx", () => {
     expect(getLocalStorageUser()).toBeNull();
   });
   it("should have the correct sign in callback url on client-side", async () => {
-    expect(getSignInCallbackUrl()).toEqual("http://localhost/beta/sign-in/callback");
+    expect(getSignInCallbackUrl()).toEqual(
+      "http://localhost/beta/sign-in/callback"
+    );
   });
   it("should throw if getSignInCallbackUrl() called on server-side", async () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

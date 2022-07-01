@@ -13,7 +13,7 @@ const testLesson = {
 const graphqlAllLessons = jest.fn(() => ({ lessons: [testLesson] }));
 const graphqlLessonsBySlug = jest.fn(() => ({ lessons: [testLesson] }));
 
-describe("pages/lessons/[lessonSlug].tsx", () => {
+describe("pages/beta/lessons/[lessonSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();

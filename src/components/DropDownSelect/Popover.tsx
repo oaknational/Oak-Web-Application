@@ -32,7 +32,7 @@ export function Popover(props: PopoverProps) {
       isOpen,
       onClose,
       shouldCloseOnBlur: true,
-      isDismissable: false
+      isDismissable: false,
     },
     popoverRef
   );

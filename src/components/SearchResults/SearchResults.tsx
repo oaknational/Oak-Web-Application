@@ -13,7 +13,7 @@ const SearchResults = (props: SearchResultsProps) => {
     const { title, id, key_stage_title, slug } = _source;
     return (
       <li key={id}>
-        <Link href={`/lessons/${slug}`}>
+        <Link href={`beta/lessons/${slug}`}>
           <a>
             {title} - <i>{key_stage_title}</i>
           </a>

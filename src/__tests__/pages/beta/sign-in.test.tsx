@@ -3,7 +3,7 @@ import { fireEvent, waitFor } from "@testing-library/react";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import SignIn from "../../../pages/beta/sign-in";
 
-describe("pages/sign-in.tsx", () => {
+describe("pages/beta/sign-in.tsx", () => {
   it("should contain email input", async () => {
     const { getByTestId } = renderWithProviders(<SignIn />);
 
