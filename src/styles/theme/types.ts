@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
-import { SelectListBoxConfig } from "../../components/DropDownSelect/ListBox";
+import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 

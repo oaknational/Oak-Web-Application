@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import DropDownSelect from ".";
+import DropdownSelect from ".";
 
 const roles = [
   { id: 1, item: "Teacher" },
@@ -18,7 +18,7 @@ const setSelectedKey = () => {
 describe("select", () => {
   it("renders a drop down select", () => {
     renderWithProviders(
-      <DropDownSelect
+      <DropdownSelect
         data-testid={"select"}
         listItems={roles}
         name={"Name"}
@@ -35,7 +35,7 @@ describe("select", () => {
 
   it("renders a span with selected value", async () => {
     renderWithProviders(
-      <DropDownSelect
+      <DropdownSelect
         data-testid={"select"}
         listItems={roles}
         name={"Name"}
@@ -59,7 +59,7 @@ describe("select", () => {
 
   it("Button span value changes from keyboard controls ", async () => {
     const { rerender } = renderWithProviders(
-      <DropDownSelect
+      <DropdownSelect
         data-testid={"select"}
         listItems={roles}
         name={"Name"}
@@ -77,7 +77,7 @@ describe("select", () => {
     await user.keyboard("{Enter}");
 
     rerender(
-      <DropDownSelect
+      <DropdownSelect
         data-testid={"select"}
         listItems={roles}
         name={"Name"}

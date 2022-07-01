@@ -1,11 +1,12 @@
 import { FC } from "react";
 
 import { IconName } from "../Icon/Icon";
-import { Select, Item, Label } from "../DropDownSelect/Select";
+
+import { Select, Item, Label } from "./Select";
 
 export type SelectedKey = string | number | undefined;
 
-type DropDownSelectProps = {
+type DropdownSelectProps = {
   listItems: Array<{ id: number; item: string }>;
   name: string;
   placeholder: string;
@@ -14,7 +15,7 @@ type DropDownSelectProps = {
   onChange: (key: SelectedKey) => void;
 };
 
-const DropDownSelect: FC<DropDownSelectProps> = ({
+const DropdownSelect: FC<DropdownSelectProps> = ({
   listItems,
   name,
   placeholder,
@@ -43,4 +44,4 @@ const DropDownSelect: FC<DropDownSelectProps> = ({
   );
 };
 
-export default DropDownSelect;
+export default DropdownSelect;

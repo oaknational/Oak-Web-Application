@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 
-import { SelectedKey } from "./DropDownSelect";
+import { SelectedKey } from "./DropdownSelect";
 
 import Component from ".";
 
@@ -16,9 +16,9 @@ const Template: ComponentStory<typeof Component> = (args) => {
   return <Component {...args} onChange={setSelectedKey} />;
 };
 
-export const DropDownSelect = Template.bind({});
+export const DropdownSelect = Template.bind({});
 
-DropDownSelect.args = {
+DropdownSelect.args = {
   listItems: [
     { id: 1, item: "Teacher" },
     { id: 2, item: "Parent" },
@@ -30,9 +30,9 @@ DropDownSelect.args = {
   label: "Role select dropdown",
 };
 
-export const DropDownSelectIcon = Template.bind({});
+export const DropdownSelectIcon = Template.bind({});
 
-DropDownSelectIcon.args = {
+DropdownSelectIcon.args = {
   listItems: [
     { id: 1, item: "Teacher" },
     { id: 2, item: "Parent" },
@@ -44,9 +44,9 @@ DropDownSelectIcon.args = {
   icon: "Newspaper",
 };
 
-export const DropDownSelectLabel = Template.bind({});
+export const DropdownSelectLabel = Template.bind({});
 
-DropDownSelectLabel.args = {
+DropdownSelectLabel.args = {
   listItems: [
     { id: 1, item: "Teacher" },
     { id: 2, item: "Parent" },
