@@ -16,7 +16,7 @@ import { locators as headerLocators } from "./sections/header.section";
  * @returns The absolute URL of the lesson.
  */
 export const getPageUrl = (slug: string) => {
-  const relativeUrl = `/lessons/${slug}`;
+  const relativeUrl = `/beta/lessons/${slug}`;
   return _getPageUrl(relativeUrl);
 };
 
@@ -24,7 +24,7 @@ export const getPageUrl = (slug: string) => {
  * The regex pattern for an expected lesson page URL.
  * This could be more sophisticated, but works.
  */
-export const PAGE_PATH_PATTERN = /^\/lessons\/[^/]+$/;
+export const PAGE_PATH_PATTERN = /^\/beta\/lessons\/[^/]+$/;
 
 /**
  * Given a page URL determine if it matches the expected pattern.

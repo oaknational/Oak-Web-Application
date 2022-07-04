@@ -23,7 +23,9 @@ const CheckboxLabel = styled.label<{ disabled: boolean }>`
   ${(props) =>
     props.disabled &&
     css`
-      color: ${getColorByLocation(({ theme }) => theme.checkbox.disabled.color)};
+      color: ${getColorByLocation(
+        ({ theme }) => theme.checkbox.disabled.color
+      )};
     `}
 
   input[type="checkbox"]:focus + svg {

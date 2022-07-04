@@ -1,3 +1,18 @@
+# [0.38.0](https://github.com/oaknational/Samara/compare/v0.37.0...v0.38.0) (2022-07-04)
+
+
+### Bug Fixes
+
+* add '/beta' prefix to sign-in redirect paths ([58fd707](https://github.com/oaknational/Samara/commit/58fd707c16c1fb7341d181d7e5959f3a59ab73a4))
+* e2e lesson page tests with /beta prefix ([3634fed](https://github.com/oaknational/Samara/commit/3634fed955af1c88d189957699cae023fec1050e))
+
+
+### Features
+
+* **Firebase:** configure hosting ([cf58907](https://github.com/oaknational/Samara/commit/cf5890780c59358c9385137ff6b4f99e3eddcece))
+* make app statically exportable ([f2f9e95](https://github.com/oaknational/Samara/commit/f2f9e95dcb0b1bbf7e381923a7c02310478c315e)), closes [#259](https://github.com/oaknational/Samara/issues/259)
+* **static gcp:** placeholder Cloudbuild config ([b86ac3e](https://github.com/oaknational/Samara/commit/b86ac3ee99675f011f295daa4a87e8bfe8167c57))
+
 # [0.37.0](https://github.com/oaknational/Samara/compare/v0.36.1...v0.37.0) (2022-06-30)
 
 

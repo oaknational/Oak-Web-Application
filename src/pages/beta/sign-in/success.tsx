@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import Flex from "../../components/Flex";
-import Layout from "../../components/Layout";
+import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import Flex from "../../../components/Flex";
+import Layout from "../../../components/Layout";
 
 const SignInSuccess: NextPage = () => {
   return (
