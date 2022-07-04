@@ -60,7 +60,7 @@ const AppHeader: FC = () => {
         {user ? (
           <UnstyledButton onClick={signOut}>Sign out</UnstyledButton>
         ) : (
-          <Link href="/sign-in">Sign in</Link>
+          <Link href="/beta/sign-in">Sign in</Link>
         )}
       </Flex>
     </StyledAppHeader>
