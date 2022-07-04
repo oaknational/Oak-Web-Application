@@ -673,10 +673,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
+    className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 sc-50bc936d-0 hYdVNV dzlzJH jbauLX hlAszE"
   >
     <a
-      className="sc-ebb794ea-0 eQtjsv"
+      className="sc-50bc936d-1 jwQpyB"
       href="/"
       target="_self"
     />
@@ -708,10 +708,10 @@ Array [
     }
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 sc-50bc936d-0 hYdVNV dzlzJH jbauLX hlAszE"
     >
       <a
-        className="sc-ebb794ea-0 eQtjsv"
+        className="sc-50bc936d-1 jwQpyB"
         href="/"
         target="_self"
       />
@@ -778,10 +778,10 @@ Array [
     }
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 hYdVNV dzlzJH jbauLX"
+      className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 sc-50bc936d-0 hYdVNV dzlzJH jbauLX hlAszE"
     >
       <a
-        className="sc-ebb794ea-0 eQtjsv"
+        className="sc-50bc936d-1 jwQpyB"
         href="/"
         target="_self"
       />
@@ -3074,198 +3074,302 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <section
-    aria-label="lesson carousel"
+  <div
+    style={
+      Object {
+        "backgroundColor": "lightgray",
+      }
+    }
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD Gexpx"
+      aria-label="Carousel of all the lessons included in this unit"
+      className="sc-2f0613b5-0 sc-a3c34836-0 fgHrrJ ftJGGH"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 hhGZmT ecMUFK"
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD Gexpx"
       >
-        <h3
-          className="sc-ef5f3f7-0 cGRJrK"
-          fontSize={24}
-          mr={12}
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 hhGZmT ecMUFK"
         >
-          More lessons from this unit
-        </h3>
-        <span
-          className="sc-1a42a0ba-0 klIWYB"
-          fontSize={16}
+          <h2
+            className="sc-ef5f3f7-0 cGRJrK"
+            fontSize={24}
+            mr={12}
+          >
+            More lessons from this unit
+          </h2>
+          <span
+            className="sc-1a42a0ba-0 klIWYB"
+            fontSize={16}
+          >
+            <a
+              href="/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              See all
+            </a>
+          </span>
+        </div>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 hhGZmT fEDQXN"
         >
-          <a
-            href="/"
+          <p
+            className="sc-20ccf123-0 lfGARk"
+          >
+            3-4 / 8
+          </p>
+          <button
+            aria-label="Show previous lesson"
+            className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
+            disabled={false}
             onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            See all
-          </a>
-        </span>
-      </div>
-      <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 hhGZmT fEDQXN"
-      >
-        <p
-          className="sc-20ccf123-0 lfGARk"
-        >
-          2-3 / 8
-        </p>
-        <button
-          aria-label="Show previous lesson"
-          className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
-          disabled={false}
-          onClick={[Function]}
-          size="small"
-          title="Show previous lesson"
-        >
-          <div
-            className="sc-ef16a28e-0 hbpwaj"
             size="small"
+            title="Show previous lesson"
           >
-            <span
-              className="sc-f36340aa-0 hEbPyH"
-              height={16}
-              width={16}
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
             >
               <span
-                className="sc-f36340aa-1 jowvMO"
+                className="sc-f36340aa-0 hEbPyH"
                 height={16}
                 width={16}
               >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
+                <span
+                  className="sc-f36340aa-1 jowvMO"
+                  height={16}
+                  width={16}
                 >
-                  <polyline
-                    points="9 18 15 12 9 6"
-                  />
-                </svg>
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <polyline
+                      points="9 18 15 12 9 6"
+                    />
+                  </svg>
+                </span>
               </span>
-            </span>
-          </div>
-        </button>
-        <button
-          aria-label="Show next lesson"
-          className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
-          disabled={false}
-          onClick={[Function]}
-          size="small"
-          title="Show next lesson"
-        >
-          <div
-            className="sc-ef16a28e-0 hbpwaj"
+            </div>
+          </button>
+          <button
+            aria-label="Show next lesson"
+            className="sc-da410035-0 sc-7c97ca8b-0 eaZurT hLLItC"
+            disabled={false}
+            onClick={[Function]}
             size="small"
+            title="Show next lesson"
           >
-            <span
-              className="sc-f36340aa-0 hEbPyH"
-              height={16}
-              width={16}
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
             >
               <span
-                className="sc-f36340aa-1 jowvMO"
+                className="sc-f36340aa-0 hEbPyH"
                 height={16}
                 width={16}
               >
-                <svg
-                  fill="none"
-                  height="100%"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
+                <span
+                  className="sc-f36340aa-1 jowvMO"
+                  height={16}
+                  width={16}
                 >
-                  <polyline
-                    points="9 18 15 12 9 6"
-                  />
-                </svg>
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <polyline
+                      points="9 18 15 12 9 6"
+                    />
+                  </svg>
+                </span>
               </span>
-            </span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        className="sc-61cd3008-0 dVghVz"
+        role="group"
+      >
+        <div
+          className="sc-9670dad6-0 GNfIc"
+          colSpan={6}
+        >
+          <div
+            aria-selected={true}
+            className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 sc-50bc936d-0 gkdgXi cYmhcc jbauLX hlAszE"
+          >
+            <a
+              aria-label="Macbeth"
+              className="sc-50bc936d-1 jwQpyB"
+              href="/tragedy"
+              target="_self"
+            />
+            <h3
+              className="sc-ef5f3f7-0 kIbkaN"
+              color="grey6"
+              fontSize={20}
+              mb={16}
+            >
+              <div
+                className="sc-dc108f60-0 cLZpLh"
+              >
+                <span
+                  className="sc-1a42a0ba-0 dKxamM"
+                >
+                  Shakespeare, tragedy and the tragic hero
+                </span>
+              </div>
+            </h3>
+            <div
+              className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
+              color="grey6"
+            >
+              <p
+                className="sc-20ccf123-0 sc-a168133f-0 hymTdU dzYQco"
+                color="grey6"
+                fontSize={14}
+              >
+                <a
+                  href="/keystage-3"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  KS3,
+                </a>
+              </p>
+              <p
+                className="sc-20ccf123-0 sc-a168133f-0 hymTdU dzYQco"
+                color="grey6"
+                fontSize={14}
+              >
+                <a
+                  href="/english"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  English,
+                </a>
+              </p>
+              <p
+                className="sc-20ccf123-0 sc-a168133f-0 hymTdU dzYQco"
+                color="grey6"
+                fontSize={14}
+              >
+                <a
+                  href="/macbeth"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Macbeth
+                </a>
+              </p>
+            </div>
+            <p
+              className="sc-20ccf123-0 hymTdU"
+              color="grey6"
+              fontSize={14}
+            >
+              Lesson 3
+            </p>
           </div>
-        </button>
-      </div>
-    </div>
-    <div
-      className="sc-61cd3008-0 dVghVz"
-      role="group"
-    >
-      <div
-        className="sc-9670dad6-0 GNfIc"
-        colSpan={6}
-      >
+        </div>
         <div
-          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 jElsmt eHPWZj jbauLX"
+          className="sc-9670dad6-0 GNfIc"
+          colSpan={6}
         >
-          <a
-            aria-label=""
-            className="sc-ebb794ea-0 eQtjsv"
-            href="/"
-            target="_self"
-          />
-          <h3
-            className="sc-ef5f3f7-0 croufm"
-            fontSize={16}
+          <div
+            aria-selected={false}
+            className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 sc-50bc936d-0 gkdgXi cYmhcc jbauLX hlAszE"
           >
-            Historical Context: James I, Witchcraft and Regicide
-          </h3>
-          <p
-            className="sc-20ccf123-0 lfGARk"
-          >
-            KS3, English, Macbeth
-          </p>
-          <p
-            className="sc-20ccf123-0 lfGARk"
-          >
-            Lesson 2
-          </p>
+            <a
+              aria-label="Macbeth"
+              className="sc-50bc936d-1 jwQpyB"
+              href="/macbeth"
+              target="_self"
+            />
+            <h3
+              className="sc-ef5f3f7-0 hVVfDt"
+              fontSize={20}
+              mb={16}
+            >
+              <div
+                className="sc-dc108f60-0 cLZpLh"
+              >
+                <span
+                  className="sc-1a42a0ba-0 dKxamM"
+                >
+                  Meeting Macbeth
+                </span>
+              </div>
+            </h3>
+            <div
+              className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
+            >
+              <p
+                className="sc-20ccf123-0 sc-a168133f-0 NKBXj dzYQco"
+                fontSize={14}
+              >
+                <a
+                  href="/keystage-3"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  KS3,
+                </a>
+              </p>
+              <p
+                className="sc-20ccf123-0 sc-a168133f-0 NKBXj dzYQco"
+                fontSize={14}
+              >
+                <a
+                  href="/english"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  English,
+                </a>
+              </p>
+              <p
+                className="sc-20ccf123-0 sc-a168133f-0 NKBXj dzYQco"
+                fontSize={14}
+              >
+                <a
+                  href="/macbeth"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Macbeth
+                </a>
+              </p>
+            </div>
+            <p
+              className="sc-20ccf123-0 NKBXj"
+              fontSize={14}
+            >
+              Lesson 4
+            </p>
+          </div>
         </div>
       </div>
-      <div
-        className="sc-9670dad6-0 GNfIc"
-        colSpan={6}
-      >
-        <div
-          className="sc-2f0613b5-0 sc-a3c34836-0 sc-9d6e3922-0 jElsmt eHPWZj jbauLX"
-        >
-          <a
-            aria-label=""
-            className="sc-ebb794ea-0 eQtjsv"
-            href="/"
-            target="_self"
-          />
-          <h3
-            className="sc-ef5f3f7-0 croufm"
-            fontSize={16}
-          >
-            Historical Context: James I, Witchcraft and Regicide
-          </h3>
-          <p
-            className="sc-20ccf123-0 lfGARk"
-          >
-            KS3, English, Macbeth
-          </p>
-          <p
-            className="sc-20ccf123-0 lfGARk"
-          >
-            Lesson 3
-          </p>
-          <p>
-            ----
-          </p>
-        </div>
-      </div>
     </div>
-  </section>,
+  </div>,
 ]
 `;
 

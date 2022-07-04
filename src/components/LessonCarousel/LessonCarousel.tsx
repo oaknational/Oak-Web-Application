@@ -1,19 +1,29 @@
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
+import styled from "styled-components";
 
 import useWindowDimensions from "../../hooks/useWindowsSize";
 import IconButton from "../Button/IconButton";
 import CardAsLink from "../Card/CardAsLink";
 import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
-import { Heading, P, Span } from "../Typography";
+import { Heading, HeadingTag, P, Span } from "../Typography";
+import LineClamp from "../LineClamp";
+
+const AnchorP = styled(P)`
+  z-index: 1;
+`;
 
 type LessonCardProps = {
-  lessonTitle: string;
-  keyStage: "KS1" | "KS2" | "KS3" | "KS4";
+  title: string;
+  slug: string;
+  keyStage: string;
+  keyStageSlug: string;
   subject: string;
+  subjectSlug: string;
   topic: string;
-  index: number;
+  topicSlug: string;
+  lessonNumber: number;
 };
 
 const SLIDE_PER_CLICK = 1;
@@ -21,16 +31,18 @@ const SLIDE_PER_CLICK = 1;
 export type LessonCarouselProps = {
   unit: LessonCardProps[];
   currentLesson: number;
+  titleTag: HeadingTag;
+  cardTitleTag: HeadingTag;
 };
 
 const LessonCarousel: FC<LessonCarouselProps> = ({
   unit,
-  currentLesson = 2,
+  currentLesson,
+  titleTag,
+  cardTitleTag,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { breakpoint } = useWindowDimensions();
-
-  console.log("break", breakpoint);
 
   useEffect(() => {
     setCurrentIndex(currentLesson - 1);
@@ -40,7 +52,7 @@ const LessonCarousel: FC<LessonCarouselProps> = ({
   const carouselColSpan =
     breakpoint === "small" ? 12 : breakpoint === "medium" ? 6 : 3; // large;
 
-  // Sets the number of lessosn to render into the carousel
+  // Sets the number of lessons to render into the carousel
   const numberOfLessons =
     breakpoint === "small" ? 1 : breakpoint === "medium" ? 2 : 4; // large;
 
@@ -65,14 +77,18 @@ const LessonCarousel: FC<LessonCarouselProps> = ({
   const shouldDisablePrev = currentIndex < SLIDE_PER_CLICK;
 
   return (
-    <section aria-label={"lesson carousel"}>
+    <Flex
+      pa={24}
+      flexDirection={"column"}
+      aria-label={"Carousel of all the lessons included in this unit"}
+    >
       <Flex justifyContent={"space-between"} alignItems={"center"}>
         <Flex
           alignItems={["flex-start", "flex-end"]}
           flexDirection={["column", "row"]}
           mb={32}
         >
-          <Heading mr={12} tag="h3" fontSize={24}>
+          <Heading mr={12} tag={titleTag} fontSize={24}>
             More lessons from this unit
           </Heading>
           <Span fontSize={16}>
@@ -97,26 +113,83 @@ const LessonCarousel: FC<LessonCarouselProps> = ({
             aria-label={"Show next lesson"}
             disabled={shouldDisableNext}
             ml={12}
+            mr={8}
           />
         </Flex>
       </Flex>
       <Grid role="group">
         {lessonsToShow.map(
-          ({ lessonTitle, keyStage, subject, topic, index }) => (
+          ({
+            title,
+            slug,
+            keyStage,
+            keyStageSlug,
+            subject,
+            subjectSlug,
+            topic,
+            topicSlug,
+            lessonNumber,
+          }) => (
             <GridArea colSpan={carouselColSpan}>
-              <CardAsLink mr={8} background={"grey5"} href={"/"} ariaLabel={""}>
-                <Heading fontSize={16} tag={"h3"}>
-                  {lessonTitle}
+              <CardAsLink
+                background={"white"}
+                mr={8}
+                href={slug}
+                ariaLabel={"Macbeth"}
+                aria-selected={currentLesson === lessonNumber}
+              >
+                <Heading
+                  color={currentLesson === lessonNumber ? "grey6" : undefined}
+                  fontSize={20}
+                  mb={16}
+                  tag={cardTitleTag}
+                >
+                  <LineClamp lines={1}>
+                    <Span>{title}</Span>
+                  </LineClamp>
                 </Heading>
-                <P>{`${keyStage}, ${subject}, ${topic}`}</P>
-                <P>{`Lesson ${index}`}</P>
-                {index === currentLesson + 1 && <p>----</p>}
+                <Flex
+                  color={currentLesson === lessonNumber ? "grey6" : undefined}
+                >
+                  <AnchorP
+                    color={currentLesson === lessonNumber ? "grey6" : undefined}
+                    fontSize={14}
+                    mb={16}
+                    mr={4}
+                  >
+                    <Link href={keyStageSlug}>{`${keyStage},`}</Link>
+                  </AnchorP>
+                  <AnchorP
+                    color={currentLesson === lessonNumber ? "grey6" : undefined}
+                    fontSize={14}
+                    mb={16}
+                    mr={4}
+                  >
+                    <Link href={subjectSlug}>{`${subject},`}</Link>
+                  </AnchorP>
+                  <AnchorP
+                    color={currentLesson === lessonNumber ? "grey6" : undefined}
+                    fontSize={14}
+                    mb={16}
+                    mr={4}
+                  >
+                    <Link href={topicSlug}>{`${topic}`}</Link>
+                  </AnchorP>
+                </Flex>
+                <P
+                  color={currentLesson === lessonNumber ? "grey6" : undefined}
+                  fontSize={14}
+                  mb={16}
+                  mr={4}
+                >
+                  {`Lesson ${lessonNumber}`}
+                </P>
               </CardAsLink>
             </GridArea>
           )
         )}
       </Grid>
-    </section>
+    </Flex>
   );
 };
 
