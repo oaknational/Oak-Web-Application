@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { useUser } from "../../context/Auth";
+import Layout from "../../components/Layout";
 import Bookmarks from "../../components/Bookmarks";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Grid from "../../components/Grid";
 import GridArea from "../../components/Grid/GridArea";
 import { Heading } from "../../components/Typography";
-import Layout from "../../components/Layout";
 
 const Beta: FC = () => {
   const user = useUser();
