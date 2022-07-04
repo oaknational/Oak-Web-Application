@@ -3594,12 +3594,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-f36340aa-0 hEbPyH"
+                className="sc-6748a30-0 bEThyA"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-f36340aa-1 jowvMO"
+                  className="sc-6748a30-1 cMWOsJ"
                   height={16}
                   width={16}
                 >
@@ -3635,12 +3635,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-f36340aa-0 hEbPyH"
+                className="sc-6748a30-0 bEThyA"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-f36340aa-1 jowvMO"
+                  className="sc-6748a30-1 cMWOsJ"
                   height={16}
                   width={16}
                 >
@@ -3689,15 +3689,15 @@ Array [
               fontSize={20}
               mb={16}
             >
-              <div
-                className="sc-dc108f60-0 cLZpLh"
+              <span
+                className="sc-b8a6ebf4-0 dzCEbj"
               >
                 <span
                   className="sc-1a42a0ba-0 dKxamM"
                 >
                   Shakespeare, tragedy and the tragic hero
                 </span>
-              </div>
+              </span>
             </h3>
             <div
               className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
@@ -3771,15 +3771,15 @@ Array [
               fontSize={20}
               mb={16}
             >
-              <div
-                className="sc-dc108f60-0 cLZpLh"
+              <span
+                className="sc-b8a6ebf4-0 dzCEbj"
               >
                 <span
                   className="sc-1a42a0ba-0 dKxamM"
                 >
                   Meeting Macbeth
                 </span>
-              </div>
+              </span>
             </h3>
             <div
               className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
