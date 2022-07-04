@@ -28,7 +28,7 @@ const SiteHeader: FC = () => {
           </Span>
         </HomeLink>
       </Link>
-      <Flex alignItems={"center"} mt={[16, 0]}>
+      <Flex alignItems={"center"} mt={[16, 16, 0]}>
         <P>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
