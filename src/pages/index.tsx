@@ -12,10 +12,13 @@ import CardTitle from "../components/Card/CardComponents/CardTitle";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardAsLink from "../components/Card/CardAsLink";
 import Icon from "../components/Icon";
-import NewsletterForm from "../components/Forms/NewsletterForm";
+import NewsletterForm, {
+  useNewsletterForm,
+} from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
 
 const Home: FC = () => {
+  const { onSubmit } = useNewsletterForm();
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -121,7 +124,7 @@ const Home: FC = () => {
             <CardTitle
               icon="Home"
               iconPosition="leading"
-              iconSize={34}
+              iconSize={32}
               tag="h2"
               title="About Oak Academy"
             />
@@ -153,7 +156,7 @@ const Home: FC = () => {
             <CardTitle
               icon="Home"
               iconPosition="leading"
-              iconSize={34}
+              iconSize={32}
               tag="h2"
               title="Need some help?"
             />
@@ -170,11 +173,7 @@ const Home: FC = () => {
           </Card>
         </GridArea>
         <GridArea colSpan={[12, 6, 4]} order={[2, 0, 0]}>
-          <NewsletterForm
-            onSubmit={async (d) => {
-              console.log(d);
-            }}
-          />
+          <NewsletterForm onSubmit={onSubmit} />
         </GridArea>
       </Grid>
     </LandingPageLayout>

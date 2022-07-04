@@ -30,7 +30,7 @@ const SiteHeader: FC = () => {
     >
       <Link href={"/"} passHref>
         <HomeLink alignItems="center">
-          <Icon name="Home" size={30} mr={8} />
+          <Icon name="Home" size={32} mr={8} />
           <Span
             fontFamily="heading"
             fontWeight={600}

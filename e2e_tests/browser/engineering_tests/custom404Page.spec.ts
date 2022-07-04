@@ -33,7 +33,7 @@ test.describe("404 Not found", () => {
     page,
   }) => {
     const response = await page.goto(
-      `${frontPageUrl}/lessons/not-a-lesson-slug`
+      `${frontPageUrl}/beta/lessons/not-a-lesson-slug`
     );
     expect(response?.status()).toBe(404);
     await expect(page.locator(locators.pageHeading)).toHaveText([

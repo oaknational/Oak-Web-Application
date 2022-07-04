@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 
-import LessonPage from "../../pages/lessons/[lessonSlug]";
+import LessonPage from "../../pages/beta/lessons/[lessonSlug]";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
 const testLesson = {
@@ -13,7 +13,7 @@ const testLesson = {
 const graphqlAllLessons = jest.fn(() => ({ lessons: [testLesson] }));
 const graphqlLessonsBySlug = jest.fn(() => ({ lessons: [testLesson] }));
 
-describe("pages/lessons/[lessonSlug].tsx", () => {
+describe("pages/beta/lessons/[lessonSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
@@ -46,7 +46,7 @@ describe("pages/lessons/[lessonSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should fetch all lessons", async () => {
       const { getStaticPaths } = await import(
-        "../../pages/lessons/[lessonSlug]"
+        "../../pages/beta/lessons/[lessonSlug]"
       );
       await getStaticPaths({});
 
@@ -57,7 +57,7 @@ describe("pages/lessons/[lessonSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct lesson", async () => {
       const { getStaticProps } = await import(
-        "../../pages/lessons/[lessonSlug]"
+        "../../pages/beta/lessons/[lessonSlug]"
       );
       await getStaticProps({ params: { lessonSlug: "some slug" } });
 

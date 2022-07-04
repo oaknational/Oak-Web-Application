@@ -1,8 +1,8 @@
 import { act, fireEvent, waitFor } from "@testing-library/react";
 
-import BookmarksPage from "../../pages/bookmarks";
-import { testBookmarks, testLessons } from "../__helpers__/apolloMocks";
-import renderWithProviders from "../__helpers__/renderWithProviders";
+import BookmarksPage from "../../../pages/beta/bookmarks";
+import { testBookmarks, testLessons } from "../../__helpers__/apolloMocks";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
 
 const testUser = { id: "123", email: "test email" };
 const loggedInAuthProviderProps = {
@@ -15,13 +15,13 @@ const useBookmarks = () => ({
   loading: true,
   removeBookmark: (...args: []) => removeBookmark(...args),
 });
-jest.mock("../../context/Bookmarks/useBookmarks", () => ({
+jest.mock("../../../context/Bookmarks/useBookmarks", () => ({
   __esModule: true,
   // eslint-disable-next-line react-hooks/rules-of-hooks
   default: (...args: []) => useBookmarks(...args),
 }));
 
-describe("pages/bookmarks.tsx", () => {
+describe("pages/beta/bookmarks.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();

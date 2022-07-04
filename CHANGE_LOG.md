@@ -1,3 +1,46 @@
+# [0.38.0](https://github.com/oaknational/Samara/compare/v0.37.0...v0.38.0) (2022-07-04)
+
+
+### Bug Fixes
+
+* add '/beta' prefix to sign-in redirect paths ([58fd707](https://github.com/oaknational/Samara/commit/58fd707c16c1fb7341d181d7e5959f3a59ab73a4))
+* e2e lesson page tests with /beta prefix ([3634fed](https://github.com/oaknational/Samara/commit/3634fed955af1c88d189957699cae023fec1050e))
+
+
+### Features
+
+* **Firebase:** configure hosting ([cf58907](https://github.com/oaknational/Samara/commit/cf5890780c59358c9385137ff6b4f99e3eddcece))
+* make app statically exportable ([f2f9e95](https://github.com/oaknational/Samara/commit/f2f9e95dcb0b1bbf7e381923a7c02310478c315e)), closes [#259](https://github.com/oaknational/Samara/issues/259)
+* **static gcp:** placeholder Cloudbuild config ([b86ac3e](https://github.com/oaknational/Samara/commit/b86ac3ee99675f011f295daa4a87e8bfe8167c57))
+
+# [0.37.0](https://github.com/oaknational/Samara/compare/v0.36.1...v0.37.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* single tab onto dropdown ([4f0d426](https://github.com/oaknational/Samara/commit/4f0d426c02027d93940a8e73bf635b016567eca9))
+* single tab onto dropdown ([d956ea7](https://github.com/oaknational/Samara/commit/d956ea70e3aff8ead4801e6883b4c6a4bd72309c))
+
+
+### Features
+
+* react aria select component ([50c4d23](https://github.com/oaknational/Samara/commit/50c4d2328708bb66fea4ec71cba08d15973e91ce))
+
+## [0.36.1](https://github.com/oaknational/Samara/compare/v0.36.0...v0.36.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* typo in signup form feedback ([d2c5a43](https://github.com/oaknational/Samara/commit/d2c5a431b6de15f3cc3d011ade2d95ffb36b7ecd))
+
+# [0.36.0](https://github.com/oaknational/Samara/compare/v0.35.0...v0.36.0) (2022-06-28)
+
+
+### Features
+
+* connect newletter form with hubspot submit handler ([6a65716](https://github.com/oaknational/Samara/commit/6a6571600d5c395ce116dff528aa0de2d0a5a2f9))
+* hubspot form submit handler ([e20b3bb](https://github.com/oaknational/Samara/commit/e20b3bba9d0d70fb8a0169371d072e95c6a47ccf))
+
 # [0.35.0](https://github.com/oaknational/Samara/compare/v0.34.1...v0.35.0) (2022-06-24)
 
 

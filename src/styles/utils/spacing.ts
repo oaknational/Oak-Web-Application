@@ -1,23 +1,10 @@
 import { css } from "styled-components";
 
+import { PixelSpacing } from "../theme/types";
+
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SpacingValue =
-  | "auto"
-  | 0
-  | 4
-  | 8
-  | 12
-  | 16
-  | 20
-  | 24
-  | 32
-  | 40
-  | 48
-  | 56
-  | 64
-  | 72
-  | 80;
+type SpacingValue = "auto" | PixelSpacing;
 type SpacingValues = ResponsiveValues<SpacingValue>;
 export type PaddingProps = {
   pa?: SpacingValues;

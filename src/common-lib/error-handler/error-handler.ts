@@ -82,7 +82,7 @@ export const initialiseBugsnag = () => {
 const bugsnagNotify = (error: NotifiableError, onError: OnErrorCallback) =>
   new Promise((resolve) => Bugsnag.notify(error, onError, resolve));
 
-export type ErrorData = Record<string, string | Record<string, string>> & {
+export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
   originalError?: Error;
   // All errors with the same groupingHash will be grouped together in Bugsnag
