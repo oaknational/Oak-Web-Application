@@ -1,6 +1,7 @@
-import * as React from "react";
+import { ReactNode, Ref } from "react";
 import styled from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
+import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import {
   useSelect,
@@ -10,7 +11,7 @@ import {
   useFocusRing,
 } from "react-aria";
 
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import Icon, { IconName } from "../Icon";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
@@ -27,9 +28,12 @@ interface ButtonProps {
 }
 
 type SelectProps = {
-  placeholder: string;
+  placeholder?: string;
   name: string;
   icon?: IconName;
+  children: ReactNode;
+  myRef: Ref<HTMLButtonElement>;
+  containerProps?: FlexProps;
 };
 
 const Button = styled(UnstyledButton)<ButtonProps>`
@@ -48,36 +52,39 @@ const Button = styled(UnstyledButton)<ButtonProps>`
           ({ theme }) => theme.input.states.default.background
         )};
   padding: 6px 2px 6px 8px;
-  margin-top: 6px;
-  outline: none;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   text-align: left;
   font-size: 16px;
-
-  &:focus {
-    outline: 1px dotted #212121;
-    outline: 5px auto -webkit-focus-ring-color;
-  }
 `;
 
-export const Label = styled.label`
+const Label = styled.label`
   display: block;
   text-align: left;
   font-family: ${getFontFamily("body")};
-  font-size: 12px;
+  font-size: ${(props) => props.theme.input.fontSize};
+`;
+
+const SelectedOrPlaceholder = styled.span<{ isPlaceholder: boolean }>`
+  color: ${(props) =>
+    props.isPlaceholder
+      ? getColorByLocation(
+          ({ theme }) => theme.input.states.default.placeholder
+        )
+      : getColorByLocation(({ theme }) => theme.input.states.default.text)};
 `;
 
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
+  const { myRef, containerProps } = props;
   // Create state based on the incoming props
   const state = useSelectState(props);
+  const ref = useObjectRef(myRef);
 
   // Get props for child elements from useSelect
-  const ref = React.useRef(null);
   const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
     props,
     state,
@@ -90,7 +97,7 @@ export function Select<T extends object>(
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <Flex flexDirection={"column"} position={"relative"}>
+    <Flex {...containerProps} flexDirection={"column"} position={"relative"}>
       <Label {...labelProps}>{props.label}</Label>
       <HiddenSelect
         state={state}
@@ -106,13 +113,17 @@ export function Select<T extends object>(
       >
         <Flex alignItems={"center"}>
           {props.icon && <Icon mr={8} name={props.icon}></Icon>}
-          <span data-testid={"select-span"} {...valueProps}>
+          <SelectedOrPlaceholder
+            data-testid={"select-span"}
+            isPlaceholder={!state.selectedItem}
+            {...valueProps}
+          >
             {state.selectedItem
               ? state.selectedItem.rendered
               : props.placeholder}
-          </span>
+          </SelectedOrPlaceholder>
         </Flex>
-        <Icon name={"ChevronRight"}></Icon>
+        <Icon name={"ChevronDown"} />
       </Button>
       {state.isOpen && (
         <Popover isOpen={state.isOpen} onClose={state.close}>

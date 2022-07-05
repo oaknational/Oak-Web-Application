@@ -86,6 +86,7 @@ type InputConfig = {
   height: string;
   borderRadius: string;
   borderWidth: string;
+  fontSize: string;
   states: {
     default: InputStateConfig;
     active: InputStateConfig;

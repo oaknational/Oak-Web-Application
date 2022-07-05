@@ -23,14 +23,23 @@ describe("NewsletterForm", () => {
     await user.keyboard("a name");
     await user.tab();
     await user.keyboard("email@example.com");
+    // tab => dropdown select
     await user.tab();
-    await user.keyboard("some value");
+    // open dropdown select
+    await user.keyboard("{Enter}");
+    await user.keyboard("{arrowdown}");
+    await user.keyboard("{arrowdown}");
+    // confirm select value
+    await user.keyboard("{Enter}");
+    await user.tab();
+    // tab -> submit button
+    await user.tab();
     await user.keyboard("{Enter}");
 
     expect(onSubmit).toHaveBeenCalledWith({
       name: "a name",
       email: "email@example.com",
-      userRole: "some value",
+      userRole: "pupil",
     });
   });
   test("should display error hint on blur if no name is entered", async () => {

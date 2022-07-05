@@ -1,47 +1,61 @@
-import { FC } from "react";
+import { FC, forwardRef } from "react";
 
+import { FlexProps } from "../Flex";
 import { IconName } from "../Icon/Icon";
 
-import { Select, Item, Label } from "./Select";
+import { Select, Item } from "./Select";
+import { Label } from "./ListBox";
 
-export type SelectedKey = string | number | undefined;
-
-type DropdownSelectProps = {
-  listItems: Array<{ id: number; item: string }>;
-  name: string;
-  placeholder: string;
+type DropdownSelectItem = {
+  value: string;
   label: string;
+};
+type DropdownSelectProps = FlexProps & {
+  listItems: Array<DropdownSelectItem>;
+  name: string;
+  placeholder?: string;
+  label?: string;
   icon?: IconName;
-  onChange: (key: SelectedKey) => void;
+  onChange: (e: { target: { name: string; value: string } }) => void;
 };
 
-const DropdownSelect: FC<DropdownSelectProps> = ({
-  listItems,
-  name,
-  placeholder,
-  label,
-  onChange,
-  icon,
-}) => {
+const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
+  HTMLButtonElement,
+  DropdownSelectProps
+>((props, ref) => {
+  const {
+    listItems,
+    name,
+    placeholder,
+    label,
+    onChange,
+    icon,
+    ...containerProps
+  } = props;
   return (
     <Select
+      myRef={ref}
       data-testid={"select"}
       placeholder={placeholder}
       label={label}
+      aria-label={label || placeholder}
       name={name}
       items={listItems}
       icon={icon}
-      onSelectionChange={onChange}
+      onSelectionChange={(key) =>
+        onChange({ target: { value: String(key), name } })
+      }
+      containerProps={containerProps}
     >
       {(item) => (
-        <Item key={item.item} textValue={item.item}>
+        <Item key={item.value} textValue={item.label}>
           <div>
-            <Label>{item.item}</Label>
+            <Label>{item.label}</Label>
           </div>
         </Item>
       )}
     </Select>
   );
-};
+});
 
 export default DropdownSelect;

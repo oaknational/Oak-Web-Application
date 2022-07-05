@@ -6,10 +6,10 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 import DropdownSelect from ".";
 
 const roles = [
-  { id: 1, item: "Teacher" },
-  { id: 2, item: "Parent" },
-  { id: 3, item: "Pupil" },
-  { id: 4, item: "Other" },
+  { value: "1", label: "Teacher" },
+  { value: "2", label: "Parent" },
+  { value: "3", label: "Pupil" },
+  { value: "4", label: "Other" },
 ];
 
 const setSelectedKey = () => {
@@ -19,7 +19,6 @@ describe("select", () => {
   it("renders a drop down select", () => {
     renderWithProviders(
       <DropdownSelect
-        data-testid={"select"}
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}
@@ -36,7 +35,6 @@ describe("select", () => {
   it("renders a span with selected value", async () => {
     renderWithProviders(
       <DropdownSelect
-        data-testid={"select"}
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}
@@ -60,7 +58,6 @@ describe("select", () => {
   it("Button span value changes from keyboard controls ", async () => {
     const { rerender } = renderWithProviders(
       <DropdownSelect
-        data-testid={"select"}
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}
@@ -78,7 +75,6 @@ describe("select", () => {
 
     rerender(
       <DropdownSelect
-        data-testid={"select"}
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}

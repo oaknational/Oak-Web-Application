@@ -10,6 +10,7 @@ import Input from "../../Input";
 import { P } from "../../Typography";
 import Button from "../../Button";
 import OakError from "../../../errors/OakError";
+import DropdownSelect from "../../DropdownSelect";
 
 const schema = z.object({
   name: z
@@ -101,10 +102,15 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           {...register("email")}
           error={errors.email?.message}
         />
-        <Input
-          id="newsletter-signup-user-role"
+        <DropdownSelect
           mt={24}
           placeholder="What describes you best?"
+          listItems={[
+            { value: "teacher", label: "Teacher" },
+            { value: "parent", label: "Parent" },
+            { value: "pupil", label: "Pupil" },
+            { value: "other", label: "Other" },
+          ]}
           {...register("userRole")}
         />
         <Button

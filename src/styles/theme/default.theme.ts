@@ -66,6 +66,7 @@ const theme: OakTheme = {
   },
   input: {
     height: "40px",
+    fontSize: "16px",
     borderRadius: "8px",
     borderWidth: "1px",
     states: {
@@ -108,6 +109,7 @@ const theme: OakTheme = {
   },
   bigInput: {
     height: "40px",
+    fontSize: "16px",
     borderRadius: "20px",
     borderWidth: "0",
     states: {
