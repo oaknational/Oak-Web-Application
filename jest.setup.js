@@ -2,6 +2,11 @@ import { jest } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import "whatwg-fetch";
 
+jest.mock("@react-aria/ssr/dist/main", () => ({
+  ...jest.requireActual("@react-aria/ssr/dist/main"),
+  useSSRSafeId: () => "react-aria-generated-id",
+}));
+
 // Bugsnag.getPlugin("react")?.createErrorBoundary(React);
 jest.mock("@bugsnag/js", () => ({
   __esModule: true,

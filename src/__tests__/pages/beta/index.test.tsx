@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import Beta from "../../pages/beta";
-import renderWithProviders from "../__helpers__/renderWithProviders";
+import Beta from "../../../pages/beta";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
 
 describe("pages/beta.tsx", () => {
   it("Renders correct title ", async () => {

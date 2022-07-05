@@ -32,7 +32,7 @@ const Typography = styled(Box)<TypographyComponent>`
 /**
  * @todo do we even want to set defaults here? The issue with setting defaults
  * is that if we place a Typography inside another Typography, the expected
- * behaviour would be that it extends the current context, rather than 
+ * behaviour would be that it extends the current context, rather than
  * resetting certain defaults?
  * Perhaps defaults should be in global css instead.
  */
