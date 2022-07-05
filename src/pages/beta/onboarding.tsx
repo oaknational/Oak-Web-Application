@@ -35,7 +35,7 @@ const OnBoarding: FC = () => {
             mh={[24, 0, 0]}
             background={"white"}
             href={"/beta/teacher"}
-            ariaLabel={""}
+            ariaLabel={"Teacher"}
           >
             <CardTitle textCenter title={"Teacher"} tag={"h2"}></CardTitle>
 
@@ -50,7 +50,7 @@ const OnBoarding: FC = () => {
             mh={[24, 0, 0]}
             background={"white"}
             href={"/beta/pupil"}
-            ariaLabel={""}
+            ariaLabel={"Pupil"}
           >
             <CardTitle textCenter title={"Pupil"} tag={"h2"}></CardTitle>
             <P textAlign="center">
