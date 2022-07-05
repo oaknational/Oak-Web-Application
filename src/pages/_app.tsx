@@ -12,8 +12,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../context/Bookmarks";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
-import CookieBanner from "../components/CookieConsent/CookieBanner";
-import { CookieConsentsProvider } from "../context/CookieConsents/CookieConsents";
+import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApolloClient();
@@ -29,11 +28,10 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
               <SearchProvider>
                 <ThemeProvider theme={theme}>
                   <OverlayProvider>
-                    <CookieConsentsProvider>
+                    <CookieConsentProvider>
                       <DefaultSeo />
                       <Component {...pageProps} />
-                      <CookieBanner />
-                    </CookieConsentsProvider>
+                    </CookieConsentProvider>
                   </OverlayProvider>
                 </ThemeProvider>
               </SearchProvider>

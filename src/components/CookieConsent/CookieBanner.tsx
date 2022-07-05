@@ -2,7 +2,7 @@ import { useButton } from "@react-aria/button";
 import Link from "next/link";
 import { FC, useRef } from "react";
 
-import { useCookieConsents } from "../../context/CookieConsents/CookieConsents";
+import { useCookieConsents } from "../../context/CookieConsent/CookieConsents";
 
 import CookieModal from "./CookieModal";
 

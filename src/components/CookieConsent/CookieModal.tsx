@@ -7,7 +7,7 @@ import {
   Policy,
   policyToConsent,
   CookieConsents,
-} from "../../context/CookieConsents/CookieConsents";
+} from "../../context/CookieConsent/CookieConsents";
 import Flex from "../Flex";
 import ModalDialog from "../ModalDialog/ModalDialog";
 import Toggle from "../Toggle";
