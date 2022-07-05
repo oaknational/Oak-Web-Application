@@ -74,7 +74,7 @@ const theme: OakTheme = {
         text: "black",
         placeholder: "grey6",
         icon: "grey6",
-        border: "grey6",
+        border: "grey8",
         background: "white",
       },
       active: {

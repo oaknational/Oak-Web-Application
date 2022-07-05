@@ -31,7 +31,6 @@ describe("NewsletterForm", () => {
     await user.keyboard("{arrowdown}");
     // confirm select value
     await user.keyboard("{Enter}");
-    await user.tab();
     // tab -> submit button
     await user.tab();
     await user.keyboard("{Enter}");

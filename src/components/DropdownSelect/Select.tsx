@@ -51,7 +51,8 @@ const Button = styled(UnstyledButton)<ButtonProps>`
       : getColorByLocation(
           ({ theme }) => theme.input.states.default.background
         )};
-  padding: 6px 2px 6px 8px;
+  padding-left: 12px;
+  padding-right: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
