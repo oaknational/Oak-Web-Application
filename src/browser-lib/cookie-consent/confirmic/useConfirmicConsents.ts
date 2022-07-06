@@ -10,28 +10,28 @@ import {
 const safeLocalStorage = {
   setItem: (keyName: string, keyValue: string) => {
     try {
-      return localStorage.setItem(keyName, keyValue);
+      return window.localStorage.setItem(keyName, keyValue);
     } catch (e) {
       return null;
     }
   },
   getItem: (keyName: string) => {
     try {
-      return localStorage.getItem(keyName);
+      return window.localStorage.getItem(keyName);
     } catch (e) {
       return null;
     }
   },
   removeItem: (keyName: string) => {
     try {
-      return localStorage.removeItem(keyName);
+      return window.localStorage.removeItem(keyName);
     } catch (e) {
       return null;
     }
   },
   clear: () => {
     try {
-      return localStorage.clear();
+      return window.localStorage.clear();
     } catch (e) {
       return null;
     }
