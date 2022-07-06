@@ -54,14 +54,12 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<NewsletterFormValues>({
+  const { register, handleSubmit, formState } = useForm<NewsletterFormValues>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
+
+  const { errors } = formState;
 
   const descriptionId = "newsletter-form-description";
 

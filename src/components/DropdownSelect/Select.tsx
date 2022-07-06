@@ -32,6 +32,7 @@ type SelectProps = {
   name: string;
   label: string;
   items: SelectItem[];
+  onSelectionChange: (value: string) => void;
   showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
@@ -49,7 +50,7 @@ interface SelectButtonProps {
   isFocusVisible?: boolean;
   isPlaceholder?: boolean;
 }
-export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
+const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
@@ -80,6 +81,12 @@ export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
       )};
     `}
 `;
+export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
+  ${selectButtonStyles}
+`;
+const NativeSelect = styled.select`
+  ${selectButtonStyles}
+`;
 
 const Label = styled.label<{ visuallyHidden: boolean }>`
   display: block;
@@ -93,6 +100,7 @@ export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
   const { myRef, showLabel, containerProps, items } = props;
+
   // Create state based on the incoming props
   const state = useSelectState(props);
   const ref = useObjectRef(myRef);
@@ -123,20 +131,20 @@ export function Select<T extends object>(
         {props.label}
       </Label>
       {shouldRenderNativeSelect ? (
-        // Having to ignore due to inconsistent ref types
-        // eslint-disable-next-line
-        // @ts-ignore
-        <SelectButton
-          as="select"
+        <NativeSelect
+          // Having to ignore due to inconsistent ref types
+          // eslint-disable-next-line
+          // @ts-ignore
           ref={ref}
           aria-labelledby={labelProps.id}
           isPlaceholder={!state.selectedItem}
+          onChange={(e) => state.setSelectedKey(e.target.value)}
         >
           <option value="">{props.placeholder}</option>
           {items.map((item) => (
             <option value={item.value}>{item.label}</option>
           ))}
-        </SelectButton>
+        </NativeSelect>
       ) : (
         <>
           <HiddenSelect
@@ -150,6 +158,7 @@ export function Select<T extends object>(
             ref={ref}
             isOpen={state.isOpen}
             isFocusVisible={isFocusVisible}
+            isPlaceholder={!state.selectedItem}
           >
             <Flex alignItems={"center"}>
               {props.icon && <Icon mr={8} name={props.icon}></Icon>}

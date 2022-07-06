@@ -6,6 +6,10 @@ import { IconName } from "../Icon/Icon";
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
 
+type SelectChangeHandler = (e: {
+  target: { name: string; value: string };
+}) => void;
+
 type DropdownSelectProps = FlexProps & {
   listItems: SelectItem[];
   name: string;
@@ -13,7 +17,7 @@ type DropdownSelectProps = FlexProps & {
   showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
-  onChange: (e: { target: { name: string; value: string } }) => void;
+  onChange: SelectChangeHandler;
 };
 
 const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
@@ -41,8 +45,8 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
       name={name}
       items={listItems}
       icon={icon}
-      onSelectionChange={(key) =>
-        onChange({ target: { value: String(key), name } })
+      onSelectionChange={(value) =>
+        onChange({ target: { name, value: String(value) } })
       }
       containerProps={containerProps}
     >
