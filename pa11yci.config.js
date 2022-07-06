@@ -6,6 +6,7 @@
 
 const config = {
   defaults: { runners: ["axe"] },
+  hideElements: "#mtm-root-container",
   urls: [],
 };
 
