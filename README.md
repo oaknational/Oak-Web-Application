@@ -14,21 +14,23 @@ A really good remote education app.
   - [Builds and Deployments](#Builds-and-Deployments)
   - [Release Mechanism](#Release-Mechanism)
 - [Npm dependencies](#Npm-dependencies)
-- Other READMEs
-  - Build
-    - [Fetching Config](./scripts/build/fetch_config)
-    - [Fetching Secrets](./scripts/build/fetch_secrets)
-  - Components
-    - [Forms](./src/components/Forms)
-    - [Icon](./src/components/Icon)
-  - Docs
-    - [Images](./docs/images)
-    - [Testing](./docs/testing.md)
-  - [Error Handling](./src/errors)
-  - Hasura
-    - [Curriculum database](./hasura-curriculum)
-    - [Users database](./hasura-users/)
-  - [React Context](./src/context)
+
+Other documentation can be found in standalone READMEs:
+
+- Build
+  - [Fetching Config](./scripts/build/fetch_config)
+  - [Fetching Secrets](./scripts/build/fetch_secrets)
+- Components
+  - [Forms](./src/components/Forms)
+  - [Icon](./src/components/Icon)
+- Docs
+  - [Images](./docs/images)
+  - [Testing](./docs/testing.md)
+- [Error Handling](./src/errors)
+- Hasura
+  - [Curriculum database](./hasura-curriculum)
+  - [Users database](./hasura-users/)
+- [React Context](./src/context)
 
 ## Getting started
 
