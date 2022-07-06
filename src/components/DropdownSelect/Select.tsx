@@ -16,6 +16,7 @@ import Icon, { IconName } from "../Icon";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
+import { srOnly } from "../ScreenReaderOnly";
 
 import { Popover } from "./Popover";
 import { ListBox } from "./ListBox";
@@ -28,8 +29,10 @@ interface ButtonProps {
 }
 
 type SelectProps = {
-  placeholder?: string;
   name: string;
+  label: string;
+  showLabel?: boolean;
+  placeholder?: string;
   icon?: IconName;
   children: ReactNode;
   myRef: Ref<HTMLButtonElement>;
@@ -61,11 +64,12 @@ const Button = styled(UnstyledButton)<ButtonProps>`
   font-size: 16px;
 `;
 
-const Label = styled.label`
+const Label = styled.label<{ visuallyHidden: boolean }>`
   display: block;
   text-align: left;
   font-family: ${getFontFamily("body")};
   font-size: ${(props) => props.theme.input.fontSize};
+  ${(props) => props.visuallyHidden && srOnly}
 `;
 
 const SelectedOrPlaceholder = styled.span<{ isPlaceholder: boolean }>`
@@ -80,7 +84,7 @@ const SelectedOrPlaceholder = styled.span<{ isPlaceholder: boolean }>`
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
-  const { myRef, containerProps } = props;
+  const { myRef, showLabel, containerProps } = props;
   // Create state based on the incoming props
   const state = useSelectState(props);
   const ref = useObjectRef(myRef);
@@ -99,7 +103,9 @@ export function Select<T extends object>(
 
   return (
     <Flex {...containerProps} flexDirection={"column"} position={"relative"}>
-      <Label {...labelProps}>{props.label}</Label>
+      <Label {...labelProps} visuallyHidden={!showLabel}>
+        {props.label}
+      </Label>
       <HiddenSelect
         state={state}
         triggerRef={ref}

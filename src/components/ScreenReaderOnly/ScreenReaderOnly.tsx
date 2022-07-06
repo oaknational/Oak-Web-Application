@@ -1,7 +1,6 @@
-import { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const StyledScreenReaderOnly = styled.span`
+export const srOnly = css`
   position: absolute;
   width: 1px;
   height: 1px;
@@ -14,12 +13,14 @@ const StyledScreenReaderOnly = styled.span`
 `;
 
 /**
- *
- * @description This component will visually hide its contents but will still be available
+ * This component will visually hide its contents but will still be available
  * to screen readers, assitive technology, and scrapers.
+ * ## Usage
+ * Use this component in places where content shouldn't be visible, but should
+ * be accessible to assistive technology.
  */
-const ScreenReaderOnly: FC = (props) => {
-  return <StyledScreenReaderOnly {...props} />;
-};
+const ScreenReaderOnly = styled.span`
+  ${srOnly}
+`;
 
 export default ScreenReaderOnly;

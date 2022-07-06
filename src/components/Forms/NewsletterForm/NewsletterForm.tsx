@@ -104,6 +104,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         />
         <DropdownSelect
           mt={24}
+          label="User type"
           placeholder="What describes you best?"
           listItems={[
             { value: "teacher", label: "Teacher" },

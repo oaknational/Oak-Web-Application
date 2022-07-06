@@ -1231,7 +1231,7 @@ Array [
     className="sc-7f9be300-0 chMNpH"
   >
     <span
-      className="sc-ed9f0b56-0 gWcRbA"
+      className="sc-850c036b-0 jSCzxF"
     >
       Loading
     </span>
@@ -1336,7 +1336,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
   >
     <label
-      className="sc-81fd99d6-1 cjeFmf"
+      className="sc-2628dbf8-1 bwaVEm"
       id="react-aria-generated-id"
       onClick={[Function]}
     >
@@ -1407,9 +1407,8 @@ Array [
       aria-controls={null}
       aria-expanded={false}
       aria-haspopup="listbox"
-      aria-label="User type"
       aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-81fd99d6-0 eaZurT eDHbFu"
+      className="sc-da410035-0 sc-2628dbf8-0 eaZurT zZMRJ"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1432,7 +1431,7 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
       >
         <span
-          className="sc-81fd99d6-2 kJNFcr"
+          className="sc-2628dbf8-2 kRdhcU"
           data-testid="select-span"
           id="react-aria-generated-id"
         >
@@ -1482,7 +1481,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
   >
     <label
-      className="sc-81fd99d6-1 cjeFmf"
+      className="sc-2628dbf8-1 bwaVEm"
       onClick={[Function]}
     />
     <div
@@ -1550,9 +1549,8 @@ Array [
       aria-controls={null}
       aria-expanded={false}
       aria-haspopup="listbox"
-      aria-label="What describes you best?"
-      aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-81fd99d6-0 eaZurT eDHbFu"
+      aria-labelledby="react-aria-generated-id"
+      className="sc-da410035-0 sc-2628dbf8-0 eaZurT zZMRJ"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1599,7 +1597,7 @@ Array [
           </span>
         </span>
         <span
-          className="sc-81fd99d6-2 kJNFcr"
+          className="sc-2628dbf8-2 kRdhcU"
           data-testid="select-span"
           id="react-aria-generated-id"
         >
@@ -1649,7 +1647,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
   >
     <label
-      className="sc-81fd99d6-1 cjeFmf"
+      className="sc-2628dbf8-1 bwaVEm"
       id="react-aria-generated-id"
       onClick={[Function]}
     >
@@ -1720,9 +1718,8 @@ Array [
       aria-controls={null}
       aria-expanded={false}
       aria-haspopup="listbox"
-      aria-label="What describes you best?"
       aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-81fd99d6-0 eaZurT eDHbFu"
+      className="sc-da410035-0 sc-2628dbf8-0 eaZurT zZMRJ"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1745,7 +1742,7 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
       >
         <span
-          className="sc-81fd99d6-2 kJNFcr"
+          className="sc-2628dbf8-2 kRdhcU"
           data-testid="select-span"
           id="react-aria-generated-id"
         />
@@ -2031,9 +2028,12 @@ Array [
             onBlur={[Function]}
           >
             <label
-              className="sc-81fd99d6-1 cjeFmf"
+              className="sc-2628dbf8-1 bwaVEm"
+              id="react-aria-generated-id"
               onClick={[Function]}
-            />
+            >
+              User type
+            </label>
             <div
               aria-hidden={true}
               onBlur={null}
@@ -2063,7 +2063,7 @@ Array [
                 type="text"
               />
               <label>
-                What describes you best?
+                User type
                 <select
                   name="userRole"
                   onChange={[Function]}
@@ -2099,9 +2099,8 @@ Array [
               aria-controls={null}
               aria-expanded={false}
               aria-haspopup="listbox"
-              aria-label="What describes you best?"
               aria-labelledby="react-aria-generated-id react-aria-generated-id"
-              className="sc-da410035-0 sc-81fd99d6-0 eaZurT eDHbFu"
+              className="sc-da410035-0 sc-2628dbf8-0 eaZurT zZMRJ"
               data-testid="select"
               id="react-aria-generated-id"
               onBlur={[Function]}
@@ -2124,7 +2123,7 @@ Array [
                 className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
               >
                 <span
-                  className="sc-81fd99d6-2 kJNFcr"
+                  className="sc-2628dbf8-2 kRdhcU"
                   data-testid="select-span"
                   id="react-aria-generated-id"
                 >
@@ -2296,9 +2295,12 @@ Array [
             onBlur={[Function]}
           >
             <label
-              className="sc-81fd99d6-1 cjeFmf"
+              className="sc-2628dbf8-1 bwaVEm"
+              id="react-aria-generated-id"
               onClick={[Function]}
-            />
+            >
+              User type
+            </label>
             <div
               aria-hidden={true}
               onBlur={null}
@@ -2328,7 +2330,7 @@ Array [
                 type="text"
               />
               <label>
-                What describes you best?
+                User type
                 <select
                   name="userRole"
                   onChange={[Function]}
@@ -2364,9 +2366,8 @@ Array [
               aria-controls={null}
               aria-expanded={false}
               aria-haspopup="listbox"
-              aria-label="What describes you best?"
               aria-labelledby="react-aria-generated-id react-aria-generated-id"
-              className="sc-da410035-0 sc-81fd99d6-0 eaZurT eDHbFu"
+              className="sc-da410035-0 sc-2628dbf8-0 eaZurT zZMRJ"
               data-testid="select"
               id="react-aria-generated-id"
               onBlur={[Function]}
@@ -2389,7 +2390,7 @@ Array [
                 className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
               >
                 <span
-                  className="sc-81fd99d6-2 kJNFcr"
+                  className="sc-2628dbf8-2 kRdhcU"
                   data-testid="select-span"
                   id="react-aria-generated-id"
                 >
