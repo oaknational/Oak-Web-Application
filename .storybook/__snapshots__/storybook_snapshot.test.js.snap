@@ -1336,7 +1336,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
   >
     <label
-      className="sc-b3487ce-1 jNbMXA"
+      className="sc-afe159f4-1 cRdEVd"
       id="react-aria-generated-id"
       onClick={[Function]}
     >
@@ -1408,7 +1408,7 @@ Array [
       aria-expanded={false}
       aria-haspopup="listbox"
       aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-b3487ce-0 eaZurT jpRNJz"
+      className="sc-da410035-0 sc-afe159f4-0 eaZurT iEUkiK"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1431,7 +1431,7 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
       >
         <span
-          className="sc-b3487ce-2 fJuEri"
+          className="sc-afe159f4-2 eXfFsL"
           data-testid="select-span"
           id="react-aria-generated-id"
         >
@@ -1481,7 +1481,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
   >
     <label
-      className="sc-b3487ce-1 jNbMXA"
+      className="sc-afe159f4-1 cRdEVd"
       onClick={[Function]}
     />
     <div
@@ -1550,7 +1550,7 @@ Array [
       aria-expanded={false}
       aria-haspopup="listbox"
       aria-labelledby="react-aria-generated-id"
-      className="sc-da410035-0 sc-b3487ce-0 eaZurT jpRNJz"
+      className="sc-da410035-0 sc-afe159f4-0 eaZurT iEUkiK"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1597,7 +1597,7 @@ Array [
           </span>
         </span>
         <span
-          className="sc-b3487ce-2 fJuEri"
+          className="sc-afe159f4-2 eXfFsL"
           data-testid="select-span"
           id="react-aria-generated-id"
         >
@@ -1647,7 +1647,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
   >
     <label
-      className="sc-b3487ce-1 jNbMXA"
+      className="sc-afe159f4-1 cRdEVd"
       id="react-aria-generated-id"
       onClick={[Function]}
     >
@@ -1719,7 +1719,7 @@ Array [
       aria-expanded={false}
       aria-haspopup="listbox"
       aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-b3487ce-0 eaZurT jpRNJz"
+      className="sc-da410035-0 sc-afe159f4-0 eaZurT iEUkiK"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1742,7 +1742,7 @@ Array [
         className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
       >
         <span
-          className="sc-b3487ce-2 fJuEri"
+          className="sc-afe159f4-2 eXfFsL"
           data-testid="select-span"
           id="react-aria-generated-id"
         />
@@ -2028,7 +2028,7 @@ Array [
             onBlur={[Function]}
           >
             <label
-              className="sc-b3487ce-1 jNbMXA"
+              className="sc-afe159f4-1 cRdEVd"
               id="react-aria-generated-id"
               onClick={[Function]}
             >
@@ -2100,7 +2100,7 @@ Array [
               aria-expanded={false}
               aria-haspopup="listbox"
               aria-labelledby="react-aria-generated-id react-aria-generated-id"
-              className="sc-da410035-0 sc-b3487ce-0 eaZurT jpRNJz"
+              className="sc-da410035-0 sc-afe159f4-0 eaZurT iEUkiK"
               data-testid="select"
               id="react-aria-generated-id"
               onBlur={[Function]}
@@ -2123,7 +2123,7 @@ Array [
                 className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
               >
                 <span
-                  className="sc-b3487ce-2 fJuEri"
+                  className="sc-afe159f4-2 eXfFsL"
                   data-testid="select-span"
                   id="react-aria-generated-id"
                 >
@@ -2295,7 +2295,7 @@ Array [
             onBlur={[Function]}
           >
             <label
-              className="sc-b3487ce-1 jNbMXA"
+              className="sc-afe159f4-1 cRdEVd"
               id="react-aria-generated-id"
               onClick={[Function]}
             >
@@ -2367,7 +2367,7 @@ Array [
               aria-expanded={false}
               aria-haspopup="listbox"
               aria-labelledby="react-aria-generated-id react-aria-generated-id"
-              className="sc-da410035-0 sc-b3487ce-0 eaZurT jpRNJz"
+              className="sc-da410035-0 sc-afe159f4-0 eaZurT iEUkiK"
               data-testid="select"
               id="react-aria-generated-id"
               onBlur={[Function]}
@@ -2390,7 +2390,7 @@ Array [
                 className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
               >
                 <span
-                  className="sc-b3487ce-2 fJuEri"
+                  className="sc-afe159f4-2 eXfFsL"
                   data-testid="select-span"
                   id="react-aria-generated-id"
                 >

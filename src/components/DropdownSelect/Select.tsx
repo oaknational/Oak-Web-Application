@@ -124,7 +124,10 @@ export function Select<T extends object>(
         {props.label}
       </Label>
       {shouldRenderNativeSelect ? (
-        <SelectButton as="select">
+        // Having to ignore due to inconsistent ref types
+        // eslint-disable-next-line
+        // @ts-ignore
+        <SelectButton as="select" ref={ref}>
           {items.map((item) => (
             <option value={item.value}>{item.label}</option>
           ))}
