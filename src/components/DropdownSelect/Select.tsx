@@ -47,7 +47,7 @@ export const SelectContainer = (props: FlexProps) => (
 interface SelectButtonProps {
   isOpen?: boolean;
   isFocusVisible?: boolean;
-  isNativeSelect?: boolean;
+  isPlaceholder?: boolean;
 }
 export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
@@ -73,18 +73,12 @@ export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   text-align: left;
   font-size: 16px;
   ${(props) =>
-    props.isNativeSelect &&
+    props.isPlaceholder &&
     css`
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.default.placeholder
       )};
     `}
-`;
-
-const NativeSelectPlaceholder = styled.option`
-  color: ${getColorByLocation(
-    ({ theme }) => theme.input.states.default.placeholder
-  )};
 `;
 
 const Label = styled.label<{ visuallyHidden: boolean }>`
@@ -93,15 +87,6 @@ const Label = styled.label<{ visuallyHidden: boolean }>`
   font-family: ${getFontFamily("body")};
   font-size: ${(props) => props.theme.input.fontSize};
   ${(props) => props.visuallyHidden && srOnly}
-`;
-
-const SelectedOrPlaceholder = styled.span<{ isPlaceholder: boolean }>`
-  color: ${(props) =>
-    getColorByLocation(({ theme }) =>
-      props.isPlaceholder
-        ? theme.input.states.default.placeholder
-        : theme.input.states.default.text
-    )};
 `;
 
 export function Select<T extends object>(
@@ -144,12 +129,10 @@ export function Select<T extends object>(
         <SelectButton
           as="select"
           ref={ref}
-          aria-labelledBy={labelProps.id}
-          isNativeSelect
+          aria-labelledby={labelProps.id}
+          isPlaceholder={!state.selectedItem}
         >
-          <NativeSelectPlaceholder value="" disabled selected>
-            {props.placeholder}
-          </NativeSelectPlaceholder>
+          <option value="">{props.placeholder}</option>
           {items.map((item) => (
             <option value={item.value}>{item.label}</option>
           ))}
@@ -170,15 +153,11 @@ export function Select<T extends object>(
           >
             <Flex alignItems={"center"}>
               {props.icon && <Icon mr={8} name={props.icon}></Icon>}
-              <SelectedOrPlaceholder
-                data-testid={"select-span"}
-                isPlaceholder={!state.selectedItem}
-                {...valueProps}
-              >
+              <span data-testid={"select-span"} {...valueProps}>
                 {state.selectedItem
                   ? state.selectedItem.rendered
                   : props.placeholder}
-              </SelectedOrPlaceholder>
+              </span>
             </Flex>
             <Icon name={"ChevronDown"} />
           </SelectButton>
