@@ -2818,6 +2818,195 @@ Array [
 ]
 `;
 
+exports[`Storyshots Interactive/Collapsible Section Collapsible Section 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <details>
+    <summary
+      className="sc-20c3322c-0 hWZzen"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 QmDoQ bhLeOG"
+      >
+        <h2
+          className="sc-ef5f3f7-0 sc-20c3322c-1 gBeReX bJuaAv"
+          fontSize={24}
+        >
+          <a
+            aria-expanded={false}
+            onClick={[Function]}
+          >
+            Presentation
+          </a>
+        </h2>
+        <div
+          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
+        >
+          <button
+            aria-label="Download button"
+            className="sc-da410035-0 sc-7c97ca8b-0 eaZurT bsqCOd"
+            onClick={[Function]}
+            size="small"
+            title="Download button"
+          >
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
+            >
+              <span
+                className="sc-6748a30-0 bEThyA"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-6748a30-1 cMWOsJ"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                    />
+                    <polyline
+                      points="7 10 12 15 17 10"
+                    />
+                    <line
+                      x1="12"
+                      x2="12"
+                      y1="15"
+                      y2="3"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+          <button
+            aria-label="Share button"
+            className="sc-da410035-0 sc-7c97ca8b-0 eaZurT bsqCOd"
+            onClick={[Function]}
+            size="small"
+            title="Share button"
+          >
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
+            >
+              <span
+                className="sc-6748a30-0 bEThyA"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-6748a30-1 cMWOsJ"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="18"
+                      cy="5"
+                      r="3"
+                    />
+                    <circle
+                      cx="6"
+                      cy="12"
+                      r="3"
+                    />
+                    <circle
+                      cx="18"
+                      cy="19"
+                      r="3"
+                    />
+                    <line
+                      x1="8.59"
+                      x2="15.42"
+                      y1="13.51"
+                      y2="17.49"
+                    />
+                    <line
+                      x1="15.41"
+                      x2="8.59"
+                      y1="6.51"
+                      y2="10.49"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+          <button
+            aria-expanded={false}
+            aria-label="Open collapsible section"
+            className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
+            onClick={[Function]}
+            size="small"
+            title="Open collapsible section"
+          >
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
+            >
+              <span
+                className="sc-6748a30-0 bEThyA"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-6748a30-1 cMWOsJ"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    viewBox="0 0 16 16"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </summary>
+  </details>,
+]
+`;
+
 exports[`Storyshots Interactive/Lesson Control Complete 1`] = `
 Array [
   <link
