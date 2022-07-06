@@ -1,3 +1,10 @@
+# [0.39.0](https://github.com/oaknational/Samara/compare/v0.38.0...v0.39.0) (2022-07-06)
+
+
+### Features
+
+* add confirmic consent manager ([508ca20](https://github.com/oaknational/Samara/commit/508ca20c3b9bade08fa3c7e76ba8ef82dfc6b786))
+
 # [0.38.0](https://github.com/oaknational/Samara/compare/v0.37.0...v0.38.0) (2022-07-04)
 
 
