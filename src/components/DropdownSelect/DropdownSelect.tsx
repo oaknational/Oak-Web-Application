@@ -3,15 +3,11 @@ import { FC, forwardRef } from "react";
 import { FlexProps } from "../Flex";
 import { IconName } from "../Icon/Icon";
 
-import { Select, Item } from "./Select";
+import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
 
-type DropdownSelectItem = {
-  value: string;
-  label: string;
-};
 type DropdownSelectProps = FlexProps & {
-  listItems: Array<DropdownSelectItem>;
+  listItems: SelectItem[];
   name: string;
   label: string;
   showLabel?: boolean;
@@ -34,6 +30,7 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
     showLabel,
     ...containerProps
   } = props;
+
   return (
     <Select
       myRef={ref}

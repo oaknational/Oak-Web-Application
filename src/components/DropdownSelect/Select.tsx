@@ -23,14 +23,15 @@ import { ListBox } from "./ListBox";
 
 export { Item } from "react-stately";
 
-interface ButtonProps {
-  isOpen?: boolean;
-  isFocusVisible?: boolean;
-}
+export type SelectItem = {
+  value: string;
+  label: string;
+};
 
 type SelectProps = {
   name: string;
   label: string;
+  items: SelectItem[];
   showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
@@ -39,7 +40,15 @@ type SelectProps = {
   containerProps?: FlexProps;
 };
 
-const Button = styled(UnstyledButton)<ButtonProps>`
+export const SelectContainer = (props: FlexProps) => (
+  <Flex {...props} flexDirection={"column"} position={"relative"} />
+);
+
+interface SelectButtonProps {
+  isOpen?: boolean;
+  isFocusVisible?: boolean;
+}
+export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
@@ -84,7 +93,7 @@ const SelectedOrPlaceholder = styled.span<{ isPlaceholder: boolean }>`
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
-  const { myRef, showLabel, containerProps } = props;
+  const { myRef, showLabel, containerProps, items } = props;
   // Create state based on the incoming props
   const state = useSelectState(props);
   const ref = useObjectRef(myRef);
@@ -101,42 +110,60 @@ export function Select<T extends object>(
 
   const { focusProps, isFocusVisible } = useFocusRing();
 
+  // On tablets and phones, make use of native select components
+  const shouldRenderNativeSelect =
+    typeof window === "undefined"
+      ? false
+      : /Mobi|iP(hone|od|ad)|Android|BlackBerry/i.test(
+          window.navigator.userAgent
+        );
+
   return (
-    <Flex {...containerProps} flexDirection={"column"} position={"relative"}>
+    <SelectContainer {...containerProps}>
       <Label {...labelProps} visuallyHidden={!showLabel}>
         {props.label}
       </Label>
-      <HiddenSelect
-        state={state}
-        triggerRef={ref}
-        label={props.label || props.placeholder}
-        name={props.name}
-      />
-      <Button
-        {...mergeProps(buttonProps, focusProps)}
-        ref={ref}
-        isOpen={state.isOpen}
-        isFocusVisible={isFocusVisible}
-      >
-        <Flex alignItems={"center"}>
-          {props.icon && <Icon mr={8} name={props.icon}></Icon>}
-          <SelectedOrPlaceholder
-            data-testid={"select-span"}
-            isPlaceholder={!state.selectedItem}
-            {...valueProps}
+      {shouldRenderNativeSelect ? (
+        <SelectButton as="select">
+          {items.map((item) => (
+            <option value={item.value}>{item.label}</option>
+          ))}
+        </SelectButton>
+      ) : (
+        <>
+          <HiddenSelect
+            state={state}
+            triggerRef={ref}
+            label={props.label || props.placeholder}
+            name={props.name}
+          />
+          <SelectButton
+            {...mergeProps(buttonProps, focusProps)}
+            ref={ref}
+            isOpen={state.isOpen}
+            isFocusVisible={isFocusVisible}
           >
-            {state.selectedItem
-              ? state.selectedItem.rendered
-              : props.placeholder}
-          </SelectedOrPlaceholder>
-        </Flex>
-        <Icon name={"ChevronDown"} />
-      </Button>
-      {state.isOpen && (
-        <Popover isOpen={state.isOpen} onClose={state.close}>
-          <ListBox {...menuProps} state={state} />
-        </Popover>
+            <Flex alignItems={"center"}>
+              {props.icon && <Icon mr={8} name={props.icon}></Icon>}
+              <SelectedOrPlaceholder
+                data-testid={"select-span"}
+                isPlaceholder={!state.selectedItem}
+                {...valueProps}
+              >
+                {state.selectedItem
+                  ? state.selectedItem.rendered
+                  : props.placeholder}
+              </SelectedOrPlaceholder>
+            </Flex>
+            <Icon name={"ChevronDown"} />
+          </SelectButton>
+          {state.isOpen && (
+            <Popover isOpen={state.isOpen} onClose={state.close}>
+              <ListBox {...menuProps} state={state} />
+            </Popover>
+          )}
+        </>
       )}
-    </Flex>
+    </SelectContainer>
   );
 }

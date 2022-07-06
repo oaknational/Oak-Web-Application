@@ -40,7 +40,7 @@ describe("NewsletterForm", () => {
     expect(onSubmit).toHaveBeenCalledWith({
       name: "a name",
       email: "email@example.com",
-      userRole: "pupil",
+      userRole: "Pupil",
     });
   });
   test("should display error hint on blur if no name is entered", async () => {

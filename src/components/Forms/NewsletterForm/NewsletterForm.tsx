@@ -28,6 +28,17 @@ const schema = z.object({
   userRole: z.string(),
 });
 
+/**
+ * The form endpoint only allows specific case-sensitive values for user-type:
+ * Teacher, Parent, Pupil, Other
+ */
+const userTypeOptions = [
+  { value: "Teacher", label: "Teacher" },
+  { value: "Parent", label: "Parent" },
+  { value: "Pupil", label: "Pupil" },
+  { value: "Other", label: "Other" },
+];
+
 type NewsletterFormValues = z.infer<typeof schema>;
 type NewsletterFormProps = {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
@@ -106,12 +117,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           mt={24}
           label="User type"
           placeholder="What describes you best?"
-          listItems={[
-            { value: "teacher", label: "Teacher" },
-            { value: "parent", label: "Parent" },
-            { value: "pupil", label: "Pupil" },
-            { value: "other", label: "Other" },
-          ]}
+          listItems={userTypeOptions}
           {...register("userRole")}
         />
         <Button
