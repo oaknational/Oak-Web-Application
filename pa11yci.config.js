@@ -5,8 +5,10 @@
  */
 
 const config = {
-  defaults: { runners: ["axe"] },
-  hideElements: "#mtm-root-container",
+  defaults: {
+    runners: ["axe"],
+    hideElements: "#mtm-root-container, #mtm-frame-container",
+  },
   urls: [],
 };
 
