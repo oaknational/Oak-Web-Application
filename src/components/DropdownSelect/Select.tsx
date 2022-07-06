@@ -1,5 +1,5 @@
 import { ReactNode, Ref } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
@@ -47,6 +47,7 @@ export const SelectContainer = (props: FlexProps) => (
 interface SelectButtonProps {
   isOpen?: boolean;
   isFocusVisible?: boolean;
+  isNativeSelect?: boolean;
 }
 export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
@@ -71,6 +72,19 @@ export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   width: 100%;
   text-align: left;
   font-size: 16px;
+  ${(props) =>
+    props.isNativeSelect &&
+    css`
+      color: ${getColorByLocation(
+        ({ theme }) => theme.input.states.default.placeholder
+      )};
+    `}
+`;
+
+const NativeSelectPlaceholder = styled.option`
+  color: ${getColorByLocation(
+    ({ theme }) => theme.input.states.default.placeholder
+  )};
 `;
 
 const Label = styled.label<{ visuallyHidden: boolean }>`
@@ -83,11 +97,11 @@ const Label = styled.label<{ visuallyHidden: boolean }>`
 
 const SelectedOrPlaceholder = styled.span<{ isPlaceholder: boolean }>`
   color: ${(props) =>
-    props.isPlaceholder
-      ? getColorByLocation(
-          ({ theme }) => theme.input.states.default.placeholder
-        )
-      : getColorByLocation(({ theme }) => theme.input.states.default.text)};
+    getColorByLocation(({ theme }) =>
+      props.isPlaceholder
+        ? theme.input.states.default.placeholder
+        : theme.input.states.default.text
+    )};
 `;
 
 export function Select<T extends object>(
@@ -127,7 +141,15 @@ export function Select<T extends object>(
         // Having to ignore due to inconsistent ref types
         // eslint-disable-next-line
         // @ts-ignore
-        <SelectButton as="select" ref={ref}>
+        <SelectButton
+          as="select"
+          ref={ref}
+          aria-labelledBy={labelProps.id}
+          isNativeSelect
+        >
+          <NativeSelectPlaceholder value="" disabled selected>
+            {props.placeholder}
+          </NativeSelectPlaceholder>
           {items.map((item) => (
             <option value={item.value}>{item.label}</option>
           ))}
