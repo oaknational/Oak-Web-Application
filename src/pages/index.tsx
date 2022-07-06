@@ -16,9 +16,13 @@ import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
+import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
+  const { consents } = useCookieConsent();
+  console.log(consents);
+
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
