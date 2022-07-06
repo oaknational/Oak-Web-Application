@@ -1,3 +1,17 @@
+# [0.40.0](https://github.com/oaknational/Samara/compare/v0.39.0...v0.40.0) (2022-07-06)
+
+
+### Bug Fixes
+
+* revert to beta and onboarding page ([3b38305](https://github.com/oaknational/Samara/commit/3b383056d5670915e67d1689522e5c405f96e03f))
+
+
+### Features
+
+* empty home page for pupil and teacher ([20e5a87](https://github.com/oaknational/Samara/commit/20e5a87cfa39ee6a368f6bfe2d59e5abcf1c9fde))
+* on boarding grid ([c95a772](https://github.com/oaknational/Samara/commit/c95a772d762f65099877410bad0a8f36c6090285))
+* on boarding page ([55829b3](https://github.com/oaknational/Samara/commit/55829b3118c1a9d19b753563822f3e943d309f3d))
+
 # [0.39.0](https://github.com/oaknational/Samara/compare/v0.38.0...v0.39.0) (2022-07-06)
 
 
