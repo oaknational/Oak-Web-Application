@@ -5,6 +5,12 @@ import { FlexProps } from "../Flex";
 
 import Card from "./Card";
 
+const StyledCardAsLink = styled(Card)`
+  &:focus-within {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+`;
+
 const CardLink = styled.a`
   ::after {
     content: "";
@@ -36,10 +42,10 @@ const CardAsLink: FC<CardAsLinkProps> = ({
   ...cardProps
 }) => {
   return (
-    <Card position="relative" {...cardProps}>
+    <StyledCardAsLink position="relative" {...cardProps}>
       <CardLink aria-label={ariaLabel} target={target} href={href} />
       {children}
-    </Card>
+    </StyledCardAsLink>
   );
 };
 

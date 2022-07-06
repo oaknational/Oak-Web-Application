@@ -12,6 +12,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { BookmarksProvider } from "../context/Bookmarks";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
+import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApolloClient();
@@ -21,18 +22,20 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     <SSRProvider>
       <ErrorBoundary>
         <GlobalStyle />
-        <AuthProvider>
-          <ApolloProvider client={apolloClient}>
-            <BookmarksProvider>
-              <SearchProvider>
-                <ThemeProvider theme={theme}>
-                  <DefaultSeo />
-                  <Component {...pageProps} />
-                </ThemeProvider>
-              </SearchProvider>
-            </BookmarksProvider>
-          </ApolloProvider>
-        </AuthProvider>
+        <CookieConsentProvider>
+          <AuthProvider>
+            <ApolloProvider client={apolloClient}>
+              <BookmarksProvider>
+                <SearchProvider>
+                  <ThemeProvider theme={theme}>
+                    <DefaultSeo />
+                    <Component {...pageProps} />
+                  </ThemeProvider>
+                </SearchProvider>
+              </BookmarksProvider>
+            </ApolloProvider>
+          </AuthProvider>
+        </CookieConsentProvider>
       </ErrorBoundary>
     </SSRProvider>
   );

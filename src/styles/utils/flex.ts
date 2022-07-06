@@ -10,6 +10,16 @@ export type FlexCssProps = {
   flex?: ResponsiveValues<CSSProperties["flex"]>;
   flexGrow?: ResponsiveValues<CSSProperties["flexGrow"]>;
   flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
+  width?: ResponsiveValues<CSSProperties["width"]>;
+};
+
+const parse = (value?: number | string) => {
+  switch (typeof value) {
+    case "string":
+      return value;
+    case "number":
+      return `${value}px`;
+  }
 };
 const flex = css<FlexCssProps>`
   display: flex;
@@ -19,6 +29,7 @@ const flex = css<FlexCssProps>`
   ${responsive("flex", (props) => props.flex)}
   ${responsive("flex-grow", (props) => props.flexGrow)}
   ${responsive("flex-wrap", (props) => props.flexWrap)}
+  ${responsive("width", (props) => props.width, parse)}
 `;
 
 export default flex;

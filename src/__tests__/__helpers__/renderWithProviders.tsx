@@ -13,6 +13,7 @@ import { ThemeProvider } from "styled-components";
 import { BookmarksProvider } from "../../context/Bookmarks";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
+import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
@@ -28,17 +29,19 @@ const AllTheProviders: FC<ProviderProps> = ({
   authProviderProps,
 }) => {
   return (
-    <MockedAuthProvider {...authProviderProps}>
-      <MockedApolloProvider>
-        <ThemeProvider theme={theme}>
-          <MemoryRouterProvider>
-            <BookmarksProvider>
-              <SearchProvider>{children}</SearchProvider>
-            </BookmarksProvider>
-          </MemoryRouterProvider>
-        </ThemeProvider>
-      </MockedApolloProvider>
-    </MockedAuthProvider>
+    <CookieConsentProvider>
+      <MockedAuthProvider {...authProviderProps}>
+        <MockedApolloProvider>
+          <ThemeProvider theme={theme}>
+            <MemoryRouterProvider>
+              <BookmarksProvider>
+                <SearchProvider>{children}</SearchProvider>
+              </BookmarksProvider>
+            </MemoryRouterProvider>
+          </ThemeProvider>
+        </MockedApolloProvider>
+      </MockedAuthProvider>
+    </CookieConsentProvider>
   );
 };
 

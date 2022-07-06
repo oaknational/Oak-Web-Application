@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import styled, { css } from "styled-components";
 
 import color from "../../styles/utils/color";
@@ -12,6 +12,7 @@ export type HeadingTag = typeof HEADING_TAGS[number];
 
 export type HeadingTagProps = {
   tag: HeadingTag;
+  textAlign?: CSSProperties["textAlign"];
 };
 const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
   const { tag, ...otherProps } = props;
@@ -41,6 +42,7 @@ type HeadingProps = Omit<TypographyProps, "fontSize"> &
   } & MarginProps;
 
 const Heading = styled(HeadingTagComponent)<HeadingProps>`
+  text-align: ${(props) => props.textAlign};
   ${headingDefaults}
   ${margin}
   ${typography}
