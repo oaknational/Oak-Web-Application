@@ -2828,15 +2828,18 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <details>
+  <details
+    onClick={[Function]}
+  >
     <summary
-      className="sc-20c3322c-0 hWZzen"
+      className="sc-b49de5e9-0 hfrQPu"
+      onClick={[Function]}
     >
       <div
         className="sc-2f0613b5-0 sc-a3c34836-0 QmDoQ bhLeOG"
       >
         <h2
-          className="sc-ef5f3f7-0 sc-20c3322c-1 gBeReX bJuaAv"
+          className="sc-ef5f3f7-0 sc-b49de5e9-1 gBeReX ckxfHu"
           fontSize={24}
         >
           <a
@@ -2850,11 +2853,11 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
         >
           <button
-            aria-label="Download button"
+            aria-label="Download lesson presentation"
             className="sc-da410035-0 sc-7c97ca8b-0 eaZurT bsqCOd"
             onClick={[Function]}
             size="small"
-            title="Download button"
+            title="Download lesson presentation"
           >
             <div
               className="sc-ef16a28e-0 hbpwaj"
@@ -2899,11 +2902,11 @@ Array [
             </div>
           </button>
           <button
-            aria-label="Share button"
+            aria-label="Share lesson presentation"
             className="sc-da410035-0 sc-7c97ca8b-0 eaZurT bsqCOd"
             onClick={[Function]}
             size="small"
-            title="Share button"
+            title="Share lesson presentation"
           >
             <div
               className="sc-ef16a28e-0 hbpwaj"
