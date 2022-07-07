@@ -2,6 +2,36 @@
 
 A really good remote education app.
 
+- [Getting started](#Getting-started)
+- [Automatic Checks](#Automatic-started)
+  - [Unit tests](#Unit-tests)
+  - [End-to-End Browser Tests](#End-to-End-Browser-Tests)
+  - [Pre-commit and Commit Message Hooks](#Pre-commit-and-Commit-Message-Hooks)
+    - [Pre-commit](#Pre-commit)
+    - [Commit Message Validation](#Commit-Message-Validation)
+- [CI/CD](#CI-CD)
+  - [Pull Requests and Automated Checks](#Pull-Requests-and-Automated-Checks)
+  - [Builds and Deployments](#Builds-and-Deployments)
+  - [Release Mechanism](#Release-Mechanism)
+- [Npm dependencies](#Npm-dependencies)
+
+Other documentation can be found in standalone READMEs:
+
+- Build
+  - [Fetching Config](./scripts/build/fetch_config)
+  - [Fetching Secrets](./scripts/build/fetch_secrets)
+- Components
+  - [Forms](./src/components/Forms)
+  - [Icon](./src/components/Icon)
+- Docs
+  - [Images](./docs/images)
+  - [Testing](./docs/testing.md)
+- [Error Handling](./src/errors)
+- Hasura
+  - [Curriculum database](./hasura-curriculum)
+  - [Users database](./hasura-users/)
+- [React Context](./src/context)
+
 ## Getting started
 
 First, run:
@@ -39,7 +69,7 @@ See the [testing docs for further details](./docs/testing.md#e2e-browser-tests).
 
 We use [Husky to run pre-commit and commit message validating hooks](.husky), including unit tests, code linting, type checking, and commit message format checking.
 
-### Pre-commit
+#### Pre-commit
 
 Currently this hook
 
@@ -47,7 +77,7 @@ Currently this hook
 - Runs the linting
 - Runs the unit tests
 
-### Commit Message Validation
+#### Commit Message Validation
 
 We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `npm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
 

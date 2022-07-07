@@ -9,11 +9,14 @@ If you find yourself having to add a new icon:
 
 1. Create a new file in `components/Icon/` called `{Name}.icon.tsx`.
 2. Download the svg file from the figma designs:
-3. Right-click the icon
-4. Select "Copy as SVG"
-5. You could also [https://jakearchibald.github.io/svgomg/](optimise the svg).
-6. Using the [#SVG](pattern below), paste the svg in to the file you've created.
-7. In `components/Icon/Icon.tsx` import the new icon, and add it to the list of ICON_NAMES and icons.
+
+   i. Right-click the icon
+
+   ii. Select "Copy as SVG"
+
+3. [Optimise the svg](https://jakearchibald.github.io/svgomg/).
+4. Using the [pattern below](#SVG), paste the svg in to the file you've created.
+5. In `components/Icon/Icon.tsx` import the new icon, and add it to the list of ICON_NAMES and icons.
 
 ## SVG
 
