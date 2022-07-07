@@ -1,3 +1,17 @@
+# [0.41.0](https://github.com/oaknational/Samara/compare/v0.40.1...v0.41.0) (2022-07-07)
+
+
+### Bug Fixes
+
+* **newsletter-hubspot:** send usertype 'Student' ([305b25a](https://github.com/oaknational/Samara/commit/305b25af3bc70c7d17b792261b811073fd930936))
+* pass ref to native select element ([979c276](https://github.com/oaknational/Samara/commit/979c2762437ef307fbcaf0020c2d23fd661ef8a2))
+
+
+### Features
+
+* add dropdown to newsletter form ([e388f60](https://github.com/oaknational/Samara/commit/e388f6099459d341beb034576f695a1920db339c))
+* use native select component on tablet ([e2a5ce4](https://github.com/oaknational/Samara/commit/e2a5ce4c51b3c9b32c445244e9fafe241efeec27))
+
 ## [0.40.1](https://github.com/oaknational/Samara/compare/v0.40.0...v0.40.1) (2022-07-07)
 
 # [0.40.0](https://github.com/oaknational/Samara/compare/v0.39.0...v0.40.0) (2022-07-06)
