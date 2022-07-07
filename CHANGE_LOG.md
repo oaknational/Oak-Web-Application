@@ -1,3 +1,10 @@
+# [0.42.0](https://github.com/oaknational/Samara/compare/v0.41.0...v0.42.0) (2022-07-07)
+
+
+### Features
+
+* border style props ([050b48c](https://github.com/oaknational/Samara/commit/050b48c7c1ad781ebce7dcd8d5a75ba384320a74))
+
 # [0.41.0](https://github.com/oaknational/Samara/compare/v0.40.1...v0.41.0) (2022-07-07)
 
 
