@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import border, { BorderProps } from "../../styles/utils/border";
 import Flex from "../Flex/Flex";
 
 /**
@@ -7,15 +8,16 @@ import Flex from "../Flex/Flex";
  * and 'background' util types
  */
 
-const Card = styled(Flex)`
+const Card = styled(Flex)<BorderProps>`
+  ${border}
   min-height: 200px;
-  border-radius: 12px;
   flex-grow: 1;
 `;
 
 Card.defaultProps = {
   pa: 24,
   flexDirection: "column",
+  borderRadius: 12,
 };
 
 export default Card;
