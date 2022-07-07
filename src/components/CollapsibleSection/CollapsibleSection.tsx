@@ -57,8 +57,17 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
     setOpen((o) => !o);
   };
   return (
-    <details {...(open ? { open: true } : {})}>
-      <Summary>
+    <details
+      onClick={(e) => {
+        e.preventDefault();
+      }}
+      {...(open ? { open: true } : {})}
+    >
+      <Summary
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+      >
         <Flex
           pa={24}
           flexDirection={"row"}
