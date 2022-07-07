@@ -2,6 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
+import { SSRProvider } from "@react-aria/ssr";
 
 import GlobalStyle from "../styles/GlobalStyle";
 import { AuthProvider } from "../context/Auth";
@@ -18,7 +19,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const { theme } = useOakTheme();
 
   return (
-    <>
+    <SSRProvider>
       <ErrorBoundary>
         <GlobalStyle />
         <CookieConsentProvider>
@@ -36,7 +37,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           </AuthProvider>
         </CookieConsentProvider>
       </ErrorBoundary>
-    </>
+    </SSRProvider>
   );
 };
 
