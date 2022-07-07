@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { FlexProps } from "../Flex";
+import { BorderProps } from "../../styles/utils/border";
 
 import Card from "./Card";
 
@@ -22,7 +23,7 @@ const CardLink = styled.a`
   }
 `;
 
-interface CardAsLinkProps extends FlexProps {
+interface CardAsLinkProps extends FlexProps, BorderProps {
   href: string;
   target?: "_self" | "_blank";
   ariaLabel: string;
