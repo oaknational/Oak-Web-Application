@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import hubspotSubmitForm from "./hubspotSubmitForm";
+import hubspotSubmitForm, { HubspotFormData } from "./hubspotSubmitForm";
 
 const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
@@ -58,10 +58,10 @@ jest.mock("../../../common-lib/error-handler", () => ({
       reportError(...args),
 }));
 
-const data = {
+const data: HubspotFormData = {
   email: "email value",
   name: "full_name value",
-  userRole: "user_type value",
+  userRole: "Student",
   oakUserId: "oak_user_id value",
 };
 
@@ -149,7 +149,7 @@ describe("hubspotSubmitForm", () => {
               { name: "email_text_only", value: "email value" },
               { name: "full_name", value: "full_name value" },
               { name: "oak_user_id", value: "oak_user_id value" },
-              { name: "user_type", value: "user_type value" },
+              { name: "user_type", value: "Student" },
             ],
           },
           props: {
@@ -157,7 +157,7 @@ describe("hubspotSubmitForm", () => {
               emailTextOnly: "email value",
               name: "full_name value",
               oakUserId: "oak_user_id value",
-              userRole: "user_type value",
+              userRole: "Student",
             },
             hubspotFormId: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
             isFallbackAttempt: true,
@@ -190,7 +190,7 @@ describe("hubspotSubmitForm", () => {
               { name: "email", value: "email value" },
               { name: "full_name", value: "full_name value" },
               { name: "oak_user_id", value: "oak_user_id value" },
-              { name: "user_type", value: "user_type value" },
+              { name: "user_type", value: "Student" },
             ],
           },
           props: {
@@ -198,7 +198,7 @@ describe("hubspotSubmitForm", () => {
               email: "email value",
               name: "full_name value",
               oakUserId: "oak_user_id value",
-              userRole: "user_type value",
+              userRole: "Student",
             },
             hubspotFormId: "hubspot-test-form",
           },
