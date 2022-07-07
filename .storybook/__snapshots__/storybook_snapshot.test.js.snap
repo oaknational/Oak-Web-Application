@@ -1269,14 +1269,14 @@ Array [
     rel="stylesheet"
   />,
   <label
-    className="sc-312daaf3-0 ddwjbs"
+    className="sc-7fc21d95-0 hGxQYg"
     disabled={false}
     htmlFor="Click me"
     onClick={[Function]}
   >
     <input
       checked={false}
-      className="sc-312daaf3-1 jUsCnh"
+      className="sc-7fc21d95-1 cGbzCZ"
       disabled={false}
       id="Click me"
       onChange={[Function]}
@@ -1284,7 +1284,7 @@ Array [
     />
     <svg
       aria-hidden="true"
-      className="sc-312daaf3-2"
+      className="sc-7fc21d95-2"
       fill="none"
       focusable="false"
       height="24"
@@ -1301,11 +1301,11 @@ Array [
       />
       <path
         checked={false}
-        className="sc-312daaf3-3 eeDoQg"
+        className="sc-7fc21d95-3 hbHtPY"
         d="M10.0664 16.8233C10.3008 17.0589 10.6992 17.0589 10.9336 16.8233L17.8242 9.8966C18.0586 9.66099 18.0586 9.26047 17.8242 9.02487L16.9805 8.1767C16.7461 7.9411 16.3711 7.9411 16.1367 8.1767L10.5117 13.8312L7.86328 11.1924C7.62891 10.9568 7.25391 10.9568 7.01953 11.1924L6.17578 12.0406C5.94141 12.2762 5.94141 12.6767 6.17578 12.9123L10.0664 16.8233Z"
       />
       <rect
-        className="sc-312daaf3-4 jnANBF"
+        className="sc-7fc21d95-4 jHsvhx"
         height="23"
         rx="3.5"
         width="23"
@@ -1314,11 +1314,471 @@ Array [
       />
     </svg>
     <span
-      className="sc-312daaf3-5 dCllwe"
+      className="sc-7fc21d95-5 hFmJIC"
     >
       Click me
     </span>
   </label>,
+]
+`;
+
+exports[`Storyshots Form/Dropdown Drop Down Select 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
+  >
+    <label
+      className="sc-5f02fb42-1 kwviDi"
+      id="react-aria-generated-id"
+      onClick={[Function]}
+    >
+      Role select dropdown
+    </label>
+    <div
+      aria-hidden={true}
+      onBlur={null}
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(50%)",
+          "height": 1,
+          "margin": "0 -1px -1px 0",
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    >
+      <input
+        onFocus={[Function]}
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+        tabIndex={-1}
+        type="text"
+      />
+      <label>
+        Role select dropdown
+        <select
+          name="Role select dropdown"
+          onChange={[Function]}
+          size={4}
+          tabIndex={-1}
+          value=""
+        >
+          <option />
+          <option
+            value="Teacher"
+          >
+            Teacher
+          </option>
+          <option
+            value="Parent"
+          >
+            Parent
+          </option>
+          <option
+            value="Pupil"
+          >
+            Pupil
+          </option>
+          <option
+            value="Other"
+          >
+            Other
+          </option>
+        </select>
+      </label>
+    </div>
+    <button
+      aria-controls={null}
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="react-aria-generated-id react-aria-generated-id"
+      className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
+      data-testid="select"
+      id="react-aria-generated-id"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <span
+          data-testid="select-span"
+          id="react-aria-generated-id"
+        >
+          What describes you best?
+        </span>
+      </div>
+      <span
+        className="sc-6748a30-0 kBXscc"
+        height={24}
+        width={24}
+      >
+        <span
+          className="sc-6748a30-1 fsyIoZ"
+          height={24}
+          width={24}
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Dropdown Drop Down Select Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
+  >
+    <label
+      className="sc-5f02fb42-1 kwviDi"
+      onClick={[Function]}
+    />
+    <div
+      aria-hidden={true}
+      onBlur={null}
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(50%)",
+          "height": 1,
+          "margin": "0 -1px -1px 0",
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    >
+      <input
+        onFocus={[Function]}
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+        tabIndex={-1}
+        type="text"
+      />
+      <label>
+        What describes you best?
+        <select
+          name="Role select dropdown"
+          onChange={[Function]}
+          size={4}
+          tabIndex={-1}
+          value=""
+        >
+          <option />
+          <option
+            value="Teacher"
+          >
+            Teacher
+          </option>
+          <option
+            value="Parent"
+          >
+            Parent
+          </option>
+          <option
+            value="Pupil"
+          >
+            Pupil
+          </option>
+          <option
+            value="Other"
+          >
+            Other
+          </option>
+        </select>
+      </label>
+    </div>
+    <button
+      aria-controls={null}
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="react-aria-generated-id"
+      className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
+      data-testid="select"
+      id="react-aria-generated-id"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <span
+          className="sc-6748a30-0 cQHeUW"
+          height={24}
+          width={24}
+        >
+          <span
+            className="sc-6748a30-1 fsyIoZ"
+            height={24}
+            width={24}
+          >
+            <svg
+              fill="none"
+              height="100%"
+              viewBox="0 0 36 24"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M34.5 0h-29C4.625 0 4 .688 4 1.5V2H1.5C.625 2 0 2.688 0 3.5V21c0 1.688 1.313 3 3 3h31.5c.813 0 1.5-.625 1.5-1.5v-21c0-.813-.688-1.5-1.5-1.5ZM2 21V4h2v17c0 .563-.5 1-1 1-.563 0-1-.438-1-1Zm32 1H5.812c.125-.25.125-.625.125-.938 0 0 .063 0 .063-.062V2h28v20ZM8.75 16h10.5a.76.76 0 0 0 .75-.75V4.75c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v10.5c0 .438.313.75.75.75ZM10 6h8v8h-8V6ZM8 19.25c0 .438.313.75.75.75h10.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75H8.75a.76.76 0 0 0-.75.75v.5Zm14 0c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0-8c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Zm0 4c0 .438.313.75.75.75h8.5a.76.76 0 0 0 .75-.75v-.5c0-.375-.375-.75-.75-.75h-8.5a.76.76 0 0 0-.75.75v.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          data-testid="select-span"
+          id="react-aria-generated-id"
+        >
+          What describes you best?
+        </span>
+      </div>
+      <span
+        className="sc-6748a30-0 kBXscc"
+        height={24}
+        width={24}
+      >
+        <span
+          className="sc-6748a30-1 fsyIoZ"
+          height={24}
+          width={24}
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Form/Dropdown Drop Down Select Label 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL yezQB"
+  >
+    <label
+      className="sc-5f02fb42-1 kwviDi"
+      id="react-aria-generated-id"
+      onClick={[Function]}
+    >
+      What describes you best?
+    </label>
+    <div
+      aria-hidden={true}
+      onBlur={null}
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(50%)",
+          "height": 1,
+          "margin": "0 -1px -1px 0",
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    >
+      <input
+        onFocus={[Function]}
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+        tabIndex={-1}
+        type="text"
+      />
+      <label>
+        What describes you best?
+        <select
+          name="Role select dropdown"
+          onChange={[Function]}
+          size={4}
+          tabIndex={-1}
+          value=""
+        >
+          <option />
+          <option
+            value="Teacher"
+          >
+            Teacher
+          </option>
+          <option
+            value="Parent"
+          >
+            Parent
+          </option>
+          <option
+            value="Pupil"
+          >
+            Pupil
+          </option>
+          <option
+            value="Other"
+          >
+            Other
+          </option>
+        </select>
+      </label>
+    </div>
+    <button
+      aria-controls={null}
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="react-aria-generated-id react-aria-generated-id"
+      className="sc-da410035-0 sc-5f02fb42-0 eaZurT fAifbI"
+      data-testid="select"
+      id="react-aria-generated-id"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gFHvvh"
+      >
+        <span
+          data-testid="select-span"
+          id="react-aria-generated-id"
+        />
+      </div>
+      <span
+        className="sc-6748a30-0 kBXscc"
+        height={24}
+        width={24}
+      >
+        <span
+          className="sc-6748a30-1 fsyIoZ"
+          height={24}
+          width={24}
+        >
+          <svg
+            fill="none"
+            height="100%"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </div>,
 ]
 `;
 
@@ -1858,13 +2318,13 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-2b2531d0-0 iuuLRW"
+    className="sc-b51aaf6d-0 bnDEYN"
   >
     <div
       className="sc-2f0613b5-0 sc-a3c34836-0 iRseBR bzAnZD"
     >
       <a
-        className="sc-2b2531d0-1 dOwEmI"
+        className="sc-b51aaf6d-1 jlBLNf"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
@@ -1963,7 +2423,7 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 gjwjEx lfYcjD"
     >
       <a
-        href="/sign-in"
+        href="/beta/sign-in"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -2260,7 +2720,7 @@ Array [
       className="sc-2f0613b5-0 sc-a3c34836-0 jaSFFS jqCRrg"
     >
       <div
-        className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD hsAqMF"
+        className="sc-2f0613b5-0 sc-68731eac-0 bsCxxD dBciSc"
         fontWeight={400}
       >
         <a
@@ -2272,7 +2732,7 @@ Array [
         </a>
       </div>
       <div
-        className="sc-2f0613b5-0 sc-3ce2e856-0 fQhjrW hsAqMF"
+        className="sc-2f0613b5-0 sc-68731eac-0 fQhjrW dBciSc"
         fontWeight={400}
       >
         <a
@@ -2382,7 +2842,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            className="sc-2f0613b5-0 sc-68731eac-0 sc-9219bae4-3 ePqEwk dBciSc jYJwoG"
             fontWeight={400}
           >
             Intro
@@ -2466,7 +2926,7 @@ Array [
             </span>
           </span>
           <div
-            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            className="sc-2f0613b5-0 sc-68731eac-0 sc-9219bae4-3 ePqEwk dBciSc jYJwoG"
             fontWeight={400}
           >
             Intro
@@ -2502,7 +2962,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            className="sc-2f0613b5-0 sc-68731eac-0 sc-9219bae4-3 ePqEwk dBciSc jYJwoG"
             fontWeight={400}
           >
             Intro
@@ -2564,7 +3024,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            className="sc-2f0613b5-0 sc-68731eac-0 sc-9219bae4-3 ePqEwk dBciSc jYJwoG"
             fontWeight={400}
           >
             Intro
@@ -2650,7 +3110,7 @@ Array [
           className="sc-2f0613b5-0 sc-a3c34836-0 sc-9219bae4-4 bsCxxD ehsndq ctXbdR"
         >
           <div
-            className="sc-2f0613b5-0 sc-3ce2e856-0 sc-9219bae4-3 ePqEwk hsAqMF jYJwoG"
+            className="sc-2f0613b5-0 sc-68731eac-0 sc-9219bae4-3 ePqEwk dBciSc jYJwoG"
             fontWeight={400}
           >
             Very long label
@@ -3695,7 +4155,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD bqdWGm"
+    className="sc-2f0613b5-0 sc-68731eac-0 bsCxxD jvOxPL"
     fontSize={18}
     fontWeight={400}
   >
@@ -3744,7 +4204,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD hsAqMF"
+    className="sc-2f0613b5-0 sc-68731eac-0 bsCxxD dBciSc"
     fontWeight={400}
   >
     <p
@@ -3776,7 +4236,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-3ce2e856-0 bsCxxD gyOmHh"
+    className="sc-2f0613b5-0 sc-68731eac-0 bsCxxD dGjrLk"
     color="grey9"
     fontWeight={400}
   >

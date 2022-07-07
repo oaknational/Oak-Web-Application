@@ -1,6 +1,6 @@
 {
   "name": "samara",
-  "version": "0.37.0",
+  "version": "0.38.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -9,6 +9,7 @@
     "cca": "git add . && commit",
     "check-types": "tsc --noEmit",
     "dev": "next dev",
+    "export": "next export",
     "format": "prettier */**/*.t{s,sx} --write",
     "format:check": "prettier */**/*.t{s,sx} --check",
     "gql-codegen": "npm run gql-codegen:browser && npm run gql-codegen:node",
