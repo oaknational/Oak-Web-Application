@@ -2,11 +2,12 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import GridArea from "../../components/Grid/GridArea";
-import CardAsLink from "../../components/Card/CardAsLink";
 import CardTitle from "../../components/Card/CardComponents/CardTitle";
 import { Heading, P } from "../../components/Typography";
 import Flex from "../../components/Flex";
 import Grid from "../../components/Grid";
+import Card from "../../components/Card";
+import CardLink from "../../components/Card/CardLink";
 
 const OnBoardingGrid = styled(Grid)`
   max-width: 648px;
@@ -29,35 +30,30 @@ const OnBoarding: FC = () => {
           </Heading>
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
-          <CardAsLink
+          <Card
             justifyContent={"center"}
             alignItems={"center"}
             mh={[24, 0, 0]}
             background={"white"}
-            href={"/beta/teacher"}
-            ariaLabel={"Teacher"}
           >
-            <CardTitle textCenter title={"Teacher"} tag={"h2"}></CardTitle>
+            <CardTitle textCenter tag={"h2"}>
+              <CardLink href={"/beta/teacher"}>Teacher</CardLink>
+            </CardTitle>
 
             <P textAlign={"center"}>
               Short snappy description of what this card is about.
             </P>
-          </CardAsLink>
+          </Card>
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
-          <CardAsLink
-            justifyContent={"center"}
-            mh={[24, 0, 0]}
-            background={"white"}
-            href={"/beta/pupil"}
-            ariaLabel={"Pupil"}
-          >
-            <CardTitle textCenter title={"Pupil"} tag={"h2"}></CardTitle>
+          <Card justifyContent={"center"} mh={[24, 0, 0]} background={"white"}>
+            <CardTitle textCenter tag={"h2"}>
+              <CardLink href={"/beta/pupil"}>Pupil</CardLink>
+            </CardTitle>
             <P textAlign="center">
-              {" "}
               Short snappy description of what this card is about.
             </P>
-          </CardAsLink>
+          </Card>
         </GridArea>
         <GridArea colSpan={[12, 12, 12]}>
           <P ma={24} textAlign="center">

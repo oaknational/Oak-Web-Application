@@ -23,7 +23,6 @@ export const getIconFlexPosition = (
 type IconPosition = "leading" | "trailing" | "aboveTitle";
 
 export type CardTitleProps = {
-  title: string;
   tag: HeadingTag;
   icon?: IconName;
   iconPosition?: IconPosition;
@@ -32,12 +31,12 @@ export type CardTitleProps = {
 };
 
 const CardTitle: FC<CardTitleProps> = ({
-  title,
   textCenter,
   icon,
   iconPosition = "leading",
   iconSize = 32,
   tag,
+  children,
 }) => {
   return (
     <Flex
@@ -56,7 +55,7 @@ const CardTitle: FC<CardTitleProps> = ({
         />
       )}
       <Heading fontSize={24} tag={tag}>
-        {title}
+        {children}
       </Heading>
     </Flex>
   );
