@@ -39,9 +39,10 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
         icon={"Home"}
         iconPosition={"leading"}
         iconSize={32}
-        title={"Title"}
         tag={"h4"}
-      />
+      >
+        Title
+      </CardTitle>
       <P fontSize={16} mb={24} color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
@@ -60,7 +61,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
     <Component {...args}>
       <CardImage imageSrc={"/" + image}></CardImage>
       <Flex pa={24} flexDirection={"column"}>
-        <CardTitle title={"Title"} tag={"h4"} />
+        <CardTitle tag={"h4"}>Title</CardTitle>
         <P fontSize={16} mb={24} color={"grey6"}>
           Short snappy description of what this card is about.
         </P>
@@ -88,10 +89,11 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
         icon={"Home"}
         iconPosition={"aboveTitle"}
         iconSize={80}
-        title={"Title"}
         tag={"h4"}
         textCenter
-      />
+      >
+        Title
+      </CardTitle>
       <P textAlign="center" fontSize={16} mb={24} color={"grey6"}>
         Short snappy description of what this card is about.
       </P>

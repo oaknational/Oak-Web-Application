@@ -8,6 +8,7 @@ import Flex from "../Flex/Flex";
  */
 
 const Card = styled(Flex)`
+  position: relative;
   min-height: 200px;
   border-radius: 12px;
   flex-grow: 1;
