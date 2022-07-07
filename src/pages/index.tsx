@@ -16,9 +16,13 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
 import CardLink from "../components/Card/CardLink";
+import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
+  const { consents } = useCookieConsent();
+  console.log(consents);
+
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -35,7 +39,7 @@ const Home: FC = () => {
         <GridArea colSpan={[12, 12, 4]}>
           <Card background={"white"} mt={48}>
             <Heading fontSize={20} tag={"h2"}>
-              Use Oak in Beta
+              <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
             </Heading>
           </Card>
         </GridArea>
