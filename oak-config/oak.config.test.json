@@ -28,5 +28,9 @@
   "oak": {
     "appBaseUrl": "http://localhost:3000",
     "appName": "Samara"
+  },
+  "posthog": {
+    "apiHost": "http://localhost:8899",
+    "apiKey": "123abc"
   }
 }
