@@ -11,6 +11,10 @@ import { P } from "../../Typography";
 import Button from "../../Button";
 import OakError from "../../../errors/OakError";
 import DropdownSelect from "../../DropdownSelect";
+import {
+  UserRole,
+  USER_ROLES,
+} from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 
 const schema = z.object({
   name: z
@@ -25,19 +29,23 @@ const schema = z.object({
     .email({
       message: "Email not valid",
     }),
-  userRole: z.string(),
+  userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });
 
+const userTypeLabelMap: Record<UserRole, string> = {
+  Teacher: "Teacher",
+  Parent: "Parent",
+  Student: "Pupil",
+  Other: "Other",
+};
 /**
  * The form endpoint only allows specific case-sensitive values for user-type:
  * Teacher, Parent, Pupil, Other
  */
-const userTypeOptions = [
-  { value: "Teacher", label: "Teacher" },
-  { value: "Parent", label: "Parent" },
-  { value: "Pupil", label: "Pupil" },
-  { value: "Other", label: "Other" },
-];
+const userTypeOptions = USER_ROLES.map((userRole) => ({
+  value: userRole,
+  label: userTypeLabelMap[userRole],
+}));
 
 type NewsletterFormValues = z.infer<typeof schema>;
 type NewsletterFormProps = {
@@ -112,11 +120,13 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           error={errors.email?.message}
         />
         <DropdownSelect
+          id="newsletter-signup-userrole"
           mt={24}
           label="User type"
           placeholder="What describes you best?"
           listItems={userTypeOptions}
           {...register("userRole")}
+          error={errors.userRole?.message}
         />
         <Button
           mt={24}

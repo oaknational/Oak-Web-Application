@@ -19,6 +19,7 @@ describe("select", () => {
   it("renders a drop down select", () => {
     renderWithProviders(
       <DropdownSelect
+        id="test-select"
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}
@@ -35,6 +36,7 @@ describe("select", () => {
   it("renders a span with selected value", async () => {
     renderWithProviders(
       <DropdownSelect
+        id="test-select"
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}
@@ -58,6 +60,7 @@ describe("select", () => {
   it("Button span value changes from keyboard controls ", async () => {
     const { rerender } = renderWithProviders(
       <DropdownSelect
+        id="test-select"
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}
@@ -75,6 +78,7 @@ describe("select", () => {
 
     rerender(
       <DropdownSelect
+        id="test-select"
         listItems={roles}
         name={"Name"}
         placeholder={"Placeholder"}

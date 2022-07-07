@@ -2,6 +2,8 @@ import { FC, forwardRef } from "react";
 
 import { FlexProps } from "../Flex";
 import { IconName } from "../Icon/Icon";
+import Box from "../Box";
+import { Span } from "../Typography";
 
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
@@ -11,9 +13,11 @@ type SelectChangeHandler = (e: {
 }) => void;
 
 type DropdownSelectProps = FlexProps & {
+  id: string;
   listItems: SelectItem[];
   name: string;
   label: string;
+  error?: string;
   showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
@@ -25,6 +29,8 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
   DropdownSelectProps
 >((props, ref) => {
   const {
+    id,
+    error,
     listItems,
     name,
     placeholder,
@@ -35,29 +41,42 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
     ...containerProps
   } = props;
 
+  const errorId = `${id}-error`;
+
   return (
-    <Select
-      myRef={ref}
-      data-testid={"select"}
-      placeholder={placeholder}
-      label={label}
-      showLabel={showLabel}
-      name={name}
-      items={listItems}
-      icon={icon}
-      onSelectionChange={(value) =>
-        onChange({ target: { name, value: String(value) } })
-      }
-      containerProps={containerProps}
-    >
-      {(item) => (
-        <Item key={item.value} textValue={item.label}>
-          <div>
-            <Label>{item.label}</Label>
-          </div>
-        </Item>
+    <>
+      <Select
+        myRef={ref}
+        data-testid={"select"}
+        placeholder={placeholder}
+        label={label}
+        showLabel={showLabel}
+        name={name}
+        items={listItems}
+        icon={icon}
+        onSelectionChange={(value) =>
+          onChange({ target: { name, value: String(value) } })
+        }
+        containerProps={containerProps}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? errorId : undefined}
+      >
+        {(item) => (
+          <Item key={item.value} textValue={item.label}>
+            <div>
+              <Label>{item.label}</Label>
+            </div>
+          </Item>
+        )}
+      </Select>
+      {error && (
+        <Box position="absolute">
+          <Span color="error" fontSize={12} id={errorId}>
+            {error}
+          </Span>
+        </Box>
       )}
-    </Select>
+    </>
   );
 });
 

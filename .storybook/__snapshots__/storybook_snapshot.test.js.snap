@@ -1336,7 +1336,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL hdwsyA"
   >
     <label
-      className="sc-ec2cb21a-2 jnvsbc"
+      className="sc-dd743253-2 eWJWXX"
       id="react-aria-generated-id"
       onClick={[Function]}
     >
@@ -1408,7 +1408,7 @@ Array [
       aria-expanded={false}
       aria-haspopup="listbox"
       aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-ec2cb21a-0 eaZurT cNydEX"
+      className="sc-da410035-0 sc-dd743253-0 eaZurT clOJvw"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1480,7 +1480,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL hdwsyA"
   >
     <label
-      className="sc-ec2cb21a-2 jnvsbc"
+      className="sc-dd743253-2 eWJWXX"
       onClick={[Function]}
     />
     <div
@@ -1549,7 +1549,7 @@ Array [
       aria-expanded={false}
       aria-haspopup="listbox"
       aria-labelledby="react-aria-generated-id"
-      className="sc-da410035-0 sc-ec2cb21a-0 eaZurT cNydEX"
+      className="sc-da410035-0 sc-dd743253-0 eaZurT clOJvw"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -1645,7 +1645,7 @@ Array [
     className="sc-2f0613b5-0 sc-a3c34836-0 ciDSuL hdwsyA"
   >
     <label
-      className="sc-ec2cb21a-2 jnvsbc"
+      className="sc-dd743253-2 eWJWXX"
       id="react-aria-generated-id"
       onClick={[Function]}
     >
@@ -1717,7 +1717,7 @@ Array [
       aria-expanded={false}
       aria-haspopup="listbox"
       aria-labelledby="react-aria-generated-id react-aria-generated-id"
-      className="sc-da410035-0 sc-ec2cb21a-0 eaZurT cNydEX"
+      className="sc-da410035-0 sc-dd743253-0 eaZurT clOJvw"
       data-testid="select"
       id="react-aria-generated-id"
       onBlur={[Function]}
@@ -2025,7 +2025,7 @@ Array [
             onBlur={[Function]}
           >
             <label
-              className="sc-ec2cb21a-2 jnvsbc"
+              className="sc-dd743253-2 eWJWXX"
               id="react-aria-generated-id"
               onClick={[Function]}
             >
@@ -2080,7 +2080,7 @@ Array [
                     Parent
                   </option>
                   <option
-                    value="Pupil"
+                    value="Student"
                   >
                     Pupil
                   </option>
@@ -2097,7 +2097,7 @@ Array [
               aria-expanded={false}
               aria-haspopup="listbox"
               aria-labelledby="react-aria-generated-id react-aria-generated-id"
-              className="sc-da410035-0 sc-ec2cb21a-0 eaZurT cNydEX"
+              className="sc-da410035-0 sc-dd743253-0 eaZurT clOJvw"
               data-testid="select"
               id="react-aria-generated-id"
               onBlur={[Function]}
@@ -2291,7 +2291,7 @@ Array [
             onBlur={[Function]}
           >
             <label
-              className="sc-ec2cb21a-2 jnvsbc"
+              className="sc-dd743253-2 eWJWXX"
               id="react-aria-generated-id"
               onClick={[Function]}
             >
@@ -2346,7 +2346,7 @@ Array [
                     Parent
                   </option>
                   <option
-                    value="Pupil"
+                    value="Student"
                   >
                     Pupil
                   </option>
@@ -2363,7 +2363,7 @@ Array [
               aria-expanded={false}
               aria-haspopup="listbox"
               aria-labelledby="react-aria-generated-id react-aria-generated-id"
-              className="sc-da410035-0 sc-ec2cb21a-0 eaZurT cNydEX"
+              className="sc-da410035-0 sc-dd743253-0 eaZurT clOJvw"
               data-testid="select"
               id="react-aria-generated-id"
               onBlur={[Function]}
