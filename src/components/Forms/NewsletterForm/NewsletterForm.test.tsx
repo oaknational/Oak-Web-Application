@@ -1,3 +1,4 @@
+import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 
@@ -23,14 +24,23 @@ describe("NewsletterForm", () => {
     await user.keyboard("a name");
     await user.tab();
     await user.keyboard("email@example.com");
+    // tab => dropdown select
     await user.tab();
-    await user.keyboard("some value");
+    // open dropdown select
+    await user.keyboard("{Enter}");
+    await user.keyboard("{arrowdown}");
+    await user.keyboard("{arrowdown}");
+    // confirm select value
+    await user.keyboard("{Enter}");
+    // hack to wait for dropdown to close
+    await waitFor(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    await user.tab();
     await user.keyboard("{Enter}");
 
     expect(onSubmit).toHaveBeenCalledWith({
       name: "a name",
       email: "email@example.com",
-      userRole: "some value",
+      userRole: "Student",
     });
   });
   test("should display error hint on blur if no name is entered", async () => {

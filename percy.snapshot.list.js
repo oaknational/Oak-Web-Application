@@ -12,8 +12,8 @@ console.log("Percy base url:", baseUrl);
 // https://docs.percy.io/docs/percy-snapshot#configuration
 const snapshotRelativeUrls = [
   "/",
-  "/lessons/physics-only-review-chj3cd/",
-  "/sign-in",
+  "/beta/lessons/physics-only-review-chj3cd/",
+  "/beta/sign-in",
   "/search",
 ];
 

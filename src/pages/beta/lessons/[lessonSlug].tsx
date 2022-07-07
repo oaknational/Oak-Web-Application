@@ -5,15 +5,15 @@ import {
   NextPage,
 } from "next";
 
-import { CourseJsonLd } from "../../browser-lib/seo/getJsonLd";
-import Seo from "../../browser-lib/seo/Seo";
-import Breadcrumbs from "../../components/Breadcrumbs";
-import BrowserWidthBar from "../../components/BrowserWidthBar";
-import Flex from "../../components/Flex";
-import Layout from "../../components/Layout/Layout";
-import LessonHeader from "../../components/LessonHeader/LessonHeader";
-import { LessonId } from "../../context/Bookmarks";
-import graphqlApi from "../../node-lib/graphql";
+import { CourseJsonLd } from "../../../browser-lib/seo/getJsonLd";
+import Seo from "../../../browser-lib/seo/Seo";
+import Breadcrumbs from "../../../components/Breadcrumbs";
+import BrowserWidthBar from "../../../components/BrowserWidthBar";
+import Flex from "../../../components/Flex";
+import Layout from "../../../components/Layout/Layout";
+import LessonHeader from "../../../components/LessonHeader/LessonHeader";
+import { LessonId } from "../../../context/Bookmarks";
+import graphqlApi from "../../../node-lib/graphql";
 
 const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   props

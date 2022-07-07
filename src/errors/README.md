@@ -42,5 +42,3 @@ Each error code should represent a specific cause for an exception to be thrown.
 - Is this an error which we need to be notified of?
   - E.g. "token expired" errors don't need to alert us, since it is expected that they will happen
   - Likewise, "form validation" errors, don't need to alert us.
-
-

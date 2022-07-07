@@ -3,16 +3,16 @@ import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import useAuth from "../../context/Auth/useAuth";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import Layout from "../../components/Layout";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import Flex from "../../components/Flex";
-import { useUser } from "../../context/Auth";
-import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../../config/localStorageKeys";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import useStableCallback from "../../hooks/useStableCallback";
+import useAuth from "../../../context/Auth/useAuth";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import Layout from "../../../components/Layout";
+import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import Flex from "../../../components/Flex";
+import { useUser } from "../../../context/Auth";
+import { LS_KEY_EMAIL_FOR_SIGN_IN } from "../../../config/localStorageKeys";
+import Input from "../../../components/Input";
+import Button from "../../../components/Button";
+import useStableCallback from "../../../hooks/useStableCallback";
 
 const Form = styled.form`
   width: 100%;
@@ -45,13 +45,13 @@ const SignInCallback: NextPage = () => {
 
   useEffect(() => {
     if (user) {
-      router.replace("/sign-in/success", undefined, { shallow: true });
+      router.replace("/beta/sign-in/success", undefined, { shallow: true });
     }
   }, [user, router]);
 
   useEffect(() => {
     if (error) {
-      router.replace("/sign-in/error", undefined, { shallow: true });
+      router.replace("/beta/sign-in/error", undefined, { shallow: true });
     }
   }, [error, router]);
 
