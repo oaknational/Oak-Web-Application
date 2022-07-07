@@ -10,15 +10,16 @@ import BlogList from "../components/BlogList/BlogList";
 import Flex from "../components/Flex";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
-import CardAsLink from "../components/Card/CardAsLink";
 import Icon from "../components/Icon";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
+import CardLink from "../components/Card/CardLink";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
+
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -35,86 +36,80 @@ const Home: FC = () => {
         <GridArea colSpan={[12, 12, 4]}>
           <Card background={"white"} mt={48}>
             <Heading fontSize={20} tag={"h2"}>
-              Use Oak in Beta
+              <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
             </Heading>
           </Card>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
-          <CardAsLink
+          <Card
             background={"white"}
-            href="https://classroom.thenational.academy/"
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems="center"
-            ariaLabel="Classroom"
           >
             <Icon name={"GraduationCap"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              Classroom
+              <CardLink href="https://classroom.thenational.academy/">
+                Classroom
+              </CardLink>
             </Heading>
-          </CardAsLink>
+          </Card>
         </GridArea>
         <GridArea colSpan={[12, 12, 6]}>
-          <CardAsLink
+          <Card
             background={"white"}
-            href="https://teachers.thenational.academy/"
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems="center"
-            ariaLabel="Teacher Hub"
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              Teacher Hub
+              <CardLink href="https://teachers.thenational.academy/">
+                Teacher Hub
+              </CardLink>
             </Heading>
-          </CardAsLink>
+          </Card>
         </GridArea>
 
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink
+          <Card
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems="center"
             background={"white"}
-            href="/"
-            ariaLabel="Curriculum"
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              Curriculum
+              <CardLink href="/">Curriculum</CardLink>
             </Heading>
-          </CardAsLink>
+          </Card>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink
+          <Card
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems={"center"}
             background={"white"}
-            href="/"
-            ariaLabel="Lesson Planning"
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              Lesson Planning
+              <CardLink href="/">Lesson Planning</CardLink>
             </Heading>
-          </CardAsLink>
+          </Card>
         </GridArea>
         <GridArea colSpan={[12, 4, 4]}>
-          <CardAsLink
+          <Card
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems="center"
             background={"white"}
-            href="/"
-            ariaLabel="Oak for schools"
           >
             <Icon name={"GraduationCap"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              Oak for Schools
+              <CardLink href="/">Oak for Schools</CardLink>
             </Heading>
-          </CardAsLink>
+          </Card>
         </GridArea>
       </Grid>
 
@@ -126,8 +121,9 @@ const Home: FC = () => {
               iconPosition="leading"
               iconSize={32}
               tag="h2"
-              title="About Oak Academy"
-            />
+            >
+              About Oak Academy
+            </CardTitle>
             <P fontSize={16} mb={24}>
               Preview, plan and customise each element of our lessons to meet
               your needs -
@@ -158,8 +154,9 @@ const Home: FC = () => {
               iconPosition="leading"
               iconSize={32}
               tag="h2"
-              title="Need some help?"
-            />
+            >
+              Need some help?
+            </CardTitle>
             <P fontSize={16} mb={24}>
               Preview, plan and customise each element of our lessons to meet
               your needs - whether inside and outside the classroom.

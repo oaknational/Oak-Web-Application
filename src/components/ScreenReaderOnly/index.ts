@@ -1,1 +1,1 @@
-export { default } from "./ScreenReaderOnly";
+export { default, srOnly } from "./ScreenReaderOnly";
