@@ -9,9 +9,10 @@ import Flex from "../Flex/Flex";
  */
 
 const Card = styled(Flex)<BorderProps>`
-  ${border}
+  position: relative;
   min-height: 200px;
   flex-grow: 1;
+  ${border}
 `;
 
 Card.defaultProps = {
