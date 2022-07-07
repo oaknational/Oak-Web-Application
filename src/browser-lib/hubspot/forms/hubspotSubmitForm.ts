@@ -58,6 +58,9 @@ const hubspotSuccessSchema = z.object({
   inlineMessage: z.string().optional(),
 });
 
+export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
+export type UserRole = typeof USER_ROLES[number];
+
 export type HubspotFormData = {
   // when sending email to 'fallback' form
   emailTextOnly?: string;
@@ -65,7 +68,11 @@ export type HubspotFormData = {
   // @todo oakUserId
   oakUserId?: string;
   name: string;
-  userRole: string;
+  /**
+   * allow "" for userRole as it's easier [than null/undefined] to use as a
+   * form value. It is stripped out in getHubspotFormPayload.
+   */
+  userRole: UserRole | "";
 };
 type HubspotSubmitFormProps = {
   hubspotFormId: string;
