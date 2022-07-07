@@ -1,3 +1,3 @@
-# Where tests should live
+# Unit tests
 
-Generally tests should live next to the files they test. However, Next doesn't allow any files under the `pages/` directory other than routes, so test files related to those have to live here.
+See [testing.md](../../docs/testing.md) for documentation on unit and e2e tests.
