@@ -14,15 +14,15 @@ If no value is specified it will default to the file system path `oak-config/oak
 
 ## Example Values
 
-Examples values can be found in [`../../../oak.config.example.json`](../../../oak.config.example.json).
+Examples values can be found in [oak.config.example.json](../../../oak-config/oak.config.example.json).
 
 ## Values for Test Environments
 
-Fake values for use in unit testing are provided by the file [`oak.config.test.json`](../../../oak.config.test.json) and automatically used by Jest when the Next config is read in the test phase (the version of Jest bundled with Next reads the Next config).
+Fake values for use in unit testing are provided by the file [oak.config.test.json](../../../oak.config.test.json) and automatically used by Jest when the Next config is read in the test phase (the version of Jest bundled with Next reads the Next config).
 
 ## Schema [TO DO]
 
-Types are generated from [`../../../oak.config.example.json`](../../../oak.config.example.json), but we should also use a schema to validate the read values.
+Types are generated from [oak.config.example.json](../../../oak-config/oak.config.example.json), but we should also use a schema to validate the read values.
 
 Use JSON schema?
 
