@@ -2484,10 +2484,10 @@ Array [
     rel="stylesheet"
   />,
   <header
-    className="sc-6081f8ac-0 btEyrn"
+    className="sc-e36fc2b2-0 ifyzqL"
   >
     <a
-      className="sc-6081f8ac-1 kLnrzf"
+      className="sc-e36fc2b2-1 hLaguT"
       href="/"
       onClick={[Function]}
       onMouseEnter={[Function]}
@@ -2532,6 +2532,18 @@ Array [
         fontWeight={400}
       >
         <a
+          href="/beta/onboarding"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Join the Beta
+        </a>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-68731eac-0 jbcGMy dBciSc"
+        fontWeight={400}
+      >
+        <a
           href="https://classroom.thenational.academy/"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -2540,7 +2552,7 @@ Array [
         </a>
       </div>
       <div
-        className="sc-2f0613b5-0 sc-68731eac-0 fQhjrW dBciSc"
+        className="sc-2f0613b5-0 sc-68731eac-0 jbcGMy dBciSc"
         fontWeight={400}
       >
         <a

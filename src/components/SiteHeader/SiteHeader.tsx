@@ -43,9 +43,12 @@ const SiteHeader: FC = () => {
       </Link>
       <Flex alignItems={"center"} mt={[16, 0]}>
         <P>
+          <Link href={"/beta/onboarding"}>Join the Beta</Link>
+        </P>
+        <P ml={[16, 48, 48]}>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P ml={[48]}>
+        <P ml={[16, 48, 48]}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>
