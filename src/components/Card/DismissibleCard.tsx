@@ -17,7 +17,7 @@ const DismissibleCard: FC = ({ children }) => {
   return (
     <div>
       {showBetaLink && (
-        <Card background={"white"} mt={48} pr={48}>
+        <Card background={"white"} mt={48} pr={48} minHeight={0}>
           {children}
           <CloseButtonWrapper>
             <IconButton

@@ -8,9 +8,13 @@ import Flex from "../Flex/Flex";
  * and 'background' util types
  */
 
-const Card = styled(Flex)<BorderProps>`
+type CardProps = {
+  minHeight?: number;
+};
+
+const Card = styled(Flex)<BorderProps & CardProps>`
   position: relative;
-  min-height: 200px;
+  min-height: ${(props) => props.minHeight}px;
   flex-grow: 1;
   ${border}
 `;
@@ -19,6 +23,7 @@ Card.defaultProps = {
   pa: 24,
   flexDirection: "column",
   borderRadius: 12,
+  minHeight: 200,
 };
 
 export default Card;

@@ -412,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 fGoMXS kQluRe otwfS"
+    className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 fGoMXS kQluRe EhYh"
   >
     <h2>
       Card title
@@ -443,7 +443,7 @@ Array [
     }
   >
     <div
-      className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 fGoMXS kQluRe otwfS"
+      className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 fGoMXS kQluRe EhYh"
     >
       <div
         className="sc-2f0613b5-0 sc-f624290d-0 bZqHUc fevwEk"
@@ -526,7 +526,7 @@ Array [
     }
   >
     <div
-      className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 kLlrVA bRmqFQ otwfS"
+      className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 kLlrVA bRmqFQ EhYh"
     >
       <div
         className="sc-5a3421c1-0 hKnMWG"
@@ -598,7 +598,7 @@ Array [
     }
   >
     <div
-      className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 fGoMXS kQluRe otwfS"
+      className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 fGoMXS kQluRe EhYh"
     >
       <div
         className="sc-2f0613b5-0 sc-f624290d-0 bZqHUc hizGsn"
@@ -673,7 +673,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 fCqXwD gPKvSf otwfS"
+    className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 fCqXwD gPKvSf EhYh"
   >
     <h5
       className="sc-1d12b6ff-0 bgJxDb"
@@ -710,11 +710,11 @@ Array [
   />,
   <div>
     <div
-      className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 ijNTMo jvLWxQ otwfS"
+      className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 ijNTMo jvLWxQ iyAiFr"
     >
       Close to remove
       <div
-        className="sc-8f237ed9-0 iWGPHo"
+        className="sc-da0c0d0-0 eYUapK"
       >
         <button
           aria-label="Close Beta Banner"
@@ -1579,7 +1579,7 @@ Array [
       }
     >
       <div
-        className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 QmDoQ djgZnE otwfS"
+        className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 QmDoQ djgZnE EhYh"
       >
         <div
           className="sc-2f0613b5-0 sc-f624290d-0 bZqHUc fevwEk"
@@ -1845,7 +1845,7 @@ Array [
       }
     >
       <div
-        className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 QmDoQ djgZnE otwfS"
+        className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 QmDoQ djgZnE EhYh"
       >
         <div
           className="sc-2f0613b5-0 sc-f624290d-0 bZqHUc fevwEk"
@@ -2149,7 +2149,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 goLdnZ gfBIxB otwfS"
+        className="sc-2f0613b5-0 sc-f624290d-0 sc-d0188fb9-0 goLdnZ gfBIxB EhYh"
       >
         Grid box
       </div>
