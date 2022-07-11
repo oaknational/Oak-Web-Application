@@ -11,7 +11,7 @@ const CloseButtonWrapper = styled.div`
   right: 12px;
 `;
 
-const DismissableCard: FC = ({ children }) => {
+const DismissibleCard: FC = ({ children }) => {
   const [showBetaLink, setShowBetaLink] = useState(true);
 
   return (
@@ -26,6 +26,7 @@ const DismissableCard: FC = ({ children }) => {
               onClick={() => {
                 setShowBetaLink(false);
               }}
+              variant={"tertiary"}
             />
           </CloseButtonWrapper>
         </Card>
@@ -34,4 +35,4 @@ const DismissableCard: FC = ({ children }) => {
   );
 };
 
-export default DismissableCard;
+export default DismissibleCard;

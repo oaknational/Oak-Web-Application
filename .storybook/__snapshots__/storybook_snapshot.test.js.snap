@@ -698,6 +698,67 @@ Array [
 ]
 `;
 
+exports[`Storyshots Cards/Dismmissible Card Dismissible Card 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div>
+    <div
+      className="sc-2f0613b5-0 sc-f624290d-0 sc-fcf05996-0 ijNTMo jvLWxQ otwfS"
+    >
+      Close to remove
+      <div
+        className="sc-8f237ed9-0 iWGPHo"
+      >
+        <button
+          aria-label="Close Beta Banner"
+          className="sc-da410035-0 sc-7c97ca8b-0 eaZurT docbsf"
+          onClick={[Function]}
+          size="small"
+          title="Close Beta Banner"
+        >
+          <div
+            className="sc-ef16a28e-0 hqihXi"
+            size="small"
+          >
+            <span
+              className="sc-687639d1-0 gcxKED"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-687639d1-1 jXWhwS"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="currentColor"
+                  height="100%"
+                  viewBox="0 0 16 16"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.0469 8L14.875 3.21875L15.8594 2.23438C16 2.09375 16 1.85938 15.8594 1.67188L14.8281 0.640625C14.6406 0.5 14.4062 0.5 14.2656 0.640625L8.5 6.45312L2.6875 0.640625C2.54688 0.5 2.3125 0.5 2.125 0.640625L1.09375 1.67188C0.953125 1.85938 0.953125 2.09375 1.09375 2.23438L6.90625 8L1.09375 13.8125C0.953125 13.9531 0.953125 14.1875 1.09375 14.375L2.125 15.4062C2.3125 15.5469 2.54688 15.5469 2.6875 15.4062L8.5 9.59375L13.2812 14.4219L14.2656 15.4062C14.4062 15.5469 14.6406 15.5469 14.8281 15.4062L15.8594 14.375C16 14.1875 16 13.9531 15.8594 13.8125L10.0469 8Z"
+                    fill="#808080"
+                  />
+                </svg>
+              </span>
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`Storyshots Element/Badge Icon Badge 1`] = `
 Array [
   <link

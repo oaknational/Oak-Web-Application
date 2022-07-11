@@ -1,16 +1,14 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./DismissableCard";
+import Component from "./DismissibleCard";
 
 export default {
-  title: "Cards/Dismmissable",
+  title: "Cards/Dismmissible Card",
   component: Component,
   argTypes: {
     children: {
-      defaultValue: "Flex box",
+      defaultValue: "Close to remove",
     },
-    pa: { defaultValue: [20, 50, 100] },
-    bg: { defaultValue: "calmAndWarm" },
   },
 } as ComponentMeta<typeof Component>;
 
@@ -18,4 +16,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const Flex = Template.bind({});
+export const DismissibleCard = Template.bind({});

@@ -16,7 +16,7 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
 import CardLink from "../components/Card/CardLink";
-import DismissableCard from "../components/Card/DismissableCard";
+import DismissibleCard from "../components/Card/DismissibleCard";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
@@ -40,11 +40,11 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea colSpan={[12, 12, 4]}>
-          <DismissableCard>
+          <DismissibleCard>
             <Heading fontSize={20} tag={"h2"}>
               <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
             </Heading>
-          </DismissableCard>
+          </DismissibleCard>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
