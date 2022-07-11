@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
@@ -16,11 +16,10 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
 import CardLink from "../components/Card/CardLink";
-import IconButton from "../components/Button/IconButton";
+import DismissableCard from "../components/Card/DismissableCard";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
-  const [showBetaLink, setShowBetaLink] = useState(true);
 
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
@@ -32,25 +31,20 @@ const Home: FC = () => {
             mt={64}
             data-testid="home-page-title"
           >
-            Oak National Academy
+            Supporting Schools To Build Their Curriculum
           </Heading>
+          <P mt={16}>
+            Free tools, research and 40,000 editable lesson resources to support
+            schools to develop a high-quality curriculum
+          </P>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 4]}>
-          {showBetaLink && (
-            <Card background={"white"} mt={48}>
-              <Heading fontSize={20} tag={"h2"}>
-                <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
-              </Heading>
-              <IconButton
-                aria-label="Close Beta Banner"
-                icon={"Close"}
-                onClick={() => {
-                  setShowBetaLink(false);
-                }}
-              />
-            </Card>
-          )}
+          <DismissableCard>
+            <Heading fontSize={20} tag={"h2"}>
+              <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
+            </Heading>
+          </DismissableCard>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
