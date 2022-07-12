@@ -119,7 +119,7 @@ const Home: FC = () => {
           </Card>
         </GridArea>
       </Grid>
-      <AboutContactBlogList></AboutContactBlogList>
+      <AboutContactBlogList />
     </LandingPageLayout>
   );
 };

@@ -55,7 +55,7 @@ const TeacherHome: FC = () => {
           </Flex>
         </GridArea>
       </Grid>
-      <AboutContactBlogList></AboutContactBlogList>
+      <AboutContactBlogList />
     </Layout>
   );
 };
