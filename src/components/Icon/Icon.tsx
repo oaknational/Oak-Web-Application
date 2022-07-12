@@ -7,6 +7,7 @@ import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import ChevronRight from "./ChevronRight.icon";
 import ChevronDown from "./ChevronDown.icon";
+import ChevronUp from "./ChevronUp.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
 import Share from "./Share.icon";
@@ -37,11 +38,13 @@ export const ICON_NAMES = [
   "GraduationCap",
   "University",
   "PaperPlane",
+  "ChevronUp",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
   ChevronRight,
   ChevronDown,
+  ChevronUp,
   OpenExternal,
   Download,
   Share,

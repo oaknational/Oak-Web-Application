@@ -4,7 +4,7 @@ const ChevronDown: FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="-4 -4 22 17"
+      viewBox="0 -5 14 20"
       width="100%"
       height="100%"
       fill="none"
