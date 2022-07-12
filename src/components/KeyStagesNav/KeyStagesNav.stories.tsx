@@ -14,4 +14,4 @@ const Template: ComponentStory<typeof Component> = () => {
   return <Component keyStages={keyStagesNavData} />;
 };
 
-export const BigInput = Template.bind({});
+export const KeyStageNav = Template.bind({});

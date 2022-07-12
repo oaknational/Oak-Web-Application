@@ -3521,7 +3521,7 @@ Array [
 ]
 `;
 
-exports[`Storyshots Navigation/Key Stage Nav Big Input 1`] = `
+exports[`Storyshots Navigation/Key Stage Nav Key Stage Nav 1`] = `
 Array [
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
@@ -3535,10 +3535,10 @@ Array [
     aria-label="links to key stages and year groups."
   >
     <div
-      className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD gGoYgb"
+      className="sc-2f0613b5-0 sc-f624290d-0 bsCxxD cMNTr"
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE hbkUsL"
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
       >
         <a
           aria-label="Early Years"
@@ -3598,7 +3598,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE hbkUsL"
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
       >
         <a
           aria-label="KS1"
@@ -3669,7 +3669,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE hbkUsL"
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
       >
         <a
           aria-label="KS2"
@@ -3762,7 +3762,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE hbkUsL"
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
       >
         <a
           aria-label="KS3"
@@ -3844,7 +3844,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 fxNmKE hbkUsL"
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
       >
         <a
           aria-label="KS4"
