@@ -2,8 +2,7 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import background, { BackgroundProps } from "../../styles/utils/background";
-import { getBreakpoint } from "../../styles/utils/responsive";
-import { FlexProps } from "../Flex";
+import Flex from "../Flex";
 
 const baseHeaderStyles = css`
   width: 100%; /* Do we need a max width here and to center? */
@@ -18,25 +17,18 @@ const HeadingSpacer = styled.div`
   ${baseHeaderStyles}
 `;
 
-const StyledHeader = styled.header<FlexProps & BackgroundProps>`
+const StyledHeader = styled(Flex)`
   ${baseHeaderStyles}
   ${background}
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 12px;
   position: fixed;
   z-index: 1;
-
-  @media (min-width: ${getBreakpoint("medium")}px) {
-    flex-direction: row;
-    align-items: center;
-  }
 `;
 
 const FixedHeader: FC<BackgroundProps> = ({ children, background }) => (
   <HeaderWrapper>
     <StyledHeader
+      as="header"
       background={background}
       justifyContent={["left", "space-between"]}
       alignItems={["flex-start", "center"]}
