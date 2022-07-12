@@ -10,7 +10,6 @@ import Flex from "../Flex/Flex";
 
 const Card = styled(Flex)<BorderProps>`
   position: relative;
-  min-height: 200px;
   flex-grow: 1;
   ${border}
 `;
