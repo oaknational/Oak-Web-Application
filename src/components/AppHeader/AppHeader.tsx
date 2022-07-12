@@ -7,7 +7,6 @@ import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
 import flex from "../../styles/utils/flex";
 import { Span } from "../Typography";
-import Menu from "../Menu";
 import FixedHeader from "../FixedHeader";
 
 const HomeLink = styled.a<FlexProps>`
@@ -38,9 +37,6 @@ const AppHeader: FC = () => {
         </Link>
         <SearchForm />
       </Flex>
-      <Menu>
-        <p>Hello joe</p>
-      </Menu>
     </FixedHeader>
   );
 };
