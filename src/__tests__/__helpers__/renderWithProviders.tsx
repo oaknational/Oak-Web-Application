@@ -10,6 +10,7 @@ import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
 
+import "../../browser-lib/oak-globals/oakGlobals";
 import { BookmarksProvider } from "../../context/Bookmarks";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
@@ -25,7 +26,7 @@ type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
 };
 
-const AllTheProviders: FC<ProviderProps> = ({
+export const AllTheProviders: FC<ProviderProps> = ({
   children,
   authProviderProps,
 }) => {

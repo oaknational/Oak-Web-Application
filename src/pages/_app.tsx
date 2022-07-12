@@ -4,6 +4,7 @@ import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
 import { SSRProvider } from "@react-aria/ssr";
 
+import "../browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "../styles/GlobalStyle";
 import { AuthProvider } from "../context/Auth";
 import useApolloClient from "../browser-lib/graphql/useApolloClient";

@@ -1,7 +1,8 @@
-import { createContext, FC, useCallback, useContext } from "react";
+import { createContext, FC, useCallback } from "react";
 
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import usePosthog from "../../browser-lib/posthog/usePosthog";
+
+import useTrackingEnabled from "./useTrackingEnabled";
 
 type TrackingEvents = {
   "test-event": { testProperty: string };
@@ -15,23 +16,7 @@ type AnalyticsContext = {
   track: TrackFn;
 };
 
-const analyticsContext = createContext<AnalyticsContext | null>(null);
-
-const useTrackingEnabled = () => {
-  const { hasConsentedTo } = useCookieConsent();
-
-  return hasConsentedTo("statistics");
-};
-
-export const useAnalytics = () => {
-  const analytics = useContext(analyticsContext);
-
-  if (!analytics) {
-    throw new Error("useAnalytics called outside of AnalyticsProvider");
-  }
-
-  return analytics;
-};
+export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
 const AnalyticsProvider: FC = (props) => {
   const { children } = props;
@@ -41,9 +26,11 @@ const AnalyticsProvider: FC = (props) => {
 
   const track: TrackFn = useCallback(
     (...args) => {
-      posthog.capture(...args);
+      if (trackingEnabled) {
+        posthog.capture(...args);
+      }
     },
-    [posthog]
+    [posthog, trackingEnabled]
   );
 
   return (

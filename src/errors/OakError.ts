@@ -7,6 +7,7 @@ const ERROR_CODES = [
   "misc/unknown",
   "misc/network-error",
   "misc/unexpected-type",
+  "misc/import-count",
   "auth/send-sign-in-link",
   "auth/token-expired",
   "auth/token-error-unknown",
@@ -72,6 +73,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "hubspot/unknown": {
     message: "Sorry, we couldn't sign you up just now, try again later.",
+    shouldNotify: true,
+  },
+  "misc/import-count": {
+    message: "File imported more times than allwoed",
     shouldNotify: true,
   },
 };

@@ -15,7 +15,7 @@ import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
-import { useAnalytics } from "../context/Analytics/AnalyticsProvider";
+import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 
 const Home: FC = () => {
