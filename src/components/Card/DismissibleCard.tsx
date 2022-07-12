@@ -12,11 +12,11 @@ const CloseButtonWrapper = styled.div`
 `;
 
 const DismissibleCard: FC = ({ children }) => {
-  const [showBetaLink, setShowBetaLink] = useState(true);
+  const [show, setShow] = useState(true);
 
   return (
     <div>
-      {showBetaLink && (
+      {show && (
         <Card background={"white"} mt={48} pr={48} minHeight={0}>
           {children}
           <CloseButtonWrapper>
@@ -24,7 +24,7 @@ const DismissibleCard: FC = ({ children }) => {
               aria-label="Close Beta Banner"
               icon={"Close"}
               onClick={() => {
-                setShowBetaLink(false);
+                setShow(false);
               }}
               variant={"tertiary"}
             />
