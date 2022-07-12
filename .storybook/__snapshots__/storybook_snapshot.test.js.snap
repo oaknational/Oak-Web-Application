@@ -3532,7 +3532,7 @@ Array [
     rel="stylesheet"
   />,
   <nav
-    aria-label="links to key stages and year groups."
+    aria-label="key stages and year groups"
   >
     <div
       className="sc-2f0613b5-0 sc-f624290d-0 bsCxxD cMNTr"
