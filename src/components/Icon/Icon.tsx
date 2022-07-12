@@ -7,7 +7,6 @@ import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import ChevronRight from "./ChevronRight.icon";
 import ChevronDown from "./ChevronDown.icon";
-import ChevronUp from "./ChevronUp.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
 import Share from "./Share.icon";

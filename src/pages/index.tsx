@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
@@ -16,23 +16,12 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
 import CardLink from "../components/Card/CardLink";
-import IconButton from "../components/Button/IconButton";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
-  const [open, setOpen] = useState(false);
 
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
-      <IconButton
-        ml={12}
-        aria-label={"Open collapsible section"}
-        icon={"ChevronDown"}
-        rotate={open ? 180 : 0}
-        onClick={() => {
-          setOpen(!open);
-        }}
-      />
       <Grid cg={16} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 8]}>
           <Heading

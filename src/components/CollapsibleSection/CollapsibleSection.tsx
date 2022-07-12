@@ -98,6 +98,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
               aria-label={"Open collapsible section"}
               icon={"ChevronDown"}
               onClick={(e) => handleClick(e)}
+              rotate={open ? 180 : 0}
               aria-expanded={open}
             />
           </Flex>
