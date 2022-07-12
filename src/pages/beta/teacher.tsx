@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { FC, useState } from "react";
 
 import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
@@ -43,9 +43,7 @@ const TeacherHome: FC = () => {
         <GridArea colSpan={[12, 12, 12]}>
           <Input
             icon="Search"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setValue(e.target.value)
-            }
+            onChange={(e) => setValue(e.target.value)}
             placeholder="Search for subjects, lessons, quizes, lessons plans and much much more..."
             value={value}
             id={""}
