@@ -3543,7 +3543,7 @@ Array [
         <a
           aria-label="Early Years"
           className="sc-608180b1-0 HsvRz"
-          href="/"
+          href="/key-stages/early-years-foundation-stage"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
@@ -3603,7 +3603,7 @@ Array [
         <a
           aria-label="KS1"
           className="sc-608180b1-0 HsvRz"
-          href="/"
+          href="/key-stages/key-stage-1"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
@@ -3674,7 +3674,7 @@ Array [
         <a
           aria-label="KS2"
           className="sc-608180b1-0 HsvRz"
-          href="/"
+          href="/key-stages/key-stage-2"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
@@ -3767,7 +3767,7 @@ Array [
         <a
           aria-label="KS3"
           className="sc-608180b1-0 HsvRz"
-          href="/"
+          href="/key-stages/key-stage-3"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
@@ -3849,7 +3849,7 @@ Array [
         <a
           aria-label="KS4"
           className="sc-608180b1-0 HsvRz"
-          href="/"
+          href="/key-stages/key-stage-4"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}

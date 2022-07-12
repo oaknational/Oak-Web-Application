@@ -1,12 +1,12 @@
 const keyStagesNavData = [
   {
     name: "Early Years",
-    url: "/",
+    url: "/key-stages/early-years-foundation-stage",
     years: [{ name: "Reception", url: "/" }],
   },
   {
     name: "KS1",
-    url: "/",
+    url: "/key-stages/key-stage-1",
     years: [
       { name: "Year 1", url: "/" },
       { name: "Year 2", url: "/" },
@@ -14,7 +14,7 @@ const keyStagesNavData = [
   },
   {
     name: "KS2",
-    url: "/",
+    url: "/key-stages/key-stage-2",
     years: [
       { name: "Year 3", url: "/" },
       { name: "Year 4", url: "/" },
@@ -24,7 +24,7 @@ const keyStagesNavData = [
   },
   {
     name: "KS3",
-    url: "/",
+    url: "/key-stages/key-stage-3",
     years: [
       { name: "Year 7", url: "/" },
       { name: "Year 8", url: "/" },
@@ -33,7 +33,7 @@ const keyStagesNavData = [
   },
   {
     name: "KS4",
-    url: "/",
+    url: "/key-stages/key-stage-4",
     years: [
       { name: "Year 10", url: "/" },
       { name: "Year 11", url: "/" },
