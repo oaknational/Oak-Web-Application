@@ -5,7 +5,7 @@ import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
 import Component from "./KeyStagesNav";
 
 export default {
-  title: "Navigation/Key Stage Nav",
+  title: "Navigation/Key Stages Nav",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
@@ -14,4 +14,4 @@ const Template: ComponentStory<typeof Component> = () => {
   return <Component keyStages={keyStagesNavData} />;
 };
 
-export const KeyStageNav = Template.bind({});
+export const KeyStagesNav = Template.bind({});

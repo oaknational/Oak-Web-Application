@@ -9,7 +9,7 @@ describe("pages/teacherHome.tsx", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Teacher Home"
+        "Big inspiring heading"
       );
     });
   });
