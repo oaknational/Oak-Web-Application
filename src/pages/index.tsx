@@ -47,14 +47,14 @@ const Home: FC = () => {
                   size={24}
                   name={"GraduationCap"}
                   mr={8}
-                  color={"grey6"}
+                  color={"grey8"}
                 ></Icon>
-                <P color={"grey6"} fontSize={16} fontWeight={400}>
+                <P color={"grey8"} fontSize={16} fontWeight={400}>
                   Next Webinar
                 </P>
               </Flex>
               <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
-              <P color={"grey6"} fontSize={16} fontWeight={400} mt={8}>
+              <P color={"grey8"} fontSize={16} fontWeight={400} mt={8}>
                 16/03/2022 &bull; 3:30pm
               </P>
             </Heading>
