@@ -32,6 +32,8 @@ const CONFIG_KEYS = [
   "hubspotFallbackFormId",
   "posthogApiKey",
   "posthogApiHost",
+  "sanityGraphqlApiUrl",
+  "sanityGraphqlApiSecret",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -272,6 +274,20 @@ const envVars: Record<ConfigKey, EnvVar> = {
     envName: "NEXT_PUBLIC_POSTHOG_API_HOST",
     required: true,
     availableInBrowser: true,
+    default: null,
+  },
+  sanityGraphqlApiUrl: {
+    value: process.env.NEXT_PUBLIC_GRAPHQL_SANITY_URL,
+    envName: "NEXT_PUBLIC_GRAPHQL_SANITY_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  sanityGraphqlApiSecret: {
+    value: process.env.NEXT_PUBLIC_SANITY_SECRET,
+    envName: "NEXT_PUBLIC_SANITY_SECRET",
+    required: true,
+    availableInBrowser: false,
     default: null,
   },
 };

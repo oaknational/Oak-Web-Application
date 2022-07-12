@@ -1,0 +1,10 @@
+query webinarBySlug($slug: String, $isDraft: Boolean = false) {
+  allWebinar(
+    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+  ) {
+    title
+    slug {
+      current
+    }
+  }
+}

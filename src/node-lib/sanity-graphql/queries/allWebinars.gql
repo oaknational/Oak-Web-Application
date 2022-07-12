@@ -1,0 +1,8 @@
+query allWebinars($isDraft: Boolean = false) {
+  allWebinar(where: { _: { is_draft: $isDraft } }, sort: [{ date: ASC }]) {
+    title
+    slug {
+      current
+    }
+  }
+}
