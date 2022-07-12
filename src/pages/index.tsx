@@ -16,12 +16,19 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
 import CardLink from "../components/Card/CardLink";
+import IconButton from "../components/Button/IconButton";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
 
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
+      <IconButton
+        ml={12}
+        aria-label={"Open collapsible section"}
+        icon={"ChevronDown"}
+        onClick={() => console.log("hi")}
+      />
       <Grid cg={16} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 8]}>
           <Heading
@@ -112,7 +119,6 @@ const Home: FC = () => {
           </Card>
         </GridArea>
       </Grid>
-
       <Grid cg={16} rg={[16]} mt={[16, 48, 80]}>
         <GridArea colSpan={[12, 6, 4]} order={[0, 0, 0]}>
           <Card background="white">

@@ -38,13 +38,11 @@ export const ICON_NAMES = [
   "GraduationCap",
   "University",
   "PaperPlane",
-  "ChevronUp",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
   ChevronRight,
   ChevronDown,
-  ChevronUp,
   OpenExternal,
   Download,
   Share,
