@@ -10,7 +10,9 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args}>A screen reader will read this but you can't see it</Component>
+  <Component {...args}>
+    A screen reader will read this but you can't see it
+  </Component>
 );
 
 export const VisuallyHidden = Template.bind({});

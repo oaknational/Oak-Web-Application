@@ -1,3 +1,77 @@
+## [0.42.1](https://github.com/oaknational/Samara/compare/v0.42.0...v0.42.1) (2022-07-07)
+
+# [0.42.0](https://github.com/oaknational/Samara/compare/v0.41.0...v0.42.0) (2022-07-07)
+
+
+### Features
+
+* border style props ([050b48c](https://github.com/oaknational/Samara/commit/050b48c7c1ad781ebce7dcd8d5a75ba384320a74))
+
+# [0.41.0](https://github.com/oaknational/Samara/compare/v0.40.1...v0.41.0) (2022-07-07)
+
+
+### Bug Fixes
+
+* **newsletter-hubspot:** send usertype 'Student' ([305b25a](https://github.com/oaknational/Samara/commit/305b25af3bc70c7d17b792261b811073fd930936))
+* pass ref to native select element ([979c276](https://github.com/oaknational/Samara/commit/979c2762437ef307fbcaf0020c2d23fd661ef8a2))
+
+
+### Features
+
+* add dropdown to newsletter form ([e388f60](https://github.com/oaknational/Samara/commit/e388f6099459d341beb034576f695a1920db339c))
+* use native select component on tablet ([e2a5ce4](https://github.com/oaknational/Samara/commit/e2a5ce4c51b3c9b32c445244e9fafe241efeec27))
+
+## [0.40.1](https://github.com/oaknational/Samara/compare/v0.40.0...v0.40.1) (2022-07-07)
+
+# [0.40.0](https://github.com/oaknational/Samara/compare/v0.39.0...v0.40.0) (2022-07-06)
+
+
+### Bug Fixes
+
+* revert to beta and onboarding page ([3b38305](https://github.com/oaknational/Samara/commit/3b383056d5670915e67d1689522e5c405f96e03f))
+
+
+### Features
+
+* empty home page for pupil and teacher ([20e5a87](https://github.com/oaknational/Samara/commit/20e5a87cfa39ee6a368f6bfe2d59e5abcf1c9fde))
+* on boarding grid ([c95a772](https://github.com/oaknational/Samara/commit/c95a772d762f65099877410bad0a8f36c6090285))
+* on boarding page ([55829b3](https://github.com/oaknational/Samara/commit/55829b3118c1a9d19b753563822f3e943d309f3d))
+
+# [0.39.0](https://github.com/oaknational/Samara/compare/v0.38.0...v0.39.0) (2022-07-06)
+
+
+### Features
+
+* add confirmic consent manager ([508ca20](https://github.com/oaknational/Samara/commit/508ca20c3b9bade08fa3c7e76ba8ef82dfc6b786))
+
+# [0.38.0](https://github.com/oaknational/Samara/compare/v0.37.0...v0.38.0) (2022-07-04)
+
+
+### Bug Fixes
+
+* add '/beta' prefix to sign-in redirect paths ([58fd707](https://github.com/oaknational/Samara/commit/58fd707c16c1fb7341d181d7e5959f3a59ab73a4))
+* e2e lesson page tests with /beta prefix ([3634fed](https://github.com/oaknational/Samara/commit/3634fed955af1c88d189957699cae023fec1050e))
+
+
+### Features
+
+* **Firebase:** configure hosting ([cf58907](https://github.com/oaknational/Samara/commit/cf5890780c59358c9385137ff6b4f99e3eddcece))
+* make app statically exportable ([f2f9e95](https://github.com/oaknational/Samara/commit/f2f9e95dcb0b1bbf7e381923a7c02310478c315e)), closes [#259](https://github.com/oaknational/Samara/issues/259)
+* **static gcp:** placeholder Cloudbuild config ([b86ac3e](https://github.com/oaknational/Samara/commit/b86ac3ee99675f011f295daa4a87e8bfe8167c57))
+
+# [0.37.0](https://github.com/oaknational/Samara/compare/v0.36.1...v0.37.0) (2022-06-30)
+
+
+### Bug Fixes
+
+* single tab onto dropdown ([4f0d426](https://github.com/oaknational/Samara/commit/4f0d426c02027d93940a8e73bf635b016567eca9))
+* single tab onto dropdown ([d956ea7](https://github.com/oaknational/Samara/commit/d956ea70e3aff8ead4801e6883b4c6a4bd72309c))
+
+
+### Features
+
+* react aria select component ([50c4d23](https://github.com/oaknational/Samara/commit/50c4d2328708bb66fea4ec71cba08d15973e91ce))
+
 ## [0.36.1](https://github.com/oaknational/Samara/compare/v0.36.0...v0.36.1) (2022-06-29)
 
 

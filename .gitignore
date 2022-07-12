@@ -40,6 +40,7 @@ yarn-error.log*
 oak.config.js
 oak.config.json
 oak.config.ts
+oak.config.old.json
 
 # vercel
 .vercel
@@ -52,3 +53,7 @@ oak.config.ts
 
 # storybook
 /storybook-static
+
+# firebase
+firebase-debug.log
+.firebase

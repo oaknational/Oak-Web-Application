@@ -61,7 +61,7 @@ const getClientAppBaseUrl = () => {
 };
 
 export const getSignInCallbackUrl = () =>
-  `${getClientAppBaseUrl()}/sign-in/callback`;
+  `${getClientAppBaseUrl()}/beta/sign-in/callback`;
 
 const AuthProvider: FC = ({ children }) => {
   const [, setBookmarks] = useBookmarksCache();
