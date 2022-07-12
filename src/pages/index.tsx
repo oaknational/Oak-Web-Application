@@ -5,10 +5,11 @@ import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import { Heading } from "../components/Typography";
+import { Heading, P } from "../components/Typography";
 import Icon from "../components/Icon";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
+import DismissibleCard from "../components/Card/DismissibleCard";
 
 const Home: FC = () => {
   return (
@@ -21,15 +22,29 @@ const Home: FC = () => {
             mt={64}
             data-testid="home-page-title"
           >
-            Oak National Academy
+            Supporting Schools To Build Their Curriculum
           </Heading>
+          <P mt={16}>
+            Free tools, research and 40,000 editable lesson resources to support
+            schools to develop a high-quality curriculum
+          </P>
         </GridArea>
+
         <GridArea colSpan={[12, 12, 4]}>
-          <Card background={"white"} mt={48}>
+          <DismissibleCard title="Beta">
             <Heading fontSize={20} tag={"h2"}>
+              <Flex alignItems={"center"} mb={12}>
+                <Icon size={24} name={"GraduationCap"} mr={8} color={"grey8"} />
+                <P color={"grey8"} fontSize={16} fontWeight={400}>
+                  Next Webinar
+                </P>
+              </Flex>
               <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
+              <P color={"grey8"} fontSize={16} fontWeight={400} mt={8}>
+                16/03/2022 &bull; 3:30pm
+              </P>
             </Heading>
-          </Card>
+          </DismissibleCard>
         </GridArea>
 
         <GridArea colSpan={[12, 12, 6]}>
