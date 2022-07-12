@@ -10,6 +10,7 @@ import Icon from "../components/Icon";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
 import DismissibleCard from "../components/Card/DismissibleCard";
+import Flex from "../components/Flex";
 
 const Home: FC = () => {
   return (
