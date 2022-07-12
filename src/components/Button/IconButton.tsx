@@ -16,7 +16,9 @@ import iconButtonStyles, {
 import IconButtonInner from "./IconButtonInner";
 
 const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
-  transform: rotate(${(props) => props.rotate}deg) ${iconButtonStyles};
+  transform: rotate(${(props) => props.rotate}deg);
+  transition: transform 200ms;
+  ${iconButtonStyles};
 `;
 
 type IconButtonProps = CommonIconButtonProps & {
