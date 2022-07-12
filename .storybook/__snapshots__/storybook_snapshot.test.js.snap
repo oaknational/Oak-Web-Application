@@ -2644,10 +2644,10 @@ Array [
       onClick={[Function]}
     >
       <div
-        className="sc-2f0613b5-0 sc-a3c34836-0 QmDoQ bhLeOG"
+        className="sc-2f0613b5-0 sc-f624290d-0 QmDoQ jVGtdj"
       >
         <h2
-          className="sc-ef5f3f7-0 sc-b49de5e9-1 gBeReX ckxfHu"
+          className="sc-1d12b6ff-0 sc-b49de5e9-1 iMuYLq ckxfHu"
           fontSize={24}
         >
           <a
@@ -2658,7 +2658,7 @@ Array [
           </a>
         </h2>
         <div
-          className="sc-2f0613b5-0 sc-a3c34836-0 bsCxxD hMvcoF"
+          className="sc-2f0613b5-0 sc-f624290d-0 bsCxxD eUmjGs"
         >
           <button
             aria-label="Download lesson presentation"
@@ -2672,12 +2672,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-6748a30-0 bEThyA"
+                className="sc-181d717c-0 jJyWaR"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-6748a30-1 cMWOsJ"
+                  className="sc-181d717c-1 jsPJek"
                   height={16}
                   width={16}
                 >
@@ -2721,12 +2721,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-6748a30-0 bEThyA"
+                className="sc-181d717c-0 jJyWaR"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-6748a30-1 cMWOsJ"
+                  className="sc-181d717c-1 jsPJek"
                   height={16}
                   width={16}
                 >
@@ -2786,12 +2786,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-6748a30-0 bEThyA"
+                className="sc-181d717c-0 jJyWaR"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-6748a30-1 cMWOsJ"
+                  className="sc-181d717c-1 jsPJek"
                   height={16}
                   width={16}
                 >
