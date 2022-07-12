@@ -17,6 +17,8 @@ export type Scalars = {
   Date: any;
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: any;
 };
 
 export type Block = {
@@ -210,10 +212,12 @@ export type RootQuery = {
   Document?: Maybe<Document>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
+  TeamMember?: Maybe<TeamMember>;
   Webinar?: Maybe<Webinar>;
   allDocument: Array<Document>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allSanityImageAsset: Array<SanityImageAsset>;
+  allTeamMember: Array<TeamMember>;
   allWebinar: Array<Webinar>;
 };
 
@@ -229,6 +233,11 @@ export type RootQuerySanityFileAssetArgs = {
 
 
 export type RootQuerySanityImageAssetArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryTeamMemberArgs = {
   id: Scalars['ID'];
 };
 
@@ -259,6 +268,14 @@ export type RootQueryAllSanityImageAssetArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<SanityImageAssetSorting>>;
   where?: InputMaybe<SanityImageAssetFilter>;
+};
+
+
+export type RootQueryAllTeamMemberArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<TeamMemberSorting>>;
+  where?: InputMaybe<TeamMemberFilter>;
 };
 
 
@@ -686,6 +703,58 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']>>;
 };
 
+export type TeamMember = Document & {
+  __typename?: 'TeamMember';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  bioRaw?: Maybe<Scalars['JSON']>;
+  image?: Maybe<Image>;
+  /** Is this team member still part of Oak? */
+  isCurrent?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  role?: Maybe<Scalars['String']>;
+  slug?: Maybe<Slug>;
+};
+
+export type TeamMemberFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  image?: InputMaybe<ImageFilter>;
+  isCurrent?: InputMaybe<BooleanFilter>;
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
+};
+
+export type TeamMemberSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageSorting>;
+  isCurrent?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+  slug?: InputMaybe<SlugSorting>;
+};
+
 export type Webinar = Document & {
   __typename?: 'Webinar';
   /** Date the document was created */
@@ -700,7 +769,9 @@ export type Webinar = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']>;
   date?: Maybe<Scalars['Date']>;
+  hosts?: Maybe<Array<Maybe<TeamMember>>>;
   slug?: Maybe<Slug>;
+  summaryRaw?: Maybe<Scalars['JSON']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -732,10 +803,11 @@ export type WebinarSorting = {
 
 export type AllWebinarsQueryVariables = Exact<{
   isDraft?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', _id?: string | null, title?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
 
 export type WebinarBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
@@ -743,25 +815,45 @@ export type WebinarBySlugQueryVariables = Exact<{
 }>;
 
 
-export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _id?: string | null, _key?: string | null, name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null> | null }> };
 
+export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', _id?: string | null, title?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null };
 
-export const AllWebinarsDocument = gql`
-    query allWebinars($isDraft: Boolean = false) {
-  allWebinar(where: {_: {is_draft: $isDraft}}, sort: [{date: ASC}]) {
-    title
-    slug {
-      current
-    }
+export const WebinarPreviewFieldsFragmentDoc = gql`
+    fragment WebinarPreviewFields on Webinar {
+  _id
+  title
+  slug {
+    current
   }
+  summaryPortableText: summaryRaw
 }
     `;
+export const AllWebinarsDocument = gql`
+    query allWebinars($isDraft: Boolean = false, $limit: Int = 20) {
+  allWebinar(where: {_: {is_draft: $isDraft}}, sort: [{date: ASC}], limit: $limit) {
+    ...WebinarPreviewFields
+  }
+}
+    ${WebinarPreviewFieldsFragmentDoc}`;
 export const WebinarBySlugDocument = gql`
     query webinarBySlug($slug: String, $isDraft: Boolean = false) {
   allWebinar(where: {_: {is_draft: $isDraft}, slug: {current: {eq: $slug}}}) {
     title
     slug {
       current
+    }
+    date
+    summaryPortableText: summaryRaw
+    hosts {
+      _id
+      _key
+      name
+      image {
+        asset {
+          url
+        }
+      }
     }
   }
 }

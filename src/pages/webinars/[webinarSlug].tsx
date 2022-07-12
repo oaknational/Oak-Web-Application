@@ -5,6 +5,7 @@ import sanityGraphqlApi from "../../node-lib/sanity-graphql";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import { Webinar } from "../../node-lib/sanity-graphql/generated/sdk";
+import { PortableText, toPlainText } from "@portabletext/react";
 
 type WebinarPageProps = {
   webinar: Webinar;
@@ -14,6 +15,26 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background="grey1">
       <Heading tag="h1">{props.webinar.title}</Heading>
+
+      {props.webinar.date} <br />
+
+      Hosted by: {props.webinar.hosts?.map(host => host?.name).join(', ')}
+
+      <p>An example of rich text via the <code>summaryPortableText</code> field</p>
+      <div style={{ border: "1px solid red" }}>
+        <PortableText
+          value={props.webinar.summaryPortableText}
+          components={{
+            list: {
+              bullet: ({ children }) => <ul>{children}</ul>,
+              number: ({ children }) => <ol>{children}</ol>,
+            },
+            listItem: {
+              bullet: ({ children }) => <li>{children}</li>,
+            },
+          }}
+        />
+      </div>
     </Layout>
   );
 };

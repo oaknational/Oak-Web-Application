@@ -7,6 +7,7 @@ import Layout from "../../components/Layout";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import { Heading } from "../../components/Typography";
+import { toPlainText } from "@portabletext/react";
 
 type WebinarListingPageProps = {
   webinars: Array<BlogListItemProps>;
@@ -15,7 +16,9 @@ type WebinarListingPageProps = {
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background="grey1">
-      <Heading tag="h1">Webinars</Heading>
+      <Heading tag="h1" fontSize={32}>
+        Webinars
+      </Heading>
 
       <BlogList
         title={"Stay up to date!"}
@@ -30,7 +33,7 @@ const webinarToBlogListItem = (webinar: Webinar): BlogListItemProps => ({
   contentType: "webinar",
   title: webinar.title,
   href: `/webinars/${webinar.slug?.current}`,
-  snippet: "snippet",
+  snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
 });
 
