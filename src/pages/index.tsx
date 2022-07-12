@@ -40,15 +40,10 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea colSpan={[12, 12, 4]}>
-          <DismissibleCard>
+          <DismissibleCard title="Beta">
             <Heading fontSize={20} tag={"h2"}>
               <Flex alignItems={"center"} mb={12}>
-                <Icon
-                  size={24}
-                  name={"GraduationCap"}
-                  mr={8}
-                  color={"grey8"}
-                ></Icon>
+                <Icon size={24} name={"GraduationCap"} mr={8} color={"grey8"} />
                 <P color={"grey8"} fontSize={16} fontWeight={400}>
                   Next Webinar
                 </P>

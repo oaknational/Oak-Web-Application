@@ -10,6 +10,11 @@ export default {
       defaultValue: "Close to remove",
     },
   },
+  parameters: {
+    backgrounds: {
+      default: "dark",
+    },
+  },
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (

@@ -1,3 +1,5 @@
+import { title } from "process";
+
 import { FC, useState } from "react";
 import styled from "styled-components";
 
@@ -11,20 +13,24 @@ const CloseButtonWrapper = styled.div`
   right: 12px;
 `;
 
-const DismissibleCard: FC = ({ children }) => {
-  const [show, setShow] = useState(true);
+type DismissibleCardProps = {
+  title: string;
+};
+
+const DismissibleCard: FC<DismissibleCardProps> = ({ children }) => {
+  const [dismissed, setDismissed] = useState(false);
 
   return (
     <div>
-      {show && (
-        <Card background={"white"} mt={48} pr={48} minHeight={0}>
+      {!dismissed && (
+        <Card background={"white"} mt={48} pr={64}>
           {children}
           <CloseButtonWrapper>
             <IconButton
-              aria-label="Close Beta Banner"
+              aria-label={`Close ${title} Banner`}
               icon={"Close"}
               onClick={() => {
-                setShow(false);
+                setDismissed(true);
               }}
               variant={"tertiary"}
             />
