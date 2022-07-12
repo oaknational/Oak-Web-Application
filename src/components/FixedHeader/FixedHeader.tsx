@@ -1,12 +1,20 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
+import { OakTheme, PropsWithTheme } from "../../styles/theme";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import Flex from "../Flex";
 
+export type HeaderConfig = {
+  height: number;
+};
+
+const headerConfig = (theme: OakTheme) => theme.header;
+const headerHeight = ({ theme }: PropsWithTheme) => headerConfig(theme).height;
+
 const baseHeaderStyles = css`
   width: 100%; /* Do we need a max width here and to center? */
-  min-height: 72px;
+  min-height: ${headerHeight}px;
 `;
 
 const HeaderWrapper = styled.div`
