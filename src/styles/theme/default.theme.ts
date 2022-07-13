@@ -177,6 +177,9 @@ const theme: OakTheme = {
     circleColor: "grey8",
     textColor: "white",
   },
+  header: {
+    height: 72,
+  },
   lessonControl: {
     default: {
       background: "white",

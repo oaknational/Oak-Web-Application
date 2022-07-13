@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
@@ -7,12 +7,22 @@ import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading, P } from "../components/Typography";
 import Icon from "../components/Icon";
+import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
 import DismissibleCard from "../components/Card/DismissibleCard";
 import Flex from "../components/Flex";
 
 const Home: FC = () => {
+  const { track } = useAnalytics();
+
+  useEffect(() => {
+    track("test-event", {
+      testProperty:
+        "some value (currently should send once when the page loads)",
+    });
+  }, [track]);
+
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>
@@ -20,7 +30,7 @@ const Home: FC = () => {
           <Heading
             fontSize={48}
             tag={"h1"}
-            mt={64}
+            mt={80}
             data-testid="home-page-title"
           >
             Supporting Schools To Build Their Curriculum

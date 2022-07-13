@@ -6,9 +6,11 @@ import { useSearchQuery } from "../../context/Search/SearchContext";
 import IconButton from "../Button/IconButton";
 import flex, { FlexCssProps } from "../../styles/utils/flex";
 import Input from "../Input";
+import spacing, { SpacingProps } from "../../styles/utils/spacing";
 
-const StyledForm = styled.form<FlexCssProps>`
+const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
+  ${spacing}
   display: flex;
 `;
 
@@ -29,7 +31,7 @@ const SearchForm: FC = () => {
   };
 
   return (
-    <StyledForm flexWrap="nowrap" onSubmit={handleSubmit}>
+    <StyledForm flexWrap="nowrap" onSubmit={handleSubmit} ml={[16, 16, 16]}>
       <Input
         id="search-form-search-input"
         value={value}
