@@ -6,6 +6,7 @@ import { OakColorName, PixelSpacing } from "../../styles/theme";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 
 import ChevronRight from "./ChevronRight.icon";
+import ChevronDown from "./ChevronDown.icon";
 import OpenExternal from "./OpenExternal.icon";
 import Download from "./Download.icon";
 import Share from "./Share.icon";
@@ -22,9 +23,11 @@ import PaperPlane from "./PaperPlane.icon";
 import Instagram from "./Instagram.icon";
 import Twitter from "./Twitter.icon";
 import Facebook from "./Facebook.icon";
+import Close from "./Close.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
+  "ChevronDown",
   "OpenExternal",
   "Download",
   "Share",
@@ -41,10 +44,12 @@ export const ICON_NAMES = [
   "Instagram",
   "Facebook",
   "Twitter",
+  "Close",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
   ChevronRight,
+  ChevronDown,
   OpenExternal,
   Download,
   Share,
@@ -61,6 +66,7 @@ export const icons: Record<IconName, FC> = {
   Instagram,
   Facebook,
   Twitter,
+  Close,
 };
 
 type SizeProps = { height: number; width: number };

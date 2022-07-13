@@ -15,7 +15,6 @@ export type UnstyledInputProps = Omit<
  */
 const UnstyledInput = styled.input`
   appearance: none;
-  outline: 0 solid transparent;
   border: 0;
   border-radius: 0;
   border-color: transparent;

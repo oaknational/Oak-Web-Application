@@ -11,11 +11,6 @@ export type WindowOakThemes = {
   setTheme: (themeName: ThemeName) => void;
   availableThemes: ThemeNames;
 };
-declare global {
-  interface Window {
-    oakThemes?: WindowOakThemes;
-  }
-}
 
 export const THEME_NAMES = ["default", "aus", "placeholder"] as const;
 type ThemeNames = typeof THEME_NAMES;
@@ -37,7 +32,7 @@ const useOakTheme = (props?: UseOakThemeProps) => {
   const activeTheme = themes[props?.overrideTheme || selectedTheme];
 
   useEffect(() => {
-    window.oakThemes = {
+    window.__oakGlobals.oakThemes = {
       setTheme: (themeName: ThemeName) => {
         if (!THEME_NAMES.includes(themeName)) {
           return console.error(

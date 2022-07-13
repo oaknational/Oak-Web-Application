@@ -11,6 +11,7 @@ export type FlexCssProps = {
   flexGrow?: ResponsiveValues<CSSProperties["flexGrow"]>;
   flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
   maxWidth?: ResponsiveValues<CSSProperties["maxWidth"]>;
+  width?: ResponsiveValues<CSSProperties["width"]>;
 };
 
 const parse = (value?: number | string) => {
@@ -31,6 +32,7 @@ const flex = css<FlexCssProps>`
   ${responsive("flex-grow", (props) => props.flexGrow)}
   ${responsive("flex-wrap", (props) => props.flexWrap)}
   ${responsive("max-width", (props) => props.maxWidth, parse)}
+  ${responsive("width", (props) => props.width, parse)}
 `;
 
 export default flex;

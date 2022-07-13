@@ -1,3 +1,91 @@
+# [0.44.0](https://github.com/oaknational/Samara/compare/v0.43.0...v0.44.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* conflicts with main ([4d3c2fa](https://github.com/oaknational/Samara/commit/4d3c2fa41f6ed47226154c38d87f73ad9a1b2bc1))
+* update package lock ([7b2cfb2](https://github.com/oaknational/Samara/commit/7b2cfb29ba40ef486f1cdd49acfc9de3a4a4e685))
+
+
+### Features
+
+* add fixed header component ([bcc5959](https://github.com/oaknational/Samara/commit/bcc59592d30a2286d6cfadab2fbfcdad0abb7f3f))
+* add header height to theme config ([2ff3107](https://github.com/oaknational/Samara/commit/2ff3107825cc69d177eed64fd8eb53cd2a930f83))
+* add menu component with hamburger menu ([771a965](https://github.com/oaknational/Samara/commit/771a965b5f111976a85542776a62bdf685f9e147))
+* create storybook for menu ([7261a69](https://github.com/oaknational/Samara/commit/7261a69c8ed9483d4424883da8dd6931ac5c1b80))
+* extend flex component for fixed header ([bc11b84](https://github.com/oaknational/Samara/commit/bc11b84b3d07803244de46b3af4812160347a683))
+* make app header fixed and remove sign in from header ([4af04e9](https://github.com/oaknational/Samara/commit/4af04e984d0651236e2e246721132fe69357f25f))
+* make fixed header responsive ([88f1df2](https://github.com/oaknational/Samara/commit/88f1df21f99803a8f16423595b2240c5c65b8199))
+* make hamburger icon responsive ([bc92efd](https://github.com/oaknational/Samara/commit/bc92efde280b3e5f896c555c2dd89f5f451857d6))
+* make menu icon transparent ([3c048be](https://github.com/oaknational/Samara/commit/3c048beafcbd2ae4d26d9ab9bbbc48acd932e119))
+* position fly out menu ([71a919a](https://github.com/oaknational/Samara/commit/71a919ae82cca0ee7cc99c8f39d2afa3531d93a3))
+* tweek site header layout for tablets ([fd87075](https://github.com/oaknational/Samara/commit/fd870756e2ea7158665d107def5b75194fee29f1))
+
+# [0.43.0](https://github.com/oaknational/Samara/compare/v0.42.1...v0.43.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* generic state names for component ([8fb96d9](https://github.com/oaknational/Samara/commit/8fb96d96c13f0e34af988f243f1d66c2ca4e220b))
+* make dismissable card fully generic, make background in story book dark ([31da1e9](https://github.com/oaknational/Samara/commit/31da1e9d879f336a3341c4707a6b2b063ef9f73f))
+* make grey text legible ([2abcbed](https://github.com/oaknational/Samara/commit/2abcbed729e16ab094ff7e15457b5177a5e330d3))
+
+
+### Features
+
+* add beta link to nav ([37a979a](https://github.com/oaknational/Samara/commit/37a979ad013fd25585abb8100f7ca216563d0cb6))
+* add close icon ([0f697ef](https://github.com/oaknational/Samara/commit/0f697ef6b5db9539de900e0fc4f1551f228f3b1d))
+* add content to the card ([2755438](https://github.com/oaknational/Samara/commit/2755438398f62b8e6565382dc417a668b0d21b10))
+* dismissable card component ([776095b](https://github.com/oaknational/Samara/commit/776095bcf66b5cffd2a44d680ba82d0ea688bc02))
+* posthog analytics ([80cccf6](https://github.com/oaknational/Samara/commit/80cccf6bde0e8b2f9b1a0b1f618912b62f32f56b))
+* style button ([494a78b](https://github.com/oaknational/Samara/commit/494a78bf56eed9a698d6b7376bfdb6793ee974f1))
+
+## [0.42.1](https://github.com/oaknational/Samara/compare/v0.42.0...v0.42.1) (2022-07-07)
+
+# [0.42.0](https://github.com/oaknational/Samara/compare/v0.41.0...v0.42.0) (2022-07-07)
+
+
+### Features
+
+* border style props ([050b48c](https://github.com/oaknational/Samara/commit/050b48c7c1ad781ebce7dcd8d5a75ba384320a74))
+
+# [0.41.0](https://github.com/oaknational/Samara/compare/v0.40.1...v0.41.0) (2022-07-07)
+
+
+### Bug Fixes
+
+* **newsletter-hubspot:** send usertype 'Student' ([305b25a](https://github.com/oaknational/Samara/commit/305b25af3bc70c7d17b792261b811073fd930936))
+* pass ref to native select element ([979c276](https://github.com/oaknational/Samara/commit/979c2762437ef307fbcaf0020c2d23fd661ef8a2))
+
+
+### Features
+
+* add dropdown to newsletter form ([e388f60](https://github.com/oaknational/Samara/commit/e388f6099459d341beb034576f695a1920db339c))
+* use native select component on tablet ([e2a5ce4](https://github.com/oaknational/Samara/commit/e2a5ce4c51b3c9b32c445244e9fafe241efeec27))
+
+## [0.40.1](https://github.com/oaknational/Samara/compare/v0.40.0...v0.40.1) (2022-07-07)
+
+# [0.40.0](https://github.com/oaknational/Samara/compare/v0.39.0...v0.40.0) (2022-07-06)
+
+
+### Bug Fixes
+
+* revert to beta and onboarding page ([3b38305](https://github.com/oaknational/Samara/commit/3b383056d5670915e67d1689522e5c405f96e03f))
+
+
+### Features
+
+* empty home page for pupil and teacher ([20e5a87](https://github.com/oaknational/Samara/commit/20e5a87cfa39ee6a368f6bfe2d59e5abcf1c9fde))
+* on boarding grid ([c95a772](https://github.com/oaknational/Samara/commit/c95a772d762f65099877410bad0a8f36c6090285))
+* on boarding page ([55829b3](https://github.com/oaknational/Samara/commit/55829b3118c1a9d19b753563822f3e943d309f3d))
+
+# [0.39.0](https://github.com/oaknational/Samara/compare/v0.38.0...v0.39.0) (2022-07-06)
+
+
+### Features
+
+* add confirmic consent manager ([508ca20](https://github.com/oaknational/Samara/commit/508ca20c3b9bade08fa3c7e76ba8ef82dfc6b786))
+
 # [0.38.0](https://github.com/oaknational/Samara/compare/v0.37.0...v0.38.0) (2022-07-04)
 
 
