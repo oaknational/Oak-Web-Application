@@ -2174,6 +2174,46 @@ Array [
 ]
 `;
 
+exports[`Storyshots Foundations/BrushBorders Brush Borders 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 kRlEGW bSGgDF eCcFJP"
+  >
+    <div
+      className="sc-ed3fbaef-0 sc-f624290d-0 filyzj cLLNrI"
+    >
+      <h2
+        className="sc-1d12b6ff-0 iMuYLq"
+        fontSize={24}
+      >
+        Did you know about our lessons?
+      </h2>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <span
+      className="sc-b29dcfda-0 fDCRFC"
+    />
+    <span
+      className="sc-b29dcfda-1 exAPJF"
+    />
+    <span
+      className="sc-b29dcfda-2 kjBPOI"
+    />
+    <span
+      className="sc-b29dcfda-3 cVfHXq"
+    />
+  </div>,
+]
+`;
+
 exports[`Storyshots Foundations/FixedHeader Fixed Header 1`] = `
 Array [
   <link

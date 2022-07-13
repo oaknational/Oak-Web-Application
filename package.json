@@ -42,7 +42,7 @@
     "semantic-release": "semantic-release",
     "serve:test-config": "http-server -p 4444 oak-config",
     "start": "next start",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./public",
     "storybook:build": "build-storybook",
     "storybook:static-serve": "build-storybook --quiet && http-server ./storybook-static --port=6006",
     "test": "jest --watch --collectCoverage=false",
