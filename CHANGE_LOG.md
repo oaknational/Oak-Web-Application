@@ -1,3 +1,11 @@
+# [0.46.0](https://github.com/oaknational/Samara/compare/v0.45.2...v0.46.0) (2022-07-13)
+
+
+### Features
+
+* about contact blog component reducing duplicate code ([a5c904c](https://github.com/oaknational/Samara/commit/a5c904ca6d37c3a8fe05cc15e59613b82f01c5d0))
+* key stage navigation component ([39b7b3b](https://github.com/oaknational/Samara/commit/39b7b3bfb7103f09ef5ec89f3ea75780c044f81f))
+
 ## [0.45.2](https://github.com/oaknational/Samara/compare/v0.45.1...v0.45.2) (2022-07-13)
 
 
