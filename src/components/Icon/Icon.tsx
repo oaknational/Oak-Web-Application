@@ -19,6 +19,9 @@ import Play from "./Play.icon";
 import GraduationCap from "./GraduationCap.icon";
 import University from "./University.icon";
 import PaperPlane from "./PaperPlane.icon";
+import Instagram from "./Instagram.icon";
+import Twitter from "./Twitter.icon";
+import Facebook from "./Facebook.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -35,6 +38,9 @@ export const ICON_NAMES = [
   "GraduationCap",
   "University",
   "PaperPlane",
+  "Instagram",
+  "Facebook",
+  "Twitter",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -52,6 +58,9 @@ export const icons: Record<IconName, FC> = {
   GraduationCap,
   University,
   PaperPlane,
+  Instagram,
+  Facebook,
+  Twitter,
 };
 
 type SizeProps = { height: number; width: number };

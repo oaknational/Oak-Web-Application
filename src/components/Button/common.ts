@@ -10,7 +10,11 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
-export type ButtonVariant = "primary" | "secondary" | "tertiary";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "transparent";
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large";
 /**
