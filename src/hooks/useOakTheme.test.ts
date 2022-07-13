@@ -1,10 +1,11 @@
 import { waitFor } from "@testing-library/react";
 import { renderHook, act } from "@testing-library/react-hooks";
 
+import { getOakGlobals } from "../browser-lib/oak-globals/oakGlobals";
 import { LS_KEY_THEME } from "../config/localStorageKeys";
 
 import useLocalStorage from "./useLocalStorage";
-import useOakTheme, { THEME_NAMES, WindowOakThemes } from "./useOakTheme";
+import useOakTheme, { THEME_NAMES } from "./useOakTheme";
 
 declare global {
   interface WindowEventMap {
@@ -14,9 +15,6 @@ declare global {
   interface HTMLElementEventMap {
     "test-event": CustomEvent;
   }
-  interface Window {
-    oakThemes?: WindowOakThemes;
-  }
 }
 
 const setDocumentStyleProperty = jest.fn();
@@ -24,12 +22,14 @@ document.documentElement.style.setProperty = setDocumentStyleProperty;
 
 const consoleErrorSpy = jest.spyOn(console, "error");
 
+const oakGlobals = getOakGlobals();
+
 describe("useOakTheme()", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    window.oakThemes?.setTheme(null);
+    oakGlobals.oakThemes?.setTheme(null);
   });
 
   it("should default to 'default'", () => {
@@ -43,12 +43,12 @@ describe("useOakTheme()", () => {
   it("should set oakThemes property on window object", () => {
     renderHook(() => useOakTheme());
 
-    expect(window).toHaveProperty("oakThemes");
+    expect(oakGlobals).toHaveProperty("oakThemes");
   });
 
   describe("window.oakThemes", () => {
     it("should have availableThemes property which lists themes", () => {
-      expect(window.oakThemes?.availableThemes).toEqual([
+      expect(oakGlobals.oakThemes?.availableThemes).toEqual([
         "default",
         "aus",
         "placeholder",
@@ -58,7 +58,7 @@ describe("useOakTheme()", () => {
       act(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        window.oakThemes?.setTheme("not a theme");
+        oakGlobals.oakThemes?.setTheme("not a theme");
       });
 
       await waitFor(() => {
@@ -86,7 +86,7 @@ describe("useOakTheme()", () => {
       const { result } = renderHook(() => useOakTheme());
 
       act(() => {
-        window.oakThemes?.setTheme("aus");
+        oakGlobals.oakThemes?.setTheme("aus");
       });
 
       expect(result.current.name).toBe("aus");

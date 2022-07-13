@@ -90,6 +90,10 @@ const getConsentsFromLocalStorage = () => {
  * @returns {ConfirmicConsents}
  */
 const useConfirmicConsents = () => {
+  /**
+   * @todo warn if this is called more than once, as that would cause excessive
+   * local storage activity
+   */
   const [consents, setConsents] = useState<ConfirmicConsents>(
     getConsentsFromLocalStorage()
   );

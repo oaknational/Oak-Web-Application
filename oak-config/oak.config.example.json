@@ -32,5 +32,9 @@
     "appBaseUrl": "http://localhost:3000",
     "appName": "Samara",
     "searchApiUrl": "https://example.com"
+  },
+  "posthog": {
+    "apiHost": "http://localhost:8899",
+    "apiKey": "123abc"
   }
 }
