@@ -136,7 +136,6 @@ const Home: FC = () => {
           </Card>
         </GridArea>
       </Grid>
-
       <Grid cg={16} rg={[16]} mt={[16, 48, 80]}>
         <GridArea colSpan={[12, 6, 4]} order={[0, 0, 0]}>
           <Card background="white">
