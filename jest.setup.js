@@ -40,3 +40,11 @@ jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
   FirebaseError,
 }));
+
+jest.mock("posthog-js", () => ({
+  __esModule: true,
+  default: {
+    init: jest.fn(),
+    capture: jest.fn(),
+  },
+}));

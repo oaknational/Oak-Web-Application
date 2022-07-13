@@ -4,6 +4,7 @@ import { z } from "zod";
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
+import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
@@ -105,6 +106,7 @@ type InputStateConfig = {
 };
 
 export type OakTheme = {
+  header: HeaderConfig;
   name: string;
   colors: Record<OakColorName, ColorValue>;
   contrastColors: Record<OakColorName, OakColorName>;
