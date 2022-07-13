@@ -718,7 +718,7 @@ Array [
       >
         <button
           aria-label="Close node Banner"
-          className="sc-da410035-0 sc-7c97ca8b-0 eaZurT docbsf"
+          className="sc-da410035-0 sc-db58c318-0 eaZurT gtyFYn"
           onClick={[Function]}
           size="small"
           title="Close node Banner"
@@ -2765,12 +2765,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-181d717c-0 jJyWaR"
+                className="sc-687639d1-0 gcxKED"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-181d717c-1 jsPJek"
+                  className="sc-687639d1-1 jXWhwS"
                   height={16}
                   width={16}
                 >
@@ -2814,12 +2814,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-181d717c-0 jJyWaR"
+                className="sc-687639d1-0 gcxKED"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-181d717c-1 jsPJek"
+                  className="sc-687639d1-1 jXWhwS"
                   height={16}
                   width={16}
                 >
@@ -2880,12 +2880,12 @@ Array [
               size="small"
             >
               <span
-                className="sc-181d717c-0 jJyWaR"
+                className="sc-687639d1-0 gcxKED"
                 height={16}
                 width={16}
               >
                 <span
-                  className="sc-181d717c-1 jsPJek"
+                  className="sc-687639d1-1 jXWhwS"
                   height={16}
                   width={16}
                 >
