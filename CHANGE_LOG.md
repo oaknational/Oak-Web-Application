@@ -1,3 +1,26 @@
+# [0.44.0](https://github.com/oaknational/Samara/compare/v0.43.0...v0.44.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* conflicts with main ([4d3c2fa](https://github.com/oaknational/Samara/commit/4d3c2fa41f6ed47226154c38d87f73ad9a1b2bc1))
+* update package lock ([7b2cfb2](https://github.com/oaknational/Samara/commit/7b2cfb29ba40ef486f1cdd49acfc9de3a4a4e685))
+
+
+### Features
+
+* add fixed header component ([bcc5959](https://github.com/oaknational/Samara/commit/bcc59592d30a2286d6cfadab2fbfcdad0abb7f3f))
+* add header height to theme config ([2ff3107](https://github.com/oaknational/Samara/commit/2ff3107825cc69d177eed64fd8eb53cd2a930f83))
+* add menu component with hamburger menu ([771a965](https://github.com/oaknational/Samara/commit/771a965b5f111976a85542776a62bdf685f9e147))
+* create storybook for menu ([7261a69](https://github.com/oaknational/Samara/commit/7261a69c8ed9483d4424883da8dd6931ac5c1b80))
+* extend flex component for fixed header ([bc11b84](https://github.com/oaknational/Samara/commit/bc11b84b3d07803244de46b3af4812160347a683))
+* make app header fixed and remove sign in from header ([4af04e9](https://github.com/oaknational/Samara/commit/4af04e984d0651236e2e246721132fe69357f25f))
+* make fixed header responsive ([88f1df2](https://github.com/oaknational/Samara/commit/88f1df21f99803a8f16423595b2240c5c65b8199))
+* make hamburger icon responsive ([bc92efd](https://github.com/oaknational/Samara/commit/bc92efde280b3e5f896c555c2dd89f5f451857d6))
+* make menu icon transparent ([3c048be](https://github.com/oaknational/Samara/commit/3c048beafcbd2ae4d26d9ab9bbbc48acd932e119))
+* position fly out menu ([71a919a](https://github.com/oaknational/Samara/commit/71a919ae82cca0ee7cc99c8f39d2afa3531d93a3))
+* tweek site header layout for tablets ([fd87075](https://github.com/oaknational/Samara/commit/fd870756e2ea7158665d107def5b75194fee29f1))
+
 # [0.43.0](https://github.com/oaknational/Samara/compare/v0.42.1...v0.43.0) (2022-07-13)
 
 
