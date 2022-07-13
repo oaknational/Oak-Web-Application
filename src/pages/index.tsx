@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
@@ -15,11 +15,20 @@ import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import blogListItems from "../browser-lib/fixtures/blogListItems";
+import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 import DismissibleCard from "../components/Card/DismissibleCard";
 
 const Home: FC = () => {
   const { onSubmit } = useNewsletterForm();
+  const { track } = useAnalytics();
+
+  useEffect(() => {
+    track("test-event", {
+      testProperty:
+        "some value (currently should send once when the page loads)",
+    });
+  }, [track]);
 
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>

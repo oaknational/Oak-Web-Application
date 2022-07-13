@@ -10,10 +10,12 @@ import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
 
+import "../../browser-lib/oak-globals/oakGlobals";
 import { BookmarksProvider } from "../../context/Bookmarks";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
+import AnalyticsProvider from "../../context/Analytics/AnalyticsProvider";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
@@ -24,23 +26,25 @@ type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
 };
 
-const AllTheProviders: FC<ProviderProps> = ({
+export const AllTheProviders: FC<ProviderProps> = ({
   children,
   authProviderProps,
 }) => {
   return (
     <CookieConsentProvider>
-      <MockedAuthProvider {...authProviderProps}>
-        <MockedApolloProvider>
-          <ThemeProvider theme={theme}>
-            <MemoryRouterProvider>
-              <BookmarksProvider>
-                <SearchProvider>{children}</SearchProvider>
-              </BookmarksProvider>
-            </MemoryRouterProvider>
-          </ThemeProvider>
-        </MockedApolloProvider>
-      </MockedAuthProvider>
+      <AnalyticsProvider>
+        <MockedAuthProvider {...authProviderProps}>
+          <MockedApolloProvider>
+            <ThemeProvider theme={theme}>
+              <MemoryRouterProvider>
+                <BookmarksProvider>
+                  <SearchProvider>{children}</SearchProvider>
+                </BookmarksProvider>
+              </MemoryRouterProvider>
+            </ThemeProvider>
+          </MockedApolloProvider>
+        </MockedAuthProvider>
+      </AnalyticsProvider>
     </CookieConsentProvider>
   );
 };
