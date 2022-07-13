@@ -1,3 +1,12 @@
+## [0.45.2](https://github.com/oaknational/Samara/compare/v0.45.1...v0.45.2) (2022-07-13)
+
+
+### Bug Fixes
+
+* **Percy:** hide the Confirmic overlay from Percy ([f1cd459](https://github.com/oaknational/Samara/commit/f1cd459be9675922b463bc3fc8f181c0d70603e5))
+
+## [0.45.1](https://github.com/oaknational/Samara/compare/v0.45.0...v0.45.1) (2022-07-13)
+
 # [0.45.0](https://github.com/oaknational/Samara/compare/v0.44.0...v0.45.0) (2022-07-13)
 
 
