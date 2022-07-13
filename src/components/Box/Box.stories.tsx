@@ -12,6 +12,12 @@ export default {
     background: {
       defaultValue: "grey3",
     },
+    minWidth: {
+      defaultValue: "50%",
+    },
+    minHeight: {
+      defaultValue: 80,
+    },
   },
 } as ComponentMeta<typeof Component>;
 
