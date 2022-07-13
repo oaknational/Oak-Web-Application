@@ -1,3 +1,19 @@
+## [0.45.1](https://github.com/oaknational/Samara/compare/v0.45.0...v0.45.1) (2022-07-13)
+
+# [0.45.0](https://github.com/oaknational/Samara/compare/v0.44.0...v0.45.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* icon rotate prop ([12b042b](https://github.com/oaknational/Samara/commit/12b042bd3204ac976a4b7846ce53f7f0557293fd))
+* stop default details and summary behaviour ([aac5bfb](https://github.com/oaknational/Samara/commit/aac5bfbdbaf8fb5c147c381e6fcc40b0286eb0b1))
+
+
+### Features
+
+* collapsible section component ([3f8f745](https://github.com/oaknational/Samara/commit/3f8f7454954ee845962ea80254aaa07b332b4ea2))
+* wip rotate icon button ([b47c618](https://github.com/oaknational/Samara/commit/b47c618bece92921d7d2da1f84af2e3c2a1eb7fe))
+
 # [0.44.0](https://github.com/oaknational/Samara/compare/v0.43.0...v0.44.0) (2022-07-13)
 
 
