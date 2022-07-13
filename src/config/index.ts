@@ -30,6 +30,8 @@ const CONFIG_KEYS = [
   "hubspotPortalId",
   "hubspotNewsletterFormId",
   "hubspotFallbackFormId",
+  "posthogApiKey",
+  "posthogApiHost",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -254,6 +256,20 @@ const envVars: Record<ConfigKey, EnvVar> = {
   hubspotFallbackFormId: {
     value: process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  posthogApiKey: {
+    value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
+    envName: "NEXT_PUBLIC_POSTHOG_API_KEY",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  posthogApiHost: {
+    value: process.env.NEXT_PUBLIC_POSTHOG_API_HOST,
+    envName: "NEXT_PUBLIC_POSTHOG_API_HOST",
     required: true,
     availableInBrowser: true,
     default: null,

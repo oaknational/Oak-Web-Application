@@ -95,6 +95,12 @@ module.exports = async (phase) => {
       // Oak
       NEXT_PUBLIC_CLIENT_APP_BASE_URL: oakConfig.oak.appBaseUrl,
       NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
+
+      // Posthog
+      NEXT_PUBLIC_POSTHOG_API_HOST:
+        process.env.NEXT_PUBLIC_POSTHOG_API_HOST || oakConfig.posthog?.apiHost,
+      NEXT_PUBLIC_POSTHOG_API_KEY:
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
     },
   };
 
