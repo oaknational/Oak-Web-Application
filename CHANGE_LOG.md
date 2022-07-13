@@ -1,3 +1,22 @@
+# [0.43.0](https://github.com/oaknational/Samara/compare/v0.42.1...v0.43.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* generic state names for component ([8fb96d9](https://github.com/oaknational/Samara/commit/8fb96d96c13f0e34af988f243f1d66c2ca4e220b))
+* make dismissable card fully generic, make background in story book dark ([31da1e9](https://github.com/oaknational/Samara/commit/31da1e9d879f336a3341c4707a6b2b063ef9f73f))
+* make grey text legible ([2abcbed](https://github.com/oaknational/Samara/commit/2abcbed729e16ab094ff7e15457b5177a5e330d3))
+
+
+### Features
+
+* add beta link to nav ([37a979a](https://github.com/oaknational/Samara/commit/37a979ad013fd25585abb8100f7ca216563d0cb6))
+* add close icon ([0f697ef](https://github.com/oaknational/Samara/commit/0f697ef6b5db9539de900e0fc4f1551f228f3b1d))
+* add content to the card ([2755438](https://github.com/oaknational/Samara/commit/2755438398f62b8e6565382dc417a668b0d21b10))
+* dismissable card component ([776095b](https://github.com/oaknational/Samara/commit/776095bcf66b5cffd2a44d680ba82d0ea688bc02))
+* posthog analytics ([80cccf6](https://github.com/oaknational/Samara/commit/80cccf6bde0e8b2f9b1a0b1f618912b62f32f56b))
+* style button ([494a78b](https://github.com/oaknational/Samara/commit/494a78bf56eed9a698d6b7376bfdb6793ee974f1))
+
 ## [0.42.1](https://github.com/oaknational/Samara/compare/v0.42.0...v0.42.1) (2022-07-07)
 
 # [0.42.0](https://github.com/oaknational/Samara/compare/v0.41.0...v0.42.0) (2022-07-07)
