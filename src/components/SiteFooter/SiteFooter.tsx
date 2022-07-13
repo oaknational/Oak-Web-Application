@@ -57,7 +57,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
           ))}
         </Grid>
         <Flex ma={48} alignItems={"center"} justifyContent={"center"}>
-          {footerNotification && footerNotification}
+          {footerNotification}
         </Flex>
         <Flex mb={40} justifyContent={"space-between"}>
           <Flex>
