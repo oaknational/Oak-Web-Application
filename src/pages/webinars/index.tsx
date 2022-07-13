@@ -1,13 +1,12 @@
 import { GetStaticProps, NextPage } from "next";
+import { toPlainText } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import sanityGraphqlApi from "../../node-lib/sanity-graphql";
-import { Webinar } from "../../node-lib/sanity-graphql/generated/sdk";
-import Layout from "../../components/Layout";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
+import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
-import { toPlainText } from "@portabletext/react";
+import CMSClient, { Webinar } from "../../node-lib/cms";
 
 type WebinarListingPageProps = {
   webinars: Array<BlogListItemProps>;
@@ -32,7 +31,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
 const webinarToBlogListItem = (webinar: Webinar): BlogListItemProps => ({
   contentType: "webinar",
   title: webinar.title,
-  href: `/webinars/${webinar.slug?.current}`,
+  href: `/webinars/${webinar.slug}`,
   snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
 });
@@ -40,12 +39,9 @@ const webinarToBlogListItem = (webinar: Webinar): BlogListItemProps => ({
 export const getStaticProps: GetStaticProps<
   WebinarListingPageProps
 > = async () => {
-  const webinarResults = await sanityGraphqlApi.allWebinars();
+  const webinarResults = await CMSClient.getWebinars();
 
-  const webinars = webinarResults.allWebinar
-    // @TODO: Could we use zod
-    .filter((webinar) => typeof webinar.slug?.current === "string")
-    .map(webinarToBlogListItem);
+  const webinars = webinarResults.map(webinarToBlogListItem);
 
   return {
     props: {

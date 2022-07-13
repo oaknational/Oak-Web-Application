@@ -1,5 +1,5 @@
 fragment WebinarPreviewFields on Webinar {
-  _id
+  id: _id
   title
   slug {
     current

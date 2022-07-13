@@ -2,6 +2,7 @@ query webinarBySlug($slug: String, $isDraft: Boolean = false) {
   allWebinar(
     where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
   ) {
+    id: _id
     title
     slug {
       current
@@ -9,7 +10,7 @@ query webinarBySlug($slug: String, $isDraft: Boolean = false) {
     date
     summaryPortableText: summaryRaw
     hosts {
-      _id
+      id: _id
       _key
       name
       image {
