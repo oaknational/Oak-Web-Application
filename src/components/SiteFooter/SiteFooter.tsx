@@ -5,7 +5,7 @@ import styled from "styled-components";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
-import { Heading, P } from "../Typography";
+import Typography, { Heading, P } from "../Typography";
 import {
   FooterSection,
   FooterLink,
@@ -38,24 +38,30 @@ const SiteFooter: FC<SiteFooterProps> = ({
         maxWidth={1200}
         ma={"auto"}
       >
-        <Grid>
-          {footerSections.map((footerSection) => (
-            <GridArea
-              mb={[24, 0, 0]}
-              key={footerSection.title}
-              colSpan={[6, 3, 3]}
-            >
-              <Heading mb={12} fontSize={16} color="black" tag="h4">
-                {footerSection.title}
-              </Heading>
-              {footerSection.links.map((footerLink: FooterLink) => (
-                <P key={footerLink.text} color={"grey8"} fontSize={12}>
-                  <Link href={footerLink.href}>{footerLink.text}</Link>
-                </P>
+        <Typography fontSize={12} lineHeight={20} color="grey8">
+          <nav>
+            <Grid>
+              {footerSections.map((footerSection) => (
+                <GridArea
+                  mb={[24, 0, 0]}
+                  key={footerSection.title}
+                  colSpan={[6, 3, 3]}
+                >
+                  <Heading mb={12} fontSize={16} color="black" tag="h4">
+                    {footerSection.title}
+                  </Heading>
+                  <ul role={"list"}>
+                    {footerSection.links.map((footerLink: FooterLink) => (
+                      <li key={footerLink.text}>
+                        <Link href={footerLink.href}>{footerLink.text}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </GridArea>
               ))}
-            </GridArea>
-          ))}
-        </Grid>
+            </Grid>
+          </nav>
+        </Typography>
         <Flex ma={48} alignItems={"center"} justifyContent={"center"}>
           {footerNotification}
         </Flex>
@@ -64,20 +70,26 @@ const SiteFooter: FC<SiteFooterProps> = ({
             <IconButtonAsLink
               aria-label={"instagram"}
               icon={"Instagram"}
-              href={"/"}
-              variant={"transparent"}
+              href={"/instagram"}
+              variant={"minimal"}
+              size={"tiny"}
+              mr={24}
             />
             <IconButtonAsLink
               aria-label={"facebook"}
               icon={"Facebook"}
-              href={"/"}
-              variant={"transparent"}
+              href={"/facebook"}
+              variant={"minimal"}
+              size={"tiny"}
+              mr={24}
             />
             <IconButtonAsLink
               aria-label={"twitter"}
               icon={"Twitter"}
-              href={"/"}
-              variant={"transparent"}
+              href={"/twitter"}
+              variant={"minimal"}
+              size={"tiny"}
+              mr={24}
             />
           </Flex>
           <P mt={8} fontSize={12}>

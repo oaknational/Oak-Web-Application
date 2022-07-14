@@ -167,7 +167,7 @@ const theme: OakTheme = {
       background: "grey3",
       text: "black",
     },
-    transparent: {
+    minimal: {
       background: "transparent",
       text: "black",
     },

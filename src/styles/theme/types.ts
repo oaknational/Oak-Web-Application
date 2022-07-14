@@ -82,7 +82,7 @@ type ButtonConfig = {
     background: OakColorName;
     text: OakColorName;
   };
-  transparent: {
+  minimal: {
     background: OakColorName;
     text: OakColorName;
   };

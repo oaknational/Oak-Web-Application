@@ -2547,337 +2547,286 @@ Array [
     rel="stylesheet"
   />,
   <footer
-    className="sc-59cbb24b-0 krEoUz"
+    className="sc-a5f61574-0 diAzez"
   >
     <div
       className="sc-2f0613b5-0 sc-f624290d-0 iYLRKi gMzIlU"
     >
       <div
-        className="sc-61cd3008-0 dVghVz"
+        className="sc-2f0613b5-0 sc-68731eac-0 bsCxxD bKlSzX"
+        color="grey8"
+        fontSize={12}
+        fontWeight={400}
       >
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
+        <nav>
+          <div
+            className="sc-61cd3008-0 dVghVz"
           >
-            Oak
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              Home
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/about-us"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Oak
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="/"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/about-us"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    About us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/careers"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact-us"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Contact us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/help"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Help
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              About us
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/careers"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Teachers
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="https://teachers.thenational.academy"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Teacher Hub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/plan-a-lesson"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Plan a lesson
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/improve-curriculum"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Improve the curriculum
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/school-leaders"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Oak for school leaders
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/cpd"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    CPD
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              Careers
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/contact-us"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Pupil
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="https://classroom.thenational.academy/"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Classroom
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              Contact us
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/help"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Help
-            </a>
-          </p>
-        </div>
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
-          >
-            Teachers
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="https://teachers.thenational.academy"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Teacher Hub
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/plan-a-lesson"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Plan a lesson
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/improve-curriculum"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Improve the curriculum
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/school-leaders"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Oak for school leaders
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/cpd"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              CPD
-            </a>
-          </p>
-        </div>
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
-          >
-            Pupil
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="https://classroom.thenational.academy/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Classroom
-            </a>
-          </p>
-        </div>
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
-          >
-            Legal
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/privacy-policy"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Private Policy
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/cookie-policy"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Cookie Policy
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/change-cookie-setting"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Change Cookie Setting
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/copyright-notice"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Copyright Notice
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/terms-conditions"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Terms & Conditions
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/accessibilty"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Accessibilty Statement
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/safegarding"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Safegarding Statement
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/physical-activity"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Physical Activity Disclaimer
-            </a>
-          </p>
-        </div>
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Legal
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="/privacy-policy"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Private Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/cookie-policy"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Cookie Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/change-cookie-setting"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Change Cookie Setting
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/copyright-notice"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Copyright Notice
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/terms-conditions"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Terms & Conditions
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/accessibilty"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Accessibilty Statement
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/safegarding"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Safegarding Statement
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/physical-activity"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Physical Activity Disclaimer
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
       <div
         className="sc-2f0613b5-0 sc-f624290d-0 kYewus dhaShL"
@@ -2890,17 +2839,17 @@ Array [
         >
           <a
             aria-label="instagram"
-            className="sc-dde17d1c-0 kGHtoK"
-            href="/"
+            className="sc-dde17d1c-0 dIoJEb"
+            href="/instagram"
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
             role="button"
-            size="small"
+            size="tiny"
           >
             <div
-              className="sc-ef16a28e-0 fzasWk"
-              size="small"
+              className="sc-ef16a28e-0 jOLVRN"
+              size="tiny"
             >
               <span
                 className="sc-8dc7006a-0 jjvuNo"
@@ -2930,17 +2879,17 @@ Array [
           </a>
           <a
             aria-label="facebook"
-            className="sc-dde17d1c-0 kGHtoK"
-            href="/"
+            className="sc-dde17d1c-0 dIoJEb"
+            href="/facebook"
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
             role="button"
-            size="small"
+            size="tiny"
           >
             <div
-              className="sc-ef16a28e-0 fzasWk"
-              size="small"
+              className="sc-ef16a28e-0 jOLVRN"
+              size="tiny"
             >
               <span
                 className="sc-8dc7006a-0 jjvuNo"
@@ -2970,17 +2919,17 @@ Array [
           </a>
           <a
             aria-label="twitter"
-            className="sc-dde17d1c-0 kGHtoK"
-            href="/"
+            className="sc-dde17d1c-0 dIoJEb"
+            href="/twitter"
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
             role="button"
-            size="small"
+            size="tiny"
           >
             <div
-              className="sc-ef16a28e-0 fzasWk"
-              size="small"
+              className="sc-ef16a28e-0 jOLVRN"
+              size="tiny"
             >
               <span
                 className="sc-8dc7006a-0 jjvuNo"
@@ -3032,337 +2981,286 @@ Array [
     rel="stylesheet"
   />,
   <footer
-    className="sc-59cbb24b-0 krEoUz"
+    className="sc-a5f61574-0 diAzez"
   >
     <div
       className="sc-2f0613b5-0 sc-f624290d-0 iYLRKi gMzIlU"
     >
       <div
-        className="sc-61cd3008-0 dVghVz"
+        className="sc-2f0613b5-0 sc-68731eac-0 bsCxxD bKlSzX"
+        color="grey8"
+        fontSize={12}
+        fontWeight={400}
       >
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
+        <nav>
+          <div
+            className="sc-61cd3008-0 dVghVz"
           >
-            Oak
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              Home
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/about-us"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Oak
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="/"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/about-us"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    About us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/careers"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact-us"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Contact us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/help"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Help
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              About us
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/careers"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Teachers
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="https://teachers.thenational.academy"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Teacher Hub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/plan-a-lesson"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Plan a lesson
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/improve-curriculum"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Improve the curriculum
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/school-leaders"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Oak for school leaders
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/cpd"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    CPD
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              Careers
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/contact-us"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Pupil
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="https://classroom.thenational.academy/"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Classroom
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="sc-78906373-0 gzsvJ"
+              colSpan={
+                Array [
+                  6,
+                  3,
+                  3,
+                ]
+              }
             >
-              Contact us
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/help"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Help
-            </a>
-          </p>
-        </div>
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
-          >
-            Teachers
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="https://teachers.thenational.academy"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Teacher Hub
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/plan-a-lesson"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Plan a lesson
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/improve-curriculum"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Improve the curriculum
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/school-leaders"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Oak for school leaders
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/cpd"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              CPD
-            </a>
-          </p>
-        </div>
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
-          >
-            Pupil
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="https://classroom.thenational.academy/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Classroom
-            </a>
-          </p>
-        </div>
-        <div
-          className="sc-78906373-0 gzsvJ"
-          colSpan={
-            Array [
-              6,
-              3,
-              3,
-            ]
-          }
-        >
-          <h4
-            className="sc-1d12b6ff-0 UwdEB"
-            color="black"
-            fontSize={16}
-            mb={12}
-          >
-            Legal
-          </h4>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/privacy-policy"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Private Policy
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/cookie-policy"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Cookie Policy
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/change-cookie-setting"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Change Cookie Setting
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/copyright-notice"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Copyright Notice
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/terms-conditions"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Terms & Conditions
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/accessibilty"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Accessibilty Statement
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/safegarding"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Safegarding Statement
-            </a>
-          </p>
-          <p
-            className="sc-20ccf123-0 fOvvwW"
-            color="grey8"
-            fontSize={12}
-          >
-            <a
-              href="/physical-activity"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              Physical Activity Disclaimer
-            </a>
-          </p>
-        </div>
+              <h4
+                className="sc-1d12b6ff-0 UwdEB"
+                color="black"
+                fontSize={16}
+                mb={12}
+              >
+                Legal
+              </h4>
+              <ul
+                role="list"
+              >
+                <li>
+                  <a
+                    href="/privacy-policy"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Private Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/cookie-policy"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Cookie Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/change-cookie-setting"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Change Cookie Setting
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/copyright-notice"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Copyright Notice
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/terms-conditions"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Terms & Conditions
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/accessibilty"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Accessibilty Statement
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/safegarding"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Safegarding Statement
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/physical-activity"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Physical Activity Disclaimer
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
       <div
         className="sc-2f0613b5-0 sc-f624290d-0 kYewus dhaShL"
@@ -3420,17 +3318,17 @@ Array [
         >
           <a
             aria-label="instagram"
-            className="sc-dde17d1c-0 kGHtoK"
-            href="/"
+            className="sc-dde17d1c-0 dIoJEb"
+            href="/instagram"
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
             role="button"
-            size="small"
+            size="tiny"
           >
             <div
-              className="sc-ef16a28e-0 fzasWk"
-              size="small"
+              className="sc-ef16a28e-0 jOLVRN"
+              size="tiny"
             >
               <span
                 className="sc-8dc7006a-0 jjvuNo"
@@ -3460,17 +3358,17 @@ Array [
           </a>
           <a
             aria-label="facebook"
-            className="sc-dde17d1c-0 kGHtoK"
-            href="/"
+            className="sc-dde17d1c-0 dIoJEb"
+            href="/facebook"
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
             role="button"
-            size="small"
+            size="tiny"
           >
             <div
-              className="sc-ef16a28e-0 fzasWk"
-              size="small"
+              className="sc-ef16a28e-0 jOLVRN"
+              size="tiny"
             >
               <span
                 className="sc-8dc7006a-0 jjvuNo"
@@ -3500,17 +3398,17 @@ Array [
           </a>
           <a
             aria-label="twitter"
-            className="sc-dde17d1c-0 kGHtoK"
-            href="/"
+            className="sc-dde17d1c-0 dIoJEb"
+            href="/twitter"
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
             role="button"
-            size="small"
+            size="tiny"
           >
             <div
-              className="sc-ef16a28e-0 fzasWk"
-              size="small"
+              className="sc-ef16a28e-0 jOLVRN"
+              size="tiny"
             >
               <span
                 className="sc-8dc7006a-0 jjvuNo"

@@ -30,7 +30,7 @@ SiteFooterWithNotifcation.args = {
       icon={"Home"}
       aria-label={"Join new oak"}
       href={"/beta/onboarding"}
-      variant="transparent"
+      variant="minimal"
     />
   ),
 };
