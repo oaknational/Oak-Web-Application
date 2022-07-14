@@ -16,6 +16,7 @@ import {
 export type IconButtonStylesProps = MarginProps & {
   size: ButtonSize;
   variant: ButtonVariant;
+  rotate?: number;
 };
 export const getIconButtonStylesProps = (
   props: CommonIconButtonProps

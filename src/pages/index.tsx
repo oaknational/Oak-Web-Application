@@ -6,21 +6,14 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading, P } from "../components/Typography";
-import BlogList from "../components/BlogList/BlogList";
-import Flex from "../components/Flex";
-import CardTitle from "../components/Card/CardComponents/CardTitle";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Icon from "../components/Icon";
-import NewsletterForm, {
-  useNewsletterForm,
-} from "../components/Forms/NewsletterForm";
-import blogListItems from "../browser-lib/fixtures/blogListItems";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
+import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
 import DismissibleCard from "../components/Card/DismissibleCard";
+import Flex from "../components/Flex";
 
 const Home: FC = () => {
-  const { onSubmit } = useNewsletterForm();
   const { track } = useAnalytics();
 
   useEffect(() => {
@@ -136,67 +129,7 @@ const Home: FC = () => {
           </Card>
         </GridArea>
       </Grid>
-
-      <Grid cg={16} rg={[16]} mt={[16, 48, 80]}>
-        <GridArea colSpan={[12, 6, 4]} order={[0, 0, 0]}>
-          <Card background="white">
-            <CardTitle
-              icon="Home"
-              iconPosition="leading"
-              iconSize={32}
-              tag="h2"
-            >
-              About Oak Academy
-            </CardTitle>
-            <P fontSize={16} mb={24}>
-              Preview, plan and customise each element of our lessons to meet
-              your needs -
-            </P>
-            <ButtonAsLink
-              mt={"auto"}
-              fullWidth
-              href="/"
-              label="Find out more"
-            />
-          </Card>
-        </GridArea>
-
-        <GridArea colSpan={[12, 12, 8]} rowSpan={3} order={[3, 1, 0]}>
-          <Flex background={"white"} pa={24}>
-            <BlogList
-              title={"Stay up to date!"}
-              items={blogListItems}
-              titleTag={"h2"}
-            />
-          </Flex>
-        </GridArea>
-
-        <GridArea colSpan={[12, 6, 4]} order={[2, 0, 0]}>
-          <Card background="white">
-            <CardTitle
-              icon="Home"
-              iconPosition="leading"
-              iconSize={32}
-              tag="h2"
-            >
-              Need some help?
-            </CardTitle>
-            <P fontSize={16} mb={24}>
-              Preview, plan and customise each element of our lessons to meet
-              your needs - whether inside and outside the classroom.
-            </P>
-            <ButtonAsLink
-              mt={"auto"}
-              fullWidth
-              href="https://support.thenational.academy/"
-              label="Visit Help Center"
-            />
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 4]} order={[2, 0, 0]}>
-          <NewsletterForm onSubmit={onSubmit} />
-        </GridArea>
-      </Grid>
+      <AboutContactBlogList />
     </LandingPageLayout>
   );
 };
