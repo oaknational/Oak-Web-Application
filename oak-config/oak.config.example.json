@@ -30,7 +30,7 @@
   },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
-    "appName": "Samara",
+    "appName": "Oak Web Application",
     "searchApiUrl": "https://example.com"
   },
   "posthog": {

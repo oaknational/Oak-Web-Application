@@ -1,5 +1,5 @@
 {
-  "name": "samara",
+  "name": "oak-web-application",
   "version": "0.46.0",
   "private": true,
   "license": "MIT",
@@ -147,7 +147,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oaknational/Samara.git"
+    "url": "https://github.com/oaknational/Oak-Web-Application.git"
   },
   "engines": {
     "node": "16",
