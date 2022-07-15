@@ -197,7 +197,7 @@ var m = function () {},
       O = h[1],
       j = f && (!a || v);
     return (
-      t(function () {       
+      t(function () {
         // Matthew Gregory edit - 2022 - 07 - 05 - just return children if in a test
         // environment
         if (process.env.NODE_ENV === "test") return d;
