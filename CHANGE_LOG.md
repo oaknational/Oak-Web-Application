@@ -1,3 +1,5 @@
+## [0.46.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.0...v0.46.1) (2022-07-15)
+
 # [0.46.0](https://github.com/oaknational/Samara/compare/v0.45.2...v0.46.0) (2022-07-13)
 
 
