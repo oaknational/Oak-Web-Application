@@ -10,21 +10,21 @@ describe("background", () => {
       ${background}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" background="calmAndWarm" />
+      <StyledComponent data-testid="test" background="pupilsGreen" />
     );
 
-    expect(getByTestId("test")).toHaveStyle("background-color: #ffd166");
-    expect(getByTestId("test")).toHaveStyle("color: #333");
+    expect(getByTestId("test")).toHaveStyle("background-color: #85cb6d");
+    expect(getByTestId("test")).toHaveStyle("color: #000");
   });
   test("should correctly handle prop 'background' as array", async () => {
     const StyledComponent = styled.div`
       ${background}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" background={["calmAndWarm"]} />
+      <StyledComponent data-testid="test" background={["teachersLilac"]} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("background-color: #ffd166");
-    expect(getByTestId("test")).toHaveStyle("color: #333");
+    expect(getByTestId("test")).toHaveStyle("background-color: #c6d1ef");
+    expect(getByTestId("test")).toHaveStyle("color: #000");
   });
 });
