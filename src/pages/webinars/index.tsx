@@ -39,7 +39,7 @@ const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
 export const getStaticProps: GetStaticProps<
   WebinarListingPageProps
 > = async () => {
-  const webinarResults = await CMSClient.getWebinars();
+  const webinarResults = await CMSClient.webinars();
 
   const webinars = webinarResults.map(webinarToBlogListItem);
 

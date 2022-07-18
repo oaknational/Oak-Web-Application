@@ -40,7 +40,7 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const webinarResults = await CMSClient.getWebinars();
+  const webinarResults = await CMSClient.webinars();
 
   const paths = webinarResults.map((webinar) => ({
     params: { webinarSlug: webinar.slug },

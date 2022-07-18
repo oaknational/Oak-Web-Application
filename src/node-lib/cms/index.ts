@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import sanityClient from "./sanity-client";
+import getSanityClient from "./sanity-client";
 
 // @TODO: Absolute hack to allow `any` usage. Replace w/ better type
 const any = z.any();
@@ -40,9 +40,9 @@ export type ListParams = Params & {
 export interface CMSClient {
   (): {
     webinarBySlug(slug: string, params?: Params): Promise<Webinar>;
-    getWebinars(params?: ListParams): Promise<WebinarPreview[]>;
+    webinars(params?: ListParams): Promise<WebinarPreview[]>;
   };
 }
 
-const CMSClient = sanityClient();
+const CMSClient = getSanityClient();
 export default CMSClient;

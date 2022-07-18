@@ -6,7 +6,7 @@ import sanityGraphqlApi from "../../sanity-graphql";
 import { webinarPreviewSchema, webinarSchema } from "./schemas";
 
 const getSanityClient: CMSClient = () => ({
-  getWebinars: async (params) => {
+  webinars: async (params) => {
     const webinarListSchema = z.array(webinarPreviewSchema);
     const webinarResults = await sanityGraphqlApi.allWebinars({ ...params });
 
