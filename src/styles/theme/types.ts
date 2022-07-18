@@ -82,6 +82,10 @@ type ButtonConfig = {
     background: OakColorName;
     text: OakColorName;
   };
+  minimal: {
+    background: OakColorName;
+    text: OakColorName;
+  };
 };
 type InputConfig = {
   height: string;

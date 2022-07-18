@@ -27,6 +27,9 @@ const resetStyles = css`
   ul[role="list"],
   ol[role="list"] {
     list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   /* Set core root defaults */
