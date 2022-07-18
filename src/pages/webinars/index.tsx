@@ -6,7 +6,7 @@ import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
-import CMSClient, { Webinar } from "../../node-lib/cms";
+import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 
 type WebinarListingPageProps = {
   webinars: Array<BlogListItemProps>;
@@ -28,7 +28,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   );
 };
 
-const webinarToBlogListItem = (webinar: Webinar): BlogListItemProps => ({
+const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
   contentType: "webinar",
   title: webinar.title,
   href: `/webinars/${webinar.slug}`,
