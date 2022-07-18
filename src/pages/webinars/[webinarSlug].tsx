@@ -58,11 +58,6 @@ export const getStaticProps: GetStaticProps<WebinarPageProps> = async (
   const webinarSlug = context?.params?.webinarSlug as string;
   const webinarResult = await CMSClient.webinarBySlug(webinarSlug);
 
-  // if (!webinarResult) {
-  //   // @TODO: 404 logic (although should be handled by getStaticPaths)
-  //   return { props: {} };
-  // }
-
   return {
     props: {
       webinar: webinarResult,
