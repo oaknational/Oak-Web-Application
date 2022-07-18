@@ -88,6 +88,19 @@ const Home: FC = () => {
             </Heading>
           </Card>
         </GridArea>
+        <GridArea colSpan={[12, 4, 4]}>
+          <Card
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            background={"white"}
+          >
+            <Icon name={"University"} size={64} />
+            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              <CardLink href="/planning">Plan a lesson</CardLink>
+            </Heading>
+          </Card>
+        </GridArea>
 
         <GridArea colSpan={[12, 4, 4]}>
           <Card
@@ -98,23 +111,11 @@ const Home: FC = () => {
           >
             <Icon name={"University"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="/">Curriculum</CardLink>
+              <CardLink href="/">Improve your curriculum</CardLink>
             </Heading>
           </Card>
         </GridArea>
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            background={"white"}
-          >
-            <Icon name={"University"} size={64} />
-            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="/">Lesson Planning</CardLink>
-            </Heading>
-          </Card>
-        </GridArea>
+
         <GridArea colSpan={[12, 4, 4]}>
           <Card
             flexDirection={"column"}
@@ -124,7 +125,7 @@ const Home: FC = () => {
           >
             <Icon name={"GraduationCap"} size={64} />
             <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="/">Oak for Schools</CardLink>
+              <CardLink href="/">Oak for School leaders</CardLink>
             </Heading>
           </Card>
         </GridArea>
