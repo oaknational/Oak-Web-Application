@@ -1,6 +1,6 @@
-# Samara
+# Oak Web Application
 
-A really good remote education app.
+The Oak National Academy web application code base.
 
 - [Getting started](#Getting-started)
 - [Automatic Checks](#Automatic-Checks)

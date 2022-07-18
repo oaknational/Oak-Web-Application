@@ -1,3 +1,17 @@
+# [0.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.1...v0.47.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* identical sub expression ([01e6174](https://github.com/oaknational/Oak-Web-Application/commit/01e61747f16c565507951329afeee6a1700ed559))
+
+
+### Features
+
+* site footer ([8f005e6](https://github.com/oaknational/Oak-Web-Application/commit/8f005e6d3d26620ee62436ad38264e76169d1f37))
+
+## [0.46.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.0...v0.46.1) (2022-07-15)
+
 # [0.46.0](https://github.com/oaknational/Samara/compare/v0.45.2...v0.46.0) (2022-07-13)
 
 

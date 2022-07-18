@@ -10,6 +10,7 @@ export type FlexCssProps = {
   flex?: ResponsiveValues<CSSProperties["flex"]>;
   flexGrow?: ResponsiveValues<CSSProperties["flexGrow"]>;
   flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
+  maxWidth?: ResponsiveValues<CSSProperties["maxWidth"]>;
   width?: ResponsiveValues<CSSProperties["width"]>;
 };
 
@@ -21,6 +22,7 @@ const parse = (value?: number | string) => {
       return `${value}px`;
   }
 };
+
 const flex = css<FlexCssProps>`
   display: flex;
   ${responsive("flex-direction", (props) => props.flexDirection)}
@@ -29,6 +31,7 @@ const flex = css<FlexCssProps>`
   ${responsive("flex", (props) => props.flex)}
   ${responsive("flex-grow", (props) => props.flexGrow)}
   ${responsive("flex-wrap", (props) => props.flexWrap)}
+  ${responsive("max-width", (props) => props.maxWidth, parse)}
   ${responsive("width", (props) => props.width, parse)}
 `;
 
