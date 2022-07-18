@@ -38,7 +38,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
   it("should set auth headers", async () => {
     await import(".");
     expect(GraphQLClientSpy).toHaveBeenCalledWith("gql endpoint", {
-      headers: { "Accept": "Bearer sanity-secret" },
+      headers: { "Authorization": "Bearer sanity-secret" },
     });
   });
 });
