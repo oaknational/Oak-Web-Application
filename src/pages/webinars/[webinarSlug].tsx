@@ -6,8 +6,12 @@ import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { Webinar } from "../../node-lib/cms";
 
+type SerializedWebinar = Omit<Webinar, "date"> & {
+  date: string;
+};
+
 type WebinarPageProps = {
-  webinar: Webinar;
+  webinar: SerializedWebinar;
 };
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
@@ -58,9 +62,14 @@ export const getStaticProps: GetStaticProps<WebinarPageProps> = async (
   const webinarSlug = context?.params?.webinarSlug as string;
   const webinarResult = await CMSClient.webinarBySlug(webinarSlug);
 
+  const webinar = {
+    ...webinarResult,
+    date: webinarResult.date.toISOString(),
+  };
+
   return {
     props: {
-      webinar: webinarResult,
+      webinar,
     },
   };
 };
