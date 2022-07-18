@@ -16,13 +16,16 @@ import iconButtonStyles, {
 import IconButtonInner from "./IconButtonInner";
 
 const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
-  ${iconButtonStyles}
+  transform: rotate(${(props) => props.rotate}deg);
+  transition: transform 200ms;
+  ${iconButtonStyles};
 `;
 
 type IconButtonProps = CommonIconButtonProps & {
   onClick: MouseEventHandler<HTMLButtonElement>;
   "aria-label": string;
   disabled?: boolean;
+  rotate?: number;
   htmlButtonProps?: Omit<
     DetailedHTMLProps<
       ButtonHTMLAttributes<HTMLButtonElement>,
@@ -35,6 +38,7 @@ type IconButtonProps = CommonIconButtonProps & {
 const IconButton: FC<IconButtonProps> = (props) => {
   const {
     icon,
+    rotate,
     iconColorOverride,
     "aria-label": ariaLabel,
     disabled,
@@ -49,6 +53,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
     <StyledButton
       {...htmlButtonProps}
       onClick={onClick}
+      rotate={rotate}
       title={htmlButtonProps.title || ariaLabel}
       aria-label={ariaLabel}
       disabled={disabled}

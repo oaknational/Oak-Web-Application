@@ -30,7 +30,7 @@ Array [
   />,
   <button
     aria-label="Add Bookmark"
-    className="sc-da410035-0 sc-7c97ca8b-0 eaZurT dlmRQd"
+    className="sc-da410035-0 sc-db58c318-0 eaZurT gUOjFh"
     disabled={false}
     onClick={[Function]}
     size="small"
@@ -352,7 +352,7 @@ Array [
   />,
   <button
     aria-label="Click me"
-    className="sc-da410035-0 sc-7c97ca8b-0 eaZurT eHJFne"
+    className="sc-da410035-0 sc-db58c318-0 eaZurT hCZmBK"
     size="small"
     title="Click me"
   >
@@ -718,7 +718,7 @@ Array [
       >
         <button
           aria-label="Close node Banner"
-          className="sc-da410035-0 sc-7c97ca8b-0 eaZurT docbsf"
+          className="sc-da410035-0 sc-db58c318-0 eaZurT gtyFYn"
           onClick={[Function]}
           size="small"
           title="Close node Banner"
@@ -1090,7 +1090,11 @@ Array [
           <svg
             fill="none"
             height="100%"
-            viewBox="-4 -4 22 17"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="-4 -5 22 17"
             width="100%"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -1255,7 +1259,11 @@ Array [
           <svg
             fill="none"
             height="100%"
-            viewBox="-4 -4 22 17"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="-4 -5 22 17"
             width="100%"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -1397,7 +1405,11 @@ Array [
           <svg
             fill="none"
             height="100%"
-            viewBox="-4 -4 22 17"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="-4 -5 22 17"
             width="100%"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -1779,7 +1791,11 @@ Array [
                   <svg
                     fill="none"
                     height="100%"
-                    viewBox="-4 -4 22 17"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="-4 -5 22 17"
                     width="100%"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -2045,7 +2061,11 @@ Array [
                   <svg
                     fill="none"
                     height="100%"
-                    viewBox="-4 -4 22 17"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="-4 -5 22 17"
                     width="100%"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -2278,7 +2298,7 @@ Array [
           </div>
           <button
             aria-label="Submit"
-            className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
+            className="sc-da410035-0 sc-db58c318-0 eaZurT dxStOs"
             onClick={[Function]}
             size="small"
             title="Submit"
@@ -2490,7 +2510,7 @@ Array [
       </a>
       <button
         aria-label="Add Bookmark"
-        className="sc-da410035-0 sc-7c97ca8b-0 eaZurT dlmRQd"
+        className="sc-da410035-0 sc-db58c318-0 eaZurT gUOjFh"
         disabled={false}
         onClick={[Function]}
         size="small"
@@ -2687,7 +2707,7 @@ Array [
     </div>
     <button
       aria-label="Submit"
-      className="sc-da410035-0 sc-7c97ca8b-0 eaZurT cTCuaA"
+      className="sc-da410035-0 sc-db58c318-0 eaZurT dxStOs"
       onClick={[Function]}
       size="small"
       title="Submit"
@@ -2724,6 +2744,203 @@ Array [
       </div>
     </button>
   </form>,
+]
+`;
+
+exports[`Storyshots Interactive/Collapsible Section Collapsible Section 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <details
+    onClick={[Function]}
+  >
+    <summary
+      className="sc-e0f68ad3-0 jXwQPq"
+      onClick={[Function]}
+    >
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 QmDoQ jVGtdj"
+      >
+        <h2
+          className="sc-1d12b6ff-0 sc-e0f68ad3-1 iMuYLq gQPQVO"
+          fontSize={24}
+        >
+          <a
+            aria-expanded={false}
+            onClick={[Function]}
+          >
+            Presentation
+          </a>
+        </h2>
+        <div
+          className="sc-2f0613b5-0 sc-f624290d-0 bsCxxD eUmjGs"
+        >
+          <button
+            aria-label="Download lesson presentation"
+            className="sc-da410035-0 sc-db58c318-0 eaZurT bPdtoZ"
+            onClick={[Function]}
+            size="small"
+            title="Download lesson presentation"
+          >
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
+            >
+              <span
+                className="sc-687639d1-0 gcxKED"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-687639d1-1 jXWhwS"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                    />
+                    <polyline
+                      points="7 10 12 15 17 10"
+                    />
+                    <line
+                      x1="12"
+                      x2="12"
+                      y1="15"
+                      y2="3"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+          <button
+            aria-label="Share lesson presentation"
+            className="sc-da410035-0 sc-db58c318-0 eaZurT bPdtoZ"
+            onClick={[Function]}
+            size="small"
+            title="Share lesson presentation"
+          >
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
+            >
+              <span
+                className="sc-687639d1-0 gcxKED"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-687639d1-1 jXWhwS"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="18"
+                      cy="5"
+                      r="3"
+                    />
+                    <circle
+                      cx="6"
+                      cy="12"
+                      r="3"
+                    />
+                    <circle
+                      cx="18"
+                      cy="19"
+                      r="3"
+                    />
+                    <line
+                      x1="8.59"
+                      x2="15.42"
+                      y1="13.51"
+                      y2="17.49"
+                    />
+                    <line
+                      x1="15.41"
+                      x2="8.59"
+                      y1="6.51"
+                      y2="10.49"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+          <button
+            aria-expanded={false}
+            aria-label="Open collapsible section"
+            className="sc-da410035-0 sc-db58c318-0 eaZurT kya-Dwk"
+            onClick={[Function]}
+            rotate={0}
+            size="small"
+            title="Open collapsible section"
+          >
+            <div
+              className="sc-ef16a28e-0 hbpwaj"
+              size="small"
+            >
+              <span
+                className="sc-687639d1-0 gcxKED"
+                height={16}
+                width={16}
+              >
+                <span
+                  className="sc-687639d1-1 jXWhwS"
+                  height={16}
+                  width={16}
+                >
+                  <svg
+                    fill="none"
+                    height="100%"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="-4 -5 22 17"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m13.781 1.25-.594-.625c-.156-.156-.406-.156-.53 0L7 6.281 1.312.625C1.188.469.938.469.782.625l-.595.625c-.156.125-.156.375 0 .531L6.72 8.313a.36.36 0 0 0 .531 0l6.531-6.532c.156-.156.156-.406 0-.531Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </summary>
+  </details>,
 ]
 `;
 
@@ -3618,6 +3835,404 @@ Array [
         </a>
       </li>
     </ol>
+  </nav>,
+]
+`;
+
+exports[`Storyshots Navigation/Key Stages Nav Key Stages Nav 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <nav
+    aria-label="key stages and year groups"
+  >
+    <div
+      className="sc-2f0613b5-0 sc-f624290d-0 bsCxxD cMNTr"
+    >
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
+      >
+        <a
+          aria-label="Early Years"
+          className="sc-608180b1-0 HsvRz"
+          href="/key-stages/early-years-foundation-stage"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="Early Years"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-687639d1-0 gcxKED"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-687639d1-1 jXWhwS"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  viewBox="0 0 16 16"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            Early Years
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Reception
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
+      >
+        <a
+          aria-label="KS1"
+          className="sc-608180b1-0 HsvRz"
+          href="/key-stages/key-stage-1"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS1"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-687639d1-0 gcxKED"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-687639d1-1 jXWhwS"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  viewBox="0 0 16 16"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS1
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 1
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 2
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
+      >
+        <a
+          aria-label="KS2"
+          className="sc-608180b1-0 HsvRz"
+          href="/key-stages/key-stage-2"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS2"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-687639d1-0 gcxKED"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-687639d1-1 jXWhwS"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  viewBox="0 0 16 16"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS2
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 3
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 4
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 5
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 6
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
+      >
+        <a
+          aria-label="KS3"
+          className="sc-608180b1-0 HsvRz"
+          href="/key-stages/key-stage-3"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS3"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-687639d1-0 gcxKED"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-687639d1-1 jXWhwS"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  viewBox="0 0 16 16"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS3
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 7
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 8
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 9
+          </a>
+        </p>
+      </div>
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 fxNmKE bdWGvn"
+      >
+        <a
+          aria-label="KS4"
+          className="sc-608180b1-0 HsvRz"
+          href="/key-stages/key-stage-4"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          role="button"
+          size="small"
+          title="KS4"
+        >
+          <span
+            className="sc-bba76629-0 hkRKzr"
+          >
+            <span
+              className="sc-687639d1-0 gcxKED"
+              height={16}
+              width={16}
+            >
+              <span
+                className="sc-687639d1-1 jXWhwS"
+                height={16}
+                width={16}
+              >
+                <svg
+                  fill="none"
+                  height="100%"
+                  viewBox="0 0 16 16"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.805 1.105c-.352.352-.317.88 0 1.23l4.254 4.009H.969a.833.833 0 0 0-.844.843v1.125c0 .493.352.844.844.844h10.09L6.805 13.2a.916.916 0 0 0 0 1.23l.773.774c.352.317.879.317 1.195 0l6.856-6.855c.316-.317.316-.844 0-1.196L8.773.332c-.316-.316-.843-.316-1.195 0l-.773.773Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+          <span
+            className="sc-afa80c08-0 dokVaK"
+          >
+            KS4
+          </span>
+        </a>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 10
+          </a>
+        </p>
+        <p
+          className="sc-20ccf123-0 gHORQC"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Year 11
+          </a>
+        </p>
+      </div>
+    </div>
   </nav>,
 ]
 `;

@@ -9,7 +9,9 @@ module.exports = {
   snapshot: {
     widths: [375, 1280],
     minHeight: 1024,
-    percyCSS: "",
+    percyCSS: `
+    #mtm-root-container { display: none!important; }
+    `,
   },
   discovery: {
     allowedHostnames: [],

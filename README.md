@@ -1,15 +1,15 @@
-# Samara
+# Oak Web Application
 
-A really good remote education app.
+The Oak National Academy web application code base.
 
 - [Getting started](#Getting-started)
-- [Automatic Checks](#Automatic-started)
+- [Automatic Checks](#Automatic-Checks)
   - [Unit tests](#Unit-tests)
   - [End-to-End Browser Tests](#End-to-End-Browser-Tests)
   - [Pre-commit and Commit Message Hooks](#Pre-commit-and-Commit-Message-Hooks)
     - [Pre-commit](#Pre-commit)
     - [Commit Message Validation](#Commit-Message-Validation)
-- [CI/CD](#CI-CD)
+- [CI/CD](#CICD)
   - [Pull Requests and Automated Checks](#Pull-Requests-and-Automated-Checks)
   - [Builds and Deployments](#Builds-and-Deployments)
   - [Release Mechanism](#Release-Mechanism)
