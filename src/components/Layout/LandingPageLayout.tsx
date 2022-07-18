@@ -8,6 +8,7 @@ import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
+import footerSections from "../../browser-lib/fixtures/footerSectionLinks";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -45,7 +46,7 @@ const LandingPageLayout: FC<LayoutProps> = (props) => {
       <Container background={background}>
         <SiteHeader />
         <StyledLayout>{children}</StyledLayout>
-        <SiteFooter />
+        <SiteFooter footerSections={footerSections} />
       </Container>
     </>
   );
