@@ -10,9 +10,9 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
-export type ButtonVariant = "primary" | "secondary" | "tertiary";
+export type ButtonVariant = "primary" | "secondary" | "tertiary" | "minimal";
 export type IconPosition = "leading" | "trailing";
-export type ButtonSize = "small" | "large";
+export type ButtonSize = "small" | "large" | "tiny";
 /**
  * @todo move to theme
  */
@@ -24,6 +24,10 @@ const LARGE_BUTTON_ICON_SIZE = 24;
 const LARGE_BUTTON_HEIGHT = 48;
 const LARGE_BUTTON_PADDING_X = 16;
 
+const TINY_BUTTON_ICON_SIZE = 16;
+const TINY_BUTTON_HEIGHT = 16;
+const TINY_BUTTON_PADDING_X = 12;
+
 export const buttonFlexDirectionMap: Record<
   IconPosition,
   "row" | "row-reverse"
@@ -34,6 +38,7 @@ export const buttonFlexDirectionMap: Record<
 export const getButtonFlexDirection = (iconPosition: IconPosition) =>
   buttonFlexDirectionMap[iconPosition];
 export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
+  tiny: TINY_BUTTON_HEIGHT,
   small: SMALL_BUTTON_HEIGHT,
   large: LARGE_BUTTON_HEIGHT,
 };
@@ -44,11 +49,13 @@ export const getButtonColor = (variant: ButtonVariant) =>
   getColorByLocation((props) => props.theme.button[variant].text);
 
 const buttonPaddingMap: Record<ButtonSize, PixelSpacing> = {
+  tiny: TINY_BUTTON_PADDING_X,
   small: SMALL_BUTTON_PADDING_X,
   large: LARGE_BUTTON_PADDING_X,
 };
 export const getButtonPadding = (size: ButtonSize) => buttonPaddingMap[size];
 export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
+  tiny: TINY_BUTTON_ICON_SIZE,
   small: SMALL_BUTTON_ICON_SIZE,
   large: LARGE_BUTTON_ICON_SIZE,
 };
