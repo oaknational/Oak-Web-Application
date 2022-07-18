@@ -2682,7 +2682,7 @@ Array [
                 </li>
                 <li>
                   <a
-                    href="/plan-a-lesson"
+                    href="/planning"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
                   >
@@ -2979,7 +2979,7 @@ Array [
           </a>
         </div>
         <p
-          className="sc-20ccf123-0 hJJNxI"
+          className="sc-7eb2346b-0 jrxNBp"
           fontSize={12}
         >
           © Oak National Academy
@@ -3116,7 +3116,7 @@ Array [
                 </li>
                 <li>
                   <a
-                    href="/plan-a-lesson"
+                    href="/planning"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
                   >
@@ -3458,7 +3458,7 @@ Array [
           </a>
         </div>
         <p
-          className="sc-20ccf123-0 hJJNxI"
+          className="sc-7eb2346b-0 jrxNBp"
           fontSize={12}
         >
           © Oak National Academy
