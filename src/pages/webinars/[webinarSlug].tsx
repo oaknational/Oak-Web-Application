@@ -40,8 +40,7 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // @TODO: Remove default limit from query
-  const webinarResults = await CMSClient.getWebinars({ limit: 9999 });
+  const webinarResults = await CMSClient.getWebinars();
 
   const paths = webinarResults.map((webinar) => ({
     params: { webinarSlug: webinar.slug },

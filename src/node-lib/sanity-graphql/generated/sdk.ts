@@ -857,7 +857,7 @@ export const WebinarPreviewFieldsFragmentDoc = gql`
 }
     `;
 export const AllWebinarsDocument = gql`
-    query allWebinars($isDraft: Boolean = false, $limit: Int = 20) {
+    query allWebinars($isDraft: Boolean = false, $limit: Int = 9999) {
   allWebinar(where: {_: {is_draft: $isDraft}}, sort: [{date: ASC}], limit: $limit) {
     ...WebinarPreviewFields
   }
