@@ -13,7 +13,9 @@ type WebinarPageProps = {
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background="grey1">
-      <Heading tag="h1" fontSize={24}>{props.webinar.title}</Heading>
+      <Heading tag="h1" fontSize={24}>
+        {props.webinar.title}
+      </Heading>
       {props.webinar.date} <br />
       Hosted by: {props.webinar.hosts?.map((host) => host?.name).join(", ")}
       <p>
@@ -56,8 +58,6 @@ export const getStaticProps: GetStaticProps<WebinarPageProps> = async (
 ) => {
   const webinarSlug = context?.params?.webinarSlug as string;
   const webinarResult = await CMSClient.webinarBySlug(webinarSlug);
-
-  console.log('x', webinarResult)
 
   // if (!webinarResult) {
   //   // @TODO: 404 logic (although should be handled by getStaticPaths)
