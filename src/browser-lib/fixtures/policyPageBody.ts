@@ -1,5 +1,5 @@
 const policyPageBody = `
-<h2>2. The personal data we hold</h2>
+<h2>2. Personal data we hold</h2>
 <p>
   The personal information that we will collect about you falls into
   the following categories:
