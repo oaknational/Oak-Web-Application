@@ -43,7 +43,9 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+type URLParams = { webinarSlug: string };
+
+export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   const webinarResults = await CMSClient.webinars();
 
   const paths = webinarResults.map((webinar) => ({
@@ -56,9 +58,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<WebinarPageProps> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<
+  WebinarPageProps,
+  URLParams
+> = async (context) => {
   const webinarSlug = context?.params?.webinarSlug as string;
   const webinarResult = await CMSClient.webinarBySlug(webinarSlug);
 
