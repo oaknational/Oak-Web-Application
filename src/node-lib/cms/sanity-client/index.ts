@@ -11,6 +11,8 @@ import {
 import {
   blogPostPreviewSchema,
   blogPostSchema,
+  policyPagePreviewSchema,
+  policyPageSchema,
   webinarPreviewSchema,
   webinarSchema,
 } from "./schemas";
@@ -80,6 +82,23 @@ const getSanityClient: CMSClient = () => ({
     const curriculumPageData = result.allCurriculumCorePage[0];
 
     return curriculumPageSchema.parse(curriculumPageData);
+  },
+  policyPages: async (params?) => {
+    const policyPageListSchema = z.array(policyPagePreviewSchema);
+    const policyPageResults = await sanityGraphqlApi.allPolicyPages({
+      ...params,
+    });
+
+    return policyPageListSchema.parse(policyPageResults.allPolicyPage);
+  },
+  policyPageBySlug: async (slug, params?) => {
+    const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
+      ...params,
+      slug,
+    });
+    const webinar = policyPageResult.allPolicyPage[0];
+
+    return policyPageSchema.parse(webinar);
   },
 });
 

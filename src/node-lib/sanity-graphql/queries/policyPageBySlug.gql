@@ -1,0 +1,13 @@
+query policyPageBySlug($slug: String, $isDraft: Boolean = false) {
+  allPolicyPage(
+    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+  ) {
+    id: _id
+    title
+    lastUpdatedAt: _updatedAt
+    slug {
+      current
+    }
+    bodyPortableText: bodyRaw
+  }
+}
