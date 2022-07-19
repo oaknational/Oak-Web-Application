@@ -101,6 +101,14 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_POSTHOG_API_HOST || oakConfig.posthog?.apiHost,
       NEXT_PUBLIC_POSTHOG_API_KEY:
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
+
+      // Sanity
+      NEXT_PUBLIC_SANITY_GRAPHQL_URL:
+        process.env.NEXT_PUBLIC_SANITY_GRAPHQL_URL ||
+        oakConfig.sanity?.graphqlUrl,
+      NEXT_PUBLIC_SANITY_AUTH_SECRET:
+        process.env.NEXT_PUBLIC_SANITY_GRAPHQL_URL ||
+        secretsFromNetwork.SANITY_AUTH_SECRET,
     },
   };
 
