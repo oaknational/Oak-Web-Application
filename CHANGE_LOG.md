@@ -1,3 +1,10 @@
+# [0.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.47.0...v0.48.0) (2022-07-19)
+
+
+### Features
+
+* policy page ([49bb045](https://github.com/oaknational/Oak-Web-Application/commit/49bb0451671a27aa508629da3aad90168e7ee08a))
+
 # [0.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.1...v0.47.0) (2022-07-18)
 
 
