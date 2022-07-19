@@ -1,24 +1,24 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { FC } from "react";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { PortableText } from "@portabletext/react";
 
-import policyPageBody from "../../browser-lib/fixtures/policyPageBody";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Typography, { Heading, P } from "../../components/Typography";
+import CMSClient, { PolicyPage } from "../../node-lib/cms";
 
-type PolicyPageProps = {
-  policy: {
-    title: string;
-    updatedAt: string; // change back to data with sanity data
-    body: string;
-  };
+type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
+  lastUpdatedAt: string;
+};
+
+export type PolicyPageProps = {
+  policy: SerializedPolicyPage;
   isPreviewMode: boolean;
 };
 
-const Policies: FC<PolicyPageProps> = ({ policy, isPreviewMode }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -35,10 +35,10 @@ const Policies: FC<PolicyPageProps> = ({ policy, isPreviewMode }) => {
               </Heading>
             </Flex>
             <P $mb={16} $fontSize={14}>
-              {`Updated ${policy.updatedAt}`}
+              {`Updated ${policy.lastUpdatedAt}`}
             </P>
             <Typography>
-              <div dangerouslySetInnerHTML={{ __html: policy.body }} />
+              <PortableText value={policy.bodyPortableText} />
             </Typography>
           </GridArea>
         </Grid>
@@ -47,14 +47,16 @@ const Policies: FC<PolicyPageProps> = ({ policy, isPreviewMode }) => {
   );
 };
 
-export default Policies;
+type URLParams = {
+  policyPageSlug: string;
+};
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [
-    {
-      params: { policyPageSlug: "privacy-policy" },
-    },
-  ];
+export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+  const policyResults = await CMSClient.policyPages();
+
+  const paths = policyResults.map((policyPage) => ({
+    params: { policyPageSlug: policyPage.slug },
+  }));
 
   return {
     fallback: false,
@@ -62,23 +64,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-type URLParams = { policyPageSlug: string };
-
 export const getStaticProps: GetStaticProps<
   PolicyPageProps,
   URLParams
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const policyPageSlug = context?.params?.policyPageSlug as string;
+  const policyResult = await CMSClient.policyPageBySlug(policyPageSlug, {
+    previewMode: isPreviewMode,
+  });
+
+  const policy = {
+    ...policyResult,
+    lastUpdatedAt: policyResult.lastUpdatedAt.toLocaleDateString(),
+  };
+
   return {
     props: {
-      policy: {
-        // Forgot if next will serialize the date or if you'll need to pass it as a string
-        title: "Privacy Policy",
-        updatedAt: String(new Date().getFullYear()),
-        body: policyPageBody,
-      },
+      policy,
       isPreviewMode,
     },
   };
 };
+
+export default Policies;

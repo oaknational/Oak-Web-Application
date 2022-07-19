@@ -83,16 +83,18 @@ const getSanityClient: CMSClient = () => ({
 
     return curriculumPageSchema.parse(curriculumPageData);
   },
-  policyPages: async (params?) => {
+  policyPages: async ({ previewMode, ...params } = {}) => {
     const policyPageListSchema = z.array(policyPagePreviewSchema);
     const policyPageResults = await sanityGraphqlApi.allPolicyPages({
+      isDraft: previewMode === true,
       ...params,
     });
 
     return policyPageListSchema.parse(policyPageResults.allPolicyPage);
   },
-  policyPageBySlug: async (slug, params?) => {
+  policyPageBySlug: async (slug, { previewMode, ...params } = {}) => {
     const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
+      isDraft: previewMode === true,
       ...params,
       slug,
     });
