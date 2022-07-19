@@ -10,7 +10,7 @@ type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
 };
 
-type WebinarPageProps = {
+export type WebinarPageProps = {
   webinar: SerializedWebinar;
 };
 
