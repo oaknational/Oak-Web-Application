@@ -26,7 +26,7 @@ export type Webinar = Document & {
 
 export type WebinarPreview = Pick<
   Webinar,
-  "title" | "slug" | "summaryPortableText"
+  "id" | "title" | "slug" | "summaryPortableText"
 >;
 
 export type Params = {

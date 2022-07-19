@@ -1,11 +1,12 @@
 import { screen, waitFor } from "@testing-library/react";
 
+import { Webinar } from "../../../node-lib/cms";
 import WebinarDetailPage, {
   WebinarPageProps,
-} from "../../pages/webinars/[webinarSlug]";
-import renderWithProviders from "../__helpers__/renderWithProviders";
+} from "../../../pages/webinars/[webinarSlug]";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-const testWebinar = {
+const testWebinar: Webinar = {
   title: "An upcoming webinar",
   id: "5",
   date: new Date("2025-01-01"),
@@ -14,7 +15,7 @@ const testWebinar = {
   summaryPortableText: [],
 };
 
-const testWebinar2 = {
+const testWebinar2: Webinar = {
   title: "A past webinar",
   id: "6",
   date: new Date("2022-01-01"),
@@ -35,7 +36,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    jest.mock("../../node-lib/cms", () => ({
+    jest.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
         webinars: jest.fn(webinars),
@@ -61,7 +62,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all webinars", async () => {
       const { getStaticPaths } = await import(
-        "../../pages/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -76,7 +77,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct webinar", async () => {
       const { getStaticProps } = await import(
-        "../../pages/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       await getStaticProps({ params: { webinarSlug: "an-upcoming-webinar" } });
 
@@ -85,7 +86,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should format the webinar date", async () => {
       const { getStaticProps } = await import(
-        "../../pages/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },

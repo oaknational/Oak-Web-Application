@@ -8,22 +8,20 @@ import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 
-type WebinarListingPageProps = {
-  webinars: Array<BlogListItemProps>;
+export type WebinarListingPageProps = {
+  webinars: WebinarPreview[];
 };
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
+  const webinars = props.webinars.map(webinarToBlogListItem);
+
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background="grey1">
       <Heading tag="h1" fontSize={32}>
         Webinars
       </Heading>
 
-      <BlogList
-        title={"Stay up to date!"}
-        items={props.webinars}
-        titleTag={"h2"}
-      />
+      <BlogList title={"Stay up to date!"} items={webinars} titleTag={"h2"} />
     </Layout>
   );
 };
@@ -41,11 +39,9 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const webinarResults = await CMSClient.webinars();
 
-  const webinars = webinarResults.map(webinarToBlogListItem);
-
   return {
     props: {
-      webinars,
+      webinars: webinarResults,
     },
   };
 };
