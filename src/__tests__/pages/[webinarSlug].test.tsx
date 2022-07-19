@@ -8,8 +8,17 @@ import renderWithProviders from "../__helpers__/renderWithProviders";
 const testWebinar = {
   title: "An upcoming webinar",
   id: "5",
-  date: new Date("2022-01-01"),
+  date: new Date("2025-01-01"),
   slug: "an-upcoming-webinar",
+  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  summaryPortableText: [],
+};
+
+const testWebinar2 = {
+  title: "A past webinar",
+  id: "6",
+  date: new Date("2022-01-01"),
+  slug: "a-past-webinar",
   hosts: [{ id: "000", name: "Hosty McHostFace" }],
   summaryPortableText: [],
 };
@@ -19,23 +28,23 @@ const testSerializedWebinar = {
   date: new Date().toISOString(),
 };
 
-const webinars = jest.fn(() => [testWebinar]);
+const webinars = jest.fn(() => [testWebinar, testWebinar2]);
 const webinarBySlug = jest.fn(() => testWebinar);
 
 describe("pages/webinar/[webinarSlug].tsx", () => {
-  describe("WebinarDetailPage", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      jest.resetModules();
-      jest.mock("../../node-lib/cms", () => ({
-        __esModule: true,
-        default: {
-          webinars: jest.fn(webinars),
-          webinarBySlug: jest.fn(webinarBySlug),
-        },
-      }));
-    });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+    jest.mock("../../node-lib/cms", () => ({
+      __esModule: true,
+      default: {
+        webinars: jest.fn(webinars),
+        webinarBySlug: jest.fn(webinarBySlug),
+      },
+    }));
+  });
 
+  describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
         <WebinarDetailPage webinar={testSerializedWebinar} />
@@ -59,6 +68,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
       expect(pathsResult.paths).toEqual([
         { params: { webinarSlug: "an-upcoming-webinar" } },
+        { params: { webinarSlug: "a-past-webinar" } },
       ]);
     });
   });
@@ -82,7 +92,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       })) as { props: WebinarPageProps };
 
       expect(propsResult?.props?.webinar).toMatchObject({
-        date: "2022-01-01T00:00:00.000Z",
+        date: "2025-01-01T00:00:00.000Z",
       });
     });
   });
