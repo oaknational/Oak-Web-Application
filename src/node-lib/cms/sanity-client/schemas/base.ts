@@ -6,7 +6,7 @@ export const documentSchema = z.object({
 
 export const slugSchema = z
   .object({
-    current: z.string(),
+    current: z.string().nonempty(),
   })
   .transform((slug) => slug.current);
 
