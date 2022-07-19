@@ -104,11 +104,9 @@ module.exports = async (phase) => {
 
       // Sanity
       NEXT_PUBLIC_SANITY_GRAPHQL_URL:
-        process.env.NEXT_PUBLIC_SANITY_GRAPHQL_URL ||
-        oakConfig.sanity?.graphqlUrl,
+        process.env.SANITY_GRAPHQL_URL || oakConfig.sanity?.graphqlUrl,
       NEXT_PUBLIC_SANITY_AUTH_SECRET:
-        process.env.NEXT_PUBLIC_SANITY_GRAPHQL_URL ||
-        secretsFromNetwork.SANITY_AUTH_SECRET,
+        process.env.SANITY_GRAPHQL_URL || secretsFromNetwork.SANITY_AUTH_SECRET,
     },
   };
 
