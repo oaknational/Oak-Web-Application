@@ -1,37 +1,41 @@
-import { createContext, FC, useCallback } from "react";
+import { createContext, FC, useMemo } from "react";
+import posthog from "posthog-js";
 
+import Avo, { AvoEnv, initAvo } from "../../browser-lib/avo/Avo";
 import usePosthog from "../../browser-lib/posthog/usePosthog";
+import config from "../../config";
 
-import useTrackingEnabled from "./useTrackingEnabled";
+type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
 
-type TrackingEvents = {
-  "test-event": { testProperty: string };
-};
-
-type TrackFn = <TrackingEventName extends keyof TrackingEvents>(
-  name: TrackingEventName,
-  props: TrackingEvents[TrackingEventName]
-) => void;
 type AnalyticsContext = {
-  track: TrackFn;
+  track: TrackFns;
 };
 
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
+initAvo(
+  {
+    // @todo: use release stage from constants
+    env: config.get("releaseStage") === "production" ? AvoEnv.Prod : AvoEnv.Dev,
+  },
+  {},
+  {
+    logEvent: function (name, props) {
+      posthog.capture(name, props);
+    },
+  }
+);
+
 const AnalyticsProvider: FC = (props) => {
   const { children } = props;
-  const trackingEnabled = useTrackingEnabled();
 
-  const posthog = usePosthog({ enabled: trackingEnabled });
+  usePosthog({ enabled: true });
 
-  const track: TrackFn = useCallback(
-    (...args) => {
-      if (trackingEnabled) {
-        posthog.capture(...args);
-      }
-    },
-    [posthog, trackingEnabled]
-  );
+  const track = useMemo(() => {
+    const { ...avoTrack } = Avo;
+
+    return avoTrack;
+  }, []);
 
   return (
     <analyticsContext.Provider value={{ track }}>

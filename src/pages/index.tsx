@@ -17,10 +17,8 @@ const Home: FC = () => {
   const { track } = useAnalytics();
 
   useEffect(() => {
-    track("test-event", {
-      testProperty:
-        "some value (currently should send once when the page loads)",
-    });
+    track.buttonClicked({ buttonIdentifier: "123 hateeeee" });
+    track.homeButtonClicked({ clickedOnText: true });
   }, [track]);
 
   return (
