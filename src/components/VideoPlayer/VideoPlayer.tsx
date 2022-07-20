@@ -1,0 +1,120 @@
+import React, { FC, useRef, useState } from "react";
+import MuxPlayer from "@mux/mux-player-react";
+import MuxPlayerElement from "@mux/mux-player";
+
+import Flex from "../Flex";
+import Button from "../Button";
+import OakError from "../../errors/OakError";
+import errorHandler from "../../common-lib/error-handler";
+
+const reportError = errorHandler("VideoPlayer.tsx");
+const INITIAL_DEBUG = false;
+const INITIAL_MUTED = false;
+const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
+
+// examples of events we can track
+// const onLoadStart = console.log.bind(null, "loadstart");
+// const onLoadedMetadata = console.log.bind(null, "loadedmetadata");
+// const onProgress = console.log.bind(null, "progress");
+// const onDurationChange = console.log.bind(null, "durationchange");
+// const onVolumeChange = console.log.bind(null, "volumechange");
+// const onRateChange = console.log.bind(null, "ratechange");
+// const onResize = console.log.bind(null, "resize");
+// const onWaiting = console.log.bind(null, "waiting");
+// const onPlaying = console.log.bind(null, "playing");
+// const onTimeUpdate = console.log.bind(null, "timeupdate");
+// const onEnded = console.log.bind(null, "ended");
+// const onPlayerReady = console.log.bind(null, "playerready");
+
+const onPlay = console.log.bind(null, "play");
+const onPause = console.log.bind(null, "pause");
+const onSeeking = console.log.bind(null, "seeking");
+const onSeeked = console.log.bind(null, "seeked");
+
+type VideoPlayerProps = {
+  playbackId: string;
+};
+
+const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
+  const mediaElRef = useRef<MuxPlayerElement>(null);
+  const [envKey] = useState(INITIAL_ENV_KEY);
+  const [paused, setPaused] = useState<boolean | undefined>(false);
+  const [muted, setMuted] = useState(INITIAL_MUTED);
+  const [debug] = useState(INITIAL_DEBUG);
+
+  const metadata = {
+    "metadata-video-id": playbackId,
+    // do we want to track here using user id
+    // "metadata-viewer-user-id": userId
+  };
+
+  const onError = (evt: Event) => {
+    const error = new OakError({
+      code: "video/unknown",
+      originalError: evt,
+      meta: metadata,
+    });
+    reportError(error, { severity: "error" });
+  };
+
+  const playButtonLabel = paused ? "play" : "pause";
+  const muteButtonLabel = muted ? "unmute" : "mute";
+
+  return (
+    <Flex flexDirection={"column"}>
+      <MuxPlayer
+        ref={mediaElRef}
+        // style={{ aspectRatio: "16 / 9" }}
+        envKey={envKey}
+        metadata={metadata}
+        playbackId={playbackId}
+        customDomain={"video.thenational.academy"}
+        // forwardSeekOffset={10}
+        // backwardSeekOffset={10}
+        onPlayerReady={() => console.log("ready!")}
+        debug={debug}
+        muted={muted}
+        paused={paused}
+        // autoPlay
+        primaryColor="#ec407a"
+        secondaryColor="#64b5f6"
+        tertiaryColor="#b4004e"
+        onPlay={(evt: Event) => {
+          onPlay(evt);
+          setPaused(false);
+        }}
+        onPause={(evt: Event) => {
+          onPause(evt);
+          setPaused(true);
+        }}
+        onError={(evt: Event) => {
+          onError(evt);
+        }}
+        onSeeking={onSeeking}
+        onSeeked={onSeeked}
+        // startTime={12}
+      />
+      <Flex mt={[16]}>
+        <Button
+          label={playButtonLabel}
+          onClick={() => {
+            setPaused(!paused);
+          }}
+        >
+          {playButtonLabel}
+        </Button>
+        <Button
+          ml={[16]}
+          label={muteButtonLabel}
+          onClick={() => {
+            setMuted(!muted);
+          }}
+        >
+          {muteButtonLabel}
+        </Button>
+      </Flex>
+    </Flex>
+  );
+};
+
+export default VideoPlayer;

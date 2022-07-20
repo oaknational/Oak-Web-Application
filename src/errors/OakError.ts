@@ -15,6 +15,7 @@ const ERROR_CODES = [
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
+  "video/unknown",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -77,6 +78,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "misc/import-count": {
     message: "File imported more times than allwoed",
+    shouldNotify: true,
+  },
+  "video/unknown": {
+    message: "Sorry this video couldn't play, please try again",
     shouldNotify: true,
   },
 };
