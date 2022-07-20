@@ -1,39 +1,85 @@
-import React, { ErrorInfo, FC } from "react";
+import React, { Component, ErrorInfo, FC, ReactNode, useEffect } from "react";
 import Bugsnag from "@bugsnag/js";
 
-import { initialiseBugsnag } from "../../common-lib/error-handler";
+import { initialiseBugsnag } from "../../common-lib/error-reporter";
 import ErrorPage from "../../pages/_error";
+import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
+
+/**
+ * NonBusgnagErrorBoundary is used in the case that the user has
+ * not accepted the appropriate cookie policy. It means in the case
+ * of unhandled errors, the user will be shown ErrorPage, but that
+ * the error will not be reported to bugsnag.
+ */
+class NonBugsnagErrorBoundary extends Component<
+  { children?: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children?: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <ErrorPage />;
+    }
+
+    return this.props.children;
+  }
+}
 
 type FallbackComponentProps = {
   error: Error;
   info: ErrorInfo;
   clearError: () => void;
 };
-const FallbackComponent: FC<FallbackComponentProps> = (props) => {
-  console.log(props);
-
+const FallbackComponent: FC<FallbackComponentProps> = () => {
+  // Here we might want to allow the user to clearError(), reset state etc
   return <ErrorPage />;
 };
 
-// This should happen once per app load.
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-if (!Bugsnag._client) {
-  initialiseBugsnag();
-}
+const bugsnagInitialised = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return Boolean(Bugsnag._client);
+};
 
-const BugsnagErrorBoundary =
-  Bugsnag.getPlugin("react")?.createErrorBoundary(React);
+/**
+ * ErrorBoundary will catch any uncaught errors, showing the user ErrorPage
+ * and sending a report of the uncaught error to bugsnag.
+ */
+const ErrorBoundary: FC = (props) => {
+  const { hasConsentedTo } = useCookieConsent();
+  const bugsnagAllowed = hasConsentedTo("statistics");
 
-const ErrorBoundary: FC = ({ children }) => {
+  useEffect(() => {
+    // This should happen once per app load.
+    if (bugsnagAllowed && !bugsnagInitialised()) {
+      initialiseBugsnag();
+    }
+    if (!bugsnagAllowed && bugsnagInitialised()) {
+      // @TODO disable bugsnag here!?
+      // If we can't disable bugsnag globally, we'll have to configure
+      // in error-reporter to stop sending reports
+    }
+  }, [bugsnagAllowed]);
+
+  const BugsnagErrorBoundary =
+    Bugsnag.getPlugin("react")?.createErrorBoundary(React);
+
   if (!BugsnagErrorBoundary) {
-    return null;
+    return <NonBugsnagErrorBoundary {...props} />;
   }
 
   return (
-    <BugsnagErrorBoundary FallbackComponent={FallbackComponent}>
-      {children}
-    </BugsnagErrorBoundary>
+    <BugsnagErrorBoundary FallbackComponent={FallbackComponent} {...props} />
   );
 };
 

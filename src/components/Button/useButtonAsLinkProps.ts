@@ -1,9 +1,9 @@
 import { KeyboardEvent } from "react";
 
-import createErrorHandler from "../../common-lib/error-handler";
+import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 
-const handleError = createErrorHandler("IconButtonAsLink");
+const reportError = errorReporter("IconButtonAsLink");
 
 const useButtonAsLinkProps = () => {
   const onKeyDown = (e: KeyboardEvent<HTMLAnchorElement>) => {
@@ -12,7 +12,7 @@ const useButtonAsLinkProps = () => {
       // trigger the target's click event
       if (!(e.target instanceof HTMLElement)) {
         const error = new OakError({ code: "misc/unexpected-type" });
-        return handleError(error);
+        return reportError(error);
       }
       e.target.click();
     }

@@ -51,7 +51,7 @@ type ConfirmicConsents = {
   statistics: CookieConsentChoice;
 };
 
-const getConsentsFromLocalStorage = () => {
+export const getConsentsFromLocalStorage = () => {
   return COOKIE_POLICY_NAMES.reduce(
     (accum: ConfirmicConsents, policyName) => {
       const localStorageKey = consentPolicyMap[policyName];

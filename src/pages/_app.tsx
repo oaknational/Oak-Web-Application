@@ -21,27 +21,29 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const { theme } = useOakTheme();
 
   return (
-    <SSRProvider>
-      <ErrorBoundary>
-        <GlobalStyle />
-        <CookieConsentProvider>
-          <AnalyticsProvider>
-            <AuthProvider>
-              <ApolloProvider client={apolloClient}>
-                <BookmarksProvider>
-                  <SearchProvider>
-                    <ThemeProvider theme={theme}>
-                      <DefaultSeo />
-                      <Component {...pageProps} />
-                    </ThemeProvider>
-                  </SearchProvider>
-                </BookmarksProvider>
-              </ApolloProvider>
-            </AuthProvider>
-          </AnalyticsProvider>
-        </CookieConsentProvider>
-      </ErrorBoundary>
-    </SSRProvider>
+    <>
+      <GlobalStyle />
+      <CookieConsentProvider>
+        <ErrorBoundary>
+          <SSRProvider>
+            <AnalyticsProvider>
+              <AuthProvider>
+                <ApolloProvider client={apolloClient}>
+                  <BookmarksProvider>
+                    <SearchProvider>
+                      <ThemeProvider theme={theme}>
+                        <DefaultSeo />
+                        <Component {...pageProps} />
+                      </ThemeProvider>
+                    </SearchProvider>
+                  </BookmarksProvider>
+                </ApolloProvider>
+              </AuthProvider>
+            </AnalyticsProvider>
+          </SSRProvider>
+        </ErrorBoundary>
+      </CookieConsentProvider>
+    </>
   );
 };
 

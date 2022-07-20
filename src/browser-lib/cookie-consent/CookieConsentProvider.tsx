@@ -12,7 +12,7 @@ import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
 import useConfirmicConsents from "./confirmic/useConfirmicConsents";
 import { CookieConsentChoice, CookiePolicyName } from "./types";
 
-type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
+export type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
 
 type CookieConsentContext = {
   // makes consent manager modal visible
