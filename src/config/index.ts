@@ -1,47 +1,6 @@
 import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
-const CONFIG_KEYS = [
-  "firebaseConfigApiHost",
-  "firebaseConfigTokenApiHost",
-  "firebaseApiKey",
-  "firebaseAuthDomain",
-  "firebaseProjectId",
-  "firebaseStorageBucket",
-  "firebaseMessagingSenderId",
-  "firebaseAppId",
-  "clientAppBaseUrl",
-  "graphqlApiUrl",
-  "hasuraAdminSecret",
-  "firebaseAdminDatabaseUrl",
-  "firebaseServiceAccount",
-  "releaseStage",
-  "appVersion",
-  "bugsnagApiKey",
-  "appName",
-  "appDescription",
-  "appLocale",
-  "appUrl",
-  "appLogo",
-  "appSocialSharingImg",
-  "appFacebook",
-  "appTwitter",
-  "appTwitterHandle",
-  "searchApiUrl",
-  "hubspotPortalId",
-  "hubspotNewsletterFormId",
-  "hubspotFallbackFormId",
-  "posthogApiKey",
-  "posthogApiHost",
-  "sanityProjectId",
-  "sanityDataset",
-  "sanityDatasetTag",
-  "sanityUseCDN",
-  "sanityGraphqlApiSecret",
-] as const;
-
-type ConfigKey = typeof CONFIG_KEYS[number];
-
 type EnvVar = {
   value: string | undefined;
   required: boolean;
@@ -60,7 +19,22 @@ const parseValue = (value: string | undefined) => {
   return value;
 };
 
-const envVars: Record<ConfigKey, EnvVar> = {
+/**
+ * Ensure the object u passed satisfies T, but
+ * return the inferred type of U.
+ *
+ * Provides an alternative to envVars: Record<string, EnvVar> = {...}
+ * which would make the return type too loose (the record), and break
+ * the keyof check for ConfigKey
+ */
+const satisfies =
+  <T>() =>
+  <U extends T>(u: U) =>
+    u;
+
+type ConfigKey = keyof typeof envVars;
+
+const envVars = satisfies<Record<string, EnvVar>>()({
   firebaseConfigApiHost: {
     value: process.env.NEXT_PUBLIC_FIREBASE_API_HOST,
     envName: "NEXT_PUBLIC_FIREBASE_API_HOST",
@@ -315,7 +289,7 @@ const envVars: Record<ConfigKey, EnvVar> = {
     availableInBrowser: false,
     default: null,
   },
-};
+});
 
 for (const [
   ,
