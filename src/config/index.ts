@@ -273,7 +273,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     envName: "SANITY_DATASET_TAG",
     required: false,
     availableInBrowser: false,
-    default: "default",
+    default: "default", // Literally 'default', not a typo
   },
   sanityUseCDN: {
     value: process.env.SANITY_USE_CDN,
