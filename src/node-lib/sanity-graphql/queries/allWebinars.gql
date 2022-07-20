@@ -1,0 +1,5 @@
+query allWebinars($isDraft: Boolean = false, $limit: Int = 9999) {
+  allWebinar(where: { _: { is_draft: $isDraft } }, sort: [{ date: ASC }], limit: $limit) {
+    ...WebinarPreviewFields
+  }
+}

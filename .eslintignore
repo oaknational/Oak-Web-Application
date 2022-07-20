@@ -7,5 +7,6 @@ out
 
 src/browser-lib/graphql/generated
 src/node-lib/graphql/generated
+src/node-lib/sanity-graphql/generated
 
 !.github
