@@ -28,15 +28,7 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
       <div style={{ border: "1px solid red" }}>
         <PortableText
           value={props.webinar.summaryPortableText}
-          components={{
-            list: {
-              bullet: ({ children }) => <ul>{children}</ul>,
-              number: ({ children }) => <ol>{children}</ol>,
-            },
-            listItem: {
-              bullet: ({ children }) => <li>{children}</li>,
-            },
-          }}
+          components={{}}
         />
       </div>
     </Layout>
