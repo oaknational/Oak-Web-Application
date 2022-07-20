@@ -1,3 +1,32 @@
+# [0.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.48.0...v0.49.0) (2022-07-20)
+
+
+### Bug Fixes
+
+* **cms:** add basic test for webinar, fix date serialising ([490f881](https://github.com/oaknational/Oak-Web-Application/commit/490f881f5a85de2f8e6c4d05807e28ce4a6e2d59))
+* **cms:** add requiredSecrets to sanity config ([8e733ce](https://github.com/oaknational/Oak-Web-Application/commit/8e733ce7b39910cffe44b416a818254d1dc36736))
+* **cms:** correctly configure sanity config and secrets ([0cb9e60](https://github.com/oaknational/Oak-Web-Application/commit/0cb9e60f7ace43edc54c79e690bde11584cc3497))
+* **cms:** ensure slug schema is nonempty ([2326962](https://github.com/oaknational/Oak-Web-Application/commit/2326962586794647552ecddf3f546a60dedc52ab))
+* **cms:** rejig config/secrets again to fix build ([7ba1307](https://github.com/oaknational/Oak-Web-Application/commit/7ba13072803589e16686605bcfcfd74287ba1f26))
+* **cms:** remove NEXT_PUBLIC_ prefix from sanity vars ([41c216a](https://github.com/oaknational/Oak-Web-Application/commit/41c216ae9897b065b1e9a16c7169bb0f581db41e))
+* **cms:** typescript issues with webinar parse/transforms ([905319d](https://github.com/oaknational/Oak-Web-Application/commit/905319d893ab161e12d5571d902dbae3303b5cc5))
+
+
+### Features
+
+* **cms:** add graphql-codegen for the sanity graphql endpoint ([a8f9beb](https://github.com/oaknational/Oak-Web-Application/commit/a8f9beb4ce12a7b6231a49609695c9421b2beebf))
+* **cms:** add portable text, other examples of field types to webinar ([8935239](https://github.com/oaknational/Oak-Web-Application/commit/8935239507c99553f7ce1d4ed285f500214b69ca))
+* **cms:** add type hints for static props url params ([6faf9ee](https://github.com/oaknational/Oak-Web-Application/commit/6faf9ee9c31d4b97d0c5e22e8a153acec7256dca))
+* **cms:** implement service layer abstracting sanity specifics ([9833733](https://github.com/oaknational/Oak-Web-Application/commit/9833733308d095076a0c4d35ee32e28fc703d89e))
+* **cms:** scaffold webinar pages ([7494ff7](https://github.com/oaknational/Oak-Web-Application/commit/7494ff792f4527163cdc2cb29f1d0fed13dfc1a3))
+
+# [0.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.47.0...v0.48.0) (2022-07-19)
+
+
+### Features
+
+* policy page ([49bb045](https://github.com/oaknational/Oak-Web-Application/commit/49bb0451671a27aa508629da3aad90168e7ee08a))
+
 # [0.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.1...v0.47.0) (2022-07-18)
 
 
