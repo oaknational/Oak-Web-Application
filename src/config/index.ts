@@ -33,7 +33,10 @@ const CONFIG_KEYS = [
   "hubspotFallbackFormId",
   "posthogApiKey",
   "posthogApiHost",
-  "sanityGraphqlApiUrl",
+  "sanityProjectId",
+  "sanityDataset",
+  "sanityDatasetTag",
+  "sanityUseCDN",
   "sanityGraphqlApiSecret",
 ] as const;
 
@@ -277,12 +280,33 @@ const envVars: Record<ConfigKey, EnvVar> = {
     availableInBrowser: true,
     default: null,
   },
-  sanityGraphqlApiUrl: {
-    value: process.env.SANITY_GRAPHQL_URL,
-    envName: "SANITY_GRAPHQL_URL",
+  sanityProjectId: {
+    value: process.env.SANITY_PROJECT_ID,
+    envName: "SANITY_PROJECT_ID",
     required: true,
     availableInBrowser: false,
     default: null,
+  },
+  sanityDataset: {
+    value: process.env.SANITY_DATASET,
+    envName: "SANITY_DATASET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  sanityDatasetTag: {
+    value: process.env.SANITY_DATASET_TAG,
+    envName: "SANITY_DATASET_TAG",
+    required: false,
+    availableInBrowser: false,
+    default: "default",
+  },
+  sanityUseCDN: {
+    value: process.env.SANITY_USE_CDN,
+    envName: "SANITY_USE_CDN",
+    required: false,
+    availableInBrowser: false,
+    default: "true",
   },
   sanityGraphqlApiSecret: {
     value: process.env.SANITY_AUTH_SECRET,
