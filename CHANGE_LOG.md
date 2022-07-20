@@ -1,3 +1,10 @@
+# [0.50.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.49.0...v0.50.0) (2022-07-20)
+
+
+### Features
+
+* use next/image in CardImage component, add AspectRatio component ([470a6ec](https://github.com/oaknational/Oak-Web-Application/commit/470a6ec03227784cc8b1a97330ada9846e37a00e))
+
 # [0.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.48.0...v0.49.0) (2022-07-20)
 
 
