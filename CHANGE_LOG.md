@@ -1,3 +1,10 @@
+# [0.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.1...v0.51.0) (2022-07-21)
+
+
+### Features
+
+* add size convenience prop util ([86f63ee](https://github.com/oaknational/Oak-Web-Application/commit/86f63eefc4f8f25dbce838bad791e0c8f8061efe))
+
 ## [0.50.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.0...v0.50.1) (2022-07-21)
 
 

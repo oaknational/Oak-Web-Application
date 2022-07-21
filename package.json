@@ -1,6 +1,6 @@
 {
   "name": "oak-web-application",
-  "version": "0.50.1",
+  "version": "0.51.0",
   "private": true,
   "license": "MIT",
   "scripts": {
