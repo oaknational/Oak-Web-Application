@@ -10,9 +10,6 @@ export type FlexCssProps = {
   flex?: ResponsiveValues<CSSProperties["flex"]>;
   flexGrow?: ResponsiveValues<CSSProperties["flexGrow"]>;
   flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
-  maxWidth?: ResponsiveValues<CSSProperties["maxWidth"]>;
-  width?: ResponsiveValues<CSSProperties["width"]>;
-  height?: ResponsiveValues<CSSProperties["height"]>;
 };
 
 const parse = (value?: number | string) => {
@@ -33,8 +30,6 @@ const flex = css<FlexCssProps>`
   ${responsive("flex-grow", (props) => props.flexGrow)}
   ${responsive("flex-wrap", (props) => props.flexWrap)}
   ${responsive("max-width", (props) => props.maxWidth, parse)}
-  ${responsive("width", (props) => props.width, parse)}
-  ${responsive("height", (props) => props.height, parse)}
 `;
 
 export default flex;

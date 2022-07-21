@@ -132,8 +132,8 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 flexGrow={[0, 1]}
                 pl={[32, 0]}
               >
-                <Flex position="relative" height={63} width={150}>
-                  <Image layout={"fill"} src={LogoText}></Image>
+                <Flex position="relative">
+                  <Image height={63} width={150} src={LogoText}></Image>
                 </Flex>
 
                 {footerNotification}
