@@ -4,38 +4,40 @@ export type FooterLink = {
 };
 
 export type FooterSection = {
-  title: string;
-  links: FooterLink[];
+  title?: string;
+  links?: FooterLink[];
 };
 
 const footerSections: FooterSection[] = [
   {
-    title: "Oak",
+    title: "Pupils",
     links: [
-      { text: "Home", href: "/" },
-      { text: "About us", href: "/about-us" }, //placeholder href
-      { text: "Careers", href: "/careers" }, //placeholder href
-      { text: "Contact us", href: "/contact-us" }, //placeholder href
-      { text: "Help", href: "/help" }, //placeholder href
+      { text: "Classroom", href: "https://classroom.thenational.academy/" },
     ],
   },
   {
     title: "Teachers",
     links: [
       { text: "Teacher Hub", href: "https://teachers.thenational.academy" },
-      { text: "Plan a lesson", href: "/plan-a-lesson" }, //placeholder href
-      { text: "Improve the curriculum", href: "/improve-curriculum" }, //placeholder href
-      { text: "Oak for school leaders", href: "/school-leaders" }, //placeholder href
-      { text: "CPD", href: "/cpd" }, //placeholder href
+      { text: "Curriculum", href: "/improve-curriculum" }, //placeholder href
+      { text: "Lesson Planning", href: "/plan-a-lesson" }, //placeholder href
+      { text: "Oak For Schools", href: "/school-leaders" }, //placeholder href
+      { text: "Grow With Oak", href: "/cpd" }, //placeholder href
+    ],
+  },
+  {
+    title: "Oak",
+    links: [
+      { text: "Home", href: "/" },
+      { text: "About Oak", href: "/about-us" }, //placeholder href
+      { text: "Careers", href: "/careers" }, //placeholder href
+      { text: "Contact us", href: "/contact-us" }, //placeholder href
+      { text: "Help", href: "/help" }, //placeholder href
+      { text: "Webinar", href: "/webinar" }, //placeholder href
+      { text: "Blog", href: "/blog" }, //placeholder href
     ],
   },
 
-  {
-    title: "Pupil",
-    links: [
-      { text: "Classroom", href: "https://classroom.thenational.academy/" },
-    ],
-  },
   {
     title: "Legal",
     links: [

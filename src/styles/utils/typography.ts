@@ -25,7 +25,7 @@ export type TypographyProps = ColorProps & {
 const typography = css<TypographyProps>`
   ${responsive("font-family", (props) => props.fontFamily, getFontFamily)}
   ${responsive("font-weight", (props) => props.fontWeight)}
-  ${responsive("font-height", (props) => props.lineHeight)}
+  ${responsive("line-height", (props) => props.lineHeight, parseFontSize)}
   ${responsive("font-size", (props) => props.fontSize, parseFontSize)}
   ${color}
 `;
