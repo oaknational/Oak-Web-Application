@@ -24,24 +24,24 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     <>
       <GlobalStyle />
       <CookieConsentProvider>
-        <ErrorBoundary>
-          <SSRProvider>
-            <AnalyticsProvider>
-              <AuthProvider>
-                <ApolloProvider client={apolloClient}>
-                  <BookmarksProvider>
-                    <SearchProvider>
-                      <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <ErrorBoundary>
+            <SSRProvider>
+              <AnalyticsProvider>
+                <AuthProvider>
+                  <ApolloProvider client={apolloClient}>
+                    <BookmarksProvider>
+                      <SearchProvider>
                         <DefaultSeo />
                         <Component {...pageProps} />
-                      </ThemeProvider>
-                    </SearchProvider>
-                  </BookmarksProvider>
-                </ApolloProvider>
-              </AuthProvider>
-            </AnalyticsProvider>
-          </SSRProvider>
-        </ErrorBoundary>
+                      </SearchProvider>
+                    </BookmarksProvider>
+                  </ApolloProvider>
+                </AuthProvider>
+              </AnalyticsProvider>
+            </SSRProvider>
+          </ErrorBoundary>
+        </ThemeProvider>
       </CookieConsentProvider>
     </>
   );
