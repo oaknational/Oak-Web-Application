@@ -80,13 +80,13 @@ jest.mock("../../browser-lib/api", () => ({
     "/user": (...args: []) => apiPostUserMock(...args),
   }),
 }));
-const errorHandlerMock = jest.fn();
-jest.mock("../../common-lib/error-handler", () => ({
+const reportErrorMock = jest.fn();
+jest.mock("../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
     (...args: []) =>
-      errorHandlerMock(...args),
+      reportErrorMock(...args),
 }));
 
 const windowSpy = jest.spyOn(global, "window", "get");
@@ -203,7 +203,7 @@ describe("auth/useAuth.tsx", () => {
       ).rejects.toThrowError(new Error("Invalid email or expired OTP"));
     });
 
-    expect(errorHandlerMock).toHaveBeenCalledWith(error);
+    expect(reportErrorMock).toHaveBeenCalledWith(error);
   });
   it("signInWithEmail should throw if sendSignInLinkToEmail() fails", async () => {
     const originalError = new Error("bad thing happened");

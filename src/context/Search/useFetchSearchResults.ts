@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 
-import errorHandler from "../../common-lib/error-handler";
+import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config";
 import OakError from "../../errors/OakError";
 import { SearchHit } from "../../pages/search";
@@ -9,7 +9,7 @@ import handleFetchError from "../../utils/handleFetchError";
 import constructElasticQuery from "./constructElasticQuery";
 import { useSearchQuery } from "./SearchContext";
 
-const handleError = errorHandler("search");
+const reportError = errorReporter("search");
 
 const useFetchSearchResults = () => {
   const { text, keyStages } = useSearchQuery();
@@ -57,7 +57,7 @@ const useFetchSearchResults = () => {
           originalError: error,
         });
 
-        handleError(oakError);
+        reportError(oakError);
         setError(oakError.message);
       } finally {
         setLoading(false);
