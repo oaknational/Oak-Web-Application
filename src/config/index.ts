@@ -1,4 +1,5 @@
 import seoConfig from "../../next-seo.config";
+import isBrowser from "../utils/isBrowser";
 
 const CONFIG_KEYS = [
   "firebaseConfigApiHost",
@@ -302,7 +303,6 @@ for (const [
     envName,
   },
 ] of Object.entries(envVars)) {
-  const isBrowser = typeof window !== "undefined";
   const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
   const isPresent = Boolean(envValue || defaultValue);
 

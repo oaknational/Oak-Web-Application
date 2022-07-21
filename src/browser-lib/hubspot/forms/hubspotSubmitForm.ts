@@ -4,7 +4,7 @@
 
 import { z } from "zod";
 
-import createErrorHandler from "../../../common-lib/error-handler";
+import errorReporter from "../../../common-lib/error-reporter";
 import config from "../../../config";
 import OakError, { ErrorMeta } from "../../../errors/OakError";
 
@@ -14,7 +14,7 @@ import getHubspotUserToken from "./getHubspotUserToken";
 const hubspotPortalId = config.get("hubspotPortalId");
 const hubspotFallbackFormId = config.get("hubspotFallbackFormId");
 
-const reportError = createErrorHandler("hubspotSubmitForm", {
+const reportError = errorReporter("hubspotSubmitForm", {
   hubspotPortalId,
   hubspotFallbackFormId,
 });

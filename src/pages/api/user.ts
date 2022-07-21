@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import z from "zod";
 
 import { OakUser } from "../../context/Auth";
-import createErrorHandler from "../../common-lib/error-handler";
+import errorReporter from "../../common-lib/error-reporter";
 import OakError, { ErrorCode } from "../../errors/OakError";
 import applyHasuraClaimsToFirebaseUser from "../../node-lib/auth/applyHasuraClaimsToFirebaseUser";
 import getOrCreateOakUser from "../../node-lib/auth/getOrCreateOakUser";
@@ -13,7 +13,7 @@ type ResponseError = {
 };
 type ResponseData = OakUser | ResponseError;
 
-const errorHandler = createErrorHandler("/api/login");
+const reportError = errorReporter("/api/login");
 
 export default async function handler(
   req: NextApiRequest,
@@ -62,7 +62,7 @@ export default async function handler(
       }
     }
   } catch (error) {
-    errorHandler(error);
+    reportError(error);
 
     if (error instanceof OakError) {
       return res.status(error.config.responseStatusCode || 500).json({
