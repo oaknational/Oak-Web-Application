@@ -7,6 +7,7 @@ import Button from "../Button";
 import OakError from "../../errors/OakError";
 import errorHandler from "../../common-lib/error-handler";
 import useAnalytics from "../../context/Analytics/useAnalytics";
+import theme from "../../styles/theme";
 
 const reportError = errorHandler("VideoPlayer.tsx");
 const INITIAL_DEBUG = false;
@@ -30,6 +31,14 @@ const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
 const onPause = console.log.bind(null, "pause");
 const onSeeking = console.log.bind(null, "seeking");
 const onSeeked = console.log.bind(null, "seeked");
+
+export type VideoStyleConfig = {
+  controls: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+  };
+};
 
 type VideoPlayerProps = {
   playbackId: string;
@@ -82,9 +91,9 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
         muted={muted}
         paused={paused}
         // autoPlay
-        primaryColor="#ec407a"
-        secondaryColor="#64b5f6"
-        tertiaryColor="#b4004e"
+        primaryColor={theme.video.controls.primary}
+        secondaryColor={theme.video.controls.secondary}
+        tertiaryColor={theme.video.controls.tertiary}
         onPlay={() => {
           onPlay();
           setPaused(false);

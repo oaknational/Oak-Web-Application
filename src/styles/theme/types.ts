@@ -7,6 +7,7 @@ import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
+import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 
 export type PixelSpacing =
   | 0
@@ -119,6 +120,7 @@ export type OakTheme = {
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
+  video: VideoStyleConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

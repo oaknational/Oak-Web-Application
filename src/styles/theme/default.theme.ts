@@ -239,6 +239,13 @@ const theme: OakTheme = {
       switchColor: "grey6",
     },
   },
+  video: {
+    controls: {
+      primary: "black",
+      secondary: "white",
+      tertiary: "grey9",
+    },
+  },
 };
 
 export default theme;
