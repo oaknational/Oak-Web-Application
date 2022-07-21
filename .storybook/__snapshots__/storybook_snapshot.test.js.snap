@@ -412,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 gHGN beBigS efhKjL"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 gHGN beBigS eCcFJP"
   >
     <h2>
       Card title
@@ -443,7 +443,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 gHGN beBigS efhKjL"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 gHGN beBigS eCcFJP"
     >
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 filyzj cLLNrI"
@@ -520,21 +520,103 @@ Array [
   <div
     style={
       Object {
-        "height": "400px",
         "width": "300px",
       }
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 fDeNHD hPkeCc efhKjL"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 fDeNHD hPkeCc eCcFJP"
     >
       <div
-        className="sc-5a3421c1-0 hKnMWG"
+        className="sc-a6ed065f-0 hcJmWF"
       >
-        <img
-          className="sc-5a3421c1-1 jwUqsf"
-          src="/[object Object]"
-        />
+        <div
+          className="sc-a6ed065f-1 dFZgvo"
+        >
+          <span
+            style={
+              Object {
+                "background": "none",
+                "border": 0,
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": "initial",
+                "left": 0,
+                "margin": 0,
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": "initial",
+              }
+            }
+          >
+            <img
+              alt="black and white photo of books stacked to show their spines"
+              data-nimg="fill"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                Object {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": "cover",
+                  "objectPosition": "center center",
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt="black and white photo of books stacked to show their spines"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="/img.jpg"
+                style={
+                  Object {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": "cover",
+                    "objectPosition": "center center",
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 kRlEGW hscjZe"
@@ -598,7 +680,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 gHGN beBigS efhKjL"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 gHGN beBigS eCcFJP"
     >
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 filyzj gHvAmb"
@@ -673,7 +755,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 gNdbTE gRSmwP efhKjL"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 gNdbTE gRSmwP eCcFJP"
   >
     <h5
       className="sc-1d12b6ff-0 bgJxDb"
@@ -710,7 +792,7 @@ Array [
   />,
   <div>
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 gLNDzl bzLmCm efhKjL"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 gLNDzl bzLmCm eCcFJP"
     >
       Close to remove
       <div
@@ -1591,7 +1673,7 @@ Array [
       }
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 lfQNdz fznxzs efhKjL"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 lfQNdz fznxzs eCcFJP"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj cLLNrI"
@@ -1861,7 +1943,7 @@ Array [
       }
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 lfQNdz fznxzs efhKjL"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 lfQNdz fznxzs eCcFJP"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj cLLNrI"
@@ -2194,7 +2276,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-8fa1f8aa-0 icwuNe koCQXV efhKjL"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 icwuNe koCQXV eCcFJP"
       >
         Grid box
       </div>
