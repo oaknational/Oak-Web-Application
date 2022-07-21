@@ -6,7 +6,9 @@ import Input from "./Input";
 
 describe("Input", () => {
   it("renders an input", () => {
-    renderWithProviders(<Input id="test-input" value="Hello world" />);
+    renderWithProviders(
+      <Input id="test-input" value="Hello world" onChange={jest.fn()} />
+    );
 
     const input = screen.getByRole("textbox");
 

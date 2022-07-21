@@ -8,7 +8,7 @@ describe("LessonControl", () => {
   it("renders a button", () => {
     renderWithProviders(
       <LessonControl
-        onClick={() => console.log("clicked")}
+        onClick={jest.fn()}
         label="Outro"
         status="current"
         badgeProps={{ text: "20%" }}

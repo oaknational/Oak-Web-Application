@@ -50,7 +50,7 @@ jest.mock("./getHubspotUserToken", () => ({
   default: (...args: []) => getHubspotUserToken(...args),
 }));
 const reportError = jest.fn();
-jest.mock("../../../common-lib/error-handler", () => ({
+jest.mock("../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
