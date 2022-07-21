@@ -1,3 +1,11 @@
+## [0.50.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.0...v0.50.1) (2022-07-21)
+
+
+### Bug Fixes
+
+* errorBoundary functionality and tests ([9bfc70c](https://github.com/oaknational/Oak-Web-Application/commit/9bfc70cc9a797205afab5f8693dd57f67a77a24f))
+* only init bugsnag when consent given ([53e8248](https://github.com/oaknational/Oak-Web-Application/commit/53e82484177558a0d00a477ae67848fa20ec72d8))
+
 # [0.50.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.49.0...v0.50.0) (2022-07-20)
 
 
