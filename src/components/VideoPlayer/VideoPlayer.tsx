@@ -14,24 +14,6 @@ const INITIAL_DEBUG = false;
 const INITIAL_MUTED = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
 
-// examples of events we can track
-// const onLoadStart = console.log.bind(null, "loadstart");
-// const onLoadedMetadata = console.log.bind(null, "loadedmetadata");
-// const onProgress = console.log.bind(null, "progress");
-// const onDurationChange = console.log.bind(null, "durationchange");
-// const onVolumeChange = console.log.bind(null, "volumechange");
-// const onRateChange = console.log.bind(null, "ratechange");
-// const onResize = console.log.bind(null, "resize");
-// const onWaiting = console.log.bind(null, "waiting");
-// const onPlaying = console.log.bind(null, "playing");
-// const onTimeUpdate = console.log.bind(null, "timeupdate");
-// const onEnded = console.log.bind(null, "ended");
-// const onPlayerReady = console.log.bind(null, "playerready");
-
-const onPause = console.log.bind(null, "pause");
-const onSeeking = console.log.bind(null, "seeking");
-const onSeeked = console.log.bind(null, "seeked");
-
 export type VideoStyleConfig = {
   controls: {
     primary: string;
@@ -56,10 +38,6 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
     "metadata-video-id": playbackId,
     // do we want to track here using user id
     // "metadata-viewer-user-id": userId
-  };
-
-  const onPlay = () => {
-    track("video-played", { playbackId });
   };
 
   const onError = (evt: Event) => {
@@ -95,19 +73,19 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
         secondaryColor={theme.video.controls.secondary}
         tertiaryColor={theme.video.controls.tertiary}
         onPlay={() => {
-          onPlay();
           setPaused(false);
+          track("video-played", { playbackId });
         }}
-        onPause={(evt: Event) => {
-          onPause(evt);
+        onPause={() => {
           setPaused(true);
+          track("video-paused", { playbackId });
+        }}
+        onResize={() => {
+          track("video-resized", { playbackId });
         }}
         onError={(evt: Event) => {
           onError(evt);
         }}
-        onSeeking={onSeeking}
-        onSeeked={onSeeked}
-        // startTime={12}
       />
       <Flex mt={[16]}>
         <Button

@@ -243,7 +243,7 @@ const theme: OakTheme = {
     controls: {
       primary: "black",
       secondary: "white",
-      tertiary: "grey9",
+      tertiary: "grey5",
     },
   },
 };

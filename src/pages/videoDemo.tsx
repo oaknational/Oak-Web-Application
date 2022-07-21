@@ -11,7 +11,7 @@ const VideoDemo: FC = () => {
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]} mt={[24]}>
         <GridArea colSpan={[12]}>
-          <VideoPlayer playbackId="vsDMuuMEgg6wT6kJmqRZwODysVxnDtBh01jMThZm9ApU" />
+          <VideoPlayer playbackId="G5yFY00uCcEoOISnQtpG7OmE1BoG2Fct01M2cozKJeiYs" />
         </GridArea>
       </Grid>
     </LandingPageLayout>
