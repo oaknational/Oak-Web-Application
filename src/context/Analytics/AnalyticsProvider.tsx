@@ -6,6 +6,7 @@ import useTrackingEnabled from "./useTrackingEnabled";
 
 type TrackingEvents = {
   "test-event": { testProperty: string };
+  "video-played": { playbackId: string };
 };
 
 type TrackFn = <TrackingEventName extends keyof TrackingEvents>(

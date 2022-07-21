@@ -6,6 +6,7 @@ import Flex from "../Flex";
 import Button from "../Button";
 import OakError from "../../errors/OakError";
 import errorHandler from "../../common-lib/error-handler";
+import useAnalytics from "../../context/Analytics/useAnalytics";
 
 const reportError = errorHandler("VideoPlayer.tsx");
 const INITIAL_DEBUG = false;
@@ -26,7 +27,6 @@ const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
 // const onEnded = console.log.bind(null, "ended");
 // const onPlayerReady = console.log.bind(null, "playerready");
 
-const onPlay = console.log.bind(null, "play");
 const onPause = console.log.bind(null, "pause");
 const onSeeking = console.log.bind(null, "seeking");
 const onSeeked = console.log.bind(null, "seeked");
@@ -36,6 +36,7 @@ type VideoPlayerProps = {
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
+  const { track } = useAnalytics();
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [paused, setPaused] = useState<boolean | undefined>(false);
@@ -48,10 +49,15 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
     // "metadata-viewer-user-id": userId
   };
 
+  const onPlay = () => {
+    track("video-played", { playbackId });
+  };
+
   const onError = (evt: Event) => {
+    const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
       code: "video/unknown",
-      originalError: evt,
+      originalError,
       meta: metadata,
     });
     reportError(error, { severity: "error" });
@@ -79,8 +85,8 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
         primaryColor="#ec407a"
         secondaryColor="#64b5f6"
         tertiaryColor="#b4004e"
-        onPlay={(evt: Event) => {
-          onPlay(evt);
+        onPlay={() => {
+          onPlay();
           setPaused(false);
         }}
         onPause={(evt: Event) => {
