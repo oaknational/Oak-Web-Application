@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card from "../components/Card";
@@ -9,7 +10,10 @@ import Layout from "../components/Layout";
 import { Heading, P } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import { getBreakpoint } from "../styles/utils/responsive";
-import IconButtonAsLink from "../components/Button/IconButtonAsLink";
+import Icon from "../components/Icon";
+import LessonProgressionGraphic from "../components/LessonProgressionGraphic";
+import { IconName } from "../components/Icon/Icon";
+import mockedJson from "../browser-lib/fixtures/lessonPlanning.json";
 
 const SpanLink = styled.span`
   scroll-margin-top: ${({ theme }) => theme.header.height + 12}px;
@@ -19,8 +23,8 @@ const SpanLink = styled.span`
   }
 `;
 const RoundedImage = styled.img`
-  width: 136px;
-  height: 136px;
+  width: 72px;
+  height: 72px;
   border-radius: 5px;
 
   @media (max-width: ${getBreakpoint("small")}px) {
@@ -28,6 +32,47 @@ const RoundedImage = styled.img`
     height: 80px;
   }
 `;
+
+type LessonPlanningCardProps = {
+  title: string;
+  icon: IconName;
+  pageAnchorId: string;
+};
+
+const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
+  title,
+  icon,
+  children,
+  pageAnchorId,
+}) => {
+  console.log(mockedJson);
+  return (
+    <Card
+      alignItems={"center"}
+      flexDirection={["row", "column"]}
+      ph={[0, 12]}
+      background={"powderBlue"}
+    >
+      <SpanLink id={pageAnchorId}></SpanLink>
+      <Flex
+        width={124}
+        height={124}
+        background={"madangGreen"}
+        borderRadius={100}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Icon size={80} name={icon} />
+      </Flex>
+      <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
+        <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
+          {title}
+        </Heading>
+        <P fontSize={[14, 16]}>{children}</P>
+      </Flex>
+    </Card>
+  );
+};
 
 const PlanALesson: FC = () => {
   return (
@@ -75,87 +120,51 @@ const PlanALesson: FC = () => {
             >
               Elements of a lesson
             </Heading>
-            <Flex pa={12} color={""} justifyContent={"center"}>
-              <Card alignItems={"center"} justifyContent={"center"} pa={0}>
-                <IconButtonAsLink
-                  size={"large"}
-                  aria-label={""}
-                  icon={"ChevronRight"}
-                  href={"#intro-quiz"}
-                ></IconButtonAsLink>
-
-                <P textAlign="center">Intro Quiz</P>
-              </Card>
-              <Card alignItems={"center"} justifyContent={"center"} pa={0}>
-                <IconButtonAsLink
-                  size="large"
-                  aria-label={""}
-                  icon={"ChevronRight"}
-                  href={"#lesson-slides"}
-                ></IconButtonAsLink>
-                <P textAlign="center">Lesson Slides</P>
-              </Card>
-              <Card alignItems={"center"} justifyContent={"center"} pa={0}>
-                <IconButtonAsLink
-                  size="large"
-                  aria-label={""}
-                  icon={"ChevronRight"}
-                  href={"#video"}
-                ></IconButtonAsLink>
-                <P textAlign="center">Video</P>
-              </Card>
-              <Card alignItems={"center"} justifyContent={"center"} pa={0}>
-                <IconButtonAsLink
-                  size="large"
-                  aria-label={""}
-                  icon={"ChevronRight"}
-                  href={"#worksheets"}
-                ></IconButtonAsLink>
-                <P textAlign="center">Worksheets</P>
-              </Card>
-              <Card alignItems={"center"} justifyContent={"center"} pa={0}>
-                <IconButtonAsLink
-                  size="large"
-                  aria-label={""}
-                  icon={"ChevronRight"}
-                  href={"#exit-quiz"}
-                ></IconButtonAsLink>
-                <P textAlign="center">Exit quiz</P>
-              </Card>
-            </Flex>
+            <LessonProgressionGraphic></LessonProgressionGraphic>
           </Flex>
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            alignItems={"center"}
-            flexDirection={["row", "column"]}
-            ph={[0, 12]}
+          <LessonPlanningCard
+            title={"Intro quiz"}
+            icon={"Quiz"}
+            pageAnchorId={"intro-quiz"}
           >
-            <SpanLink id="intro-quiz"></SpanLink>
-            <RoundedImage src="/images/Image.png"></RoundedImage>
-
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
-                Intro Quiz
-              </Heading>
-              <P fontSize={[14, 16]}>
-                Help your pupils retrieve or activate prior knowledge with our
-                intro quizzes. Project them in your classroom, or print them off
-                as worksheets to use in class or as homework.
-              </P>
-            </Flex>
-          </Card>
+            Help your pupils retrieve or activate prior knowledge with our intro
+            quizzes. Project them in your classroom, or print them off as
+            worksheets to use in class or as homework.
+          </LessonPlanningCard>
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
+          <LessonPlanningCard
+            title={"Lesson slides"}
+            icon={"LessonSlides"}
+            pageAnchorId={"lesson-slides"}
+          >
+            Help your pupils retrieve or activate prior knowledge with our intro
+            quizzes. Project them in your classroom, or print them off as
+            worksheets to use in class or as homework.
+          </LessonPlanningCard>
           <Card
             alignItems={"center"}
             flexDirection={["row", "column"]}
             ph={[0, 12]}
+            background={"powderBlue"}
           >
             <SpanLink id="lesson-slides"></SpanLink>
-            <RoundedImage src="/images/Image.png"></RoundedImage>
+            <Flex
+              width={124}
+              height={124}
+              background={"madangGreen"}
+              borderRadius={100}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Link href={"/"}>
+                <Icon size={80} name={"Quiz"} />
+              </Link>
+            </Flex>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
+              <Heading mb={24} tag={"h3"} fontSize={[18, 24]}>
                 Lesson Slides
               </Heading>
               <P fontSize={[14, 16]}>
@@ -172,11 +181,23 @@ const PlanALesson: FC = () => {
             justifyContent={"center"}
             flexDirection={["row", "column"]}
             ph={[0, 12]}
+            background={"powderBlue"}
           >
             <SpanLink id="worksheets"></SpanLink>
-            <RoundedImage src="/images/Image.png"></RoundedImage>
+            <Flex
+              width={124}
+              height={124}
+              background={"madangGreen"}
+              borderRadius={100}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Link href={"/"}>
+                <Icon size={80} name={"Quiz"} />
+              </Link>
+            </Flex>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
+              <Heading mb={24} tag={"h3"} fontSize={[18, 24]}>
                 Worksheets
               </Heading>
               <P fontSize={[14, 16]}>
@@ -193,9 +214,21 @@ const PlanALesson: FC = () => {
             justifyContent={"center"}
             flexDirection={["row", "column"]}
             ph={[0, 12]}
+            background={"powderBlue"}
           >
             <SpanLink id="video"></SpanLink>
-            <RoundedImage src="/images/Image.png"></RoundedImage>
+            <Flex
+              width={124}
+              height={124}
+              background={"madangGreen"}
+              borderRadius={100}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Link href={"/"}>
+                <Icon size={80} name={"Quiz"} />
+              </Link>
+            </Flex>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
               <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
                 Video
@@ -214,11 +247,23 @@ const PlanALesson: FC = () => {
             justifyContent={"center"}
             flexDirection={["row", "column"]}
             ph={[0, 12]}
+            background={"powderBlue"}
           >
             <SpanLink id="exit-quiz"></SpanLink>
-            <RoundedImage src="/images/Image.png"></RoundedImage>
+            <Flex
+              width={124}
+              height={124}
+              background={"madangGreen"}
+              borderRadius={100}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Link href={"/"}>
+                <Icon size={80} name={"Quiz"} />
+              </Link>
+            </Flex>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
+              <Heading mb={24} tag={"h3"} fontSize={[18, 24]}>
                 Exit Quiz
               </Heading>
               <P fontSize={[14, 16]}>
@@ -261,7 +306,18 @@ const PlanALesson: FC = () => {
               width={["100%", "50%"]}
               ph={[0, 12]}
             >
-              <RoundedImage src="/images/Image.png"></RoundedImage>
+              <Flex
+                width={124}
+                height={124}
+                background={"madangGreen"}
+                borderRadius={100}
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <Link href={"/"}>
+                  <Icon size={80} name={"Quiz"} />
+                </Link>
+              </Flex>
               <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
                 <Heading
                   textAlign="center"

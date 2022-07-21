@@ -24,6 +24,11 @@ import Instagram from "./Instagram.icon";
 import Twitter from "./Twitter.icon";
 import Facebook from "./Facebook.icon";
 import Close from "./Close.icon";
+import Worksheet from "./Worksheet.icon";
+import LessonSlides from "./LessonSlides.icon";
+import Video from "./Video.icon";
+import Quiz from "./Quiz.icon";
+import PenLookUp from "./PenLookUp.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -45,6 +50,11 @@ export const ICON_NAMES = [
   "Facebook",
   "Twitter",
   "Close",
+  "Worksheet",
+  "Video",
+  "LessonSlides",
+  "Quiz",
+  "PenLookUp",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -67,6 +77,11 @@ export const icons: Record<IconName, FC> = {
   Facebook,
   Twitter,
   Close,
+  Worksheet,
+  Video,
+  LessonSlides,
+  Quiz,
+  PenLookUp,
 };
 
 type SizeProps = { height: number; width: number };
@@ -75,7 +90,11 @@ const size = css<SizeProps>`
   width: ${(props) => props.width}px;
 `;
 
-const IconOuterWrapper = styled.span<SizeProps & MarginProps>`
+type TransformProps = { rotate?: number; flip?: boolean };
+
+const IconOuterWrapper = styled.span<SizeProps & MarginProps & TransformProps>`
+  transform: rotate(${(props) => props.rotate}deg);
+  transform: scaleY(${(props) => (props.flip ? -1 : 1)});
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -90,23 +109,26 @@ const IconInnerWrapper = styled.span<SizeProps & { color?: OakColorName }>`
   ${size}
 `;
 
-type IconProps = MarginProps & {
-  name: IconName;
-  /**
-   * size in pixels is the value for width and height if they are not separately provided
-   */
-  size?: PixelSpacing;
-  width?: PixelSpacing;
-  height?: PixelSpacing;
-  outerWidth?: PixelSpacing;
-  outerHeight?: PixelSpacing;
-  /**
-   * by default, the color will take the css `color` value of its closest ancester
-   * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
-   * override this value.
-   */
-  color?: OakColorName;
-};
+type IconProps = MarginProps &
+  TransformProps & {
+    name: IconName;
+    /**
+     * size in pixels is the value for width and height if they are not separately provided
+     */
+    size?: PixelSpacing;
+    width?: PixelSpacing;
+    height?: PixelSpacing;
+    outerWidth?: PixelSpacing;
+    outerHeight?: PixelSpacing;
+    rotate?: number;
+    flip?: boolean;
+    /**
+     * by default, the color will take the css `color` value of its closest ancester
+     * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
+     * override this value.
+     */
+    color?: OakColorName;
+  };
 /**
  * The `<Icon />` component should be the go to component wherever you seen an
  * icon.
@@ -114,7 +136,16 @@ type IconProps = MarginProps & {
  * use an `<IconButton />` component (which uses `<Icon />` internally).
  */
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height, color, ...rootProps } = props;
+  const {
+    name,
+    size = 24,
+    width,
+    height,
+    color,
+    rotate,
+    flip,
+    ...rootProps
+  } = props;
   const IconComponent = icons[name];
 
   const innerWidth = width || size;
@@ -124,7 +155,13 @@ const Icon: FC<IconProps> = (props) => {
   const outerWidth = props.outerWidth || innerWidth;
 
   return (
-    <IconOuterWrapper height={outerHeight} width={outerWidth} {...rootProps}>
+    <IconOuterWrapper
+      rotate={rotate}
+      flip={flip}
+      height={outerHeight}
+      width={outerWidth}
+      {...rootProps}
+    >
       <IconInnerWrapper color={color} height={innerHeight} width={innerWidth}>
         <IconComponent />
       </IconInnerWrapper>

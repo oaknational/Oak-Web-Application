@@ -20,7 +20,7 @@ export type BorderProps = {
   bb?: BorderValueResponsive;
   borderStyle?: BorderStyleProps;
   borderColor?: OakColorName;
-  borderRadius?: BorderValueResponsive;
+  borderRadius?: number;
 };
 
 const parse = (value?: BorderValue) => {
@@ -70,7 +70,7 @@ const borderColor = css<{ borderColor?: OakColorName }>`
   ${responsive("border-color", (props) => props.borderColor, getColorByName)}
 `;
 
-const borderRadius = css<{ borderRadius?: BorderValueResponsive }>`
+const borderRadius = css<{ borderRadius?: number }>`
   ${responsive("border-radius", (props) => props.borderRadius, parse)}
 `;
 

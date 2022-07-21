@@ -1,0 +1,122 @@
+{
+  "_createdAt": "2022-07-21T09:14:54Z",
+  "_id": "planningCorePage",
+  "_rev": "cBN7qAhvzR3kCfxTgd9ZI9",
+  "_type": "planningCorePage",
+  "_updatedAt": "2022-07-21T09:26:11Z",
+  "title": "Plan a Lesson",
+  "heading": "Save time planning your lessons with free, adaptable teacher-made resources",
+  "summary": [
+    {
+      "_key": "c65448ff61e0",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "56b6ae887ae50",
+          "_type": "span",
+          "marks": [],
+          "text": "Our lessons and resources are designed to give teachers all the tools they need to plan their lessons. Find out more about Oak's lesson planning resources and how you can adapt them for your class and school here."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "lessonElements": {
+    "exitQuiz": {
+      "body": [
+        {
+          "_key": "7b24c47fd7e1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9ac5a03825750",
+              "_type": "span",
+              "marks": [],
+              "text": "Finish your lesson with our exit quizzes, designed to test your pupils' knowledge recall and to support you to identify areas which require reteaching. Project them in your classroom, or print them off as worksheets to use in class or as homework."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "title": "Exit Quiz"
+    },
+    "introQuiz": {
+      "body": [
+        {
+          "_key": "917f31adbda2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "44e213fca06f0",
+              "_type": "span",
+              "marks": [],
+              "text": "Help your pupils retrieve or activate prior knowledge with our intro quizzes. Project them in your classroom, or print them off as worksheets to use in class or as homework."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "title": "Intro Quiz"
+    },
+    "slides": {
+      "body": [
+        {
+          "_key": "29626b88ca83",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "34e74495b00a0",
+              "_type": "span",
+              "marks": [],
+              "text": "The majority of our lesson slides can be downloaded and edited. Use them as a foundation for your own lesson plans, and adapt them to make them your own."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "title": "Lesson Slides"
+    },
+    "video": {
+      "body": [
+        {
+          "_key": "6e56085f55dd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0ab2b730787c0",
+              "_type": "span",
+              "marks": [],
+              "text": "Build your confidence tackling unfamiliar topics by observing experienced teachers delivering the lesson, or use the videos to support your pupils with homework and revision."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "title": "Video"
+    },
+    "worksheet": {
+      "body": [
+        {
+          "_key": "0528af385d2d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5c5c4643e6e30",
+              "_type": "span",
+              "marks": [],
+              "text": "Our lesson worksheets help your pupils practise key lesson content, and support your planning for questions and tasks. Use them in the classroom, for homework and revision."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "title": "Worksheets"
+    }
+  }
+}
