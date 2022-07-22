@@ -34,7 +34,7 @@ const LessonProgressionGraphic: FC = () => {
         </Link>
         <Icon mh={12} mt={32} size={48} name={"PenLookUp"}></Icon>
 
-        <Flex width={128} position="relative">
+        <Flex position="relative">
           <Link href={"/"}>
             <CircleIconContainerOverlap
               background={"madangGreen"}

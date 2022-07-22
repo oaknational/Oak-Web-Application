@@ -23,7 +23,7 @@ export type BorderProps = {
   borderRadius?: number;
 };
 
-const parse = (value?: BorderValue) => {
+const parse = (value?: number) => {
   switch (typeof value) {
     case "string":
       return value;

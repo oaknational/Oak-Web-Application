@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { PortableText } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card from "../components/Card";
@@ -13,7 +14,7 @@ import { getBreakpoint } from "../styles/utils/responsive";
 import Icon from "../components/Icon";
 import LessonProgressionGraphic from "../components/LessonProgressionGraphic";
 import { IconName } from "../components/Icon/Icon";
-import mockedJson from "../browser-lib/fixtures/lessonPlanning.json";
+import doc from "../browser-lib/fixtures/lessonPlanning.json";
 
 const SpanLink = styled.span`
   scroll-margin-top: ${({ theme }) => theme.header.height + 12}px;
@@ -33,6 +34,12 @@ const RoundedImage = styled.img`
   }
 `;
 
+const CircleIconContainer = styled(Flex)`
+  width: 124px;
+  height: 124px;
+  z-index: 2;
+`;
+
 type LessonPlanningCardProps = {
   title: string;
   icon: IconName;
@@ -45,7 +52,7 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
   children,
   pageAnchorId,
 }) => {
-  console.log(mockedJson);
+  console.log(doc);
   return (
     <Card
       alignItems={"center"}
@@ -54,16 +61,14 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
       background={"powderBlue"}
     >
       <SpanLink id={pageAnchorId}></SpanLink>
-      <Flex
-        width={124}
-        height={124}
+      <CircleIconContainer
         background={"madangGreen"}
         borderRadius={100}
         alignItems={"center"}
         justifyContent={"center"}
       >
         <Icon size={80} name={icon} />
-      </Flex>
+      </CircleIconContainer>
       <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
         <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
           {title}
@@ -77,6 +82,7 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
 const PlanALesson: FC = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
+      <PortableText value={doc.lessonElements.introQuiz.body} />
       <Grid cg={24} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 12]}>
           <Card mt={[72, 80, 80]} mb={[40, 80, 80]} background={"madangGreen"}>
@@ -151,9 +157,7 @@ const PlanALesson: FC = () => {
             background={"powderBlue"}
           >
             <SpanLink id="lesson-slides"></SpanLink>
-            <Flex
-              width={124}
-              height={124}
+            <CircleIconContainer
               background={"madangGreen"}
               borderRadius={100}
               alignItems={"center"}
@@ -162,9 +166,9 @@ const PlanALesson: FC = () => {
               <Link href={"/"}>
                 <Icon size={80} name={"Quiz"} />
               </Link>
-            </Flex>
+            </CircleIconContainer>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[18, 24]}>
+              <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
                 Lesson Slides
               </Heading>
               <P fontSize={[14, 16]}>
@@ -184,9 +188,7 @@ const PlanALesson: FC = () => {
             background={"powderBlue"}
           >
             <SpanLink id="worksheets"></SpanLink>
-            <Flex
-              width={124}
-              height={124}
+            <CircleIconContainer
               background={"madangGreen"}
               borderRadius={100}
               alignItems={"center"}
@@ -195,9 +197,9 @@ const PlanALesson: FC = () => {
               <Link href={"/"}>
                 <Icon size={80} name={"Quiz"} />
               </Link>
-            </Flex>
+            </CircleIconContainer>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[18, 24]}>
+              <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
                 Worksheets
               </Heading>
               <P fontSize={[14, 16]}>
@@ -217,9 +219,7 @@ const PlanALesson: FC = () => {
             background={"powderBlue"}
           >
             <SpanLink id="video"></SpanLink>
-            <Flex
-              width={124}
-              height={124}
+            <CircleIconContainer
               background={"madangGreen"}
               borderRadius={100}
               alignItems={"center"}
@@ -228,7 +228,7 @@ const PlanALesson: FC = () => {
               <Link href={"/"}>
                 <Icon size={80} name={"Quiz"} />
               </Link>
-            </Flex>
+            </CircleIconContainer>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
               <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
                 Video
@@ -250,9 +250,7 @@ const PlanALesson: FC = () => {
             background={"powderBlue"}
           >
             <SpanLink id="exit-quiz"></SpanLink>
-            <Flex
-              width={124}
-              height={124}
+            <CircleIconContainer
               background={"madangGreen"}
               borderRadius={100}
               alignItems={"center"}
@@ -261,9 +259,9 @@ const PlanALesson: FC = () => {
               <Link href={"/"}>
                 <Icon size={80} name={"Quiz"} />
               </Link>
-            </Flex>
+            </CircleIconContainer>
             <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[18, 24]}>
+              <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
                 Exit Quiz
               </Heading>
               <P fontSize={[14, 16]}>
@@ -306,9 +304,7 @@ const PlanALesson: FC = () => {
               width={["100%", "50%"]}
               ph={[0, 12]}
             >
-              <Flex
-                width={124}
-                height={124}
+              <CircleIconContainer
                 background={"madangGreen"}
                 borderRadius={100}
                 alignItems={"center"}
@@ -317,7 +313,7 @@ const PlanALesson: FC = () => {
                 <Link href={"/"}>
                   <Icon size={80} name={"Quiz"} />
                 </Link>
-              </Flex>
+              </CircleIconContainer>
               <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
                 <Heading
                   textAlign="center"
