@@ -11,10 +11,10 @@ export default {
   component: Component,
   argTypes: {
     playbackId: {
-      defaultValue: "G5yFY00uCcEoOISnQtpG7OmE1BoG2Fct01M2cozKJeiYs",
+      defaultValue: "wgjCIRWRr00OSum34AWeU87lmSSCtNjEOViD9X5YSG8k",
     },
     title: {
-      defaultValue: "Right to Education",
+      defaultValue: "Test video",
     },
   },
 } as ComponentMeta<typeof Component>;
