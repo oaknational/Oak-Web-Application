@@ -12,7 +12,7 @@ describe("getHasConsentedTo", () => {
       JSON.stringify({ enabled: true })
     );
 
-    expect(getHasConsentedTo("statistics")).toBe(true);
+    expect(getHasConsentedTo("posthog")).toBe(true);
   });
   test("returns false if user has not consented to policy", () => {
     window.localStorage.setItem(
@@ -20,7 +20,7 @@ describe("getHasConsentedTo", () => {
       JSON.stringify({ enabled: false })
     );
 
-    expect(getHasConsentedTo("statistics")).toBe(false);
+    expect(getHasConsentedTo("posthog")).toBe(false);
   });
 
   /**
