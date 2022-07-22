@@ -37,7 +37,6 @@ const RoundedImage = styled.img`
 const CircleIconContainer = styled(Flex)`
   width: 124px;
   height: 124px;
-  z-index: 2;
 `;
 
 type LessonPlanningCardProps = {
@@ -82,7 +81,6 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
 const PlanALesson: FC = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
-      <PortableText value={doc.lessonElements.introQuiz.body} />
       <Grid cg={24} rg={[16, 48, 80]}>
         <GridArea colSpan={[12, 12, 12]}>
           <Card mt={[72, 80, 80]} mb={[40, 80, 80]} background={"madangGreen"}>
@@ -93,7 +91,7 @@ const PlanALesson: FC = () => {
               lineHeight={24}
               color={"grey4"}
             >
-              Plan a Lesson
+              {doc.title}
             </Heading>
             <Heading
               mb={16}
@@ -102,14 +100,10 @@ const PlanALesson: FC = () => {
               lineHeight={40}
               tag={"h1"}
             >
-              Save time planning your lessons with free, adaptable teacher-made
-              resources
+              {doc.heading}
             </Heading>
             <P color={"black"} fontSize={16}>
-              Our lessons and resources are designed to give teachers all the
-              tools they need to plan their lessons. Find out more about Oak’s
-              lesson planning resources and how you can adapt them for your
-              class and school here.
+              <PortableText value={doc.summaryPortableText}></PortableText>
             </P>
           </Card>
         </GridArea>
@@ -131,13 +125,13 @@ const PlanALesson: FC = () => {
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
           <LessonPlanningCard
-            title={"Intro quiz"}
+            title={doc.lessonElements.introQuiz.title}
             icon={"Quiz"}
             pageAnchorId={"intro-quiz"}
           >
-            Help your pupils retrieve or activate prior knowledge with our intro
-            quizzes. Project them in your classroom, or print them off as
-            worksheets to use in class or as homework.
+            <PortableText
+              value={doc.lessonElements.introQuiz.bodyPortableText}
+            ></PortableText>
           </LessonPlanningCard>
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
