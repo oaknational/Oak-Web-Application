@@ -18,7 +18,7 @@ import {
 } from "../../config/localStorageKeys";
 import useApi from "../../browser-lib/api";
 import { useBookmarksCache } from "../../context/Bookmarks";
-import createErrorHandler from "../../common-lib/error-handler";
+import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 import useStableCallback from "../../hooks/useStableCallback";
 
@@ -36,7 +36,7 @@ const firebaseConfig: FirebaseOptions = {
 
 initializeApp(firebaseConfig);
 
-const errorHandler = createErrorHandler("useAuth");
+const reportError = errorReporter("useAuth");
 
 const firebaseAuth = firebaseGetAuth();
 
@@ -192,7 +192,7 @@ const AuthProvider: FC = ({ children }) => {
       /**
        * @todo check if error for code/detail, throw OakError
        */
-      errorHandler(error);
+      reportError(error);
       resetAuthState();
 
       throw new Error("Invalid email or expired OTP");

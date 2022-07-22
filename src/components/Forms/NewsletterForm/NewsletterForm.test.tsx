@@ -7,7 +7,7 @@ import OakError from "../../../errors/OakError";
 
 import NewsletterForm from ".";
 
-const onSubmit = jest.fn(async () => console.log("done"));
+const onSubmit = jest.fn();
 
 describe("NewsletterForm", () => {
   beforeEach(() => {

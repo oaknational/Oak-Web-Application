@@ -12,9 +12,7 @@ describe("Checkbox", () => {
         id="unique-123"
         checked
         labelText="Agree to terms"
-        onChange={() => {
-          console.log("on change");
-        }}
+        onChange={jest.fn()}
       />
     );
 
@@ -29,9 +27,7 @@ describe("Checkbox", () => {
         id="unique-123"
         checked
         labelText="Agree to terms"
-        onChange={() => {
-          console.log("on change");
-        }}
+        onChange={jest.fn()}
       />
     );
 
@@ -156,9 +152,7 @@ describe("Checkbox", () => {
         id="unique-123"
         checked
         labelText="Agree to terms"
-        onChange={() => {
-          console.log("on change");
-        }}
+        onChange={jest.fn()}
       />
     );
 

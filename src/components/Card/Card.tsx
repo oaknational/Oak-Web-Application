@@ -11,6 +11,9 @@ import Flex from "../Flex/Flex";
 const Card = styled(Flex)<BorderProps>`
   position: relative;
   flex-grow: 1;
+
+  /* overflow: hidden; introduced to mantain border radius on card images  */
+  overflow: hidden;
   ${border}
 `;
 
