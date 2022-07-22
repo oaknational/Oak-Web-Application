@@ -1,17 +1,19 @@
 import { FC, useEffect } from "react";
+import Image from "next/image";
+import styled from "styled-components";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import { Heading, P } from "../components/Typography";
+import { Heading } from "../components/Typography";
 import Icon from "../components/Icon";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
-import DismissibleCard from "../components/Card/DismissibleCard";
 import Flex from "../components/Flex";
+import getColorByName from "../styles/themeHelpers/getColorByName";
 
 const Home: FC = () => {
   const { track } = useAnalytics();
@@ -23,113 +25,157 @@ const Home: FC = () => {
     });
   }, [track]);
 
+  const TopBackgroundSection = styled.div`
+    ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 100vw;
+      z-index: -1;
+      background: ${getColorByName("pupilsGreen")};
+    }
+  `;
+
+  const BottomBackgroundSection = styled.div`
+    ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 110%;
+      width: 100vw;
+      z-index: -1;
+      background: ${getColorByName("teachersPastelYellow")};
+    }
+  `;
+
   return (
-    <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
-      <Grid cg={16} rg={[16, 48, 80]}>
-        <GridArea colSpan={[12, 12, 8]}>
-          <Heading
-            fontSize={48}
-            tag={"h1"}
-            mt={80}
-            data-testid="home-page-title"
-          >
-            Supporting Schools To Build Their Curriculum
-          </Heading>
-          <P mt={16}>
-            Free tools, research and 40,000 editable lesson resources to support
-            schools to develop a high-quality curriculum
-          </P>
-        </GridArea>
+    <LandingPageLayout seoProps={DEFAULT_SEO_PROPS}>
+      <Flex flexDirection={"column"} position="relative">
+        <TopBackgroundSection>
+          <Grid cg={16} rg={[16, 48, 80]}>
+            <GridArea colSpan={[12, 12, 8]}>
+              <Heading
+                fontSize={48}
+                tag={"h1"}
+                lineHeight={56}
+                mt={80}
+                data-testid="home-page-title"
+                color={"black"}
+              >
+                Oak Is Changing...
+              </Heading>
+              <Heading tag={"h2"} lineHeight={32} fontSize={24} mt={16}>
+                Over 40,000 curriculum-aligned resources for everyday use,
+                completely free.
+              </Heading>
+            </GridArea>
 
-        <GridArea colSpan={[12, 12, 4]}>
-          <DismissibleCard title="Beta">
-            <Heading fontSize={20} tag={"h2"}>
-              <Flex alignItems={"center"} mb={12}>
-                <Icon size={24} name={"GraduationCap"} mr={8} color={"grey8"} />
-                <P color={"grey8"} fontSize={16} fontWeight={400}>
-                  Next Webinar
-                </P>
-              </Flex>
-              <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
-              <P color={"grey8"} fontSize={16} fontWeight={400} mt={8}>
-                16/03/2022 &bull; 3:30pm
-              </P>
-            </Heading>
-          </DismissibleCard>
-        </GridArea>
+            <GridArea colSpan={[12, 12, 6]}>
+              <Card
+                background={"white"}
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems="center"
+                pa={0}
+              >
+                <Flex pv={16}>
+                  <Image
+                    width={300}
+                    height={200}
+                    src={"/images/illustrations/classroom.svg"}
+                  ></Image>
+                </Flex>
 
-        <GridArea colSpan={[12, 12, 6]}>
-          <Card
-            background={"white"}
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems="center"
-          >
-            <Icon name={"GraduationCap"} size={64} />
-            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="https://classroom.thenational.academy/">
-                Classroom
-              </CardLink>
-            </Heading>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 12, 6]}>
-          <Card
-            background={"white"}
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems="center"
-          >
-            <Icon name={"University"} size={64} />
-            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="https://teachers.thenational.academy/">
-                Teacher Hub
-              </CardLink>
-            </Heading>
-          </Card>
-        </GridArea>
+                <Heading mr={72} fontSize={32} tag={"h5"} color={"black"}>
+                  <CardLink href="https://classroom.thenational.academy/">
+                    Classroom
+                  </CardLink>
+                </Heading>
+              </Card>
+            </GridArea>
+            <GridArea colSpan={[12, 12, 6]}>
+              <Card
+                background={"white"}
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems="center"
+                pa={0}
+              >
+                <Flex ml={56}>
+                  <Image
+                    width={180}
+                    height={200}
+                    src={"/images/illustrations/teacher.svg"}
+                  ></Image>
+                </Flex>
+                <Heading mr={72} fontSize={32} tag={"h3"} color={"black"}>
+                  <CardLink href="https://teachers.thenational.academy/">
+                    Teachers Hub
+                  </CardLink>
+                </Heading>
+              </Card>
+            </GridArea>
+            <GridArea colSpan={[12, 4, 4]}>
+              <Card
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems="center"
+                background={"white"}
+                ph={16}
+                pv={40}
+              >
+                <Heading fontSize={24} tag={"h4"} color={"black"}>
+                  <CardLink href="/planning">Plan a lesson</CardLink>
+                </Heading>
 
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems="center"
-            background={"white"}
-          >
-            <Icon name={"University"} size={64} />
-            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="/">Curriculum</CardLink>
-            </Heading>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            background={"white"}
-          >
-            <Icon name={"University"} size={64} />
-            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="/">Lesson Planning</CardLink>
-            </Heading>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 4, 4]}>
-          <Card
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems="center"
-            background={"white"}
-          >
-            <Icon name={"GraduationCap"} size={64} />
-            <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-              <CardLink href="/">Oak for Schools</CardLink>
-            </Heading>
-          </Card>
-        </GridArea>
-      </Grid>
-      <AboutContactBlogList />
+                <Icon name={"ArrowRight"} size={32} />
+              </Card>
+            </GridArea>
+            <GridArea colSpan={[12, 4, 4]}>
+              <Card
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems="center"
+                background={"teachersYellow"}
+                ph={16}
+                pv={40}
+              >
+                <Heading fontSize={24} tag={"h4"} color={"black"}>
+                  <CardLink href="/">Develop Your Curriculum</CardLink>
+                </Heading>
+
+                <Icon name={"ArrowRight"} size={32} />
+              </Card>
+            </GridArea>
+            <GridArea colSpan={[12, 4, 4]}>
+              <Card
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems="center"
+                background={"pupilsPink"}
+                ph={16}
+                pv={40}
+              >
+                <Heading fontSize={24} tag={"h4"} color={"black"}>
+                  <CardLink href="/planning">Support Your Team</CardLink>
+                </Heading>
+
+                <Icon name={"ArrowRight"} size={32} />
+              </Card>
+            </GridArea>
+          </Grid>
+        </TopBackgroundSection>
+      </Flex>
+      <Flex position="relative">
+        <BottomBackgroundSection>
+          <AboutContactBlogList />
+        </BottomBackgroundSection>
+      </Flex>
     </LandingPageLayout>
   );
 };

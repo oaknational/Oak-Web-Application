@@ -30,7 +30,7 @@ const BlogList: FC<BlogListProps> = (props) => {
         justifyContent={"space-between"}
       >
         <Flex flexDirection={"row"} alignItems="center">
-          <Icon name="Newspaper" mr={16} size={40} />
+          <Icon name="IllustrationStayUpToDate" mr={16} size={64} />
           <Heading fontSize={24} tag={titleTag}>
             {title}
           </Heading>

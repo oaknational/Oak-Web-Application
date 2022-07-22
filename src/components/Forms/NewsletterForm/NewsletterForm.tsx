@@ -73,12 +73,12 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
 
   return (
     <Card background="white">
-      <CardTitle tag="h2" icon="PaperPlane">
-        Join The Community
+      <CardTitle tag="h2" icon="IllustrationClassroom">
+        Don’t miss out
       </CardTitle>
-      <P id={descriptionId}>
-        Be among the first to get free lessons, resources and other helpful
-        content by email. Unsubscribe at any time. Our privacy policy is{" "}
+      <P color={"black"} id={descriptionId}>
+        Join 80,000 teachers and get free lessons, resources and other helpful
+        content by email. Unsubscribe at any time. Read our privacy policy.
         <Link href="/">
           <a>here</a>
         </Link>
