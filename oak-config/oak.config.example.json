@@ -38,7 +38,7 @@
     "apiKey": "123abc"
   },
   "sanity": {
-    "projectId": "cuvjke51",
+    "projectId": "abc123",
     "dataset": "production",
     "datasetTag": "default",
     "useCDN": "true",
