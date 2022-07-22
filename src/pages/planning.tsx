@@ -1,20 +1,25 @@
 import { FC } from "react";
+import { NextPage, GetStaticProps } from "next";
 import styled from "styled-components";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 
+import CMSClient, { PlanningPage } from "../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
 import Layout from "../components/Layout";
-import { Heading, P } from "../components/Typography";
+import Typography, { Heading, P } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import { getBreakpoint } from "../styles/utils/responsive";
 import Icon from "../components/Icon";
 import LessonProgressionGraphic from "../components/LessonProgressionGraphic";
 import { IconName } from "../components/Icon/Icon";
-import doc from "../browser-lib/fixtures/lessonPlanning.json";
+
+export type PlanALessonProps = {
+  pageData: PlanningPage;
+};
 
 const SpanLink = styled.span`
   scroll-margin-top: ${({ theme }) => theme.header.height + 12}px;
@@ -51,7 +56,6 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
   children,
   pageAnchorId,
 }) => {
-  console.log(doc);
   return (
     <Card
       alignItems={"center"}
@@ -78,7 +82,7 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
   );
 };
 
-const PlanALesson: FC = () => {
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={24} rg={[16, 48, 80]}>
@@ -91,7 +95,7 @@ const PlanALesson: FC = () => {
               lineHeight={24}
               color={"grey4"}
             >
-              {doc.title}
+              {pageData.title}
             </Heading>
             <Heading
               mb={16}
@@ -100,11 +104,11 @@ const PlanALesson: FC = () => {
               lineHeight={40}
               tag={"h1"}
             >
-              {doc.heading}
+              {pageData.heading}
             </Heading>
-            <P color={"black"} fontSize={16}>
-              <PortableText value={doc.summaryPortableText}></PortableText>
-            </P>
+            <Typography color="black" fontSize={16}>
+              <PortableText value={pageData.summaryPortableText} />
+            </Typography>
           </Card>
         </GridArea>
 
@@ -125,18 +129,18 @@ const PlanALesson: FC = () => {
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
           <LessonPlanningCard
-            title={doc.lessonElements.introQuiz.title}
+            title={pageData.lessonElements.introQuiz.title}
             icon={"Quiz"}
             pageAnchorId={"intro-quiz"}
           >
             <PortableText
-              value={doc.lessonElements.introQuiz.bodyPortableText}
-            ></PortableText>
+              value={pageData.lessonElements.introQuiz.bodyPortableText}
+            />
           </LessonPlanningCard>
         </GridArea>
         <GridArea colSpan={[12, 6, 6]}>
           <LessonPlanningCard
-            title={"Lesson slides"}
+            title={pageData.lessonElements.slides.title}
             icon={"LessonSlides"}
             pageAnchorId={"lesson-slides"}
           >
@@ -465,6 +469,16 @@ const PlanALesson: FC = () => {
       </Grid>
     </Layout>
   );
+};
+
+export const getStaticProps: GetStaticProps<PlanALessonProps> = async () => {
+  const planningPage = await CMSClient.planningPage();
+
+  return {
+    props: {
+      pageData: planningPage,
+    },
+  };
 };
 
 export default PlanALesson;

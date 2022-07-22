@@ -4,7 +4,7 @@ import getSanityClient from "./sanity-client";
 
 // @TODO: Absolute hack to allow `any` usage. Replace w/ better type
 const any = z.any();
-type PortableTextJSON = z.infer<typeof any>;
+export type PortableTextJSON = z.infer<typeof any>;
 
 export type Document = {
   id: string;
