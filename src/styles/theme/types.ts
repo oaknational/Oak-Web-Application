@@ -22,7 +22,10 @@ export type PixelSpacing =
   | 56
   | 64
   | 72
-  | 80;
+  | 80
+  | 1200;
+
+
 /**
  * @todo parse theme with zod
  */
@@ -87,6 +90,10 @@ type ButtonConfig = {
     text: OakColorName;
   };
   tertiary: {
+    background: OakColorName;
+    text: OakColorName;
+  };
+  minimal: {
     background: OakColorName;
     text: OakColorName;
   };

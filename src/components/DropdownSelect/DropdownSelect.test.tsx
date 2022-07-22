@@ -12,9 +12,7 @@ const roles = [
   { value: "4", label: "Other" },
 ];
 
-const setSelectedKey = () => {
-  console.log("press");
-};
+const setSelectedKey = jest.fn();
 describe("select", () => {
   it("renders a drop down select", () => {
     renderWithProviders(

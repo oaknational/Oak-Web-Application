@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import posthog from "posthog-js";
 
 import config from "../../config";
-import createErrorHandler from "../../common-lib/error-handler";
+import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 import { getOakGlobals, setOakGlobals } from "../oak-globals/oakGlobals";
 
-const reportError = createErrorHandler("usePosthog");
+const reportError = errorReporter("usePosthog");
 
 export type WindowOakPosthog = {
   importCount: number;

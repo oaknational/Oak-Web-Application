@@ -1,4 +1,5 @@
 import seoConfig from "../../next-seo.config";
+import isBrowser from "../utils/isBrowser";
 
 const CONFIG_KEYS = [
   "firebaseConfigApiHost",
@@ -32,6 +33,8 @@ const CONFIG_KEYS = [
   "hubspotFallbackFormId",
   "posthogApiKey",
   "posthogApiHost",
+  "sanityGraphqlApiUrl",
+  "sanityGraphqlApiSecret",
 ] as const;
 
 type ConfigKey = typeof CONFIG_KEYS[number];
@@ -274,6 +277,20 @@ const envVars: Record<ConfigKey, EnvVar> = {
     availableInBrowser: true,
     default: null,
   },
+  sanityGraphqlApiUrl: {
+    value: process.env.SANITY_GRAPHQL_URL,
+    envName: "SANITY_GRAPHQL_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  sanityGraphqlApiSecret: {
+    value: process.env.SANITY_AUTH_SECRET,
+    envName: "SANITY_AUTH_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 };
 
 for (const [
@@ -286,7 +303,6 @@ for (const [
     envName,
   },
 ] of Object.entries(envVars)) {
-  const isBrowser = typeof window !== "undefined";
   const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
   const isPresent = Boolean(envValue || defaultValue);
 

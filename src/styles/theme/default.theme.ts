@@ -191,6 +191,10 @@ const theme: OakTheme = {
       background: "grey3",
       text: "black",
     },
+    minimal: {
+      background: "transparent",
+      text: "black",
+    },
   },
   badge: {
     size: "54px",

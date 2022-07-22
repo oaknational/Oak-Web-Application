@@ -1,27 +1,29 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import "whatwg-fetch";
+import bugsnag from "@bugsnag/js";
 
 jest.mock("@react-aria/ssr/dist/main", () => ({
   ...jest.requireActual("@react-aria/ssr/dist/main"),
   useSSRSafeId: () => "react-aria-generated-id",
 }));
 
-// Bugsnag.getPlugin("react")?.createErrorBoundary(React);
 jest.mock("@bugsnag/js", () => ({
   __esModule: true,
   default: {
     notify: jest.fn(),
     start: jest.fn(),
     startSession: jest.fn(),
-    getPlugin: () => ({
-      createErrorBoundary:
-        () =>
-        ({ children }) =>
-          children,
-    }),
+    getPlugin: bugsnag.getPlugin,
+  },
+  use(plugin) {
+    const boundary = plugin.init();
+    // we don't want the error boundary to swallow the errors, we want jest see them and fail the test
+    delete boundary.prototype.componentDidCatch;
+    return boundary;
   },
 }));
+
 // @todo move thes mocks into __mocks__ folder and import into tests that use them
 jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(() => ({ config: {} })),

@@ -1,17 +1,16 @@
 import Bugsnag from "@bugsnag/js";
 
-import {
+import errorReporter, {
   initialiseBugsnag,
-  createErrorHandler,
   ErrorData,
   matchesUserAgent,
-} from "./error-handler";
+} from "./error-reporter";
 
 const parentMetaFields = {
   query: { paramName: "paramValue" },
 };
 const testContext = "/test/endpoint";
-const errorHandler = createErrorHandler(testContext, parentMetaFields);
+const reportError = errorReporter(testContext, parentMetaFields);
 
 const childMetaFields = {
   resourceId: "resource-123",
@@ -36,7 +35,7 @@ Bugsnag.notify = mockNotify;
 const mockStart = jest.fn();
 Bugsnag.start = mockStart;
 
-describe("common-lib/error-handler", () => {
+describe("common-lib/error-reporter", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -62,9 +61,9 @@ describe("common-lib/error-handler", () => {
       expect(mockStart).toHaveBeenCalled();
     });
   });
-  describe("createErrorHandler()()", () => {
+  describe("errorReporter()()", () => {
     it("calls bugsnag.notify with the error", async () => {
-      errorHandler(testError);
+      reportError(testError);
 
       expect(mockNotify).toHaveBeenCalledWith(
         testError,
@@ -73,7 +72,7 @@ describe("common-lib/error-handler", () => {
       );
     });
     it("adds relevent fields to bugsnag event", async () => {
-      errorHandler(testError, testData);
+      reportError(testError, testData);
 
       expect(event.context).toBe(testContext);
       expect(event.severity).toBe("error");
@@ -81,7 +80,7 @@ describe("common-lib/error-handler", () => {
     });
 
     it("adds Meta fields", async () => {
-      errorHandler(testError, testData);
+      reportError(testError, testData);
 
       expect(event.addMetadata).toHaveBeenCalledWith("Meta", {
         ...parentMetaFields,

@@ -35,7 +35,6 @@ const SignIn: FC = () => {
 
   const requestMagicLink = async (e: FormEvent | MouseEvent) => {
     e.preventDefault();
-    console.log("sign in start");
     setError("");
     if (!email) {
       return setError("Email invalid");
@@ -44,10 +43,7 @@ const SignIn: FC = () => {
     try {
       await signInWithEmail(email);
       setStep("LINK_REQUESTED");
-      console.log("magic link in");
     } catch (error) {
-      // set error
-      console.log("error signing in", error);
       setError("Sorry, that didn't work");
     } finally {
       setLoading(false);

@@ -12,7 +12,7 @@ describe("Toggle", () => {
         checked={true}
         labelOn="label"
         labelOff="label"
-        onChange={() => console.log("on change")}
+        onChange={jest.fn()}
       />
     );
 
@@ -27,7 +27,7 @@ describe("Toggle", () => {
         checked={true}
         labelOn="label on"
         labelOff="label"
-        onChange={() => console.log("on change")}
+        onChange={jest.fn()}
       />
     );
 
