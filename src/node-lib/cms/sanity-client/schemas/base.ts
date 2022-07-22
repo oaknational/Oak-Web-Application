@@ -20,3 +20,18 @@ export type PortableText = z.infer<typeof portableTextSchema>;
 export const dateSchema = z.preprocess((arg) => {
   if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
 }, z.date());
+
+export const cardSchema = z.object({
+  title: z.string().nonempty(),
+  image: z.any(),
+  bodyPortableText: portableTextSchema,
+});
+
+export const CTASchema = z.object({
+  label: z.string().nonempty(),
+});
+
+export const textAndMediaSchema = z.object({
+  title: z.string().nonempty(),
+  bodyPortableText: portableTextSchema,
+});

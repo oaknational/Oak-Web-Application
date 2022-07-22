@@ -29,6 +29,21 @@ export type WebinarPreview = Pick<
   "id" | "title" | "slug" | "summaryPortableText"
 >;
 
+export type Card = {
+  title: string;
+  image?: string;
+  bodyPortableText?: PortableTextJSON;
+};
+
+export type CTA = {
+  label: string;
+};
+
+export type TextAndMedia = {
+  title: string;
+  bodyPortableText: PortableTextJSON;
+};
+
 export type Params = {
   isDraft?: boolean;
 };

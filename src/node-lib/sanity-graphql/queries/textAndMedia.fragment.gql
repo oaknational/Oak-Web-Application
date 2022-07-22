@@ -1,0 +1,4 @@
+fragment TextAndMedia on TextAndMedia {
+  title
+  bodyPortableText: bodyRaw
+}
