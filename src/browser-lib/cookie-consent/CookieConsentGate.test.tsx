@@ -11,7 +11,7 @@ describe("CookieConsentGate", () => {
   });
   test("should not render its children if policy not consented to", () => {
     const { queryByText } = render(
-      <CookieConsentGate policyName="statistics">
+      <CookieConsentGate serviceType="bugsnag">
         <div>child</div>
       </CookieConsentGate>,
       { wrapper: CookieConsentProvider }
@@ -25,7 +25,7 @@ describe("CookieConsentGate", () => {
       JSON.stringify({ enabled: true })
     );
     const { queryByText } = render(
-      <CookieConsentGate policyName="statistics">
+      <CookieConsentGate serviceType="bugsnag">
         <div>child</div>
       </CookieConsentGate>,
       { wrapper: CookieConsentProvider }
