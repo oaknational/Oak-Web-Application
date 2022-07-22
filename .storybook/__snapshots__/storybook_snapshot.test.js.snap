@@ -3652,6 +3652,79 @@ Array [
 ]
 `;
 
+exports[`Storyshots Media/ Video Player Video Player 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-61cd3008-0 dVghVz"
+  >
+    <div
+      className="sc-8799d24a-0 BHYZx"
+      colSpan={
+        Array [
+          12,
+          6,
+          6,
+        ]
+      }
+    >
+      <div
+        className="sc-2f0613b5-0 sc-f624290d-0 bsCxxD hkiilo"
+      >
+        <mux-player
+          backward-seek-offset={10}
+          custom-domain="video.thenational.academy"
+          env-key="5e67cqdt7hgc9vkla7p0qch7q"
+          forward-seek-offset={10}
+          player-software-name="mux-player-react"
+          player-software-version="0.1.0-beta.23"
+          primary-color="black"
+          secondary-color="white"
+          tertiary-color="grey5"
+        />
+        <div
+          className="sc-2f0613b5-0 sc-f624290d-0 jSVvUN dwwJMm"
+        >
+          <button
+            aria-label="pause"
+            className="sc-da410035-0 sc-5692a472-0 eaZurT kZLrig"
+            onClick={[Function]}
+            size="small"
+            title="pause"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              pause
+            </span>
+          </button>
+          <button
+            aria-label="mute"
+            className="sc-da410035-0 sc-5692a472-0 eaZurT LsypK"
+            onClick={[Function]}
+            size="small"
+            title="mute"
+          >
+            <span
+              className="sc-afa80c08-0 dokVaK"
+            >
+              mute
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`Storyshots Media/Icon Icon 1`] = `
 Array [
   <link

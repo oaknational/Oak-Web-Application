@@ -11,7 +11,7 @@ export default {
   component: Component,
   argTypes: {
     playbackId: {
-      defaultValue: "gnA3ZKbsgZ59IZOF7qFX1GdRSZghRluqEqmE2rWCdps",
+      defaultValue: "G5yFY00uCcEoOISnQtpG7OmE1BoG2Fct01M2cozKJeiYs",
     },
     title: {
       defaultValue: "Right to Education",
