@@ -1522,7 +1522,7 @@ Array [
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1547,7 +1547,7 @@ Array [
     <input
       aria-describedby="undefined-error"
       aria-invalid={true}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1557,8 +1557,8 @@ Array [
     className="sc-ed3fbaef-0 bkwaUj"
   >
     <span
-      className="sc-1a42a0ba-0 eATzei"
-      color="error"
+      className="sc-1a42a0ba-0 ilBJPk"
+      color="failure"
       fontSize={12}
       id="undefined-error"
     >
@@ -1583,7 +1583,7 @@ Array [
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ minvZ"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ gSvHbY"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1627,7 +1627,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-1a1b9f4b-0 bkwaUj fJIBXc"
+    className="sc-ed3fbaef-0 sc-c8e82f81-0 bkwaUj gMCrvd"
   >
     <label
       className="sc-557d99b-0 kvHpjU"
@@ -1641,7 +1641,7 @@ Array [
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1733,7 +1733,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-name"
               name="name"
               onBlur={[Function]}
@@ -1746,7 +1746,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-email"
               name="email"
               onBlur={[Function]}
@@ -1905,8 +1905,8 @@ Array [
           </button>
           <p
             aria-live="assertive"
-            className="sc-20ccf123-0 kUFCdJ"
-            color="error"
+            className="sc-20ccf123-0 kxqXYH"
+            color="failure"
             fontSize={14}
             role="alert"
           >
@@ -2003,7 +2003,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-name"
               name="name"
               onBlur={[Function]}
@@ -2016,7 +2016,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-email"
               name="email"
               onBlur={[Function]}
@@ -2175,8 +2175,8 @@ Array [
           </button>
           <p
             aria-live="assertive"
-            className="sc-20ccf123-0 kUFCdJ"
-            color="error"
+            className="sc-20ccf123-0 kxqXYH"
+            color="failure"
             fontSize={14}
             role="alert"
           >
@@ -2370,7 +2370,7 @@ Array [
             <input
               aria-invalid={false}
               aria-label="Search"
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
               id="search-form-search-input"
               onChange={[Function]}
               placeholder="Search"
@@ -3565,10 +3565,10 @@ Array [
     className="sc-a881b49f-0 jnQeim"
   >
     <header
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-a881b49f-2 jflswW gNwXZN iVDaeo"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-a881b49f-2 hDkyTF kmMuVS bVkcfr"
     >
       <a
-        className="sc-67e588a-0 eYUrAw"
+        className="sc-89ac65b3-0 dsabsx"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
@@ -3673,7 +3673,7 @@ Array [
       <input
         aria-invalid={false}
         aria-label="Search"
-        className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+        className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
         id="search-form-search-input"
         onChange={[Function]}
         placeholder="Search"
@@ -3998,7 +3998,7 @@ Array [
       title="Intro"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-9219bae4-1 ggbALo fNHROM bAKKjH"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-9219bae4-1 ggbALo fNHROM eYTZfm"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 sc-9219bae4-4 aHoVI fHmomD ctXbdR"
@@ -5300,7 +5300,7 @@ Array [
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
        
       <span
-        className="sc-1a42a0ba-0 eLTjAy"
+        className="sc-1a42a0ba-0 hkylcl"
         color="inYourFace"
         fontWeight={600}
       >

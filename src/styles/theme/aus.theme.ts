@@ -8,7 +8,7 @@ const ausTheme: OakTheme = {
     ...defaultTheme.button,
     // Simply altering primary button config as an example
     primary: {
-      background: "inYourFace",
+      background: "teachersLilac",
       text: "white",
     },
   },

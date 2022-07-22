@@ -1,17 +1,17 @@
 import { OakTheme, default as defaultTheme } from ".";
 
-const placeholderTheme: OakTheme = {
+const oakBrandTheme: OakTheme = {
   // Extends default theme
   ...defaultTheme,
-  name: "placeholder",
+  name: "Oak Brand",
   button: {
     ...defaultTheme.button,
     // Simply altering primary button config as an example
     primary: {
-      background: "limeade",
+      background: "pupilsGreen",
       text: "white",
     },
   },
 };
 
-export default placeholderTheme;
+export default oakBrandTheme;
