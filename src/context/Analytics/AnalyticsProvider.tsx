@@ -1,12 +1,3 @@
-/*
- * Description: Video player component
- *
- * Uses Mux Video Player
- *
- * https://github.com/muxinc/elements/tree/main/packages/mux-player-react
- *
- */
-
 import { createContext, FC, useCallback } from "react";
 
 import usePosthog from "../../browser-lib/posthog/usePosthog";
@@ -20,7 +11,7 @@ type TrackingEvents = {
   "video-resized": { playbackId: string };
 };
 
-type TrackFn = <TrackingEventName extends keyof TrackingEvents>(
+export type TrackFn = <TrackingEventName extends keyof TrackingEvents>(
   name: TrackingEventName,
   props: TrackingEvents[TrackingEventName]
 ) => void;

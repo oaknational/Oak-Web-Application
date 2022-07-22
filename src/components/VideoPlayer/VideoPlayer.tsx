@@ -6,7 +6,7 @@ import Flex from "../Flex";
 import Button from "../Button";
 import OakError from "../../errors/OakError";
 import errorHandler from "../../common-lib/error-handler";
-import useAnalytics from "../../context/Analytics/useAnalytics";
+import { TrackFn } from "../../context/Analytics/AnalyticsProvider";
 import theme from "../../styles/theme";
 
 const reportError = errorHandler("VideoPlayer.tsx");
@@ -24,10 +24,12 @@ export type VideoStyleConfig = {
 
 type VideoPlayerProps = {
   playbackId: string;
+  title: string;
+  track?: TrackFn;
 };
 
-const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
-  const { track } = useAnalytics();
+const VideoPlayer: FC<VideoPlayerProps> = (props) => {
+  const { playbackId, title } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [paused, setPaused] = useState<boolean | undefined>(false);
@@ -36,7 +38,8 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
 
   const metadata = {
     "metadata-video-id": playbackId,
-    // do we want to track here using user id
+    "metadata-video-title": title,
+    // do we want to track here using user id here?
     // "metadata-viewer-user-id": userId
   };
 
@@ -74,14 +77,14 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ playbackId }) => {
         tertiaryColor={theme.video.controls.tertiary}
         onPlay={() => {
           setPaused(false);
-          track("video-played", { playbackId });
+          props.track?.("video-played", { playbackId });
         }}
         onPause={() => {
           setPaused(true);
-          track("video-paused", { playbackId });
+          props.track?.("video-paused", { playbackId });
         }}
         onResize={() => {
-          track("video-resized", { playbackId });
+          props.track?.("video-resized", { playbackId });
         }}
         onError={(evt: Event) => {
           onError(evt);
