@@ -129,10 +129,10 @@ describe("responsive", () => {
       )}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" color="calmAndWarm" />
+      <StyledComponent data-testid="test" color="teachersPurple" />
     );
 
-    expect(getByTestId("test")).toHaveStyle("color: #ffd166");
+    expect(getByTestId("test")).toHaveStyle("color: #845ad9");
   });
   test.each([
     ["pl", "padding-left", "1em", "padding-left: 1em;"],

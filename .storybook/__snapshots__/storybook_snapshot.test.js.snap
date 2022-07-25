@@ -1522,7 +1522,7 @@ Array [
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1547,7 +1547,7 @@ Array [
     <input
       aria-describedby="undefined-error"
       aria-invalid={true}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1557,8 +1557,8 @@ Array [
     className="sc-ed3fbaef-0 bkwaUj"
   >
     <span
-      className="sc-1a42a0ba-0 eATzei"
-      color="error"
+      className="sc-1a42a0ba-0 ilBJPk"
+      color="failure"
       fontSize={12}
       id="undefined-error"
     >
@@ -1583,7 +1583,7 @@ Array [
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ minvZ"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ gSvHbY"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1627,7 +1627,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-1a1b9f4b-0 bkwaUj fJIBXc"
+    className="sc-ed3fbaef-0 sc-c8e82f81-0 bkwaUj gMCrvd"
   >
     <label
       className="sc-557d99b-0 kvHpjU"
@@ -1641,7 +1641,7 @@ Array [
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+      className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -1733,7 +1733,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-name"
               name="name"
               onBlur={[Function]}
@@ -1746,7 +1746,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-email"
               name="email"
               onBlur={[Function]}
@@ -1905,8 +1905,8 @@ Array [
           </button>
           <p
             aria-live="assertive"
-            className="sc-20ccf123-0 kUFCdJ"
-            color="error"
+            className="sc-20ccf123-0 kxqXYH"
+            color="failure"
             fontSize={14}
             role="alert"
           >
@@ -2003,7 +2003,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-name"
               name="name"
               onBlur={[Function]}
@@ -2016,7 +2016,7 @@ Array [
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ fijrrZ"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ klFipA"
               id="newsletter-signup-email"
               name="email"
               onBlur={[Function]}
@@ -2175,8 +2175,8 @@ Array [
           </button>
           <p
             aria-live="assertive"
-            className="sc-20ccf123-0 kUFCdJ"
-            color="error"
+            className="sc-20ccf123-0 kxqXYH"
+            color="failure"
             fontSize={14}
             role="alert"
           >
@@ -2370,7 +2370,7 @@ Array [
             <input
               aria-invalid={false}
               aria-label="Search"
-              className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+              className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
               id="search-form-search-input"
               onChange={[Function]}
               placeholder="Search"
@@ -2657,14 +2657,14 @@ Array [
     }
   >
     <footer
-      className="sc-eb56c8f5-0 dogxuy"
+      className="sc-e6e01ba3-0 legXMl"
     >
       <nav>
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 fcNmgK gXuMEW"
         >
           <div
-            className="sc-eb56c8f5-1 hfFaTV"
+            className="sc-e6e01ba3-1 bbhzbu"
           >
             <div
               className="sc-ed3fbaef-0 sc-f624290d-0 aHoVI eYHxwu"
@@ -2688,8 +2688,8 @@ Array [
                       Pupils
                     </h4>
                     <div
-                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                      color="grey8"
+                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                      color="grey9"
                       fontSize={12}
                       fontWeight={400}
                     >
@@ -2725,8 +2725,8 @@ Array [
                       Teachers
                     </h4>
                     <div
-                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                      color="grey8"
+                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                      color="grey9"
                       fontSize={12}
                       fontWeight={400}
                     >
@@ -2799,8 +2799,8 @@ Array [
                     Oak
                   </h4>
                   <div
-                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                    color="grey8"
+                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                    color="grey9"
                     fontSize={12}
                     fontWeight={400}
                   >
@@ -2890,8 +2890,8 @@ Array [
                     Legal
                   </h4>
                   <div
-                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                    color="grey8"
+                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                    color="grey9"
                     fontSize={12}
                     fontWeight={400}
                   >
@@ -3034,6 +3034,7 @@ Array [
                       />
                     </span>
                     <img
+                      alt="Oak National Academy Logo"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -3064,6 +3065,7 @@ Array [
                     />
                     <noscript>
                       <img
+                        alt="Oak National Academy Logo"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -3265,14 +3267,14 @@ Array [
     }
   >
     <footer
-      className="sc-eb56c8f5-0 dogxuy"
+      className="sc-e6e01ba3-0 legXMl"
     >
       <nav>
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 fcNmgK gXuMEW"
         >
           <div
-            className="sc-eb56c8f5-1 hfFaTV"
+            className="sc-e6e01ba3-1 bbhzbu"
           >
             <div
               className="sc-ed3fbaef-0 sc-f624290d-0 aHoVI eYHxwu"
@@ -3296,8 +3298,8 @@ Array [
                       Pupils
                     </h4>
                     <div
-                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                      color="grey8"
+                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                      color="grey9"
                       fontSize={12}
                       fontWeight={400}
                     >
@@ -3333,8 +3335,8 @@ Array [
                       Teachers
                     </h4>
                     <div
-                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                      color="grey8"
+                      className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                      color="grey9"
                       fontSize={12}
                       fontWeight={400}
                     >
@@ -3407,8 +3409,8 @@ Array [
                     Oak
                   </h4>
                   <div
-                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                    color="grey8"
+                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                    color="grey9"
                     fontSize={12}
                     fontWeight={400}
                   >
@@ -3498,8 +3500,8 @@ Array [
                     Legal
                   </h4>
                   <div
-                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI ifPaLS"
-                    color="grey8"
+                    className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI jAAHiJ"
+                    color="grey9"
                     fontSize={12}
                     fontWeight={400}
                   >
@@ -3642,6 +3644,7 @@ Array [
                       />
                     </span>
                     <img
+                      alt="Oak National Academy Logo"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -3672,6 +3675,7 @@ Array [
                     />
                     <noscript>
                       <img
+                        alt="Oak National Academy Logo"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -3868,10 +3872,10 @@ Array [
     className="sc-a881b49f-0 jnQeim"
   >
     <header
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-a881b49f-2 jflswW bMxQMA iVDaeo"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-a881b49f-2 hDkyTF fJSMSj bVkcfr"
     >
       <a
-        className="sc-67e588a-0 cbevGY"
+        className="sc-89ac65b3-0 hSeXvp"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
@@ -3976,7 +3980,7 @@ Array [
       <input
         aria-invalid={false}
         aria-label="Search"
-        className="sc-fbea1ba6-0 sc-1a1b9f4b-1 eZDTcQ kNisxu"
+        className="sc-fbea1ba6-0 sc-c8e82f81-1 eZDTcQ jlJlJf"
         id="search-form-search-input"
         onChange={[Function]}
         placeholder="Search"
@@ -4301,7 +4305,7 @@ Array [
       title="Intro"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-9219bae4-1 ggbALo jaycrd bAKKjH"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-9219bae4-1 ggbALo jaycrd eYTZfm"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 sc-9219bae4-4 aHoVI jSKUeC ctXbdR"
@@ -5603,7 +5607,7 @@ Array [
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id semper risus in hendrerit gravida rutrum quisque non tellus. Nibh praesent
        
       <span
-        className="sc-1a42a0ba-0 eLTjAy"
+        className="sc-1a42a0ba-0 hkylcl"
         color="inYourFace"
         fontWeight={600}
       >

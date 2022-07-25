@@ -1,3 +1,10 @@
+# [0.52.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.51.0...v0.52.0) (2022-07-22)
+
+
+### Features
+
+* add brand colors ([e74b888](https://github.com/oaknational/Oak-Web-Application/commit/e74b8889f1df77a75ecbc2ea90d6e4c92e5732ff))
+
 # [0.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.1...v0.51.0) (2022-07-21)
 
 
