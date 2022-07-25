@@ -61,7 +61,7 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
       <Heading mb={8} lineHeight={20} fontSize={16} color="grey9" tag="h4">
         {title}
       </Heading>
-      <Typography fontSize={12} lineHeight={20} color="grey8">
+      <Typography fontSize={12} lineHeight={20} color="grey9">
         <ul role={"list"}>
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
@@ -133,7 +133,12 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 pl={[32, 0]}
               >
                 <Flex position="relative">
-                  <Image height={63} width={150} src={LogoText}></Image>
+                  <Image
+                    alt={"Oak National Academy Logo"}
+                    height={63}
+                    width={150}
+                    src={LogoText}
+                  ></Image>
                 </Flex>
 
                 {footerNotification}
