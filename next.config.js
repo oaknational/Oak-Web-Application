@@ -46,6 +46,9 @@ module.exports = async (phase) => {
     ? {}
     : await fetchSecrets(oakConfig);
 
+  const { NEXT_PUBLIC_GLEAP_API_KEY } = process.env;
+  console.log({ NEXT_PUBLIC_GLEAP_API_KEY });
+
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     poweredByHeader: false,
@@ -79,6 +82,14 @@ module.exports = async (phase) => {
       FIREBASE_ADMIN_DATABASE_URL:
         process.env.FIREBASE_ADMIN_DATABASE_URL ||
         secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
+
+      // Gleap
+      NEXT_PUBLIC_GLEAP_API_KEY:
+        process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
+      NEXT_PUBLIC_GLEAP_API_URL:
+        process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+      NEXT_PUBLIC_GLEAP_WIDGET_URL:
+        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
 
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,

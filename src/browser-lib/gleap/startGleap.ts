@@ -7,15 +7,15 @@ declare global {
 }
 
 type GleapConfig = {
-  widgetUrl: string;
+  apiKey: string;
   apiUrl: string;
-  widgetId: string;
+  widgetUrl: string;
 };
-const startGleap = ({ widgetUrl, apiUrl, widgetId }: GleapConfig) => {
+const startGleap = ({ apiKey, apiUrl, widgetUrl }: GleapConfig) => {
   window.Gleap = Gleap;
   window.Gleap.setWidgetUrl(widgetUrl);
   window.Gleap.setApiUrl(apiUrl);
-  window.Gleap.initialize(widgetId);
+  window.Gleap.initialize(apiKey);
 };
 
 export default startGleap;

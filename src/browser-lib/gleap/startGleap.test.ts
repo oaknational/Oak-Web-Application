@@ -13,13 +13,13 @@ jest.mock("gleap", () => ({
   },
 }));
 
-const widgetUrl = "https://feedback-widget.thenational.academy";
-const apiUrl = "https://feedback-api.thenational.academy";
-const widgetId = "SAlYMttkyMt51GRHLul4GYU8TCC5EXjs";
+const widgetUrl = "widget-url";
+const apiUrl = "api-url";
+const apiKey = "api-key";
 const gleapConfig = {
   widgetUrl,
   apiUrl,
-  widgetId,
+  apiKey,
 };
 
 describe("startGleap", () => {
@@ -42,9 +42,9 @@ describe("startGleap", () => {
 
     expect(setApiUrl).toHaveBeenCalledWith(apiUrl);
   });
-  test("should call Gleap.initialise with widgetId", () => {
+  test("should call Gleap.initialise with apiKey", () => {
     startGleap(gleapConfig);
 
-    expect(initialize).toHaveBeenCalledWith(widgetId);
+    expect(initialize).toHaveBeenCalledWith(apiKey);
   });
 });

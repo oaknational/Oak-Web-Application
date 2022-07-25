@@ -16,6 +16,11 @@
     "storageBucket": "bucket_uri",
     "tokenHost": "https://example.com"
   },
+  "gleap": {
+    "apiKey": "gleap-api-key",
+    "apiUrl": "gleap-api-url",
+    "widgetUrl": "gleap-widget-url"
+  },
   "hasura": {
     "graphqlApiUrl": "https://example.com",
     "requiredSecrets": ["HASURA_ADMIN_SECRET"]

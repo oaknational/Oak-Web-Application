@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 
+import config from "../../config";
+
 import startGleap from "./startGleap";
 
-const widgetUrl = "https://feedback-widget.thenational.academy";
-const apiUrl = "https://feedback-api.thenational.academy";
-const widgetId = "SAlYMttkyMt51GRHLul4GYU8TCC5EXjs";
+const apiKey = config.get("gleapApiKey");
+const apiUrl = config.get("gleapApiUrl");
+const widgetUrl = config.get("gleapWidgetUrl");
 
 type UseGleapProps = {
   enabled: boolean;
 };
-
-console.log(startGleap);
 
 /**
  * If enabled, loads Gleap widget. If disabled unloads Gleap widget.
@@ -29,7 +29,7 @@ const useGleap = ({ enabled }: UseGleapProps) => {
       window.location.reload();
     }
     if (shouldStartGleap) {
-      startGleap({ widgetId, widgetUrl, apiUrl });
+      startGleap({ apiKey, widgetUrl, apiUrl });
     }
   }, [enabled]);
 };
