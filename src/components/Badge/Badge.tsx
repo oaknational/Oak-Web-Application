@@ -86,9 +86,9 @@ const Badge: FC<BadgeProps> = (props) => {
   const theme = useTheme();
 
   return (
-    <Root alignItems="center" justifyContent="center" {...rootProps}>
+    <Root $alignItems="center" $justifyContent="center" {...rootProps}>
       <Star />
-      <Circle alignItems="center" justifyContent="center">
+      <Circle $alignItems="center" $justifyContent="center">
         {icon ? <Icon name={icon} size={badgeIconSize({ theme })} /> : text}
       </Circle>
     </Root>

@@ -54,7 +54,7 @@ describe("responsive", () => {
       ${styles}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" pl={12} />
+      <StyledComponent data-testid="test" $pl={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 12px");

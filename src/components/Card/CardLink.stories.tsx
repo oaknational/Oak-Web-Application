@@ -14,8 +14,8 @@ export default {
 
 const Template: ComponentStory<typeof Component> = () => {
   return (
-    <Card background={"grey4"}>
-      <Heading mt={24} mb={12} fontSize={24} tag={"h5"} color={"grey8"}>
+    <Card $background={"grey4"}>
+      <Heading $mt={24} $mb={12} $fontSize={24} tag={"h5"} color={"grey8"}>
         <Component href="https://classroom.thenational.academy/">
           Card link
         </Component>

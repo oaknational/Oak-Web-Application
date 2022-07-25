@@ -10,11 +10,11 @@ describe("CardLink", () => {
   it("is a link if clicked", async () => {
     renderWithProviders(
       <Card
-        flexDirection={"column"}
-        justifyContent={"center"}
-        alignItems="center"
+        $flexDirection={"column"}
+        $justifyContent={"center"}
+        $alignItems="center"
       >
-        <Heading mt={24} mb={0} fontSize={24} tag={"h5"}>
+        <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"}>
           <CardLink href="https://www.test.com">Click Me</CardLink>
         </Heading>
         <P>

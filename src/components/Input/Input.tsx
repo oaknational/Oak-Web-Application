@@ -92,13 +92,13 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
     return (
       <>
         {label && (
-          <LabelWrapper position="absolute">
-            <Label fontSize={12} htmlFor={id}>
+          <LabelWrapper $position="absolute">
+            <Label $fontSize={12} htmlFor={id}>
               {label}
             </Label>
           </LabelWrapper>
         )}
-        <Flex alignItems="center">
+        <Flex $alignItems="center">
           <StyledInput
             {...inputProps}
             icon={icon}
@@ -110,8 +110,8 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           {icon && <InputIcon outerWidth={40} size={20} name={icon} />}
         </Flex>
         {error && (
-          <Box position="absolute">
-            <Span color="failure" fontSize={12} id={errorId}>
+          <Box $position="absolute">
+            <Span color="failure" $fontSize={12} id={errorId}>
               {error}
             </Span>
           </Box>
