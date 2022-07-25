@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
@@ -7,20 +7,12 @@ import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading, P } from "../components/Typography";
 import Icon from "../components/Icon";
-import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
 import DismissibleCard from "../components/Card/DismissibleCard";
 import Flex from "../components/Flex";
 
 const Home: FC = () => {
-  const { track } = useAnalytics();
-
-  useEffect(() => {
-    track.buttonClicked({ buttonIdentifier: "123 hateeeee" });
-    track.homeButtonClicked({ clickedOnText: true });
-  }, [track]);
-
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
       <Grid cg={16} rg={[16, 48, 80]}>

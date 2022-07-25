@@ -765,8 +765,10 @@ Array [
       mt={24}
     >
       <a
-        className="sc-ff273e4e-0 dumupW"
+        className="sc-8ea76e6d-0 dnhKCe"
         href="https://classroom.thenational.academy/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         Card link
       </a>

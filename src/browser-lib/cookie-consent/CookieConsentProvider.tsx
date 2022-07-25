@@ -10,15 +10,21 @@ import { createContext, FC, useContext } from "react";
 // @ts-ignore
 import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
 import useConfirmicConsents from "./confirmic/useConfirmicConsents";
-import { CookieConsentChoice, CookiePolicyName } from "./types";
+import {
+  CookieConsentChoice,
+  CookiePolicyName,
+  servicePolicyMap,
+  ServiceType,
+} from "./types";
 
 export type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
+export type HasConsentedTo = (serviceType: ServiceType) => boolean;
 
 type CookieConsentContext = {
   // makes consent manager modal visible
   showConsentManager: () => void;
   // whether the user has granted consent to the latest version of a partular policy
-  hasConsentedTo: (policyName: CookiePolicyName) => boolean;
+  hasConsentedTo: HasConsentedTo;
 };
 
 const cookieConsentContext = createContext<CookieConsentContext | null>(null);
@@ -46,7 +52,9 @@ const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
     window.Metomic("ConsentManager:show");
   };
 
-  const hasConsentedTo = (policyName: CookiePolicyName) => {
+  const hasConsentedTo = (serviceType: ServiceType) => {
+    const policyName = servicePolicyMap[serviceType];
+
     return consents[policyName].enabled;
   };
 

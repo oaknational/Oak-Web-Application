@@ -1,8 +1,7 @@
-import React, { Component, ErrorInfo, FC, ReactNode, useEffect } from "react";
+import React, { Component, ErrorInfo, FC, ReactNode } from "react";
 import Bugsnag from "@bugsnag/js";
 
-import { initialiseBugsnag } from "../../common-lib/error-reporter";
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
+import { bugsnagInitialised } from "../../browser-lib/bugsnag/useBugsnag";
 
 const ClientErrorView: FC = () => {
   return (
@@ -56,32 +55,11 @@ const FallbackComponent: FC<FallbackComponentProps> = () => {
   return <ClientErrorView />;
 };
 
-const bugsnagInitialised = () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return Boolean(Bugsnag._client);
-};
-
 /**
  * ErrorBoundary will catch any uncaught errors, showing the user ClientErrorView
  * and sending a report of the uncaught error to bugsnag.
  */
 const ErrorBoundary: FC = (props) => {
-  const { hasConsentedTo } = useCookieConsent();
-  const bugsnagAllowed = hasConsentedTo("statistics");
-
-  useEffect(() => {
-    // This should happen once per app load.
-    if (bugsnagAllowed && !bugsnagInitialised()) {
-      initialiseBugsnag();
-    }
-    if (!bugsnagAllowed && bugsnagInitialised()) {
-      // @TODO disable bugsnag here!?
-      // If we can't disable bugsnag globally, we'll have to configure
-      // in error-reporter to stop sending reports
-    }
-  }, [bugsnagAllowed]);
-
   const BugsnagErrorBoundary =
     bugsnagInitialised() &&
     Bugsnag.getPlugin("react")?.createErrorBoundary(React);
