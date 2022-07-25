@@ -149,7 +149,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 <IconButtonAsLink
                   aria-label={"instagram"}
                   icon={"Instagram"}
-                  href={"/instagram"}
+                  href={"/instagram"} // update link
                   variant={"minimal"}
                   size={"tiny"}
                   mr={24}
@@ -157,7 +157,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 <IconButtonAsLink
                   aria-label={"facebook"}
                   icon={"Facebook"}
-                  href={"/facebook"}
+                  href={"/facebook"} // update link
                   variant={"minimal"}
                   size={"tiny"}
                   mr={24}
@@ -165,7 +165,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 <IconButtonAsLink
                   aria-label={"twitter"}
                   icon={"Twitter"}
-                  href={"/twitter"}
+                  href={"/twitter"} // update link
                   variant={"minimal"}
                   size={"tiny"}
                   mr={24}
