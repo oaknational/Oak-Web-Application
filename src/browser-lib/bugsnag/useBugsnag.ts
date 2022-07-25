@@ -19,9 +19,11 @@ const useBugsnag = ({ enabled }: UseBugsnagProps) => {
       initialiseBugsnag();
     }
     if (!enabled && bugsnagInitialised()) {
-      // @TODO disable bugsnag here!?
-      // If we can't disable bugsnag globally, we'll have to configure
-      // in error-reporter to stop sending reports
+      /**
+       * @TODO disable bugsnag here!?
+       * If we can't disable bugsnag globally, we'll have to configure
+       * in error-reporter to stop sending reports
+       */
     }
   }, [enabled]);
 };
