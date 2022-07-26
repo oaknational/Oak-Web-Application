@@ -12,7 +12,7 @@ const brushBorder = css`
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
 `;
-export const brushBorderTop = css`
+const brushBorderTop = css`
   ${brushBorder}
   height: ${BORDER_THICKNESS_PX}px;
   top: ${BORDER_OFFSET_PX}px;
@@ -21,7 +21,7 @@ export const brushBorderTop = css`
   mask-image: url("/brushstrokes/brushborder-top.svg");
 `;
 
-export const brushBorderRight = css`
+const brushBorderRight = css`
   ${brushBorder}
   width: ${BORDER_THICKNESS_PX}px;
   top: 31px;
@@ -30,7 +30,7 @@ export const brushBorderRight = css`
   mask-image: url("/brushstrokes/brushborder-right.svg");
 `;
 
-export const brushBorderBottom = css`
+const brushBorderBottom = css`
   ${brushBorder}
   height: ${BORDER_THICKNESS_PX}px;
   bottom: ${BORDER_OFFSET_PX}px;
@@ -39,7 +39,7 @@ export const brushBorderBottom = css`
   mask-image: url("/brushstrokes/brushborder-bottom.svg");
 `;
 
-export const brushBorderLeft = css`
+const brushBorderLeft = css`
   ${brushBorder}
   width: ${BORDER_THICKNESS_PX}px;
   top: ${BORDER_OFFSET_PX}px;
@@ -67,9 +67,13 @@ const BrushBorderLeft = styled.span`
  * component which renders four spans, one for each side of the border.
  *
  * ## Usage
- *
  * Just drop this component inside a Card or other relatively positioned
  * container, and it will act as a visual border around that component.
+ *
+ * ## Note
+ * Importantly, the SVGs for the border should have `preserveAspectRatio="none"`,
+ * which allows them to be stretched whilst still preserving the effect of being
+ * a painted or drawn line.
  */
 const BrushBorders: FC = () => {
   return (
