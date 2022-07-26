@@ -103,8 +103,12 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
 
       // Sanity
-      SANITY_GRAPHQL_URL:
-        process.env.SANITY_GRAPHQL_URL || oakConfig.sanity?.graphqlUrl,
+      SANITY_PROJECT_ID:
+        process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
+      SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,
+      SANITY_DATASET_TAG:
+        process.env.SANITY_DATASET_TAG || oakConfig.sanity?.datasetTag,
+      SANITY_USE_CDN: process.env.SANITY_USE_CDN || oakConfig.sanity?.useCDN,
       SANITY_AUTH_SECRET:
         process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
     },
