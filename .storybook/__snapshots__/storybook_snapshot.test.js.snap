@@ -412,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
   >
     <h2>
       Card title
@@ -443,7 +443,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
     >
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -522,7 +522,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
     >
       <div
         className="sc-a6ed065f-0 hcJmWF"
@@ -674,7 +674,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
     >
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jNWExK"
@@ -746,7 +746,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 gNdbTE ljyxLm NzliF"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hZetgw kwiNel HTjge"
   >
     <h5
       className="sc-ff7617d7-0 cMKFWt"
@@ -779,7 +779,7 @@ Array [
   />,
   <div>
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 gLNDzl fwcNPz NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 kfBdVh kpQbuw HTjge"
     >
       Close to remove
       <div
@@ -1651,7 +1651,7 @@ Array [
       className="sc-988f9542-0 cJLLUL"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 lfQNdz gynilB NzliF"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP jDHWmS HTjge"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -1912,7 +1912,7 @@ Array [
       className="sc-988f9542-0 cJLLUL"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 lfQNdz gynilB NzliF"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP jDHWmS HTjge"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -2185,14 +2185,13 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 kRlEGW bSGgDF eCcFJP"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 filyzj cLLNrI"
+      className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
     >
       <h2
-        className="sc-1d12b6ff-0 iMuYLq"
-        fontSize={24}
+        className="sc-ff7617d7-0 gDnuzo"
       >
         Did you know about our lessons?
       </h2>
@@ -2282,7 +2281,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 icwuNe NKeFw NzliF"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 chsTvi hmBVrf HTjge"
       >
         Grid box
       </div>
