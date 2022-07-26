@@ -46,9 +46,6 @@ module.exports = async (phase) => {
     ? {}
     : await fetchSecrets(oakConfig);
 
-  const { NEXT_PUBLIC_GLEAP_API_KEY } = process.env;
-  console.log({ NEXT_PUBLIC_GLEAP_API_KEY });
-
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     poweredByHeader: false,
