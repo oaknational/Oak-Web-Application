@@ -1,3 +1,10 @@
+## [0.52.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.0...v0.52.1) (2022-07-26)
+
+
+### Bug Fixes
+
+* **cms:** fix codegen env vars ([5ed3e4d](https://github.com/oaknational/Oak-Web-Application/commit/5ed3e4d8f32a54f6592e8db7b073cecac807e960))
+
 # [0.52.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.51.0...v0.52.0) (2022-07-22)
 
 
