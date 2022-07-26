@@ -2197,18 +2197,23 @@ Array [
       </h2>
     </div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    <span
-      className="sc-b29dcfda-0 fDCRFC"
-    />
-    <span
-      className="sc-b29dcfda-1 exAPJF"
-    />
-    <span
-      className="sc-b29dcfda-2 kjBPOI"
-    />
-    <span
-      className="sc-b29dcfda-3 cVfHXq"
-    />
+    <div
+      aria-hidden="true"
+      data-testid="brush-borders"
+    >
+      <span
+        className="sc-858dce39-0 gREtsc"
+      />
+      <span
+        className="sc-858dce39-1 gvZedi"
+      />
+      <span
+        className="sc-858dce39-2 xJmsW"
+      />
+      <span
+        className="sc-858dce39-3 eTxRnl"
+      />
+    </div>
   </div>,
 ]
 `;

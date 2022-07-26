@@ -1,47 +1,50 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
+const BORDER_THICKNESS_PX = 3;
+const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
+
 const brushBorder = css`
   display: block;
   position: absolute;
-  background: #080808;
+  background: ${(props) => props.theme.colors.grey9};
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
 `;
 export const brushBorderTop = css`
   ${brushBorder}
-  height: 10px;
-  top: -5px;
-  right: 1px;
-  left: -3px;
+  height: ${BORDER_THICKNESS_PX}px;
+  top: ${BORDER_OFFSET_PX}px;
+  right: ${BORDER_OFFSET_PX}px;
+  left: ${BORDER_OFFSET_PX}px;
   mask-image: url("/brushstrokes/brushborder-top.svg");
 `;
 
 export const brushBorderRight = css`
   ${brushBorder}
-  width: 10px;
+  width: ${BORDER_THICKNESS_PX}px;
   top: 31px;
-  right: -5px;
-  bottom: -4px;
+  right: ${BORDER_OFFSET_PX}px;
+  bottom: ${BORDER_OFFSET_PX}px;
   mask-image: url("/brushstrokes/brushborder-right.svg");
 `;
 
 export const brushBorderBottom = css`
   ${brushBorder}
-  height: 10px;
-  bottom: -5px;
-  right: -4px;
-  left: -3px;
+  height: ${BORDER_THICKNESS_PX}px;
+  bottom: ${BORDER_OFFSET_PX}px;
+  right: ${BORDER_OFFSET_PX}px;
+  left: ${BORDER_OFFSET_PX}px;
   mask-image: url("/brushstrokes/brushborder-bottom.svg");
 `;
 
 export const brushBorderLeft = css`
   ${brushBorder}
-  width: 10px;
-  top: -5px;
-  left: -3px;
-  bottom: -5px;
+  width: ${BORDER_THICKNESS_PX}px;
+  top: ${BORDER_OFFSET_PX}px;
+  left: ${BORDER_OFFSET_PX}px;
+  bottom: ${BORDER_OFFSET_PX}px;
   mask-image: url("/brushstrokes/brushborder-left.svg");
 `;
 
@@ -70,12 +73,12 @@ const BrushBorderLeft = styled.span`
  */
 const BrushBorders: FC = () => {
   return (
-    <>
+    <div aria-hidden="true" data-testid="brush-borders">
       <BrushBorderTop />
       <BrushBorderRight />
       <BrushBorderBottom />
       <BrushBorderLeft />
-    </>
+    </div>
   );
 };
 
