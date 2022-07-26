@@ -43,7 +43,7 @@ type SelectProps = {
 };
 
 export const SelectContainer = (props: FlexProps) => (
-  <Flex {...props} flexDirection={"column"} position={"relative"} />
+  <Flex {...props} $flexDirection={"column"} $position={"relative"} />
 );
 
 interface SelectButtonProps {
@@ -165,8 +165,8 @@ export function Select<T extends object>(
             isFocusVisible={isFocusVisible}
             isPlaceholder={!state.selectedItem}
           >
-            <Flex alignItems={"center"}>
-              {props.icon && <Icon mr={8} name={props.icon}></Icon>}
+            <Flex $alignItems={"center"}>
+              {props.icon && <Icon $mr={8} name={props.icon}></Icon>}
               <span data-testid={"select-span"} {...valueProps}>
                 {state.selectedItem
                   ? state.selectedItem.rendered

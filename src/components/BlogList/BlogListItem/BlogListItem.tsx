@@ -44,27 +44,27 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
 
   return (
     <Flex
-      flexDirection={["column", "row"]}
-      alignItems={["flex-start", "center"]}
-      position="relative"
+      $flexDirection={["column", "row"]}
+      $alignItems={["flex-start", "center"]}
+      $position="relative"
     >
       <BlogListItemImage
-        background="grey3"
-        alignItems="center"
-        justifyContent="center"
-        mb={[24, 0]}
+        $background="grey3"
+        $alignItems="center"
+        $justifyContent="center"
+        $mb={[24, 0]}
       >
         {contentType === "webinar" && (
-          <Icon name="Play" color="white" size={48} />
+          <Icon name="Play" $color="white" size={48} />
         )}
       </BlogListItemImage>
-      <Flex flexDirection="column" alignItems="flex-start">
-        <Heading tag={titleTag} fontSize={20} mb={16}>
+      <Flex $flexDirection="column" $alignItems="flex-start">
+        <Heading tag={titleTag} $fontSize={20} $mb={16}>
           <ActionLink href={href} title={title}>
             {title}
           </ActionLink>
         </Heading>
-        <P fontSize={18}>
+        <P $fontSize={18}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>

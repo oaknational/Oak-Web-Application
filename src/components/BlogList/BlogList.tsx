@@ -22,23 +22,23 @@ export type BlogListProps = {
 const BlogList: FC<BlogListProps> = (props) => {
   const { title, titleTag, items } = props;
   return (
-    <Flex flexDirection="column">
+    <Flex $flexDirection="column">
       <Flex
-        mb={24}
-        flexDirection={["column", "row", "row"]}
-        alignItems={["flex-start", "flex-start", "center"]}
-        justifyContent={"space-between"}
+        $mb={24}
+        $flexDirection={["column", "row", "row"]}
+        $alignItems={["flex-start", "flex-start", "center"]}
+        $justifyContent={"space-between"}
       >
-        <Flex flexDirection={"row"} alignItems="center">
-          <Icon name="Newspaper" mr={16} size={40} />
-          <Heading fontSize={24} tag={titleTag}>
+        <Flex $flexDirection={"row"} $alignItems="center">
+          <Icon name="Newspaper" $mr={16} size={40} />
+          <Heading $fontSize={24} tag={titleTag}>
             {title}
           </Heading>
         </Flex>
-        <Flex justifyContent={"space-between"}>
+        <Flex $justifyContent={"space-between"}>
           <nav>
-            <Flex justifyContent={"center"} alignItems="center">
-              <P mr={16}>
+            <Flex $justifyContent={"center"} $alignItems="center">
+              <P $mr={16}>
                 <Link href="/">All Webinars</Link>
               </P>
               <P>

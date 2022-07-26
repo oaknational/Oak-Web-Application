@@ -9,23 +9,23 @@ const StyledComponent = styled.div`
 `;
 
 describe("typography", () => {
-  test("should correctly handle prop fontFamily='body'", async () => {
+  test("should correctly handle prop $fontFamily='body'", async () => {
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" fontFamily="body" />
+      <StyledComponent data-testid="test" $fontFamily="body" />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-family: ABeeZee,sans-serif");
   });
-  test("should correctly handle prop fontFamily='ui'", async () => {
+  test("should correctly handle prop $fontFamily='ui'", async () => {
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" fontFamily="ui" />
+      <StyledComponent data-testid="test" $fontFamily="ui" />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
   });
-  test("should correctly handle prop fontFamily='ui'", async () => {
+  test("should correctly handle prop $fontFamily='ui'", async () => {
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" fontFamily="heading" />
+      <StyledComponent data-testid="test" $fontFamily="heading" />
     );
 
     expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");

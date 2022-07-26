@@ -37,8 +37,8 @@ const Typography = styled(Box)<TypographyComponent>`
  * Perhaps defaults should be in global css instead.
  */
 Typography.defaultProps = {
-  fontWeight: 400,
-  lineHeight: 1.4,
+  $fontWeight: 400,
+  $lineHeight: 1.4,
 };
 
 export default Typography;

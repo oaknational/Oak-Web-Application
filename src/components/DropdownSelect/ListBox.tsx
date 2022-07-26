@@ -126,7 +126,7 @@ function Option({ item, state }: OptionProps) {
       isFocused={isFocused}
       isSelected={isSelected}
     >
-      <Flex alignItems={"center"}>
+      <Flex $alignItems={"center"}>
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>

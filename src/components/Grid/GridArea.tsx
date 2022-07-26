@@ -6,9 +6,9 @@ import spacing, { SpacingProps } from "../../styles/utils/spacing";
 type ColSpans = 1 | 2 | 3 | 4 | 6 | 8 | 12;
 
 type GridAreaProps = {
-  colSpan: Array<ColSpans>;
-  rowSpan?: number;
-  order?: Array<number>;
+  $colSpan: Array<ColSpans>;
+  $rowSpan?: number;
+  $order?: Array<number>;
 } & SpacingProps;
 
 const GridArea = styled.div<GridAreaProps>`
@@ -17,16 +17,16 @@ const GridArea = styled.div<GridAreaProps>`
   flex-direction: column;
   ${responsive(
     "grid-column",
-    (props) => props.colSpan,
+    (props) => props.$colSpan,
     (value) => `span ${value}`
   )};
   ${responsive(
     "order",
-    (props) => props.order,
+    (props) => props.$order,
     (value) => value && `${value}`
   )};
   ${responsive("grid-row", (props) =>
-    props.rowSpan ? `span ${props.rowSpan}` : "span 1"
+    props.$rowSpan ? `span ${props.$rowSpan}` : "span 1"
   )};
 `;
 

@@ -39,10 +39,10 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           description:
             "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions.",
         }}
-        background="grey1"
+        $background="grey1"
       >
         <header>
-          <Flex pv={40}>
+          <Flex $pv={40}>
             <Breadcrumbs
               breadcrumbs={[
                 { href: "/", label: "[key-stage]" },
@@ -52,7 +52,7 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
               ]}
             />
           </Flex>
-          <BrowserWidthBar pv={40} background="white">
+          <BrowserWidthBar $pv={40} $background="white">
             <LessonHeader {...lesson} />
           </BrowserWidthBar>
         </header>

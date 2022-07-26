@@ -17,16 +17,16 @@ const parseFontSize = (value?: FontSize) => {
 };
 
 export type TypographyProps = ColorProps & {
-  fontFamily?: ResponsiveValues<OakFontName>;
-  fontSize?: ResponsiveValues<FontSize>;
-  fontWeight?: ResponsiveValues<400 | 600>;
-  lineHeight?: ResponsiveValues<string | number>;
+  $fontFamily?: ResponsiveValues<OakFontName>;
+  $fontSize?: ResponsiveValues<FontSize>;
+  $fontWeight?: ResponsiveValues<400 | 600>;
+  $lineHeight?: ResponsiveValues<string | number>;
 };
 const typography = css<TypographyProps>`
-  ${responsive("font-family", (props) => props.fontFamily, getFontFamily)}
-  ${responsive("font-weight", (props) => props.fontWeight)}
-  ${responsive("font-height", (props) => props.lineHeight)}
-  ${responsive("font-size", (props) => props.fontSize, parseFontSize)}
+  ${responsive("font-family", (props) => props.$fontFamily, getFontFamily)}
+  ${responsive("font-weight", (props) => props.$fontWeight)}
+  ${responsive("font-height", (props) => props.$lineHeight)}
+  ${responsive("font-size", (props) => props.$fontSize, parseFontSize)}
   ${color}
 `;
 

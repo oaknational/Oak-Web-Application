@@ -43,11 +43,11 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       >
         Title
       </CardTitle>
-      <P fontSize={16} mb={24} color={"grey6"}>
+      <P $fontSize={16} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink
-        mt={"auto"}
+        $mt={"auto"}
         label={"Lable"}
         fullWidth
         href={"/"}
@@ -63,14 +63,14 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
         imageSrc={image}
         alt="black and white photo of books stacked to show their spines"
       />
-      <Flex pa={24} flexDirection={"column"}>
+      <Flex $pa={24} $flexDirection={"column"}>
         <CardTitle tag={"h4"}>Title</CardTitle>
-        <P fontSize={16} mb={24} color={"grey6"}>
+        <P $fontSize={16} $mb={24} $color={"grey6"}>
           Short snappy description of what this card is about.
         </P>
         <ButtonAsLink
-          mt={"auto"}
-          mb={16}
+          $mt={"auto"}
+          $mb={16}
           label={"Label"}
           fullWidth
           href={"/"}
@@ -97,12 +97,12 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
       >
         Title
       </CardTitle>
-      <P textAlign="center" fontSize={16} mb={24} color={"grey6"}>
+      <P textAlign="center" $fontSize={16} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink
-        mb={16}
-        mt={"auto"}
+        $mb={16}
+        $mt={"auto"}
         label={"Label"}
         fullWidth
         href={"/"}
