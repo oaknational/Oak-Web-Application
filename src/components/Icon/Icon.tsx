@@ -82,11 +82,11 @@ const IconOuterWrapper = styled.span<SizeProps & MarginProps>`
   ${size}
   ${margin}
 `;
-const IconInnerWrapper = styled.span<SizeProps & { color?: OakColorName }>`
+const IconInnerWrapper = styled.span<SizeProps & { $color?: OakColorName }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => getColorByName(props.color)};
+  color: ${(props) => getColorByName(props.$color)};
   ${size}
 `;
 
@@ -102,10 +102,10 @@ type IconProps = MarginProps & {
   outerHeight?: PixelSpacing;
   /**
    * by default, the color will take the css `color` value of its closest ancester
-   * (because in the SVG, the color is set to `currentColor`). Use `color` prop to
+   * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to
    * override this value.
    */
-  color?: OakColorName;
+  $color?: OakColorName;
 };
 /**
  * The `<Icon />` component should be the go to component wherever you seen an
@@ -114,7 +114,7 @@ type IconProps = MarginProps & {
  * use an `<IconButton />` component (which uses `<Icon />` internally).
  */
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height, color, ...rootProps } = props;
+  const { name, size = 24, width, height, $color, ...rootProps } = props;
   const IconComponent = icons[name];
 
   const innerWidth = width || size;
@@ -125,7 +125,7 @@ const Icon: FC<IconProps> = (props) => {
 
   return (
     <IconOuterWrapper height={outerHeight} width={outerWidth} {...rootProps}>
-      <IconInnerWrapper color={color} height={innerHeight} width={innerWidth}>
+      <IconInnerWrapper $color={$color} height={innerHeight} width={innerWidth}>
         <IconComponent />
       </IconInnerWrapper>
     </IconOuterWrapper>

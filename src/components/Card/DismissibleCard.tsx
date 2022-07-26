@@ -23,7 +23,7 @@ const DismissibleCard: FC<DismissibleCardProps> = ({ children }) => {
   return (
     <div>
       {!dismissed && (
-        <Card background={"white"} mt={48} pr={64}>
+        <Card $background={"white"} $mt={48} $pr={64}>
           {children}
           <CloseButtonWrapper>
             <IconButton

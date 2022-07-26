@@ -21,14 +21,14 @@ const Background = styled.div`
 
 type BrowserWidthBarProps = FlexProps;
 const BrowserWidthBar: FC<BrowserWidthBarProps> = (props) => {
-  const { background } = props;
+  const { $background } = props;
   return (
     <Root>
-      <Background background={background} />
+      <Background $background={$background} />
       <Flex
-        position="relative"
-        flexDirection="column"
-        flexGrow={1}
+        $position="relative"
+        $flexDirection="column"
+        $flexGrow={1}
         {...props}
       />
     </Root>

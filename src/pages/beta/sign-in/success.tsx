@@ -8,10 +8,10 @@ const SignInSuccess: NextPage = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
       <Flex
-        flexGrow={1}
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
+        $flexGrow={1}
+        $flexDirection="column"
+        $alignItems="center"
+        $justifyContent="center"
       >
         <p data-testid="sign-in-success-message">
           Thanks for signing in! You can close this tab and head over the tab

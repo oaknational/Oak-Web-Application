@@ -31,7 +31,7 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
       <Icon
         name={icon}
         size={buttonIconSizeMap[size]}
-        color={iconColorOverride}
+        $color={iconColorOverride}
       />
     </IconButtonWrapper>
   );

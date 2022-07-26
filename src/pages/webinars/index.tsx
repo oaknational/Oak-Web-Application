@@ -16,8 +16,8 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} background="grey1">
-      <Heading tag="h1" fontSize={32}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+      <Heading tag="h1" $fontSize={32}>
         Webinars
       </Heading>
 

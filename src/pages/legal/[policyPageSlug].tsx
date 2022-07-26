@@ -18,16 +18,16 @@ type PolicyPageProps = {
 
 const Policies: FC<PolicyPageProps> = ({ policy }) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <Grid>
-        <GridArea colSpan={[12, 12, 12]}>
+        <GridArea $colSpan={[12, 12, 12]}>
           {/* change flex justify center to textAlign when PR fix is in */}
-          <Flex justifyContent={"center"}>
-            <Heading mv={80} fontSize={48} tag={"h1"}>
+          <Flex $justifyContent={"center"}>
+            <Heading $mv={80} $fontSize={48} tag={"h1"}>
               {policy.title}
             </Heading>
           </Flex>
-          <P mb={16} fontSize={14}>
+          <P $mb={16} $fontSize={14}>
             {`Updated ${policy.updatedAt}`}
           </P>
           <Typography>
