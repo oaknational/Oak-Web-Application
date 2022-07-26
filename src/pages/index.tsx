@@ -49,14 +49,14 @@ const Home: FC = () => {
                   size={24}
                   name={"GraduationCap"}
                   $mr={8}
-                  color={"grey8"}
+                  $color={"grey8"}
                 />
-                <P color={"grey8"} $fontSize={16} $fontWeight={400}>
+                <P $color={"grey8"} $fontSize={16} $fontWeight={400}>
                   Next Webinar
                 </P>
               </Flex>
               <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
-              <P color={"grey8"} $fontSize={16} $fontWeight={400} $mt={8}>
+              <P $color={"grey8"} $fontSize={16} $fontWeight={400} $mt={8}>
                 16/03/2022 &bull; 3:30pm
               </P>
             </Heading>
@@ -71,7 +71,13 @@ const Home: FC = () => {
             $alignItems="center"
           >
             <Icon name={"GraduationCap"} size={64} />
-            <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"} color={"grey8"}>
+            <Heading
+              $mt={24}
+              $mb={0}
+              $fontSize={24}
+              tag={"h5"}
+              $color={"grey8"}
+            >
               <CardLink href="https://classroom.thenational.academy/">
                 Classroom
               </CardLink>
@@ -86,7 +92,13 @@ const Home: FC = () => {
             $alignItems="center"
           >
             <Icon name={"University"} size={64} />
-            <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"} color={"grey8"}>
+            <Heading
+              $mt={24}
+              $mb={0}
+              $fontSize={24}
+              tag={"h5"}
+              $color={"grey8"}
+            >
               <CardLink href="https://teachers.thenational.academy/">
                 Teacher Hub
               </CardLink>
@@ -102,7 +114,13 @@ const Home: FC = () => {
             $background={"white"}
           >
             <Icon name={"University"} size={64} />
-            <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"} color={"grey8"}>
+            <Heading
+              $mt={24}
+              $mb={0}
+              $fontSize={24}
+              tag={"h5"}
+              $color={"grey8"}
+            >
               <CardLink href="/">Curriculum</CardLink>
             </Heading>
           </Card>
@@ -115,7 +133,13 @@ const Home: FC = () => {
             $background={"white"}
           >
             <Icon name={"University"} size={64} />
-            <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"} color={"grey8"}>
+            <Heading
+              $mt={24}
+              $mb={0}
+              $fontSize={24}
+              tag={"h5"}
+              $color={"grey8"}
+            >
               <CardLink href="/">Lesson Planning</CardLink>
             </Heading>
           </Card>
@@ -128,7 +152,13 @@ const Home: FC = () => {
             $background={"white"}
           >
             <Icon name={"GraduationCap"} size={64} />
-            <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"} color={"grey8"}>
+            <Heading
+              $mt={24}
+              $mb={0}
+              $fontSize={24}
+              tag={"h5"}
+              $color={"grey8"}
+            >
               <CardLink href="/">Oak for Schools</CardLink>
             </Heading>
           </Card>

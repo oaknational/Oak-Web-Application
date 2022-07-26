@@ -38,7 +38,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
         $maxWidth={1200}
         $ma={"auto"}
       >
-        <Typography $fontSize={12} $lineHeight={20} color="grey8">
+        <Typography $fontSize={12} $lineHeight={20} $color="grey8">
           <nav>
             <Grid>
               {footerSections.map((footerSection) => (
@@ -47,7 +47,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                   key={footerSection.title}
                   $colSpan={[6, 3, 3]}
                 >
-                  <Heading $mb={12} $fontSize={16} color="black" tag="h4">
+                  <Heading $mb={12} $fontSize={16} $color="black" tag="h4">
                     {footerSection.title}
                   </Heading>
                   <ul role={"list"}>

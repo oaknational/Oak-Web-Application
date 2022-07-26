@@ -121,15 +121,15 @@ describe("responsive", () => {
     expect(stringify(actual)).toEqual(stringify(expected));
   });
   test("should handle when parse fn gets from theme", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<{ $color?: OakColorName }>`
       ${responsive(
         "color",
-        (props) => props.color,
+        (props) => props.$color,
         (colorName) => (props) => props.theme.colors[colorName as OakColorName]
       )}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" color="teachersPurple" />
+      <StyledComponent data-testid="test" $color="teachersPurple" />
     );
 
     expect(getByTestId("test")).toHaveStyle("color: #845ad9");

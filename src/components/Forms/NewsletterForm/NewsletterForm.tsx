@@ -141,7 +141,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           $fontSize={14}
           aria-live="assertive"
           role="alert"
-          color="failure"
+          $color="failure"
         >
           {error}
         </P>

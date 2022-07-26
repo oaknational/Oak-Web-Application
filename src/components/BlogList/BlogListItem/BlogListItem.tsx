@@ -55,7 +55,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         $mb={[24, 0]}
       >
         {contentType === "webinar" && (
-          <Icon name="Play" color="white" size={48} />
+          <Icon name="Play" $color="white" size={48} />
         )}
       </BlogListItemImage>
       <Flex $flexDirection="column" $alignItems="flex-start">
