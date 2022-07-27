@@ -412,7 +412,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
   >
     <h2>
       Card title
@@ -443,7 +443,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
     >
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -522,7 +522,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
     >
       <div
         className="sc-a6ed065f-0 hcJmWF"
@@ -674,7 +674,7 @@ Array [
     }
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 kRlEGW bXaasA NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
     >
       <div
         className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jNWExK"
@@ -746,7 +746,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 gNdbTE ljyxLm NzliF"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hZetgw kwiNel HTjge"
   >
     <h5
       className="sc-ff7617d7-0 cMKFWt"
@@ -781,7 +781,7 @@ Array [
     data-testid="dismissible-card"
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 gLNDzl fwcNPz NzliF"
+      className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 kfBdVh kpQbuw HTjge"
     >
       Close to remove
       <div
@@ -1653,7 +1653,7 @@ Array [
       className="sc-988f9542-0 cJLLUL"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 lfQNdz gynilB NzliF"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP jDHWmS HTjge"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -1914,7 +1914,7 @@ Array [
       className="sc-988f9542-0 cJLLUL"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 lfQNdz gynilB NzliF"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP jDHWmS HTjge"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -2176,6 +2176,50 @@ Array [
 ]
 `;
 
+exports[`Storyshots Foundations/BrushBorders Brush Borders 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
+  >
+    <div
+      className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
+    >
+      <h2
+        className="sc-ff7617d7-0 gDnuzo"
+      >
+        Did you know about our lessons?
+      </h2>
+    </div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <div
+      aria-hidden="true"
+      data-testid="brush-borders"
+    >
+      <span
+        className="sc-511f35cf-0 eGHJah"
+      />
+      <span
+        className="sc-511f35cf-1 ccoXfv"
+      />
+      <span
+        className="sc-511f35cf-2 irfrOf"
+      />
+      <span
+        className="sc-511f35cf-3 hAsxJg"
+      />
+    </div>
+  </div>,
+]
+`;
+
 exports[`Storyshots Foundations/FixedHeader Fixed Header 1`] = `
 Array [
   <link
@@ -2244,7 +2288,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-841df635-0 icwuNe NKeFw NzliF"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 chsTvi hmBVrf HTjge"
       >
         Grid box
       </div>

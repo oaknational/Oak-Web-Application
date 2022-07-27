@@ -1,3 +1,15 @@
+# [0.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.1...v0.53.0) (2022-07-27)
+
+
+### Bug Fixes
+
+* **brushstroke-borders:** new svgs ([2b135b2](https://github.com/oaknational/Oak-Web-Application/commit/2b135b2775705a37327ddefe2a92f365dfefc4f5))
+
+
+### Features
+
+* brushstroke borders ([39489f2](https://github.com/oaknational/Oak-Web-Application/commit/39489f2cd5f0b16fd6e7028aa54b80716504f14e))
+
 ## [0.52.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.0...v0.52.1) (2022-07-26)
 
 
