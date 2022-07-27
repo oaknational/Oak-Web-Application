@@ -42,6 +42,9 @@ query planningCorePage($isDraft: Boolean = false) {
         ...Card
       }
     }
+    stepsCTA {
+      ...CTA
+    }
     learnMoreHeading
     learnMoreBlock1 {
       ...TextAndMedia
