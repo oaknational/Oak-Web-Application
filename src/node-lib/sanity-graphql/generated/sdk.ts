@@ -64,19 +64,26 @@ export type Cta = {
   __typename?: 'Cta';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
+  external?: Maybe<Scalars['String']>;
+  internal?: Maybe<NewsPostOrPlanningCorePageOrWebinar>;
   label?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
 };
 
 export type CtaFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  external?: InputMaybe<StringFilter>;
   label?: InputMaybe<StringFilter>;
+  linkType?: InputMaybe<StringFilter>;
 };
 
 export type CtaSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  external?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
+  linkType?: InputMaybe<SortOrder>;
 };
 
 export type DateFilter = {
@@ -324,6 +331,8 @@ export type NewsPostFilter = {
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
+
+export type NewsPostOrPlanningCorePageOrWebinar = NewsPost | PlanningCorePage | Webinar;
 
 export type NewsPostSorting = {
   _createdAt?: InputMaybe<SortOrder>;
@@ -1207,19 +1216,28 @@ export type TextAndMedia = {
   __typename?: 'TextAndMedia';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
+  alignMedia?: Maybe<Scalars['String']>;
   bodyRaw?: Maybe<Scalars['JSON']>;
+  image?: Maybe<Image>;
+  mediaType?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
 
 export type TextAndMediaFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  alignMedia?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  mediaType?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
 export type TextAndMediaSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  alignMedia?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageSorting>;
+  mediaType?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
 };
 
@@ -1359,16 +1377,18 @@ export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ _
 
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null };
 
-export type CtaFragment = { __typename?: 'Cta', label?: string | null };
+export type CtaFragment = { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
+
+export type ImageFragment = { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null };
 
 export type PlanningCorePageQueryVariables = Exact<{
   isDraft?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, bodyPortableText?: any | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, bodyPortableText?: any | null } | null }> };
+export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, stepsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null }> };
 
-export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, bodyPortableText?: any | null };
+export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
 export type WebinarBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
@@ -1394,14 +1414,46 @@ export const CardFragmentDoc = gql`
 export const CtaFragmentDoc = gql`
     fragment CTA on Cta {
   label
+  linkType
+  external
+  internal {
+    ... on Webinar {
+      type: _type
+      slug {
+        current
+      }
+    }
+    ... on NewsPost {
+      type: _type
+      slug {
+        current
+      }
+    }
+    ... on PlanningCorePage {
+      type: _type
+    }
+  }
+}
+    `;
+export const ImageFragmentDoc = gql`
+    fragment Image on Image {
+  asset {
+    _id
+    url
+  }
 }
     `;
 export const TextAndMediaFragmentDoc = gql`
     fragment TextAndMedia on TextAndMedia {
   title
   bodyPortableText: bodyRaw
+  mediaType
+  alignMedia
+  image {
+    ...Image
+  }
 }
-    `;
+    ${ImageFragmentDoc}`;
 export const WebinarPreviewFieldsFragmentDoc = gql`
     fragment WebinarPreviewFields on Webinar {
   id: _id
@@ -1463,6 +1515,9 @@ export const PlanningCorePageDocument = gql`
       step4 {
         ...Card
       }
+    }
+    stepsCTA {
+      ...CTA
     }
     learnMoreHeading
     learnMoreBlock1 {

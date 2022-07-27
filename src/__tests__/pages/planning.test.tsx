@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import Planning from "../../pages/planning";
 import { PlanningPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import { portableTextFromString } from "../__helpers__/cms";
+import { mockImageAsset, portableTextFromString } from "../__helpers__/cms";
 
 const testPlanningPageData: PlanningPage = {
   id: "01",
@@ -29,10 +29,16 @@ const testPlanningPageData: PlanningPage = {
   learnMoreBlock1: {
     title: "learn more block 1",
     bodyPortableText: portableTextFromString("block 1 text"),
+    alignMedia: "left",
+    mediaType: "image",
+    image: mockImageAsset("block1"),
   },
   learnMoreBlock2: {
     title: "learn more block 2",
     bodyPortableText: portableTextFromString("block 2 text"),
+    alignMedia: "left",
+    mediaType: "image",
+    image: mockImageAsset("block2"),
   },
 };
 

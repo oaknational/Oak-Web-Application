@@ -32,16 +32,26 @@ export type WebinarPreview = Pick<
 export type Card = {
   title: string;
   image?: string;
-  bodyPortableText?: PortableTextJSON
+  bodyPortableText?: PortableTextJSON;
 };
 
 export type CTA = {
   label: string;
 };
 
+export type SanityImage = {
+  asset: {
+    _id: string; // _id required by next-sanity-image
+    url: string;
+  };
+};
+
 export type TextAndMedia = {
   title: string;
-  bodyPortableText: PortableTextJSON
+  bodyPortableText: PortableTextJSON;
+  alignMedia: "left" | "right";
+  mediaType: "image" | "video";
+  image: SanityImage;
 };
 
 export type PlanningPage = Document & {
@@ -55,12 +65,12 @@ export type PlanningPage = Document & {
     worksheet: Card;
     exitQuiz: Card;
   };
-  lessonElementsCTA: CTA
+  lessonElementsCTA: CTA;
   stepsHeading: string;
-  steps: Card[]
+  steps: Card[];
   learnMoreHeading: string;
-  learnMoreBlock1: TextAndMedia
-  learnMoreBlock2: TextAndMedia
+  learnMoreBlock1: TextAndMedia;
+  learnMoreBlock2: TextAndMedia;
 };
 
 export type Params = {
