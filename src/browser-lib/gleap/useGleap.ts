@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import config from "../../config";
 
-import startGleap from "./startGleap";
+import startGleap, { hasLoaded } from "./startGleap";
 
 const apiKey = config.get("gleapApiKey");
 const apiUrl = config.get("gleapApiUrl");
@@ -17,8 +17,8 @@ type UseGleapProps = {
  */
 const useGleap = ({ enabled }: UseGleapProps) => {
   useEffect(() => {
-    const shouldStartGleap = enabled && !("Gleap" in window);
-    const shouldStopGleap = !enabled && "Gleap" in window;
+    const shouldStartGleap = enabled && !hasLoaded();
+    const shouldStopGleap = !enabled && hasLoaded();
 
     if (shouldStopGleap) {
       /**

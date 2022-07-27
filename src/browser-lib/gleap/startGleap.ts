@@ -18,4 +18,6 @@ const startGleap = ({ apiKey, apiUrl, widgetUrl }: GleapConfig) => {
   window.Gleap.initialize(apiKey);
 };
 
+export const hasLoaded = () => "Gleap" in window;
+
 export default startGleap;
