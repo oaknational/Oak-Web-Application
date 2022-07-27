@@ -20,7 +20,7 @@ const DismissibleCard: FC<DismissibleCardProps> = ({ children, title }) => {
   const [dismissed, setDismissed] = useState(false);
 
   return (
-    <div>
+    <div data-testid="dismissible-card">
       {!dismissed && (
         <Card $background={"white"} $mt={48} $pr={64}>
           {children}
