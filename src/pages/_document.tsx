@@ -51,6 +51,12 @@ class MyDocument extends Document {
           <meta name="release-stage" content={config.get("releaseStage")} />
           <meta name="revised" content={new Date().toUTCString()} />
           <meta name="version" content={config.get("appVersion")} />
+<<<<<<< HEAD
+=======
+          {/* Remove before launch https://github.com/oaknational/Oak-Web-Application/issues/118 */}
+          <meta name="robots" content="noindex" />
+
+>>>>>>> 1a27506 (feat: hubspot-js)
         </Head>
         <body>
           <Main />
