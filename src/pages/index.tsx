@@ -149,7 +149,7 @@ const Home: FC = () => {
                   $flexDirection={"row"}
                   $justifyContent={"space-between"}
                   $alignItems="center"
-                  $background={"white"}
+                  $background={"pupilsLimeGreen"}
                   $ph={16}
                   $pv={[24, 40]}
                   $mb={[16, 0]}
