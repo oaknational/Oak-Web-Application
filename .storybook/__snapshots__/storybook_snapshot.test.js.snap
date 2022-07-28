@@ -777,20 +777,22 @@ Array [
     href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
     rel="stylesheet"
   />,
-  <div>
+  <div
+    data-testid="dismissible-card"
+  >
     <div
       className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 kfBdVh kpQbuw HTjge"
     >
       Close to remove
       <div
-        className="sc-3ad70703-0 eQJllB"
+        className="sc-e3d9ee39-0 kArncl"
       >
         <button
-          aria-label="Close node Banner"
+          aria-label="Dismiss undefined"
           className="sc-da410035-0 sc-db58c318-0 eaZurT gtyFYn"
           onClick={[Function]}
           size="small"
-          title="Close node Banner"
+          title="Dismiss undefined"
         >
           <div
             className="sc-ef16a28e-0 hqihXi"
