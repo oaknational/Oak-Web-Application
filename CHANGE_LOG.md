@@ -1,3 +1,10 @@
+## [0.53.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.0...v0.53.1) (2022-07-28)
+
+
+### Bug Fixes
+
+* **dissmissable-card:** title ([16a138d](https://github.com/oaknational/Oak-Web-Application/commit/16a138d3e97006562c7437152e8d266a599b63db))
+
 # [0.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.1...v0.53.0) (2022-07-27)
 
 
