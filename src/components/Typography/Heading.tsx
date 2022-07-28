@@ -38,7 +38,7 @@ export const headingDefaults = css`
 
 type HeadingProps = Omit<TypographyProps, "fontSize"> &
   HeadingTagProps & {
-    fontSize: ResponsiveValues<HeadingFontSize>;
+    $fontSize: ResponsiveValues<HeadingFontSize>;
   } & MarginProps;
 
 const Heading = styled(HeadingTagComponent)<HeadingProps>`

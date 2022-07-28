@@ -31,7 +31,7 @@ const SearchForm: FC = () => {
   };
 
   return (
-    <StyledForm flexWrap="nowrap" onSubmit={handleSubmit} ml={[16, 16, 16]}>
+    <StyledForm $flexWrap="nowrap" onSubmit={handleSubmit} $ml={[16, 16, 16]}>
       <Input
         id="search-form-search-input"
         value={value}
@@ -45,7 +45,7 @@ const SearchForm: FC = () => {
         icon="Search"
         aria-label="Submit"
         htmlButtonProps={{ type: "submit" }}
-        ml={12}
+        $ml={12}
       />
     </StyledForm>
   );

@@ -70,8 +70,8 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
         )}
       </Select>
       {error && (
-        <Box position="absolute">
-          <Span color="failure" fontSize={12} id={errorId}>
+        <Box $position="absolute">
+          <Span $color="failure" $fontSize={12} id={errorId}>
             {error}
           </Span>
         </Box>

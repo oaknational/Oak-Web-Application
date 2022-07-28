@@ -38,7 +38,10 @@
     "apiKey": "123abc"
   },
   "sanity": {
-    "graphqlUrl": "https://cuvjke51.apicdn.sanity.io/v1/graphql/spike_2/default",
+    "projectId": "abc123",
+    "dataset": "production",
+    "datasetTag": "default",
+    "useCDN": "true",
     "requiredSecrets": ["SANITY_AUTH_SECRET"]
   }
 }

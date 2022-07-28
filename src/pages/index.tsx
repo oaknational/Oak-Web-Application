@@ -50,47 +50,47 @@ const Home: FC = () => {
 
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS}>
-      <Flex flexDirection={"column"} position="relative">
-        <Flex justifyContent={"center"} background={"pupilsLightGreen"}>
+      <Flex $flexDirection={"column"} $position="relative">
+        <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth>
-            <Grid cg={[8, 16]}>
-              <GridArea colSpan={[12, 12, 8]}>
+            <Grid $cg={[8, 16]}>
+              <GridArea $colSpan={[12, 12, 8]}>
                 <Heading
-                  fontSize={[32, 48]}
+                  $fontSize={[32, 48]}
                   tag={"h1"}
-                  lineHeight={56}
-                  mt={[64, 80]}
-                  mb={[20, 24]}
+                  $lineHeight={56}
+                  $mt={[64, 80]}
+                  $mb={[20, 24]}
                   data-testid="home-page-title"
-                  color={"black"}
+                  $color={"black"}
                 >
                   Oak Is Changing...
                 </Heading>
                 <Heading
                   tag={"h2"}
-                  lineHeight={32}
-                  fontSize={[16, 24]}
-                  mb={[32, 64]}
+                  $lineHeight={32}
+                  $fontSize={[16, 24]}
+                  $mb={[32, 64]}
                 >
                   Over 40,000 curriculum-aligned resources for everyday use,
                   completely free.
                 </Heading>
               </GridArea>
 
-              <GridArea colSpan={[6, 6, 6]}>
+              <GridArea $colSpan={[6, 6, 6]}>
                 <Card
-                  background={"white"}
-                  flexDirection={["column-reverse", "row"]}
-                  justifyContent={"space-between"}
-                  alignItems="center"
-                  pa={0}
+                  $background={"white"}
+                  $flexDirection={["column-reverse", "row"]}
+                  $justifyContent={"space-between"}
+                  $alignItems="center"
+                  $pa={0}
                 >
                   <TransformClassroomImageWrap
-                    width={"100%"}
-                    flexGrow={1}
-                    pv={[0, 16]}
-                    justifyContent={"center"}
-                    alignItems={"center"}
+                    $width={"100%"}
+                    $flexGrow={1}
+                    $pv={[0, 16]}
+                    $justifyContent={"center"}
+                    $alignItems={"center"}
                   >
                     <CardImage
                       alt={"classroom illustration"}
@@ -99,11 +99,11 @@ const Home: FC = () => {
                   </TransformClassroomImageWrap>
 
                   <Heading
-                    mr={[0, 72]}
-                    fontSize={[20, 32]}
+                    $mr={[0, 72]}
+                    $fontSize={[20, 32]}
                     tag={"h3"}
-                    color={"black"}
-                    mt={[12, 0]}
+                    $color={"black"}
+                    $mt={[12, 0]}
                   >
                     <CardLink href="https://classroom.thenational.academy/">
                       Classroom
@@ -111,20 +111,20 @@ const Home: FC = () => {
                   </Heading>
                 </Card>
               </GridArea>
-              <GridArea colSpan={[6, 6, 6]}>
+              <GridArea $colSpan={[6, 6, 6]}>
                 <Card
-                  background={"white"}
-                  flexDirection={["column-reverse", "row"]}
-                  justifyContent={["center", "space-between"]}
-                  alignItems="center"
-                  pa={0}
+                  $background={"white"}
+                  $flexDirection={["column-reverse", "row"]}
+                  $justifyContent={["center", "space-between"]}
+                  $alignItems="center"
+                  $pa={0}
                 >
                   <TransformTeacherImageWrap
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    flexGrow={1}
-                    width={["100%", "50%"]}
-                    // ml={[72, 56]}
+                    $justifyContent={"center"}
+                    $alignItems={"center"}
+                    $flexGrow={1}
+                    $width={["100%", "50%"]}
+                    $
                   >
                     <CardImage
                       alt="teacher hub illustration"
@@ -133,11 +133,11 @@ const Home: FC = () => {
                   </TransformTeacherImageWrap>
 
                   <Heading
-                    mr={[0, 56]}
-                    fontSize={[20, 32]}
+                    $mr={[0, 56]}
+                    $fontSize={[20, 32]}
                     tag={"h3"}
-                    color={"black"}
-                    mt={[12, 0]}
+                    $color={"black"}
+                    $mt={[12, 0]}
                   >
                     <CardLink href="https://teachers.thenational.academy/">
                       Teachers Hub
@@ -145,51 +145,51 @@ const Home: FC = () => {
                   </Heading>
                 </Card>
               </GridArea>
-              <TransformYGridArea colSpan={[12, 4, 4]}>
+              <TransformYGridArea $colSpan={[12, 4, 4]}>
                 <Card
-                  flexDirection={"row"}
-                  justifyContent={"space-between"}
-                  alignItems="center"
-                  background={"white"}
-                  ph={16}
-                  pv={[24, 40]}
-                  mb={[16, 0]}
+                  $flexDirection={"row"}
+                  $justifyContent={"space-between"}
+                  $alignItems="center"
+                  $background={"white"}
+                  $ph={16}
+                  $pv={[24, 40]}
+                  $mb={[16, 0]}
                 >
-                  <Heading fontSize={[20, 24]} tag={"h4"} color={"black"}>
+                  <Heading $fontSize={[20, 24]} tag={"h4"} $color={"black"}>
                     <CardLink href="/planning">Plan a lesson</CardLink>
                   </Heading>
 
                   <Icon name={"ArrowRight"} size={32} />
                 </Card>
               </TransformYGridArea>
-              <TransformYGridArea colSpan={[12, 4, 4]}>
+              <TransformYGridArea $colSpan={[12, 4, 4]}>
                 <Card
-                  flexDirection={"row"}
-                  justifyContent={"space-between"}
-                  alignItems="center"
-                  background={"teachersYellow"}
-                  ph={16}
-                  pv={[24, 40]}
-                  mb={[16, 0]}
+                  $flexDirection={"row"}
+                  $justifyContent={"space-between"}
+                  $alignItems="center"
+                  $background={"teachersYellow"}
+                  $ph={16}
+                  $pv={[24, 40]}
+                  $mb={[16, 0]}
                 >
-                  <Heading fontSize={[20, 24]} tag={"h4"} color={"black"}>
+                  <Heading $fontSize={[20, 24]} tag={"h4"} $color={"black"}>
                     <CardLink href="/">Develop Your Curriculum</CardLink>
                   </Heading>
 
                   <Icon name={"ArrowRight"} size={32} />
                 </Card>
               </TransformYGridArea>
-              <TransformYGridArea colSpan={[12, 4, 4]}>
+              <TransformYGridArea $colSpan={[12, 4, 4]}>
                 <Card
-                  flexDirection={"row"}
-                  justifyContent={"space-between"}
-                  alignItems="center"
-                  background={"pupilsPink"}
-                  ph={16}
-                  pv={[24, 40]}
-                  mb={[16, 0]}
+                  $flexDirection={"row"}
+                  $justifyContent={"space-between"}
+                  $alignItems="center"
+                  $background={"pupilsPink"}
+                  $ph={16}
+                  $pv={[24, 40]}
+                  $mb={[16, 0]}
                 >
-                  <Heading fontSize={[20, 24]} tag={"h4"} color={"black"}>
+                  <Heading $fontSize={[20, 24]} tag={"h4"} $color={"black"}>
                     <CardLink href="/planning">Support Your Team</CardLink>
                   </Heading>
 
@@ -200,8 +200,8 @@ const Home: FC = () => {
           </MaxWidth>
         </Flex>
       </Flex>
-      <Flex background={"teachersPastelYellow"} justifyContent={"center"}>
-        <MaxWidth ph={[0, 12]} mt={[80, 32]} mb={64}>
+      <Flex $background={"teachersPastelYellow"} $justifyContent={"center"}>
+        <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <AboutContactBlogList />
         </MaxWidth>
       </Flex>

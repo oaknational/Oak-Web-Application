@@ -30,23 +30,23 @@ const SiteFooter: FC<SiteFooterProps> = ({
   return (
     <StyledSiteFooter>
       <Flex
-        justifyContent={"center"}
-        flexDirection={"column"}
-        pa={12}
-        pt={40}
-        maxWidth={1200}
-        ma={"auto"}
+        $justifyContent={"center"}
+        $flexDirection={"column"}
+        $pa={12}
+        $pt={40}
+        $maxWidth={1200}
+        $ma={"auto"}
       >
-        <Typography fontSize={12} lineHeight={20} color="grey8">
+        <Typography $fontSize={12} $lineHeight={20} $color="grey8">
           <nav>
             <Grid>
               {footerSections.map((footerSection) => (
                 <GridArea
-                  mb={[24, 0, 0]}
+                  $mb={[24, 0, 0]}
                   key={footerSection.title}
-                  colSpan={[6, 3, 3]}
+                  $colSpan={[6, 3, 3]}
                 >
-                  <Heading mb={12} fontSize={16} color="black" tag="h4">
+                  <Heading $mb={12} $fontSize={16} $color="black" tag="h4">
                     {footerSection.title}
                   </Heading>
                   <ul role={"list"}>
@@ -61,10 +61,10 @@ const SiteFooter: FC<SiteFooterProps> = ({
             </Grid>
           </nav>
         </Typography>
-        <Flex ma={48} alignItems={"center"} justifyContent={"center"}>
+        <Flex $ma={48} $alignItems={"center"} $justifyContent={"center"}>
           {footerNotification}
         </Flex>
-        <Flex mb={40} justifyContent={"space-between"}>
+        <Flex $mb={40} $justifyContent={"space-between"}>
           <Flex>
             <IconButtonAsLink
               aria-label={"instagram"}
@@ -72,7 +72,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               href={"/instagram"}
               variant={"minimal"}
               size={"tiny"}
-              mr={24}
+              $mr={24}
             />
             <IconButtonAsLink
               aria-label={"facebook"}
@@ -80,7 +80,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               href={"/facebook"}
               variant={"minimal"}
               size={"tiny"}
-              mr={24}
+              $mr={24}
             />
             <IconButtonAsLink
               aria-label={"twitter"}
@@ -88,10 +88,10 @@ const SiteFooter: FC<SiteFooterProps> = ({
               href={"/twitter"}
               variant={"minimal"}
               size={"tiny"}
-              mr={24}
+              $mr={24}
             />
           </Flex>
-          <P mt={8} fontSize={12}>
+          <P $mt={8} $fontSize={12}>
             © Oak National Academy
           </P>
         </Flex>

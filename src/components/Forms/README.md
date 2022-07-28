@@ -47,7 +47,7 @@ const MyForm = () => {
     <form onSubmit={handleSubmit((d) => doSomething(d))}>
       <Input
         id="my-form-email"
-        mt={24}
+        $mt={24}
         placeholder="Email"
         // passes necessary refs/handlers to input
         {...register("email")}

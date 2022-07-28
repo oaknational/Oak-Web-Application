@@ -14,28 +14,28 @@ const HomeLink = styled.a<FlexProps>`
 
 const SiteHeader: FC = () => {
   return (
-    <FixedHeader background={"pupilsGreen"}>
+    <FixedHeader $background={"pupilsGreen"}>
       <Link href={"/"} passHref>
-        <HomeLink alignItems="center">
-          <Icon name="Home" size={32} mr={8} />
+        <HomeLink $alignItems="center">
+          <Icon name="Home" size={32} $mr={8} />
           <Span
-            fontFamily="heading"
-            fontWeight={600}
-            fontSize={20}
-            lineHeight={1}
+            $fontFamily="heading"
+            $fontWeight={600}
+            $fontSize={20}
+            $lineHeight={1}
           >
             Oak
           </Span>
         </HomeLink>
       </Link>
-      <Flex alignItems={"center"} mt={[16, 0, 0]}>
+      <Flex $alignItems={"center"} $mt={[16, 0, 0]}>
         <P>
           <Link href={"/beta/onboarding"}>Join the Beta</Link>
         </P>
-        <P ml={[16, 48, 48]}>
+        <P $ml={[16, 48, 48]}>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P ml={[16, 48, 48]}>
+        <P $ml={[16, 48, 48]}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>

@@ -22,14 +22,14 @@ export type BlogListProps = {
 const BlogList: FC<BlogListProps> = (props) => {
   const { title, titleTag, items } = props;
   return (
-    <Flex flexDirection="column">
+    <Flex $flexDirection="column">
       <Flex
-        mb={24}
-        flexDirection={["column", "row", "row"]}
-        alignItems={["flex-start", "flex-start", "center"]}
-        justifyContent={"space-between"}
+        $mb={24}
+        $flexDirection={["column", "row", "row"]}
+        $alignItems={["flex-start", "flex-start", "center"]}
+        $justifyContent={"space-between"}
       >
-        <Flex mb={[24, 0]} flexDirection={"row"} alignItems={"center"}>
+        <Flex $mb={[24, 0]} $flexDirection={"row"} $alignItems={"center"}>
           <CardTitle
             icon={"IllustrationStayUpToDate"}
             iconSize={40}
@@ -38,10 +38,10 @@ const BlogList: FC<BlogListProps> = (props) => {
             {title}
           </CardTitle>
         </Flex>
-        <Flex justifyContent={"space-between"}>
+        <Flex $justifyContent={"space-between"}>
           <nav>
-            <Flex justifyContent={"center"} alignItems="center">
-              <P mr={16}>
+            <Flex $justifyContent={"center"} $alignItems="center">
+              <P $mr={16}>
                 <Link href="/">All Webinars</Link>
               </P>
               <P>

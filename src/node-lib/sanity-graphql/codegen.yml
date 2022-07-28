@@ -1,8 +1,8 @@
 overwrite: true
 schema:
-  - ${NEXT_PUBLIC_SANITY_GRAPHQL_URL}:
+  - ${SANITY_GRAPHQL_URL}:
       headers:
-        Authorization: Bearer ${NEXT_PUBLIC_SANITY_AUTH_SECRET}
+        Authorization: Bearer ${SANITY_AUTH_SECRET}
 documents: "src/node-lib/sanity-graphql/**/*.{graphql,gql}"
 generates:
   src/node-lib/sanity-graphql/generated/sdk.ts:

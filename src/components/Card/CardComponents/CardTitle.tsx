@@ -42,21 +42,21 @@ const CardTitle: FC<CardTitleProps> = ({
 }) => {
   return (
     <Flex
-      flexDirection={getIconFlexPosition(iconPosition)}
-      justifyContent={textCenter ? "center" : "start"}
-      alignItems="center"
-      mb={24}
+      $flexDirection={getIconFlexPosition(iconPosition)}
+      $justifyContent={textCenter ? "center" : "start"}
+      $alignItems="center"
+      $mb={24}
     >
       {icon && (
         <Icon
           name={icon}
           size={iconPosition === "aboveTitle" ? 64 : iconSize}
-          mb={iconPosition === "aboveTitle" ? 12 : 0}
-          mr={iconPosition === (icon && "leading") ? 8 : 0}
-          ml={iconPosition === (icon && "trailing") ? 8 : 0}
+          $mb={iconPosition === "aboveTitle" ? 12 : 0}
+          $mr={iconPosition === (icon && "leading") ? 8 : 0}
+          $ml={iconPosition === (icon && "trailing") ? 8 : 0}
         />
       )}
-      <Heading color={"black"} fontSize={fontSize} tag={tag}>
+      <Heading $color={"black"} $fontSize={fontSize} tag={tag}>
         {children}
       </Heading>
     </Flex>

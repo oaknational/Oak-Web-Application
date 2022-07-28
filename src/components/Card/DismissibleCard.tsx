@@ -1,5 +1,3 @@
-import { title } from "process";
-
 import { FC, useState } from "react";
 import styled from "styled-components";
 
@@ -14,20 +12,21 @@ const CloseButtonWrapper = styled.div`
 `;
 
 type DismissibleCardProps = {
+  // 'title' used for the close button's aria-label
   title: string;
 };
 
-const DismissibleCard: FC<DismissibleCardProps> = ({ children }) => {
+const DismissibleCard: FC<DismissibleCardProps> = ({ children, title }) => {
   const [dismissed, setDismissed] = useState(false);
 
   return (
-    <div>
+    <div data-testid="dismissible-card">
       {!dismissed && (
-        <Card background={"white"} mt={48} pr={64}>
+        <Card $background={"white"} $mt={48} $pr={64}>
           {children}
           <CloseButtonWrapper>
             <IconButton
-              aria-label={`Close ${title} Banner`}
+              aria-label={`Dismiss ${title}`}
               icon={"Close"}
               onClick={() => {
                 setDismissed(true);

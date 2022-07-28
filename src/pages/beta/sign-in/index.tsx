@@ -9,10 +9,10 @@ const SignInPage: NextPage = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
       <Flex
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        flexGrow={1}
+        $flexDirection="column"
+        $justifyContent="center"
+        $alignItems="center"
+        $flexGrow={1}
       >
         <SignIn />
       </Flex>
