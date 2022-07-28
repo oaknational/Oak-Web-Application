@@ -80,6 +80,14 @@ module.exports = async (phase) => {
         process.env.FIREBASE_ADMIN_DATABASE_URL ||
         secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
 
+      // Gleap
+      NEXT_PUBLIC_GLEAP_API_KEY:
+        process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
+      NEXT_PUBLIC_GLEAP_API_URL:
+        process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+      NEXT_PUBLIC_GLEAP_WIDGET_URL:
+        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
+
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
       HASURA_ADMIN_SECRET:
