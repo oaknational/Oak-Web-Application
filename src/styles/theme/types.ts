@@ -25,7 +25,6 @@ export type PixelSpacing =
   | 80
   | 1200;
 
-
 /**
  * @todo parse theme with zod
  */
@@ -125,6 +124,7 @@ export type OakTheme = {
   name: string;
   colors: Record<OakColorName, ColorValue>;
   contrastColors: Record<OakColorName, OakColorName>;
+  buttonIconBackgroundColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
   bigInput: InputConfig;

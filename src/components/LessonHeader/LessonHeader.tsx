@@ -35,14 +35,12 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
           label="Download"
           aria-label="Download Lesson"
           icon="Download"
-          variant="secondary"
         />
         <ButtonAsLink
           href="/"
           label="Share"
           aria-label="Share Lesson"
           icon="Share"
-          variant="secondary"
         />
         <BookmarkLessonButton lessonId={id} />
       </ButtonGroup>

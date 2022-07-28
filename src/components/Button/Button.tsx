@@ -33,7 +33,8 @@ const Button: FC<ButtonProps> = (props) => {
     ...spacingProps
   } = props;
 
-  const { size, variant, iconPosition } = getButtonStylesProps(props);
+  const { size, variant, iconPosition, background } =
+    getButtonStylesProps(props);
 
   return (
     <StyledButton
@@ -44,6 +45,7 @@ const Button: FC<ButtonProps> = (props) => {
       size={size}
       variant={variant}
       iconPosition={iconPosition}
+      background={background}
       {...spacingProps}
     >
       <ButtonInner
@@ -51,6 +53,8 @@ const Button: FC<ButtonProps> = (props) => {
         icon={icon}
         iconPosition={iconPosition}
         size={size}
+        variant={variant}
+        background={background}
       />
     </StyledButton>
   );
