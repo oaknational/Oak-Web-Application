@@ -17,25 +17,25 @@ steps:
       - |
         rm -rf ./src/pages/beta
 
-
   - id: "npm-ci"
-    name: 'npm'
-    args: ['ci']
+    name: "npm"
+    args: ["ci"]
 
   - id: "next-build"
-    name: 'npm'
-    args: ['run', 'build']
+    name: "npm"
+    args: ["run", "build"]
     env:
-     - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
-     - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
-     - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
+      - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
+      - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
+      - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
 
   - id: "next-export"
-    name: 'npm'
-    args: ['run', 'export']
-     - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
-     - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
-     - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
+    name: "npm"
+    args: ["run", "export"]
+    env:
+      - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
+      - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
+      - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
 
   # - id: "deploy-to-firebase"
   #     name: gcr.io/$PROJECT_ID/firebase
@@ -48,6 +48,5 @@ steps:
   #         --project=$PROJECT_ID
   #         --only=hosting:${_TARGET}
   #         | tee /workspace/deploy.log
-  
-  # Possible Slack notification.
 
+  # Possible Slack notification.
