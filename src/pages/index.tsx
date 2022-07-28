@@ -42,7 +42,7 @@ const Home: FC = () => {
         </GridArea>
 
         <GridArea $colSpan={[12, 12, 4]}>
-          <DismissibleCard title="Beta">
+          <DismissibleCard title="Oak beta banner">
             <Heading $fontSize={20} tag={"h2"}>
               <Flex $alignItems={"center"} $mb={12}>
                 <Icon
