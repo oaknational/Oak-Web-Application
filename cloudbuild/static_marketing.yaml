@@ -7,9 +7,6 @@
 # Global options.
 options:
   machineType: "E2_HIGHCPU_32"
-  # Shared env variables available to all steps.
-  env:
-    - "CONTENT_RELEASE=${_CONTENT_RELEASE}"
 
 steps:
   - id: "remove-curriculum-pages"
@@ -28,22 +25,29 @@ steps:
   - id: "next-build"
     name: 'npm'
     args: ['run', 'build']
+    env:
+     - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
+     - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
+     - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
 
   - id: "next-export"
     name: 'npm'
     args: ['run', 'export']
+     - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
+     - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
+     - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
 
-  - id: "deploy-to-firebase"
-      name: gcr.io/$PROJECT_ID/firebase
-      entrypoint: /bin/bash
-      args:
-        - "-c"
-        - >-
-          /usr/bin/firebase.bash
-          deploy
-          --project=$PROJECT_ID
-          --only=hosting:${_TARGET}
-          | tee /workspace/deploy.log
+  # - id: "deploy-to-firebase"
+  #     name: gcr.io/$PROJECT_ID/firebase
+  #     entrypoint: /bin/bash
+  #     args:
+  #       - "-c"
+  #       - >-
+  #         /usr/bin/firebase.bash
+  #         deploy
+  #         --project=$PROJECT_ID
+  #         --only=hosting:${_TARGET}
+  #         | tee /workspace/deploy.log
   
   # Possible Slack notification.
 
