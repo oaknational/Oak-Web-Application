@@ -47,6 +47,7 @@ const Home: FC = () => {
               <Flex $alignItems={"center"} $mb={12}>
                 <Icon
                   size={24}
+                  $pa={0}
                   name={"GraduationCap"}
                   $mr={8}
                   $color={"grey8"}
