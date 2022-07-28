@@ -76,4 +76,3 @@ const AboutContactBlogList: FC = () => {
 };
 
 export default AboutContactBlogList;
-x;

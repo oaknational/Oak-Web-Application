@@ -124,7 +124,6 @@ const Home: FC = () => {
                     $alignItems={"center"}
                     $flexGrow={1}
                     $width={["100%", "50%"]}
-                    $
                   >
                     <CardImage
                       alt="teacher hub illustration"

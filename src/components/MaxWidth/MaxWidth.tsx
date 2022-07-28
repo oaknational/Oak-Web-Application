@@ -19,8 +19,8 @@ const MaxWidth = styled(Flex)`
 `;
 
 MaxWidth.defaultProps = {
-  maxWidth: 1200,
-  ph: 12,
+  $maxWidth: 1200,
+  $ph: 12,
 };
 
 export default MaxWidth;
