@@ -13,8 +13,8 @@ const CardImage: FC<CardImageProps> = ({ imageSrc, alt }) => {
     <AspectRatio ratio={["3:2", "16:9"]}>
       <NextImage
         layout="fill"
-        objectFit="cover"
-        objectPosition="center center"
+        objectFit="contain"
+        objectPosition="left center"
         src={imageSrc}
         alt={alt}
       />

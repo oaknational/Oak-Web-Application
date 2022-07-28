@@ -16,7 +16,6 @@ const StyledSiteFooter = styled.footer`
   width: 100%;
   background: ${getColorByName("grey3")};
   margin: auto;
-  margin-top: 80px;
 `;
 
 type SiteFooterProps = {

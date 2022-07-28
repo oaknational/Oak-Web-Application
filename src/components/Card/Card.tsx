@@ -20,7 +20,6 @@ const Card = styled(Flex)<BorderProps>`
 Card.defaultProps = {
   pa: 24,
   flexDirection: "column",
-  borderRadius: 12,
 };
 
 export default Card;
