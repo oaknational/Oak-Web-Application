@@ -10,7 +10,8 @@ options:
 
 steps:
   - id: "remove-curriculum-pages"
-    name: "npm"
+    name: "node:16"
+    entrypoint: "npm"
     entrypoint: "bash"
     args:
       - "-c"
@@ -18,11 +19,13 @@ steps:
         rm -rf ./src/pages/beta
 
   - id: "npm-ci"
-    name: "npm"
+    name: "node:16"
+    entrypoint: "npm"
     args: ["ci"]
 
   - id: "next-build"
-    name: "npm"
+    name: "node:16"
+    entrypoint: "npm"
     args: ["run", "build"]
     env:
       - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
@@ -30,7 +33,8 @@ steps:
       - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
 
   - id: "next-export"
-    name: "npm"
+    name: "node:16"
+    entrypoint: "npm"
     args: ["run", "export"]
     env:
       - "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT=$_GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT"
