@@ -16,9 +16,10 @@ import CardImage from "../components/Card/CardComponents/CardImage";
 import { getBreakpoint } from "../styles/utils/responsive";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
 
-const OverflowHidden = styled.div`
-  overflow: hidden;
-  width: 100%;
+const OverflowHidden = styled(Flex)`
+  @media (max-width: ${getBreakpoint("medium")}px) {
+    overflow: hidden;
+  }
 `;
 
 const TransformYGridArea = styled(GridArea)`
@@ -26,20 +27,16 @@ const TransformYGridArea = styled(GridArea)`
 `;
 
 const TransformTeacherImageWrap = styled(Flex)`
-  transform: scale(115%) translateX(65px) translateY(5px);
-
-  @media (max-width: ${getBreakpoint("medium")}px) {
-    transform: scale(100%) translateX(22%) translateY(5px);
-  }
+  transform: scale(120%) translateX(30%) translateY(5px);
 
   @media (max-width: ${getBreakpoint("small")}px) {
-    transform: translateY(30px) translateX(22%);
+    transform: translateY(10%) translateX(22%);
   }
 `;
 
 const TransformClassroomImageWrap = styled(Flex)`
   @media (max-width: ${getBreakpoint("small")}px) {
-    transform: translateY(30px);
+    transform: translateY(10%);
   }
 `;
 
@@ -91,11 +88,10 @@ const Home: FC = () => {
                   $pa={0}
                   $borderRadius={4}
                 >
-                  <OverflowHidden>
+                  <OverflowHidden $pv={[0, 16]} $width={"100%"}>
                     <TransformClassroomImageWrap
                       $width={"100%"}
                       $flexGrow={1}
-                      $pv={[0, 16]}
                       $justifyContent={"center"}
                       $alignItems={"center"}
                     >
@@ -128,12 +124,11 @@ const Home: FC = () => {
                   $pa={0}
                   $borderRadius={4}
                 >
-                  <OverflowHidden>
+                  <OverflowHidden $width={["100%", "100%", "50%"]}>
                     <TransformTeacherImageWrap
                       $justifyContent={"center"}
                       $alignItems={"center"}
                       $flexGrow={1}
-                      $width={["100%", "50%"]}
                     >
                       <CardImage
                         alt="teacher hub illustration"

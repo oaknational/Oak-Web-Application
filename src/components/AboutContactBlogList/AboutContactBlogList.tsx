@@ -25,7 +25,7 @@ const AboutContactBlogList: FC = () => {
             About Us
           </CardTitle>
           <P color={"black"} fontSize={16} $mb={24}>
-            Discover who we are, what we do and how we work
+            Discover who we are, what we do and how we work.
           </P>
           <ButtonAsLink $mt={"auto"} fullWidth href="/" label="Find out more" />
         </Card>
