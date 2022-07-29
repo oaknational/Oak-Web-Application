@@ -47,7 +47,7 @@ const AboutContactBlogList: FC = () => {
       </GridArea>
 
       <GridArea $mb={[64, 0]} $colSpan={[12, 6, 4]} $order={[2, 0, 0]}>
-        <Card $background="white">
+        <Card $borderRadius={0} $background="white">
           <CardTitle
             icon="Search"
             iconPosition="leading"

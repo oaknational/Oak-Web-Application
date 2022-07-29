@@ -767,6 +767,65 @@ Array [
 ]
 `;
 
+exports[`Storyshots Cards/Card Link Icon Card Link Icon 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 gcoNKz hGGzRB dQkcUN"
+  >
+    <h3
+      className="sc-ff7617d7-0 hoisSK"
+    >
+      <a
+        className="sc-ff273e4e-0 dumupW"
+        href="/"
+      >
+        Title
+      </a>
+    </h3>
+    <span
+      className="sc-db91c61a-0 ikcEYM"
+      height={32}
+      width={32}
+    >
+      <span
+        className="sc-db91c61a-1 hmvxHl"
+        height={32}
+        width={32}
+      >
+        <svg
+          fill="none"
+          height="100%"
+          viewBox="13 10 30 25"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.2 24.842c2.755-2.298 5.51-1.577 8.245-1.729l8.264-.056 8.264.36c2.432.38 5.89-.456 8.264 1.368-2.337 2.603-5.794 1.292-8.245 1.767l-8.264.285-8.264-.19c-2.736-.228-5.528.513-8.264-1.805Z"
+            fill="currentColor"
+          />
+          <path
+            d="M40.693 25.184c.076 2.698-1.5 2.869-2.603 3.762l-3.533 2.374-3.762 2.014c-1.273.361-2.28 2.033-4.312 1.178-.418-2.83 1.785-2.698 2.583-3.8l3.4-2.564 3.667-2.166c1.311-.589 2.11-1.976 4.56-.817v.02Z"
+            fill="currentColor"
+          />
+          <path
+            d="M26.274 15.21c2.431-1.178 3.267.19 4.578.817l3.705 2.242 3.476 2.603c.437.494 1.178.817 1.824 1.387.646.55 1.178 1.424.836 2.488-1.406.285-1.976.21-2.565-.17-.57-.362-1.083-.913-1.767-1.065l-3.818-2.051-3.572-2.451c-1.102-.95-2.735-1.102-2.716-3.838l.019.038Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </span>
+  </div>,
+]
+`;
+
 exports[`Storyshots Cards/Dismmissible Card Dismissible Card 1`] = `
 Array [
   <link
@@ -1652,7 +1711,7 @@ Array [
       className="sc-988f9542-0 cJLLUL"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP jDHWmS HTjge"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP iKycdZ dQkcUN"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -1720,7 +1779,8 @@ Array [
           color="black"
           id="newsletter-form-description"
         >
-          Join 80,000 teachers and get free lessons, resources and other helpful content by email. Unsubscribe at any time. Read our privacy policy.
+          Join 80,000 teachers and get free lessons, resources and other helpful
+        content by email. Unsubscribe at any time. Read our privacy policy 
           <a
             href="/"
             onClick={[Function]}
@@ -1941,7 +2001,7 @@ Array [
       className="sc-988f9542-0 cJLLUL"
     >
       <div
-        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP jDHWmS HTjge"
+        className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 hFiMqP iKycdZ dQkcUN"
       >
         <div
           className="sc-ed3fbaef-0 sc-f624290d-0 filyzj jddpeN"
@@ -2009,7 +2069,8 @@ Array [
           color="black"
           id="newsletter-form-description"
         >
-          Join 80,000 teachers and get free lessons, resources and other helpful content by email. Unsubscribe at any time. Read our privacy policy.
+          Join 80,000 teachers and get free lessons, resources and other helpful
+        content by email. Unsubscribe at any time. Read our privacy policy 
           <a
             href="/"
             onClick={[Function]}

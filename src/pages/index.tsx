@@ -7,7 +7,6 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading } from "../components/Typography";
-import Icon from "../components/Icon";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
@@ -15,6 +14,34 @@ import Flex from "../components/Flex";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardImage from "../components/Card/CardComponents/CardImage";
 import { getBreakpoint } from "../styles/utils/responsive";
+import CardLinkIcon from "../components/Card/CardLinkIcon";
+
+const OverflowHidden = styled.div`
+  overflow: hidden;
+  width: 100%;
+`;
+
+const TransformYGridArea = styled(GridArea)`
+  transform: translateY(50%);
+`;
+
+const TransformTeacherImageWrap = styled(Flex)`
+  transform: scale(115%) translateX(65px) translateY(5px);
+
+  @media (max-width: ${getBreakpoint("medium")}px) {
+    transform: scale(100%) translateX(22%) translateY(5px);
+  }
+
+  @media (max-width: ${getBreakpoint("small")}px) {
+    transform: translateY(30px) translateX(22%);
+  }
+`;
+
+const TransformClassroomImageWrap = styled(Flex)`
+  @media (max-width: ${getBreakpoint("small")}px) {
+    transform: translateY(30px);
+  }
+`;
 
 const Home: FC = () => {
   const { track } = useAnalytics();
@@ -25,28 +52,6 @@ const Home: FC = () => {
         "some value (currently should send once when the page loads)",
     });
   }, [track]);
-
-  const TransformYGridArea = styled(GridArea)`
-    transform: translateY(50%);
-  `;
-
-  const TransformTeacherImageWrap = styled(Flex)`
-    transform: scale(115%) translateX(65px) translateY(5px);
-
-    @media (max-width: ${getBreakpoint("medium")}px) {
-      transform: scale(100%) translateX(22%) translateY(5px);
-    }
-
-    @media (max-width: ${getBreakpoint("small")}px) {
-      transform: translateY(30px) translateX(22%);
-    }
-  `;
-
-  const TransformClassroomImageWrap = styled(Flex)`
-    @media (max-width: ${getBreakpoint("small")}px) {
-      transform: translateY(30px);
-    }
-  `;
 
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS}>
@@ -84,19 +89,22 @@ const Home: FC = () => {
                   $justifyContent={"space-between"}
                   $alignItems="center"
                   $pa={0}
+                  $borderRadius={4}
                 >
-                  <TransformClassroomImageWrap
-                    $width={"100%"}
-                    $flexGrow={1}
-                    $pv={[0, 16]}
-                    $justifyContent={"center"}
-                    $alignItems={"center"}
-                  >
-                    <CardImage
-                      alt={"classroom illustration"}
-                      imageSrc={"/images/illustrations/classroom.svg"}
-                    ></CardImage>
-                  </TransformClassroomImageWrap>
+                  <OverflowHidden>
+                    <TransformClassroomImageWrap
+                      $width={"100%"}
+                      $flexGrow={1}
+                      $pv={[0, 16]}
+                      $justifyContent={"center"}
+                      $alignItems={"center"}
+                    >
+                      <CardImage
+                        alt={"classroom illustration"}
+                        imageSrc={"/images/illustrations/classroom.svg"}
+                      ></CardImage>
+                    </TransformClassroomImageWrap>
+                  </OverflowHidden>
 
                   <Heading
                     $mr={[0, 72]}
@@ -118,18 +126,21 @@ const Home: FC = () => {
                   $justifyContent={["center", "space-between"]}
                   $alignItems="center"
                   $pa={0}
+                  $borderRadius={4}
                 >
-                  <TransformTeacherImageWrap
-                    $justifyContent={"center"}
-                    $alignItems={"center"}
-                    $flexGrow={1}
-                    $width={["100%", "50%"]}
-                  >
-                    <CardImage
-                      alt="teacher hub illustration"
-                      imageSrc={"/images/illustrations/teacher.svg"}
-                    ></CardImage>
-                  </TransformTeacherImageWrap>
+                  <OverflowHidden>
+                    <TransformTeacherImageWrap
+                      $justifyContent={"center"}
+                      $alignItems={"center"}
+                      $flexGrow={1}
+                      $width={["100%", "50%"]}
+                    >
+                      <CardImage
+                        alt="teacher hub illustration"
+                        imageSrc={"/images/illustrations/teacher.svg"}
+                      ></CardImage>
+                    </TransformTeacherImageWrap>
+                  </OverflowHidden>
 
                   <Heading
                     $mr={[0, 56]}
@@ -145,55 +156,28 @@ const Home: FC = () => {
                 </Card>
               </GridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>
-                <Card
-                  $flexDirection={"row"}
-                  $justifyContent={"space-between"}
-                  $alignItems="center"
-                  $background={"pupilsLimeGreen"}
-                  $ph={16}
-                  $pv={[24, 40]}
-                  $mb={[16, 0]}
-                >
-                  <Heading $fontSize={[20, 24]} tag={"h4"} $color={"black"}>
-                    <CardLink href="/planning">Plan a lesson</CardLink>
-                  </Heading>
-
-                  <Icon name={"ArrowRight"} size={32} />
-                </Card>
+                <CardLinkIcon
+                  title={"Plan a lesson"}
+                  titleTag={"h4"}
+                  background="pupilsLimeGreen"
+                  href={"/planning"}
+                ></CardLinkIcon>
               </TransformYGridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>
-                <Card
-                  $flexDirection={"row"}
-                  $justifyContent={"space-between"}
-                  $alignItems="center"
-                  $background={"teachersYellow"}
-                  $ph={16}
-                  $pv={[24, 40]}
-                  $mb={[16, 0]}
-                >
-                  <Heading $fontSize={[20, 24]} tag={"h4"} $color={"black"}>
-                    <CardLink href="/">Develop Your Curriculum</CardLink>
-                  </Heading>
-
-                  <Icon name={"ArrowRight"} size={32} />
-                </Card>
+                <CardLinkIcon
+                  title={"Develop Your Curriculum"}
+                  titleTag={"h4"}
+                  background={"teachersYellow"}
+                  href={"/curriculum"}
+                ></CardLinkIcon>
               </TransformYGridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>
-                <Card
-                  $flexDirection={"row"}
-                  $justifyContent={"space-between"}
-                  $alignItems="center"
-                  $background={"pupilsPink"}
-                  $ph={16}
-                  $pv={[24, 40]}
-                  $mb={[16, 0]}
-                >
-                  <Heading $fontSize={[20, 24]} tag={"h4"} $color={"black"}>
-                    <CardLink href="/planning">Support Your Team</CardLink>
-                  </Heading>
-
-                  <Icon name={"ArrowRight"} size={32} />
-                </Card>
+                <CardLinkIcon
+                  title={"Support Your Team"}
+                  titleTag={"h4"}
+                  background={"pupilsPink"}
+                  href={"/support"}
+                ></CardLinkIcon>
               </TransformYGridArea>
             </Grid>
           </MaxWidth>
