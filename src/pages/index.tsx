@@ -27,10 +27,10 @@ const TransformYGridArea = styled(GridArea)`
 `;
 
 const TransformTeacherImageWrap = styled(Flex)`
-  transform: scale(120%) translateX(30%) translateY(5px);
+  transform: scale(120%);
 
   @media (max-width: ${getBreakpoint("small")}px) {
-    transform: translateY(10%) translateX(22%);
+    transform: translateY(10%);
   }
 `;
 
@@ -98,6 +98,7 @@ const Home: FC = () => {
                       <CardImage
                         alt={"classroom illustration"}
                         imageSrc={"/images/illustrations/classroom.svg"}
+                        position={"left center"}
                       ></CardImage>
                     </TransformClassroomImageWrap>
                   </OverflowHidden>
