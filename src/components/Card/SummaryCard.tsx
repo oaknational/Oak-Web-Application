@@ -1,13 +1,21 @@
 import { FC } from "react";
 import { PortableText } from "@portabletext/react";
 import type { PortableTextSpan } from "@portabletext/types";
+import styled from "styled-components";
 
 import Flex from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
+import { getBreakpoint } from "../../styles/utils/responsive";
 
 import Card from "./Card";
 import CardImage, { CardImageProps } from "./CardComponents/CardImage";
+
+const ImageWrap = styled(Flex)`
+  @media (max-width: ${getBreakpoint("medium")}px) {
+    display: none;
+  }
+`;
 
 type SummaryCardProps = {
   title: string;
@@ -67,13 +75,17 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
           )}
         </Typography>
       </Flex>
-      <Flex $width={"100%"} $alignItems={"center"} $justifyContent={"center"}>
+      <ImageWrap
+        $width={"100%"}
+        $alignItems={"center"}
+        $justifyContent={"center"}
+      >
         <CardImage
           alt={alt}
           imageSrc={imageSrc}
           position={"center right"}
         ></CardImage>
-      </Flex>
+      </ImageWrap>
     </Card>
   );
 };

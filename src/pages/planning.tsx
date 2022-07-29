@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import CMSClient, { PlanningPage } from "../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card from "../components/Card";
@@ -20,6 +21,7 @@ import { OakColorName } from "../styles/theme";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
 import { SizeValues } from "../styles/utils/size";
+import lessonPlanning from "../browser-lib/fixtures/lessonPlanning.json";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -72,14 +74,13 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
       $width={width}
       $alignItems={alignCenter ? "center" : "flex-start"}
       $flexDirection={["row", "column"]}
-      // ph={[0, 32]}
       $pa={32}
       $background={background}
     >
       {pageAnchorId && <SpanLink id={pageAnchorId}></SpanLink>}
       {icon && (
         <CircleIconContainer
-          $background={"grey4"}
+          $background={"teachersYellow"}
           $alignItems={"center"}
           $justifyContent={"center"}
         >
@@ -91,17 +92,10 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
       </Flex>
 
       <Flex $ml={[24, 0, 0]} $mt={[0, 24, 24]} $flexDirection={"column"}>
-        <Heading
-          textAlign={alignCenter ? "center" : "start"}
-          $mb={24}
-          tag={"h3"}
-          $fontSize={[16, 24]}
-        >
+        <Heading $mb={24} tag={"h3"} $fontSize={[16, 24]}>
           {title}
         </Heading>
-        <P textAlign={alignCenter ? "center" : "start"} $fontSize={[14, 16]}>
-          {children}
-        </P>
+        <P $fontSize={[14, 16]}>{children}</P>
       </Flex>
     </Card>
   );
@@ -112,42 +106,31 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <MaxWidth>
+        <SummaryCard
+          title={pageData.title}
+          heading={pageData.heading}
+          summary={pageData.summaryPortableText}
+          imageSrc={"/images/illustrations/planning.svg"}
+          alt={"planning illustration"}
+          background="teachersPastelYellow"
+        />
         <Grid $cg={24} $rg={[16, 32, 32]}>
-          <GridArea $colSpan={[12, 12, 12]}>
-            <SummaryCard
-              title={pageData.title}
-              heading={pageData.heading}
-              summary={pageData.summaryPortableText}
-              imageSrc={"/images/illustrations/planning.svg"}
-              alt={"planning illustration"}
-              background="grey3"
-            />
-          </GridArea>
+          <GridArea $colSpan={[12, 12, 12]}></GridArea>
         </Grid>
 
-        <Flex $flexDirection={"column"} $justifyContent={"center"}>
-          <Heading
-            textAlign="center"
-            $color={"black"}
-            $lineHeight={32}
-            $fontSize={[16, 24, 24]}
-            tag={"h3"}
-            $mb={[32, 80, 80]}
-          >
-            Elements of a lesson
-          </Heading>
+        {/* Elements of lesson cards */}
+        <Flex $justifyContent={"center"} $width={"100%"}>
           <LessonProgressionGraphic></LessonProgressionGraphic>
         </Flex>
 
-        {/* Elements of lesson cards */}
-
-        <Grid>
+        <Grid $cg={24} $rg={[16, 32, 32]}>
           <GridArea $colSpan={[12, 6, 6]}>
             <LessonPlanningCard
               title={pageData.lessonElements.introQuiz.title}
               icon={"Quiz"}
               pageAnchorId={"intro-quiz"}
-              background="grey5"
+              background="pastelTurqoise"
+              alignCenter
             >
               <PortableText
                 value={pageData.lessonElements.introQuiz.bodyPortableText}
@@ -159,7 +142,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               title={pageData.lessonElements.video.title}
               icon={"Video"}
               pageAnchorId={"video"}
-              background="grey5"
+              background="pastelTurqoise"
+              alignCenter
             >
               <PortableText
                 value={pageData.lessonElements.video.bodyPortableText}
@@ -171,7 +155,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               title={pageData.lessonElements.slides.title}
               icon={"LessonSlides"}
               pageAnchorId={"lesson-slides"}
-              background="grey3"
+              background="pastelTurqoise"
+              alignCenter
             >
               <PortableText
                 value={pageData.lessonElements.slides.bodyPortableText}
@@ -183,7 +168,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               title={pageData.lessonElements.worksheet.title}
               icon={"Worksheet"}
               pageAnchorId={"worksheet"}
-              background="grey2"
+              background="pastelTurqoise"
+              alignCenter
             >
               <PortableText
                 value={pageData.lessonElements.worksheet.bodyPortableText}
@@ -195,7 +181,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               title={pageData.lessonElements.exitQuiz.title}
               icon={"Quiz"}
               pageAnchorId={"exit-quiz"}
-              background="grey8"
+              background="pastelTurqoise"
+              alignCenter
             >
               <PortableText
                 value={pageData.lessonElements.exitQuiz.bodyPortableText}
@@ -300,7 +287,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 
       {/* `Plan for section` */}
       <MaxWidth>
-        <Flex $ma={80} $justifyContent={"center"} $alignItems={"center"}>
+        <Flex $justifyContent={"center"} $alignItems={"center"}>
           <Flex $maxWidth={"50%"}>
             <Heading textAlign="center" $fontSize={[16, 24]} tag="h4">
               How to plan a lesson using our resources and adapt them for your
@@ -366,12 +353,15 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const getStaticProps: GetStaticProps<PlanALessonProps> = async () => {
-  const planningPage = await CMSClient.planningPage();
+  // const planningPage = await CMSClient.planningPage();
+  // const planningPage = lessonPlanning;
 
   return {
     props: {
-      pageData: planningPage,
+      pageData: lessonPlanning,
     },
   };
 };
