@@ -3,7 +3,7 @@
     "default": "oak-national-academy-2022"
   },
   "targets": {
-    "oak-national-academy": {
+    "oak-national-academy-2022": {
       "hosting": {
         "static-marketing-dev": [
           "oak-static-marketing-dev"
