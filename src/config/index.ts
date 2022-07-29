@@ -289,6 +289,27 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  gleapApiKey: {
+    value: process.env.NEXT_PUBLIC_GLEAP_API_KEY,
+    envName: "NEXT_PUBLIC_GLEAP_API_KEY",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  gleapApiUrl: {
+    value: process.env.NEXT_PUBLIC_GLEAP_API_URL,
+    envName: "NEXT_PUBLIC_GLEAP_API_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  gleapWidgetUrl: {
+    value: process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL,
+    envName: "NEXT_PUBLIC_GLEAP_WIDGET_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
 });
 
 for (const [

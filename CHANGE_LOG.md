@@ -1,3 +1,16 @@
+# [0.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.1...v0.54.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **gleap:** get config from config file ([c1848eb](https://github.com/oaknational/Oak-Web-Application/commit/c1848ebf2651746d7b6021e1a3823594d809410f))
+* **gleap:** sonar css issues and new branding fonts on ([8728c2e](https://github.com/oaknational/Oak-Web-Application/commit/8728c2ebf35a8f2f896957325b0c00a51395516e))
+
+
+### Features
+
+* gleap ([491fdb2](https://github.com/oaknational/Oak-Web-Application/commit/491fdb29d337dd50e0049e8e88489d994b139b73))
+
 ## [0.53.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.0...v0.53.1) (2022-07-28)
 
 
