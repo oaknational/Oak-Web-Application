@@ -42,24 +42,25 @@ steps:
       - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
 
   - id: "deploy-to-firebase"
-      name: gcr.io/$PROJECT_ID/firebase
-      entrypoint: /bin/bash
-      args:
-        - "-c"
-        # Preview deploy
-        - >-
-          /usr/bin/firebase.bash
-          --project oak-national-academy-2022
-          hosting:channel:deploy
-          "${SHORT_SHA}"
-          --expires 30d
-          --only ${_FIREBASE_TARGET}
-          | tee /workspace/deploy.log
-        # # real deploy
-        # - >-
-        #   /usr/bin/firebase.bash
-        #   deploy
-        #   --project=$PROJECT_ID
-        #   --only=hosting:${_FIREBASE_TARGET}
-        #   | tee /workspace/deploy.log
+    name: gcr.io/$PROJECT_ID/firebase
+    entrypoint: /bin/bash
+    args:
+      - "-c"
+      # Preview deploy
+      - >-
+        /usr/bin/firebase.bash
+        --project oak-national-academy-2022
+        hosting:channel:deploy
+        "${SHORT_SHA}"
+        --expires 30d
+        --only ${_FIREBASE_TARGET}
+        | tee /workspace/deploy.log
+      # # real deploy
+      # - >-
+      #   /usr/bin/firebase.bash
+      #   deploy
+      #   --project=$PROJECT_ID
+      #   --only=hosting:${_FIREBASE_TARGET}
+      #   | tee /workspace/deploy.log
+
   # Possible Slack notification.
