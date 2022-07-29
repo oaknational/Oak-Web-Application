@@ -1,21 +1,34 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import background from "../../styles/utils/background";
-import position, { PositionProps } from "../../styles/utils/position";
-import spacing, {
-  gridGap,
-  GridGapProps,
-  SpacingProps,
-} from "../../styles/utils/spacing";
+import { PixelSpacing } from "../../styles/theme";
+import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
+import spacing, { SpacingProps } from "../../styles/utils/spacing";
 
-const Grid = styled.div<GridGapProps & SpacingProps & PositionProps>`
+type GridGapProps = {
+  $rg?: ResponsiveValues<PixelSpacing>;
+  $cg?: ResponsiveValues<PixelSpacing>;
+};
+
+const parse = (value?: PixelSpacing) => {
+  switch (typeof value) {
+    case "string":
+      return value;
+    case "number":
+      return `${value}px`;
+  }
+};
+
+const gridGap = css<GridGapProps>`
+  ${responsive("grid-row-gap", (props) => props.$rg, parse)}
+  ${responsive("grid-column-gap", (props) => props.$cg, parse)}
+`;
+
+const Grid = styled.div<GridGapProps & SpacingProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
   ${gridGap}
   ${spacing}
-  ${position}
-  ${background}
 `;
 
 export default Grid;

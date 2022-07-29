@@ -69,10 +69,10 @@ const SignInCallback: NextPage = () => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
       <Flex
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        flexGrow={1}
+        $flexDirection="column"
+        $justifyContent="center"
+        $alignItems="center"
+        $flexGrow={1}
       >
         {!confirmedEmail && (
           <Form onSubmit={confirmEmail}>
@@ -88,7 +88,7 @@ const SignInCallback: NextPage = () => {
                 data-testid="callback-signin-button"
                 onClick={confirmEmail}
                 label="Sign in"
-                ml={8}
+                $ml={8}
               />
             </Flex>
           </Form>

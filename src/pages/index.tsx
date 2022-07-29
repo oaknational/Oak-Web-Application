@@ -25,114 +25,143 @@ const Home: FC = () => {
   }, [track]);
 
   return (
-    <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
+    <LandingPageLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <MaxWidth>
-        <Grid cg={16} rg={[16, 48, 80]}>
-          <GridArea colSpan={[12, 12, 8]}>
+        <Grid $cg={16} $rg={[16, 48, 80]}>
+          <GridArea $colSpan={[12, 12, 8]}>
             <Heading
-              fontSize={48}
+              $fontSize={48}
               tag={"h1"}
-              mt={80}
+              $mt={80}
               data-testid="home-page-title"
             >
               Supporting Schools To Build Their Curriculum
             </Heading>
-            <P mt={16}>
+            <P $mt={16}>
               Free tools, research and 40,000 editable lesson resources to
               support schools to develop a high-quality curriculum
             </P>
           </GridArea>
 
-          <GridArea colSpan={[12, 12, 4]}>
-            <DismissibleCard title="Beta">
-              <Heading fontSize={20} tag={"h2"}>
-                <Flex alignItems={"center"} mb={12}>
+          <GridArea $colSpan={[12, 12, 4]}>
+            <DismissibleCard title="Oak beta banner">
+              <Heading $fontSize={20} tag={"h2"}>
+                <Flex $alignItems={"center"} $mb={12}>
                   <Icon
                     size={24}
                     name={"GraduationCap"}
-                    mr={8}
-                    color={"grey8"}
+                    $mr={8}
+                    $color={"grey8"}
                   />
-                  <P color={"grey8"} fontSize={16} fontWeight={400}>
+                  <P $color={"grey8"} $fontSize={16} $fontWeight={400}>
                     Next Webinar
                   </P>
                 </Flex>
                 <CardLink href={"/beta/onboarding"}>Use Oak in Beta</CardLink>
-                <P color={"grey8"} fontSize={16} fontWeight={400} mt={8}>
+                <P $color={"grey8"} $fontSize={16} $fontWeight={400} $mt={8}>
                   16/03/2022 &bull; 3:30pm
                 </P>
               </Heading>
             </DismissibleCard>
           </GridArea>
 
-          <GridArea colSpan={[12, 12, 6]}>
+          <GridArea $colSpan={[12, 12, 6]}>
             <Card
-              background={"white"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
+              $background={"white"}
+              $flexDirection={"column"}
+              $justifyContent={"center"}
+              $alignItems="center"
             >
               <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              <Heading
+                $mt={24}
+                $mb={0}
+                $fontSize={24}
+                tag={"h5"}
+                $color={"grey8"}
+              >
                 <CardLink href="https://classroom.thenational.academy/">
                   Classroom
                 </CardLink>
               </Heading>
             </Card>
           </GridArea>
-          <GridArea colSpan={[12, 12, 6]}>
+          <GridArea $colSpan={[12, 12, 6]}>
             <Card
-              background={"white"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
+              $background={"white"}
+              $flexDirection={"column"}
+              $justifyContent={"center"}
+              $alignItems="center"
             >
               <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
+              <Heading
+                $mt={24}
+                $mb={0}
+                $fontSize={24}
+                tag={"h5"}
+                $color={"grey8"}
+              >
                 <CardLink href="https://teachers.thenational.academy/">
                   Teacher Hub
                 </CardLink>
               </Heading>
             </Card>
           </GridArea>
-          <GridArea colSpan={[12, 4, 4]}>
+
+          <GridArea $colSpan={[12, 4, 4]}>
             <Card
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              background={"white"}
+              $flexDirection={"column"}
+              $justifyContent={"center"}
+              $alignItems="center"
+              $background={"white"}
             >
               <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                <CardLink href="/planning">Plan a lesson</CardLink>
+              <Heading
+                $mt={24}
+                $mb={0}
+                $fontSize={24}
+                tag={"h5"}
+                $color={"grey8"}
+              >
+                <CardLink href="/">Curriculum</CardLink>
               </Heading>
             </Card>
           </GridArea>
-
-          <GridArea colSpan={[12, 4, 4]}>
+          <GridArea $colSpan={[12, 4, 4]}>
             <Card
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-              background={"white"}
+              $flexDirection={"column"}
+              $justifyContent={"center"}
+              $alignItems={"center"}
+              $background={"white"}
             >
               <Icon name={"University"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                <CardLink href="/">Improve your curriculum</CardLink>
+              <Heading
+                $mt={24}
+                $mb={0}
+                $fontSize={24}
+                tag={"h5"}
+                $color={"grey8"}
+              >
+                <CardLink href="/">Lesson Planning</CardLink>
               </Heading>
             </Card>
           </GridArea>
-
-          <GridArea colSpan={[12, 4, 4]}>
+          <GridArea $colSpan={[12, 4, 4]}>
             <Card
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems="center"
-              background={"white"}
+              $flexDirection={"column"}
+              $justifyContent={"center"}
+              $alignItems="center"
+              $background={"white"}
             >
               <Icon name={"GraduationCap"} size={64} />
-              <Heading mt={24} mb={0} fontSize={24} tag={"h5"} color={"grey8"}>
-                <CardLink href="/">Oak for School leaders</CardLink>
+              <Heading
+                $mt={24}
+                $mb={0}
+                $fontSize={24}
+                tag={"h5"}
+                $color={"grey8"}
+              >
+                <CardLink href="/">Oak for Schools</CardLink>
               </Heading>
             </Card>
           </GridArea>

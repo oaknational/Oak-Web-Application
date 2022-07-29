@@ -62,9 +62,9 @@ const LessonControl: FC<LessonControlProps> = (props) => {
   return (
     <Root {...rootProps} title={label}>
       <Wrapper
-        pa={4}
-        alignItems="center"
-        background={theme.lessonControl[status].background}
+        $pa={4}
+        $alignItems="center"
+        $background={theme.lessonControl[status].background}
         status={status}
       >
         {badgeProps && (
@@ -72,10 +72,10 @@ const LessonControl: FC<LessonControlProps> = (props) => {
             <Badge {...badgeProps} />
           </BadgeWrapper>
         )}
-        <TextWrapper alignItems="center" justifyContent="center" flexGrow={1}>
-          {status === "current" && <Icon name="ArrowRight" size={20} ml={8} />}
-          <Label mh={8}>{label}</Label>
-          {status === "complete" && <Icon name="Tick" size={20} mr={8} />}
+        <TextWrapper $alignItems="center" $justifyContent="center" $flexGrow={1}>
+          {status === "current" && <Icon name="ArrowRight" size={20} $ml={8} />}
+          <Label $mh={8}>{label}</Label>
+          {status === "complete" && <Icon name="Tick" size={20} $mr={8} />}
         </TextWrapper>
       </Wrapper>
     </Root>

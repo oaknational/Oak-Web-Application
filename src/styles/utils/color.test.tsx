@@ -10,10 +10,10 @@ describe("color", () => {
       ${color}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" color="calmAndWarm" />
+      <StyledComponent data-testid="test" $color="teachersLilac" />
     );
 
-    expect(getByTestId("test")).toHaveStyle("color: #ffd166");
+    expect(getByTestId("test")).toHaveStyle("color: #c6d1ef");
   });
   test("should correctly handle prop 'color' as array", async () => {
     const StyledComponent = styled.div<ColorProps>`
@@ -22,7 +22,7 @@ describe("color", () => {
     const { getByTestId } = renderWithProviders(
       // eslint-disable-next-line
       // @ts-ignore
-      <StyledComponent data-testid="test" color={["black"]} />
+      <StyledComponent data-testid="test" $color={["black"]} />
     );
 
     expect(getByTestId("test")).toHaveStyle("color: rgb(0, 0, 0)");

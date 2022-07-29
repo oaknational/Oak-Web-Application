@@ -1,3 +1,49 @@
+# [0.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.1...v0.54.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **gleap:** get config from config file ([c1848eb](https://github.com/oaknational/Oak-Web-Application/commit/c1848ebf2651746d7b6021e1a3823594d809410f))
+* **gleap:** sonar css issues and new branding fonts on ([8728c2e](https://github.com/oaknational/Oak-Web-Application/commit/8728c2ebf35a8f2f896957325b0c00a51395516e))
+
+
+### Features
+
+* gleap ([491fdb2](https://github.com/oaknational/Oak-Web-Application/commit/491fdb29d337dd50e0049e8e88489d994b139b73))
+
+## [0.53.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.0...v0.53.1) (2022-07-28)
+
+
+### Bug Fixes
+
+* **dissmissable-card:** title ([16a138d](https://github.com/oaknational/Oak-Web-Application/commit/16a138d3e97006562c7437152e8d266a599b63db))
+
+# [0.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.1...v0.53.0) (2022-07-27)
+
+
+### Bug Fixes
+
+* **brushstroke-borders:** new svgs ([2b135b2](https://github.com/oaknational/Oak-Web-Application/commit/2b135b2775705a37327ddefe2a92f365dfefc4f5))
+
+
+### Features
+
+* brushstroke borders ([39489f2](https://github.com/oaknational/Oak-Web-Application/commit/39489f2cd5f0b16fd6e7028aa54b80716504f14e))
+
+## [0.52.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.0...v0.52.1) (2022-07-26)
+
+
+### Bug Fixes
+
+* **cms:** fix codegen env vars ([5ed3e4d](https://github.com/oaknational/Oak-Web-Application/commit/5ed3e4d8f32a54f6592e8db7b073cecac807e960))
+
+# [0.52.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.51.0...v0.52.0) (2022-07-22)
+
+
+### Features
+
+* add brand colors ([e74b888](https://github.com/oaknational/Oak-Web-Application/commit/e74b8889f1df77a75ecbc2ea90d6e4c92e5732ff))
+
 # [0.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.1...v0.51.0) (2022-07-21)
 
 

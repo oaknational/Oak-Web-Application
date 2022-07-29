@@ -28,23 +28,23 @@ type KeyStageNavProps = {
 const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
   return (
     <nav aria-label="key stages and year groups">
-      <Flex flexDirection={["column", "row", "row"]}>
+      <Flex $flexDirection={["column", "row", "row"]}>
         {keyStages.map((keyStage) => (
           <Flex
             key={keyStage.name}
-            mr={[12, 12, 64]}
-            alignItems={"center"}
-            flexDirection={"column"}
+            $mr={[12, 12, 64]}
+            $alignItems={"center"}
+            $flexDirection={"column"}
           >
             <ButtonAsLink
               icon={"ArrowRight"}
               iconPosition="trailing"
               label={keyStage.name}
               href={keyStage.url}
-              mb={16}
+              $mb={16}
             />
             {keyStage.years.map((year: KeyStageYear, index) => (
-              <P key={index} mb={16}>
+              <P key={index} $mb={16}>
                 <Link href={year.url}>{year.name}</Link>
               </P>
             ))}
