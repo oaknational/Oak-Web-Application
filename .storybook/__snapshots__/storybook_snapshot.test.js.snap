@@ -780,6 +780,23 @@ Array [
   <div
     className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 gcoNKz hGGzRB dQkcUN"
   >
+    <div
+      aria-hidden="true"
+      data-testid="brush-borders"
+    >
+      <span
+        className="sc-511f35cf-0 eGHJah"
+      />
+      <span
+        className="sc-511f35cf-1 ccoXfv"
+      />
+      <span
+        className="sc-511f35cf-2 irfrOf"
+      />
+      <span
+        className="sc-511f35cf-3 hAsxJg"
+      />
+    </div>
     <h3
       className="sc-ff7617d7-0 hoisSK"
     >

@@ -3,6 +3,7 @@ import { FC } from "react";
 import { OakColorName } from "../../styles/theme";
 import Icon, { IconName } from "../Icon";
 import { Heading, HeadingTag } from "../Typography";
+import BrushBorders from "../BrushBorders/BrushBorders";
 
 import Card from "./Card";
 import CardLink from "./CardLink";
@@ -32,6 +33,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       $mb={[16, 0]}
       $borderRadius={0}
     >
+      <BrushBorders></BrushBorders>
       <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
         <CardLink href={href}>{title}</CardLink>
       </Heading>
