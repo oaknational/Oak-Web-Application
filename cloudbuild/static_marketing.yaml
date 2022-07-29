@@ -49,6 +49,7 @@ steps:
         # Preview deploy
         - >-
           /usr/bin/firebase.bash
+          --project oak-national-academy-2022
           hosting:channel:deploy
           "${SHORT_SHA}"
           --expires 30d
