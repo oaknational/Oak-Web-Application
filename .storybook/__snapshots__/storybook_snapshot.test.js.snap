@@ -841,37 +841,21 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 jJtPZq hfxnHf HTjge"
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-5cb33468-0 cKXzyA fwpmZV HTjge"
   >
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 aHoVI yimBR"
+      className="sc-ed3fbaef-0 sc-f624290d-0 aHoVI hgRHJJ"
     >
       <h2
-        className="sc-ff7617d7-0 igSxJk"
-        color="grey4"
-        fontSize={20}
-        lineHeight={24}
-        mb={16}
+        className="sc-ff7617d7-0 hCRchg"
       >
         Title
       </h2>
       <h1
-        className="sc-ff7617d7-0 igSxJk"
-        color="black"
-        fontSize={
-          Array [
-            24,
-            32,
-            32,
-          ]
-        }
-        lineHeight={40}
-        mb={16}
+        className="sc-ff7617d7-0 hZNZnN"
       />
       <div
-        className="sc-ed3fbaef-0 sc-197d9b58-0 aHoVI bezTUB"
-        color="black"
-        fontSize={16}
+        className="sc-ed3fbaef-0 sc-197d9b58-0 aHoVI gmWEYX"
       >
         <p>
           A summary section.......
@@ -879,8 +863,7 @@ Array [
       </div>
     </div>
     <div
-      className="sc-ed3fbaef-0 sc-f624290d-0 aHoVI yimBR"
-      width="100%"
+      className="sc-ed3fbaef-0 sc-f624290d-0 bNTZlr vCbGB"
     >
       <div
         className="sc-a6ed065f-0 hcJmWF"

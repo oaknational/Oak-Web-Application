@@ -34,32 +34,32 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
 }) => {
   return (
     <Card
-      mt={[72, 80, 80]}
-      mb={[40, 80, 80]}
-      background={background}
-      flexDirection={"row"}
-      justifyContent={"space-between"}
+      $mt={[72, 80, 80]}
+      $mb={[40, 80, 80]}
+      $background={background}
+      $flexDirection={"row"}
+      $justifyContent={"space-between"}
     >
-      <Flex flexDirection={"column"}>
+      <Flex $flexDirection={"column"}>
         <Heading
-          mb={16}
+          $mb={16}
           tag={"h2"}
-          fontSize={20}
-          lineHeight={24}
-          color={"grey4"}
+          $fontSize={20}
+          $lineHeight={24}
+          $color={"grey4"}
         >
           {title}
         </Heading>
         <Heading
-          mb={16}
-          color={"black"}
-          fontSize={[24, 32, 32]}
-          lineHeight={40}
+          $mb={16}
+          $color={"black"}
+          $fontSize={[24, 32, 32]}
+          $lineHeight={40}
           tag={"h1"}
         >
           {heading}
         </Heading>
-        <Typography color="black" fontSize={16}>
+        <Typography $color="black" $fontSize={16}>
           {typeof summary === "string" ? (
             <p>{summary}</p>
           ) : (
@@ -67,7 +67,7 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
           )}
         </Typography>
       </Flex>
-      <Flex width={"100%"} alignItems={"center"} justifyContent={"center"}>
+      <Flex $width={"100%"} $alignItems={"center"} $justifyContent={"center"}>
         <CardImage
           alt={alt}
           imageSrc={imageSrc}

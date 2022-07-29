@@ -6,6 +6,7 @@ import Flex from "../Flex";
 import Icon from "../Icon";
 
 const CircleIconContainer = styled(Flex)`
+  border-radius: 100px;
   width: 72px;
   height: 72px;
   z-index: 2;
@@ -13,6 +14,7 @@ const CircleIconContainer = styled(Flex)`
 
 const CircleIconContainerOverlap = styled(Flex)`
   position: absolute;
+  border-radius: 100px;
   left: 55px;
   width: 72px;
   height: 72px;
@@ -20,35 +22,32 @@ const CircleIconContainerOverlap = styled(Flex)`
 
 const LessonProgressionGraphic: FC = () => {
   return (
-    <Flex justifyContent={"center"} flexDirection={["column", "row"]}>
+    <Flex $justifyContent={"center"} $flexDirection={["column", "row"]}>
       <Flex>
         <Link href={"/"}>
           <CircleIconContainer
-            background={"madangGreen"}
-            borderRadius={100}
-            alignItems={"center"}
-            justifyContent={"center"}
+            $background={"grey3"}
+            $alignItems={"center"}
+            $justifyContent={"center"}
           >
             <Icon size={48} name={"Quiz"}></Icon>
           </CircleIconContainer>
         </Link>
 
-        <Flex position="relative">
+        <Flex $position="relative">
           <Link href={"/"}>
             <CircleIconContainerOverlap
-              background={"madangGreen"}
-              borderRadius={100}
-              alignItems={"center"}
-              justifyContent={"center"}
+              $background={"grey3"}
+              $alignItems={"center"}
+              $justifyContent={"center"}
             >
               <Icon size={48} name={"LessonSlides"}></Icon>
             </CircleIconContainerOverlap>
           </Link>
           <CircleIconContainer
-            background={"madangGreen"}
-            borderRadius={100}
-            alignItems={"center"}
-            justifyContent={"center"}
+            $background={"grey3"}
+            $alignItems={"center"}
+            $justifyContent={"center"}
           >
             <Link href={"/"}>
               <Icon size={48} name={"Quiz"} />
@@ -57,21 +56,19 @@ const LessonProgressionGraphic: FC = () => {
         </Flex>
       </Flex>
 
-      <Flex position="relative">
+      <Flex $position="relative">
         <CircleIconContainer
-          background={"madangGreen"}
-          borderRadius={100}
-          alignItems={"center"}
-          justifyContent={"center"}
+          $background={"grey2"}
+          $alignItems={"center"}
+          $justifyContent={"center"}
         >
           <Icon size={48} name={"Quiz"}></Icon>
         </CircleIconContainer>
 
         <CircleIconContainer
-          background={"madangGreen"}
-          borderRadius={100}
-          alignItems={"center"}
-          justifyContent={"center"}
+          $background={"grey2"}
+          $alignItems={"center"}
+          $justifyContent={"center"}
         >
           <Icon size={48} name={"Quiz"}></Icon>
         </CircleIconContainer>

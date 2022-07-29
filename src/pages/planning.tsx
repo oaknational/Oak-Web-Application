@@ -42,6 +42,7 @@ const BackgroundImageContainer = styled(Flex)`
 `;
 
 const CircleIconContainer = styled(Flex)`
+  border-radius: 100px;
   width: 124px;
   height: 124px;
 `;
@@ -68,20 +69,19 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
 }) => {
   return (
     <Card
-      width={width}
-      alignItems={alignCenter ? "center" : "flex-start"}
-      flexDirection={["row", "column"]}
+      $width={width}
+      $alignItems={alignCenter ? "center" : "flex-start"}
+      $flexDirection={["row", "column"]}
       // ph={[0, 32]}
-      pa={32}
-      background={background}
+      $pa={32}
+      $background={background}
     >
       {pageAnchorId && <SpanLink id={pageAnchorId}></SpanLink>}
       {icon && (
         <CircleIconContainer
-          background={"madangGreen"}
-          borderRadius={100}
-          alignItems={"center"}
-          justifyContent={"center"}
+          $background={"grey4"}
+          $alignItems={"center"}
+          $justifyContent={"center"}
         >
           <Icon size={80} name={icon} />
         </CircleIconContainer>
@@ -90,16 +90,16 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
         {image && <Image width={"200px"} height={"150px"} src={image}></Image>}
       </Flex>
 
-      <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
+      <Flex $ml={[24, 0, 0]} $mt={[0, 24, 24]} $flexDirection={"column"}>
         <Heading
           textAlign={alignCenter ? "center" : "start"}
-          mb={24}
+          $mb={24}
           tag={"h3"}
-          fontSize={[16, 24]}
+          $fontSize={[16, 24]}
         >
           {title}
         </Heading>
-        <P textAlign={alignCenter ? "center" : "start"} fontSize={[14, 16]}>
+        <P textAlign={alignCenter ? "center" : "start"} $fontSize={[14, 16]}>
           {children}
         </P>
       </Flex>
@@ -110,29 +110,29 @@ const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   console.log(pageData);
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <MaxWidth>
-        <Grid cg={24} rg={[16, 32, 32]}>
-          <GridArea colSpan={[12, 12, 12]}>
+        <Grid $cg={24} $rg={[16, 32, 32]}>
+          <GridArea $colSpan={[12, 12, 12]}>
             <SummaryCard
               title={pageData.title}
               heading={pageData.heading}
               summary={pageData.summaryPortableText}
               imageSrc={"/images/illustrations/planning.svg"}
               alt={"planning illustration"}
-              background="madangGreen"
+              background="grey3"
             />
           </GridArea>
         </Grid>
 
-        <Flex flexDirection={"column"} justifyContent={"center"}>
+        <Flex $flexDirection={"column"} $justifyContent={"center"}>
           <Heading
             textAlign="center"
-            color={"black"}
-            lineHeight={32}
-            fontSize={[16, 24, 24]}
+            $color={"black"}
+            $lineHeight={32}
+            $fontSize={[16, 24, 24]}
             tag={"h3"}
-            mb={[32, 80, 80]}
+            $mb={[32, 80, 80]}
           >
             Elements of a lesson
           </Heading>
@@ -142,60 +142,60 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
         {/* Elements of lesson cards */}
 
         <Grid>
-          <GridArea colSpan={[12, 6, 6]}>
+          <GridArea $colSpan={[12, 6, 6]}>
             <LessonPlanningCard
               title={pageData.lessonElements.introQuiz.title}
               icon={"Quiz"}
               pageAnchorId={"intro-quiz"}
-              background="powderBlue"
+              background="grey5"
             >
               <PortableText
                 value={pageData.lessonElements.introQuiz.bodyPortableText}
               />
             </LessonPlanningCard>
           </GridArea>
-          <GridArea colSpan={[12, 6, 6]}>
+          <GridArea $colSpan={[12, 6, 6]}>
             <LessonPlanningCard
               title={pageData.lessonElements.video.title}
               icon={"Video"}
               pageAnchorId={"video"}
-              background="powderBlue"
+              background="grey5"
             >
               <PortableText
                 value={pageData.lessonElements.video.bodyPortableText}
               />
             </LessonPlanningCard>
           </GridArea>
-          <GridArea colSpan={[12, 6, 6]}>
+          <GridArea $colSpan={[12, 6, 6]}>
             <LessonPlanningCard
               title={pageData.lessonElements.slides.title}
               icon={"LessonSlides"}
               pageAnchorId={"lesson-slides"}
-              background="powderBlue"
+              background="grey3"
             >
               <PortableText
                 value={pageData.lessonElements.slides.bodyPortableText}
               />
             </LessonPlanningCard>
           </GridArea>
-          <GridArea colSpan={[12, 6, 6]}>
+          <GridArea $colSpan={[12, 6, 6]}>
             <LessonPlanningCard
               title={pageData.lessonElements.worksheet.title}
               icon={"Worksheet"}
               pageAnchorId={"worksheet"}
-              background="powderBlue"
+              background="grey2"
             >
               <PortableText
                 value={pageData.lessonElements.worksheet.bodyPortableText}
               />
             </LessonPlanningCard>
           </GridArea>
-          <GridArea colSpan={[12, 6, 6]}>
+          <GridArea $colSpan={[12, 6, 6]}>
             <LessonPlanningCard
               title={pageData.lessonElements.exitQuiz.title}
               icon={"Quiz"}
               pageAnchorId={"exit-quiz"}
-              background="powderBlue"
+              background="grey8"
             >
               <PortableText
                 value={pageData.lessonElements.exitQuiz.bodyPortableText}
@@ -203,8 +203,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             </LessonPlanningCard>
           </GridArea>
 
-          <GridArea colSpan={[12, 6, 6]}>
-            <Card justifyContent={"space-between"} background={"grey7"} pa={0}>
+          <GridArea $colSpan={[12, 6, 6]}>
+            <Card
+              $justifyContent={"space-between"}
+              $background={"grey7"}
+              $pa={0}
+            >
               <Flex>
                 <Image
                   width={300}
@@ -213,11 +217,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   src={"/images/illustrations/classroom.svg"}
                 ></Image>
               </Flex>
-              <Flex justifyContent={"flex-end"}>
+              <Flex $justifyContent={"flex-end"}>
                 <ButtonAsLink
                   label={pageData.lessonElementsCTA.label}
                   href={"/"}
-                  ma={32}
+                  $ma={32}
                 />
               </Flex>
             </Card>
@@ -229,20 +233,20 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 
       <BackgroundImageContainer>
         <MaxWidth>
-          <Grid position="relative" cg={24} rg={[16, 32, 32]}>
+          <Grid $cg={24} $rg={[16, 32, 32]}>
             <GridArea
-              alignItems={"center"}
-              justifyContent={"center"}
-              colSpan={[12, 12, 12]}
+              $alignItems={"center"}
+              $justifyContent={"center"}
+              $colSpan={[12, 12, 12]}
             >
-              <Flex width={["100%", "50%"]}>
+              <Flex $width={["100%", "50%"]}>
                 <Heading
                   textAlign="center"
-                  color={"black"}
-                  lineHeight={32}
-                  fontSize={[16, 24]}
+                  $color={"black"}
+                  $lineHeight={32}
+                  $fontSize={[16, 24]}
                   tag={"h3"}
-                  mv={80}
+                  $mv={80}
                 >
                   {pageData.stepsHeading}
                 </Heading>
@@ -256,7 +260,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 <PortableText value={pageData.steps[0]?.bodyPortableText} />
               </LessonPlanningCard>
             </GridArea>
-            <GridArea colSpan={[12, 6, 6]}>
+            <GridArea $colSpan={[12, 6, 6]}>
               <LessonPlanningCard
                 title={`2. ${pageData.steps[1]?.title}`}
                 image={"/images/illustrations/classroom.svg"}
@@ -264,7 +268,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 <PortableText value={pageData.steps[1]?.bodyPortableText} />
               </LessonPlanningCard>
             </GridArea>
-            <GridArea colSpan={[12, 6, 6]}>
+            <GridArea $colSpan={[12, 6, 6]}>
               <LessonPlanningCard
                 title={`3. ${pageData.steps[2]?.title}`}
                 image={"/images/illustrations/classroom.svg"}
@@ -273,9 +277,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               </LessonPlanningCard>
             </GridArea>
             <GridArea
-              alignItems={"center"}
-              justifyContent={"center"}
-              colSpan={[12, 12, 12]}
+              $alignItems={"center"}
+              $justifyContent={"center"}
+              $colSpan={[12, 12, 12]}
             >
               <LessonPlanningCard
                 title={`4. ${pageData.steps[3]?.title}`}
@@ -296,40 +300,50 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 
       {/* `Plan for section` */}
       <MaxWidth>
-        <Flex ma={80} justifyContent={"center"} alignItems={"center"}>
-          <Flex maxWidth={"50%"}>
-            <Heading textAlign="center" fontSize={[16, 24]} tag="h4">
+        <Flex $ma={80} $justifyContent={"center"} $alignItems={"center"}>
+          <Flex $maxWidth={"50%"}>
+            <Heading textAlign="center" $fontSize={[16, 24]} tag="h4">
               How to plan a lesson using our resources and adapt them for your
               classroom.
             </Heading>
           </Flex>
         </Flex>
-        <Flex mb={80} background={"niceAndSharp"}>
-          <Card color="grey8" justifyContent={"center"} alignItems={"center"}>
+        <Flex $mb={80} $background={"teachersGreen"}>
+          <Card color="grey8" $justifyContent={"center"} $alignItems={"center"}>
             Video
           </Card>
-          <Card pa={32} maxWidth={"50%"}>
-            <Heading textAlign="center" mb={16} fontSize={[16, 24]} tag={"h4"}>
+          <Card $pa={32} $maxWidth={"50%"}>
+            <Heading
+              textAlign="center"
+              $mb={16}
+              $fontSize={[16, 24]}
+              tag={"h4"}
+            >
               {pageData.learnMoreBlock1.title}
             </Heading>
 
-            <P mb={16}>
+            <P $mb={16}>
               <PortableText value={pageData.learnMoreBlock1.bodyPortableText} />
             </P>
           </Card>
         </Flex>
-        <Flex background={"niceAndSharp"}>
-          <Card pa={32} maxWidth={"50%"}>
-            <Heading textAlign="center" mb={16} fontSize={[16, 24]} tag={"h4"}>
+        <Flex $background={"grey4"}>
+          <Card $pa={32} $maxWidth={"50%"}>
+            <Heading
+              textAlign="center"
+              $mb={16}
+              $fontSize={[16, 24]}
+              tag={"h4"}
+            >
               {pageData.learnMoreBlock2.title}
             </Heading>
 
-            <P mb={16}>
+            <P $mb={16}>
               <PortableText value={pageData.learnMoreBlock2.bodyPortableText} />
             </P>
           </Card>
-          <Flex flexGrow={1} pa={32}>
-            <Card justifyContent={"space-between"} background={"grey7"}>
+          <Flex $flexGrow={1} $pa={32}>
+            <Card $justifyContent={"space-between"} $background={"grey7"}>
               <Flex>
                 <Image
                   width={300}
@@ -338,7 +352,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   src={"/images/illustrations/classroom.svg"}
                 ></Image>
               </Flex>
-              <Flex justifyContent={"flex-end"}>
+              <Flex $justifyContent={"flex-end"}>
                 <ButtonAsLink
                   label={pageData.lessonElementsCTA.label}
                   href={"/"}

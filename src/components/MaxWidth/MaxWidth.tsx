@@ -20,7 +20,7 @@ const MaxWidth = styled(Flex)`
  * be accessible to assistive technology.
  */
 MaxWidth.defaultProps = {
-  maxWidth: 1200,
+  $maxWidth: 1200,
 };
 
 export default MaxWidth;
