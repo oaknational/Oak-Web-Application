@@ -32,7 +32,6 @@ const LessonProgressionGraphic: FC = () => {
             <Icon size={48} name={"Quiz"}></Icon>
           </CircleIconContainer>
         </Link>
-        <Icon mh={12} mt={32} size={48} name={"PenLookUp"}></Icon>
 
         <Flex position="relative">
           <Link href={"/"}>
@@ -57,14 +56,6 @@ const LessonProgressionGraphic: FC = () => {
           </CircleIconContainer>
         </Flex>
       </Flex>
-      <Icon
-        mh={12}
-        rotate={180}
-        flip
-        mt={8}
-        size={48}
-        name={"PenLookUp"}
-      ></Icon>
 
       <Flex position="relative">
         <CircleIconContainer
@@ -75,7 +66,7 @@ const LessonProgressionGraphic: FC = () => {
         >
           <Icon size={48} name={"Quiz"}></Icon>
         </CircleIconContainer>
-        <Icon mh={12} mt={32} size={48} name={"PenLookUp"}></Icon>
+
         <CircleIconContainer
           background={"madangGreen"}
           borderRadius={100}

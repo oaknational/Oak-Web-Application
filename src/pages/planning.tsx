@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
 import styled from "styled-components";
-import Link from "next/link";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { PlanningPage } from "../node-lib/cms";
@@ -10,12 +10,16 @@ import Card from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
 import Layout from "../components/Layout";
-import Typography, { Heading, P } from "../components/Typography";
+import { Heading, P } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import { getBreakpoint } from "../styles/utils/responsive";
 import Icon from "../components/Icon";
 import LessonProgressionGraphic from "../components/LessonProgressionGraphic";
 import { IconName } from "../components/Icon/Icon";
+import { OakColorName } from "../styles/theme";
+import MaxWidth from "../components/MaxWidth/MaxWidth";
+import SummaryCard from "../components/Card/SummaryCard";
+import { SizeValues } from "../styles/utils/size";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -28,15 +32,13 @@ const SpanLink = styled.span`
     scroll-margin-top: ${({ theme }) => theme.header.height + 92}px;
   }
 `;
-const RoundedImage = styled.img`
-  width: 72px;
-  height: 72px;
-  border-radius: 5px;
 
-  @media (max-width: ${getBreakpoint("small")}px) {
-    width: 80px;
-    height: 80px;
-  }
+const BackgroundImageContainer = styled(Flex)`
+  justify-content: center;
+  background-image: url("images/pen/loopLarge.svg");
+  background-size: 66%;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 
 const CircleIconContainer = styled(Flex)`
@@ -45,428 +47,307 @@ const CircleIconContainer = styled(Flex)`
 `;
 
 type LessonPlanningCardProps = {
-  title: string;
-  icon: IconName;
-  pageAnchorId: string;
+  title?: string;
+  icon?: IconName;
+  image?: string;
+  pageAnchorId?: string;
+  background?: OakColorName;
+  width?: SizeValues;
+  alignCenter?: boolean;
 };
 
 const LessonPlanningCard: FC<LessonPlanningCardProps> = ({
   title,
   icon,
+  image,
   children,
   pageAnchorId,
+  background,
+  width,
+  alignCenter,
 }) => {
   return (
     <Card
-      alignItems={"center"}
+      width={width}
+      alignItems={alignCenter ? "center" : "flex-start"}
       flexDirection={["row", "column"]}
-      ph={[0, 12]}
-      background={"powderBlue"}
+      // ph={[0, 32]}
+      pa={32}
+      background={background}
     >
-      <SpanLink id={pageAnchorId}></SpanLink>
-      <CircleIconContainer
-        background={"madangGreen"}
-        borderRadius={100}
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <Icon size={80} name={icon} />
-      </CircleIconContainer>
+      {pageAnchorId && <SpanLink id={pageAnchorId}></SpanLink>}
+      {icon && (
+        <CircleIconContainer
+          background={"madangGreen"}
+          borderRadius={100}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Icon size={80} name={icon} />
+        </CircleIconContainer>
+      )}
+      <Flex>
+        {image && <Image width={"200px"} height={"150px"} src={image}></Image>}
+      </Flex>
+
       <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-        <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
+        <Heading
+          textAlign={alignCenter ? "center" : "start"}
+          mb={24}
+          tag={"h3"}
+          fontSize={[16, 24]}
+        >
           {title}
         </Heading>
-        <P fontSize={[14, 16]}>{children}</P>
+        <P textAlign={alignCenter ? "center" : "start"} fontSize={[14, 16]}>
+          {children}
+        </P>
       </Flex>
     </Card>
   );
 };
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+  console.log(pageData);
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} background={"grey1"}>
-      <Grid cg={24} rg={[16, 48, 80]}>
-        <GridArea colSpan={[12, 12, 12]}>
-          <Card mt={[72, 80, 80]} mb={[40, 80, 80]} background={"madangGreen"}>
-            <Heading
-              mb={16}
-              tag={"h2"}
-              fontSize={20}
-              lineHeight={24}
-              color={"grey4"}
-            >
-              {pageData.title}
-            </Heading>
-            <Heading
-              mb={16}
-              color={"black"}
-              fontSize={[24, 32, 32]}
-              lineHeight={40}
-              tag={"h1"}
-            >
-              {pageData.heading}
-            </Heading>
-            <Typography color="black" fontSize={16}>
-              <PortableText value={pageData.summaryPortableText} />
-            </Typography>
-          </Card>
-        </GridArea>
-
-        <GridArea colSpan={[12, 12, 12]}>
-          <Flex flexDirection={"column"} justifyContent={"center"}>
-            <Heading
-              textAlign="center"
-              color={"black"}
-              lineHeight={32}
-              fontSize={[16, 24, 24]}
-              tag={"h3"}
-              mb={[32, 80, 80]}
-            >
-              Elements of a lesson
-            </Heading>
-            <LessonProgressionGraphic></LessonProgressionGraphic>
-          </Flex>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <LessonPlanningCard
-            title={pageData.lessonElements.introQuiz.title}
-            icon={"Quiz"}
-            pageAnchorId={"intro-quiz"}
-          >
-            <PortableText
-              value={pageData.lessonElements.introQuiz.bodyPortableText}
+      <MaxWidth>
+        <Grid cg={24} rg={[16, 32, 32]}>
+          <GridArea colSpan={[12, 12, 12]}>
+            <SummaryCard
+              title={pageData.title}
+              heading={pageData.heading}
+              summary={pageData.summaryPortableText}
+              imageSrc={"/images/illustrations/planning.svg"}
+              alt={"planning illustration"}
+              background="madangGreen"
             />
-          </LessonPlanningCard>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <LessonPlanningCard
-            title={pageData.lessonElements.slides.title}
-            icon={"LessonSlides"}
-            pageAnchorId={"lesson-slides"}
-          >
-            Help your pupils retrieve or activate prior knowledge with our intro
-            quizzes. Project them in your classroom, or print them off as
-            worksheets to use in class or as homework.
-          </LessonPlanningCard>
-          <Card
-            alignItems={"center"}
-            flexDirection={["row", "column"]}
-            ph={[0, 12]}
-            background={"powderBlue"}
-          >
-            <SpanLink id="lesson-slides"></SpanLink>
-            <CircleIconContainer
-              background={"madangGreen"}
-              borderRadius={100}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Link href={"/"}>
-                <Icon size={80} name={"Quiz"} />
-              </Link>
-            </CircleIconContainer>
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
-                Lesson Slides
-              </Heading>
-              <P fontSize={[14, 16]}>
-                The majority of our lesson slides can be downloaded and edited.
-                Use them as a foundation for your own lesson plans, and adapt
-                them to make them your own.
-              </P>
-            </Flex>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={["row", "column"]}
-            ph={[0, 12]}
-            background={"powderBlue"}
-          >
-            <SpanLink id="worksheets"></SpanLink>
-            <CircleIconContainer
-              background={"madangGreen"}
-              borderRadius={100}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Link href={"/"}>
-                <Icon size={80} name={"Quiz"} />
-              </Link>
-            </CircleIconContainer>
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
-                Worksheets
-              </Heading>
-              <P fontSize={[14, 16]}>
-                Our lesson worksheets help your pupils practise key lesson
-                content, and support your planning for questions and tasks. Use
-                them in the classroom, for homework and revision.
-              </P>
-            </Flex>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={["row", "column"]}
-            ph={[0, 12]}
-            background={"powderBlue"}
-          >
-            <SpanLink id="video"></SpanLink>
-            <CircleIconContainer
-              background={"madangGreen"}
-              borderRadius={100}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Link href={"/"}>
-                <Icon size={80} name={"Quiz"} />
-              </Link>
-            </CircleIconContainer>
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[20, 32]}>
-                Video
-              </Heading>
-              <P fontSize={[14, 16]}>
-                Build your confidence tackling unfamiliar topics by observing
-                experienced teachers delivering the lesson, or use the videos to
-                support your pupils with homework and revision.
-              </P>
-            </Flex>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={["row", "column"]}
-            ph={[0, 12]}
-            background={"powderBlue"}
-          >
-            <SpanLink id="exit-quiz"></SpanLink>
-            <CircleIconContainer
-              background={"madangGreen"}
-              borderRadius={100}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Link href={"/"}>
-                <Icon size={80} name={"Quiz"} />
-              </Link>
-            </CircleIconContainer>
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading mb={24} tag={"h3"} fontSize={[16, 24]}>
-                Exit Quiz
-              </Heading>
-              <P fontSize={[14, 16]}>
-                Finish your lesson with our exit quizzes, designed to test your
-                pupils’ knowledge recall and to support you to identify areas
-                which require reteaching. Project them in your classroom, or
-                print them off as worksheets to use in class or as homework.
-              </P>
-            </Flex>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            background={"grey7"}
-            mb={80}
-            alignItems={"center"}
-            justifyContent={"center"}
-            ph={[0, 12]}
-          >
-            <ButtonAsLink label={"Find teaching resources"} href={"/"} />
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 12, 12]}>
+          </GridArea>
+        </Grid>
+
+        <Flex flexDirection={"column"} justifyContent={"center"}>
           <Heading
             textAlign="center"
             color={"black"}
             lineHeight={32}
-            fontSize={[16, 24]}
+            fontSize={[16, 24, 24]}
             tag={"h3"}
-            mb={80}
+            mb={[32, 80, 80]}
           >
-            How to plan a lesson using our resources and adapt them for your
-            classroom.
+            Elements of a lesson
           </Heading>
-          <Flex alignItems={"center"} flexDirection={"column"}>
-            <Card
+          <LessonProgressionGraphic></LessonProgressionGraphic>
+        </Flex>
+
+        {/* Elements of lesson cards */}
+
+        <Grid>
+          <GridArea colSpan={[12, 6, 6]}>
+            <LessonPlanningCard
+              title={pageData.lessonElements.introQuiz.title}
+              icon={"Quiz"}
+              pageAnchorId={"intro-quiz"}
+              background="powderBlue"
+            >
+              <PortableText
+                value={pageData.lessonElements.introQuiz.bodyPortableText}
+              />
+            </LessonPlanningCard>
+          </GridArea>
+          <GridArea colSpan={[12, 6, 6]}>
+            <LessonPlanningCard
+              title={pageData.lessonElements.video.title}
+              icon={"Video"}
+              pageAnchorId={"video"}
+              background="powderBlue"
+            >
+              <PortableText
+                value={pageData.lessonElements.video.bodyPortableText}
+              />
+            </LessonPlanningCard>
+          </GridArea>
+          <GridArea colSpan={[12, 6, 6]}>
+            <LessonPlanningCard
+              title={pageData.lessonElements.slides.title}
+              icon={"LessonSlides"}
+              pageAnchorId={"lesson-slides"}
+              background="powderBlue"
+            >
+              <PortableText
+                value={pageData.lessonElements.slides.bodyPortableText}
+              />
+            </LessonPlanningCard>
+          </GridArea>
+          <GridArea colSpan={[12, 6, 6]}>
+            <LessonPlanningCard
+              title={pageData.lessonElements.worksheet.title}
+              icon={"Worksheet"}
+              pageAnchorId={"worksheet"}
+              background="powderBlue"
+            >
+              <PortableText
+                value={pageData.lessonElements.worksheet.bodyPortableText}
+              />
+            </LessonPlanningCard>
+          </GridArea>
+          <GridArea colSpan={[12, 6, 6]}>
+            <LessonPlanningCard
+              title={pageData.lessonElements.exitQuiz.title}
+              icon={"Quiz"}
+              pageAnchorId={"exit-quiz"}
+              background="powderBlue"
+            >
+              <PortableText
+                value={pageData.lessonElements.exitQuiz.bodyPortableText}
+              />
+            </LessonPlanningCard>
+          </GridArea>
+
+          <GridArea colSpan={[12, 6, 6]}>
+            <Card justifyContent={"space-between"} background={"grey7"} pa={0}>
+              <Flex>
+                <Image
+                  width={300}
+                  height={200}
+                  alt={"classroom illustration"}
+                  src={"/images/illustrations/classroom.svg"}
+                ></Image>
+              </Flex>
+              <Flex justifyContent={"flex-end"}>
+                <ButtonAsLink
+                  label={pageData.lessonElementsCTA.label}
+                  href={"/"}
+                  ma={32}
+                />
+              </Flex>
+            </Card>
+          </GridArea>
+        </Grid>
+      </MaxWidth>
+
+      {/* How to plan a lesson */}
+
+      <BackgroundImageContainer>
+        <MaxWidth>
+          <Grid position="relative" cg={24} rg={[16, 32, 32]}>
+            <GridArea
               alignItems={"center"}
               justifyContent={"center"}
-              flexDirection={["column-reverse", "column"]}
-              width={["100%", "50%"]}
-              ph={[0, 12]}
+              colSpan={[12, 12, 12]}
             >
-              <CircleIconContainer
-                background={"madangGreen"}
-                borderRadius={100}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <Link href={"/"}>
-                  <Icon size={80} name={"Quiz"} />
-                </Link>
-              </CircleIconContainer>
-              <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
+              <Flex width={["100%", "50%"]}>
                 <Heading
                   textAlign="center"
                   color={"black"}
-                  fontSize={[24, 32]}
+                  lineHeight={32}
+                  fontSize={[16, 24]}
                   tag={"h3"}
-                  mb={16}
+                  mv={80}
                 >
-                  1. Find the right lesson
+                  {pageData.stepsHeading}
                 </Heading>
-                <P mb={32} fontSize={[14, 16]}>
-                  Match your learning outcomes to an Oak lesson. Familiarise
-                  yourself with the resources so you know where to start when
-                  moulding them to your curriculum.
-                </P>
               </Flex>
-            </Card>
-          </Flex>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            alignItems={"center"}
-            flexDirection={["column-reverse", "column"]}
-            ph={[0, 12]}
-          >
-            <RoundedImage src="/images/Image.png"></RoundedImage>
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading
-                textAlign="center"
-                color={"black"}
-                fontSize={[24, 32]}
-                tag={"h3"}
-                mb={16}
+
+              <LessonPlanningCard
+                title={`1. ${pageData.steps[0]?.title}`}
+                image={"/images/illustrations/classroom.svg"}
+                width={"50%"}
               >
-                2. Personalise your explanation
-              </Heading>
-              <P mb={32} fontSize={[14, 16]}>
-                Watch the video to inspire and refine your own explanation for
-                your class, connecting the learning to your previous and next
-                lessons.
-              </P>
-            </Flex>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={["column-reverse", "column"]}
-            ph={[0, 12]}
-          >
-            <RoundedImage src="/images/Image.png"></RoundedImage>
-            <Flex ml={[24, 0, 0]} mt={[0, 24, 24]} flexDirection={"column"}>
-              <Heading
-                textAlign="center"
-                color={"black"}
-                fontSize={[24, 32]}
-                tag={"h3"}
-                mb={16}
+                <PortableText value={pageData.steps[0]?.bodyPortableText} />
+              </LessonPlanningCard>
+            </GridArea>
+            <GridArea colSpan={[12, 6, 6]}>
+              <LessonPlanningCard
+                title={`2. ${pageData.steps[1]?.title}`}
+                image={"/images/illustrations/classroom.svg"}
               >
-                3. Tailor the tasks for your class
-              </Heading>
-              <P mb={32} fontSize={[14, 16]}>
-                Build in additional scaffolding, or remove included support to
-                tailor the learning to the needs of your students. Decide how
-                your class will complete each task and consider how you’ll
-                divide your available time between tasks, explanation, and
-                quizzes.
-              </P>
-            </Flex>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 12, 12]}>
-          <Flex
-            justifyContent={"center"}
-            alignItems={"center"}
-            flexDirection={["column-reverse", "column"]}
-          >
-            <RoundedImage src="/images/Image.png"></RoundedImage>
-            <Card ph={[0, 12]} width={["100%", "50%"]}>
-              <Heading
-                textAlign="center"
-                color={"black"}
-                fontSize={[24, 32]}
-                tag={"h3"}
-                mb={16}
+                <PortableText value={pageData.steps[1]?.bodyPortableText} />
+              </LessonPlanningCard>
+            </GridArea>
+            <GridArea colSpan={[12, 6, 6]}>
+              <LessonPlanningCard
+                title={`3. ${pageData.steps[2]?.title}`}
+                image={"/images/illustrations/classroom.svg"}
               >
-                4. Teach the lesson
-              </Heading>
-              <P mb={16} textAlign="center" fontSize={[14, 16]}>
-                Enjoy it - and let us know how you get on!
-              </P>
+                <PortableText value={pageData.steps[2]?.bodyPortableText} />
+              </LessonPlanningCard>
+            </GridArea>
+            <GridArea
+              alignItems={"center"}
+              justifyContent={"center"}
+              colSpan={[12, 12, 12]}
+            >
+              <LessonPlanningCard
+                title={`4. ${pageData.steps[3]?.title}`}
+                image={"/images/illustrations/classroom.svg"}
+                width={"50%"}
+                alignCenter={true}
+              >
+                <PortableText value={pageData.steps[3]?.bodyPortableText} />
+              </LessonPlanningCard>
               <ButtonAsLink
                 label={"Search our lessons"}
                 href={"https://teachers.thenational.academy/"}
               ></ButtonAsLink>
-            </Card>
-          </Flex>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card>
-            <Heading textAlign="center" mb={16} fontSize={24} tag={"h4"}>
-              Plan for lesson cover
+            </GridArea>
+          </Grid>
+        </MaxWidth>
+      </BackgroundImageContainer>
+
+      {/* `Plan for section` */}
+      <MaxWidth>
+        <Flex ma={80} justifyContent={"center"} alignItems={"center"}>
+          <Flex maxWidth={"50%"}>
+            <Heading textAlign="center" fontSize={[16, 24]} tag="h4">
+              How to plan a lesson using our resources and adapt them for your
+              classroom.
             </Heading>
-            <P mb={16}>
-              Whether you’re arranging cover for your class or standing in for a
-              colleague, make sure pupils’ learning doesn’t fall behind, without
-              adding to your workload. Select the lesson you need and you or
-              your colleague can pick up from where the class left off when you
-              return. Choose from our bank of classroom resources and use our
-              recorded lesson videos to support teaching.
-            </P>
-            <ButtonAsLink
-              label={"Search our lessons"}
-              href={"https://teachers.thenational.academy/"}
-            ></ButtonAsLink>
-          </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
+          </Flex>
+        </Flex>
+        <Flex mb={80} background={"niceAndSharp"}>
           <Card color="grey8" justifyContent={"center"} alignItems={"center"}>
             Video
           </Card>
-        </GridArea>
-        <GridArea colSpan={[12, 12, 12]}>
-          <Card>
-            <Heading
-              textAlign="center"
-              mb={16}
-              color={"black"}
-              fontSize={24}
-              tag={"h4"}
-            >
-              Plan for absent pupils
+          <Card pa={32} maxWidth={"50%"}>
+            <Heading textAlign="center" mb={16} fontSize={[16, 24]} tag={"h4"}>
+              {pageData.learnMoreBlock1.title}
             </Heading>
+
             <P mb={16}>
-              Keep pupils who are temporarily learning from home on track by
-              directing them to curriculum-aligned lessons in our pupil area.
-              Simply copy the online lesson link into Google Classroom, MS teams
-              or your school's learning management system (LMS). Our lesson
-              videos give your pupils access to a teacher who explains and
-              scaffolds their learning, just like you would in the classroom.
-              And you can keep track of their progress with our quizzes, with
-              their scores sent directly to you. Use the same resources to teach
-              the lesson in class, so you only ever have to plan once. When
-              setting homework or revision, rather than spending time creating
-              activities from scratch, explore and share our lessons with your
-              classes instead.
+              <PortableText value={pageData.learnMoreBlock1.bodyPortableText} />
             </P>
-            <ButtonAsLink
-              label={"Search our lessons"}
-              href={"https://teachers.thenational.academy/"}
-            ></ButtonAsLink>
           </Card>
-        </GridArea>
-      </Grid>
+        </Flex>
+        <Flex background={"niceAndSharp"}>
+          <Card pa={32} maxWidth={"50%"}>
+            <Heading textAlign="center" mb={16} fontSize={[16, 24]} tag={"h4"}>
+              {pageData.learnMoreBlock2.title}
+            </Heading>
+
+            <P mb={16}>
+              <PortableText value={pageData.learnMoreBlock2.bodyPortableText} />
+            </P>
+          </Card>
+          <Flex flexGrow={1} pa={32}>
+            <Card justifyContent={"space-between"} background={"grey7"}>
+              <Flex>
+                <Image
+                  width={300}
+                  height={200}
+                  alt={"classroom illustration"}
+                  src={"/images/illustrations/classroom.svg"}
+                ></Image>
+              </Flex>
+              <Flex justifyContent={"flex-end"}>
+                <ButtonAsLink
+                  label={pageData.lessonElementsCTA.label}
+                  href={"/"}
+                />
+              </Flex>
+            </Card>
+          </Flex>
+        </Flex>
+      </MaxWidth>
     </Layout>
   );
 };

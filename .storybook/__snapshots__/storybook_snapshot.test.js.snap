@@ -574,7 +574,7 @@ Array [
                   "maxWidth": "100%",
                   "minHeight": "100%",
                   "minWidth": "100%",
-                  "objectFit": "cover",
+                  "objectFit": "contain",
                   "objectPosition": "center center",
                   "padding": 0,
                   "position": "absolute",
@@ -604,7 +604,7 @@ Array [
                     "maxWidth": "100%",
                     "minHeight": "100%",
                     "minWidth": "100%",
-                    "objectFit": "cover",
+                    "objectFit": "contain",
                     "objectPosition": "center center",
                     "padding": 0,
                     "position": "absolute",
@@ -835,6 +835,155 @@ Array [
             </span>
           </div>
         </button>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Cards/Summary Card Summary Card 1`] = `
+Array [
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />,
+  <div
+    className="sc-ed3fbaef-0 sc-f624290d-0 sc-6bede0f3-0 kIRBNk eMAsuy eCcFJP"
+  >
+    <div
+      className="sc-ed3fbaef-0 sc-f624290d-0 aHoVI jlIWiN"
+    >
+      <h2
+        className="sc-1d12b6ff-0 dNAvyu"
+        color="grey4"
+        fontSize={20}
+        lineHeight={24}
+        mb={16}
+      >
+        Title
+      </h2>
+      <h1
+        className="sc-1d12b6ff-0 juHKdr"
+        color="black"
+        fontSize={
+          Array [
+            24,
+            32,
+            32,
+          ]
+        }
+        lineHeight={40}
+        mb={16}
+      />
+      <div
+        className="sc-ed3fbaef-0 sc-68731eac-0 aHoVI iSwPzK"
+        color="black"
+        fontSize={16}
+        fontWeight={400}
+      >
+        <p>
+          A summary section.......
+        </p>
+      </div>
+    </div>
+    <div
+      className="sc-ed3fbaef-0 sc-f624290d-0 bNTZlr clpNPm"
+      width="100%"
+    >
+      <div
+        className="sc-a6ed065f-0 hcJmWF"
+      >
+        <div
+          className="sc-a6ed065f-1 dFZgvo"
+        >
+          <span
+            style={
+              Object {
+                "background": "none",
+                "border": 0,
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": "initial",
+                "left": 0,
+                "margin": 0,
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": "initial",
+              }
+            }
+          >
+            <img
+              alt="planning"
+              data-nimg="fill"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                Object {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": "contain",
+                  "objectPosition": "center right",
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt="planning"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="/images/illustrations/planning.svg"
+                style={
+                  Object {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": "contain",
+                    "objectPosition": "center right",
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
     </div>
   </div>,
@@ -1661,10 +1810,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-61cd3008-0 dVghVz"
+    className="sc-630283fd-0 dRJXdo"
   >
     <div
-      className="sc-78906373-0 gmRoJd"
+      className="sc-af114246-0 kaaaok"
       colSpan={
         Array [
           12,
@@ -1931,10 +2080,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-61cd3008-0 dVghVz"
+    className="sc-630283fd-0 dRJXdo"
   >
     <div
-      className="sc-78906373-0 gmRoJd"
+      className="sc-af114246-0 kaaaok"
       colSpan={
         Array [
           12,
@@ -2262,10 +2411,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-61cd3008-0 dVghVz"
+    className="sc-630283fd-0 dRJXdo"
   >
     <div
-      className="sc-78906373-0 fMLyEu"
+      className="sc-af114246-0 cFKsoz"
       colSpan={
         Array [
           12,
@@ -2662,10 +2811,10 @@ Array [
       >
         <nav>
           <div
-            className="sc-61cd3008-0 dVghVz"
+            className="sc-630283fd-0 dRJXdo"
           >
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -2733,7 +2882,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -2801,7 +2950,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -2833,7 +2982,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -3096,10 +3245,10 @@ Array [
       >
         <nav>
           <div
-            className="sc-61cd3008-0 dVghVz"
+            className="sc-630283fd-0 dRJXdo"
           >
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -3167,7 +3316,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -3235,7 +3384,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
@@ -3267,7 +3416,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-78906373-0 gzsvJ"
+              className="sc-af114246-0 jelikY"
               colSpan={
                 Array [
                   6,
