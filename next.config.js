@@ -36,7 +36,9 @@ module.exports = async (phase) => {
     // depend on a Vercel specific env variable.
     // When we come to sort out a failover we may need to tweak this functionality.
     // Defaults to "development".
-    releaseStage = getReleaseStage(process.env.VERCEL_ENV);
+    releaseStage = getReleaseStage(
+      process.env.OVERRIDE_RELEASE_STAGE || process.env.VERCEL_ENV
+    );
     const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
