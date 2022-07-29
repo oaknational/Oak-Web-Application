@@ -16,6 +16,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const Icon = Template.bind({});
 
 Icon.args = {
-  name: "ChevronRight",
+  name: "Download",
   size: 80,
 };

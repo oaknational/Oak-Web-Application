@@ -5,15 +5,16 @@ import { OakColorName, PixelSpacing } from "../../styles/theme";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import color, { ColorProps } from "../../styles/utils/color";
 import background, { BackgroundProps } from "../../styles/utils/background";
+import getSvgId, { SvgProps } from "../SpriteSheet/getSvgId";
 
+import Download from "./Download.icon";
+import Home from "./Home.icon";
 import ChevronRight from "./ChevronRight.icon";
 import ChevronDown from "./ChevronDown.icon";
 import OpenExternal from "./OpenExternal.icon";
-import Download from "./Download.icon";
 import Share from "./Share.icon";
 import Star from "./Star.icon";
 import Search from "./Search.icon";
-import Home from "./Home.icon";
 import Newspaper from "./Newspaper.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
@@ -27,17 +28,17 @@ import Facebook from "./Facebook.icon";
 import Close from "./Close.icon";
 
 export const ICON_NAMES = [
+  "Download",
+  "Home",
+  "ArrowRight",
   "ChevronRight",
   "ChevronDown",
   "OpenExternal",
-  "Download",
   "Share",
   "Star",
   "Search",
-  "Home",
   "Newspaper",
   "Tick",
-  "ArrowRight",
   "Play",
   "GraduationCap",
   "University",
@@ -48,18 +49,18 @@ export const ICON_NAMES = [
   "Close",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
-export const icons: Record<IconName, FC> = {
+export const iconSymbols: Record<IconName, FC<SvgProps>> = {
+  Download,
+  Home,
+  ArrowRight,
   ChevronRight,
   ChevronDown,
   OpenExternal,
-  Download,
   Share,
   Star,
   Search,
-  Home,
   Newspaper,
   Tick,
-  ArrowRight,
   Play,
   GraduationCap,
   University,
@@ -69,6 +70,15 @@ export const icons: Record<IconName, FC> = {
   Twitter,
   Close,
 };
+export const icons: Record<IconName, FC> = ICON_NAMES.reduce((accum, name) => {
+  accum[name] = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <use xlinkHref={`#${getSvgId({ name })}`} />
+    </svg>
+  );
+
+  return accum;
+}, {} as Record<IconName, FC>);
 
 type SizeProps = { height: number; width: number };
 const size = css<SizeProps>`
