@@ -45,7 +45,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   return (
     <Flex
       $flexDirection={["column", "row"]}
-      $alignItems={["flex-start", "center"]}
+      $alignItems={"center"}
       $position="relative"
     >
       <BlogListItemImage
