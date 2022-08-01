@@ -1,10 +1,10 @@
 import { FC } from "react";
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 import Flex, { FlexProps } from "../Flex";
 import flex from "../../styles/utils/flex";
-import P, { Span } from "../Typography";
+import P from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 
@@ -13,29 +13,19 @@ const HomeLink = styled.a<FlexProps>`
 `;
 
 const SiteHeader: FC = () => {
+  const theme = useTheme();
   return (
-    <FixedHeader $background={"pupilsGreen"}>
+    <FixedHeader $background={theme.header.background}>
       <Link href={"/"} passHref>
         <HomeLink $alignItems="center">
-          <Icon name="Home" size={32} $mr={8} />
-          <Span
-            $fontFamily="heading"
-            $fontWeight={600}
-            $fontSize={20}
-            $lineHeight={1}
-          >
-            Oak
-          </Span>
+          <Icon name="Home" width={96} height={48} $mr={8} />
         </HomeLink>
       </Link>
       <Flex $alignItems={"center"} $mt={[16, 0, 0]}>
-        <P>
-          <Link href={"/beta/onboarding"}>Join the Beta</Link>
-        </P>
-        <P $ml={[16, 48, 48]}>
+        <P $ml={[0]}>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P $ml={[16, 48, 48]}>
+        <P $ml={[24]}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>

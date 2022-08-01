@@ -211,6 +211,8 @@ const theme: OakTheme = {
   },
   header: {
     height: 72,
+    background: "pupilsLightGreen",
+    color: "black",
   },
   lessonControl: {
     default: {
