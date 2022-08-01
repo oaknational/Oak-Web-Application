@@ -9,7 +9,7 @@ describe("pages/index.tsx", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Supporting Schools To Build Their Curriculum"
+        "Oak Is Changing..."
       );
     });
   });

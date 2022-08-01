@@ -21,7 +21,6 @@ const StyledLayout = styled.main`
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
-  align-self: center;
 `;
 
 interface LayoutProps {

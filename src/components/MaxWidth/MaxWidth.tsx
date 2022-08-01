@@ -2,25 +2,24 @@ import styled from "styled-components";
 
 import Flex from "../Flex";
 
-const MaxWidth = styled(Flex)`
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 0 12px;
-  width: 100%;
-  align-self: center;
-  justify-content: "center";
-  align-items: "center";
-`;
-
 /**
- * This component will visually hide its contents but will still be available
- * to screen readers, assitive technology, and scrapers.
+ * This component will provide a default maxWidth and ph value, it take Flex props.
  * ## Usage
- * Use this component in places where content shouldn't be visible, but should
- * be accessible to assistive technology.
+ * Use this component on pages to limit the max-width to a specific container.
+ * This will make it easier to create full browser width or custom width containers on the same page
+ * with different background colors / image url.
  */
+const MaxWidth = styled(Flex)``;
+
 MaxWidth.defaultProps = {
   $maxWidth: 1200,
+  $ph: 12,
+  $flexDirection: "column",
+  $flexGrow: 1,
+  $width: "100%",
+  $justifyContent: "center",
+  $alignItems: "center",
+  $mh: "auto",
 };
 
 export default MaxWidth;

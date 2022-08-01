@@ -29,6 +29,8 @@ import LessonSlides from "./LessonSlides.icon";
 import Video from "./Video.icon";
 import Quiz from "./Quiz.icon";
 import PenLookUp from "./PenLookUp.icon";
+import IllustrationClassroom from "./IllustrationClassroom.icon";
+import IllustrationStayUpToDate from "./IllustrationStayUpToDate.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -55,6 +57,8 @@ export const ICON_NAMES = [
   "LessonSlides",
   "Quiz",
   "PenLookUp",
+  "IllustrationClassroom",
+  "IllustrationStayUpToDate",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -82,6 +86,8 @@ export const icons: Record<IconName, FC> = {
   LessonSlides,
   Quiz,
   PenLookUp,
+  IllustrationClassroom,
+  IllustrationStayUpToDate,
 };
 
 type SizeProps = { height: number; width: number };
