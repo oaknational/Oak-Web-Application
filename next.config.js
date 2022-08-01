@@ -91,7 +91,9 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
 
       // Hasura
-      NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
+      NEXT_PUBLIC_GRAPHQL_API_URL:
+        process.env.NEXT_PUBLIC_GRAPHQL_API_URL ||
+        oakConfig.hasura.graphqlApiUrl,
       HASURA_ADMIN_SECRET:
         process.env.HASURA_ADMIN_SECRET ||
         secretsFromNetwork.HASURA_ADMIN_SECRET,
