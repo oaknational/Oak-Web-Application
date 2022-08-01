@@ -129,7 +129,8 @@ module.exports = async (phase) => {
   // DEBUG
   // @todo this reveals all keys and secrets, so we should remove this before merging
   // in feat/config branch
-  // console.log("Next config", nextConfig);
+  console.log("Oak Config", oakConfig);
+  console.log("Next config", nextConfig);
 
   return nextConfig;
 };
