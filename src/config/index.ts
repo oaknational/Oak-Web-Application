@@ -34,6 +34,9 @@ const satisfies =
 
 type ConfigKey = keyof typeof envVars;
 
+// DEBUG
+console.log("++++ process env:", process.env);
+
 const envVars = satisfies<Record<string, EnvVar>>()({
   firebaseConfigApiHost: {
     value: process.env.NEXT_PUBLIC_FIREBASE_API_HOST,
