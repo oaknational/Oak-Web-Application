@@ -1,3 +1,4 @@
+import Bugsnag from "@bugsnag/js";
 import { render } from "@testing-library/react";
 import { FC, useEffect } from "react";
 
@@ -5,6 +6,9 @@ import "../../__tests__/__helpers__/LocalStorageMock";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
 import ErrorBoundary from ".";
+
+const mockNotify = jest.fn(async (err, cb) => cb(event));
+Bugsnag.notify = mockNotify;
 
 const TantrumChild = () => {
   useEffect(() => {
@@ -61,6 +65,18 @@ describe("ErrorBoundary.tsx", () => {
       "Client error occurred"
     );
   });
+  test.skip("[bugsnag:enabled] should call reportError", () => {
+    /**
+     * @TODO fix this test
+     */
+    render(
+      <ErrorBoundary>
+        <TantrumChild />
+      </ErrorBoundary>,
+      { wrapper: WithStatisticsConsent }
+    );
+    expect(mockNotify).toHaveBeenCalled();
+  });
   test("[bugsnag:disabled] should render children if no error", () => {
     const { getByTestId } = render(
       <ErrorBoundary>
@@ -80,5 +96,14 @@ describe("ErrorBoundary.tsx", () => {
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
       "Client error occurred"
     );
+  });
+  test("[bugsnag:disabled] should not call reportError", () => {
+    render(
+      <ErrorBoundary>
+        <TantrumChild />
+      </ErrorBoundary>,
+      { wrapper: WithoutStatisticsConsent }
+    );
+    expect(mockNotify).not.toHaveBeenCalled();
   });
 });

@@ -6,6 +6,9 @@ import config from "../../config";
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
+      /* Remove before launch https://github.com/oaknational/Oak-Web-Application/issues/118 */
+      dangerouslySetAllPagesToNoFollow={true}
+      dangerouslySetAllPagesToNoIndex={true}
       title={config.get("appName")}
       description={config.get("appDescription")}
       openGraph={{
