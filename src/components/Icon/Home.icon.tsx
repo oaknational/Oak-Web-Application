@@ -10,7 +10,7 @@ const Home: FC = () => {
     >
       <defs>
         <clipPath id="clip-path">
-          <path fill="none" d="M0 0h960.02v435.43H0z" />
+          <path fill="currentColor" d="M0 0h960.02v435.43H0z" />
         </clipPath>
       </defs>
       <g id="Layer_2" data-name="Layer 2">

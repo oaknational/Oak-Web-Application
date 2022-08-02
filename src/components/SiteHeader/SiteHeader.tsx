@@ -7,6 +7,7 @@ import flex from "../../styles/utils/flex";
 import P from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
+import IconButton from "../Button/IconButton";
 
 const HomeLink = styled.a<FlexProps>`
   ${flex}
@@ -30,6 +31,13 @@ const SiteHeader: FC = () => {
             Teacher Hub
           </Link>
         </P>
+        <IconButton
+          aria-label="Menu"
+          icon={"Hamburger"}
+          onClick={() => {
+            console.log("open menu");
+          }}
+        />
       </Flex>
     </FixedHeader>
   );

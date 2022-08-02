@@ -20,6 +20,7 @@ import useOakTheme from "../hooks/useOakTheme";
 import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
 import AnalyticsProvider from "../context/Analytics/AnalyticsProvider";
 import AppHooks from "../components/App/AppHooks";
+import { MenuProvider } from "../context/Menu";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApolloClient();
@@ -38,7 +39,9 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
                     <BookmarksProvider>
                       <SearchProvider>
                         <DefaultSeo />
-                        <Component {...pageProps} />
+                        <MenuProvider>
+                          <Component {...pageProps} />
+                        </MenuProvider>
                         <AppHooks />
                       </SearchProvider>
                     </BookmarksProvider>

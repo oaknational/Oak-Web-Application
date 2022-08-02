@@ -26,6 +26,7 @@ import Facebook from "./Facebook.icon";
 import Close from "./Close.icon";
 import IllustrationClassroom from "./IllustrationClassroom.icon";
 import IllustrationStayUpToDate from "./IllustrationStayUpToDate.icon";
+import Hamburger from "./Hamburger.icon";
 
 export const ICON_NAMES = [
   "ChevronRight",
@@ -49,6 +50,7 @@ export const ICON_NAMES = [
   "Close",
   "IllustrationClassroom",
   "IllustrationStayUpToDate",
+  "Hamburger",
 ] as const;
 export type IconName = typeof ICON_NAMES[number];
 export const icons: Record<IconName, FC> = {
@@ -73,6 +75,7 @@ export const icons: Record<IconName, FC> = {
   Close,
   IllustrationClassroom,
   IllustrationStayUpToDate,
+  Hamburger,
 };
 
 type SizeProps = { height: number; width: number };
