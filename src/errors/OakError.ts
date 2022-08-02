@@ -15,6 +15,7 @@ const ERROR_CODES = [
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
+  "preview/invalid-token",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -78,6 +79,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/import-count": {
     message: "File imported more times than allowed",
     shouldNotify: true,
+  },
+  "preview/invalid-token": {
+    message: "Invalid CMS preview token provided",
+    responseStatusCode: 401,
+    shouldNotify: false,
   },
 };
 
