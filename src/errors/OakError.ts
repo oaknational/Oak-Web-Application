@@ -76,7 +76,7 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     shouldNotify: true,
   },
   "misc/import-count": {
-    message: "File imported more times than allwoed",
+    message: "File imported more times than allowed",
     shouldNotify: true,
   },
 };
