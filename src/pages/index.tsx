@@ -78,7 +78,6 @@ const Home: FC = () => {
                   completely free.
                 </Heading>
               </GridArea>
-
               <GridArea $colSpan={[6, 6, 6]}>
                 <Card
                   $background={"white"}
@@ -102,7 +101,6 @@ const Home: FC = () => {
                       ></CardImage>
                     </TransformClassroomImageWrap>
                   </OverflowHidden>
-
                   <Heading
                     $mr={[0, 72]}
                     $fontSize={[20, 32]}
@@ -137,7 +135,6 @@ const Home: FC = () => {
                       ></CardImage>
                     </TransformTeacherImageWrap>
                   </OverflowHidden>
-
                   <Heading
                     $mr={[0, 56]}
                     $fontSize={[20, 32]}

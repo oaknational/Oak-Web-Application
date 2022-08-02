@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 import {
+  ButtonBackground,
   ButtonSize,
   ButtonVariant,
   getButtonBackground,
@@ -11,6 +12,7 @@ import {
 type IconButtonWrapperProps = {
   size: ButtonSize;
   variant: ButtonVariant;
+  background: ButtonBackground;
 };
 const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
   display: flex;
@@ -21,9 +23,9 @@ const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
     height: ${getButtonHeight(props.size)}px;
     width: ${getButtonHeight(props.size)}px;
     min-width: ${getButtonHeight(props.size)}px;
-    border-radius: ${getButtonHeight(props.size) / 2}px;
-    background-color: ${getButtonBackground(props.variant)};
-    color: ${getButtonColor(props.variant)};
+    /* border-radius: ${getButtonHeight(props.size) / 2}px; */
+    /* background-color: ${getButtonBackground(props.background, props.variant)}; */
+    color: ${getButtonColor(props.background, props.variant)};
   `}
 
   :disabled {
