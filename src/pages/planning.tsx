@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
-import styled from "styled-components";
 import Image from "next/image";
 import { PortableText, PortableTextProps } from "@portabletext/react";
 
@@ -23,18 +22,11 @@ import Circle from "../components/Circle";
 import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
+import BackgroundGraphic from "../components/BackgroundGraphic";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
 };
-
-const BackgroundImageContainer = styled(Flex)`
-  justify-content: center;
-  background-image: url("images/pen/loopLarge.svg");
-  background-size: 66%;
-  background-repeat: no-repeat;
-  background-position: center center;
-`;
 
 const getLessonElementCards = (
   planningPage: PlanningPage
@@ -145,7 +137,6 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 );
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  console.log(pageData);
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
@@ -224,8 +215,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
       {/* How to plan a lesson */}
 
       <section>
-        <BackgroundImageContainer>
-          <MaxWidth $mb={[80, 120]}>
+        <BackgroundGraphic>
+          <MaxWidth>
             <SectionHeader>
               <SectionTitle>{pageData.stepsHeading}</SectionTitle>
             </SectionHeader>
@@ -281,7 +272,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               )}
             </Grid>
           </MaxWidth>
-        </BackgroundImageContainer>
+        </BackgroundGraphic>
       </section>
       <section>
         {/* `Plan for section` */}
@@ -354,9 +345,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export const getStaticProps: GetStaticProps<PlanALessonProps> = async () => {
-  // const planningPage = await CMSClient.planningPage();
-  // const planningPage = lessonPlanning;
-
   return {
     props: {
       pageData: lessonPlanning,

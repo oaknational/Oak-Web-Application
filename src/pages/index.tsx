@@ -67,11 +67,7 @@ const Home: FC = () => {
                 >
                   Oak Is Changing...
                 </Heading>
-                <Heading
-                  tag={"h2"}
-                  $fontSize={[16, 24]}
-                  $mb={[32, 64]}
-                >
+                <Heading tag={"h2"} $fontSize={[16, 24]} $mb={[32, 64]}>
                   Over 40,000 curriculum-aligned resources for everyday use,
                   completely free.
                 </Heading>

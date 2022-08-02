@@ -42,6 +42,10 @@ const GraphicCircle: FC<GraphicCircleProps> = ({
   </Circle>
 );
 
+/**
+ * LessonProgressionGraphic is a graphical summary of the different resources
+ * used in planning a lesson the Oak way.
+ */
 const LessonProgressionGraphic: FC = () => {
   return (
     <Flex
