@@ -39,6 +39,13 @@ export type CTA = {
   label: string;
 };
 
+export type SanityImage = {
+  asset: {
+    _id: string; // _id required by next-sanity-image
+    url: string;
+  };
+};
+
 export type TextAndMedia = {
   title: string;
   bodyPortableText: PortableTextJSON;
