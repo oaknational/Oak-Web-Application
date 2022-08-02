@@ -251,35 +251,7 @@
             "_key": "35001a65a8930",
             "_type": "span",
             "marks": [],
-            "text": "Keep pupils who are temporarily learning from home on track by directing them to curriculum aligned lessons in our pupil area. Simply copy the online lesson link into Google Classroom, MS teams or your schools learning management system (LMS)."
-          }
-        ],
-        "markDefs": [],
-        "style": "normal"
-      },
-      {
-        "_key": "36808135d09e",
-        "_type": "block",
-        "children": [
-          {
-            "_key": "6030d4278575",
-            "_type": "span",
-            "marks": [],
-            "text": "Our lesson videos give your pupils access to a teacher who explains and scaffolds their learning, just like you would in the classroom. And you can keep track of their progress with our quizzes, with their scores sent directly to you. Use the same resources to teach the lesson in class, so you only ever have to plan once."
-          }
-        ],
-        "markDefs": [],
-        "style": "normal"
-      },
-      {
-        "_key": "85194c0393e7",
-        "_type": "block",
-        "children": [
-          {
-            "_key": "1983b007ca62",
-            "_type": "span",
-            "marks": [],
-            "text": "When setting homework or revision, rather than spending time creating activities from scratch, explore and share our lessons with your classes instead."
+            "text": "Keep pupils who are temporarily learning from home on track by directing them to curriculum-aligned lesson videos in our pupil area. Our lesson videos give your pupils access to a teacher who explains and scaffolds their learning, just like you would in the classroom. And you can keep track of their progress with our quizzes; they can send their scores directly to you."
           }
         ],
         "markDefs": [],

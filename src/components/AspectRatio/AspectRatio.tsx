@@ -1,10 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import responsive from "../../styles/utils/responsive";
+import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 
 // Constraining ratio for 1 consistency and 2 option to move to static css
-type Ratio = "1:1" | "3:2" | "16:9";
+export type Ratio = "1:1" | "3:2" | "16:9";
+export type AspectRatios = ResponsiveValues<Ratio>;
 const ratioPercentageMap: Record<Ratio, number> = {
   "16:9": 56.25,
   "3:2": 66.66,
@@ -13,7 +14,7 @@ const ratioPercentageMap: Record<Ratio, number> = {
 const ratioToPercentage = (ratio?: Ratio | null) =>
   ratio ? `${ratioPercentageMap[ratio]}%` : undefined;
 
-const AspectRatioOuter = styled.div<{ ratio: Ratio | Ratio[] }>`
+const AspectRatioOuter = styled.div<{ ratio: AspectRatios }>`
   width: 100%;
   height: 0;
   position: relative;
@@ -29,7 +30,7 @@ const AspectRatioInner = styled.div`
 `;
 
 type AspectRatioProps = {
-  ratio: Ratio | Ratio[];
+  ratio: AspectRatios;
 };
 /**
  *

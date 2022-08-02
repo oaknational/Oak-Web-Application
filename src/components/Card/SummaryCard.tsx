@@ -1,21 +1,13 @@
 import { FC } from "react";
 import { PortableText } from "@portabletext/react";
 import type { PortableTextSpan } from "@portabletext/types";
-import styled from "styled-components";
 
 import Flex from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
-import { getBreakpoint } from "../../styles/utils/responsive";
 
 import Card from "./Card";
 import CardImage, { CardImageProps } from "./CardComponents/CardImage";
-
-const ImageWrap = styled(Flex)`
-  @media (max-width: ${getBreakpoint("medium")}px) {
-    display: none;
-  }
-`;
 
 type SummaryCardProps = {
   title: string;
@@ -44,8 +36,9 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
+      $pa={[16, 24]}
     >
-      <Flex $flexDirection={"column"}>
+      <Flex $flexDirection={"column"} $pv={[0, 32]}>
         <Heading $mb={16} tag={"h2"} $fontSize={20} $color={"oakGrey4"}>
           {title}
         </Heading>
@@ -60,17 +53,19 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
           )}
         </Typography>
       </Flex>
-      <ImageWrap
-        $width={"100%"}
-        $alignItems={"center"}
-        $justifyContent={"center"}
+      <Flex
+        $ml={[0, 40, 120]}
+        $minWidth={240}
+        $display={["none", "flex"]}
+        $alignItems="center"
       >
         <CardImage
           alt={alt}
           imageSrc={imageSrc}
           position={"center right"}
-        ></CardImage>
-      </ImageWrap>
+          aspectRatio="1:1"
+        />
+      </Flex>
     </Card>
   );
 };

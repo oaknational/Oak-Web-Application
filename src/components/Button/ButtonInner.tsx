@@ -40,7 +40,12 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     <>
       {icon && (
         <ButtonIconWrapper iconPosition={iconPosition}>
-          <Icon name={icon} size={iconSize} $background={iconBackground } />
+          <Icon
+            variant="brush"
+            name={icon}
+            size={iconSize}
+            $background={iconBackground}
+          />
         </ButtonIconWrapper>
       )}
       <ButtonLabel>{label}</ButtonLabel>

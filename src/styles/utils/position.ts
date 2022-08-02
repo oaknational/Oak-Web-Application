@@ -2,17 +2,17 @@ import { CSSProperties } from "react";
 import { css } from "styled-components";
 
 import { NullablePixelSpacing } from "../theme";
+import { PercentSpacing } from "../theme/types";
 
-import responsive from "./responsive";
+import responsive, { ResponsiveValues } from "./responsive";
 
-type PxOrPercent = NullablePixelSpacing | "100%" | "50%";
-
+type PxOrPercent = NullablePixelSpacing | PercentSpacing;
 export type PositionProps = {
-  $position?: CSSProperties["position"];
-  $top?: PxOrPercent;
-  $right?: PxOrPercent;
-  $bottom?: PxOrPercent;
-  $left?: PxOrPercent;
+  $position?: ResponsiveValues<CSSProperties["position"]>;
+  $top?: ResponsiveValues<PxOrPercent>;
+  $right?: ResponsiveValues<PxOrPercent>;
+  $bottom?: ResponsiveValues<PxOrPercent>;
+  $left?: ResponsiveValues<PxOrPercent>;
 };
 const parsePxOrPercent = (value?: PxOrPercent) => {
   return typeof value === "number" ? `${value}px` : value;

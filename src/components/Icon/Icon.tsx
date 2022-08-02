@@ -91,6 +91,7 @@ export const icons: Record<IconName, FC> = {
   IllustrationStayUpToDate,
 };
 
+type IconVariant = "minimal" | "brush";
 type SizeProps = { height: number; width: number };
 const size = css<SizeProps>`
   height: ${(props) => props.height}px;
@@ -100,17 +101,25 @@ const size = css<SizeProps>`
 type RotateValue = 0 | 180;
 type TransformProps = { rotate?: RotateValue; flip?: boolean };
 const IconOuterWrapper = styled.span<
-  SizeProps & SpacingProps & ColorProps & BackgroundProps & TransformProps
+  SizeProps &
+    SpacingProps &
+    ColorProps &
+    BackgroundProps &
+    TransformProps & { variant: IconVariant }
 >`
   transform: rotate(${(props) => props.rotate}deg);
   transform: scaleY(${(props) => (props.flip ? -1 : 1)});
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  mask-image: url("/buttons/icon-button-background.svg");
-  mask-position: center;
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
+  ${(props) =>
+    props.variant === "brush" &&
+    css`
+      mask-image: url("/buttons/icon-button-background.svg");
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+    `}
   ${size}
   ${spacing}
   ${color}
@@ -119,6 +128,7 @@ const IconOuterWrapper = styled.span<
 
 type IconProps = SpacingProps & {
   name: IconName;
+  variant?: IconVariant;
   /**
    * size in pixels is the value for width and height if they are not separately provided
    */
@@ -140,7 +150,15 @@ type IconProps = SpacingProps & {
  * use an `<IconButton />` component (which uses `<Icon />` internally).
  */
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height, $pa = 8, ...rootProps } = props;
+  const {
+    name,
+    variant = "minimal",
+    size = 24,
+    width,
+    height,
+    $pa = 8,
+    ...rootProps
+  } = props;
   const IconComponent = icons[name];
 
   const outerWidth = width || size;
@@ -148,6 +166,7 @@ const Icon: FC<IconProps> = (props) => {
 
   return (
     <IconOuterWrapper
+      variant={variant}
       height={outerHeight}
       width={outerWidth}
       $pa={$pa}

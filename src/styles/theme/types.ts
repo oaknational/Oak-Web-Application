@@ -28,9 +28,23 @@ export type PixelSpacing =
   | 72
   | 80
   | 120
+  | 240
+  | 360
   | 1200;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -16 | -12 | -8 | -4;
+export type PercentSpacing =
+  | "100%"
+  | "90%"
+  | "80%"
+  | "70%"
+  | "60%"
+  | "50%"
+  | "40%"
+  | "30%"
+  | "20%"
+  | "15%"
+  | "10%";
 
 /**
  * @todo parse theme with zod

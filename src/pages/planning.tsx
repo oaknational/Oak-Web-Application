@@ -22,7 +22,7 @@ import Circle from "../components/Circle";
 import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
-import BackgroundGraphic from "../components/BackgroundGraphic";
+import Cover from "../components/Cover";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -192,7 +192,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </GridArea>
               )
             )}
-            <GridArea $colSpan={[12, 6, 6]}>
+            <GridArea $colSpan={[12, 6, 6]} $mt={[32, 0]}>
               <Card
                 $justifyContent={"space-between"}
                 $background={"pastelTurqoise"}
@@ -202,16 +202,19 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   <Image
                     width={300}
                     height={200}
-                    alt={"classroom illustration"}
+                    alt={""}
                     src={"/images/illustrations/classroom.svg"}
                   />
                 </Flex>
                 <Flex $justifyContent={"flex-end"}>
                   <ButtonAsLink
+                    $ma={32}
                     icon="Search"
                     label={pageData.lessonElementsCTA.label}
-                    href={"/"}
-                    $ma={32}
+                    href={"https://teachers.thenational.academy/"}
+                    htmlAnchorProps={{
+                      target: "_blank",
+                    }}
                   />
                 </Flex>
               </Card>
@@ -223,64 +226,67 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
       {/* How to plan a lesson */}
 
       <section>
-        <BackgroundGraphic>
-          <MaxWidth>
-            <SectionHeader>
-              <SectionTitle>{pageData.stepsHeading}</SectionTitle>
-            </SectionHeader>
-            <Grid $cg={24} $rg={0}>
-              {getLessonPlanningCards(pageData).map(
-                ({ title, portableText, image, withSearchCTA }, i, arr) => {
-                  const isFirstOrLast = i === 0 || i == arr.length - 1;
-                  return (
-                    <GridArea
-                      $alignItems={"center"}
-                      $justifyContent={"center"}
-                      $colSpan={[12, isFirstOrLast ? 12 : 6]}
+        <MaxWidth>
+          <SectionHeader>
+            <SectionTitle>{pageData.stepsHeading}</SectionTitle>
+          </SectionHeader>
+          <Grid $cg={24} $rg={0}>
+            {getLessonPlanningCards(pageData).map(
+              ({ title, portableText, image, withSearchCTA }, i, arr) => {
+                const isFirstOrLast = i === 0 || i == arr.length - 1;
+                return (
+                  <GridArea
+                    $alignItems={"center"}
+                    $justifyContent={"center"}
+                    $colSpan={[12, isFirstOrLast ? 12 : 6]}
+                  >
+                    <Card
+                      $width={["100%", isFirstOrLast ? "50%" : "100%"]}
+                      $alignItems="flex-start"
+                      $flexDirection="column"
+                      $pa={[16, 32]}
                     >
-                      <Card
-                        $width={["100%", isFirstOrLast ? "50%" : "100%"]}
-                        $alignItems="flex-start"
-                        $flexDirection="column"
-                        $pa={[16, 32]}
+                      <Box
+                        $position="relative"
+                        $height={80}
+                        $width={[120, "100%"]}
+                        $mb={24}
+                        $mh={["auto", null]}
                       >
-                        <Box
-                          $position="relative"
-                          $height={80}
-                          $width="100%"
-                          $mb={24}
-                        >
-                          <Image
-                            layout="fill"
-                            objectFit="contain"
-                            objectPosition="left bottom"
-                            src={image}
-                          />
-                        </Box>
+                        <Image
+                          alt=""
+                          layout="fill"
+                          objectFit="contain"
+                          objectPosition="left bottom"
+                          src={image}
+                        />
+                      </Box>
 
-                        <Flex $flexDirection={"column"}>
-                          <Heading $mb={24} tag={"h3"} $fontSize={24}>
-                            {title}
-                          </Heading>
-                          <P $fontSize={18}>
-                            <PortableText value={portableText} />
-                            {withSearchCTA && (
-                              <ButtonAsLink
-                                label={"Search our lessons"}
-                                href={"https://teachers.thenational.academy/"}
-                                $mt={24}
-                              />
-                            )}
-                          </P>
-                        </Flex>
-                      </Card>
-                    </GridArea>
-                  );
-                }
-              )}
-            </Grid>
-          </MaxWidth>
-        </BackgroundGraphic>
+                      <Flex $flexDirection={"column"}>
+                        <Heading $mb={24} tag={"h3"} $fontSize={24}>
+                          {title}
+                        </Heading>
+                        <P $fontSize={18}>
+                          <PortableText value={portableText} />
+                          {withSearchCTA && (
+                            <ButtonAsLink
+                              $mt={24}
+                              label={"Search our lessons"}
+                              href={"https://teachers.thenational.academy/"}
+                              htmlAnchorProps={{
+                                target: "_blank",
+                              }}
+                            />
+                          )}
+                        </P>
+                      </Flex>
+                    </Card>
+                  </GridArea>
+                );
+              }
+            )}
+          </Grid>
+        </MaxWidth>
       </section>
       <section>
         {/* `Plan for section` */}
@@ -315,34 +321,41 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $ph={[0, 32]}
             $flexDirection={["column", "row"]}
             $background={"teachersPastelYellow"}
-            $alignItems="flex-end"
+            $alignItems="center"
           >
             <Box $minWidth={"50%"} $pr={[null, 40]} $mb={[72, 0]} $ph={[16, 0]}>
               <CardTitle tag={"h4"}>{pageData.learnMoreBlock2.title}</CardTitle>
               <PortableText value={pageData.learnMoreBlock2.bodyPortableText} />
             </Box>
-            <Box
+            <Flex
+              $position="relative"
               $width={["100%", "auto"]}
               $minWidth={"50%"}
+              $height={[360, 240]}
               $background="pastelTurqoise"
+              $justifyContent={["center", "flex-end"]}
+              $alignItems={["flex-end"]}
+              $pr={[0, 24]}
+              $pb={24}
             >
-              <Image
-                width={300}
-                height={200}
-                alt={"classroom illustration"}
-                src={"/images/illustrations/classroom.svg"}
-              />
-              <Flex
-                $justifyContent={["center", "flex-end"]}
-                $pr={[0, 24]}
-                $pb={24}
-              >
-                <ButtonAsLink
-                  label={pageData.lessonElementsCTA.label}
-                  href={"/"}
+              <Cover $bottom={["30%", "15%"]}>
+                <Image
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="left bottom"
+                  alt=""
+                  src={"/images/illustrations/classroom.svg"}
                 />
-              </Flex>
-            </Box>
+              </Cover>
+              <ButtonAsLink
+                icon="Search"
+                label={pageData.lessonElementsCTA.label}
+                href={"https://teachers.thenational.academy"}
+                htmlAnchorProps={{
+                  target: "_blank",
+                }}
+              />
+            </Flex>
           </Card>
         </MaxWidth>
       </section>
