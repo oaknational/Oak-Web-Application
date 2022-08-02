@@ -28,7 +28,6 @@ const BookmarkLessonButton: FC<BookmarkLessonButtonProps> = (props) => {
       aria-label={`${bookmarked ? "Remove" : "Add"} Bookmark`}
       disabled={loading}
       iconColorOverride={bookmarked ? "grey4" : undefined}
-      variant="secondary"
     />
   );
 };

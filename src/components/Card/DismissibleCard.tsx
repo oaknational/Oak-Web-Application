@@ -31,7 +31,7 @@ const DismissibleCard: FC<DismissibleCardProps> = ({ children, title }) => {
               onClick={() => {
                 setDismissed(true);
               }}
-              variant={"tertiary"}
+              variant="minimal"
             />
           </CloseButtonWrapper>
         </Card>
