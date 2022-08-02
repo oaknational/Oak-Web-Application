@@ -20,7 +20,6 @@ const SiteHeader: FC = () => {
           <Icon name="Home" size={32} $mr={8} />
           <Span
             $fontFamily="heading"
-            $fontWeight={600}
             $fontSize={20}
             $lineHeight={1}
           >

@@ -21,13 +21,21 @@ export type TypographyProps = ColorProps &
   PositionProps & {
     $fontFamily?: ResponsiveValues<OakFontName>;
     $fontSize?: ResponsiveValues<FontSize>;
-    $fontWeight?: ResponsiveValues<400 | 600>;
     $lineHeight?: ResponsiveValues<string | number>;
     $textAlign?: "left" | "center" | "right";
   };
+
+const fontFamilyWeightMap: Record<OakFontName, number> = {
+  body: 400,
+  heading: 600,
+  ui: 600,
+};
+const getFontWeight = (fontFamily?: OakFontName | null) =>
+  fontFamily ? fontFamilyWeightMap[fontFamily] : null;
+
 const typography = css<TypographyProps>`
   ${responsive("font-family", (props) => props.$fontFamily, getFontFamily)}
-  ${responsive("font-weight", (props) => props.$fontWeight)}
+  ${responsive("font-weight", (props) => props.$fontFamily, getFontWeight)}
   ${responsive("line-height", (props) => props.$lineHeight)}
   ${responsive("font-size", (props) => props.$fontSize, parseFontSize)}
   ${responsive("text-align", (props) => props.$textAlign)}

@@ -5,8 +5,10 @@ import Flex, { FlexProps } from "../Flex";
 import Icon, { IconName } from "../Icon";
 import Circle from "../Circle";
 import { OakColorName } from "../../styles/theme";
-import { Heading } from "../Typography";
+import Typography from "../Typography";
 import zIndex from "../../styles/constants/zIndex";
+import CardLink from "../Card/CardLink";
+import { headingDefaults } from "../Typography/Heading";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex $flexDirection="column" $mr={40} $position="relative" {...props} />
@@ -22,11 +24,20 @@ const OverlapBehind = styled.div`
 const OverlapInFront = styled.div`
   z-index: ${zIndex.inFront};
 `;
-const Text: FC = (props) => (
-  <Heading
+/**
+ * Hack because overlapping circles needed to be position: absolute;
+ * meaning the link focus target was sub-optimal without this fix.
+ */
+const AnchorLink = styled(CardLink)`
+  ::after {
+    top: -96px;
+  }
+`;
+const LinkText: FC = (props) => (
+  <Typography
+    {...headingDefaults}
     $position="absolute"
-    $top="100%"
-    tag="h3"
+    $top={"100%"}
     $fontSize={16}
     $textAlign="center"
     $mt={16}
@@ -42,11 +53,20 @@ const GraphicCircle: FC<GraphicCircleProps> = ({
   </Circle>
 );
 
+type LessonProgressionGraphicProps = {
+  linkTargetIds: {
+    introQuiz: string;
+    video: string;
+    worksheet: string;
+    exitQuiz: string;
+  };
+};
 /**
- * LessonProgressionGraphic is a graphical summary of the different resources
- * used in planning a lesson the Oak way.
+ * LessonElementLinks is a collection graphics linking to sections depending
+ * on ids passed in the 'linkTargetIds' prop.
  */
-const LessonProgressionGraphic: FC = () => {
+const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
+  const { linkTargetIds } = props;
   return (
     <Flex
       $justifyContent={"center"}
@@ -60,7 +80,11 @@ const LessonProgressionGraphic: FC = () => {
       >
         <GraphicContainer>
           <GraphicCircle icon="Quiz" />
-          <Text>Intro Quiz</Text>
+          <LinkText>
+            <AnchorLink href={`#${linkTargetIds.introQuiz}`}>
+              Intro Quiz
+            </AnchorLink>
+          </LinkText>
         </GraphicContainer>
 
         <GraphicContainer $mr={[0, 40]}>
@@ -72,7 +96,11 @@ const LessonProgressionGraphic: FC = () => {
               <GraphicCircle icon="Quiz" />
             </OverlapBehind>
           </Flex>
-          <Text>Lesson Slides or Video</Text>
+          <LinkText>
+            <AnchorLink href={`#${linkTargetIds.video}`}>
+              Lesson Slides or Video
+            </AnchorLink>
+          </LinkText>
         </GraphicContainer>
       </Flex>
       <Flex
@@ -81,16 +109,24 @@ const LessonProgressionGraphic: FC = () => {
       >
         <GraphicContainer>
           <GraphicCircle icon="LessonSlides" />
-          <Text>Worksheet</Text>
+          <LinkText>
+            <AnchorLink href={`#${linkTargetIds.worksheet}`}>
+              Worksheet
+            </AnchorLink>
+          </LinkText>
         </GraphicContainer>
 
         <GraphicContainer $mr={0}>
           <GraphicCircle icon="LessonSlides" />
-          <Text>Exit Quiz</Text>
+          <LinkText>
+            <AnchorLink href={`#${linkTargetIds.exitQuiz}`}>
+              Exit Quiz
+            </AnchorLink>
+          </LinkText>
         </GraphicContainer>
       </Flex>
     </Flex>
   );
 };
 
-export default LessonProgressionGraphic;
+export default LessonElementLinks;

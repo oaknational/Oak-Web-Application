@@ -12,7 +12,7 @@ import Layout from "../components/Layout";
 import { Heading, P } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Icon from "../components/Icon";
-import LessonProgressionGraphic from "../components/LessonProgressionGraphic";
+import LessonElementLinks from "../components/LessonElementLinks";
 import { IconName } from "../components/Icon/Icon";
 import { OakColorName } from "../styles/theme";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -28,6 +28,14 @@ export type PlanALessonProps = {
   pageData: PlanningPage;
 };
 
+const lessonElementIds = {
+  introQuiz: "intro-quiz",
+  video: "video",
+  slides: "lesson-slides",
+  worksheet: "worksheet",
+  exitQuiz: "exit-quiz",
+};
+
 const getLessonElementCards = (
   planningPage: PlanningPage
 ): {
@@ -38,31 +46,31 @@ const getLessonElementCards = (
   background?: OakColorName;
 }[] => [
   {
-    id: "intro-quiz",
+    id: lessonElementIds.introQuiz,
     icon: "Quiz",
     title: planningPage.lessonElements.introQuiz.title,
     portableText: planningPage.lessonElements.introQuiz.bodyPortableText,
   },
   {
-    id: "video",
+    id: lessonElementIds.video,
     icon: "Video",
     title: planningPage.lessonElements.video.title,
     portableText: planningPage.lessonElements.video.bodyPortableText,
   },
   {
-    id: "lesson-slides",
+    id: lessonElementIds.slides,
     icon: "LessonSlides",
     title: planningPage.lessonElements.slides.title,
     portableText: planningPage.lessonElements.slides.bodyPortableText,
   },
   {
-    id: "worksheet",
+    id: lessonElementIds.worksheet,
     icon: "Worksheet",
     title: planningPage.lessonElements.worksheet.title,
     portableText: planningPage.lessonElements.worksheet.bodyPortableText,
   },
   {
-    id: "exit-quiz",
+    id: lessonElementIds.exitQuiz,
     icon: "Quiz",
     title: planningPage.lessonElements.exitQuiz.title,
     portableText: planningPage.lessonElements.exitQuiz.bodyPortableText,
@@ -161,7 +169,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $width={"100%"}
               $mb={[0, 48]}
             >
-              <LessonProgressionGraphic />
+              <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
           <Grid $cg={24} $rg={[0, 32]}>

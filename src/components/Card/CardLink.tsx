@@ -8,10 +8,7 @@ export const CardLink = styled.a`
     right: 0;
     bottom: 0;
     left: 0;
-  }
-
-  &:focus-within {
-    outline: 5px auto -webkit-focus-ring-color;
+    z-index: 1;
   }
 `;
 
