@@ -10,6 +10,8 @@ import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
 import { menuContext } from "../../context/Menu/MenuProvider";
 
+import { Menu } from "../Menu";
+
 const HomeLink = styled.a<FlexProps>`
   ${flex}
 `;
@@ -46,6 +48,9 @@ const SiteHeader: FC = () => {
           />
         </P>
       </Flex>
+      <Menu>
+        <P>FOO BAR</P>
+      </Menu>
     </FixedHeader>
   );
 };
