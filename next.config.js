@@ -20,17 +20,11 @@ module.exports = async (phase) => {
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
   if (phase === PHASE_TEST || process.env.NODE_ENV === "test") {
-    // DEBUG
-    console.log("*** TESTING", phase, process.env.NODE_ENV);
-
     oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
     appVersion = RELEASE_STAGE_TESTING;
   } else {
-    // DEBUG
-    console.log("*** *NOT* TESTING", phase, process.env.NODE_ENV);
-
     const configLocation = process.env.OAK_CONFIG_LOCATION;
     oakConfig = await fetchConfig(configLocation);
 
@@ -129,12 +123,6 @@ module.exports = async (phase) => {
         process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
     },
   };
-
-  // DEBUG
-  // @todo this reveals all keys and secrets, so we should remove this before merging
-  // in feat/config branch
-  console.log("Oak Config", oakConfig);
-  console.log("Next config", nextConfig);
 
   return nextConfig;
 };
