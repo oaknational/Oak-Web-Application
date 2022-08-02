@@ -21,7 +21,7 @@ export const portableTextFromString = (text: string): PortableTextJSON => [
   },
 ];
 
-export const mockImageAsset = (id = "img-id"): SanityImage => {
+export const mockImageAsset = (id = "abcdef"): SanityImage => {
   return {
     asset: {
       _id: `image-${id}-300x300-png`,
