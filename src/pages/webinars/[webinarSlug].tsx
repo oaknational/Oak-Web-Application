@@ -54,8 +54,10 @@ export const getStaticProps: GetStaticProps<
   WebinarPageProps,
   URLParams
 > = async (context) => {
-  const webinarSlug = context?.params?.webinarSlug as string;
-  const webinarResult = await CMSClient.webinarBySlug(webinarSlug);
+  const webinarSlug = context.params?.webinarSlug as string;
+  const webinarResult = await CMSClient.webinarBySlug(webinarSlug, {
+    previewMode: context.preview,
+  });
 
   const webinar = {
     ...webinarResult,

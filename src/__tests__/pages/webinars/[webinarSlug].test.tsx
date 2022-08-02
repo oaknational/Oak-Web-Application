@@ -79,9 +79,43 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       const { getStaticProps } = await import(
         "../../../pages/webinars/[webinarSlug]"
       );
-      await getStaticProps({ params: { webinarSlug: "an-upcoming-webinar" } });
+      await getStaticProps({
+        params: { webinarSlug: "an-upcoming-webinar" },
+        preview: false,
+      });
 
-      expect(webinarBySlug).toHaveBeenCalledWith("an-upcoming-webinar");
+      expect(webinarBySlug).toHaveBeenCalledWith(
+        "an-upcoming-webinar",
+        expect.any(Object)
+      );
+    });
+
+    it("Should not fetch draft content by default", async () => {
+      const { getStaticProps } = await import(
+        "../../../pages/webinars/[webinarSlug]"
+      );
+      await getStaticProps({
+        params: { webinarSlug: "an-upcoming-webinar" },
+        preview: false,
+      });
+
+      expect(webinarBySlug).toHaveBeenCalledWith("an-upcoming-webinar", {
+        previewMode: false,
+      });
+    });
+
+    it("Should fetch draft content in preview mode", async () => {
+      const { getStaticProps } = await import(
+        "../../../pages/webinars/[webinarSlug]"
+      );
+      await getStaticProps({
+        params: { webinarSlug: "an-upcoming-webinar" },
+        preview: true,
+      });
+
+      expect(webinarBySlug).toHaveBeenCalledWith("an-upcoming-webinar", {
+        previewMode: true,
+      });
     });
 
     it("Should format the webinar date", async () => {
@@ -90,6 +124,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
+        preview: false,
       })) as { props: WebinarPageProps };
 
       expect(propsResult?.props?.webinar).toMatchObject({

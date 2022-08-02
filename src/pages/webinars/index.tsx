@@ -34,10 +34,12 @@ const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
   titleTag: "h3",
 });
 
-export const getStaticProps: GetStaticProps<
-  WebinarListingPageProps
-> = async () => {
-  const webinarResults = await CMSClient.webinars();
+export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
+  context
+) => {
+  const webinarResults = await CMSClient.webinars({
+    previewMode: context.preview,
+  });
 
   return {
     props: {
