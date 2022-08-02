@@ -1,0 +1,7 @@
+name: Deployment Status Actions
+
+on: deployment_status
+
+jobs:
+  dump_github_event:
+    uses: ./.github/workflows/dump_event.yml

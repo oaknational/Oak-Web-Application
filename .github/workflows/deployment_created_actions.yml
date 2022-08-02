@@ -1,0 +1,6 @@
+name: Deployment Created Actions
+
+on: deployment
+jobs:
+  dump_github_event:
+    uses: ./.github/workflows/dump_event.yml
