@@ -1,22 +1,22 @@
 import { FC, ReactNode } from "react";
 
-import { useCookieConsent } from "./CookieConsentProvider";
-import { CookiePolicyName } from "./types";
+import { ServiceType } from "./types";
+import useHasConsentedTo from "./useHasConsentedTo";
 
 type CookieConsentGateProps = {
-  policyName: CookiePolicyName;
+  serviceType: ServiceType;
   children: ReactNode;
 };
 /**
  * CookieConsentGate will conditionally render it's children if the user
- * has consented to the cookie policy whose name is pass as prop
- * 'policyName'.
+ * has consented to the service whose name is pass as prop
+ * 'serviceType'.
  */
 const CookieConsentGate: FC<CookieConsentGateProps> = (props) => {
-  const { policyName, children } = props;
-  const { hasConsentedTo } = useCookieConsent();
+  const { serviceType, children } = props;
+  const hasConsented = useHasConsentedTo(serviceType);
 
-  if (!hasConsentedTo(policyName)) {
+  if (!hasConsented) {
     return null;
   }
 

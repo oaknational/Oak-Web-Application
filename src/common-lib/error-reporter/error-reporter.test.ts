@@ -6,6 +6,13 @@ import errorReporter, {
   matchesUserAgent,
 } from "./error-reporter";
 
+const getHasConsentedTo = jest.fn();
+
+jest.mock("../../browser-lib/cookie-consent/getHasConsentedTo", () => ({
+  __esModule: true,
+  default: (service: string) => getHasConsentedTo(service),
+}));
+
 const parentMetaFields = {
   query: { paramName: "paramValue" },
 };
@@ -61,7 +68,10 @@ describe("common-lib/error-reporter", () => {
       expect(mockStart).toHaveBeenCalled();
     });
   });
-  describe("errorReporter()()", () => {
+  describe("[enabled]: errorReporter()()", () => {
+    beforeEach(() => {
+      getHasConsentedTo.mockImplementation(() => true);
+    });
     it("calls bugsnag.notify with the error", async () => {
       reportError(testError);
 
@@ -86,6 +96,16 @@ describe("common-lib/error-reporter", () => {
         ...parentMetaFields,
         ...childMetaFields,
       });
+    });
+  });
+  describe("[disabled]: errorReporter()()", () => {
+    beforeEach(() => {
+      getHasConsentedTo.mockImplementation(() => false);
+    });
+    it("does not call bugsnag.notify with the error", async () => {
+      reportError(testError);
+
+      expect(mockNotify).not.toHaveBeenCalled();
     });
   });
 });

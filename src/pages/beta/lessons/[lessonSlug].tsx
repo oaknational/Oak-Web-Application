@@ -12,6 +12,7 @@ import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import Flex from "../../../components/Flex";
 import Layout from "../../../components/Layout/Layout";
 import LessonHeader from "../../../components/LessonHeader/LessonHeader";
+import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import { LessonId } from "../../../context/Bookmarks";
 import graphqlApi from "../../../node-lib/graphql";
 
@@ -41,21 +42,23 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         }}
         $background="grey1"
       >
-        <header>
-          <Flex $pv={40}>
-            <Breadcrumbs
-              breadcrumbs={[
-                { href: "/", label: "[key-stage]" },
-                { href: "/", label: "Subjects" },
-                { href: "/", label: "[subject-name]" },
-                { href: "/", label: "[unit-name]" },
-              ]}
-            />
-          </Flex>
-          <BrowserWidthBar $pv={40} $background="white">
-            <LessonHeader {...lesson} />
-          </BrowserWidthBar>
-        </header>
+        <MaxWidth>
+          <header>
+            <Flex $pv={40}>
+              <Breadcrumbs
+                breadcrumbs={[
+                  { href: "/", label: "[key-stage]" },
+                  { href: "/", label: "Subjects" },
+                  { href: "/", label: "[subject-name]" },
+                  { href: "/", label: "[unit-name]" },
+                ]}
+              />
+            </Flex>
+            <BrowserWidthBar $pv={40} $background="white">
+              <LessonHeader {...lesson} />
+            </BrowserWidthBar>
+          </header>
+        </MaxWidth>
       </Layout>
     </>
   );

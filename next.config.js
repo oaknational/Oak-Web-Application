@@ -36,7 +36,9 @@ module.exports = async (phase) => {
     // depend on a Vercel specific env variable.
     // When we come to sort out a failover we may need to tweak this functionality.
     // Defaults to "development".
-    releaseStage = getReleaseStage(process.env.VERCEL_ENV);
+    releaseStage = getReleaseStage(
+      process.env.OVERRIDE_RELEASE_STAGE || process.env.VERCEL_ENV
+    );
     const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
@@ -79,6 +81,14 @@ module.exports = async (phase) => {
       FIREBASE_ADMIN_DATABASE_URL:
         process.env.FIREBASE_ADMIN_DATABASE_URL ||
         secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
+
+      // Gleap
+      NEXT_PUBLIC_GLEAP_API_KEY:
+        process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
+      NEXT_PUBLIC_GLEAP_API_URL:
+        process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+      NEXT_PUBLIC_GLEAP_WIDGET_URL:
+        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
 
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,

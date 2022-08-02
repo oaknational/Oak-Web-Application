@@ -30,6 +30,8 @@ const theme: OakTheme = {
     pupilsAccentGreen: "#25ab38",
     pupilsAccentPink: "#d02aa7",
     pupilsGreen: "#85cb6d", // TODO: add tints
+    pupilsLightGreen: "#D5EFD4",
+    pupilsLimeGreen: "#BEF2BD",
     pupilsPink: "#deb7d5", // TODO: add tints
     // teacher colours
     teachersAccentBlue: "#374cf1",
@@ -69,6 +71,8 @@ const theme: OakTheme = {
     pupilsAccentGreen: "black",
     pupilsAccentPink: "white",
     pupilsGreen: "black", // TODO: add tints
+    pupilsLightGreen: "black",
+    pupilsLimeGreen: "black",
     pupilsPink: "black", // TODO: add tints
     // teacher colours
     teachersAccentBlue: "white",

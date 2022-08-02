@@ -32,14 +32,14 @@ type AspectRatioProps = {
   ratio: Ratio | Ratio[];
 };
 /**
- * 
+ *
  * AspectRatio provides a container of fixed aspect ratio
- * 
+ *
  * ## Usage
  * Use this component when you want to ensure a box has a certain aspect ratio.
  * The 'ratio' prop is repsonsive, so you can pass an array e.g. ["3:2", "16:9"]
  * which will result in different aspect ratios on different screen widths.
- * For an example usage, see the CardImage component. 
+ * For an example usage, see the CardImage component.
  */
 const AspectRatio: FC<AspectRatioProps> = (props) => {
   const { children, ratio, ...htmlAttrs } = props;
