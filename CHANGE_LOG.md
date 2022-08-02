@@ -1,3 +1,10 @@
+## [0.54.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.54.1...v0.54.2) (2022-08-01)
+
+
+### Bug Fixes
+
+* duplicate svg in logo ([25329c9](https://github.com/oaknational/Oak-Web-Application/commit/25329c903b76883eeca8196dc8010558c36c8b78))
+
 # [0.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.1...v0.54.0) (2022-07-28)
 
 
