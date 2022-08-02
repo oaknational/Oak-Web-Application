@@ -5,12 +5,18 @@ import Component from ".";
 export default {
   title: "Foundations/Circle",
   component: Component,
+  argTypes: {
+    size: {
+      defaultValue: 72,
+    },
+    $background: {
+      defaultValue: "teachersPastelYellow",
+    },
+  },
 } as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => (
-  <Component size={72} $background="teachersPastelYellow">
-    Hi!
-  </Component>
+const Template: ComponentStory<typeof Component> = (props) => (
+  <Component {...props}>Hi!</Component>
 );
 
 export const Circle = Template.bind({});
