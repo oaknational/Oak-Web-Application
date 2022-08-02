@@ -64,7 +64,7 @@ export type PlanningPage = Document & {
 };
 
 export type Params = {
-  isDraft?: boolean;
+  previewMode?: boolean;
 };
 
 export type ListParams = Params & {
