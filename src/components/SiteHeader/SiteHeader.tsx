@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import Link from "next/link";
 import styled, { useTheme } from "styled-components";
 
@@ -8,6 +8,7 @@ import P from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
+import { menuContext } from "../../context/Menu/MenuProvider";
 
 const HomeLink = styled.a<FlexProps>`
   ${flex}
@@ -15,6 +16,11 @@ const HomeLink = styled.a<FlexProps>`
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
+
+  const { toggleMenu, open } = useContext(menuContext);
+
+  console.log(open);
+
   return (
     <FixedHeader $background={theme.header.background}>
       <Link href={"/"} passHref>
@@ -31,13 +37,15 @@ const SiteHeader: FC = () => {
             Teacher Hub
           </Link>
         </P>
-        <IconButton
-          aria-label="Menu"
-          icon={"Hamburger"}
-          onClick={() => {
-            console.log("open menu");
-          }}
-        />
+        <P $ml={[24]}>
+          <IconButton
+            aria-label="Menu"
+            icon={"Hamburger"}
+            onClick={() => {
+              toggleMenu();
+            }}
+          />
+        </P>
       </Flex>
     </FixedHeader>
   );

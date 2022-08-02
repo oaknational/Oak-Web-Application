@@ -1,23 +1,23 @@
-import { createContext, FC, useContext } from "react";
+import { createContext, FC, useState } from "react";
 
 type MenuContext = {
   open: boolean;
+  toggleMenu: () => void;
 };
 
-export const menuContext = createContext<MenuContext | null>(null);
-
-export const useToggleMenu = () => {
-  const menuStatus = useContext(menuContext);
-  const openStatus = menuStatus?.open || false;
-
-  return {
-    open: !openStatus,
-  };
-};
+export const menuContext = createContext<MenuContext>({
+  open: false,
+  toggleMenu: () => null,
+});
 
 export const MenuProvider: FC = ({ children }) => {
+  const [open, setOpen] = useState(false);
+  const toggleMenu = () => {
+    setOpen(!open);
+  };
+
   return (
-    <menuContext.Provider value={{ open: false }}>
+    <menuContext.Provider value={{ open, toggleMenu }}>
       {children}
     </menuContext.Provider>
   );
