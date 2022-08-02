@@ -21,6 +21,7 @@ const theme: OakTheme = {
     oakGrey1: "#f5f5f5",
     oakGrey2: "#dadada",
     oakGrey3: "#878787",
+    oakGrey4: "#575756",
     pastelTurqoise: "#b0e2de", // TODO: add tints
     // feedback colors
     warning: "#ff7234",
@@ -42,6 +43,7 @@ const theme: OakTheme = {
     teachersRed: "#e51d4d",
     teachersPurple: "#845ad9",
     teachersLilac: "#c6d1ef",
+    twilight: "#E5D1E0",
   },
   contrastColors: {
     white: "black",
@@ -62,6 +64,7 @@ const theme: OakTheme = {
     oakGrey1: "black",
     oakGrey2: "black",
     oakGrey3: "white",
+    oakGrey4: "white",
     pastelTurqoise: "black", // TODO: add tints
     // feedback colors
     warning: "black",
@@ -83,6 +86,7 @@ const theme: OakTheme = {
     teachersRed: "black",
     teachersPurple: "white",
     teachersLilac: "black",
+    twilight: "black",
   },
   fonts: {
     // Paragraphs etc.

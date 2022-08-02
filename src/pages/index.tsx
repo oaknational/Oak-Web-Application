@@ -60,7 +60,6 @@ const Home: FC = () => {
                 <Heading
                   $fontSize={[32, 48]}
                   tag={"h1"}
-                  $lineHeight={56}
                   $mt={[64, 80]}
                   $mb={[20, 24]}
                   data-testid="home-page-title"
@@ -70,7 +69,6 @@ const Home: FC = () => {
                 </Heading>
                 <Heading
                   tag={"h2"}
-                  $lineHeight={32}
                   $fontSize={[16, 24]}
                   $mb={[32, 64]}
                 >

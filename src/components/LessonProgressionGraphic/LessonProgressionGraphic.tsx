@@ -1,77 +1,89 @@
 import { FC } from "react";
 import styled from "styled-components";
-import Link from "next/link";
 
-import Flex from "../Flex";
-import Icon from "../Icon";
+import Flex, { FlexProps } from "../Flex";
+import Icon, { IconName } from "../Icon";
+import Circle from "../Circle";
+import { OakColorName } from "../../styles/theme";
+import { Heading } from "../Typography";
+import zIndex from "../../styles/constants/zIndex";
 
-const CircleIconContainer = styled(Flex)`
-  border-radius: 100px;
-  width: 72px;
-  height: 72px;
-  z-index: 2;
+const GraphicContainer: FC<FlexProps> = (props) => (
+  <Flex $flexDirection="column" $mr={40} $position="relative" {...props} />
+);
+type GraphicCircleProps = {
+  icon: IconName;
+  $background?: OakColorName;
+};
+
+const OverlapBehind = styled.div`
+  transform: translateX(-16px);
 `;
-
-const CircleIconContainerOverlap = styled(Flex)`
-  position: absolute;
-  border-radius: 100px;
-  left: 55px;
-  width: 72px;
-  height: 72px;
+const OverlapInFront = styled.div`
+  z-index: ${zIndex.inFront};
 `;
+const Text: FC = (props) => (
+  <Heading
+    $position="absolute"
+    $top="100%"
+    tag="h3"
+    $fontSize={16}
+    $textAlign="center"
+    $mt={16}
+    {...props}
+  />
+);
+const GraphicCircle: FC<GraphicCircleProps> = ({
+  icon,
+  $background = "teachersPastelYellow",
+}) => (
+  <Circle size={72} $background={$background} $dropShadow="grey20">
+    <Icon size={48} name={icon}></Icon>
+  </Circle>
+);
 
 const LessonProgressionGraphic: FC = () => {
   return (
-    <Flex $justifyContent={"center"} $flexDirection={["column", "row"]}>
-      <Flex>
-        <Link href={"/"}>
-          <CircleIconContainer
-            $background={"grey3"}
-            $alignItems={"center"}
-            $justifyContent={"center"}
-          >
-            <Icon size={48} name={"Quiz"}></Icon>
-          </CircleIconContainer>
-        </Link>
+    <Flex
+      $justifyContent={"center"}
+      $flexDirection={["column", "row"]}
+      $mb={80}
+    >
+      <Flex
+        $mb={[80, 0]}
+        $width={["100%", "auto"]}
+        $justifyContent={["space-between", "initial"]}
+      >
+        <GraphicContainer>
+          <GraphicCircle icon="Quiz" />
+          <Text>Intro Quiz</Text>
+        </GraphicContainer>
 
-        <Flex $position="relative">
-          <Link href={"/"}>
-            <CircleIconContainerOverlap
-              $background={"grey3"}
-              $alignItems={"center"}
-              $justifyContent={"center"}
-            >
-              <Icon size={48} name={"LessonSlides"}></Icon>
-            </CircleIconContainerOverlap>
-          </Link>
-          <CircleIconContainer
-            $background={"grey3"}
-            $alignItems={"center"}
-            $justifyContent={"center"}
-          >
-            <Link href={"/"}>
-              <Icon size={48} name={"Quiz"} />
-            </Link>
-          </CircleIconContainer>
-        </Flex>
+        <GraphicContainer $mr={[0, 40]}>
+          <Flex $mr={-16}>
+            <OverlapInFront>
+              <GraphicCircle icon="LessonSlides" $background="pastelTurqoise" />
+            </OverlapInFront>
+            <OverlapBehind>
+              <GraphicCircle icon="Quiz" />
+            </OverlapBehind>
+          </Flex>
+          <Text>Lesson Slides or Video</Text>
+        </GraphicContainer>
       </Flex>
+      <Flex
+        $width={["100%", "auto"]}
+        $justifyContent={["space-between", "initial"]}
+      >
+        <GraphicContainer>
+          <GraphicCircle icon="LessonSlides" />
+          <Text>Worksheet</Text>
+        </GraphicContainer>
 
-      <Flex $position="relative">
-        <CircleIconContainer
-          $background={"grey2"}
-          $alignItems={"center"}
-          $justifyContent={"center"}
-        >
-          <Icon size={48} name={"Quiz"}></Icon>
-        </CircleIconContainer>
-
-        <CircleIconContainer
-          $background={"grey2"}
-          $alignItems={"center"}
-          $justifyContent={"center"}
-        >
-          <Icon size={48} name={"Quiz"}></Icon>
-        </CircleIconContainer>
+        <GraphicContainer $mr={0}>
+          <GraphicCircle icon="LessonSlides" />
+          <Text>Exit Quiz</Text>
+        </GraphicContainer>
       </Flex>
     </Flex>
   );

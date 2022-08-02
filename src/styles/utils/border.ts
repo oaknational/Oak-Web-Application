@@ -1,12 +1,14 @@
 import { css, CSSProperties } from "styled-components";
 
-import { OakColorName, PixelSpacing } from "../theme/types";
+import { NullablePixelSpacing, OakColorName } from "../theme/types";
 import getColorByName from "../themeHelpers/getColorByName";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type BorderValue = PixelSpacing;
+type BorderValue = NullablePixelSpacing;
 type BorderValueResponsive = ResponsiveValues<BorderValue>;
+type BorderRadius = NullablePixelSpacing | "50%";
+type BorderRadiusResponsive = ResponsiveValues<BorderRadius>;
 
 type BorderStyleProps = CSSProperties["borderStyle"];
 
@@ -20,10 +22,10 @@ export type BorderProps = {
   $bb?: BorderValueResponsive;
   $borderStyle?: BorderStyleProps;
   $borderColor?: OakColorName;
-  $borderRadius?: BorderValueResponsive;
+  $borderRadius?: BorderRadiusResponsive;
 };
 
-const parse = (value?: number) => {
+const parseBorderRadius = (value?: BorderRadius) => {
   switch (typeof value) {
     case "string":
       return value;
@@ -32,7 +34,7 @@ const parse = (value?: number) => {
   }
 };
 
-const parseBorder = (value?: BorderValue) => {
+const parseBorder = (value?: BorderRadius) => {
   switch (typeof value) {
     case "string":
       return `${value} solid`;
@@ -66,12 +68,16 @@ const borderBottom = css<{ $bb?: BorderValueResponsive }>`
   ${responsive("border-bottom", (props) => props.$bb, parseBorder)}
 `;
 
-const borderColor = css<{ $borderColor?: OakColorName }>`
+const borderColor = css<{ $borderColor?: ResponsiveValues<OakColorName> }>`
   ${responsive("border-color", (props) => props.$borderColor, getColorByName)}
 `;
 
-const borderRadius = css<{ $borderRadius?: BorderValueResponsive }>`
-  ${responsive("border-radius", (props) => props.$borderRadius, parse)}
+const borderRadius = css<{ $borderRadius?: BorderRadiusResponsive }>`
+  ${responsive(
+    "border-radius",
+    (props) => props.$borderRadius,
+    parseBorderRadius
+  )}
 `;
 
 export const border = css<BorderProps>`

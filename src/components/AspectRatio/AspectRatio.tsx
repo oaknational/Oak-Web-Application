@@ -10,7 +10,7 @@ const ratioPercentageMap: Record<Ratio, number> = {
   "3:2": 66.66,
   "1:1": 100,
 };
-const ratioToPercentage = (ratio?: Ratio) =>
+const ratioToPercentage = (ratio?: Ratio | null) =>
   ratio ? `${ratioPercentageMap[ratio]}%` : undefined;
 
 const AspectRatioOuter = styled.div<{ ratio: Ratio | Ratio[] }>`

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
+import zIndex from "../../styles/constants/zIndex";
 import { OakTheme, PropsWithTheme } from "../../styles/theme";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import Flex from "../Flex";
@@ -30,7 +31,7 @@ const StyledHeader = styled(Flex)`
   ${background}
   padding: 12px;
   position: fixed;
-  z-index: 1;
+  z-index: ${zIndex.fixedHeader};
 `;
 
 const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (

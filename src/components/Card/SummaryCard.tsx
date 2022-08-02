@@ -31,7 +31,6 @@ type SummaryCardProps = {
  * ## Usage
  * Summary card heading used at the top of page
  */
-
 const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
   title,
   heading,
@@ -42,29 +41,15 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
 }) => {
   return (
     <Card
-      $mt={[72, 80, 80]}
-      $mb={[40, 80, 80]}
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
     >
       <Flex $flexDirection={"column"}>
-        <Heading
-          $mb={16}
-          tag={"h2"}
-          $fontSize={20}
-          $lineHeight={24}
-          $color={"grey4"}
-        >
+        <Heading $mb={16} tag={"h2"} $fontSize={20} $color={"oakGrey4"}>
           {title}
         </Heading>
-        <Heading
-          $mb={16}
-          $color={"black"}
-          $fontSize={[24, 32, 32]}
-          $lineHeight={40}
-          tag={"h1"}
-        >
+        <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h1"}>
           {heading}
         </Heading>
         <Typography $color="black" $fontSize={16}>

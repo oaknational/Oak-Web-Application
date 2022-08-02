@@ -8,6 +8,10 @@ import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
+/**
+ * @todo use negative number type
+ * @see https://stackoverflow.com/questions/21224922/is-there-a-way-to-represent-a-non-negative-integer-in-typescript-so-that-the-com
+ */
 export type PixelSpacing =
   | 0
   | 4
@@ -23,7 +27,10 @@ export type PixelSpacing =
   | 64
   | 72
   | 80
+  | 120
   | 1200;
+export type NullablePixelSpacing = PixelSpacing | null;
+export type NegativePixelSpacing = -16 | -12 | -8 | -4;
 
 /**
  * @todo parse theme with zod
@@ -46,6 +53,7 @@ const OakColorNameZod = z.union([
   z.literal("oakGrey1"),
   z.literal("oakGrey2"),
   z.literal("oakGrey3"),
+  z.literal("oakGrey4"),
   z.literal("pastelTurqoise"),
   z.literal("warning"),
   z.literal("failure"),
@@ -64,6 +72,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersRed"),
   z.literal("teachersPurple"),
   z.literal("teachersLilac"),
+  z.literal("twilight"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;

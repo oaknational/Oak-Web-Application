@@ -23,17 +23,19 @@ export const getBreakpoint = (
 export type ResponsiveValues<Value> = Value | Value[];
 
 const responsive =
-  <Props, T extends string | number | undefined>(
+  <Props, T extends string | number | undefined | null>(
     attr: string,
-    getValues: (props: Props) => ResponsiveValues<T | undefined>,
+    getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
     parse:
-      | ((unparsed: T | undefined) => string | number | undefined)
+      | ((unparsed: T | undefined | null) => string | number | undefined | null)
       | ((
-          unparsed: T | undefined
-        ) => (props: PropsWithTheme) => string | number | undefined) = (x) => x
+          unparsed: T | undefined | null
+        ) => (props: PropsWithTheme) => string | number | undefined | null) = (
+      x
+    ) => x
   ) =>
   (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
-    const attrCss = (value: T | undefined) =>
+    const attrCss = (value: T | undefined | null) =>
       typeof value === "undefined"
         ? undefined
         : css`
