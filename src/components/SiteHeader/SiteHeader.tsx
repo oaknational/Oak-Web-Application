@@ -19,8 +19,6 @@ const SiteHeader: FC = () => {
 
   const { toggleMenu, open } = useContext(menuContext);
 
-  console.log(open);
-
   return (
     <FixedHeader $background={theme.header.background}>
       <Link href={"/"} passHref>
@@ -41,6 +39,7 @@ const SiteHeader: FC = () => {
           <IconButton
             aria-label="Menu"
             icon={"Hamburger"}
+            variant={"minimal"}
             onClick={() => {
               toggleMenu();
             }}
