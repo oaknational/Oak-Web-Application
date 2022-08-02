@@ -206,7 +206,7 @@ const theme: OakTheme = {
   menu: {
     background: "pupilsPink",
     color: "black",
-    width: "33vw",
+    width: "40vw",
   },
   badge: {
     size: "54px",

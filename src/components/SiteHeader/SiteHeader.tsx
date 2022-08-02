@@ -4,7 +4,7 @@ import styled, { useTheme } from "styled-components";
 
 import Flex, { FlexProps } from "../Flex";
 import flex from "../../styles/utils/flex";
-import P from "../Typography";
+import P, { Span } from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
@@ -27,26 +27,24 @@ const SiteHeader: FC = () => {
           <Icon name="Home" width={96} height={48} $mr={8} />
         </HomeLink>
       </Link>
-      <Flex $alignItems={"center"} $mt={[16, 0, 0]}>
+      <Flex $alignItems={"center"} $display={["none", "flex"]}>
         <P $ml={[0]}>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P $ml={[24]}>
+        <P $ml={[24]} $mr={[]}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>
         </P>
-        <P $ml={[24]}>
-          <IconButton
-            aria-label="Menu"
-            icon={"Hamburger"}
-            variant={"minimal"}
-            onClick={() => {
-              toggleMenu();
-            }}
-          />
-        </P>
       </Flex>
+      <IconButton
+        aria-label="Menu"
+        icon={"Hamburger"}
+        variant={"minimal"}
+        onClick={() => {
+          toggleMenu();
+        }}
+      />
       <Menu>
         <P>Menu content...</P>
       </Menu>
