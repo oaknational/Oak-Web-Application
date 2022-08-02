@@ -1,3 +1,10 @@
+# [0.55.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.54.2...v0.55.0) (2022-08-02)
+
+
+### Features
+
+* **button:** add brush stroke svgs for buttons ([23efd19](https://github.com/oaknational/Oak-Web-Application/commit/23efd19a9a74f70025b761318e552947d76d5e39))
+
 ## [0.54.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.54.1...v0.54.2) (2022-08-01)
 
 
