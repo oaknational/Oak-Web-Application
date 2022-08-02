@@ -203,6 +203,11 @@ const theme: OakTheme = {
       text: "black",
     },
   },
+  menu: {
+    background: "pupilsPink",
+    color: "black",
+    width: "33vw",
+  },
   badge: {
     size: "54px",
     circleSize: "48px",

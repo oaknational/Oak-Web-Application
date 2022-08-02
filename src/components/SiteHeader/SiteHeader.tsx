@@ -9,7 +9,6 @@ import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
 import { menuContext } from "../../context/Menu/MenuProvider";
-
 import { Menu } from "../Menu";
 
 const HomeLink = styled.a<FlexProps>`
@@ -19,7 +18,7 @@ const HomeLink = styled.a<FlexProps>`
 const SiteHeader: FC = () => {
   const theme = useTheme();
 
-  const { toggleMenu, open } = useContext(menuContext);
+  const { toggleMenu } = useContext(menuContext);
 
   return (
     <FixedHeader $background={theme.header.background}>
@@ -49,7 +48,7 @@ const SiteHeader: FC = () => {
         </P>
       </Flex>
       <Menu>
-        <P>FOO BAR</P>
+        <P>Menu content...</P>
       </Menu>
     </FixedHeader>
   );
