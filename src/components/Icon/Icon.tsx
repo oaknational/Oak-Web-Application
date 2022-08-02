@@ -1,9 +1,10 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
-import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { OakColorName, PixelSpacing } from "../../styles/theme";
-import { margin, MarginProps } from "../../styles/utils/spacing";
+import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import color, { ColorProps } from "../../styles/utils/color";
+import background, { BackgroundProps } from "../../styles/utils/background";
 
 import ChevronRight from "./ChevronRight.icon";
 import ChevronDown from "./ChevronDown.icon";
@@ -96,26 +97,27 @@ const size = css<SizeProps>`
   width: ${(props) => props.width}px;
 `;
 
-type TransformProps = { rotate?: number; flip?: boolean };
-
-const IconOuterWrapper = styled.span<SizeProps & MarginProps & TransformProps>`
+type RotateValue = 0 | 180;
+type TransformProps = { rotate?: RotateValue; flip?: boolean };
+const IconOuterWrapper = styled.span<
+  SizeProps & SpacingProps & ColorProps & BackgroundProps & TransformProps
+>`
   transform: rotate(${(props) => props.rotate}deg);
   transform: scaleY(${(props) => (props.flip ? -1 : 1)});
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  mask-image: url("/buttons/icon-button-background.svg");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
   ${size}
-  ${margin}
-`;
-const IconInnerWrapper = styled.span<SizeProps & { $color?: OakColorName }>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: ${(props) => getColorByName(props.$color)};
-  ${size}
+  ${spacing}
+  ${color}
+  ${background}
 `;
 
-type IconProps = MarginProps & {
+type IconProps = SpacingProps & {
   name: IconName;
   /**
    * size in pixels is the value for width and height if they are not separately provided
@@ -123,14 +125,13 @@ type IconProps = MarginProps & {
   size?: PixelSpacing;
   width?: PixelSpacing;
   height?: PixelSpacing;
-  outerWidth?: PixelSpacing;
-  outerHeight?: PixelSpacing;
   /**
    * by default, the color will take the css `color` value of its closest ancester
    * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to
    * override this value.
    */
   $color?: OakColorName;
+  $background?: OakColorName;
 };
 /**
  * The `<Icon />` component should be the go to component wherever you seen an
@@ -139,20 +140,20 @@ type IconProps = MarginProps & {
  * use an `<IconButton />` component (which uses `<Icon />` internally).
  */
 const Icon: FC<IconProps> = (props) => {
-  const { name, size = 24, width, height, $color, ...rootProps } = props;
+  const { name, size = 24, width, height, $pa = 8, ...rootProps } = props;
   const IconComponent = icons[name];
 
-  const innerWidth = width || size;
-  const innerHeight = height || size;
-
-  const outerHeight = props.outerHeight || innerHeight;
-  const outerWidth = props.outerWidth || innerWidth;
+  const outerWidth = width || size;
+  const outerHeight = height || size;
 
   return (
-    <IconOuterWrapper height={outerHeight} width={outerWidth} {...rootProps}>
-      <IconInnerWrapper $color={$color} height={innerHeight} width={innerWidth}>
-        <IconComponent />
-      </IconInnerWrapper>
+    <IconOuterWrapper
+      height={outerHeight}
+      width={outerWidth}
+      $pa={$pa}
+      {...rootProps}
+    >
+      <IconComponent />
     </IconOuterWrapper>
   );
 };

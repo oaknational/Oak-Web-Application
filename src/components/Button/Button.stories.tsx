@@ -12,7 +12,7 @@ export default {
       defaultValue: "Click me",
     },
     variant: {
-      defaultValue: "primary",
+      defaultValue: "brush",
     },
   },
 } as ComponentMeta<typeof Component>;
@@ -22,3 +22,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const Button = Template.bind({});
+
+export const ButtonWithIcon = Template.bind({});
+ButtonWithIcon.args = {
+  icon: "Star",
+};

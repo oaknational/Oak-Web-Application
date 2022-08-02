@@ -68,7 +68,7 @@ const theme: OakTheme = {
     pastelTurqoise: "black", // TODO: add tints
     // feedback colors
     warning: "black",
-    failure: "black",
+    failure: "white",
     success: "black",
     // pupil colours
     pupilsAccentGreen: "black",
@@ -87,6 +87,9 @@ const theme: OakTheme = {
     teachersPurple: "white",
     teachersLilac: "black",
     twilight: "black",
+  },
+  buttonIconBackgroundColors: {
+    success: "failure",
   },
   fonts: {
     // Paragraphs etc.
