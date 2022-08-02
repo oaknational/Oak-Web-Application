@@ -1,11 +1,11 @@
 [[redirects]]
-from = “http://oak-netlify-poc.netlify.app/*”
-to = “https://netlify-test.thenational.academy/:splat”
+from = 'http://oak-netlify-poc.netlify.app/*'
+to = 'https://netlify-test.thenational.academy/:splat'
 status = 301
 force = true
 
 [[redirects]]
-from = “https://oak-netlify-poc.netlify.app/*”
-to = “https://netlify-test.thenational.academy/:splat”
+from = 'https://oak-netlify-poc.netlify.app/*'
+to = 'https://netlify-test.thenational.academy/:splat'
 status = 301
 force = true
