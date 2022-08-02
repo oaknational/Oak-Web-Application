@@ -1,0 +1,4 @@
+# Netlify redirects
+# Netlify domain to custom Oak domain
+http://oak-netlify-poc.netlify.app/* https://netlify-test.thenational.academy/:splat 301!
+https://oak-netlify-poc.netlify.app/* https://netlify-test.thenational.academy/:splat 301!

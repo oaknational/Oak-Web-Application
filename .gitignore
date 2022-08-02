@@ -57,3 +57,6 @@ oak.config.old.json
 # firebase
 firebase-debug.log
 .firebase
+
+# Local Netlify folder
+.netlify
