@@ -4,7 +4,7 @@ import styled, { useTheme } from "styled-components";
 
 import Flex, { FlexProps } from "../Flex";
 import flex from "../../styles/utils/flex";
-import P, { Span } from "../Typography";
+import P from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";

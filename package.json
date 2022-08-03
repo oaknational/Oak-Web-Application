@@ -68,6 +68,7 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.32.2",
     "react-stately": "^3.15.0",
+    "react-transition-group": "^4.4.5",
     "styled-components": "^5.3.5",
     "zod": "^3.14.3"
   },

@@ -9,7 +9,7 @@ import IconButton from "../Button/IconButton";
 
 import MenuBackdrop from "./MenuBackdrop";
 
-type MenuConfig = {
+export type MenuConfig = {
   width: string;
   color: OakColorName;
   background: OakColorName;
