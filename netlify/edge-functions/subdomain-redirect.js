@@ -6,7 +6,7 @@ export default async (request, context) => {
     if (subdomain && !redirected) {
       console.log(
         "Redirected to Cloudflare - ",
-        `https://${subdomain[1]}.netlify.thenational.academy.com/`
+        `https://${subdomain[1]}.netlify.thenational.academy/`
       );
       return Response.redirect(`https://${subdomain[1]}.netlify.thenational.academy/`);
     } else {
