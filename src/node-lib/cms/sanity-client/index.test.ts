@@ -46,7 +46,9 @@ describe("cms/sanity-client", () => {
     });
 
     it("throws when a webinar is invalid", async () => {
-      webinarBySlug.mockReturnValueOnce({ slug: "foo" });
+      webinarBySlug.mockReturnValueOnce({
+        allWebinar: [{ slug: "foo" }],
+      } as never);
       const { default: getSanityClient } = await import("./");
 
       await expect(
@@ -84,7 +86,9 @@ describe("cms/sanity-client", () => {
     });
 
     it("throws when a webinar is invalid", async () => {
-      allWebinars.mockReturnValueOnce([{ slug: "foo" }]);
+      allWebinars.mockReturnValueOnce({
+        allWebinar: [{ slug: "foo" }],
+      } as never);
       const { default: getSanityClient } = await import("./");
 
       await expect(getSanityClient().webinars()).rejects.toThrow();
@@ -109,3 +113,6 @@ describe("cms/sanity-client", () => {
     });
   });
 });
+
+// Silence module error
+export {}
