@@ -121,6 +121,8 @@ module.exports = async (phase) => {
       SANITY_USE_CDN: process.env.SANITY_USE_CDN || oakConfig.sanity?.useCDN,
       SANITY_AUTH_SECRET:
         process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
+      SANITY_PREVIEW_SECRET:
+        process.env.SANITY_PREVIEW_SECRET || oakConfig.sanity?.previewSecret,
     },
   };
 
