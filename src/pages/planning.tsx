@@ -192,7 +192,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </GridArea>
               )
             )}
-            <GridArea $colSpan={[12, 6, 6]} $mt={[32, 0]}>
+            <GridArea $colSpan={[12, 6]}>
               <Card
                 $justifyContent={"space-between"}
                 $background={"pastelTurqoise"}

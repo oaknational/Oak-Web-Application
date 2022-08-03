@@ -91,7 +91,7 @@ const OakColorNameZod = z.union([
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;
-export type OakFontName = "body" | "ui" | "heading";
+export type OakFontName = "body" | "ui" | "heading" | "headingLight";
 /**
  * ColorValue could be hex, rgb, rgba, hsla, e.g. "#414243"
  */

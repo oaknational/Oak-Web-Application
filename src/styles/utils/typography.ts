@@ -28,6 +28,7 @@ export type TypographyProps = ColorProps &
 const fontFamilyWeightMap: Record<OakFontName, number> = {
   body: 400,
   heading: 600,
+  headingLight: 400,
   ui: 600,
 };
 const getFontWeight = (fontFamily?: OakFontName | null) =>
