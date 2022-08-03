@@ -172,7 +172,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={24} $rg={[0, 32]}>
+          <Grid $cg={24} $rg={[24, 32]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea $colSpan={[12, 6]}>
@@ -268,17 +268,17 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                         </Heading>
                         <P $fontSize={18}>
                           <PortableText value={portableText} />
-                          {withSearchCTA && (
-                            <ButtonAsLink
-                              $mt={24}
-                              label={"Search our lessons"}
-                              href={"https://teachers.thenational.academy/"}
-                              htmlAnchorProps={{
-                                target: "_blank",
-                              }}
-                            />
-                          )}
                         </P>
+                        {withSearchCTA && (
+                          <ButtonAsLink
+                            $mt={24}
+                            label={"Search our lessons"}
+                            href={"https://teachers.thenational.academy/"}
+                            htmlAnchorProps={{
+                              target: "_blank",
+                            }}
+                          />
+                        )}
                       </Flex>
                     </Card>
                   </GridArea>
