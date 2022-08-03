@@ -4,7 +4,7 @@ import { PixelSpacing } from "../theme";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SizeValue = "50%" | "100%" | "auto" | PixelSpacing;
+type SizeValue = "40%" | "50%" | "100%" | "auto" | PixelSpacing;
 type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {

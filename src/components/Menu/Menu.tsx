@@ -46,7 +46,7 @@ const SideMenu = styled(Flex)<MenuConfig & TransitionProps>`
 `;
 
 SideMenu.defaultProps = {
-  $width: ["100%", "50%"],
+  $width: ["100%", "40%"],
 };
 
 const MenuHeader = styled(Flex)`

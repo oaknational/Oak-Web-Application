@@ -2496,15 +2496,15 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-1cfec32f-0 eXhNci"
+    className="sc-6e247e5-0 eWYYkF"
   >
     <header
-      className="sc-ed3fbaef-0 sc-d98e152b-0 sc-1cfec32f-2 aHoVI itSkUQ HOEUJ"
+      className="sc-ed3fbaef-0 sc-d98e152b-0 sc-6e247e5-2 aHoVI fYYqvX zA-DQe"
     >
       Fixed Header
     </header>
     <div
-      className="sc-1cfec32f-1 gbzsBP"
+      className="sc-6e247e5-1 bQbPwA"
     />
   </div>,
 ]
@@ -2591,10 +2591,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-1cfec32f-0 eXhNci"
+    className="sc-6e247e5-0 eWYYkF"
   >
     <header
-      className="sc-ed3fbaef-0 sc-d98e152b-0 sc-1cfec32f-2 hslnSE jWrokQ bvibel"
+      className="sc-ed3fbaef-0 sc-d98e152b-0 sc-6e247e5-2 hslnSE mzGwT CLwAK"
     >
       <div
         className="sc-ed3fbaef-0 sc-d98e152b-0 dpMNCq dQdjHd"
@@ -2702,7 +2702,7 @@ Array [
       </div>
     </header>
     <div
-      className="sc-1cfec32f-1 gbzsBP"
+      className="sc-6e247e5-1 bQbPwA"
     />
   </div>,
 ]
@@ -3748,13 +3748,13 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-1cfec32f-0 eXhNci"
+    className="sc-6e247e5-0 eWYYkF"
   >
     <header
-      className="sc-ed3fbaef-0 sc-d98e152b-0 sc-1cfec32f-2 WNyqF bVULSt hwMAvM"
+      className="sc-ed3fbaef-0 sc-d98e152b-0 sc-6e247e5-2 WNyqF edTMye dosOsL"
     >
       <a
-        className="sc-6bb127c4-0 kaqoCx"
+        className="sc-e24b1cdc-0 kwJeSw"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
@@ -3798,10 +3798,10 @@ Array [
         </span>
       </a>
       <div
-        className="sc-ed3fbaef-0 sc-d98e152b-0 aHoVI jWnERk"
+        className="sc-ed3fbaef-0 sc-d98e152b-0 dpVhmO dgyuZe"
       >
         <div
-          className="sc-ed3fbaef-0 sc-197d9b58-0 efVMkx bezTUB"
+          className="sc-ed3fbaef-0 sc-197d9b58-0 aHoVI bezTUB"
         >
           <a
             href="https://classroom.thenational.academy/"
@@ -3812,7 +3812,7 @@ Array [
           </a>
         </div>
         <div
-          className="sc-ed3fbaef-0 sc-197d9b58-0 eEMojv bezTUB"
+          className="sc-ed3fbaef-0 sc-197d9b58-0 flQQfX bezTUB"
         >
           <a
             href="https://teachers.thenational.academy/"
@@ -3842,6 +3842,7 @@ Array [
             <svg
               fill="currentColor"
               height="100%"
+              viewBox="0 0 30 30"
               width="100%"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -3873,7 +3874,7 @@ Array [
       </button>
     </header>
     <div
-      className="sc-1cfec32f-1 gbzsBP"
+      className="sc-6e247e5-1 bQbPwA"
     />
   </div>,
 ]

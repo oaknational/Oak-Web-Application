@@ -27,11 +27,11 @@ const SiteHeader: FC = () => {
           <Icon name="Home" width={96} height={48} $mr={8} />
         </HomeLink>
       </Link>
-      <Flex $alignItems={"center"} $display={["none", "flex"]}>
-        <P $ml={[0]}>
+      <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
+        <P>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P $ml={[24]} $mr={[]}>
+        <P $ml={24} $mr={24}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>

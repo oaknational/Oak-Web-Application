@@ -40,9 +40,8 @@ const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (
     <StyledHeader
       as="header"
       $background={$background}
-      $justifyContent={["left", "space-between"]}
-      $alignItems={["flex-start", "center"]}
-      $flexDirection={["column", "row"]}
+      $justifyContent={["space-between"]}
+      $alignItems={["center"]}
     >
       {children}
     </StyledHeader>
