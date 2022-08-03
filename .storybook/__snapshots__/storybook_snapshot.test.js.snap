@@ -85,7 +85,6 @@ Array [
     onClick={[Function]}
     onKeyDown={[Function]}
     onMouseEnter={[Function]}
-    role="button"
     size="small"
     title="Click me"
   >
@@ -229,7 +228,6 @@ Array [
       onClick={[Function]}
       onKeyDown={[Function]}
       onMouseEnter={[Function]}
-      role="button"
       size="small"
       title="Download Lesson"
     >
@@ -297,7 +295,6 @@ Array [
       onClick={[Function]}
       onKeyDown={[Function]}
       onMouseEnter={[Function]}
-      role="button"
       size="small"
       title="Share Lesson"
     >
@@ -394,7 +391,6 @@ Array [
     onClick={[Function]}
     onKeyDown={[Function]}
     onMouseEnter={[Function]}
-    role="button"
     size="small"
   >
     <div
@@ -573,7 +569,6 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseEnter={[Function]}
-        role="button"
         size="small"
         title="Lable"
       >
@@ -740,7 +735,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="Label"
         >
@@ -832,7 +826,6 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseEnter={[Function]}
-        role="button"
         size="small"
         title="Label"
       >
@@ -3174,7 +3167,6 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseEnter={[Function]}
-        role="button"
         size="small"
         title="Download Lesson"
       >
@@ -3242,7 +3234,6 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseEnter={[Function]}
-        role="button"
         size="small"
         title="Share Lesson"
       >
@@ -3625,7 +3616,6 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
-            role="button"
             size="tiny"
           >
             <div
@@ -3659,7 +3649,6 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
-            role="button"
             size="tiny"
           >
             <div
@@ -3693,7 +3682,6 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
-            role="button"
             size="tiny"
           >
             <div
@@ -3991,7 +3979,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="Join new oak"
         >
@@ -4036,7 +4023,6 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
-            role="button"
             size="tiny"
           >
             <div
@@ -4070,7 +4056,6 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
-            role="button"
             size="tiny"
           >
             <div
@@ -4104,7 +4089,6 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             onMouseEnter={[Function]}
-            role="button"
             size="tiny"
           >
             <div
@@ -5339,7 +5323,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="Early Years"
         >
@@ -5418,7 +5401,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="KS1"
         >
@@ -5508,7 +5490,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="KS2"
         >
@@ -5620,7 +5601,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="KS3"
         >
@@ -5721,7 +5701,6 @@ Array [
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseEnter={[Function]}
-          role="button"
           size="small"
           title="KS4"
         >

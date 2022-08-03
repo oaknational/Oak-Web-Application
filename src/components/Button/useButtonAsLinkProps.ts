@@ -20,7 +20,6 @@ const useButtonAsLinkProps = () => {
 
   return {
     onKeyDown,
-    role: "button",
   };
 };
 
