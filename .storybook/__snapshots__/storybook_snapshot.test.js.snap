@@ -220,7 +220,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-c54a04ce-0 jvmkTG gJnFgX gYClZN"
+    className="sc-39add020-0 sc-29404318-0 sc-c54a04ce-0 fbLzEv gJnFgX gYClZN"
   >
     <a
       aria-label="Download Lesson"
@@ -502,7 +502,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 iBLYYo dTLmzc"
+    className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 aSnoh dTLmzc"
   >
     <h2>
       Card title
@@ -533,10 +533,10 @@ Array [
     }
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 iBLYYo dTLmzc"
+      className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 aSnoh dTLmzc"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 fAURwp jvfUvM"
+        className="sc-39add020-0 sc-29404318-0 iXtEBY jvfUvM"
       >
         <span
           className="sc-ba888444-0 PGCCU"
@@ -623,10 +623,10 @@ Array [
     }
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 iBLYYo dTLmzc"
+      className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 aSnoh dTLmzc"
     >
       <div
-        className="sc-dbeada1-0 eMYwdo"
+        className="sc-dbeada1-0 jCxJLq"
       >
         <div
           className="sc-dbeada1-1 faEiJR"
@@ -717,10 +717,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 dGjIpo kEDCfn"
+        className="sc-39add020-0 sc-29404318-0 cTlvLp kEDCfn"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 fAURwp jvfUvM"
+          className="sc-39add020-0 sc-29404318-0 iXtEBY jvfUvM"
         >
           <h4
             className="sc-c1870c8-0 kCUxVr"
@@ -792,10 +792,10 @@ Array [
     }
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 iBLYYo dTLmzc"
+      className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 aSnoh dTLmzc"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 fAURwp hjkspX"
+        className="sc-39add020-0 sc-29404318-0 iXtEBY hjkspX"
       >
         <span
           className="sc-ba888444-0 eutUqL"
@@ -875,13 +875,13 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 ljWPRO dTLmzc"
+    className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 eGZpUf dTLmzc"
   >
     <h5
       className="sc-c1870c8-0 iFuoTi"
     >
       <a
-        className="sc-fdd3b290-0 dkOpPL"
+        className="sc-77b1d613-0 dpjRzH"
         href="https://classroom.thenational.academy/"
       >
         Card link
@@ -907,7 +907,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 fPmkRx dEWyWU"
+    className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 bQmlza dEWyWU"
   >
     <div
       aria-hidden="true"
@@ -927,10 +927,10 @@ Array [
       />
     </div>
     <h3
-      className="sc-c1870c8-0 jOYepp"
+      className="sc-c1870c8-0 gChxOf"
     >
       <a
-        className="sc-fdd3b290-0 dkOpPL"
+        className="sc-77b1d613-0 dpjRzH"
         href="/"
       >
         Title
@@ -980,7 +980,7 @@ Array [
     data-testid="dismissible-card"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 frwjKP dTLmzc"
+      className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 emASDS dTLmzc"
     >
       Close to remove
       <div
@@ -1034,10 +1034,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 cFfAMe jmIvuc"
+    className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 bSyWql jmIvuc"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 gohTCK kEDCfn"
+      className="sc-39add020-0 sc-29404318-0 GCUL kEDCfn"
     >
       <h2
         className="sc-c1870c8-0 djOxV"
@@ -1045,10 +1045,10 @@ Array [
         Title
       </h2>
       <h1
-        className="sc-c1870c8-0 gPJgMy"
+        className="sc-c1870c8-0 iTCZcm"
       />
       <div
-        className="sc-833ce761-0 sc-31b518f5-0 jvmkTG kPCywP"
+        className="sc-39add020-0 sc-31b518f5-0 fbLzEv kPCywP"
       >
         <p>
           A summary section.......
@@ -1056,7 +1056,7 @@ Array [
       </div>
     </div>
     <div
-      className="sc-833ce761-0 sc-29404318-0 hxMSqO eTYbeI"
+      className="sc-39add020-0 sc-29404318-0 kaateR cyGEEu"
     >
       <div
         className="sc-dbeada1-0 lkxmuA"
@@ -1165,7 +1165,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-2 jvmkTG eyMRXX jmoYPc"
+    className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-2 fbLzEv eyMRXX jmoYPc"
   >
     <svg
       className="sc-e1ea85f8-0 hNEiOe"
@@ -1181,7 +1181,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-1 jvmkTG eyMRXX FOASH"
+      className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-1 fbLzEv eyMRXX FOASH"
     >
       <span
         className="sc-ba888444-0 eOOYde"
@@ -1222,7 +1222,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-2 jvmkTG eyMRXX jmoYPc"
+    className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-2 fbLzEv eyMRXX jmoYPc"
   >
     <svg
       className="sc-e1ea85f8-0 hNEiOe"
@@ -1238,7 +1238,7 @@ Array [
       />
     </svg>
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-1 jvmkTG eyMRXX FOASH"
+      className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-1 fbLzEv eyMRXX FOASH"
     >
       80%
     </div>
@@ -1257,16 +1257,16 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 cynIVn dPAzrF"
+    className="sc-39add020-0 sc-29404318-0 hNYale hPECyn"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 eBPvZ bsGUQ"
+      className="sc-39add020-0 sc-29404318-0 rRwVY jLdqdW"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 bibJvI jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 dqMyTR jdUSjj"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 gzuonU eyMRXX"
+          className="sc-39add020-0 sc-29404318-0 kUkTLx eyMRXX"
         >
           <span
             className="sc-ba888444-0 cKnKqi"
@@ -1304,10 +1304,10 @@ Array [
           </span>
         </div>
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 cDWLIR jrRnNp"
+          className="sc-39add020-0 sc-31b518f5-0 beMKGA jrRnNp"
         >
           <a
-            className="sc-fdd3b290-0 sc-954b8db6-2 dkOpPL jwsDYw"
+            className="sc-77b1d613-0 sc-2d484885-1 dpjRzH bbsuqK"
             href="#"
           >
             Intro Quiz
@@ -1315,74 +1315,70 @@ Array [
         </div>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 hFXTtU jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 bFgIwD jdUSjj"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 kTrKWu gJnFgX"
+          className="sc-39add020-0 sc-29404318-0 czPkuD gJnFgX"
         >
           <div
-            className="sc-954b8db6-1 eBlJMh"
+            className="sc-39add020-0 sc-29404318-0 bAahSZ eyMRXX"
           >
-            <div
-              className="sc-833ce761-0 sc-29404318-0 cMawBU eyMRXX"
+            <span
+              className="sc-ba888444-0 cKnKqi"
+              height={48}
+              width={48}
             >
-              <span
-                className="sc-ba888444-0 cKnKqi"
-                height={48}
-                width={48}
+              <svg
+                fill="none"
+                height="100%"
+                viewBox="6 5 62 62"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  fill="none"
-                  height="100%"
-                  viewBox="6 5 62 62"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7.522 10.858c4.93-1.2 9.85-.82 14.78-.9l14.78-.02 14.78.2c4.36.21 10.54-.23 14.78.73-4.18 1.37-10.38.67-14.78.92l-14.78.15-14.78-.11c-4.91-.12-9.91.26-14.78-.96v-.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M7.752 10.808c1.16.7.73 1.29.77 1.91l-.11 1.84-.33 1.83c-.24.53.14 1.33-.86 1.79-1.33-.62-.58-1.34-.79-1.91v-1.85l.23-1.84c.17-.6-.17-1.25 1.09-1.78v.01ZM7.272 18.228c4.94-1.2 9.87-.82 14.81-.9l14.81-.02 14.81.2c4.37.21 10.57-.23 14.81.73-4.19 1.37-10.4.67-14.81.92l-14.81.15-14.81-.11c-4.92-.12-9.93.26-14.81-.96v-.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M66.132 10.778c1.2.63.82 1.25.9 1.88l.02 1.88-.2 1.88c-.21.56.23 1.34-.73 1.88-1.37-.53-.67-1.32-.92-1.88l-.15-1.88.11-1.88c.12-.62-.26-1.26.96-1.88h.01ZM14.542 19.058c1.2 2.51.82 5.01.9 7.52l.02 7.52-.2 7.52c-.21 2.22.23 5.37-.73 7.52-1.37-2.13-.67-5.28-.92-7.52l-.15-7.52.11-7.52c.12-2.5-.26-5.04.96-7.52h.01ZM14.612 49.098c3.71-1.22 7.43-.86 11.14-.96l11.15-.08 11.15.14c3.29.19 7.95-.28 11.15.67-3.15 1.38-7.82.71-11.14.98l-11.15.2-11.15-.05c-3.7-.11-7.47.3-11.15-.9ZM59.732 18.788c1.18 2.49.77 4.96.82 7.43l-.06 7.42-.28 7.42c-.23 2.19.18 5.3-.81 7.41-1.34-2.11-.61-5.22-.84-7.43l-.06-7.42.19-7.42c.15-2.46-.21-4.98 1.04-7.41Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M37.112 48.678c1.2.6.82 1.21.9 1.81l.02 1.81-.2 1.81c-.21.53.23 1.29-.73 1.81-1.37-.51-.67-1.27-.92-1.81l-.15-1.81.11-1.81c.12-.6-.26-1.21.96-1.81h.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M22.192 63.628c.69-1.69 2.07-1.97 3.23-2.68 1.2-.65 2.39-1.32 3.57-2 1.22-.62 2.42-1.26 3.62-1.92 1.14-.46 2.35-1.75 3.86-1.59-.23 1.79-2.08 2.14-2.99 2.99l-1.74 1.14-1.75 1.11c-1.22.66-2.45 1.3-3.68 1.92-1.27.54-2.35 1.53-4.11 1.04l-.01-.01ZM37.032 55.728c1.65-.83 2.94-.03 4.29.37 1.34.48 2.65 1.02 3.93 1.62 1.25.67 2.46 1.41 3.64 2.2.95.81 2.69 1.46 3.06 2.96-1.74.39-2.73-1.13-3.92-1.55 0 0-.89-.5-1.8-.95-.91-.45-1.84-.86-1.84-.86-1.2-.62-2.44-1.18-3.7-1.67-1.24-.58-2.64-.61-3.65-2.12h-.01ZM20.562 24.008c.8.44.54.86.58 1.29v1.28l-.15 1.28c-.14.38.14.92-.5 1.28-.91-.37-.43-.91-.6-1.29l-.08-1.28.09-1.28c.09-.42-.16-.86.66-1.27v-.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M20.362 29.108c.39-.8.79-.55 1.18-.61l1.18-.02 1.18.13c.35.14.84-.16 1.18.48-.33.91-.83.45-1.18.62l-1.18.1-1.18-.07c-.39-.08-.79.18-1.18-.64v.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M20.762 23.988c.79-.77 1.53-.49 2.29-.51l1.13.04h.29c.16.01.37.04.53.1.35.11.62.4.71.75.04.18.04.37.02.55l-.03.28-.06.56-.12 1.13c-.17.66.08 1.62-.6 2.24-.88-.68-.37-1.61-.5-2.29v-1.99s.01-.01 0-.02c0 0 .01 0-.02-.01l-.28-.02-1.13-.08c-.75-.11-1.53.12-2.24-.73h.01ZM30.342 24.828c1.19-.8 2.37-.55 3.56-.6h3.56l3.56.12c1.05.14 2.54-.16 3.56.49-1.01.91-2.5.45-3.56.61l-3.56.1-3.56-.07c-1.18-.08-2.39.17-3.56-.64v-.01ZM31.142 26.688c.43-.8.87-.55 1.3-.6h1.3l1.3.12c.38.14.93-.16 1.3.49-.37.91-.91.45-1.3.61l-1.3.1-1.3-.07c-.43-.08-.87.17-1.3-.64v-.01ZM31.072 28.818c1.08-.8 2.15-.55 3.23-.6h3.23l3.23.12c.95.14 2.3-.16 3.23.49-.91.91-2.27.45-3.23.61l-3.23.1-3.23-.07c-1.07-.08-2.17.17-3.23-.64v-.01ZM20.562 35.898c.8.44.54.86.58 1.29v1.28l-.15 1.28c-.14.38.14.92-.5 1.28-.91-.37-.43-.91-.6-1.29l-.08-1.28.09-1.28c.09-.42-.16-.86.66-1.27v-.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M20.362 40.998c.39-.8.79-.55 1.18-.61l1.18-.02 1.18.13c.35.14.84-.16 1.18.48-.33.91-.83.45-1.18.62l-1.18.1-1.18-.07c-.39-.08-.79.18-1.18-.64v.01Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M20.762 35.888c.79-.77 1.53-.49 2.29-.51l1.13.04h.29c.16.01.37.04.53.1.35.11.62.4.71.75.04.18.04.37.02.55l-.03.28-.06.56-.12 1.13c-.17.66.08 1.62-.6 2.24-.88-.68-.37-1.61-.5-2.29v-1.99s.01-.01 0-.02c0 0 .01 0-.02-.01l-.28-.02-1.13-.08c-.75-.11-1.53.12-2.24-.73h.01ZM30.342 36.718c1.19-.8 2.37-.55 3.56-.6h3.56l3.56.12c1.05.14 2.54-.16 3.56.49-1.01.91-2.5.45-3.56.61l-3.56.1-3.56-.07c-1.18-.08-2.39.17-3.56-.64v-.01ZM31.142 38.578c.43-.8.87-.55 1.3-.6h1.3l1.3.12c.38.14.93-.16 1.3.49-.37.91-.91.45-1.3.61l-1.3.1-1.3-.07c-.43-.08-.87.17-1.3-.64v-.01ZM31.072 40.708c1.08-.8 2.15-.55 3.23-.6h3.23l3.23.12c.95.14 2.3-.16 3.23.49-.91.91-2.27.45-3.23.61l-3.23.1-3.23-.07c-1.07-.08-2.17.17-3.23-.64v-.01Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-            </div>
+                <path
+                  d="M7.522 10.858c4.93-1.2 9.85-.82 14.78-.9l14.78-.02 14.78.2c4.36.21 10.54-.23 14.78.73-4.18 1.37-10.38.67-14.78.92l-14.78.15-14.78-.11c-4.91-.12-9.91.26-14.78-.96v-.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M7.752 10.808c1.16.7.73 1.29.77 1.91l-.11 1.84-.33 1.83c-.24.53.14 1.33-.86 1.79-1.33-.62-.58-1.34-.79-1.91v-1.85l.23-1.84c.17-.6-.17-1.25 1.09-1.78v.01ZM7.272 18.228c4.94-1.2 9.87-.82 14.81-.9l14.81-.02 14.81.2c4.37.21 10.57-.23 14.81.73-4.19 1.37-10.4.67-14.81.92l-14.81.15-14.81-.11c-4.92-.12-9.93.26-14.81-.96v-.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M66.132 10.778c1.2.63.82 1.25.9 1.88l.02 1.88-.2 1.88c-.21.56.23 1.34-.73 1.88-1.37-.53-.67-1.32-.92-1.88l-.15-1.88.11-1.88c.12-.62-.26-1.26.96-1.88h.01ZM14.542 19.058c1.2 2.51.82 5.01.9 7.52l.02 7.52-.2 7.52c-.21 2.22.23 5.37-.73 7.52-1.37-2.13-.67-5.28-.92-7.52l-.15-7.52.11-7.52c.12-2.5-.26-5.04.96-7.52h.01ZM14.612 49.098c3.71-1.22 7.43-.86 11.14-.96l11.15-.08 11.15.14c3.29.19 7.95-.28 11.15.67-3.15 1.38-7.82.71-11.14.98l-11.15.2-11.15-.05c-3.7-.11-7.47.3-11.15-.9ZM59.732 18.788c1.18 2.49.77 4.96.82 7.43l-.06 7.42-.28 7.42c-.23 2.19.18 5.3-.81 7.41-1.34-2.11-.61-5.22-.84-7.43l-.06-7.42.19-7.42c.15-2.46-.21-4.98 1.04-7.41Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M37.112 48.678c1.2.6.82 1.21.9 1.81l.02 1.81-.2 1.81c-.21.53.23 1.29-.73 1.81-1.37-.51-.67-1.27-.92-1.81l-.15-1.81.11-1.81c.12-.6-.26-1.21.96-1.81h.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M22.192 63.628c.69-1.69 2.07-1.97 3.23-2.68 1.2-.65 2.39-1.32 3.57-2 1.22-.62 2.42-1.26 3.62-1.92 1.14-.46 2.35-1.75 3.86-1.59-.23 1.79-2.08 2.14-2.99 2.99l-1.74 1.14-1.75 1.11c-1.22.66-2.45 1.3-3.68 1.92-1.27.54-2.35 1.53-4.11 1.04l-.01-.01ZM37.032 55.728c1.65-.83 2.94-.03 4.29.37 1.34.48 2.65 1.02 3.93 1.62 1.25.67 2.46 1.41 3.64 2.2.95.81 2.69 1.46 3.06 2.96-1.74.39-2.73-1.13-3.92-1.55 0 0-.89-.5-1.8-.95-.91-.45-1.84-.86-1.84-.86-1.2-.62-2.44-1.18-3.7-1.67-1.24-.58-2.64-.61-3.65-2.12h-.01ZM20.562 24.008c.8.44.54.86.58 1.29v1.28l-.15 1.28c-.14.38.14.92-.5 1.28-.91-.37-.43-.91-.6-1.29l-.08-1.28.09-1.28c.09-.42-.16-.86.66-1.27v-.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M20.362 29.108c.39-.8.79-.55 1.18-.61l1.18-.02 1.18.13c.35.14.84-.16 1.18.48-.33.91-.83.45-1.18.62l-1.18.1-1.18-.07c-.39-.08-.79.18-1.18-.64v.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M20.762 23.988c.79-.77 1.53-.49 2.29-.51l1.13.04h.29c.16.01.37.04.53.1.35.11.62.4.71.75.04.18.04.37.02.55l-.03.28-.06.56-.12 1.13c-.17.66.08 1.62-.6 2.24-.88-.68-.37-1.61-.5-2.29v-1.99s.01-.01 0-.02c0 0 .01 0-.02-.01l-.28-.02-1.13-.08c-.75-.11-1.53.12-2.24-.73h.01ZM30.342 24.828c1.19-.8 2.37-.55 3.56-.6h3.56l3.56.12c1.05.14 2.54-.16 3.56.49-1.01.91-2.5.45-3.56.61l-3.56.1-3.56-.07c-1.18-.08-2.39.17-3.56-.64v-.01ZM31.142 26.688c.43-.8.87-.55 1.3-.6h1.3l1.3.12c.38.14.93-.16 1.3.49-.37.91-.91.45-1.3.61l-1.3.1-1.3-.07c-.43-.08-.87.17-1.3-.64v-.01ZM31.072 28.818c1.08-.8 2.15-.55 3.23-.6h3.23l3.23.12c.95.14 2.3-.16 3.23.49-.91.91-2.27.45-3.23.61l-3.23.1-3.23-.07c-1.07-.08-2.17.17-3.23-.64v-.01ZM20.562 35.898c.8.44.54.86.58 1.29v1.28l-.15 1.28c-.14.38.14.92-.5 1.28-.91-.37-.43-.91-.6-1.29l-.08-1.28.09-1.28c.09-.42-.16-.86.66-1.27v-.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M20.362 40.998c.39-.8.79-.55 1.18-.61l1.18-.02 1.18.13c.35.14.84-.16 1.18.48-.33.91-.83.45-1.18.62l-1.18.1-1.18-.07c-.39-.08-.79.18-1.18-.64v.01Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M20.762 35.888c.79-.77 1.53-.49 2.29-.51l1.13.04h.29c.16.01.37.04.53.1.35.11.62.4.71.75.04.18.04.37.02.55l-.03.28-.06.56-.12 1.13c-.17.66.08 1.62-.6 2.24-.88-.68-.37-1.61-.5-2.29v-1.99s.01-.01 0-.02c0 0 .01 0-.02-.01l-.28-.02-1.13-.08c-.75-.11-1.53.12-2.24-.73h.01ZM30.342 36.718c1.19-.8 2.37-.55 3.56-.6h3.56l3.56.12c1.05.14 2.54-.16 3.56.49-1.01.91-2.5.45-3.56.61l-3.56.1-3.56-.07c-1.18-.08-2.39.17-3.56-.64v-.01ZM31.142 38.578c.43-.8.87-.55 1.3-.6h1.3l1.3.12c.38.14.93-.16 1.3.49-.37.91-.91.45-1.3.61l-1.3.1-1.3-.07c-.43-.08-.87.17-1.3-.64v-.01ZM31.072 40.708c1.08-.8 2.15-.55 3.23-.6h3.23l3.23.12c.95.14 2.3-.16 3.23.49-.91.91-2.27.45-3.23.61l-3.23.1-3.23-.07c-1.07-.08-2.17.17-3.23-.64v-.01Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
           </div>
           <div
-            className="sc-954b8db6-0 jTJSEm"
+            className="sc-2d484885-0 iUhbbm"
           >
             <div
-              className="sc-833ce761-0 sc-29404318-0 gzuonU eyMRXX"
+              className="sc-39add020-0 sc-29404318-0 kUkTLx eyMRXX"
             >
               <span
                 className="sc-ba888444-0 cKnKqi"
@@ -1414,10 +1410,10 @@ Array [
           </div>
         </div>
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 cDWLIR jrRnNp"
+          className="sc-39add020-0 sc-31b518f5-0 beMKGA jrRnNp"
         >
           <a
-            className="sc-fdd3b290-0 sc-954b8db6-2 dkOpPL jwsDYw"
+            className="sc-77b1d613-0 sc-2d484885-1 dpjRzH bbsuqK"
             href="#"
           >
             Lesson Slides or Video
@@ -1426,13 +1422,13 @@ Array [
       </div>
     </div>
     <div
-      className="sc-833ce761-0 sc-29404318-0 jdDPdn bsGUQ"
+      className="sc-39add020-0 sc-29404318-0 kVsAlY jLdqdW"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 bibJvI jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 dqMyTR jdUSjj"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 gzuonU eyMRXX"
+          className="sc-39add020-0 sc-29404318-0 kUkTLx eyMRXX"
         >
           <span
             className="sc-ba888444-0 cKnKqi"
@@ -1498,10 +1494,10 @@ Array [
           </span>
         </div>
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 cDWLIR jrRnNp"
+          className="sc-39add020-0 sc-31b518f5-0 beMKGA jrRnNp"
         >
           <a
-            className="sc-fdd3b290-0 sc-954b8db6-2 dkOpPL jwsDYw"
+            className="sc-77b1d613-0 sc-2d484885-1 dpjRzH bbsuqK"
             href="#"
           >
             Worksheet
@@ -1509,10 +1505,10 @@ Array [
         </div>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 iQuTfU jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 llMKct jdUSjj"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 gzuonU eyMRXX"
+          className="sc-39add020-0 sc-29404318-0 kUkTLx eyMRXX"
         >
           <span
             className="sc-ba888444-0 cKnKqi"
@@ -1550,10 +1546,10 @@ Array [
           </span>
         </div>
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 cDWLIR jrRnNp"
+          className="sc-39add020-0 sc-31b518f5-0 beMKGA jrRnNp"
         >
           <a
-            className="sc-fdd3b290-0 sc-954b8db6-2 dkOpPL jwsDYw"
+            className="sc-77b1d613-0 sc-2d484885-1 dpjRzH bbsuqK"
             href="#"
           >
             Exit Quiz
@@ -1598,7 +1594,7 @@ Array [
     rel="stylesheet"
   />,
   <input
-    className="sc-fbea1ba6-0 sc-6947a58a-0 eZDTcQ jVNwIS"
+    className="sc-fbea1ba6-0 sc-6947a58a-0 eZDTcQ gDJYPg"
     onChange={[Function]}
     placeholder="Placeholder"
     value=""
@@ -1681,7 +1677,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 gmpaAa kEDCfn"
+    className="sc-39add020-0 sc-29404318-0 esqKfT kEDCfn"
   >
     <label
       className="sc-6e817833-2 gSclrW"
@@ -1776,7 +1772,7 @@ Array [
       type="button"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
       >
         <span
           data-testid="select-span"
@@ -1823,7 +1819,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 gmpaAa kEDCfn"
+    className="sc-39add020-0 sc-29404318-0 esqKfT kEDCfn"
   >
     <label
       className="sc-6e817833-2 gSclrW"
@@ -1915,7 +1911,7 @@ Array [
       type="button"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
       >
         <span
           className="sc-ba888444-0 drjWJM"
@@ -1980,7 +1976,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 gmpaAa kEDCfn"
+    className="sc-39add020-0 sc-29404318-0 esqKfT kEDCfn"
   >
     <label
       className="sc-6e817833-2 gSclrW"
@@ -2075,7 +2071,7 @@ Array [
       type="button"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
       >
         <span
           data-testid="select-span"
@@ -2120,11 +2116,11 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ gqnOSK"
+      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jVKBlU"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -2144,19 +2140,19 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
   >
     <input
       aria-describedby="undefined-error"
       aria-invalid={true}
-      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ gqnOSK"
+      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jVKBlU"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
     />
   </div>,
   <div
-    className="sc-833ce761-0 fDOEsd"
+    className="sc-39add020-0 hplWCI"
   >
     <span
       className="sc-1a42a0ba-0 UKyHS"
@@ -2179,11 +2175,11 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ imjEDV"
+      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ cqCVyT"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -2221,7 +2217,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-ce0c7ad9-0 fDOEsd idiAOs"
+    className="sc-39add020-0 sc-ce0c7ad9-0 hplWCI idiAOs"
   >
     <label
       className="sc-557d99b-0 bsomEe"
@@ -2230,11 +2226,11 @@ Array [
     </label>
   </div>,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
   >
     <input
       aria-invalid={false}
-      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ gqnOSK"
+      className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jVKBlU"
       onChange={[Function]}
       placeholder="Placeholder"
       value=""
@@ -2257,13 +2253,13 @@ Array [
     className="sc-c55d52bd-0 eGMTCr"
   >
     <div
-      className="sc-239adc37-0 jUwQMG"
+      className="sc-239adc37-0 emSKhk"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 ilDRWZ dTLmzc"
+        className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 iuVzYc dTLmzc"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 fAURwp jvfUvM"
+          className="sc-39add020-0 sc-29404318-0 iXtEBY jvfUvM"
         >
           <span
             className="sc-ba888444-0 PGCCU"
@@ -2338,11 +2334,11 @@ Array [
           onSubmit={[Function]}
         >
           <div
-            className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+            className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jiLhAl"
+              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ fhMyfj"
               id="newsletter-signup-name"
               name="name"
               onBlur={[Function]}
@@ -2351,11 +2347,11 @@ Array [
             />
           </div>
           <div
-            className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+            className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jiLhAl"
+              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ fhMyfj"
               id="newsletter-signup-email"
               name="email"
               onBlur={[Function]}
@@ -2364,7 +2360,7 @@ Array [
             />
           </div>
           <div
-            className="sc-833ce761-0 sc-29404318-0 iQgsoN kEDCfn"
+            className="sc-39add020-0 sc-29404318-0 cAlAvc kEDCfn"
             onBlur={[Function]}
           >
             <label
@@ -2460,7 +2456,7 @@ Array [
               type="button"
             >
               <div
-                className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+                className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
               >
                 <span
                   data-testid="select-span"
@@ -2552,13 +2548,13 @@ Array [
     className="sc-c55d52bd-0 eGMTCr"
   >
     <div
-      className="sc-239adc37-0 jUwQMG"
+      className="sc-239adc37-0 emSKhk"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 ilDRWZ dTLmzc"
+        className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 iuVzYc dTLmzc"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 fAURwp jvfUvM"
+          className="sc-39add020-0 sc-29404318-0 iXtEBY jvfUvM"
         >
           <span
             className="sc-ba888444-0 PGCCU"
@@ -2633,11 +2629,11 @@ Array [
           onSubmit={[Function]}
         >
           <div
-            className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+            className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jiLhAl"
+              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ fhMyfj"
               id="newsletter-signup-name"
               name="name"
               onBlur={[Function]}
@@ -2646,11 +2642,11 @@ Array [
             />
           </div>
           <div
-            className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+            className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
           >
             <input
               aria-invalid={false}
-              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jiLhAl"
+              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ fhMyfj"
               id="newsletter-signup-email"
               name="email"
               onBlur={[Function]}
@@ -2659,7 +2655,7 @@ Array [
             />
           </div>
           <div
-            className="sc-833ce761-0 sc-29404318-0 iQgsoN kEDCfn"
+            className="sc-39add020-0 sc-29404318-0 cAlAvc kEDCfn"
             onBlur={[Function]}
           >
             <label
@@ -2755,7 +2751,7 @@ Array [
               type="button"
             >
               <div
-                className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+                className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
               >
                 <span
                   data-testid="select-span"
@@ -2844,7 +2840,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 jvmkTG"
+    className="sc-39add020-0 fbLzEv"
   >
     Box
   </div>,
@@ -2862,10 +2858,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 iBLYYo dTLmzc"
+    className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 aSnoh dTLmzc"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 fAURwp jvfUvM"
+      className="sc-39add020-0 sc-29404318-0 iXtEBY jvfUvM"
     >
       <h2
         className="sc-c1870c8-0 kCUxVr"
@@ -2906,7 +2902,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 dTslxo eyMRXX"
+    className="sc-39add020-0 sc-29404318-0 dIDjol eyMRXX"
   >
     Hi!
   </div>,
@@ -2924,7 +2920,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 gzuonU eyMRXX"
+    className="sc-39add020-0 sc-29404318-0 kUkTLx eyMRXX"
   >
     Hi!
   </div>,
@@ -2942,15 +2938,15 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2241f7c5-0 ErCoF"
+    className="sc-742b5750-0 jhFhEz"
   >
     <header
-      className="sc-833ce761-0 sc-29404318-0 sc-2241f7c5-2 jvmkTG tcLcs hejSa"
+      className="sc-39add020-0 sc-29404318-0 sc-742b5750-2 bSfgXq bTkyfa bVIHME"
     >
       Fixed Header
     </header>
     <div
-      className="sc-2241f7c5-1 behMOY"
+      className="sc-742b5750-1 gyDcva"
     />
   </div>,
 ]
@@ -2967,7 +2963,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG gJnFgX"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv gJnFgX"
   >
     Flex box
   </div>,
@@ -2999,7 +2995,7 @@ Array [
       rowSpan={1}
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-db1cd21f-0 ilLgEE dTLmzc"
+        className="sc-39add020-0 sc-29404318-0 sc-db1cd21f-0 epUUBt dTLmzc"
       >
         Grid box
       </div>
@@ -3037,13 +3033,13 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2241f7c5-0 ErCoF"
+    className="sc-742b5750-0 jhFhEz"
   >
     <header
-      className="sc-833ce761-0 sc-29404318-0 sc-2241f7c5-2 fIgcvW tcLcs ljTTaa"
+      className="sc-39add020-0 sc-29404318-0 sc-742b5750-2 dVewmK bTkyfa fGPcgE"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 mbCIs ixckhL"
+        className="sc-39add020-0 sc-29404318-0 eoSAzp ixckhL"
       >
         <a
           className="sc-b9dbb645-0 ecRSwK"
@@ -3075,16 +3071,16 @@ Array [
           </span>
         </a>
         <form
-          className="sc-f1e2705d-0 gnEscl"
+          className="sc-f1e2705d-0 fIBfAp"
           onSubmit={[Function]}
         >
           <div
-            className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+            className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
           >
             <input
               aria-invalid={false}
               aria-label="Search"
-              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ gqnOSK"
+              className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jVKBlU"
               id="search-form-search-input"
               onChange={[Function]}
               placeholder="Search"
@@ -3128,7 +3124,7 @@ Array [
       </div>
     </header>
     <div
-      className="sc-2241f7c5-1 behMOY"
+      className="sc-742b5750-1 gyDcva"
     />
   </div>,
 ]
@@ -3145,16 +3141,16 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG cEhuuB"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv kTBjHH"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 jvmkTG gJnFgX"
+      className="sc-39add020-0 sc-29404318-0 fbLzEv gJnFgX"
     >
       <h1
         className="sc-c1870c8-0 jKBBfw"
       >
         <div
-          className="sc-833ce761-0 gfmvyz"
+          className="sc-39add020-0 gUwTEO"
         >
           <span
             className="sc-1a42a0ba-0 fhnzeS"
@@ -3165,7 +3161,7 @@ Array [
       </h1>
     </div>
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-c54a04ce-0 jvmkTG gJnFgX gYClZN"
+      className="sc-39add020-0 sc-29404318-0 sc-c54a04ce-0 fbLzEv gJnFgX gYClZN"
     >
       <a
         aria-label="Download Lesson"
@@ -3374,17 +3370,17 @@ Array [
     className="sc-27c1f7ab-0 jdfQZW"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 dUxmGa cGkszD"
+      className="sc-39add020-0 sc-29404318-0 jkLsrL cGkszD"
     >
       <div
-        className="sc-833ce761-0 sc-31b518f5-0 jvmkTG coeuPX"
+        className="sc-39add020-0 sc-31b518f5-0 fbLzEv coeuPX"
       >
         <nav>
           <div
             className="sc-c55d52bd-0 eGMTCr"
           >
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3442,7 +3438,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3500,7 +3496,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3522,7 +3518,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3610,13 +3606,13 @@ Array [
         </nav>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 XnWqF eyMRXX"
+        className="sc-39add020-0 sc-29404318-0 dKERAo eyMRXX"
       />
       <div
-        className="sc-833ce761-0 sc-29404318-0 RRDA-D ixckhL"
+        className="sc-39add020-0 sc-29404318-0 ctzRKm ixckhL"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 jvmkTG gJnFgX"
+          className="sc-39add020-0 sc-29404318-0 fbLzEv gJnFgX"
         >
           <a
             aria-label="instagram"
@@ -3746,17 +3742,17 @@ Array [
     className="sc-27c1f7ab-0 jdfQZW"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 dUxmGa cGkszD"
+      className="sc-39add020-0 sc-29404318-0 jkLsrL cGkszD"
     >
       <div
-        className="sc-833ce761-0 sc-31b518f5-0 jvmkTG coeuPX"
+        className="sc-39add020-0 sc-31b518f5-0 fbLzEv coeuPX"
       >
         <nav>
           <div
             className="sc-c55d52bd-0 eGMTCr"
           >
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3814,7 +3810,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3872,7 +3868,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3894,7 +3890,7 @@ Array [
               </ul>
             </div>
             <div
-              className="sc-239adc37-0 iIgQBe"
+              className="sc-239adc37-0 fJtJWq"
             >
               <h4
                 className="sc-c1870c8-0 cqKIYs"
@@ -3982,7 +3978,7 @@ Array [
         </nav>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 XnWqF eyMRXX"
+        className="sc-39add020-0 sc-29404318-0 dKERAo eyMRXX"
       >
         <a
           aria-label="Join new oak"
@@ -4024,10 +4020,10 @@ Array [
         </a>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 RRDA-D ixckhL"
+        className="sc-39add020-0 sc-29404318-0 ctzRKm ixckhL"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 jvmkTG gJnFgX"
+          className="sc-39add020-0 sc-29404318-0 fbLzEv gJnFgX"
         >
           <a
             aria-label="instagram"
@@ -4154,10 +4150,10 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-2241f7c5-0 ErCoF"
+    className="sc-742b5750-0 jhFhEz"
   >
     <header
-      className="sc-833ce761-0 sc-29404318-0 sc-2241f7c5-2 fPUagD tcLcs jzWcGr"
+      className="sc-39add020-0 sc-29404318-0 sc-742b5750-2 bwaANj bTkyfa hRLVwV"
     >
       <a
         className="sc-b9109e2-0 diOyxu"
@@ -4189,10 +4185,10 @@ Array [
         </span>
       </a>
       <div
-        className="sc-833ce761-0 sc-29404318-0 fFAFGT jzNvPX"
+        className="sc-39add020-0 sc-29404318-0 dztesO jzNvPX"
       >
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 jvmkTG fFarqR"
+          className="sc-39add020-0 sc-31b518f5-0 fbLzEv fFarqR"
         >
           <a
             href="/beta/onboarding"
@@ -4203,7 +4199,7 @@ Array [
           </a>
         </div>
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 kPsOGn fFarqR"
+          className="sc-39add020-0 sc-31b518f5-0 bVgkgi fFarqR"
         >
           <a
             href="https://classroom.thenational.academy/"
@@ -4214,7 +4210,7 @@ Array [
           </a>
         </div>
         <div
-          className="sc-833ce761-0 sc-31b518f5-0 kPsOGn fFarqR"
+          className="sc-39add020-0 sc-31b518f5-0 bVgkgi fFarqR"
         >
           <a
             href="https://teachers.thenational.academy/"
@@ -4227,7 +4223,7 @@ Array [
       </div>
     </header>
     <div
-      className="sc-2241f7c5-1 behMOY"
+      className="sc-742b5750-1 gyDcva"
     />
   </div>,
 ]
@@ -4244,16 +4240,16 @@ Array [
     rel="stylesheet"
   />,
   <form
-    className="sc-f1e2705d-0 gnEscl"
+    className="sc-f1e2705d-0 fIBfAp"
     onSubmit={[Function]}
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 jvmkTG jzNvPX"
+      className="sc-39add020-0 sc-29404318-0 fbLzEv jzNvPX"
     >
       <input
         aria-invalid={false}
         aria-label="Search"
-        className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ gqnOSK"
+        className="sc-fbea1ba6-0 sc-ce0c7ad9-1 eZDTcQ jVKBlU"
         id="search-form-search-input"
         onChange={[Function]}
         placeholder="Search"
@@ -4315,7 +4311,7 @@ Array [
       onClick={[Function]}
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 hLrlyF irenTX"
+        className="sc-39add020-0 sc-29404318-0 kiUjtk irenTX"
       >
         <h2
           className="sc-c1870c8-0 sc-e3c4bda0-1 hzREcL dlwJDv"
@@ -4328,7 +4324,7 @@ Array [
           </a>
         </h2>
         <div
-          className="sc-833ce761-0 sc-29404318-0 jvmkTG gJnFgX"
+          className="sc-39add020-0 sc-29404318-0 fbLzEv gJnFgX"
         >
           <button
             aria-label="Download lesson presentation"
@@ -4493,13 +4489,13 @@ Array [
       title="Intro"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-b304157d-1 keWpZV jzNvPX ePvvme"
+        className="sc-39add020-0 sc-29404318-0 sc-b304157d-1 bFINGs jzNvPX ePvvme"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 sc-b304157d-4 jvmkTG gruQLU eNlNVi"
+          className="sc-39add020-0 sc-29404318-0 sc-b304157d-4 fbLzEv gruQLU eNlNVi"
         >
           <div
-            className="sc-833ce761-0 sc-31b518f5-0 sc-b304157d-3 iNfwSV fFarqR eBwJgd"
+            className="sc-39add020-0 sc-31b518f5-0 sc-b304157d-3 iwXXgE fFarqR eBwJgd"
           >
             Intro
           </div>
@@ -4546,10 +4542,10 @@ Array [
       title="Intro"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-b304157d-1 cMTndS jzNvPX cSeFuZ"
+        className="sc-39add020-0 sc-29404318-0 sc-b304157d-1 cXVMRL jzNvPX cSeFuZ"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 sc-b304157d-4 jvmkTG gruQLU eNlNVi"
+          className="sc-39add020-0 sc-29404318-0 sc-b304157d-4 fbLzEv gruQLU eNlNVi"
         >
           <span
             className="sc-ba888444-0 iURNgr"
@@ -4578,7 +4574,7 @@ Array [
             </svg>
           </span>
           <div
-            className="sc-833ce761-0 sc-31b518f5-0 sc-b304157d-3 iNfwSV fFarqR eBwJgd"
+            className="sc-39add020-0 sc-31b518f5-0 sc-b304157d-3 iwXXgE fFarqR eBwJgd"
           >
             Intro
           </div>
@@ -4607,13 +4603,13 @@ Array [
       title="Intro"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-b304157d-1 hmuatH jzNvPX ePvvme"
+        className="sc-39add020-0 sc-29404318-0 sc-b304157d-1 jajXPG jzNvPX ePvvme"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 sc-b304157d-4 jvmkTG gruQLU eNlNVi"
+          className="sc-39add020-0 sc-29404318-0 sc-b304157d-4 fbLzEv gruQLU eNlNVi"
         >
           <div
-            className="sc-833ce761-0 sc-31b518f5-0 sc-b304157d-3 iNfwSV fFarqR eBwJgd"
+            className="sc-39add020-0 sc-31b518f5-0 sc-b304157d-3 iwXXgE fFarqR eBwJgd"
           >
             Intro
           </div>
@@ -4642,13 +4638,13 @@ Array [
       title="Intro"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-b304157d-1 keWpZV jzNvPX ePvvme"
+        className="sc-39add020-0 sc-29404318-0 sc-b304157d-1 bFINGs jzNvPX ePvvme"
       >
         <div
           className="sc-b304157d-2"
         >
           <div
-            className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-2 jvmkTG eyMRXX jmoYPc"
+            className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-2 fbLzEv eyMRXX jmoYPc"
           >
             <svg
               className="sc-e1ea85f8-0 hNEiOe"
@@ -4664,17 +4660,17 @@ Array [
               />
             </svg>
             <div
-              className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-1 jvmkTG eyMRXX FOASH"
+              className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-1 fbLzEv eyMRXX FOASH"
             >
               33%
             </div>
           </div>
         </div>
         <div
-          className="sc-833ce761-0 sc-29404318-0 sc-b304157d-4 jvmkTG gruQLU eNlNVi"
+          className="sc-39add020-0 sc-29404318-0 sc-b304157d-4 fbLzEv gruQLU eNlNVi"
         >
           <div
-            className="sc-833ce761-0 sc-31b518f5-0 sc-b304157d-3 iNfwSV fFarqR eBwJgd"
+            className="sc-39add020-0 sc-31b518f5-0 sc-b304157d-3 iwXXgE fFarqR eBwJgd"
           >
             Intro
           </div>
@@ -4721,13 +4717,13 @@ Array [
       title="Very long label"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-b304157d-1 keWpZV jzNvPX ePvvme"
+        className="sc-39add020-0 sc-29404318-0 sc-b304157d-1 bFINGs jzNvPX ePvvme"
       >
         <div
           className="sc-b304157d-2"
         >
           <div
-            className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-2 jvmkTG eyMRXX jmoYPc"
+            className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-2 fbLzEv eyMRXX jmoYPc"
           >
             <svg
               className="sc-e1ea85f8-0 hNEiOe"
@@ -4743,17 +4739,17 @@ Array [
               />
             </svg>
             <div
-              className="sc-833ce761-0 sc-29404318-0 sc-e1ea85f8-1 jvmkTG eyMRXX FOASH"
+              className="sc-39add020-0 sc-29404318-0 sc-e1ea85f8-1 fbLzEv eyMRXX FOASH"
             >
               33%
             </div>
           </div>
         </div>
         <div
-          className="sc-833ce761-0 sc-29404318-0 sc-b304157d-4 jvmkTG gruQLU eNlNVi"
+          className="sc-39add020-0 sc-29404318-0 sc-b304157d-4 fbLzEv gruQLU eNlNVi"
         >
           <div
-            className="sc-833ce761-0 sc-31b518f5-0 sc-b304157d-3 iNfwSV fFarqR eBwJgd"
+            className="sc-39add020-0 sc-31b518f5-0 sc-b304157d-3 iwXXgE fFarqR eBwJgd"
           >
             Very long label
           </div>
@@ -4802,7 +4798,7 @@ Array [
   >
     <label>
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG eoZdKz"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv eoZdKz"
       >
         <p
           checked={true}
@@ -4856,7 +4852,7 @@ Array [
   >
     <label>
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG eoZdKz"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv eoZdKz"
       >
         <p
           checked={true}
@@ -4905,16 +4901,16 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 jvmkTG kEDCfn"
+    className="sc-39add020-0 sc-29404318-0 fbLzEv kEDCfn"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 fAURwp gQlUSf"
+      className="sc-39add020-0 sc-29404318-0 iXtEBY hsyWAn"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 iyhXQC itZtyX"
+        className="sc-39add020-0 sc-29404318-0 ktkqZN itZtyX"
       >
         <div
-          className="sc-833ce761-0 sc-29404318-0 fAURwp jvfUvM"
+          className="sc-39add020-0 sc-29404318-0 iXtEBY jvfUvM"
         >
           <span
             className="sc-ba888444-0 dwfyps"
@@ -4954,11 +4950,11 @@ Array [
         </div>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG ixckhL"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv ixckhL"
       >
         <nav>
           <div
-            className="sc-833ce761-0 sc-29404318-0 jvmkTG eyMRXX"
+            className="sc-39add020-0 sc-29404318-0 fbLzEv eyMRXX"
           >
             <p
               className="sc-7eb2346b-0 MhKkq"
@@ -4987,13 +4983,13 @@ Array [
       </div>
     </div>
     <div
-      className="sc-833ce761-0 sc-29404318-0 gmpaAa bZEaIh"
+      className="sc-39add020-0 sc-29404318-0 esqKfT jYmWqH"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-c300becc-1 bxXTAS eyMRXX fpzgnD"
+        className="sc-39add020-0 sc-29404318-0 sc-c300becc-1 hDkurF eyMRXX fpzgnD"
       />
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG hpzlKm"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv hpzlKm"
       >
         <h2
           className="sc-c1870c8-0 fLoxBV"
@@ -5021,10 +5017,10 @@ Array [
       className="sc-60632bb1-0 dwyFOe"
     />
     <div
-      className="sc-833ce761-0 sc-29404318-0 gmpaAa bZEaIh"
+      className="sc-39add020-0 sc-29404318-0 esqKfT jYmWqH"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-c300becc-1 bxXTAS eyMRXX fpzgnD"
+        className="sc-39add020-0 sc-29404318-0 sc-c300becc-1 hDkurF eyMRXX fpzgnD"
       >
         <span
           className="sc-ba888444-0 bkqMcr"
@@ -5044,7 +5040,7 @@ Array [
         </span>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG hpzlKm"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv hpzlKm"
       >
         <h2
           className="sc-c1870c8-0 fLoxBV"
@@ -5072,13 +5068,13 @@ Array [
       className="sc-60632bb1-0 dwyFOe"
     />
     <div
-      className="sc-833ce761-0 sc-29404318-0 gmpaAa bZEaIh"
+      className="sc-39add020-0 sc-29404318-0 esqKfT jYmWqH"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 sc-c300becc-1 bxXTAS eyMRXX fpzgnD"
+        className="sc-39add020-0 sc-29404318-0 sc-c300becc-1 hDkurF eyMRXX fpzgnD"
       />
       <div
-        className="sc-833ce761-0 sc-29404318-0 jvmkTG hpzlKm"
+        className="sc-39add020-0 sc-29404318-0 fbLzEv hpzlKm"
       >
         <h2
           className="sc-c1870c8-0 fLoxBV"
@@ -5117,13 +5113,13 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-29404318-0 gmpaAa bZEaIh"
+    className="sc-39add020-0 sc-29404318-0 esqKfT jYmWqH"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 sc-c300becc-1 bxXTAS eyMRXX fpzgnD"
+      className="sc-39add020-0 sc-29404318-0 sc-c300becc-1 hDkurF eyMRXX fpzgnD"
     />
     <div
-      className="sc-833ce761-0 sc-29404318-0 jvmkTG hpzlKm"
+      className="sc-39add020-0 sc-29404318-0 fbLzEv hpzlKm"
     >
       <h3
         className="sc-c1870c8-0 fLoxBV"
@@ -5327,10 +5323,10 @@ Array [
     aria-label="key stages and year groups"
   >
     <div
-      className="sc-833ce761-0 sc-29404318-0 jvmkTG jxbCVs"
+      className="sc-39add020-0 sc-29404318-0 fbLzEv iMRgTM"
     >
       <div
-        className="sc-833ce761-0 sc-29404318-0 dGNddN jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 haAzTQ jdUSjj"
       >
         <a
           aria-label="Early Years"
@@ -5409,7 +5405,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 dGNddN jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 haAzTQ jdUSjj"
       >
         <a
           aria-label="KS1"
@@ -5499,7 +5495,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 dGNddN jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 haAzTQ jdUSjj"
       >
         <a
           aria-label="KS2"
@@ -5611,7 +5607,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 dGNddN jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 haAzTQ jdUSjj"
       >
         <a
           aria-label="KS3"
@@ -5712,7 +5708,7 @@ Array [
         </p>
       </div>
       <div
-        className="sc-833ce761-0 sc-29404318-0 dGNddN jdUSjj"
+        className="sc-39add020-0 sc-29404318-0 haAzTQ jdUSjj"
       >
         <a
           aria-label="KS4"
@@ -5835,7 +5831,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-31b518f5-0 jvmkTG eyxTaq"
+    className="sc-39add020-0 sc-31b518f5-0 fbLzEv eyxTaq"
   >
     <p>
       See below
@@ -5881,7 +5877,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-31b518f5-0 jvmkTG fFarqR"
+    className="sc-39add020-0 sc-31b518f5-0 fbLzEv fFarqR"
   >
     <p
       className="sc-7eb2346b-0 cbNkif"
@@ -5912,7 +5908,7 @@ Array [
     rel="stylesheet"
   />,
   <div
-    className="sc-833ce761-0 sc-31b518f5-0 jvmkTG fFarqR"
+    className="sc-39add020-0 sc-31b518f5-0 fbLzEv fFarqR"
     color="grey9"
   >
     <p>

@@ -6,9 +6,9 @@ import Icon, { IconName } from "../Icon";
 import Circle from "../Circle";
 import { OakColorName } from "../../styles/theme";
 import Typography from "../Typography";
-import zIndex from "../../styles/constants/zIndex";
 import CardLink from "../Card/CardLink";
 import { headingDefaults } from "../Typography/Heading";
+import { zIndexMap } from "../../styles/utils/zIndex";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex
@@ -19,17 +19,12 @@ const GraphicContainer: FC<FlexProps> = (props) => (
     {...props}
   />
 );
-type GraphicCircleProps = {
-  icon: IconName;
-  $background?: OakColorName;
-};
 
 const OverlapBehind = styled.div`
   transform: translateX(-16px);
+  z-index: ${zIndexMap.behind};
 `;
-const OverlapInFront = styled.div`
-  z-index: ${zIndex.inFront};
-`;
+
 /**
  * ::after hack because overlapping circles needed to be position: absolute;
  * meaning the link focus target was sub-optimal without this fix.
@@ -56,6 +51,10 @@ const LinkText: FC = (props) => (
     {...props}
   />
 );
+type GraphicCircleProps = FlexProps & {
+  icon: IconName;
+  $background?: OakColorName;
+};
 const GraphicCircle: FC<GraphicCircleProps> = ({
   icon,
   $background = "teachersPastelYellow",
@@ -98,12 +97,13 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
-
-        <GraphicContainer $mr={[0, 40]}>
+        <GraphicContainer $zIndex="neutral" $mr={[0, 40]}>
           <Flex $mr={-16}>
-            <OverlapInFront>
-              <GraphicCircle icon="LessonSlides" $background="pastelTurqoise" />
-            </OverlapInFront>
+            <GraphicCircle
+              $zIndex="neutral"
+              icon="LessonSlides"
+              $background="pastelTurqoise"
+            />
             <OverlapBehind>
               <GraphicCircle icon="Video" />
             </OverlapBehind>

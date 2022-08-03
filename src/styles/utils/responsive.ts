@@ -9,8 +9,7 @@ import truthy from "../../utils/truthy";
 import { PropsWithTheme } from "../theme";
 
 const breakpointsByName = {
-  small: 600,
-  medium: 900,
+  small: 800,
   large: 1200,
 };
 const breakpoints = Object.values(breakpointsByName);

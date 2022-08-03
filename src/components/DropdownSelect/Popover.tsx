@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { useOverlay, DismissButton, FocusScope } from "react-aria";
 
-import zIndex from "../../styles/constants/zIndex";
+import { zIndexMap } from "../../styles/utils/zIndex";
 
 interface PopoverProps {
   popoverRef?: React.RefObject<HTMLDivElement>;
@@ -14,7 +14,7 @@ interface PopoverProps {
 const Wrapper = styled.div`
   position: absolute;
   top: 100%;
-  z-index: ${zIndex.inFront};
+  z-index: ${zIndexMap.inFront};
   width: 100%;
   border: 1px solid lightgray;
   border-radius: 4px;

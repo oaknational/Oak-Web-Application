@@ -17,7 +17,7 @@ import { getBreakpoint } from "../styles/utils/responsive";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
 
 const OverflowHidden = styled(Flex)`
-  @media (max-width: ${getBreakpoint("medium")}px) {
+  @media (max-width: ${getBreakpoint("small")}px) {
     overflow: hidden;
   }
 `;

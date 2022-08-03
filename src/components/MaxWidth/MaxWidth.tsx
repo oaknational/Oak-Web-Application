@@ -12,7 +12,7 @@ import Flex from "../Flex";
 const MaxWidth = styled(Flex)``;
 
 MaxWidth.defaultProps = {
-  $maxWidth: 1200,
+  $maxWidth: [480, 1200],
   $ph: [0, 12],
   $flexDirection: "column",
   $flexGrow: 1,
