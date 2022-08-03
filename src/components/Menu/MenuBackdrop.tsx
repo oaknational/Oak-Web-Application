@@ -1,16 +1,18 @@
 import { FC, useContext } from "react";
 import styled from "styled-components";
+import { usePreventScroll } from "react-aria";
 
 import { menuContext } from "../../context/Menu/MenuProvider";
 import { OakColorName } from "../../styles/theme";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 
+import { TransitionProps } from "./Menu";
+
 type BackdropProps = {
   background: OakColorName;
-  open: boolean;
 };
 
-const Backdrop = styled.button<BackdropProps>`
+const Backdrop = styled.button<BackdropProps & TransitionProps>`
   position: fixed;
   top: 0;
   right: 0;
@@ -20,20 +22,31 @@ const Backdrop = styled.button<BackdropProps>`
   width: 100vw;
   height: 100vh;
   background: ${(props) => getColorByName(props.background)};
-  opacity: ${(props) => (props.open ? "0.4" : "0")};
-  pointer-events: ${(props) => (props.open ? "auto" : "none")};
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 250ms ease-in-out;
+  opacity: ${(props) => {
+    switch (props.state) {
+      case "entering":
+        return "0.4";
+      case "entered":
+        return "0.4";
+      case "exiting":
+        return "0";
+      case "exited":
+        return "0";
+    }
+  }};
 `;
 
-const MenuBackdrop: FC = () => {
-  const { open, toggleMenu } = useContext(menuContext);
+const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
+  const { toggleMenu } = useContext(menuContext);
+  usePreventScroll();
   return (
     <Backdrop
-      open={open}
       onClick={() => {
         toggleMenu();
       }}
       background="black"
+      state={state}
     />
   );
 };

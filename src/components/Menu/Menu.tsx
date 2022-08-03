@@ -1,5 +1,7 @@
 import { FC, useContext } from "react";
 import styled, { useTheme } from "styled-components";
+import { FocusScope } from "react-aria";
+import { Transition, TransitionStatus } from "react-transition-group";
 
 import { menuContext } from "../../context/Menu/MenuProvider";
 import { OakColorName } from "../../styles/theme/types";
@@ -15,15 +17,12 @@ export type MenuConfig = {
   background: OakColorName;
 };
 
-type SideMenuProps = {
-  open: boolean;
+export type TransitionProps = {
+  state: TransitionStatus;
 };
+const transitionDuration = 250;
 
-const MenuWrapper = styled.div`
-  position: absolute;
-`;
-
-const SideMenu = styled(Flex)<SideMenuProps & MenuConfig>`
+const SideMenu = styled(Flex)<MenuConfig & TransitionProps>`
   background: ${(props) => getColorByName(props.background)};
   height: 100%;
   position: fixed;
@@ -31,10 +30,19 @@ const SideMenu = styled(Flex)<SideMenuProps & MenuConfig>`
   top: 0;
   right: 0;
   padding: 16px;
-  transform: ${(props) =>
-    props.open ? "translate3D(0, 0, 0)" : `translate3D(100%, 0, 0)`};
-  overflow-x: hidden;
-  transition: transform 0.3s ease-in-out;
+  transition: transform ${transitionDuration}ms ease-in-out;
+  transform: ${(props) => {
+    switch (props.state) {
+      case "entering":
+        return "translate3D(0, 0, 0)";
+      case "entered":
+        return "translate3D(0, 0, 0)";
+      case "exiting":
+        return "translate3D(100%, 0, 0)";
+      case "exited":
+        return "translate3D(100%, 0, 0)";
+    }
+  }};
 `;
 
 SideMenu.defaultProps = {
@@ -52,30 +60,36 @@ const Menu: FC = ({ children }) => {
   const { background, color, width } = menu;
 
   return (
-    <MenuWrapper>
-      <MenuBackdrop />
-      <SideMenu
-        open={open}
-        $flexDirection={"column"}
-        background={background}
-        color={color}
-        width={width}
-      >
-        <nav>
-          <MenuHeader $justifyContent={"right"}>
-            <IconButton
-              aria-label="Menu"
-              icon={"Close"}
-              variant={"minimal"}
-              onClick={() => {
-                toggleMenu();
-              }}
-            />
-          </MenuHeader>
-          {children}
-        </nav>
-      </SideMenu>
-    </MenuWrapper>
+    <Transition timeout={transitionDuration} in={open} unmountOnExit>
+      {(state) => (
+        <>
+          <MenuBackdrop state={state} />
+          <FocusScope contain restoreFocus autoFocus>
+            <SideMenu
+              $flexDirection={"column"}
+              background={background}
+              color={color}
+              width={width}
+              state={state}
+            >
+              <nav>
+                <MenuHeader $justifyContent={"right"}>
+                  <IconButton
+                    aria-label="Menu"
+                    icon={"Close"}
+                    variant={"minimal"}
+                    onClick={() => {
+                      toggleMenu();
+                    }}
+                  />
+                </MenuHeader>
+                {children}
+              </nav>
+            </SideMenu>
+          </FocusScope>
+        </>
+      )}
+    </Transition>
   );
 };
 
