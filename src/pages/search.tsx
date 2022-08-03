@@ -56,7 +56,11 @@ const Search: NextPage = () => {
   }, [fetchSearchResults]);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background="grey1"
+      headerVariant="app"
+    >
       <BrowserWidthBar $background="white" $pv={20}>
         <Flex>
           {ALL_KEY_STAGES.map((ks) => (
