@@ -10,13 +10,18 @@ import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 
 export type WebinarListingPageProps = {
   webinars: WebinarPreview[];
+  isPreviewMode: boolean;
 };
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background="grey1"
+      isPreviewMode={props.isPreviewMode}
+    >
       <Heading tag="h1" $fontSize={32}>
         Webinars
       </Heading>
@@ -37,13 +42,16 @@ const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
 export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
   context
 ) => {
+  const isPreviewMode = context.preview === true;
+  
   const webinarResults = await CMSClient.webinars({
-    previewMode: context.preview,
+    previewMode: isPreviewMode,
   });
 
   return {
     props: {
       webinars: webinarResults,
+      isPreviewMode,
     },
   };
 };

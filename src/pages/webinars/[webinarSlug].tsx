@@ -12,11 +12,16 @@ type SerializedWebinar = Omit<Webinar, "date"> & {
 
 export type WebinarPageProps = {
   webinar: SerializedWebinar;
+  isPreviewMode: boolean;
 };
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background="grey1"
+      isPreviewMode={props.isPreviewMode}
+    >
       <Heading tag="h1" $fontSize={24}>
         {props.webinar.title}
       </Heading>
@@ -55,8 +60,10 @@ export const getStaticProps: GetStaticProps<
   URLParams
 > = async (context) => {
   const webinarSlug = context.params?.webinarSlug as string;
+  const isPreviewMode = context.preview === true;
+
   const webinarResult = await CMSClient.webinarBySlug(webinarSlug, {
-    previewMode: context.preview,
+    previewMode: isPreviewMode,
   });
 
   const webinar = {
@@ -67,6 +74,7 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       webinar,
+      isPreviewMode,
     },
   };
 };

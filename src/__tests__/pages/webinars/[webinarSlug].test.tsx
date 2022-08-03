@@ -48,7 +48,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage webinar={testSerializedWebinar} />
+        <WebinarDetailPage webinar={testSerializedWebinar} isPreviewMode={false} />
       );
 
       await waitFor(() => {

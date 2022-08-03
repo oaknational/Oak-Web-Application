@@ -39,6 +39,7 @@ describe("pages/webinar/index.tsx", () => {
       renderWithProviders(
         <WebinarListingPage
           webinars={[testWebinarPreview, testWebinarPreview2]}
+          isPreviewMode={false}
         />
       );
 
