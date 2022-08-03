@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
@@ -25,27 +25,6 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApolloClient();
   const { theme } = useOakTheme();
 
-  useEffect(() => {
-    window.addEventListener("fetch", (event) =>
-      console.log("INSIDE", event.request.url)
-    );
-  });
-
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      console.log("hello let's register");
-
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then(function (reg) {
-          if (reg.active) console.log("serviceworker installed");
-          reg.update();
-        })
-        .catch(function (err) {
-          console.log("registration failed: " + err);
-        });
-    }
-  }, []);
   return (
     <>
       <GlobalStyle />

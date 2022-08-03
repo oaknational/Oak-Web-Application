@@ -881,8 +881,10 @@ Array [
       className="sc-ff7617d7-0 cMKFWt"
     >
       <a
-        className="sc-ff273e4e-0 dumupW"
+        className="sc-8ea76e6d-0 dnhKCe"
         href="https://classroom.thenational.academy/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         Card link
       </a>
@@ -930,8 +932,10 @@ Array [
       className="sc-ff7617d7-0 hoisSK"
     >
       <a
-        className="sc-ff273e4e-0 dumupW"
+        className="sc-8ea76e6d-0 dnhKCe"
         href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         Title
       </a>

@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 import LandingPageLayout from "../components/Layout/LandingPageLayout";
@@ -7,7 +7,6 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading } from "../components/Typography";
-import useAnalytics from "../context/Analytics/useAnalytics";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
 import Flex from "../components/Flex";
@@ -41,13 +40,6 @@ const TransformClassroomImageWrap = styled(Flex)`
 `;
 
 const Home: FC = () => {
-  const { track } = useAnalytics();
-
-  useEffect(() => {
-    track.buttonClicked({ buttonIdentifier: "123 hateeeee" });
-    track.homeButtonClicked({ clickedOnText: true });
-  }, [track]);
-
   return (
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS}>
       <Flex $flexDirection={"column"} $position="relative">
