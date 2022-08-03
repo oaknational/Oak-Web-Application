@@ -12,10 +12,7 @@ type HubspotConfig = {
   portalId: string;
   scriptDomain: string;
 };
-const startHubspot = ({
-  portalId,
-  scriptDomain = "js-eu1.hs-scripts.com",
-}: HubspotConfig) => {
+const startHubspot = ({ portalId, scriptDomain }: HubspotConfig) => {
   if (!portalId) {
     throw new Error("No hubspot portalId defined");
   }

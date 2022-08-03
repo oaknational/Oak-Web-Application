@@ -1,6 +1,23 @@
 import { CustomDestination } from "./Avo";
 
-const analyticsSDKBridge: CustomDestination = {
+export type EventFn = (eventName: string, eventProperties: unknown) => void;
+export type PageFn = (pageName: string, eventProperties: unknown) => void;
+export type IdentifyFn = (userId: string) => void;
+
+export type AnalyticsService = {
+  enabled: boolean;
+  track: EventFn;
+  page: PageFn;
+  identify: IdentifyFn;
+};
+type AnalyticsServices = {
+  hubspot: AnalyticsService;
+  posthog: AnalyticsService;
+};
+const getAnalyticsSDKBridge = ({
+  hubspot,
+  posthog,
+}: AnalyticsServices): CustomDestination => ({
   make: function (env) {
     /*
         Triggered during Avo initialization. Here you can initialize an analytics SDK with a development or production key
@@ -20,6 +37,8 @@ const analyticsSDKBridge: CustomDestination = {
         Example: analytics.track(eventName, eventProperties);  
       */
     console.log("avo.logEvent", { eventName, eventProperties });
+    hubspot.event(eventName, eventProperties);
+    posthog.event(eventName, eventProperties);
   },
   logPage: (pageName, eventProperties) => {
     /*
@@ -30,18 +49,20 @@ const analyticsSDKBridge: CustomDestination = {
         Example: analytics.pageView(pageName, eventProperties);  
       */
     console.log("avo.logPage", { pageName, eventProperties });
+    hubspot.event(pageName, eventProperties);
+    posthog.event(pageName, eventProperties);
   },
-  setUserProperties: (userId, userProperties) => {
-    /*
-        You can add User Properties to events in the Trackin Plan in Avo. When an Avo Function with attached user properties
-        is called, this callback is triggered. Here you would attach user properties to the currently identified user in your
-        analytics platform.
-  
-        Example: analytics.setUserProperties(userId, userProperties);  
-      */
+  // setUserProperties: (userId, userProperties) => {
+  //   /*
+  //       You can add User Properties to events in the Trackin Plan in Avo. When an Avo Function with attached user properties
+  //       is called, this callback is triggered. Here you would attach user properties to the currently identified user in your
+  //       analytics platform.
 
-    console.log("avo.setUserProperties", { userId, userProperties });
-  },
+  //       Example: analytics.setUserProperties(userId, userProperties);
+  //     */
+
+  //   console.log("avo.setUserProperties", { userId, userProperties });
+  // },
   identify: (userId) => {
     /*
         You can add the Identify User action to events in the Trackin Plan in Avo. When calling an Avo Function that includes
@@ -53,18 +74,20 @@ const analyticsSDKBridge: CustomDestination = {
       */
 
     console.log("avo.identify", { userId });
+    hubspot.identify(userId);
+    posthog.identify(userId);
   },
-  unidentify: () => {
-    /*
-        You can add the Unidentify User action to events in the Trackin Plan in Avo When calling an Avo Function that includes
-        the Unidentify User action this callback will be triggered. Here you would call an analytics SDK method to detach subsequent
-        actions from the currently identified user.
-  
-        Example: analytics.identify(null);
-      */
+  // unidentify: () => {
+  //   /*
+  //       You can add the Unidentify User action to events in the Trackin Plan in Avo When calling an Avo Function that includes
+  //       the Unidentify User action this callback will be triggered. Here you would call an analytics SDK method to detach subsequent
+  //       actions from the currently identified user.
 
-    console.log("avo.unidentify");
-  },
-};
+  //       Example: analytics.identify(null);
+  //     */
 
-export default analyticsSDKBridge
+  //   console.log("avo.unidentify");
+  // },
+});
+
+export default getAnalyticsSDKBridge;

@@ -49,6 +49,8 @@ const usePosthog = ({ enabled }: UsePosthogProps) => {
     }
   }, [enabled]);
 
+  
+
   return posthog;
 };
 

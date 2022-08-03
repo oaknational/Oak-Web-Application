@@ -4,7 +4,8 @@ import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import usePosthog from "../../browser-lib/posthog/usePosthog";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
-import analyticsSDKBridge from "../../browser-lib/avo/analyticsSDKBridge";
+import getAnalyticsSDKBridge from "../../browser-lib/avo/getAnalyticsSDKBridge";
+import useHubspot from "../../browser-lib/hubspot/useHubspot";
 
 type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
 type AnalyticsContext = {
@@ -17,7 +18,9 @@ const AnalyticsProvider: FC = (props) => {
   const { children } = props;
 
   const posthogEnabled = useHasConsentedTo("posthog");
-  usePosthog({ enabled: posthogEnabled });
+  const posthog = usePosthog({ enabled: posthogEnabled });
+  const hubspotEnabled = useHasConsentedTo("hubspot");
+  const hubspot = useHubspot({ enabled: hubspotEnabled });
 
   const track = useMemo(() => {
     const { ...avoTrack } = Avo;
@@ -25,7 +28,11 @@ const AnalyticsProvider: FC = (props) => {
     return avoTrack;
   }, []);
 
-  initAvo({ env: getAvoEnv() }, {}, analyticsSDKBridge);
+  initAvo(
+    { env: getAvoEnv() },
+    {},
+    getAnalyticsSDKBridge({ posthog, hubspot })
+  );
 
   return (
     <analyticsContext.Provider value={{ track }}>
