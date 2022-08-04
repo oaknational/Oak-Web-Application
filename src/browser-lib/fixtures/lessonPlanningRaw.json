@@ -37,8 +37,8 @@
     "image": {
       "_type": "image",
       "asset": {
-        "_ref": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
-        "_type": "reference"
+        "_id": "id",
+        "url": "https://cdn.sanity.io/images/p/d/image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jp.png"
       }
     },
     "mediaType": "image",
@@ -94,8 +94,8 @@
     "image": {
       "_type": "image",
       "asset": {
-        "_ref": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
-        "_type": "reference"
+        "_id": "id",
+        "url": "https://cdn.sanity.io/images/p/d/image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jp.png"
       }
     },
     "mediaType": "image",
@@ -144,8 +144,8 @@
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-060531729f9bc7fc836bdf87b9b80c4995247d5c-158x52-svg",
-          "_type": "reference"
+          "_id": "id",
+          "url": "https://cdn.sanity.io/images/p/d/image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jp.png"
         }
       },
       "title": "Intro Quiz"
@@ -212,14 +212,14 @@
     "_type": "cta",
     "external": "https://foo.com",
     "internal": {
-      "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+      "ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
       "_strengthenOnPublish": {
         "template": {
           "id": "policyPage"
         },
         "type": "policyPage"
       },
-      "_type": "reference",
+      "type": "reference",
       "_weak": true
     },
     "label": "Find Teacher Resources",
@@ -323,7 +323,7 @@
     "external": "https://google.com",
     "internal": {
       "_ref": "planningCorePage",
-      "_type": "reference"
+      "type": "reference"
     },
     "label": "Search our lessons",
     "linkType": "internal"
