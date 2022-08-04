@@ -1,9 +1,15 @@
 export default async (request, context) => {
   // Don't need to match the thenational.academy domain here, just for speed of testing.
-  const subdomain = request.url.match(
-    /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:thenational\.academy|netlify\.app)/
-  )[1];
-  const redirected = request.headers.get("x-cloudflare-redirect");
+  let subdomain;
+  let redirected;
+  try {
+    subdomain = request.url.match(
+      /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:thenational\.academy|netlify\.app)/
+    )[1];
+    redirected = request.headers.get("x-cloudflare-redirect");
+  } catch (err) {
+    console.error("woops", request.url);
+  }
 
   console.log("redirect", redirected);
   if (subdomain && !redirected) {
