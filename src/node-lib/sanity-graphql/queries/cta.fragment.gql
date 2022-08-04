@@ -1,3 +1,22 @@
 fragment CTA on Cta {
   label
+  linkType
+  external
+  internal {
+    ... on Webinar {
+      type: _type
+      slug {
+        current
+      }
+    }
+    ... on NewsPost {
+      type: _type
+      slug {
+        current
+      }
+    }
+    ... on PlanningCorePage {
+      type: _type
+    }
+  }
 }
