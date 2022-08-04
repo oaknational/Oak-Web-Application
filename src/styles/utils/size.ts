@@ -1,11 +1,11 @@
 import { css } from "styled-components";
 
-import { PixelSpacing } from "../theme";
+import { NullablePixelSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SizeValue = "50%" | "100%" | "auto" | PixelSpacing;
-type SizeValues = ResponsiveValues<SizeValue>;
+type SizeValue = "50%" | "100%" | "auto" | NullablePixelSpacing;
+export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {
   switch (typeof value) {

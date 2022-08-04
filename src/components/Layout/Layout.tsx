@@ -9,6 +9,7 @@ import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
 import footerSections from "../../browser-lib/fixtures/footerSectionLinks";
+import SiteHeader from "../SiteHeader";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -20,14 +21,17 @@ const StyledLayout = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 0 12px;
-  max-width: 1200px;
   width: 100%;
-  align-self: center;
 `;
 
+type HeaderVariant = "app" | "site";
+const headers: Record<HeaderVariant, FC> = {
+  app: AppHeader,
+  site: SiteHeader,
+};
 interface LayoutProps {
   seoProps: SeoProps;
+  headerVariant?: "app" | "site";
   $background?: OakColorName;
 }
 
@@ -35,7 +39,9 @@ interface LayoutProps {
     2. Title should contain app name
     3. SEO descriptions should be between 150-300 characters long */
 const Layout: FC<LayoutProps> = (props) => {
-  const { children, seoProps, $background } = props;
+  const { children, seoProps, $background, headerVariant = "site" } = props;
+
+  const Header = headers[headerVariant];
   return (
     <>
       <Seo {...seoProps} />
@@ -44,7 +50,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
-        <AppHeader />
+        <Header />
         <StyledLayout>{children}</StyledLayout>
         <SiteFooter footerSections={footerSections} />
       </Container>

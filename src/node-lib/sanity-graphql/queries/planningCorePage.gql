@@ -1,0 +1,53 @@
+query planningCorePage($isDraft: Boolean = false) {
+  allPlanningCorePage(
+    where: { _: { is_draft: $isDraft }, _id: { matches: "*planningCorePage" } }
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+    lessonElements {
+      _type
+      introQuiz {
+        ...Card
+      }
+      video {
+        ...Card
+      }
+      slides {
+        ...Card
+      }
+      worksheet {
+        ...Card
+      }
+      exitQuiz {
+        ...Card
+      }
+    }
+    lessonElementsCTA {
+      ...CTA
+    }
+    stepsHeading
+    steps {
+      step1 {
+        ...Card
+      }
+      step2 {
+        ...Card
+      }
+      step3 {
+        ...Card
+      }
+      step4 {
+        ...Card
+      }
+    }
+    learnMoreHeading
+    learnMoreBlock1 {
+      ...TextAndMedia
+    }
+    learnMoreBlock2 {
+      ...TextAndMedia
+    }
+  }
+}

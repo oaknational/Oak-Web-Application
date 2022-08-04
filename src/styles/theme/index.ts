@@ -5,4 +5,6 @@ export type {
   OakFontName,
   PropsWithTheme,
   PixelSpacing,
+  NullablePixelSpacing,
+  NegativePixelSpacing,
 } from "./types";
