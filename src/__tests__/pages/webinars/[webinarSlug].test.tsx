@@ -48,7 +48,10 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage webinar={testSerializedWebinar} isPreviewMode={false} />
+        <WebinarDetailPage
+          webinar={testSerializedWebinar}
+          isPreviewMode={false}
+        />
       );
 
       await waitFor(() => {
@@ -81,7 +84,6 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
-        preview: false,
       });
 
       expect(webinarBySlug).toHaveBeenCalledWith(
@@ -96,7 +98,6 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
-        preview: false,
       });
 
       expect(webinarBySlug).toHaveBeenCalledWith("an-upcoming-webinar", {
@@ -124,7 +125,6 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
-        preview: false,
       })) as { props: WebinarPageProps };
 
       expect(propsResult?.props?.webinar).toMatchObject({

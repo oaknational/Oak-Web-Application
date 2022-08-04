@@ -72,7 +72,7 @@ describe("pages/webinar/index.tsx", () => {
     it("Should not fetch draft content by default", async () => {
       const { getStaticProps } = await import("../../../pages/webinars/");
 
-      await getStaticProps({ preview: false });
+      await getStaticProps({});
       expect(webinars).toHaveBeenCalledWith({ previewMode: false });
     });
 
