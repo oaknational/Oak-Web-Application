@@ -1,3 +1,21 @@
+# [0.57.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.56.0...v0.57.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* **cms:** add previewSecret to config ([b7b3233](https://github.com/oaknational/Oak-Web-Application/commit/b7b32332d621ce2417d49dafdf70cd755df00740))
+* **cms:** make planningPage work with preview mode, tests ([e843454](https://github.com/oaknational/Oak-Web-Application/commit/e843454afcaca47e66e5029c5d2faaafdc4ea1ca))
+* **cms:** silence ts issues in tests ([4d5dc14](https://github.com/oaknational/Oak-Web-Application/commit/4d5dc143c859517cafddb8a62039f6fa107dc735))
+
+
+### Features
+
+* **cms:** add endpoint for preview mode ([b9ee313](https://github.com/oaknational/Oak-Web-Application/commit/b9ee313f49c53a73b729f59f255e000e6ddf39ec))
+* **cms:** add preview mode indicator ([f403c13](https://github.com/oaknational/Oak-Web-Application/commit/f403c13bcc1a0526c2ad062514c6a39606a1563f))
+* **cms:** handle preview mode in sanity cms client ([5909400](https://github.com/oaknational/Oak-Web-Application/commit/59094003278c0b6a466be65e4c64d2db687fc7ee))
+* **cms:** handle preview mode in webinar pages ([b609fd6](https://github.com/oaknational/Oak-Web-Application/commit/b609fd6c01cf95108badaf8b7a566d5cad21f826))
+* **cms:** protect cms previews with shared secret token ([a467f92](https://github.com/oaknational/Oak-Web-Application/commit/a467f92ddda999524ffeced6e70cc692e644187e))
+
 # [0.56.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.55.0...v0.56.0) (2022-08-04)
 
 
