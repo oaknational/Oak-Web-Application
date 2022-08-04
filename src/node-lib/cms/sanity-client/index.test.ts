@@ -1,3 +1,5 @@
+import planningPageRawFixture from "../../../browser-lib/fixtures/lessonPlanningRaw.json";
+
 const testWebinar = {
   title: "An upcoming webinar",
   id: "5",
@@ -10,6 +12,10 @@ const testWebinar = {
 const webinarBySlug = jest.fn(() => ({ allWebinar: [testWebinar] }));
 const allWebinars = jest.fn(() => ({ allWebinar: [testWebinar] }));
 
+const planningCorePage = jest.fn(() => ({
+  allPlanningCorePage: [planningPageRawFixture],
+}));
+
 describe("cms/sanity-client", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -20,6 +26,7 @@ describe("cms/sanity-client", () => {
       default: {
         allWebinars,
         webinarBySlug,
+        planningCorePage,
       },
     }));
   });
@@ -112,7 +119,26 @@ describe("cms/sanity-client", () => {
       );
     });
   });
+
+  describe("planningPage", () => {
+    it("does not fetch draft content by default", async () => {
+      const { default: getSanityClient } = await import("./");
+      await getSanityClient().planningPage();
+      expect(planningCorePage).toBeCalledWith(
+        expect.objectContaining({ isDraft: false })
+      );
+    });
+
+    it("fetches draft content when previewMode flag is passed", async () => {
+      const { default: getSanityClient } = await import("./");
+
+      await getSanityClient().planningPage({ previewMode: true });
+      expect(planningCorePage).toBeCalledWith(
+        expect.objectContaining({ isDraft: true })
+      );
+    });
+  });
 });
 
 // Silence module error
-export {}
+export {};

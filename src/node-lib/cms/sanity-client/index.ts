@@ -26,8 +26,11 @@ const getSanityClient: CMSClient = () => ({
 
     return webinarSchema.parse(webinar);
   },
-  planningPage: async (params?) => {
-    const result = await sanityGraphqlApi.planningCorePage(params);
+  planningPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.planningCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
     const planningPageData = result.allPlanningCorePage[0];
 
     return planningPageSchema.parse(planningPageData);
