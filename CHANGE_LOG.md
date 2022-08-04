@@ -1,3 +1,26 @@
+# [0.56.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.55.0...v0.56.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* add headerVariant='app' for beta pages ([f14c4c1](https://github.com/oaknational/Oak-Web-Application/commit/f14c4c1b3c5b214e1a371d200922b1e7cee92140))
+* **plan-a-lesson:** adding correct icons and other PR comments ([6c20050](https://github.com/oaknational/Oak-Web-Application/commit/6c20050ede7d09c8b66e80260f028ee6a7d7a55d))
+* remove role='button' from ButtonAsLink so that screenreader link navigation picks it up ([6573357](https://github.com/oaknational/Oak-Web-Application/commit/6573357815164be59e00bffe0baf5ed1d1353c7c))
+* remove width prop ([0819ece](https://github.com/oaknational/Oak-Web-Application/commit/0819ece7f4892af658b2aad1d645c4a49ef73f05))
+
+
+### Features
+
+* **cms:** add data for planning page to cms client ([69ab641](https://github.com/oaknational/Oak-Web-Application/commit/69ab6418068accd0bfa2e7d44611c45315b620c8))
+* **cms:** wire up some planning page fields to CMS data ([3505f55](https://github.com/oaknational/Oak-Web-Application/commit/3505f550b6bd3fc04e214cf63c22fec792f36428))
+* lesson elements ([8a2e8ba](https://github.com/oaknational/Oak-Web-Application/commit/8a2e8baa1e5581b2dc6d640b03aae625d2346915))
+* lesson planning page ([c40246f](https://github.com/oaknational/Oak-Web-Application/commit/c40246fe6c71fbdfe8178c327f81af728f54aa2c))
+* **plan-a-lesson:** lesson element navigation [#339](https://github.com/oaknational/Oak-Web-Application/issues/339) ([94f585e](https://github.com/oaknational/Oak-Web-Application/commit/94f585e1c03d0227201c4e7ac76aa1f3b704ad90))
+* planning page ([924ad80](https://github.com/oaknational/Oak-Web-Application/commit/924ad80f975fc6560f789fdf6c32d990235eb3cf))
+* storybook for Circle, BackgroundGraphic, LessonProgressionGraphic ([0fa7e81](https://github.com/oaknational/Oak-Web-Application/commit/0fa7e81151051f046d6c3d20c4e6d362afcc1f05))
+* summary card ([4724919](https://github.com/oaknational/Oak-Web-Application/commit/4724919a7206e042f5639cf30f4c7baf15bfb0eb))
+* **typography:** add headingLight font family, [#413](https://github.com/oaknational/Oak-Web-Application/issues/413) ([1b374ac](https://github.com/oaknational/Oak-Web-Application/commit/1b374ace437e1d22470725bf1c28c2d9a8655972))
+
 # [0.55.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.54.2...v0.55.0) (2022-08-02)
 
 
