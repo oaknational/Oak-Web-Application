@@ -7,23 +7,30 @@ import { webinarPreviewSchema, webinarSchema } from "./schemas";
 import { planningPageSchema } from "./schemas/pages";
 
 const getSanityClient: CMSClient = () => ({
-  webinars: async (params) => {
+  webinars: async ({ previewMode, ...params } = {}) => {
     const webinarListSchema = z.array(webinarPreviewSchema);
-    const webinarResults = await sanityGraphqlApi.allWebinars({ ...params });
+    const webinarResults = await sanityGraphqlApi.allWebinars({
+      isDraft: previewMode === true,
+      ...params,
+    });
 
     return webinarListSchema.parse(webinarResults.allWebinar);
   },
-  webinarBySlug: async (slug, params) => {
+  webinarBySlug: async (slug, { previewMode, ...params } = {}) => {
     const webinarResult = await sanityGraphqlApi.webinarBySlug({
       ...params,
+      isDraft: previewMode === true,
       slug,
     });
     const webinar = webinarResult.allWebinar[0];
 
     return webinarSchema.parse(webinar);
   },
-  planningPage: async (params?) => {
-    const result = await sanityGraphqlApi.planningCorePage(params);
+  planningPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.planningCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
     const planningPageData = result.allPlanningCorePage[0];
 
     return planningPageSchema.parse(planningPageData);

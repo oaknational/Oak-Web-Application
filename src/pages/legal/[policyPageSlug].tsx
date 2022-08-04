@@ -15,11 +15,16 @@ type PolicyPageProps = {
     updatedAt: string; // change back to data with sanity data
     body: string;
   };
+  isPreviewMode: boolean;
 };
 
-const Policies: FC<PolicyPageProps> = ({ policy }) => {
+const Policies: FC<PolicyPageProps> = ({ policy, isPreviewMode }) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background={"grey1"}
+      isPreviewMode={isPreviewMode}
+    >
       <MaxWidth>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>
@@ -57,10 +62,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<PolicyPageProps> = async (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _context
-) => {
+type URLParams = { policyPageSlug: string };
+
+export const getStaticProps: GetStaticProps<
+  PolicyPageProps,
+  URLParams
+> = async (context) => {
+  const isPreviewMode = context.preview === true;
+
   return {
     props: {
       policy: {
@@ -69,6 +78,7 @@ export const getStaticProps: GetStaticProps<PolicyPageProps> = async (
         updatedAt: String(new Date().getFullYear()),
         body: policyPageBody,
       },
+      isPreviewMode,
     },
   };
 };

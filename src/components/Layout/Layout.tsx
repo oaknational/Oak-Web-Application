@@ -10,6 +10,7 @@ import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
 import footerSections from "../../browser-lib/fixtures/footerSectionLinks";
 import SiteHeader from "../SiteHeader";
+import PreviewControls from "../PreviewControls";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -33,15 +34,22 @@ interface LayoutProps {
   seoProps: SeoProps;
   headerVariant?: "app" | "site";
   $background?: OakColorName;
+  isPreviewMode?: boolean;
 }
 
 /** 1. Titles for SEO should be between 50-60 characters long 
     2. Title should contain app name
     3. SEO descriptions should be between 150-300 characters long */
 const Layout: FC<LayoutProps> = (props) => {
-  const { children, seoProps, $background, headerVariant = "site" } = props;
-
+  const {
+    children,
+    seoProps,
+    $background,
+    headerVariant = "site",
+    isPreviewMode,
+  } = props;
   const Header = headers[headerVariant];
+
   return (
     <>
       <Seo {...seoProps} />
@@ -53,6 +61,7 @@ const Layout: FC<LayoutProps> = (props) => {
         <Header />
         <StyledLayout>{children}</StyledLayout>
         <SiteFooter footerSections={footerSections} />
+        {isPreviewMode && <PreviewControls />}
       </Container>
     </>
   );
