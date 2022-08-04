@@ -1,6 +1,7 @@
 import styled, { CSSProperties } from "styled-components";
 
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
+import { ResponsiveValues } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
@@ -8,7 +9,7 @@ import { BodyFontSize } from "./Typography";
 
 type PProps = MarginProps &
   Omit<TypographyProps, "fontSize" | "fontFamily"> & {
-    fontSize?: BodyFontSize;
+    fontSize?: ResponsiveValues<BodyFontSize>;
     textAlign?: CSSProperties["textAlign"];
   };
 /**

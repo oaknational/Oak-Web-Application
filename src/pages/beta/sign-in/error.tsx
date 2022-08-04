@@ -7,7 +7,7 @@ import Layout from "../../../components/Layout";
 
 const SignInError: NextPage = () => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
       <Flex
         $flexGrow={1}
         $flexDirection="column"

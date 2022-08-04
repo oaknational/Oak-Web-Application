@@ -289,6 +289,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  sanityPreviewSecret: {
+    value: process.env.SANITY_PREVIEW_SECRET,
+    envName: "SANITY_PREVIEW_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   gleapApiKey: {
     value: process.env.NEXT_PUBLIC_GLEAP_API_KEY,
     envName: "NEXT_PUBLIC_GLEAP_API_KEY",

@@ -4,7 +4,7 @@ import getSanityClient from "./sanity-client";
 
 // @TODO: Absolute hack to allow `any` usage. Replace w/ better type
 const any = z.any();
-type PortableTextJSON = z.infer<typeof any>;
+export type PortableTextJSON = z.infer<typeof any>;
 
 export type Document = {
   id: string;
@@ -29,8 +29,42 @@ export type WebinarPreview = Pick<
   "id" | "title" | "slug" | "summaryPortableText"
 >;
 
+export type Card = {
+  title: string;
+  image?: string;
+  bodyPortableText?: PortableTextJSON
+};
+
+export type CTA = {
+  label: string;
+};
+
+export type TextAndMedia = {
+  title: string;
+  bodyPortableText: PortableTextJSON
+};
+
+export type PlanningPage = Document & {
+  title: string;
+  heading: string;
+  summaryPortableText: PortableTextJSON;
+  lessonElements: {
+    introQuiz: Card;
+    video: Card;
+    slides: Card;
+    worksheet: Card;
+    exitQuiz: Card;
+  };
+  lessonElementsCTA: CTA
+  stepsHeading: string;
+  steps: Card[]
+  learnMoreHeading: string;
+  learnMoreBlock1: TextAndMedia
+  learnMoreBlock2: TextAndMedia
+};
+
 export type Params = {
-  isDraft?: boolean;
+  previewMode?: boolean;
 };
 
 export type ListParams = Params & {
@@ -41,6 +75,7 @@ export interface CMSClient {
   (): {
     webinarBySlug(slug: string, params?: Params): Promise<Webinar>;
     webinars(params?: ListParams): Promise<WebinarPreview[]>;
+    planningPage(params?: Params): Promise<PlanningPage>;
   };
 }
 

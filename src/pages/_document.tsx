@@ -41,7 +41,7 @@ class MyDocument extends Document {
       <Html lang="en-GB">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400,600&display=swap"
             rel="stylesheet"
           />
           <link

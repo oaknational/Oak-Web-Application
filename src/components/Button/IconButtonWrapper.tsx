@@ -4,7 +4,6 @@ import {
   ButtonBackground,
   ButtonSize,
   ButtonVariant,
-  getButtonBackground,
   getButtonColor,
   getButtonHeight,
 } from "./common";
@@ -23,8 +22,6 @@ const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
     height: ${getButtonHeight(props.size)}px;
     width: ${getButtonHeight(props.size)}px;
     min-width: ${getButtonHeight(props.size)}px;
-    /* border-radius: ${getButtonHeight(props.size) / 2}px; */
-    /* background-color: ${getButtonBackground(props.background, props.variant)}; */
     color: ${getButtonColor(props.background, props.variant)};
   `}
 

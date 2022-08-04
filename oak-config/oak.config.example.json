@@ -46,7 +46,8 @@
     "projectId": "abc123",
     "dataset": "production",
     "datasetTag": "default",
+    "previewSecret": "preview-secret",
     "useCDN": "true",
-    "requiredSecrets": ["SANITY_AUTH_SECRET"]
+    "requiredSecrets": ["SANITY_AUTH_SECRET", "SANITY_PREVIEW_SECRET"]
   }
 }

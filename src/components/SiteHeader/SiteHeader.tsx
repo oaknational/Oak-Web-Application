@@ -14,13 +14,12 @@ const HomeLink = styled.a<FlexProps>`
 
 const SiteHeader: FC = () => {
   return (
-    <FixedHeader $background={"pupilsGreen"}>
+    <FixedHeader $background={"pupilsLightGreen"}>
       <Link href={"/"} passHref>
         <HomeLink $alignItems="center">
           <Icon name="Home" size={32} $mr={8} />
           <Span
             $fontFamily="heading"
-            $fontWeight={600}
             $fontSize={20}
             $lineHeight={1}
           >

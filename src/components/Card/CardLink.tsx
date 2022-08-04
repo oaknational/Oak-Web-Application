@@ -2,6 +2,8 @@ import { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import styled from "styled-components";
 
+import { zIndexMap } from "../../styles/utils/zIndex";
+
 /**
  * 'CardLinkProps' is the combination of AnchorElement props and Next's Link
  * props. We use the href prop from next/link so omit it from Anchor props
@@ -20,10 +22,7 @@ const CardLinkA = styled.a`
     right: 0;
     bottom: 0;
     left: 0;
-  }
-
-  &:focus-within {
-    outline: 5px auto -webkit-focus-ring-color;
+    z-index: ${zIndexMap.inFront};
   }
 `;
 /**

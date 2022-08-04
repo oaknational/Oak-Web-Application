@@ -6,7 +6,6 @@ import {
 } from "next";
 
 import { CourseJsonLd } from "../../../browser-lib/seo/getJsonLd";
-import Seo from "../../../browser-lib/seo/Seo";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import Flex from "../../../components/Flex";
@@ -23,12 +22,6 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 
   return (
     <>
-      <Seo
-        title={`${lesson.title} lesson | Oak National Academy`}
-        description={
-          "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions."
-        }
-      />
       <CourseJsonLd
         courseName={lesson.title}
         description={"lesson.description"}
@@ -40,6 +33,7 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           description:
             "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions.",
         }}
+        headerVariant="app"
         $background="grey1"
       >
         <MaxWidth>
