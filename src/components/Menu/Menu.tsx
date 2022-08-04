@@ -81,6 +81,7 @@ const Menu: FC = ({ children }) => {
                     onClick={() => {
                       toggleMenu();
                     }}
+                    size={"small"}
                   />
                 </MenuHeader>
                 {children}

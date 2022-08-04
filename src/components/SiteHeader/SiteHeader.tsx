@@ -4,7 +4,7 @@ import styled, { useTheme } from "styled-components";
 
 import Flex, { FlexProps } from "../Flex";
 import flex from "../../styles/utils/flex";
-import P from "../Typography";
+import P, { Span } from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
@@ -46,7 +46,23 @@ const SiteHeader: FC = () => {
         }}
       />
       <Menu>
-        <P>Menu content...</P>
+        <Link href={"/"}>Home</Link>
+        <ul role="list">
+          <li>
+            <Span $fontFamily={"heading"} $fontSize={[32]}>
+              <Link href={"https://teachers.thenational.academy/"}>
+                Teacher Hub
+              </Link>
+            </Span>
+          </li>
+          <li>
+            <Span $fontFamily={"heading"} $fontSize={[32]}>
+              <Link href={"https://classroom.thenational.academy/"}>
+                Classroom
+              </Link>
+            </Span>
+          </li>
+        </ul>
       </Menu>
     </FixedHeader>
   );
