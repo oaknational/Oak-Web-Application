@@ -17,7 +17,11 @@ const testPlanningPageData: PlanningPage = {
     worksheet: { title: "Worksheet title" },
     exitQuiz: { title: "Exit quiz title" },
   },
-  lessonElementsCTA: { label: "elements label" },
+  lessonElementsCTA: {
+    label: "elements label",
+    linkType: "external",
+    external: "https://example.com",
+  },
   stepsHeading: "steps",
   steps: [
     {
