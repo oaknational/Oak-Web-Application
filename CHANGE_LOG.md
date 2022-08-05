@@ -1,3 +1,10 @@
+## [0.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.0...v0.58.1) (2022-08-05)
+
+
+### Bug Fixes
+
+* use semi-colon between lexend font-weights, fixes [#423](https://github.com/oaknational/Oak-Web-Application/issues/423) ([2f7d24c](https://github.com/oaknational/Oak-Web-Application/commit/2f7d24c1106db4e781a96c94b9649b55587cc0ad))
+
 # [0.58.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.57.0...v0.58.0) (2022-08-04)
 
 
