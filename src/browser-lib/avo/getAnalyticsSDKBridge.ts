@@ -1,15 +1,7 @@
+import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
+
 import { CustomDestination } from "./Avo";
 
-export type EventFn = (eventName: string, eventProperties: unknown) => void;
-export type PageFn = (pageName: string, eventProperties: unknown) => void;
-export type IdentifyFn = (userId: string) => void;
-
-export type AnalyticsService = {
-  enabled: boolean;
-  track: EventFn;
-  page: PageFn;
-  identify: IdentifyFn;
-};
 type AnalyticsServices = {
   hubspot: AnalyticsService;
   posthog: AnalyticsService;
@@ -37,8 +29,8 @@ const getAnalyticsSDKBridge = ({
         Example: analytics.track(eventName, eventProperties);  
       */
     console.log("avo.logEvent", { eventName, eventProperties });
-    hubspot.event(eventName, eventProperties);
-    posthog.event(eventName, eventProperties);
+    hubspot.track(eventName, eventProperties);
+    posthog.track(eventName, eventProperties);
   },
   logPage: (pageName, eventProperties) => {
     /*
@@ -49,8 +41,6 @@ const getAnalyticsSDKBridge = ({
         Example: analytics.pageView(pageName, eventProperties);  
       */
     console.log("avo.logPage", { pageName, eventProperties });
-    hubspot.event(pageName, eventProperties);
-    posthog.event(pageName, eventProperties);
   },
   // setUserProperties: (userId, userProperties) => {
   //   /*
@@ -74,8 +64,9 @@ const getAnalyticsSDKBridge = ({
       */
 
     console.log("avo.identify", { userId });
-    hubspot.identify(userId);
-    posthog.identify(userId);
+    // @todo hubspot requires email for identify call
+    hubspot.identify(userId, {});
+    posthog.identify(userId, {});
   },
   // unidentify: () => {
   //   /*

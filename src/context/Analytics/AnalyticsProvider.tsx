@@ -1,4 +1,5 @@
-import { createContext, FC, useMemo } from "react";
+import { createContext, FC, useCallback, useEffect, useMemo } from "react";
+import router from "next/router";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
@@ -12,6 +13,27 @@ type AnalyticsContext = {
   track: TrackFns;
 };
 
+export type EventFn = (
+  eventName: string,
+  eventProperties: Record<string, unknown>
+) => void;
+export type PageFn = () => void;
+export type IdentifyProperties = { email?: string };
+export type IdentifyFn = (
+  userId: string,
+  userProperties: IdentifyProperties
+) => void;
+
+export type AnalyticsService = {
+  enabled?: boolean;
+  loaded: () => boolean;
+  track: EventFn;
+  page: PageFn;
+  identify: IdentifyFn;
+  optOut: () => void;
+  optIn: () => void;
+};
+
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
 const AnalyticsProvider: FC = (props) => {
@@ -19,8 +41,22 @@ const AnalyticsProvider: FC = (props) => {
 
   const posthogEnabled = useHasConsentedTo("posthog");
   const posthog = usePosthog({ enabled: posthogEnabled });
+  useEffect(() => {
+    if (posthogEnabled) {
+      posthog.optIn();
+    } else {
+      posthog.optOut();
+    }
+  }, [posthog, posthogEnabled]);
   const hubspotEnabled = useHasConsentedTo("hubspot");
   const hubspot = useHubspot({ enabled: hubspotEnabled });
+  useEffect(() => {
+    if (hubspotEnabled) {
+      hubspot.optIn();
+    } else {
+      hubspot.optOut();
+    }
+  }, [hubspot, hubspotEnabled]);
 
   const track = useMemo(() => {
     const { ...avoTrack } = Avo;
@@ -33,6 +69,19 @@ const AnalyticsProvider: FC = (props) => {
     {},
     getAnalyticsSDKBridge({ posthog, hubspot })
   );
+
+  const page = useCallback(() => {
+    posthog.page();
+    hubspot.page();
+  }, [posthog, hubspot]);
+
+  useEffect((): (() => void) => {
+    router.events.on("routeChangeComplete", page);
+
+    return () => {
+      router.events.off("routeChangeComplete", page);
+    };
+  }, [page]);
 
   return (
     <analyticsContext.Provider value={{ track }}>

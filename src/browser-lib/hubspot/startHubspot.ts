@@ -1,3 +1,9 @@
+import isBrowser from "../../utils/isBrowser";
+
+if (isBrowser) {
+  window._hsq = window._hsq || [];
+}
+
 function scriptAlreadyLoaded() {
   const scripts = document.getElementsByTagName("script");
   return (
@@ -19,6 +25,8 @@ const startHubspot = ({ portalId, scriptDomain }: HubspotConfig) => {
 
   // NoOp if hubspot already loaded by external source
   if (scriptAlreadyLoaded()) {
+    console.log("hubspot loaded already");
+
     return;
   }
   //   const protocol = document.location.protocol;

@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 
-import {
-  AnalyticsService,
-  IdentifyFn,
-} from "../../browser-lib/avo/getAnalyticsSDKBridge";
+import useStableCallback from "../../hooks/useStableCallback";
+
+import { AnalyticsService, IdentifyFn } from "./AnalyticsProvider";
 
 type QueuedEvent =
   | {
@@ -16,33 +15,12 @@ type QueuedEvent =
     }
   | {
       type: "identify";
-      args: [string];
+      args: [string, unknown];
     };
 type Queue = QueuedEvent[];
 export const useQueuedService = (
   service: AnalyticsService
 ): AnalyticsService => {
-  const { enabled } = service;
-  const [queue, setQueue] = useState<Queue>([]);
-
-  const sendQueuedEvents = useCallback(() => {
-    while (queue.length) {
-      const nextItem = queue.shift();
-      if (nextItem) {
-        sendEvent(nextItem);
-      }
-    }
-  }, [sendEvent]);
-
-  useEffect(() => {
-    if (enabled) {
-      sendQueuedEvents();
-    }
-  }, [enabled, sendQueuedEvents]);
-
-  const clearQueue = () => {
-    setQueue([]);
-  };
   const sendEvent = (event: QueuedEvent) => {
     switch (event.type) {
       case "track":
@@ -61,6 +39,29 @@ export const useQueuedService = (
       }
     }
   };
+
+  const { enabled } = service;
+  const [queue, setQueue] = useState<Queue>([]);
+
+  const sendQueuedEvents = useStableCallback(() => {
+    while (queue.length) {
+      const [nextItem, ...otherItems] = queue;
+      if (nextItem) {
+        sendEvent(nextItem);
+      }
+      setQueue(otherItems);
+    }
+  });
+
+  useEffect(() => {
+    if (enabled) {
+      sendQueuedEvents();
+    }
+  }, [enabled, sendQueuedEvents]);
+
+  const clearQueue = useCallback(() => {
+    setQueue([]);
+  }, []);
 
   const queueEvent = (event: QueuedEvent) => {
     queue.push(event);
