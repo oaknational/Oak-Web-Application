@@ -24,6 +24,7 @@ import Cover from "../components/Cover";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
+  isPreviewMode: boolean;
 };
 
 const lessonElementIds = {
@@ -142,9 +143,16 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({
+  pageData,
+  isPreviewMode,
+}) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background={"white"}
+      isPreviewMode={isPreviewMode}
+    >
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -373,6 +381,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   return {
     props: {
       pageData: planningPage,
+      isPreviewMode,
     },
   };
 };

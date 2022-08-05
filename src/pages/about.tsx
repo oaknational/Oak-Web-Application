@@ -6,11 +6,16 @@ import Layout from "../components/Layout";
 
 export type AboutPageProps = {
   pageData: AboutPage;
+  isPreviewMode: boolean;
 };
 
-const About: NextPage<AboutPageProps> = ({ pageData }) => {
+const About: NextPage<AboutPageProps> = ({ pageData, isPreviewMode }) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background={"white"}
+      isPreviewMode={isPreviewMode}
+    >
       <pre>{JSON.stringify(pageData, null, 2)}</pre>
     </Layout>
   );
@@ -28,6 +33,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   return {
     props: {
       pageData: aboutPage,
+      isPreviewMode,
     },
   };
 };
