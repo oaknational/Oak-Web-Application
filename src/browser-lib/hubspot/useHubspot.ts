@@ -6,8 +6,7 @@ import startHubspot from "./startHubspot";
 import hubspot from "./hubspot";
 
 const portalId = config.get("hubspotPortalId");
-const scriptDomain = "js-eu1.hs-scripts.com";
-// const scriptDomain = config.get("hubspotScriptDomain");
+const scriptDomain = config.get("hubspotScriptDomain");
 
 type UseHubspotProps = {
   enabled: boolean;

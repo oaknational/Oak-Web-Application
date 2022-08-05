@@ -1,15 +1,21 @@
+/**
+ * This implementation is not zero-rated so is only temporary.
+ *
+ * @see: https://github.com/DavidWells/analytics/blob/master/packages/analytics-plugin-hubspot/src/browser.js
+ */
+
 import isBrowser from "../../utils/isBrowser";
 
 if (isBrowser) {
   window._hsq = window._hsq || [];
 }
 
-function scriptAlreadyLoaded() {
+function scriptAlreadyLoaded(domain: string) {
   const scripts = document.getElementsByTagName("script");
   return (
     Object.values(scripts).filter((scriptInfo) => {
       const src = scriptInfo.src || "";
-      return src.match(/js\.hs-scripts\.com/);
+      return src.match(domain);
     }).length > 0
   );
 }
@@ -24,7 +30,7 @@ const startHubspot = ({ portalId, scriptDomain }: HubspotConfig) => {
   }
 
   // NoOp if hubspot already loaded by external source
-  if (scriptAlreadyLoaded()) {
+  if (scriptAlreadyLoaded(scriptDomain)) {
     console.log("hubspot loaded already");
 
     return;

@@ -36,35 +36,19 @@ const hubspot: AnalyticsService = {
     }
 
     if (!properties.email) {
-      // @todo error hubspot needs email
+      // @todo error hubspot needs email to create a 'contact'
       return;
     }
-    /* send hubspot identify call */
-    // const properties = formatTraits(traits, userId, defaultFormatter);
-    // Identify will send with next event or page view.
-    _hsq.push(["identify", properties]);
-    // Fire without a hard reload or SPA routing
-    // if (config.flushOnIdentify) {
-    //   // Hack to flush identify call immediately.
-    //   _hsq.push(["trackPageView"]);
-    // }
+    // @todo snakecase properties
+    _hsq.push(["identify", { id: userId, ...properties }]);
   },
   page: () => {
-    // fired on next/router "routeChangeComplete" event
     const { _hsq } = getHubspot();
 
     if (typeof _hsq === "undefined") {
       return;
     }
-    /* ignore the first .page() call b/c hubspot tracking script already fired it */
-    // if (!initialPageViewFired) {
-    //   initialPageViewFired = true;
-    //   return;
-    // }
-    // Set page path
-    // _hsq.push(['setPath', payload.properties.path])
     // @todo check that path is correct
-    console.log("pushing ", _hsq);
 
     _hsq.push(["trackPageView"]);
   },
@@ -76,10 +60,11 @@ const hubspot: AnalyticsService = {
       return;
     }
 
-    const formattedProperties = Object.assign({}, properties, {
-      id: name,
-    });
-    _hsq.push(["trackEvent", formattedProperties]);
+    if ("id" in properties) {
+      // @todo warn here that information is being lost
+    }
+
+    _hsq.push(["trackEvent", { id: name, ...properties }]);
   },
   optIn: () => {
     const { _hsq } = getHubspot();
