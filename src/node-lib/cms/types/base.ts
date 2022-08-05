@@ -15,6 +15,16 @@ export type SanityImage = {
   };
 };
 
+export type Video = {
+  title: string;
+  video: {
+    asset: {
+      assetId: string;
+      playbackId: string;
+    };
+  };
+};
+
 export type CTA = {
   label: string;
 } & (
@@ -50,5 +60,6 @@ export type TextAndMedia = {
     }
   | {
       mediaType: "video";
+      video: Video
     }
 );

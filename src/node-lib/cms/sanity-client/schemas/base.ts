@@ -51,13 +51,6 @@ export const CTASchema = z.discriminatedUnion("linkType", [
   }),
 ]);
 
-export const cardSchema = z.object({
-  title: z.string().nonempty(),
-  bodyPortableText: portableTextSchema,
-  image: z.any(),
-  cta: CTASchema.optional(),
-});
-
 export const imageSchema = z.object({
   asset: z.object({
     _id: z.string(),
@@ -65,10 +58,17 @@ export const imageSchema = z.object({
   }),
 });
 
+export const cardSchema = z.object({
+  title: z.string().nonempty(),
+  bodyPortableText: portableTextSchema,
+  image: imageSchema.nullable().optional(),
+  cta: CTASchema.nullable().optional(),
+});
+
 export const textBlockSchema = z.object({
   title: z.string().nonempty(),
   bodyPortableText: portableTextSchema,
-  cta: CTASchema.optional()
+  cta: CTASchema.nullable().optional(),
 });
 
 export const textAndMediaSchemaBase = z.object({
@@ -78,6 +78,16 @@ export const textAndMediaSchemaBase = z.object({
   alignMedia: z.enum(["left", "right"]),
 });
 
+const videoSchema = z.object({
+  title: z.string(),
+  video: z.object({
+    asset: z.object({
+      assetId: z.string(),
+      playbackId: z.string(),
+    }),
+  }),
+});
+
 export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
   textAndMediaSchemaBase.extend({
     mediaType: z.literal("image"),
@@ -85,6 +95,6 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
   }),
   textAndMediaSchemaBase.extend({
     mediaType: z.literal("video"),
-    video: z.object({}),
+    video: videoSchema,
   }),
 ]);
