@@ -23,15 +23,15 @@ export const planningPageSchema = z
     lessonElementsCTA: CTASchema,
     stepsHeading: z.string(),
     steps: z
-    .object({
-      step1: cardSchema,
-      step2: cardSchema,
-      step3: cardSchema,
-      step4: cardSchema,
-    })
-    .transform(({ step1, step2, step3, step4 }) => {
-      return [step1, step2, step3, step4];
-    }),
+      .object({
+        step1: cardSchema,
+        step2: cardSchema,
+        step3: cardSchema,
+        step4: cardSchema,
+      })
+      .transform(({ step1, step2, step3, step4 }) => {
+        return [step1, step2, step3, step4];
+      }),
     stepsCTA: CTASchema,
     learnMoreHeading: z.string(),
     learnMoreBlock1: textAndMediaSchema,
@@ -40,3 +40,13 @@ export const planningPageSchema = z
   .merge(documentSchema);
 
 export type PlanningPage = z.infer<typeof planningPageSchema>;
+
+export const supportPageSchema = z
+  .object({
+    title: z.string(),
+    heading: z.string(),
+    summaryPortableText: portableTextSchema,
+  })
+  .merge(documentSchema);
+
+export type SupportPage = z.infer<typeof supportPageSchema>;

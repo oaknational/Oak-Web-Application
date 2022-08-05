@@ -1,0 +1,10 @@
+query supportCorePage($isDraft: Boolean = false) {
+  allSupportCorePage(
+    where: { _: { is_draft: $isDraft }, _id: { matches: "*supportCorePage" } }
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+  }
+}

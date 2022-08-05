@@ -742,6 +742,32 @@ export type PolicyPageSorting = {
   title?: InputMaybe<SortOrder>;
 };
 
+export type Quote = {
+  __typename?: 'Quote';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  attribution?: Maybe<Scalars['String']>;
+  role?: Maybe<Scalars['String']>;
+  /** Quotation marks will be added automatically */
+  text?: Maybe<Scalars['String']>;
+};
+
+export type QuoteFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  attribution?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type QuoteSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  attribution?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+  text?: InputMaybe<SortOrder>;
+};
+
 export type RootQuery = {
   __typename?: 'RootQuery';
   AboutCorePage?: Maybe<AboutCorePage>;
@@ -754,6 +780,7 @@ export type RootQuery = {
   PolicyPage?: Maybe<PolicyPage>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
+  SupportCorePage?: Maybe<SupportCorePage>;
   TeamMember?: Maybe<TeamMember>;
   Webinar?: Maybe<Webinar>;
   WebinarListingPage?: Maybe<WebinarListingPage>;
@@ -767,6 +794,7 @@ export type RootQuery = {
   allPolicyPage: Array<PolicyPage>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allSanityImageAsset: Array<SanityImageAsset>;
+  allSupportCorePage: Array<SupportCorePage>;
   allTeamMember: Array<TeamMember>;
   allWebinar: Array<Webinar>;
   allWebinarListingPage: Array<WebinarListingPage>;
@@ -819,6 +847,11 @@ export type RootQuerySanityFileAssetArgs = {
 
 
 export type RootQuerySanityImageAssetArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQuerySupportCorePageArgs = {
   id: Scalars['ID'];
 };
 
@@ -915,6 +948,14 @@ export type RootQueryAllSanityImageAssetArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<SanityImageAssetSorting>>;
   where?: InputMaybe<SanityImageAssetFilter>;
+};
+
+
+export type RootQueryAllSupportCorePageArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<SupportCorePageSorting>>;
+  where?: InputMaybe<SupportCorePageFilter>;
 };
 
 
@@ -1358,6 +1399,97 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']>>;
 };
 
+export type SupportCorePage = Document & {
+  __typename?: 'SupportCorePage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  cover?: Maybe<SupportPageCover>;
+  curriculum?: Maybe<TextBlock>;
+  development?: Maybe<TextBlock>;
+  heading?: Maybe<Scalars['String']>;
+  planning?: Maybe<TextBlock>;
+  relatedBlogs?: Maybe<Array<Maybe<NewsPost>>>;
+  relatedWebinars?: Maybe<Array<Maybe<Webinar>>>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
+  summaryRaw?: Maybe<Scalars['JSON']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SupportCorePageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  cover?: InputMaybe<SupportPageCoverFilter>;
+  curriculum?: InputMaybe<TextBlockFilter>;
+  development?: InputMaybe<TextBlockFilter>;
+  heading?: InputMaybe<StringFilter>;
+  planning?: InputMaybe<TextBlockFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type SupportCorePageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  cover?: InputMaybe<SupportPageCoverSorting>;
+  curriculum?: InputMaybe<TextBlockSorting>;
+  development?: InputMaybe<TextBlockSorting>;
+  heading?: InputMaybe<SortOrder>;
+  planning?: InputMaybe<TextBlockSorting>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type SupportPageCover = {
+  __typename?: 'SupportPageCover';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  bodyRaw?: Maybe<Scalars['JSON']>;
+  cta?: Maybe<Cta>;
+  quote?: Maybe<Quote>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SupportPageCoverFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<CtaFilter>;
+  quote?: InputMaybe<QuoteFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type SupportPageCoverSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<CtaSorting>;
+  quote?: InputMaybe<QuoteSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
 export type TeamMember = Document & {
   __typename?: 'TeamMember';
   /** Date the document was created */
@@ -1581,6 +1713,13 @@ export type PlanningCorePageQueryVariables = Exact<{
 
 export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'PolicyPage' } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, stepsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'PolicyPage' } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null }> };
 
+export type SupportCorePageQueryVariables = Exact<{
+  isDraft?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type SupportCorePageQuery = { __typename?: 'RootQuery', allSupportCorePage: Array<{ __typename?: 'SupportCorePage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null }> };
+
 export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
 export type WebinarBySlugQueryVariables = Exact<{
@@ -1724,6 +1863,18 @@ export const PlanningCorePageDocument = gql`
     ${CardFragmentDoc}
 ${CtaFragmentDoc}
 ${TextAndMediaFragmentDoc}`;
+export const SupportCorePageDocument = gql`
+    query supportCorePage($isDraft: Boolean = false) {
+  allSupportCorePage(
+    where: {_: {is_draft: $isDraft}, _id: {matches: "*supportCorePage"}}
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+  }
+}
+    `;
 export const WebinarBySlugDocument = gql`
     query webinarBySlug($slug: String, $isDraft: Boolean = false) {
   allWebinar(where: {_: {is_draft: $isDraft}, slug: {current: {eq: $slug}}}) {
@@ -1760,6 +1911,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     planningCorePage(variables?: PlanningCorePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlanningCorePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PlanningCorePageQuery>(PlanningCorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'planningCorePage', 'query');
+    },
+    supportCorePage(variables?: SupportCorePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SupportCorePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SupportCorePageQuery>(SupportCorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'supportCorePage', 'query');
     },
     webinarBySlug(variables?: WebinarBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WebinarBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WebinarBySlugQuery>(WebinarBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'webinarBySlug', 'query');

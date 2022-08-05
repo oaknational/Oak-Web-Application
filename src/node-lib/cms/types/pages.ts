@@ -18,3 +18,9 @@ export type PlanningPage = Document & {
   learnMoreBlock1: TextAndMedia;
   learnMoreBlock2: TextAndMedia;
 };
+
+export type SupportPage = Document & {
+  title: string;
+  heading: string;
+  summaryPortableText: PortableTextJSON;
+};
