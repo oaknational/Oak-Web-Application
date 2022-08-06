@@ -1,11 +1,28 @@
 import { CSSProperties } from "react";
 import { css } from "styled-components";
 
-import responsive from "./responsive";
+import { NullablePixelSpacing } from "../theme";
+import { PercentSpacing } from "../theme/types";
 
-export type PositionProps = { position?: CSSProperties["position"] };
+import responsive, { ResponsiveValues } from "./responsive";
+
+type PxOrPercent = NullablePixelSpacing | PercentSpacing;
+export type PositionProps = {
+  $position?: ResponsiveValues<CSSProperties["position"]>;
+  $top?: ResponsiveValues<PxOrPercent>;
+  $right?: ResponsiveValues<PxOrPercent>;
+  $bottom?: ResponsiveValues<PxOrPercent>;
+  $left?: ResponsiveValues<PxOrPercent>;
+};
+const parsePxOrPercent = (value?: PxOrPercent) => {
+  return typeof value === "number" ? `${value}px` : value;
+};
 const position = css<PositionProps>`
-  ${responsive("position", (props) => props.position)}
+  ${responsive("position", (props) => props.$position)}
+  ${responsive("top", (props) => props.$top, parsePxOrPercent)}
+  ${responsive("right", (props) => props.$right, parsePxOrPercent)}
+  ${responsive("bottom", (props) => props.$bottom, parsePxOrPercent)}
+  ${responsive("left", (props) => props.$left, parsePxOrPercent)}
 `;
 
 export default position;

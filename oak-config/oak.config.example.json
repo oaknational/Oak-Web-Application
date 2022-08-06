@@ -16,6 +16,11 @@
     "storageBucket": "bucket_uri",
     "tokenHost": "example.com"
   },
+  "gleap": {
+    "apiKey": "gleap-api-key",
+    "apiUrl": "gleap-api-url",
+    "widgetUrl": "gleap-widget-url"
+  },
   "googleSecretManager": {
     "projectId": "test-project-584399384539"
   },
@@ -38,7 +43,11 @@
     "apiKey": "123abc"
   },
   "sanity": {
-    "graphqlUrl": "https://cuvjke51.apicdn.sanity.io/v1/graphql/spike_2/default",
-    "requiredSecrets": ["SANITY_AUTH_SECRET"]
+    "projectId": "abc123",
+    "dataset": "production",
+    "datasetTag": "default",
+    "previewSecret": "preview-secret",
+    "useCDN": "true",
+    "requiredSecrets": ["SANITY_AUTH_SECRET", "SANITY_PREVIEW_SECRET"]
   }
 }

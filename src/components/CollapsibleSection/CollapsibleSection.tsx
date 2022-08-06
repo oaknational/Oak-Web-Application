@@ -69,12 +69,12 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
         }}
       >
         <Flex
-          pa={24}
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          background={"white"}
+          $pa={24}
+          $flexDirection={"row"}
+          $justifyContent={"space-between"}
+          $background={"white"}
         >
-          <SummaryHeading fontSize={24} tag={headingTag}>
+          <SummaryHeading $fontSize={24} tag={headingTag}>
             <a aria-expanded={open} onClick={(e) => handleClick(e)}>
               {title}
             </a>
@@ -84,7 +84,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
               buttons.map((button) => (
                 <IconButton
                   key={button.icon}
-                  mh={12}
+                  $mh={12}
                   icon={button.icon}
                   aria-label={button.ariaLabel}
                   onClick={(e) => {
@@ -94,7 +94,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
                 />
               ))}
             <IconButton
-              ml={12}
+              $ml={12}
               aria-label={"Open collapsible section"}
               icon={"ChevronDown"}
               onClick={(e) => handleClick(e)}
@@ -105,7 +105,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
         </Flex>
       </Summary>
       {open && (
-        <Flex background={"white"} ph={16} pb={16}>
+        <Flex $background={"white"} $ph={16} $pb={16}>
           {children}
         </Flex>
       )}

@@ -59,8 +59,8 @@ const SignIn: FC = () => {
   if (step === "NOT_ASKED") {
     return (
       <SignInForm onSubmit={requestMagicLink}>
-        <Flex alignItems="end">
-          <Flex flexDirection="column" flexGrow={1}>
+        <Flex $alignItems="end">
+          <Flex $flexDirection="column" $flexGrow={1}>
             <label htmlFor={emailInputId}>Email</label>
             <Input
               id={emailInputId}
@@ -73,7 +73,7 @@ const SignIn: FC = () => {
           </Flex>
           <Button
             onClick={requestMagicLink}
-            ml={8}
+            $ml={8}
             label="Sign in"
             htmlButtonProps={{
               disabled: loading,

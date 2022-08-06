@@ -1,26 +1,15 @@
 import styled from "styled-components";
 
-import border, { BorderProps } from "../../styles/utils/border";
-import Flex from "../Flex/Flex";
+import Flex, { FlexProps } from "../Flex/Flex";
 
-/**
- * @todo ts should be able to infer card props from e.g. 'spacing'
- * and 'background' util types
- */
-
-const Card = styled(Flex)<BorderProps>`
-  position: relative;
-  flex-grow: 1;
-
-  /* overflow: hidden; introduced to mantain border radius on card images  */
-  overflow: hidden;
-  ${border}
-`;
+export type CardProps = FlexProps;
+const Card = styled(Flex)``;
 
 Card.defaultProps = {
-  pa: 24,
-  flexDirection: "column",
-  borderRadius: 12,
+  $pa: 24,
+  $flexDirection: "column",
+  $flexGrow: 1,
+  $position: "relative",
 };
 
 export default Card;

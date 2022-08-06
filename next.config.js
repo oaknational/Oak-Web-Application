@@ -36,7 +36,9 @@ module.exports = async (phase) => {
     // depend on a Vercel specific env variable.
     // When we come to sort out a failover we may need to tweak this functionality.
     // Defaults to "development".
-    releaseStage = getReleaseStage(process.env.VERCEL_ENV);
+    releaseStage = getReleaseStage(
+      process.env.OVERRIDE_RELEASE_STAGE || process.env.VERCEL_ENV
+    );
     const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
@@ -80,6 +82,14 @@ module.exports = async (phase) => {
         process.env.FIREBASE_ADMIN_DATABASE_URL ||
         secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
 
+      // Gleap
+      NEXT_PUBLIC_GLEAP_API_KEY:
+        process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
+      NEXT_PUBLIC_GLEAP_API_URL:
+        process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+      NEXT_PUBLIC_GLEAP_WIDGET_URL:
+        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
+
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
       HASURA_ADMIN_SECRET:
@@ -103,10 +113,17 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
 
       // Sanity
-      SANITY_GRAPHQL_URL:
-        process.env.SANITY_GRAPHQL_URL || oakConfig.sanity?.graphqlUrl,
+      SANITY_PROJECT_ID:
+        process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
+      SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,
+      SANITY_DATASET_TAG:
+        process.env.SANITY_DATASET_TAG || oakConfig.sanity?.datasetTag,
+      SANITY_USE_CDN: process.env.SANITY_USE_CDN || oakConfig.sanity?.useCDN,
       SANITY_AUTH_SECRET:
         process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
+      SANITY_PREVIEW_SECRET:
+        process.env.SANITY_PREVIEW_SECRET ||
+        secretsFromNetwork.SANITY_PREVIEW_SECRET,
     },
   };
 

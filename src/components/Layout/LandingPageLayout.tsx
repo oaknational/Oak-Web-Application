@@ -24,22 +24,19 @@ const StyledLayout = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 0 12px;
-  max-width: 1200px;
   width: 100%;
-  align-self: center;
 `;
 
 interface LayoutProps {
   seoProps: SeoProps;
-  background?: OakColorName;
+  $background?: OakColorName;
 }
 
 /** 1. Titles for SEO should be between 50-60 characters long 
     2. Title should contain app name
     3. SEO descriptions should be between 150-300 characters long */
 const LandingPageLayout: FC<LayoutProps> = (props) => {
-  const { children, seoProps, background } = props;
+  const { children, seoProps, $background } = props;
   return (
     <>
       <Seo {...seoProps} />
@@ -47,7 +44,7 @@ const LandingPageLayout: FC<LayoutProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <OrganizationJsonLd />
-      <Container background={background}>
+      <Container $background={$background}>
         <SiteHeader />
         <StyledLayout>{children}</StyledLayout>
         <SiteFooter

@@ -38,7 +38,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     ...styleProps
   } = props;
 
-  const { size, variant } = getIconButtonStylesProps(props);
+  const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
     <Link {...nextLinkProps} href={href} passHref>
@@ -48,6 +48,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
         aria-label={ariaLabel}
         size={size}
         variant={variant}
+        background={background}
         {...styleProps}
       >
         <IconButtonInner

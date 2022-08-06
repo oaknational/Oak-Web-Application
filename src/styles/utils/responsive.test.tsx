@@ -54,7 +54,7 @@ describe("responsive", () => {
       ${styles}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" pl={12} />
+      <StyledComponent data-testid="test" $pl={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
@@ -72,7 +72,7 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0px;
 
-      @media (min-width: 600px) {
+      @media (min-width: 800px) {
         padding-left: 12px;
       }
     `;
@@ -81,7 +81,7 @@ describe("responsive", () => {
   });
   it("should handle the case where the last value is a zero", async () => {
     const props = {
-      pl: [36, 12, 6, 0],
+      pl: [36, 12, 0],
     };
 
     const actual = responsive(
@@ -92,12 +92,8 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 36px;
 
-      @media (min-width: 600px) {
+      @media (min-width: 800px) {
         padding-left: 12px;
-      }
-
-      @media (min-width: 900px) {
-        padding-left: 6px;
       }
 
       @media (min-width: 1200px) {
@@ -121,15 +117,15 @@ describe("responsive", () => {
     expect(stringify(actual)).toEqual(stringify(expected));
   });
   test("should handle when parse fn gets from theme", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<{ $color?: OakColorName }>`
       ${responsive(
         "color",
-        (props) => props.color,
+        (props) => props.$color,
         (colorName) => (props) => props.theme.colors[colorName as OakColorName]
       )}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" color="teachersPurple" />
+      <StyledComponent data-testid="test" $color="teachersPurple" />
     );
 
     expect(getByTestId("test")).toHaveStyle("color: #845ad9");

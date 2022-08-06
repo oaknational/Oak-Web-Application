@@ -20,16 +20,15 @@ const HomeLink = styled.a<FlexProps>`
  */
 const AppHeader: FC = () => {
   return (
-    <FixedHeader background="grey3">
-      <Flex mr={40} justifyContent={"space-between"}>
+    <FixedHeader $background="grey3">
+      <Flex $mr={40} $justifyContent={"space-between"}>
         <Link href={"/"} passHref>
-          <HomeLink alignItems="center">
-            <Icon name="Home" size={32} mr={8} />
+          <HomeLink $alignItems="center">
+            <Icon name="Home" size={32} $mr={8} />
             <Span
-              fontFamily="heading"
-              fontWeight={600}
-              fontSize={20}
-              lineHeight={1}
+              $fontFamily="heading"
+              $fontSize={20}
+              $lineHeight={1}
             >
               Oak
             </Span>

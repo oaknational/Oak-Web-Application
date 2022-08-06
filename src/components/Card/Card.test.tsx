@@ -12,12 +12,12 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("padding-right: 24px");
   });
   test("can pass custom padding", async () => {
-    const { getByTestId } = render(<Card data-testid="test" pl={12} />);
+    const { getByTestId } = render(<Card data-testid="test" $pl={12} />);
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
   });
   test("can pass custom margin", async () => {
-    const { getByTestId } = render(<Card data-testid="test" mb={12} />);
+    const { getByTestId } = render(<Card data-testid="test" $mb={12} />);
 
     expect(getByTestId("test")).toHaveStyle("margin-bottom: 12px");
   });

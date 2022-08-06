@@ -82,23 +82,23 @@ const SiteFooter: FC<SiteFooterProps> = ({
     <StyledSiteFooter>
       <nav>
         <Flex
-          position={"relative"}
-          justifyContent={"center"}
-          flexDirection={"column"}
-          ph={12}
-          maxWidth={1200}
-          ma={"auto"}
+          $position={"relative"}
+          $justifyContent={"center"}
+          $flexDirection={"column"}
+          $ph={12}
+          $maxWidth={1200}
+          $ma={"auto"}
         >
           <BackgroundImageContainer>
             <Flex flexWrap={["wrap"]}>
-              <Flex mb={32} flexGrow={[1, 0]} mr={48} flexDirection="column">
-                <Flex mb={16} flexDirection={"column"}>
+              <Flex $mb={32} $flexGrow={[1, 0]} $mr={48} flexDirection="column">
+                <Flex $mb={16} $flexDirection={"column"}>
                   <FooterSectionLinks
                     title={footerSections[0]?.title}
                     links={footerSections[0]?.links}
                   />
                 </Flex>
-                <Flex mb={16} flexDirection={"column"}>
+                <Flex $mb={16} $flexDirection={"column"}>
                   <FooterSectionLinks
                     title={footerSections[1]?.title}
                     links={footerSections[1]?.links}
@@ -107,10 +107,10 @@ const SiteFooter: FC<SiteFooterProps> = ({
               </Flex>
 
               <Flex
-                flexGrow={[1, 0]}
-                flexDirection="column"
-                mb={[24, 0]}
-                mr={48}
+                $flexGrow={[1, 0]}
+                $flexDirection="column"
+                $mb={[24, 0]}
+                $mr={48}
               >
                 <FooterSectionLinks
                   title={footerSections[2]?.title}
@@ -126,13 +126,13 @@ const SiteFooter: FC<SiteFooterProps> = ({
               </Flex>
 
               <Flex
-                flexDirection={"column"}
-                justifyContent={"space-between"}
-                alignItems={"flex-end"}
-                flexGrow={[0, 1]}
-                pl={[32, 0]}
+                $flexDirection={"column"}
+                $justifyContent={"space-between"}
+                $alignItems={"flex-end"}
+                $flexGrow={[0, 1]}
+                $pl={[32, 0]}
               >
-                <Flex position="relative">
+                <Flex $position="relative">
                   <Image
                     alt={"Oak National Academy Logo"}
                     height={63}
@@ -144,15 +144,15 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 {footerNotification}
               </Flex>
             </Flex>
-            <Flex mt={32}>
-              <Flex justifyContent={"center"}>
+            <Flex $mt={32}>
+              <Flex $justifyContent={"center"}>
                 <IconButtonAsLink
                   aria-label={"instagram"}
                   icon={"Instagram"}
                   href={"/instagram"} // update link
                   variant={"minimal"}
                   size={"tiny"}
-                  mr={24}
+                  $mr={24}
                 />
                 <IconButtonAsLink
                   aria-label={"facebook"}
@@ -160,7 +160,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                   href={"/facebook"} // update link
                   variant={"minimal"}
                   size={"tiny"}
-                  mr={24}
+                  $mr={24}
                 />
                 <IconButtonAsLink
                   aria-label={"twitter"}
@@ -168,7 +168,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                   href={"/twitter"} // update link
                   variant={"minimal"}
                   size={"tiny"}
-                  mr={24}
+                  $mr={24}
                 />
               </Flex>
               <P fontSize={12}>© Oak National Academy</P>

@@ -30,17 +30,17 @@ const StyledHeader = styled(Flex)`
   ${background}
   padding: 12px;
   position: fixed;
-  z-index: 1;
 `;
 
-const FixedHeader: FC<BackgroundProps> = ({ children, background }) => (
+const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (
   <HeaderWrapper>
     <StyledHeader
       as="header"
-      background={background}
-      justifyContent={["left", "space-between"]}
-      alignItems={["flex-start", "center"]}
-      flexDirection={["column", "row"]}
+      $background={$background}
+      $justifyContent={["left", "space-between"]}
+      $alignItems={["flex-start", "center"]}
+      $flexDirection={["column", "row"]}
+      $zIndex="fixedHeader"
     >
       {children}
     </StyledHeader>

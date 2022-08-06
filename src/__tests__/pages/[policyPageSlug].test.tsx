@@ -13,6 +13,7 @@ describe("policyPage", () => {
           updatedAt: "2022",
           body: policyPageBody,
         }}
+        isPreviewMode={false}
       />
     );
 
