@@ -11,16 +11,16 @@ import Component from "./SiteFooter";
 
 const SiteFooterNotification = () => {
   return (
-    <Flex justifyContent={"center"} alignItems={"center"}>
+    <Flex $justifyContent={"center"} $alignItems={"center"}>
       <IconButtonAsLink
         icon={"Rocket"}
         aria-label={"Join new beta oak"}
         href={"/beta/onboarding"}
         size={"tiny"}
-        mr={12}
-        variant={"primary"}
+        $mr={12}
+        variant={"minimal"}
       />
-      <Heading tag="h5" fontSize={16}>
+      <Heading tag="h5" $fontSize={16}>
         <Link href={"/beta/onboarding"}>Join Beta</Link>
       </Heading>
     </Flex>

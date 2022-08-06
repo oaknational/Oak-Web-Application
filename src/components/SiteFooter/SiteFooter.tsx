@@ -36,12 +36,6 @@ const BackgroundImageContainer = styled.div`
     background-repeat: no-repeat;
     background-position: bottom right 20px;
 
-    @media (max-width: ${getBreakpoint("medium")}px) {
-      width: 97%;
-      background-size: 80%;
-      background-position: bottom right -100px;
-    }
-
     @media (max-width: ${getBreakpoint("small")}px) {
       width: 97%;
       background-size: 160%;
@@ -57,11 +51,11 @@ type SiteFooterProps = {
 
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <Flex flexDirection="column">
-      <Heading mb={8} lineHeight={20} fontSize={16} color="grey9" tag="h4">
+    <Flex $flexDirection="column">
+      <Heading $mb={8} $lineHeight={20} $fontSize={16} $color="grey9" tag="h4">
         {title}
       </Heading>
-      <Typography fontSize={12} lineHeight={20} color="grey9">
+      <Typography fontSize={12} $lineHeight={20} color="grey9">
         <ul role={"list"}>
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
@@ -90,8 +84,13 @@ const SiteFooter: FC<SiteFooterProps> = ({
           $ma={"auto"}
         >
           <BackgroundImageContainer>
-            <Flex flexWrap={["wrap"]}>
-              <Flex $mb={32} $flexGrow={[1, 0]} $mr={48} flexDirection="column">
+            <Flex $flexWrap={["wrap"]}>
+              <Flex
+                $mb={32}
+                $flexGrow={[1, 0]}
+                $mr={48}
+                $flexDirection="column"
+              >
                 <Flex $mb={16} $flexDirection={"column"}>
                   <FooterSectionLinks
                     title={footerSections[0]?.title}
@@ -118,7 +117,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 />
               </Flex>
 
-              <Flex flexDirection="column">
+              <Flex $flexDirection="column">
                 <FooterSectionLinks
                   title={footerSections[3]?.title}
                   links={footerSections[3]?.links}
