@@ -1,9 +1,9 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
 
-import { menuContext } from "../../context/Menu/MenuProvider";
+import { useMenuContext } from "../../context/Menu/MenuProvider";
 import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
@@ -54,7 +54,7 @@ const MenuHeader = styled(Flex)`
 `;
 
 const Menu: FC = ({ children }) => {
-  const { toggleMenu, open } = useContext(menuContext);
+  const { toggleMenu, open } = useMenuContext();
   const theme = useTheme();
   const { menu } = theme;
   const { background, color, width } = menu;

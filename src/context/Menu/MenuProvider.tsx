@@ -1,26 +1,35 @@
-import { createContext, FC, useState } from "react";
+import { createContext, useContext, FC, useState } from "react";
 
 type MenuContext = {
   open: boolean;
   toggleMenu: () => void;
 };
 
-export const menuContext = createContext<MenuContext>({
-  open: false,
-  toggleMenu: () => null,
-});
+const menuContext = createContext<MenuContext | null>(null);
 
 export const MenuProvider: FC = ({ children }) => {
   const [open, setOpen] = useState(false);
-  const toggleMenu = () => {
-    setOpen(!open);
+
+  const menuValue: MenuContext = {
+    open,
+    toggleMenu: () => {
+      setOpen(!open);
+    },
   };
 
   return (
-    <menuContext.Provider value={{ open, toggleMenu }}>
-      {children}
-    </menuContext.Provider>
+    <menuContext.Provider value={menuValue}>{children}</menuContext.Provider>
   );
+};
+
+export const useMenuContext = () => {
+  const menuValue = useContext(menuContext);
+
+  if (!menuValue) {
+    throw new Error("useMenuContext() called outside of menu provider");
+  }
+
+  return menuValue;
 };
 
 export default MenuProvider;

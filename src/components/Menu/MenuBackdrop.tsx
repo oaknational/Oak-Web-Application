@@ -1,8 +1,8 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 import { usePreventScroll } from "react-aria";
 
-import { menuContext } from "../../context/Menu/MenuProvider";
+import { useMenuContext } from "../../context/Menu/MenuProvider";
 import { OakColorName } from "../../styles/theme";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 
@@ -38,7 +38,7 @@ const Backdrop = styled.button<BackdropProps & TransitionProps>`
 `;
 
 const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
-  const { toggleMenu } = useContext(menuContext);
+  const { toggleMenu } = useMenuContext();
   usePreventScroll();
   return (
     <Backdrop

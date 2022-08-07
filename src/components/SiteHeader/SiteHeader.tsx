@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import Link from "next/link";
 import styled, { useTheme } from "styled-components";
 
@@ -8,7 +8,7 @@ import P, { Span } from "../Typography";
 import Icon from "../Icon";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
-import { menuContext } from "../../context/Menu/MenuProvider";
+import { useMenuContext } from "../../context/Menu/MenuProvider";
 import { Menu } from "../Menu";
 
 const HomeLink = styled.a<FlexProps>`
@@ -18,7 +18,7 @@ const HomeLink = styled.a<FlexProps>`
 const SiteHeader: FC = () => {
   const theme = useTheme();
 
-  const { toggleMenu } = useContext(menuContext);
+  const { toggleMenu } = useMenuContext();
 
   return (
     <FixedHeader $background={theme.header.background}>
