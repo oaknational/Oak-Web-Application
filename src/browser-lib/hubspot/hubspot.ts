@@ -5,6 +5,8 @@
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 
+import startHubspot, { HubspotConfig } from "./startHubspot";
+
 type HubspotFn = { push: (arg: unknown) => void } | unknown[];
 type Hubspot = {
   _hsq?: HubspotFn;
@@ -27,7 +29,10 @@ const getHubspot = (): Hubspot => {
   };
 };
 
-const hubspot: AnalyticsService = {
+const hubspot: AnalyticsService<HubspotConfig> = {
+  init: (config) => {
+    startHubspot(config);
+  },
   identify: (userId, properties) => {
     const { _hsq } = getHubspot();
     if (typeof _hsq === "undefined") {

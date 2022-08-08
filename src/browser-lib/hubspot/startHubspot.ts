@@ -20,7 +20,7 @@ function scriptAlreadyLoaded(domain: string) {
   );
 }
 
-type HubspotConfig = {
+export type HubspotConfig = {
   portalId: string;
   scriptDomain: string;
 };

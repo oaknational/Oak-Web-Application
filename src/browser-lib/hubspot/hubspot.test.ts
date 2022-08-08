@@ -9,6 +9,10 @@ describe("hubspot.ts", () => {
     window._hsp = { push: pPush };
     jest.clearAllMocks();
   });
+  afterEach(() => {
+    window._hsq = undefined;
+    window._hsp = undefined;
+  });
   test("identify", () => {
     hubspot.identify("123", { email: "abc" });
     expect(qPush).toHaveBeenCalledWith([
@@ -30,13 +34,17 @@ describe("hubspot.ts", () => {
   test("optIn", () => {
     hubspot.optIn();
     expect(qPush).toHaveBeenCalledWith(["doNotTrack", { track: true }]);
-    expect(pPush).toHaveBeenCalledWith(["revokeCookieConsent"]);
   });
   test("optOut", () => {
     hubspot.optOut();
     expect(qPush).toHaveBeenCalledWith(["doNotTrack"]);
+    expect(pPush).toHaveBeenCalledWith(["revokeCookieConsent"]);
   });
-  test("loaded", () => {
+  test("loaded [true]", () => {
+    expect(hubspot.loaded()).toBe(true);
+  });
+  test("loaded [false]", () => {
+    window._hsq = [];
     expect(hubspot.loaded()).toBe(false);
   });
 });

@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import config from "../../config";
 
-import startHubspot from "./startHubspot";
 import hubspot from "./hubspot";
 
 const portalId = config.get("hubspotPortalId");
@@ -14,10 +13,13 @@ type UseHubspotProps = {
 const useHubspot = ({ enabled }: UseHubspotProps) => {
   useEffect(() => {
     if (enabled) {
-      startHubspot({
+      hubspot.init({
         portalId,
         scriptDomain,
       });
+      hubspot.optIn();
+    } else {
+      hubspot.optOut();
     }
   }, [enabled]);
 

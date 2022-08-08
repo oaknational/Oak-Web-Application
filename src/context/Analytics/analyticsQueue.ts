@@ -2,32 +2,38 @@ import { useCallback, useEffect, useState } from "react";
 
 import useStableCallback from "../../hooks/useStableCallback";
 
-import { AnalyticsService, IdentifyFn } from "./AnalyticsProvider";
+import {
+  AnalyticsService,
+  EventName,
+  EventProperties,
+  IdentifyFn,
+  IdentifyProperties,
+  UserId,
+} from "./AnalyticsProvider";
 
 type QueuedEvent =
   | {
       type: "track";
-      args: [string, unknown];
+      args: [EventName, EventProperties];
     }
   | {
       type: "page";
-      args: [string, unknown];
     }
   | {
       type: "identify";
-      args: [string, unknown];
+      args: [UserId, IdentifyProperties];
     };
 type Queue = QueuedEvent[];
 export const useQueuedService = (
-  service: AnalyticsService
-): AnalyticsService => {
+  service: AnalyticsService<unknown>
+): AnalyticsService<unknown> => {
   const sendEvent = (event: QueuedEvent) => {
     switch (event.type) {
       case "track":
         return service.track(...event.args);
 
       case "page":
-        return service.page(...event.args);
+        return service.page();
 
       case "identify":
         return service.identify(...event.args);
@@ -40,17 +46,35 @@ export const useQueuedService = (
     }
   };
 
-  const { enabled } = service;
+  const {
+    enabled,
+    // loaded
+  } = service;
   const [queue, setQueue] = useState<Queue>([]);
+  // const [isLoaded, setIsLoaded] = useState(loaded());
+  // const [time, setTime] = useState(Date.now())
 
-  const sendQueuedEvents = useStableCallback(() => {
-    while (queue.length) {
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     setIsLoaded(loaded());
+  //   }, 1000);
+
+  //   return clearTimeout(timeoutId);
+  // });
+
+  const processQueue = (_queue: Queue) => {
+    while (_queue.length) {
       const [nextItem, ...otherItems] = queue;
       if (nextItem) {
         sendEvent(nextItem);
       }
       setQueue(otherItems);
     }
+  };
+
+  const sendQueuedEvents = useStableCallback(() => {
+    processQueue(queue);
+    clearQueue();
   });
 
   useEffect(() => {
@@ -66,10 +90,10 @@ export const useQueuedService = (
   const queueEvent = (event: QueuedEvent) => {
     queue.push(event);
   };
-  const identify: IdentifyFn = (userId: string) => {
+  const identify: IdentifyFn = (userId, properties) => {
     if (service.enabled) {
       sendQueuedEvents();
-      return service.identify(userId);
+      return service.identify(userId, properties);
     } else {
       queueEvent;
     }

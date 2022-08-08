@@ -3,12 +3,14 @@
  */
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
+import { HubspotConfig } from "../hubspot/startHubspot";
+import { PosthogConfig } from "../posthog/posthog";
 
 import { CustomDestination } from "./Avo";
 
 type AnalyticsServices = {
-  hubspot: AnalyticsService;
-  posthog: AnalyticsService;
+  hubspot: AnalyticsService<HubspotConfig>;
+  posthog: AnalyticsService<PosthogConfig>;
 };
 const getAnalyticsSDKBridge = ({
   hubspot,

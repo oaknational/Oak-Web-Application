@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import posthogJs from "posthog-js";
 
 import config from "../../config";
 import errorReporter from "../../common-lib/error-reporter";
@@ -7,6 +6,9 @@ import OakError from "../../errors/OakError";
 import { getOakGlobals, setOakGlobals } from "../oak-globals/oakGlobals";
 
 import posthog from "./posthog";
+
+const apiHost = config.get("posthogApiHost");
+const apiKey = config.get("posthogApiKey");
 
 const reportError = errorReporter("usePosthog");
 
@@ -44,10 +46,13 @@ const usePosthog = ({ enabled }: UsePosthogProps) => {
    */
   useEffect(() => {
     if (enabled) {
-      posthogJs.init(config.get("posthogApiKey"), {
-        api_host: config.get("posthogApiHost"),
-        debug: true,
+      posthog.init({
+        apiHost,
+        apiKey,
       });
+      posthog.optIn();
+    } else {
+      posthog.optOut();
     }
   }, [enabled]);
 

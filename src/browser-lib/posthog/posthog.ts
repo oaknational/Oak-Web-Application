@@ -1,26 +1,36 @@
-import posthog from "posthog-js";
+import posthogJs from "posthog-js";
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 
-const Posthog: AnalyticsService = {
+export type PosthogConfig = {
+  apiKey: string;
+  apiHost: string;
+};
+const posthog: AnalyticsService<PosthogConfig> = {
+  init: ({ apiKey, apiHost }) => {
+    posthogJs.init(apiKey, {
+      api_host: apiHost,
+      debug: true,
+    });
+  },
   identify: (userId, properties) => {
     /**
      * @todo: do we want to let posthog generate the id for us?
      */
-    posthog.identify(userId, properties);
+    posthogJs.identify(userId, properties);
   },
   page: () => {
-    posthog.capture("$pageview");
+    posthogJs.capture("$pageview");
   },
   track: (name, properties) => {
-    posthog.capture(name, properties);
+    posthogJs.capture(name, properties);
   },
   optIn: () => {
-    posthog.opt_in_capturing();
+    posthogJs.opt_in_capturing();
   },
   optOut: () => {
     // Causing posthog to throw exception
-    // posthog.opt_out_capturing();
+    // posthogJs.opt_out_capturing();
   },
   loaded: () => {
     /**
@@ -30,4 +40,4 @@ const Posthog: AnalyticsService = {
   },
 };
 
-export default Posthog;
+export default posthog;
