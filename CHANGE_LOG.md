@@ -1,3 +1,23 @@
+## [0.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.0...v0.58.1) (2022-08-05)
+
+
+### Bug Fixes
+
+* use semi-colon between lexend font-weights, fixes [#423](https://github.com/oaknational/Oak-Web-Application/issues/423) ([2f7d24c](https://github.com/oaknational/Oak-Web-Application/commit/2f7d24c1106db4e781a96c94b9649b55587cc0ad))
+
+# [0.58.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.57.0...v0.58.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* **cms:** add missing stepsCTA to planning query ([b73ccbb](https://github.com/oaknational/Oak-Web-Application/commit/b73ccbb43be70eb2a8d68130c0fbf10c81a7fb43))
+
+
+### Features
+
+* **cms:** add CMSImage component ([27e0a64](https://github.com/oaknational/Oak-Web-Application/commit/27e0a64ee0d32a554b03d9bd540f3e79d2c485c2))
+* **cms:** add schema support for CMS images and CTAs ([748ba47](https://github.com/oaknational/Oak-Web-Application/commit/748ba47b23454bae3e3d1c42ed6391cf4e9ce569))
+
 # [0.57.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.56.0...v0.57.0) (2022-08-04)
 
 

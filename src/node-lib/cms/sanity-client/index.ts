@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { CMSClient } from "..";
+import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import { webinarPreviewSchema, webinarSchema } from "./schemas";

@@ -21,6 +21,57 @@ export type Scalars = {
   JSON: any;
 };
 
+export type AboutCorePage = Document & {
+  __typename?: 'AboutCorePage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  heading?: Maybe<Scalars['String']>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
+  summaryRaw?: Maybe<Scalars['JSON']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type AboutCorePageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  heading?: InputMaybe<StringFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type AboutCorePageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
 export type Block = {
   __typename?: 'Block';
   _key?: Maybe<Scalars['String']>;
@@ -28,6 +79,47 @@ export type Block = {
   children?: Maybe<Array<Maybe<Span>>>;
   list?: Maybe<Scalars['String']>;
   style?: Maybe<Scalars['String']>;
+};
+
+export type BlogWebinarCategory = Document & {
+  __typename?: 'BlogWebinarCategory';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  slug?: Maybe<Slug>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type BlogWebinarCategoryFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type BlogWebinarCategorySorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  slug?: InputMaybe<SlugSorting>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type BooleanFilter = {
@@ -42,6 +134,7 @@ export type Card = {
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
   bodyRaw?: Maybe<Scalars['JSON']>;
+  cta?: Maybe<Cta>;
   image?: Maybe<Image>;
   title?: Maybe<Scalars['String']>;
 };
@@ -49,6 +142,7 @@ export type Card = {
 export type CardFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<CtaFilter>;
   image?: InputMaybe<ImageFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -56,6 +150,7 @@ export type CardFilter = {
 export type CardSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<CtaSorting>;
   image?: InputMaybe<ImageSorting>;
   title?: InputMaybe<SortOrder>;
 };
@@ -64,19 +159,26 @@ export type Cta = {
   __typename?: 'Cta';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
+  external?: Maybe<Scalars['String']>;
+  internal?: Maybe<NewsPostOrPlanningCorePageOrPolicyPageOrWebinar>;
   label?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
 };
 
 export type CtaFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  external?: InputMaybe<StringFilter>;
   label?: InputMaybe<StringFilter>;
+  linkType?: InputMaybe<StringFilter>;
 };
 
 export type CtaSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  external?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
+  linkType?: InputMaybe<SortOrder>;
 };
 
 export type DateFilter = {
@@ -199,6 +301,83 @@ export type GeopointSorting = {
   lng?: InputMaybe<SortOrder>;
 };
 
+export type Homepage = Document & {
+  __typename?: 'Homepage';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  heading?: Maybe<Scalars['String']>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
+  sidebarCard1?: Maybe<Card>;
+  sidebarCard2?: Maybe<Card>;
+  sidebarForm?: Maybe<HomepageSidebarForm>;
+  summaryRaw?: Maybe<Scalars['JSON']>;
+};
+
+export type HomepageFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  heading?: InputMaybe<StringFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
+  sidebarCard1?: InputMaybe<CardFilter>;
+  sidebarCard2?: InputMaybe<CardFilter>;
+  sidebarForm?: InputMaybe<HomepageSidebarFormFilter>;
+};
+
+export type HomepageSidebarForm = {
+  __typename?: 'HomepageSidebarForm';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  bodyRaw?: Maybe<Scalars['JSON']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type HomepageSidebarFormFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type HomepageSidebarFormSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type HomepageSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
+  sidebarCard1?: InputMaybe<CardSorting>;
+  sidebarCard2?: InputMaybe<CardSorting>;
+  sidebarForm?: InputMaybe<HomepageSidebarFormSorting>;
+};
+
 export type IdFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['ID']>;
@@ -247,6 +426,29 @@ export type IntFilter = {
   lte?: InputMaybe<Scalars['Int']>;
   /** Checks if the value is not equal to the given input. */
   neq?: InputMaybe<Scalars['Int']>;
+};
+
+export type Link = {
+  __typename?: 'Link';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  external?: Maybe<Scalars['String']>;
+  internal?: Maybe<NewsPostOrPlanningCorePageOrPolicyPageOrWebinar>;
+  linkType?: Maybe<Scalars['String']>;
+};
+
+export type LinkFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  external?: InputMaybe<StringFilter>;
+  linkType?: InputMaybe<StringFilter>;
+};
+
+export type LinkSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  external?: InputMaybe<SortOrder>;
+  linkType?: InputMaybe<SortOrder>;
 };
 
 export type NewsListingPage = Document & {
@@ -303,8 +505,12 @@ export type NewsPost = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']>;
   author?: Maybe<TeamMember>;
+  category?: Maybe<BlogWebinarCategory>;
   date?: Maybe<Scalars['Date']>;
   mainImage?: Maybe<Image>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
   slug?: Maybe<Slug>;
   title?: Maybe<Scalars['String']>;
 };
@@ -319,11 +525,17 @@ export type NewsPostFilter = {
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
   author?: InputMaybe<TeamMemberFilter>;
+  category?: InputMaybe<BlogWebinarCategoryFilter>;
   date?: InputMaybe<DateFilter>;
   mainImage?: InputMaybe<ImageFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
+
+export type NewsPostOrPlanningCorePageOrPolicyPageOrWebinar = NewsPost | PlanningCorePage | PolicyPage | Webinar;
 
 export type NewsPostSorting = {
   _createdAt?: InputMaybe<SortOrder>;
@@ -334,47 +546,9 @@ export type NewsPostSorting = {
   _updatedAt?: InputMaybe<SortOrder>;
   date?: InputMaybe<SortOrder>;
   mainImage?: InputMaybe<ImageSorting>;
-  slug?: InputMaybe<SlugSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type NewsPostTag = Document & {
-  __typename?: 'NewsPostTag';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>;
-  _key?: Maybe<Scalars['String']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>;
-  slug?: Maybe<Slug>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type NewsPostTagFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  slug?: InputMaybe<SlugFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type NewsPostTagSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SlugSorting>;
   title?: InputMaybe<SortOrder>;
 };
@@ -398,6 +572,9 @@ export type PlanningCorePage = Document & {
   learnMoreHeading?: Maybe<Scalars['String']>;
   lessonElements?: Maybe<PlanningPageLessonElements>;
   lessonElementsCTA?: Maybe<Cta>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
   steps?: Maybe<PlanningPageSteps>;
   stepsCTA?: Maybe<Cta>;
   stepsHeading?: Maybe<Scalars['String']>;
@@ -420,6 +597,9 @@ export type PlanningCorePageFilter = {
   learnMoreHeading?: InputMaybe<StringFilter>;
   lessonElements?: InputMaybe<PlanningPageLessonElementsFilter>;
   lessonElementsCTA?: InputMaybe<CtaFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
   steps?: InputMaybe<PlanningPageStepsFilter>;
   stepsCTA?: InputMaybe<CtaFilter>;
   stepsHeading?: InputMaybe<StringFilter>;
@@ -439,6 +619,9 @@ export type PlanningCorePageSorting = {
   learnMoreHeading?: InputMaybe<SortOrder>;
   lessonElements?: InputMaybe<PlanningPageLessonElementsSorting>;
   lessonElementsCTA?: InputMaybe<CtaSorting>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
   steps?: InputMaybe<PlanningPageStepsSorting>;
   stepsCTA?: InputMaybe<CtaSorting>;
   stepsHeading?: InputMaybe<SortOrder>;
@@ -520,6 +703,9 @@ export type PolicyPage = Document & {
   bodyRaw?: Maybe<Scalars['JSON']>;
   /** When in draft mode this will be the last edit date, or when published the date at which it was published. Scheduled publishes will update to reflect the date at which it goes live. */
   fake_updatedAt?: Maybe<Scalars['String']>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
   slug?: Maybe<Slug>;
   title?: Maybe<Scalars['String']>;
 };
@@ -534,6 +720,9 @@ export type PolicyPageFilter = {
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
   fake_updatedAt?: InputMaybe<StringFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -546,16 +735,21 @@ export type PolicyPageSorting = {
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
   fake_updatedAt?: InputMaybe<SortOrder>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SlugSorting>;
   title?: InputMaybe<SortOrder>;
 };
 
 export type RootQuery = {
   __typename?: 'RootQuery';
+  AboutCorePage?: Maybe<AboutCorePage>;
+  BlogWebinarCategory?: Maybe<BlogWebinarCategory>;
   Document?: Maybe<Document>;
+  Homepage?: Maybe<Homepage>;
   NewsListingPage?: Maybe<NewsListingPage>;
   NewsPost?: Maybe<NewsPost>;
-  NewsPostTag?: Maybe<NewsPostTag>;
   PlanningCorePage?: Maybe<PlanningCorePage>;
   PolicyPage?: Maybe<PolicyPage>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
@@ -563,11 +757,12 @@ export type RootQuery = {
   TeamMember?: Maybe<TeamMember>;
   Webinar?: Maybe<Webinar>;
   WebinarListingPage?: Maybe<WebinarListingPage>;
-  WebinarTag?: Maybe<WebinarTag>;
+  allAboutCorePage: Array<AboutCorePage>;
+  allBlogWebinarCategory: Array<BlogWebinarCategory>;
   allDocument: Array<Document>;
+  allHomepage: Array<Homepage>;
   allNewsListingPage: Array<NewsListingPage>;
   allNewsPost: Array<NewsPost>;
-  allNewsPostTag: Array<NewsPostTag>;
   allPlanningCorePage: Array<PlanningCorePage>;
   allPolicyPage: Array<PolicyPage>;
   allSanityFileAsset: Array<SanityFileAsset>;
@@ -575,11 +770,25 @@ export type RootQuery = {
   allTeamMember: Array<TeamMember>;
   allWebinar: Array<Webinar>;
   allWebinarListingPage: Array<WebinarListingPage>;
-  allWebinarTag: Array<WebinarTag>;
+};
+
+
+export type RootQueryAboutCorePageArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryBlogWebinarCategoryArgs = {
+  id: Scalars['ID'];
 };
 
 
 export type RootQueryDocumentArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryHomepageArgs = {
   id: Scalars['ID'];
 };
 
@@ -590,11 +799,6 @@ export type RootQueryNewsListingPageArgs = {
 
 
 export type RootQueryNewsPostArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type RootQueryNewsPostTagArgs = {
   id: Scalars['ID'];
 };
 
@@ -634,8 +838,19 @@ export type RootQueryWebinarListingPageArgs = {
 };
 
 
-export type RootQueryWebinarTagArgs = {
-  id: Scalars['ID'];
+export type RootQueryAllAboutCorePageArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<AboutCorePageSorting>>;
+  where?: InputMaybe<AboutCorePageFilter>;
+};
+
+
+export type RootQueryAllBlogWebinarCategoryArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<BlogWebinarCategorySorting>>;
+  where?: InputMaybe<BlogWebinarCategoryFilter>;
 };
 
 
@@ -644,6 +859,14 @@ export type RootQueryAllDocumentArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<DocumentSorting>>;
   where?: InputMaybe<DocumentFilter>;
+};
+
+
+export type RootQueryAllHomepageArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<HomepageSorting>>;
+  where?: InputMaybe<HomepageFilter>;
 };
 
 
@@ -660,14 +883,6 @@ export type RootQueryAllNewsPostArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<NewsPostSorting>>;
   where?: InputMaybe<NewsPostFilter>;
-};
-
-
-export type RootQueryAllNewsPostTagArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  sort?: InputMaybe<Array<NewsPostTagSorting>>;
-  where?: InputMaybe<NewsPostTagFilter>;
 };
 
 
@@ -724,14 +939,6 @@ export type RootQueryAllWebinarListingPageArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<WebinarListingPageSorting>>;
   where?: InputMaybe<WebinarListingPageFilter>;
-};
-
-
-export type RootQueryAllWebinarTagArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  sort?: InputMaybe<Array<WebinarTagSorting>>;
-  where?: InputMaybe<WebinarTagFilter>;
 };
 
 export type SanityAssetSourceData = {
@@ -1207,19 +1414,54 @@ export type TextAndMedia = {
   __typename?: 'TextAndMedia';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
+  alignMedia?: Maybe<Scalars['String']>;
   bodyRaw?: Maybe<Scalars['JSON']>;
+  cta?: Maybe<Cta>;
+  image?: Maybe<Image>;
+  mediaType?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
 
 export type TextAndMediaFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  alignMedia?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<CtaFilter>;
+  image?: InputMaybe<ImageFilter>;
+  mediaType?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
 export type TextAndMediaSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  alignMedia?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<CtaSorting>;
+  image?: InputMaybe<ImageSorting>;
+  mediaType?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type TextBlock = {
+  __typename?: 'TextBlock';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  bodyRaw?: Maybe<Scalars['JSON']>;
+  cta?: Maybe<Cta>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type TextBlockFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<CtaFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type TextBlockSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<CtaSorting>;
   title?: InputMaybe<SortOrder>;
 };
 
@@ -1236,11 +1478,14 @@ export type Webinar = Document & {
   _type?: Maybe<Scalars['String']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']>;
+  category?: Maybe<BlogWebinarCategory>;
   date?: Maybe<Scalars['DateTime']>;
   hosts?: Maybe<Array<Maybe<TeamMember>>>;
+  seoCanonicalURL?: Maybe<Scalars['String']>;
+  seoDescription?: Maybe<Scalars['String']>;
+  seoTitle?: Maybe<Scalars['String']>;
   slug?: Maybe<Slug>;
   summaryRaw?: Maybe<Scalars['JSON']>;
-  tags?: Maybe<Array<Maybe<WebinarTag>>>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -1253,7 +1498,11 @@ export type WebinarFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
+  category?: InputMaybe<BlogWebinarCategoryFilter>;
   date?: InputMaybe<DatetimeFilter>;
+  seoCanonicalURL?: InputMaybe<StringFilter>;
+  seoDescription?: InputMaybe<StringFilter>;
+  seoTitle?: InputMaybe<StringFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -1304,47 +1553,9 @@ export type WebinarSorting = {
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
   date?: InputMaybe<SortOrder>;
-  slug?: InputMaybe<SlugSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type WebinarTag = Document & {
-  __typename?: 'WebinarTag';
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>;
-  _key?: Maybe<Scalars['String']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>;
-  slug?: Maybe<Slug>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type WebinarTagFilter = {
-  /** Apply filters on document level */
-  _?: InputMaybe<Sanity_DocumentFilter>;
-  _createdAt?: InputMaybe<DatetimeFilter>;
-  _id?: InputMaybe<IdFilter>;
-  _key?: InputMaybe<StringFilter>;
-  _rev?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  _updatedAt?: InputMaybe<DatetimeFilter>;
-  slug?: InputMaybe<SlugFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type WebinarTagSorting = {
-  _createdAt?: InputMaybe<SortOrder>;
-  _id?: InputMaybe<SortOrder>;
-  _key?: InputMaybe<SortOrder>;
-  _rev?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  _updatedAt?: InputMaybe<SortOrder>;
+  seoCanonicalURL?: InputMaybe<SortOrder>;
+  seoDescription?: InputMaybe<SortOrder>;
+  seoTitle?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SlugSorting>;
   title?: InputMaybe<SortOrder>;
 };
@@ -1359,16 +1570,18 @@ export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ _
 
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null };
 
-export type CtaFragment = { __typename?: 'Cta', label?: string | null };
+export type CtaFragment = { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'PolicyPage' } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
+
+export type ImageFragment = { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null };
 
 export type PlanningCorePageQueryVariables = Exact<{
   isDraft?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, bodyPortableText?: any | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, bodyPortableText?: any | null } | null }> };
+export type PlanningCorePageQuery = { __typename?: 'RootQuery', allPlanningCorePage: Array<{ __typename?: 'PlanningCorePage', title?: string | null, heading?: string | null, stepsHeading?: string | null, learnMoreHeading?: string | null, id?: string | null, summaryPortableText?: any | null, lessonElements?: { __typename?: 'PlanningPageLessonElements', _type?: string | null, introQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, video?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slides?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, worksheet?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, exitQuiz?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, lessonElementsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'PolicyPage' } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null } | null, steps?: { __typename?: 'PlanningPageSteps', step1?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step2?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step3?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, step4?: { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null } | null, stepsCTA?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'NewsPost', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', type?: string | null } | { __typename?: 'PolicyPage' } | { __typename?: 'Webinar', type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null } | null, learnMoreBlock1?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null, learnMoreBlock2?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null }> };
 
-export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, bodyPortableText?: any | null };
+export type TextAndMediaFragment = { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
 export type WebinarBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
@@ -1394,14 +1607,46 @@ export const CardFragmentDoc = gql`
 export const CtaFragmentDoc = gql`
     fragment CTA on Cta {
   label
+  linkType
+  external
+  internal {
+    ... on Webinar {
+      type: _type
+      slug {
+        current
+      }
+    }
+    ... on NewsPost {
+      type: _type
+      slug {
+        current
+      }
+    }
+    ... on PlanningCorePage {
+      type: _type
+    }
+  }
+}
+    `;
+export const ImageFragmentDoc = gql`
+    fragment Image on Image {
+  asset {
+    _id
+    url
+  }
 }
     `;
 export const TextAndMediaFragmentDoc = gql`
     fragment TextAndMedia on TextAndMedia {
   title
   bodyPortableText: bodyRaw
+  mediaType
+  alignMedia
+  image {
+    ...Image
+  }
 }
-    `;
+    ${ImageFragmentDoc}`;
 export const WebinarPreviewFieldsFragmentDoc = gql`
     fragment WebinarPreviewFields on Webinar {
   id: _id
@@ -1463,6 +1708,9 @@ export const PlanningCorePageDocument = gql`
       step4 {
         ...Card
       }
+    }
+    stepsCTA {
+      ...CTA
     }
     learnMoreHeading
     learnMoreBlock1 {

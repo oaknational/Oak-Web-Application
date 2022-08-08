@@ -1,6 +1,6 @@
 {
   "name": "oak-web-application",
-  "version": "0.57.0",
+  "version": "0.58.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -56,10 +56,12 @@
     "@bugsnag/plugin-react": "^7.16.2",
     "@hookform/resolvers": "^2.9.1",
     "@portabletext/react": "^1.0.6",
+    "@sanity/image-url": "^1.0.1",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
     "gleap": "6.7.5",
     "next": "^12.1.6",
+    "next-sanity-image": "^3.2.1",
     "next-seo": "^5.4.0",
     "node-fetch": "^2.6.7",
     "posthog-js": "^1.25.1",
