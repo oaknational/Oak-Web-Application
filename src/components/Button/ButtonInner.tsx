@@ -2,8 +2,8 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import Icon, { IconName } from "../Icon";
+import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 
-import ButtonBorders from "./ButtonBorders";
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
 import {
@@ -40,7 +40,12 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     <>
       {icon && (
         <ButtonIconWrapper iconPosition={iconPosition}>
-          <Icon name={icon} size={iconSize} $background={iconBackground } />
+          <Icon
+            variant="brush"
+            name={icon}
+            size={iconSize}
+            $background={iconBackground}
+          />
         </ButtonIconWrapper>
       )}
       <ButtonLabel>{label}</ButtonLabel>

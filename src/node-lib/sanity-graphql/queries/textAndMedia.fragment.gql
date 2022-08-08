@@ -1,0 +1,9 @@
+fragment TextAndMedia on TextAndMedia {
+  title
+  bodyPortableText: bodyRaw
+  mediaType
+  alignMedia
+  image {
+    ...Image
+  }
+}

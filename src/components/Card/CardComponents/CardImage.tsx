@@ -1,20 +1,29 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import NextImage, { StaticImageData } from "next/image";
 
-import AspectRatio from "../../AspectRatio/AspectRatio";
+import AspectRatio, { AspectRatios } from "../../AspectRatio";
+
+const DEFAULT_ASPECT_RATIO: AspectRatios = ["3:2", "16:9"];
 
 export type CardImageProps = {
   imageSrc: string | StaticImageData;
   alt: string;
+  position?: CSSProperties["objectPosition"];
+  aspectRatio?: AspectRatios;
 };
 
-const CardImage: FC<CardImageProps> = ({ imageSrc, alt }) => {
+const CardImage: FC<CardImageProps> = ({
+  imageSrc,
+  alt,
+  position = "center center",
+  aspectRatio = DEFAULT_ASPECT_RATIO,
+}) => {
   return (
-    <AspectRatio ratio={["3:2", "16:9"]}>
+    <AspectRatio ratio={aspectRatio}>
       <NextImage
         layout="fill"
-        objectFit="cover"
-        objectPosition="center center"
+        objectFit="contain"
+        objectPosition={position}
         src={imageSrc}
         alt={alt}
       />

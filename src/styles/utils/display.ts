@@ -1,9 +1,11 @@
 import { CSSProperties } from "react";
 import { css } from "styled-components";
 
-import responsive from "./responsive";
+import responsive, { ResponsiveValues } from "./responsive";
 
-export type DisplayProps = { $display?: CSSProperties["display"] };
+export type DisplayProps = {
+  $display?: ResponsiveValues<CSSProperties["display"]>;
+};
 const display = css<DisplayProps>`
   ${responsive("display", (props) => props.$display)}
 `;

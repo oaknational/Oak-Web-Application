@@ -11,7 +11,11 @@ import { Heading } from "../../components/Typography";
 const Beta: FC = () => {
   const user = useUser();
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      headerVariant="app"
+      $background={"grey1"}
+    >
       <Grid $cg={16} $rg={[16, 48, 80]}>
         <GridArea $colSpan={[12, 12, 8]}>
           <Heading

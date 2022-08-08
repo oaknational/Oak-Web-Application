@@ -6,12 +6,12 @@ import {
 } from "next";
 
 import { CourseJsonLd } from "../../../browser-lib/seo/getJsonLd";
-import Seo from "../../../browser-lib/seo/Seo";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import Flex from "../../../components/Flex";
 import Layout from "../../../components/Layout/Layout";
 import LessonHeader from "../../../components/LessonHeader/LessonHeader";
+import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import { LessonId } from "../../../context/Bookmarks";
 import graphqlApi from "../../../node-lib/graphql";
 
@@ -22,12 +22,6 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 
   return (
     <>
-      <Seo
-        title={`${lesson.title} lesson | Oak National Academy`}
-        description={
-          "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions."
-        }
-      />
       <CourseJsonLd
         courseName={lesson.title}
         description={"lesson.description"}
@@ -39,23 +33,26 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           description:
             "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions.",
         }}
+        headerVariant="app"
         $background="grey1"
       >
-        <header>
-          <Flex $pv={40}>
-            <Breadcrumbs
-              breadcrumbs={[
-                { href: "/", label: "[key-stage]" },
-                { href: "/", label: "Subjects" },
-                { href: "/", label: "[subject-name]" },
-                { href: "/", label: "[unit-name]" },
-              ]}
-            />
-          </Flex>
-          <BrowserWidthBar $pv={40} $background="white">
-            <LessonHeader {...lesson} />
-          </BrowserWidthBar>
-        </header>
+        <MaxWidth>
+          <header>
+            <Flex $pv={40}>
+              <Breadcrumbs
+                breadcrumbs={[
+                  { href: "/", label: "[key-stage]" },
+                  { href: "/", label: "Subjects" },
+                  { href: "/", label: "[subject-name]" },
+                  { href: "/", label: "[unit-name]" },
+                ]}
+              />
+            </Flex>
+            <BrowserWidthBar $pv={40} $background="white">
+              <LessonHeader {...lesson} />
+            </BrowserWidthBar>
+          </header>
+        </MaxWidth>
       </Layout>
     </>
   );

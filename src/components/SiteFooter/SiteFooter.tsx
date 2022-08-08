@@ -16,7 +16,6 @@ const StyledSiteFooter = styled.footer`
   width: 100%;
   background: ${getColorByName("grey3")};
   margin: auto;
-  margin-top: 80px;
 `;
 
 type SiteFooterProps = {
@@ -38,7 +37,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
         $maxWidth={1200}
         $ma={"auto"}
       >
-        <Typography $fontSize={12} $lineHeight={20} $color="grey8">
+        <Typography $fontSize={12} $color="grey8">
           <nav>
             <Grid>
               {footerSections.map((footerSection) => (

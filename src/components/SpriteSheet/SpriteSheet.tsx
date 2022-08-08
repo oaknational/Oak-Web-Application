@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import { brushSymbols } from "../BrushBorders/BrushBorders";
-import { buttonSymbols } from "../Button/ButtonBorders/ButtonBorders";
 import { iconSymbols, ICON_NAMES } from "../Icon/Icon";
 
+import { svgSymbols as boxBorderSymbols } from "./BrushSvgs/BoxBorders";
+import { svgSymbols as buttonBorderSymbols } from "./BrushSvgs/ButtonBorders";
+import IconBackground from "./BrushSvgs/IconBackground";
 import getSvgId from "./getSvgId";
 
 const SpriteSheet: FC = () => {
@@ -14,12 +15,13 @@ const SpriteSheet: FC = () => {
 
         return <IconSymbol id={getSvgId({ name })} />;
       })}
-      {Object.values(brushSymbols).map((Symbol) => (
+      {Object.values(boxBorderSymbols).map((Symbol) => (
         <Symbol />
       ))}
-      {Object.values(buttonSymbols).map((Symbol) => (
+      {Object.values(buttonBorderSymbols).map((Symbol) => (
         <Symbol />
       ))}
+      <IconBackground id={getSvgId({ name: "icon-brush-background" })} />
     </svg>
   );
 };
