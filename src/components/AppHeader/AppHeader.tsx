@@ -1,17 +1,10 @@
 import { FC } from "react";
 import Link from "next/link";
-import styled from "styled-components";
 
 import SearchForm from "../SearchForm";
-import Flex, { FlexProps } from "../Flex";
-import Icon from "../Icon";
-import flex from "../../styles/utils/flex";
-import { Span } from "../Typography";
+import Flex from "../Flex";
 import FixedHeader from "../FixedHeader";
-
-const HomeLink = styled.a<FlexProps>`
-  ${flex}
-`;
+import Logo from "../Logo";
 
 /**
  * Header for logging in and using search -
@@ -23,17 +16,11 @@ const AppHeader: FC = () => {
     <FixedHeader $background="grey3">
       <Flex $mr={40} $justifyContent={"space-between"}>
         <Link href={"/"} passHref>
-          <HomeLink $alignItems="center">
-            <Icon name="Home" size={32} $mr={8} />
-            <Span
-              $fontFamily="heading"
-              $fontWeight={600}
-              $fontSize={20}
-              $lineHeight={1}
-            >
-              Oak
-            </Span>
-          </HomeLink>
+          <Link href={"/"}>
+            <a>
+              <Logo title={"Oak National Academy"} />
+            </a>
+          </Link>
         </Link>
         <SearchForm />
       </Flex>

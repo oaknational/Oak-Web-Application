@@ -13,7 +13,6 @@ import Download from "./Download.icon";
 import Share from "./Share.icon";
 import Star from "./Star.icon";
 import Search from "./Search.icon";
-import Home from "./Home.icon";
 import Newspaper from "./Newspaper.icon";
 import Tick from "./Tick.icon";
 import ArrowRight from "./ArrowRight.icon";
@@ -37,7 +36,6 @@ export const ICON_NAMES = [
   "Share",
   "Star",
   "Search",
-  "Home",
   "Newspaper",
   "Tick",
   "ArrowRight",
@@ -62,7 +60,6 @@ export const icons: Record<IconName, FC> = {
   Share,
   Star,
   Search,
-  Home,
   Newspaper,
   Tick,
   ArrowRight,

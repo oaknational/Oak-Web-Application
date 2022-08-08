@@ -27,7 +27,7 @@ SiteFooterWithNotifcation.args = {
   footerNotification: (
     <ButtonAsLink
       label={"Join new Oak"}
-      icon={"Home"}
+      icon={"Newspaper"}
       aria-label={"Join new oak"}
       href={"/beta/onboarding"}
       variant="minimal"
