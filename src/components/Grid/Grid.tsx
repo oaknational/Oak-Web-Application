@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { PixelSpacing } from "../../styles/theme";
+import { NullablePixelSpacing, PixelSpacing } from "../../styles/theme";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 
@@ -9,7 +9,7 @@ type GridGapProps = {
   $cg?: ResponsiveValues<PixelSpacing>;
 };
 
-const parse = (value?: PixelSpacing) => {
+const parse = (value?: NullablePixelSpacing) => {
   switch (typeof value) {
     case "string":
       return value;

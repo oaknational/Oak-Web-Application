@@ -3,7 +3,7 @@ import styled, { useTheme } from "styled-components";
 import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
 
-import { useMenuContext } from "../../context/Menu/MenuProvider";
+import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";

@@ -1,31 +1,33 @@
 import { css } from "styled-components";
 
-import { PixelSpacing } from "../theme/types";
+import { NegativePixelSpacing, NullablePixelSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SpacingValue = "auto" | PixelSpacing;
-type SpacingValues = ResponsiveValues<SpacingValue>;
+type PaddingValue = NullablePixelSpacing;
+type PaddingValues = ResponsiveValues<PaddingValue>;
 export type PaddingProps = {
-  $pa?: SpacingValues;
-  $ph?: SpacingValues;
-  $pv?: SpacingValues;
-  $pl?: SpacingValues;
-  $pr?: SpacingValues;
-  $pt?: SpacingValues;
-  $pb?: SpacingValues;
+  $pa?: PaddingValues;
+  $ph?: PaddingValues;
+  $pv?: PaddingValues;
+  $pl?: PaddingValues;
+  $pr?: PaddingValues;
+  $pt?: PaddingValues;
+  $pb?: PaddingValues;
 };
+type MarginValue = "auto" | NullablePixelSpacing | NegativePixelSpacing;
+type MarginValues = ResponsiveValues<MarginValue>;
 export type MarginProps = {
-  $ma?: SpacingValues;
-  $mh?: SpacingValues;
-  $mv?: SpacingValues;
-  $ml?: SpacingValues;
-  $mr?: SpacingValues;
-  $mt?: SpacingValues;
-  $mb?: SpacingValues;
+  $ma?: MarginValues;
+  $mh?: MarginValues;
+  $mv?: MarginValues;
+  $ml?: MarginValues;
+  $mr?: MarginValues;
+  $mt?: MarginValues;
+  $mb?: MarginValues;
 };
 
-const parse = (value?: SpacingValue) => {
+const parse = (value?: unknown) => {
   switch (typeof value) {
     case "string":
       return value;
@@ -33,50 +35,50 @@ const parse = (value?: SpacingValue) => {
       return `${value}px`;
   }
 };
-const paddingAll = css<{ $pa?: SpacingValues }>`
+const paddingAll = css<{ $pa?: PaddingValues }>`
   ${responsive("padding", (props) => props.$pa, parse)}
 `;
-const paddingHorizontal = css<{ $ph?: SpacingValues }>`
+const paddingHorizontal = css<{ $ph?: PaddingValues }>`
   ${responsive("padding-left", (props) => props.$ph, parse)}
   ${responsive("padding-right", (props) => props.$ph, parse)}
 `;
-const paddingVertical = css<{ $pv?: SpacingValues }>`
+const paddingVertical = css<{ $pv?: PaddingValues }>`
   ${responsive("padding-top", (props) => props.$pv, parse)}
   ${responsive("padding-bottom", (props) => props.$pv, parse)}
 `;
-const paddingLeft = css<{ $pl?: SpacingValues }>`
+const paddingLeft = css<{ $pl?: PaddingValues }>`
   ${responsive("padding-left", (props) => props.$pl, parse)}
 `;
-const paddingRight = css<{ $pr?: SpacingValues }>`
+const paddingRight = css<{ $pr?: PaddingValues }>`
   ${responsive("padding-right", (props) => props.$pr, parse)}
 `;
-const paddingTop = css<{ $pt?: SpacingValues }>`
+const paddingTop = css<{ $pt?: PaddingValues }>`
   ${responsive("padding-top", (props) => props.$pt, parse)}
 `;
-const paddingBottom = css<{ $pb?: SpacingValues }>`
+const paddingBottom = css<{ $pb?: PaddingValues }>`
   ${responsive("padding-bottom", (props) => props.$pb, parse)}
 `;
-const marginAll = css<{ $ma?: SpacingValues }>`
+const marginAll = css<{ $ma?: MarginValues }>`
   ${responsive("margin", (props) => props.$ma, parse)}
 `;
-const marginHorizontal = css<{ $mh?: SpacingValues }>`
+const marginHorizontal = css<{ $mh?: MarginValues }>`
   ${responsive("margin-left", (props) => props.$mh, parse)}
   ${responsive("margin-right", (props) => props.$mh, parse)}
 `;
-const marginVertical = css<{ $mv?: SpacingValues }>`
+const marginVertical = css<{ $mv?: MarginValues }>`
   ${responsive("margin-top", (props) => props.$mv, parse)}
   ${responsive("margin-bottom", (props) => props.$mv, parse)}
 `;
-const marginLeft = css<{ $ml?: SpacingValues }>`
+const marginLeft = css<{ $ml?: MarginValues }>`
   ${responsive("margin-left", (props) => props.$ml, parse)}
 `;
-const marginRight = css<{ $mr?: SpacingValues }>`
+const marginRight = css<{ $mr?: MarginValues }>`
   ${responsive("margin-right", (props) => props.$mr, parse)}
 `;
-const marginTop = css<{ $mt?: SpacingValues }>`
+const marginTop = css<{ $mt?: MarginValues }>`
   ${responsive("margin-top", (props) => props.$mt, parse)}
 `;
-const marginBottom = css<{ $mb?: SpacingValues }>`
+const marginBottom = css<{ $mb?: MarginValues }>`
   ${responsive("margin-bottom", (props) => props.$mb, parse)}
 `;
 

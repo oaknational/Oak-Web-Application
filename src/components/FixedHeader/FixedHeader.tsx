@@ -32,7 +32,6 @@ const StyledHeader = styled(Flex)`
   ${background}
   padding: 12px 16px;
   position: fixed;
-  z-index: 1;
 `;
 
 const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (
@@ -42,6 +41,7 @@ const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (
       $background={$background}
       $justifyContent={["space-between"]}
       $alignItems={["center"]}
+      $zIndex="fixedHeader"
     >
       {children}
     </StyledHeader>

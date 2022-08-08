@@ -6,7 +6,7 @@ import Flex from "../Flex";
 import P, { Span } from "../Typography";
 import FixedHeader from "../FixedHeader";
 import IconButton from "../Button/IconButton";
-import { useMenuContext } from "../../context/Menu/MenuProvider";
+import { useMenuContext } from "../../context/Menu/";
 import { Menu } from "../Menu";
 import Logo from "../Logo";
 

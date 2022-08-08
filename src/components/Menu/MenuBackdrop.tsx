@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { usePreventScroll } from "react-aria";
 
-import { useMenuContext } from "../../context/Menu/MenuProvider";
+import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 

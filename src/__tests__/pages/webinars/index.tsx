@@ -29,7 +29,7 @@ describe("pages/webinar/index.tsx", () => {
     jest.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
-        webinars: jest.fn(webinars),
+        webinars: webinars,
       },
     }));
   });
@@ -39,6 +39,7 @@ describe("pages/webinar/index.tsx", () => {
       renderWithProviders(
         <WebinarListingPage
           webinars={[testWebinarPreview, testWebinarPreview2]}
+          isPreviewMode={false}
         />
       );
 
@@ -58,14 +59,28 @@ describe("pages/webinar/index.tsx", () => {
   describe("getStaticProps", () => {
     it("Should return the webinars from the CMS", async () => {
       const { getStaticProps } = await import("../../../pages/webinars/");
+
       const propsResult = (await getStaticProps({})) as {
         props: WebinarListingPageProps;
       };
-
       expect(propsResult?.props?.webinars).toEqual([
         testWebinarPreview,
         testWebinarPreview2,
       ]);
+    });
+
+    it("Should not fetch draft content by default", async () => {
+      const { getStaticProps } = await import("../../../pages/webinars/");
+
+      await getStaticProps({});
+      expect(webinars).toHaveBeenCalledWith({ previewMode: false });
+    });
+
+    it("Should fetch draft content in preview mode", async () => {
+      const { getStaticProps } = await import("../../../pages/webinars/");
+      await getStaticProps({ preview: true });
+
+      expect(webinars).toHaveBeenCalledWith({ previewMode: true });
     });
   });
 });

@@ -97,7 +97,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
       >
         Title
       </CardTitle>
-      <P textAlign="center" $fontSize={16} $mb={24} $color={"grey6"}>
+      <P $textAlign="center" $fontSize={16} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink
