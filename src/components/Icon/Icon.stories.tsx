@@ -1,6 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import { ICON_NAMES } from "../SpriteSheet/IconSvgs";
+import { GRAPHIC_NAMES } from "../SpriteSheet/GraphicSvgs";
+import { LESSON_ELEMENT_NAMES } from "../SpriteSheet/LessonElementSvgs";
+import { Heading } from "../Typography";
+
 import Component from "./Icon";
 
 export default {
@@ -10,12 +15,32 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args}></Component>
+  <>
+    <Heading $fontSize={24} $mb={24} tag="h2">
+      Icons
+    </Heading>
+    {ICON_NAMES.map((name) => {
+      return <Component {...args} name={name} />;
+    })}
+
+    <Heading $fontSize={24} $mv={24} tag="h2">
+      Graphics
+    </Heading>
+    {GRAPHIC_NAMES.map((name) => {
+      return <Component {...args} name={name} />;
+    })}
+    <Heading $fontSize={24} $mv={24} tag="h2">
+      Lesson Elements
+    </Heading>
+    {LESSON_ELEMENT_NAMES.map((name) => {
+      return <Component {...args} name={name} />;
+    })}
+  </>
 );
 
 export const Icon = Template.bind({});
 
 Icon.args = {
-  name: "Download",
-  size: 80,
+  name: "Back10",
+  size: 48,
 };

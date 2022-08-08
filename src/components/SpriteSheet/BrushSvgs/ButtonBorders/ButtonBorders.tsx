@@ -97,16 +97,16 @@ const buttonBorderLeft = css`
   height: calc(100% + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
 `;
 
-const ButtonBorderTop = styled.span`
+const ButtonBorderTop = styled(Svg)`
   ${buttonBorderTop}
 `;
-const ButtonBorderRight = styled.span`
+const ButtonBorderRight = styled(Svg)`
   ${buttonBorderRight}
 `;
-const ButtonBorderBottom = styled.span`
+const ButtonBorderBottom = styled(Svg)`
   ${buttonBorderBottom}
 `;
-const ButtonBorderLeft = styled.span`
+const ButtonBorderLeft = styled(Svg)`
   ${buttonBorderLeft}
 `;
 
@@ -131,18 +131,10 @@ type ButtonBordersProps = {
 const ButtonBorders: FC<ButtonBordersProps> = (props) => {
   return (
     <div aria-hidden="true" data-testid="button-borders">
-      <ButtonBorderTop {...props}>
-        <Svg name="button-border-top" />
-      </ButtonBorderTop>
-      <ButtonBorderRight {...props}>
-        <Svg name="button-border-right" />
-      </ButtonBorderRight>
-      <ButtonBorderBottom {...props}>
-        <Svg name="button-border-bottom" />
-      </ButtonBorderBottom>
-      <ButtonBorderLeft {...props}>
-        <Svg name="button-border-left" />
-      </ButtonBorderLeft>
+      <ButtonBorderTop name="button-border-top" {...props} />
+      <ButtonBorderRight name="button-border-right" {...props} />
+      <ButtonBorderBottom name="button-border-bottom" {...props} />
+      <ButtonBorderLeft name="button-border-left" {...props} />
     </div>
   );
 };

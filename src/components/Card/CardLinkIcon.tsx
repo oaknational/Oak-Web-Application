@@ -25,11 +25,10 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
   return (
     <Card
       $flexDirection={"row"}
-      $justifyContent={"space-between"}
       $alignItems="center"
       $background={background}
       $ph={16}
-      $pv={[24, 40]}
+      $pv={[24, 32]}
       $mb={[16, 0]}
       $borderRadius={0}
     >
@@ -38,7 +37,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
         <CardLink href={href}>{title}</CardLink>
       </Heading>
 
-      <Icon name={icon} size={32} />
+      <Icon name={icon} size={[32, 48]} $pa={[4, 8]} $ml="auto" />
     </Card>
   );
 };

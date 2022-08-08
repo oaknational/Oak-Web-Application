@@ -117,16 +117,16 @@ const boxBorderLeft = css`
   bottom: ${BORDER_OFFSET_PX}px;
 `;
 
-const BoxBorderTop = styled.span`
+const BoxBorderTop = styled(Svg)`
   ${boxBorderTop}
 `;
-const BoxBorderRight = styled.span`
+const BoxBorderRight = styled(Svg)`
   ${boxBorderRight}
 `;
-const BoxBorderBottom = styled.span`
+const BoxBorderBottom = styled(Svg)`
   ${boxBorderBottom}
 `;
-const BoxBorderLeft = styled.span`
+const BoxBorderLeft = styled(Svg)`
   ${boxBorderLeft}
 `;
 
@@ -146,18 +146,10 @@ const BoxBorderLeft = styled.span`
 const BoxBorders: FC = () => {
   return (
     <div aria-hidden="true" data-testid="brush-borders">
-      <BoxBorderTop>
-        <Svg name="box-border-top" />
-      </BoxBorderTop>
-      <BoxBorderRight>
-        <Svg name="box-border-right" />
-      </BoxBorderRight>
-      <BoxBorderBottom>
-        <Svg name="box-border-bottom" />
-      </BoxBorderBottom>
-      <BoxBorderLeft>
-        <Svg name="box-border-left" />
-      </BoxBorderLeft>
+      <BoxBorderTop name="box-border-top" />
+      <BoxBorderRight name="box-border-right" />
+      <BoxBorderBottom name="box-border-bottom" />
+      <BoxBorderLeft name="box-border-left" />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { FC, forwardRef } from "react";
 
 import { FlexProps } from "../Flex";
-import { IconName } from "../Icon/Icon";
 import Box from "../Box";
 import { Span } from "../Typography";
+import { IconName } from "../Icon";
 
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";

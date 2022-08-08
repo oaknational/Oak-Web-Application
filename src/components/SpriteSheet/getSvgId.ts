@@ -1,11 +1,16 @@
-import { IconName } from "../Icon";
+import { GraphicSvgName } from "./GraphicSvgs";
+import { IconSvgName } from "./IconSvgs";
+import { LessonElementSvgName } from "./LessonElementSvgs";
 
 export type SvgProps = {
   id: string; // @todo type this
 };
 
 export type SvgName =
-  | IconName
+  | IconSvgName
+  | GraphicSvgName
+  | LessonElementSvgName
+  // @todo name the below types
   | "icon-brush-background"
   | "box-border-top"
   | "box-border-right"
