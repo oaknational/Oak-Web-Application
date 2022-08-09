@@ -20,7 +20,9 @@ export type PixelSpacing =
   | 16
   | 20
   | 24
+  | 28
   | 32
+  | 36
   | 40
   | 48
   | 56
@@ -73,13 +75,12 @@ const OakColorNameZod = z.union([
   z.literal("warning"),
   z.literal("failure"),
   z.literal("success"),
-  z.literal("pupilsAccentGreen"),
+  z.literal("pupilsHighlight"),
   z.literal("pupilsAccentPink"),
   z.literal("pupilsGreen"),
   z.literal("pupilsLightGreen"),
   z.literal("pupilsLimeGreen"),
   z.literal("pupilsPink"),
-  z.literal("teachersAccentBlue"),
   z.literal("teachersGreen"),
   z.literal("teachersYellow"),
   z.literal("teachersPastelYellow"),
@@ -87,6 +88,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersRed"),
   z.literal("teachersPurple"),
   z.literal("teachersLilac"),
+  z.literal("teachersHighlight"),
   z.literal("twilight"),
 ]);
 
@@ -151,6 +153,8 @@ export type OakTheme = {
   colors: Record<OakColorName, ColorValue>;
   contrastColors: Record<OakColorName, OakColorName>;
   buttonIconBackgroundColors: Partial<Record<OakColorName, OakColorName>>;
+  buttonDropShadows: Partial<Record<OakColorName, string>>;
+  buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
   bigInput: InputConfig;

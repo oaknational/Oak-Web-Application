@@ -2,7 +2,10 @@ import { css } from "styled-components";
 
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import margin, { MarginProps } from "../../styles/utils/spacing";
+import { BackgroundIcon } from "../Icon/Icon";
 
+import { ButtonFocusUnderline } from "./ButtonInner";
+import ButtonLabel from "./ButtonLabel";
 import {
   ButtonSize,
   ButtonVariant,
@@ -18,6 +21,7 @@ import {
   DEFAULT_BUTTON_BACKGROUND,
   ButtonBackground,
   getButtonBackground,
+  getButtonDropShadowColor,
 } from "./common";
 
 export type ButtonStylesProps = MarginProps & {
@@ -47,7 +51,6 @@ const buttonStyles = css<ButtonStylesProps>`
   font-weight: 600;
   max-width: 100%;
   position: relative;
-
   ${(props) => css`
     width: ${props.fullWidth && "100%"};
     flex-direction: ${getButtonFlexDirection(props.iconPosition)};
@@ -57,12 +60,54 @@ const buttonStyles = css<ButtonStylesProps>`
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
-  :disabled {
-    background-color: ${getColorByLocation(
-      ({ theme }) => theme.button.disabled.background
-    )};
-    cursor: not-allowed;
+  transition: box-shadow 0.3s ease-in-out;
+
+  :focus {
+    outline: none;
   }
+
+  ${ButtonFocusUnderline} {
+    display: none;
+  }
+
+  :focus ${ButtonFocusUnderline} {
+    display: block;
+  }
+
+  ${(props) =>
+    props.variant === "brush" &&
+    css`
+      :hover {
+        box-shadow: ${getButtonDropShadowColor(props.background)};
+      }
+
+      :disabled {
+        background-color: ${getColorByLocation(
+          ({ theme }) => theme.button.disabled.background
+        )};
+        cursor: not-allowed;
+      }
+
+      :hover ${ButtonLabel} {
+        text-decoration: underline;
+      }
+    `}
+
+  ${(props) =>
+    props.variant === "minimal" &&
+    css`
+      & ${BackgroundIcon} {
+        transition: filter 0.3s ease-in-out;
+      }
+
+      :hover ${BackgroundIcon} {
+        filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
+      }
+
+      ${ButtonFocusUnderline} {
+        filter: drop-shadow(2px 6px 0px rgb(0 0 0));
+      }
+    `}
 
   ${margin}
 `;

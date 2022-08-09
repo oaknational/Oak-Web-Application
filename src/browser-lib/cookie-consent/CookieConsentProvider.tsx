@@ -19,12 +19,15 @@ import {
 
 export type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
 export type HasConsentedTo = (serviceType: ServiceType) => boolean;
+export type HasConsentedToPolicy = (policyName: CookiePolicyName) => boolean;
 
 type CookieConsentContext = {
   // makes consent manager modal visible
   showConsentManager: () => void;
   // whether the user has granted consent to the latest version of a partular policy
   hasConsentedTo: HasConsentedTo;
+  // consent by policyName
+  hasConsentedToPolicy: HasConsentedToPolicy;
 };
 
 const cookieConsentContext = createContext<CookieConsentContext | null>(null);
@@ -58,10 +61,14 @@ const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
     return consents[policyName].enabled;
   };
 
+  const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
+    return consents[policyName].enabled
+  }
+
   return (
     <MetomicProvider projectId="prj:ecbd577f-d069-4aae-aae2-b622504679cd">
       <cookieConsentContext.Provider
-        value={{ showConsentManager, hasConsentedTo }}
+        value={{ showConsentManager, hasConsentedTo, hasConsentedToPolicy }}
       >
         {children}
       </cookieConsentContext.Provider>

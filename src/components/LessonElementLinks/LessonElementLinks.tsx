@@ -101,7 +101,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           <Flex $mr={-16}>
             <GraphicCircle
               $zIndex="neutral"
-              icon="LessonSlides"
+              icon="Presentation"
               $background="pastelTurqoise"
             />
             <OverlapBehind>

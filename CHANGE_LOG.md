@@ -1,3 +1,51 @@
+# [0.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.61.0...v0.62.0) (2022-08-09)
+
+
+### Features
+
+* button states ([a14a12a](https://github.com/oaknational/Oak-Web-Application/commit/a14a12a06feb04b68f87d866fb96ae0726a89a97))
+
+# [0.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.60.0...v0.61.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* **gleap:** sonar css issues and new branding fonts on ([0866fca](https://github.com/oaknational/Oak-Web-Application/commit/0866fcafd8ba4046bbdbc3a4dc845ae8392af0e0))
+
+
+### Features
+
+* analytics event queue ([5af69a7](https://github.com/oaknational/Oak-Web-Application/commit/5af69a79b3484501fbbdbeaae99894893c699358))
+* avo ([1b5af55](https://github.com/oaknational/Oak-Web-Application/commit/1b5af55a6b33a35712b8f4f07b7a9593959e9a60))
+* avo ([8c5ab5a](https://github.com/oaknational/Oak-Web-Application/commit/8c5ab5a567255c054a3ea60c67e8fb0dbfd02bf7))
+* gleap ([de2215b](https://github.com/oaknational/Oak-Web-Application/commit/de2215b5ea4281a8a8a6d52f9daae186e40ada21))
+* hubspot and posthog analytics service interface ([0e7fde5](https://github.com/oaknational/Oak-Web-Application/commit/0e7fde51f95bd75ca69c2c7f5f5fbbca144e81a1))
+* hubspot-js ([6fccd1f](https://github.com/oaknational/Oak-Web-Application/commit/6fccd1fc81de759d6ef8a6f4309d806661c31e20))
+
+# [0.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.1...v0.60.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* **cms:** add preview mode to about and planning pages ([8aa739a](https://github.com/oaknational/Oak-Web-Application/commit/8aa739a6931a03142a61a7e1e5995ec72f8b0bbe))
+* **cms:** integrate about page, support for videos ([495d485](https://github.com/oaknational/Oak-Web-Application/commit/495d485c2e373e961f06d4dd7416aa57b4c137eb))
+* **cms:** integrate planning page, fix validation errors ([85740d1](https://github.com/oaknational/Oak-Web-Application/commit/85740d1a3c1bb295c673a395301ad3e0641a385f))
+
+
+### Features
+
+* add textBlock schema/fragment/types, add missing fields to T&M ([e9144cf](https://github.com/oaknational/Oak-Web-Application/commit/e9144cf089418200f8343a96220aa08e4a569d93))
+
+## [0.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.0...v0.59.1) (2022-08-09)
+
+# [0.59.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.1...v0.59.0) (2022-08-09)
+
+
+### Features
+
+* **icons:** adds new icon set, [#363](https://github.com/oaknational/Oak-Web-Application/issues/363) ([cfedd06](https://github.com/oaknational/Oak-Web-Application/commit/cfedd06f71f2408918815721df722f9db63cf50b))
+* svg spritesheet ([88fa3e1](https://github.com/oaknational/Oak-Web-Application/commit/88fa3e1c399209cf4e5f0658b0009c48d77f1548))
+
 ## [0.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.0...v0.58.1) (2022-08-05)
 
 

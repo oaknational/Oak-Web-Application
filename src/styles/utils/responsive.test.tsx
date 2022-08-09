@@ -96,7 +96,7 @@ describe("responsive", () => {
         padding-left: 12px;
       }
 
-      @media (min-width: 1200px) {
+      @media (min-width: 1280px) {
         padding-left: 0px;
       }
     `;

@@ -1,9 +1,12 @@
 import { FC } from "react";
-import { useTheme } from "styled-components";
+import styled, { useTheme } from "styled-components";
 
+import { OakColorName } from "../../styles/theme";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Icon, { IconName } from "../Icon";
+import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
+import Svg from "../Svg";
 
-import ButtonBorders from "./ButtonBorders";
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
 import {
@@ -15,9 +18,20 @@ import {
   IconPosition,
 } from "./common";
 
+export const ButtonFocusUnderline = styled(Svg)<{ color: OakColorName }>`
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  right: -7px;
+  width: calc(100% + 12px);
+  height: 10px;
+  transform: rotate(-3deg);
+  color: ${(props) => getColorByName(props.color)};
+`;
 export type ButtonInnerProps = {
   label: string;
   icon?: IconName;
+  iconBackground?: OakColorName;
   iconPosition: IconPosition;
   size: ButtonSize;
   background: ButtonBackground;
@@ -26,6 +40,7 @@ export type ButtonInnerProps = {
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const {
     iconPosition,
+    iconBackground,
     size: buttonSize,
     icon,
     label,
@@ -35,7 +50,10 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const iconSize = buttonIconSizeMap[buttonSize];
 
   const theme = useTheme();
-  const iconBackground = getButtonIconBackground(background)({ theme });
+  const defaultIconBackground = getButtonIconBackground(background)({ theme });
+  const underlineColor =
+    theme.buttonFocusUnderlineColors[background] || "black";
+
   return (
     <>
       {icon && (
@@ -44,12 +62,13 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             variant="brush"
             name={icon}
             size={iconSize}
-            $background={iconBackground}
+            $background={iconBackground || defaultIconBackground}
           />
         </ButtonIconWrapper>
       )}
       <ButtonLabel>{label}</ButtonLabel>
       {variant === "brush" && <ButtonBorders background={background} />}
+      <ButtonFocusUnderline color={underlineColor} name="Underline" />
     </>
   );
 };
