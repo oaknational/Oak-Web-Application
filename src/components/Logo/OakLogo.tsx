@@ -1,25 +1,27 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-const LogoWrapper = styled.div`
-  width: 104px;
-  height: 48px;
-`;
-
 type LogoProps = {
   title: string;
+  width: number;
+  height: number;
 };
 
-const OakLogo: FC<LogoProps> = ({ title }) => {
+const LogoWrapper = styled.div<LogoProps>`
+  width: ${(props) => props.width}px;
+  height: ${(props) => props.height}px;
+`;
+
+const OakLogo: FC<LogoProps> = (props) => {
   return (
-    <LogoWrapper>
+    <LogoWrapper {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
         height="100%"
         viewBox="0 0 960.02 439.69"
       >
-        <title>{title}</title>
+        <title>{props.title}</title>
         <defs>
           <clipPath id="clip-path">
             <path fill="currentColor" d="M0 0h960.02v435.43H0z" />

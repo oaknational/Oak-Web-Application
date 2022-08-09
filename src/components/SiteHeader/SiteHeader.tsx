@@ -29,7 +29,7 @@ const SiteHeader: FC = () => {
     <FixedHeader $background={theme.header.background}>
       <Link href={"/"}>
         <a>
-          <Logo title={"Oak National Academy"} />
+          <Logo title={"Oak National Academy"} height={48} width={104} />
         </a>
       </Link>
       <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
@@ -46,11 +46,17 @@ const SiteHeader: FC = () => {
         aria-label="Menu"
         icon={"Hamburger"}
         variant={"minimal"}
+        size={"small"}
         onClick={() => {
           toggleMenu();
         }}
       />
       <Menu>
+        {/* TODO:
+         * move menu contents into new component using fixture
+         * add urls for new pages
+         * add moving arrow
+         */}
         <Flex $alignItems={"center"}>
           <LocationIcon variant="minimal" name="ArrowRight" size={[48]} />
           <Home tag={"h2"} $fontSize={[32]} $color={"black"}>
@@ -59,7 +65,7 @@ const SiteHeader: FC = () => {
         </Flex>
         <ul role="list">
           <li>
-            <P $fontFamily={"heading"} $fontSize={[32]} $mt={[32]}>
+            <P $fontFamily={"heading"} $fontSize={[32]} $mt={[20]}>
               <Link href={"https://teachers.thenational.academy/"}>
                 Teacher Hub
               </Link>

@@ -19,7 +19,7 @@ export type ButtonSize = "small" | "large" | "tiny";
  * @todo move to theme
  */
 const SMALL_BUTTON_ICON_SIZE = 28;
-const SMALL_BUTTON_HEIGHT = 40;
+const SMALL_BUTTON_HEIGHT = 30;
 const SMALL_BUTTON_PADDING_X = 8;
 
 const LARGE_BUTTON_ICON_SIZE = 36;

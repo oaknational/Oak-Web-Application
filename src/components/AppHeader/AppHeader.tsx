@@ -18,7 +18,7 @@ const AppHeader: FC = () => {
         <Link href={"/"} passHref>
           <Link href={"/"}>
             <a>
-              <Logo title={"Oak National Academy"} />
+              <Logo title={"Oak National Academy"} height={48} width={104} />
             </a>
           </Link>
         </Link>
