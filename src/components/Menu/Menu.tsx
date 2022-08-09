@@ -77,7 +77,7 @@ const Menu: FC = ({ children }) => {
             >
               <MenuHeader $justifyContent={"right"}>
                 <IconButton
-                  aria-label="Menu"
+                  aria-label="Close Menu"
                   icon={"Cross"}
                   variant={"minimal"}
                   onClick={() => {
