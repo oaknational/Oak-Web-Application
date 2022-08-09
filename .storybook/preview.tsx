@@ -5,6 +5,7 @@ import * as NextImage from "next/image";
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
 import GlobalStyle from "../src/styles/GlobalStyle";
+import SpriteSheet from "../src/components/SpriteSheet";
 
 const OriginalNextImage = NextImage.default;
 // @ts-ignore
@@ -60,6 +61,7 @@ const withThemeProvider = (Story, context) => {
           rel="stylesheet"
         />
         <Story {...context} />
+        <SpriteSheet />
       </ThemeProvider>
     </>
   );

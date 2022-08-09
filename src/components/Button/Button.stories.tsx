@@ -9,7 +9,7 @@ export default {
   argTypes: {
     onClick: { action: "clicked" },
     label: {
-      defaultValue: "Click me",
+      defaultValue: "Download",
     },
     variant: {
       defaultValue: "brush",
@@ -25,5 +25,7 @@ export const Button = Template.bind({});
 
 export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
-  icon: "Star",
+  icon: "Save",
+  background: "pupilsGreen",
+  size: "large"
 };

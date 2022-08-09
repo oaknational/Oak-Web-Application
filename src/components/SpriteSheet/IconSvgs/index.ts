@@ -15,6 +15,7 @@ import Facebook from "./Facebook.icon";
 import FullScreen from "./FullScreen.icon";
 import Go from "./Go.icon";
 import Grid from "./Grid.icon";
+import Hamburger from "./Hamburger.icon";
 import Home from "./Home.icon";
 import Instagram from "./Instagram.icon";
 import OutOfWindow from "./OutOfWindow.icon";
@@ -51,6 +52,7 @@ const iconSvgSymbols = {
   FullScreen,
   Go,
   Grid,
+  Hamburger,
   Home,
   Instagram,
   OutOfWindow,

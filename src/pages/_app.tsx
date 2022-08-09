@@ -10,6 +10,7 @@ import { SSRProvider } from "@react-aria/ssr";
 import "../browser-lib/gleap/gleap.css";
 import "../browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "../styles/GlobalStyle";
+import SpriteSheet from "../components/SpriteSheet";
 import { AuthProvider } from "../context/Auth";
 import useApolloClient from "../browser-lib/graphql/useApolloClient";
 import { SearchProvider } from "../context/Search/SearchContext";
@@ -42,6 +43,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
                         <MenuProvider>
                           <Component {...pageProps} />
                         </MenuProvider>
+                        <SpriteSheet />
                         <AppHooks />
                       </SearchProvider>
                     </BookmarksProvider>

@@ -30,11 +30,7 @@ const BlogList: FC<BlogListProps> = (props) => {
         $justifyContent={"space-between"}
       >
         <Flex $mb={[24, 0]} $flexDirection={"row"} $alignItems={"center"}>
-          <CardTitle
-            icon={"IllustrationStayUpToDate"}
-            iconSize={40}
-            tag={titleTag}
-          >
+          <CardTitle icon={"HandHoldingPaper"} iconSize={40} tag={titleTag}>
             {title}
           </CardTitle>
         </Flex>

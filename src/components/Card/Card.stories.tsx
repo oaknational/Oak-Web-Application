@@ -36,7 +36,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
   <div style={{ width: "300px", height: "250px" }}>
     <Component {...args}>
       <CardTitle
-        icon={"Newspaper"}
+        icon={"Download"}
         iconPosition={"leading"}
         iconSize={32}
         tag={"h4"}
@@ -89,7 +89,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
   <div style={{ width: "300px", height: "336px" }}>
     <Component {...args}>
       <CardTitle
-        icon={"Newspaper"}
+        icon={"Download"}
         iconPosition={"aboveTitle"}
         iconSize={80}
         tag={"h4"}

@@ -8,6 +8,7 @@ import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
+import IconButton from "../Button/IconButton";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -54,7 +55,7 @@ const MenuHeader = styled(Flex)`
 `;
 
 const Menu: FC = ({ children }) => {
-  const { open } = useMenuContext();
+  const { open, toggleMenu } = useMenuContext();
   const theme = useTheme();
   const { menu } = theme;
   const { background, color, width } = menu;
@@ -74,7 +75,16 @@ const Menu: FC = ({ children }) => {
               $zIndex={"neutral"}
             >
               <nav>
-                <MenuHeader />
+                <MenuHeader>
+                  <IconButton
+                    aria-label="Menu"
+                    icon={"Cross"}
+                    variant={"minimal"}
+                    onClick={() => {
+                      toggleMenu();
+                    }}
+                  />
+                </MenuHeader>
                 {children}
               </nav>
             </SideMenu>

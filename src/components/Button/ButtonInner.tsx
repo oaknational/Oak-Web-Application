@@ -2,8 +2,8 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import Icon, { IconName } from "../Icon";
+import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 
-import ButtonBorders from "./ButtonBorders";
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
 import {
