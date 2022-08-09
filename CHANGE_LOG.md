@@ -1,3 +1,17 @@
+# [0.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.1...v0.60.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* **cms:** add preview mode to about and planning pages ([8aa739a](https://github.com/oaknational/Oak-Web-Application/commit/8aa739a6931a03142a61a7e1e5995ec72f8b0bbe))
+* **cms:** integrate about page, support for videos ([495d485](https://github.com/oaknational/Oak-Web-Application/commit/495d485c2e373e961f06d4dd7416aa57b4c137eb))
+* **cms:** integrate planning page, fix validation errors ([85740d1](https://github.com/oaknational/Oak-Web-Application/commit/85740d1a3c1bb295c673a395301ad3e0641a385f))
+
+
+### Features
+
+* add textBlock schema/fragment/types, add missing fields to T&M ([e9144cf](https://github.com/oaknational/Oak-Web-Application/commit/e9144cf089418200f8343a96220aa08e4a569d93))
+
 ## [0.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.0...v0.59.1) (2022-08-09)
 
 # [0.59.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.1...v0.59.0) (2022-08-09)
