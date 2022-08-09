@@ -3,9 +3,19 @@
  * https://developers.hubspot.com/docs/api/events/cookie-banner
  */
 
+import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
+import OakError from "../../errors/OakError";
 
 import startHubspot, { HubspotConfig } from "./startHubspot";
+
+const reportError = errorReporter("hubspot.ts");
+const reportNotLoadedError = () => {
+  const error = new OakError({
+    code: "hubspot/not-loaded",
+  });
+  reportError(error);
+};
 
 type HubspotFn = { push: (arg: unknown) => void } | unknown[];
 type Hubspot = {
@@ -36,24 +46,22 @@ const hubspot: AnalyticsService<HubspotConfig> = {
   identify: (userId, properties) => {
     const { _hsq } = getHubspot();
     if (typeof _hsq === "undefined") {
-      // @todo error no hubspot instance found
-      return;
+      return reportNotLoadedError();
     }
 
     if (!properties.email) {
-      // @todo error hubspot needs email to create a 'contact'
-      return;
+      const error = new OakError({ code: "hubspot/identify-no-email" });
+      reportError(error);
     }
-    // @todo snakecase properties
+    // @todo do we need to snakecase properties like DavidWells/analytics
     _hsq.push(["identify", { id: userId, ...properties }]);
   },
   page: () => {
     const { _hsq } = getHubspot();
 
     if (typeof _hsq === "undefined") {
-      return;
+      return reportNotLoadedError();
     }
-    // @todo check that path is correct
 
     _hsq.push(["trackPageView"]);
   },
@@ -61,27 +69,30 @@ const hubspot: AnalyticsService<HubspotConfig> = {
     const { _hsq } = getHubspot();
 
     if (typeof _hsq === "undefined") {
-      // @todo error no hubspot instance found
-      return;
+      return reportNotLoadedError();
     }
 
     if ("id" in properties) {
-      // @todo warn here that information is being lost
+      const error = new OakError({
+        code: "hubspot/lost-information",
+        meta: { name, properties },
+      });
+      reportError(error);
     }
 
-    _hsq.push(["trackEvent", { id: name, ...properties }]);
+    _hsq.push(["trackEvent", { ...properties, id: name }]);
   },
   optIn: () => {
     const { _hsq } = getHubspot();
     if (typeof _hsq === "undefined") {
-      return;
+      return reportNotLoadedError();
     }
     _hsq.push(["doNotTrack", { track: true }]);
   },
   optOut: () => {
     const { _hsp, _hsq } = getHubspot();
     if (typeof _hsp === "undefined" || typeof _hsq === "undefined") {
-      return;
+      return reportNotLoadedError();
     }
     /**
      * @see: https://developers.hubspot.com/docs/api/events/cookie-banner#remove-cookie

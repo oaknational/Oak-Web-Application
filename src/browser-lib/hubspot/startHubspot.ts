@@ -33,8 +33,6 @@ const startHubspot = (config: HubspotConfig) => {
 
   // NoOp if hubspot already loaded by external source
   if (scriptAlreadyLoaded(scriptDomain)) {
-    console.log("hubspot loaded already");
-
     return;
   }
 
