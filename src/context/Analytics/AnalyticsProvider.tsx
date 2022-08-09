@@ -5,7 +5,7 @@ import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import usePosthog from "../../browser-lib/posthog/usePosthog";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
-import getAnalyticsSDKBridge from "../../browser-lib/avo/getAnalyticsSDKBridge";
+import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
 import useHubspot from "../../browser-lib/hubspot/useHubspot";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
@@ -61,11 +61,7 @@ const AnalyticsProvider: FC = (props) => {
   /**
    * Avo
    */
-  initAvo(
-    { env: getAvoEnv() },
-    {},
-    getAnalyticsSDKBridge({ posthog, hubspot })
-  );
+  initAvo({ env: getAvoEnv() }, {}, getAvoBridge({ posthog, hubspot }));
 
   /**
    * Page view tracking
@@ -86,7 +82,7 @@ const AnalyticsProvider: FC = (props) => {
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
    * Track functions are then called for individual services as found in
-   * getAnalyticsSDKBridge.
+   * getAvoBridge.
    */
   const track = useMemo(() => {
     const avoTrack = Object.keys(Avo).reduce((accum, key) => {

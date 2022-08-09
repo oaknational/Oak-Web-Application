@@ -9,14 +9,19 @@ import { PosthogConfig } from "../posthog/posthog";
 import { CustomDestination } from "./Avo";
 
 type AnalyticsServices = {
-  hubspot: AnalyticsService<HubspotConfig>;
-  posthog: AnalyticsService<PosthogConfig>;
+  hubspot: Pick<AnalyticsService<HubspotConfig>, "identify" | "track">;
+  posthog: Pick<AnalyticsService<PosthogConfig>, "identify" | "track">;
 };
-const getAnalyticsSDKBridge = ({
-  hubspot,
-  posthog,
-}: AnalyticsServices): CustomDestination => ({
-  logEvent: (eventName, eventProperties = {}) => {
+/**
+ * getAvoBridge returns the bridge between Avo and our analytics services.
+ * Namely, when we call Avo.myEvent(), logEvent() gets fired below.
+ * Likewise when we call Avo.identify()
+ */
+const getAvoBridge = ({ hubspot, posthog }: AnalyticsServices) => {
+  const logEvent: CustomDestination["logEvent"] = (
+    eventName,
+    eventProperties = {}
+  ) => {
     const isObject = (
       maybeObject: unknown
     ): maybeObject is Record<string, unknown> => {
@@ -30,16 +35,20 @@ const getAnalyticsSDKBridge = ({
       // @todo reportError warning here
       return;
     }
-    console.log("avo.logEvent", { eventName, eventProperties });
     hubspot.track(eventName, eventProperties);
     posthog.track(eventName, eventProperties);
-  },
-  identify: (userId) => {
-    console.log("avo.identify", { userId });
+  };
+
+  const identify: CustomDestination["identify"] = (userId) => {
     // @todo hubspot requires email for identify call
     hubspot.identify(userId, {});
     posthog.identify(userId, {});
-  },
-});
+  };
 
-export default getAnalyticsSDKBridge;
+  return {
+    logEvent,
+    identify,
+  };
+};
+
+export default getAvoBridge;
