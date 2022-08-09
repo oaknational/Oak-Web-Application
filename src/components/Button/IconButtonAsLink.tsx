@@ -55,6 +55,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
           icon={icon}
           size={size}
           variant={variant}
+          background={background}
           iconColorOverride={iconColorOverride}
         />
       </StyledA>
