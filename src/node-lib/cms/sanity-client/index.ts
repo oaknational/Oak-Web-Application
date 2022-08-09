@@ -3,7 +3,12 @@ import { z } from "zod";
 import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
 
-import { webinarPreviewSchema, webinarSchema } from "./schemas";
+import {
+  blogPostPreviewSchema,
+  blogPostSchema,
+  webinarPreviewSchema,
+  webinarSchema,
+} from "./schemas";
 import { planningPageSchema } from "./schemas/pages";
 
 const getSanityClient: CMSClient = () => ({
@@ -25,6 +30,25 @@ const getSanityClient: CMSClient = () => ({
     const webinar = webinarResult.allWebinar[0];
 
     return webinarSchema.parse(webinar);
+  },
+  blogPosts: async ({ previewMode, ...params } = {}) => {
+    const blogPostListSchema = z.array(blogPostPreviewSchema);
+    const blogPostsResult = await sanityGraphqlApi.allBlogPosts({
+      isDraft: previewMode === true,
+      ...params,
+    });
+
+    return blogPostListSchema.parse(blogPostsResult.allNewsPost);
+  },
+  blogPostBySlug: async (slug, { previewMode, ...params } = {}) => {
+    const blogPostResult = await sanityGraphqlApi.blogPostBySlug({
+      ...params,
+      isDraft: previewMode === true,
+      slug,
+    });
+    const blogPost = blogPostResult.allNewsPost[0];
+
+    return blogPostSchema.parse(blogPost);
   },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({

@@ -18,3 +18,16 @@ export type WebinarPreview = Pick<
   Webinar,
   "id" | "title" | "slug" | "summaryPortableText"
 >;
+
+export type BlogPost = Document & {
+  title: string;
+  slug: string;
+  date: Date;
+  author: TeamMember;
+  contentPortableText: PortableTextJSON;
+};
+
+export type BlogPostPreview = Pick<
+  BlogPost,
+  "id" | "title" | "slug" | "contentPortableText"
+>;
