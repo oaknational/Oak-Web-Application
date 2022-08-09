@@ -18,3 +18,13 @@ export type WebinarPreview = Pick<
   Webinar,
   "id" | "title" | "slug" | "summaryPortableText"
 >;
+
+export type Attachment = {
+  title: string;
+  file: {
+    asset: {
+      extension: string;
+      size: number;
+    };
+  };
+};
