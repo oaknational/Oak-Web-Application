@@ -1,30 +1,32 @@
 /**
  * This implementation is not zero-rated so is only temporary.
+ * Largely adapted from DavidWells/analytics plugin.
  *
  * @see: https://github.com/DavidWells/analytics/blob/master/packages/analytics-plugin-hubspot/src/browser.js
  */
 
 import isBrowser from "../../utils/isBrowser";
+import scriptAlreadyLoaded from "../../utils/scriptAlreadyLoaded";
 
 if (isBrowser) {
   window._hsq = window._hsq || [];
 }
 
-function scriptAlreadyLoaded(domain: string) {
-  const scripts = document.getElementsByTagName("script");
-  return (
-    Object.values(scripts).filter((scriptInfo) => {
-      const src = scriptInfo.src || "";
-      return src.match(domain);
-    }).length > 0
-  );
-}
+const getScriptSrc = ({ scriptDomain, portalId }: HubspotConfig) => {
+  const bustCache = Math.floor(new Date().getTime() / 3600000);
+  const scriptLink = `https://${scriptDomain}/${portalId}.js`;
+  const src = `${scriptLink}?${bustCache}`;
+
+  return src;
+};
 
 export type HubspotConfig = {
   portalId: string;
   scriptDomain: string;
 };
-const startHubspot = ({ portalId, scriptDomain }: HubspotConfig) => {
+const startHubspot = (config: HubspotConfig) => {
+  const { portalId, scriptDomain } = config;
+
   if (!portalId) {
     throw new Error("No hubspot portalId defined");
   }
@@ -35,19 +37,13 @@ const startHubspot = ({ portalId, scriptDomain }: HubspotConfig) => {
 
     return;
   }
-  //   const protocol = document.location.protocol;
-  //   const https = protocol === "https:" || protocol === "chrome-extension:";
-  const bustCache = Math.floor(new Date().getTime() / 3600000);
-  const scriptLink = `https://${scriptDomain}/${portalId}.js`;
-  const src = `${scriptLink}?${bustCache}`;
 
   // Create script & append to DOM
   const script = document.createElement("script");
   script.id = "hs-script-loader";
   script.type = "text/javascript";
   script.async = true;
-  // script.defer = defer
-  script.src = src;
+  script.src = getScriptSrc(config);
 
   // On next tick, inject the script
   setTimeout(() => {
