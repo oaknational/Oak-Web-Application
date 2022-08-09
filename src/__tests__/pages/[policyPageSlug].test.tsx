@@ -43,7 +43,9 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
 
   describe("PolicyPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(<Policies policy={testSerializedPolicyPage} isPreviewMode={false} />);
+      renderWithProviders(
+        <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />
+      );
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -75,7 +77,10 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       );
       await getStaticProps({ params: { policyPageSlug: "privacy-policy" } });
 
-      expect(policyPageBySlug).toHaveBeenCalledWith("privacy-policy");
+      expect(policyPageBySlug).toHaveBeenCalledWith(
+        "privacy-policy",
+        expect.anything()
+      );
     });
 
     it("Should format the policy updated at date", async () => {
