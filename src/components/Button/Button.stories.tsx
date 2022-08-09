@@ -27,5 +27,13 @@ export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
   icon: "Save",
   background: "pupilsGreen",
-  size: "large"
+  size: "large",
+};
+
+export const MinimalButtonWithIcon = Template.bind({});
+MinimalButtonWithIcon.args = {
+  variant: "minimal",
+  icon: "Save",
+  iconBackground: "pupilsGreen",
+  size: "large",
 };
