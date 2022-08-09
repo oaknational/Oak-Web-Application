@@ -7,7 +7,7 @@ import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
-import IconButton from "../Button/IconButton";
+import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -22,11 +22,11 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-const SideMenu = styled(Flex)<MenuConfig & TransitionProps>`
+const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
+  ${zIndex}
   background: ${(props) => getColorByName(props.background)};
   height: 100%;
   position: fixed;
-  z-index: 1;
   top: 0;
   right: 0;
   padding: 16px;
@@ -54,7 +54,7 @@ const MenuHeader = styled(Flex)`
 `;
 
 const Menu: FC = ({ children }) => {
-  const { toggleMenu, open } = useMenuContext();
+  const { open } = useMenuContext();
   const theme = useTheme();
   const { menu } = theme;
   const { background, color, width } = menu;
@@ -71,19 +71,10 @@ const Menu: FC = ({ children }) => {
               color={color}
               width={width}
               state={state}
+              $zIndex={"neutral"}
             >
               <nav>
-                <MenuHeader $justifyContent={"right"}>
-                  <IconButton
-                    aria-label="Menu"
-                    icon={"Close"}
-                    variant={"minimal"}
-                    onClick={() => {
-                      toggleMenu();
-                    }}
-                    size={"small"}
-                  />
-                </MenuHeader>
+                <MenuHeader />
                 {children}
               </nav>
             </SideMenu>

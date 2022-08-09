@@ -5,10 +5,11 @@ import { useTheme } from "styled-components";
 import Flex from "../Flex";
 import P, { Span } from "../Typography";
 import FixedHeader from "../FixedHeader";
-import IconButton from "../Button/IconButton";
-import { useMenuContext } from "../../context/Menu/";
 import { Menu } from "../Menu";
 import Logo from "../Logo";
+import { useMenuContext } from "../../context/Menu";
+import IconButton from "../Button/IconButton";
+// import HamburgerButton from "../Menu/HamburgerButton";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
@@ -26,7 +27,7 @@ const SiteHeader: FC = () => {
         <P>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P $ml={24} $mr={24}>
+        <P $ml={24} $mr={64}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>
@@ -59,6 +60,7 @@ const SiteHeader: FC = () => {
           </li>
         </ul>
       </Menu>
+      {/* <HamburgerButton /> */}
     </FixedHeader>
   );
 };
