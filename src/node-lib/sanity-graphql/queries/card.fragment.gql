@@ -1,9 +1,7 @@
 fragment Card on Card {
   title
   image {
-    asset {
-      url
-    }
+    ...Image
   }
   bodyPortableText: bodyRaw
 }
