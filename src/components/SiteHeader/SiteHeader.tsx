@@ -11,7 +11,7 @@ import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
 import Icon from "../Icon";
 
-const CurrentLocation = styled(Heading)`
+const Home = styled(Heading)`
   opacity: 0.6;
   text-decoration: underline;
 `;
@@ -53,9 +53,9 @@ const SiteHeader: FC = () => {
       <Menu>
         <Flex $alignItems={"center"}>
           <LocationIcon variant="minimal" name="ArrowRight" size={[48]} />
-          <CurrentLocation tag={"h2"} $fontSize={[32]} $color={"black"}>
-            Home
-          </CurrentLocation>
+          <Home tag={"h2"} $fontSize={[32]} $color={"black"}>
+            <Link href={"/"}>Home</Link>
+          </Home>
         </Flex>
         <ul role="list">
           <li>

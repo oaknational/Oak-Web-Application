@@ -9,6 +9,7 @@ import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 import IconButton from "../Button/IconButton";
+import Logo from "../Logo";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -74,19 +75,20 @@ const Menu: FC = ({ children }) => {
               state={state}
               $zIndex={"neutral"}
             >
-              <nav>
-                <MenuHeader $justifyContent={"right"}>
-                  <IconButton
-                    aria-label="Menu"
-                    icon={"Cross"}
-                    variant={"minimal"}
-                    onClick={() => {
-                      toggleMenu();
-                    }}
-                  />
-                </MenuHeader>
-                {children}
-              </nav>
+              <MenuHeader $justifyContent={"right"}>
+                <IconButton
+                  aria-label="Menu"
+                  icon={"Cross"}
+                  variant={"minimal"}
+                  onClick={() => {
+                    toggleMenu();
+                  }}
+                />
+              </MenuHeader>
+              {children}
+              <Flex $justifyContent={"right"} $mt={"auto"}>
+                <Logo title={"Oak National Academy"} />
+              </Flex>
             </SideMenu>
           </FocusScope>
         </>
