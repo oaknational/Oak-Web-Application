@@ -12,8 +12,10 @@ import { Heading } from "../../components/Typography";
 import CMSClient, {
   BlogPost,
   PortableTextJSON,
+  SanityImage,
   TextAndMedia,
 } from "../../node-lib/cms";
+import CMSImage from "../../components/CMSImage";
 
 type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -75,6 +77,17 @@ const portableTextComponents = {
           <pre>{JSON.stringify(params, null, 2)}</pre>
           <h2>{title}</h2>
           <PortableText value={body} />
+        </div>
+      );
+    },
+    image: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
+      const { asset, ...params } = props.value || {};
+
+      return (
+        <div style={{ border: "1px solid red" }}>
+          Image example
+          <pre>{JSON.stringify(params, null, 2)}</pre>
+          <CMSImage image={asset} />
         </div>
       );
     },
