@@ -27,7 +27,7 @@ const SiteHeader: FC = () => {
         <P>
           <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
         </P>
-        <P $ml={24} $mr={64}>
+        <P $ml={24} $mr={32}>
           <Link href={"https://teachers.thenational.academy/"}>
             Teacher Hub
           </Link>
@@ -56,6 +56,21 @@ const SiteHeader: FC = () => {
               <Link href={"https://classroom.thenational.academy/"}>
                 Classroom
               </Link>
+            </Span>
+          </li>
+          <li>
+            <Span $fontFamily={"heading"} $fontSize={[24]}>
+              <Link href={"/"}>Develop Your Curriculum</Link>
+            </Span>
+          </li>
+          <li>
+            <Span $fontFamily={"heading"} $fontSize={[24]}>
+              <Link href={"/"}>Support Your Team</Link>
+            </Span>
+          </li>
+          <li>
+            <Span $fontFamily={"heading"} $fontSize={[24]}>
+              <Link href={"/"}>Plan a lesson</Link>
             </Span>
           </li>
         </ul>
