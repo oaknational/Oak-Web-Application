@@ -75,7 +75,7 @@ const Menu: FC = ({ children }) => {
               $zIndex={"neutral"}
             >
               <nav>
-                <MenuHeader>
+                <MenuHeader $justifyContent={"right"}>
                   <IconButton
                     aria-label="Menu"
                     icon={"Cross"}
