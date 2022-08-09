@@ -1,4 +1,5 @@
 import { NextPage, NextPageContext } from "next";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import Layout from "../components/Layout";
@@ -8,6 +9,7 @@ import Flex from "../components/Flex";
 import { Heading, P } from "../components/Typography";
 import ButtonGroup from "../components/ButtonGroup/ButtonGroup";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
+import Button from "../components/Button";
 
 interface Props {
   statusCode?: number;
@@ -16,13 +18,14 @@ interface Props {
 const shadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
 
-const ErrorHeading = styled.h1`
+const ErrorHeading = styled(Heading)`
   color: white;
   font-size: 120px;
   text-shadow: ${shadow};
 `;
 
 const ErrorPage: NextPage<Props> = ({ statusCode }) => {
+  const router = useRouter();
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
       <MaxWidth $alignItems={"flex-end"}>
@@ -32,10 +35,17 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
           $width={["100%", "50%"]}
           $ph={16}
         >
-          <Flex $justifyContent={["flex-end", "flex-start"]}>
-            <ErrorHeading data-testid="errorStatus">
-              {statusCode ? statusCode : "An error occurred on client"}
-            </ErrorHeading>
+          <Flex
+            data-testid="errorStatus"
+            $justifyContent={["flex-end", "flex-start"]}
+          >
+            {statusCode ? (
+              <ErrorHeading $fontSize={56} tag="h1">
+                {statusCode}
+              </ErrorHeading>
+            ) : (
+              <P $mb={12}>An error occurred on client</P>
+            )}
           </Flex>
 
           <Heading $mb={48} $fontSize={[24, 32]} tag={"h2"}>
@@ -44,11 +54,12 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
 
           <P $mb={24}>Lets get you back to browsing</P>
           <ButtonGroup>
-            <ButtonAsLink
+            <Button
+              onClick={() => router.back()}
               variant="minimal"
               icon="ChevronRight"
               label={"Go back"}
-              href={"/"}
+              iconBackground={"black"}
             />
             <ButtonAsLink
               data-testid="homeButton"
@@ -56,6 +67,7 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
               icon="Home"
               label={"Home"}
               href={"/"}
+              iconBackground={"black"}
             />
           </ButtonGroup>
         </Flex>

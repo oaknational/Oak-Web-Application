@@ -6,18 +6,22 @@ import ErrorPage, { getInitialProps } from "../../pages/_error";
 describe("pages/_error.tsx", () => {
   it("Renders 404 message ", async () => {
     renderWithProviders(<ErrorPage statusCode={404} />);
-    expect(screen.getByTestId("errorStatus")).toHaveTextContent("404");
+    expect(
+      screen.getByTestId("errorStatus").querySelector("h1")
+    ).toHaveTextContent("404");
   });
   it("Renders 500 message ", async () => {
     renderWithProviders(<ErrorPage statusCode={500} />);
-    expect(screen.getByTestId("errorStatus")).toHaveTextContent("500");
+    expect(
+      screen.getByTestId("errorStatus").querySelector("h1")
+    ).toHaveTextContent("500");
   });
 
   it("Renders error page with no statusCode ", async () => {
     renderWithProviders(<ErrorPage />);
-    expect(screen.getByTestId("errorStatus")).toHaveTextContent(
-      "An error occurred on client"
-    );
+    expect(
+      screen.getByTestId("errorStatus").querySelector("p")
+    ).toHaveTextContent("An error occurred on client");
   });
   it("contains a button with link to homepage", () => {
     renderWithProviders(<ErrorPage />);
