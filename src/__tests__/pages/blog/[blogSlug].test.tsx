@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import { BlogPost } from "../../../node-lib/cms";
-import BlogDetailPage, { BlogPageProps } from "../../../pages/blogs/[blogSlug]";
+import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
 const testBlog: BlogPost = {
@@ -60,7 +60,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all blogs", async () => {
       const { getStaticPaths } = await import(
-        "../../../pages/blogs/[blogSlug]"
+        "../../../pages/blog/[blogSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -75,7 +75,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct blog", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/blogs/[blogSlug]"
+        "../../../pages/blog/[blogSlug]"
       );
       await getStaticProps({
         params: { blogSlug: "another-blog" },
@@ -89,7 +89,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
     it("Should not fetch draft content by default", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/blogs/[blogSlug]"
+        "../../../pages/blog/[blogSlug]"
       );
       await getStaticProps({
         params: { blogSlug: "another-blog" },
@@ -102,7 +102,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
     it("Should fetch draft content in preview mode", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/blogs/[blogSlug]"
+        "../../../pages/blog/[blogSlug]"
       );
       await getStaticProps({
         params: { blogSlug: "another-blog" },
@@ -116,7 +116,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
     it("Should format the blog date", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/blogs/[blogSlug]"
+        "../../../pages/blog/[blogSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { blogSlug: "another-blog" },
