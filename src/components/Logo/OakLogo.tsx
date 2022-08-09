@@ -2,8 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 
 const LogoWrapper = styled.div`
-  width: 96px;
-  height: 44px;
+  width: 104px;
+  height: 48px;
 `;
 
 type LogoProps = {
