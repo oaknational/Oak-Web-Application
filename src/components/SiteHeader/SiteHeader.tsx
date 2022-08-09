@@ -46,7 +46,7 @@ const SiteHeader: FC = () => {
         aria-label="Menu"
         icon={"Hamburger"}
         variant={"minimal"}
-        size={"small"}
+        size={"header"}
         onClick={() => {
           toggleMenu();
         }}

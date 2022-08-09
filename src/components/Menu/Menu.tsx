@@ -81,7 +81,7 @@ const Menu: FC = ({ children }) => {
                   aria-label="Close Menu"
                   icon={"Cross"}
                   variant={"minimal"}
-                  size={"small"}
+                  size={"header"}
                   onClick={() => {
                     toggleMenu();
                   }}
