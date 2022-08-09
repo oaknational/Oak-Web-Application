@@ -17,8 +17,7 @@ import { getBreakpoint } from "../../styles/utils/responsive";
 const StyledSiteFooter = styled.footer`
   background: ${getColorByName("white")};
   width: 100%;
-  margin-top: 160px;
-  padding-top: 80px;
+  margin-top: 80px;
   z-index: 0;
 `;
 
@@ -52,10 +51,10 @@ type SiteFooterProps = {
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
     <Flex $flexDirection="column">
-      <Heading $mb={8} $lineHeight={20} $fontSize={16} $color="grey9" tag="h4">
+      <Heading $mb={8} $fontSize={16} $color="grey9" tag="h4">
         {title}
       </Heading>
-      <Typography fontSize={12} $lineHeight={20} color="grey9">
+      <Typography fontSize={12} color="grey9">
         <ul role={"list"}>
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
