@@ -18,7 +18,11 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
+  <>
+    <Component background="black" $mr={24} {...args} />
+    <Component background="teachersHighlight" $mr={24} {...args} />
+    <Component background="pupilsHighlight" $mr={24} {...args} />
+  </>
 );
 
 export const Button = Template.bind({});
@@ -26,7 +30,6 @@ export const Button = Template.bind({});
 export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
   icon: "Save",
-  background: "pupilsGreen",
   size: "large",
 };
 
@@ -34,6 +37,6 @@ export const MinimalButtonWithIcon = Template.bind({});
 MinimalButtonWithIcon.args = {
   variant: "minimal",
   icon: "Save",
-  iconBackground: "pupilsGreen",
+  iconBackground: "teachersHighlight",
   size: "large",
 };

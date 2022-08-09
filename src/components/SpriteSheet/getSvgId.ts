@@ -1,3 +1,4 @@
+import { BrushSvgName } from "./BrushSvgs";
 import { GraphicSvgName } from "./GraphicSvgs";
 import { IconSvgName } from "./IconSvgs";
 import { LessonElementSvgName } from "./LessonElementSvgs";
@@ -10,6 +11,7 @@ export type SvgName =
   | IconSvgName
   | GraphicSvgName
   | LessonElementSvgName
+  | BrushSvgName
   // @todo name the below types
   | "icon-brush-background"
   | "box-border-top"

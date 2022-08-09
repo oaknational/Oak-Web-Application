@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 
 import { margin, MarginProps } from "../../styles/utils/spacing";
+import { BackgroundIcon } from "../Icon/Icon";
 
 import {
   ButtonBackground,
@@ -46,6 +47,14 @@ const iconButtonStyles = css<IconButtonStylesProps>`
   :disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  & ${BackgroundIcon} {
+    transition: filter 0.3s ease-in-out;
+  }
+
+  :hover ${BackgroundIcon} {
+    filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
   }
 
   ${margin}
