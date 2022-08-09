@@ -3,7 +3,7 @@ import { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
 import { PortableText, PortableTextProps } from "@portabletext/react";
 
-import { PlanningPage } from "../node-lib/cms";
+import CMSClient, { PlanningPage } from "../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -16,7 +16,6 @@ import LessonElementLinks from "../components/LessonElementLinks";
 import { OakColorName } from "../styles/theme";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
-import lessonPlanning from "../browser-lib/fixtures/lessonPlanning.json";
 import Circle from "../components/Circle";
 import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
@@ -25,6 +24,7 @@ import Cover from "../components/Cover";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
+  isPreviewMode: boolean;
 };
 
 const lessonElementIds = {
@@ -143,9 +143,16 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({
+  pageData,
+  isPreviewMode,
+}) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Layout
+      seoProps={DEFAULT_SEO_PROPS}
+      $background={"white"}
+      isPreviewMode={isPreviewMode}
+    >
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -174,7 +181,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           <Grid $cg={24} $rg={[24, 32]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
-                <GridArea $colSpan={[12, 6]}>
+                <GridArea
+                  key={`plan-a-lessing--element-card--${id}`}
+                  $colSpan={[12, 6]}
+                >
                   <LessonElementsCard $background={"twilight"}>
                     <AnchorTarget id={id} />
                     <Circle
@@ -235,6 +245,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
                 return (
                   <GridArea
+                    key={`plan-a-lesson--planning-card--${i}`}
                     $alignItems={"center"}
                     $justifyContent={"center"}
                     $colSpan={[12, isFirstOrLast ? 12 : 6]}
@@ -362,12 +373,19 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-export const getStaticProps: GetStaticProps<PlanALessonProps> = async () => {
+export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
+  context
+) => {
+  const isPreviewMode = context.preview === true;
+
+  const planningPage = await CMSClient.planningPage({
+    previewMode: isPreviewMode,
+  });
+
   return {
     props: {
-      pageData: lessonPlanning,
+      pageData: planningPage,
+      isPreviewMode,
     },
   };
 };

@@ -4,6 +4,7 @@ import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 
 type SvgProps = {
   name: SvgName;
+  className?: string;
 };
 const Svg: FC<SvgProps> = (props) => {
   return (
