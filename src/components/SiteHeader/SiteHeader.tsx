@@ -114,7 +114,6 @@ const SiteHeader: FC = () => {
           </li>
         </ul>
       </Menu>
-      {/* <HamburgerButton /> */}
     </FixedHeader>
   );
 };
