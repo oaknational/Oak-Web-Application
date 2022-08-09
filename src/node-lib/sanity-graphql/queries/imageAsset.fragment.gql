@@ -1,0 +1,4 @@
+fragment ImageAsset on SanityImageAsset {
+  _id
+  url
+}
