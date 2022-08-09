@@ -98,7 +98,7 @@ const theme: OakTheme = {
     ui: "Lexend, sans-serif",
     // Headings etc.
     heading: "Lexend, sans-serif",
-    headingLight: "Lexend, sans-serif"
+    headingLight: "Lexend, sans-serif",
   },
   input: {
     height: "40px",

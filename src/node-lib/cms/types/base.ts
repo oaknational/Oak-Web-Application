@@ -25,7 +25,6 @@ export type CTA = {
   label: string;
 };
 
-
 export type TextAndMedia = {
   title: string;
   bodyPortableText: PortableTextJSON;
