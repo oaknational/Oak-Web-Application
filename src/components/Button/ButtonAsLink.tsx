@@ -30,6 +30,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     "aria-label": ariaLabel,
     nextLinkProps,
     htmlAnchorProps = {},
+    iconBackground,
     ...styleProps
   } = props;
 
@@ -53,6 +54,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           label={label}
           icon={icon}
           iconPosition={iconPosition}
+          iconBackground={iconBackground}
           size={size}
           background={background}
           variant={variant}

@@ -30,6 +30,7 @@ const Button: FC<ButtonProps> = (props) => {
     icon,
     "aria-label": ariaLabel,
     htmlButtonProps = {},
+    iconBackground,
     ...spacingProps
   } = props;
 
@@ -52,6 +53,7 @@ const Button: FC<ButtonProps> = (props) => {
         label={label}
         icon={icon}
         iconPosition={iconPosition}
+        iconBackground={iconBackground}
         size={size}
         variant={variant}
         background={background}
