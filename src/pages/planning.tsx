@@ -11,9 +11,8 @@ import Grid, { GridArea } from "../components/Grid";
 import Layout from "../components/Layout";
 import { Heading, P } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
-import Icon from "../components/Icon";
+import Icon, { IconName } from "../components/Icon";
 import LessonElementLinks from "../components/LessonElementLinks";
-import { IconName } from "../components/Icon/Icon";
 import { OakColorName } from "../styles/theme";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
@@ -59,7 +58,7 @@ const getLessonElementCards = (
   },
   {
     id: lessonElementIds.slides,
-    icon: "LessonSlides",
+    icon: "Presentation",
     title: planningPage.lessonElements.slides.title,
     portableText: planningPage.lessonElements.slides.bodyPortableText,
   },

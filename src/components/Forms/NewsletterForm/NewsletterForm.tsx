@@ -73,7 +73,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
 
   return (
     <Card $borderRadius={0} $background="white">
-      <CardTitle tag="h2" icon="IllustrationClassroom">
+      <CardTitle tag="h2" icon="MagicCarpet">
         Don’t miss out
       </CardTitle>
       <P color={"black"} id={descriptionId}>

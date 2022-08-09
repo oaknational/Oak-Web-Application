@@ -14,23 +14,10 @@ import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardImage from "../components/Card/CardComponents/CardImage";
 import { getBreakpoint } from "../styles/utils/responsive";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
-
-const OverflowHidden = styled(Flex)`
-  @media (max-width: ${getBreakpoint("small")}px) {
-    overflow: hidden;
-  }
-`;
+import Box from "../components/Box";
 
 const TransformYGridArea = styled(GridArea)`
   transform: translateY(50%);
-`;
-
-const TransformTeacherImageWrap = styled(Flex)`
-  transform: scale(120%);
-
-  @media (max-width: ${getBreakpoint("small")}px) {
-    transform: translateY(10%);
-  }
 `;
 
 const TransformClassroomImageWrap = styled(Flex)`
@@ -71,7 +58,12 @@ const Home: FC = () => {
                   $pa={0}
                   $borderRadius={4}
                 >
-                  <OverflowHidden $pv={[0, 16]} $width={"100%"}>
+                  <Box
+                    $overflow="hidden"
+                    $pv={[0, 16]}
+                    $width={"100%"}
+                    $height={"100%"}
+                  >
                     <TransformClassroomImageWrap
                       $width={"100%"}
                       $flexGrow={1}
@@ -84,7 +76,7 @@ const Home: FC = () => {
                         position={"left center"}
                       ></CardImage>
                     </TransformClassroomImageWrap>
-                  </OverflowHidden>
+                  </Box>
                   <Heading
                     $mr={[0, 72]}
                     $fontSize={[20, 32]}
@@ -107,18 +99,16 @@ const Home: FC = () => {
                   $pa={0}
                   $borderRadius={4}
                 >
-                  <OverflowHidden $width={["100%", "100%", "50%"]}>
-                    <TransformTeacherImageWrap
-                      $justifyContent={"center"}
-                      $alignItems={"center"}
-                      $flexGrow={1}
-                    >
-                      <CardImage
-                        alt="teacher hub illustration"
-                        imageSrc={"/images/illustrations/teacher.svg"}
-                      ></CardImage>
-                    </TransformTeacherImageWrap>
-                  </OverflowHidden>
+                  <Box
+                    $width={["100%", "100%", "50%"]}
+                    $height="100%"
+                    $overflow="hidden"
+                  >
+                    <CardImage
+                      alt="teacher hub illustration"
+                      imageSrc={"/images/illustrations/teacher.svg"}
+                    ></CardImage>
+                  </Box>
                   <Heading
                     $mr={[0, 56]}
                     $fontSize={[20, 32]}
@@ -138,7 +128,7 @@ const Home: FC = () => {
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
                   href={"/planning"}
-                ></CardLinkIcon>
+                />
               </TransformYGridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>
                 <CardLinkIcon
@@ -146,7 +136,7 @@ const Home: FC = () => {
                   titleTag={"h4"}
                   background={"teachersYellow"}
                   href={"/curriculum"}
-                ></CardLinkIcon>
+                />
               </TransformYGridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>
                 <CardLinkIcon
@@ -154,7 +144,7 @@ const Home: FC = () => {
                   titleTag={"h4"}
                   background={"pupilsPink"}
                   href={"/support"}
-                ></CardLinkIcon>
+                />
               </TransformYGridArea>
             </Grid>
           </MaxWidth>
