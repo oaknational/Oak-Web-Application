@@ -18,13 +18,13 @@ export type ButtonSize = "small" | "large" | "tiny";
 /**
  * @todo move to theme
  */
-const SMALL_BUTTON_ICON_SIZE = 32;
+const SMALL_BUTTON_ICON_SIZE = 28;
 const SMALL_BUTTON_HEIGHT = 40;
-const SMALL_BUTTON_PADDING_X = 12;
+const SMALL_BUTTON_PADDING_X = 8;
 
-const LARGE_BUTTON_ICON_SIZE = 40;
+const LARGE_BUTTON_ICON_SIZE = 36;
 const LARGE_BUTTON_HEIGHT = 48;
-const LARGE_BUTTON_PADDING_X = 16;
+const LARGE_BUTTON_PADDING_X = 8;
 
 const TINY_BUTTON_ICON_SIZE = 16;
 const TINY_BUTTON_HEIGHT = 16;
@@ -57,6 +57,10 @@ export const getButtonIconBackground =
   (background: ButtonBackground) => (props: PropsWithTheme) =>
     props.theme.buttonIconBackgroundColors[background] ||
     props.theme.contrastColors[background];
+const DEFAULT_DROP_SHADOW_COLOR = "1px 3px 10px 2px rgb(0 0 40)";
+export const getButtonDropShadowColor =
+  (background: ButtonBackground) => (props: PropsWithTheme) =>
+    props.theme.buttonDropShadows[background] || DEFAULT_DROP_SHADOW_COLOR;
 
 const buttonPaddingMap: Record<ButtonSize, PixelSpacing> = {
   tiny: TINY_BUTTON_PADDING_X,
@@ -80,6 +84,7 @@ export type CommonButtonProps = MarginProps & {
   background?: ButtonBackground;
   icon?: IconName;
   iconPosition?: IconPosition;
+  iconBackground?: OakColorName;
   size?: ButtonSize;
   "aria-label"?: string;
   fullWidth?: boolean;

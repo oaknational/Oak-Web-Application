@@ -7,32 +7,24 @@ import {
   ButtonBackground,
   ButtonSize,
   ButtonVariant,
-  DEFAULT_BUTTON_BACKGROUND,
-  DEFAULT_BUTTON_SIZE,
-  DEFAULT_BUTTON_VARIANT,
   getButtonHeight,
 } from "./common";
 import IconButtonWrapper from "./IconButtonWrapper";
 
 export type IconButtonInnerProps = {
-  variant?: ButtonVariant;
-  background?: ButtonBackground;
+  variant: ButtonVariant;
+  background: ButtonBackground;
   icon: IconName;
-  size?: ButtonSize;
+  size: ButtonSize;
   iconColorOverride?: OakColorName;
 };
 const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
-  const {
-    variant = DEFAULT_BUTTON_VARIANT,
-    size = DEFAULT_BUTTON_SIZE,
-    background = DEFAULT_BUTTON_BACKGROUND,
-    icon,
-    iconColorOverride,
-  } = props;
+  const { variant, size, background, icon, iconColorOverride } = props;
 
   return (
     <IconButtonWrapper size={size} variant={variant} background={background}>
       <Icon
+        variant={variant}
         name={icon}
         size={getButtonHeight(size)}
         $color={iconColorOverride}

@@ -12,9 +12,7 @@ const testWebinar = {
 const webinarBySlug = jest.fn(() => ({ allWebinar: [testWebinar] }));
 const allWebinars = jest.fn(() => ({ allWebinar: [testWebinar] }));
 
-const planningCorePage = jest.fn(() => ({
-  allPlanningCorePage: [planningPageRawFixture],
-}));
+const planningCorePage = jest.fn(() => planningPageRawFixture);
 
 describe("cms/sanity-client", () => {
   beforeEach(() => {
