@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
+import { OakColorName } from "../../styles/theme";
 import Icon, { IconName } from "../Icon";
+import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 
-import ButtonBorders from "./ButtonBorders";
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
 import {
@@ -18,6 +19,7 @@ import {
 export type ButtonInnerProps = {
   label: string;
   icon?: IconName;
+  iconBackground?: OakColorName;
   iconPosition: IconPosition;
   size: ButtonSize;
   background: ButtonBackground;
@@ -26,6 +28,7 @@ export type ButtonInnerProps = {
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const {
     iconPosition,
+    iconBackground,
     size: buttonSize,
     icon,
     label,
@@ -35,7 +38,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const iconSize = buttonIconSizeMap[buttonSize];
 
   const theme = useTheme();
-  const iconBackground = getButtonIconBackground(background)({ theme });
+  const defaultIconBackground = getButtonIconBackground(background)({ theme });
+
   return (
     <>
       {icon && (
@@ -44,7 +48,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             variant="brush"
             name={icon}
             size={iconSize}
-            $background={iconBackground}
+            $background={iconBackground || defaultIconBackground}
           />
         </ButtonIconWrapper>
       )}

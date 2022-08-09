@@ -1,3 +1,13 @@
+## [0.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.0...v0.59.1) (2022-08-09)
+
+# [0.59.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.1...v0.59.0) (2022-08-09)
+
+
+### Features
+
+* **icons:** adds new icon set, [#363](https://github.com/oaknational/Oak-Web-Application/issues/363) ([cfedd06](https://github.com/oaknational/Oak-Web-Application/commit/cfedd06f71f2408918815721df722f9db63cf50b))
+* svg spritesheet ([88fa3e1](https://github.com/oaknational/Oak-Web-Application/commit/88fa3e1c399209cf4e5f0658b0009c48d77f1548))
+
 ## [0.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.0...v0.58.1) (2022-08-05)
 
 

@@ -10,7 +10,7 @@ import { PropsWithTheme } from "../theme";
 
 const breakpointsByName = {
   small: 800,
-  large: 1200,
+  large: 1280,
 };
 const breakpoints = Object.values(breakpointsByName);
 export const getBreakpoint = (

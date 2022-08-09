@@ -15,7 +15,7 @@ export default {
       defaultValue: "Download",
     },
     variant: {
-      defaultValue: "primary",
+      defaultValue: "brush",
     },
   },
 } as ComponentMeta<typeof Component>;

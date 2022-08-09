@@ -20,11 +20,11 @@ export type ButtonSize = "small" | "large" | "tiny";
  */
 const SMALL_BUTTON_ICON_SIZE = 32;
 const SMALL_BUTTON_HEIGHT = 40;
-const SMALL_BUTTON_PADDING_X = 12;
+const SMALL_BUTTON_PADDING_X = 8;
 
 const LARGE_BUTTON_ICON_SIZE = 40;
 const LARGE_BUTTON_HEIGHT = 48;
-const LARGE_BUTTON_PADDING_X = 16;
+const LARGE_BUTTON_PADDING_X = 8;
 
 const TINY_BUTTON_ICON_SIZE = 16;
 const TINY_BUTTON_HEIGHT = 16;
@@ -80,6 +80,7 @@ export type CommonButtonProps = MarginProps & {
   background?: ButtonBackground;
   icon?: IconName;
   iconPosition?: IconPosition;
+  iconBackground?: OakColorName;
   size?: ButtonSize;
   "aria-label"?: string;
   fullWidth?: boolean;
