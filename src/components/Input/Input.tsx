@@ -107,7 +107,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={Boolean(error)}
             aria-describedby={error ? errorId : undefined}
           />
-          {icon && <InputIcon outerWidth={40} size={20} name={icon} />}
+          {icon && <InputIcon $pa={8} size={40} name={icon} />}
         </Flex>
         {error && (
           <Box $position="absolute">

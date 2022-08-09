@@ -72,7 +72,7 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0px;
 
-      @media (min-width: 600px) {
+      @media (min-width: 800px) {
         padding-left: 12px;
       }
     `;
@@ -81,7 +81,7 @@ describe("responsive", () => {
   });
   it("should handle the case where the last value is a zero", async () => {
     const props = {
-      pl: [36, 12, 6, 0],
+      pl: [36, 12, 0],
     };
 
     const actual = responsive(
@@ -92,15 +92,11 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 36px;
 
-      @media (min-width: 600px) {
+      @media (min-width: 800px) {
         padding-left: 12px;
       }
 
-      @media (min-width: 900px) {
-        padding-left: 6px;
-      }
-
-      @media (min-width: 1200px) {
+      @media (min-width: 1280px) {
         padding-left: 0px;
       }
     `;

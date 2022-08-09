@@ -9,10 +9,10 @@ export default {
   argTypes: {
     onClick: { action: "clicked" },
     label: {
-      defaultValue: "Click me",
+      defaultValue: "Download",
     },
     variant: {
-      defaultValue: "primary",
+      defaultValue: "brush",
     },
   },
 } as ComponentMeta<typeof Component>;
@@ -22,3 +22,10 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const Button = Template.bind({});
+
+export const ButtonWithIcon = Template.bind({});
+ButtonWithIcon.args = {
+  icon: "Save",
+  background: "pupilsGreen",
+  size: "large"
+};

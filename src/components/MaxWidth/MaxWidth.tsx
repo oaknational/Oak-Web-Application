@@ -9,18 +9,17 @@ import Flex from "../Flex";
  * This will make it easier to create full browser width or custom width containers on the same page
  * with different background colors / image url.
  */
-const MaxWidth = styled(Flex)`
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%;
-  align-self: center;
-  justify-content: "center";
-  align-items: "center";
-`;
+const MaxWidth = styled(Flex)``;
 
 MaxWidth.defaultProps = {
-  $maxWidth: 1200,
-  $ph: 12,
+  $maxWidth: [480, 1200],
+  $ph: [0, 12],
+  $flexDirection: "column",
+  $flexGrow: 1,
+  $width: "100%",
+  $justifyContent: "center",
+  $alignItems: "center",
+  $mh: "auto",
 };
 
 export default MaxWidth;

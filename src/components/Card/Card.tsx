@@ -1,17 +1,14 @@
 import styled from "styled-components";
 
-import border, { BorderProps } from "../../styles/utils/border";
-import Flex from "../Flex/Flex";
+import Flex, { FlexProps } from "../Flex/Flex";
 
-const Card = styled(Flex)<BorderProps>`
-  ${border}
-`;
+export type CardProps = FlexProps;
+const Card = styled(Flex)``;
 
 Card.defaultProps = {
   $pa: 24,
   $flexDirection: "column",
   $flexGrow: 1,
-  $borderRadius: 12,
   $position: "relative",
 };
 

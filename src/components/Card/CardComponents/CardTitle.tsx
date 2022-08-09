@@ -54,6 +54,7 @@ const CardTitle: FC<CardTitleProps> = ({
           $mb={iconPosition === "aboveTitle" ? 12 : 0}
           $mr={iconPosition === (icon && "leading") ? 8 : 0}
           $ml={iconPosition === (icon && "trailing") ? 8 : 0}
+          $pa={0}
         />
       )}
       <Heading $color={"black"} $fontSize={fontSize} tag={tag}>

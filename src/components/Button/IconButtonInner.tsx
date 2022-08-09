@@ -4,16 +4,19 @@ import { OakColorName } from "../../styles/theme";
 import Icon, { IconName } from "../Icon";
 
 import {
-  buttonIconSizeMap,
+  ButtonBackground,
   ButtonSize,
   ButtonVariant,
+  DEFAULT_BUTTON_BACKGROUND,
   DEFAULT_BUTTON_SIZE,
   DEFAULT_BUTTON_VARIANT,
+  getButtonHeight,
 } from "./common";
 import IconButtonWrapper from "./IconButtonWrapper";
 
 export type IconButtonInnerProps = {
   variant?: ButtonVariant;
+  background?: ButtonBackground;
   icon: IconName;
   size?: ButtonSize;
   iconColorOverride?: OakColorName;
@@ -22,16 +25,18 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
   const {
     variant = DEFAULT_BUTTON_VARIANT,
     size = DEFAULT_BUTTON_SIZE,
+    background = DEFAULT_BUTTON_BACKGROUND,
     icon,
     iconColorOverride,
   } = props;
 
   return (
-    <IconButtonWrapper size={size} variant={variant}>
+    <IconButtonWrapper size={size} variant={variant} background={background}>
       <Icon
         name={icon}
-        size={buttonIconSizeMap[size]}
+        size={getButtonHeight(size)}
         $color={iconColorOverride}
+        $background={variant === "minimal" ? "transparent" : background}
       />
     </IconButtonWrapper>
   );

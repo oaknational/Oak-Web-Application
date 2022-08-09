@@ -7,7 +7,7 @@ import Flex from "../../../components/Flex";
 
 const SignInPage: NextPage = () => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
       <Flex
         $flexDirection="column"
         $justifyContent="center"

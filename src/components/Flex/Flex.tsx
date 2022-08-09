@@ -1,23 +1,19 @@
 import styled from "styled-components";
 
 import Box, { BoxProps } from "../Box";
-import background from "../../styles/utils/background";
-import position from "../../styles/utils/position";
-import spacing from "../../styles/utils/spacing";
 import flex, { FlexCssProps } from "../../styles/utils/flex";
-import border, { BorderProps } from "../../styles/utils/border";
 
-export type FlexProps = FlexCssProps & BoxProps & BorderProps;
+export type FlexProps = FlexCssProps & BoxProps;
 /**
  * Flex sets `display: flex;` and exposes various flex props, along with Box
- * props
+ * props.
+ *
+ * ## Usage
+ * Before adding props to this component, think about whether it makes sense
+ * to add it to Box instead, as this component extends that.
  */
 const Flex = styled(Box)<FlexProps>`
   ${flex}
-  ${spacing}
-  ${background}
-  ${position}
-  ${border}
 `;
 
 export default Flex;
