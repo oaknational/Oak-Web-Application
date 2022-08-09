@@ -181,7 +181,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           <Grid $cg={24} $rg={[24, 32]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
-                <GridArea $colSpan={[12, 6]}>
+                <GridArea
+                  key={`plan-a-lessing--element-card--${id}`}
+                  $colSpan={[12, 6]}
+                >
                   <LessonElementsCard $background={"twilight"}>
                     <AnchorTarget id={id} />
                     <Circle
@@ -242,6 +245,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
                 return (
                   <GridArea
+                    key={`plan-a-lesson--planning-card--${i}`}
                     $alignItems={"center"}
                     $justifyContent={"center"}
                     $colSpan={[12, isFirstOrLast ? 12 : 6]}

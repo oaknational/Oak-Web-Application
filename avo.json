@@ -1,0 +1,24 @@
+{
+  "avo": {
+    "version": 2
+  },
+  "schema": {
+    "id": "5PhajbVijwhXVKIJtGMT",
+    "name": "Oak's Tracking Plan"
+  },
+  "branch": {
+    "id": "K1r2E3SJM",
+    "name": "test-non-demo-branch"
+  },
+  "force": false,
+  "sources": [
+    {
+      "id": "GwV5t09tc",
+      "name": "Oak Web Application",
+      "path": "src/browser-lib/avo/Avo.ts",
+      "actionId": "to4O0RO7fKnoyI0Q2RKk",
+      "branchId": "K1r2E3SJM",
+      "updatedAt": "2022-07-19T09:21:56.543Z"
+    }
+  ]
+}
