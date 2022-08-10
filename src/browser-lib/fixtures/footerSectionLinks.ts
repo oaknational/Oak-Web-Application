@@ -23,7 +23,7 @@ const footerSections: FooterSection[] = [
     title: "Teachers",
     links: [
       { text: "Teacher Hub", href: "https://teachers.thenational.academy" },
-      { text: "Plan a lesson", href: "/planning" },
+      { text: "Plan a lesson", href: "/lesson-planning" },
       { text: "Improve the curriculum", href: "/improve-curriculum" }, //placeholder href
       { text: "Oak for school leaders", href: "/school-leaders" }, //placeholder href
       { text: "CPD", href: "/cpd" }, //placeholder href

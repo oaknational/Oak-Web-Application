@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import Planning from "../../pages/planning";
+import PlanALesson from "../../pages/lesson-planning";
 import { PlanningPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import { mockImageAsset, portableTextFromString } from "../__helpers__/cms";
@@ -46,10 +46,10 @@ const testPlanningPageData: PlanningPage = {
   },
 };
 
-describe("pages/planning.tsx", () => {
+describe("pages/lesson-planning.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
-      <Planning pageData={testPlanningPageData} isPreviewMode={false} />
+      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
     );
 
     await waitFor(() => {
