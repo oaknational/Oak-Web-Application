@@ -31,7 +31,7 @@ const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
   position: fixed;
   top: 0;
   right: 0;
-  padding: 0 16px;
+  padding: 0 0 0 16px;
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -76,7 +76,11 @@ const Menu: FC = ({ children }) => {
               state={state}
               $zIndex={"neutral"}
             >
-              <MenuHeader $justifyContent={"right"} $alignItems={"center"}>
+              <MenuHeader
+                $justifyContent={"right"}
+                $alignItems={"center"}
+                $pr={16}
+              >
                 <IconButton
                   aria-label="Close Menu"
                   icon={"Cross"}
@@ -87,14 +91,20 @@ const Menu: FC = ({ children }) => {
                   }}
                 />
               </MenuHeader>
-              {children}
-              <Flex
-                $justifyContent={"right"}
-                $mt={"auto"}
-                $mb={72}
-                $mr={[0, 56]}
-              >
-                <Logo title={"Oak National Academy"} width={150} height={63} />
+              <Flex $flexDirection={"column"} $overflow={"auto"} $flexGrow={1}>
+                {children}
+                <Flex
+                  $justifyContent={"right"}
+                  $mt={"auto"}
+                  $mb={72}
+                  $mr={[0, 72]}
+                >
+                  <Logo
+                    title={"Oak National Academy"}
+                    width={150}
+                    height={63}
+                  />
+                </Flex>
               </Flex>
             </SideMenu>
           </FocusScope>
