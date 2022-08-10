@@ -48,7 +48,9 @@ const testPlanningPageData: PlanningPage = {
 
 describe("pages/planning.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(<Planning pageData={testPlanningPageData} isPreviewMode={false} />);
+    renderWithProviders(
+      <Planning pageData={testPlanningPageData} isPreviewMode={false} />
+    );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(

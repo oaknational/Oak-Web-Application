@@ -60,6 +60,6 @@ export type TextAndMedia = {
     }
   | {
       mediaType: "video";
-      video: Video
+      video: Video;
     }
 );
