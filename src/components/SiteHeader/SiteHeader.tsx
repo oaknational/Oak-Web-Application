@@ -80,42 +80,44 @@ const SiteHeader: FC = () => {
           </li>
           <li>
             <P $fontFamily={"heading"} $fontSize={[24]} $mt={[32]}>
-              <Link href={"/"}>Develop Your Curriculum</Link>
+              <Link href={"/develop-your-curriculum"}>
+                Develop Your Curriculum
+              </Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"heading"} $fontSize={[24]} $mt={[12]}>
-              <Link href={"/"}>Support Your Team</Link>
+              <Link href={"/support-your-team"}>Support Your Team</Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"heading"} $fontSize={[24]} $mt={[12]}>
-              <Link href={"/"}>Plan a lesson</Link>
+              <Link href={"/lesson-planning"}>Plan a lesson</Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"ui"} $fontSize={[16]} $mt={[32]}>
-              <Link href={"/"}>Blogs</Link>
+              <Link href={"/blog"}>Blogs</Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/"}>Webinars</Link>
+              <Link href={"/webinars"}>Webinars</Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/"}>About us</Link>
+              <Link href={"/about-us"}>About us</Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/"}>Contact us</Link>
+              <Link href={"/contact-us"}>Contact us</Link>
             </P>
           </li>
           <li>
             <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/"}>Help</Link>
+              <Link href={"https://support.thenational.academy/"}>Help</Link>
             </P>
           </li>
         </ul>
