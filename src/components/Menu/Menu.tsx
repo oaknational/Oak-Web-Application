@@ -52,8 +52,10 @@ SideMenu.defaultProps = {
 };
 
 const MenuHeader = styled(Flex)`
-  width: 100%;
-  min-height: 72px;
+  position: fixed;
+  right: 0;
+  top: 20px;
+  width: 30px;
 `;
 
 const Menu: FC = ({ children }) => {
@@ -91,7 +93,12 @@ const Menu: FC = ({ children }) => {
                   }}
                 />
               </MenuHeader>
-              <Flex $flexDirection={"column"} $overflow={"auto"} $flexGrow={1}>
+              <Flex
+                $flexDirection={"column"}
+                $overflow={"auto"}
+                $flexGrow={1}
+                $pt={72}
+              >
                 {children}
                 <Flex
                   $justifyContent={"right"}
