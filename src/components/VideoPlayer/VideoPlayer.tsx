@@ -3,7 +3,6 @@ import MuxPlayer from "@mux/mux-player-react";
 import MuxPlayerElement from "@mux/mux-player";
 
 import Flex from "../Flex";
-import Button from "../Button";
 import OakError from "../../errors/OakError";
 import theme from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
@@ -30,7 +29,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [paused, setPaused] = useState<boolean | undefined>(false);
-  const [muted, setMuted] = useState(INITIAL_MUTED);
+  const [muted] = useState(INITIAL_MUTED);
   const [debug] = useState(INITIAL_DEBUG);
 
   const metadata = {
@@ -51,9 +50,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     });
     reportError(error);
   };
-
-  const playButtonLabel = paused ? "play" : "pause";
-  const muteButtonLabel = muted ? "unmute" : "mute";
 
   return (
     <Flex $flexDirection={"column"}>
@@ -89,25 +85,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           onError(evt);
         }}
       />
-      <Flex $mt={[16]}>
-        <Button
-          label={playButtonLabel}
-          onClick={() => {
-            setPaused(!paused);
-          }}
-        >
-          {playButtonLabel}
-        </Button>
-        <Button
-          $ml={[16]}
-          label={muteButtonLabel}
-          onClick={() => {
-            setMuted(!muted);
-          }}
-        >
-          {muteButtonLabel}
-        </Button>
-      </Flex>
     </Flex>
   );
 };
