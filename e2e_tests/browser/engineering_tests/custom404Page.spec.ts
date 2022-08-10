@@ -26,7 +26,7 @@ test.describe("404 Not found", () => {
     const response = await page.goto(`${frontPageUrl}/not-a-page`);
     expect(response?.status()).toBe(404);
     await expect(page.locator(locators.pageHeading)).toHaveText([
-      "Page not found",
+      "Whoops! It looks like you have fallen too far from the tree.",
     ]);
   });
   test("Should respond with 404 with incorrect lesson slug", async ({
@@ -37,7 +37,7 @@ test.describe("404 Not found", () => {
     );
     expect(response?.status()).toBe(404);
     await expect(page.locator(locators.pageHeading)).toHaveText([
-      "Page not found",
+      "Whoops! It looks like you have fallen too far from the tree.",
     ]);
   });
 });
