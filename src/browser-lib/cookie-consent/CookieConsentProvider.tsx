@@ -62,8 +62,8 @@ const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
   };
 
   const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
-    return consents[policyName].enabled
-  }
+    return consents[policyName].enabled;
+  };
 
   return (
     <MetomicProvider projectId="prj:ecbd577f-d069-4aae-aae2-b622504679cd">
