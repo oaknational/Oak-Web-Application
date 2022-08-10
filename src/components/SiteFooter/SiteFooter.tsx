@@ -29,10 +29,17 @@ type SiteFooterProps = {
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
     <Flex $flexDirection="column">
-      <Heading $mb={8} $fontSize={16} $color="grey9" tag="h4">
+      <Heading
+        $mb={8}
+        $fontSize={16}
+        $lineHeight="20px"
+        $color="grey9"
+        tag="h4"
+        $fontFamily={"headingLight"}
+      >
         {title}
       </Heading>
-      <Typography fontSize={12} color="grey9">
+      <Typography $fontSize={12} $lineHeight={"20px"} color="grey9">
         <ul role={"list"}>
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
@@ -100,7 +107,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               $justifyContent={"space-between"}
               $alignItems={"flex-end"}
               $flexGrow={[0, 1]}
-              // $pl={[32, 0]}
+              $pl={[32, 0]}
             >
               <Flex $position="relative">
                 <Image
@@ -121,21 +128,24 @@ const SiteFooter: FC<SiteFooterProps> = ({
                 icon={"Instagram"}
                 href={"/instagram"} // update link
                 variant={"minimal"}
-                $mr={12}
+                $mr={16}
+                size={"small"}
               />
               <IconButtonAsLink
                 aria-label={"facebook"}
                 icon={"Facebook"}
                 href={"/facebook"} // update link
                 variant={"minimal"}
-                $mr={12}
+                $mr={16}
+                size={"small"}
               />
               <IconButtonAsLink
                 aria-label={"twitter"}
                 icon={"Twitter"}
                 href={"/twitter"} // update link
                 variant={"minimal"}
-                $mr={12}
+                $mr={[12, 32]}
+                size={"small"}
               />
             </Flex>
             <Flex $alignItems={"center"}>
