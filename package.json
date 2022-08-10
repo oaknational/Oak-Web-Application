@@ -1,6 +1,6 @@
 {
   "name": "oak-web-application",
-  "version": "0.62.0",
+  "version": "0.62.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -48,7 +48,6 @@
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
-    "test:storybook:update": "npm run test:storybook -- -u",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "dependencies": {
@@ -99,7 +98,6 @@
     "@storybook/addon-essentials": "^6.5.8",
     "@storybook/addon-interactions": "^6.5.8",
     "@storybook/addon-links": "^6.5.8",
-    "@storybook/addon-storyshots": "^6.5.8",
     "@storybook/addon-storysource": "^6.5.8",
     "@storybook/react": "^6.5.8",
     "@storybook/testing-library": "^0.0.9",
@@ -136,7 +134,7 @@
     "node-mocks-http": "^1.11.0",
     "octokit": "^1.7.1",
     "pa11y-ci": "^3.0.1",
-    "prettier": "^2.6.2",
+    "prettier": "2.7.1",
     "puppeteer": "^13.5.2",
     "semantic-release": "^19.0.2",
     "start-server-and-test": "^1.14.0",
