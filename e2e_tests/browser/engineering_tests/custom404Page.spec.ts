@@ -13,10 +13,6 @@ const baseUrl =
   "localhost:3000";
 const frontPageUrl = new URL(baseUrl).href;
 
-const locators = {
-  pageHeading: "[data-testid='404Heading']",
-};
-
 test.beforeEach(async ({ page }) => {
   await page.goto(frontPageUrl);
 });
@@ -25,9 +21,6 @@ test.describe("404 Not found", () => {
   test("Should respond with 404 is page not found", async ({ page }) => {
     const response = await page.goto(`${frontPageUrl}/not-a-page`);
     expect(response?.status()).toBe(404);
-    await expect(page.locator(locators.pageHeading)).toHaveText([
-      "Whoops! It looks like you have fallen too far from the tree.",
-    ]);
   });
   test("Should respond with 404 with incorrect lesson slug", async ({
     page,
@@ -36,8 +29,5 @@ test.describe("404 Not found", () => {
       `${frontPageUrl}/beta/lessons/not-a-lesson-slug`
     );
     expect(response?.status()).toBe(404);
-    await expect(page.locator(locators.pageHeading)).toHaveText([
-      "Whoops! It looks like you have fallen too far from the tree.",
-    ]);
   });
 });
