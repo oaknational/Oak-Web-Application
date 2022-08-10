@@ -48,7 +48,7 @@ describe("pages/planning.tsx", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Planning heading"
+        "Planning title"
       );
     });
   });

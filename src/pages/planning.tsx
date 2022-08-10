@@ -171,7 +171,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={24} $rg={[24, 32]}>
+          <Grid $cg={16} $rg={[32]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea $colSpan={[12, 6]}>
@@ -317,12 +317,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           </Flex>
           <Card
             $pv={[16, 24]}
-            $ph={[0, 32]}
+            $ph={[0, 24]}
             $flexDirection={["column", "row"]}
             $background={"teachersPastelYellow"}
             $alignItems="center"
           >
-            <Box $minWidth={"50%"} $pr={[null, 40]} $mb={[72, 0]} $ph={[16, 0]}>
+            <Box $minWidth={"50%"} $pr={[null, 72]} $mb={[72, 0]} $ph={[16, 0]}>
               <CardTitle tag={"h4"}>{pageData.learnMoreBlock2.title}</CardTitle>
               <PortableText value={pageData.learnMoreBlock2.bodyPortableText} />
             </Box>

@@ -41,14 +41,14 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
       <Flex $flexDirection={"column"} $pv={[0, 32]}>
         <Heading
           $mb={8}
-          tag={"h2"}
+          tag={"h1"}
           $fontSize={20}
           $color={"oakGrey4"}
           $fontFamily="headingLight"
         >
           {title}
         </Heading>
-        <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h1"}>
+        <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h2"}>
           {heading}
         </Heading>
         <Typography $color="black" $fontSize={16}>
