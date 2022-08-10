@@ -33,7 +33,7 @@ Unit tests only for now. Please write any tests dependent on a network connectio
 
 Tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
-Logic tests and snapshot tests should be in different files because their "failure" state has a different meaning. Snapshot tests should live next to the component they are testing, and have a name following the pattern `<component_name>.snapshot.test.tsx`. Note that we are hoping to have Storybook generate snapshots for all tests automatically, so these files be removed in future.
+Logic tests and snapshot tests should be in different files because their "failure" state has a different meaning. Snapshot tests should live next to the component they are testing, and have a name following the pattern `<component_name>.snapshot.test.tsx`.
 
 ## E2E Browser Tests
 
