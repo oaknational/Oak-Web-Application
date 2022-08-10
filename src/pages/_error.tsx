@@ -57,7 +57,7 @@ const ErrorPage: NextPage<Props> = ({ statusCode }) => {
             <Button
               onClick={() => router.back()}
               variant="minimal"
-              icon="ChevronRight"
+              icon="ChevronLeft"
               label={"Go back"}
               iconBackground={"black"}
             />
