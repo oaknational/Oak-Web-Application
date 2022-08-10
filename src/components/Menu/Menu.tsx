@@ -53,7 +53,7 @@ SideMenu.defaultProps = {
 
 const MenuHeader = styled(Flex)`
   width: 100%;
-  height: 72px;
+  min-height: 72px;
 `;
 
 const Menu: FC = ({ children }) => {
