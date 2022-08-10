@@ -20,7 +20,7 @@ describe("useAnalytics", () => {
     const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
 
     act(() => {
-      result.current.track("test-event", { testProperty: "foo" });
+      result.current.track.buttonClicked({ buttonIdentifier: "test" });
     });
 
     expect(posthogCapture).not.toHaveBeenCalled();
@@ -28,7 +28,7 @@ describe("useAnalytics", () => {
   test("posthog should not be initialised if statistics consent not given", () => {
     const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
     act(() => {
-      result.current.track("test-event", { testProperty: "foo" });
+      result.current.track.buttonClicked({ buttonIdentifier: "test" });
     });
 
     expect(posthogInit).not.toHaveBeenCalled();

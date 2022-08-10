@@ -1,3 +1,31 @@
+## [0.62.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.62.1...v0.62.2) (2022-08-10)
+
+## [0.62.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.62.0...v0.62.1) (2022-08-10)
+
+# [0.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.61.0...v0.62.0) (2022-08-09)
+
+
+### Features
+
+* button states ([a14a12a](https://github.com/oaknational/Oak-Web-Application/commit/a14a12a06feb04b68f87d866fb96ae0726a89a97))
+
+# [0.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.60.0...v0.61.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* **gleap:** sonar css issues and new branding fonts on ([0866fca](https://github.com/oaknational/Oak-Web-Application/commit/0866fcafd8ba4046bbdbc3a4dc845ae8392af0e0))
+
+
+### Features
+
+* analytics event queue ([5af69a7](https://github.com/oaknational/Oak-Web-Application/commit/5af69a79b3484501fbbdbeaae99894893c699358))
+* avo ([1b5af55](https://github.com/oaknational/Oak-Web-Application/commit/1b5af55a6b33a35712b8f4f07b7a9593959e9a60))
+* avo ([8c5ab5a](https://github.com/oaknational/Oak-Web-Application/commit/8c5ab5a567255c054a3ea60c67e8fb0dbfd02bf7))
+* gleap ([de2215b](https://github.com/oaknational/Oak-Web-Application/commit/de2215b5ea4281a8a8a6d52f9daae186e40ada21))
+* hubspot and posthog analytics service interface ([0e7fde5](https://github.com/oaknational/Oak-Web-Application/commit/0e7fde51f95bd75ca69c2c7f5f5fbbca144e81a1))
+* hubspot-js ([6fccd1f](https://github.com/oaknational/Oak-Web-Application/commit/6fccd1fc81de759d6ef8a6f4309d806661c31e20))
+
 # [0.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.1...v0.60.0) (2022-08-09)
 
 
