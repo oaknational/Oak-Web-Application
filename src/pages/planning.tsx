@@ -128,6 +128,7 @@ const SectionTitle: FC = (props) => {
       $pt={80}
       $pb={48}
       $ph={12}
+      $mt={12}
     >
       <Heading $fontSize={24} $textAlign="center" tag="h2" {...props} />
     </Flex>
@@ -158,9 +159,18 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
         {/* Elements of lesson cards */}
         <section>
           <SectionHeader>
-            <SectionTitle>
-              Choose resources from our lessons to support your planning
-            </SectionTitle>
+            <Flex
+              $justifyContent="center"
+              $maxWidth={["100%", "50%"]}
+              $mh="auto"
+              $pt={64}
+              $pb={48}
+              $ph={12}
+            >
+              <Heading $fontSize={24} $textAlign="center" tag="h2">
+                Choose resources from our lessons to support your planning
+              </Heading>
+            </Flex>
             <Flex
               $flexDirection="column"
               $justifyContent={"center"}
@@ -293,7 +303,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           <SectionHeader>
             <SectionTitle>Use cases</SectionTitle>
           </SectionHeader>
-          <Flex $mb={80} $background="teachersPastelYellow">
+          <Flex $mb={32} $background="teachersPastelYellow">
             <Card $pv={24} $ph={[16, 24]} $flexDirection={["column", "row"]}>
               <Box $minWidth={["50%"]}>
                 <Box $display={["block", "none"]}>
