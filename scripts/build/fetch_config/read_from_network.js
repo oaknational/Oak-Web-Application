@@ -12,7 +12,8 @@ const readConfigFromNetwork = async (fileUrl) => {
 
   let response;
   try {
-    response = await fetch(parsedUrl);
+    const cacheBust = `?time=${Date.now()}`;
+    response = await fetch(parsedUrl + cacheBust);
   } catch (err) {
     console.error("Failed to fetch config from network.");
     throw err;

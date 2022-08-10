@@ -28,14 +28,14 @@ const theme: OakTheme = {
     failure: "#ff2f20",
     success: "#a3e420",
     // pupil colours
-    pupilsAccentGreen: "#25ab38",
+    pupilsHighlight: "#25AB38",
     pupilsAccentPink: "#d02aa7",
     pupilsGreen: "#85cb6d", // TODO: add tints
     pupilsLightGreen: "#D5EFD4",
     pupilsLimeGreen: "#BEF2BD",
     pupilsPink: "#deb7d5", // TODO: add tints
     // teacher colours
-    teachersAccentBlue: "#374cf1",
+    teachersHighlight: "#374CF1",
     teachersGreen: "#037b7d",
     teachersYellow: "#ffe555",
     teachersPastelYellow: "#f6e8a0",
@@ -71,14 +71,14 @@ const theme: OakTheme = {
     failure: "white",
     success: "black",
     // pupil colours
-    pupilsAccentGreen: "black",
+    pupilsHighlight: "white",
     pupilsAccentPink: "white",
     pupilsGreen: "black", // TODO: add tints
     pupilsLightGreen: "black",
     pupilsLimeGreen: "black",
     pupilsPink: "black", // TODO: add tints
     // teacher colours
-    teachersAccentBlue: "white",
+    teachersHighlight: "white",
     teachersGreen: "white",
     teachersYellow: "black",
     teachersPastelYellow: "black",
@@ -89,7 +89,18 @@ const theme: OakTheme = {
     twilight: "black",
   },
   buttonIconBackgroundColors: {
-    success: "failure",
+    teachersHighlight: "teachersYellow",
+    pupilsHighlight: "white",
+    black: "white",
+  },
+  buttonDropShadows: {
+    teachersHighlight: "5px 3px 16px 0px #2332a3",
+    pupilsHighlight: "8px 5px 13px 1px #0b4413",
+  },
+  buttonFocusUnderlineColors: {
+    teachersHighlight: "teachersYellow",
+    pupilsHighlight: "pupilsAccentPink",
+    black: "teachersYellow",
   },
   fonts: {
     // Paragraphs etc.
