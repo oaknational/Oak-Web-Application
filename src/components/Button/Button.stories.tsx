@@ -9,16 +9,34 @@ export default {
   argTypes: {
     onClick: { action: "clicked" },
     label: {
-      defaultValue: "Click me",
+      defaultValue: "Download",
     },
     variant: {
-      defaultValue: "primary",
+      defaultValue: "brush",
     },
   },
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
+  <>
+    <Component background="black" $mr={24} {...args} />
+    <Component background="teachersHighlight" $mr={24} {...args} />
+    <Component background="pupilsHighlight" $mr={24} {...args} />
+  </>
 );
 
 export const Button = Template.bind({});
+
+export const ButtonWithIcon = Template.bind({});
+ButtonWithIcon.args = {
+  icon: "Save",
+  size: "large",
+};
+
+export const MinimalButtonWithIcon = Template.bind({});
+MinimalButtonWithIcon.args = {
+  variant: "minimal",
+  icon: "Save",
+  iconBackground: "teachersHighlight",
+  size: "large",
+};

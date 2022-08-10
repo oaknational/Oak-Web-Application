@@ -35,7 +35,6 @@ const SignIn: FC = () => {
 
   const requestMagicLink = async (e: FormEvent | MouseEvent) => {
     e.preventDefault();
-    console.log("sign in start");
     setError("");
     if (!email) {
       return setError("Email invalid");
@@ -44,10 +43,7 @@ const SignIn: FC = () => {
     try {
       await signInWithEmail(email);
       setStep("LINK_REQUESTED");
-      console.log("magic link in");
     } catch (error) {
-      // set error
-      console.log("error signing in", error);
       setError("Sorry, that didn't work");
     } finally {
       setLoading(false);
@@ -63,8 +59,8 @@ const SignIn: FC = () => {
   if (step === "NOT_ASKED") {
     return (
       <SignInForm onSubmit={requestMagicLink}>
-        <Flex alignItems="end">
-          <Flex flexDirection="column" flexGrow={1}>
+        <Flex $alignItems="end">
+          <Flex $flexDirection="column" $flexGrow={1}>
             <label htmlFor={emailInputId}>Email</label>
             <Input
               id={emailInputId}
@@ -77,7 +73,7 @@ const SignIn: FC = () => {
           </Flex>
           <Button
             onClick={requestMagicLink}
-            ml={8}
+            $ml={8}
             label="Sign in"
             htmlButtonProps={{
               disabled: loading,

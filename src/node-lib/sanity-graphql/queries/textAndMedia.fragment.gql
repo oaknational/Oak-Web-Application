@@ -1,0 +1,15 @@
+fragment TextAndMedia on TextAndMedia {
+  title
+  bodyPortableText: bodyRaw
+  mediaType
+  alignMedia
+  cta {
+    ...CTA
+  }
+  image {
+    ...Image
+  }
+  video {
+    ...Video
+  }
+}

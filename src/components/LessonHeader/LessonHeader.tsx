@@ -17,14 +17,14 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
   const { title, id } = props;
   return (
     <Flex
-      flexDirection={["column", "row"]}
-      justifyContent={["initial", "space-between"]}
-      alignItems={["initial", "center"]}
+      $flexDirection={["column", "row"]}
+      $justifyContent={["initial", "space-between"]}
+      $alignItems={["initial", "center"]}
     >
       <Flex>
-        <Heading tag="h1" fontSize={32}>
-          <Box mb={8}>
-            <Span fontSize={24}>Lesson</Span>
+        <Heading tag="h1" $fontSize={32}>
+          <Box $mb={8}>
+            <Span $fontSize={24}>Lesson</Span>
           </Box>
           {title}
         </Heading>
@@ -35,14 +35,12 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
           label="Download"
           aria-label="Download Lesson"
           icon="Download"
-          variant="secondary"
         />
         <ButtonAsLink
           href="/"
           label="Share"
           aria-label="Share Lesson"
           icon="Share"
-          variant="secondary"
         />
         <BookmarkLessonButton lessonId={id} />
       </ButtonGroup>

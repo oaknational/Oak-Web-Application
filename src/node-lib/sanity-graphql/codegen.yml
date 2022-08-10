@@ -1,0 +1,12 @@
+overwrite: true
+schema:
+  - ${SANITY_GRAPHQL_URL}:
+      headers:
+        Authorization: Bearer ${SANITY_AUTH_SECRET}
+documents: "src/node-lib/sanity-graphql/**/*.{graphql,gql}"
+generates:
+  src/node-lib/sanity-graphql/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"

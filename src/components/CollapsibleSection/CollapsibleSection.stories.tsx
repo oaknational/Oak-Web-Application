@@ -31,8 +31,8 @@ const Template: ComponentStory<typeof Component> = () => {
         },
       ]}
     >
-      <Card background={"grey4"}>
-        <Heading fontSize={20} tag={"h2"}>
+      <Card $background={"grey4"}>
+        <Heading $fontSize={20} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </Card>

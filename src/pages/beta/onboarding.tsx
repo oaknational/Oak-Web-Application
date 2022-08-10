@@ -16,47 +16,51 @@ const OnBoardingGrid = styled(Grid)`
 const OnBoarding: FC = () => {
   return (
     <Flex
-      width={"100%"}
-      flexGrow={1}
-      flexDirection={"column"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      background={"grey2"}
+      $width={"100%"}
+      $flexGrow={1}
+      $flexDirection={"column"}
+      $justifyContent={"center"}
+      $alignItems={"center"}
+      $background={"grey2"}
     >
-      <OnBoardingGrid rg={[16, 0, 0]} cg={16}>
-        <GridArea colSpan={[12, 12, 12]}>
-          <Heading textAlign={"center"} mb={32} tag="h1" fontSize={32}>
+      <OnBoardingGrid $rg={[16, 0, 0]} $cg={16}>
+        <GridArea $colSpan={[12, 12, 12]}>
+          <Heading $textAlign={"center"} $mb={32} tag="h1" $fontSize={32}>
             Use Oak as a:
           </Heading>
         </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
+        <GridArea $colSpan={[12, 6, 6]}>
           <Card
-            justifyContent={"center"}
-            alignItems={"center"}
-            mh={[24, 0, 0]}
-            background={"white"}
+            $justifyContent={"center"}
+            $alignItems={"center"}
+            $mh={[24, 0, 0]}
+            $background={"white"}
           >
             <CardTitle textCenter tag={"h2"}>
               <CardLink href={"/beta/teacher"}>Teacher</CardLink>
             </CardTitle>
 
-            <P textAlign={"center"}>
+            <P $textAlign={"center"}>
               Short snappy description of what this card is about.
             </P>
           </Card>
         </GridArea>
-        <GridArea colSpan={[12, 6, 6]}>
-          <Card justifyContent={"center"} mh={[24, 0, 0]} background={"white"}>
+        <GridArea $colSpan={[12, 6, 6]}>
+          <Card
+            $justifyContent={"center"}
+            $mh={[24, 0, 0]}
+            $background={"white"}
+          >
             <CardTitle textCenter tag={"h2"}>
               <CardLink href={"/beta/pupil"}>Pupil</CardLink>
             </CardTitle>
-            <P textAlign="center">
+            <P $textAlign="center">
               Short snappy description of what this card is about.
             </P>
           </Card>
         </GridArea>
-        <GridArea colSpan={[12, 12, 12]}>
-          <P ma={24} textAlign="center">
+        <GridArea $colSpan={[12, 12, 12]}>
+          <P $ma={24} $textAlign="center">
             If you are not a pupil or a teacher you can still use oak just
             choose teachers or pupils to select a view.
           </P>

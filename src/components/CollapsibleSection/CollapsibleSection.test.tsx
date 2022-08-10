@@ -16,12 +16,12 @@ describe("CollapsibleSection", () => {
         buttons={[
           {
             icon: "Download",
-            onClick: () => console.log("downloads"),
+            onClick: jest.fn(),
             ariaLabel: "Download button",
           },
           {
             icon: "Share",
-            onClick: () => console.log("share"),
+            onClick: jest.fn(),
             ariaLabel: "Share button",
           },
         ]}
@@ -40,7 +40,7 @@ describe("CollapsibleSection", () => {
         headingTag={"h2"}
         startOpen={false}
       >
-        <Heading fontSize={20} tag={"h2"}>
+        <Heading $fontSize={20} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </CollapsibleSection>
@@ -71,7 +71,7 @@ describe("CollapsibleSection", () => {
           },
         ]}
       >
-        <Heading fontSize={20} tag={"h2"}>
+        <Heading $fontSize={20} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </CollapsibleSection>

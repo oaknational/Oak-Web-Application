@@ -16,6 +16,7 @@ const customJestConfig = {
     "!src/styles/themes/types.ts",
     "!e2e_tests/browser/engineering/*",
     "!**/__snapshots__/**",
+    "!src/__tests__/__helpers__/*",
     "!**/*.config.{js,ts}",
     "!**/*.stories.*",
   ],
@@ -23,6 +24,7 @@ const customJestConfig = {
     "/node_modules/",
     "browser-lib/graphql/generated/*",
     "node-lib/graphql/generated/*",
+    "node-lib/sanity-graphql/generated/*",
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],

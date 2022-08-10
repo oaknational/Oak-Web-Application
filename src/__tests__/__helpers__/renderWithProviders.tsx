@@ -15,6 +15,7 @@ import { BookmarksProvider } from "../../context/Bookmarks";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
+import ErrorBoundary from "../../components/ErrorBoundary";
 import AnalyticsProvider from "../../context/Analytics/AnalyticsProvider";
 
 import MockedAuthProvider, {
@@ -32,19 +33,21 @@ export const AllTheProviders: FC<ProviderProps> = ({
 }) => {
   return (
     <CookieConsentProvider>
-      <AnalyticsProvider>
-        <MockedAuthProvider {...authProviderProps}>
-          <MockedApolloProvider>
-            <ThemeProvider theme={theme}>
-              <MemoryRouterProvider>
-                <BookmarksProvider>
-                  <SearchProvider>{children}</SearchProvider>
-                </BookmarksProvider>
-              </MemoryRouterProvider>
-            </ThemeProvider>
-          </MockedApolloProvider>
-        </MockedAuthProvider>
-      </AnalyticsProvider>
+      <ThemeProvider theme={theme}>
+        <ErrorBoundary>
+          <AnalyticsProvider>
+            <MockedAuthProvider {...authProviderProps}>
+              <MockedApolloProvider>
+                <MemoryRouterProvider>
+                  <BookmarksProvider>
+                    <SearchProvider>{children}</SearchProvider>
+                  </BookmarksProvider>
+                </MemoryRouterProvider>
+              </MockedApolloProvider>
+            </MockedAuthProvider>
+          </AnalyticsProvider>
+        </ErrorBoundary>
+      </ThemeProvider>
     </CookieConsentProvider>
   );
 };

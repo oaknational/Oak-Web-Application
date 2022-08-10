@@ -9,9 +9,8 @@ import truthy from "../../utils/truthy";
 import { PropsWithTheme } from "../theme";
 
 const breakpointsByName = {
-  small: 600,
-  medium: 900,
-  large: 1200,
+  small: 800,
+  large: 1280,
 };
 const breakpoints = Object.values(breakpointsByName);
 export const getBreakpoint = (
@@ -23,17 +22,19 @@ export const getBreakpoint = (
 export type ResponsiveValues<Value> = Value | Value[];
 
 const responsive =
-  <Props, T extends string | number | undefined>(
+  <Props, T extends string | number | undefined | null>(
     attr: string,
-    getValues: (props: Props) => ResponsiveValues<T | undefined>,
+    getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
     parse:
-      | ((unparsed: T | undefined) => string | number | undefined)
+      | ((unparsed: T | undefined | null) => string | number | undefined | null)
       | ((
-          unparsed: T | undefined
-        ) => (props: PropsWithTheme) => string | number | undefined) = (x) => x
+          unparsed: T | undefined | null
+        ) => (props: PropsWithTheme) => string | number | undefined | null) = (
+      x
+    ) => x
   ) =>
   (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
-    const attrCss = (value: T | undefined) =>
+    const attrCss = (value: T | undefined | null) =>
       typeof value === "undefined"
         ? undefined
         : css`

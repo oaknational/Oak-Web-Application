@@ -6,7 +6,7 @@ import usePosthog from "./usePosthog";
 
 const posthogInit = jest.fn();
 const reportError = jest.fn();
-const createErrorHandler = jest.fn(() => reportError);
+const errorReporter = jest.fn(() => reportError);
 
 jest.mock("posthog-js", () => ({
   __esModule: true,
@@ -20,9 +20,9 @@ describe("usePosthog", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    jest.mock("../../common-lib/error-handler", () => ({
+    jest.mock("../../common-lib/error-reporter", () => ({
       __esModule: true,
-      default: jest.fn(createErrorHandler),
+      default: jest.fn(errorReporter),
     }));
   });
   test("should not call posthog.init() if enabled false", () => {

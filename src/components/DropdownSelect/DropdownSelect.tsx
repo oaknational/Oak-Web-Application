@@ -1,9 +1,9 @@
 import { FC, forwardRef } from "react";
 
 import { FlexProps } from "../Flex";
-import { IconName } from "../Icon/Icon";
 import Box from "../Box";
 import { Span } from "../Typography";
+import { IconName } from "../Icon";
 
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
@@ -70,8 +70,8 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
         )}
       </Select>
       {error && (
-        <Box position="absolute">
-          <Span color="error" fontSize={12} id={errorId}>
+        <Box $position="absolute">
+          <Span $color="failure" $fontSize={12} id={errorId}>
             {error}
           </Span>
         </Box>

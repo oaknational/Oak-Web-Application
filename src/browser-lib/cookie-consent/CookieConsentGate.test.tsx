@@ -1,14 +1,20 @@
+import { render } from "@testing-library/react";
+
 import "../../__tests__/__helpers__/LocalStorageMock";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import CookieConsentGate from "./CookieConsentGate";
+import CookieConsentProvider from "./CookieConsentProvider";
 
 describe("CookieConsentGate", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+  });
   test("should not render its children if policy not consented to", () => {
-    const { queryByText } = renderWithProviders(
-      <CookieConsentGate policyName="statistics">
+    const { queryByText } = render(
+      <CookieConsentGate serviceType="bugsnag">
         <div>child</div>
-      </CookieConsentGate>
+      </CookieConsentGate>,
+      { wrapper: CookieConsentProvider }
     );
 
     expect(queryByText("child")).not.toBeInTheDocument();
@@ -18,10 +24,11 @@ describe("CookieConsentGate", () => {
       "metomic-consented-pol:b109d120-ec88-4dd7-9f6e-fc67ab6f0ffb",
       JSON.stringify({ enabled: true })
     );
-    const { queryByText } = renderWithProviders(
-      <CookieConsentGate policyName="statistics">
+    const { queryByText } = render(
+      <CookieConsentGate serviceType="bugsnag">
         <div>child</div>
-      </CookieConsentGate>
+      </CookieConsentGate>,
+      { wrapper: CookieConsentProvider }
     );
 
     expect(queryByText("child")).toBeInTheDocument();

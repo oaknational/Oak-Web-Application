@@ -10,17 +10,24 @@ import { createContext, FC, useContext } from "react";
 // @ts-ignore
 import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
 import useConfirmicConsents from "./confirmic/useConfirmicConsents";
-import { CookieConsentChoice, CookiePolicyName } from "./types";
+import {
+  CookieConsentChoice,
+  CookiePolicyName,
+  servicePolicyMap,
+  ServiceType,
+} from "./types";
 
-type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
+export type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
+export type HasConsentedTo = (serviceType: ServiceType) => boolean;
+export type HasConsentedToPolicy = (policyName: CookiePolicyName) => boolean;
 
 type CookieConsentContext = {
   // makes consent manager modal visible
   showConsentManager: () => void;
-  // user consent choices
-  consents: CookieConsents;
-  // whether the user has granted consent to a partular policy
-  hasConsentedTo: (policyName: CookiePolicyName) => boolean;
+  // whether the user has granted consent to the latest version of a partular policy
+  hasConsentedTo: HasConsentedTo;
+  // consent by policyName
+  hasConsentedToPolicy: HasConsentedToPolicy;
 };
 
 const cookieConsentContext = createContext<CookieConsentContext | null>(null);
@@ -34,7 +41,11 @@ export const useCookieConsent = () => {
   }
   return cookieConsentsContext;
 };
-const CookieConsentProvider: FC = (props) => {
+
+type CookieConsentProviderProps = {
+  __testMockValue?: CookieConsentContext;
+};
+const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
   const { children } = props;
   const consents = useConfirmicConsents();
 
@@ -44,14 +55,20 @@ const CookieConsentProvider: FC = (props) => {
     window.Metomic("ConsentManager:show");
   };
 
-  const hasConsentedTo = (policyName: CookiePolicyName) => {
+  const hasConsentedTo = (serviceType: ServiceType) => {
+    const policyName = servicePolicyMap[serviceType];
+
     return consents[policyName].enabled;
   };
+
+  const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
+    return consents[policyName].enabled
+  }
 
   return (
     <MetomicProvider projectId="prj:ecbd577f-d069-4aae-aae2-b622504679cd">
       <cookieConsentContext.Provider
-        value={{ consents, showConsentManager, hasConsentedTo }}
+        value={{ showConsentManager, hasConsentedTo, hasConsentedToPolicy }}
       >
         {children}
       </cookieConsentContext.Provider>

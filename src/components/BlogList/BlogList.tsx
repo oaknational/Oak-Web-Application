@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { FC, Fragment } from "react";
 
+import CardTitle from "../Card/CardComponents/CardTitle";
 import Flex from "../Flex";
-import Icon from "../Icon";
 import { P } from "../Typography";
-import Heading, { HeadingTag } from "../Typography/Heading";
+import { HeadingTag } from "../Typography/Heading";
 import Hr from "../Typography/Hr";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
@@ -22,23 +22,22 @@ export type BlogListProps = {
 const BlogList: FC<BlogListProps> = (props) => {
   const { title, titleTag, items } = props;
   return (
-    <Flex flexDirection="column">
+    <Flex $flexDirection="column">
       <Flex
-        mb={24}
-        flexDirection={["column", "row", "row"]}
-        alignItems={["flex-start", "flex-start", "center"]}
-        justifyContent={"space-between"}
+        $mb={24}
+        $flexDirection={["column", "row", "row"]}
+        $alignItems={["flex-start", "flex-start", "center"]}
+        $justifyContent={"space-between"}
       >
-        <Flex flexDirection={"row"} alignItems="center">
-          <Icon name="Newspaper" mr={16} size={40} />
-          <Heading fontSize={24} tag={titleTag}>
+        <Flex $mb={[24, 0]} $flexDirection={"row"} $alignItems={"center"}>
+          <CardTitle icon={"HandHoldingPaper"} iconSize={40} tag={titleTag}>
             {title}
-          </Heading>
+          </CardTitle>
         </Flex>
-        <Flex justifyContent={"space-between"}>
+        <Flex $justifyContent={"space-between"}>
           <nav>
-            <Flex justifyContent={"center"} alignItems="center">
-              <P mr={16}>
+            <Flex $justifyContent={"center"} $alignItems="center">
+              <P $mr={16}>
                 <Link href="/">All Webinars</Link>
               </P>
               <P>

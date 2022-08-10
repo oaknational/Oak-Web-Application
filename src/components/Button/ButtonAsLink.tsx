@@ -30,10 +30,12 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     "aria-label": ariaLabel,
     nextLinkProps,
     htmlAnchorProps = {},
+    iconBackground,
     ...styleProps
   } = props;
 
-  const { size, variant, iconPosition } = getButtonStylesProps(props);
+  const { size, variant, iconPosition, background } =
+    getButtonStylesProps(props);
 
   return (
     <Link {...nextLinkProps} href={href} passHref>
@@ -44,6 +46,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         aria-label={ariaLabel || label}
         size={size}
         variant={variant}
+        background={background}
         iconPosition={iconPosition}
         {...styleProps}
       >
@@ -51,7 +54,10 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           label={label}
           icon={icon}
           iconPosition={iconPosition}
+          iconBackground={iconBackground}
           size={size}
+          background={background}
+          variant={variant}
         />
       </StyledA>
     </Link>

@@ -5,11 +5,9 @@ import MuxPlayerElement from "@mux/mux-player";
 import Flex from "../Flex";
 import Button from "../Button";
 import OakError from "../../errors/OakError";
-import errorHandler from "../../common-lib/error-handler";
-import { TrackFn } from "../../context/Analytics/AnalyticsProvider";
 import theme from "../../styles/theme";
+import errorReporter from "../../common-lib/error-reporter";
 
-const reportError = errorHandler("VideoPlayer.tsx");
 const INITIAL_DEBUG = false;
 const INITIAL_MUTED = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -25,7 +23,6 @@ export type VideoStyleConfig = {
 type VideoPlayerProps = {
   playbackId: string;
   title: string;
-  track?: TrackFn;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -43,6 +40,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     // "metadata-viewer-user-id": userId
   };
 
+  const reportError = errorReporter("VideoPlayer.tsx");
+
   const onError = (evt: Event) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
@@ -50,14 +49,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       originalError,
       meta: metadata,
     });
-    reportError(error, { severity: "error" });
+    reportError(error);
   };
 
   const playButtonLabel = paused ? "play" : "pause";
   const muteButtonLabel = muted ? "unmute" : "mute";
 
   return (
-    <Flex flexDirection={"column"}>
+    <Flex $flexDirection={"column"}>
       <MuxPlayer
         ref={mediaElRef}
         // style={{ aspectRatio: "16 / 9" }}
@@ -77,20 +76,20 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         tertiaryColor={theme.video.controls.tertiary}
         onPlay={() => {
           setPaused(false);
-          props.track?.("video-played", { playbackId });
+          // props.track?.("video-played", { playbackId });
         }}
         onPause={() => {
           setPaused(true);
-          props.track?.("video-paused", { playbackId });
+          // props.track?.("video-paused", { playbackId });
         }}
         onResize={() => {
-          props.track?.("video-resized", { playbackId });
+          // props.track?.("video-resized", { playbackId });
         }}
         onError={(evt: Event) => {
           onError(evt);
         }}
       />
-      <Flex mt={[16]}>
+      <Flex $mt={[16]}>
         <Button
           label={playButtonLabel}
           onClick={() => {
@@ -100,7 +99,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           {playButtonLabel}
         </Button>
         <Button
-          ml={[16]}
+          $ml={[16]}
           label={muteButtonLabel}
           onClick={() => {
             setMuted(!muted);

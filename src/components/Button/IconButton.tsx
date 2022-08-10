@@ -47,7 +47,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
     ...styleProps
   } = props;
 
-  const { size, variant } = getIconButtonStylesProps(props);
+  const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
     <StyledButton
@@ -58,6 +58,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
       aria-label={ariaLabel}
       disabled={disabled}
       size={size}
+      background={background}
       variant={variant}
       {...styleProps}
     >
@@ -65,6 +66,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
         icon={icon}
         size={size}
         variant={variant}
+        background={background}
         iconColorOverride={iconColorOverride}
       />
     </StyledButton>

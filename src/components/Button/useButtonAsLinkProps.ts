@@ -1,10 +1,16 @@
 import { KeyboardEvent } from "react";
 
-import createErrorHandler from "../../common-lib/error-handler";
+import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 
-const handleError = createErrorHandler("IconButtonAsLink");
-
+const reportError = errorReporter("IconButtonAsLink");
+/**
+ * Links which look like buttons can be a bit of an a11y nightmare.
+ * Although there's not one clear right way to do it, we make them
+ * interact like buttons (activated by 'space', and have role="button").
+ * There's extensive discussion on the topic on govuk github.
+ * @see https://github.com/alphagov/govuk_elements/pull/272#issuecomment-233114678
+ */
 const useButtonAsLinkProps = () => {
   const onKeyDown = (e: KeyboardEvent<HTMLAnchorElement>) => {
     if (e.code === "Space" || e.keyCode === 32) {
@@ -12,7 +18,7 @@ const useButtonAsLinkProps = () => {
       // trigger the target's click event
       if (!(e.target instanceof HTMLElement)) {
         const error = new OakError({ code: "misc/unexpected-type" });
-        return handleError(error);
+        return reportError(error);
       }
       e.target.click();
     }

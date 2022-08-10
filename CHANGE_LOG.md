@@ -1,3 +1,235 @@
+# [0.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.61.0...v0.62.0) (2022-08-09)
+
+
+### Features
+
+* button states ([a14a12a](https://github.com/oaknational/Oak-Web-Application/commit/a14a12a06feb04b68f87d866fb96ae0726a89a97))
+
+# [0.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.60.0...v0.61.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* **gleap:** sonar css issues and new branding fonts on ([0866fca](https://github.com/oaknational/Oak-Web-Application/commit/0866fcafd8ba4046bbdbc3a4dc845ae8392af0e0))
+
+
+### Features
+
+* analytics event queue ([5af69a7](https://github.com/oaknational/Oak-Web-Application/commit/5af69a79b3484501fbbdbeaae99894893c699358))
+* avo ([1b5af55](https://github.com/oaknational/Oak-Web-Application/commit/1b5af55a6b33a35712b8f4f07b7a9593959e9a60))
+* avo ([8c5ab5a](https://github.com/oaknational/Oak-Web-Application/commit/8c5ab5a567255c054a3ea60c67e8fb0dbfd02bf7))
+* gleap ([de2215b](https://github.com/oaknational/Oak-Web-Application/commit/de2215b5ea4281a8a8a6d52f9daae186e40ada21))
+* hubspot and posthog analytics service interface ([0e7fde5](https://github.com/oaknational/Oak-Web-Application/commit/0e7fde51f95bd75ca69c2c7f5f5fbbca144e81a1))
+* hubspot-js ([6fccd1f](https://github.com/oaknational/Oak-Web-Application/commit/6fccd1fc81de759d6ef8a6f4309d806661c31e20))
+
+# [0.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.1...v0.60.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* **cms:** add preview mode to about and planning pages ([8aa739a](https://github.com/oaknational/Oak-Web-Application/commit/8aa739a6931a03142a61a7e1e5995ec72f8b0bbe))
+* **cms:** integrate about page, support for videos ([495d485](https://github.com/oaknational/Oak-Web-Application/commit/495d485c2e373e961f06d4dd7416aa57b4c137eb))
+* **cms:** integrate planning page, fix validation errors ([85740d1](https://github.com/oaknational/Oak-Web-Application/commit/85740d1a3c1bb295c673a395301ad3e0641a385f))
+
+
+### Features
+
+* add textBlock schema/fragment/types, add missing fields to T&M ([e9144cf](https://github.com/oaknational/Oak-Web-Application/commit/e9144cf089418200f8343a96220aa08e4a569d93))
+
+## [0.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.59.0...v0.59.1) (2022-08-09)
+
+# [0.59.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.1...v0.59.0) (2022-08-09)
+
+
+### Features
+
+* **icons:** adds new icon set, [#363](https://github.com/oaknational/Oak-Web-Application/issues/363) ([cfedd06](https://github.com/oaknational/Oak-Web-Application/commit/cfedd06f71f2408918815721df722f9db63cf50b))
+* svg spritesheet ([88fa3e1](https://github.com/oaknational/Oak-Web-Application/commit/88fa3e1c399209cf4e5f0658b0009c48d77f1548))
+
+## [0.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.58.0...v0.58.1) (2022-08-05)
+
+
+### Bug Fixes
+
+* use semi-colon between lexend font-weights, fixes [#423](https://github.com/oaknational/Oak-Web-Application/issues/423) ([2f7d24c](https://github.com/oaknational/Oak-Web-Application/commit/2f7d24c1106db4e781a96c94b9649b55587cc0ad))
+
+# [0.58.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.57.0...v0.58.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* **cms:** add missing stepsCTA to planning query ([b73ccbb](https://github.com/oaknational/Oak-Web-Application/commit/b73ccbb43be70eb2a8d68130c0fbf10c81a7fb43))
+
+
+### Features
+
+* **cms:** add CMSImage component ([27e0a64](https://github.com/oaknational/Oak-Web-Application/commit/27e0a64ee0d32a554b03d9bd540f3e79d2c485c2))
+* **cms:** add schema support for CMS images and CTAs ([748ba47](https://github.com/oaknational/Oak-Web-Application/commit/748ba47b23454bae3e3d1c42ed6391cf4e9ce569))
+
+# [0.57.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.56.0...v0.57.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* **cms:** add previewSecret to config ([b7b3233](https://github.com/oaknational/Oak-Web-Application/commit/b7b32332d621ce2417d49dafdf70cd755df00740))
+* **cms:** make planningPage work with preview mode, tests ([e843454](https://github.com/oaknational/Oak-Web-Application/commit/e843454afcaca47e66e5029c5d2faaafdc4ea1ca))
+* **cms:** silence ts issues in tests ([4d5dc14](https://github.com/oaknational/Oak-Web-Application/commit/4d5dc143c859517cafddb8a62039f6fa107dc735))
+
+
+### Features
+
+* **cms:** add endpoint for preview mode ([b9ee313](https://github.com/oaknational/Oak-Web-Application/commit/b9ee313f49c53a73b729f59f255e000e6ddf39ec))
+* **cms:** add preview mode indicator ([f403c13](https://github.com/oaknational/Oak-Web-Application/commit/f403c13bcc1a0526c2ad062514c6a39606a1563f))
+* **cms:** handle preview mode in sanity cms client ([5909400](https://github.com/oaknational/Oak-Web-Application/commit/59094003278c0b6a466be65e4c64d2db687fc7ee))
+* **cms:** handle preview mode in webinar pages ([b609fd6](https://github.com/oaknational/Oak-Web-Application/commit/b609fd6c01cf95108badaf8b7a566d5cad21f826))
+* **cms:** protect cms previews with shared secret token ([a467f92](https://github.com/oaknational/Oak-Web-Application/commit/a467f92ddda999524ffeced6e70cc692e644187e))
+
+# [0.56.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.55.0...v0.56.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* add headerVariant='app' for beta pages ([f14c4c1](https://github.com/oaknational/Oak-Web-Application/commit/f14c4c1b3c5b214e1a371d200922b1e7cee92140))
+* **plan-a-lesson:** adding correct icons and other PR comments ([6c20050](https://github.com/oaknational/Oak-Web-Application/commit/6c20050ede7d09c8b66e80260f028ee6a7d7a55d))
+* remove role='button' from ButtonAsLink so that screenreader link navigation picks it up ([6573357](https://github.com/oaknational/Oak-Web-Application/commit/6573357815164be59e00bffe0baf5ed1d1353c7c))
+* remove width prop ([0819ece](https://github.com/oaknational/Oak-Web-Application/commit/0819ece7f4892af658b2aad1d645c4a49ef73f05))
+
+
+### Features
+
+* **cms:** add data for planning page to cms client ([69ab641](https://github.com/oaknational/Oak-Web-Application/commit/69ab6418068accd0bfa2e7d44611c45315b620c8))
+* **cms:** wire up some planning page fields to CMS data ([3505f55](https://github.com/oaknational/Oak-Web-Application/commit/3505f550b6bd3fc04e214cf63c22fec792f36428))
+* lesson elements ([8a2e8ba](https://github.com/oaknational/Oak-Web-Application/commit/8a2e8baa1e5581b2dc6d640b03aae625d2346915))
+* lesson planning page ([c40246f](https://github.com/oaknational/Oak-Web-Application/commit/c40246fe6c71fbdfe8178c327f81af728f54aa2c))
+* **plan-a-lesson:** lesson element navigation [#339](https://github.com/oaknational/Oak-Web-Application/issues/339) ([94f585e](https://github.com/oaknational/Oak-Web-Application/commit/94f585e1c03d0227201c4e7ac76aa1f3b704ad90))
+* planning page ([924ad80](https://github.com/oaknational/Oak-Web-Application/commit/924ad80f975fc6560f789fdf6c32d990235eb3cf))
+* storybook for Circle, BackgroundGraphic, LessonProgressionGraphic ([0fa7e81](https://github.com/oaknational/Oak-Web-Application/commit/0fa7e81151051f046d6c3d20c4e6d362afcc1f05))
+* summary card ([4724919](https://github.com/oaknational/Oak-Web-Application/commit/4724919a7206e042f5639cf30f4c7baf15bfb0eb))
+* **typography:** add headingLight font family, [#413](https://github.com/oaknational/Oak-Web-Application/issues/413) ([1b374ac](https://github.com/oaknational/Oak-Web-Application/commit/1b374ace437e1d22470725bf1c28c2d9a8655972))
+
+# [0.55.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.54.2...v0.55.0) (2022-08-02)
+
+
+### Features
+
+* **button:** add brush stroke svgs for buttons ([23efd19](https://github.com/oaknational/Oak-Web-Application/commit/23efd19a9a74f70025b761318e552947d76d5e39))
+
+## [0.54.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.54.1...v0.54.2) (2022-08-01)
+
+
+### Bug Fixes
+
+* duplicate svg in logo ([25329c9](https://github.com/oaknational/Oak-Web-Application/commit/25329c903b76883eeca8196dc8010558c36c8b78))
+
+# [0.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.1...v0.54.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **gleap:** get config from config file ([c1848eb](https://github.com/oaknational/Oak-Web-Application/commit/c1848ebf2651746d7b6021e1a3823594d809410f))
+* **gleap:** sonar css issues and new branding fonts on ([8728c2e](https://github.com/oaknational/Oak-Web-Application/commit/8728c2ebf35a8f2f896957325b0c00a51395516e))
+
+
+### Features
+
+* gleap ([491fdb2](https://github.com/oaknational/Oak-Web-Application/commit/491fdb29d337dd50e0049e8e88489d994b139b73))
+
+## [0.53.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.53.0...v0.53.1) (2022-07-28)
+
+
+### Bug Fixes
+
+* **dissmissable-card:** title ([16a138d](https://github.com/oaknational/Oak-Web-Application/commit/16a138d3e97006562c7437152e8d266a599b63db))
+
+# [0.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.1...v0.53.0) (2022-07-27)
+
+
+### Bug Fixes
+
+* **brushstroke-borders:** new svgs ([2b135b2](https://github.com/oaknational/Oak-Web-Application/commit/2b135b2775705a37327ddefe2a92f365dfefc4f5))
+
+
+### Features
+
+* brushstroke borders ([39489f2](https://github.com/oaknational/Oak-Web-Application/commit/39489f2cd5f0b16fd6e7028aa54b80716504f14e))
+
+## [0.52.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.52.0...v0.52.1) (2022-07-26)
+
+
+### Bug Fixes
+
+* **cms:** fix codegen env vars ([5ed3e4d](https://github.com/oaknational/Oak-Web-Application/commit/5ed3e4d8f32a54f6592e8db7b073cecac807e960))
+
+# [0.52.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.51.0...v0.52.0) (2022-07-22)
+
+
+### Features
+
+* add brand colors ([e74b888](https://github.com/oaknational/Oak-Web-Application/commit/e74b8889f1df77a75ecbc2ea90d6e4c92e5732ff))
+
+# [0.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.1...v0.51.0) (2022-07-21)
+
+
+### Features
+
+* add size convenience prop util ([86f63ee](https://github.com/oaknational/Oak-Web-Application/commit/86f63eefc4f8f25dbce838bad791e0c8f8061efe))
+
+## [0.50.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.50.0...v0.50.1) (2022-07-21)
+
+
+### Bug Fixes
+
+* errorBoundary functionality and tests ([9bfc70c](https://github.com/oaknational/Oak-Web-Application/commit/9bfc70cc9a797205afab5f8693dd57f67a77a24f))
+* only init bugsnag when consent given ([53e8248](https://github.com/oaknational/Oak-Web-Application/commit/53e82484177558a0d00a477ae67848fa20ec72d8))
+
+# [0.50.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.49.0...v0.50.0) (2022-07-20)
+
+
+### Features
+
+* use next/image in CardImage component, add AspectRatio component ([470a6ec](https://github.com/oaknational/Oak-Web-Application/commit/470a6ec03227784cc8b1a97330ada9846e37a00e))
+
+# [0.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.48.0...v0.49.0) (2022-07-20)
+
+
+### Bug Fixes
+
+* **cms:** add basic test for webinar, fix date serialising ([490f881](https://github.com/oaknational/Oak-Web-Application/commit/490f881f5a85de2f8e6c4d05807e28ce4a6e2d59))
+* **cms:** add requiredSecrets to sanity config ([8e733ce](https://github.com/oaknational/Oak-Web-Application/commit/8e733ce7b39910cffe44b416a818254d1dc36736))
+* **cms:** correctly configure sanity config and secrets ([0cb9e60](https://github.com/oaknational/Oak-Web-Application/commit/0cb9e60f7ace43edc54c79e690bde11584cc3497))
+* **cms:** ensure slug schema is nonempty ([2326962](https://github.com/oaknational/Oak-Web-Application/commit/2326962586794647552ecddf3f546a60dedc52ab))
+* **cms:** rejig config/secrets again to fix build ([7ba1307](https://github.com/oaknational/Oak-Web-Application/commit/7ba13072803589e16686605bcfcfd74287ba1f26))
+* **cms:** remove NEXT_PUBLIC_ prefix from sanity vars ([41c216a](https://github.com/oaknational/Oak-Web-Application/commit/41c216ae9897b065b1e9a16c7169bb0f581db41e))
+* **cms:** typescript issues with webinar parse/transforms ([905319d](https://github.com/oaknational/Oak-Web-Application/commit/905319d893ab161e12d5571d902dbae3303b5cc5))
+
+
+### Features
+
+* **cms:** add graphql-codegen for the sanity graphql endpoint ([a8f9beb](https://github.com/oaknational/Oak-Web-Application/commit/a8f9beb4ce12a7b6231a49609695c9421b2beebf))
+* **cms:** add portable text, other examples of field types to webinar ([8935239](https://github.com/oaknational/Oak-Web-Application/commit/8935239507c99553f7ce1d4ed285f500214b69ca))
+* **cms:** add type hints for static props url params ([6faf9ee](https://github.com/oaknational/Oak-Web-Application/commit/6faf9ee9c31d4b97d0c5e22e8a153acec7256dca))
+* **cms:** implement service layer abstracting sanity specifics ([9833733](https://github.com/oaknational/Oak-Web-Application/commit/9833733308d095076a0c4d35ee32e28fc703d89e))
+* **cms:** scaffold webinar pages ([7494ff7](https://github.com/oaknational/Oak-Web-Application/commit/7494ff792f4527163cdc2cb29f1d0fed13dfc1a3))
+
+# [0.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.47.0...v0.48.0) (2022-07-19)
+
+
+### Features
+
+* policy page ([49bb045](https://github.com/oaknational/Oak-Web-Application/commit/49bb0451671a27aa508629da3aad90168e7ee08a))
+
+# [0.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.1...v0.47.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* identical sub expression ([01e6174](https://github.com/oaknational/Oak-Web-Application/commit/01e61747f16c565507951329afeee6a1700ed559))
+
+
+### Features
+
+* site footer ([8f005e6](https://github.com/oaknational/Oak-Web-Application/commit/8f005e6d3d26620ee62436ad38264e76169d1f37))
+
 ## [0.46.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.46.0...v0.46.1) (2022-07-15)
 
 # [0.46.0](https://github.com/oaknational/Samara/compare/v0.45.2...v0.46.0) (2022-07-13)

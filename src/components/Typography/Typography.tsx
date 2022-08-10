@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import typography, { TypographyProps } from "../../styles/utils/typography";
 import Box, { BoxProps } from "../Box";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 
 const bodyFontSizes = {
   18: "18px",
@@ -26,7 +25,6 @@ type TypographyComponent = BoxProps &
  */
 const Typography = styled(Box)<TypographyComponent>`
   ${typography}
-  font-family: ${getFontFamily("body")};
 `;
 
 /**
@@ -37,8 +35,8 @@ const Typography = styled(Box)<TypographyComponent>`
  * Perhaps defaults should be in global css instead.
  */
 Typography.defaultProps = {
-  fontWeight: 400,
-  lineHeight: 1.4,
+  $lineHeight: 1.4,
+  $fontFamily: "body",
 };
 
 export default Typography;

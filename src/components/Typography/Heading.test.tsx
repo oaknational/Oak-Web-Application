@@ -7,7 +7,7 @@ describe("Heading", () => {
     "should correctly render %s tag",
     (tag) => {
       const { getByRole } = renderWithProviders(
-        <Heading tag={tag as HeadingTag} fontSize={32} />
+        <Heading tag={tag as HeadingTag} $fontSize={32} />
       );
 
       expect(getByRole("heading", { level: 1 })).toBeTruthy();
@@ -17,7 +17,7 @@ describe("Heading", () => {
     const { getByTestId } = renderWithProviders(
       <Heading
         data-testid="test"
-        fontSize={fontSize as HeadingFontSize}
+        $fontSize={fontSize as HeadingFontSize}
         tag="h1"
       />
     );

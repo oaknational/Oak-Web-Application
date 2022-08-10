@@ -3,15 +3,15 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { SearchProvider } from "./SearchContext";
 import useFetchSearchResults from "./useFetchSearchResults";
 
-const handleError = jest.fn();
-const errorHandler = () => () => handleError;
+const reportError = jest.fn();
+const errorReporter = () => () => reportError;
 
 describe("useFetchSearchResults()", () => {
   beforeEach(() => {
     jest.resetAllMocks();
-    jest.mock("../../common-lib/error-handler", () => ({
+    jest.mock("../../common-lib/error-reporter", () => ({
       __esModule: true,
-      default: errorHandler,
+      default: errorReporter,
     }));
   });
   test("'loading' should default to true", () => {
@@ -34,7 +34,7 @@ describe("useFetchSearchResults()", () => {
       await fetchSearchResults({ isCancelled: false });
     });
 
-    // expect(handleError).toHaveBeenCalled();
+    // expect(reportError).toHaveBeenCalled();
     /**
      * @todo fix this. it should be .toBe("bad thing")
      */

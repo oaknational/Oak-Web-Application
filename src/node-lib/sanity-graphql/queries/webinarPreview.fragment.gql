@@ -1,0 +1,8 @@
+fragment WebinarPreviewFields on Webinar {
+  id: _id
+  title
+  slug {
+    current
+  }
+  summaryPortableText: summaryRaw
+}

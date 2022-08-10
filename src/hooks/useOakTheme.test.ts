@@ -51,7 +51,7 @@ describe("useOakTheme()", () => {
       expect(oakGlobals.oakThemes?.availableThemes).toEqual([
         "default",
         "aus",
-        "placeholder",
+        "oak",
       ]);
     });
     it("setTheme() should console.error if theme not valid", async () => {

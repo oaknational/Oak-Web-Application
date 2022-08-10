@@ -1,28 +1,33 @@
-import { FC } from "react";
-import styled from "styled-components";
+import { CSSProperties, FC } from "react";
+import NextImage, { StaticImageData } from "next/image";
+
+import AspectRatio, { AspectRatios } from "../../AspectRatio";
+
+const DEFAULT_ASPECT_RATIO: AspectRatios = ["3:2", "16:9"];
 
 export type CardImageProps = {
-  imageSrc?: string;
-  alt?: string;
+  imageSrc: string | StaticImageData;
+  alt: string;
+  position?: CSSProperties["objectPosition"];
+  aspectRatio?: AspectRatios;
 };
 
-const CardImageWrap = styled.div`
-  border-radius: 8px 8px 0 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const StyledImage = styled.img`
-  width: 100%;
-  height: auto;
-`;
-
-const CardImage: FC<CardImageProps> = ({ imageSrc, alt }) => {
+const CardImage: FC<CardImageProps> = ({
+  imageSrc,
+  alt,
+  position = "center center",
+  aspectRatio = DEFAULT_ASPECT_RATIO,
+}) => {
   return (
-    <CardImageWrap>
-      <StyledImage src={imageSrc} alt={alt} />
-    </CardImageWrap>
+    <AspectRatio ratio={aspectRatio}>
+      <NextImage
+        layout="fill"
+        objectFit="contain"
+        objectPosition={position}
+        src={imageSrc}
+        alt={alt}
+      />
+    </AspectRatio>
   );
 };
 
