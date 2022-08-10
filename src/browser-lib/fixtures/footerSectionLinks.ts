@@ -49,6 +49,8 @@ const footerSections: FooterSection[] = [
       { text: "Accessibilty Statement", href: "/accessibilty" }, //placeholder href
       { text: "Safegarding Statement", href: "/safegarding" }, //placeholder href
       { text: "Physical Activity Disclaimer", href: "/physical-activity" }, //placeholder href
+      { text: "Complaints", href: "/compaints" }, //placeholder href
+      { text: "FOIRs", href: "/foirs" }, //placeholder href
     ],
   },
 ];
