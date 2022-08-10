@@ -15,21 +15,51 @@ export type SanityImage = {
   };
 };
 
-export type Card = {
+export type Video = {
   title: string;
-  image?: string;
-  bodyPortableText?: PortableTextJSON;
+  video: {
+    asset: {
+      assetId: string;
+      playbackId: string;
+    };
+  };
 };
 
 export type CTA = {
   label: string;
+} & (
+  | {
+      linkType: "internal";
+      internal: { contentType: string; slug?: string };
+    }
+  | { linkType: "external"; external: string }
+);
+
+export type Card = {
+  title: string;
+  image?: SanityImage | null;
+  bodyPortableText?: PortableTextJSON;
+  cta?: CTA | null;
 };
 
+export type TextBlock = {
+  title: string;
+  bodyPortableText: PortableTextJSON;
+  cta?: CTA | null;
+};
 
 export type TextAndMedia = {
   title: string;
   bodyPortableText: PortableTextJSON;
   alignMedia: "left" | "right";
-  mediaType: "image" | "video";
-  image: SanityImage;
-};
+  cta?: CTA | null;
+} & (
+  | {
+      mediaType: "image";
+      image: SanityImage;
+    }
+  | {
+      mediaType: "video";
+      video: Video;
+    }
+);

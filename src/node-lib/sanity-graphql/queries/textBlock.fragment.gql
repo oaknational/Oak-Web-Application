@@ -1,0 +1,4 @@
+fragment TextBlock on TextBlock {
+  title
+  bodyPortableText: bodyRaw
+}

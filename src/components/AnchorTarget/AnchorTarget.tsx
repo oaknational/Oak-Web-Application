@@ -7,7 +7,7 @@ import styled from "styled-components";
  *
  * Drop AnchorTarget inside a relative or absolulely positioned element, passing
  * it a unique 'id'. Then link it elsewhere using `<a href='#${id}' />`.
- * 
+ *
  * @todo Currently theme.header.height only specifies a minHeight, which means
  * that this component is not reliable. We should set actual 'height' on the
  * site header.
@@ -19,4 +19,3 @@ const AnchorTarget = styled.span`
 `;
 
 export default AnchorTarget;
-

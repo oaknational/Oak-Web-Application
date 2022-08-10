@@ -1,0 +1,10 @@
+fragment Video on Video {
+  title
+  video {
+    asset {
+      assetId
+      thumbTime
+      playbackId
+    }
+  }
+}

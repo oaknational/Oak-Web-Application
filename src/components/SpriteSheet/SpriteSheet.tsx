@@ -9,6 +9,7 @@ import graphicSvgSymbols, { GRAPHIC_NAMES } from "./GraphicSvgs";
 import lessonElementSvgSymbols, {
   LESSON_ELEMENT_NAMES,
 } from "./LessonElementSvgs";
+import brushSvgSymbols, { BRUSH_NAMES } from "./BrushSvgs";
 
 const SpriteSheet: FC = () => {
   return (
@@ -41,6 +42,12 @@ const SpriteSheet: FC = () => {
         <Symbol key={`spritesheet-${name}`} />
       ))}
       <IconBackground id={getSvgId({ name: "icon-brush-background" })} />
+      {BRUSH_NAMES.map((name) => {
+        const BrushSymbol = brushSvgSymbols[name];
+        return (
+          <BrushSymbol key={`spritesheet-${name}`} id={getSvgId({ name })} />
+        );
+      })}
     </svg>
   );
 };

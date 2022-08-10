@@ -17,7 +17,11 @@ const testPlanningPageData: PlanningPage = {
     worksheet: { title: "Worksheet title" },
     exitQuiz: { title: "Exit quiz title" },
   },
-  lessonElementsCTA: { label: "elements label" },
+  lessonElementsCTA: {
+    label: "elements label",
+    linkType: "external",
+    external: "https://example.com",
+  },
   stepsHeading: "steps",
   steps: [
     {
@@ -44,7 +48,9 @@ const testPlanningPageData: PlanningPage = {
 
 describe("pages/planning.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(<Planning pageData={testPlanningPageData} />);
+    renderWithProviders(
+      <Planning pageData={testPlanningPageData} isPreviewMode={false} />
+    );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(

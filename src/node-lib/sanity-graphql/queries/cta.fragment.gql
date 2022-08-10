@@ -4,19 +4,25 @@ fragment CTA on Cta {
   external
   internal {
     ... on Webinar {
-      type: _type
+      contentType: _type
       slug {
         current
       }
     }
     ... on NewsPost {
-      type: _type
+      contentType: _type
       slug {
         current
       }
     }
     ... on PlanningCorePage {
-      type: _type
+      contentType: _type
+    }
+    ... on PolicyPage {
+      contentType: _type
+      slug {
+        current
+      }
     }
   }
 }
