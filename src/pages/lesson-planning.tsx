@@ -397,6 +397,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
       pageData: planningPage,
       isPreviewMode,
     },
+    revalidate: 10,
   };
 };
 
