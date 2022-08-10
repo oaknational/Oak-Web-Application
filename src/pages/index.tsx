@@ -49,6 +49,31 @@ const Home: FC = () => {
                   completely free.
                 </Heading>
               </GridArea>
+              <GridArea $colSpan={[12, 12, 12]}>
+                <Card
+                  $background={"white"}
+                  $flexDirection={["column-reverse", "row"]}
+                  $justifyContent={"space-between"}
+                  $alignItems="center"
+                  $borderRadius={4}
+                  $pa={4}
+                  $ma={4}
+                >
+                  <Box
+                    $overflow="hidden"
+                    $pv={[0, 16]}
+                    $width={"100%"}
+                    $height={"100%"}
+                  >
+                    <div>Learn learn learn learn....</div>
+                    <audio
+                      controls
+                      autoPlay
+                      src="https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/LBHNtdD9A27oHD7t5dG6EJZq5viXXu4QdzGcNBbs.mp3"
+                    />
+                  </Box>
+                </Card>
+              </GridArea>
               <GridArea $colSpan={[6, 6, 6]}>
                 <Card
                   $background={"white"}
