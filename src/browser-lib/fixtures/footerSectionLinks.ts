@@ -19,38 +19,41 @@ const footerSections: FooterSection[] = [
     title: "Teachers",
     links: [
       { text: "Teacher Hub", href: "https://teachers.thenational.academy" },
-      { text: "Curriculum", href: "/improve-curriculum" }, //placeholder href
-      { text: "Lesson Planning", href: "/plan-a-lesson" }, //placeholder href
-      { text: "Oak For Schools", href: "/school-leaders" }, //placeholder href
-      { text: "Grow With Oak", href: "/cpd" }, //placeholder href
+      { text: "Curriculum", href: "/curriculum" },
+      { text: "Lesson Planning", href: "/lesson-planning" },
+      { text: "Oak For Schools", href: "/oak-for-schools" },
+      { text: "Grow With Oak", href: "/grow-with-oak" },
     ],
   },
   {
     title: "Oak",
     links: [
       { text: "Home", href: "/" },
-      { text: "About Oak", href: "/about-us" }, //placeholder href
-      { text: "Careers", href: "/careers" }, //placeholder href
-      { text: "Contact us", href: "/contact-us" }, //placeholder href
-      { text: "Help", href: "/help" }, //placeholder href
-      { text: "Webinar", href: "/webinar" }, //placeholder href
-      { text: "Blog", href: "/blog" }, //placeholder href
+      { text: "About Oak", href: "/about-us/who-we-are" },
+      { text: "Careers", href: "/careers" },
+      { text: "Contact us", href: "/contact-us" },
+      { text: "Help", href: "/help" },
+      { text: "Webinars", href: "/webinars" },
+      { text: "Blog", href: "/blog" },
     ],
   },
 
   {
     title: "Legal",
     links: [
-      { text: "Private Policy", href: "/privacy-policy" }, //placeholder href
-      { text: "Cookie Policy", href: "/cookie-policy" }, //placeholder href
-      { text: "Change Cookie Setting", href: "/change-cookie-setting" }, //placeholder href
-      { text: "Copyright Notice", href: "/copyright-notice" }, //placeholder href
-      { text: "Terms & Conditions", href: "/terms-conditions" }, //placeholder href
-      { text: "Accessibilty Statement", href: "/accessibilty" }, //placeholder href
-      { text: "Safegarding Statement", href: "/safegarding" }, //placeholder href
-      { text: "Physical Activity Disclaimer", href: "/physical-activity" }, //placeholder href
-      { text: "Complaints", href: "/compaints" }, //placeholder href
-      { text: "FOIRs", href: "/foirs" }, //placeholder href
+      { text: "Privacy Policy", href: "/legal/privacy-policy" },
+      { text: "Cookie Policy", href: "legal/cookie-policy" },
+      { text: "Change Cookie Setting", href: "legal/change-cookie-setting" },
+      { text: "Copyright Notice", href: "legal/copyright-notice" },
+      { text: "Terms & Conditions", href: "legal/terms-and-conditions" },
+      { text: "Accessibilty Statement", href: "legal/accessibilty-statement" },
+      { text: "Safeguarding Statement", href: "legal/safegarding-statement" },
+      {
+        text: "Physical Activity Disclaimer",
+        href: "legal/physical-activity-disclaimer",
+      },
+      { text: "Complaints", href: "legal/compaints" },
+      { text: "FOIRs", href: "legal/foirs" },
     ],
   },
 ];
