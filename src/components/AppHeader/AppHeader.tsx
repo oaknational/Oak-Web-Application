@@ -25,11 +25,7 @@ const AppHeader: FC = () => {
         <Link href={"/"} passHref>
           <HomeLink $alignItems="center">
             <Icon name="Home" size={32} $mr={8} />
-            <Span
-              $fontFamily="heading"
-              $fontSize={20}
-              $lineHeight={1}
-            >
+            <Span $fontFamily="heading" $fontSize={20} $lineHeight={1}>
               Oak
             </Span>
           </HomeLink>
