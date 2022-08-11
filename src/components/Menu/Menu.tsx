@@ -97,14 +97,28 @@ const Menu: FC = ({ children }) => {
                 $flexDirection={"column"}
                 $overflow={"auto"}
                 $flexGrow={1}
-                $pt={72}
+                $pt={[12, 72]}
               >
+                {/* Mobile logo */}
+                <Flex
+                  $justifyContent={"left"}
+                  $display={["flex", "none"]}
+                  $mb={[36, 0]}
+                >
+                  <Logo
+                    title={"Oak National Academy"}
+                    height={48}
+                    width={104}
+                  />
+                </Flex>
                 {children}
+                {/* Desktop logo */}
                 <Flex
                   $justifyContent={"right"}
                   $mt={"auto"}
                   $mb={72}
                   $mr={[0, 72]}
+                  $display={["none", "flex"]}
                 >
                   <Logo
                     title={"Oak National Academy"}

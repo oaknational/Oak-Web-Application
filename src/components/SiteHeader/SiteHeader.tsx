@@ -107,7 +107,7 @@ const SiteHeader: FC = () => {
           </li>
           <li>
             <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/about-us"}>About us</Link>
+              <Link href={"/about-us/who-we-are"}>About us</Link>
             </P>
           </li>
           <li>
