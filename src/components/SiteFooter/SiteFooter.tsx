@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
 import styled from "styled-components";
-import Image from "next/image";
 
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
@@ -11,8 +10,8 @@ import {
   FooterLink,
 } from "../../browser-lib/fixtures/footerSectionLinks";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import LogoText from "../../../public/images/oak-logo-text.svg";
 import MaxWidth from "../MaxWidth/MaxWidth";
+import Logo from "../Logo";
 
 const StyledSiteFooter = styled.footer`
   background: ${getColorByName("white")};
@@ -110,14 +109,8 @@ const SiteFooter: FC<SiteFooterProps> = ({
               $pl={[32, 0]}
             >
               <Flex $position="relative">
-                <Image
-                  alt={"Oak National Academy Logo"}
-                  height={66}
-                  width={150}
-                  src={LogoText}
-                ></Image>
+                <Logo title={"Oak National Academy"} height={66} width={150} />
               </Flex>
-
               {footerNotification}
             </Flex>
           </Flex>
