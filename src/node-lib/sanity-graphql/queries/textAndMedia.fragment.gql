@@ -3,7 +3,13 @@ fragment TextAndMedia on TextAndMedia {
   bodyPortableText: bodyRaw
   mediaType
   alignMedia
+  cta {
+    ...CTA
+  }
   image {
     ...Image
+  }
+  video {
+    ...Video
   }
 }

@@ -23,9 +23,6 @@ jobs:
       # Unit tests, no integration tests.
       - run: npm run test:ci
 
-      # Storybook tests, require a Storybook server to be running, slow.
-      - run: npm run test:storybook:ci
-
       # Manually run the SonarCloud scan so we can send test coverage information.
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master

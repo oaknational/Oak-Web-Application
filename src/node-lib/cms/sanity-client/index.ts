@@ -4,7 +4,11 @@ import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import { webinarPreviewSchema, webinarSchema } from "./schemas";
-import { planningPageSchema, supportPageSchema } from "./schemas/pages";
+import {
+  planningPageSchema,
+  supportPageSchema,
+  aboutPageSchema,
+} from "./schemas/pages";
 
 const getSanityClient: CMSClient = () => ({
   webinars: async ({ previewMode, ...params } = {}) => {
@@ -43,6 +47,15 @@ const getSanityClient: CMSClient = () => ({
     const supportPageData = result.allSupportCorePage[0];
 
     return supportPageSchema.parse(supportPageData);
+  },
+  aboutPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.aboutCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const planningPageData = result.allAboutCorePage[0];
+
+    return aboutPageSchema.parse(planningPageData);
   },
 });
 

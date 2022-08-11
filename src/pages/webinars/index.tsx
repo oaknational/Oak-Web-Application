@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
   context
 ) => {
   const isPreviewMode = context.preview === true;
-  
+
   const webinarResults = await CMSClient.webinars({
     previewMode: isPreviewMode,
   });

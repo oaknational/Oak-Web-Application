@@ -1,5 +1,4 @@
 {
-  "id": "planningCorePage",
   "title": "Plan a Lesson",
   "heading": "Save time planning your lessons with free, adaptable teacher-made resources",
   "summaryPortableText": [
@@ -21,7 +20,6 @@
   "lessonElements": {
     "introQuiz": {
       "title": "Intro Quiz",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "917f31adbda2",
@@ -37,11 +35,11 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     },
     "video": {
       "title": "Video",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "6e56085f55dd",
@@ -57,11 +55,11 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     },
     "slides": {
       "title": "Lesson Slides",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "29626b88ca83",
@@ -77,11 +75,11 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     },
     "worksheet": {
       "title": "Worksheets",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "0528af385d2d",
@@ -97,11 +95,11 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     },
     "exitQuiz": {
       "title": "Exit Quiz",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "7b24c47fd7e1",
@@ -117,17 +115,19 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     }
   },
   "lessonElementsCTA": {
-    "label": "Find Teacher Resources"
+    "label": "Find Teacher Resources",
+    "linkType": "internal",
+    "internal": { "contentType": "policyPage", "slug": "privacy" }
   },
   "stepsHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
   "steps": [
     {
       "title": "Find the right lesson",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "2464afe5f641",
@@ -143,11 +143,15 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": {
+        "asset": {
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-page/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+        }
+      }
     },
     {
       "title": "Personalise your explanation",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "b0a0d8c056e1",
@@ -163,11 +167,11 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     },
     {
       "title": "Tailor the tasks for your class",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "897dfc82ee87",
@@ -183,11 +187,11 @@
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": null
     },
     {
       "title": "Teach the lesson",
-      "image": null,
       "bodyPortableText": [
         {
           "_key": "dbf03e135d49",
@@ -197,15 +201,25 @@
               "_key": "37a7bdb529830",
               "_type": "span",
               "marks": [],
-              "text": "Now you have reviewed, adapted and prepared the resources, it’s time to teach the lesson! While you’re teaching, try to tweak task formats, explanation wordings and check for understanding questions to ensure you are responding to the needs of your students."
+              "text": "Enjoy it and let us know how you get on!"
             }
           ],
           "markDefs": [],
           "style": "normal"
         }
-      ]
+      ],
+      "image": {
+        "asset": {
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-page/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+        }
+      }
     }
   ],
+  "stepsCTA": {
+    "label": "Search our lessons",
+    "linkType": "internal",
+    "internal": { "contentType": "planningCorePage" }
+  },
   "learnMoreHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
   "learnMoreBlock1": {
     "title": "Plan for lesson cover",
@@ -238,7 +252,16 @@
         "markDefs": [],
         "style": "normal"
       }
-    ]
+    ],
+    "cta": null,
+    "alignMedia": "left",
+    "mediaType": "image",
+    "image": {
+      "asset": {
+        "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+        "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-page/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+      }
+    }
   },
   "learnMoreBlock2": {
     "title": "Plan for absent pupils",
@@ -251,12 +274,54 @@
             "_key": "35001a65a8930",
             "_type": "span",
             "marks": [],
-            "text": "Keep pupils who are temporarily learning from home on track by directing them to curriculum-aligned lesson videos in our pupil area. Our lesson videos give your pupils access to a teacher who explains and scaffolds their learning, just like you would in the classroom. And you can keep track of their progress with our quizzes; they can send their scores directly to you."
+            "text": "Keep pupils who are temporarily learning from home on track by directing them to curriculum aligned lessons in our pupil area. Simply copy the online lesson link into Google Classroom, MS teams or your schools learning management system (LMS)."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "36808135d09e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6030d4278575",
+            "_type": "span",
+            "marks": [],
+            "text": "Our lesson videos give your pupils access to a teacher who explains and scaffolds their learning, just like you would in the classroom. And you can keep track of their progress with our quizzes, with their scores sent directly to you. Use the same resources to teach the lesson in class, so you only ever have to plan once."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "85194c0393e7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1983b007ca62",
+            "_type": "span",
+            "marks": [],
+            "text": "When setting homework or revision, rather than spending time creating activities from scratch, explore and share our lessons with your classes instead."
           }
         ],
         "markDefs": [],
         "style": "normal"
       }
-    ]
-  }
+    ],
+    "cta": {
+      "label": "Find teacher resources",
+      "linkType": "internal",
+      "internal": { "contentType": "policyPage", "slug": "privacy" }
+    },
+    "alignMedia": "right",
+    "mediaType": "image",
+    "image": {
+      "asset": {
+        "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+        "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-page/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+      }
+    }
+  },
+  "id": "planningCorePage"
 }

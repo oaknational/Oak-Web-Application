@@ -1,6 +1,11 @@
 import * as z from "zod";
 
-import { slugSchema, documentSchema, portableTextSchema, dateSchema } from "./base";
+import {
+  slugSchema,
+  documentSchema,
+  portableTextSchema,
+  dateSchema,
+} from "./base";
 import { teamMemberPreviewSchema } from "./teamMember";
 
 export const webinarSchema = z
