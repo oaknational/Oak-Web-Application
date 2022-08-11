@@ -16,6 +16,7 @@ import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 export type PixelSpacing =
   | 0
   | 4
+  | 6
   | 8
   | 12
   | 16

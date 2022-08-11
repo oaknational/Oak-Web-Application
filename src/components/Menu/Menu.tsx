@@ -10,6 +10,7 @@ import Flex from "../Flex";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
+import SocialButtons from "../SocialButtons";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -48,7 +49,7 @@ const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
 `;
 
 SideMenu.defaultProps = {
-  $width: ["100%", "40%"],
+  $width: ["100%", "50%", "40%"],
 };
 
 const MenuHeader = styled(Flex)`
@@ -114,17 +115,21 @@ const Menu: FC = ({ children }) => {
                 {children}
                 {/* Desktop logo */}
                 <Flex
-                  $justifyContent={"right"}
                   $mt={"auto"}
-                  $mb={72}
+                  $mb={64}
                   $mr={[0, 72]}
-                  $display={["none", "flex"]}
+                  $pt={48}
+                  $justifyContent={"space-between"}
+                  $alignItems={"flex-end"}
                 >
-                  <Logo
-                    title={"Oak National Academy"}
-                    width={150}
-                    height={63}
-                  />
+                  <SocialButtons />
+                  <Flex $display={["none", "flex"]} $mb={6}>
+                    <Logo
+                      title={"Oak National Academy"}
+                      width={150}
+                      height={63}
+                    />
+                  </Flex>
                 </Flex>
               </Flex>
             </SideMenu>
