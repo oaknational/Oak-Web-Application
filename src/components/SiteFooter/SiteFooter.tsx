@@ -9,9 +9,9 @@ import {
   FooterSection,
   FooterLink,
 } from "../../browser-lib/fixtures/footerSectionLinks";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
+import SocialButtons from "../SocialButtons";
 
 const StyledSiteFooter = styled.footer`
   background: ${getColorByName("white")};
@@ -115,32 +115,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
             </Flex>
           </Flex>
           <Flex $mb={80} $width={"100%"} $mt={32}>
-            <Flex $alignItems={"center"} $justifyContent={"center"}>
-              <IconButtonAsLink
-                aria-label={"instagram"}
-                icon={"Instagram"}
-                href={"https://instagram.com/oaknational"}
-                variant={"minimal"}
-                $mr={16}
-                size={"small"}
-              />
-              <IconButtonAsLink
-                aria-label={"facebook"}
-                icon={"Facebook"}
-                href={"https://facebook.com/oaknationalacademy"}
-                variant={"minimal"}
-                $mr={16}
-                size={"small"}
-              />
-              <IconButtonAsLink
-                aria-label={"twitter"}
-                icon={"Twitter"}
-                href={"https://twitter.com/oaknational"}
-                variant={"minimal"}
-                $mr={[12, 32]}
-                size={"small"}
-              />
-            </Flex>
+            <SocialButtons />
             <Flex $alignItems={"center"}>
               <P $textAlign="center" fontSize={12}>
                 © Oak National Academy
