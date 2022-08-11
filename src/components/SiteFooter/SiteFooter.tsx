@@ -126,7 +126,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               <IconButtonAsLink
                 aria-label={"instagram"}
                 icon={"Instagram"}
-                href={"/instagram"} // update link
+                href={"https://instagram.com/oaknational"}
                 variant={"minimal"}
                 $mr={16}
                 size={"small"}
@@ -134,7 +134,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               <IconButtonAsLink
                 aria-label={"facebook"}
                 icon={"Facebook"}
-                href={"/facebook"} // update link
+                href={"https://facebook.com/oaknationalacademy"}
                 variant={"minimal"}
                 $mr={16}
                 size={"small"}
@@ -142,7 +142,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               <IconButtonAsLink
                 aria-label={"twitter"}
                 icon={"Twitter"}
-                href={"/twitter"} // update link
+                href={"https://twitter.com/oaknational"}
                 variant={"minimal"}
                 $mr={[12, 32]}
                 size={"small"}
