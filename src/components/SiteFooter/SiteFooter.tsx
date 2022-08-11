@@ -30,7 +30,7 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
     <Flex $flexDirection="column">
       <Heading
         $mb={8}
-        $fontSize={16}
+        $fontSize={20}
         $lineHeight="20px"
         $color="grey9"
         tag="h4"
@@ -38,7 +38,7 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
       >
         {title}
       </Heading>
-      <Typography $fontSize={12} $lineHeight={"20px"} color="grey9">
+      <Typography $fontSize={16} $lineHeight={"24px"} color="grey9">
         <ul role={"list"}>
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
