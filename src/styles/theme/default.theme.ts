@@ -219,6 +219,11 @@ const theme: OakTheme = {
       text: "black",
     },
   },
+  menu: {
+    background: "pupilsPink",
+    color: "black",
+    width: "40vw",
+  },
   badge: {
     size: "54px",
     circleSize: "48px",
@@ -230,6 +235,8 @@ const theme: OakTheme = {
   },
   header: {
     height: 72,
+    background: "pupilsLightGreen",
+    color: "black",
   },
   lessonControl: {
     default: {

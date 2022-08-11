@@ -1,3 +1,5 @@
+import userEvent from "@testing-library/user-event";
+
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import SiteHeader from ".";
@@ -26,4 +28,17 @@ describe("components/SiteHeader", () => {
       "https://teachers.thenational.academy/"
     );
   });
+
+  test("clicking on the hamburger button opens the menu", async () => {
+    const { getByLabelText, queryByText } = renderWithProviders(<SiteHeader />);
+
+    const user = userEvent.setup();
+    const hamburgerButton = getByLabelText("Menu");
+    expect(queryByText("Home")).not.toBeInTheDocument;
+
+    await user.click(hamburgerButton);
+    expect(queryByText("Home")).toBeInTheDocument;
+  });
+
+  test.todo("Open from keyboard");
 });
