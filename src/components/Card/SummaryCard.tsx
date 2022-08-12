@@ -36,7 +36,8 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
-      $pa={[16, 24]}
+      $ph={[16, 24]}
+      $pv={24}
     >
       <Flex $flexDirection={"column"} $pv={[0, 32]}>
         <Heading

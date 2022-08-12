@@ -139,7 +139,8 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   <Card
     $alignItems="flex-start"
     $flexDirection="column"
-    $pa={[16, 32]}
+    $ph={[16, 24]}
+    $pv={24}
     {...props}
   />
 );
@@ -264,7 +265,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                       $width={["100%", isFirstOrLast ? "50%" : "100%"]}
                       $alignItems="flex-start"
                       $flexDirection="column"
-                      $pa={[16, 32]}
+                      $ph={[16, 24]}
+                      $pv={24}
                     >
                       <Box
                         $position="relative"
@@ -292,7 +294,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                         {withSearchCTA && (
                           <ButtonAsLink
                             $mt={24}
-                            label={"Search our lessons"}
+                            label={"search our lessons"}
                             href={"https://teachers.thenational.academy/"}
                             htmlAnchorProps={{
                               target: "_blank",
@@ -337,7 +339,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
             </Card>
           </Flex>
           <Card
-            $pv={[16, 24]}
+            $pv={[24, 24]}
             $ph={[0, 24]}
             $flexDirection={["column", "row"]}
             $background={"teachersPastelYellow"}
