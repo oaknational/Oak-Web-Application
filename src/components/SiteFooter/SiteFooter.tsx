@@ -38,7 +38,11 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
       >
         {title}
       </Heading>
-      <Typography $fontSize={16} $lineHeight={"24px"} color="grey9">
+      <Typography
+        $fontSize={[12, 16]}
+        $lineHeight={["20px", "24px"]}
+        color="grey9"
+      >
         <ul role={"list"}>
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
@@ -106,11 +110,8 @@ const SiteFooter: FC<SiteFooterProps> = ({
               $justifyContent={"space-between"}
               $alignItems={"flex-end"}
               $flexGrow={[0, 1]}
-              $pl={[32, 0]}
             >
-              <Flex $position="relative">
-                <Logo title={"Oak National Academy"} height={66} width={150} />
-              </Flex>
+              <Logo title={"Oak National Academy"} height={66} width={150} />
               {footerNotification}
             </Flex>
           </Flex>
