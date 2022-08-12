@@ -110,6 +110,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               $justifyContent={"space-between"}
               $alignItems={"flex-end"}
               $flexGrow={[0, 1]}
+              $ml={"auto"}
             >
               <Logo title={"Oak National Academy"} height={66} width={150} />
               {footerNotification}
