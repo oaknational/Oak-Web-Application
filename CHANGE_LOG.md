@@ -1,3 +1,11 @@
+## [0.63.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.0...v0.63.1) (2022-08-13)
+
+
+### Bug Fixes
+
+* back button router ([2d119a4](https://github.com/oaknational/Oak-Web-Application/commit/2d119a4847d0b09f4a81e1b945f5a9fa802ebae2))
+* e2e test ([b76c697](https://github.com/oaknational/Oak-Web-Application/commit/b76c697de7f1e3757d255e4d0fa2ee0e20184f01))
+
 # [0.63.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.62.2...v0.63.0) (2022-08-11)
 
 
