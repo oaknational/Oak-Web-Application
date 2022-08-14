@@ -1,5 +1,5 @@
 import { Webinar, WebinarPreview } from "./documents";
-import { AboutPage, PlanningPage } from "./pages";
+import { AboutPage, PlanningPage, CurriculumPage } from "./pages";
 
 export type Params = {
   previewMode?: boolean;
@@ -15,5 +15,6 @@ export interface CMSClient {
     webinars(params?: ListParams): Promise<WebinarPreview[]>;
     planningPage(params?: Params): Promise<PlanningPage>;
     aboutPage(params?: Params): Promise<AboutPage>;
+    curriculumPage(params?: Params): Promise<CurriculumPage>;
   };
 }

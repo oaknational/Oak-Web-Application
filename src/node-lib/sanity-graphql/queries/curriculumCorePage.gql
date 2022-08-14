@@ -1,0 +1,44 @@
+query curriculumCorePage($isDraft: Boolean = false) {
+  allCurriculumCorePage(
+    where: {
+      _: { is_draft: $isDraft }
+      _id: { matches: "*curriculumCorePage" }
+    }
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+    info {
+      ...TextBlock
+    }
+    gettingStarted {
+      ...TextBlock
+    }
+    ourApproach {
+      ...TextBlock
+    }
+    elements {
+      title
+      posts {
+        post {
+          title
+        }
+      }
+    }
+
+    #   relatedBlogs {
+    #     author {
+    #       isCurrent
+    #     }
+    #     category {
+    #       title
+    #     }
+    #     contentRaw
+    #   }
+    #   relatedWebinars {
+    #     date
+    #     _id
+    #   }
+  }
+}

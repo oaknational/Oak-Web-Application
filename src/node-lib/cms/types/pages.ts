@@ -71,3 +71,16 @@ export type AboutPage = Document & {
     infoPortableText: PortableTextJSON;
   };
 };
+
+export type CurriculumPage = Document & {
+  title: string;
+  heading: string;
+  summaryPortableText: PortableTextJSON;
+  info: TextBlock;
+  gettingStarted: TextBlock;
+  elements: {
+    title: string;
+    posts: { post: { title: string } }[];
+  };
+  ourApproach: TextBlock;
+};

@@ -108,3 +108,25 @@ export const aboutPageSchema = z
   .merge(documentSchema);
 
 export type AboutPage = z.infer<typeof aboutPageSchema>;
+
+export const curriculumPageSchema = z
+  .object({
+    title: z.string(),
+    heading: z.string(),
+    summaryPortableText: portableTextSchema,
+    info: textBlockSchema,
+    gettingStarted: textBlockSchema,
+    elements: z.object({
+      title: z.string(),
+      posts: z.array(z.object({ post: z.object({ title: z.string() }) })),
+    }),
+    // elements: z.object({
+    //   title: z.string(),
+    //   posts: z.array(z.object({ post: z.object({ title: z.string() }) })),
+    // }),
+
+    ourApproach: textBlockSchema,
+  })
+  .merge(documentSchema);
+
+export type CurriculumPage = z.infer<typeof curriculumPageSchema>;
