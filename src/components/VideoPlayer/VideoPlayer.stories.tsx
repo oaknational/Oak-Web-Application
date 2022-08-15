@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Grid from "../Grid";
 import GridArea from "../Grid/GridArea";
 
-import Component from "./VideoPlayer";
+import Component from "./";
 
 export default {
   title: "Media/ Video Player",
