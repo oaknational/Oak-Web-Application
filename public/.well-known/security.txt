@@ -1,0 +1,24 @@
+# version: <to-be-signed>
+# Oak National Academy - reporting security vulnerabilities to the Oak National
+
+# Please report any security vulnerabilities to us via the contact method(s) below, only after reading our security disclosure policy.
+Contact: mailto:security@thenational.academy
+Preferred-Languages: en
+
+# Encrypt your messages to Oak National Academy using the PGP key below
+Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
+Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
+
+# This security is annually reviewed
+Expires: 2023-07-31T20:59:00.000Z
+
+# Oak National Academy Security Disclosure Policy
+Policy: https://www.thenational.academy/security-disclosure-policy/
+
+# Our security.txt is hosted at the following canonical locations
+Canonical: https://www.thenational.academy/.well-known/security.txt
+
+# We're continually recruiting at Oak National Academy, please visit the link below
+Hiring: https://jobs.thenational.academy
+
+# Please see https://securitytxt.org/ for details of the specification of this file
