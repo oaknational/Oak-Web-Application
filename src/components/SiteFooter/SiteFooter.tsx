@@ -34,7 +34,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
         $flexDirection={"column"}
         $pa={12}
         $pt={40}
-        $maxWidth={1200}
+        $maxWidth={1280}
         $ma={"auto"}
       >
         <Typography $fontSize={12} $color="grey8">

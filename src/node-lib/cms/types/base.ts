@@ -9,7 +9,7 @@ const any = z.any();
 export type PortableTextJSON = z.infer<typeof any>;
 
 export type SanityImage = {
-  asset: {
+  asset?: {
     _id: string; // _id required by next-sanity-image
     url: string;
   };
