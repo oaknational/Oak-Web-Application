@@ -4,7 +4,7 @@ import MuxPlayerElement from "@mux/mux-player";
 
 import Flex from "../Flex";
 import OakError from "../../errors/OakError";
-import theme from "../../styles/theme";
+import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
 
 const INITIAL_DEBUG = false;
@@ -13,9 +13,9 @@ const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
 
 export type VideoStyleConfig = {
   controls: {
-    primary: string;
-    secondary: string;
-    tertiary: string;
+    primary: OakColorName;
+    secondary: OakColorName;
+    tertiary: OakColorName;
   };
 };
 
@@ -28,7 +28,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const { playbackId, title } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
-  const [paused, setPaused] = useState<boolean | undefined>(false);
+  const [paused, setPaused] = useState<boolean | undefined>(true);
   const [muted] = useState(INITIAL_MUTED);
   const [debug] = useState(INITIAL_DEBUG);
 
@@ -67,9 +67,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         muted={muted}
         paused={paused}
         // autoPlay
-        primaryColor={theme.video.controls.primary}
-        secondaryColor={theme.video.controls.secondary}
-        tertiaryColor={theme.video.controls.tertiary}
+        primaryColor={theme.colors.white}
+        secondaryColor={theme.colors.pupilsHighlight}
+        tertiaryColor={theme.colors.teachersHighlight}
         onPlay={() => {
           setPaused(false);
           // props.track?.("video-played", { playbackId });

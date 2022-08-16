@@ -299,9 +299,9 @@ const theme: OakTheme = {
   },
   video: {
     controls: {
-      primary: "black",
-      secondary: "white",
-      tertiary: "grey5",
+      primary: "teachersHighlight",
+      secondary: "pupilsHighlight",
+      tertiary: "white",
     },
   },
 };
