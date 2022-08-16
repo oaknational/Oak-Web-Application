@@ -93,6 +93,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersLilac"),
   z.literal("teachersHighlight"),
   z.literal("twilight"),
+  z.literal("videoBlue"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;

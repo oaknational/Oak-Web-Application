@@ -44,6 +44,7 @@ const theme: OakTheme = {
     teachersPurple: "#845ad9",
     teachersLilac: "#c6d1ef",
     twilight: "#E5D1E0",
+    videoBlue: "#CEE7E5",
   },
   contrastColors: {
     white: "black",
@@ -87,6 +88,7 @@ const theme: OakTheme = {
     teachersPurple: "white",
     teachersLilac: "black",
     twilight: "black",
+    videoBlue: "black",
   },
   buttonIconBackgroundColors: {
     teachersHighlight: "teachersYellow",

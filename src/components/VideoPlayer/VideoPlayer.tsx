@@ -68,8 +68,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         paused={paused}
         // autoPlay
         primaryColor={theme.colors.white}
-        secondaryColor={theme.colors.pupilsHighlight}
-        tertiaryColor={theme.colors.teachersHighlight}
+        secondaryColor={theme.colors.black}
         onPlay={() => {
           setPaused(false);
           // props.track?.("video-played", { playbackId });
