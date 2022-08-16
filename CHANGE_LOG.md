@@ -1,3 +1,10 @@
+## [0.63.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.1...v0.63.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* increase maxwidth width to 1280 as per designs and add padding to mobile view of homepage ([84c82a2](https://github.com/oaknational/Oak-Web-Application/commit/84c82a2538c01df6013778f4a32324146ffe5cc6))
+
 ## [0.63.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.0...v0.63.1) (2022-08-13)
 
 
