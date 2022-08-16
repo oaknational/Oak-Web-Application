@@ -191,6 +191,7 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
       pageData: curriculumPage,
       isPreviewMode,
     },
+    revalidate: 10,
   };
 };
 
