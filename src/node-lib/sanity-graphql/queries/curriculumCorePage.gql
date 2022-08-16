@@ -23,6 +23,9 @@ query curriculumCorePage($isDraft: Boolean = false) {
       posts {
         post {
           title
+          slug {
+            current
+          }
         }
       }
     }

@@ -118,7 +118,14 @@ export const curriculumPageSchema = z
     gettingStarted: textBlockSchema,
     elements: z.object({
       title: z.string(),
-      posts: z.array(z.object({ post: z.object({ title: z.string() }) })),
+      posts: z.array(
+        z.object({
+          post: z.object({
+            title: z.string(),
+            slug: z.object({ current: z.string() }),
+          }),
+        })
+      ),
     }),
     // elements: z.object({
     //   title: z.string(),

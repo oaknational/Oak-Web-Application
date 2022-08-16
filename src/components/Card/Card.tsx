@@ -7,6 +7,8 @@ const Card = styled(Flex)``;
 
 Card.defaultProps = {
   $pa: 24,
+  // $pv: 24,
+  // $ph: [16, 24],
   $flexDirection: "column",
   $flexGrow: 1,
   $position: "relative",

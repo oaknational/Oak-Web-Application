@@ -80,7 +80,7 @@ export type CurriculumPage = Document & {
   gettingStarted: TextBlock;
   elements: {
     title: string;
-    posts: { post: { title: string } }[];
+    posts: { post: { title: string; slug: { current: string } } }[];
   };
   ourApproach: TextBlock;
 };

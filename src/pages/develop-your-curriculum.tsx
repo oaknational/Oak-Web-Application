@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps } from "next";
 import styled from "styled-components";
 import { PortableText } from "@portabletext/react";
 
+import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Layout from "../components/Layout";
@@ -14,9 +15,14 @@ import Typography from "../components/Typography/Typography";
 import Card from "../components/Card";
 import Box from "../components/Box";
 import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
+import ButtonAsLink from "../components/Button/ButtonAsLink";
+import CardLink from "../components/Card/CardLink";
 
 const RotatedCard = styled(Card)`
-  transform: rotate(2deg);
+  @media (min-width: ${getBreakpoint("large")}px) {
+    transform: rotate(2deg) translateY(10%);
+    z-index: 1;
+  }
 `;
 
 export type CurriculumPageProps = {
@@ -28,7 +34,6 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
   pageData,
   isPreviewMode,
 }) => {
-  console.log(pageData);
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -38,7 +43,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}
-          heading={pageData.title}
+          heading={pageData.heading}
           summary={pageData.summaryPortableText}
           background={"teachersPastelYellow"}
           imageSrc={"/images/illustrations/curriculum.svg"}
@@ -49,6 +54,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           $alignItems={["center", "flex-start"]}
           $mt={[56, 72]}
           $width="100%"
+          $mb={[56, 12]}
+          $pt={0}
         >
           <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
             {pageData.info.title}
@@ -72,9 +79,14 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           </Flex>
         </Card>
         {/* getting started */}
-        <Flex $justifyContent={"flex-end"}>
-          <RotatedCard $background={"twilight"} $maxWidth={"50%"}>
-            <Heading $fontSize={[20, 24]} tag={"h4"}>
+        <Flex $width={"100%"} $justifyContent={"flex-end"}>
+          <RotatedCard
+            $pv={24}
+            $ph={[16, 24]}
+            $background={"twilight"}
+            $maxWidth={["100%", "50%"]}
+          >
+            <Heading $mb={20} $fontSize={[20, 24]} tag={"h4"}>
               {pageData.gettingStarted.title}
             </Heading>
             <Typography>
@@ -84,71 +96,82 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             </Typography>
           </RotatedCard>
         </Flex>
-        <Card $width={"100%"} $background={"teachersPastelYellow"}>
-          <Box $pr={12} $width={"50%"}>
-            <Heading $mb={32} $fontSize={[24, 32]} tag="h4"></Heading>
+        <Card
+          $mb={[56, 80]}
+          $width={"100%"}
+          $background={"teachersPastelYellow"}
+          $ph={0}
+        >
+          <Box $ph={[16, 24]} $pr={12} $width={["100%", "50%"]}>
+            <Heading $mt={[24, 0]} $mb={[56, 32]} $fontSize={[24, 32]} tag="h4">
+              {pageData.elements.title}
+            </Heading>
           </Box>
-          <Flex>
-            {pageData.elements.posts.map((post) => (
-              <Flex $mr={16} $flexGrow={1} $flexDirection={"column"}>
-                <P $mb={16} $fontSize={20} $lineHeight={"24px"}>
-                  {post.post.title}
-                </P>
+          <Flex $flexDirection={["column", "row"]}>
+            {pageData.elements.posts.map((post, index) => (
+              <Flex $mr={[0, 24]} $flexGrow={1} $flexDirection={"column"}>
+                <Box $ph={[16, 24]}>
+                  <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
+                    {post.post.title}
+                  </P>
+                </Box>
                 <Card
                   $flexDirection={"column"}
                   $justifyContent={"center"}
-                  $alignItems={"center"}
+                  $mb={[56, 0]}
+                  $background="pastelTurqoise"
+                  $pv={[72, 80]}
+                  $ml={[0, index == 0 ? 24 : 0]}
                 >
+                  <CardLink href={post.post.slug.current} />
                   <BoxBorders />
-                  <Heading $fontSize={16} tag="h4">
-                    How to
-                  </Heading>
-                  <Heading $fontSize={24} tag="h4">
-                    Design a unit of study
-                  </Heading>
+                  <Box $mv={12}>
+                    <Heading $mb={8} $fontSize={16} tag={"h3"}>
+                      How to
+                    </Heading>
+                    <Heading $fontSize={24} tag="h4">
+                      {post.post.title}
+                    </Heading>
+                  </Box>
                 </Card>
               </Flex>
             ))}
-
-            <Flex $mr={16} $flexGrow={1} $flexDirection={"column"}>
-              <P $mb={16} $fontSize={20} $lineHeight={"24px"}>
-                Revising part of your Curriculum:
-              </P>
-              <Card
-                $flexDirection={"column"}
-                $justifyContent={"center"}
-                $alignItems={"center"}
-              >
-                <BoxBorders />
-                <Heading $fontSize={16} tag="h4">
-                  How to
-                </Heading>
-                <Heading $fontSize={24} tag="h4">
-                  Design a unit of study
-                </Heading>
-              </Card>
-            </Flex>
-            <Flex $flexGrow={1} $flexDirection={"column"}>
-              <P $mb={16} $fontSize={20} $lineHeight={"24px"}>
-                Revising part of your Curriculum:
-              </P>
-              <Card
-                $flexDirection={"column"}
-                $justifyContent={"center"}
-                $alignItems={"center"}
-              >
-                <BoxBorders />
-                <Heading $fontSize={16} tag="h4">
-                  How to
-                </Heading>
-                <Heading $fontSize={24} tag="h4">
-                  Design a unit of study
-                </Heading>
-              </Card>
-            </Flex>
           </Flex>
         </Card>
-        <P>{pageData.ourApproach.title}</P>
+        <Card $mb={[56, 92]} $flexDirection={["column", "row"]}>
+          <Flex
+            $alignItems={"center"}
+            $justifyContent={"center"}
+            $minWidth={"50%"}
+            $pb={[48, 0]}
+          >
+            <CardImage
+              alt={"curriculum design illustration"}
+              imageSrc={"/images/illustrations/curriculum-approach.svg"}
+              position={"center center"}
+            />
+          </Flex>
+          <Flex $flexDirection={"column"}></Flex>
+          <Flex $flexDirection={"column"}>
+            <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h4"}>
+              {pageData.ourApproach.title}
+            </Heading>
+            <Typography $mb={32} $lineHeight={["28px", "32px"]} fontSize={18}>
+              <PortableText
+                value={pageData.ourApproach.bodyPortableText}
+              ></PortableText>
+            </Typography>
+            {pageData.ourApproach.cta && (
+              <Flex>
+                <ButtonAsLink
+                  icon={"ArrowRight"}
+                  label={pageData.ourApproach.cta?.label}
+                  href={"https://teachers.thenational.academy/oaks-curricula"}
+                ></ButtonAsLink>
+              </Flex>
+            )}
+          </Flex>
+        </Card>
       </MaxWidth>
     </Layout>
   );

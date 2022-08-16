@@ -135,7 +135,7 @@ const Home: FC = () => {
                   title={"Develop Your Curriculum"}
                   titleTag={"h4"}
                   background={"teachersYellow"}
-                  href={"/curriculum"}
+                  href={"/develop-your-curriculum"}
                 />
               </TransformYGridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>
