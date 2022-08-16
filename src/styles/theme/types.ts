@@ -6,6 +6,7 @@ import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
+import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
 /**
@@ -21,6 +22,7 @@ export type PixelSpacing =
   | 20
   | 24
   | 28
+  | 30
   | 32
   | 36
   | 40
@@ -33,7 +35,7 @@ export type PixelSpacing =
   | 240
   | 360
   | 480
-  | 1200;
+  | 1280;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -16 | -12 | -8 | -4;
 export type PercentSpacing =
@@ -164,6 +166,7 @@ export type OakTheme = {
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
+  menu: MenuConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

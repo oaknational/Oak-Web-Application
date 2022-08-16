@@ -31,7 +31,7 @@ const Home: FC = () => {
     <LandingPageLayout seoProps={DEFAULT_SEO_PROPS}>
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-          <MaxWidth>
+          <MaxWidth $ph={12}>
             <Grid $cg={[8, 16]}>
               <GridArea $colSpan={[12, 12, 8]}>
                 <Heading

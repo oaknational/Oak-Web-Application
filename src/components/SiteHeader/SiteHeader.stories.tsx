@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { AuthProvider } from "../../context/Auth";
-import { SearchProvider } from "../../context/Search/SearchContext";
+import { MenuProvider } from "../../context/Menu";
 
 import Component from "./SiteHeader";
 
@@ -14,9 +14,9 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <AuthProvider>
-    <SearchProvider>
+    <MenuProvider>
       <Component {...args} />
-    </SearchProvider>
+    </MenuProvider>
   </AuthProvider>
 );
 
