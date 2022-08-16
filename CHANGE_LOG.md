@@ -1,3 +1,16 @@
+# [0.64.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.2...v0.64.0) (2022-08-16)
+
+
+### Bug Fixes
+
+* **cms:** add missing props for blog list ([d620729](https://github.com/oaknational/Oak-Web-Application/commit/d620729228183c9fd1d84f261afb557663b6d37f))
+
+
+### Features
+
+* add timeout on pulling blog data through ([43acf8b](https://github.com/oaknational/Oak-Web-Application/commit/43acf8bdea7bf75db78ea972ea324bd46b99225b))
+* **cms:** add blog post cms methods ([46093eb](https://github.com/oaknational/Oak-Web-Application/commit/46093eb7b85403dd015d8026ae932d85c2fff20c))
+
 ## [0.63.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.1...v0.63.2) (2022-08-16)
 
 
