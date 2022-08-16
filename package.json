@@ -1,6 +1,6 @@
 {
   "name": "oak-web-application",
-  "version": "0.59.1",
+  "version": "0.63.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -48,7 +48,6 @@
     "test": "jest --watch --collectCoverage=false",
     "test:ci": "jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
-    "test:storybook:update": "npm run test:storybook -- -u",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "dependencies": {
@@ -70,6 +69,7 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.32.2",
     "react-stately": "^3.15.0",
+    "react-transition-group": "^4.4.5",
     "styled-components": "^5.3.5",
     "zod": "^3.14.3"
   },
@@ -99,7 +99,6 @@
     "@storybook/addon-essentials": "^6.5.8",
     "@storybook/addon-interactions": "^6.5.8",
     "@storybook/addon-links": "^6.5.8",
-    "@storybook/addon-storyshots": "^6.5.8",
     "@storybook/addon-storysource": "^6.5.8",
     "@storybook/react": "^6.5.8",
     "@storybook/testing-library": "^0.0.9",
@@ -109,6 +108,7 @@
     "@testing-library/user-event": "^14.1.0",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.44",
+    "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
@@ -136,7 +136,7 @@
     "node-mocks-http": "^1.11.0",
     "octokit": "^1.7.1",
     "pa11y-ci": "^3.0.1",
-    "prettier": "^2.6.2",
+    "prettier": "2.7.1",
     "puppeteer": "^13.5.2",
     "semantic-release": "^19.0.2",
     "start-server-and-test": "^1.14.0",

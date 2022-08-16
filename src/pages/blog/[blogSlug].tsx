@@ -81,7 +81,9 @@ const portableTextComponents = {
       );
     },
     image: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
-      const { asset, ...params } = props.value || {};
+      let asset = { url: "", _id: "" };
+      const { ...params } = props.value;
+      asset = props.value?.asset || asset;
 
       return (
         <div style={{ border: "1px solid red" }}>
@@ -92,7 +94,7 @@ const portableTextComponents = {
       );
     },
     textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
-      const { body, title, image, ...params } = props.value || {};
+      const { body, title, ...params } = props.value || {};
 
       return (
         <div style={{ border: "1px solid red" }}>

@@ -31,7 +31,8 @@
   "hubspot": {
     "portalId": "12345",
     "newsletterFormId": "uuid-oijfeoe-ijfere-g-ererg",
-    "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9"
+    "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9",
+    "scriptDomain": "script.domain.example.com"
   },
   "oak": {
     "appBaseUrl": "http://localhost:3000",

@@ -6,6 +6,7 @@ import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
+import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 
 /**
@@ -20,7 +21,10 @@ export type PixelSpacing =
   | 16
   | 20
   | 24
+  | 28
+  | 30
   | 32
+  | 36
   | 40
   | 48
   | 56
@@ -31,7 +35,7 @@ export type PixelSpacing =
   | 240
   | 360
   | 480
-  | 1200;
+  | 1280;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -16 | -12 | -8 | -4;
 export type PercentSpacing =
@@ -73,13 +77,12 @@ const OakColorNameZod = z.union([
   z.literal("warning"),
   z.literal("failure"),
   z.literal("success"),
-  z.literal("pupilsAccentGreen"),
+  z.literal("pupilsHighlight"),
   z.literal("pupilsAccentPink"),
   z.literal("pupilsGreen"),
   z.literal("pupilsLightGreen"),
   z.literal("pupilsLimeGreen"),
   z.literal("pupilsPink"),
-  z.literal("teachersAccentBlue"),
   z.literal("teachersGreen"),
   z.literal("teachersYellow"),
   z.literal("teachersPastelYellow"),
@@ -87,6 +90,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersRed"),
   z.literal("teachersPurple"),
   z.literal("teachersLilac"),
+  z.literal("teachersHighlight"),
   z.literal("twilight"),
 ]);
 
@@ -151,6 +155,8 @@ export type OakTheme = {
   colors: Record<OakColorName, ColorValue>;
   contrastColors: Record<OakColorName, OakColorName>;
   buttonIconBackgroundColors: Partial<Record<OakColorName, OakColorName>>;
+  buttonDropShadows: Partial<Record<OakColorName, string>>;
+  buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
   bigInput: InputConfig;
@@ -160,6 +166,7 @@ export type OakTheme = {
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
+  menu: MenuConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

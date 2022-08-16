@@ -40,7 +40,7 @@ const IconWrapper = styled.span<SpacingProps & ColorProps>`
   ${spacing}
 `;
 
-const IconBackground = styled.span<ColorProps>`
+export const BackgroundIcon = styled(Svg)<ColorProps>`
   position: absolute;
   top: 0;
   right: 0;
@@ -102,9 +102,7 @@ const Icon: FC<IconProps> = (props) => {
       {...rootProps}
     >
       {variant === "brush" && (
-        <IconBackground $color={$background}>
-          <Svg name="icon-brush-background" />
-        </IconBackground>
+        <BackgroundIcon name="icon-brush-background" $color={$background} />
       )}
       <IconWrapper $pa={$pa} $color={$foregroundColor}>
         <Svg name={name} />

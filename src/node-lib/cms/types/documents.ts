@@ -31,3 +31,13 @@ export type BlogPostPreview = Pick<
   BlogPost,
   "id" | "title" | "slug" | "contentPortableText"
 >;
+
+export type Attachment = {
+  title: string;
+  file: {
+    asset: {
+      extension: string;
+      size: number;
+    };
+  };
+};
