@@ -19,7 +19,7 @@ const DefaultSeo = () => {
         images: [
           {
             url: `${config.get("appUrl")}${config.get("appSocialSharingImg")}`,
-            width: 1200,
+            width: 1280,
             height: 630,
             alt: config.get("appName"),
           },
