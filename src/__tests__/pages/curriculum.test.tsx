@@ -52,7 +52,7 @@ const testCurriculumPageData: CurriculumPage = {
   },
 };
 
-describe("pages/planning.tsx", () => {
+describe("pages/curriculum.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
       <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
@@ -60,7 +60,7 @@ describe("pages/planning.tsx", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Curriculum heading"
+        "Curriculum title"
       );
     });
   });
