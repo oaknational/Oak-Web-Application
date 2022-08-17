@@ -1,6 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import styled from "styled-components";
 import { PortableText } from "@portabletext/react";
+import { Fragment } from "react";
 
 import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
@@ -109,32 +110,34 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           </Box>
           <Flex $flexDirection={["column", "row"]}>
             {pageData.elements.posts.map((post, index) => (
-              <Flex $mr={[0, 24]} $flexGrow={1} $flexDirection={"column"}>
-                <Box $ph={[16, 24]}>
-                  <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
-                    {post.post.title}
-                  </P>
-                </Box>
-                <Card
-                  $flexDirection={"column"}
-                  $justifyContent={"center"}
-                  $mb={[56, 0]}
-                  $background="pastelTurqoise"
-                  $pv={[72, 80]}
-                  $ml={[0, index == 0 ? 24 : 0]}
-                >
-                  <CardLink href={post.post.slug.current} />
-                  <BoxBorders />
-                  <Box $mv={12}>
-                    <Heading $mb={8} $fontSize={16} tag={"h3"}>
-                      How to
-                    </Heading>
-                    <Heading $fontSize={24} tag="h4">
+              <Fragment key={post.post.slug.current}>
+                <Flex $mr={[0, 24]} $flexGrow={1} $flexDirection={"column"}>
+                  <Box $ph={[16, 24]}>
+                    <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
                       {post.post.title}
-                    </Heading>
+                    </P>
                   </Box>
-                </Card>
-              </Flex>
+                  <Card
+                    $flexDirection={"column"}
+                    $justifyContent={"center"}
+                    $mb={[56, 0]}
+                    $background="pastelTurqoise"
+                    $pv={[72, 80]}
+                    $ml={[0, index == 0 ? 24 : 0]}
+                  >
+                    <CardLink href={post.post.slug.current} />
+                    <BoxBorders />
+                    <Box $mv={12}>
+                      <Heading $mb={8} $fontSize={16} tag={"h3"}>
+                        How to
+                      </Heading>
+                      <Heading $fontSize={24} tag="h4">
+                        {post.post.title}
+                      </Heading>
+                    </Box>
+                  </Card>
+                </Flex>
+              </Fragment>
             ))}
           </Flex>
         </Card>
@@ -156,7 +159,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h4"}>
               {pageData.ourApproach.title}
             </Heading>
-            <Typography $mb={32} $lineHeight={["28px", "32px"]} fontSize={18}>
+            <Typography $mb={16} $lineHeight={["28px", "32px"]} fontSize={18}>
               <PortableText
                 value={pageData.ourApproach.bodyPortableText}
               ></PortableText>
