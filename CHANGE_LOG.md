@@ -1,3 +1,10 @@
+# [0.69.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.68.0...v0.69.0) (2022-08-17)
+
+
+### Features
+
+* **CI:** stop package-lock.json changing with every release ([7b348c2](https://github.com/oaknational/Oak-Web-Application/commit/7b348c26f8bd503a2b73ea8d0ef909c2a1875f19))
+
 # [0.68.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.2...v0.68.0) (2022-08-17)
 
 
