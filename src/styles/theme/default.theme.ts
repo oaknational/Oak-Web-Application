@@ -104,7 +104,7 @@ const theme: OakTheme = {
   },
   fonts: {
     // Paragraphs etc.
-    body: "ABeeZee, sans-serif",
+    body: "Lexend, sans-serif",
     // Buttons etc.
     ui: "Lexend, sans-serif",
     // Headings etc.

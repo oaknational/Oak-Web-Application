@@ -1,3 +1,6 @@
+import { SizeProps } from "../../styles/utils/size";
+import { SpacingProps } from "../../styles/utils/spacing";
+
 export type FooterLink = {
   text: string;
   href: string;
@@ -6,7 +9,8 @@ export type FooterLink = {
 export type FooterSection = {
   title?: string;
   links?: FooterLink[];
-};
+} & SpacingProps &
+  SizeProps;
 
 const footerSections: FooterSection[] = [
   {

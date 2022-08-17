@@ -25,12 +25,12 @@ type SiteFooterProps = {
   footerNotification?: React.ReactNode;
 };
 
-const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
+const FooterSectionLinks: FC<FooterSection> = ({ title, links, ...props }) => {
   return (
-    <Flex $flexDirection="column">
+    <Flex $flexDirection="column" {...props}>
       <Heading
         $mb={8}
-        $fontSize={20}
+        $fontSize={16}
         $lineHeight="20px"
         $color="grey9"
         tag="h4"
@@ -39,8 +39,8 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
         {title}
       </Heading>
       <Typography
-        $fontSize={[12, 16]}
-        $lineHeight={["20px", "24px"]}
+        $fontSize={[12, 18]}
+        $lineHeight={["24px", "32px"]}
         color="grey9"
       >
         <ul role={"list"}>
@@ -119,7 +119,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
           <Flex $mb={80} $width={"100%"} $mt={[64, 32]}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
-              <P $textAlign="center" $fontSize={[12, 16]}>
+              <P $lineHeight={16} $textAlign="center" $fontSize={[12, 16]}>
                 © Oak National Academy
               </P>
             </Flex>
