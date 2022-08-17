@@ -87,7 +87,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             $background={"twilight"}
             $maxWidth={["100%", "50%"]}
           >
-            <Heading $mb={20} $fontSize={[20, 24]} tag={"h4"}>
+            <Heading $mb={20} $fontSize={[20, 24]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
             <Typography>
@@ -156,7 +156,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           </Flex>
           <Flex $flexDirection={"column"}></Flex>
           <Flex $flexDirection={"column"}>
-            <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h4"}>
+            <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
               {pageData.ourApproach.title}
             </Heading>
             <Typography $mb={16} $lineHeight={["28px", "32px"]} fontSize={18}>
