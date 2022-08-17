@@ -1,3 +1,10 @@
+## [0.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.0...v0.69.1) (2022-08-17)
+
+
+### Bug Fixes
+
+* pass GCP Git variables into builds as envs ([81a164b](https://github.com/oaknational/Oak-Web-Application/commit/81a164bca5a88b4b2bbbdc901f35cec6394a41af))
+
 # [0.69.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.68.0...v0.69.0) (2022-08-17)
 
 
