@@ -9,7 +9,7 @@ import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
 import Layout from "../components/Layout";
-import { Heading, P } from "../components/Typography";
+import Typography, { Heading, P } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Icon, { IconName } from "../components/Icon";
 import LessonElementLinks from "../components/LessonElementLinks";
@@ -125,12 +125,12 @@ const SectionTitle: FC = (props) => {
       $justifyContent="center"
       $maxWidth={["100%", "50%"]}
       $mh="auto"
-      $pt={80}
+      $pt={[56, 80]}
       $pb={48}
       $ph={12}
       $mt={12}
     >
-      <Heading $fontSize={24} $textAlign="center" tag="h2" {...props} />
+      <Heading $fontSize={[20, 24]} $textAlign="center" tag="h2" {...props} />
     </Flex>
   );
 };
@@ -206,8 +206,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     >
                       <Icon size={80} name={icon} />
                     </Circle>
-                    <CardTitle tag="h3">{title}</CardTitle>
-                    <PortableText value={portableText} />
+                    <CardTitle fontSize={[32, 24]} tag="h3">
+                      {title}
+                    </CardTitle>
+                    <Typography $fontSize={18} $lineHeight={"28px"}>
+                      <PortableText value={portableText} />
+                    </Typography>
                   </LessonElementsCard>
                 </GridArea>
               )
@@ -260,6 +264,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     $alignItems={"center"}
                     $justifyContent={"center"}
                     $colSpan={[12, isFirstOrLast ? 12 : 6]}
+                    $mb={i !== arr.length - 1 ? [24, 56] : 0}
                   >
                     <Card
                       $width={["100%", isFirstOrLast ? "50%" : "100%"]}
@@ -285,21 +290,28 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                       </Box>
 
                       <Flex $flexDirection={"column"}>
-                        <Heading $mb={24} tag={"h3"} $fontSize={24}>
+                        <Heading
+                          $mb={24}
+                          tag={"h3"}
+                          $lineHeight={["40px", "32px"]}
+                          $fontSize={[24, 32]}
+                        >
                           {title}
                         </Heading>
-                        <P $fontSize={18}>
+                        <P $fontSize={18} $lineHeight={"24px"}>
                           <PortableText value={portableText} />
                         </P>
                         {withSearchCTA && (
-                          <ButtonAsLink
-                            $mt={24}
-                            label={"search our lessons"}
-                            href={"https://teachers.thenational.academy/"}
-                            htmlAnchorProps={{
-                              target: "_blank",
-                            }}
-                          />
+                          <Flex $justifyContent={["center", "flex-start"]}>
+                            <ButtonAsLink
+                              $mt={24}
+                              label={"search our lessons"}
+                              href={"https://teachers.thenational.academy/"}
+                              htmlAnchorProps={{
+                                target: "_blank",
+                              }}
+                            />
+                          </Flex>
                         )}
                       </Flex>
                     </Card>
@@ -332,9 +344,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
-                <PortableText
-                  value={pageData.learnMoreBlock1.bodyPortableText}
-                />
+                <Typography $fontSize={[16, 18]} $lineHeight={["24px", "28px"]}>
+                  <PortableText
+                    value={pageData.learnMoreBlock1.bodyPortableText}
+                  />
+                </Typography>
               </Box>
             </Card>
           </Flex>
@@ -347,7 +361,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           >
             <Box $minWidth={"50%"} $pr={[null, 72]} $mb={[72, 0]} $ph={[16, 0]}>
               <CardTitle tag={"h4"}>{pageData.learnMoreBlock2.title}</CardTitle>
-              <PortableText value={pageData.learnMoreBlock2.bodyPortableText} />
+              <Typography $fontSize={[16, 18]} $lineHeight={["24px", "28px"]}>
+                <PortableText
+                  value={pageData.learnMoreBlock2.bodyPortableText}
+                />
+              </Typography>
             </Box>
             <Flex
               $position="relative"
