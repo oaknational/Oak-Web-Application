@@ -33,10 +33,6 @@ jobs:
 
       # Install.
       - run: npm ci
-        env:
-          # Need these because there is a post-install step to generate types from the GraphQL queries.
-          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       # Create Github release using semantic-release package.
       # See config here release.config.js
