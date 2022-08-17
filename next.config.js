@@ -156,6 +156,9 @@ module.exports = async (phase) => {
         process.env.SANITY_PREVIEW_SECRET ||
         secretsFromNetwork.SANITY_PREVIEW_SECRET,
     },
+    images: {
+      domains: ["cdn.sanity.io"],
+    },
   };
 
   // DEBUG

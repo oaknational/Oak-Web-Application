@@ -1,10 +1,10 @@
+import { AboutPage, PlanningPage, CurriculumPage } from "./pages";
 import {
   BlogPost,
   BlogPostPreview,
   Webinar,
   WebinarPreview,
 } from "./documents";
-import { AboutPage, PlanningPage } from "./pages";
 
 export type Params = {
   previewMode?: boolean;
@@ -22,5 +22,6 @@ export interface CMSClient {
     blogPostBySlug(slug: string, params?: Params): Promise<BlogPost>;
     planningPage(params?: Params): Promise<PlanningPage>;
     aboutPage(params?: Params): Promise<AboutPage>;
+    curriculumPage(params?: Params): Promise<CurriculumPage>;
   };
 }
