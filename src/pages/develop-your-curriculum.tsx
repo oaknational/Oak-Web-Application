@@ -21,7 +21,7 @@ import CardLink from "../components/Card/CardLink";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
-    transform: rotate(2deg) translateY(10%);
+    transform: rotate(2deg) translateY(18px);
     z-index: 1;
   }
 `;
@@ -53,9 +53,9 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
 
         <Card
           $alignItems={["center", "flex-start"]}
-          $mt={[56, 72]}
+          $mt={[56, 64]}
           $width="100%"
-          $mb={[56, 12]}
+          $mb={[56, 48]}
           $pt={0}
         >
           <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
@@ -109,12 +109,24 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             </Heading>
           </Box>
           <Flex $flexDirection={["column", "row"]}>
-            {pageData.elements.posts.map((post, index) => (
-              <Fragment key={post.post.slug.current}>
-                <Flex $mr={[0, 24]} $flexGrow={1} $flexDirection={"column"}>
-                  <Box $ph={[16, 24]}>
-                    <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
-                      {post.post.title}
+            {pageData.elements.posts.map((element, index) => (
+              <Fragment key={element.post.slug.current}>
+                <Flex
+                  $mr={[
+                    0,
+                    index == pageData.elements.posts.length - 1 ? 24 : 16,
+                  ]}
+                  $flexGrow={1}
+                  $flexDirection={"column"}
+                >
+                  <Box $ph={[16, 0]}>
+                    <P
+                      $ml={[0, index == 0 ? 24 : 0]}
+                      $mb={[24, 16]}
+                      $fontSize={20}
+                      $lineHeight={"24px"}
+                    >
+                      {element.post.title}
                     </P>
                   </Box>
                   <Card
@@ -125,14 +137,14 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                     $pv={[72, 80]}
                     $ml={[0, index == 0 ? 24 : 0]}
                   >
-                    <CardLink href={post.post.slug.current} />
+                    <CardLink href={element.post.slug.current} />
                     <BoxBorders />
                     <Box $mv={12}>
                       <Heading $mb={8} $fontSize={16} tag={"h3"}>
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        {post.post.title}
+                        {element.post.title}
                       </Heading>
                     </Box>
                   </Card>
@@ -154,7 +166,6 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               position={"center center"}
             />
           </Flex>
-          <Flex $flexDirection={"column"}></Flex>
           <Flex $flexDirection={"column"}>
             <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
               {pageData.ourApproach.title}
@@ -165,7 +176,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               ></PortableText>
             </Typography>
             {pageData.ourApproach.cta && (
-              <Flex>
+              <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
