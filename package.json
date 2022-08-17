@@ -1,6 +1,6 @@
 {
   "name": "oak-web-application",
-  "version": "0.64.0",
+  "version": "0.65.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -54,6 +54,8 @@
     "@bugsnag/js": "^7.16.2",
     "@bugsnag/plugin-react": "^7.16.2",
     "@hookform/resolvers": "^2.9.1",
+    "@mux/mux-player-react": "^0.1.0-beta.26",
+    "@mux/playback-core": "^0.8.0",
     "@portabletext/react": "^1.0.6",
     "@sanity/image-url": "^1.0.1",
     "firebase": "^9.6.10",
