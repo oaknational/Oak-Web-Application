@@ -48,6 +48,18 @@ module.exports = async (phase) => {
     ? {}
     : await fetchSecrets(oakConfig);
 
+  // Flags to change behaviour for static builds.
+  // Remove when we start using dynamic hosting for production.
+  // Assumption that all static builds happen in Cloudbuild triggers (override available, see below).
+  const cloudbuildTriggerName = process.env.CLOUDBUILD_TRIGGER_NAME;
+  // Is a static build
+  const isStaticBuild =
+    (!!cloudbuildTriggerName && cloudbuildTriggerName !== "undefined") ||
+    process.env.STATIC_BUILD_ALLOWED === "on";
+  // Is a static build with beta pages deleted.
+  const isStaticWWWBuild =
+    isStaticBuild && cloudbuildTriggerName.startsWith("OWA-WWW");
+
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     poweredByHeader: false,
@@ -60,8 +72,16 @@ module.exports = async (phase) => {
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
       // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
       images: {
-        unoptimized: true,
+        unoptimized: isStaticBuild,
       },
+    },
+    // Allow static builds with deleted beta pages to build.
+    eslint: {
+      ignoreDuringBuilds: isStaticWWWBuild,
+    },
+    // Allow static builds with deleted beta pages to build.
+    typescript: {
+      ignoreBuildErrors: isStaticWWWBuild,
     },
     env: {
       // Values calculated in this file.
