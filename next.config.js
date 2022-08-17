@@ -146,11 +146,15 @@ module.exports = async (phase) => {
 
   // Stick the deployment URL in an env so the site map generation can use it.
   try {
-    const baseUrl = nextConfig.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
+    let baseUrl = nextConfig.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
     if (!baseUrl) {
       throw new TypeError(
         `Could not determine NEXT_PUBLIC_CLIENT_APP_BASE_URL for sitemap generation.`
       );
+    }
+    // Not all services prepend the protocol.
+    if (!baseUrl.startsWith("http")) {
+      baseUrl = `https://${baseUrl}`;
     }
     const baseUrlEnv = `SITEMAP_BASE_URL=${baseUrl}`;
     appendFileSync(".env", `\n${baseUrlEnv}`);
