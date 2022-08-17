@@ -7,6 +7,8 @@ import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
+import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import Grid, { GridArea } from "../../components/Grid";
 
 export type BlogListingPageProps = {
   blogs: BlogPostPreview[];
@@ -19,14 +21,24 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
+      $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <Heading tag="h1" $fontSize={32}>
-        Blogs
-      </Heading>
+      <MaxWidth>
+        <Grid>
+          <GridArea $colSpan={[12, 7]}>
+            <Heading tag="h1" $fontSize={32}>
+              Blog
+            </Heading>
 
-      <BlogList title={"Stay up to date!"} items={blogs} titleTag={"h2"} />
+            <BlogList
+              title={"Stay up to date!"}
+              items={blogs}
+              titleTag={"h2"}
+            />
+          </GridArea>
+        </Grid>
+      </MaxWidth>
     </Layout>
   );
 };
@@ -34,7 +46,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
 const blogToBlogListItem = (blog: BlogPostPreview): BlogListItemProps => ({
   contentType: "blog-post",
   title: blog.title,
-  href: `/blogs/${blog.slug}`,
+  href: `/blog/${blog.slug}`,
   snippet: toPlainText(blog.contentPortableText),
   titleTag: "h3",
 });

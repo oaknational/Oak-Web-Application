@@ -6,7 +6,7 @@ import responsive from "../../styles/utils/responsive";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import { FlexProps } from "../Flex";
 
-type ColSpans = 1 | 2 | 3 | 4 | 6 | 8 | 12;
+type ColSpans = 1 | 2 | 3 | 5 | 4 | 6 | 7 | 8 | 12;
 
 type GridAreaProps = {
   $colSpan: Array<ColSpans>;

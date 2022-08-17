@@ -42,6 +42,8 @@ export type BlogListItemProps = {
 const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { titleTag, title, snippet, href, contentType } = props;
 
+  console.log(href);
+
   return (
     <Flex
       $flexDirection={["column", "row"]}
