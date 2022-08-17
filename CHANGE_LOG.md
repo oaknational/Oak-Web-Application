@@ -1,3 +1,15 @@
+# [0.68.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.2...v0.68.0) (2022-08-17)
+
+
+### Bug Fixes
+
+* breakpoints on getting started transform ([3c9f1bc](https://github.com/oaknational/Oak-Web-Application/commit/3c9f1bc604844a080b4d5e62042ca235fed2180e))
+
+
+### Features
+
+* curriculum page ([caa95bc](https://github.com/oaknational/Oak-Web-Application/commit/caa95bc43bdd7296d573a53ed4c7e1fe91401566))
+
 ## [0.67.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.1...v0.67.2) (2022-08-17)
 
 
