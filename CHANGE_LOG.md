@@ -1,3 +1,10 @@
+# [0.67.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.66.0...v0.67.0) (2022-08-17)
+
+
+### Features
+
+* allow static builds with default image loader ([36dafed](https://github.com/oaknational/Oak-Web-Application/commit/36dafed32196d6d74bd5166c9b1d59522b0c8e9d))
+
 # [0.66.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.65.1...v0.66.0) (2022-08-17)
 
 
