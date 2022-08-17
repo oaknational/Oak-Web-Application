@@ -127,11 +127,6 @@ export const curriculumPageSchema = z
         })
       ),
     }),
-    // elements: z.object({
-    //   title: z.string(),
-    //   posts: z.array(z.object({ post: z.object({ title: z.string() }) })),
-    // }),
-
     ourApproach: textBlockSchema,
   })
   .merge(documentSchema);
