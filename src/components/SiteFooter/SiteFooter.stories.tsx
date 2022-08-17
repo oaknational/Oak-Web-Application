@@ -13,7 +13,9 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
+  <div style={{ background: "lightGrey", padding: "100px" }}>
+    <Component {...args} />
+  </div>
 );
 
 export const SiteFooter = Template.bind({});

@@ -1,6 +1,6 @@
 {
   "name": "oak-web-application",
-  "version": "0.65.0",
+  "version": "0.0.0-development",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -62,7 +62,7 @@
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
     "gleap": "6.7.5",
-    "next": "^12.1.6",
+    "next": "^12.2.5",
     "next-sanity-image": "^3.2.1",
     "next-seo": "^5.4.0",
     "node-fetch": "^2.6.7",

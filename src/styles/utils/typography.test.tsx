@@ -14,7 +14,7 @@ describe("typography", () => {
       <StyledComponent data-testid="test" $fontFamily="body" />
     );
 
-    expect(getByTestId("test")).toHaveStyle("font-family: ABeeZee,sans-serif");
+    expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
   });
   test("should correctly handle prop $fontFamily='ui'", async () => {
     const { getByTestId } = renderWithProviders(

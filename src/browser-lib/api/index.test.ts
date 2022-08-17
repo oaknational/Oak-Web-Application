@@ -7,9 +7,9 @@ jest.mock("./useOakFetch", () => ({
   default: jest.fn(() => oakFetchSpy),
 }));
 
-const api = useApi();
 describe("browser-lib/api/index", () => {
   it("should have /user method which calls /api/user", () => {
+    const api = useApi();
     api["/user"]({ accessToken: "123" });
     expect(oakFetchSpy).toHaveBeenCalledWith(
       expect.objectContaining({

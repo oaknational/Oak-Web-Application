@@ -1,3 +1,66 @@
+## [0.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.0...v0.69.1) (2022-08-17)
+
+
+### Bug Fixes
+
+* pass GCP Git variables into builds as envs ([81a164b](https://github.com/oaknational/Oak-Web-Application/commit/81a164bca5a88b4b2bbbdc901f35cec6394a41af))
+
+# [0.69.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.68.0...v0.69.0) (2022-08-17)
+
+
+### Features
+
+* **CI:** stop package-lock.json changing with every release ([7b348c2](https://github.com/oaknational/Oak-Web-Application/commit/7b348c26f8bd503a2b73ea8d0ef909c2a1875f19))
+
+# [0.68.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.2...v0.68.0) (2022-08-17)
+
+
+### Bug Fixes
+
+* breakpoints on getting started transform ([3c9f1bc](https://github.com/oaknational/Oak-Web-Application/commit/3c9f1bc604844a080b4d5e62042ca235fed2180e))
+
+
+### Features
+
+* curriculum page ([caa95bc](https://github.com/oaknational/Oak-Web-Application/commit/caa95bc43bdd7296d573a53ed4c7e1fe91401566))
+
+## [0.67.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.1...v0.67.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* incremental static regeneration ([b538d73](https://github.com/oaknational/Oak-Web-Application/commit/b538d732d9390e33bb0caedf250699f42eff985d))
+
+## [0.67.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.0...v0.67.1) (2022-08-17)
+
+# [0.67.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.66.0...v0.67.0) (2022-08-17)
+
+
+### Features
+
+* allow static builds with default image loader ([36dafed](https://github.com/oaknational/Oak-Web-Application/commit/36dafed32196d6d74bd5166c9b1d59522b0c8e9d))
+
+# [0.66.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.65.1...v0.66.0) (2022-08-17)
+
+
+### Bug Fixes
+
+* adjust last line of footer ([6df6842](https://github.com/oaknational/Oak-Web-Application/commit/6df68428015dc84718d3a1513fde303b34d19bd6))
+* line height ([aeb7dbb](https://github.com/oaknational/Oak-Web-Application/commit/aeb7dbba389caeafaddc74679ed9eae385a7e8f8))
+* pa11y contrast on li ([7faca09](https://github.com/oaknational/Oak-Web-Application/commit/7faca094be29c2629b8bbe6568fae6aa8aad91c6))
+* put logo in correct position on mobile, small font sizes ([b243dac](https://github.com/oaknational/Oak-Web-Application/commit/b243dac700a487284d8fd1f30da034e6632a4e1a))
+* style component prefix ([9529dbb](https://github.com/oaknational/Oak-Web-Application/commit/9529dbbc42601dd8b08813ea477891ba44115ce5))
+
+
+### Features
+
+* add social to menu ([1833702](https://github.com/oaknational/Oak-Web-Application/commit/183370220c4b90b2ceff0f41e8afebbd2f909fd1))
+* break out social media buttons into their own compoennt ([e3e7cf8](https://github.com/oaknational/Oak-Web-Application/commit/e3e7cf8c6f5731f8aeb1bc81fe074381c7fc8dc3))
+* make logo grow to fill space ([39d6504](https://github.com/oaknational/Oak-Web-Application/commit/39d65042fef9bd9c02bad9b00f01065085f5a832))
+* use logo component instead of image, with updated logo ([ba2392d](https://github.com/oaknational/Oak-Web-Application/commit/ba2392d025fb122f037669ac81e43dbca488ef99))
+
+## [0.65.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.65.0...v0.65.1) (2022-08-17)
+
 # [0.65.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.64.0...v0.65.0) (2022-08-17)
 
 

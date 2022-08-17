@@ -17,6 +17,7 @@ import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 export type PixelSpacing =
   | 0
   | 4
+  | 6
   | 8
   | 12
   | 16
@@ -32,6 +33,7 @@ export type PixelSpacing =
   | 64
   | 72
   | 80
+  | 92
   | 120
   | 240
   | 360

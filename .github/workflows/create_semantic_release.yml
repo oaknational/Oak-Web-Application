@@ -18,7 +18,7 @@ jobs:
     name: semantic release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # Need this to prevent the custom Github credentials on
           # the semantic release step being overridden with the
@@ -26,17 +26,13 @@ jobs:
           persist-credentials: false
 
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: "npm"
 
       # Install.
       - run: npm ci
-        env:
-          # Need these because there is a post-install step to generate types from the GraphQL queries.
-          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       # Create Github release using semantic-release package.
       # See config here release.config.js

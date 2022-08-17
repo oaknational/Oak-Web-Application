@@ -35,7 +35,6 @@ steps:
       - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
       - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
       - "CLOUDBUILD_TRIGGER_NAME=$TRIGGER_NAME"
-      - "CLOUDBUILD_DEPLOYMENT_BASE_URL=$_DEPLOYMENT_BASE_URL"
 
   - id: "next-export"
     name: "node:16"
@@ -46,19 +45,20 @@ steps:
       - "OAK_CONFIG_LOCATION=$_OAK_CONFIG_LOCATION"
       - "OVERRIDE_RELEASE_STAGE=$_OVERRIDE_RELEASE_STAGE"
       - "CLOUDBUILD_TRIGGER_NAME=$TRIGGER_NAME"
-      - "CLOUDBUILD_DEPLOYMENT_BASE_URL=$_DEPLOYMENT_BASE_URL"
 
   - id: "deploy-to-firebase"
     name: gcr.io/$PROJECT_ID/firebase
     entrypoint: /bin/bash
     args:
       - "-c"
-      # real deploy
+      # # Preview deploy
       - >-
         /usr/bin/firebase.bash
-        deploy
-        --project=$PROJECT_ID
-        --only=hosting:${_FIREBASE_TARGET}
+        --project oak-national-academy-2022
+        hosting:channel:deploy
+        "${SHORT_SHA}"
+        --expires 30d
+        --only ${_FIREBASE_TARGET}
         | tee /workspace/deploy.log
 
   # Possible Slack notification.
