@@ -1,3 +1,22 @@
+# [0.66.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.65.1...v0.66.0) (2022-08-17)
+
+
+### Bug Fixes
+
+* adjust last line of footer ([6df6842](https://github.com/oaknational/Oak-Web-Application/commit/6df68428015dc84718d3a1513fde303b34d19bd6))
+* line height ([aeb7dbb](https://github.com/oaknational/Oak-Web-Application/commit/aeb7dbba389caeafaddc74679ed9eae385a7e8f8))
+* pa11y contrast on li ([7faca09](https://github.com/oaknational/Oak-Web-Application/commit/7faca094be29c2629b8bbe6568fae6aa8aad91c6))
+* put logo in correct position on mobile, small font sizes ([b243dac](https://github.com/oaknational/Oak-Web-Application/commit/b243dac700a487284d8fd1f30da034e6632a4e1a))
+* style component prefix ([9529dbb](https://github.com/oaknational/Oak-Web-Application/commit/9529dbbc42601dd8b08813ea477891ba44115ce5))
+
+
+### Features
+
+* add social to menu ([1833702](https://github.com/oaknational/Oak-Web-Application/commit/183370220c4b90b2ceff0f41e8afebbd2f909fd1))
+* break out social media buttons into their own compoennt ([e3e7cf8](https://github.com/oaknational/Oak-Web-Application/commit/e3e7cf8c6f5731f8aeb1bc81fe074381c7fc8dc3))
+* make logo grow to fill space ([39d6504](https://github.com/oaknational/Oak-Web-Application/commit/39d65042fef9bd9c02bad9b00f01065085f5a832))
+* use logo component instead of image, with updated logo ([ba2392d](https://github.com/oaknational/Oak-Web-Application/commit/ba2392d025fb122f037669ac81e43dbca488ef99))
+
 ## [0.65.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.65.0...v0.65.1) (2022-08-17)
 
 # [0.65.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.64.0...v0.65.0) (2022-08-17)
