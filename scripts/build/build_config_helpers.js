@@ -1,7 +1,5 @@
 const { existsSync, readFileSync } = require("fs");
 
-const { version: packageJsonVersion } = require("../../package.json");
-
 /**
  * Attempt to read the SHA of the current Git HEAD from the local file system.
  *
@@ -59,7 +57,7 @@ function getGitRef() {
 /**
  * Determine an app version.
  *
- * For production builds use the version from the package.json file.
+ * For production builds parse the version from the Git ref triggering the build.
  * For all other builds use the current Git HEAD SHA.
  *
  * @param {Boolean} isProductionBuild Is this a production build?
@@ -68,7 +66,32 @@ function getGitRef() {
  */
 function getAppVersion(isProductionBuild) {
   if (isProductionBuild) {
-    return `v${packageJsonVersion}`;
+    // GCP get the tag name.
+    const gcpTagName = process.env.TAG_NAME;
+    if (gcpTagName) {
+      return `${gcpTagName}-static`;
+    }
+
+    // Vercel, parse the release commit message.
+    const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
+    // Release commit format defined in release.config.js
+    const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
+    const isVercelReleaseCommit = releaseCommitFormat.test(vercelCommitMessage);
+    if (isVercelReleaseCommit) {
+      const matches = vercelCommitMessage.match(/([vV]\d+\.\d+\.\d+)/);
+      if (matches === null) {
+        throw new TypeError(
+          "Could not extract app version from commit message"
+        );
+      }
+      const version = matches[0];
+      return version;
+    }
+
+    // Netlify... don't know yet.
+
+    // Couldn't figure out production version number, bail.
+    throw new TypeError("Could not determine production version number.");
   } else {
     const gitRef = getGitRef();
     if (!gitRef) {
