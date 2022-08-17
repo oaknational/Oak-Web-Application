@@ -7,6 +7,9 @@
 # Global options.
 options:
   machineType: "E2_HIGHCPU_32"
+  env:
+    - "GCP_COMMIT_SHA=$COMMIT_SHA"
+    - "GCP_TAG_NAME=$TAG_NAME"
 
 steps:
   - id: "remove-curriculum-pages"
