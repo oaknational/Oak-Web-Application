@@ -41,8 +41,8 @@ function getGitRef() {
     // Github Workflow
     process.env.GITHUB_SHA ||
     // GCP Build
-    process.env.COMMIT_SHA ||
-    process.env.TAG_NAME ||
+    process.env.GCP_COMMIT_SHA ||
+    process.env.GCP_TAG_NAME ||
     // Override
     process.env.GIT_SHA_OVERRIDE;
 
@@ -67,7 +67,7 @@ function getGitRef() {
 function getAppVersion(isProductionBuild) {
   if (isProductionBuild) {
     // GCP get the tag name.
-    const gcpTagName = process.env.TAG_NAME;
+    const gcpTagName = process.env.GCP_TAG_NAME;
     if (gcpTagName) {
       return `${gcpTagName}-static`;
     }
