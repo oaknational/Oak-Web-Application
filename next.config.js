@@ -55,6 +55,14 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
+    experimental: {
+      // Allow static builds with the default image loader.
+      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
+      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
+      images: {
+        unoptimized: true,
+      },
+    },
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
