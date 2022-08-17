@@ -116,7 +116,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               {footerNotification}
             </Flex>
           </Flex>
-          <Flex $mb={80} $width={"100%"} $mt={[64, 32]}>
+          <Flex $mb={80} $width={"100%"}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
               <P $lineHeight={16} $textAlign="center" $fontSize={[12, 16]}>
