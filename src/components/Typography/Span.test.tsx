@@ -7,6 +7,6 @@ describe("Span", () => {
     const { getByText } = renderWithProviders(
       <Span $fontFamily="body">Test</Span>
     );
-    expect(getByText("Test")).toHaveStyle("font-family: ABeeZee,sans-serif;");
+    expect(getByText("Test")).toHaveStyle("font-family: Lexend,sans-serif;");
   });
 });
