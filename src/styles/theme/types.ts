@@ -8,6 +8,7 @@ import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
+import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 
 /**
  * @todo use negative number type
@@ -36,7 +37,7 @@ export type PixelSpacing =
   | 240
   | 360
   | 480
-  | 1200;
+  | 1280;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -16 | -12 | -8 | -4;
 export type PercentSpacing =
@@ -93,6 +94,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersLilac"),
   z.literal("teachersHighlight"),
   z.literal("twilight"),
+  z.literal("videoBlue"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;
@@ -167,6 +169,7 @@ export type OakTheme = {
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
+  video: VideoStyleConfig;
   menu: MenuConfig;
 };
 

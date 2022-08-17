@@ -1,0 +1,23 @@
+query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
+  allNewsPost(
+    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+  ) {
+    id: _id
+    title
+    date
+    author {
+      id: _id
+      _key
+      name
+      image {
+        asset {
+          url
+        }
+      }
+    }
+    slug {
+      current
+    }
+    contentPortableText: contentRaw
+  }
+}

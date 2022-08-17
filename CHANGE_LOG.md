@@ -1,3 +1,56 @@
+# [0.65.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.64.0...v0.65.0) (2022-08-17)
+
+
+### Bug Fixes
+
+* add video player component to ignore test coverage ([b980ae0](https://github.com/oaknational/Oak-Web-Application/commit/b980ae087b328b8919071979096ce2daa75edc1b))
+* change video ([87d1ef1](https://github.com/oaknational/Oak-Web-Application/commit/87d1ef180c4dc2ff33c146ffa6156e7d9bc65da9))
+* nuke snapshote ([8f7d58b](https://github.com/oaknational/Oak-Web-Application/commit/8f7d58bd3c7aa5d02090bd43d84fbe76a1ff5989))
+* remove test that doesn't work ([3c4c739](https://github.com/oaknational/Oak-Web-Application/commit/3c4c73953d3a9efe81b6aa6304c13caa1645b7f2))
+* resolve conflicts ([d3ef8c7](https://github.com/oaknational/Oak-Web-Application/commit/d3ef8c7c0534ce593a84ec6fde89d5551700f17f))
+* update import path ([5092077](https://github.com/oaknational/Oak-Web-Application/commit/509207707549261d3b9600301439a79dc4a49b24))
+
+
+### Features
+
+* add analytics and error reporting to video component ([aad683f](https://github.com/oaknational/Oak-Web-Application/commit/aad683fc339dc0a964c5cb425e8bbe566d599cb0))
+* add more events ([2dcda3c](https://github.com/oaknational/Oak-Web-Application/commit/2dcda3c81df6e5122ee8b5afdb587ae0e5f03cbd))
+* add video player component ([c07f318](https://github.com/oaknational/Oak-Web-Application/commit/c07f318a35a225447af3f3ac740abcede74ec3be))
+* make analytics optional for video player ([6ded030](https://github.com/oaknational/Oak-Web-Application/commit/6ded0308ab4a7243b524537c3d07f446df3d501d))
+* remove custom buttons ([891a47d](https://github.com/oaknational/Oak-Web-Application/commit/891a47df27b9480dd55584ce770cb1512bb3e3e2))
+* theme video controls ([456c70c](https://github.com/oaknational/Oak-Web-Application/commit/456c70c188dbde81801f3dd21b20e522ef75fd25))
+* update player colours ([ab2cfff](https://github.com/oaknational/Oak-Web-Application/commit/ab2cfffc4ed409bf9a66b7839efd3ee9fc55d220))
+* use black and white colours for legibility, add new brand colour ([5790222](https://github.com/oaknational/Oak-Web-Application/commit/57902223f726a3450f096dad619734432f2322ed))
+* use video with closed captions ([3804baf](https://github.com/oaknational/Oak-Web-Application/commit/3804baf584e43fe53967ed39d421a0c29b9ec1ba))
+
+# [0.64.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.2...v0.64.0) (2022-08-16)
+
+
+### Bug Fixes
+
+* **cms:** add missing props for blog list ([d620729](https://github.com/oaknational/Oak-Web-Application/commit/d620729228183c9fd1d84f261afb557663b6d37f))
+
+
+### Features
+
+* add timeout on pulling blog data through ([43acf8b](https://github.com/oaknational/Oak-Web-Application/commit/43acf8bdea7bf75db78ea972ea324bd46b99225b))
+* **cms:** add blog post cms methods ([46093eb](https://github.com/oaknational/Oak-Web-Application/commit/46093eb7b85403dd015d8026ae932d85c2fff20c))
+
+## [0.63.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.1...v0.63.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* increase maxwidth width to 1280 as per designs and add padding to mobile view of homepage ([84c82a2](https://github.com/oaknational/Oak-Web-Application/commit/84c82a2538c01df6013778f4a32324146ffe5cc6))
+
+## [0.63.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.63.0...v0.63.1) (2022-08-13)
+
+
+### Bug Fixes
+
+* back button router ([2d119a4](https://github.com/oaknational/Oak-Web-Application/commit/2d119a4847d0b09f4a81e1b945f5a9fa802ebae2))
+* e2e test ([b76c697](https://github.com/oaknational/Oak-Web-Application/commit/b76c697de7f1e3757d255e4d0fa2ee0e20184f01))
+
 # [0.63.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.62.2...v0.63.0) (2022-08-11)
 
 
