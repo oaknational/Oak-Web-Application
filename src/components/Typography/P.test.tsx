@@ -8,7 +8,7 @@ describe("P", () => {
       <P data-testid="paragraph">Here is some paragraph text</P>
     );
     expect(getByTestId("paragraph")).toHaveStyle(
-      "font-family: ABeeZee,sans-serif"
+      "font-family: Lexend,sans-serif"
     );
   });
 });

@@ -6,7 +6,9 @@ import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { LessonControlConfig } from "../../components/LessonControl";
+import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
+import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 
 /**
  * @todo use negative number type
@@ -15,12 +17,14 @@ import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 export type PixelSpacing =
   | 0
   | 4
+  | 6
   | 8
   | 12
   | 16
   | 20
   | 24
   | 28
+  | 30
   | 32
   | 36
   | 40
@@ -33,7 +37,7 @@ export type PixelSpacing =
   | 240
   | 360
   | 480
-  | 1200;
+  | 1280;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -16 | -12 | -8 | -4;
 export type PercentSpacing =
@@ -90,6 +94,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersLilac"),
   z.literal("teachersHighlight"),
   z.literal("twilight"),
+  z.literal("videoBlue"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;
@@ -164,6 +169,8 @@ export type OakTheme = {
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
+  video: VideoStyleConfig;
+  menu: MenuConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

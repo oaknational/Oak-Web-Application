@@ -41,13 +41,10 @@ class MyDocument extends Document {
       <Html lang="en-GB">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
             rel="stylesheet"
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-            rel="stylesheet"
-          />
+
           <meta name="release-stage" content={config.get("releaseStage")} />
           <meta name="revised" content={new Date().toUTCString()} />
           <meta name="version" content={config.get("appVersion")} />
