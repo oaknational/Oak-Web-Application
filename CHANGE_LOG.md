@@ -1,3 +1,10 @@
+## [0.67.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.1...v0.67.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* incremental static regeneration ([b538d73](https://github.com/oaknational/Oak-Web-Application/commit/b538d732d9390e33bb0caedf250699f42eff985d))
+
 ## [0.67.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.67.0...v0.67.1) (2022-08-17)
 
 # [0.67.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.66.0...v0.67.0) (2022-08-17)
