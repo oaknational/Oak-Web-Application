@@ -20,7 +20,7 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
 
 const RotatedCard = styled(Card)`
-  @media (min-width: ${getBreakpoint("large")}px) {
+  @media (min-width: ${getBreakpoint("small")}px) {
     transform: rotate(2deg) translateY(10%);
     z-index: 1;
   }
