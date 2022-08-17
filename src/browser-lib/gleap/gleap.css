@@ -243,7 +243,7 @@
 .bb-feedback-form-description {
   font-size: 16px;
   line-height: 19px;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   color: #000;
   font-weight: 600;
   margin-top: 5px;
@@ -293,7 +293,7 @@
 }
 .bb-feedback-dialog-header-description {
   color: #000;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   text-align: left;
   font-weight: 600;
   margin-top: 5px;
@@ -364,7 +364,7 @@
   font-weight: 700;
 }
 .bb-feedback-dialog-header--back .bb-feedback-dialog-header-description {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
@@ -499,7 +499,7 @@
   color: #59617d;
   font-size: 13px;
   margin-bottom: 20px;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-weight: 600;
 }
 .bb-feedback-onetofive-buttons {
@@ -527,7 +527,7 @@
   color: #fff;
 }
 .bb-feedback-type-description {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   color: #59617d;
   font-size: 14px;
   line-height: 16px;
@@ -535,7 +535,7 @@
 }
 .bb-feedback-elementtitle {
   /* These are the form labels */
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-size: 16px;
   line-height: 22px;
   text-align: left;
@@ -554,7 +554,7 @@
   margin-left: 3px;
 }
 .bb-feedback-dialog-info-text {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-weight: 600;
   color: #000;
   font-size: 16px;
@@ -618,7 +618,7 @@
   margin-top: 20px;
 }
 .bb-feedback-inputgroup-text {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   color: #000;
   font-size: 16px;
   font-weight: 600;
@@ -675,7 +675,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   width: auto;
   padding: 11px 12px;
   outline: 0;
@@ -1030,7 +1030,7 @@ textarea.bb-feedback-required {
   font-size: 15px;
   line-height: 19px;
   font-weight: 600;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   outline: 0;
   -webkit-appearance: none;
   -webkit-box-shadow: none;
@@ -1053,7 +1053,7 @@ textarea.bb-feedback-required {
   border-color: #485bff;
 }
 .bb-feedback-inputgroup--privacy-policy {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   padding: 8px 0;
   font-size: 14px;
   font-weight: 600;
@@ -1067,7 +1067,7 @@ textarea.bb-feedback-required {
   margin-bottom: 0;
   display: inline;
   text-decoration: underline;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   color: #000;
   font-size: 14px;
   font-weight: 600;
@@ -1082,7 +1082,7 @@ textarea.bb-feedback-required {
 .bb-feedback-inputgroup--privacy-policy
   [type="checkbox"]:not(:checked)
   + label {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   position: relative;
   padding-left: 2em;
   font-size: 14px;
@@ -1117,7 +1117,7 @@ textarea.bb-feedback-required {
   position: absolute;
   top: 0.525em;
   left: 0.18em;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-weight: 600;
   font-size: 1.375em;
   color: #485bff;
@@ -1150,7 +1150,7 @@ textarea.bb-feedback-required {
   color: #da0e07;
 }
 .bb-feedback-importance {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   margin: 20px;
   margin-bottom: -8px;
   color: #222426;
@@ -1175,7 +1175,7 @@ textarea.bb-feedback-required {
   margin-top: -10px;
 }
 .bb-feedback-poweredbycontainer span {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-weight: 600;
   font-size: 14px;
   color: #59617d;
@@ -1206,7 +1206,7 @@ textarea.bb-feedback-required {
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   color: #da0e07;
   border: 1px solid #da0e07;
   box-shadow: 0 0 4px 0 rgb(0 0 0 / 5%);
@@ -1216,7 +1216,7 @@ textarea.bb-feedback-required {
   display: none;
   font-size: 14px;
   font-weight: 600;
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   color: #da0e07;
   margin-top: 10px;
 }
@@ -1303,7 +1303,7 @@ textarea.bb-feedback-required {
   box-sizing: border-box;
 }
 .bb-screenshot-editor-drag-info {
-  font-family: ABeeZee, sans-serif;
+  font-family: Lexend, sans-serif;
   font-weight: 600;
   position: absolute;
   top: 20px;

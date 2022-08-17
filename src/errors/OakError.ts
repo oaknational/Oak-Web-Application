@@ -15,6 +15,7 @@ const ERROR_CODES = [
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
+  "video/unknown",
   "hubspot/not-loaded",
   "hubspot/lost-information",
   "hubspot/identify-no-email",
@@ -96,6 +97,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "misc/import-count": {
     message: "File imported more times than allowed",
+    shouldNotify: true,
+  },
+  "video/unknown": {
+    message: "Sorry this video couldn't play, please try again",
     shouldNotify: true,
   },
   "preview/invalid-token": {
