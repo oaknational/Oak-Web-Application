@@ -53,6 +53,7 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
       blogs: blogResults,
       isPreviewMode,
     },
+    revalidate: 10,
   };
 };
 
