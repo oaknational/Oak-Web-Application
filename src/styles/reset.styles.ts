@@ -33,6 +33,7 @@ const resetStyles = css`
   }
 
   /* Set core root defaults */
+  html,
   html:focus-within {
     scroll-behavior: smooth;
   }

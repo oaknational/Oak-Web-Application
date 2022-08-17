@@ -127,7 +127,7 @@ const Home: FC = () => {
                   title={"Plan a lesson"}
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
-                  href={"/planning"}
+                  href={"/lesson-planning"}
                 />
               </TransformYGridArea>
               <TransformYGridArea $colSpan={[12, 4, 4]}>

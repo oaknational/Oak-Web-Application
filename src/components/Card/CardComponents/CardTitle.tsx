@@ -28,7 +28,7 @@ export type CardTitleProps = {
   iconPosition?: IconPosition;
   iconSize?: PixelSpacing;
   textCenter?: boolean;
-  fontSize?: HeadingFontSize;
+  fontSize?: HeadingFontSize | HeadingFontSize[];
 };
 
 const CardTitle: FC<CardTitleProps> = ({
