@@ -60,7 +60,7 @@ module.exports = async (phase) => {
     process.env.STATIC_BUILD_ALLOWED === "on";
   // Is a static build with beta pages deleted.
   const isStaticWWWBuild =
-    isStaticBuild && cloudbuildTriggerName.startsWith("OWA-WWW");
+    isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -85,6 +85,8 @@ module.exports = async (phase) => {
     typescript: {
       ignoreBuildErrors: isStaticWWWBuild,
     },
+    // Need this so static URLs and dynamic URLs match.
+    trailingSlash: false,
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
