@@ -3,10 +3,7 @@ import { toPlainText } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import BlogList from "../../components/BlogList";
-import {
-  BlogListItemProps,
-  BlogWebinarCategory,
-} from "../../components/BlogList/BlogListItem";
+import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
@@ -52,7 +49,7 @@ const blogToBlogListItem = (blog: BlogPostPreview): BlogListItemProps => ({
   href: `/blog/${blog.slug}`,
   snippet: toPlainText(blog.contentPortableText),
   titleTag: "h3",
-  category: BlogWebinarCategory,
+  category: blog.category.title,
 });
 
 export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (

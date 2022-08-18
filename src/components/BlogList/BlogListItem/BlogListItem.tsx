@@ -18,18 +18,13 @@ const ActionLink = styled.a`
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
-export type BlogWebinarCategory = {
-  title: string;
-  slug: string;
-};
-
 export type BlogListItemProps = {
   titleTag: HeadingTag;
   title: string;
   snippet: string;
   href: string;
   contentType: BlogListItemContentType;
-  category: BlogWebinarCategory;
+  category: string;
 };
 
 /**
@@ -45,7 +40,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     <Flex $flexDirection="column" $alignItems="flex-start">
       <Heading tag={titleTag} $fontSize={20} $mb={16}>
         <ActionLink href={href} title={title}>
-          {title} | {category?.title}
+          {title} | {category}
         </ActionLink>
       </Heading>
       <P $fontSize={18}>

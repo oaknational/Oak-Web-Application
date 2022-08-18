@@ -16,7 +16,7 @@ export const blogPostSchema = z
     date: dateSchema,
     author: teamMemberPreviewSchema,
     contentPortableText: portableTextSchema,
-    category: blogWebinarCategory.optional(),
+    category: blogWebinarCategory,
   })
   .merge(documentSchema);
 
