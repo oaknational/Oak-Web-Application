@@ -5,6 +5,16 @@ fragment BlogPreviewFields on NewsPost {
   slug {
     current
   }
+  author {
+    id: _id
+    _key
+    name
+    image {
+      asset {
+        url
+      }
+    }
+  }
   category {
     title
     slug {

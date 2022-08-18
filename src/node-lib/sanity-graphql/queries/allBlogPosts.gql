@@ -4,6 +4,28 @@ query allBlogPosts($isDraft: Boolean = false, $limit: Int = 9999) {
     sort: [{ date: ASC }]
     limit: $limit
   ) {
-    ...BlogPreviewFields
+    id: _id
+    title
+    date
+    author {
+      id: _id
+      _key
+      name
+      image {
+        asset {
+          url
+        }
+      }
+    }
+    slug {
+      current
+    }
+    category {
+      title
+      slug {
+        current
+      }
+    }
+    contentPortableText: contentRaw
   }
 }

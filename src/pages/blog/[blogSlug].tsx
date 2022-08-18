@@ -143,7 +143,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       isPreviewMode={props.isPreviewMode}
     >
       <Heading tag="h1" $fontSize={24}>
-        {props.blog.title}
+        {props.blog.title} | {props.blog.category.title}
       </Heading>
       {props.blog.date} <br />
       Hosted by: {props.blog.author.name}
