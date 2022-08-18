@@ -1,3 +1,16 @@
+# [0.70.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.1...v0.70.0) (2022-08-18)
+
+
+### Bug Fixes
+
+* pass deploymeny URL override to PR builds ([0592048](https://github.com/oaknational/Oak-Web-Application/commit/059204897b54445f9bcdf4db5535d6f7808c6038))
+
+
+### Features
+
+* clean URLs on Firebase ([cc95302](https://github.com/oaknational/Oak-Web-Application/commit/cc953026757be513931727c9ac7dc7c46274e52f))
+* working sitemaps for static site ([222d71a](https://github.com/oaknational/Oak-Web-Application/commit/222d71a94082ed48562628a7f1f1db0338988212))
+
 ## [0.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.0...v0.69.1) (2022-08-17)
 
 
