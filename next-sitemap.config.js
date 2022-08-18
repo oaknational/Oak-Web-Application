@@ -11,8 +11,21 @@ if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
 // https://github.com/iamvishnusankar/next-sitemap#readme
 module.exports = {
   siteUrl: sitemapBaseUrl,
-  // Don't generate a robots.txt, we want to manually control this.
-  generateRobotsTxt: false,
+  // Generate a robots.txt that instructs no crawling (individual pages also have no index set).
+  generateRobotsTxt: true,
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        disallow: [
+          // Pre-release disallow all paths.
+          "/",
+          // Pre-beta disallow all beta paths
+          "/beta/",
+        ],
+      },
+    ],
+  },
   exclude: [
     // Don't add beta pages for now.
     "/beta",
