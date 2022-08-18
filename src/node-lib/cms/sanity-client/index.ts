@@ -38,6 +38,10 @@ const getSanityClient: CMSClient = () => ({
       ...params,
     });
 
+    // console.debug("******************");
+    // console.debug(blogPostsResult);
+    // console.debug("*******************");
+
     return blogPostListSchema.parse(blogPostsResult.allNewsPost);
   },
   blogPostBySlug: async (slug, { previewMode, ...params } = {}) => {
@@ -47,6 +51,10 @@ const getSanityClient: CMSClient = () => ({
       slug,
     });
     const blogPost = blogPostResult.allNewsPost[0];
+
+    console.debug("===================================");
+    console.debug(blogPost);
+    console.debug("===================================");
 
     return blogPostSchema.parse(blogPost);
   },

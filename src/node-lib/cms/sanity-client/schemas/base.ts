@@ -98,3 +98,8 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
+
+export const blogWebinarCategory = z.object({
+  title: z.string(),
+  slug: z.object({ current: z.string() }),
+});

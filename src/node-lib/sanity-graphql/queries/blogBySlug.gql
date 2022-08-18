@@ -18,6 +18,12 @@ query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
     slug {
       current
     }
+    category {
+      title
+      slug {
+        current
+      }
+    }
     contentPortableText: contentRaw
   }
 }

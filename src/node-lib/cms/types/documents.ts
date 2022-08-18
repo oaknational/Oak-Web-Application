@@ -25,11 +25,17 @@ export type BlogPost = Document & {
   date: Date;
   author: TeamMember;
   contentPortableText: PortableTextJSON;
+  category: {
+    title: string;
+    slug: {
+      current: string;
+    };
+  };
 };
 
 export type BlogPostPreview = Pick<
   BlogPost,
-  "id" | "title" | "slug" | "contentPortableText"
+  "id" | "title" | "slug" | "contentPortableText" | "author" | "category"
 >;
 
 export type Attachment = {

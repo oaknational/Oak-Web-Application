@@ -5,7 +5,7 @@ import {
   documentSchema,
   portableTextSchema,
   dateSchema,
-  videoSchema,
+  blogWebinarCategory,
 } from "./base";
 import { teamMemberPreviewSchema } from "./teamMember";
 
@@ -16,7 +16,7 @@ export const blogPostSchema = z
     date: dateSchema,
     author: teamMemberPreviewSchema,
     contentPortableText: portableTextSchema,
-    video: videoSchema,
+    category: blogWebinarCategory.optional(),
   })
   .merge(documentSchema);
 
@@ -27,6 +27,7 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   title: true,
   slug: true,
   contentPortableText: true,
+  category: true,
 });
 
 export type BlogPostPreview = z.infer<typeof blogPostPreviewSchema>;
