@@ -5,6 +5,7 @@ import {
   documentSchema,
   portableTextSchema,
   dateSchema,
+  videoSchema,
 } from "./base";
 import { teamMemberPreviewSchema } from "./teamMember";
 
@@ -15,6 +16,7 @@ export const blogPostSchema = z
     date: dateSchema,
     author: teamMemberPreviewSchema,
     contentPortableText: portableTextSchema,
+    video: videoSchema,
   })
   .merge(documentSchema);
 
