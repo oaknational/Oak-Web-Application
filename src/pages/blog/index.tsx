@@ -26,7 +26,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
     >
       <MaxWidth>
         <Grid>
-          <GridArea $colSpan={[12, 7]}>
+          <GridArea $colSpan={[12, 12, 7]}>
             <Heading tag="h1" $fontSize={32}>
               Blog
             </Heading>
