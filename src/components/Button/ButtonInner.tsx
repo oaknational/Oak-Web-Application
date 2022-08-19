@@ -36,6 +36,7 @@ export type ButtonInnerProps = {
   size: ButtonSize;
   background: ButtonBackground;
   variant: ButtonVariant;
+  disabled?: boolean;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const {

@@ -15,6 +15,7 @@ export type BlogListingPageProps = {
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
+  console.log(props);
 
   return (
     <Layout

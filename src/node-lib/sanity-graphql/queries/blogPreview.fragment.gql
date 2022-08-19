@@ -5,5 +5,11 @@ fragment BlogPreviewFields on NewsPost {
   slug {
     current
   }
+  category {
+    title
+    slug {
+      current
+    }
+  }
   contentPortableText: contentRaw
 }

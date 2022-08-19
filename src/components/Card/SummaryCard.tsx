@@ -14,6 +14,7 @@ type SummaryCardProps = {
   heading: string;
   summary: PortableTextSpan | string;
   background: OakColorName;
+  image?: CardImageProps;
 };
 
 /**
@@ -23,13 +24,13 @@ type SummaryCardProps = {
  * ## Usage
  * Summary card heading used at the top of page
  */
-const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
+const SummaryCard: FC<SummaryCardProps> = ({
   title,
   heading,
   summary,
-  imageSrc,
-  alt,
+  image,
   background,
+  children,
 }) => {
   return (
     <Card
@@ -59,6 +60,7 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
             <PortableText value={summary} />
           )}
         </Typography>
+        {children}
       </Flex>
       <Flex
         $ml={[0, 40, 120]}
@@ -66,12 +68,9 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
         $display={["none", "flex"]}
         $alignItems="center"
       >
-        <CardImage
-          alt={alt}
-          imageSrc={imageSrc}
-          position={"center right"}
-          aspectRatio="1:1"
-        />
+        {image && (
+          <CardImage {...image} position={"center right"} aspectRatio="1:1" />
+        )}
       </Flex>
     </Card>
   );

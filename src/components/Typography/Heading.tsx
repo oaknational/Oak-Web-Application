@@ -15,7 +15,7 @@ export type HeadingTagProps = {
   tag: HeadingTag;
   textAlign?: CSSProperties["textAlign"];
 };
-const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
+export const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
   const { tag, ...otherProps } = props;
   const Tag = tag;
   return <Tag {...otherProps} />;
@@ -37,7 +37,7 @@ export const headingDefaults = {
   $lineHeight: 1.2,
 };
 
-type HeadingProps = Omit<TypographyProps, "fontSize"> &
+export type HeadingProps = Omit<TypographyProps, "fontSize"> &
   HeadingTagProps & {
     $fontSize: ResponsiveValues<HeadingFontSize>;
   } & MarginProps;
