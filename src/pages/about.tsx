@@ -16,6 +16,7 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import OutlineHeading from "../components/OutlineHeading";
 import VideoPlayer from "../components/VideoPlayer";
 import Grid, { GridArea } from "../components/Grid";
+import AboutContactCard from "../components/AboutContactCard";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -100,12 +101,14 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $pr={[0, 72]}
               $minWidth={["50%"]}
             >
-              <VideoPlayer
-                playbackId={
-                  pageData.whoWeAre.intro.video.video.asset.playbackId
-                }
-                title={pageData.whoWeAre.intro.video.video.asset.title}
-              />
+              {pageData.whoWeAre.intro.video && (
+                <VideoPlayer
+                  playbackId={
+                    pageData.whoWeAre.intro.video?.video.asset.playbackId
+                  }
+                  title={pageData.whoWeAre.intro.video?.title}
+                />
+              )}
             </Flex>
             <Box $minWidth={["50%"]}>
               <Typography
@@ -117,15 +120,15 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                   value={pageData.whoWeAre.intro.bodyPortableText}
                 />
               </Typography>
-              {pageData.whoWeAre.intro.cta?.label && (
-                <Flex $justifyContent={"flex-start"}>
+              <Flex $justifyContent={"flex-start"}>
+                {pageData.whoWeAre.intro.cta?.linkType && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     label={pageData.whoWeAre.intro.cta.label}
-                    href={pageData.whoWeAre.intro.cta.internal.slug}
+                    href={"/"}
                   ></ButtonAsLink>
-                </Flex>
-              )}
+                )}
+              </Flex>
             </Box>
           </Card>
         </Flex>
@@ -144,7 +147,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           title={pageData.whoWeAre.timeline.beyond.title}
           cta={pageData.whoWeAre.timeline.beyond.cta}
         />
-        <Grid $cg={28} $rg={32}>
+        <Grid $mb={80} $cg={28} $rg={32}>
           {pageData.whoWeAre.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
@@ -168,6 +171,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             </Fragment>
           ))}
         </Grid>
+        <AboutContactCard />
       </MaxWidth>
     </Layout>
   );

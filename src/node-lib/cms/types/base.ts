@@ -53,6 +53,8 @@ export type TextAndMedia = {
   bodyPortableText: PortableTextJSON;
   alignMedia: "left" | "right";
   cta?: CTA | null;
+  video?: Video;
+  image?: SanityImage;
 } & (
   | {
       mediaType: "image";
