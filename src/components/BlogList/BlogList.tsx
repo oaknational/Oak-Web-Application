@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FC, Fragment } from "react";
 
-import CardTitle from "../Card/CardComponents/CardTitle";
 import Flex from "../Flex";
 import { P } from "../Typography";
 import { HeadingTag } from "../Typography/Heading";
@@ -20,7 +19,7 @@ export type BlogListProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogList: FC<BlogListProps> = (props) => {
-  const { title, titleTag, items } = props;
+  const { items } = props;
 
   return (
     <Flex $flexDirection="column">
@@ -30,11 +29,6 @@ const BlogList: FC<BlogListProps> = (props) => {
         $alignItems={["flex-start", "flex-start", "center"]}
         $justifyContent={"space-between"}
       >
-        <Flex $mb={[24, 0]} $flexDirection={"row"} $alignItems={"center"}>
-          <CardTitle icon={"HandHoldingPaper"} iconSize={40} tag={titleTag}>
-            {title}
-          </CardTitle>
-        </Flex>
         <Flex $justifyContent={"space-between"}>
           <nav>
             <Flex $justifyContent={"center"} $alignItems="center">

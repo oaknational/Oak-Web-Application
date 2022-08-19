@@ -37,20 +37,26 @@ export type BlogListItemProps = {
 const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { titleTag, title, snippet, href, category, date } = props;
 
+  const blogDate = new Date(date);
+
   return (
     <Flex $flexDirection="column" $alignItems="flex-start">
       <P $fontSize={16} $lineHeight={"20px"}>
         {category}
       </P>
-      <P $fontSize={16} $lineHeight={"20px"}>
-        {date}
+      <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
+        {blogDate.toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
       </P>
-      <Heading tag={titleTag} $fontSize={20} $mb={16}>
+      <Heading tag={titleTag} $fontSize={20} $mt={8}>
         <ActionLink href={href} title={title}>
           {title}
         </ActionLink>
       </Heading>
-      <P $fontSize={18}>
+      <P $fontSize={18} $mt={8}>
         <LineClamp lines={2}>{snippet}</LineClamp>
       </P>
     </Flex>

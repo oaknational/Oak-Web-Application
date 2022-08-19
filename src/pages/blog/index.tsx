@@ -24,10 +24,10 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth>
+      <MaxWidth $ph={[12, 0]}>
         <Grid>
           <GridArea $colSpan={[12, 12, 7]}>
-            <Heading tag="h1" $fontSize={32}>
+            <Heading tag="h1" $fontSize={32} $mt={[24, 48]} $mb={[24, 48]}>
               Blog
             </Heading>
 
@@ -64,6 +64,7 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
 
   return {
     props: {
+      // TODO: find a prettier way of fixing this error
       blogs: JSON.parse(JSON.stringify(blogResults)),
       isPreviewMode,
     },
