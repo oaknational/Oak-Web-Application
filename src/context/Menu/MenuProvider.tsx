@@ -3,6 +3,7 @@ import { createContext, FC, useState } from "react";
 type MenuContext = {
   open: boolean;
   toggleMenu: () => void;
+  closeMenu: () => void;
 };
 
 export const menuContext = createContext<MenuContext | null>(null);
@@ -14,6 +15,9 @@ export const MenuProvider: FC = ({ children }) => {
     open,
     toggleMenu: () => {
       setOpen(!open);
+    },
+    closeMenu: () => {
+      setOpen(false);
     },
   };
 

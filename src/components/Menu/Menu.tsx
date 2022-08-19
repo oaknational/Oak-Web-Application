@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
+import { useRouter } from "next/router";
 
 import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme/types";
@@ -64,6 +65,12 @@ const Menu: FC = ({ children }) => {
   const theme = useTheme();
   const { menu } = theme;
   const { background, color, width } = menu;
+  const { pathname } = useRouter();
+  const menuContextRef = useRef(useMenuContext());
+
+  useEffect(() => {
+    menuContextRef.current.closeMenu();
+  }, [pathname, menuContextRef]);
 
   return (
     <Transition timeout={transitionDuration} in={open} unmountOnExit>
