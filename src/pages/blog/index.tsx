@@ -50,6 +50,7 @@ const blogToBlogListItem = (blog: BlogPostPreview): BlogListItemProps => ({
   snippet: toPlainText(blog.contentPortableText),
   titleTag: "h3",
   category: blog.category.title,
+  date: blog.date,
 });
 
 export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
@@ -63,7 +64,7 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
 
   return {
     props: {
-      blogs: blogResults,
+      blogs: JSON.parse(JSON.stringify(blogResults)),
       isPreviewMode,
     },
     revalidate: 10,

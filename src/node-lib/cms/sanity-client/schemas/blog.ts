@@ -28,6 +28,7 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   slug: true,
   contentPortableText: true,
   category: true,
+  date: true,
 });
 
 export type BlogPostPreview = z.infer<typeof blogPostPreviewSchema>;

@@ -35,7 +35,13 @@ export type BlogPost = Document & {
 
 export type BlogPostPreview = Pick<
   BlogPost,
-  "id" | "title" | "slug" | "contentPortableText" | "author" | "category"
+  | "id"
+  | "title"
+  | "slug"
+  | "contentPortableText"
+  | "author"
+  | "category"
+  | "date"
 >;
 
 export type Attachment = {

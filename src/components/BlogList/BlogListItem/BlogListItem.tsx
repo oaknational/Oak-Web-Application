@@ -25,6 +25,7 @@ export type BlogListItemProps = {
   href: string;
   contentType: BlogListItemContentType;
   category: string;
+  date: Date;
 };
 
 /**
@@ -34,13 +35,19 @@ export type BlogListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
-  const { titleTag, title, snippet, href, category } = props;
+  const { titleTag, title, snippet, href, category, date } = props;
 
   return (
     <Flex $flexDirection="column" $alignItems="flex-start">
+      <P $fontSize={16} $lineHeight={"20px"}>
+        {category}
+      </P>
+      <P $fontSize={16} $lineHeight={"20px"}>
+        {date}
+      </P>
       <Heading tag={titleTag} $fontSize={20} $mb={16}>
         <ActionLink href={href} title={title}>
-          {title} | {category}
+          {title}
         </ActionLink>
       </Heading>
       <P $fontSize={18}>
