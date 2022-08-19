@@ -2,21 +2,21 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { AboutPage, TextBlock } from "../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import Layout from "../components/Layout";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import SummaryCard from "../components/Card/SummaryCard";
-import ButtonLinkNav from "../components/ButtonLinkNav/ButtonLinkNav";
-import Flex, { FlexProps } from "../components/Flex";
-import Card from "../components/Card";
-import Box from "../components/Box";
-import Typography, { Heading } from "../components/Typography";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
-import OutlineHeading from "../components/OutlineHeading";
-import VideoPlayer from "../components/VideoPlayer";
-import Grid, { GridArea } from "../components/Grid";
-import AboutContactCard from "../components/AboutContactCard";
+import CMSClient, { AboutPage, TextBlock } from "../../node-lib/cms";
+import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import Layout from "../../components/Layout";
+import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import SummaryCard from "../../components/Card/SummaryCard";
+import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
+import Flex, { FlexProps } from "../../components/Flex";
+import Card from "../../components/Card";
+import Box from "../../components/Box";
+import Typography, { Heading } from "../../components/Typography";
+import ButtonAsLink from "../../components/Button/ButtonAsLink";
+import OutlineHeading from "../../components/OutlineHeading";
+import VideoPlayer from "../../components/VideoPlayer";
+import Grid, { GridArea } from "../../components/Grid";
+import AboutContactCard from "../../components/AboutContactCard";
 
 export type AboutPageProps = {
   pageData: AboutPage;
