@@ -14,6 +14,7 @@ type SummaryCardProps = {
   heading: string;
   summary: PortableTextSpan | string;
   background: OakColorName;
+  cardImageProps?: CardImageProps;
 };
 
 /**
@@ -23,13 +24,12 @@ type SummaryCardProps = {
  * ## Usage
  * Summary card heading used at the top of page
  */
-const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
+const SummaryCard: FC<SummaryCardProps> = ({
   title,
   heading,
   summary,
-  imageSrc,
-  alt,
   background,
+  cardImageProps,
 }) => {
   return (
     <Card
@@ -38,14 +38,19 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
       $justifyContent={"space-between"}
       $ph={[16, 24]}
       $pv={24}
+      $width="100%"
     >
-      <Flex $flexDirection={"column"} $pv={[0, 32]}>
+      <Flex
+        $flexDirection={"column"}
+        $pv={[0, 32]}
+        $maxWidth={cardImageProps ? null : 720}
+      >
         <Heading
           $mb={8}
           tag={"h1"}
           $fontSize={20}
           $color={"oakGrey4"}
-          $fontFamily="headingLight"
+          $fontFamily="heading"
         >
           {title}
         </Heading>
@@ -60,19 +65,20 @@ const SummaryCard: FC<SummaryCardProps & CardImageProps> = ({
           )}
         </Typography>
       </Flex>
-      <Flex
-        $ml={[0, 40, 120]}
-        $minWidth={240}
-        $display={["none", "flex"]}
-        $alignItems="center"
-      >
-        <CardImage
-          alt={alt}
-          imageSrc={imageSrc}
-          position={"center right"}
-          aspectRatio="1:1"
-        />
-      </Flex>
+      {cardImageProps && (
+        <Flex
+          $ml={[0, 40, 120]}
+          $minWidth={240}
+          $display={["none", "flex"]}
+          $alignItems="center"
+        >
+          <CardImage
+            position={"center right"}
+            aspectRatio="1:1"
+            {...cardImageProps}
+          />
+        </Flex>
+      )}
     </Card>
   );
 };

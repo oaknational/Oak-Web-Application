@@ -49,8 +49,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           background={"teachersPastelYellow"}
           imageSrc={"/images/illustrations/curriculum.svg"}
           alt={"Develop Your Curriculum illustration"}
-        ></SummaryCard>
-
+        />
         <Card
           $alignItems={["center", "flex-start"]}
           $mt={[56, 64]}
