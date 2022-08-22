@@ -19,7 +19,9 @@ const useHubspot = ({ enabled }: UseHubspotProps) => {
       });
       hubspot.optIn();
     } else {
-      hubspot.optOut();
+      if (hubspot.loaded()) {
+        hubspot.optOut();
+      }
     }
   }, [enabled]);
 
