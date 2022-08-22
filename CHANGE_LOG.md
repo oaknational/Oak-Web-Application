@@ -1,3 +1,10 @@
+## [0.70.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.0...v0.70.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* only optout of hubspot if is loaded ([7cb918b](https://github.com/oaknational/Oak-Web-Application/commit/7cb918b6dc78fd892aea579187395d2f0eab77e8))
+
 # [0.70.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.1...v0.70.0) (2022-08-18)
 
 
