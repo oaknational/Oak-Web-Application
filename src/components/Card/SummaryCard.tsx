@@ -13,7 +13,7 @@ type SummaryCardProps = {
   title: string;
   heading: string;
   summary: PortableTextSpan | string;
-  background: OakColorName;
+  background?: OakColorName;
   cardImageProps?: CardImageProps;
 };
 
@@ -81,6 +81,10 @@ const SummaryCard: FC<SummaryCardProps> = ({
       )}
     </Card>
   );
+};
+
+SummaryCard.defaultProps = {
+  background: "teachersPastelYellow",
 };
 
 export default SummaryCard;

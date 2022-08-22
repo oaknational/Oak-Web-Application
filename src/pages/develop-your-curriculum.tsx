@@ -46,9 +46,10 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           title={pageData.title}
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
-          background={"teachersPastelYellow"}
-          imageSrc={"/images/illustrations/curriculum.svg"}
-          alt={"Develop Your Curriculum illustration"}
+          cardImageProps={{
+            imageSrc: "/images/illustrations/curriculum.svg",
+            alt: "Develop Your Curriculum illustration",
+          }}
         />
         <Card
           $alignItems={["center", "flex-start"]}

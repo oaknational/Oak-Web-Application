@@ -109,7 +109,6 @@ const ContactUs: NextPage = () => {
     <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
         <SummaryCard
-          background="teachersPastelYellow"
           title={title}
           heading={heading}
           summary={summaryPortableText}
