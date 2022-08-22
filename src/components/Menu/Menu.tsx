@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect } from "react";
 import styled, { useTheme } from "styled-components";
 import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
@@ -61,16 +61,15 @@ const MenuHeader = styled(Flex)`
 `;
 
 const Menu: FC = ({ children }) => {
-  const { open, toggleMenu } = useMenuContext();
+  const { open, toggleMenu, closeMenu } = useMenuContext();
   const theme = useTheme();
   const { menu } = theme;
   const { background, color, width } = menu;
   const { pathname } = useRouter();
-  const menuContextRef = useRef(useMenuContext());
 
   useEffect(() => {
-    menuContextRef.current.closeMenu();
-  }, [pathname, menuContextRef]);
+    closeMenu();
+  }, [pathname, closeMenu]);
 
   return (
     <Transition timeout={transitionDuration} in={open} unmountOnExit>

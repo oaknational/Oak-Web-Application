@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useCallback, useState } from "react";
 
 type MenuContext = {
   open: boolean;
@@ -11,14 +11,18 @@ export const menuContext = createContext<MenuContext | null>(null);
 export const MenuProvider: FC = ({ children }) => {
   const [open, setOpen] = useState(false);
 
+  const toggleMenu = useCallback(() => {
+    setOpen((_open) => !_open);
+  }, [setOpen]);
+
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
   const menuValue: MenuContext = {
     open,
-    toggleMenu: () => {
-      setOpen(!open);
-    },
-    closeMenu: () => {
-      setOpen(false);
-    },
+    toggleMenu,
+    closeMenu,
   };
 
   return (
