@@ -1,3 +1,5 @@
+const { appendFileSync } = require("node:fs");
+
 const { PHASE_TEST } = require("next/constants");
 
 const {
@@ -36,7 +38,9 @@ module.exports = async (phase) => {
     // depend on a Vercel specific env variable.
     // When we come to sort out a failover we may need to tweak this functionality.
     // Defaults to "development".
-    releaseStage = getReleaseStage(process.env.VERCEL_ENV);
+    releaseStage = getReleaseStage(
+      process.env.OVERRIDE_RELEASE_STAGE || process.env.VERCEL_ENV
+    );
     const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
@@ -46,6 +50,18 @@ module.exports = async (phase) => {
     ? {}
     : await fetchSecrets(oakConfig);
 
+  // Flags to change behaviour for static builds.
+  // Remove when we start using dynamic hosting for production.
+  // Assumption that all static builds happen in Cloudbuild triggers (override available, see below).
+  const cloudbuildTriggerName = process.env.CLOUDBUILD_TRIGGER_NAME;
+  // Is a static build
+  const isStaticBuild =
+    (!!cloudbuildTriggerName && cloudbuildTriggerName !== "undefined") ||
+    process.env.STATIC_BUILD_ALLOWED === "on";
+  // Is a static build with beta pages deleted.
+  const isStaticWWWBuild =
+    isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
+
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     poweredByHeader: false,
@@ -53,6 +69,24 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
+    experimental: {
+      // Allow static builds with the default image loader.
+      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
+      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
+      images: {
+        unoptimized: isStaticBuild,
+      },
+    },
+    // Allow static builds with deleted beta pages to build.
+    eslint: {
+      ignoreDuringBuilds: isStaticWWWBuild,
+    },
+    // Allow static builds with deleted beta pages to build.
+    typescript: {
+      ignoreBuildErrors: isStaticWWWBuild,
+    },
+    // Need this so static URLs and dynamic URLs match.
+    trailingSlash: false,
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
@@ -80,6 +114,14 @@ module.exports = async (phase) => {
         process.env.FIREBASE_ADMIN_DATABASE_URL ||
         secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
 
+      // Gleap
+      NEXT_PUBLIC_GLEAP_API_KEY:
+        process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
+      NEXT_PUBLIC_GLEAP_API_URL:
+        process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+      NEXT_PUBLIC_GLEAP_WIDGET_URL:
+        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
+
       // Hasura
       NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
       HASURA_ADMIN_SECRET:
@@ -91,9 +133,24 @@ module.exports = async (phase) => {
       NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID:
         oakConfig.hubspot.newsletterFormId,
       NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
+      NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN:
+        process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
+        oakConfig.hubspot.scriptDomain,
 
       // Oak
-      NEXT_PUBLIC_CLIENT_APP_BASE_URL: oakConfig.oak.appBaseUrl,
+      // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
+      NEXT_PUBLIC_CLIENT_APP_BASE_URL:
+        // Fixed URL defined in the Cloudbuild trigger UI.
+        process.env.CLOUDBUILD_DEPLOYMENT_BASE_URL ||
+        // Note this is the default Vercel URL (something.vercel.app), not the alternative preview or production one.
+        // The preview ones on a thenational.academy domain we could construct, if we wanted to use Vercel for
+        // production we'd need to set an env, same as for Cloudbuild.
+        process.env.VERCEL_URL ||
+        // Netlify https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
+        // Should default to custom domain if one is set.
+        process.env.URL ||
+        // Default to value in config, currently localhost:3000
+        oakConfig.oak.appBaseUrl,
       NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
 
       // Posthog
@@ -103,17 +160,42 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
 
       // Sanity
-      SANITY_GRAPHQL_URL:
-        process.env.SANITY_GRAPHQL_URL || oakConfig.sanity?.graphqlUrl,
+      SANITY_PROJECT_ID:
+        process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
+      SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,
+      SANITY_DATASET_TAG:
+        process.env.SANITY_DATASET_TAG || oakConfig.sanity?.datasetTag,
+      SANITY_USE_CDN: process.env.SANITY_USE_CDN || oakConfig.sanity?.useCDN,
       SANITY_AUTH_SECRET:
         process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
+      SANITY_PREVIEW_SECRET:
+        process.env.SANITY_PREVIEW_SECRET ||
+        secretsFromNetwork.SANITY_PREVIEW_SECRET,
+    },
+    images: {
+      domains: ["cdn.sanity.io"],
     },
   };
 
-  // DEBUG
-  // @todo this reveals all keys and secrets, so we should remove this before merging
-  // in feat/config branch
-  // console.log("Next config", nextConfig);
+  // Stick the deployment URL in an env so the site map generation can use it.
+  try {
+    let baseUrl = nextConfig.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
+    if (!baseUrl) {
+      throw new TypeError(
+        `Could not determine NEXT_PUBLIC_CLIENT_APP_BASE_URL for sitemap generation.`
+      );
+    }
+    // Not all services prepend the protocol.
+    if (!baseUrl.startsWith("http")) {
+      baseUrl = `https://${baseUrl}`;
+    }
+    const baseUrlEnv = `SITEMAP_BASE_URL=${baseUrl}`;
+    appendFileSync(".env", `\n${baseUrlEnv}`);
+    console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
+  } catch (err) {
+    console.error("Could not write SITEMAP_BASE_URL to env file");
+    throw err;
+  }
 
   return nextConfig;
 };

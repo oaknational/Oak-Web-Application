@@ -11,7 +11,7 @@ export default {
       defaultValue: "Click me",
     },
     variant: {
-      defaultValue: "primary",
+      defaultValue: "brush",
     },
     icon: {
       defaultValue: "Download",

@@ -30,10 +30,12 @@ const Button: FC<ButtonProps> = (props) => {
     icon,
     "aria-label": ariaLabel,
     htmlButtonProps = {},
+    iconBackground,
     ...spacingProps
   } = props;
 
-  const { size, variant, iconPosition } = getButtonStylesProps(props);
+  const { size, variant, iconPosition, background } =
+    getButtonStylesProps(props);
 
   return (
     <StyledButton
@@ -44,13 +46,17 @@ const Button: FC<ButtonProps> = (props) => {
       size={size}
       variant={variant}
       iconPosition={iconPosition}
+      background={background}
       {...spacingProps}
     >
       <ButtonInner
         label={label}
         icon={icon}
         iconPosition={iconPosition}
+        iconBackground={iconBackground}
         size={size}
+        variant={variant}
+        background={background}
       />
     </StyledButton>
   );

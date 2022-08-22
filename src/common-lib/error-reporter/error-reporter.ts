@@ -2,6 +2,8 @@ import Bugsnag, { Event, NotifiableError, OnErrorCallback } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
 import config from "../../config";
+import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
+import isBrowser from "../../utils/isBrowser";
 
 /**
  * Test if a user agent matches any in a list of regex patterns.
@@ -107,6 +109,13 @@ const errorify = (maybeError: unknown): Error => {
 const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
   const reportError = async (maybeError: Error | unknown, data?: ErrorData) => {
     console.error(maybeError);
+    if (isBrowser) {
+      const bugsnagAllowed = getHasConsentedTo("bugsnag");
+      if (!bugsnagAllowed) {
+        // Do not continue if user has not given consent to send data bugsnag
+        return;
+      }
+    }
     // data argument can be null
     data = data || {};
     try {

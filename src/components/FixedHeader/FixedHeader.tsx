@@ -1,12 +1,14 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
-import { OakTheme, PropsWithTheme } from "../../styles/theme";
+import { OakColorName, OakTheme, PropsWithTheme } from "../../styles/theme";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import Flex from "../Flex";
 
 export type HeaderConfig = {
   height: number;
+  color: OakColorName;
+  background: OakColorName;
 };
 
 const headerConfig = (theme: OakTheme) => theme.header;
@@ -28,19 +30,18 @@ const HeadingSpacer = styled.div`
 const StyledHeader = styled(Flex)`
   ${baseHeaderStyles}
   ${background}
-  padding: 12px;
+  padding: 12px 16px;
   position: fixed;
-  z-index: 1;
 `;
 
-const FixedHeader: FC<BackgroundProps> = ({ children, background }) => (
+const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (
   <HeaderWrapper>
     <StyledHeader
       as="header"
-      background={background}
-      justifyContent={["left", "space-between"]}
-      alignItems={["flex-start", "center"]}
-      flexDirection={["column", "row"]}
+      $background={$background}
+      $justifyContent={["space-between"]}
+      $alignItems={["center"]}
+      $zIndex="fixedHeader"
     >
       {children}
     </StyledHeader>

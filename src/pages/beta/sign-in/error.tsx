@@ -7,12 +7,12 @@ import Layout from "../../../components/Layout";
 
 const SignInError: NextPage = () => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
       <Flex
-        flexGrow={1}
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
+        $flexGrow={1}
+        $flexDirection="column"
+        $alignItems="center"
+        $justifyContent="center"
       >
         <p data-testid="sign-in-error-message">
           There was an error signing you in.{" "}

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { PixelSpacing } from "../../../styles/theme";
 import Flex from "../../Flex";
 import Icon, { IconName } from "../../Icon";
-import Heading, { HeadingTag } from "../../Typography/Heading";
+import Heading, { HeadingFontSize, HeadingTag } from "../../Typography/Heading";
 
 export const getIconFlexPosition = (
   iconPosition: CardTitleProps["iconPosition"]
@@ -28,6 +28,7 @@ export type CardTitleProps = {
   iconPosition?: IconPosition;
   iconSize?: PixelSpacing;
   textCenter?: boolean;
+  fontSize?: HeadingFontSize | HeadingFontSize[];
 };
 
 const CardTitle: FC<CardTitleProps> = ({
@@ -37,24 +38,26 @@ const CardTitle: FC<CardTitleProps> = ({
   iconSize = 32,
   tag,
   children,
+  fontSize = 24,
 }) => {
   return (
     <Flex
-      flexDirection={getIconFlexPosition(iconPosition)}
-      justifyContent={textCenter ? "center" : "start"}
-      alignItems="center"
-      mb={24}
+      $flexDirection={getIconFlexPosition(iconPosition)}
+      $justifyContent={textCenter ? "center" : "start"}
+      $alignItems="center"
+      $mb={24}
     >
       {icon && (
         <Icon
           name={icon}
           size={iconPosition === "aboveTitle" ? 64 : iconSize}
-          mb={iconPosition === "aboveTitle" ? 12 : 0}
-          mr={iconPosition === (icon && "leading") ? 8 : 0}
-          ml={iconPosition === (icon && "trailing") ? 8 : 0}
+          $mb={iconPosition === "aboveTitle" ? 12 : 0}
+          $mr={iconPosition === (icon && "leading") ? 8 : 0}
+          $ml={iconPosition === (icon && "trailing") ? 8 : 0}
+          $pa={0}
         />
       )}
-      <Heading fontSize={24} tag={tag}>
+      <Heading $color={"black"} $fontSize={fontSize} tag={tag}>
         {children}
       </Heading>
     </Flex>

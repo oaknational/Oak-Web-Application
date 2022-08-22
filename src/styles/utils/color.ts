@@ -7,11 +7,11 @@ import responsive, { ResponsiveValues } from "./responsive";
 
 type OakColorNames = ResponsiveValues<OakColorName>;
 
-export type ColorProps = { color?: OakColorNames };
+export type ColorProps = { $color?: OakColorNames };
 const color = css<ColorProps>`
   ${responsive<ColorProps, OakColorName>(
     "color",
-    (props) => props.color,
+    (props) => props.$color,
     getColorByName
   )}
 `;

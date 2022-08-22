@@ -12,10 +12,12 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: [
     "./src/**",
+    "!./**/*.json",
     "!src/pages/_document.tsx",
     "!src/styles/themes/types.ts",
     "!e2e_tests/browser/engineering/*",
     "!**/__snapshots__/**",
+    "!src/__tests__/__helpers__/*",
     "!**/*.config.{js,ts}",
     "!**/*.stories.*",
   ],

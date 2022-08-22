@@ -1,0 +1,5 @@
+fragment Image on Image {
+  asset {
+    ...ImageAsset
+  }
+}

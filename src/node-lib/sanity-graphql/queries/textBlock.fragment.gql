@@ -1,0 +1,7 @@
+fragment TextBlock on TextBlock {
+  title
+  bodyPortableText: bodyRaw
+  cta {
+    ...CTA
+  }
+}

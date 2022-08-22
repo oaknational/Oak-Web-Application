@@ -1,0 +1,7 @@
+fragment Card on Card {
+  title
+  image {
+    ...Image
+  }
+  bodyPortableText: bodyRaw
+}

@@ -17,7 +17,7 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <Grid>
-    <GridArea colSpan={[12, 6]}>
+    <GridArea $colSpan={[12, 6]}>
       <Component {...args} />
     </GridArea>
   </Grid>

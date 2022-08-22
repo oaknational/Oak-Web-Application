@@ -11,7 +11,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" ba={12} />
+      <StyledComponent data-testid="test" $ba={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-left: 12px solid");
@@ -24,7 +24,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" bv={12} />
+      <StyledComponent data-testid="test" $bv={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-top: 12px solid");
@@ -35,7 +35,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" bh={12} />
+      <StyledComponent data-testid="test" $bh={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-left: 12px solid");
@@ -43,10 +43,10 @@ describe("border", () => {
   });
 
   test.each([
-    ["bl", "1px", "border-left: 1px solid"],
-    ["br", "1px", "border-right: 1px solid"],
-    ["bt", "1em", "border-top: 1em solid"],
-    ["bb", "1px", "border-bottom: 1px solid"],
+    ["$bl", "1px", "border-left: 1px solid"],
+    ["$br", "1px", "border-right: 1px solid"],
+    ["$bt", "1em", "border-top: 1em solid"],
+    ["$bb", "1px", "border-bottom: 1px solid"],
   ])("should correctly handle prop '%s'", (prop, value, expected) => {
     const props = {
       [prop]: value,
@@ -66,7 +66,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" borderColor={"grey3"} />
+      <StyledComponent data-testid="test" $borderColor={"grey3"} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-color: #ccc");
@@ -76,19 +76,9 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = renderWithProviders(
-      <StyledComponent data-testid="test" borderRadius={32} />
+      <StyledComponent data-testid="test" $borderRadius={32} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-radius: 32px");
   });
-  // test("should correctly handle prop 'borderStyle'", async () => {
-  //   const StyledComponent = styled.div`
-  //     ${border}
-  //   `;
-  //   const { getByTestId } = renderWithProviders(
-  //     <StyledComponent data-testid="test" borderStyle={"dashed"} />
-  //   );
-
-  //   expect(getByTestId("test")).toHaveStyle("border-style: dashed");
-  // });
 });

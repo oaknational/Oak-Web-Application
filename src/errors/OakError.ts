@@ -15,6 +15,11 @@ const ERROR_CODES = [
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
+  "video/unknown",
+  "hubspot/not-loaded",
+  "hubspot/lost-information",
+  "hubspot/identify-no-email",
+  "preview/invalid-token",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -75,9 +80,33 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Sorry, we couldn't sign you up just now, try again later.",
     shouldNotify: true,
   },
-  "misc/import-count": {
-    message: "File imported more times than allwoed",
+  "hubspot/not-loaded": {
+    message: "Hubspot not properly instantiated",
     shouldNotify: true,
+  },
+  "hubspot/lost-information": {
+    message: "Information is being lost when sending to hubspot",
+    shouldNotify: true,
+  },
+  "hubspot/identify-no-email": {
+    /**
+     * @see https://developers.hubspot.com/docs/api/events/tracking-code#identify-a-visitor
+     */
+    message: "Identify is being called without an email address",
+    shouldNotify: true,
+  },
+  "misc/import-count": {
+    message: "File imported more times than allowed",
+    shouldNotify: true,
+  },
+  "video/unknown": {
+    message: "Sorry this video couldn't play, please try again",
+    shouldNotify: true,
+  },
+  "preview/invalid-token": {
+    message: "Invalid CMS preview token provided",
+    responseStatusCode: 401,
+    shouldNotify: false,
   },
 };
 

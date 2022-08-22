@@ -9,7 +9,7 @@ describe("spacing", () => {
       ${margin}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" ma={12} />
+      <StyledComponent data-testid="test" $ma={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("margin-left: 12px");
@@ -22,7 +22,7 @@ describe("spacing", () => {
       ${margin}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" mv={12} />
+      <StyledComponent data-testid="test" $mv={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("margin-top: 12px");
@@ -33,7 +33,7 @@ describe("spacing", () => {
       ${margin}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" mh={12} />
+      <StyledComponent data-testid="test" $mh={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("margin-left: 12px");
@@ -44,7 +44,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" pv={12} />
+      <StyledComponent data-testid="test" $pv={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-top: 12px");
@@ -55,7 +55,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" ph={12} />
+      <StyledComponent data-testid="test" $ph={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
@@ -66,7 +66,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" pa={12} />
+      <StyledComponent data-testid="test" $pa={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
@@ -75,14 +75,14 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("padding-right: 12px");
   });
   test.each([
-    ["pl", "1em", "padding-left: 1em;"],
-    ["pr", "1em", "padding-right: 1em;"],
-    ["pt", "1em", "padding-top: 1em;"],
-    ["pb", "1em", "padding-bottom: 1em;"],
-    ["ml", "1em", "margin-left: 1em;"],
-    ["mr", "1em", "margin-right: 1em;"],
-    ["mt", "1em", "margin-top: 1em;"],
-    ["mb", "1em", "margin-bottom: 1em;"],
+    ["$pl", "1em", "padding-left: 1em;"],
+    ["$pr", "1em", "padding-right: 1em;"],
+    ["$pt", "1em", "padding-top: 1em;"],
+    ["$pb", "1em", "padding-bottom: 1em;"],
+    ["$ml", "1em", "margin-left: 1em;"],
+    ["$mr", "1em", "margin-right: 1em;"],
+    ["$mt", "1em", "margin-top: 1em;"],
+    ["$mb", "1em", "margin-bottom: 1em;"],
   ])("should correctly handle prop '%s'", (prop, value, expected) => {
     const props = {
       [prop]: value,

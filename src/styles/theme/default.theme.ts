@@ -17,17 +17,34 @@ const theme: OakTheme = {
     grey8: "#4d4d4d",
     grey9: "#333",
     grey10: "#1a1a1a",
-    inYourFace: "#ef476f",
-    calmAndWarm: "#ffd166",
-    niceAndSharp: "#06d6a0",
-    deeperWins: "#073b4c",
-    limeade: "#32be00",
-    madangGreen: "#bef2bd",
-    mustard: "#ffe555",
-    peranoBlue: "#a0b6f2",
-    powderBlue: "#b0e2de",
-    melaniePink: "#deb7d5",
-    error: "red",
+    // used throughout
+    oakGrey1: "#f5f5f5",
+    oakGrey2: "#dadada",
+    oakGrey3: "#878787",
+    oakGrey4: "#575756",
+    pastelTurqoise: "#b0e2de", // TODO: add tints
+    // feedback colors
+    warning: "#ff7234",
+    failure: "#ff2f20",
+    success: "#a3e420",
+    // pupil colours
+    pupilsHighlight: "#25AB38",
+    pupilsAccentPink: "#d02aa7",
+    pupilsGreen: "#85cb6d", // TODO: add tints
+    pupilsLightGreen: "#D5EFD4",
+    pupilsLimeGreen: "#BEF2BD",
+    pupilsPink: "#deb7d5", // TODO: add tints
+    // teacher colours
+    teachersHighlight: "#374CF1",
+    teachersGreen: "#037b7d",
+    teachersYellow: "#ffe555",
+    teachersPastelYellow: "#f6e8a0",
+    teachersPastelBlue: "#a0b6f2",
+    teachersRed: "#e51d4d",
+    teachersPurple: "#845ad9",
+    teachersLilac: "#c6d1ef",
+    twilight: "#E5D1E0",
+    videoBlue: "#CEE7E5",
   },
   contrastColors: {
     white: "black",
@@ -44,25 +61,57 @@ const theme: OakTheme = {
     grey8: "white",
     grey9: "white",
     grey10: "white",
-    inYourFace: "white",
-    calmAndWarm: "grey9",
-    niceAndSharp: "grey8",
-    deeperWins: "white",
-    limeade: "black",
-    madangGreen: "black",
-    mustard: "black",
-    peranoBlue: "black",
-    powderBlue: "black",
-    melaniePink: "black",
-    error: "white",
+    // used throughout
+    oakGrey1: "black",
+    oakGrey2: "black",
+    oakGrey3: "white",
+    oakGrey4: "white",
+    pastelTurqoise: "black", // TODO: add tints
+    // feedback colors
+    warning: "black",
+    failure: "white",
+    success: "black",
+    // pupil colours
+    pupilsHighlight: "white",
+    pupilsAccentPink: "white",
+    pupilsGreen: "black", // TODO: add tints
+    pupilsLightGreen: "black",
+    pupilsLimeGreen: "black",
+    pupilsPink: "black", // TODO: add tints
+    // teacher colours
+    teachersHighlight: "white",
+    teachersGreen: "white",
+    teachersYellow: "black",
+    teachersPastelYellow: "black",
+    teachersPastelBlue: "black",
+    teachersRed: "black",
+    teachersPurple: "white",
+    teachersLilac: "black",
+    twilight: "black",
+    videoBlue: "black",
+  },
+  buttonIconBackgroundColors: {
+    teachersHighlight: "teachersYellow",
+    pupilsHighlight: "white",
+    black: "white",
+  },
+  buttonDropShadows: {
+    teachersHighlight: "5px 3px 16px 0px #2332a3",
+    pupilsHighlight: "8px 5px 13px 1px #0b4413",
+  },
+  buttonFocusUnderlineColors: {
+    teachersHighlight: "teachersYellow",
+    pupilsHighlight: "pupilsAccentPink",
+    black: "teachersYellow",
   },
   fonts: {
     // Paragraphs etc.
-    body: "ABeeZee, sans-serif",
+    body: "Lexend, sans-serif",
     // Buttons etc.
     ui: "Lexend, sans-serif",
     // Headings etc.
     heading: "Lexend, sans-serif",
+    headingLight: "Lexend, sans-serif",
   },
   input: {
     height: "40px",
@@ -172,6 +221,11 @@ const theme: OakTheme = {
       text: "black",
     },
   },
+  menu: {
+    background: "pupilsPink",
+    color: "black",
+    width: "40vw",
+  },
   badge: {
     size: "54px",
     circleSize: "48px",
@@ -183,6 +237,8 @@ const theme: OakTheme = {
   },
   header: {
     height: 72,
+    background: "pupilsLightGreen",
+    color: "black",
   },
   lessonControl: {
     default: {
@@ -193,7 +249,7 @@ const theme: OakTheme = {
     current: {
       background: "grey3",
       border: "2px dashed",
-      borderColor: "niceAndSharp",
+      borderColor: "black",
     },
     complete: {
       background: "grey7",
@@ -241,6 +297,13 @@ const theme: OakTheme = {
       labelColor: "grey3",
       background: "white",
       switchColor: "grey6",
+    },
+  },
+  video: {
+    controls: {
+      primary: "teachersHighlight",
+      secondary: "pupilsHighlight",
+      tertiary: "white",
     },
   },
 };

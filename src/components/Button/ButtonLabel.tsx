@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 import ellipsis from "../../styles/ellipsis";
+import { Span } from "../Typography";
 
-const ButtonLabel = styled.span`
+const ButtonLabel = styled(Span)`
   ${ellipsis}
-  font-family: Lexend, sans-serif;
-  font-weight: 600;
 `;
+
+ButtonLabel.defaultProps = {
+  $fontFamily: "ui",
+};
 
 export default ButtonLabel;

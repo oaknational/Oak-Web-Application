@@ -4,24 +4,55 @@ import styled from "styled-components";
 
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
-import Grid, { GridArea } from "../Grid";
 import Typography, { Heading, P } from "../Typography";
 import {
   FooterSection,
   FooterLink,
 } from "../../browser-lib/fixtures/footerSectionLinks";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
+import MaxWidth from "../MaxWidth/MaxWidth";
+import Logo from "../Logo";
+import SocialButtons from "../SocialButtons";
 
 const StyledSiteFooter = styled.footer`
+  background: ${getColorByName("white")};
   width: 100%;
-  background: ${getColorByName("grey3")};
-  margin: auto;
   margin-top: 80px;
+  z-index: 0;
 `;
 
 type SiteFooterProps = {
   footerSections: FooterSection[];
   footerNotification?: React.ReactNode;
+};
+
+const FooterSectionLinks: FC<FooterSection> = ({ title, links, ...props }) => {
+  return (
+    <Flex $flexDirection="column" {...props}>
+      <Heading
+        $mb={8}
+        $fontSize={16}
+        $lineHeight="20px"
+        $color="grey9"
+        tag="h4"
+        $fontFamily={"headingLight"}
+      >
+        {title}
+      </Heading>
+      <Typography
+        $fontSize={[12, 18]}
+        $lineHeight={["24px", "32px"]}
+        color="grey9"
+      >
+        <ul role={"list"}>
+          {links?.map((footerLink: FooterLink) => (
+            <li key={footerLink.text}>
+              <Link href={footerLink.href}>{footerLink.text}</Link>
+            </li>
+          ))}
+        </ul>
+      </Typography>
+    </Flex>
+  );
 };
 
 const SiteFooter: FC<SiteFooterProps> = ({
@@ -30,73 +61,71 @@ const SiteFooter: FC<SiteFooterProps> = ({
 }) => {
   return (
     <StyledSiteFooter>
-      <Flex
-        justifyContent={"center"}
-        flexDirection={"column"}
-        pa={12}
-        pt={40}
-        maxWidth={1200}
-        ma={"auto"}
-      >
-        <Typography fontSize={12} lineHeight={20} color="grey8">
-          <nav>
-            <Grid>
-              {footerSections.map((footerSection) => (
-                <GridArea
-                  mb={[24, 0, 0]}
-                  key={footerSection.title}
-                  colSpan={[6, 3, 3]}
-                >
-                  <Heading mb={12} fontSize={16} color="black" tag="h4">
-                    {footerSection.title}
-                  </Heading>
-                  <ul role={"list"}>
-                    {footerSection.links.map((footerLink: FooterLink) => (
-                      <li key={footerLink.text}>
-                        <Link href={footerLink.href}>{footerLink.text}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </GridArea>
-              ))}
-            </Grid>
-          </nav>
-        </Typography>
-        <Flex ma={48} alignItems={"center"} justifyContent={"center"}>
-          {footerNotification}
-        </Flex>
-        <Flex mb={40} justifyContent={"space-between"}>
-          <Flex>
-            <IconButtonAsLink
-              aria-label={"instagram"}
-              icon={"Instagram"}
-              href={"/instagram"}
-              variant={"minimal"}
-              size={"tiny"}
-              mr={24}
-            />
-            <IconButtonAsLink
-              aria-label={"facebook"}
-              icon={"Facebook"}
-              href={"/facebook"}
-              variant={"minimal"}
-              size={"tiny"}
-              mr={24}
-            />
-            <IconButtonAsLink
-              aria-label={"twitter"}
-              icon={"Twitter"}
-              href={"/twitter"}
-              variant={"minimal"}
-              size={"tiny"}
-              mr={24}
-            />
+      <nav>
+        <MaxWidth
+          $position={"relative"}
+          $justifyContent={"center"}
+          $flexDirection={"column"}
+          $ph={12}
+          $ma={"auto"}
+          $width={"100%"}
+        >
+          <Flex $width={"100%"} $flexWrap={["wrap"]}>
+            <Flex $mb={32} $flexGrow={[1, 0]} $mr={48} $flexDirection="column">
+              <Flex $mb={16} $flexDirection={"column"}>
+                <FooterSectionLinks
+                  title={footerSections[0]?.title}
+                  links={footerSections[0]?.links}
+                />
+              </Flex>
+              <Flex $mb={16} $flexDirection={"column"}>
+                <FooterSectionLinks
+                  title={footerSections[1]?.title}
+                  links={footerSections[1]?.links}
+                />
+              </Flex>
+            </Flex>
+
+            <Flex
+              $flexGrow={[1, 0]}
+              $flexDirection="column"
+              $mb={[24, 0]}
+              $mr={48}
+            >
+              <FooterSectionLinks
+                title={footerSections[2]?.title}
+                links={footerSections[2]?.links}
+              />
+            </Flex>
+
+            <Flex $flexDirection="column">
+              <FooterSectionLinks
+                title={footerSections[3]?.title}
+                links={footerSections[3]?.links}
+              />
+            </Flex>
+
+            <Flex
+              $flexDirection={"column"}
+              $justifyContent={"space-between"}
+              $alignItems={"flex-end"}
+              $flexGrow={[0, 1]}
+              $ml={"auto"}
+            >
+              <Logo title={"Oak National Academy"} height={66} width={150} />
+              {footerNotification}
+            </Flex>
           </Flex>
-          <P mt={8} fontSize={12}>
-            © Oak National Academy
-          </P>
-        </Flex>
-      </Flex>
+          <Flex $mb={80} $width={"100%"}>
+            <SocialButtons />
+            <Flex $alignItems={"center"}>
+              <P $lineHeight={16} $textAlign="center" $fontSize={[12, 16]}>
+                © Oak National Academy
+              </P>
+            </Flex>
+          </Flex>
+        </MaxWidth>
+      </nav>
     </StyledSiteFooter>
   );
 };

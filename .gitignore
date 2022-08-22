@@ -57,3 +57,10 @@ oak.config.old.json
 # firebase
 firebase-debug.log
 .firebase
+
+# asdf version manager
+.tool-versions
+
+# built files to igore
+public/robots.txt
+public/sitemap*.xml

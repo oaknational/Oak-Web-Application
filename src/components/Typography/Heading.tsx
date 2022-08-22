@@ -1,6 +1,7 @@
 import { CSSProperties, FC } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
+import { OakFontName } from "../../styles/theme";
 import color from "../../styles/utils/color";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
@@ -30,23 +31,24 @@ const headingSizes = {
   16: "16px",
 };
 export type HeadingFontSize = keyof typeof headingSizes;
-export const headingDefaults = css`
-  font-weight: 600;
-  font-family: Lexend, sans-serif;
-  line-height: 1.2;
-`;
+const DEFAULT_HEADING_FONT: OakFontName = "heading";
+export const headingDefaults = {
+  $fontFamily: DEFAULT_HEADING_FONT,
+  $lineHeight: 1.2,
+};
 
 type HeadingProps = Omit<TypographyProps, "fontSize"> &
   HeadingTagProps & {
-    fontSize: ResponsiveValues<HeadingFontSize>;
+    $fontSize: ResponsiveValues<HeadingFontSize>;
   } & MarginProps;
 
 const Heading = styled(HeadingTagComponent)<HeadingProps>`
-  text-align: ${(props) => props.textAlign};
   ${headingDefaults}
   ${margin}
   ${typography}
   ${color}
 `;
+
+Heading.defaultProps = headingDefaults;
 
 export default Heading;

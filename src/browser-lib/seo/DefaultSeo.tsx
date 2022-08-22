@@ -6,6 +6,9 @@ import config from "../../config";
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
+      /* Remove before launch https://github.com/oaknational/Oak-Web-Application/issues/118 */
+      dangerouslySetAllPagesToNoFollow={true}
+      dangerouslySetAllPagesToNoIndex={true}
       title={config.get("appName")}
       description={config.get("appDescription")}
       openGraph={{
@@ -16,7 +19,7 @@ const DefaultSeo = () => {
         images: [
           {
             url: `${config.get("appUrl")}${config.get("appSocialSharingImg")}`,
-            width: 1200,
+            width: 1280,
             height: 630,
             alt: config.get("appName"),
           },
