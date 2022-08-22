@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { FC, Fragment } from "react";
 
+import Box from "../Box";
 import CardTitle from "../Card/CardComponents/CardTitle";
 import Flex from "../Flex";
-import { P } from "../Typography";
 import { HeadingTag } from "../Typography/Heading";
 import Hr from "../Typography/Hr";
 
@@ -37,12 +37,10 @@ const BlogList: FC<BlogListProps> = (props) => {
         <Flex $justifyContent={"space-between"}>
           <nav>
             <Flex $justifyContent={"center"} $alignItems="center">
-              <P $mr={16}>
+              <Box $mr={16}>
                 <Link href="/">All Webinars</Link>
-              </P>
-              <P>
-                <Link href="/">All Blogs</Link>
-              </P>
+              </Box>
+              <Link href="/">All Blogs</Link>
             </Flex>
           </nav>
         </Flex>
