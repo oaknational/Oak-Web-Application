@@ -1,3 +1,11 @@
+## [0.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.72.0...v0.72.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* close menu on page navigation ([31cad11](https://github.com/oaknational/Oak-Web-Application/commit/31cad11750256243b51ef0a71dc58903cff76198))
+* put reference to menu context hooks in provider ([4620688](https://github.com/oaknational/Oak-Web-Application/commit/46206883fb8044717f19bc502e3662ed068ab5b7))
+
 # [0.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.71.1...v0.72.0) (2022-08-22)
 
 
