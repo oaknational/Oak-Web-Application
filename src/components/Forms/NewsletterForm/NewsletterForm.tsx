@@ -79,9 +79,9 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
       </CardTitle>
       <P color={"black"} id={descriptionId}>
         {`Join 80,000 teachers and get free lessons, resources and other helpful
-        content by email. Unsubscribe at any time. Read our privacy policy `}
+        content by email. Unsubscribe at any time. Read our `}
         <Link href="/">
-          <a>here</a>
+          <a>privacy policy</a>
         </Link>
         .
       </P>
