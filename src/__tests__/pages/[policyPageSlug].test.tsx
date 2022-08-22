@@ -22,7 +22,7 @@ const testPolicyPage2: PolicyPage = {
 
 const testSerializedPolicyPage = {
   ...testPolicyPage,
-  lastUpdatedAt: new Date().toISOString(),
+  lastUpdatedAt: testPolicyPage.lastUpdatedAt.toISOString(),
 };
 
 const policyPages = jest.fn(() => [testPolicyPage, testPolicyPage2]);
@@ -51,6 +51,17 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "Privacy Policy"
         );
+      });
+    });
+
+    it("Formats the last updated at date", async () => {
+      renderWithProviders(
+        <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />
+      );
+
+      await waitFor(() => {
+        const dateElem = screen.getByText(/1 December 2022/);
+        expect(dateElem).toBeInTheDocument();
       });
     });
   });
@@ -83,7 +94,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       );
     });
 
-    it("Should format the policy updated at date", async () => {
+    it("Should serialize the policy updated at date to an ISO date", async () => {
       const { getStaticProps } = await import(
         "../../pages/legal/[policyPageSlug]"
       );
@@ -92,7 +103,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       })) as { props: PolicyPageProps };
 
       expect(propsResult?.props?.policy).toMatchObject({
-        lastUpdatedAt: "01/12/2022",
+        lastUpdatedAt: "2022-12-01T00:00:00.000Z",
       });
     });
   });

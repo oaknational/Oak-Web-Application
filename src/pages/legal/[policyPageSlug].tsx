@@ -35,7 +35,14 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
               </Heading>
             </Flex>
             <P $mb={16} $fontSize={14}>
-              {`Updated ${policy.lastUpdatedAt}`}
+              Updated{" "}
+              <time dateTime={policy.lastUpdatedAt}>
+                {new Date(policy.lastUpdatedAt).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
             </P>
             <Typography>
               <PortableText value={policy.bodyPortableText} />
@@ -77,7 +84,7 @@ export const getStaticProps: GetStaticProps<
 
   const policy = {
     ...policyResult,
-    lastUpdatedAt: policyResult.lastUpdatedAt.toLocaleDateString(),
+    lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),
   };
 
   return {
