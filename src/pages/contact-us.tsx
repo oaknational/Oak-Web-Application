@@ -107,7 +107,7 @@ const ContactUs: NextPage = () => {
 
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
-      <MaxWidth $pt={[72, 80]} $pb={[92]}>
+      <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
         <SummaryCard
           background="teachersPastelYellow"
           title={title}
@@ -152,7 +152,7 @@ const ContactUs: NextPage = () => {
         </Card>
         <NewsletterForm
           {...newsletterFormProps}
-          containerProps={{ $display: ["flex", "none"] }}
+          containerProps={{ $display: ["flex", "none"], $mt: 32 }}
         />
       </MaxWidth>
     </Layout>
