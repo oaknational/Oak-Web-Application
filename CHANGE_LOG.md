@@ -1,3 +1,10 @@
+# [0.71.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.1...v0.71.0) (2022-08-22)
+
+
+### Features
+
+* **hosting:** add production Firebase site ([ed0c7f3](https://github.com/oaknational/Oak-Web-Application/commit/ed0c7f3d154cff1402c41cb30045ca39a2a5b4f8))
+
 ## [0.70.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.0...v0.70.1) (2022-08-22)
 
 
