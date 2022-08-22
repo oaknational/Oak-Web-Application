@@ -7,7 +7,7 @@ import { PolicyPage } from "../../node-lib/cms";
 const testPolicyPage: PolicyPage = {
   title: "Privacy Policy",
   id: "5",
-  lastUpdatedAt: new Date("2022-01-01"),
+  lastUpdatedAt: new Date("2022-12-01"),
   slug: "privacy-policy",
   bodyPortableText: [],
 };
@@ -92,7 +92,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       })) as { props: PolicyPageProps };
 
       expect(propsResult?.props?.policy).toMatchObject({
-        lastUpdatedAt: "01/01/2022",
+        lastUpdatedAt: "01/12/2022",
       });
     });
   });
