@@ -40,7 +40,12 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const blogDate = new Date(date);
 
   return (
-    <Flex $flexDirection="column" $alignItems="flex-start">
+    <Flex
+      $flexDirection="column"
+      $alignItems="flex-start"
+      $position={"relative"}
+      $mt={24}
+    >
       <P $fontSize={16} $lineHeight={"20px"}>
         {category}
       </P>

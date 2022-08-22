@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { FC, Fragment } from "react";
+import { FC, Fragment, useMemo, useState } from "react";
 
 import Flex from "../Flex";
-import { P } from "../Typography";
+import { Pagination } from "../Pagination";
 import { HeadingTag } from "../Typography/Heading";
-import Hr from "../Typography/Hr";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
+
+const PageSize = 4;
 
 export type BlogListProps = {
   title: string;
@@ -20,34 +20,27 @@ export type BlogListProps = {
  */
 const BlogList: FC<BlogListProps> = (props) => {
   const { items } = props;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData: Array<BlogListItemProps> = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return items.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, items]);
 
   return (
     <Flex $flexDirection="column">
-      <Flex
-        $mb={24}
-        $flexDirection={["column", "row", "row"]}
-        $alignItems={["flex-start", "flex-start", "center"]}
-        $justifyContent={"space-between"}
-      >
-        <Flex $justifyContent={"space-between"}>
-          <nav>
-            <Flex $justifyContent={"center"} $alignItems="center">
-              <P $mr={16}>
-                <Link href="/">All Webinars</Link>
-              </P>
-              <P>
-                <Link href="/">All Blogs</Link>
-              </P>
-            </Flex>
-          </nav>
-        </Flex>
-      </Flex>
-      {items.map((item, i) => (
+      {currentTableData.map((item, i) => (
         <Fragment key={`BlogList-BlogListItem-${i}`}>
           <BlogListItem {...item} />
-          {i < items.length - 1 && <Hr />}
         </Fragment>
       ))}
+      <Pagination
+        currentPage={currentPage}
+        totalCount={items.length}
+        pageSize={PageSize}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </Flex>
   );
 };
