@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styled, { useTheme } from "styled-components";
 import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
+import { useRouter } from "next/router";
 
 import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme/types";
@@ -60,10 +61,15 @@ const MenuHeader = styled(Flex)`
 `;
 
 const Menu: FC = ({ children }) => {
-  const { open, toggleMenu } = useMenuContext();
+  const { open, toggleMenu, closeMenu } = useMenuContext();
   const theme = useTheme();
   const { menu } = theme;
   const { background, color, width } = menu;
+  const { pathname } = useRouter();
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname, closeMenu]);
 
   return (
     <Transition timeout={transitionDuration} in={open} unmountOnExit>
