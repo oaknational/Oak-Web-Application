@@ -1,3 +1,23 @@
+# [0.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.71.1...v0.72.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* serialize policy date to ISO string, render w/ locale ([23fc363](https://github.com/oaknational/Oak-Web-Application/commit/23fc363483bd1169159d665bce9232484a4e9901))
+
+
+### Features
+
+* **cms:** add policyPageBySlug and policyPage methods to CMSClient ([6207cc6](https://github.com/oaknational/Oak-Web-Application/commit/6207cc6e1f071ddc95e8229e0ebe2b3f83ed3805))
+* **cms:** integrate policy pages with CMS ([8e63ea8](https://github.com/oaknational/Oak-Web-Application/commit/8e63ea83334e6a5b66d032828895b398a535e9c7))
+
+# [0.71.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.1...v0.71.0) (2022-08-22)
+
+
+### Features
+
+* **hosting:** add production Firebase site ([ed0c7f3](https://github.com/oaknational/Oak-Web-Application/commit/ed0c7f3d154cff1402c41cb30045ca39a2a5b4f8))
+
 ## [0.70.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.0...v0.70.1) (2022-08-22)
 
 
