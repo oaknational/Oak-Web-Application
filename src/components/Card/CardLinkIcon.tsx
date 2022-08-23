@@ -37,7 +37,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
         <CardLink href={href}>{title}</CardLink>
       </Heading>
 
-      <Icon name={icon} size={[32, 48]} $pa={[4, 8]} $ml="auto" />
+      <Icon name={icon} size={[32, 48]} $ml="auto" />
     </Card>
   );
 };

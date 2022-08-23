@@ -44,7 +44,7 @@ export type PixelSpacing =
   | 960
   | 1280;
 export type NullablePixelSpacing = PixelSpacing | null;
-export type NegativePixelSpacing = -16 | -12 | -8 | -4;
+export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
 export type PercentSpacing =
   | "100%"
   | "90%"

@@ -2,7 +2,6 @@ import { FC, useState } from "react";
 
 import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import AboutContactBlogList from "../../components/AboutContactBlogList";
 import Card from "../../components/Card";
 import Flex from "../../components/Flex";
 import Grid from "../../components/Grid";
@@ -53,13 +52,12 @@ const TeacherHome: FC = () => {
               placeholder="Search for subjects, lessons, quizes, lessons plans and much much more..."
               value={value}
               id={""}
-             />
+            />
             <Flex $mt={32} $justifyContent={"center"}>
               <KeyStagesNav keyStages={keyStagesNavData} />
             </Flex>
           </GridArea>
         </Grid>
-        <AboutContactBlogList />
       </MaxWidth>
     </Layout>
   );

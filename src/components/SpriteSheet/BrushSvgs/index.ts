@@ -1,7 +1,8 @@
-import Underline from "./UnderlineSvgs";
+import { Underline1, Underline2 } from "./UnderlineSvgs";
 
 const brushSvgSymbols = {
-  Underline,
+  Underline1,
+  Underline2,
 };
 
 export const BRUSH_NAMES = Object.keys(brushSvgSymbols) as Array<

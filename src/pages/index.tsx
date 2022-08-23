@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styled from "styled-components";
+import Image from "next/image";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
@@ -7,19 +7,21 @@ import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
 import { Heading, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
-import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
-import CardImage from "../components/Card/CardComponents/CardImage";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
 import Box from "../components/Box";
 import Layout from "../components/Layout";
 import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
 import Flex from "../components/Flex";
 import Icon from "../components/Icon";
-
-const TransformYGridArea = styled(GridArea)`
-  transform: translateY(50%);
-`;
+import HomeAboutCard from "../components/pages/Home/HomeAboutCard";
+import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
+import blogListItems from "../browser-lib/fixtures/blogListItems";
+import BlogList from "../components/BlogList";
+import NewsletterForm, {
+  useNewsletterForm,
+} from "../components/Forms/NewsletterForm";
+import Svg from "../components/Svg";
 
 const Notification: FC = () => {
   return (
@@ -28,7 +30,7 @@ const Notification: FC = () => {
       $flexGrow={0}
       $transform={[undefined, "rotate(2deg)"]}
       $pa={16}
-      $pr={48}
+      $pr={[0, 48]}
       $dropShadow="notificationCard"
     >
       <BoxBorders />
@@ -57,19 +59,22 @@ const Notification: FC = () => {
 };
 
 const Home: FC = () => {
+  const newsletterFormProps = useNewsletterForm();
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-          <MaxWidth $ph={12}>
+          <MaxWidth $ph={[0, 12]}>
             <Flex
               $width={"100%"}
               $pt={[40, 32]}
               $pb={[32, 40]}
               $flexDirection={["column", "row"]}
+              $ph={[12, 0]}
             >
               <Flex
                 $mr="auto"
+                $pr={[0, 16]}
                 $pb={[32, 0]}
                 $flexDirection={"column"}
                 $justifyContent="flex-end"
@@ -92,103 +97,167 @@ const Home: FC = () => {
               </Box>
             </Flex>
             <Grid $cg={[8, 16]}>
-              <GridArea $colSpan={[6, 6, 6]}>
+              <GridArea $colSpan={[6, 6]}>
                 <Card
-                  $background={"white"}
-                  $flexDirection={["column-reverse", "row"]}
-                  $justifyContent={"space-between"}
+                  $background="white"
+                  $justifyContent="center"
                   $alignItems="center"
-                  $pa={0}
                   $borderRadius={4}
+                  $pa={0}
+                  $pt={[16, 92]}
+                  $pb={[120, 92]}
+                  $pr={[null, 56]}
                 >
                   <Box
+                    $position="absolute"
+                    $top={0}
+                    $bottom={0}
+                    $left={0}
+                    $right={[56, "60%", "50%"]}
                     $overflow="hidden"
-                    $pv={[0, 16]}
-                    $width={"100%"}
-                    $height={"100%"}
                   >
-                    <Flex
-                      $width={"100%"}
-                      $flexGrow={1}
-                      $justifyContent={"center"}
-                      $alignItems={"center"}
-                      $transform={["translateY(10%)", undefined]}
+                    <Box
+                      $position="relative"
+                      $height="100%"
+                      $top={[32, 0]}
+                      $bottom={[-32, 0]}
                     >
-                      <CardImage
-                        alt={"classroom illustration"}
-                        imageSrc={"/images/illustrations/classroom.svg"}
-                        position={"left center"}
+                      <Image
+                        alt={""}
+                        src={"/images/illustrations/magic-carpet.png"}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition={"right center"}
                       />
-                    </Flex>
+                    </Box>
                   </Box>
                   <Heading
-                    $mr={[0, 72]}
+                    $ml={[0, "auto"]}
                     $fontSize={[20, 32]}
                     tag={"h3"}
                     $color={"black"}
-                    $mt={[12, 0]}
                   >
                     <CardLink href="https://classroom.thenational.academy/">
                       Classroom
                     </CardLink>
                   </Heading>
+                  <Box
+                    $position="absolute"
+                    $height={[8, 12]}
+                    $bottom={[4, 0]}
+                    $right={0}
+                    $left={0}
+                  >
+                    <Svg name="Underline2" $color="pupilsHighlight" />
+                  </Box>
                 </Card>
               </GridArea>
-              <GridArea $colSpan={[6, 6, 6]}>
+              <GridArea $colSpan={[6, 6]}>
                 <Card
-                  $background={"white"}
-                  $flexDirection={["column-reverse", "row"]}
-                  $justifyContent={["center", "space-between"]}
+                  $background="white"
+                  $justifyContent="center"
                   $alignItems="center"
-                  $pa={0}
                   $borderRadius={4}
+                  $pa={0}
+                  $pt={[16, 92]}
+                  $pb={[120, 92]}
+                  $pr={[null, 56]}
                 >
                   <Box
-                    $width={["100%", "100%", "50%"]}
-                    $height="100%"
+                    $position="absolute"
+                    $top={0}
+                    $bottom={0}
+                    $left={0}
+                    $right={[0, "50%"]}
                     $overflow="hidden"
                   >
-                    <CardImage
-                      alt="teacher hub illustration"
-                      imageSrc={"/images/illustrations/teacher.svg"}
-                    />
+                    <Box
+                      $height={["90%"]}
+                      $transform={[
+                        "translate(0,40%)",
+                        "translate(-20%,30%)",
+                        "translate(-10%,30%)",
+                      ]}
+                    >
+                      <Image
+                        alt=""
+                        src={"/images/illustrations/teacher-carrying-stuff.png"}
+                        layout="fill"
+                        objectFit="contain"
+                      />
+                    </Box>
                   </Box>
                   <Heading
-                    $mr={[0, 56]}
+                    $ml={[0, "auto"]}
                     $fontSize={[20, 32]}
                     tag={"h3"}
                     $color={"black"}
-                    $mt={[12, 0]}
                   >
                     <CardLink href="https://teachers.thenational.academy/">
-                      Teachers Hub
+                      Teacher Hub
                     </CardLink>
                   </Heading>
+                  <Box
+                    $position="absolute"
+                    $height={[8, 12]}
+                    $bottom={[4, 0]}
+                    $right={0}
+                    $left={0}
+                  >
+                    <Svg name="Underline2" $color="teachersHighlight" />
+                  </Box>
                 </Card>
               </GridArea>
-              <TransformYGridArea $colSpan={[12, 6]}>
+            </Grid>
+            <Grid $cg={[8, 16]} $ph={[12, 0]}>
+              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
                   title={"Plan a lesson"}
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
                   href={"/lesson-planning"}
                 />
-              </TransformYGridArea>
-              <TransformYGridArea $colSpan={[12, 6]}>
+              </GridArea>
+              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
                   title={"Develop your curriculum"}
                   titleTag={"h4"}
                   background={"teachersYellow"}
                   href={"/develop-your-curriculum"}
                 />
-              </TransformYGridArea>
+              </GridArea>
             </Grid>
           </MaxWidth>
         </Flex>
       </Flex>
       <Flex $background={"teachersPastelYellow"} $justifyContent={"center"}>
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
-          <AboutContactBlogList />
+          <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
+            <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
+              <HomeAboutCard />
+            </GridArea>
+            <GridArea
+              $mb={[64, 0]}
+              $colSpan={[12, 8]}
+              $rowSpan={3}
+              $order={[3, 0]}
+            >
+              <Flex $background={"white"} $pa={24}>
+                <BlogList
+                  title={"Stay up to date!"}
+                  items={blogListItems}
+                  titleTag={"h2"}
+                />
+              </Flex>
+            </GridArea>
+
+            <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
+              <HomeHelpCard />
+            </GridArea>
+            <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
+              <NewsletterForm {...newsletterFormProps} />
+            </GridArea>
+          </Grid>
         </MaxWidth>
       </Flex>
     </Layout>
