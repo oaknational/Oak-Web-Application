@@ -24,6 +24,10 @@ const P = styled.p<PProps>`
   ${margin}
   font-family: ${getFontFamily("body")};
   text-align: ${(props) => props.textAlign};
+
+  a {
+    color: ${(props) => props.theme.colors.hyperlink};
+  }
 `;
 
 export default P;

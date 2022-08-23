@@ -53,12 +53,14 @@ steps:
     entrypoint: /bin/bash
     args:
       - "-c"
-      # real deploy
+      # # Preview deploy
       - >-
         /usr/bin/firebase.bash
-        deploy
-        --project=$PROJECT_ID
-        --only=hosting:${_FIREBASE_TARGET}
+        --project oak-national-academy-2022
+        hosting:channel:deploy
+        "${SHORT_SHA}"
+        --expires 30d
+        --only ${_FIREBASE_TARGET}
         | tee /workspace/deploy.log
 
   # Possible Slack notification.

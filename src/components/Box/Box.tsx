@@ -7,6 +7,7 @@ import dropShadow, { DropShadowProps } from "../../styles/utils/dropShadow";
 import position, { PositionProps } from "../../styles/utils/position";
 import size, { SizeProps } from "../../styles/utils/size";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import transform, { TransformProps } from "../../styles/utils/transform";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 
 export type BoxProps = PositionProps &
@@ -16,7 +17,8 @@ export type BoxProps = PositionProps &
   BorderProps &
   DropShadowProps &
   DisplayProps &
-  ZIndexProps;
+  ZIndexProps &
+  TransformProps;
 
 /**
  * Box exposes position, size, spacing, and background props on a div.
@@ -30,6 +32,7 @@ const Box = styled.div<BoxProps>`
   ${dropShadow}
   ${display}
   ${zIndex}
+  ${transform}
 `;
 
 export default Box;

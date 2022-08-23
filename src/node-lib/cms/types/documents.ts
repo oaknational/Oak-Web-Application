@@ -53,3 +53,12 @@ export type Attachment = {
     };
   };
 };
+
+export type PolicyPage = Document & {
+  title: string;
+  slug: string;
+  lastUpdatedAt: Date;
+  bodyPortableText: PortableTextJSON;
+};
+
+export type PolicyPagePreview = Pick<PolicyPage, "title" | "slug">;

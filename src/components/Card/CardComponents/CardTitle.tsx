@@ -28,7 +28,7 @@ export type CardTitleProps = {
   iconPosition?: IconPosition;
   iconSize?: PixelSpacing;
   textCenter?: boolean;
-  fontSize?: HeadingFontSize;
+  fontSize?: HeadingFontSize | HeadingFontSize[];
 };
 
 const CardTitle: FC<CardTitleProps> = ({
@@ -52,7 +52,7 @@ const CardTitle: FC<CardTitleProps> = ({
           name={icon}
           size={iconPosition === "aboveTitle" ? 64 : iconSize}
           $mb={iconPosition === "aboveTitle" ? 12 : 0}
-          $mr={iconPosition === (icon && "leading") ? 8 : 0}
+          $mr={iconPosition === (icon && "leading") ? 12 : 0}
           $ml={iconPosition === (icon && "trailing") ? 8 : 0}
           $pa={0}
         />

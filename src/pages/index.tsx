@@ -1,54 +1,97 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import LandingPageLayout from "../components/Layout/LandingPageLayout";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import { Heading } from "../components/Typography";
+import { Heading, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import AboutContactBlogList from "../components/AboutContactBlogList/AboutContactBlogList";
-import Flex from "../components/Flex";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardImage from "../components/Card/CardComponents/CardImage";
-import { getBreakpoint } from "../styles/utils/responsive";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
 import Box from "../components/Box";
+import Layout from "../components/Layout";
+import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
+import Flex from "../components/Flex";
+import Icon from "../components/Icon";
 
 const TransformYGridArea = styled(GridArea)`
   transform: translateY(50%);
 `;
 
-const TransformClassroomImageWrap = styled(Flex)`
-  @media (max-width: ${getBreakpoint("small")}px) {
-    transform: translateY(10%);
-  }
-`;
+const Notification: FC = () => {
+  return (
+    <Card
+      $background="white"
+      $flexGrow={0}
+      $transform={[undefined, "rotate(2deg)"]}
+      $pa={16}
+      $pr={48}
+      $dropShadow="notificationCard"
+    >
+      <BoxBorders />
+      <Box
+        $position="absolute"
+        $top={0}
+        $left={0}
+        $transform="translate(-40%,-40%)"
+      >
+        <Icon
+          name="Bell"
+          $background="pupilsHighlight"
+          variant="brush"
+          size={30}
+        />
+      </Box>
+      <Span $fontSize={14} $color="oakGrey4">
+        Blog
+      </Span>
+      <Heading $fontSize={20} tag="h2" $mt={4}>
+        <CardLink href="/">About the future of Oak</CardLink>
+      </Heading>
+      <P $mt={4}>Find out more</P>
+    </Card>
+  );
+};
 
 const Home: FC = () => {
   return (
-    <LandingPageLayout seoProps={DEFAULT_SEO_PROPS}>
+    <Layout seoProps={DEFAULT_SEO_PROPS}>
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={12}>
-            <Grid $cg={[8, 16]}>
-              <GridArea $colSpan={[12, 12, 8]}>
+            <Flex
+              $width={"100%"}
+              $pt={[40, 32]}
+              $pb={[32, 40]}
+              $flexDirection={["column", "row"]}
+            >
+              <Flex
+                $mr="auto"
+                $pb={[32, 0]}
+                $flexDirection={"column"}
+                $justifyContent="flex-end"
+              >
                 <Heading
-                  $fontSize={[32, 48]}
+                  $fontSize={[32]}
                   tag={"h1"}
-                  $mt={[64, 80]}
-                  $mb={[20, 24]}
+                  $mb={[20, 16]}
                   data-testid="home-page-title"
                   $color={"black"}
                 >
-                  Oak Is Changing...
+                  Oak is evolving
                 </Heading>
-                <Heading tag={"h2"} $fontSize={[16, 24]} $mb={[32, 64]}>
-                  Over 40,000 curriculum-aligned resources for everyday use,
-                  completely free.
+                <Heading tag={"h2"} $fontSize={[20]}>
+                  We’re growing our support to help you thrive.
                 </Heading>
-              </GridArea>
+              </Flex>
+              <Box $ph={[16, 0]}>
+                <Notification />
+              </Box>
+            </Flex>
+            <Grid $cg={[8, 16]}>
               <GridArea $colSpan={[6, 6, 6]}>
                 <Card
                   $background={"white"}
@@ -64,18 +107,19 @@ const Home: FC = () => {
                     $width={"100%"}
                     $height={"100%"}
                   >
-                    <TransformClassroomImageWrap
+                    <Flex
                       $width={"100%"}
                       $flexGrow={1}
                       $justifyContent={"center"}
                       $alignItems={"center"}
+                      $transform={["translateY(10%)", undefined]}
                     >
                       <CardImage
                         alt={"classroom illustration"}
                         imageSrc={"/images/illustrations/classroom.svg"}
                         position={"left center"}
                       ></CardImage>
-                    </TransformClassroomImageWrap>
+                    </Flex>
                   </Box>
                   <Heading
                     $mr={[0, 72]}
@@ -122,28 +166,20 @@ const Home: FC = () => {
                   </Heading>
                 </Card>
               </GridArea>
-              <TransformYGridArea $colSpan={[12, 4, 4]}>
+              <TransformYGridArea $colSpan={[12, 6]}>
                 <CardLinkIcon
                   title={"Plan a lesson"}
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
-                  href={"/planning"}
+                  href={"/lesson-planning"}
                 />
               </TransformYGridArea>
-              <TransformYGridArea $colSpan={[12, 4, 4]}>
+              <TransformYGridArea $colSpan={[12, 6]}>
                 <CardLinkIcon
-                  title={"Develop Your Curriculum"}
+                  title={"Develop your curriculum"}
                   titleTag={"h4"}
                   background={"teachersYellow"}
-                  href={"/curriculum"}
-                />
-              </TransformYGridArea>
-              <TransformYGridArea $colSpan={[12, 4, 4]}>
-                <CardLinkIcon
-                  title={"Support Your Team"}
-                  titleTag={"h4"}
-                  background={"pupilsPink"}
-                  href={"/support"}
+                  href={"/develop-your-curriculum"}
                 />
               </TransformYGridArea>
             </Grid>
@@ -155,7 +191,7 @@ const Home: FC = () => {
           <AboutContactBlogList />
         </MaxWidth>
       </Flex>
-    </LandingPageLayout>
+    </Layout>
   );
 };
 

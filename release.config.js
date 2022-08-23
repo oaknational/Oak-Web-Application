@@ -20,19 +20,12 @@ module.exports = {
         changelogFile: "CHANGE_LOG.md",
       },
     ],
-    // Update the package.json version.
-    [
-      "@semantic-release/npm",
-      {
-        npmPublish: false,
-      },
-    ],
-    // Update the package.json version and commit the change log.
+    // Commit the change log.
     // Note the `[skip ci]` part of the message, to avoid running pointless checks.
     [
       "@semantic-release/git",
       {
-        assets: ["CHANGE_LOG.md", "package.json"],
+        assets: ["CHANGE_LOG.md"],
         message:
           "build(release v${nextRelease.version}): set package.json version to ${nextRelease.version} [skip ci]\n\nSee CHANGE_LOG.md",
       },

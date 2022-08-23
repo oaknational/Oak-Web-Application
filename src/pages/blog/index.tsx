@@ -18,6 +18,11 @@ export type BlogListingPageProps = {
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
 
+  const cardImage = {
+    imageSrc: "/images/illustrations/blog-page.svg",
+    alt: "",
+  };
+
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -31,9 +36,8 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           summary={
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
-          imageSrc={"/images/illustrations/blog-page.svg"}
-          alt={""}
           background="teachersPastelYellow"
+          cardImageProps={cardImage}
         />
         <Grid>
           <GridArea $colSpan={[12, 12, 7]} $mt={[48, 72]}>

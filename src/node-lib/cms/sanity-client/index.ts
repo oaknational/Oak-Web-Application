@@ -4,12 +4,18 @@ import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import {
+  aboutPageSchema,
+  planningPageSchema,
+  curriculumPageSchema,
+} from "./schemas/pages";
+import {
   blogPostPreviewSchema,
   blogPostSchema,
+  policyPagePreviewSchema,
+  policyPageSchema,
   webinarPreviewSchema,
   webinarSchema,
 } from "./schemas";
-import { aboutPageSchema, planningPageSchema } from "./schemas/pages";
 
 const getSanityClient: CMSClient = () => ({
   webinars: async ({ previewMode, ...params } = {}) => {
@@ -67,6 +73,34 @@ const getSanityClient: CMSClient = () => ({
     const planningPageData = result.allAboutCorePage[0];
 
     return aboutPageSchema.parse(planningPageData);
+  },
+  curriculumPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.curriculumCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const curriculumPageData = result.allCurriculumCorePage[0];
+
+    return curriculumPageSchema.parse(curriculumPageData);
+  },
+  policyPages: async ({ previewMode, ...params } = {}) => {
+    const policyPageListSchema = z.array(policyPagePreviewSchema);
+    const policyPageResults = await sanityGraphqlApi.allPolicyPages({
+      isDraft: previewMode === true,
+      ...params,
+    });
+
+    return policyPageListSchema.parse(policyPageResults.allPolicyPage);
+  },
+  policyPageBySlug: async (slug, { previewMode, ...params } = {}) => {
+    const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
+      isDraft: previewMode === true,
+      ...params,
+      slug,
+    });
+    const webinar = policyPageResult.allPolicyPage[0];
+
+    return policyPageSchema.parse(webinar);
   },
 });
 

@@ -3,7 +3,16 @@
     {
       "target": "static-marketing-dev",
       "public": "out",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "trailingSlash": false,
+      "cleanUrls": true
+    },
+    {
+      "target": "static-marketing-prod",
+      "public": "out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "trailingSlash": false,
+      "cleanUrls": true
     }
   ]
 }
