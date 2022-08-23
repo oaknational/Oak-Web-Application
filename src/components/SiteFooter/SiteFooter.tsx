@@ -12,6 +12,8 @@ import {
 import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
+import UnstyledButton from "../UnstyledButton";
+import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
 const StyledSiteFooter = styled.footer`
   background: ${getColorByName("white")};
@@ -20,12 +22,12 @@ const StyledSiteFooter = styled.footer`
   z-index: 0;
 `;
 
-type SiteFooterProps = {
-  footerSections: FooterSection[];
-  footerNotification?: React.ReactNode;
-};
-
-const FooterSectionLinks: FC<FooterSection> = ({ title, links, ...props }) => {
+const FooterSectionLinks: FC<FooterSection> = ({
+  title,
+  links,
+  children,
+  ...props
+}) => {
   return (
     <Flex $flexDirection="column" {...props}>
       <Heading
@@ -41,9 +43,10 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links, ...props }) => {
       <Typography
         $fontSize={[12, 18]}
         $lineHeight={["24px", "32px"]}
-        color="grey9"
+        $color="grey9"
       >
-        <ul role={"list"}>
+        <ul role="list">
+          {children}
           {links?.map((footerLink: FooterLink) => (
             <li key={footerLink.text}>
               <Link href={footerLink.href}>{footerLink.text}</Link>
@@ -55,10 +58,15 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links, ...props }) => {
   );
 };
 
+type SiteFooterProps = {
+  footerSections: FooterSection[];
+  footerNotification?: React.ReactNode;
+};
 const SiteFooter: FC<SiteFooterProps> = ({
   footerSections,
   footerNotification,
 }) => {
+  const { showConsentManager } = useCookieConsent();
   return (
     <StyledSiteFooter>
       <nav>
@@ -102,7 +110,13 @@ const SiteFooter: FC<SiteFooterProps> = ({
               <FooterSectionLinks
                 title={footerSections[3]?.title}
                 links={footerSections[3]?.links}
-              />
+              >
+                <li>
+                  <UnstyledButton onClick={showConsentManager}>
+                    Change cookie settings
+                  </UnstyledButton>
+                </li>
+              </FooterSectionLinks>
             </Flex>
 
             <Flex
