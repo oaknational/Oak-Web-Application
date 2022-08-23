@@ -20,15 +20,11 @@ const Pagination: FC<PaginationProps> = ({
   const totalPageCount = Math.ceil(totalCount / pageSize);
 
   const onNext = () => {
-    if (currentPage < totalPageCount) {
-      onPageChange(currentPage + 1);
-    }
+    onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-    }
+    onPageChange(currentPage - 1);
   };
 
   if (currentPage === 0 || totalPageCount < 2) {
@@ -36,25 +32,27 @@ const Pagination: FC<PaginationProps> = ({
   }
 
   return (
-    <Flex $alignItems={"center"} $mt={[48, "auto"]} $justifyContent={"right"}>
-      <IconButton
-        aria-label="previous"
-        onClick={onPrevious}
-        icon={"ChevronLeft"}
-        background={"teachersHighlight"}
-        disabled={currentPage === 1}
-      />
-      <P $mh={24} $fontSize={16} $lineHeight={"24px"}>
-        page {currentPage}/{totalPageCount}
-      </P>
-      <IconButton
-        aria-label="next"
-        onClick={onNext}
-        icon={"ChevronRight"}
-        background={"teachersHighlight"}
-        disabled={currentPage >= totalPageCount}
-      />
-    </Flex>
+    <nav aria-role="navigation" aria-label="navigation">
+      <Flex $alignItems={"center"} $mt={[48, "auto"]} $justifyContent={"right"}>
+        <IconButton
+          aria-label="previous"
+          onClick={onPrevious}
+          icon={"ChevronLeft"}
+          background={"teachersHighlight"}
+          disabled={currentPage === 1}
+        />
+        <P $mh={24} $fontSize={16} $lineHeight={"24px"}>
+          page {currentPage}/{totalPageCount}
+        </P>
+        <IconButton
+          aria-label="next"
+          onClick={onNext}
+          icon={"ChevronRight"}
+          background={"teachersHighlight"}
+          disabled={currentPage >= totalPageCount}
+        />
+      </Flex>
+    </nav>
   );
 };
 

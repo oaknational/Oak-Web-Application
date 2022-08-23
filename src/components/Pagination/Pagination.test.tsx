@@ -3,6 +3,23 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 import Pagination from "./Pagination";
 
 describe("Pagination", () => {
+  test("it renders", () => {
+    const totalCount = 100;
+    const currentPage = 1;
+    const pageSize = 6;
+    const onPageChange = jest.fn();
+
+    const { getByRole } = renderWithProviders(
+      <Pagination
+        totalCount={totalCount}
+        currentPage={currentPage}
+        pageSize={pageSize}
+        onPageChange={onPageChange}
+      />
+    );
+
+    getByRole("navigation");
+  });
   test("displays the correct total pages", () => {
     const totalCount = 100;
     const currentPage = 1;
@@ -124,5 +141,21 @@ describe("Pagination", () => {
     getByText("page 1/25");
 
     expect(previousButton).toBeDisabled();
+  });
+  test("nothing is displayed if there is only one page", () => {
+    const totalCount = 3;
+    const currentPage = 1;
+    const pageSize = 4;
+    const onPageChange = jest.fn();
+    const { queryByRole } = renderWithProviders(
+      <Pagination
+        totalCount={totalCount}
+        currentPage={currentPage}
+        pageSize={pageSize}
+        onPageChange={onPageChange}
+      />
+    );
+
+    expect(queryByRole("navigation")).toBeNull();
   });
 });
