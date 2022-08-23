@@ -33,18 +33,15 @@ const SummaryCard: FC<SummaryCardProps> = ({
 }) => {
   return (
     <Card
+      $pa={0}
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
-      $ph={[16, 24]}
-      $pv={24}
       $width="100%"
+      $pv={[24]}
+      $ph={[16, 24]}
     >
-      <Flex
-        $flexDirection={"column"}
-        $pv={[0, 32]}
-        $maxWidth={cardImageProps ? null : 720}
-      >
+      <Flex $flexDirection={"column"} $maxWidth={cardImageProps ? null : 720}>
         <Heading
           $mb={8}
           tag={"h1"}

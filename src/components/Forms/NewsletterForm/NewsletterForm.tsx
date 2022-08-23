@@ -74,7 +74,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
 
   return (
     <Card $borderRadius={0} $background="white" {...containerProps}>
-      <CardTitle tag="h2" icon="MagicCarpet">
+      <CardTitle tag="h2" icon="MagicCarpet" iconSize={56}>
         Don’t miss out
       </CardTitle>
       <P color={"black"} id={descriptionId}>
@@ -136,6 +136,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           label="Sign Up"
           fullWidth
           htmlButtonProps={{ disabled: loading }}
+          background="teachersHighlight"
         />
         <P
           $mt={error ? 12 : 0}

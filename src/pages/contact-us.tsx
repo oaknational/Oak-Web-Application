@@ -80,24 +80,32 @@ const ContactUs: NextPage = () => {
       {
         title: `Privacy`,
         paragraph: (
-          <span>
-            At Oak National Academy we're committed to protecting the data of
-            all our users. We always treat your data in accordance with our{" "}
-            <a href="https://www.thenational.academy/legal/privacy-policy">
-              Privacy Policy
-            </a>
-            . You can make a subject access request to us if you wish to amend
-            or delete any data we hold about you. If you have a complaint,
-            concern or subject access request you can email{" "}
-            <a href="mailto:privacy@thenational.academy">
-              privacy@thenational.academy
-            </a>
-            . You can customise your cookie preferences across Oak National
-            Academy. These can be changed at any time.{" "}
-            <UnstyledButton onClick={showConsentManager}>
-              <Span $color="hyperlink">Manage cookie settings.</Span>
-            </UnstyledButton>
-          </span>
+          <>
+            <P>
+              At Oak National Academy we're committed to protecting the data of
+              all our users. We always treat your data in accordance with our{" "}
+              <a href="https://www.thenational.academy/legal/privacy-policy">
+                privacy policy
+              </a>
+              .
+            </P>
+            <P $mt={[16, 24]}>
+              You can make a subject access request to us if you wish to amend
+              or delete any data we hold about you. If you have a complaint,
+              concern or subject access request you can email{" "}
+              <a href="mailto:privacy@thenational.academy">
+                privacy@thenational.academy
+              </a>
+              .
+            </P>
+            <P $mt={[16, 24]}>
+              You can customise your cookie preferences across Oak National
+              Academy. These can be changed at any time.{" "}
+              <UnstyledButton onClick={showConsentManager}>
+                <Span $color="hyperlink">Manage cookie settings.</Span>
+              </UnstyledButton>
+            </P>
+          </>
         ),
       },
     ],
@@ -116,7 +124,8 @@ const ContactUs: NextPage = () => {
         <Card
           $justifyContent={"space-between"}
           $background={"twilight"}
-          $pa={24}
+          $ph={[16, 24]}
+          $pv={[24]}
           $mt={[72, 80]}
         >
           <Flex
