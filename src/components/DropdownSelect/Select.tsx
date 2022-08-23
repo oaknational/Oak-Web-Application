@@ -183,7 +183,7 @@ export function Select<T extends object>(
             isPlaceholder={!state.selectedItem}
           >
             <SelectInner $alignItems={"center"}>
-              {props.icon && <Icon $mr={8} name={props.icon}></Icon>}
+              {props.icon && <Icon $mr={8} name={props.icon} />}
               <SelectSpan
                 data-testid={"select-span"}
                 title={props.placeholder}

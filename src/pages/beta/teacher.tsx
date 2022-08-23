@@ -54,7 +54,7 @@ const TeacherHome: FC = () => {
               id={""}
             />
             <Flex $mt={32} $justifyContent={"center"}>
-              <KeyStagesNav keyStages={keyStagesNavData}></KeyStagesNav>
+              <KeyStagesNav keyStages={keyStagesNavData} />
             </Flex>
           </GridArea>
         </Grid>

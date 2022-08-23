@@ -91,9 +91,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               {pageData.gettingStarted.title}
             </Heading>
             <Typography>
-              <PortableText
-                value={pageData.gettingStarted.bodyPortableText}
-              ></PortableText>
+              <PortableText value={pageData.gettingStarted.bodyPortableText} />
             </Typography>
           </RotatedCard>
         </Flex>
@@ -171,9 +169,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               {pageData.ourApproach.title}
             </Heading>
             <Typography $mb={16} $lineHeight={["28px", "32px"]} fontSize={18}>
-              <PortableText
-                value={pageData.ourApproach.bodyPortableText}
-              ></PortableText>
+              <PortableText value={pageData.ourApproach.bodyPortableText} />
             </Typography>
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
@@ -181,7 +177,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
                   href={"https://teachers.thenational.academy/oaks-curricula"}
-                ></ButtonAsLink>
+                />
               </Flex>
             )}
           </Flex>
