@@ -38,10 +38,6 @@ const getSanityClient: CMSClient = () => ({
       ...params,
     });
 
-    console.debug("******************");
-    console.debug(blogPostsResult.allNewsPost[0]);
-    console.debug("*******************");
-
     return blogPostListSchema.parse(blogPostsResult.allNewsPost);
   },
   blogPostBySlug: async (slug, { previewMode, ...params } = {}) => {

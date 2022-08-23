@@ -5,10 +5,10 @@ import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
 import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Grid, { GridArea } from "../../components/Grid";
+import SummaryCard from "../../components/Card/SummaryCard";
 
 export type BlogListingPageProps = {
   blogs: BlogPostPreview[];
@@ -24,13 +24,19 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $ph={[12, 0]}>
+      <MaxWidth $ph={[12, 12, 0]} $pt={[72, 80, 80]}>
+        <SummaryCard
+          title={"Blog Listing"}
+          heading={"Inspiration for inside and outside the classroom"}
+          summary={
+            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
+          }
+          imageSrc={"/images/illustrations/blog-page.svg"}
+          alt={""}
+          background="teachersPastelYellow"
+        />
         <Grid>
-          <GridArea $colSpan={[12, 12, 7]}>
-            <Heading tag="h1" $fontSize={32} $mt={[24, 48]} $mb={[24, 48]}>
-              Blog
-            </Heading>
-
+          <GridArea $colSpan={[12, 12, 7]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}
               items={blogs}

@@ -29,7 +29,7 @@ const BlogList: FC<BlogListProps> = (props) => {
   }, [currentPage, items]);
 
   return (
-    <Flex $flexDirection="column">
+    <Flex $flexDirection="column" $minHeight={[0, 0, 800]}>
       {currentTableData.map((item, i) => (
         <Fragment key={`BlogList-BlogListItem-${i}`}>
           <BlogListItem {...item} />

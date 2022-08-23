@@ -8,6 +8,8 @@ const testProps: BlogListItemProps = {
   snippet: "Item snippet",
   href: "https://www.test.com/",
   contentType: "blog-post",
+  category: "Curriculum Planning",
+  date: new Date(2022, 7, 22),
 };
 
 describe("components/BlogListItem", () => {
