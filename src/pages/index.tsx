@@ -189,7 +189,7 @@ const Home: FC = () => {
                     $color={"black"}
                   >
                     <CardLink href="https://teachers.thenational.academy/">
-                      Teachers Hub
+                      Teacher Hub
                     </CardLink>
                   </Heading>
                   <Box
