@@ -22,7 +22,7 @@ const AboutContactBlogList: FC = () => {
             iconSize={32}
             tag="h2"
           >
-            About Us
+            About us
           </CardTitle>
           <P color={"black"} fontSize={16} $mb={24}>
             Discover who we are, what we do and how we work.
