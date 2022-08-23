@@ -1,3 +1,10 @@
+# [0.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.72.1...v0.73.0) (2022-08-23)
+
+
+### Features
+
+* adds notification card to home page ([e3e0a90](https://github.com/oaknational/Oak-Web-Application/commit/e3e0a9019d56401f6fe1e0a24f6040d6e944d06a))
+
 ## [0.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.72.0...v0.72.1) (2022-08-22)
 
 
