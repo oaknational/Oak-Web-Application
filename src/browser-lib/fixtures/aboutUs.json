@@ -1,24 +1,7 @@
 {
   "title": "About Oak?",
   "whoWeAre": {
-    "title": "About us",
     "sectionHeading": "Who we are",
-    "summaryPortableText": [
-      {
-        "_key": "c65448ff61e0",
-        "_type": "block",
-        "children": [
-          {
-            "_key": "56b6ae887ae50",
-            "_type": "span",
-            "marks": [],
-            "text": "Our lessons and resources are designed to give teachers all the tools they need to plan their lessons. Find out more about Oak’s lesson planning resources and how you can adapt them for your class and school here."
-          }
-        ],
-        "markDefs": [],
-        "style": "normal"
-      }
-    ],
     "intro": {
       "title": "IGNORE THIS TITLE - Need to configure hidden fields",
       "bodyPortableText": [
@@ -27,10 +10,10 @@
           "_type": "block",
           "children": [
             {
-              "_key": "f3e16a947c030",
+              "_key": "b436fd0e2dcf",
               "_type": "span",
               "marks": [],
-              "text": "We believe that when we share the knowledge of every teacher, and you make it your own, pupils up and down the country will benefit. That’s why we’re putting the best curriculum thinking, the deepest subject expertise, and the smartest learning design at your fingertips.\n\nFrom Early Years to Key Stage 4, we provide free access to thousands of teacher-made, fully-resourced lessons to adapt and use with your pupils, in school or remotely. We’ll be updating these soon - find out more below."
+              "text": "We share the brilliance of teachers from across the country. We aim to put the best curriculum thinking, the deepest subject expertise and the smartest learning design at your fingertips. With access to this wealth of knowledge, you can make it your own and help your pupils thrive.\n\nFrom Early Years to Key Stage 4, we provide free access to thousands of teacher-made, fully-resourced lessons to adapt and use with your pupils, in school or remotely. We’ll be updating these soon - find out more below."
             }
           ],
           "markDefs": [],
@@ -76,7 +59,14 @@
             "style": "normal"
           }
         ],
-        "cta": null
+        "cta": {
+          "label": "Blog about plans",
+          "linkType": "internal",
+          "internal": {
+            "contentType": "newsPost",
+            "slug": "some-blog-post"
+          }
+        }
       },
       "to": {
         "title": "To Here",
@@ -102,21 +92,28 @@
         "title": "And Beyond",
         "bodyPortableText": [
           {
-            "_key": "c95470fbff02",
+            "_key": "c465988f70b6",
             "_type": "block",
             "children": [
               {
-                "_key": "fd534404c8100",
+                "_key": "275f258322730",
                 "_type": "span",
                 "marks": [],
-                "text": "As the new national curriculum body we'll work with a diverse range of experts and partners to identify brilliant models and expertise from across the system and share them with you as new sets of fully resourced units and lessons for you to adapt and use with your pupils."
+                "text": "As the new national body supporting curriculum, we’ll work with a diverse range of experts and partners. We’ll identify, create and share fully resourced curriculum models, units and lessons for you to adapt and use with your pupils."
               }
             ],
             "markDefs": [],
             "style": "normal"
           }
         ],
-        "cta": null
+        "cta": {
+          "label": "blog about plans",
+          "linkType": "internal",
+          "internal": {
+            "contentType": "newsPost",
+            "slug": "some-blog-post"
+          }
+        }
       },
       "cta": {
         "label": "Blog about plans",
@@ -139,7 +136,7 @@
                 "_key": "58dba8ecf2240",
                 "_type": "span",
                 "marks": [],
-                "text": "Oak is by teachers, for teachers; our work isn’t buffeted by the political winds of the day. Our board is publicly appointed, and our partners selected through an open process."
+                "text": "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process."
               }
             ],
             "markDefs": [],
@@ -214,14 +211,14 @@
     "sectionHeading": "Leadership",
     "introPortableText": [
       {
-        "_key": "9d9ac46df7e7",
+        "_key": "b4472ccff7a2",
         "_type": "block",
         "children": [
           {
-            "_key": "4b77ac17ebfe0",
+            "_key": "f6f30e315e740",
             "_type": "span",
             "marks": [],
-            "text": "Our leadership team brings together multidisciplinary experts in education, technology, school support and operations to deliver on Oak's strategy, and ensure value for money for the public. Learn more about them below."
+            "text": "Our leadership team brings together experts from across education, technology, school support and operations to deliver the best support to teachers and value for money for the public. Learn more about them below."
           }
         ],
         "markDefs": [],
@@ -233,14 +230,14 @@
     "sectionHeading": "Board",
     "introPortableText": [
       {
-        "_key": "b2338b3986c4",
+        "_key": "fba015024518",
         "_type": "block",
         "children": [
           {
-            "_key": "252c86416dc00",
+            "_key": "e55d6209321d0",
             "_type": "span",
             "marks": [],
-            "text": "Our interim Board is independent of the Department for Education. It safeguards our independence, as well as providing strategic direction and scrutiny to the leadership team. Our future Board will be chosen through a public appointments process."
+            "text": "Our interim board oversees all of Oak’s work. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence. The interim board will be in place whilst a permanent board is chosen through a public appointments process."
           }
         ],
         "markDefs": [],
@@ -253,7 +250,18 @@
         "file": {
           "asset": {
             "extension": "pdf",
-            "size": 16758977
+            "size": 16758977,
+            "url": "https://cdn.sanity.io/files/cuvjke51/feat-about-page/cd9fb618e13d8bb219c57d2095f80fb514481fca.pdf"
+          }
+        }
+      },
+      {
+        "title": "Board Meeting Summary - XX October 2022",
+        "file": {
+          "asset": {
+            "extension": "pdf",
+            "size": 16758977,
+            "url": "https://cdn.sanity.io/files/cuvjke51/feat-about-page/cd9fb618e13d8bb219c57d2095f80fb514481fca.pdf"
           }
         }
       }
@@ -279,14 +287,14 @@
     "sectionHeading": "Partners",
     "introPortableText": [
       {
-        "_key": "5b200b5ef27f",
+        "_key": "c740fe769b64",
         "_type": "block",
         "children": [
           {
-            "_key": "fc0c84a406520",
+            "_key": "6cc9a2ce3bde0",
             "_type": "span",
             "marks": [],
-            "text": "From humble roots, we’ve grown into a national resource, reaching millions of teachers and pupils. It wouldn’t have been possible without the brilliant work of the talented teachers, curriculum partners and technlogy partners that have supported us. Thank you."
+            "text": "From humble roots, we’ve grown into a national resource, supporting millions of teachers and pupils. It wouldn’t have been possible without the brilliant work of the talented teachers, curriculum partners and technology partners that have supported us. Thank you."
           }
         ],
         "markDefs": [],
@@ -296,8 +304,8 @@
     "techPartners": [
       {
         "asset": {
-          "_id": "image-9b59901dfcced90d2dc2dba54d2bd63ca89c01a1-158x52-svg",
-          "url": "https://cdn.sanity.io/images/cuvjke51/feat-develop-curric/9b59901dfcced90d2dc2dba54d2bd63ca89c01a1-158x52.svg"
+          "_id": "image-060531729f9bc7fc836bdf87b9b80c4995247d5c-158x52-svg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-page/060531729f9bc7fc836bdf87b9b80c4995247d5c-158x52.svg"
         },
         "name": "Some tech partner"
       }
@@ -306,7 +314,7 @@
       {
         "asset": {
           "_id": "image-06e8cb0660bed44fd0e139a62ce6ccc6d590c959-300x300-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/feat-develop-curric/06e8cb0660bed44fd0e139a62ce6ccc6d590c959-300x300.png"
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/06e8cb0660bed44fd0e139a62ce6ccc6d590c959-300x300.png"
         },
         "name": "Some partner"
       }
@@ -349,7 +357,12 @@
             "style": "normal"
           }
         ],
-        "image": null
+        "image": null,
+        "cta": {
+          "label": "View Open Roles",
+          "linkType": "external",
+          "external": "https://google.com"
+        }
       },
       "advisory": {
         "title": "Advisory Groups",
@@ -369,7 +382,8 @@
             "style": "normal"
           }
         ],
-        "image": null
+        "image": null,
+        "cta": null
       },
       "curriculumPartner": {
         "title": "Become a Curriculum Partner",
@@ -389,7 +403,12 @@
             "style": "normal"
           }
         ],
-        "image": null
+        "image": null,
+        "cta": {
+          "label": "Apply to Curriculum Partner",
+          "linkType": "external",
+          "external": "https://google.com"
+        }
       },
       "teacherResearch": {
         "title": "Take part in teacher research",
@@ -409,7 +428,12 @@
             "style": "normal"
           }
         ],
-        "image": null
+        "image": null,
+        "cta": {
+          "label": "Register interest",
+          "linkType": "external",
+          "external": "https://google.com"
+        }
       }
     }
   },
@@ -422,8 +446,14 @@
           {
             "_key": "16137e0bde570",
             "_type": "span",
+            "marks": ["strong"],
+            "text": "General enquiries"
+          },
+          {
+            "_key": "b582301fb277",
+            "_type": "span",
             "marks": [],
-            "text": "General enquiries\nFor general enquiries and help please email help@thenational.academy."
+            "text": "\nFor general enquiries and help please email help@thenational.academy."
           }
         ],
         "markDefs": [],
@@ -437,7 +467,19 @@
             "_key": "b2e4daa056f3",
             "_type": "span",
             "marks": [],
-            "text": "\nMedia enquiries\nFor media enquiries, please contact media@thenational.academy."
+            "text": "\n"
+          },
+          {
+            "_key": "ce05d051065d",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "Media enquiries"
+          },
+          {
+            "_key": "189f67954654",
+            "_type": "span",
+            "marks": [],
+            "text": "\nFor media enquiries, please contact media@thenational.academy."
           }
         ],
         "markDefs": [],
@@ -451,10 +493,40 @@
             "_key": "bcf96460c3ca",
             "_type": "span",
             "marks": [],
-            "text": "\nGet support\nYou’ll find lots of help and support for teachers, schools, pupils and parents in our Help Centre [link to Help Centre]"
+            "text": "\n"
+          },
+          {
+            "_key": "813237286594",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "Get support"
+          },
+          {
+            "_key": "2931ce4285fa",
+            "_type": "span",
+            "marks": [],
+            "text": "\nYou’ll find lots of help and support for teachers, schools, pupils and parents in our "
+          },
+          {
+            "_key": "37c37aae53f3",
+            "_type": "span",
+            "marks": ["9f907ea04c75"],
+            "text": "Help Centre"
+          },
+          {
+            "_key": "4b8a6dd13f39",
+            "_type": "span",
+            "marks": [],
+            "text": "."
           }
         ],
-        "markDefs": [],
+        "markDefs": [
+          {
+            "_key": "9f907ea04c75",
+            "_type": "link",
+            "href": "https://support.thenational.academy/"
+          }
+        ],
         "style": "normal"
       }
     ]

@@ -22,6 +22,7 @@ import aboutNavLinks from "../../browser-lib/fixtures/aboutNav";
 export type AboutPageProps = {
   pageData: AboutPage;
   isPreviewMode: boolean;
+  renderPlayer: boolean;
 };
 
 type TimeLineProps = TextBlock & FlexProps;
@@ -65,6 +66,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({
   pageData,
   isPreviewMode,
+  renderPlayer,
 }) => {
   console.log(pageData);
   return (
@@ -101,7 +103,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $pr={[0, 72]}
               $minWidth={["50%"]}
             >
-              {pageData.whoWeAre.intro.mediaType == "video" && (
+              {pageData.whoWeAre.intro.mediaType == "video" && renderPlayer && (
                 <VideoPlayer
                   playbackId={
                     pageData.whoWeAre.intro.video.video.asset.playbackId
@@ -190,6 +192,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutPage,
       isPreviewMode,
+      renderPlayer: true,
     },
     revalidate: 10,
   };
