@@ -27,6 +27,7 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   title: true,
   slug: true,
   contentPortableText: true,
+  author: true,
   category: true,
   date: true,
 });
