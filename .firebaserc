@@ -7,6 +7,9 @@
       "hosting": {
         "static-marketing-dev": [
           "oak-static-marketing-dev"
+        ],
+        "static-marketing-prod": [
+          "oak-static-marketing-prod"
         ]
       }
     }
