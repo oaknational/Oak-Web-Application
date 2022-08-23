@@ -5,7 +5,6 @@ const oakStyles = css`
   body {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
     font-family: Lexend, sans-serif;
     font-weight: 300;
     line-height: 1.4;

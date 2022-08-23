@@ -38,6 +38,10 @@ export type PixelSpacing =
   | 240
   | 360
   | 480
+  | 600
+  | 720
+  | 840
+  | 960
   | 1280;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
@@ -96,6 +100,7 @@ const OakColorNameZod = z.union([
   z.literal("teachersHighlight"),
   z.literal("twilight"),
   z.literal("videoBlue"),
+  z.literal("hyperlink"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;

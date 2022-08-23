@@ -324,6 +324,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  pingdomUptimeId: {
+    value: process.env.PINGDOM_UPTIME_ID,
+    envName: "PINGDOM_UPTIME_ID",
+    required: true,
+    availableInBrowser: false,
+    // The old ID, already configured for all sites in Pingdom.
+    default:
+      "d6-7d-b6-4b-74-15-da-2e-2c-3c-00-34-3b-5f-f5-44-03-0f-fc-9f-c9-ce-16-7c-97-42-16-ab-1a-2e-82-5d",
+  },
 });
 
 for (const [
