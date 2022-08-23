@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC } from "react";
 import styled from "styled-components";
 
@@ -27,6 +28,7 @@ export type BlogListItemProps = {
   category: string;
   date: Date;
   mainImage: string;
+  withImage?: boolean;
 };
 
 /**
@@ -36,7 +38,16 @@ export type BlogListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
-  const { titleTag, title, snippet, href, category, date } = props;
+  const {
+    titleTag,
+    title,
+    snippet,
+    href,
+    category,
+    date,
+    withImage,
+    mainImage,
+  } = props;
 
   const blogDate = new Date(date);
 
@@ -47,6 +58,9 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       $position={"relative"}
       $mt={24}
     >
+      {withImage && mainImage && (
+        <Image src={mainImage} height={200} width={200} />
+      )}
       <P $fontSize={16} $lineHeight={"20px"}>
         {category}
       </P>

@@ -12,6 +12,7 @@ export type BlogListProps = {
   title: string;
   titleTag: HeadingTag;
   items: BlogListItemProps[];
+  withImage?: boolean;
 };
 /**
  * Contains a title of set size and a list of BlogListItem,
@@ -19,7 +20,7 @@ export type BlogListProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogList: FC<BlogListProps> = (props) => {
-  const { items } = props;
+  const { items, withImage } = props;
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentTableData: Array<BlogListItemProps> = useMemo(() => {
@@ -32,7 +33,7 @@ const BlogList: FC<BlogListProps> = (props) => {
     <Flex $flexDirection="column" $minHeight={[0, 0, 840]}>
       {currentTableData.map((item, i) => (
         <Fragment key={`BlogList-BlogListItem-${i}`}>
-          <BlogListItem {...item} />
+          <BlogListItem {...item} withImage={withImage} />
         </Fragment>
       ))}
       <Pagination
