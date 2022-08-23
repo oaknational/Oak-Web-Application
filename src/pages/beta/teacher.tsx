@@ -53,9 +53,9 @@ const TeacherHome: FC = () => {
               placeholder="Search for subjects, lessons, quizes, lessons plans and much much more..."
               value={value}
               id={""}
-            ></Input>
+             />
             <Flex $mt={32} $justifyContent={"center"}>
-              <KeyStagesNav keyStages={keyStagesNavData}></KeyStagesNav>
+              <KeyStagesNav keyStages={keyStagesNavData} />
             </Flex>
           </GridArea>
         </Grid>

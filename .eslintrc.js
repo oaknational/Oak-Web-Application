@@ -20,7 +20,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
   },
-  plugins: ["@next/next", "react-hooks"],
+  plugins: ["@next/next", "react", "react-hooks"],
   extends: [
     "eslint:recommended",
     "plugin:@next/next/core-web-vitals",
@@ -31,6 +31,7 @@ module.exports = {
     ...importRules,
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "error", // Checks effect dependencies
+    "react/self-closing-comp": ["error", { component: true, html: true }],
   },
 
   // Put the Typescript config in an override, so we can still lint js files.

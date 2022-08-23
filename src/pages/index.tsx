@@ -118,7 +118,7 @@ const Home: FC = () => {
                         alt={"classroom illustration"}
                         imageSrc={"/images/illustrations/classroom.svg"}
                         position={"left center"}
-                      ></CardImage>
+                      />
                     </Flex>
                   </Box>
                   <Heading
@@ -151,7 +151,7 @@ const Home: FC = () => {
                     <CardImage
                       alt="teacher hub illustration"
                       imageSrc={"/images/illustrations/teacher.svg"}
-                    ></CardImage>
+                    />
                   </Box>
                   <Heading
                     $mr={[0, 56]}
