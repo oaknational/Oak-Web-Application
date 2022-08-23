@@ -2,6 +2,8 @@ import Image from "next/image";
 import { FC } from "react";
 import styled from "styled-components";
 
+import AspectRatio from "../../AspectRatio";
+import Box from "../../Box";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
 import { P, Heading, HeadingTag } from "../../Typography";
@@ -52,33 +54,40 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const blogDate = new Date(date);
 
   return (
-    <Flex
-      $flexDirection="column"
-      $alignItems="flex-start"
-      $position={"relative"}
-      $mt={24}
-    >
+    <Flex $position={"relative"} $mt={24}>
       {withImage && mainImage && (
-        <Image src={mainImage} height={200} width={200} />
+        <Box $position={"relative"} $minWidth={240}>
+          <AspectRatio ratio={"3:2"}>
+            <Image
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center center"
+              src={mainImage}
+              alt=""
+            />
+          </AspectRatio>
+        </Box>
       )}
-      <P $fontSize={16} $lineHeight={"20px"}>
-        {category}
-      </P>
-      <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-        {blogDate.toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })}
-      </P>
-      <Heading tag={titleTag} $fontSize={20} $mt={8}>
-        <ActionLink href={href} title={title}>
-          {title}
-        </ActionLink>
-      </Heading>
-      <P $fontSize={18} $mt={8}>
-        <LineClamp lines={2}>{snippet}</LineClamp>
-      </P>
+      <Flex $flexDirection="column" $alignItems="flex-start">
+        <P $fontSize={16} $lineHeight={"20px"}>
+          {category}
+        </P>
+        <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
+          {blogDate.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </P>
+        <Heading tag={titleTag} $fontSize={20} $mt={8}>
+          <ActionLink href={href} title={title}>
+            {title}
+          </ActionLink>
+        </Heading>
+        <P $fontSize={18} $mt={8}>
+          <LineClamp lines={2}>{snippet}</LineClamp>
+        </P>
+      </Flex>
     </Flex>
   );
 };
