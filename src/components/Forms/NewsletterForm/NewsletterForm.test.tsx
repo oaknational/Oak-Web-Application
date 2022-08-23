@@ -105,7 +105,7 @@ describe("NewsletterForm", () => {
     );
 
     const input = getByPlaceholderText("Name");
-    // initally error is not shown
+    // initially error is not shown
     expect(computeAccessibleDescription(input)).toBe("");
     const submit = getByLabelText("Sign Up");
     const user = userEvent.setup();

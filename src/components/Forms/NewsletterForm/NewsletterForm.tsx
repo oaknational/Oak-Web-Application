@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Card from "../../Card";
+import Card, { CardProps } from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import Input from "../../Input";
 import { P } from "../../Typography";
@@ -50,6 +50,7 @@ const userTypeOptions = USER_ROLES.map((userRole) => ({
 type NewsletterFormValues = z.infer<typeof schema>;
 type NewsletterFormProps = {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
+  containerProps?: CardProps;
 };
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
@@ -58,7 +59,7 @@ type NewsletterFormProps = {
  * Submitting this form will send data to Hubspot.
  */
 const NewsletterForm: FC<NewsletterFormProps> = (props) => {
-  const { onSubmit } = props;
+  const { onSubmit, containerProps } = props;
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -72,15 +73,15 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
   const descriptionId = "newsletter-form-description";
 
   return (
-    <Card $borderRadius={0} $background="white">
-      <CardTitle tag="h2" icon="MagicCarpet">
+    <Card $borderRadius={0} $background="white" {...containerProps}>
+      <CardTitle tag="h2" icon="MagicCarpet" iconSize={56}>
         Don’t miss out
       </CardTitle>
       <P color={"black"} id={descriptionId}>
         {`Join 80,000 teachers and get free lessons, resources and other helpful
-        content by email. Unsubscribe at any time. Read our privacy policy `}
+        content by email. Unsubscribe at any time. Read our `}
         <Link href="/">
-          <a>here</a>
+          <a>privacy policy</a>
         </Link>
         .
       </P>
@@ -135,6 +136,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           label="Sign Up"
           fullWidth
           htmlButtonProps={{ disabled: loading }}
+          background="teachersHighlight"
         />
         <P
           $mt={error ? 12 : 0}
