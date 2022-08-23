@@ -1,3 +1,10 @@
+# [0.75.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.74.0...v0.75.0) (2022-08-23)
+
+
+### Features
+
+* contact us page ([00365f0](https://github.com/oaknational/Oak-Web-Application/commit/00365f024e6f2f58df10016bc27c165b2af6693d))
+
 # [0.74.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.73.0...v0.74.0) (2022-08-23)
 
 
