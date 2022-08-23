@@ -42,6 +42,7 @@ const Pagination: FC<PaginationProps> = ({
         onClick={onPrevious}
         icon={"ChevronLeft"}
         background={"teachersHighlight"}
+        disabled={currentPage === 1}
       />
       <P $mh={24} $fontSize={16} $lineHeight={"24px"}>
         page {currentPage}/{totalPageCount}
@@ -51,6 +52,7 @@ const Pagination: FC<PaginationProps> = ({
         onClick={onNext}
         icon={"ChevronRight"}
         background={"teachersHighlight"}
+        disabled={currentPage >= totalPageCount}
       />
     </Flex>
   );
