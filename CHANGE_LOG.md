@@ -1,3 +1,12 @@
+# [0.76.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.2...v0.76.0) (2022-08-23)
+
+
+### Features
+
+* **cms:** resolve nested references in portable text ([d8e6a81](https://github.com/oaknational/Oak-Web-Application/commit/d8e6a81bd93a0fb13758dffdf4c6b9d4e1396dc4))
+
+## [0.75.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.1...v0.75.2) (2022-08-23)
+
 ## [0.75.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.0...v0.75.1) (2022-08-23)
 
 # [0.75.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.74.0...v0.75.0) (2022-08-23)

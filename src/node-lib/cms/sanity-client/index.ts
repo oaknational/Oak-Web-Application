@@ -16,6 +16,7 @@ import {
   webinarPreviewSchema,
   webinarSchema,
 } from "./schemas";
+import { resolveReferences } from "./resolveReferences";
 
 const getSanityClient: CMSClient = () => ({
   webinars: async ({ previewMode, ...params } = {}) => {
@@ -54,7 +55,16 @@ const getSanityClient: CMSClient = () => ({
     });
     const blogPost = blogPostResult.allNewsPost[0];
 
-    return blogPostSchema.parse(blogPost);
+    const contentWithReferences = await resolveReferences(
+      blogPost?.contentPortableText
+    );
+
+    const blogWithResolvedRefs = {
+      ...blogPost,
+      contentPortableText: contentWithReferences,
+    };
+
+    return blogPostSchema.parse(blogWithResolvedRefs);
   },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({

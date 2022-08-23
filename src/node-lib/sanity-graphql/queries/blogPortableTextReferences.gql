@@ -1,0 +1,17 @@
+query blogPortableTextReferences($ids: [ID!]) {
+  allDocument(where: { _id: { in: $ids } }) {
+    _id
+    _type
+    ... on Webinar {
+      slug {
+        current
+      }
+    }
+    ... on SanityImageAsset {
+      ...ImageAsset
+    }
+    ... on Video {
+      ...Video
+    }
+  }
+}
