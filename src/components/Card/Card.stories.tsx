@@ -51,7 +51,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
         label={"Lable"}
         fullWidth
         href={"/"}
-      ></ButtonAsLink>
+       />
     </Component>
   </div>
 );
@@ -74,7 +74,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
           label={"Label"}
           fullWidth
           href={"/"}
-        ></ButtonAsLink>
+         />
       </Flex>
     </Component>
   </div>
@@ -106,7 +106,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
         label={"Label"}
         fullWidth
         href={"/"}
-      ></ButtonAsLink>
+       />
     </Component>
   </div>
 );

@@ -166,7 +166,7 @@ export function Select<T extends object>(
             isPlaceholder={!state.selectedItem}
           >
             <Flex $alignItems={"center"}>
-              {props.icon && <Icon $mr={8} name={props.icon}></Icon>}
+              {props.icon && <Icon $mr={8} name={props.icon} />}
               <span data-testid={"select-span"} {...valueProps}>
                 {state.selectedItem
                   ? state.selectedItem.rendered

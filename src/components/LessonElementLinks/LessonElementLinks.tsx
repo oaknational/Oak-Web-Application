@@ -60,7 +60,7 @@ const GraphicCircle: FC<GraphicCircleProps> = ({
   $background = "teachersPastelYellow",
 }) => (
   <Circle size={72} $background={$background} $dropShadow="grey20">
-    <Icon $pa={0} size={48} name={icon}></Icon>
+    <Icon $pa={0} size={48} name={icon} />
   </Circle>
 );
 
