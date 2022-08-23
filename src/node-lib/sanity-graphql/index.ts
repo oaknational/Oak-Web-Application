@@ -22,10 +22,10 @@ const graphqlAPIUrl = getGraphqlEndpoint({
   useCDN: config.get("sanityUseCDN") === "true",
 });
 
-const client = new GraphQLClient(graphqlAPIUrl, {
+export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
   headers: { Authorization: `Bearer ${config.get("sanityGraphqlApiSecret")}` },
 });
 
-const sanityGraphqlApi = getSdk(client);
+const sanityGraphqlApi = getSdk(sanityGraphqlClient);
 
 export default sanityGraphqlApi;

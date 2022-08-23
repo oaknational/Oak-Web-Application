@@ -62,6 +62,7 @@
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
     "gleap": "6.7.5",
+    "lodash": "^4.17.21",
     "next": "^12.2.5",
     "next-sanity-image": "^3.2.1",
     "next-seo": "^5.4.0",
