@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { get, set } from "lodash/fp";
+import { GraphQLClient } from "graphql-request";
 
 import { sanityGraphqlClient } from "../../sanity-graphql";
 
@@ -45,6 +46,64 @@ const isReference = (x: unknown): boolean => {
 };
 
 /**
+ * This is defined inline here as our .gql files are compiled with graphql-tag
+ * when ran via codegen, so we'd need an extra step to undo that if co-locating this query
+ * with the others before we can join them together
+ */
+const getDocumentReferencesQuery = (
+  id: string
+) => /* GraphQL */ `Document(id: "${id}") {
+  _id
+  _type
+  __typename
+  ...on Webinar {
+    slug { current }
+  }
+  ... on SanityImageAsset {
+    url
+  }
+  ... on Video {
+    video {
+      asset {
+        playbackId
+        assetId
+      }
+    }
+  }
+}`;
+
+export const batchGraphqlRequests = async <Res extends []>(
+  client: GraphQLClient,
+  queries: string[]
+): Promise<Res[]> => {
+  /**
+   * Batch together the list of given queries by combining them into one query
+   * where the keys are the indices of the query they correspond to, e.g.
+   * ```
+   * _0: Document(id: abcdef) {
+   * }
+   * _1: Document(id: ghijkl) {}
+   * ```
+   *
+   * Ideally instead of dynamically constructing the query we could use graphql
+   * request batching, but sanity's implementation doesn't seem to support this
+   * https://github.com/prisma-labs/graphql-request#batching
+   */
+  const query = gql`
+    query {
+      ${queries.map((query, index) => `_${index}: ${query}`).join("\n")}
+    }
+  `;
+
+  const queryRes = await client.request(query);
+
+  // Unwrap the queries from {_1:.., _2:..} etc into an array
+  return queries.map((_, index) => {
+    return queryRes[`_${index}`];
+  });
+};
+
+/**
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
  */
@@ -61,58 +120,21 @@ export const resolveReferences = async (obj: Record<string, unknown>) => {
     get(path, obj)
   ) as Array<{ _ref: string }>;
 
-  /**
-   * Construct a graphql query for each of the referenced documents,
-   * where the keys are the indices of the path they correspond to, e.g.
-   * ```
-   * _0: Document(id: abcdef) {
-   * }
-   * _1: Document(id: ghijkl) {}
-   * ```
-   *
-   * @TODO: Instead of dynamically constructing the fragments, define a document.gql
-   * and call that in batch mode instead?
-   * https://github.com/prisma-labs/graphql-request#batching
-   */
-  const queryList = referenceObjects.map(
-    (
-      refObj,
-      index
-    ) => /* GraphQL */ `_${index}: Document(id: "${refObj._ref}") {
-      _id
-      _type
-      __typename
-      ...on Webinar {
-        slug { current }
-      }
-      ... on SanityImageAsset {
-        url
-      }
-      ... on Video {
-        video {
-          asset {
-            playbackId
-            assetId
-          }
-        }
-      }
-    }`
+  const queryList = referenceObjects.map((refObj) =>
+    getDocumentReferencesQuery(refObj._ref)
   );
 
-  const query = gql`
-      query {
-        ${queryList.join("\n")}
-      }
-    `;
-
-  const queryRes = await sanityGraphqlClient.request(query);
+  const queryResults = await batchGraphqlRequests(
+    sanityGraphqlClient,
+    queryList
+  );
 
   /**
    * For each of the paths we found earlier, replace the _ref at that
    * location with the result of the graphql query for it's data
    */
   const updated = pathsToUpdate.reduce((acc, path, index) => {
-    const queryPart = queryRes[`_${index}`];
+    const queryPart = queryResults[index];
 
     return set(path, queryPart)(acc);
   }, obj);
