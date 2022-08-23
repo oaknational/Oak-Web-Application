@@ -26,6 +26,7 @@ export type BlogListItemProps = {
   contentType: BlogListItemContentType;
   category: string;
   date: Date;
+  mainImage: string;
 };
 
 /**

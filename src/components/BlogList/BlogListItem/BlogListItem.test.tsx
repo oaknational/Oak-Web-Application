@@ -7,6 +7,7 @@ const testProps: BlogListItemProps = {
   titleTag: "h3",
   snippet: "Item snippet",
   href: "https://www.test.com/",
+  mainImage: "",
   contentType: "blog-post",
   category: "Curriculum Planning",
   date: new Date(2022, 7, 22),

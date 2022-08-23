@@ -1,3 +1,5 @@
+import { Image } from "../../sanity-graphql/generated/sdk";
+
 import { Document, PortableTextJSON } from "./base";
 
 export type TeamMember = Document & {
@@ -23,6 +25,7 @@ export type BlogPost = Document & {
   title: string;
   slug: string;
   date: Date;
+  mainImage: Image;
   author: TeamMember;
   contentPortableText: PortableTextJSON;
   category: {
@@ -42,6 +45,7 @@ export type BlogPostPreview = Pick<
   | "author"
   | "category"
   | "date"
+  | "mainImage"
 >;
 
 export type Attachment = {

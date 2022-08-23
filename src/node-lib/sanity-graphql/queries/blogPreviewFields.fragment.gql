@@ -15,6 +15,9 @@ fragment BlogPreviewFields on NewsPost {
       }
     }
   }
+  mainImage {
+    ...Image
+  }
   category {
     title
     slug {

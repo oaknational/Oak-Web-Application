@@ -10,6 +10,12 @@ const testBlog: BlogPost = {
   date: new Date("2025-01-01"),
   slug: "a-blog",
   author: { id: "000", name: "Author McAuthorFace" },
+  mainImage: {
+    asset: {
+      _id: "",
+      url: "",
+    },
+  },
   contentPortableText: [],
   category: {
     title: "Lesson Plabning",
@@ -25,6 +31,12 @@ const testBlog2: BlogPost = {
   date: new Date("2022-01-01"),
   slug: "another-blog",
   author: { id: "000", name: "Author McAuthorFace" },
+  mainImage: {
+    asset: {
+      _id: "",
+      url: "",
+    },
+  },
   contentPortableText: [],
   category: {
     title: "Lesson Plabning",

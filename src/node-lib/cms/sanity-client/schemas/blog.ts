@@ -6,6 +6,7 @@ import {
   portableTextSchema,
   dateSchema,
   blogWebinarCategory,
+  imageSchema,
 } from "./base";
 import { teamMemberPreviewSchema } from "./teamMember";
 
@@ -17,6 +18,7 @@ export const blogPostSchema = z
     author: teamMemberPreviewSchema,
     contentPortableText: portableTextSchema,
     category: blogWebinarCategory,
+    mainImage: imageSchema,
   })
   .merge(documentSchema);
 
@@ -30,6 +32,7 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   author: true,
   category: true,
   date: true,
+  mainImage: true,
 });
 
 export type BlogPostPreview = z.infer<typeof blogPostPreviewSchema>;

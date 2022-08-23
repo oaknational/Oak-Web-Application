@@ -61,6 +61,7 @@ const blogToBlogListItem = (blog: BlogPostPreview): BlogListItemProps => ({
   titleTag: "h3",
   category: blog.category.title,
   date: blog.date,
+  mainImage: blog?.mainImage?.asset?.url || "",
 });
 
 export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
