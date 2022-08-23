@@ -17,6 +17,7 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { srOnly } from "../ScreenReaderOnly";
+import ellipsis from "../../styles/ellipsis";
 
 import { Popover } from "./Popover";
 import { ListBox } from "./ListBox";
@@ -55,7 +56,9 @@ const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
-  border: 1px solid;
+  border: solid;
+  border-width: ${(props) =>
+    props.isFocusVisible || props.isOpen ? "2px" : "1px"};
   border-color: ${(props) =>
     props.isFocusVisible
       ? getColorByLocation(({ theme }) => theme.input.states.active.border)
@@ -66,7 +69,10 @@ const selectButtonStyles = css<SelectButtonProps>`
       : getColorByLocation(
           ({ theme }) => theme.input.states.default.background
         )};
-  padding-left: 12px;
+
+  /** padding-left hack to account for border-width change to avoid content shift on select-span */
+  padding-left: ${(props) =>
+    props.isFocusVisible || props.isOpen ? "11px" : "12px"};
   padding-right: 8px;
   display: inline-flex;
   align-items: center;
@@ -95,6 +101,17 @@ const Label = styled.label<{ visuallyHidden: boolean }>`
   font-family: ${getFontFamily("body")};
   font-size: ${(props) => props.theme.input.fontSize};
   ${(props) => props.visuallyHidden && srOnly}
+`;
+
+const SelectInner = styled(Flex)`
+  max-width: calc(100% - 20px);
+`;
+/**
+ * Contains either the selected value or the placeholder if no value is
+ * selected
+ */
+const SelectSpan = styled.span`
+  ${ellipsis}
 `;
 
 export function Select<T extends object>(
@@ -165,14 +182,18 @@ export function Select<T extends object>(
             isFocusVisible={isFocusVisible}
             isPlaceholder={!state.selectedItem}
           >
-            <Flex $alignItems={"center"}>
+            <SelectInner $alignItems={"center"}>
               {props.icon && <Icon $mr={8} name={props.icon}></Icon>}
-              <span data-testid={"select-span"} {...valueProps}>
+              <SelectSpan
+                data-testid={"select-span"}
+                title={props.placeholder}
+                {...valueProps}
+              >
                 {state.selectedItem
                   ? state.selectedItem.rendered
                   : props.placeholder}
-              </span>
-            </Flex>
+              </SelectSpan>
+            </SelectInner>
             <Icon name={"ChevronDown"} />
           </SelectButton>
           {state.isOpen && (

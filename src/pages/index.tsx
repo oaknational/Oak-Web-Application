@@ -74,6 +74,7 @@ const Home: FC = () => {
             >
               <Flex
                 $mr="auto"
+                $pr={[0, 16]}
                 $pb={[32, 0]}
                 $flexDirection={"column"}
                 $justifyContent="flex-end"
@@ -112,7 +113,7 @@ const Home: FC = () => {
                     $top={0}
                     $bottom={0}
                     $left={0}
-                    $right={[56, "50%"]}
+                    $right={[56, "60%", "50%"]}
                     $overflow="hidden"
                   >
                     <Box
@@ -171,8 +172,12 @@ const Home: FC = () => {
                     $overflow="hidden"
                   >
                     <Box
-                      $height={["90%", "100%"]}
-                      $transform={["translate(0,40%)", "translate(-10%,20%)"]}
+                      $height={["90%"]}
+                      $transform={[
+                        "translate(0,40%)",
+                        "translate(-20%,30%)",
+                        "translate(-10%,30%)",
+                      ]}
                     >
                       <Image
                         alt=""
