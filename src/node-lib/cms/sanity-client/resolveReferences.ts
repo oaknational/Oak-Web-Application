@@ -1,82 +1,100 @@
 import gql from "graphql-tag";
-import { update, get, set } from "lodash/fp";
+import { get, set } from "lodash/fp";
 
 import { sanityGraphqlClient } from "../../sanity-graphql";
 
-/**
- * Find the first occurrence of a k/v pair that return true for the
- * `matcher` predicate
- */
-export function getPath(
-  obj: Record<string, unknown>,
-  matcher: any
-): string[] | undefined {
-  for (const key in obj) {
-    if (matcher(key, obj[key])) {
-      return [key];
-    } else if (obj[key] && typeof obj[key] === "object") {
-      const result = getPath(obj[key], matcher);
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !Array.isArray(value) && typeof value === "object" && value !== null;
+}
 
-      if (result) {
-        result.unshift(key);
-        return result;
-      }
+/**
+ * Deeply search an object for each value that matches
+ * the provided predicate, returning the path for each
+ * match as an array
+ *
+ * @example
+ * getAllPaths({foo: [{bar: 'baz'}]}, x => x.bar === 'baz')
+ * // => [['foo', '0', 'bar']]
+ */
+export const getAllPaths = (
+  obj: Record<string, unknown> | Record<string, unknown>[],
+  pred: (v: unknown) => boolean,
+  prev: string[] = []
+): string[][] => {
+  const result = [];
+
+  for (const [key, value] of Object.entries(obj)) {
+    const path = [...prev, key];
+
+    if (pred(value)) {
+      result.push(path);
+    } else if (value && (Array.isArray(value) || isRecord(value))) {
+      result.push(...getAllPaths(value, pred, path));
     }
   }
-}
 
-/**
- * Find all paths to k/v pairs that return true from the `matcher`
- * predicate.
- */
-export function getAllPaths(obj: object, matcher: any, path: string[] = []) {
-  const nextFullPath = getPath(obj, matcher);
+  return result;
+};
 
-  if (!nextFullPath) {
-    return path;
-  }
+const hasType = (data: unknown): data is { _type: string } => {
+  return Boolean(data && typeof data === "object" && "_type" in data);
+};
 
-  const nextPath = nextFullPath;
-  const next = update(nextPath.slice(0, -1), () => null)(obj);
-  return getAllPaths(next, matcher, [...path, nextPath]);
-}
+const isReference = (x: unknown): boolean => {
+  return hasType(x) && x._type === "reference";
+};
 
 /**
  * Given a portable text JSON blob, search for all objects that have
- * `{_type: "reference"}` and replace them with actual content
+ * `{_type: "reference"}` and fetch and replace them with actual content
  */
 export const resolveReferences = async (obj: Record<string, unknown>) => {
-  const matcher = (k: string, v: unknown) => {
-    return v && typeof v === "object" && v?._type === "reference";
-  };
+  /**
+   * Find all paths to embedded references within the portable text, e.g.
+   * [[0, 'image', 'asset'], [5, 'video']]
+   * We hold onto this paths array so we can update them later
+   */
+  const pathsToUpdate = getAllPaths(obj, isReference);
 
-  // Find all paths to embedded references
-  // We hold onto this paths array so we can update them later
-  const pathsToUpdate = getAllPaths(obj, matcher);
-
-  // Grab the actual { _ref }
+  // Grab the actual { _ref } for each of the paths
   const referenceObjects = pathsToUpdate.map((path: string[]) =>
     get(path, obj)
   ) as Array<{ _ref: string }>;
 
   /**
-   * Construct a graphql query where the keys are the indices
-   * are the same as the path they correspond to
+   * Construct a graphql query for each of the referenced documents,
+   * where the keys are the indices of the path they correspond to, e.g.
+   * ```
+   * _0: Document(id: abcdef) {
+   * }
+   * _1: Document(id: ghijkl) {}
+   * ```
    *
    * @TODO: Instead of dynamically constructing the fragments, define a document.gql
    * and call that in batch mode instead?
    * https://github.com/prisma-labs/graphql-request#batching
    */
   const queryList = referenceObjects.map(
-    (refObj, index) => `_${index}: Document(id: "${refObj._ref}") {
+    (
+      refObj,
+      index
+    ) => /* GraphQL */ `_${index}: Document(id: "${refObj._ref}") {
       _id
       _type
+      __typename
       ...on Webinar {
         slug { current }
       }
       ... on SanityImageAsset {
-        _id
         url
+      }
+      ... on Video {
+        video {
+          asset {
+            playbackId
+            assetId
+          }
+        }
       }
     }`
   );
@@ -89,7 +107,10 @@ export const resolveReferences = async (obj: Record<string, unknown>) => {
 
   const queryRes = await sanityGraphqlClient.request(query);
 
-  // Stitch back up our returned data with the original
+  /**
+   * For each of the paths we found earlier, replace the _ref at that
+   * location with the result of the graphql query for it's data
+   */
   const updated = pathsToUpdate.reduce((acc, path, index) => {
     const queryPart = queryRes[`_${index}`];
 
