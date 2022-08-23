@@ -1,3 +1,10 @@
+# [0.74.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.73.0...v0.74.0) (2022-08-23)
+
+
+### Features
+
+* **monitoring:** add configurable ID for Pingdom uptime checks ([d8102a2](https://github.com/oaknational/Oak-Web-Application/commit/d8102a2dffb33e80dae6520ab8fe6651abe50842))
+
 # [0.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.72.1...v0.73.0) (2022-08-23)
 
 
