@@ -48,6 +48,11 @@ class MyDocument extends Document {
           <meta name="release-stage" content={config.get("releaseStage")} />
           <meta name="revised" content={new Date().toUTCString()} />
           <meta name="version" content={config.get("appVersion")} />
+
+          <meta
+            name="pingdom-uptime-check"
+            content={config.get("pingdomUptimeId")}
+          />
         </Head>
         <body>
           <Main />
