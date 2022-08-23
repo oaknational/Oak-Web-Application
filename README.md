@@ -26,6 +26,7 @@ Other documentation can be found in standalone READMEs:
 - Docs
   - [Images](./docs/images)
   - [Testing](./docs/testing.md)
+  - [SEO](./docs/seo.md) Meta tags, JSON-LD, sitemaps, robots.txt etc.
 - [Error Handling](./src/errors)
 - Hasura
   - [Curriculum database](./hasura-curriculum)

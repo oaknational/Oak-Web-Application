@@ -1,3 +1,83 @@
+# [0.76.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.2...v0.76.0) (2022-08-23)
+
+
+### Features
+
+* **cms:** resolve nested references in portable text ([d8e6a81](https://github.com/oaknational/Oak-Web-Application/commit/d8e6a81bd93a0fb13758dffdf4c6b9d4e1396dc4))
+
+## [0.75.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.1...v0.75.2) (2022-08-23)
+
+## [0.75.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.0...v0.75.1) (2022-08-23)
+
+# [0.75.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.74.0...v0.75.0) (2022-08-23)
+
+
+### Features
+
+* contact us page ([00365f0](https://github.com/oaknational/Oak-Web-Application/commit/00365f024e6f2f58df10016bc27c165b2af6693d))
+
+# [0.74.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.73.0...v0.74.0) (2022-08-23)
+
+
+### Features
+
+* **monitoring:** add configurable ID for Pingdom uptime checks ([d8102a2](https://github.com/oaknational/Oak-Web-Application/commit/d8102a2dffb33e80dae6520ab8fe6651abe50842))
+
+# [0.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.72.1...v0.73.0) (2022-08-23)
+
+
+### Features
+
+* adds notification card to home page ([e3e0a90](https://github.com/oaknational/Oak-Web-Application/commit/e3e0a9019d56401f6fe1e0a24f6040d6e944d06a))
+
+## [0.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.72.0...v0.72.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* close menu on page navigation ([31cad11](https://github.com/oaknational/Oak-Web-Application/commit/31cad11750256243b51ef0a71dc58903cff76198))
+* put reference to menu context hooks in provider ([4620688](https://github.com/oaknational/Oak-Web-Application/commit/46206883fb8044717f19bc502e3662ed068ab5b7))
+
+# [0.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.71.1...v0.72.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* serialize policy date to ISO string, render w/ locale ([23fc363](https://github.com/oaknational/Oak-Web-Application/commit/23fc363483bd1169159d665bce9232484a4e9901))
+
+
+### Features
+
+* **cms:** add policyPageBySlug and policyPage methods to CMSClient ([6207cc6](https://github.com/oaknational/Oak-Web-Application/commit/6207cc6e1f071ddc95e8229e0ebe2b3f83ed3805))
+* **cms:** integrate policy pages with CMS ([8e63ea8](https://github.com/oaknational/Oak-Web-Application/commit/8e63ea83334e6a5b66d032828895b398a535e9c7))
+
+# [0.71.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.1...v0.71.0) (2022-08-22)
+
+
+### Features
+
+* **hosting:** add production Firebase site ([ed0c7f3](https://github.com/oaknational/Oak-Web-Application/commit/ed0c7f3d154cff1402c41cb30045ca39a2a5b4f8))
+
+## [0.70.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.70.0...v0.70.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* only optout of hubspot if is loaded ([7cb918b](https://github.com/oaknational/Oak-Web-Application/commit/7cb918b6dc78fd892aea579187395d2f0eab77e8))
+
+# [0.70.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.1...v0.70.0) (2022-08-18)
+
+
+### Bug Fixes
+
+* pass deploymeny URL override to PR builds ([0592048](https://github.com/oaknational/Oak-Web-Application/commit/059204897b54445f9bcdf4db5535d6f7808c6038))
+
+
+### Features
+
+* clean URLs on Firebase ([cc95302](https://github.com/oaknational/Oak-Web-Application/commit/cc953026757be513931727c9ac7dc7c46274e52f))
+* working sitemaps for static site ([222d71a](https://github.com/oaknational/Oak-Web-Application/commit/222d71a94082ed48562628a7f1f1db0338988212))
+
 ## [0.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.69.0...v0.69.1) (2022-08-17)
 
 

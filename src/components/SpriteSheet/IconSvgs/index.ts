@@ -3,6 +3,7 @@ import ArrowLeft from "./ArrowLeft.icon";
 import ArrowRight from "./ArrowRight.icon";
 import ArrowUp from "./ArrowUp.icon";
 import Back10 from "./Back10.icon";
+import Bell from "./Bell.icon";
 import Captions from "./Captions.icon";
 import ChevronDown from "./ChevronDown.icon";
 import ChevronLeft from "./ChevronLeft.icon";
@@ -40,6 +41,7 @@ const iconSvgSymbols = {
   ArrowRight,
   ArrowUp,
   Back10,
+  Bell,
   Captions,
   ChevronDown,
   ChevronLeft,

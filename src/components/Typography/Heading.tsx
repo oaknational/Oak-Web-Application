@@ -43,7 +43,6 @@ export type HeadingProps = Omit<TypographyProps, "fontSize"> &
   } & MarginProps;
 
 const Heading = styled(HeadingTagComponent)<HeadingProps>`
-  ${headingDefaults}
   ${margin}
   ${typography}
   ${color}

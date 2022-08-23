@@ -11,9 +11,12 @@ import {
 import {
   blogPostPreviewSchema,
   blogPostSchema,
+  policyPagePreviewSchema,
+  policyPageSchema,
   webinarPreviewSchema,
   webinarSchema,
 } from "./schemas";
+import { resolveReferences } from "./resolveReferences";
 
 const getSanityClient: CMSClient = () => ({
   webinars: async ({ previewMode, ...params } = {}) => {
@@ -52,7 +55,16 @@ const getSanityClient: CMSClient = () => ({
     });
     const blogPost = blogPostResult.allNewsPost[0];
 
-    return blogPostSchema.parse(blogPost);
+    const contentWithReferences = await resolveReferences(
+      blogPost?.contentPortableText
+    );
+
+    const blogWithResolvedRefs = {
+      ...blogPost,
+      contentPortableText: contentWithReferences,
+    };
+
+    return blogPostSchema.parse(blogWithResolvedRefs);
   },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
@@ -80,6 +92,25 @@ const getSanityClient: CMSClient = () => ({
     const curriculumPageData = result.allCurriculumCorePage[0];
 
     return curriculumPageSchema.parse(curriculumPageData);
+  },
+  policyPages: async ({ previewMode, ...params } = {}) => {
+    const policyPageListSchema = z.array(policyPagePreviewSchema);
+    const policyPageResults = await sanityGraphqlApi.allPolicyPages({
+      isDraft: previewMode === true,
+      ...params,
+    });
+
+    return policyPageListSchema.parse(policyPageResults.allPolicyPage);
+  },
+  policyPageBySlug: async (slug, { previewMode, ...params } = {}) => {
+    const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
+      isDraft: previewMode === true,
+      ...params,
+      slug,
+    });
+    const webinar = policyPageResult.allPolicyPage[0];
+
+    return policyPageSchema.parse(webinar);
   },
 });
 

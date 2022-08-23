@@ -1,3 +1,5 @@
+const { appendFileSync } = require("node:fs");
+
 const { PHASE_TEST } = require("next/constants");
 
 const {
@@ -58,7 +60,7 @@ module.exports = async (phase) => {
     process.env.STATIC_BUILD_ALLOWED === "on";
   // Is a static build with beta pages deleted.
   const isStaticWWWBuild =
-    isStaticBuild && cloudbuildTriggerName.startsWith("OWA-WWW");
+    isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -83,6 +85,8 @@ module.exports = async (phase) => {
     typescript: {
       ignoreBuildErrors: isStaticWWWBuild,
     },
+    // Need this so static URLs and dynamic URLs match.
+    trailingSlash: false,
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
@@ -134,7 +138,19 @@ module.exports = async (phase) => {
         oakConfig.hubspot.scriptDomain,
 
       // Oak
-      NEXT_PUBLIC_CLIENT_APP_BASE_URL: oakConfig.oak.appBaseUrl,
+      // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
+      NEXT_PUBLIC_CLIENT_APP_BASE_URL:
+        // Fixed URL defined in the Cloudbuild trigger UI.
+        process.env.CLOUDBUILD_DEPLOYMENT_BASE_URL ||
+        // Note this is the default Vercel URL (something.vercel.app), not the alternative preview or production one.
+        // The preview ones on a thenational.academy domain we could construct, if we wanted to use Vercel for
+        // production we'd need to set an env, same as for Cloudbuild.
+        process.env.VERCEL_URL ||
+        // Netlify https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
+        // Should default to custom domain if one is set.
+        process.env.URL ||
+        // Default to value in config, currently localhost:3000
+        oakConfig.oak.appBaseUrl,
       NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
 
       // Posthog
@@ -161,10 +177,25 @@ module.exports = async (phase) => {
     },
   };
 
-  // DEBUG
-  // @todo this reveals all keys and secrets, so we should remove this before merging
-  // in feat/config branch
-  // console.log("Next config", nextConfig);
+  // Stick the deployment URL in an env so the site map generation can use it.
+  try {
+    let baseUrl = nextConfig.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
+    if (!baseUrl) {
+      throw new TypeError(
+        `Could not determine NEXT_PUBLIC_CLIENT_APP_BASE_URL for sitemap generation.`
+      );
+    }
+    // Not all services prepend the protocol.
+    if (!baseUrl.startsWith("http")) {
+      baseUrl = `https://${baseUrl}`;
+    }
+    const baseUrlEnv = `SITEMAP_BASE_URL=${baseUrl}`;
+    appendFileSync(".env", `\n${baseUrlEnv}`);
+    console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
+  } catch (err) {
+    console.error("Could not write SITEMAP_BASE_URL to env file");
+    throw err;
+  }
 
   return nextConfig;
 };

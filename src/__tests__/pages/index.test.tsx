@@ -8,8 +8,8 @@ describe("pages/index.tsx", () => {
     renderWithProviders(<Home />);
 
     await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Oak Is Changing..."
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+        "Oak"
       );
     });
   });

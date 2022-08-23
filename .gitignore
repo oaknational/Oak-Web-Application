@@ -60,3 +60,7 @@ firebase-debug.log
 
 # asdf version manager
 .tool-versions
+
+# built files to igore
+public/robots.txt
+public/sitemap*.xml

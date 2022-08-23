@@ -13,8 +13,8 @@ type SummaryCardProps = {
   title: string;
   heading: string;
   summary: PortableTextSpan | string;
-  background: OakColorName;
-  image?: CardImageProps;
+  background?: OakColorName;
+  cardImageProps?: CardImageProps;
 };
 
 /**
@@ -28,25 +28,26 @@ const SummaryCard: FC<SummaryCardProps> = ({
   title,
   heading,
   summary,
-  image,
   background,
-  children,
+  cardImageProps,
 }) => {
   return (
     <Card
+      $pa={0}
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
+      $width="100%"
+      $pv={[24]}
       $ph={[16, 24]}
-      $pv={24}
     >
-      <Flex $flexDirection={"column"} $pv={[0, 32]}>
+      <Flex $flexDirection={"column"} $maxWidth={cardImageProps ? null : 720}>
         <Heading
           $mb={8}
           tag={"h1"}
           $fontSize={20}
           $color={"oakGrey4"}
-          $fontFamily="headingLight"
+          $fontFamily="heading"
         >
           {title}
         </Heading>
@@ -62,18 +63,26 @@ const SummaryCard: FC<SummaryCardProps> = ({
         </Typography>
         {children}
       </Flex>
-      {image && (
+      {cardImageProps && (
         <Flex
           $ml={[0, 40, 120]}
           $minWidth={240}
           $display={["none", "flex"]}
           $alignItems="center"
         >
-          <CardImage {...image} position={"center right"} aspectRatio="1:1" />
+          <CardImage
+            position={"center right"}
+            aspectRatio="1:1"
+            {...cardImageProps}
+          />
         </Flex>
       )}
     </Card>
   );
+};
+
+SummaryCard.defaultProps = {
+  background: "teachersPastelYellow",
 };
 
 export default SummaryCard;

@@ -160,11 +160,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           title={pageData.title}
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
-          image={{
+          cardImageProps={{
             imageSrc: "/images/illustrations/planning.svg",
             alt: "planning illustration",
           }}
-          background="teachersPastelYellow"
         />
         {/* Elements of lesson cards */}
         <section>

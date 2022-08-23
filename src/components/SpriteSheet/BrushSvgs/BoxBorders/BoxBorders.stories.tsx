@@ -23,4 +23,4 @@ const Template: ComponentStory<typeof Component> = () => (
   </Card>
 );
 
-export const BrushBorders = Template.bind({});
+export const BoxBorders = Template.bind({});

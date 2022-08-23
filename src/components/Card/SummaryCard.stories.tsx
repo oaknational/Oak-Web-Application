@@ -16,10 +16,10 @@ export const SummaryCard = Template.bind({});
 
 SummaryCard.args = {
   title: "Title",
-  image: {
+  summary: "A summary section.......",
+  background: "grey7",
+  cardImageProps: {
     imageSrc: "/images/illustrations/planning.svg",
     alt: "planning",
   },
-  background: "grey7",
-  summary: "A summary section.......",
 };
