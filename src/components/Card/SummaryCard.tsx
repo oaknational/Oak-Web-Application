@@ -62,16 +62,16 @@ const SummaryCard: FC<SummaryCardProps> = ({
         </Typography>
         {children}
       </Flex>
-      <Flex
-        $ml={[0, 40, 120]}
-        $minWidth={240}
-        $display={["none", "flex"]}
-        $alignItems="center"
-      >
-        {image && (
+      {image && (
+        <Flex
+          $ml={[0, 40, 120]}
+          $minWidth={240}
+          $display={["none", "flex"]}
+          $alignItems="center"
+        >
           <CardImage {...image} position={"center right"} aspectRatio="1:1" />
-        )}
-      </Flex>
+        </Flex>
+      )}
     </Card>
   );
 };

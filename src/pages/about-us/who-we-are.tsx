@@ -17,6 +17,7 @@ import OutlineHeading from "../../components/OutlineHeading";
 import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
+import aboutNavLinks from "../../browser-lib/fixtures/aboutNav";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -80,16 +81,15 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantaged gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum"
           }
           background={"teachersPastelYellow"}
+          image={{
+            imageSrc: "/images/illustrations/who-we-are.svg",
+            alt: "who we are illustration",
+          }}
         >
           <ButtonLinkNav
             $mt={36}
-            buttons={[
-              { label: "who we are", href: "/", selected: true },
-              { label: "leadership", href: "/", selected: false },
-              { label: "board", href: "/", selected: false },
-              { label: "partners", href: "/", selected: false },
-              { label: "work with us", href: "/", selected: false },
-            ]}
+            buttons={aboutNavLinks}
+            selected={"who we are"}
           />
         </SummaryCard>
         <Flex $mt={92} $mb={[92, 32]} $background="twilight">
