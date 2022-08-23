@@ -18,6 +18,9 @@ query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
     slug {
       current
     }
+    mainImage {
+      ...Image
+    }
     category {
       title
       slug {
