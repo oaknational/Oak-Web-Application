@@ -1,6 +1,5 @@
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
-import { Fragment } from "react";
 
 import CMSClient, { AboutPage } from "../../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
@@ -17,6 +16,7 @@ import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
 import aboutNavLinks from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
+import AvatarCard from "../../components/Card/AvatarCard";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -51,9 +51,35 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           bodyPortableText={pageData.board.introPortableText}
         />
 
-        <Heading $mb={[0, 32]} $fontSize={[20, 24]} tag={"h3"}>
+        <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h3"}>
           {pageData.board.sectionHeading}
         </Heading>
+        <Grid $mb={[80, 92]} $rg={[16, 32]} $cg={16}>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+          <GridArea $colSpan={[12, 3]}>
+            <AvatarCard />
+          </GridArea>
+        </Grid>
 
         <Flex $width={"100%"} $justifyContent={"flex-start"}>
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
@@ -61,36 +87,35 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           </Heading>
         </Flex>
         <Hr></Hr>
-        <Grid $cg={20}>
+        <Grid $mb={[80, 92]} $cg={20}>
           {pageData.board.documents.map((doc) => (
-            <Fragment key={doc.title}>
-              <GridArea $colSpan={[6, 2]}>
-                <Card $height={220} $pa={16}>
-                  <BoxBorders />
-                  <Flex
-                    $justifyContent={"space-between"}
-                    $height={"100%"}
-                    $flexDirection={"column"}
-                  >
-                    <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
-                      {doc.title}
-                    </Heading>
+            <GridArea key={doc.title} $colSpan={[6, 2]}>
+              <Card $height={220} $pa={16}>
+                <BoxBorders />
+                <Flex
+                  $justifyContent={"space-between"}
+                  $height={"100%"}
+                  $flexDirection={"column"}
+                >
+                  <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
+                    {doc.title}
+                  </Heading>
 
-                    <Flex>
-                      <P>{`${doc.file.asset.size}mb ${doc.file.asset.extension}`}</P>
-                      <IconButtonAsLink
-                        icon={"ArrowDown"}
-                        aria-label={""}
-                        href={`${doc.file.asset.url}?dl`}
-                      />
-                    </Flex>
+                  <Flex>
+                    <P>{`${doc.file.asset.size}mb ${doc.file.asset.extension}`}</P>
+                    <IconButtonAsLink
+                      icon={"Download"}
+                      aria-label={""}
+                      href={`${doc.file.asset.url}?dl`}
+                      background={"teachersHighlight"}
+                    />
                   </Flex>
-                </Card>
-              </GridArea>
-            </Fragment>
+                </Flex>
+              </Card>
+            </GridArea>
           ))}
         </Grid>
-        <Card $ph={[0, 80]} $width={["100%", "75%"]}>
+        <Card $mb={[80, 92]} $ph={[0, 80]} $width={["100%", "75%"]}>
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
             Governance
           </Heading>
