@@ -80,8 +80,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             <AvatarCard />
           </GridArea>
         </Grid>
-
-        <Flex $width={"100%"} $justifyContent={"flex-start"}>
+        <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
             Documents
           </Heading>
@@ -101,8 +100,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                     {doc.title}
                   </Heading>
 
-                  <Flex>
-                    <P>{`${doc.file.asset.size}mb ${doc.file.asset.extension}`}</P>
+                  <Flex
+                    $alignItems={"center"}
+                    $justifyContent={"space-between"}
+                  >
+                    <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(1)}mb ${
+                      doc.file.asset.extension
+                    }`}</P>
                     <IconButtonAsLink
                       icon={"Download"}
                       aria-label={""}
@@ -119,6 +123,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
             Governance
           </Heading>
+
           <Typography $fontSize={[18, 16]}>
             <PortableText value={pageData.board.governancePortableText} />
           </Typography>
