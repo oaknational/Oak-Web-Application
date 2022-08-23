@@ -101,12 +101,12 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $pr={[0, 72]}
               $minWidth={["50%"]}
             >
-              {pageData.whoWeAre.intro.video && (
+              {pageData.whoWeAre.intro.mediaType == "video" && (
                 <VideoPlayer
                   playbackId={
-                    pageData.whoWeAre.intro.video?.video.asset.playbackId
+                    pageData.whoWeAre.intro.video.video.asset.playbackId
                   }
-                  title={pageData.whoWeAre.intro.video?.title}
+                  title={pageData.whoWeAre.intro.video.title}
                 />
               )}
             </Flex>

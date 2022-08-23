@@ -87,7 +87,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           }}
           bodyPortableText={pageData.workWithUs.introPortableText}
         />
-        <Grid $mb={[80, 92]} $cg={28} $rg={[0, 40]}>
+        <Grid $mb={[72, 92]} $cg={28} $rg={[0, 40]}>
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
               <GridArea $colSpan={[12, 6]}>
@@ -103,12 +103,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                   <Typography $mb={32} $fontSize={[16, 18]}>
                     <PortableText value={card.bodyPortableText} />
                   </Typography>
-                  {card.cta && (
+                  {card.cta?.linkType == "external" && (
                     <Flex>
                       <ButtonAsLink
                         background="teachersHighlight"
                         label={card.cta.label}
-                        href={"/"}
+                        href={card.cta.external}
                         icon={"External"}
                       >
                         {card.cta.label}

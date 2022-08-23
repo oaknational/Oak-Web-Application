@@ -16,6 +16,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
 import aboutNavLinks from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
+import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -74,18 +75,14 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                     <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
                       {doc.title}
                     </Heading>
+
                     <Flex>
                       <P>{`${doc.file.asset.size}mb ${doc.file.asset.extension}`}</P>
-                      {/* <IconButton
+                      <IconButtonAsLink
                         icon={"ArrowDown"}
                         aria-label={""}
-                        onClick={function (
-                          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                          _event: MouseEvent<HTMLButtonElement, MouseEvent>
-                        ): void {
-                          throw new Error("Function not implemented.");
-                        }}
-                      /> */}
+                        href={`${doc.file.asset.url}?dl`}
+                      />
                     </Flex>
                   </Flex>
                 </Card>
