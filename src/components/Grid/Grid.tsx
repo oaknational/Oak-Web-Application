@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 import { NullablePixelSpacing, PixelSpacing } from "../../styles/theme";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import Box, { BoxProps } from "../Box";
 
 type GridGapProps = {
   $rg?: ResponsiveValues<PixelSpacing>;
@@ -23,12 +23,11 @@ const gridGap = css<GridGapProps>`
   ${responsive("grid-column-gap", (props) => props.$cg, parse)}
 `;
 
-const Grid = styled.div<GridGapProps & SpacingProps>`
+const Grid = styled(Box)<GridGapProps & BoxProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
   ${gridGap}
-  ${spacing}
 `;
 
 export default Grid;

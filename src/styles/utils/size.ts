@@ -1,10 +1,10 @@
 import { css } from "styled-components";
 
-import { NullablePixelSpacing } from "../theme/types";
+import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SizeValue = "40%" | "50%" | "100%" | "auto" | NullablePixelSpacing;
+type SizeValue = PercentSpacing | "auto" | NullablePixelSpacing;
 export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {
