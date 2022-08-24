@@ -1,3 +1,11 @@
+## [0.78.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.78.0...v0.78.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* **performance:** summary image loading should be prioritised, converts large svg to png ([a4ce845](https://github.com/oaknational/Oak-Web-Application/commit/a4ce8450a5c1d010e0fc5f86c39dd6c8cb567806))
+* replace planning png with larger version ([0e27647](https://github.com/oaknational/Oak-Web-Application/commit/0e2764714318b181f6352fbbf344c201db697093))
+
 # [0.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.77.0...v0.78.0) (2022-08-24)
 
 
