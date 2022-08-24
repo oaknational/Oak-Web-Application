@@ -1,29 +1,25 @@
 import { FC } from "react";
 import Link from "next/link";
-import styled, { useTheme } from "styled-components";
+import { useTheme } from "styled-components";
 
 import Flex from "../Flex";
-import P, { Heading } from "../Typography";
+import P from "../Typography";
 import FixedHeader from "../FixedHeader";
 import { Menu } from "../Menu";
 import Logo from "../Logo";
+import MenuLinks from "../MenuLinks";
 import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
-import Icon from "../Icon";
-
-const Home = styled(Heading)`
-  opacity: 0.6;
-  text-decoration: underline;
-`;
-
-const LocationIcon = styled(Icon)`
-  opacity: 0.6;
-`;
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
 
   const { toggleMenu } = useMenuContext();
+  const menuLinks = [
+    { href: "link-a", linkText: "a" },
+    { href: "link-b", linkText: "b" },
+    { href: "link-c", linkText: "c" },
+  ];
 
   return (
     <FixedHeader $background={theme.header.background}>
@@ -52,75 +48,7 @@ const SiteHeader: FC = () => {
         }}
       />
       <Menu>
-        {/* TODO:
-         * move menu contents into new component using fixture
-         * add urls for new pages
-         * add moving arrow
-         */}
-        <Flex $alignItems={"center"}>
-          <LocationIcon variant="minimal" name="ArrowRight" size={[48]} />
-          <Home tag={"h2"} $fontSize={[32]} $color={"black"}>
-            <Link href={"/"}>Home</Link>
-          </Home>
-        </Flex>
-        <ul role="list">
-          <li>
-            <P $fontFamily={"heading"} $fontSize={[32]} $mt={[20]}>
-              <Link href={"https://teachers.thenational.academy/"}>
-                Teacher Hub
-              </Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"heading"} $fontSize={[32]} $mt={[16]}>
-              <Link href={"https://classroom.thenational.academy/"}>
-                Classroom
-              </Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"heading"} $fontSize={[24]} $mt={[32]}>
-              <Link href={"/develop-your-curriculum"}>
-                Develop Your Curriculum
-              </Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"heading"} $fontSize={[24]} $mt={[12]}>
-              <Link href={"/support-your-team"}>Support Your Team</Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"heading"} $fontSize={[24]} $mt={[12]}>
-              <Link href={"/lesson-planning"}>Plan a lesson</Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"ui"} $fontSize={[16]} $mt={[32]}>
-              <Link href={"/blog"}>Blogs</Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/webinars"}>Webinars</Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/about-us/who-we-are"}>About us</Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"/contact-us"}>Contact us</Link>
-            </P>
-          </li>
-          <li>
-            <P $fontFamily={"ui"} $fontSize={[16]} $mt={[8]}>
-              <Link href={"https://support.thenational.academy/"}>Help</Link>
-            </P>
-          </li>
-        </ul>
+        <MenuLinks menuLinks={menuLinks} />
       </Menu>
     </FixedHeader>
   );
