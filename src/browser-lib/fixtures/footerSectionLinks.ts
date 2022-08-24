@@ -44,15 +44,14 @@ const footerSections: FooterSection[] = [
   {
     title: "Legal",
     links: [
-      { text: "Privacy Policy", href: "/legal/privacy-policy" },
-      { text: "Cookie Policy", href: "/legal/cookie-policy" },
-      { text: "Change Cookie Setting", href: "/legal/change-cookie-setting" },
-      { text: "Copyright Notice", href: "/legal/copyright-notice" },
-      { text: "Terms & Conditions", href: "/legal/terms-and-conditions" },
-      { text: "Accessibilty Statement", href: "/legal/accessibilty-statement" },
-      { text: "Safeguarding Statement", href: "/legal/safeguarding-statement" },
+      { text: "Privacy policy", href: "/legal/privacy-policy" },
+      { text: "Cookie policy", href: "/legal/cookie-policy" },
+      { text: "Copyright notice", href: "/legal/copyright-notice" },
+      { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
+      { text: "Accessibilty statement", href: "/legal/accessibilty-statement" },
+      { text: "Safeguarding statement", href: "/legal/safeguarding-statement" },
       {
-        text: "Physical Activity Disclaimer",
+        text: "Physical activity disclaimer",
         href: "/legal/physical-activity-disclaimer",
       },
       { text: "Complaints", href: "legal/complaints" },
