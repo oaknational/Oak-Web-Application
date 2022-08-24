@@ -67,7 +67,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     }));
   });
 
-  describe.skip("BlogDetailPage", () => {
+  describe("BlogDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
         <BlogDetailPage blog={testSerializedBlog} isPreviewMode={false} />
