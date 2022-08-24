@@ -54,7 +54,7 @@ describe("MenuLinks", () => {
       },
     ];
 
-    const { getByText } = renderWithProviders(
+    const { getByText, container } = renderWithProviders(
       <MenuLinks menuLinks={menuLinks} currentPath={"/blog"} />
     );
     const blogsLink = getByText("Blogs");
@@ -64,5 +64,8 @@ describe("MenuLinks", () => {
 
     expect(arrowIcon).toBeInTheDocument();
     expect(arrowIcon?.nodeName).toBe("svg");
+
+    const allSvgs = container.getElementsByTagName("svg");
+    expect(allSvgs.length).toBe(1);
   });
 });
