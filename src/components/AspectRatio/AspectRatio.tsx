@@ -38,6 +38,7 @@ type AspectRatioProps = {
  *
  * ## Usage
  * Use this component when you want to ensure a box has a certain aspect ratio.
+ * Wrap with component with position: relative and a width or min-width
  * The 'ratio' prop is repsonsive, so you can pass an array e.g. ["3:2", "16:9"]
  * which will result in different aspect ratios on different screen widths.
  * For an example usage, see the CardImage component.
