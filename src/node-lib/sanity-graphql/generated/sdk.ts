@@ -343,7 +343,7 @@ export type Block = {
   style?: Maybe<Scalars['String']>;
 };
 
-export type BlockOrImageOrQuoteOrTextAndMedia = Block | Image | Quote | TextAndMedia;
+export type BlockOrImageOrQuoteOrTextAndMediaOrVideo = Block | Image | Quote | TextAndMedia | Video;
 
 export type BlogWebinarCategory = Document & {
   __typename?: 'BlogWebinarCategory';
@@ -921,6 +921,7 @@ export type NewsPost = Document & {
   /** Shown on listing pages and used as the default for SEO if not overridden */
   summary?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  video?: Maybe<Video>;
 };
 
 export type NewsPostFilter = {
@@ -940,6 +941,7 @@ export type NewsPostFilter = {
   slug?: InputMaybe<SlugFilter>;
   summary?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
+  video?: InputMaybe<VideoFilter>;
 };
 
 export type NewsPostOrPlanningCorePageOrPolicyPageOrWebinar = NewsPost | PlanningCorePage | PolicyPage | Webinar;
