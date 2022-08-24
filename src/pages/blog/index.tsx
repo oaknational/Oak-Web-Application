@@ -47,7 +47,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
               title={"Stay up to date!"}
               items={blogs}
               titleTag={"h2"}
-              withImage
             />
           </GridArea>
         </Grid>

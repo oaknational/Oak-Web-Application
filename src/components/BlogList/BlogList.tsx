@@ -7,7 +7,7 @@ import { HeadingTag } from "../Typography/Heading";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
-const PageSize = 4;
+const PAGE_SIZE = 4;
 
 export type BlogListProps = {
   title: string;
@@ -25,8 +25,8 @@ const BlogList: FC<BlogListProps> = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentTableData: Array<BlogListItemProps> = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
+    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+    const lastPageIndex = firstPageIndex + PAGE_SIZE;
     return items.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, items]);
 
@@ -41,7 +41,7 @@ const BlogList: FC<BlogListProps> = (props) => {
         <Pagination
           currentPage={currentPage}
           totalCount={items.length}
-          pageSize={PageSize}
+          pageSize={PAGE_SIZE}
           onPageChange={(page) => setCurrentPage(page)}
         />
       </Box>
