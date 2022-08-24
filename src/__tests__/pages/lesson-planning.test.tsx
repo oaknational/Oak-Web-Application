@@ -49,7 +49,11 @@ const testPlanningPageData: PlanningPage = {
 describe("pages/lesson-planning.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
-      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
+      <PlanALesson
+        renderPlayer={false}
+        pageData={testPlanningPageData}
+        isPreviewMode={false}
+      />
     );
 
     await waitFor(() => {

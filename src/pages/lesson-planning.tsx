@@ -21,10 +21,12 @@ import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
+import VideoPlayer from "../components/VideoPlayer";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
   isPreviewMode: boolean;
+  renderPlayer: boolean;
 };
 
 const lessonElementIds = {
@@ -148,6 +150,7 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 const PlanALesson: NextPage<PlanALessonProps> = ({
   pageData,
   isPreviewMode,
+  renderPlayer,
 }) => {
   return (
     <Layout
@@ -160,6 +163,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           title={pageData.title}
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
+          imageMinWidth={140}
           cardImageProps={{
             imageSrc: "/images/illustrations/planning.svg",
             alt: "planning illustration",
@@ -219,29 +223,41 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
             )}
             <GridArea $colSpan={[12, 6]}>
               <Card
-                $justifyContent={"space-between"}
-                $background={"pastelTurqoise"}
+                $position="relative"
+                $width={["100%", "auto"]}
+                $minWidth={"50%"}
+                $height={[360, 240]}
+                $background="pastelTurqoise"
+                $justifyContent={"flex-end"}
+                $alignItems={["center", "center", "flex-end"]}
+                $pr={[0, 24]}
+                $pb={24}
                 $pa={0}
               >
-                <Flex>
+                <Cover
+                  $right={[0, 0, "50%"]}
+                  $left={[0, 0, 32]}
+                  $top={48}
+                  $bottom={[92, 92, 20]}
+                >
                   <Image
-                    width={300}
-                    height={200}
-                    alt={""}
-                    src={"/images/illustrations/classroom.svg"}
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="center bottom"
+                    alt=""
+                    src={"/images/illustrations/teacher-carrying-stuff.png"}
                   />
-                </Flex>
-                <Flex $justifyContent={"flex-end"}>
-                  <ButtonAsLink
-                    $ma={32}
-                    icon="Search"
-                    label={pageData.lessonElementsCTA.label}
-                    href={"https://teachers.thenational.academy/"}
-                    htmlAnchorProps={{
-                      target: "_blank",
-                    }}
-                  />
-                </Flex>
+                </Cover>
+
+                <ButtonAsLink
+                  icon="Search"
+                  iconPosition="trailing"
+                  label={pageData.lessonElementsCTA.label}
+                  href={"https://teachers.thenational.academy/"}
+                  htmlAnchorProps={{
+                    target: "_blank",
+                  }}
+                />
               </Card>
             </GridArea>
           </Grid>
@@ -305,8 +321,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                         {withSearchCTA && (
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
+                              icon="Search"
+                              iconPosition="trailing"
                               $mt={24}
-                              label={"search our lessons"}
+                              label={"Search our lessons"}
                               href={"https://teachers.thenational.academy/"}
                               htmlAnchorProps={{
                                 target: "_blank",
@@ -337,7 +355,23 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
-                Video placeholder
+                <Flex
+                  $justifyContent={"center"}
+                  $alignItems={"center"}
+                  $pb={[24, 0]}
+                  $pr={[0, 72]}
+                  $minWidth={["50%"]}
+                >
+                  {pageData.learnMoreBlock1.mediaType == "video" &&
+                    renderPlayer && (
+                      <VideoPlayer
+                        playbackId={
+                          pageData.learnMoreBlock1.video.video.asset.playbackId
+                        }
+                        title={pageData.learnMoreBlock1.video.title}
+                      />
+                    )}
+                </Flex>
               </Box>
               <Box $minWidth={["50%"]}>
                 <Box $display={["none", "block"]}>
@@ -368,7 +402,59 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 />
               </Typography>
             </Box>
-            <Flex
+            <Card
+              $position="relative"
+              $width={["100%", "auto"]}
+              $minWidth={"50%"}
+              $height={[360, 240]}
+              $background="pastelTurqoise"
+              $justifyContent={"flex-end"}
+              $alignItems={["center", "center", "flex-end"]}
+              $pr={[0, 24]}
+              $pb={24}
+              $pa={0}
+            >
+              <Cover
+                $right={[0, 0, "50%"]}
+                $left={[0, 0, 16]}
+                $top={16}
+                $bottom={[92, 92, 20]}
+              >
+                <Image
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="center bottom"
+                  alt=""
+                  src={"/images/illustrations/teacher-carrying-stuff.png"}
+                />
+              </Cover>
+
+              <ButtonAsLink
+                icon="Search"
+                iconPosition="trailing"
+                label={pageData.lessonElementsCTA.label}
+                href={"https://teachers.thenational.academy/"}
+                htmlAnchorProps={{
+                  target: "_blank",
+                }}
+              />
+            </Card>
+            {/* <Flex               $width={["100%", "auto"]}
+              $minWidth={"50%"}
+              $height={[360, 240]}
+              $background="pastelTurqoise"
+              $justifyContent={["center", "flex-end"]}
+              $alignItems={["flex-end"]}
+              $pr={[0, 24]}
+              $pb={24} $pl={[0, 32]} $pb={[0, 32]} $pt={32}>
+                  <Image
+                    width={270}
+                    height={290}
+                    alt={""}
+                    src={"/images/illustrations/teacher-carrying-stuff.png"}
+                  />
+                </Flex> */}
+            {/* <Flex
               $position="relative"
               $width={["100%", "auto"]}
               $minWidth={"50%"}
@@ -385,7 +471,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   objectFit="contain"
                   objectPosition="left bottom"
                   alt=""
-                  src={"/images/illustrations/classroom.svg"}
+                  src={"/images/illustrations/teacher-carrying-stuff.png"}
                 />
               </Cover>
               <ButtonAsLink
@@ -396,7 +482,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   target: "_blank",
                 }}
               />
-            </Flex>
+            </Flex> */}
           </Card>
         </MaxWidth>
       </section>
@@ -417,6 +503,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     props: {
       pageData: planningPage,
       isPreviewMode,
+      renderPlayer: true,
     },
     revalidate: 10,
   };
