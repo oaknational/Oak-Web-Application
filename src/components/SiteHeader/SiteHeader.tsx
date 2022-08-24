@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { useTheme } from "styled-components";
+import { useRouter } from "next/router";
 
 import Flex from "../Flex";
 import P from "../Typography";
@@ -10,15 +11,78 @@ import Logo from "../Logo";
 import MenuLinks from "../MenuLinks";
 import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
+import { MenuListElementProps } from "../MenuLinks/types";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
 
   const { toggleMenu } = useMenuContext();
-  const menuLinks = [
-    { href: "link-a", linkText: "a" },
-    { href: "link-b", linkText: "b" },
-    { href: "link-c", linkText: "c" },
+  const { pathname } = useRouter();
+
+  const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
+    {
+      href: "https://teachers.thenational.academy",
+      linkText: "Teacher hub",
+      fontFamily: "heading",
+      fontSize: [32],
+      $mt: [20],
+    },
+    {
+      href: "https://classroom.thenational.academy/",
+      linkText: "Classroom",
+      fontSize: [32],
+      fontFamily: "heading",
+      $mt: [16],
+    },
+    {
+      href: "/develop-your-curriculum",
+      linkText: "Develop Your Curriculum",
+      fontSize: [24],
+      fontFamily: "heading",
+      $mt: [32],
+    },
+    {
+      href: "/support-your-team",
+      linkText: "Support Your Team",
+      fontSize: [24],
+      fontFamily: "heading",
+      $mt: [12],
+    },
+    {
+      href: "/lesson-planning",
+      linkText: "Plan a Lesson",
+      fontSize: [24],
+      fontFamily: "heading",
+      $mt: [12],
+    },
+    {
+      href: "/blog",
+      linkText: "Blogs",
+      fontSize: [16],
+      fontFamily: "ui",
+      $mt: [32],
+    },
+    {
+      href: "/webinars",
+      linkText: "Webinars",
+      fontSize: [16],
+      fontFamily: "ui",
+      $mt: [8],
+    },
+    {
+      href: "/about-us/who-we-are",
+      linkText: "About us",
+      fontSize: [16],
+      fontFamily: "ui",
+      $mt: [8],
+    },
+    {
+      href: "https://support.thenational.academy",
+      linkText: "Help",
+      fontSize: [16],
+      fontFamily: "ui",
+      $mt: [8],
+    },
   ];
 
   return (
@@ -48,7 +112,7 @@ const SiteHeader: FC = () => {
         }}
       />
       <Menu>
-        <MenuLinks menuLinks={menuLinks} />
+        <MenuLinks menuLinks={menuLinks} currentPath={pathname} />
       </Menu>
     </FixedHeader>
   );

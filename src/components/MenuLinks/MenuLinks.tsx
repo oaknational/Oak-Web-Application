@@ -6,6 +6,8 @@ import P, { Heading } from "../Typography";
 import Flex from "../Flex";
 import Icon from "../Icon";
 
+import { MenuLinkProps, MenuListElementProps } from "./types";
+
 const Home = styled(Heading)`
   opacity: 0.6;
   text-decoration: underline;
@@ -15,42 +17,43 @@ const LocationIcon = styled(Icon)`
   opacity: 0.6;
 `;
 
-type MenuListElementProps = {
-  fontFamily?: string;
-  fontSize?: string;
-  href: string;
-  linkText: string;
-};
-
-type MenuLinkProps = {
-  menuLinks: MenuListElementProps[];
-};
-
 const MenuListElement: FC<MenuListElementProps> = (props) => {
-  const { href, linkText } = props;
+  const { href, linkText, fontFamily, fontSize, $mt, currentPath } = props;
   return (
     <li>
-      <P $fontFamily={"heading"} $fontSize={[32]} $mt={[20]}>
-        <Link href={href}>{linkText}</Link>
-      </P>
+      <Flex $alignItems={"center"}>
+        {renderLocationIcon({ currentPath, href })}
+        <P $fontFamily={fontFamily} $fontSize={fontSize} $mt={$mt}>
+          <Link href={href}>{linkText}</Link>
+        </P>
+      </Flex>
     </li>
   );
 };
 
+const renderLocationIcon = ({
+  href,
+  currentPath,
+}: Pick<MenuListElementProps, "href" | "currentPath">) => {
+  return currentPath === href ? (
+    <LocationIcon variant="minimal" name="ArrowRight" size={[48]} />
+  ) : null;
+};
+
 const MenuLinks: FC<MenuLinkProps> = (props) => {
-  const { menuLinks } = props;
+  const { menuLinks, currentPath } = props;
 
   return (
     <>
       <Flex $alignItems={"center"}>
-        <LocationIcon variant="minimal" name="ArrowRight" size={[48]} />
+        {renderLocationIcon({ currentPath, href: "/" })}
         <Home tag={"h2"} $fontSize={[32]} $color={"black"}>
           <Link href={"/"}>Home</Link>
         </Home>
       </Flex>
       <ul role="list">
         {menuLinks.map((link) => (
-          <MenuListElement {...link} />
+          <MenuListElement {...link} currentPath={currentPath} />
         ))}
       </ul>
     </>
