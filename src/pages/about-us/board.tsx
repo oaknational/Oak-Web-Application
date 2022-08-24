@@ -85,7 +85,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             Documents
           </Heading>
         </Flex>
-        <Hr></Hr>
+        <Hr />
         <Grid $mb={[80, 92]} $cg={20}>
           {pageData.board.documents.map((doc) => (
             <GridArea key={doc.title} $colSpan={[6, 2]}>
@@ -119,7 +119,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             </GridArea>
           ))}
         </Grid>
-        <Card $mb={[80, 92]} $ph={[0, 80]} $width={["100%", "75%"]}>
+        <Card $mb={[80, 92]} $ph={[0, 80]} $width={["100%", "70%"]}>
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
             Governance
           </Heading>

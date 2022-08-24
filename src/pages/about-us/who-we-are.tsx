@@ -56,7 +56,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
             iconPosition={"trailing"}
             label={cta.label}
             href={"/"}
-          ></ButtonAsLink>
+          />
         </Flex>
       )}
     </Flex>
@@ -83,7 +83,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantaged gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum"
           }
           background={"teachersPastelYellow"}
-          image={{
+          cardImageProps={{
             imageSrc: "/images/illustrations/who-we-are.svg",
             alt: "who we are illustration",
           }}
@@ -128,7 +128,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                     icon={"ArrowRight"}
                     label={pageData.whoWeAre.intro.cta.label}
                     href={"/"}
-                  ></ButtonAsLink>
+                   />
                 )}
               </Flex>
             </Box>

@@ -30,6 +30,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
   summary,
   background,
   cardImageProps,
+  children,
 }) => {
   return (
     <Card
