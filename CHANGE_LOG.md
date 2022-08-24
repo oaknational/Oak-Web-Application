@@ -1,3 +1,10 @@
+# [0.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.76.0...v0.77.0) (2022-08-24)
+
+
+### Features
+
+* allow user to open cookie consent manager from footer ([d17d07b](https://github.com/oaknational/Oak-Web-Application/commit/d17d07b9cead6bd4431457f6cb7122f7ebb89de0))
+
 # [0.76.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.75.2...v0.76.0) (2022-08-23)
 
 
