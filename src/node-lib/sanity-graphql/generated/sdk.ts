@@ -2513,7 +2513,7 @@ export const AllBlogPostsDocument = gql`
     query allBlogPosts($isDraft: Boolean = false, $limit: Int = 9999) {
   allNewsPost(
     where: {_: {is_draft: $isDraft}}
-    sort: [{date: ASC}]
+    sort: [{date: DESC}]
     limit: $limit
   ) {
     ...BlogPreviewFields
@@ -2533,7 +2533,11 @@ export const AllPolicyPagesDocument = gql`
     `;
 export const AllWebinarsDocument = gql`
     query allWebinars($isDraft: Boolean = false, $limit: Int = 9999) {
-  allWebinar(where: {_: {is_draft: $isDraft}}, sort: [{date: ASC}], limit: $limit) {
+  allWebinar(
+    where: {_: {is_draft: $isDraft}}
+    sort: [{date: DESC}]
+    limit: $limit
+  ) {
     ...WebinarPreviewFields
   }
 }
