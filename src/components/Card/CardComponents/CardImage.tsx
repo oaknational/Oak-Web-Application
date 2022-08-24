@@ -10,6 +10,7 @@ export type CardImageProps = {
   alt: string;
   position?: CSSProperties["objectPosition"];
   aspectRatio?: AspectRatios;
+  priority?: boolean;
 };
 
 const CardImage: FC<CardImageProps> = ({
@@ -17,6 +18,7 @@ const CardImage: FC<CardImageProps> = ({
   alt,
   position = "center center",
   aspectRatio = DEFAULT_ASPECT_RATIO,
+  priority,
 }) => {
   return (
     <AspectRatio ratio={aspectRatio}>
@@ -26,6 +28,7 @@ const CardImage: FC<CardImageProps> = ({
         objectPosition={position}
         src={imageSrc}
         alt={alt}
+        priority={priority}
       />
     </AspectRatio>
   );

@@ -19,7 +19,7 @@ SummaryCard.args = {
   summary: "A summary section.......",
   background: "grey7",
   cardImageProps: {
-    imageSrc: "/images/illustrations/planning.svg",
+    imageSrc: "/images/illustrations/planning.png",
     alt: "planning",
   },
 };
