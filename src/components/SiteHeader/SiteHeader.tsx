@@ -50,7 +50,7 @@ const SiteHeader: FC = () => {
     },
     {
       href: "/blog",
-      linkText: "Blogs",
+      linkText: "Blog",
       fontSize: [16],
       fontFamily: "ui",
       $mt: [32],
