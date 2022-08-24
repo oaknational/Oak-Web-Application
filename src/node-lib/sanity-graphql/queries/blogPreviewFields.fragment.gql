@@ -1,0 +1,28 @@
+fragment BlogPreviewFields on NewsPost {
+  id: _id
+  title
+  date
+  slug {
+    current
+  }
+  author {
+    id: _id
+    _key
+    name
+    image {
+      asset {
+        url
+      }
+    }
+  }
+  mainImage {
+    ...Image
+  }
+  category {
+    title
+    slug {
+      current
+    }
+  }
+  contentPortableText: contentRaw
+}
