@@ -1,9 +1,0 @@
-fragment BlogPreviewFields on NewsPost {
-  id: _id
-  title
-  date
-  slug {
-    current
-  }
-  contentPortableText: contentRaw
-}
