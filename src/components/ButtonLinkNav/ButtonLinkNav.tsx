@@ -33,7 +33,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
                 href={button.href}
                 $mr={[0, 36]}
                 disabled={selected === button.label}
-              ></ButtonAsLink>
+              />
             </Box>
             <Flex $flexDirection={"row"} $display={["flex", "none"]}>
               <ButtonAsLink
@@ -50,7 +50,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
                     $color={"white"}
                     variant="brush"
                     name={"ChevronLeft"}
-                  ></Icon>
+                  />
                 </Flex>
               )}
             </Flex>
