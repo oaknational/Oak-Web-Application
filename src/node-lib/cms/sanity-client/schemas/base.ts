@@ -78,7 +78,7 @@ export const textAndMediaSchemaBase = z.object({
   alignMedia: z.enum(["left", "right"]),
 });
 
-const videoSchema = z.object({
+export const videoSchema = z.object({
   title: z.string(),
   video: z.object({
     asset: z.object({
@@ -98,3 +98,8 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
+
+export const blogWebinarCategory = z.object({
+  title: z.string(),
+  slug: z.object({ current: z.string() }),
+});
