@@ -68,7 +68,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
       )}
       <ButtonLabel>{label}</ButtonLabel>
       {variant === "brush" && <ButtonBorders background={background} />}
-      <ButtonFocusUnderline color={underlineColor} name="Underline" />
+      <ButtonFocusUnderline color={underlineColor} name="Underline1" />
     </>
   );
 };

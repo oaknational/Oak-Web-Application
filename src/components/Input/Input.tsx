@@ -35,7 +35,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   padding-right: 0;
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
-  font-weight: 400;
+  font-weight: 300;
   width: 100%;
 
   @media (max-width: ${getBreakpoint("small")}px) {

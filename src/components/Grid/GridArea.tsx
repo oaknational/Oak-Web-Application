@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import background, { BackgroundProps } from "../../styles/utils/background";
 import flex from "../../styles/utils/flex";
 import responsive from "../../styles/utils/responsive";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import Box, { BoxProps } from "../Box";
 import { FlexProps } from "../Flex";
 
 type ColSpans = 1 | 2 | 3 | 5 | 4 | 6 | 7 | 8 | 12;
@@ -14,10 +14,9 @@ type GridAreaProps = {
   $order?: Array<number>;
 } & SpacingProps;
 
-const GridArea = styled.div<GridAreaProps & FlexProps & BackgroundProps>`
+const GridArea = styled(Box)<GridAreaProps & BoxProps & FlexProps>`
   ${spacing}
   ${flex}
-  ${background}
   flex-direction: column;
   ${responsive(
     "grid-column",

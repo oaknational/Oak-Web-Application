@@ -134,7 +134,7 @@ const theme: OakTheme = {
         placeholder: "grey7",
         icon: "grey7",
         border: "grey8",
-        background: "grey3",
+        background: "white",
       },
       valid: {
         text: "black",
