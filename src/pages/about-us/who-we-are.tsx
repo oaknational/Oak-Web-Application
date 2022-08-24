@@ -7,7 +7,6 @@ import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
-import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import Flex, { FlexProps } from "../../components/Flex";
 import Card from "../../components/Card";
 import Box from "../../components/Box";
@@ -17,7 +16,6 @@ import OutlineHeading from "../../components/OutlineHeading";
 import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
-import aboutNavLinks from "../../browser-lib/fixtures/aboutNav";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -36,6 +34,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
 }) => {
   return (
     <Flex
+      $pv={0}
       $ph={[16]}
       $alignItems={$alignItems}
       $flexDirection={"column"}
@@ -68,7 +67,6 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
   isPreviewMode,
   renderPlayer,
 }) => {
-  console.log(pageData);
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -77,24 +75,21 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
     >
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
-          title={"about us"}
+          title={"About us"}
           heading={pageData.whoWeAre.sectionHeading}
           summary={
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantaged gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum"
           }
           background={"teachersPastelYellow"}
+          textMaxWidth={740}
+          imageMinWidth={180}
           cardImageProps={{
-            imageSrc: "/images/illustrations/who-we-are.svg",
+            imageSrc: "/images/oak-logo.svg",
             alt: "who we are illustration",
+            position: "left center",
           }}
-        >
-          <ButtonLinkNav
-            $mt={36}
-            buttons={aboutNavLinks}
-            selected={"who we are"}
-          />
-        </SummaryCard>
-        <Flex $mt={92} $mb={[92, 32]} $background="twilight">
+        />
+        <Flex $mt={92} $mb={[80, 92]} $background="twilight">
           <Card $pv={32} $ph={[16, 32]} $flexDirection={["column", "row"]}>
             <Flex
               $justifyContent={"center"}
@@ -126,9 +121,10 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                 {pageData.whoWeAre.intro.cta?.linkType && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
+                    iconPosition="trailing"
                     label={pageData.whoWeAre.intro.cta.label}
                     href={"/"}
-                   />
+                  />
                 )}
               </Flex>
             </Box>
@@ -137,7 +133,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
         <TimeLineCard
           bodyPortableText={pageData.whoWeAre.timeline.from.bodyPortableText}
           title={pageData.whoWeAre.timeline.from.title}
-          $alignItems={["flex-start", "flex-end"]}
+          $alignItems={"flex-start"}
         />
         <TimeLineCard
           bodyPortableText={pageData.whoWeAre.timeline.to.bodyPortableText}
@@ -148,6 +144,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           bodyPortableText={pageData.whoWeAre.timeline.beyond.bodyPortableText}
           title={pageData.whoWeAre.timeline.beyond.title}
           cta={pageData.whoWeAre.timeline.beyond.cta}
+          $alignItems={["flex-start", "flex-end"]}
         />
         <Grid $mb={80} $cg={28} $rg={32}>
           {pageData.whoWeAre.principles.map((principle) => (

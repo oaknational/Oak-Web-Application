@@ -5,6 +5,7 @@ import type { PortableTextSpan } from "@portabletext/types";
 import Flex from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
+import { SizeValues } from "../../styles/utils/size";
 
 import Card from "./Card";
 import CardImage, { CardImageProps } from "./CardComponents/CardImage";
@@ -15,6 +16,8 @@ type SummaryCardProps = {
   summary: PortableTextSpan | string;
   background?: OakColorName;
   cardImageProps?: CardImageProps;
+  imageMinWidth?: SizeValues;
+  textMaxWidth?: SizeValues;
 };
 
 /**
@@ -30,7 +33,8 @@ const SummaryCard: FC<SummaryCardProps> = ({
   summary,
   background,
   cardImageProps,
-  children,
+  imageMinWidth = 240,
+  textMaxWidth = 720,
 }) => {
   return (
     <Card
@@ -42,7 +46,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
       $pv={[24]}
       $ph={[16, 24]}
     >
-      <Flex $flexDirection={"column"} $maxWidth={cardImageProps ? null : 720}>
+      <Flex $flexDirection={"column"} $maxWidth={textMaxWidth}>
         <Heading
           $mb={8}
           tag={"h1"}
@@ -62,12 +66,11 @@ const SummaryCard: FC<SummaryCardProps> = ({
             <PortableText value={summary} />
           )}
         </Typography>
-        {children}
       </Flex>
       {cardImageProps && (
         <Flex
           $ml={[0, 40, 120]}
-          $minWidth={240}
+          $minWidth={imageMinWidth}
           $display={["none", "flex"]}
           $alignItems="center"
         >

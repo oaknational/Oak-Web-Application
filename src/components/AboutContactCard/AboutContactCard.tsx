@@ -25,8 +25,8 @@ const cardCopy = [
   {
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
-    linkText: "Help Center.",
-    href: "/help-center",
+    linkText: "Help Centre.",
+    href: "https://www.thenational.academy/help",
     linkType: "link",
   },
 ];
@@ -54,7 +54,7 @@ const AboutContactCard: FC = () => {
             </Fragment>
           ))}
           <Flex $mb={[32, 0]}>
-            <ButtonAsLink label={"Contact Us"} href={"/contact-pants"} />
+            <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
           </Flex>
         </Card>
       </GridArea>
