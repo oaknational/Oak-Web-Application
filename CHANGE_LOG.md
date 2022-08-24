@@ -1,3 +1,10 @@
+# [0.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.77.0...v0.78.0) (2022-08-24)
+
+
+### Features
+
+* **favicon:** add oak favicon set ([5267c2e](https://github.com/oaknational/Oak-Web-Application/commit/5267c2e4b6cbc324ad101c521c3e8dee5e163244))
+
 # [0.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.76.0...v0.77.0) (2022-08-24)
 
 
