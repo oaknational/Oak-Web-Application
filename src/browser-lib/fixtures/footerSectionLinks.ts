@@ -25,7 +25,6 @@ const footerSections: FooterSection[] = [
       { text: "Teacher Hub", href: "https://teachers.thenational.academy" },
       { text: "Plan a lesson", href: "/lesson-planning" },
       { text: "Develop your curriculum", href: "/develop-your-curriculum" },
-      { text: "Support your team", href: "/support-your-team" },
     ],
   },
   {
@@ -36,7 +35,6 @@ const footerSections: FooterSection[] = [
       { text: "Careers", href: "about-us/work-with-us" },
       { text: "Contact us", href: "/contact-us" },
       { text: "Help", href: "https://support.thenational.academy/" },
-      { text: "Webinars", href: "/webinars" },
       { text: "Blog", href: "/blog" },
     ],
   },
