@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import config from "../../config";
 
@@ -11,15 +11,25 @@ type UseHubspotProps = {
   enabled: boolean;
 };
 const useHubspot = ({ enabled }: UseHubspotProps) => {
+  const [hasAttemptedInit, setHasAttemptedInit] = useState(false);
+
   useEffect(() => {
-    if (enabled) {
+    // init
+    if (!hubspot.loaded() && enabled && !hasAttemptedInit) {
       hubspot.init({
         portalId,
         scriptDomain,
       });
-      hubspot.optIn();
-    } else {
-      if (hubspot.loaded()) {
+      setHasAttemptedInit(true);
+    }
+  }, [enabled, hasAttemptedInit]);
+
+  useEffect(() => {
+    // do not track
+    if (hubspot.loaded()) {
+      if (enabled) {
+        hubspot.optIn();
+      } else {
         hubspot.optOut();
       }
     }

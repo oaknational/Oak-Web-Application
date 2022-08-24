@@ -9,11 +9,6 @@ import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
 import useHubspot from "../../browser-lib/hubspot/useHubspot";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
-type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
-type AnalyticsContext = {
-  track: TrackFns;
-};
-
 export type UserId = string;
 export type EventName = string;
 export type EventProperties = Record<string, unknown>;
@@ -27,6 +22,12 @@ export type IdentifyFn = (
   userId: UserId,
   properties: IdentifyProperties
 ) => void;
+
+type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
+type AnalyticsContext = {
+  track: TrackFns;
+  identify: IdentifyFn;
+};
 
 export type AnalyticsService<ServiceConfig> = {
   init: (config: ServiceConfig) => void;
@@ -79,6 +80,18 @@ const AnalyticsProvider: FC = (props) => {
   }, [page]);
 
   /**
+   * Identify
+   * To be called on form submission (or later on sign up)
+   */
+  const identify: IdentifyFn = useCallback(
+    (id, props) => {
+      posthog.identify(id, props);
+      hubspot.identify(id, props);
+    },
+    [posthog, hubspot]
+  );
+
+  /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
    * Track functions are then called for individual services as found in
@@ -101,8 +114,19 @@ const AnalyticsProvider: FC = (props) => {
     return avoTrack;
   }, [trackingEnabled]);
 
+  /**
+   * analytics
+   * The analytics instance returned by useAnalytics hooks
+   */
+  const analytics = useMemo(() => {
+    return {
+      track,
+      identify,
+    };
+  }, [track, identify]);
+
   return (
-    <analyticsContext.Provider value={{ track }}>
+    <analyticsContext.Provider value={analytics}>
       {children}
     </analyticsContext.Provider>
   );
