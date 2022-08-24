@@ -53,7 +53,11 @@ const MenuLinks: FC<MenuLinkProps> = (props) => {
       </Flex>
       <ul role="list">
         {menuLinks.map((link) => (
-          <MenuListElement {...link} currentPath={currentPath} />
+          <MenuListElement
+            key={link.linkText}
+            {...link}
+            currentPath={currentPath}
+          />
         ))}
       </ul>
     </>
