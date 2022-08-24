@@ -1,15 +1,18 @@
 import { GetStaticProps, NextPage } from "next";
-import { toPlainText } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
-import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import Grid, { GridArea } from "../../components/Grid";
+import SummaryCard from "../../components/Card/SummaryCard";
+
+import { SerializedBlog } from "./[blogSlug]";
 
 export type BlogListingPageProps = {
-  blogs: BlogPostPreview[];
+  blogs: SerializedBlog[];
   isPreviewMode: boolean;
 };
 
@@ -17,27 +20,52 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
   console.log(props);
 
+  const cardImage = {
+    imageSrc: "/images/illustrations/teacher-carrying-stuff.png",
+    alt: "",
+  };
+
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
+      $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <Heading tag="h1" $fontSize={32}>
-        Blogs
-      </Heading>
-
-      <BlogList title={"Stay up to date!"} items={blogs} titleTag={"h2"} />
+      <MaxWidth $ph={[12, 12, 0]} $pt={[72, 80, 80]}>
+        <SummaryCard
+          title={"Blog Listing"}
+          heading={"Inspiration for inside and outside the classroom"}
+          // TODO: Replace line summary with new field from CMS
+          summary={
+            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
+          }
+          background="teachersPastelYellow"
+          cardImageProps={cardImage}
+        />
+        <Grid>
+          <GridArea $colSpan={[12, 12, 7]} $mt={[48, 72]}>
+            <BlogList
+              title={"Stay up to date!"}
+              items={blogs}
+              titleTag={"h2"}
+            />
+          </GridArea>
+        </Grid>
+      </MaxWidth>
     </Layout>
   );
 };
 
-const blogToBlogListItem = (blog: BlogPostPreview): BlogListItemProps => ({
+const blogToBlogListItem = (blog: SerializedBlog): BlogListItemProps => ({
   contentType: "blog-post",
   title: blog.title,
-  href: `/blogs/${blog.slug}`,
-  snippet: toPlainText(blog.contentPortableText),
+  href: `/blog/${blog.slug}`,
+  snippet:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   titleTag: "h3",
+  category: blog.category.title,
+  date: blog.date,
+  mainImage: blog?.mainImage?.asset?.url || "",
 });
 
 export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
@@ -49,9 +77,16 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
     previewMode: isPreviewMode,
   });
 
+  const blogs = blogResults.map((blog) => {
+    return {
+      ...blog,
+      date: blog.date.toISOString(),
+    };
+  });
+
   return {
     props: {
-      blogs: blogResults,
+      blogs,
       isPreviewMode,
     },
     revalidate: 10,

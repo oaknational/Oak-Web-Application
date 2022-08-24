@@ -37,6 +37,9 @@ const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
   href: `/webinars/${webinar.slug}`,
   snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
+  category: "foo",
+  date: new Date(2022, 7, 22).toISOString(),
+  mainImage: "",
 });
 
 export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
