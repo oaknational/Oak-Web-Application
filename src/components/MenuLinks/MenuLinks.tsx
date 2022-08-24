@@ -21,9 +21,9 @@ const MenuListElement: FC<MenuListElementProps> = (props) => {
   const { href, linkText, fontFamily, fontSize, $mt, currentPath } = props;
   return (
     <li>
-      <Flex $alignItems={"center"}>
+      <Flex $alignItems={"center"} $mt={$mt}>
         {renderLocationIcon({ currentPath, href })}
-        <P $fontFamily={fontFamily} $fontSize={fontSize} $mt={$mt}>
+        <P $fontFamily={fontFamily} $fontSize={fontSize} $mt={0}>
           <Link href={href}>{linkText}</Link>
         </P>
       </Flex>
