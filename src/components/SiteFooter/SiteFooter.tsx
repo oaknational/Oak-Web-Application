@@ -113,7 +113,7 @@ const SiteFooter: FC<SiteFooterProps> = ({
               >
                 <li>
                   <UnstyledButton onClick={showConsentManager}>
-                    Change cookie settings
+                    Manage cookie settings
                   </UnstyledButton>
                 </li>
               </FooterSectionLinks>
