@@ -17,7 +17,7 @@ describe("components/BlogList", () => {
             contentType: "blog-post",
             mainImage: "",
             category: "Curriculum Planning",
-            date: new Date(2022, 8, 22),
+            date: new Date(2022, 8, 22).toISOString(),
           },
         ]}
       />
@@ -42,7 +42,7 @@ describe("components/BlogList", () => {
             mainImage: "",
             contentType: "blog-post",
             category: "Curriculum Planning",
-            date: new Date(2022, 7, 22),
+            date: new Date(2022, 7, 22).toISOString(),
           },
         ]}
       />

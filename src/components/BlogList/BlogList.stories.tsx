@@ -25,7 +25,7 @@ BlogList.args = {
       contentType: "blog-post",
       category: "Curriculum Planning",
       mainImage: "",
-      date: new Date(2022, 7, 22),
+      date: new Date(2022, 7, 22).toISOString(),
     },
     {
       titleTag: "h2",
@@ -36,7 +36,7 @@ BlogList.args = {
       contentType: "webinar",
       mainImage: "",
       category: "Curriculum Planning",
-      date: new Date(2022, 7, 17),
+      date: new Date(2022, 7, 17).toISOString(),
     },
     {
       titleTag: "h2",
@@ -47,7 +47,7 @@ BlogList.args = {
       mainImage: "",
       contentType: "blog-post",
       category: "Curriculum Planning",
-      date: new Date(2022, 6, 26),
+      date: new Date(2022, 6, 26).toISOString(),
     },
   ],
 };

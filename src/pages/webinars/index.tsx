@@ -38,7 +38,7 @@ const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
   snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
   category: "foo",
-  date: new Date(),
+  date: new Date(2022, 7, 22).toISOString(),
   mainImage: "",
 });
 

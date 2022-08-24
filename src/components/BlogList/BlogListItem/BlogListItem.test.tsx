@@ -10,7 +10,7 @@ const testProps: BlogListItemProps = {
   mainImage: "",
   contentType: "blog-post",
   category: "Curriculum Planning",
-  date: new Date(2022, 7, 22),
+  date: new Date(2022, 7, 22).toISOString(),
 };
 
 describe("components/BlogListItem", () => {

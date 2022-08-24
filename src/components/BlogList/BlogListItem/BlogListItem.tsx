@@ -28,7 +28,7 @@ export type BlogListItemProps = {
   href: string;
   contentType: BlogListItemContentType;
   category: string;
-  date: Date;
+  date: string;
   mainImage: string;
   withImage?: boolean;
 };
