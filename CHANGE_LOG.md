@@ -1,3 +1,53 @@
+## [0.79.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.0...v0.79.1) (2022-08-24)
+
+# [0.79.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.78.1...v0.79.0) (2022-08-24)
+
+
+### Bug Fixes
+
+* add author to query ([4d8a7e6](https://github.com/oaknational/Oak-Web-Application/commit/4d8a7e6ccdf6e193adbdcc0ff781783fc1fd625c))
+* add main image to blog by slug query ([951ed6b](https://github.com/oaknational/Oak-Web-Application/commit/951ed6b007f9f7e33f70b289d06e01f41400d68c))
+* remove skip from test now it passes ([6d6dd70](https://github.com/oaknational/Oak-Web-Application/commit/6d6dd7070d5358224081a67440d456a0369b3859))
+* tidy up code ([67706f9](https://github.com/oaknational/Oak-Web-Application/commit/67706f9f6792535523debee56ab50924a51a588b))
+* type definitions to pass tests ([c98303d](https://github.com/oaknational/Oak-Web-Application/commit/c98303dfb68e459f3091467611e59c1b3757ec5f))
+
+
+### Features
+
+* add category to schema and type for blog post ([df4328f](https://github.com/oaknational/Oak-Web-Application/commit/df4328f3afa2497fff7b9834cc30ebe588184b63))
+* add dates to blog list ([be1aa38](https://github.com/oaknational/Oak-Web-Application/commit/be1aa38e829145fd9fcdd1f06ac9d2c8f4e2bcd5))
+* add main image to blog list item ([aed5de9](https://github.com/oaknational/Oak-Web-Application/commit/aed5de98daf422a8456375d030edfa9e99497dd0))
+* add pagination hook ([78a327a](https://github.com/oaknational/Oak-Web-Application/commit/78a327a77501bb22227e5d59289b903deed3f882))
+* add test for pagination component ([cce383f](https://github.com/oaknational/Oak-Web-Application/commit/cce383faf499f9cb4a23d1f3fea6f11889d94709))
+* add video to blog schema ([438f7f7](https://github.com/oaknational/Oak-Web-Application/commit/438f7f72aad53574fa1506713f11bd7230970f01))
+* basic layout and correct link for blogs ([0a209a0](https://github.com/oaknational/Oak-Web-Application/commit/0a209a0e79c8834b7ff3f733943119556d40a6c6))
+* blog layout and pagination refinements ([be965cd](https://github.com/oaknational/Oak-Web-Application/commit/be965cdf38224312ed7e0705bd872aff8eebee6c))
+* disable arrow buttons where appropriate ([ed26b34](https://github.com/oaknational/Oak-Web-Application/commit/ed26b3488ec74dd1f901240e3a7e79da30dee0f5))
+* format date on blog post, margins and padding ([5805377](https://github.com/oaknational/Oak-Web-Application/commit/580537756b3bb63d79574b759b70aacee2ed2ba1))
+* get categories through on blog listing page ([7cc973e](https://github.com/oaknational/Oak-Web-Application/commit/7cc973e8e865215773f706e23a46616fc679eced))
+* layout changes ([f3787a4](https://github.com/oaknational/Oak-Web-Application/commit/f3787a4a5640e75e2f7998d228398b1dafcbd22c))
+* layout images in blog items ([91baa58](https://github.com/oaknational/Oak-Web-Application/commit/91baa58dbf49f937b79bed2b4a25cbb4fd092a09))
+* make image optional on blog lists ([c3ca4e5](https://github.com/oaknational/Oak-Web-Application/commit/c3ca4e56de7e17dca24f00539bae9c35363bcf48))
+* responsive layout of blog listing ([8700584](https://github.com/oaknational/Oak-Web-Application/commit/8700584a1b7faf0753c842c2f36add18b250706b))
+* use iso string for date and put placeholder text in blog list ([566bf6a](https://github.com/oaknational/Oak-Web-Application/commit/566bf6a38fd863177b68f34853d7b4aa078e0df6))
+* wip ([a720fa9](https://github.com/oaknational/Oak-Web-Application/commit/a720fa90aee6d1b6e2c89b76cb56b5485fd6f56a))
+* working pagination in blog list ([04af46f](https://github.com/oaknational/Oak-Web-Application/commit/04af46fe7429f99435068127e9cbc3559d0d7dd3))
+
+## [0.78.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.78.0...v0.78.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* **performance:** summary image loading should be prioritised, converts large svg to png ([a4ce845](https://github.com/oaknational/Oak-Web-Application/commit/a4ce8450a5c1d010e0fc5f86c39dd6c8cb567806))
+* replace planning png with larger version ([0e27647](https://github.com/oaknational/Oak-Web-Application/commit/0e2764714318b181f6352fbbf344c201db697093))
+
+# [0.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.77.0...v0.78.0) (2022-08-24)
+
+
+### Features
+
+* **favicon:** add oak favicon set ([5267c2e](https://github.com/oaknational/Oak-Web-Application/commit/5267c2e4b6cbc324ad101c521c3e8dee5e163244))
+
 # [0.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.76.0...v0.77.0) (2022-08-24)
 
 

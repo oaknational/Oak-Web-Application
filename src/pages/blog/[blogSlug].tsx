@@ -17,7 +17,7 @@ import CMSClient, {
 } from "../../node-lib/cms";
 import CMSImage from "../../components/CMSImage";
 
-type SerializedBlog = Omit<BlogPost, "date"> & {
+export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
 };
 

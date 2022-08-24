@@ -77,6 +77,8 @@ const SummaryCard: FC<SummaryCardProps> = ({
           <CardImage
             position={"center right"}
             aspectRatio="1:1"
+            /* defaulting priority image, as summary card is always above the fold */
+            priority
             {...cardImageProps}
           />
         </Flex>

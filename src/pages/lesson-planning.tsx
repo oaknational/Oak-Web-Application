@@ -165,7 +165,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           summary={pageData.summaryPortableText}
           imageMinWidth={140}
           cardImageProps={{
-            imageSrc: "/images/illustrations/planning.svg",
+            imageSrc: "/images/illustrations/planning.png",
             alt: "planning illustration",
           }}
         />
