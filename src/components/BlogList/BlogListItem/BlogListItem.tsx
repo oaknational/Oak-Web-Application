@@ -54,7 +54,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const blogDate = new Date(date);
 
   return (
-    <Flex $position={"relative"} $mt={24}>
+    <Flex $position={"relative"} $mt={24} $flexDirection={["column", "row"]}>
       {withImage && mainImage && (
         <Box $position={"relative"} $minWidth={240}>
           <AspectRatio ratio={"3:2"}>
@@ -68,7 +68,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </AspectRatio>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start">
+      <Flex $flexDirection="column" $alignItems="flex-start" $ml={[0, 32]}>
         <P $fontSize={16} $lineHeight={"20px"}>
           {category}
         </P>

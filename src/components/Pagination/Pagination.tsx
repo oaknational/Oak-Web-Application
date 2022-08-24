@@ -33,7 +33,7 @@ const Pagination: FC<PaginationProps> = ({
 
   return (
     <nav aria-role="navigation" aria-label="navigation">
-      <Flex $alignItems={"center"} $mt={[48, "auto"]} $justifyContent={"right"}>
+      <Flex $alignItems={"center"} $justifyContent={"right"}>
         <IconButton
           aria-label="previous"
           onClick={onPrevious}

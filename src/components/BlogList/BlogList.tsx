@@ -1,5 +1,6 @@
 import { FC, Fragment, useMemo, useState } from "react";
 
+import Box from "../Box";
 import Flex from "../Flex";
 import { Pagination } from "../Pagination";
 import { HeadingTag } from "../Typography/Heading";
@@ -30,18 +31,20 @@ const BlogList: FC<BlogListProps> = (props) => {
   }, [currentPage, items]);
 
   return (
-    <Flex $flexDirection="column" $minHeight={[0, 0, 840]}>
+    <Flex $flexDirection="column" $minHeight={[0, 840]}>
       {currentTableData.map((item, i) => (
         <Fragment key={`BlogList-BlogListItem-${i}`}>
           <BlogListItem {...item} withImage={withImage} />
         </Fragment>
       ))}
-      <Pagination
-        currentPage={currentPage}
-        totalCount={items.length}
-        pageSize={PageSize}
-        onPageChange={(page) => setCurrentPage(page)}
-      />
+      <Box $mt={[0, "auto"]} $pt={48}>
+        <Pagination
+          currentPage={currentPage}
+          totalCount={items.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      </Box>
     </Flex>
   );
 };
