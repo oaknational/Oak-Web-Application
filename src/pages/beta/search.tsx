@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
-import { ALL_KEY_STAGES } from "../context/Search/SearchContext";
-import Layout from "../components/Layout";
-import SearchResults from "../components/SearchResults";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import BrowserWidthBar from "../components/BrowserWidthBar";
-import KeyStageFilter from "../components/SearchFilters/KeyStageFilter";
-import Flex from "../components/Flex";
-import useFetchSearchResults from "../context/Search/useFetchSearchResults";
+import { ALL_KEY_STAGES } from "../../context/Search/SearchContext";
+import Layout from "../../components/Layout";
+import SearchResults from "../../components/SearchResults";
+import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import BrowserWidthBar from "../../components/BrowserWidthBar";
+import KeyStageFilter from "../../components/SearchFilters/KeyStageFilter";
+import Flex from "../../components/Flex";
+import useFetchSearchResults from "../../context/Search/useFetchSearchResults";
 
 export interface SearchHit {
   _source: {
