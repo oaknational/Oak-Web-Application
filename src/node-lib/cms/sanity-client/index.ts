@@ -55,9 +55,9 @@ const getSanityClient: CMSClient = () => ({
     });
     const blogPost = blogPostResult.allNewsPost[0];
 
-    const contentWithReferences = await resolveReferences(
-      blogPost?.contentPortableText
-    );
+    const contentWithReferences = blogPost?.contentPortableText
+      ? await resolveReferences(blogPost.contentPortableText)
+      : [];
 
     const blogWithResolvedRefs = {
       ...blogPost,
