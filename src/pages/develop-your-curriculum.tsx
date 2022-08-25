@@ -46,8 +46,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           title={pageData.title}
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
-          cardImageProps={{
-            imageSrc: "/images/illustrations/curriculum.svg",
+          imageProps={{
+            src: "/images/illustrations/curriculum.svg",
             alt: "Develop Your Curriculum illustration",
           }}
         />

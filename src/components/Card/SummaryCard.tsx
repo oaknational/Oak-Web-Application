@@ -1,25 +1,33 @@
 import { FC } from "react";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import type { PortableTextSpan } from "@portabletext/types";
 
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
+import Cover from "../Cover";
 
 import Card from "./Card";
-import CardImage, { CardImageProps } from "./CardComponents/CardImage";
+
+type ImageProps = {
+  src: string;
+  alt: string;
+};
 
 type SummaryCardProps = {
   title: string;
   heading: string;
   summary: PortableTextSpan | string;
   background?: OakColorName;
-  cardImageProps?: CardImageProps;
+  imageProps?: ImageProps;
+  imageContainerProps?: FlexProps;
 };
 
 /**
- * Contains an heading, title, and image.
+ * Contains an heading, title, and optional image.
  * image disapears on mobile
+ * Optional imageContainerProps for image size variants
  *
  * ## Usage
  * Summary card heading used at the top of page
@@ -29,7 +37,8 @@ const SummaryCard: FC<SummaryCardProps> = ({
   heading,
   summary,
   background,
-  cardImageProps,
+  imageProps,
+  imageContainerProps,
 }) => {
   return (
     <Card
@@ -41,7 +50,11 @@ const SummaryCard: FC<SummaryCardProps> = ({
       $pv={[24]}
       $ph={[16, 24]}
     >
-      <Flex $flexDirection={"column"} $maxWidth={cardImageProps ? null : 720}>
+      <Flex
+        $justifyContent={"center"}
+        $flexDirection={"column"}
+        $maxWidth={812}
+      >
         <Heading
           $mb={8}
           tag={"h1"}
@@ -62,20 +75,27 @@ const SummaryCard: FC<SummaryCardProps> = ({
           )}
         </Typography>
       </Flex>
-      {cardImageProps && (
+      {imageProps && (
         <Flex
-          $ml={[0, 40, 120]}
-          $minWidth={240}
           $display={["none", "flex"]}
-          $alignItems="center"
+          $position="relative"
+          $minWidth={"30%"}
+          $justifyContent={["center", "flex-end"]}
+          $alignItems={["flex-end"]}
+          $pr={[0, 24]}
+          $pb={24}
+          {...imageContainerProps}
         >
-          <CardImage
-            position={"center right"}
-            aspectRatio="1:1"
-            /* defaulting priority image, as summary card is always above the fold */
-            priority
-            {...cardImageProps}
-          />
+          <Cover>
+            <Image
+              aria-hidden={true}
+              layout="fill"
+              objectFit="contain"
+              objectPosition={"right"}
+              alt={imageProps.alt}
+              src={imageProps.src}
+            />
+          </Cover>
         </Flex>
       )}
     </Card>
