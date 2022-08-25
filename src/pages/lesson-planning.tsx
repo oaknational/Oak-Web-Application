@@ -369,7 +369,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     )}
                 </Flex>
               </Box>
-              <Box $minWidth={["50%"]}>
+              <Flex
+                $justifyContent={"center"}
+                $flexDirection={"column"}
+                $minWidth={["50%"]}
+              >
                 <Box $display={["none", "block"]}>
                   <CardTitle fontSize={32} tag="h4">
                     {pageData.learnMoreBlock1.title}
@@ -380,7 +384,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     value={pageData.learnMoreBlock1.bodyPortableText}
                   />
                 </Typography>
-              </Box>
+              </Flex>
             </Card>
           </Flex>
           <Card
