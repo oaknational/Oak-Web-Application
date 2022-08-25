@@ -4,5 +4,6 @@ fragment WebinarPreviewFields on Webinar {
   slug {
     current
   }
+  date
   summaryPortableText: summaryRaw
 }

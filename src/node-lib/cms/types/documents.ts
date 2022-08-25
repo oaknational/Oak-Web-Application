@@ -18,7 +18,7 @@ export type Webinar = Document & {
 
 export type WebinarPreview = Pick<
   Webinar,
-  "id" | "title" | "slug" | "summaryPortableText"
+  "id" | "title" | "slug" | "date" | "summaryPortableText"
 >;
 
 export type BlogPost = Document & {

@@ -25,6 +25,7 @@ export const webinarPreviewSchema = webinarSchema.pick({
   id: true,
   title: true,
   slug: true,
+  date: true,
   summaryPortableText: true,
 });
 
