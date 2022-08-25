@@ -10,16 +10,26 @@ const testWebinarPreview: WebinarPreview = {
   title: "An upcoming webinar",
   id: "5",
   slug: "an-upcoming-webinar",
-  date: new Date('2022-12-01'),
+  date: new Date("2022-12-01"),
   summaryPortableText: [],
+};
+
+const testSerializedWebinarPreview = {
+  ...testWebinarPreview,
+  date: new Date("2022-12-01").toISOString(),
 };
 
 const testWebinarPreview2: WebinarPreview = {
   title: "A past webinar",
   id: "6",
   slug: "a-past-webinar",
-  date: new Date('2022-12-31'),
+  date: new Date("2022-12-31"),
   summaryPortableText: [],
+};
+
+const testSerializedWebinarPreview2 = {
+  ...testWebinarPreview2,
+  date: new Date("2022-12-31").toISOString(),
 };
 
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
@@ -40,7 +50,10 @@ describe("pages/webinar/index.tsx", () => {
     it("Renders a link to each webinar ", async () => {
       renderWithProviders(
         <WebinarListingPage
-          webinars={[testWebinarPreview, testWebinarPreview2]}
+          webinars={[
+            testSerializedWebinarPreview,
+            testSerializedWebinarPreview2,
+          ]}
           isPreviewMode={false}
         />
       );

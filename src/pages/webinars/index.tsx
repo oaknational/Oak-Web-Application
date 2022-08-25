@@ -2,14 +2,18 @@ import { GetStaticProps, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
-import CMSClient, { WebinarPreview } from "../../node-lib/cms";
+
+export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
+  date: string;
+};
 
 export type WebinarListingPageProps = {
-  webinars: WebinarPreview[];
+  webinars: SerializedWebinarPreview[];
   isPreviewMode: boolean;
 };
 
@@ -31,15 +35,24 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   );
 };
 
-const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
+export const webinarToBlogListItem = (
+  webinar: SerializedWebinarPreview
+): BlogListItemProps => ({
   contentType: "webinar",
   title: webinar.title,
   href: `/webinars/${webinar.slug}`,
   snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
   category: "foo",
-  date: new Date(2022, 7, 22).toISOString(),
+  date: webinar.date,
   mainImage: "",
+});
+
+export const serializeDate = <T extends { date: Date }>(
+  item: T
+): T & { date: string } => ({
+  ...item,
+  date: item.date.toISOString(),
 });
 
 export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
@@ -51,11 +64,14 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
     previewMode: isPreviewMode,
   });
 
+  const webinars = webinarResults.map(serializeDate);
+
   return {
     props: {
-      webinars: webinarResults,
+      webinars,
       isPreviewMode,
     },
+    revalidate: 10,
   };
 };
 
