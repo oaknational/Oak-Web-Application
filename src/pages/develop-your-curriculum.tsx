@@ -31,6 +31,12 @@ export type CurriculumPageProps = {
   isPreviewMode: boolean;
 };
 
+const elementsOfCurriculumDesignHeadings = [
+  "Revising part of your Curriculum:",
+  "Rebuilding or changing your curriculum:",
+  "An easy way to refresh resources:",
+];
+
 const Curriculum: NextPage<CurriculumPageProps> = ({
   pageData,
   isPreviewMode,
@@ -124,7 +130,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                       $fontSize={20}
                       $lineHeight={"24px"}
                     >
-                      {element.post.title}
+                      {elementsOfCurriculumDesignHeadings[index]}
                     </P>
                   </Box>
                   <Card
@@ -135,7 +141,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                     $pv={[72, 80]}
                     $ml={[0, index == 0 ? 24 : 0]}
                   >
-                    <CardLink href={element.post.slug.current} />
+                    <CardLink href={`/blog/${element.post.slug.current}`} />
                     <BoxBorders />
                     <Box $mv={12}>
                       <Heading $mb={8} $fontSize={16} tag={"h3"}>
