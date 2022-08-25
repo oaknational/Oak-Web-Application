@@ -1,0 +1,10 @@
+fragment Attachment on Attachment {
+  title
+  file {
+    asset {
+      extension
+      size
+      url
+    }
+  }
+}
