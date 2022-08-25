@@ -128,6 +128,7 @@ const Home: FC = () => {
                         layout="fill"
                         objectFit="cover"
                         objectPosition={"right center"}
+                        priority
                       />
                     </Box>
                   </Box>
@@ -184,6 +185,7 @@ const Home: FC = () => {
                         src={"/images/illustrations/teacher-carrying-stuff.png"}
                         layout="fill"
                         objectFit="contain"
+                        priority
                       />
                     </Box>
                   </Box>
