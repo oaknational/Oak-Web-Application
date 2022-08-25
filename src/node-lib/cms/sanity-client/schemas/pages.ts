@@ -120,6 +120,7 @@ export const curriculumPageSchema = z
       title: z.string(),
       posts: z.array(
         z.object({
+          title: z.string(),
           post: z.object({
             title: z.string(),
             slug: z.object({ current: z.string() }),
