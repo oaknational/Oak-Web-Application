@@ -343,7 +343,7 @@ export type Block = {
   style?: Maybe<Scalars['String']>;
 };
 
-export type BlockOrImageOrQuoteOrTextAndMedia = Block | Image | Quote | TextAndMedia;
+export type BlockOrImageOrQuoteOrTextAndMediaOrVideo = Block | Image | Quote | TextAndMedia | Video;
 
 export type BlogWebinarCategory = Document & {
   __typename?: 'BlogWebinarCategory';
@@ -918,7 +918,10 @@ export type NewsPost = Document & {
   mainImage?: Maybe<Image>;
   seo?: Maybe<Seo>;
   slug?: Maybe<Slug>;
+  /** Shown on listing pages and used as the default for SEO if not overridden */
+  summary?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  video?: Maybe<Video>;
 };
 
 export type NewsPostFilter = {
@@ -936,7 +939,9 @@ export type NewsPostFilter = {
   mainImage?: InputMaybe<ImageFilter>;
   seo?: InputMaybe<SeoFilter>;
   slug?: InputMaybe<SlugFilter>;
+  summary?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
+  video?: InputMaybe<VideoFilter>;
 };
 
 export type NewsPostOrPlanningCorePageOrPolicyPageOrWebinar = NewsPost | PlanningCorePage | PolicyPage | Webinar;
@@ -952,6 +957,7 @@ export type NewsPostSorting = {
   mainImage?: InputMaybe<ImageSorting>;
   seo?: InputMaybe<SeoSorting>;
   slug?: InputMaybe<SlugSorting>;
+  summary?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
 };
 
@@ -2199,7 +2205,7 @@ export type AllBlogPostsQueryVariables = Exact<{
 }>;
 
 
-export type AllBlogPostsQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, id?: string | null, contentPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type AllBlogPostsQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, contentPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, mainImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
 
 export type AllPolicyPagesQueryVariables = Exact<{
   isDraft?: InputMaybe<Scalars['Boolean']>;
@@ -2223,7 +2229,7 @@ export type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-export type BlogPostBySlugQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, id?: string | null, contentPortableText?: any | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type BlogPostBySlugQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, contentPortableText?: any | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, mainImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
 
 export type BlogPortableTextReferencesQueryVariables = Exact<{
   ids?: InputMaybe<Array<Scalars['ID']> | Scalars['ID']>;
@@ -2232,7 +2238,7 @@ export type BlogPortableTextReferencesQueryVariables = Exact<{
 
 export type BlogPortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AboutCorePage', _id?: string | null, _type?: string | null } | { __typename?: 'Attachment', _id?: string | null, _type?: string | null } | { __typename?: 'BlogWebinarCategory', _id?: string | null, _type?: string | null } | { __typename?: 'CurriculumCorePage', _id?: string | null, _type?: string | null } | { __typename?: 'Homepage', _id?: string | null, _type?: string | null } | { __typename?: 'NewsListingPage', _id?: string | null, _type?: string | null } | { __typename?: 'NewsPost', _id?: string | null, _type?: string | null } | { __typename?: 'PlanningCorePage', _id?: string | null, _type?: string | null } | { __typename?: 'PolicyPage', _id?: string | null, _type?: string | null } | { __typename?: 'SanityFileAsset', _id?: string | null, _type?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, _type?: string | null, url?: string | null } | { __typename?: 'SupportCorePage', _id?: string | null, _type?: string | null } | { __typename?: 'TeamMember', _id?: string | null, _type?: string | null } | { __typename?: 'Video', _id?: string | null, _type?: string | null, title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _id?: string | null, _type?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _id?: string | null, _type?: string | null }> };
 
-export type BlogPreviewFieldsFragment = { __typename?: 'NewsPost', title?: string | null, date?: any | null, id?: string | null, contentPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null };
+export type BlogPreviewFieldsFragment = { __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, contentPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, mainImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
 
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null };
 
@@ -2280,17 +2286,6 @@ export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{
 
 export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', title?: string | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null };
 
-export const BlogPreviewFieldsFragmentDoc = gql`
-    fragment BlogPreviewFields on NewsPost {
-  id: _id
-  title
-  date
-  slug {
-    current
-  }
-  contentPortableText: contentRaw
-}
-    `;
 export const ImageAssetFragmentDoc = gql`
     fragment ImageAsset on SanityImageAsset {
   _id
@@ -2304,6 +2299,37 @@ export const ImageFragmentDoc = gql`
   }
 }
     ${ImageAssetFragmentDoc}`;
+export const BlogPreviewFieldsFragmentDoc = gql`
+    fragment BlogPreviewFields on NewsPost {
+  id: _id
+  title
+  date
+  slug {
+    current
+  }
+  author {
+    id: _id
+    _key
+    name
+    image {
+      asset {
+        url
+      }
+    }
+  }
+  mainImage {
+    ...Image
+  }
+  category {
+    title
+    slug {
+      current
+    }
+  }
+  summary
+  contentPortableText: contentRaw
+}
+    ${ImageFragmentDoc}`;
 export const CardFragmentDoc = gql`
     fragment Card on Card {
   title
@@ -2489,7 +2515,7 @@ export const AllBlogPostsDocument = gql`
     query allBlogPosts($isDraft: Boolean = false, $limit: Int = 9999) {
   allNewsPost(
     where: {_: {is_draft: $isDraft}}
-    sort: [{date: ASC}]
+    sort: [{date: DESC}]
     limit: $limit
   ) {
     ...BlogPreviewFields
@@ -2509,7 +2535,11 @@ export const AllPolicyPagesDocument = gql`
     `;
 export const AllWebinarsDocument = gql`
     query allWebinars($isDraft: Boolean = false, $limit: Int = 9999) {
-  allWebinar(where: {_: {is_draft: $isDraft}}, sort: [{date: ASC}], limit: $limit) {
+  allWebinar(
+    where: {_: {is_draft: $isDraft}}
+    sort: [{date: DESC}]
+    limit: $limit
+  ) {
     ...WebinarPreviewFields
   }
 }
@@ -2533,10 +2563,20 @@ export const BlogPostBySlugDocument = gql`
     slug {
       current
     }
+    mainImage {
+      ...Image
+    }
+    category {
+      title
+      slug {
+        current
+      }
+    }
+    summary
     contentPortableText: contentRaw
   }
 }
-    `;
+    ${ImageFragmentDoc}`;
 export const BlogPortableTextReferencesDocument = gql`
     query blogPortableTextReferences($ids: [ID!]) {
   allDocument(where: {_id: {in: $ids}}) {
