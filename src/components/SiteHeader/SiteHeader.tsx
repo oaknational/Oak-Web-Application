@@ -42,7 +42,7 @@ const SiteHeader: FC = () => {
       fontSize: [24],
       fontFamily: "heading",
       $mt: [32],
-      arrowSize: [24],
+      arrowSize: [30],
     },
     {
       href: "/develop-your-curriculum",
@@ -50,7 +50,7 @@ const SiteHeader: FC = () => {
       fontSize: [24],
       fontFamily: "heading",
       $mt: [12],
-      arrowSize: [24],
+      arrowSize: [30],
     },
     {
       href: "/blog",
@@ -58,7 +58,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [32],
-      arrowSize: [16],
+      arrowSize: [20],
     },
     {
       href: "/about-us/who-we-are",
@@ -66,7 +66,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
-      arrowSize: [16],
+      arrowSize: [20],
     },
     {
       href: "/contact-us",
@@ -74,7 +74,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
-      arrowSize: [16],
+      arrowSize: [20],
     },
     {
       href: "https://support.thenational.academy",
@@ -82,7 +82,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
-      arrowSize: [16],
+      arrowSize: [20],
     },
   ];
 
