@@ -101,5 +101,5 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
 
 export const blogWebinarCategory = z.object({
   title: z.string(),
-  slug: z.object({ current: z.string() }),
+  slug: slugSchema,
 });
