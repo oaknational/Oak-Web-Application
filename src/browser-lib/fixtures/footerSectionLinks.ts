@@ -31,7 +31,7 @@ const footerSections: FooterSection[] = [
     title: "Oak",
     links: [
       { text: "Home", href: "/" },
-      { text: "About Us", href: "/about-us/who-we-are" },
+      { text: "About us", href: "/about-us/who-we-are" },
       {
         text: "Careers",
         href: "https://app.beapplied.com/org/1574/oak-national-academy",
