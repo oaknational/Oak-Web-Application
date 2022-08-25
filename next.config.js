@@ -1,4 +1,4 @@
-const { appendFileSync } = require("node:fs");
+const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 
 const { PHASE_TEST } = require("next/constants");
 
@@ -178,6 +178,9 @@ module.exports = async (phase) => {
   };
 
   // Stick the deployment URL in an env so the site map generation can use it.
+  // The sitemap plugin uses @next.env
+  // https://github.com/iamvishnusankar/next-sitemap/blob/v3.1.18/packages/next-sitemap/bin/next-sitemap.mjs#L2
+  // https://github.com/vercel/next.js/blob/v12.2.5/packages/next-env/index.ts#L100
   try {
     let baseUrl = nextConfig.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
     if (!baseUrl) {
@@ -189,8 +192,26 @@ module.exports = async (phase) => {
     if (!baseUrl.startsWith("http")) {
       baseUrl = `https://${baseUrl}`;
     }
+
     const baseUrlEnv = `SITEMAP_BASE_URL=${baseUrl}`;
-    appendFileSync(".env", `\n${baseUrlEnv}`);
+
+    // Write the value out to the env file.
+    const envFileName = ".env.local";
+    // Make sure the file exists
+    appendFileSync(envFileName, "");
+    // Read current values.
+    const currentEnv = readFileSync(envFileName, { encoding: "utf-8" });
+    let newEnv;
+    const sitemapUrlRegex = /^SITEMAP_BASE_URL=.*$/m;
+    if (sitemapUrlRegex.test(currentEnv)) {
+      // Replace existing value.
+      newEnv = currentEnv.replace(sitemapUrlRegex, baseUrlEnv);
+    } else {
+      // Add new value.
+      newEnv = `${currentEnv}\n${baseUrlEnv}`;
+    }
+    // Write new values.
+    writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
   } catch (err) {
     console.error("Could not write SITEMAP_BASE_URL to env file");
