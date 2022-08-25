@@ -46,18 +46,18 @@ const TimeLineCard: FC<TimeLineProps> = ({
           {title}
         </OutlineHeading>
         <PortableText value={bodyPortableText} />
+        {cta?.linkType == "internal" && (
+          <Flex>
+            <ButtonAsLink
+              $mt={[36]}
+              icon={"ArrowRight"}
+              iconPosition={"trailing"}
+              label={cta.label}
+              href={`/blog/${cta.internal.slug}`}
+            />
+          </Flex>
+        )}
       </Flex>
-      {cta?.label && (
-        <Flex>
-          <ButtonAsLink
-            $mt={[36]}
-            icon={"ArrowRight"}
-            iconPosition={"trailing"}
-            label={cta.label}
-            href={"/"}
-          />
-        </Flex>
-      )}
     </Flex>
   );
 };
@@ -78,7 +78,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           title={"About us"}
           heading={pageData.whoWeAre.sectionHeading}
           summary={
-            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantaged gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum"
+            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
           }
           background={"teachersPastelYellow"}
           textMaxWidth={740}
@@ -118,12 +118,12 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                 />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
-                {pageData.whoWeAre.intro.cta?.linkType && (
+                {pageData.whoWeAre.intro.cta?.linkType == "internal" && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     iconPosition="trailing"
                     label={pageData.whoWeAre.intro.cta.label}
-                    href={"/"}
+                    href={`/blog/${pageData.whoWeAre.intro.cta.internal.slug}`}
                   />
                 )}
               </Flex>

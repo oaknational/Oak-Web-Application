@@ -26,7 +26,7 @@ const cardCopy = [
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
     linkText: "Help Centre.",
-    href: "https://www.thenational.academy/help",
+    href: "https://support.thenational.academy/",
     linkType: "link",
   },
 ];
