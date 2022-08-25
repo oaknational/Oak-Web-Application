@@ -11,7 +11,7 @@ import Logo from "../Logo";
 import MenuLinks from "../MenuLinks";
 import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
-import { MenuListElementProps } from "../MenuLinks/types";
+import { MenuListItemProps } from "../MenuLinks/types";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
@@ -19,7 +19,7 @@ const SiteHeader: FC = () => {
   const { toggleMenu } = useMenuContext();
   const { asPath } = useRouter();
 
-  const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
+  const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
     {
       href: "https://teachers.thenational.academy",
       linkText: "Teacher hub",

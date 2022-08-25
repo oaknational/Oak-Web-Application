@@ -1,11 +1,11 @@
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import MenuLinks from "./MenuLinks";
-import { MenuListElementProps } from "./types";
+import { MenuListItemProps } from "./types";
 
 describe("MenuLinks", () => {
   test("should render a list of links", () => {
-    const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
+    const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
       {
         href: "https://teachers.thenational.academy",
         linkText: "Teacher hub",
@@ -32,7 +32,7 @@ describe("MenuLinks", () => {
     });
   });
   test("will position the arrow at home", () => {
-    const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
+    const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
       {
         href: "/develop-the-curriculum",
         linkText: "Develop Your Curriculum",
@@ -70,7 +70,7 @@ describe("MenuLinks", () => {
     expect(allSvgs.length).toBe(1);
   });
   test("should position the arrow based on the current path", () => {
-    const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
+    const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
       {
         href: "/develop-the-curriculum",
         linkText: "Develop Your Curriculum",

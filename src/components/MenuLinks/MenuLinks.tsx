@@ -7,7 +7,7 @@ import Flex from "../Flex";
 import Icon from "../Icon";
 import { PixelSpacing } from "../../styles/theme";
 
-import { MenuLinkProps, MenuListElementProps } from "./types";
+import { MenuLinkProps, MenuListItemProps } from "./types";
 
 const Home = styled(Heading)``;
 
@@ -18,14 +18,14 @@ const LocationIcon = styled(Icon)`
 const isSubPath = ({
   currentPath,
   href,
-}: Pick<MenuListElementProps, "currentPath" | "href">) => {
+}: Pick<MenuListItemProps, "currentPath" | "href">) => {
   if (href === "/") {
     return currentPath === "/";
   }
   return currentPath.startsWith(href);
 };
 
-const MenuListElement: FC<MenuListElementProps> = (props) => {
+const MenuListItem: FC<MenuListItemProps> = (props) => {
   const { href, linkText, fontFamily, fontSize, $mt, currentPath, arrowSize } =
     props;
 
@@ -63,7 +63,7 @@ const renderLocationIcon = ({
   currentPath,
   arrowSize,
   $mr,
-}: Pick<MenuListElementProps, "href" | "currentPath" | "arrowSize"> & {
+}: Pick<MenuListItemProps, "href" | "currentPath" | "arrowSize"> & {
   $mr: PixelSpacing;
 }) => {
   return isSubPath({ currentPath, href }) ? (
@@ -97,7 +97,7 @@ const MenuLinks: FC<MenuLinkProps> = (props) => {
       </Flex>
       <ul role="list">
         {menuLinks.map((link) => (
-          <MenuListElement
+          <MenuListItem
             key={link.linkText}
             {...link}
             currentPath={currentPath}

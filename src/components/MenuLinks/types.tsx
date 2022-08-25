@@ -1,7 +1,7 @@
 import { OakFontName, PixelSpacing } from "../../styles/theme";
 import { MarginProps } from "../../styles/utils/spacing";
 
-export type MenuListElementProps = {
+export type MenuListItemProps = {
   fontFamily: OakFontName;
   fontSize: [PixelSpacing];
   href: string;
@@ -11,6 +11,6 @@ export type MenuListElementProps = {
 } & MarginProps;
 
 export type MenuLinkProps = {
-  menuLinks: Omit<MenuListElementProps, "currentPath">[];
+  menuLinks: Omit<MenuListItemProps, "currentPath">[];
   currentPath: string;
 };
