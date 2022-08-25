@@ -30,6 +30,7 @@ query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
     # See resolveReferences and blogPortableTextReferences.gql
     # to see how the content is transformed to add
     # referenced entities
+    summary
     contentPortableText: contentRaw
   }
 }
