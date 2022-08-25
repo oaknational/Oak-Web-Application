@@ -1,3 +1,12 @@
+## [0.80.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.80.0...v0.80.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* correct space between links and social section ([93dcc75](https://github.com/oaknational/Oak-Web-Application/commit/93dcc7567ab4ec435d93ef43efcb90098932474b))
+* edit links in footer ([eab2a87](https://github.com/oaknational/Oak-Web-Application/commit/eab2a873fb59d407e03ac06cb356289e1eb343eb))
+* sentence case ([de634c5](https://github.com/oaknational/Oak-Web-Application/commit/de634c5a0ffa59879c5d8b5d8d7e475219c78120))
+
 # [0.80.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.2...v0.80.0) (2022-08-25)
 
 
