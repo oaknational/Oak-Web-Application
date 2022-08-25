@@ -1,3 +1,21 @@
+# [0.80.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.2...v0.80.0) (2022-08-25)
+
+
+### Bug Fixes
+
+* **cms:** add missing summary to blogBySlug ([268dd12](https://github.com/oaknational/Oak-Web-Application/commit/268dd12b9b60b3987eeb25d18dbf125021f436cd))
+* correct mocks and ts type for blog category slugs ([b65e89f](https://github.com/oaknational/Oak-Web-Application/commit/b65e89fcb20aaf068c694fb61396a4a9fcddc62c))
+* correct types in blog page portable text rendering ([f673a64](https://github.com/oaknational/Oak-Web-Application/commit/f673a646e2f68452af1c571c2b3dc275c5ca05af))
+* don't attempt to resolve PT references when content is missing ([85f74d1](https://github.com/oaknational/Oak-Web-Application/commit/85f74d1347d780aec107f9e2678dafa3375010ed))
+* ensure most recent blog/webinar posts are at the top ([8233193](https://github.com/oaknational/Oak-Web-Application/commit/8233193d034c06d1409896d635774f7a4dd116f6))
+
+
+### Features
+
+* add summary text to blogs ([558c0b5](https://github.com/oaknational/Oak-Web-Application/commit/558c0b58f8f357a6ac27f6e3fa2ff8aa6c4c0de9))
+* add video block to blog portable text rendering ([156030b](https://github.com/oaknational/Oak-Web-Application/commit/156030b1a431ad0912254ad00932bbf0a2e7494a))
+* **cms:** update generated sdk to support blog videos ([281c773](https://github.com/oaknational/Oak-Web-Application/commit/281c773d0bc63f02c3d034789510fe86fa69952b))
+
 ## [0.79.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.1...v0.79.2) (2022-08-25)
 
 
