@@ -1,3 +1,10 @@
+## [0.79.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.1...v0.79.2) (2022-08-25)
+
+
+### Bug Fixes
+
+* update test links for search ([19328f7](https://github.com/oaknational/Oak-Web-Application/commit/19328f7290cd6b077477301d75a38259a3817983))
+
 ## [0.79.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.0...v0.79.1) (2022-08-24)
 
 # [0.79.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.78.1...v0.79.0) (2022-08-24)
