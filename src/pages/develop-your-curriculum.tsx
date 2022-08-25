@@ -1,6 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import styled from "styled-components";
 import { PortableText } from "@portabletext/react";
+import { Fragment } from "react";
 
 import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
@@ -19,7 +20,6 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
-import LineClamp from "../components/LineClamp";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
@@ -115,35 +115,48 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             </Heading>
           </Box>
           <Grid $ph={[0, 24]} $cg={16}>
-            {pageData.elements.posts.map((element, index) => (
-              <GridArea key={`${index}-${element.title}`} $colSpan={[12, 4]}>
+            {elementsOfCurriculumDesignHeadings.map((heading, index) => (
+              <GridArea
+                $display={["none", "block"]}
+                key={`${index}-${heading}`}
+                $colSpan={[12, 4]}
+              >
                 <Box $ph={[16, 0]}>
                   <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
-                    <LineClamp lines={1}>
-                      {elementsOfCurriculumDesignHeadings[index]}
-                    </LineClamp>
+                    {heading}
                   </P>
                 </Box>
-                <Card
-                  $flexDirection={"column"}
-                  $justifyContent={"center"}
-                  $mb={[56, 0]}
-                  $background="pastelTurqoise"
-                  $pv={[72, 80]}
-                  $maxHeight={240}
-                >
-                  <CardLink href={`/blog/${element.post.slug.current}`} />
-                  <BoxBorders />
-                  <Box $mv={12}>
-                    <Heading $mb={8} $fontSize={16} tag={"h3"}>
-                      How to
-                    </Heading>
-                    <Heading $fontSize={24} tag="h4">
-                      {element.title}
-                    </Heading>
-                  </Box>
-                </Card>
               </GridArea>
+            ))}
+            {pageData.elements.posts.map((element, index) => (
+              <Fragment>
+                <GridArea key={`${index}-${element.title}`} $colSpan={[12, 4]}>
+                  <Box $display={["block", "none"]} $ph={[16, 0]}>
+                    <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
+                      {element.title}
+                    </P>
+                  </Box>
+                  <Card
+                    $flexDirection={"column"}
+                    $justifyContent={"center"}
+                    $mb={[56, 0]}
+                    $background="pastelTurqoise"
+                    $pv={[72, 80]}
+                    $maxHeight={240}
+                  >
+                    <CardLink href={`/blog/${element.post.slug.current}`} />
+                    <BoxBorders />
+                    <Box $mv={12}>
+                      <Heading $mb={8} $fontSize={16} tag={"h3"}>
+                        How to
+                      </Heading>
+                      <Heading $fontSize={24} tag="h4">
+                        {element.title}
+                      </Heading>
+                    </Box>
+                  </Card>
+                </GridArea>
+              </Fragment>
             ))}
           </Grid>
         </Card>
