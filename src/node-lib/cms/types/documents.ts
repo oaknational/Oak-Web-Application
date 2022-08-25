@@ -31,9 +31,7 @@ export type BlogPost = Document & {
   contentPortableText: PortableTextJSON;
   category: {
     title: string;
-    slug: {
-      current: string;
-    };
+    slug: string;
   };
 };
 
