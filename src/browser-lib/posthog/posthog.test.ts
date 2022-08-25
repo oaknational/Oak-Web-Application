@@ -1,4 +1,4 @@
-import posthog from "./posthog";
+import { posthogWithoutQueue as posthog } from "./posthog";
 
 const identify = jest.fn();
 const capture = jest.fn();
@@ -22,7 +22,7 @@ describe("posthog.ts", () => {
     expect(capture).toHaveBeenCalledWith("foo", { bar: "baz" });
   });
   test("page", () => {
-    posthog.page();
+    posthog.page({ path: "/foo/ban" });
     expect(capture).toHaveBeenCalledWith("$pageview");
   });
   test("optIn", () => {

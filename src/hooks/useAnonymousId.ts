@@ -15,15 +15,22 @@ const generateAnonymousId = () => {
  * If there is already an anonymous id (using the old key), then use that,
  * otherwise generate a new one.
  */
-const initialValue = (() => {
+const getOrGenerateAnonymousId = () => {
   if (typeof window === "undefined") {
     return generateAnonymousId();
   }
 
   try {
-    const item = window.localStorage.getItem(OLD_ANONYMOUS_ID_KEY);
-    if (item) {
-      const parsed = parseJSON(item);
+    const newValue = window.localStorage.getItem(LS_KEY_ANONYMOUS_ID);
+    if (newValue) {
+      const parsed = parseJSON(newValue);
+      if (typeof parsed === "string") {
+        return parsed;
+      }
+    }
+    const oldValue = window.localStorage.getItem(OLD_ANONYMOUS_ID_KEY);
+    if (oldValue) {
+      const parsed = parseJSON(oldValue);
       if (typeof parsed === "string") {
         return parsed;
       }
@@ -37,7 +44,9 @@ const initialValue = (() => {
     );
     return generateAnonymousId();
   }
-})();
+};
+
+const initialValue = getOrGenerateAnonymousId();
 
 const useAnonymousId = () => {
   const [anonymousId, setAnonymousId] = useLocalStorage(

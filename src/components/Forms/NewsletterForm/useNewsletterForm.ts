@@ -10,7 +10,6 @@ const hubspotNewsletterFormId = config.get("hubspotNewsletterFormId");
 
 const useNewsletterForm = () => {
   const anonymousId = useAnonymousId();
-  console.log(anonymousId);
 
   const { identify } = useAnalytics();
   const onSubmit = useCallback(

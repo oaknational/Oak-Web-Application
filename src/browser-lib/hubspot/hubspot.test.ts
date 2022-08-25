@@ -1,4 +1,4 @@
-import hubspot from "./hubspot";
+import { hubspotWithoutQueue as hubspot } from "./hubspot";
 
 const reportError = jest.fn();
 jest.mock("../../common-lib/error-reporter", () => ({
@@ -35,7 +35,8 @@ describe("hubspot.ts", () => {
     expect(qPush).toHaveBeenCalledWith(["identify", { id: "123" }]);
   });
   test("page", () => {
-    hubspot.page();
+    hubspot.page({ path: "/foo/ban" });
+    expect(qPush).toHaveBeenCalledWith(["setPath", "/foo/ban"]);
     expect(qPush).toHaveBeenCalledWith(["trackPageView"]);
   });
   test("track", () => {
@@ -61,12 +62,5 @@ describe("hubspot.ts", () => {
     hubspot.optOut();
     expect(qPush).toHaveBeenCalledWith(["doNotTrack"]);
     expect(pPush).toHaveBeenCalledWith(["revokeCookieConsent"]);
-  });
-  test("loaded [true]", () => {
-    expect(hubspot.loaded()).toBe(true);
-  });
-  test("loaded [false]", () => {
-    window._hsq = [];
-    expect(hubspot.loaded()).toBe(false);
   });
 });

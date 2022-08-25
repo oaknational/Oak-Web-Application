@@ -6,6 +6,8 @@
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import OakError from "../../errors/OakError";
+import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
+import withQueue from "../analytics/withQueue";
 
 import startHubspot, { HubspotConfig } from "./startHubspot";
 
@@ -39,10 +41,22 @@ const getHubspot = (): Hubspot => {
   };
 };
 
-const hubspot: AnalyticsService<HubspotConfig> = {
-  init: (config) => {
-    startHubspot(config);
-  },
+const loaded = () => {
+  const { _hsq } = getHubspot();
+  return !!(_hsq && _hsq.push !== Array.prototype.push);
+};
+
+export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
+  name: "hubspot",
+  init: (config) =>
+    new Promise<void>((resolve) => {
+      startHubspot(config);
+      window.setTimeout(() => {
+        if (loaded()) {
+          resolve();
+        }
+      }, 1000);
+    }),
   identify: (userId, properties) => {
     const { _hsq } = getHubspot();
     if (typeof _hsq === "undefined") {
@@ -53,16 +67,20 @@ const hubspot: AnalyticsService<HubspotConfig> = {
       const error = new OakError({ code: "hubspot/identify-no-email" });
       reportError(error);
     }
+
     // @todo do we need to snakecase properties like DavidWells/analytics
     _hsq.push(["identify", { id: userId, ...properties }]);
   },
-  page: () => {
+
+  page: (properties) => {
     const { _hsq } = getHubspot();
 
     if (typeof _hsq === "undefined") {
       return reportNotLoadedError();
     }
+    console.log("hubspot page");
 
+    _hsq.push(["setPath", properties.path]);
     _hsq.push(["trackPageView"]);
   },
   track: (name, properties) => {
@@ -100,10 +118,7 @@ const hubspot: AnalyticsService<HubspotConfig> = {
     _hsp.push(["revokeCookieConsent"]);
     _hsq.push(["doNotTrack"]);
   },
-  loaded: () => {
-    const { _hsq } = getHubspot();
-    return !!(_hsq && _hsq.push !== Array.prototype.push);
-  },
+  state: () => getHasConsentedTo("hubspot"),
 };
 
-export default hubspot;
+export default withQueue(hubspotWithoutQueue);
