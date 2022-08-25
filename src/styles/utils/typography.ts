@@ -22,6 +22,8 @@ export type TypographyProps = ColorProps &
     $fontFamily?: ResponsiveValues<OakFontName>;
     $fontSize?: ResponsiveValues<FontSize>;
     $lineHeight?: ResponsiveValues<string | number>;
+    $textDecoration?: "underline" | "overline" | "line-through" | "none";
+    $opacity?: number;
     $textAlign?: "left" | "center" | "right";
   };
 
@@ -40,6 +42,8 @@ const typography = css<TypographyProps>`
   ${responsive("line-height", (props) => props.$lineHeight)}
   ${responsive("font-size", (props) => props.$fontSize, parseFontSize)}
   ${responsive("text-align", (props) => props.$textAlign)}
+  text-decoration: ${(props) => props.$textDecoration};
+  opacity: ${(props) => props.$opacity};
   ${color}
   ${position}
 `;

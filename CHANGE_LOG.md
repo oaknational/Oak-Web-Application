@@ -1,3 +1,31 @@
+# [0.81.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.80.2...v0.81.0) (2022-08-25)
+
+
+### Bug Fixes
+
+* adjust arrow size in line with designs ([fd8db7e](https://github.com/oaknational/Oak-Web-Application/commit/fd8db7e6885cb3bc20b9d2e610d5bbd4a5a5b763))
+* remove s off /blog link text ([d5ee11e](https://github.com/oaknational/Oak-Web-Application/commit/d5ee11e786e5625b93901be7d6223eaab8e4b4fc))
+
+
+### Features
+
+* abstract menulinks into separate component ([2a5c4aa](https://github.com/oaknational/Oak-Web-Application/commit/2a5c4aa2947a9d3c6f7e75aa481466c526b2f63a))
+* adjust margin top for link groups ([363a871](https://github.com/oaknational/Oak-Web-Application/commit/363a871f23c7accfe62bd3c7e230bba0aeec3110))
+* implement styling/testing tweaks post feedback ([526be31](https://github.com/oaknational/Oak-Web-Application/commit/526be3127a00122cdec2b9322ad3930081222b47))
+* move menu arrow based on current path ([fcc9c8a](https://github.com/oaknational/Oak-Web-Application/commit/fcc9c8ab17f3d3923f36f798ad39d6e7367bba51))
+* rearrange order of links ([52e54c0](https://github.com/oaknational/Oak-Web-Application/commit/52e54c0f6c906eb5ce58d0e04d28fcb3de64846a))
+
+## [0.80.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.80.1...v0.80.2) (2022-08-25)
+
+## [0.80.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.80.0...v0.80.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* correct space between links and social section ([93dcc75](https://github.com/oaknational/Oak-Web-Application/commit/93dcc7567ab4ec435d93ef43efcb90098932474b))
+* edit links in footer ([eab2a87](https://github.com/oaknational/Oak-Web-Application/commit/eab2a873fb59d407e03ac06cb356289e1eb343eb))
+* sentence case ([de634c5](https://github.com/oaknational/Oak-Web-Application/commit/de634c5a0ffa59879c5d8b5d8d7e475219c78120))
+
 # [0.80.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.79.2...v0.80.0) (2022-08-25)
 
 
