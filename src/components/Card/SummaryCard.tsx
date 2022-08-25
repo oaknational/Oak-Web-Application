@@ -54,7 +54,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
         $justifyContent={"center"}
         $flexDirection={"column"}
         $maxWidth={812}
-        $mr={40}
+        $mr={48}
       >
         <Heading
           $mb={8}
