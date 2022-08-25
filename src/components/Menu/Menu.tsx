@@ -105,6 +105,7 @@ const Menu: FC = ({ children }) => {
                 $overflow={"auto"}
                 $flexGrow={1}
                 $pt={[12, 72]}
+                $ml={[16]}
               >
                 {/* Mobile logo */}
                 <Flex
