@@ -14,8 +14,10 @@ import CMSClient, {
   PortableTextJSON,
   SanityImage,
   TextAndMedia,
+  Video,
 } from "../../node-lib/cms";
 import CMSImage from "../../components/CMSImage";
+import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
@@ -113,6 +115,18 @@ const portableTextComponents = {
         </div>
       );
     },
+    video: (props: PortableTextComponent<Video>) => {
+      if (!props.value) {
+        return null;
+      }
+
+      const { video, title } = props.value;
+
+      return (
+        <div style={{ border: "1px solid red" }}>
+          {video && (
+            <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+          )}
         </div>
       );
     },
