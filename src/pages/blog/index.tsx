@@ -59,8 +59,7 @@ const blogToBlogListItem = (blog: SerializedBlog): BlogListItemProps => ({
   contentType: "blog-post",
   title: blog.title,
   href: `/blog/${blog.slug}`,
-  snippet:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+  snippet: blog.summary,
   titleTag: "h3",
   category: blog.category.title,
   date: blog.date,
