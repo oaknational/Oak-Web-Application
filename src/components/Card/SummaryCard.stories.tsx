@@ -17,7 +17,7 @@ export const SummaryCard = Template.bind({});
 SummaryCard.args = {
   title: "Title",
   summary: "A summary section.......",
-  background: "grey7",
+  background: "teachersPastelYellow",
 };
 
 export const SummaryCardImage = Template.bind({});
@@ -25,7 +25,7 @@ export const SummaryCardImage = Template.bind({});
 SummaryCardImage.args = {
   title: "Title",
   summary: "A summary section.......",
-  background: "grey7",
+  background: "teachersPastelYellow",
   imageProps: {
     src: "/images/illustrations/planning.png",
     alt: "planning",
@@ -37,7 +37,7 @@ export const SummaryCardCustomImageContainer = Template.bind({});
 SummaryCardCustomImageContainer.args = {
   title: "Title",
   summary: "A summary section.......",
-  background: "grey7",
+  background: "teachersGreen",
   imageProps: {
     src: "/images/illustrations/planning.png",
     alt: "planning illustration",
