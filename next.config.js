@@ -87,6 +87,8 @@ module.exports = async (phase) => {
     },
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
+    // Make sure production source maps exist for e.g. Bugsnag
+    productionBrowserSourceMaps: true,
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
