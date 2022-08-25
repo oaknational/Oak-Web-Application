@@ -12,6 +12,7 @@ describe("MenuLinks", () => {
         fontFamily: "heading",
         fontSize: [32],
         $mt: [20],
+        arrowSize: [32],
       },
       {
         href: "https://classroom.thenational.academy/",
@@ -19,6 +20,7 @@ describe("MenuLinks", () => {
         fontSize: [32],
         fontFamily: "heading",
         $mt: [16],
+        arrowSize: [32],
       },
     ];
 
@@ -29,6 +31,44 @@ describe("MenuLinks", () => {
       getByText(linkText);
     });
   });
+  test("will position the arrow at home", () => {
+    const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
+      {
+        href: "/develop-the-curriculum",
+        linkText: "Develop Your Curriculum",
+        fontFamily: "heading",
+        fontSize: [32],
+        $mt: [20],
+        arrowSize: [32],
+      },
+      {
+        href: "/blog",
+        linkText: "Blogs",
+        fontSize: [32],
+        fontFamily: "heading",
+        $mt: [16],
+        arrowSize: [32],
+      },
+      {
+        href: "/plan-a-lesson",
+        linkText: "Plan A Lesson",
+        fontSize: [32],
+        fontFamily: "heading",
+        $mt: [16],
+        arrowSize: [32],
+      },
+    ];
+
+    const { getByTestId, container } = renderWithProviders(
+      <MenuLinks menuLinks={menuLinks} currentPath={"/"} />
+    );
+    const blogsLink = getByTestId("home-link");
+    const svgs = blogsLink.getElementsByTagName("svg");
+    expect(svgs.length).toBe(1);
+
+    const allSvgs = container.getElementsByTagName("svg");
+    expect(allSvgs.length).toBe(1);
+  });
   test("should position the arrow based on the current path", () => {
     const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
       {
@@ -37,6 +77,7 @@ describe("MenuLinks", () => {
         fontFamily: "heading",
         fontSize: [32],
         $mt: [20],
+        arrowSize: [32],
       },
       {
         href: "/blog",
@@ -44,6 +85,7 @@ describe("MenuLinks", () => {
         fontSize: [32],
         fontFamily: "heading",
         $mt: [16],
+        arrowSize: [32],
       },
       {
         href: "/plan-a-lesson",
@@ -51,19 +93,16 @@ describe("MenuLinks", () => {
         fontSize: [32],
         fontFamily: "heading",
         $mt: [16],
+        arrowSize: [32],
       },
     ];
 
-    const { getByText, container } = renderWithProviders(
+    const { getByTestId, container } = renderWithProviders(
       <MenuLinks menuLinks={menuLinks} currentPath={"/blog"} />
     );
-    const blogsLink = getByText("Blogs");
-    const arrowIcon =
-      blogsLink.parentElement?.previousElementSibling?.firstElementChild
-        ?.firstElementChild;
-
-    expect(arrowIcon).toBeInTheDocument();
-    expect(arrowIcon?.nodeName).toBe("svg");
+    const blogsLink = getByTestId("blog-link");
+    const svgs = blogsLink.getElementsByTagName("svg");
+    expect(svgs.length).toBe(1);
 
     const allSvgs = container.getElementsByTagName("svg");
     expect(allSvgs.length).toBe(1);

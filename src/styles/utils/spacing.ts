@@ -15,8 +15,8 @@ export type PaddingProps = {
   $pt?: PaddingValues;
   $pb?: PaddingValues;
 };
-type MarginValue = "auto" | NullablePixelSpacing | NegativePixelSpacing;
-type MarginValues = ResponsiveValues<MarginValue>;
+export type MarginValue = "auto" | NullablePixelSpacing | NegativePixelSpacing;
+export type MarginValues = ResponsiveValues<MarginValue>;
 export type MarginProps = {
   $ma?: MarginValues;
   $mh?: MarginValues;

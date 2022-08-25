@@ -1,12 +1,13 @@
-import { OakFontName } from "../../styles/theme";
+import { OakFontName, PixelSpacing } from "../../styles/theme";
 import { MarginProps } from "../../styles/utils/spacing";
 
 export type MenuListElementProps = {
   fontFamily: OakFontName;
-  fontSize: number[];
+  fontSize: [PixelSpacing];
   href: string;
   linkText: string;
   currentPath: string;
+  arrowSize: PixelSpacing[];
 } & MarginProps;
 
 export type MenuLinkProps = {

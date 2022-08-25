@@ -17,7 +17,7 @@ const SiteHeader: FC = () => {
   const theme = useTheme();
 
   const { toggleMenu } = useMenuContext();
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
 
   const menuLinks: Omit<MenuListElementProps, "currentPath">[] = [
     {
@@ -26,6 +26,7 @@ const SiteHeader: FC = () => {
       fontFamily: "heading",
       fontSize: [32],
       $mt: [20],
+      arrowSize: [48],
     },
     {
       href: "https://classroom.thenational.academy/",
@@ -33,6 +34,7 @@ const SiteHeader: FC = () => {
       fontSize: [32],
       fontFamily: "heading",
       $mt: [16],
+      arrowSize: [48],
     },
     {
       href: "/lesson-planning",
@@ -40,6 +42,7 @@ const SiteHeader: FC = () => {
       fontSize: [24],
       fontFamily: "heading",
       $mt: [32],
+      arrowSize: [24],
     },
     {
       href: "/develop-your-curriculum",
@@ -47,6 +50,7 @@ const SiteHeader: FC = () => {
       fontSize: [24],
       fontFamily: "heading",
       $mt: [12],
+      arrowSize: [24],
     },
     {
       href: "/blog",
@@ -54,6 +58,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [32],
+      arrowSize: [16],
     },
     {
       href: "/about-us/who-we-are",
@@ -61,6 +66,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
+      arrowSize: [16],
     },
     {
       href: "/contact-us",
@@ -68,6 +74,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
+      arrowSize: [16],
     },
     {
       href: "https://support.thenational.academy",
@@ -75,6 +82,7 @@ const SiteHeader: FC = () => {
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
+      arrowSize: [16],
     },
   ];
 
@@ -105,7 +113,7 @@ const SiteHeader: FC = () => {
         }}
       />
       <Menu>
-        <MenuLinks menuLinks={menuLinks} currentPath={pathname} />
+        <MenuLinks menuLinks={menuLinks} currentPath={asPath} />
       </Menu>
     </FixedHeader>
   );
