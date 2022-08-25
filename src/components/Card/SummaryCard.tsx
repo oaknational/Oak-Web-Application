@@ -54,6 +54,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
         $justifyContent={"center"}
         $flexDirection={"column"}
         $maxWidth={812}
+        $mr={40}
       >
         <Heading
           $mb={8}
@@ -94,6 +95,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
               objectPosition={"right"}
               alt={imageProps.alt}
               src={imageProps.src}
+              priority
             />
           </Cover>
         </Flex>
