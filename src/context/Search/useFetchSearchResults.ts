@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config";
 import OakError from "../../errors/OakError";
-import { SearchHit } from "../../pages/search";
+import { SearchHit } from "../../pages/beta/search";
 import handleFetchError from "../../utils/handleFetchError";
 
 import constructElasticQuery from "./constructElasticQuery";

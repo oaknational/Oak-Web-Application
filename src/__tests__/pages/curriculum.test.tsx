@@ -32,6 +32,7 @@ const testCurriculumPageData: CurriculumPage = {
     title: "element title",
     posts: [
       {
+        title: "blog title",
         post: {
           title: "post title",
           slug: {
