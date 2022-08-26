@@ -1,4 +1,4 @@
-import { AboutPage, PlanningPage, CurriculumPage } from "./pages";
+import { HomePage, AboutPage, PlanningPage, CurriculumPage } from "./pages";
 import {
   BlogPost,
   BlogPostPreview,
@@ -24,6 +24,7 @@ export interface CMSClient {
     webinars(params?: ListParams): Promise<WebinarPreview[]>;
     blogPosts(params?: ListParams): Promise<BlogPostPreview[]>;
     blogPostBySlug(slug: string, params?: Params): Promise<BlogPost | null>;
+    homepage(params?: Params): Promise<HomePage | null>;
     planningPage(params?: Params): Promise<PlanningPage | null>;
     aboutPage(params?: Params): Promise<AboutPage | null>;
     curriculumPage(params?: Params): Promise<CurriculumPage | null>;

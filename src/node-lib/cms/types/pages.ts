@@ -11,6 +11,17 @@ import {
   Seo,
 } from "..";
 
+export type HomePage = Document & {
+  heading: string;
+  summaryPortableText: PortableTextJSON;
+  sidebarCard1: Card;
+  sidebarCard2: Card;
+  sidebarForm: {
+    title: string;
+    bodyPortableText: PortableTextJSON;
+  };
+};
+
 export type PlanningPage = Document & {
   title: string;
   heading: string;
