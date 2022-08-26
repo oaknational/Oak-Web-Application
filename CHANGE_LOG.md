@@ -1,3 +1,10 @@
+## [0.81.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.0...v0.81.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* blog container resizing and title from sanity ([b0af501](https://github.com/oaknational/Oak-Web-Application/commit/b0af50152226510d7d3ec3c42a3bc006b5b594bc))
+
 # [0.81.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.80.2...v0.81.0) (2022-08-25)
 
 
