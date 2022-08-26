@@ -16,11 +16,17 @@ import {
 
 const StyledA = styled.a<ButtonStylesProps>`
   ${buttonStyles}
+  ${({ disabled }) =>
+    disabled === true &&
+    `
+   pointer-events: none;
+  `}
 `;
 export type ButtonAsLinkProps = CommonButtonProps & {
   href: string;
   nextLinkProps?: Omit<LinkProps, "href">;
   htmlAnchorProps?: HTMLAnchorProps;
+  disabled?: boolean;
 };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const {
@@ -31,6 +37,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     nextLinkProps,
     htmlAnchorProps = {},
     iconBackground,
+    disabled = false,
     ...styleProps
   } = props;
 
@@ -48,6 +55,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         variant={variant}
         background={background}
         iconPosition={iconPosition}
+        disabled={disabled}
         {...styleProps}
       >
         <ButtonInner
@@ -58,6 +66,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           size={size}
           background={background}
           variant={variant}
+          disabled={disabled}
         />
       </StyledA>
     </Link>

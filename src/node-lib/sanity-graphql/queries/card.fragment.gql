@@ -4,4 +4,7 @@ fragment Card on Card {
     ...Image
   }
   bodyPortableText: bodyRaw
+  cta {
+    ...CTA
+  }
 }

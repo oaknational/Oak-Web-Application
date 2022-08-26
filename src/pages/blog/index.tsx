@@ -18,6 +18,7 @@ export type BlogListingPageProps = {
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
+  console.log(props);
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff.png",

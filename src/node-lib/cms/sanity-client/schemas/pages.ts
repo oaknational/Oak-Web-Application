@@ -49,6 +49,7 @@ const attachmentSchema = z.object({
     asset: z.object({
       extension: z.string(),
       size: z.number(),
+      url: z.string(),
     }),
   }),
 });
