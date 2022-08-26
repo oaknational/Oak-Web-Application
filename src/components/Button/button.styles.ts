@@ -30,6 +30,7 @@ export type ButtonStylesProps = MarginProps & {
   variant: ButtonVariant;
   background: ButtonBackground;
   fullWidth?: boolean;
+  disabled?: boolean;
 };
 export const getButtonStylesProps = (
   props: CommonButtonProps

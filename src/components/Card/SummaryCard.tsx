@@ -59,7 +59,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
         <Heading
           $mb={8}
           tag={"h1"}
-          $fontSize={20}
+          $fontSize={[20, 24]}
           $color={"oakGrey4"}
           $fontFamily="heading"
         >
@@ -68,7 +68,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
         <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h2"}>
           {heading}
         </Heading>
-        <Typography $color="black" $fontSize={16}>
+        <Typography $color="black" $fontSize={18}>
           {typeof summary === "string" ? (
             <p>{summary}</p>
           ) : (

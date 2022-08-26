@@ -54,6 +54,7 @@ export type Attachment = {
     asset: {
       extension: string;
       size: number;
+      url: string;
     };
   };
 };
