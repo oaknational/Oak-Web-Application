@@ -5,7 +5,7 @@ import {
   documentSchema,
   portableTextSchema,
   dateSchema,
-  blogWebinarCategory,
+  blogWebinarCategorySchema,
   imageSchema,
 } from "./base";
 import { teamMemberPreviewSchema } from "./teamMember";
@@ -18,7 +18,7 @@ export const blogPostSchema = z
     author: teamMemberPreviewSchema,
     summary: z.string().nonempty(),
     contentPortableText: portableTextSchema,
-    category: blogWebinarCategory,
+    category: blogWebinarCategorySchema,
     mainImage: imageSchema,
   })
   .merge(documentSchema);

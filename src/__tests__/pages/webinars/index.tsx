@@ -11,6 +11,7 @@ const testWebinarPreview: WebinarPreview = {
   id: "5",
   slug: "an-upcoming-webinar",
   date: new Date("2022-12-01"),
+  category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
 
@@ -24,6 +25,7 @@ const testWebinarPreview2: WebinarPreview = {
   id: "6",
   slug: "a-past-webinar",
   date: new Date("2022-12-31"),
+  category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
 

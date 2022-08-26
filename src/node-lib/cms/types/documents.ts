@@ -8,17 +8,23 @@ export type TeamMember = Document & {
 
 export type TeamMemberPreview = Pick<TeamMember, "name">;
 
+type BlogWebinarCategory = {
+  title: string;
+  slug: string;
+};
+
 export type Webinar = Document & {
   title: string;
   slug: string;
   date: Date;
   hosts: TeamMember[];
+  category: BlogWebinarCategory;
   summaryPortableText: PortableTextJSON;
 };
 
 export type WebinarPreview = Pick<
   Webinar,
-  "id" | "title" | "slug" | "date" | "summaryPortableText"
+  "id" | "title" | "slug" | "date" | "category" | "summaryPortableText"
 >;
 
 export type BlogPost = Document & {
@@ -28,11 +34,8 @@ export type BlogPost = Document & {
   mainImage: Image;
   author: TeamMember;
   summary: string;
+  category: BlogWebinarCategory;
   contentPortableText: PortableTextJSON;
-  category: {
-    title: string;
-    slug: string;
-  };
 };
 
 export type BlogPostPreview = Pick<
