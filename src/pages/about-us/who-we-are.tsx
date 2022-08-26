@@ -81,12 +81,9 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
           }
           background={"teachersPastelYellow"}
-          textMaxWidth={740}
-          imageMinWidth={180}
-          cardImageProps={{
-            imageSrc: "/images/oak-logo.svg",
+          imageProps={{
+            src: "/images/oak-logo.svg",
             alt: "who we are illustration",
-            position: "left center",
           }}
         />
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
