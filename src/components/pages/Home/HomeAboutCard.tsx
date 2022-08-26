@@ -14,7 +14,12 @@ const HomeAboutCard: FC = () => {
       <P color={"black"} fontSize={16} $mb={24}>
         Discover who we are, what we do and how we work.
       </P>
-      <ButtonAsLink $mt={"auto"} fullWidth href="/" label="Find out more" />
+      <ButtonAsLink
+        $mt={"auto"}
+        fullWidth
+        href="/about-us/who-we-are"
+        label="Find out more"
+      />
     </Card>
   );
 };

@@ -107,7 +107,7 @@ describe("NewsletterForm", () => {
     const input = getByPlaceholderText("Name");
     // initially error is not shown
     expect(computeAccessibleDescription(input)).toBe("");
-    const submit = getByLabelText("Sign Up");
+    const submit = getByLabelText("Sign up");
     const user = userEvent.setup();
     await user.click(submit);
     // error is shown after form is submitted
@@ -118,7 +118,7 @@ describe("NewsletterForm", () => {
       <NewsletterForm onSubmit={onSubmit} />
     );
 
-    const submit = getByLabelText("Sign Up");
+    const submit = getByLabelText("Sign up");
     const user = userEvent.setup();
     await user.click(submit);
 
@@ -135,7 +135,7 @@ describe("NewsletterForm", () => {
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("Email Address");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByLabelText("Sign Up");
+    const submit = getByLabelText("Sign up");
     await user.click(submit);
 
     const error = getByRole("alert");
@@ -153,7 +153,7 @@ describe("NewsletterForm", () => {
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("Email Address");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByLabelText("Sign Up");
+    const submit = getByLabelText("Sign up");
     await user.click(submit);
 
     const error = getByRole("alert");
