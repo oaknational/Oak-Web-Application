@@ -8,7 +8,7 @@ const testProps: BlogListItemProps = {
   snippet: "Item snippet",
   href: "https://www.test.com/",
   contentType: "blog-post",
-  category: "Curriculum Planning",
+  category: { title: "Curriculum Planning", slug: "curriculum-planning" },
   date: new Date(2022, 7, 22).toISOString(),
 };
 

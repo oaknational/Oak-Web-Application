@@ -66,7 +66,7 @@ export const blogToBlogListItem = (
   href: `/blog/${blog.slug}`,
   snippet: blog.summary,
   titleTag: "h3",
-  category: blog.category.title,
+  category: blog.category,
   date: blog.date,
   mainImage: blog?.mainImage,
 });

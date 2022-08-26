@@ -43,7 +43,7 @@ export const webinarToBlogListItem = (
   href: `/webinars/${webinar.slug}`,
   snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
-  category: webinar.category.title,
+  category: webinar.category,
   date: webinar.date,
   mainImage: null,
 });

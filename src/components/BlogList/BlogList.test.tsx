@@ -15,7 +15,10 @@ describe("components/BlogList", () => {
             snippet: "Item snippet",
             href: "/",
             contentType: "blog-post",
-            category: "Curriculum Planning",
+            category: {
+              title: "Curriculum Planning",
+              slug: "curriculum-planning",
+            },
             date: new Date(2022, 8, 22).toISOString(),
           },
         ]}
@@ -39,7 +42,10 @@ describe("components/BlogList", () => {
             snippet: "Item snippet",
             href: "/",
             contentType: "blog-post",
-            category: "Curriculum Planning",
+            category: {
+              title: "Curriculum Planning",
+              slug: "curriculum-planning",
+            },
             date: new Date(2022, 7, 22).toISOString(),
           },
         ]}

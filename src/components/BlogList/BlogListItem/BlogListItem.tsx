@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { SanityImage } from "../../../node-lib/cms";
+import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
 import CMSImage from "../../CMSImage";
@@ -28,7 +28,7 @@ export type BlogListItemProps = {
   snippet: string;
   href: string;
   contentType: BlogListItemContentType;
-  category: string;
+  category: BlogWebinarCategory;
   date: string;
   mainImage?: SanityImage | null;
   withImage?: boolean;
@@ -75,7 +75,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $color="teachersHighlight"
           $fontFamily="ui"
         >
-          {category}
+          {category.title}
         </P>
         <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
           {blogDate.toLocaleDateString("en-GB", {

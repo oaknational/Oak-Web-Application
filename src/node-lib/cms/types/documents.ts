@@ -6,7 +6,7 @@ export type TeamMember = Document & {
 
 export type TeamMemberPreview = Pick<TeamMember, "name">;
 
-type BlogWebinarCategory = {
+export type BlogWebinarCategory = {
   title: string;
   slug: string;
 };
