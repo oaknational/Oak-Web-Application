@@ -93,7 +93,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           }}
         />
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
-          <Card $pv={32} $ph={[16, 32]} $flexDirection={["column", "row"]}>
+          <Card $pv={32} $ph={[16, 24]} $flexDirection={["column", "row"]}>
             <Flex
               $justifyContent={"center"}
               $alignItems={"center"}
