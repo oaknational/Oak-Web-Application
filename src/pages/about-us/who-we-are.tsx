@@ -45,7 +45,9 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
           {title}
         </OutlineHeading>
-        <PortableText value={bodyPortableText} />
+        <Typography $fontSize={18}>
+          <PortableText value={bodyPortableText} />
+        </Typography>
         {cta?.linkType == "internal" && (
           <Flex>
             <ButtonAsLink
@@ -84,6 +86,10 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           imageProps={{
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",
+          }}
+          imageContainerProps={{
+            $minHeight: 220,
+            $mr: 32,
           }}
         />
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">

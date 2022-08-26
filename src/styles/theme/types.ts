@@ -36,6 +36,7 @@ export type PixelSpacing =
   | 92
   | 120
   | 160
+  | 220
   | 240
   | 360
   | 480
