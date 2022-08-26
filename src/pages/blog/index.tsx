@@ -4,15 +4,17 @@ import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
-import CMSClient from "../../node-lib/cms";
+import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Grid, { GridArea } from "../../components/Grid";
 import SummaryCard from "../../components/Card/SummaryCard";
 
-import { SerializedBlog } from "./[blogSlug]";
+export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
+  date: string;
+};
 
 export type BlogListingPageProps = {
-  blogs: SerializedBlog[];
+  blogs: SerializedBlogPostPreview[];
   isPreviewMode: boolean;
 };
 
@@ -56,7 +58,9 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   );
 };
 
-const blogToBlogListItem = (blog: SerializedBlog): BlogListItemProps => ({
+export const blogToBlogListItem = (
+  blog: SerializedBlogPostPreview
+): BlogListItemProps => ({
   contentType: "blog-post",
   title: blog.title,
   href: `/blog/${blog.slug}`,
@@ -65,6 +69,13 @@ const blogToBlogListItem = (blog: SerializedBlog): BlogListItemProps => ({
   category: blog.category.title,
   date: blog.date,
   mainImage: blog?.mainImage,
+});
+
+export const serializeDate = <T extends { date: Date }>(
+  item: T
+): T & { date: string } => ({
+  ...item,
+  date: item.date.toISOString(),
 });
 
 export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
@@ -76,12 +87,7 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
     previewMode: isPreviewMode,
   });
 
-  const blogs = blogResults.map((blog) => {
-    return {
-      ...blog,
-      date: blog.date.toISOString(),
-    };
-  });
+  const blogs = blogResults.map(serializeDate);
 
   return {
     props: {
