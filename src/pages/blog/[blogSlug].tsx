@@ -14,8 +14,11 @@ import CMSClient, {
   PortableTextJSON,
   SanityImage,
   TextAndMedia,
+  Video,
 } from "../../node-lib/cms";
 import CMSImage from "../../components/CMSImage";
+import VideoPlayer from "../../components/VideoPlayer";
+import Flex from "../../components/Flex";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -31,9 +34,20 @@ type PortableTextComponent<T = unknown> = {
   value?: T;
 };
 
+// There seems to be a TS bug where calling Omit discriminated union
+// will "flatten" the type into a regular union
+// workaround copied from here:
+// https://github.com/microsoft/TypeScript/issues/31501
+type OmitKeepDiscriminated<Type, K> = {
+  [Property in keyof Type as Exclude<Property, K>]: Type[Property];
+};
+
 // When we get the JSON portable text it doesn't have the same field names as
 // our generic types / what comes from our graphql queries
-type TextAndMediaBlock = Omit<TextAndMedia, "bodyPortableText"> & {
+type TextAndMediaBlock = OmitKeepDiscriminated<
+  TextAndMedia,
+  "bodyPortableText"
+> & {
   body: PortableTextJSON;
 };
 
@@ -57,7 +71,11 @@ const portableTextComponents = {
       );
     },
     link: (props: PortableTextComponent<{ href: string }>) => {
-      const { href } = props.value || {};
+      if (!props.value?.href) {
+        return null;
+      }
+
+      const { href } = props.value;
 
       return (
         <a href={href} style={{ color: "blue" }}>
@@ -70,7 +88,12 @@ const portableTextComponents = {
     textBlock: (
       props: PortableTextComponent<{ title: string; body: PortableTextJSON }>
     ) => {
-      const { body, title, ...params } = props.value || {};
+      if (!props.value) {
+        return null;
+      }
+
+      const { body, title, ...params } = props.value;
+
       return (
         <div style={{ border: "1px solid red" }}>
           TextBlock example
@@ -81,29 +104,61 @@ const portableTextComponents = {
       );
     },
     image: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
-      let asset = { url: "", _id: "" };
-      const { ...params } = props.value;
-      asset = props.value?.asset || asset;
+      if (!props.value) {
+        return null;
+      }
 
       return (
         <div style={{ border: "1px solid red" }}>
           Image example
-          <pre>{JSON.stringify(params, null, 2)}</pre>
-          <CMSImage image={asset} />
+          <CMSImage image={props.value} />
+        </div>
+      );
+    },
+    video: (props: PortableTextComponent<Video>) => {
+      if (!props.value) {
+        return null;
+      }
+
+      const { video, title } = props.value;
+
+      return (
+        <div style={{ border: "1px solid red" }}>
+          {video && (
+            <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+          )}
         </div>
       );
     },
     textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
-      const { body, title, ...params } = props.value || {};
+      if (!props.value) {
+        return null;
+      }
+
+      const params = props.value;
+
+      // @TODO: Responsive handling - likely don't want it reversed
+      const flexDirection =
+        params.alignMedia === "left" ? "row-reverse" : "row";
 
       return (
         <div style={{ border: "1px solid red" }}>
           Text and media example
-          <pre>{JSON.stringify(params, null, 2)}</pre>
-          {/* @TODO: Provide all these components using context so
-                    we don't have to re-specify each time */}
-          <h2>{title}</h2>
-          <PortableText value={body} />
+          <Flex $flexDirection={flexDirection}>
+            <div>
+              <h2>{params.title}</h2>
+              <PortableText value={params.body} />
+            </div>
+            {params.mediaType === "image" && params.image && (
+              <CMSImage image={params.image} />
+            )}
+            {params.mediaType === "video" && params.video && (
+              <VideoPlayer
+                title={params.video.title}
+                playbackId={params.video.video.asset.playbackId}
+              />
+            )}
+          </Flex>
         </div>
       );
     },

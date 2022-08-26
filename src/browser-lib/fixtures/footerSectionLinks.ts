@@ -25,18 +25,19 @@ const footerSections: FooterSection[] = [
       { text: "Teacher Hub", href: "https://teachers.thenational.academy" },
       { text: "Plan a lesson", href: "/lesson-planning" },
       { text: "Develop your curriculum", href: "/develop-your-curriculum" },
-      { text: "Support your team", href: "/support-your-team" },
     ],
   },
   {
     title: "Oak",
     links: [
       { text: "Home", href: "/" },
-      { text: "About Oak", href: "/about-us/who-we-are" },
-      { text: "Careers", href: "about-us/work-with-us" },
+      { text: "About us", href: "/about-us/who-we-are" },
+      {
+        text: "Careers",
+        href: "https://app.beapplied.com/org/1574/oak-national-academy",
+      },
       { text: "Contact us", href: "/contact-us" },
       { text: "Help", href: "https://support.thenational.academy/" },
-      { text: "Webinars", href: "/webinars" },
       { text: "Blog", href: "/blog" },
     ],
   },
