@@ -278,7 +278,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   </Heading>
 
                   <Typography $fontFamily="ui">
-                    <Link href={"/webinars"}>All webinars</Link>
+                    {/* <Link href={"/webinars"}>All webinars</Link> */}
                     <Link href={"/blog"}>All blogs</Link>
                   </Typography>
                 </Flex>
