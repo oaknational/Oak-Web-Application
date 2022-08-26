@@ -69,7 +69,7 @@ const Notification: FC = () => {
   );
 };
 
-type SerializedPost =
+export type SerializedPost =
   | ({ type: "blog-post" } & SerializedBlogPostPreview)
   | ({ type: "webinar" } & SerializedWebinarPreview);
 
@@ -283,13 +283,15 @@ const Home: NextPage<HomePageProps> = (props) => {
                   </Typography>
                 </Flex>
 
-                <Flex $flexDirection="column">
+                <Flex
+                  $flexDirection="column"
+                  as="ul"
+                  role="list" /* role=list to strip default ul styling */
+                >
                   {posts.map((item, i) => (
-                    <BlogListItem
-                      {...item}
-                      withImage={true}
-                      key={`BlogList-BlogListItem-${i}`}
-                    />
+                    <li key={`BlogList-BlogListItem-${i}`}>
+                      <BlogListItem {...item} withImage={true} />
+                    </li>
                   ))}
                 </Flex>
               </Box>
