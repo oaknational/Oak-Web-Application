@@ -72,7 +72,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         <P
           $fontSize={16}
           $lineHeight={"20px"}
-          $color="teachersHighlight"
+          // Not blue until link to category filter is added
+          // $color="teachersHighlight"
           $fontFamily="ui"
         >
           {category.title}
