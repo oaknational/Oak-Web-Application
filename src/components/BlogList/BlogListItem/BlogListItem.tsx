@@ -69,7 +69,12 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         </Box>
       )}
       <Flex $flexDirection="column" $alignItems="flex-start" $ml={[0, 32]}>
-        <P $fontSize={16} $lineHeight={"20px"}>
+        <P
+          $fontSize={16}
+          $lineHeight={"20px"}
+          $color="teachersHighlight"
+          $fontFamily="ui"
+        >
           {category}
         </P>
         <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
