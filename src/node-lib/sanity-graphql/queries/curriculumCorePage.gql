@@ -21,6 +21,7 @@ query curriculumCorePage($isDraft: Boolean = false) {
     elements {
       title
       posts {
+        title
         post {
           title
           slug {
