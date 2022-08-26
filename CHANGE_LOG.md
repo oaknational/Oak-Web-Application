@@ -1,3 +1,24 @@
+# [0.82.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.2...v0.82.0) (2022-08-26)
+
+
+### Bug Fixes
+
+* board document filesize ([9614f77](https://github.com/oaknational/Oak-Web-Application/commit/9614f77e9a843827a43410f0d7f3ae6f37516177))
+* broken storybook image ([4959e4f](https://github.com/oaknational/Oak-Web-Application/commit/4959e4f87c4a50911d6c6d189e3363345dc3aaf6))
+* empty components are self closing ([96f841b](https://github.com/oaknational/Oak-Web-Application/commit/96f841ba4ced09153299351630970db6989f1d68))
+* summary card children ([16f5a4c](https://github.com/oaknational/Oak-Web-Application/commit/16f5a4c19aaadb37c929e5cfac7bdc8593423c7e))
+* summary props ([1482a08](https://github.com/oaknational/Oak-Web-Application/commit/1482a08750a927e202b9b47ca802d1ea66320ea2))
+* video and cta type and adds downloads to board ([78b5dc3](https://github.com/oaknational/Oak-Web-Application/commit/78b5dc3ac799f98c71510bd6d162a696749b7985))
+
+
+### Features
+
+* about who we are ([616cbdf](https://github.com/oaknational/Oak-Web-Application/commit/616cbdfe9a0e8ced2acd654c013324f9ec1f701b))
+* about-who-we-are ([c6214dc](https://github.com/oaknational/Oak-Web-Application/commit/c6214dcaf60df0a907fd5672ebd98d1fa6c6528f))
+* avatar card ([e5ceb39](https://github.com/oaknational/Oak-Web-Application/commit/e5ceb392bbc8877dbe1abef9baad8245df0a4ae2))
+* board and work with us about pages ([40db7e8](https://github.com/oaknational/Oak-Web-Application/commit/40db7e8887a4f1de42a844399fa864d04a0bd3fc))
+* work with us ([0083b1a](https://github.com/oaknational/Oak-Web-Application/commit/0083b1a93137726f5fe5589c303e2d81dd352ab0))
+
 ## [0.81.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.1...v0.81.2) (2022-08-26)
 
 
