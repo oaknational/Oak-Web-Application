@@ -62,4 +62,19 @@ describe("pages/lesson-planning.tsx", () => {
       );
     });
   });
+  it("uses correct src", async () => {
+    const { getByAltText } = renderWithProviders(
+      <PlanALesson
+        renderPlayer={false}
+        pageData={testPlanningPageData}
+        isPreviewMode={false}
+      />
+    );
+
+    const image = getByAltText("planning illustration");
+    expect(image).toHaveAttribute(
+      "src",
+      "/_next/image?url=%2Fimages%2Fillustrations%2Fplanning.png&w=3840&q=75"
+    );
+  });
 });
