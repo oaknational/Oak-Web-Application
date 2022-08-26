@@ -45,7 +45,7 @@ export const webinarToBlogListItem = (
   titleTag: "h3",
   category: webinar.category.title,
   date: webinar.date,
-  mainImage: "",
+  mainImage: null,
 });
 
 export const serializeDate = <T extends { date: Date }>(

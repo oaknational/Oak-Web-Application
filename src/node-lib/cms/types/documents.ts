@@ -1,6 +1,6 @@
 import { Image } from "../../sanity-graphql/generated/sdk";
 
-import { Document, PortableTextJSON } from "./base";
+import { Document, PortableTextJSON, SanityImage } from "./base";
 
 export type TeamMember = Document & {
   name: string;
@@ -31,7 +31,7 @@ export type BlogPost = Document & {
   title: string;
   slug: string;
   date: Date;
-  mainImage: Image;
+  mainImage: SanityImage;
   author: TeamMember;
   summary: string;
   category: BlogWebinarCategory;

@@ -1,9 +1,10 @@
-import Image from "next/image";
 import { FC } from "react";
 import styled from "styled-components";
 
+import { SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
+import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
 import { P, Heading, HeadingTag } from "../../Typography";
@@ -29,7 +30,7 @@ export type BlogListItemProps = {
   contentType: BlogListItemContentType;
   category: string;
   date: string;
-  mainImage: string;
+  mainImage?: SanityImage | null;
   withImage?: boolean;
 };
 
@@ -58,12 +59,11 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       {withImage && mainImage && (
         <Box $position={"relative"} $minWidth={240}>
           <AspectRatio ratio={"3:2"}>
-            <Image
+            <CMSImage
               layout="fill"
               objectFit="cover"
               objectPosition="center center"
-              src={mainImage}
-              alt=""
+              image={mainImage}
             />
           </AspectRatio>
         </Box>

@@ -24,7 +24,6 @@ BlogList.args = {
       href: "/",
       contentType: "blog-post",
       category: "Curriculum Planning",
-      mainImage: "",
       date: new Date(2022, 7, 22).toISOString(),
     },
     {
@@ -34,7 +33,6 @@ BlogList.args = {
         'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
       href: "/",
       contentType: "webinar",
-      mainImage: "",
       category: "Curriculum Planning",
       date: new Date(2022, 7, 17).toISOString(),
     },
@@ -44,7 +42,6 @@ BlogList.args = {
       snippet:
         "No one I think is in my tree I mean, it must be high or low That is, you can't, you know, tune in but it's all right That is, I think it's not too bad",
       href: "/",
-      mainImage: "",
       contentType: "blog-post",
       category: "Curriculum Planning",
       date: new Date(2022, 6, 26).toISOString(),
