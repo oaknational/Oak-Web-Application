@@ -363,6 +363,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   {pageData.learnMoreBlock1.mediaType == "video" &&
                     renderPlayer && (
                       <VideoPlayer
+                        thumbnailTime={
+                          pageData.learnMoreBlock1.video.video.asset.thumbTime
+                        }
                         playbackId={
                           pageData.learnMoreBlock1.video.video.asset.playbackId
                         }

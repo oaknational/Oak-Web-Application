@@ -84,6 +84,7 @@ export const videoSchema = z.object({
     asset: z.object({
       assetId: z.string(),
       playbackId: z.string(),
+      thumbTime: z.number().optional(),
     }),
   }),
 });
