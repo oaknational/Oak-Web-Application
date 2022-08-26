@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import CMSClient, { WebinarPreview, WebinarPreview } from "../node-lib/cms";
+import CMSClient, { WebinarPreview } from "../node-lib/cms";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";

@@ -1,5 +1,3 @@
-import { Image } from "../../sanity-graphql/generated/sdk";
-
 import { Document, PortableTextJSON, SanityImage } from "./base";
 
 export type TeamMember = Document & {
