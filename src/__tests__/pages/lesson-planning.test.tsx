@@ -46,7 +46,19 @@ const testPlanningPageData: PlanningPage = {
   },
 };
 
+const getPageData = jest.fn(() => testPlanningPageData);
+
 describe("pages/lesson-planning.tsx", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+    jest.mock("../../../src/node-lib/cms/", () => ({
+      __esModule: true,
+      default: {
+        planningPage: jest.fn(getPageData),
+      },
+    }));
+  });
   it("Renders correct title ", async () => {
     renderWithProviders(
       <PlanALesson
@@ -76,5 +88,16 @@ describe("pages/lesson-planning.tsx", () => {
       "src",
       "/_next/image?url=%2Fimages%2Fillustrations%2Fplanning.png&w=3840&q=75"
     );
+  });
+
+  it("Should not fetch draft content by default", async () => {
+    const { getStaticProps } = await import("../../pages/lesson-planning");
+    await getStaticProps({
+      params: {},
+    });
+
+    expect(getPageData).toHaveBeenCalledWith({
+      previewMode: false,
+    });
   });
 });
