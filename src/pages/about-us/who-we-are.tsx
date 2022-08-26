@@ -107,6 +107,9 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                     pageData.whoWeAre.intro.video.video.asset.playbackId
                   }
                   title={pageData.whoWeAre.intro.video.title}
+                  thumbnailTime={
+                    pageData.whoWeAre.intro.video.video.asset.thumbTime
+                  }
                 />
               )}
             </Flex>
