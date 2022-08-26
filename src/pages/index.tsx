@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import CMSClient, { WebinarPreview } from "../node-lib/cms";
+import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
@@ -89,8 +89,8 @@ export type SerializedPost =
   | ({ type: "webinar" } & SerializedWebinarPreview);
 
 export type HomePageProps = {
+  pageData: HomePage;
   posts: SerializedPost[];
-  // webinars
   isPreviewMode: boolean;
 };
 
@@ -127,7 +127,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   data-testid="home-page-title"
                   $color={"black"}
                 >
-                  Oak is evolving
+                  {props.pageData.heading}
                 </Heading>
                 <Heading tag={"h2"} $fontSize={[20]}>
                   We’re growing our support to help you thrive.
@@ -370,6 +370,10 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
+  const homepageData = await CMSClient.homepage({
+    previewMode: isPreviewMode,
+  });
+
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
     limit: 5,
@@ -398,6 +402,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   return {
     props: {
+      pageData: homepageData,
       posts,
       isPreviewMode,
     },

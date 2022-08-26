@@ -5,14 +5,21 @@ import Home, {
   HomePageProps,
   SerializedPost,
 } from "../../pages";
-import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
+import CMSClient, { BlogPostPreview, HomePage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 
 jest.mock("../../node-lib/cms");
 
 describe("pages/index.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(<Home posts={[]} isPreviewMode={false} />);
+    const pageData = {
+      id: "homepage",
+      heading: "Oak",
+    } as HomePage;
+
+    renderWithProviders(
+      <Home pageData={pageData} posts={[]} isPreviewMode={false} />
+    );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
