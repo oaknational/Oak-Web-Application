@@ -11,10 +11,8 @@ describe("CardLinkIcon", () => {
         title={"title"}
         heading={"heading"}
         summary={"text"}
-        imageMinWidth={140}
-        textMaxWidth={140}
-        cardImageProps={{
-          imageSrc: "/images/illustrations/planning.svg",
+        imageProps={{
+          src: "/images/illustrations/planning.svg",
           alt: "planning illustration",
         }}
       />
