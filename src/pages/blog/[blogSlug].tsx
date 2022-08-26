@@ -171,10 +171,15 @@ const portableTextComponents = {
       }>
     ) => {
       return (
-        <div style={{ border: "1px solid red" }}>
-          Quote example
-          <pre>{JSON.stringify(props.value, null, 2)}</pre>
-        </div>
+        <Flex $flexDirection={"column"}>
+          <P>
+            <cite>{props.value?.attribution}</cite>
+          </P>
+          <P $fontSize={16} $lineHeight={"20px"}>
+            {props.value?.role}
+          </P>
+          <blockquote>{props.value?.text}</blockquote>
+        </Flex>
       );
     },
   },
