@@ -5,7 +5,7 @@ import renderWithProviders from "../__helpers__/renderWithProviders";
 
 describe("pages/index.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(<Home />);
+    renderWithProviders(<Home posts={[]} isPreviewMode={false} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
