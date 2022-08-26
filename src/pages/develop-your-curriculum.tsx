@@ -18,6 +18,8 @@ import Box from "../components/Box";
 import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
+import Grid from "../components/Grid";
+import GridArea from "../components/Grid/GridArea";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
@@ -30,6 +32,12 @@ export type CurriculumPageProps = {
   pageData: CurriculumPage;
   isPreviewMode: boolean;
 };
+
+const elementsOfCurriculumDesignHeadings = [
+  "Revising part of your Curriculum:",
+  "Rebuilding or changing your curriculum:",
+  "An easy way to refresh resources:",
+];
 
 const Curriculum: NextPage<CurriculumPageProps> = ({
   pageData,
@@ -46,8 +54,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           title={pageData.title}
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
-          cardImageProps={{
-            imageSrc: "/images/illustrations/curriculum.svg",
+          imageProps={{
+            src: "/images/illustrations/curriculum.svg",
             alt: "Develop Your Curriculum illustration",
           }}
         />
@@ -101,30 +109,31 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           $background={"teachersPastelYellow"}
           $ph={0}
         >
-          <Box $ph={[16, 24]} $pr={12} $width={["100%", "50%"]}>
+          <Box $ph={[16, 24]} $width={["100%", "50%"]}>
             <Heading $mt={[24, 0]} $mb={[56, 32]} $fontSize={[24, 32]} tag="h4">
               {pageData.elements.title}
             </Heading>
           </Box>
-          <Flex $flexDirection={["column", "row"]}>
+          <Grid $ph={[0, 24]} $cg={16}>
+            {elementsOfCurriculumDesignHeadings.map((heading, index) => (
+              <GridArea
+                $display={["none", "block"]}
+                key={`${index}-${heading}`}
+                $colSpan={[12, 4]}
+              >
+                <Box $ph={[16, 0]}>
+                  <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
+                    {heading}
+                  </P>
+                </Box>
+              </GridArea>
+            ))}
             {pageData.elements.posts.map((element, index) => (
-              <Fragment key={element.post.slug.current}>
-                <Flex
-                  $mr={[
-                    0,
-                    index == pageData.elements.posts.length - 1 ? 24 : 16,
-                  ]}
-                  $flexGrow={1}
-                  $flexDirection={"column"}
-                >
-                  <Box $ph={[16, 0]}>
-                    <P
-                      $ml={[0, index == 0 ? 24 : 0]}
-                      $mb={[24, 16]}
-                      $fontSize={20}
-                      $lineHeight={"24px"}
-                    >
-                      {element.post.title}
+              <Fragment>
+                <GridArea key={`${index}-${element.title}`} $colSpan={[12, 4]}>
+                  <Box $display={["block", "none"]} $ph={[16, 0]}>
+                    <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
+                      {element.title}
                     </P>
                   </Box>
                   <Card
@@ -133,23 +142,23 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                     $mb={[56, 0]}
                     $background="pastelTurqoise"
                     $pv={[72, 80]}
-                    $ml={[0, index == 0 ? 24 : 0]}
+                    $maxHeight={240}
                   >
-                    <CardLink href={element.post.slug.current} />
+                    <CardLink href={`/blog/${element.post.slug.current}`} />
                     <BoxBorders />
                     <Box $mv={12}>
                       <Heading $mb={8} $fontSize={16} tag={"h3"}>
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        {element.post.title}
+                        {element.title}
                       </Heading>
                     </Box>
                   </Card>
-                </Flex>
+                </GridArea>
               </Fragment>
             ))}
-          </Flex>
+          </Grid>
         </Card>
         <Card $mb={[56, 92]} $flexDirection={["column", "row"]}>
           <Flex

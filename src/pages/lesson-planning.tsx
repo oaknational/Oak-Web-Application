@@ -163,10 +163,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           title={pageData.title}
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
-          imageMinWidth={140}
-          cardImageProps={{
-            imageSrc: "/images/illustrations/planning.png",
+          imageProps={{
+            src: "/images/illustrations/planning.png",
             alt: "planning illustration",
+          }}
+          imageContainerProps={{
+            $minHeight: 160,
           }}
         />
         {/* Elements of lesson cards */}
