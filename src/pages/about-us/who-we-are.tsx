@@ -69,6 +69,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
   isPreviewMode,
   renderPlayer,
 }) => {
+  console.log(pageData);
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
