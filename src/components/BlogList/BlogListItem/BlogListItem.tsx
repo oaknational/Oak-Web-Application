@@ -51,7 +51,11 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
-  const blogDate = new Date(date);
+  const blogDate = new Date(date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <Flex $position={"relative"} $mt={24} $flexDirection={["column", "row"]}>
@@ -73,11 +77,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           {category}
         </P>
         <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-          {blogDate.toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
+          {blogDate}
         </P>
         <Heading tag={titleTag} $fontSize={20} $mt={8}>
           <ActionLink href={href} title={title}>

@@ -5,10 +5,11 @@ import {
   PortableText,
   PortableTextComponentsProvider,
 } from "@portabletext/react";
+import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
+import { Heading, P, Span } from "../../components/Typography";
 import CMSClient, {
   BlogPost,
   PortableTextJSON,
@@ -19,6 +20,10 @@ import CMSClient, {
 import CMSImage from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
+import Grid, { GridArea } from "../../components/Grid";
+import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import SummaryCard from "../../components/Card/SummaryCard";
+import Box from "../../components/Box";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -55,7 +60,11 @@ const portableTextComponents = {
   block: {
     sectionHeading: (props: PortableTextComponent) => {
       // @TODO: Choose an appropriate section heading level
-      return <h2>{props.children}</h2>;
+      return (
+        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
+          {props.children}
+        </Heading>
+      );
     },
   },
   marks: {
@@ -78,9 +87,11 @@ const portableTextComponents = {
       const { href } = props.value;
 
       return (
-        <a href={href} style={{ color: "blue" }}>
-          {props.children}
-        </a>
+        <Span $color={"hyperlink"}>
+          <Link href={href}>
+            <a>{props.children}</a>
+          </Link>
+        </Span>
       );
     },
   },
@@ -109,10 +120,9 @@ const portableTextComponents = {
       }
 
       return (
-        <div style={{ border: "1px solid red" }}>
-          Image example
+        <Box $position={"relative"} $width={"100%"} $mt={80}>
           <CMSImage image={props.value} />
-        </div>
+        </Box>
       );
     },
     video: (props: PortableTextComponent<Video>) => {
@@ -125,7 +135,9 @@ const portableTextComponents = {
       return (
         <div style={{ border: "1px solid red" }}>
           {video && (
-            <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+            <Box $position={"relative"} $width={"100%"} $mt={80}>
+              <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+            </Box>
           )}
         </div>
       );
@@ -191,23 +203,58 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 };
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
+  const { blog } = props;
+
+  const cardImage = {
+    imageSrc: "/images/illustrations/teacher-carrying-stuff.png",
+    alt: "",
+  };
+
+  const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
       $background="grey1"
       isPreviewMode={props.isPreviewMode}
     >
-      <Heading tag="h1" $fontSize={24}>
-        {props.blog.title}
-      </Heading>
-      {props.blog.date} <br />
-      Hosted by: {props.blog.author.name}
-      <PortableTextComponentsProvider components={portableTextComponents}>
-        <PortableText
-          value={props.blog.contentPortableText}
-          onMissingComponent={logMissingPortableTextComponents}
+      <MaxWidth $ph={[12, 12, 0]} $pt={[72, 80, 80]}>
+        <SummaryCard
+          title={"Blog Listing"}
+          heading={"Inspiration for inside and outside the classroom"}
+          summary={
+            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
+          }
+          background="teachersPastelYellow"
+          cardImageProps={cardImage}
         />
-      </PortableTextComponentsProvider>
+        <Grid $mt={[48, 64]}>
+          <GridArea $colSpan={[12, 7]}>
+            <P $fontSize={16} $lineHeight={"20px"}>
+              {blog.category.title}
+            </P>
+            <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
+              {formattedDate}
+            </P>
+            <Heading tag="h1" $fontSize={32} $lineHeight={"48px"} $mt={16}>
+              {props.blog.title}
+            </Heading>
+            <Heading tag="h2" $mt={16} $fontSize={16} $lineHeight={"20px"}>
+              {blog.author.name}
+            </Heading>
+            <PortableTextComponentsProvider components={portableTextComponents}>
+              <PortableText
+                value={props.blog.contentPortableText}
+                onMissingComponent={logMissingPortableTextComponents}
+              />
+            </PortableTextComponentsProvider>
+          </GridArea>
+        </Grid>
+      </MaxWidth>
     </Layout>
   );
 };
