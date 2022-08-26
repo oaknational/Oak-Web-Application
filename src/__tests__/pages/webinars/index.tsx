@@ -2,6 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 
 import { WebinarPreview } from "../../../node-lib/cms";
 import WebinarListingPage, {
+  SerializedWebinarPreview,
   WebinarListingPageProps,
 } from "../../../pages/webinars";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -15,7 +16,7 @@ const testWebinarPreview: WebinarPreview = {
   summaryPortableText: [],
 };
 
-const testSerializedWebinarPreview = {
+const testSerializedWebinarPreview: SerializedWebinarPreview = {
   ...testWebinarPreview,
   date: new Date("2022-12-01").toISOString(),
 };
@@ -29,7 +30,7 @@ const testWebinarPreview2: WebinarPreview = {
   summaryPortableText: [],
 };
 
-const testSerializedWebinarPreview2 = {
+const testSerializedWebinarPreview2: SerializedWebinarPreview = {
   ...testWebinarPreview2,
   date: new Date("2022-12-31").toISOString(),
 };
@@ -81,8 +82,8 @@ describe("pages/webinar/index.tsx", () => {
         props: WebinarListingPageProps;
       };
       expect(propsResult?.props?.webinars).toEqual([
-        testWebinarPreview,
-        testWebinarPreview2,
+        testSerializedWebinarPreview,
+        testSerializedWebinarPreview2,
       ]);
     });
 
