@@ -72,7 +72,8 @@ const portableTextComponents = {
       const { reference } = props.value || {};
       return (
         <>
-          <a href="https://thenational.academy" style={{ color: "red" }}>
+          {/* TODO: wait for Ross's PR to resolve link */}
+          <a href="https://thenational.academy/404" style={{ color: "red" }}>
             {props.children}
           </a>
           <code>{JSON.stringify(JSON.stringify(reference), null, 2)}</code>
@@ -96,24 +97,6 @@ const portableTextComponents = {
     },
   },
   types: {
-    textBlock: (
-      props: PortableTextComponent<{ title: string; body: PortableTextJSON }>
-    ) => {
-      if (!props.value) {
-        return null;
-      }
-
-      const { body, title, ...params } = props.value;
-
-      return (
-        <div style={{ border: "1px solid red" }}>
-          TextBlock example
-          <pre>{JSON.stringify(params, null, 2)}</pre>
-          <h2>{title}</h2>
-          <PortableText value={body} />
-        </div>
-      );
-    },
     image: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
       if (!props.value) {
         return null;
@@ -133,13 +116,13 @@ const portableTextComponents = {
       const { video, title } = props.value;
 
       return (
-        <div style={{ border: "1px solid red" }}>
+        <>
           {video && (
-            <Box $position={"relative"} $width={"100%"} $mt={80}>
+            <Flex $position={"relative"} $mt={80}>
               <VideoPlayer title={title} playbackId={video.asset.playbackId} />
-            </Box>
+            </Flex>
           )}
-        </div>
+        </>
       );
     },
     textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
@@ -154,24 +137,29 @@ const portableTextComponents = {
         params.alignMedia === "left" ? "row-reverse" : "row";
 
       return (
-        <div style={{ border: "1px solid red" }}>
-          Text and media example
-          <Flex $flexDirection={flexDirection}>
-            <div>
-              <h2>{params.title}</h2>
+        <Flex $flexDirection={flexDirection} $alignItems={"center"}>
+          <div>
+            <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
+              {params.title}
+            </Heading>
+            <Box $pt={16}>
               <PortableText value={params.body} />
-            </div>
-            {params.mediaType === "image" && params.image && (
+            </Box>
+          </div>
+          {params.mediaType === "image" && params.image && (
+            <Box $mr={24}>
               <CMSImage image={params.image} />
-            )}
-            {params.mediaType === "video" && params.video && (
+            </Box>
+          )}
+          {params.mediaType === "video" && params.video && (
+            <Box $mr={24}>
               <VideoPlayer
                 title={params.video.title}
                 playbackId={params.video.video.asset.playbackId}
               />
-            )}
-          </Flex>
-        </div>
+            </Box>
+          )}
+        </Flex>
       );
     },
     quote: (
