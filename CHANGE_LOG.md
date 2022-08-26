@@ -1,3 +1,10 @@
+## [0.81.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.1...v0.81.2) (2022-08-26)
+
+
+### Bug Fixes
+
+*  summary card spacing across pages and image props ([1fa30c7](https://github.com/oaknational/Oak-Web-Application/commit/1fa30c7911b9e7825747678ad55dea88360c753f))
+
 ## [0.81.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.0...v0.81.1) (2022-08-26)
 
 
