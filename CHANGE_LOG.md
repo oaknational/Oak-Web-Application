@@ -1,3 +1,15 @@
+# [0.84.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.83.0...v0.84.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* zod handle null thumbnail ([259eca9](https://github.com/oaknational/Oak-Web-Application/commit/259eca94e180ceb1dd48ee9412c5a4dffea1cb4a))
+
+
+### Features
+
+* thumbnail for video player ([239c414](https://github.com/oaknational/Oak-Web-Application/commit/239c4148b0aae9438d27afbd353199101ec09686))
+
 # [0.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.82.1...v0.83.0) (2022-08-30)
 
 
