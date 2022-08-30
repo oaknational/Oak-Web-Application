@@ -1,3 +1,36 @@
+# [0.84.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.83.0...v0.84.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* zod handle null thumbnail ([259eca9](https://github.com/oaknational/Oak-Web-Application/commit/259eca94e180ceb1dd48ee9412c5a4dffea1cb4a))
+
+
+### Features
+
+* thumbnail for video player ([239c414](https://github.com/oaknational/Oak-Web-Application/commit/239c4148b0aae9438d27afbd353199101ec09686))
+
+# [0.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.82.1...v0.83.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* hide webinar link from homepage ([bb608d0](https://github.com/oaknational/Oak-Web-Application/commit/bb608d011d9d71603e3d135edc37cb361468ec3f))
+* remove image alt from BlogListItem until CMS supports ([dd38ae3](https://github.com/oaknational/Oak-Web-Application/commit/dd38ae3822ab72fa5924a6d87fbfdcd8c485909b))
+* undo BlogListItem colour until it's turned into a link ([277e077](https://github.com/oaknational/Oak-Web-Application/commit/277e077db486d44721f7ad1b42595c483c770c8e))
+
+
+### Features
+
+* add blogs (and hidden webinars) to homepage ([4b6fab0](https://github.com/oaknational/Oak-Web-Application/commit/4b6fab0967d13fdbf01692a928a2024ff23453c5))
+* add categories to webinars ([bd564b6](https://github.com/oaknational/Oak-Web-Application/commit/bd564b6f87480c1c1fda491db27e355ad3932a17))
+* add date to webinar preview ([2bb30d8](https://github.com/oaknational/Oak-Web-Application/commit/2bb30d84405019a9af91763ce0bf2f67bdc35b75))
+* bring webinar listing page logic in line with blog listing ([6513e9e](https://github.com/oaknational/Oak-Web-Application/commit/6513e9eb3df309266571c40056528fec1f53e2c4))
+* make BlogListItem category blue ([dd00f75](https://github.com/oaknational/Oak-Web-Application/commit/dd00f7584f700967931ee197ba99a4cb80486d3c))
+* make BlogListItem summary font size match designs ([a21d673](https://github.com/oaknational/Oak-Web-Application/commit/a21d67374ff0604168440c4e63218c18d42b5946))
+* make BlogListItem use CMSImage component ([2205ebc](https://github.com/oaknational/Oak-Web-Application/commit/2205ebcd709d27b6aa96ac751b418a882dd72362))
+* pass whole category object to blog/webinar ([7a5ecbc](https://github.com/oaknational/Oak-Web-Application/commit/7a5ecbcda2c34ac8d583c33dad6c62fc0f365618))
+
 ## [0.82.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.82.0...v0.82.1) (2022-08-30)
 
 # [0.82.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.2...v0.82.0) (2022-08-26)
