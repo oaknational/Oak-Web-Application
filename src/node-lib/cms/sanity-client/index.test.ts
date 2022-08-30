@@ -1,4 +1,9 @@
+import { z } from "zod";
+
 import planningPageRawFixture from "../../../browser-lib/fixtures/lessonPlanningRaw.json";
+import aboutRaw from "../../../browser-lib/fixtures/aboutRaw.json";
+
+import { videoSchema } from "./schemas/base";
 
 const testWebinar = {
   title: "An upcoming webinar",
@@ -10,10 +15,22 @@ const testWebinar = {
   summaryPortableText: [],
 };
 
+const testVideo = {
+  title: "Some video from the library because it's the only one I can find",
+  video: {
+    asset: {
+      assetId: "ByqZ4KA9mLdyrtWnAvRMHbcQnNk2uUnf3NNdahrey5o",
+      playbackId: "5VfBnOXD87KnXMJrYNG6HtCIizY6q6thP5EjjqkU1kI",
+      thumbTime: null,
+    },
+  },
+};
+
 const webinarBySlug = jest.fn(() => ({ allWebinar: [testWebinar] }));
 const allWebinars = jest.fn(() => ({ allWebinar: [testWebinar] }));
 
 const planningCorePage = jest.fn(() => planningPageRawFixture);
+const aboutCorePage = jest.fn(() => aboutRaw);
 
 describe("cms/sanity-client", () => {
   beforeEach(() => {
@@ -26,6 +43,7 @@ describe("cms/sanity-client", () => {
         allWebinars,
         webinarBySlug,
         planningCorePage,
+        aboutCorePage,
       },
     }));
   });
@@ -135,6 +153,14 @@ describe("cms/sanity-client", () => {
       expect(planningCorePage).toBeCalledWith(
         expect.objectContaining({ isDraft: true })
       );
+    });
+  });
+
+  describe("videoSchema", () => {
+    it("transforms a null thumbnail to undefined", async () => {
+      type video = z.infer<typeof videoSchema>;
+      const passResult = videoSchema.safeParse(testVideo) as { data: video };
+      expect(passResult.data.video.asset.thumbTime).toBeUndefined();
     });
   });
 });
