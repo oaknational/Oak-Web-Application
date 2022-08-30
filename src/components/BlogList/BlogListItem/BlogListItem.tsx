@@ -75,7 +75,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         </Box>
       )}
 
-      <Flex $flexDirection="column" $alignItems="flex-start" $ml={[0, 32]}>
+      <Flex $flexDirection="column" $alignItems="flex-start">
         <P
           $fontSize={16}
           $lineHeight={"20px"}
