@@ -32,7 +32,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
         </Heading>
       ),
       h4: ({ children }) => (
-        <Heading $mb={[32, 48]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
+        <Heading $mb={[32, 24]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
           {children}
         </Heading>
       ),
