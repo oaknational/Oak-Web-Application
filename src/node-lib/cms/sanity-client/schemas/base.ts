@@ -86,7 +86,7 @@ export const videoSchema = z.object({
       playbackId: z.string(),
       thumbTime: z
         .number()
-        .optional()
+        .nullish()
         .transform((val) => {
           return val === null ? undefined : val;
         }),

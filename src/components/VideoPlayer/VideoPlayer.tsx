@@ -52,6 +52,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     reportError(error);
   };
 
+  if (process.env.NODE_ENV === "test") {
+    /**
+     * @todo add mocked video player or tests for video player
+     */
+    return null;
+  }
   return (
     <Flex $flexDirection={"column"}>
       <MuxPlayer

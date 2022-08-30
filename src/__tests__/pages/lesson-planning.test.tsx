@@ -3,7 +3,11 @@ import { screen, waitFor } from "@testing-library/react";
 import PlanALesson from "../../pages/lesson-planning";
 import { PlanningPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import { mockImageAsset, portableTextFromString } from "../__helpers__/cms";
+import {
+  mockImageAsset,
+  mockVideoAsset,
+  portableTextFromString,
+} from "../__helpers__/cms";
 
 const testPlanningPageData: PlanningPage = {
   id: "01",
@@ -34,8 +38,8 @@ const testPlanningPageData: PlanningPage = {
     title: "learn more block 1",
     bodyPortableText: portableTextFromString("block 1 text"),
     alignMedia: "left",
-    mediaType: "image",
-    image: mockImageAsset("block1"),
+    mediaType: "video",
+    video: mockVideoAsset(),
   },
   learnMoreBlock2: {
     title: "learn more block 2",
@@ -61,11 +65,7 @@ describe("pages/lesson-planning.tsx", () => {
   });
   it("Renders correct title ", async () => {
     renderWithProviders(
-      <PlanALesson
-        renderPlayer={false}
-        pageData={testPlanningPageData}
-        isPreviewMode={false}
-      />
+      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
     );
 
     await waitFor(() => {
@@ -76,11 +76,7 @@ describe("pages/lesson-planning.tsx", () => {
   });
   it("uses correct src", async () => {
     const { getByAltText } = renderWithProviders(
-      <PlanALesson
-        renderPlayer={false}
-        pageData={testPlanningPageData}
-        isPreviewMode={false}
-      />
+      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
     );
 
     const image = getByAltText("planning illustration");

@@ -35,7 +35,8 @@
         "video": {
           "asset": {
             "assetId": "ByqZ4KA9mLdyrtWnAvRMHbcQnNk2uUnf3NNdahrey5o",
-            "playbackId": "5VfBnOXD87KnXMJrYNG6HtCIizY6q6thP5EjjqkU1kI"
+            "playbackId": "5VfBnOXD87KnXMJrYNG6HtCIizY6q6thP5EjjqkU1kI",
+            "thumbTime": null
           }
         }
       }

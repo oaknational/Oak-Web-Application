@@ -26,7 +26,6 @@ import VideoPlayer from "../components/VideoPlayer";
 export type PlanALessonProps = {
   pageData: PlanningPage;
   isPreviewMode: boolean;
-  renderPlayer: boolean;
 };
 
 const lessonElementIds = {
@@ -150,7 +149,6 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 const PlanALesson: NextPage<PlanALessonProps> = ({
   pageData,
   isPreviewMode,
-  renderPlayer,
 }) => {
   return (
     <Layout
@@ -360,18 +358,17 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   $pr={[0, 72]}
                   $minWidth={["50%"]}
                 >
-                  {pageData.learnMoreBlock1.mediaType == "video" &&
-                    renderPlayer && (
-                      <VideoPlayer
-                        thumbnailTime={
-                          pageData.learnMoreBlock1.video.video.asset.thumbTime
-                        }
-                        playbackId={
-                          pageData.learnMoreBlock1.video.video.asset.playbackId
-                        }
-                        title={pageData.learnMoreBlock1.video.title}
-                      />
-                    )}
+                  {pageData.learnMoreBlock1.mediaType == "video" && (
+                    <VideoPlayer
+                      thumbnailTime={
+                        pageData.learnMoreBlock1.video.video.asset.thumbTime
+                      }
+                      playbackId={
+                        pageData.learnMoreBlock1.video.video.asset.playbackId
+                      }
+                      title={pageData.learnMoreBlock1.video.title}
+                    />
+                  )}
                 </Flex>
               </Box>
               <Flex
@@ -466,7 +463,6 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     props: {
       pageData: planningPage,
       isPreviewMode,
-      renderPlayer: true,
     },
     revalidate: 10,
   };
