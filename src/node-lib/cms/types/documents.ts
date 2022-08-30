@@ -27,12 +27,11 @@ export type BlogPost = Document & {
   date: Date;
   mainImage: Image;
   author: TeamMember;
+  summary: string;
   contentPortableText: PortableTextJSON;
   category: {
     title: string;
-    slug: {
-      current: string;
-    };
+    slug: string;
   };
 };
 
@@ -41,6 +40,7 @@ export type BlogPostPreview = Pick<
   | "id"
   | "title"
   | "slug"
+  | "summary"
   | "contentPortableText"
   | "author"
   | "category"
@@ -54,6 +54,7 @@ export type Attachment = {
     asset: {
       extension: string;
       size: number;
+      url: string;
     };
   };
 };

@@ -18,9 +18,10 @@ export type BlogListingPageProps = {
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
+  console.log(props);
 
   const cardImage = {
-    imageSrc: "/images/illustrations/teacher-carrying-stuff.png",
+    src: "/images/illustrations/teacher-carrying-stuff.png",
     alt: "",
   };
 
@@ -39,7 +40,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
           background="teachersPastelYellow"
-          cardImageProps={cardImage}
+          imageProps={cardImage}
         />
         <Grid>
           <GridArea $colSpan={[12, 12, 7]} $mt={[48, 72]}>
@@ -59,8 +60,7 @@ const blogToBlogListItem = (blog: SerializedBlog): BlogListItemProps => ({
   contentType: "blog-post",
   title: blog.title,
   href: `/blog/${blog.slug}`,
-  snippet:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+  snippet: blog.summary,
   titleTag: "h3",
   category: blog.category.title,
   date: blog.date,

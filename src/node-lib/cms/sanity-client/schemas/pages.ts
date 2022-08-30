@@ -49,6 +49,7 @@ const attachmentSchema = z.object({
     asset: z.object({
       extension: z.string(),
       size: z.number(),
+      url: z.string(),
     }),
   }),
 });
@@ -120,6 +121,7 @@ export const curriculumPageSchema = z
       title: z.string(),
       posts: z.array(
         z.object({
+          title: z.string(),
           post: z.object({
             title: z.string(),
             slug: z.object({ current: z.string() }),

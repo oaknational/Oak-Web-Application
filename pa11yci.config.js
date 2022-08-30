@@ -20,7 +20,7 @@ const relativeUrls = [
   "/",
   "/beta/lessons/physics-only-review-chj3cd/",
   "/beta/sign-in",
-  "/search",
+  "/beta/search",
 ];
 
 // Add the base URL to the relative URLs.

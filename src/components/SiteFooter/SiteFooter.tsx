@@ -130,10 +130,10 @@ const SiteFooter: FC<SiteFooterProps> = ({
               {footerNotification}
             </Flex>
           </Flex>
-          <Flex $mb={80} $width={"100%"}>
+          <Flex $mb={80} $mt={64} $width={"100%"}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
-              <P $lineHeight={16} $textAlign="center" $fontSize={[12, 16]}>
+              <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
                 © Oak National Academy
               </P>
             </Flex>

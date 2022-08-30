@@ -24,5 +24,6 @@ fragment BlogPreviewFields on NewsPost {
       current
     }
   }
+  summary
   contentPortableText: contentRaw
 }

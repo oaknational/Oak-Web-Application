@@ -16,12 +16,11 @@ const testBlog: BlogPost = {
       url: "",
     },
   },
+  summary: "Lorem ipsum",
   contentPortableText: [],
   category: {
     title: "Lesson Plabning",
-    slug: {
-      current: "lesson-planning",
-    },
+    slug: "lesson-planning",
   },
 };
 
@@ -37,12 +36,11 @@ const testBlog2: BlogPost = {
       url: "",
     },
   },
+  summary: "Lorem ipsum",
   contentPortableText: [],
   category: {
     title: "Lesson Plabning",
-    slug: {
-      current: "lesson-planning",
-    },
+    slug: "lesson-planning",
   },
 };
 

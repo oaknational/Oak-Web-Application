@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { SearchHit } from "../../pages/search";
+import { SearchHit } from "../../pages/beta/search";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
