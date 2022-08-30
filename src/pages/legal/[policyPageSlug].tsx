@@ -27,7 +27,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
         </Heading>
       ),
       h3: ({ children }) => (
-        <Heading $mb={[32, 48]} $mt={[32, 48]} tag={"h3"} $fontSize={[20, 24]}>
+        <Heading $mb={[32, 24]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
           {children}
         </Heading>
       ),
@@ -36,7 +36,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
           {children}
         </Heading>
       ),
-      normal: ({ children }) => <P $mb={[32, 48]}>{children}</P>,
+      normal: ({ children }) => <P $mb={[32, 32]}>{children}</P>,
     },
   };
 
@@ -46,7 +46,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
       $background={"grey1"}
       isPreviewMode={isPreviewMode}
     >
-      <MaxWidth $ph={[36, 12]}>
+      <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>
             {/* change flex justify center to textAlign when PR fix is in */}
