@@ -105,7 +105,7 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
   }),
 ]);
 
-export const blogWebinarCategory = z.object({
+export const blogWebinarCategorySchema = z.object({
   title: z.string(),
   slug: slugSchema,
 });
