@@ -64,6 +64,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
               objectFit="cover"
               objectPosition="center center"
               image={mainImage}
+              // @TODO: Replace with valid alt text when supported by the CMS
+              alt=""
             />
           </AspectRatio>
         </Box>
