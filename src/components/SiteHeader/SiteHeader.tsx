@@ -29,7 +29,7 @@ const SiteHeader: FC = () => {
     {
       href: getTeachersUrl(),
       target: "_blank",
-      onClick: () => track.teacherHubSelected({ navigatedFrom: "header" }),
+      onClick: () => track.teacherHubSelected({ navigatedFrom: "menu" }),
       linkText: "Teacher hub",
       fontFamily: "heading",
       fontSize: [32],
@@ -39,7 +39,7 @@ const SiteHeader: FC = () => {
     {
       href: getPupilsUrl(),
       target: "_blank",
-      onClick: () => track.teacherHubSelected({ navigatedFrom: "header" }),
+      onClick: () => track.teacherHubSelected({ navigatedFrom: "menu" }),
       linkText: "Classroom",
       fontSize: [32],
       fontFamily: "heading",
