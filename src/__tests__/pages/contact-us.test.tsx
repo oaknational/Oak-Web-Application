@@ -14,6 +14,6 @@ describe("pages/contact-us.tsx", () => {
       getByRole("button", {
         name: /sign up/i,
       })
-    ).toHaveAccessibleName("Sign Up");
+    ).toHaveAccessibleName("Sign up");
   });
 });

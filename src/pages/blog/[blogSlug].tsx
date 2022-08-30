@@ -202,7 +202,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog } = props;
 
   const cardImage = {
-    imageSrc: "/images/illustrations/teacher-carrying-stuff.png",
+    src: "/images/illustrations/teacher-carrying-stuff.png",
     alt: "",
   };
 
@@ -226,7 +226,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
           background="teachersPastelYellow"
-          cardImageProps={cardImage}
+          imageProps={cardImage}
         />
         <Grid $mt={[48, 64]}>
           <GridArea $colSpan={[12, 7]}>

@@ -1,11 +1,14 @@
 import { FC } from "react";
+import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
+import CMSClient, { WebinarPreview } from "../node-lib/cms";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import { Heading, P, Span } from "../components/Typography";
+import Typography, { Heading, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
@@ -16,12 +19,20 @@ import Flex from "../components/Flex";
 import Icon from "../components/Icon";
 import HomeAboutCard from "../components/pages/Home/HomeAboutCard";
 import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
-import blogListItems from "../browser-lib/fixtures/blogListItems";
-import BlogList from "../components/BlogList";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
+import BlogListItem, {
+  BlogListItemProps,
+} from "../components/BlogList/BlogListItem";
+
+import {
+  blogToBlogListItem,
+  serializeDate,
+  SerializedBlogPostPreview,
+} from "./blog";
+import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
 const Notification: FC = () => {
   return (
@@ -51,17 +62,31 @@ const Notification: FC = () => {
         Blog
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
-        <CardLink href="/">About the future of Oak</CardLink>
+        <CardLink href="/blog/evolution-of-oak">
+          About the future of Oak
+        </CardLink>
       </Heading>
       <P $mt={4}>Find out more</P>
     </Card>
   );
 };
 
-const Home: FC = () => {
+export type SerializedPost =
+  | ({ type: "blog-post" } & SerializedBlogPostPreview)
+  | ({ type: "webinar" } & SerializedWebinarPreview);
+
+export type HomePageProps = {
+  posts: SerializedPost[];
+  // webinars
+  isPreviewMode: boolean;
+};
+
+const Home: NextPage<HomePageProps> = (props) => {
   const newsletterFormProps = useNewsletterForm();
+  const posts = props.posts.map(postToBlogListItem);
+
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
+    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={props.isPreviewMode}>
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>
@@ -244,13 +269,34 @@ const Home: FC = () => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Flex $background={"white"} $pa={24}>
-                <BlogList
-                  title={"Stay up to date!"}
-                  items={blogListItems}
-                  titleTag={"h2"}
-                />
-              </Flex>
+              <Box $background={"white"} $pa={24}>
+                <Flex
+                  $alignItems="center"
+                  $justifyContent="space-between"
+                  $mb={48}
+                >
+                  <Heading tag={"h3"} $fontSize={24} $fontFamily="heading">
+                    Stay up to date!
+                  </Heading>
+
+                  <Typography $fontFamily="ui">
+                    {/* <Link href={"/webinars"}>All webinars</Link> */}
+                    <Link href={"/blog"}>All blogs</Link>
+                  </Typography>
+                </Flex>
+
+                <Flex
+                  $flexDirection="column"
+                  as="ul"
+                  role="list" /* role=list to strip default ul styling */
+                >
+                  {posts.map((item, i) => (
+                    <li key={`BlogList-BlogListItem-${i}`}>
+                      <BlogListItem {...item} withImage={true} />
+                    </li>
+                  ))}
+                </Flex>
+              </Box>
             </GridArea>
 
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
@@ -264,6 +310,58 @@ const Home: FC = () => {
       </Flex>
     </Layout>
   );
+};
+
+export const postToBlogListItem = (
+  blogOrWebinar: SerializedPost
+): BlogListItemProps => {
+  return blogOrWebinar.type === "blog-post"
+    ? blogToBlogListItem(blogOrWebinar)
+    : webinarToBlogListItem(blogOrWebinar);
+};
+
+const sortByDate = (a: { date: Date }, b: { date: Date }) => {
+  return b.date.getTime() - a.date.getTime();
+};
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async (
+  context
+) => {
+  const isPreviewMode = context.preview === true;
+
+  const blogResults = await CMSClient.blogPosts({
+    previewMode: isPreviewMode,
+    limit: 5,
+  });
+
+  // const webinarResults = await CMSClient.webinars({
+  //   previewMode: isPreviewMode,
+  //   limit: 5,
+  // });
+  const webinarResults: WebinarPreview[] = [];
+
+  const blogPosts = blogResults.map((blog) => ({
+    ...blog,
+    type: "blog-post" as const,
+  }));
+
+  const webinars = webinarResults.map((webinar) => ({
+    ...webinar,
+    type: "webinar" as const,
+  }));
+
+  const posts = [...blogPosts, ...webinars]
+    .sort(sortByDate)
+    .slice(0, 5)
+    .map(serializeDate);
+
+  return {
+    props: {
+      posts,
+      isPreviewMode,
+    },
+    revalidate: 10,
+  };
 };
 
 export default Home;
