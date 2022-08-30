@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import footerSections from "../../browser-lib/fixtures/footerSectionLinks";
+import sections from "../../browser-lib/fixtures/footerSections";
 import ButtonAsLink from "../Button/ButtonAsLink";
 
 import Component from "./SiteFooter";
@@ -20,13 +20,13 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const SiteFooter = Template.bind({});
 SiteFooter.args = {
-  footerSections: footerSections,
+  sections,
 };
 
 export const SiteFooterWithNotifcation = Template.bind({});
 SiteFooterWithNotifcation.args = {
-  footerSections: footerSections,
-  footerNotification: (
+  sections,
+  notification: (
     <ButtonAsLink
       label={"Join new Oak"}
       icon={"Download"}

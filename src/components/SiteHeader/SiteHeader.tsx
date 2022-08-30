@@ -12,6 +12,11 @@ import MenuLinks from "../MenuLinks";
 import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
 import { MenuListItemProps } from "../MenuLinks/types";
+import {
+  getHelpUrl,
+  getPupilsUrl,
+  getTeachersUrl,
+} from "../../common-lib/urls";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
@@ -21,7 +26,7 @@ const SiteHeader: FC = () => {
 
   const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
     {
-      href: "https://teachers.thenational.academy",
+      href: getTeachersUrl(),
       linkText: "Teacher hub",
       fontFamily: "heading",
       fontSize: [32],
@@ -29,7 +34,7 @@ const SiteHeader: FC = () => {
       arrowSize: [48],
     },
     {
-      href: "https://classroom.thenational.academy/",
+      href: getPupilsUrl(),
       linkText: "Classroom",
       fontSize: [32],
       fontFamily: "heading",
@@ -77,7 +82,7 @@ const SiteHeader: FC = () => {
       arrowSize: [20],
     },
     {
-      href: "https://support.thenational.academy",
+      href: getHelpUrl(),
       linkText: "Help",
       fontSize: [16],
       fontFamily: "ui",
@@ -95,12 +100,10 @@ const SiteHeader: FC = () => {
       </Link>
       <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
         <P>
-          <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
+          <Link href={getPupilsUrl()}>Classroom</Link>
         </P>
         <P $ml={24} $mr={32}>
-          <Link href={"https://teachers.thenational.academy/"}>
-            Teacher Hub
-          </Link>
+          <Link href={getTeachersUrl()}>Teacher Hub</Link>
         </P>
       </Flex>
       <IconButton

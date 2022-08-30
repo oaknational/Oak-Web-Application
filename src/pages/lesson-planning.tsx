@@ -21,6 +21,7 @@ import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
+import { getTeachersUrl } from "../common-lib/urls";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -239,7 +240,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     $ma={32}
                     icon="Search"
                     label={pageData.lessonElementsCTA.label}
-                    href={"https://teachers.thenational.academy/"}
+                    href={getTeachersUrl()}
                     htmlAnchorProps={{
                       target: "_blank",
                     }}
@@ -310,7 +311,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                             <ButtonAsLink
                               $mt={24}
                               label={"search our lessons"}
-                              href={"https://teachers.thenational.academy/"}
+                              href={getTeachersUrl()}
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -394,7 +395,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
               <ButtonAsLink
                 icon="Search"
                 label={pageData.lessonElementsCTA.label}
-                href={"https://teachers.thenational.academy"}
+                href={getTeachersUrl()}
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

@@ -22,8 +22,13 @@ import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
+import useAnalytics from "../context/Analytics/useAnalytics";
+import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
 
 const Notification: FC = () => {
+  const { track } = useAnalytics();
+  const href = "/blog/evolution-of-oak";
+  const text = "About the future of Oak";
   return (
     <Card
       $background="white"
@@ -51,7 +56,17 @@ const Notification: FC = () => {
         Blog
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
-        <CardLink href="/blog/evolution-of-oak">About the future of Oak</CardLink>
+        <CardLink
+          href={href}
+          onClick={() =>
+            track.notificationSelected({
+              linkUrl: href,
+              notificationHeadline: "",
+            })
+          }
+        >
+          {text}
+        </CardLink>
       </Heading>
       <P $mt={4}>Find out more</P>
     </Card>
@@ -59,7 +74,10 @@ const Notification: FC = () => {
 };
 
 const Home: FC = () => {
-  const newsletterFormProps = useNewsletterForm();
+  const { track } = useAnalytics();
+  const newsletterFormProps = useNewsletterForm({
+    onSubmit: track.newsletterSignUpCompleted,
+  });
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
       <Flex $flexDirection={"column"} $position="relative">
@@ -138,7 +156,12 @@ const Home: FC = () => {
                     tag={"h3"}
                     $color={"black"}
                   >
-                    <CardLink href="https://classroom.thenational.academy/">
+                    <CardLink
+                      href={getPupilsUrl()}
+                      onClick={() =>
+                        track.classroomSelected({ navigatedFrom: "card" })
+                      }
+                    >
                       Classroom
                     </CardLink>
                   </Heading>
@@ -195,7 +218,12 @@ const Home: FC = () => {
                     tag={"h3"}
                     $color={"black"}
                   >
-                    <CardLink href="https://teachers.thenational.academy/">
+                    <CardLink
+                      href={getTeachersUrl()}
+                      onClick={() =>
+                        track.teacherHubSelected({ navigatedFrom: "card" })
+                      }
+                    >
                       Teacher Hub
                     </CardLink>
                   </Heading>
@@ -218,6 +246,7 @@ const Home: FC = () => {
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
                   href={"/lesson-planning"}
+                  cardLinkProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
@@ -226,6 +255,9 @@ const Home: FC = () => {
                   titleTag={"h4"}
                   background={"teachersYellow"}
                   href={"/develop-your-curriculum"}
+                  cardLinkProps={{
+                    onClick: track.developYourCurriculumSelected,
+                  }}
                 />
               </GridArea>
             </Grid>
@@ -252,7 +284,6 @@ const Home: FC = () => {
                 />
               </Flex>
             </GridArea>
-
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
               <HomeHelpCard />
             </GridArea>
