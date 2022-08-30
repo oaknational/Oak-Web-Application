@@ -56,9 +56,6 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
   body: PortableTextJSON;
 };
 
-// const portableTextTypography = {
-// }
-
 const portableTextComponents = {
   block: {
     sectionHeading: (props: PortableTextComponent) => {
@@ -67,6 +64,13 @@ const portableTextComponents = {
         <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={80}>
           {props.children}
         </Heading>
+      );
+    },
+    normal: (props: PortableTextComponent) => {
+      return (
+        <P $lineHeight={"28px"} $fontSize={16} $mt={16}>
+          {props.children}
+        </P>
       );
     },
   },
@@ -106,7 +110,7 @@ const portableTextComponents = {
       }
 
       return (
-        <Box $width={"100%"} $mt={80}>
+        <Box $width={"100%"} $mt={80} $mb={[64]}>
           <CMSImage image={props.value} />
         </Box>
       );
@@ -174,14 +178,16 @@ const portableTextComponents = {
       }>
     ) => {
       return (
-        <Flex $flexDirection={"column"} $mt={80}>
-          <P $fontSize={16} $lineHeight={"20px"}>
+        <Flex $flexDirection={"column"} $mt={80} $ml={[0, 160]} $mr={[0, 120]}>
+          <P $fontSize={16} $lineHeight={"20px"} $fontFamily={"headingLight"}>
+            <blockquote>{props.value?.text}</blockquote>
+          </P>
+          <P $fontSize={16} $lineHeight={"20px"} $fontFamily={"ui"} $mt={16}>
             <cite>{props.value?.attribution}</cite>
           </P>
           <P $fontSize={16} $lineHeight={"20px"}>
             {props.value?.role}
           </P>
-          <blockquote>{props.value?.text}</blockquote>
         </Flex>
       );
     },
