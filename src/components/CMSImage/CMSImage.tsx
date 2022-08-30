@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Img from "next/image";
+import Img, { ImageProps } from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 import {
   SanityClientLike,
@@ -8,7 +8,7 @@ import {
 
 import config from "../../config";
 
-type CMSImageProps = {
+type CMSImageProps = Omit<ImageProps, "src"> & {
   image: SanityImageSource;
 };
 
@@ -24,13 +24,14 @@ const clientLike: SanityClientLike = {
   },
 };
 
-const CMSImage: FC<CMSImageProps> = ({ image }) => {
+const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
   const imageProps = useNextSanityImage(clientLike, image);
 
   return (
     <Img
       {...imageProps}
       layout="intrinsic"
+      {...rest}
       //   sizes="(max-width: 1200px) 12vw, 800px"
     />
   );

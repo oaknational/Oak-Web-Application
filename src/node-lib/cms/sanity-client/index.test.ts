@@ -6,6 +6,7 @@ const testWebinar = {
   date: new Date("2025-01-01"),
   slug: { current: "an-upcoming-webinar" },
   hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  category: { title: "Some category", slug: { current: "some-category" } },
   summaryPortableText: [],
 };
 
