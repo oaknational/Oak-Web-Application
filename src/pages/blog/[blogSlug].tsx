@@ -56,12 +56,15 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
   body: PortableTextJSON;
 };
 
+// const portableTextTypography = {
+// }
+
 const portableTextComponents = {
   block: {
     sectionHeading: (props: PortableTextComponent) => {
       // @TODO: Choose an appropriate section heading level
       return (
-        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
+        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={80}>
           {props.children}
         </Heading>
       );
@@ -103,7 +106,7 @@ const portableTextComponents = {
       }
 
       return (
-        <Box $position={"relative"} $width={"100%"} $mt={80}>
+        <Box $width={"100%"} $mt={80}>
           <CMSImage image={props.value} />
         </Box>
       );
@@ -116,13 +119,13 @@ const portableTextComponents = {
       const { video, title } = props.value;
 
       return (
-        <>
+        <Box $mt={80}>
           {video && (
             <Flex $position={"relative"} $mt={80}>
               <VideoPlayer title={title} playbackId={video.asset.playbackId} />
             </Flex>
           )}
-        </>
+        </Box>
       );
     },
     textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
@@ -137,7 +140,7 @@ const portableTextComponents = {
         params.alignMedia === "left" ? "row-reverse" : "row";
 
       return (
-        <Flex $flexDirection={flexDirection} $alignItems={"center"}>
+        <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={80}>
           <div>
             <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
               {params.title}
@@ -171,8 +174,8 @@ const portableTextComponents = {
       }>
     ) => {
       return (
-        <Flex $flexDirection={"column"}>
-          <P>
+        <Flex $flexDirection={"column"} $mt={80}>
+          <P $fontSize={16} $lineHeight={"20px"}>
             <cite>{props.value?.attribution}</cite>
           </P>
           <P $fontSize={16} $lineHeight={"20px"}>
@@ -239,12 +242,16 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             <Heading tag="h2" $mt={16} $fontSize={16} $lineHeight={"20px"}>
               {blog.author.name}
             </Heading>
-            <PortableTextComponentsProvider components={portableTextComponents}>
-              <PortableText
-                value={props.blog.contentPortableText}
-                onMissingComponent={logMissingPortableTextComponents}
-              />
-            </PortableTextComponentsProvider>
+            <Box $mt={[96, 64]}>
+              <PortableTextComponentsProvider
+                components={portableTextComponents}
+              >
+                <PortableText
+                  value={props.blog.contentPortableText}
+                  onMissingComponent={logMissingPortableTextComponents}
+                />
+              </PortableTextComponentsProvider>
+            </Box>
           </GridArea>
         </Grid>
       </MaxWidth>
