@@ -1,5 +1,6 @@
 fragment Image on Image {
   asset {
-    ...ImageAsset
+    _id
+    url
   }
 }
