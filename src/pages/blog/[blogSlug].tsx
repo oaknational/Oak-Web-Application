@@ -5,11 +5,11 @@ import {
   PortableText,
   PortableTextComponentsProvider,
 } from "@portabletext/react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
-import { Heading, P, Span } from "../../components/Typography";
 import CMSClient, {
   BlogPost,
   PortableTextJSON,
@@ -22,8 +22,10 @@ import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import SummaryCard from "../../components/Card/SummaryCard";
 import Box from "../../components/Box";
+import Card from "../../components/Card";
+import Cover from "../../components/Cover";
+import { Heading, P, Span } from "../../components/Typography";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -225,26 +227,70 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $ph={[12, 12, 0]} $pt={[72, 80, 80]}>
-        <SummaryCard
-          title={"Blog Listing"}
-          heading={"Inspiration for inside and outside the classroom"}
-          summary={
-            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
-          }
-          background="teachersPastelYellow"
-          imageProps={cardImage}
-        />
+        <Card
+          $pa={0}
+          $background={"teachersPastelYellow"}
+          $flexDirection={"row"}
+          $justifyContent={"space-between"}
+          $width="100%"
+          $pv={[24]}
+          $ph={[16, 24]}
+        >
+          <Flex
+            $justifyContent={"center"}
+            $flexDirection={"column"}
+            $maxWidth={812}
+            $mr={48}
+          >
+            <Heading
+              $mb={8}
+              tag={"h2"}
+              $fontSize={[20, 24]}
+              $color={"oakGrey4"}
+              $fontFamily="heading"
+            >
+              Blog page
+            </Heading>
+            <Heading
+              $mb={16}
+              $color={"black"}
+              $fontSize={[24, 32, 32]}
+              tag={"h1"}
+            >
+              {blog.title}
+            </Heading>
+            <P $color="black" $fontSize={18}>
+              {blog.summary}
+            </P>
+          </Flex>
+          <Flex
+            $display={["none", "flex"]}
+            $position="relative"
+            $minWidth={"30%"}
+            $justifyContent={["center", "flex-end"]}
+            $alignItems={["flex-end"]}
+            $pr={[0, 24]}
+            $pb={24}
+          >
+            <Cover>
+              <Image
+                aria-hidden={true}
+                layout="fill"
+                objectFit="contain"
+                objectPosition={"right"}
+                alt={cardImage.alt}
+                src={cardImage.src}
+                priority
+              />
+            </Cover>
+          </Flex>
+        </Card>
+
         <Grid $mt={[48, 64]}>
           <GridArea $colSpan={[12, 7]}>
-            <P $fontSize={16} $lineHeight={"20px"}>
-              {blog.category.title}
-            </P>
             <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
               {formattedDate}
             </P>
-            <Heading tag="h1" $fontSize={32} $lineHeight={"48px"} $mt={16}>
-              {props.blog.title}
-            </Heading>
             <Heading tag="h2" $mt={16} $fontSize={16} $lineHeight={"20px"}>
               {blog.author.name}
             </Heading>

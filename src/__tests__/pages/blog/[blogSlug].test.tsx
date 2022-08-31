@@ -52,7 +52,7 @@ const testSerializedBlog = {
 const blogPosts = jest.fn(() => [testBlog, testBlog2]);
 const blogPostBySlug = jest.fn(() => testBlog);
 
-describe.skip("pages/blog/[blogSlug].tsx", () => {
+describe("pages/blog/[blogSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
