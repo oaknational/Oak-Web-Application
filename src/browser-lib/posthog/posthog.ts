@@ -20,9 +20,6 @@ export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
       });
     }),
   identify: (userId, properties) => {
-    /**
-     * @todo: do we want to let posthog generate the id for us?
-     */
     posthogJs.identify(userId, properties);
   },
   page: () => {
@@ -32,7 +29,9 @@ export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
     posthogJs.capture(name, properties);
   },
   optIn: () => {
-    posthogJs.opt_in_capturing();
+    if (posthogJs.has_opted_out_capturing()) {
+      posthogJs.opt_in_capturing();
+    }
   },
   optOut: () => {
     // Causing posthog to throw exception
