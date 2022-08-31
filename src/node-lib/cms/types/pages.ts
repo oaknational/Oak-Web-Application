@@ -28,7 +28,7 @@ export type PlanningPage = Document & {
   learnMoreHeading: string;
   learnMoreBlock1: TextAndMedia;
   learnMoreBlock2: TextAndMedia;
-  seo: Seo;
+  seo?: Seo | null;
 };
 
 export type AboutPage = Document & {
@@ -74,7 +74,7 @@ export type AboutPage = Document & {
   contactSection: {
     infoPortableText: PortableTextJSON;
   };
-  seo: Seo;
+  seo?: Seo | null;
 };
 
 export type CurriculumPage = Document & {
@@ -91,5 +91,5 @@ export type CurriculumPage = Document & {
     }[];
   };
   ourApproach: TextBlock;
-  seo: Seo;
+  seo?: Seo | null;
 };

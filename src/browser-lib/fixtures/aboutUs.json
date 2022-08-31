@@ -532,5 +532,9 @@
       }
     ]
   },
-  "id": "aboutCorePage"
+  "id": "aboutCorePage",
+  "seo": {
+    "title": "title",
+    "description": "description"
+  }
 }

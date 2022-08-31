@@ -123,7 +123,7 @@ export const curriculumPageSchema = z
       ),
     }),
     ourApproach: textBlockSchema,
-    seo: seoSchema,
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 
