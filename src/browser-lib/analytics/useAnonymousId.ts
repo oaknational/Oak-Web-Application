@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { LS_KEY_ANONYMOUS_ID } from "../config/localStorageKeys";
-
-import useLocalStorage, { parseJSON } from "./useLocalStorage";
+import { LS_KEY_ANONYMOUS_ID } from "../../config/localStorageKeys";
+import useLocalStorage, { parseJSON } from "../../hooks/useLocalStorage";
 
 const OLD_ANONYMOUS_ID_KEY = "anonymousID";
 

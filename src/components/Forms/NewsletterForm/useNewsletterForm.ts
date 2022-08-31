@@ -4,7 +4,7 @@ import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
 import { HubspotFormData } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import config from "../../../config";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import useAnonymousId from "../../../hooks/useAnonymousId";
+import useAnonymousId from "../../../browser-lib/analytics/useAnonymousId";
 
 const hubspotNewsletterFormId = config.get("hubspotNewsletterFormId");
 

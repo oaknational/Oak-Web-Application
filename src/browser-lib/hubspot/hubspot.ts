@@ -51,6 +51,9 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
   init: (config) =>
     new Promise<void>((resolve) => {
       startHubspot(config);
+      /**
+       * Check if hubspot is loaded every second
+       */
       window.setTimeout(() => {
         if (loaded()) {
           resolve();
@@ -78,8 +81,11 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
     if (typeof _hsq === "undefined") {
       return reportNotLoadedError();
     }
-    console.log("hubspot page");
 
+    /**
+     * We call setPath here, since sometimes this page() function is queued,
+     * so would be incorrectly
+     */
     _hsq.push(["setPath", properties.path]);
     _hsq.push(["trackPageView"]);
   },
