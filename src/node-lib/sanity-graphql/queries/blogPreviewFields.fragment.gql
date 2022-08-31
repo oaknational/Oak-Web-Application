@@ -16,7 +16,10 @@ fragment BlogPreviewFields on NewsPost {
     }
   }
   mainImage {
-    ...Image
+    asset {
+      _id
+      url
+    }
   }
   category {
     title
