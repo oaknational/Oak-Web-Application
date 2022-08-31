@@ -14,7 +14,8 @@ type CookieConsentGateProps = {
  */
 const CookieConsentGate: FC<CookieConsentGateProps> = (props) => {
   const { serviceType, children } = props;
-  const hasConsented = useHasConsentedTo(serviceType);
+  const consentState = useHasConsentedTo(serviceType);
+  const hasConsented = consentState === "enabled";
 
   if (!hasConsented) {
     return null;

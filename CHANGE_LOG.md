@@ -1,3 +1,25 @@
+## [0.84.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.1...v0.84.2) (2022-08-31)
+
+
+### Bug Fixes
+
+* **hubspot:** adds analytics queue and fixes hubspot functionality ([cd7c19f](https://github.com/oaknational/Oak-Web-Application/commit/cd7c19f5790535212f7179bfaf97e9fe408489f8))
+* **hubspot:** fix hubspot pageviews ([4f22acb](https://github.com/oaknational/Oak-Web-Application/commit/4f22acbb89669487e6b2436752f23ced023d24e6))
+
+## [0.84.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.0...v0.84.1) (2022-08-31)
+
+# [0.84.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.83.0...v0.84.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* zod handle null thumbnail ([259eca9](https://github.com/oaknational/Oak-Web-Application/commit/259eca94e180ceb1dd48ee9412c5a4dffea1cb4a))
+
+
+### Features
+
+* thumbnail for video player ([239c414](https://github.com/oaknational/Oak-Web-Application/commit/239c4148b0aae9438d27afbd353199101ec09686))
+
 # [0.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.82.1...v0.83.0) (2022-08-30)
 
 
