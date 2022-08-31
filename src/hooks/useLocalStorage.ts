@@ -126,7 +126,7 @@ function useLocalStorage<T>(
 export default useLocalStorage;
 
 // A wrapper for "JSON.parse()"" to support "undefined" value
-function parseJSON<T>(value: string | null): T | undefined {
+export function parseJSON<T>(value: string | null): T | undefined {
   try {
     return value === "undefined" ? undefined : JSON.parse(value ?? "");
   } catch (error) {

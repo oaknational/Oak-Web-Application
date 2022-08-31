@@ -39,7 +39,7 @@ import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 const Notification: FC = () => {
   const { track } = useAnalytics();
   const href = "/blog/evolution-of-oak";
-  const text = "About the future of Oak";
+  const heading = "About the future of Oak";
   return (
     <Card
       $background="white"
@@ -72,11 +72,11 @@ const Notification: FC = () => {
           onClick={() =>
             track.notificationSelected({
               linkUrl: href,
-              notificationHeadline: "",
+              notificationHeadline: heading,
             })
           }
         >
-          {text}
+          {heading}
         </CardLink>
       </Heading>
       <P $mt={4}>Find out more</P>

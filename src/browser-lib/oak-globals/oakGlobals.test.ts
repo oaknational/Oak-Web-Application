@@ -16,7 +16,7 @@ describe("oakGlobals", () => {
     // eslint-disable-next-line
     // @ts-ignore
     window.__oakGlobals = testValue;
-    const newValue = { posthog: { importCount: 3 } };
+    const newValue = { hubspot: { scriptLoaded: true } };
 
     setOakGlobals(newValue);
 

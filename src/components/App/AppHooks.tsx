@@ -8,8 +8,8 @@ import useGleap from "../../browser-lib/gleap";
 const useAppHooks = () => {
   const { hasConsentedTo } = useCookieConsent();
 
-  useBugsnag({ enabled: hasConsentedTo("bugsnag") });
-  useGleap({ enabled: hasConsentedTo("gleap") });
+  useBugsnag({ enabled: hasConsentedTo("bugsnag") === "enabled" });
+  useGleap({ enabled: hasConsentedTo("gleap") === "enabled" });
 };
 
 const AppHooks = () => {

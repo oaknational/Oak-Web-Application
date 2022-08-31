@@ -1,7 +1,10 @@
 fragment Card on Card {
   title
   image {
-    ...Image
+    asset {
+      _id
+      url
+    }
   }
   bodyPortableText: bodyRaw
   cta {

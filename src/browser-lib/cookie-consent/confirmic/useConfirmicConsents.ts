@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 import {
-  CookieConsentChoice,
+  CookieConsent,
   CookiePolicyName,
   COOKIE_POLICY_NAMES,
-  defaultConsentChoice,
+  defaultConsent,
 } from "../types";
 
 const safeLocalStorage = {
@@ -46,9 +46,9 @@ const consentPolicyMap: Record<CookiePolicyName, string> = {
 };
 
 type ConfirmicConsents = {
-  strictlyNecessary: CookieConsentChoice;
-  embeddedContent: CookieConsentChoice;
-  statistics: CookieConsentChoice;
+  strictlyNecessary: CookieConsent;
+  embeddedContent: CookieConsent;
+  statistics: CookieConsent;
 };
 
 export const getConsentsFromLocalStorage = () => {
@@ -59,7 +59,7 @@ export const getConsentsFromLocalStorage = () => {
 
       if (!localStorageItem) {
         // Policy not found, so likely that the user hasn't addressed the widget yet
-        accum[policyName] = defaultConsentChoice;
+        accum[policyName] = defaultConsent;
         return accum;
       }
 
@@ -67,21 +67,26 @@ export const getConsentsFromLocalStorage = () => {
         const { enabled, version } = JSON.parse(localStorageItem);
         // Use "enabled" value found in localStorage
         accum[policyName] = {
-          enabled: Boolean(enabled),
+          state:
+            enabled === true
+              ? "enabled"
+              : enabled === false
+              ? "disabled"
+              : "pending",
           version,
         };
       } catch (error) {
         // @todo report error
         // JSON could not be parsed, default to enabled:false
-        accum[policyName] = defaultConsentChoice;
+        accum[policyName] = defaultConsent;
       }
 
       return accum;
     },
     {
-      strictlyNecessary: defaultConsentChoice,
-      embeddedContent: defaultConsentChoice,
-      statistics: defaultConsentChoice,
+      strictlyNecessary: defaultConsent,
+      embeddedContent: defaultConsent,
+      statistics: defaultConsent,
     }
   );
 };
