@@ -63,7 +63,12 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Site: qegadesign.myportfolio.com
   Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
   From: Glasgow, UK
-  
+
+
+  Thomas Birch (Data)
+  Site: https://capeflair.com
+  From: Guildford, UK
+
 
   Tom Wise (UX/UI and Design)
   Site: https://putty.studio
