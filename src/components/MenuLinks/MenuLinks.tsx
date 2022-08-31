@@ -1,6 +1,5 @@
 import { FC } from "react";
 import Link from "next/link";
-import styled from "styled-components";
 
 import P, { Heading } from "../Typography";
 import Flex from "../Flex";
@@ -9,12 +8,6 @@ import { PixelSpacing } from "../../styles/theme";
 
 import { MenuLinkProps, MenuListItemProps } from "./types";
 
-const Home = styled(Heading)``;
-
-const LocationIcon = styled(Icon)`
-  opacity: 0.6;
-`;
-
 const isSubPath = ({
   currentPath,
   href,
@@ -22,12 +15,21 @@ const isSubPath = ({
   if (href === "/") {
     return currentPath === "/";
   }
-  return currentPath.startsWith(href);
+  return `${currentPath}/`.startsWith(`${href}/`);
 };
 
 const MenuListItem: FC<MenuListItemProps> = (props) => {
-  const { href, linkText, fontFamily, fontSize, $mt, currentPath, arrowSize } =
-    props;
+  const {
+    href,
+    linkText,
+    fontFamily,
+    fontSize,
+    $mt,
+    currentPath,
+    arrowSize,
+    onClick,
+    target,
+  } = props;
 
   return (
     <li>
@@ -51,7 +53,11 @@ const MenuListItem: FC<MenuListItemProps> = (props) => {
           }
           $opacity={isSubPath({ href, currentPath }) ? 0.6 : 1}
         >
-          <Link href={href}>{linkText}</Link>
+          <Link href={href}>
+            <a onClick={onClick} target={target}>
+              {linkText}
+            </a>
+          </Link>
         </P>
       </Flex>
     </li>
@@ -68,7 +74,12 @@ const renderLocationIcon = ({
 }) => {
   return isSubPath({ currentPath, href }) ? (
     <Flex $mr={$mr}>
-      <LocationIcon variant="minimal" name="ArrowRight" size={arrowSize} />
+      <Icon
+        variant="minimal"
+        name="ArrowRight"
+        size={arrowSize}
+        $opacity={0.6}
+      />
     </Flex>
   ) : null;
 };
@@ -85,7 +96,7 @@ const MenuLinks: FC<MenuLinkProps> = (props) => {
           arrowSize: [48],
           $mr: 16,
         })}
-        <Home
+        <Heading
           tag={"h2"}
           $fontSize={[32]}
           $color={"black"}
@@ -93,7 +104,7 @@ const MenuLinks: FC<MenuLinkProps> = (props) => {
           $opacity={currentPath === "/" ? 0.6 : 1}
         >
           <Link href={"/"}>Home</Link>
-        </Home>
+        </Heading>
       </Flex>
       <ul role="list">
         {menuLinks.map((link) => (

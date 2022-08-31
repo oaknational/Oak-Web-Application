@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Heading, P } from "../Typography";
+import { getPupilsUrl } from "../../common-lib/urls";
 
 import Card from "./Card";
 import Component from "./CardLink";
@@ -16,9 +17,7 @@ const Template: ComponentStory<typeof Component> = () => {
   return (
     <Card $background={"grey4"}>
       <Heading $mt={24} $mb={12} $fontSize={24} tag={"h5"} $color={"grey8"}>
-        <Component href="https://classroom.thenational.academy/">
-          Card link
-        </Component>
+        <Component href={getPupilsUrl()}>Card link</Component>
       </Heading>
       <P>
         Drop a CardLink component into a Card, pass in an href and the whole
