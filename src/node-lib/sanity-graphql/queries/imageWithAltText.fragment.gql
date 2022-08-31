@@ -1,0 +1,6 @@
+fragment ImageWithAltText on ImageWithAltText {
+  altText
+  asset {
+    ...ImageAsset
+  }
+}
