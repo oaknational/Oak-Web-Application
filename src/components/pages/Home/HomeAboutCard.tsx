@@ -1,11 +1,14 @@
 import { FC } from "react";
 
+import useAnalytics from "../../../context/Analytics/useAnalytics";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import { P } from "../../Typography";
 
 const HomeAboutCard: FC = () => {
+  const { track } = useAnalytics();
+
   return (
     <Card $borderRadius={0} $background="white">
       <CardTitle icon="Search" iconPosition="leading" iconSize={32} tag="h2">
@@ -19,6 +22,7 @@ const HomeAboutCard: FC = () => {
         fullWidth
         href="/about-us/who-we-are"
         label="Find out more"
+        htmlAnchorProps={{ onClick: track.aboutSelected }}
       />
     </Card>
   );

@@ -14,6 +14,7 @@ import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
 import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import UnstyledButton from "../components/UnstyledButton";
+import { getHelpUrl } from "../common-lib/urls";
 
 const ContactUs: NextPage = () => {
   const newsletterFormProps = useNewsletterForm();
@@ -30,7 +31,7 @@ const ContactUs: NextPage = () => {
           <>
             Search our FAQs and find useful information for teachers, schools,
             pupils and parents in our{" "}
-            <a href="https://support.thenational.academy/" target="_blank">
+            <a href={getHelpUrl()} target="_blank">
               Help Centre.
             </a>
           </>

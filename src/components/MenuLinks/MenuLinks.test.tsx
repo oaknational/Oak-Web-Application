@@ -1,3 +1,4 @@
+import { getPupilsUrl, getTeachersUrl } from "../../common-lib/urls";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import MenuLinks from "./MenuLinks";
@@ -7,7 +8,7 @@ describe("MenuLinks", () => {
   test("should render a list of links", () => {
     const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
       {
-        href: "https://teachers.thenational.academy",
+        href: getTeachersUrl(),
         linkText: "Teacher hub",
         fontFamily: "heading",
         fontSize: [32],
@@ -15,7 +16,7 @@ describe("MenuLinks", () => {
         arrowSize: [32],
       },
       {
-        href: "https://classroom.thenational.academy/",
+        href: getPupilsUrl(),
         linkText: "Classroom",
         fontSize: [32],
         fontFamily: "heading",

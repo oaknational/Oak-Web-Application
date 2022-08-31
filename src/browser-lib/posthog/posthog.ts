@@ -34,7 +34,6 @@ export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
     }
   },
   optOut: () => {
-    // Causing posthog to throw exception
     posthogJs.opt_out_capturing();
   },
   state: () => getHasConsentedTo("posthog"),
