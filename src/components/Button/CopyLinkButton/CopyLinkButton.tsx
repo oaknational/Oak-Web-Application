@@ -16,9 +16,7 @@ const CopyLinkButton: FC = () => {
     <IconButton
       icon={"Share"}
       aria-label={label}
-      onClick={() => {
-        copyLink();
-      }}
+      onClick={copyLink}
       background={"teachersHighlight"}
     />
   );
