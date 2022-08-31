@@ -26,6 +26,7 @@ import Box from "../../components/Box";
 import Card from "../../components/Card";
 import Cover from "../../components/Cover";
 import { Heading, P, Span } from "../../components/Typography";
+import CopyLinkButton from "../../components/Button/CopyLinkButton";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -288,9 +289,12 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
               {formattedDate}
             </P>
-            <Heading tag="h2" $mt={16} $fontSize={16} $lineHeight={"20px"}>
-              {blog.author.name}
-            </Heading>
+            <Flex $alignItems={"center"} $mt={16}>
+              <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
+                {blog.author.name}
+              </Heading>
+              <CopyLinkButton />
+            </Flex>
             <Box $mt={[96, 64]}>
               <PortableTextComponentsProvider
                 components={portableTextComponents}
