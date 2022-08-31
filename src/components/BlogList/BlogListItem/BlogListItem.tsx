@@ -1,8 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
 
+import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
+import AspectRatio from "../../AspectRatio";
+import Box from "../../Box";
+import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
-import Icon from "../../Icon";
 import LineClamp from "../../LineClamp";
 import { P, Heading, HeadingTag } from "../../Typography";
 
@@ -16,13 +19,6 @@ const ActionLink = styled.a`
     left: 0;
   }
 `;
-const BlogListItemImage = styled(Flex)`
-  width: 228px;
-  min-width: 228px;
-  border-radius: 8px;
-  margin-right: 24px;
-  min-height: 120px;
-`;
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -32,7 +28,12 @@ export type BlogListItemProps = {
   snippet: string;
   href: string;
   contentType: BlogListItemContentType;
+  category: BlogWebinarCategory;
+  date: string;
+  mainImage?: SanityImage | null;
+  withImage?: boolean;
 };
+
 /**
  * Contains an image, title, and text snippet.
  * The component contains a link styled as a button, which
@@ -40,31 +41,58 @@ export type BlogListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
-  const { titleTag, title, snippet, href, contentType } = props;
+  const {
+    titleTag,
+    title,
+    snippet,
+    href,
+    category,
+    date,
+    withImage,
+    mainImage,
+  } = props;
+
+  const blogDate = new Date(date);
 
   return (
-    <Flex
-      $flexDirection={["column", "row"]}
-      $alignItems={"center"}
-      $position="relative"
-    >
-      <BlogListItemImage
-        $background="grey3"
-        $alignItems="center"
-        $justifyContent="center"
-        $mb={[24, 0]}
-      >
-        {contentType === "webinar" && (
-          <Icon name="Play" $color="white" size={48} />
-        )}
-      </BlogListItemImage>
-      <Flex $flexDirection="column" $alignItems="flex-start">
-        <Heading tag={titleTag} $fontSize={20} $mb={16}>
+    <Flex $position={"relative"} $mt={24} $flexDirection={["column", "row"]}>
+      {withImage && mainImage && (
+        <Box $position={"relative"} $minWidth={240}>
+          <AspectRatio ratio={"3:2"}>
+            <CMSImage
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center center"
+              image={mainImage}
+              // @TODO: Replace with valid alt text when supported by the CMS
+              alt=""
+            />
+          </AspectRatio>
+        </Box>
+      )}
+      <Flex $flexDirection="column" $alignItems="flex-start" $ml={[0, 32]}>
+        <P
+          $fontSize={16}
+          $lineHeight={"20px"}
+          // Not blue until link to category filter is added
+          // $color="teachersHighlight"
+          $fontFamily="ui"
+        >
+          {category.title}
+        </P>
+        <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
+          {blogDate.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </P>
+        <Heading tag={titleTag} $fontSize={20} $mt={8}>
           <ActionLink href={href} title={title}>
             {title}
           </ActionLink>
         </Heading>
-        <P $fontSize={18}>
+        <P $fontSize={14} $mt={8}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>

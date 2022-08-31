@@ -12,6 +12,7 @@ const testWebinar: Webinar = {
   date: new Date("2025-01-01"),
   slug: "an-upcoming-webinar",
   hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
 
@@ -21,6 +22,7 @@ const testWebinar2: Webinar = {
   date: new Date("2022-01-01"),
   slug: "a-past-webinar",
   hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
 

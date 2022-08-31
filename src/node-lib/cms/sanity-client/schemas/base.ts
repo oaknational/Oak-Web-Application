@@ -78,12 +78,18 @@ export const textAndMediaSchemaBase = z.object({
   alignMedia: z.enum(["left", "right"]),
 });
 
-const videoSchema = z.object({
+export const videoSchema = z.object({
   title: z.string(),
   video: z.object({
     asset: z.object({
       assetId: z.string(),
       playbackId: z.string(),
+      thumbTime: z
+        .number()
+        .nullish()
+        .transform((val) => {
+          return val === null ? undefined : val;
+        }),
     }),
   }),
 });
@@ -98,3 +104,8 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
+
+export const blogWebinarCategorySchema = z.object({
+  title: z.string(),
+  slug: slugSchema,
+});

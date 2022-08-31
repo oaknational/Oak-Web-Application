@@ -1,4 +1,4 @@
-import { Document, PortableTextJSON } from "./base";
+import { Document, PortableTextJSON, SanityImage } from "./base";
 
 export type TeamMember = Document & {
   name: string;
@@ -6,30 +6,47 @@ export type TeamMember = Document & {
 
 export type TeamMemberPreview = Pick<TeamMember, "name">;
 
+export type BlogWebinarCategory = {
+  title: string;
+  slug: string;
+};
+
 export type Webinar = Document & {
   title: string;
   slug: string;
   date: Date;
   hosts: TeamMember[];
+  category: BlogWebinarCategory;
   summaryPortableText: PortableTextJSON;
 };
 
 export type WebinarPreview = Pick<
   Webinar,
-  "id" | "title" | "slug" | "summaryPortableText"
+  "id" | "title" | "slug" | "date" | "category" | "summaryPortableText"
 >;
 
 export type BlogPost = Document & {
   title: string;
   slug: string;
   date: Date;
+  mainImage: SanityImage;
   author: TeamMember;
+  summary: string;
+  category: BlogWebinarCategory;
   contentPortableText: PortableTextJSON;
 };
 
 export type BlogPostPreview = Pick<
   BlogPost,
-  "id" | "title" | "slug" | "contentPortableText"
+  | "id"
+  | "title"
+  | "slug"
+  | "summary"
+  | "contentPortableText"
+  | "author"
+  | "category"
+  | "date"
+  | "mainImage"
 >;
 
 export type Attachment = {
@@ -38,6 +55,7 @@ export type Attachment = {
     asset: {
       extension: string;
       size: number;
+      url: string;
     };
   };
 };
