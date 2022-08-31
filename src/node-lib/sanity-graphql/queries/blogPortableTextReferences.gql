@@ -8,7 +8,8 @@ query blogPortableTextReferences($ids: [ID!]) {
       }
     }
     ... on SanityImageAsset {
-      ...ImageAsset
+      _id
+      url
     }
     ... on Video {
       ...Video
