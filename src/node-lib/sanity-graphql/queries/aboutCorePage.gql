@@ -79,5 +79,8 @@ query aboutCorePage($isDraft: Boolean = false) {
     contactSection {
       infoPortableText: infoRaw
     }
+    seo {
+      ...Seo
+    }
   }
 }

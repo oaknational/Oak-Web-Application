@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import AboutWhoWeAre from "../../pages/about-us/who-we-are";
 import { AboutPage } from "../../node-lib/cms";
-import { portableTextFromString } from "../__helpers__/cms";
+import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 
 export const testAboutPageData: AboutPage = {
   title: "About Oak",
@@ -381,6 +381,7 @@ export const testAboutPageData: AboutPage = {
     ],
   },
   id: "aboutCorePage",
+  seo: mockSeo(),
 };
 
 describe("pages/about us who we arew.tsx", () => {

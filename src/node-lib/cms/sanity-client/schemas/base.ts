@@ -148,3 +148,9 @@ export const portableTextReferencedEntrySchema = z.discriminatedUnion(
 export type PortableTextReferencedEntry = z.infer<
   typeof portableTextReferencedEntrySchema
 >;
+
+export const seoSchema = z.object({
+  title: z.string().nullish(),
+  description: z.string().nullish(),
+  canonicalURL: z.string().nullish(),
+});

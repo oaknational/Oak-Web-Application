@@ -1,6 +1,11 @@
 import * as z from "zod";
 
-import { attachmentSchema, documentSchema, imageSchema } from "./base";
+import {
+  attachmentSchema,
+  documentSchema,
+  imageSchema,
+  seoSchema,
+} from "./base";
 import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
@@ -34,6 +39,7 @@ export const planningPageSchema = z
     learnMoreHeading: z.string(),
     learnMoreBlock1: textAndMediaSchema,
     learnMoreBlock2: textAndMediaSchema,
+    seo: seoSchema,
   })
   .merge(documentSchema);
 
@@ -91,6 +97,7 @@ export const aboutPageSchema = z
     contactSection: z.object({
       infoPortableText: portableTextSchema,
     }),
+    seo: seoSchema,
   })
   .merge(documentSchema);
 
@@ -116,6 +123,7 @@ export const curriculumPageSchema = z
       ),
     }),
     ourApproach: textBlockSchema,
+    seo: seoSchema,
   })
   .merge(documentSchema);
 

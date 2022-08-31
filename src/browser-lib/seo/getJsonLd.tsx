@@ -5,10 +5,14 @@ import {
   BreadcrumbJsonLd as BreadcrumbsJsonLdNextSeo,
   BreadCrumbJsonLdProps,
   OrganizationJsonLd as OrganizationJsonLdNextSeo,
+  ArticleJsonLd as ArticleJsonLdNextSeo,
+  ArticleJsonLdProps,
+  CarouselJsonLd,
 } from "next-seo";
 
 import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
 import config from "../../config";
+import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 
 const courseProvider = {
   name: config.get("appName"),
@@ -55,4 +59,42 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
     ...props,
     itemListElements: breadcrumbsForJsonLd,
   });
+};
+
+// Blogs
+
+const blogObject = (blog: SerializedBlog): ArticleJsonLdProps => {
+  return {
+    type: "Article",
+    url: `${config.get("appUrl")}/blog/${blog.slug}`,
+    title: blog.title,
+    images: [blog.mainImage.asset?.url || config.get("appLogo")],
+    datePublished: blog.date,
+    dateModified: blog.date,
+    authorName: blog.author.name,
+    description: blog.summary,
+  };
+};
+
+type BlogListJsonLdProps = {
+  blogs: SerializedBlog[];
+};
+
+export const BlogListJsonLd: FC<BlogListJsonLdProps> = ({ blogs }) => {
+  const blogListForJsonLd = blogs.map((blog, index) => ({
+    position: index + 1,
+    courseName: blog.title,
+    ...blogObject(blog),
+  }));
+
+  return CarouselJsonLd({
+    ofType: "course",
+    data: blogListForJsonLd,
+
+    provider: { ...courseProvider },
+  });
+};
+
+export const BlogJsonLd: FC<SerializedBlog> = (props) => {
+  return ArticleJsonLdNextSeo(blogObject(props));
 };
