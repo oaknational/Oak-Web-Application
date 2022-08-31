@@ -3,12 +3,12 @@ import Link from "next/link";
 
 import { useUser } from "../../context/Auth";
 import Bookmarks from "../../components/Bookmarks";
-import Layout from "../../components/Layout";
+import AppLayout from "../../components/AppLayout";
 
 const BookmarksPage: NextPage = () => {
   const user = useUser();
   return (
-    <Layout
+    <AppLayout
       seoProps={{
         title: "Lesson bookmarks page : Oak National Academy",
         description:
@@ -26,7 +26,7 @@ const BookmarksPage: NextPage = () => {
       ) : (
         <Bookmarks />
       )}
-    </Layout>
+    </AppLayout>
   );
 };
 

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import useAuth from "../../../context/Auth/useAuth";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import Layout from "../../../components/Layout";
+import AppLayout from "../../../components/AppLayout";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import Flex from "../../../components/Flex";
 import { useUser } from "../../../context/Auth";
@@ -67,7 +67,7 @@ const SignInCallback: NextPage = () => {
   };
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
+    <AppLayout seoProps={DEFAULT_SEO_PROPS}>
       <Flex
         $flexDirection="column"
         $justifyContent="center"
@@ -95,7 +95,7 @@ const SignInCallback: NextPage = () => {
         )}
         {loading && <LoadingSpinner />}
       </Flex>
-    </Layout>
+    </AppLayout>
   );
 };
 

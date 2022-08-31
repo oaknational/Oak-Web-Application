@@ -30,16 +30,13 @@ const headers: Record<HeaderVariant, FC> = {
   app: AppHeader,
   site: SiteHeader,
 };
-interface LayoutProps {
+export interface LayoutProps {
   seoProps: SeoProps;
   headerVariant?: "app" | "site";
   $background?: OakColorName;
   isPreviewMode?: boolean;
 }
 
-/** 1. Titles for SEO should be between 50-60 characters long 
-    2. Title should contain app name
-    3. SEO descriptions should be between 150-300 characters long */
 const Layout: FC<LayoutProps> = (props) => {
   const {
     children,

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { useUser } from "../../context/Auth";
-import Layout from "../../components/Layout";
+import AppLayout from "../../components/AppLayout";
 import Bookmarks from "../../components/Bookmarks";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Grid from "../../components/Grid";
@@ -11,11 +11,7 @@ import { Heading } from "../../components/Typography";
 const Beta: FC = () => {
   const user = useUser();
   return (
-    <Layout
-      seoProps={DEFAULT_SEO_PROPS}
-      headerVariant="app"
-      $background={"grey1"}
-    >
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <Grid $cg={16} $rg={[16, 48, 80]}>
         <GridArea $colSpan={[12, 12, 8]}>
           <Heading
@@ -29,7 +25,7 @@ const Beta: FC = () => {
         </GridArea>
       </Grid>
       {user && <Bookmarks />}
-    </Layout>
+    </AppLayout>
   );
 };
 

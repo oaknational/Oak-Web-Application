@@ -9,7 +9,7 @@ import { CourseJsonLd } from "../../../browser-lib/seo/getJsonLd";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import Flex from "../../../components/Flex";
-import Layout from "../../../components/Layout/Layout";
+import AppLayout from "../../../components/AppLayout";
 import LessonHeader from "../../../components/LessonHeader/LessonHeader";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import { LessonId } from "../../../context/Bookmarks";
@@ -27,13 +27,12 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         description={"lesson.description"}
         provider
       />
-      <Layout
+      <AppLayout
         seoProps={{
           title: `${lesson.title} lesson | Oak National Academy`,
           description:
             "This lesson revises the Forces subject knowledge of the GCSE Physics Science only, and gives an opportunity to work through some independent tasks and exam questions.",
         }}
-        headerVariant="app"
         $background="grey1"
       >
         <MaxWidth>
@@ -53,7 +52,7 @@ const Lesson: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
             </BrowserWidthBar>
           </header>
         </MaxWidth>
-      </Layout>
+      </AppLayout>
     </>
   );
 };
