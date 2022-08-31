@@ -62,7 +62,9 @@ const Notification: FC = () => {
         Blog
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
-        <CardLink href="/blog/evolution-of-oak">About the future of Oak</CardLink>
+        <CardLink href="/blog/evolution-of-oak">
+          About the future of Oak
+        </CardLink>
       </Heading>
       <P $mt={4}>Find out more</P>
     </Card>

@@ -19,7 +19,7 @@ const getHasConsentedTo: HasConsentedTo = (serviceType) => {
 
   const policyName = servicePolicyMap[serviceType];
 
-  return getConsentsFromLocalStorage()[policyName].enabled;
+  return getConsentsFromLocalStorage()[policyName].state;
 };
 
 export default getHasConsentedTo;

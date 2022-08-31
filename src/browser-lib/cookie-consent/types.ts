@@ -4,12 +4,13 @@ export const COOKIE_POLICY_NAMES = [
   "statistics",
 ] as const;
 
-export type CookieConsentChoice = {
-  enabled: boolean;
+export type CookieConsentState = "pending" | "enabled" | "disabled";
+export type CookieConsent = {
+  state: CookieConsentState;
   version: string;
 };
-export const defaultConsentChoice = {
-  enabled: false,
+export const defaultConsent: CookieConsent = {
+  state: "pending",
   version: "0",
 };
 export type CookiePolicyName = typeof COOKIE_POLICY_NAMES[number];
