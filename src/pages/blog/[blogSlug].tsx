@@ -125,7 +125,7 @@ const portableTextComponents = {
       const { video, title } = props.value;
 
       return (
-        <Box $mt={80}>
+        <Box>
           {video && (
             <Flex $position={"relative"} $mt={80}>
               <VideoPlayer title={title} playbackId={video.asset.playbackId} />
@@ -180,15 +180,12 @@ const portableTextComponents = {
       }>
     ) => {
       return (
-        <Flex $flexDirection={"column"} $mt={80} $ml={[0, 160]} $mr={[0, 120]}>
-          <P $fontSize={16} $lineHeight={"20px"} $fontFamily={"headingLight"}>
-            <blockquote>{props.value?.text}</blockquote>
+        <Flex $flexDirection={"column"} $mt={80}>
+          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+            <blockquote>&ldquo;{props.value?.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={16} $lineHeight={"20px"} $fontFamily={"ui"} $mt={16}>
-            <cite>{props.value?.attribution}</cite>
-          </P>
-          <P $fontSize={16} $lineHeight={"20px"}>
-            {props.value?.role}
+          <P $fontSize={16} $lineHeight={"20px"} $mt={16}>
+            <cite>{props.value?.attribution}</cite>, {props.value?.role}
           </P>
         </Flex>
       );
