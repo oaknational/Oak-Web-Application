@@ -1,3 +1,16 @@
+# [0.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.2...v0.85.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* fix teacher pupils link tracking from menu ([a070c82](https://github.com/oaknational/Oak-Web-Application/commit/a070c8215ca3c84e5fdf2ded47b58e9528618901))
+
+
+### Features
+
+* homepage tracking events ([923141f](https://github.com/oaknational/Oak-Web-Application/commit/923141fb0dd82b86312b5d17c965bbb542c1b357))
+* track teacher/pupils navigation from header ([f4dfbfd](https://github.com/oaknational/Oak-Web-Application/commit/f4dfbfd529661bf10562b7b9d8a7a7b5a33eec3a))
+
 ## [0.84.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.1...v0.84.2) (2022-08-31)
 
 
