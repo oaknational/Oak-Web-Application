@@ -19,6 +19,7 @@ const CopyLinkButton: FC = () => {
       onClick={() => {
         copyLink();
       }}
+      background={"teachersHighlight"}
     />
   );
 };
