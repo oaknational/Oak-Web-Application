@@ -93,7 +93,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           <GraphicCircle icon="Quiz" />
           <LinkText>
             <AnchorLink href={`#${linkTargetIds.introQuiz}`}>
-              intro quiz
+              Intro quiz
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -110,7 +110,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           </Flex>
           <LinkText>
             <AnchorLink href={`#${linkTargetIds.video}`}>
-              lesson slides or video
+              Lesson slides or video
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -123,7 +123,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           <GraphicCircle icon="Worksheet" />
           <LinkText>
             <AnchorLink href={`#${linkTargetIds.worksheet}`}>
-              worksheet
+              Worksheet
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -132,7 +132,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           <GraphicCircle icon="Quiz" />
           <LinkText>
             <AnchorLink href={`#${linkTargetIds.exitQuiz}`}>
-              exit quiz
+              Exit quiz
             </AnchorLink>
           </LinkText>
         </GraphicContainer>

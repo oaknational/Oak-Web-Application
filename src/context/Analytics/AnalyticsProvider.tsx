@@ -2,17 +2,17 @@ import { createContext, FC, useCallback, useEffect, useMemo } from "react";
 import router from "next/router";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
-import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
-import usePosthog from "../../browser-lib/posthog/usePosthog";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
 import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
-import useHubspot from "../../browser-lib/hubspot/useHubspot";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
-
-type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
-type AnalyticsContext = {
-  track: TrackFns;
-};
+import { ServiceType } from "../../browser-lib/cookie-consent/types";
+import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
+import posthogWithQueue from "../../browser-lib/posthog/posthog";
+import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
+import config from "../../config";
+import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
+import useStableCallback from "../../hooks/useStableCallback";
+import isBrowser from "../../utils/isBrowser";
 
 export type UserId = string;
 export type EventName = string;
@@ -21,17 +21,24 @@ export type EventFn = (
   eventName: EventName,
   properties: EventProperties
 ) => void;
-export type PageFn = () => void;
+export type PageProperties = { path: string };
+export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
   userId: UserId,
   properties: IdentifyProperties
 ) => void;
 
+type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
+type AnalyticsContext = {
+  track: TrackFns;
+  identify: IdentifyFn;
+};
+
 export type AnalyticsService<ServiceConfig> = {
-  init: (config: ServiceConfig) => void;
-  enabled?: boolean;
-  loaded: () => boolean;
+  name: ServiceType;
+  init: (config: ServiceConfig) => Promise<void>;
+  state: () => "enabled" | "disabled" | "pending";
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
@@ -41,6 +48,13 @@ export type AnalyticsService<ServiceConfig> = {
 
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
+const getPathAndQuery = () => {
+  if (!isBrowser) {
+    throw new Error("getPathAndQuery run outside of the browser");
+  }
+  return window.location.pathname + window.location.search;
+};
+
 const AnalyticsProvider: FC = (props) => {
   const { children } = props;
 
@@ -49,14 +63,28 @@ const AnalyticsProvider: FC = (props) => {
   /**
    * Posthog
    */
-  const posthogEnabled = useHasConsentedTo("posthog");
-  const posthog = usePosthog({ enabled: posthogEnabled });
+  const posthogConsent = useHasConsentedTo("posthog");
+  const posthog = useAnalyticsService({
+    service: posthogWithQueue,
+    config: {
+      apiHost: config.get("posthogApiHost"),
+      apiKey: config.get("posthogApiKey"),
+    },
+    consentState: posthogConsent,
+  });
 
   /**
    * Hubspot
    */
-  const hubspotEnabled = useHasConsentedTo("hubspot");
-  const hubspot = useHubspot({ enabled: hubspotEnabled });
+  const hubspotConsent = useHasConsentedTo("hubspot");
+  const hubspot = useAnalyticsService({
+    service: hubspotWithQueue,
+    config: {
+      portalId: config.get("hubspotPortalId"),
+      scriptDomain: config.get("hubspotScriptDomain"),
+    },
+    consentState: hubspotConsent,
+  });
 
   /**
    * Avo
@@ -66,17 +94,33 @@ const AnalyticsProvider: FC = (props) => {
   /**
    * Page view tracking
    */
-  const page = useCallback(() => {
-    posthog.page();
-    hubspot.page();
-  }, [posthog, hubspot]);
-  useEffect((): (() => void) => {
-    router.events.on("routeChangeComplete", page);
+  const page = useStableCallback(() => {
+    const props = { path: getPathAndQuery() };
+    posthog.page(props);
+    hubspot.page(props);
+  });
+  useEffect(() => {
+    page();
+  }, [page]);
+  useEffect(() => {
+    router.events.on("routeChangeComplete", () => page());
 
     return () => {
       router.events.off("routeChangeComplete", page);
     };
   }, [page]);
+
+  /**
+   * Identify
+   * To be called on form submission (or later on sign up)
+   */
+  const identify: IdentifyFn = useCallback(
+    (id, props) => {
+      posthog.identify(id, props);
+      hubspot.identify(id, props);
+    },
+    [posthog, hubspot]
+  );
 
   /**
    * Event tracking
@@ -101,8 +145,19 @@ const AnalyticsProvider: FC = (props) => {
     return avoTrack;
   }, [trackingEnabled]);
 
+  /**
+   * analytics
+   * The analytics instance returned by useAnalytics hooks
+   */
+  const analytics = useMemo(() => {
+    return {
+      track,
+      identify,
+    };
+  }, [track, identify]);
+
   return (
-    <analyticsContext.Provider value={{ track }}>
+    <analyticsContext.Provider value={analytics}>
       {children}
     </analyticsContext.Provider>
   );

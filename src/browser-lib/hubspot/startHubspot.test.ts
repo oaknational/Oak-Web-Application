@@ -1,9 +1,14 @@
 import startHubspot from "./startHubspot";
 
-const scriptAlreadyLoaded = jest.fn(() => false);
-jest.mock("../../utils/scriptAlreadyLoaded.ts", () => ({
+const getOakGlobals = jest.fn(() => ({
+  hubspot: {
+    scriptLoaded: false,
+  },
+}));
+jest.mock("../oak-globals/oakGlobals.ts", () => ({
   __esModule: true,
-  default: () => scriptAlreadyLoaded(),
+  ...jest.requireActual("../oak-globals/oakGlobals.ts"),
+  default: () => getOakGlobals(),
 }));
 const documentCreateElement = jest.spyOn(document, "createElement");
 
@@ -16,7 +21,11 @@ describe("startHubspot.ts", () => {
     expect(documentCreateElement).toHaveBeenCalled();
   });
   test("should not call createElement if already loaded", () => {
-    scriptAlreadyLoaded.mockImplementationOnce(() => true);
+    getOakGlobals.mockImplementationOnce(() => ({
+      hubspot: {
+        scriptLoaded: true,
+      },
+    }));
     startHubspot({ scriptDomain: "hs-test.domain", portalId: "portal-id-123" });
     expect(documentCreateElement).not.toHaveBeenCalled();
   });
