@@ -1,16 +1,14 @@
 import { FC } from "react";
 import Img, { ImageProps } from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
-import {
-  SanityClientLike,
-  SanityImageSource,
-} from "@sanity/image-url/lib/types/types";
+import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
 import config from "../../config";
 import Box from "../Box";
+import { SanityImage } from "../../node-lib/cms";
 
 type CMSImageProps = Omit<ImageProps, "src"> & {
-  image: SanityImageSource;
+  image: SanityImage;
 };
 
 /**
@@ -30,9 +28,14 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
     enableBlurUp: false,
   });
 
+  // If alt is explicitly provided, use it even if it's empty
+  // otherwise attempt the one from the CMS, or fall back to none
+  const altText =
+    typeof rest.alt === "string" ? rest.alt : image.altText || undefined;
+
   return (
     <Box $background="pastelTurqoise" $width="100%">
-      <Img {...imageProps} layout="intrinsic" {...rest} />
+      <Img {...imageProps} layout="intrinsic" {...rest} alt={altText} />
     </Box>
   );
 };
