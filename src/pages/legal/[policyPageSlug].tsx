@@ -43,7 +43,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
-      $background={"grey1"}
+      $background={"white"}
       isPreviewMode={isPreviewMode}
     >
       <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
