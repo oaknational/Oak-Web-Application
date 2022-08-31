@@ -116,6 +116,7 @@ export const getStaticProps: GetStaticProps<
       policy,
       isPreviewMode,
     },
+    revalidate: 10,
   };
 };
 
