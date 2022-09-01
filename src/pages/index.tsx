@@ -299,7 +299,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Box $background={"white"} $pa={24}>
+              <Box $background={"white"} $pa={24} $height={"100%"}>
                 <Flex
                   $alignItems="center"
                   $justifyContent="space-between"
@@ -381,7 +381,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   const posts = [...blogPosts, ...webinars]
     .sort(sortByDate)
-    .slice(0, 5)
+    .slice(0, 4)
     .map(serializeDate);
 
   return {

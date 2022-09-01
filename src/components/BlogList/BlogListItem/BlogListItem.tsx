@@ -7,6 +7,7 @@ import Box from "../../Box";
 import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
+import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../Typography";
 
 const ActionLink = styled.a`
@@ -67,16 +68,19 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     >
       {withImage && mainImage && (
         <Box $position={"relative"} $minWidth={240} $mr={[0, 32]}>
-          <AspectRatio ratio={"3:2"}>
-            <CMSImage
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center center"
-              image={mainImage}
-              // @TODO: Replace with valid alt text when supported by the CMS
-              alt=""
-            />
-          </AspectRatio>
+          <BoxBorders />
+          <Box $ma={1}>
+            <AspectRatio ratio={"3:2"}>
+              <CMSImage
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center center"
+                image={mainImage}
+                // @TODO: Replace with valid alt text when supported by the CMS
+                alt=""
+              />
+            </AspectRatio>
+          </Box>
         </Box>
       )}
 
