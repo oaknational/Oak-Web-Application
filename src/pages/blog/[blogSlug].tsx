@@ -64,7 +64,7 @@ const portableTextComponents = {
     sectionHeading: (props: PortableTextComponent) => {
       // @TODO: Choose an appropriate section heading level
       return (
-        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={80}>
+        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={56} $mb={32}>
           {props.children}
         </Heading>
       );
@@ -76,6 +76,14 @@ const portableTextComponents = {
         </P>
       );
     },
+  },
+  list: {
+    bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
+    number: (props: PortableTextComponent) => <ol>{props.children}</ol>,
+  },
+  listItem: {
+    bullet: (props: PortableTextComponent) => <li>{props.children}</li>,
+    number: (props: PortableTextComponent) => <li>{props.children}</li>,
   },
   marks: {
     internalLink: (props: PortableTextComponent<{ reference: string }>) => {
@@ -128,7 +136,7 @@ const portableTextComponents = {
       return (
         <Box>
           {video && (
-            <Flex $position={"relative"} $mt={80}>
+            <Flex $position={"relative"} $mt={56}>
               <VideoPlayer title={title} playbackId={video.asset.playbackId} />
             </Flex>
           )}
@@ -147,12 +155,12 @@ const portableTextComponents = {
         params.alignMedia === "left" ? "row-reverse" : "row";
 
       return (
-        <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={80}>
+        <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
           <div>
             <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
               {params.title}
             </Heading>
-            <Box $pt={16}>
+            <Box $mt={32}>
               <PortableText value={params.body} />
             </Box>
           </div>
@@ -181,7 +189,7 @@ const portableTextComponents = {
       }>
     ) => {
       return (
-        <Flex $flexDirection={"column"} $mt={80}>
+        <Flex $flexDirection={"column"} $mt={56}>
           <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
             <blockquote>&ldquo;{props.value?.text}&rdquo;</blockquote>
           </P>
@@ -224,7 +232,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       $background="grey1"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $ph={[12, 12, 0]} $pt={[72, 80, 80]}>
+      <MaxWidth $ph={[12, 12, 0]} $pt={56}>
         <Card
           $pa={0}
           $background={"teachersPastelYellow"}
