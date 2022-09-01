@@ -5,8 +5,8 @@ import { testBookmarks, testLessons } from "../../__helpers__/apolloMocks";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
 const testUser = { id: "123", email: "test email" };
-const loggedInAuthProviderProps = {
-  value: { user: testUser },
+const loggedInAuthProviderValue = {
+  user: testUser,
 };
 
 const removeBookmark = jest.fn();
@@ -39,25 +39,33 @@ describe("pages/beta/bookmarks.tsx", () => {
     );
   });
   it("Renders loading spinner during fetch", async () => {
-    const { getByText } = renderWithProviders(<BookmarksPage />, undefined, {
-      authProviderProps: loggedInAuthProviderProps,
-    });
+    const { getByText } = renderWithProviders(
+      <BookmarksPage
+        __testAppLayoutProps={{ authProviderValue: loggedInAuthProviderValue }}
+      />
+    );
 
     expect(getByText(/^Loading/).textContent).toBe("Loading");
   });
   it("Renders bookmarked lesson after fetch", async () => {
-    const { getByTestId } = renderWithProviders(<BookmarksPage />, undefined, {
-      authProviderProps: loggedInAuthProviderProps,
-    });
+    const { getByTestId } = renderWithProviders(
+      <BookmarksPage
+        __testAppLayoutProps={{ authProviderValue: loggedInAuthProviderValue }}
+      />
+    );
 
     await waitFor(() => {
       expect(getByTestId("bookmark-0").textContent).toBe(testLessons[0]?.title);
     });
   });
   it("Clicking 'remove' should call 'useBookmark()' with correct lessonId", async () => {
-    const { getAllByRole } = renderWithProviders(<BookmarksPage />, undefined, {
-      authProviderProps: loggedInAuthProviderProps,
-    });
+    const { getAllByRole } = renderWithProviders(
+      <BookmarksPage
+        __testAppLayoutProps={{
+          authProviderValue: loggedInAuthProviderValue,
+        }}
+      />
+    );
 
     const firstLessonId = testLessons[0]?.id;
     act(() => {

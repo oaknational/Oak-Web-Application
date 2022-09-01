@@ -8,18 +8,14 @@ import Grid from "../../components/Grid";
 import GridArea from "../../components/Grid/GridArea";
 import Input from "../../components/Input";
 import KeyStagesNav from "../../components/KeyStagesNav/KeyStagesNav";
-import Layout from "../../components/Layout";
+import AppLayout from "../../components/AppLayout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { Heading, P } from "../../components/Typography";
 
 const TeacherHome: FC = () => {
   const [value, setValue] = useState("");
   return (
-    <Layout
-      seoProps={DEFAULT_SEO_PROPS}
-      headerVariant="app"
-      $background={"grey1"}
-    >
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <MaxWidth>
         <Grid $cg={16} $rg={[16, 48, 80]}>
           <GridArea $colSpan={[12, 12, 8]}>
@@ -59,7 +55,7 @@ const TeacherHome: FC = () => {
           </GridArea>
         </Grid>
       </MaxWidth>
-    </Layout>
+    </AppLayout>
   );
 };
 

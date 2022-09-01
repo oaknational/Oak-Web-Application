@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NextPage } from "next";
 
 import { ALL_KEY_STAGES } from "../../context/Search/SearchContext";
-import Layout from "../../components/Layout";
+import AppLayout from "../../components/AppLayout";
 import SearchResults from "../../components/SearchResults";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import BrowserWidthBar from "../../components/BrowserWidthBar";
@@ -31,7 +31,7 @@ export interface SearchHit {
   };
 }
 
-const Search: NextPage = () => {
+const Search = () => {
   const { fetchSearchResults, loading, error, results } =
     useFetchSearchResults();
 
@@ -56,11 +56,7 @@ const Search: NextPage = () => {
   }, [fetchSearchResults]);
 
   return (
-    <Layout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
-      headerVariant="app"
-    >
+    <>
       <BrowserWidthBar $background="white" $pv={20}>
         <Flex>
           {ALL_KEY_STAGES.map((ks) => (
@@ -71,8 +67,16 @@ const Search: NextPage = () => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <SearchResults hits={results} />
-    </Layout>
+    </>
   );
 };
 
-export default Search;
+const SearchPage: NextPage = () => {
+  return (
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+      <Search />
+    </AppLayout>
+  );
+};
+
+export default SearchPage;
