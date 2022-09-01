@@ -59,7 +59,12 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   });
 
   return (
-    <Flex $position={"relative"} $mt={24} $flexDirection={["column", "row"]}>
+    <Flex
+      $position={"relative"}
+      $flexDirection={["column", "row"]}
+      $alignItems={["initial", "center"]}
+      $minHeight={200}
+    >
       {withImage && mainImage && (
         <Box $position={"relative"} $minWidth={240} $mr={[0, 32]}>
           <AspectRatio ratio={"3:2"}>
