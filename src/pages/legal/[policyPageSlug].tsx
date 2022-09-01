@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Flex from "../../components/Flex";
@@ -19,18 +19,39 @@ export type PolicyPageProps = {
 };
 
 const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
+  const customPolicyComponent: PortableTextComponents = {
+    block: {
+      h2: ({ children }) => (
+        <Heading $mb={[32, 48]} $mt={[64, 80]} tag={"h2"} $fontSize={[24, 32]}>
+          {children}
+        </Heading>
+      ),
+      h3: ({ children }) => (
+        <Heading $mb={[32, 24]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
+          {children}
+        </Heading>
+      ),
+      h4: ({ children }) => (
+        <Heading $mb={[32, 24]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
+          {children}
+        </Heading>
+      ),
+      normal: ({ children }) => <P $mb={[32, 32]}>{children}</P>,
+    },
+  };
+
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
-      $background={"grey1"}
+      $background={"white"}
       isPreviewMode={isPreviewMode}
     >
-      <MaxWidth>
+      <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>
             {/* change flex justify center to textAlign when PR fix is in */}
-            <Flex $justifyContent={"center"}>
-              <Heading $mv={80} $fontSize={48} tag={"h1"}>
+            <Flex $alignItems={"center"}>
+              <Heading $mv={48} $fontSize={40} tag={"h1"}>
                 {policy.title}
               </Heading>
             </Flex>
@@ -45,7 +66,10 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
               </time>
             </P>
             <Typography>
-              <PortableText value={policy.bodyPortableText} />
+              <PortableText
+                value={policy.bodyPortableText}
+                components={customPolicyComponent}
+              />
             </Typography>
           </GridArea>
         </Grid>
@@ -92,6 +116,7 @@ export const getStaticProps: GetStaticProps<
       policy,
       isPreviewMode,
     },
+    revalidate: 10,
   };
 };
 
