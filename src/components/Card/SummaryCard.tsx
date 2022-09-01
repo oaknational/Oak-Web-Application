@@ -39,6 +39,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
   background,
   imageProps,
   imageContainerProps,
+  children,
 }) => {
   return (
     <Card
@@ -75,6 +76,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
             <PortableText value={summary} />
           )}
         </Typography>
+        {children}
       </Flex>
       {imageProps && (
         <Flex

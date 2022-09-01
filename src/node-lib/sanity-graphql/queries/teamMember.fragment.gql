@@ -1,0 +1,14 @@
+fragment TeamMember on TeamMember {
+  id: _id
+  name
+  slug {
+    current
+  }
+  image {
+    ...Image
+  }
+  contentPortableText: bioRaw
+  socials {
+    ...TeamMemberSocials
+  }
+}

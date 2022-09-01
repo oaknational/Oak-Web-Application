@@ -16,6 +16,8 @@ import OutlineHeading from "../../components/OutlineHeading";
 import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
+import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
+import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -89,7 +91,13 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             $minHeight: 220,
             $mr: 32,
           }}
-        />
+        >
+          <ButtonLinkNav
+            $mt={36}
+            buttons={reducedAboutNavLinks}
+            selected={"who we are"}
+          />
+        </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
           <Card $pv={32} $ph={[16, 24]} $flexDirection={["column", "row"]}>
             <Flex

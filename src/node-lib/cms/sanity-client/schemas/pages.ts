@@ -9,6 +9,7 @@ import {
   textAndMediaSchema,
   textBlockSchema,
 } from "./base";
+import { teamMemberSchema } from "./teamMember";
 
 export const planningPageSchema = z
   .object({
@@ -77,6 +78,7 @@ export const aboutPageSchema = z
       introPortableText: portableTextSchema,
       documents: z.array(attachmentSchema),
       governancePortableText: portableTextSchema,
+      boardMembers: z.array(teamMemberSchema),
     }),
     partners: z.object({
       sectionHeading: z.string(),

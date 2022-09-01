@@ -5,7 +5,7 @@ import { documentSchema } from "./base";
 export const teamMemberSchema = z
   .object({
     name: z.string(),
-    bio: z.string(),
+    bio: z.string().optional(),
     id: z.string(),
   })
   .merge(documentSchema);
