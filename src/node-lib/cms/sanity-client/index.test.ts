@@ -91,22 +91,6 @@ describe("cms/sanity-client", () => {
         getSanityClient().webinarBySlug("an-upcoming-webinar")
       ).rejects.toThrow();
     });
-
-    it("does not fetch draft content by default", async () => {
-      getSanityClient().webinarBySlug("an-upcoming-webinar");
-      expect(sanityGraphqlApi.webinarBySlug).toBeCalledWith(
-        expect.objectContaining({ isDraft: false })
-      );
-    });
-
-    it("fetches draft content when previewMode flag is passed", async () => {
-      getSanityClient().webinarBySlug("an-upcoming-webinar", {
-        previewMode: true,
-      });
-      expect(sanityGraphqlApi.webinarBySlug).toBeCalledWith(
-        expect.objectContaining({ isDraft: true })
-      );
-    });
   });
 
   describe("webinars", () => {
@@ -124,35 +108,58 @@ describe("cms/sanity-client", () => {
 
       await expect(getSanityClient().webinars()).rejects.toThrow();
     });
-
-    it("does not fetch draft content by default", async () => {
-      await getSanityClient().webinars();
-      expect(sanityGraphqlApi.allWebinars).toBeCalledWith(
-        expect.objectContaining({ isDraft: false })
-      );
-    });
-
-    it("fetches draft content when previewMode flag is passed", async () => {
-      await getSanityClient().webinars({ previewMode: true });
-      expect(sanityGraphqlApi.allWebinars).toBeCalledWith(
-        expect.objectContaining({ isDraft: true })
-      );
-    });
   });
 
-  describe("planningPage", () => {
-    it("does not fetch draft content by default", async () => {
-      await getSanityClient().planningPage();
-      expect(sanityGraphqlApi.planningCorePage).toBeCalledWith(
-        expect.objectContaining({ isDraft: false })
-      );
-    });
+  describe("draft content handling", () => {
+    const client = getSanityClient();
 
-    it("fetches draft content when previewMode flag is passed", async () => {
-      await getSanityClient().planningPage({ previewMode: true });
-      expect(sanityGraphqlApi.planningCorePage).toBeCalledWith(
-        expect.objectContaining({ isDraft: true })
-      );
+    /**
+     * Run the same draft/preview mode tests against each endpoint
+     * Using describe.each to cut down on LOC for testing each method
+     * 2x
+     *
+     * methodName: the name of the function on CMSClient
+     * mockMethodName: the name of a method on sanityGraphqlApi that's been mocked
+     * methodAcceptsSlug: if a slug should be passed to the client method
+     *                    as the methods are variadic
+     */
+    describe.each([
+      ["webinars", "allWebinars", false],
+      ["webinarBySlug", "webinarBySlug", true],
+      // ["blogPosts",  "allBlogPosts", false],
+      // ["blogPostBySlug", "blogPostBySlug", true],
+      // ["homepage", "homepage", false],
+      ["planningPage", "planningCorePage", false],
+      ["aboutPage", "aboutCorePage", false],
+      // ["curriculumPage", "curriculumCorePage", false],
+      // ["policyPages", "allPolicyPages", false],
+      // ["policyPageBySlug", "policyPageBySlug", true],
+      // ["landingPages", "allLandingPages", false],
+      // ["landingPageBySlug", "landingPageBySlug", true],
+    ])(`.%s()`, (methodName, mockMethodName, methodAcceptsSlug) => {
+      const mockMethod = mockMethodName as keyof typeof mockSanityGraphqlApi;
+      const clientMethod = client[methodName as keyof typeof client];
+
+      it("does not fetch draft content by default", async () => {
+        await clientMethod("some-slug");
+        expect(mockSanityGraphqlApi[mockMethod]).toBeCalledWith(
+          expect.objectContaining({ isDraft: false })
+        );
+      });
+
+      it("fetches draft content when previewMode flag is passed", async () => {
+        const params = methodAcceptsSlug
+          ? ["some-slug", { previewMode: true }]
+          : [{ previewMode: true }];
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore Function call works, TS just gets confused
+        await clientMethod(...params);
+
+        expect(mockSanityGraphqlApi[mockMethod]).toBeCalledWith(
+          expect.objectContaining({ isDraft: true })
+        );
+      });
     });
   });
 
