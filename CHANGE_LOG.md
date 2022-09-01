@@ -1,3 +1,36 @@
+# [0.87.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.86.0...v0.87.0) (2022-09-01)
+
+
+### Bug Fixes
+
+* add category to blog post ([921861e](https://github.com/oaknational/Oak-Web-Application/commit/921861e07ecab49bfb5e403d42578115eb7a3ef2))
+* add line height to blog title ([4a75d92](https://github.com/oaknational/Oak-Web-Application/commit/4a75d92b99406221df1bea1f9e481ebb0245b841))
+* add list section to portable text - fix spacing ([cdb36ce](https://github.com/oaknational/Oak-Web-Application/commit/cdb36ce334b1bb8b2101b1cb92409b951ffedd8d))
+* give blog list sections min height and vertical centre ([bfde73d](https://github.com/oaknational/Oak-Web-Application/commit/bfde73d76672a3943688213b2f5c138c7e7e4ac7))
+* hide margin if now images ([ebdae8f](https://github.com/oaknational/Oak-Web-Application/commit/ebdae8f25f76151c316201677dc705ad526e1acf))
+* making page background white ([2588c37](https://github.com/oaknational/Oak-Web-Application/commit/2588c379270d17ef26f1b8d522966ab0cc0750c9))
+* put title in header ([239d4af](https://github.com/oaknational/Oak-Web-Application/commit/239d4af78fc2810ee8481b0a77575aaed84a174c))
+* remove spacing left if there is no image ([3f8900f](https://github.com/oaknational/Oak-Web-Application/commit/3f8900f4a4209d05bc3d059873902d0a348f8f4a))
+
+
+### Features
+
+* add copy to clipboard button ([f3fa409](https://github.com/oaknational/Oak-Web-Application/commit/f3fa409942423c8f9aa4b2d3bfdee4b10de9a59c))
+* add copylink button ([7037eb3](https://github.com/oaknational/Oak-Web-Application/commit/7037eb385598bb0931d86ae265fab269818cf0dd))
+* margin spacing ([c844309](https://github.com/oaknational/Oak-Web-Application/commit/c8443092217e1562a113d7d97bb7531e4093fbab))
+* small blog list and blog page styling changes ([82672be](https://github.com/oaknational/Oak-Web-Application/commit/82672be1cb6fda42cb7e88671c54404738769fbb))
+* style quote ([23772b1](https://github.com/oaknational/Oak-Web-Application/commit/23772b1950f5578e23308bb9aa92ac3961853bb1))
+* style quote in blog ([2e904d5](https://github.com/oaknational/Oak-Web-Application/commit/2e904d5ecf02e949650988d280ebbedb15afe525))
+* style up quote ([71f332c](https://github.com/oaknational/Oak-Web-Application/commit/71f332ce8d29a574677e7e16002be99ed94ec9e0))
+* use correct colour for share button ([52e35bd](https://github.com/oaknational/Oak-Web-Application/commit/52e35bd935205d93a76f32971909fb088bd5f7ed))
+
+# [0.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.85.0...v0.86.0) (2022-08-31)
+
+
+### Features
+
+* disable font optimization which will be implemented in a cloudflare worker ([2bfe913](https://github.com/oaknational/Oak-Web-Application/commit/2bfe9131c59d27793431e068ea18863bb8e8c2df))
+
 # [0.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.2...v0.85.0) (2022-08-31)
 
 
