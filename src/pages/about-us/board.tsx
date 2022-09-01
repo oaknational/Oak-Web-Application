@@ -35,7 +35,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
     >
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
-          title={"about us"}
+          title={"About us"}
           heading={pageData.board.sectionHeading}
           summary={pageData.board.introPortableText}
           background={"teachersPastelYellow"}
