@@ -1,3 +1,4 @@
+import { CTA } from "../../node-lib/cms";
 import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
 import { assertUnreachable } from "../assertUnreachable";
 
@@ -28,5 +29,13 @@ export const resolveInternalHref = (
     default:
       console.log(`Error resolving internal href for`, entry);
       assertUnreachable(entry, new Error("Error resolving internal href"));
+  }
+};
+
+export const getCTAHref = (cta: CTA): string | null => {
+  if (cta.linkType === "internal") {
+    return resolveInternalHref(cta.internal);
+  } else {
+    return cta.external;
   }
 };
