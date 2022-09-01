@@ -1,0 +1,70 @@
+{
+  "allNewsPost": [
+    {
+      "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
+      "title": "The evolution of Oak: supporting you to thrive",
+      "date": "2022-09-07",
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "image": {
+          "asset": {
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+          }
+        }
+      },
+      "slug": {
+        "current": "evolution-of-oak"
+      },
+      "mainImage": {
+        "asset": {
+          "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+        }
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Summary to be added",
+      "contentPortableText": [
+        {
+          "_key": "1120cb013364",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1257129c5bed",
+              "_type": "span",
+              "marks": [],
+              "text": "New launch blog goes here"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "f4e28d54ec0e",
+          "_ref": "11b93e08-25a4-45fc-9e3f-4da8bb45e203",
+          "_type": "reference"
+        },
+        {
+          "_key": "d616998aa0ff",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "61b605732670",
+              "_type": "span",
+              "marks": [],
+              "text": "To be added"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  ]
+}

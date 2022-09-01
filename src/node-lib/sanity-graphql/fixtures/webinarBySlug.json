@@ -1,0 +1,46 @@
+{
+  "allWebinar": [
+    {
+      "id": "49694fbe-a31e-4294-aabb-d865f400865a",
+      "title": "Effective Feedback: a practical guide to using feedback to enhance student learning",
+      "slug": {
+        "current": "effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student"
+      },
+      "date": "2022-07-26T14:40:00.000Z",
+      "summaryPortableText": [
+        {
+          "_key": "95d1ea0c6bda",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "75562784d65f",
+              "_type": "span",
+              "marks": [],
+              "text": "Hello"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "hosts": [
+        {
+          "id": "f502ef5c-57d5-44c8-9c34-ff6e581ce9dd",
+          "_key": null,
+          "name": "Person McPherson",
+          "image": {
+            "asset": {
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/06e8cb0660bed44fd0e139a62ce6ccc6d590c959-300x300.png"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
