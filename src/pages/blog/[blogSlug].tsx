@@ -27,6 +27,7 @@ import Card from "../../components/Card";
 import Cover from "../../components/Cover";
 import { Heading, P, Span } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
+import { OmitKeepDiscriminated } from "../../utils/generics";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -40,14 +41,6 @@ export type BlogPageProps = {
 type PortableTextComponent<T = unknown> = {
   children?: React.ReactNode;
   value?: T;
-};
-
-// There seems to be a TS bug where calling Omit discriminated union
-// will "flatten" the type into a regular union
-// workaround copied from here:
-// https://github.com/microsoft/TypeScript/issues/31501
-type OmitKeepDiscriminated<Type, K> = {
-  [Property in keyof Type as Exclude<Property, K>]: Type[Property];
 };
 
 // When we get the JSON portable text it doesn't have the same field names as
