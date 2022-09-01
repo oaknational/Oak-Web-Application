@@ -229,7 +229,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
+      $background="white"
       isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $ph={[12, 12, 0]} $pt={56}>
