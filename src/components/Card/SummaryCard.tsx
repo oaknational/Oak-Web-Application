@@ -9,6 +9,7 @@ import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
 
 import Card from "./Card";
+import { PortableTextJSON } from "../../node-lib/cms";
 
 type ImageProps = {
   src: string;
@@ -18,7 +19,7 @@ type ImageProps = {
 type SummaryCardProps = {
   title: string;
   heading: string;
-  summary: PortableTextSpan | string;
+  summary: PortableTextJSON;
   background?: OakColorName;
   imageProps?: ImageProps;
   imageContainerProps?: FlexProps;

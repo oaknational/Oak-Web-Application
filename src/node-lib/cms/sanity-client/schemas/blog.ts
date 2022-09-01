@@ -3,11 +3,11 @@ import * as z from "zod";
 import {
   slugSchema,
   documentSchema,
-  portableTextSchema,
   dateSchema,
   blogWebinarCategorySchema,
   imageSchema,
 } from "./base";
+import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
 
 export const blogPostSchema = z
