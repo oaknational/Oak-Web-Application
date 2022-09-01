@@ -46,6 +46,12 @@ export type AnalyticsService<ServiceConfig> = {
   optIn: () => void;
 };
 
+type AvoOptions = Parameters<typeof initAvo>[0];
+
+export type AnalyticsProviderProps = {
+  avoOptions?: Partial<AvoOptions>;
+};
+
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
 const getPathAndQuery = () => {
@@ -55,8 +61,8 @@ const getPathAndQuery = () => {
   return window.location.pathname + window.location.search;
 };
 
-const AnalyticsProvider: FC = (props) => {
-  const { children } = props;
+const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
+  const { children, avoOptions = {} } = props;
 
   const trackingEnabled = useCookieConsent().hasConsentedToPolicy("statistics");
 
@@ -89,7 +95,11 @@ const AnalyticsProvider: FC = (props) => {
   /**
    * Avo
    */
-  initAvo({ env: getAvoEnv() }, {}, getAvoBridge({ posthog, hubspot }));
+  initAvo(
+    { env: getAvoEnv(), ...avoOptions },
+    {},
+    getAvoBridge({ posthog, hubspot })
+  );
 
   /**
    * Page view tracking
