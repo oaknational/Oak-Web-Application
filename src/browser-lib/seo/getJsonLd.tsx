@@ -27,7 +27,7 @@ export const OrganizationJsonLd = () => {
       name={config.get("appName")}
       url={config.get("appUrl")}
       sameAs={[config.get("appFacebook"), config.get("appTwitter")]}
-      logo={config.get("appLogo")}
+      logo={`${config.get("appUrl")}${config.get("appLogo")}`}
     />
   );
 };

@@ -6,8 +6,8 @@ export const getSeoProps = (props: Seo | undefined | null): SeoProps => {
     return DEFAULT_SEO_PROPS;
   }
   return {
-    title: props.title || DEFAULT_SEO_PROPS.title,
-    description: props.description || DEFAULT_SEO_PROPS.title,
+    title: `${props.title} | Oak National Academy` || DEFAULT_SEO_PROPS.title,
+    description: props.description || DEFAULT_SEO_PROPS.description,
     canonicalURL: props.canonicalURL || undefined,
   };
 };
