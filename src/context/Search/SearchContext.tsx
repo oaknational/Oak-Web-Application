@@ -37,7 +37,7 @@ export const SearchProvider: FC<SearchProviderProps> = ({
   };
 
   return (
-    <searchContext.Provider value={{ ...searchQuery, ...propsValue }}>
+    <searchContext.Provider value={searchQuery}>
       {children}
     </searchContext.Provider>
   );

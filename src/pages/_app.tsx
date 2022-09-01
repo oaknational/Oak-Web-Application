@@ -17,6 +17,7 @@ import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentPr
 import AnalyticsProvider from "../context/Analytics/AnalyticsProvider";
 import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
+import { SearchProvider } from "../context/Search/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const { theme } = useOakTheme();
@@ -30,11 +31,13 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
             <SSRProvider>
               <AnalyticsProvider>
                 <DefaultSeo />
-                <MenuProvider>
-                  <Component {...pageProps} />
-                </MenuProvider>
-                <SpriteSheet />
-                <AppHooks />
+                <SearchProvider>
+                  <MenuProvider>
+                    <Component {...pageProps} />
+                    <SpriteSheet />
+                    <AppHooks />
+                  </MenuProvider>
+                </SearchProvider>
               </AnalyticsProvider>
             </SSRProvider>
           </ErrorBoundary>

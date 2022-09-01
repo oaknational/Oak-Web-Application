@@ -15,12 +15,10 @@ const AppHeader: FC = () => {
   return (
     <FixedHeader $background="grey3">
       <Flex $mr={40} $justifyContent={"space-between"}>
-        <Link href={"/"} passHref>
-          <Link href={"/"}>
-            <a>
-              <Logo title={"Oak National Academy"} height={48} width={104} />
-            </a>
-          </Link>
+        <Link href={"/"}>
+          <a>
+            <Logo title={"Oak National Academy"} height={48} width={104} />
+          </a>
         </Link>
         <SearchForm />
       </Flex>
