@@ -23,9 +23,10 @@ export type SeoProps = {
   image?: Image;
 };
 
-/** 1.Seo titles should be between 50-60 characters long 
-    2. Seo title should contain app name
-    3. Seo descriptions should be between 150-300 characters long */
+/**
+ * Oak Seo component. A wrapper round NextSeo with sensible defaults.
+ * @see [seo.md](../../../docs/seo.md)
+ */
 const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
   const router = useRouter();
 

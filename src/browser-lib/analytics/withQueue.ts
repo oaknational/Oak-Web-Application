@@ -62,8 +62,6 @@ const withQueue = <T>(
         service.track(item.eventName, item.props);
         break;
       case "page":
-        console.log("fireing page event", item.props);
-
         service.page(item.props);
         break;
 

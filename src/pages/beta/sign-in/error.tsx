@@ -3,11 +3,11 @@ import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import Flex from "../../../components/Flex";
-import Layout from "../../../components/Layout";
+import AppLayout from "../../../components/AppLayout";
 
 const SignInError: NextPage = () => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
       <Flex
         $flexGrow={1}
         $flexDirection="column"
@@ -21,7 +21,7 @@ const SignInError: NextPage = () => {
           </Link>
         </p>
       </Flex>
-    </Layout>
+    </AppLayout>
   );
 };
 
