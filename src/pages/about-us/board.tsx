@@ -64,7 +64,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
 
         <Box $mb={[80, 92]}>
           {pageData.board.boardMembers?.map((boardMember) => (
-            <Heading tag={"h4"} $fontSize={[24, 32]}>
+            <Heading
+              $textAlign="center"
+              $lineHeight={"40px"}
+              tag={"h4"}
+              $fontSize={[24, 32]}
+            >
               {boardMember.name}
             </Heading>
           ))}
@@ -75,46 +80,48 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             Documents
           </Heading>
         </Flex>
-        <Typography $width={"100%"}>
-          <Hr $mv={32} />
-        </Typography>
+        <Flex $mh={[16, 0]} $flexDirection={"column"}>
+          <Typography $width={"100%"}>
+            <Hr $mv={32} />
+          </Typography>
 
-        <Grid $cg={20}>
-          {pageData.board.documents.map((doc) => (
-            <GridArea key={doc.title} $colSpan={[6, 2]}>
-              <Card $height={220} $pa={16}>
-                <BoxBorders />
-                <Flex
-                  $justifyContent={"space-between"}
-                  $height={"100%"}
-                  $flexDirection={"column"}
-                >
-                  <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
-                    {doc.title}
-                  </Heading>
+          <Grid $cg={[12, 20]}>
+            {pageData.board.documents.map((doc) => (
+              <GridArea key={doc.title} $colSpan={[6, 2]}>
+                <Card $height={220} $pa={16}>
+                  <BoxBorders />
                   <Flex
-                    $alignItems={"center"}
                     $justifyContent={"space-between"}
+                    $height={"100%"}
+                    $flexDirection={"column"}
                   >
-                    <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(1)}mb ${
-                      doc.file.asset.extension
-                    }`}</P>
-                    <IconButtonAsLink
-                      icon={"Download"}
-                      aria-label={""}
-                      href={`${doc.file.asset.url}?dl`}
-                      background={"teachersHighlight"}
-                    />
+                    <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
+                      {doc.title}
+                    </Heading>
+                    <Flex
+                      $alignItems={"center"}
+                      $justifyContent={"space-between"}
+                    >
+                      <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(
+                        1
+                      )}mb ${doc.file.asset.extension}`}</P>
+                      <IconButtonAsLink
+                        icon={"Download"}
+                        aria-label={""}
+                        href={`${doc.file.asset.url}?dl`}
+                        background={"teachersHighlight"}
+                      />
+                    </Flex>
                   </Flex>
-                </Flex>
-              </Card>
-            </GridArea>
-          ))}
-        </Grid>
-        <Typography $width={"100%"}>
-          <Hr $mv={0} $mt={32} />
-        </Typography>
-        <Card $pv={0} $mv={[80, 92]} $ph={[0, 80]} $width={["100%", "70%"]}>
+                </Card>
+              </GridArea>
+            ))}
+          </Grid>
+          <Typography $width={"100%"}>
+            <Hr $mv={0} $mt={32} />
+          </Typography>
+        </Flex>
+        <Card $pv={0} $mv={[80, 92]} $ph={[16, 80]} $width={["100%", "70%"]}>
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
             Governance
           </Heading>
