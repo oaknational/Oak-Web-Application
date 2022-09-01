@@ -1,3 +1,10 @@
+# [0.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.85.0...v0.86.0) (2022-08-31)
+
+
+### Features
+
+* disable font optimization which will be implemented in a cloudflare worker ([2bfe913](https://github.com/oaknational/Oak-Web-Application/commit/2bfe9131c59d27793431e068ea18863bb8e8c2df))
+
 # [0.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.2...v0.85.0) (2022-08-31)
 
 
