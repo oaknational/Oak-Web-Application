@@ -1,5 +1,6 @@
 import { FC, Fragment } from "react";
 
+import { getHelpUrl } from "../../common-lib/urls";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
 import Flex from "../Flex";
@@ -26,7 +27,7 @@ const cardCopy = [
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
     linkText: "Help Centre.",
-    href: "https://support.thenational.academy/",
+    href: getHelpUrl(),
     linkType: "link",
   },
 ];

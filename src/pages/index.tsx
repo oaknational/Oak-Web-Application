@@ -23,6 +23,8 @@ import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
+import useAnalytics from "../context/Analytics/useAnalytics";
+import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
@@ -35,6 +37,9 @@ import {
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
 const Notification: FC = () => {
+  const { track } = useAnalytics();
+  const href = "/blog/evolution-of-oak";
+  const heading = "About the future of Oak";
   return (
     <Card
       $background="white"
@@ -62,8 +67,16 @@ const Notification: FC = () => {
         Blog
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
-        <CardLink href="/blog/evolution-of-oak">
-          About the future of Oak
+        <CardLink
+          href={href}
+          onClick={() =>
+            track.notificationSelected({
+              linkUrl: href,
+              notificationHeadline: heading,
+            })
+          }
+        >
+          {heading}
         </CardLink>
       </Heading>
       <P $mt={4}>Find out more</P>
@@ -82,7 +95,10 @@ export type HomePageProps = {
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
-  const newsletterFormProps = useNewsletterForm();
+  const { track } = useAnalytics();
+  const newsletterFormProps = useNewsletterForm({
+    onSubmit: track.newsletterSignUpCompleted,
+  });
   const posts = props.posts.map(postToBlogListItem);
 
   return (
@@ -163,7 +179,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                     tag={"h3"}
                     $color={"black"}
                   >
-                    <CardLink href="https://classroom.thenational.academy/">
+                    <CardLink
+                      href={getPupilsUrl()}
+                      onClick={() =>
+                        track.classroomSelected({ navigatedFrom: "card" })
+                      }
+                    >
                       Classroom
                     </CardLink>
                   </Heading>
@@ -220,7 +241,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                     tag={"h3"}
                     $color={"black"}
                   >
-                    <CardLink href="https://teachers.thenational.academy/">
+                    <CardLink
+                      href={getTeachersUrl()}
+                      onClick={() =>
+                        track.teacherHubSelected({ navigatedFrom: "card" })
+                      }
+                    >
                       Teacher Hub
                     </CardLink>
                   </Heading>
@@ -243,6 +269,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
                   href={"/lesson-planning"}
+                  cardLinkProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
@@ -251,6 +278,9 @@ const Home: NextPage<HomePageProps> = (props) => {
                   titleTag={"h4"}
                   background={"teachersYellow"}
                   href={"/develop-your-curriculum"}
+                  cardLinkProps={{
+                    onClick: track.developYourCurriculumSelected,
+                  }}
                 />
               </GridArea>
             </Grid>
@@ -298,7 +328,6 @@ const Home: NextPage<HomePageProps> = (props) => {
                 </Flex>
               </Box>
             </GridArea>
-
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
               <HomeHelpCard />
             </GridArea>
