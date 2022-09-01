@@ -42,7 +42,6 @@ export type BlogPostPreview = Pick<
   | "title"
   | "slug"
   | "summary"
-  | "contentPortableText"
   | "author"
   | "category"
   | "date"
