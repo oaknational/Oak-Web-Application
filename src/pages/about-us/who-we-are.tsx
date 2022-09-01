@@ -20,7 +20,6 @@ import AboutContactCard from "../../components/AboutContactCard";
 export type AboutPageProps = {
   pageData: AboutPage;
   isPreviewMode: boolean;
-  renderPlayer: boolean;
 };
 
 type TimeLineProps = TextBlock & FlexProps;
@@ -67,7 +66,6 @@ const TimeLineCard: FC<TimeLineProps> = ({
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({
   pageData,
   isPreviewMode,
-  renderPlayer,
 }) => {
   return (
     <Layout
@@ -101,12 +99,15 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $pr={[0, 72]}
               $minWidth={["50%"]}
             >
-              {pageData.whoWeAre.intro.mediaType == "video" && renderPlayer && (
+              {pageData.whoWeAre.intro.mediaType == "video" && (
                 <VideoPlayer
                   playbackId={
                     pageData.whoWeAre.intro.video.video.asset.playbackId
                   }
                   title={pageData.whoWeAre.intro.video.title}
+                  thumbnailTime={
+                    pageData.whoWeAre.intro.video.video.asset.thumbTime
+                  }
                 />
               )}
             </Flex>
@@ -192,7 +193,6 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutPage,
       isPreviewMode,
-      renderPlayer: true,
     },
     revalidate: 10,
   };

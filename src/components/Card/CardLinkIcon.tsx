@@ -6,7 +6,7 @@ import { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 
 import Card from "./Card";
-import CardLink from "./CardLink";
+import CardLink, { CardLinkProps } from "./CardLink";
 
 type CardLinkIconProps = {
   title: string;
@@ -14,6 +14,7 @@ type CardLinkIconProps = {
   icon?: IconName;
   background?: OakColorName;
   href: string;
+  cardLinkProps?: Omit<CardLinkProps, "href">;
 };
 const CardLinkIcon: FC<CardLinkIconProps> = ({
   title,
@@ -21,6 +22,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
   icon = "ArrowRight",
   background,
   href,
+  cardLinkProps,
 }) => {
   return (
     <Card
@@ -34,7 +36,9 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
     >
       <BoxBorders />
       <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
-        <CardLink href={href}>{title}</CardLink>
+        <CardLink href={href} {...cardLinkProps}>
+          {title}
+        </CardLink>
       </Heading>
 
       <Icon name={icon} size={[32, 48]} $ml="auto" />

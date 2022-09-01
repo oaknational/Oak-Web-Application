@@ -1,4 +1,4 @@
-import hubspot from "./hubspot";
+import { hubspotWithoutQueue as hubspot } from "./hubspot";
 
 const reportError = jest.fn();
 jest.mock("../../common-lib/error-reporter", () => ({
@@ -7,6 +7,12 @@ jest.mock("../../common-lib/error-reporter", () => ({
     () =>
     (...args: []) =>
       reportError(...args),
+}));
+
+const startHubspot = jest.fn();
+jest.mock("./startHubspot", () => ({
+  __esModule: true,
+  default: (...args: []) => startHubspot(...args),
 }));
 
 const qPush = jest.fn();
@@ -22,6 +28,11 @@ describe("hubspot.ts", () => {
     window._hsq = undefined;
     window._hsp = undefined;
   });
+  test("init should be called with correct config", async () => {
+    const config = { portalId: "12", scriptDomain: "https://test.hubspot.com" };
+    await hubspot.init(config);
+    expect(startHubspot).toHaveBeenCalledWith(config);
+  });
   test("identify", () => {
     hubspot.identify("123", { email: "abc" });
     expect(qPush).toHaveBeenCalledWith([
@@ -35,7 +46,8 @@ describe("hubspot.ts", () => {
     expect(qPush).toHaveBeenCalledWith(["identify", { id: "123" }]);
   });
   test("page", () => {
-    hubspot.page();
+    hubspot.page({ path: "/foo/ban" });
+    expect(qPush).toHaveBeenCalledWith(["setPath", "/foo/ban"]);
     expect(qPush).toHaveBeenCalledWith(["trackPageView"]);
   });
   test("track", () => {
@@ -61,12 +73,5 @@ describe("hubspot.ts", () => {
     hubspot.optOut();
     expect(qPush).toHaveBeenCalledWith(["doNotTrack"]);
     expect(pPush).toHaveBeenCalledWith(["revokeCookieConsent"]);
-  });
-  test("loaded [true]", () => {
-    expect(hubspot.loaded()).toBe(true);
-  });
-  test("loaded [false]", () => {
-    window._hsq = [];
-    expect(hubspot.loaded()).toBe(false);
   });
 });

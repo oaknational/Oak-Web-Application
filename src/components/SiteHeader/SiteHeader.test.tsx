@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import { getPupilsUrl, getTeachersUrl } from "../../common-lib/urls";
 
 import SiteHeader from ".";
 
@@ -16,7 +17,7 @@ describe("components/SiteHeader", () => {
 
     expect(getByText("Classroom").closest("a")).toHaveAttribute(
       "href",
-      "https://classroom.thenational.academy/"
+      getPupilsUrl()
     );
   });
 
@@ -25,7 +26,7 @@ describe("components/SiteHeader", () => {
 
     expect(getByText("Teacher Hub").closest("a")).toHaveAttribute(
       "href",
-      "https://teachers.thenational.academy/"
+      getTeachersUrl()
     );
   });
 

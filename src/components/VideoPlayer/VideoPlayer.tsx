@@ -21,11 +21,12 @@ export type VideoStyleConfig = {
 
 type VideoPlayerProps = {
   playbackId: string;
+  thumbnailTime?: number;
   title: string;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
-  const { playbackId, title } = props;
+  const { playbackId, thumbnailTime: thumbTime, title } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [paused, setPaused] = useState<boolean | undefined>(true);
@@ -51,6 +52,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     reportError(error);
   };
 
+  if (process.env.NODE_ENV === "test") {
+    /**
+     * @todo add mocked video player or tests for video player
+     */
+    return null;
+  }
   return (
     <Flex $flexDirection={"column"}>
       <MuxPlayer
@@ -59,6 +66,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
+        thumbnailTime={thumbTime}
         customDomain={"video.thenational.academy"}
         // forwardSeekOffset={10}
         // backwardSeekOffset={10}

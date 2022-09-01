@@ -15,6 +15,10 @@ import {
   BookmarksContext,
 } from ".";
 
+export type BookmarksProviderValue = BookmarksContext;
+export type BookmarksProviderProps = {
+  value?: Partial<BookmarksContext>;
+};
 /**
  *
  * BookmarksProvider is to be used for any lesson bookmark activity in the app.
@@ -23,7 +27,10 @@ import {
  * important. Currently in the query it is set to order_by: { created_at: desc },
  * meaning latest first.
  */
-const BookmarksProvider: FC = ({ children }) => {
+const BookmarksProvider: FC<BookmarksProviderProps> = ({
+  children,
+  value: propsValue,
+}) => {
   const user = useUser();
 
   const [bookmarks, setBookmarks] = useBookmarksCache();
@@ -129,7 +136,7 @@ const BookmarksProvider: FC = ({ children }) => {
     isBookmarked,
   };
   return (
-    <bookmarksContext.Provider value={value}>
+    <bookmarksContext.Provider value={{ ...value, ...propsValue }}>
       {children}
     </bookmarksContext.Provider>
   );

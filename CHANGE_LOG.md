@@ -1,3 +1,101 @@
+## [0.87.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.0...v0.87.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* move 'app' providers into AppLayout to enable smaller bundle ([660ea78](https://github.com/oaknational/Oak-Web-Application/commit/660ea782911a233933b19b5e97967f17280272b1))
+
+# [0.87.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.86.0...v0.87.0) (2022-09-01)
+
+
+### Bug Fixes
+
+* add category to blog post ([921861e](https://github.com/oaknational/Oak-Web-Application/commit/921861e07ecab49bfb5e403d42578115eb7a3ef2))
+* add line height to blog title ([4a75d92](https://github.com/oaknational/Oak-Web-Application/commit/4a75d92b99406221df1bea1f9e481ebb0245b841))
+* add list section to portable text - fix spacing ([cdb36ce](https://github.com/oaknational/Oak-Web-Application/commit/cdb36ce334b1bb8b2101b1cb92409b951ffedd8d))
+* give blog list sections min height and vertical centre ([bfde73d](https://github.com/oaknational/Oak-Web-Application/commit/bfde73d76672a3943688213b2f5c138c7e7e4ac7))
+* hide margin if now images ([ebdae8f](https://github.com/oaknational/Oak-Web-Application/commit/ebdae8f25f76151c316201677dc705ad526e1acf))
+* making page background white ([2588c37](https://github.com/oaknational/Oak-Web-Application/commit/2588c379270d17ef26f1b8d522966ab0cc0750c9))
+* put title in header ([239d4af](https://github.com/oaknational/Oak-Web-Application/commit/239d4af78fc2810ee8481b0a77575aaed84a174c))
+* remove spacing left if there is no image ([3f8900f](https://github.com/oaknational/Oak-Web-Application/commit/3f8900f4a4209d05bc3d059873902d0a348f8f4a))
+
+
+### Features
+
+* add copy to clipboard button ([f3fa409](https://github.com/oaknational/Oak-Web-Application/commit/f3fa409942423c8f9aa4b2d3bfdee4b10de9a59c))
+* add copylink button ([7037eb3](https://github.com/oaknational/Oak-Web-Application/commit/7037eb385598bb0931d86ae265fab269818cf0dd))
+* margin spacing ([c844309](https://github.com/oaknational/Oak-Web-Application/commit/c8443092217e1562a113d7d97bb7531e4093fbab))
+* small blog list and blog page styling changes ([82672be](https://github.com/oaknational/Oak-Web-Application/commit/82672be1cb6fda42cb7e88671c54404738769fbb))
+* style quote ([23772b1](https://github.com/oaknational/Oak-Web-Application/commit/23772b1950f5578e23308bb9aa92ac3961853bb1))
+* style quote in blog ([2e904d5](https://github.com/oaknational/Oak-Web-Application/commit/2e904d5ecf02e949650988d280ebbedb15afe525))
+* style up quote ([71f332c](https://github.com/oaknational/Oak-Web-Application/commit/71f332ce8d29a574677e7e16002be99ed94ec9e0))
+* use correct colour for share button ([52e35bd](https://github.com/oaknational/Oak-Web-Application/commit/52e35bd935205d93a76f32971909fb088bd5f7ed))
+
+# [0.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.85.0...v0.86.0) (2022-08-31)
+
+
+### Features
+
+* disable font optimization which will be implemented in a cloudflare worker ([2bfe913](https://github.com/oaknational/Oak-Web-Application/commit/2bfe9131c59d27793431e068ea18863bb8e8c2df))
+
+# [0.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.2...v0.85.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* fix teacher pupils link tracking from menu ([a070c82](https://github.com/oaknational/Oak-Web-Application/commit/a070c8215ca3c84e5fdf2ded47b58e9528618901))
+
+
+### Features
+
+* homepage tracking events ([923141f](https://github.com/oaknational/Oak-Web-Application/commit/923141fb0dd82b86312b5d17c965bbb542c1b357))
+* track teacher/pupils navigation from header ([f4dfbfd](https://github.com/oaknational/Oak-Web-Application/commit/f4dfbfd529661bf10562b7b9d8a7a7b5a33eec3a))
+
+## [0.84.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.1...v0.84.2) (2022-08-31)
+
+
+### Bug Fixes
+
+* **hubspot:** adds analytics queue and fixes hubspot functionality ([cd7c19f](https://github.com/oaknational/Oak-Web-Application/commit/cd7c19f5790535212f7179bfaf97e9fe408489f8))
+* **hubspot:** fix hubspot pageviews ([4f22acb](https://github.com/oaknational/Oak-Web-Application/commit/4f22acbb89669487e6b2436752f23ced023d24e6))
+
+## [0.84.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.0...v0.84.1) (2022-08-31)
+
+# [0.84.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.83.0...v0.84.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* zod handle null thumbnail ([259eca9](https://github.com/oaknational/Oak-Web-Application/commit/259eca94e180ceb1dd48ee9412c5a4dffea1cb4a))
+
+
+### Features
+
+* thumbnail for video player ([239c414](https://github.com/oaknational/Oak-Web-Application/commit/239c4148b0aae9438d27afbd353199101ec09686))
+
+# [0.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.82.1...v0.83.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* hide webinar link from homepage ([bb608d0](https://github.com/oaknational/Oak-Web-Application/commit/bb608d011d9d71603e3d135edc37cb361468ec3f))
+* remove image alt from BlogListItem until CMS supports ([dd38ae3](https://github.com/oaknational/Oak-Web-Application/commit/dd38ae3822ab72fa5924a6d87fbfdcd8c485909b))
+* undo BlogListItem colour until it's turned into a link ([277e077](https://github.com/oaknational/Oak-Web-Application/commit/277e077db486d44721f7ad1b42595c483c770c8e))
+
+
+### Features
+
+* add blogs (and hidden webinars) to homepage ([4b6fab0](https://github.com/oaknational/Oak-Web-Application/commit/4b6fab0967d13fdbf01692a928a2024ff23453c5))
+* add categories to webinars ([bd564b6](https://github.com/oaknational/Oak-Web-Application/commit/bd564b6f87480c1c1fda491db27e355ad3932a17))
+* add date to webinar preview ([2bb30d8](https://github.com/oaknational/Oak-Web-Application/commit/2bb30d84405019a9af91763ce0bf2f67bdc35b75))
+* bring webinar listing page logic in line with blog listing ([6513e9e](https://github.com/oaknational/Oak-Web-Application/commit/6513e9eb3df309266571c40056528fec1f53e2c4))
+* make BlogListItem category blue ([dd00f75](https://github.com/oaknational/Oak-Web-Application/commit/dd00f7584f700967931ee197ba99a4cb80486d3c))
+* make BlogListItem summary font size match designs ([a21d673](https://github.com/oaknational/Oak-Web-Application/commit/a21d67374ff0604168440c4e63218c18d42b5946))
+* make BlogListItem use CMSImage component ([2205ebc](https://github.com/oaknational/Oak-Web-Application/commit/2205ebcd709d27b6aa96ac751b418a882dd72362))
+* pass whole category object to blog/webinar ([7a5ecbc](https://github.com/oaknational/Oak-Web-Application/commit/7a5ecbcda2c34ac8d583c33dad6c62fc0f365618))
+
+## [0.82.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.82.0...v0.82.1) (2022-08-30)
+
 # [0.82.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.81.2...v0.82.0) (2022-08-26)
 
 
