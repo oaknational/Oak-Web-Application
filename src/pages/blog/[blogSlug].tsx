@@ -12,6 +12,7 @@ import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
+  CTA,
   PortableTextJSON,
   SanityImage,
   TextAndMedia,
@@ -27,7 +28,12 @@ import Card from "../../components/Card";
 import Cover from "../../components/Cover";
 import { Heading, P, Span } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
+import {
+  getCTAHref,
+  resolveInternalHref,
+} from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
+import ButtonAsLink from "../../components/Button/ButtonAsLink";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -79,16 +85,28 @@ const portableTextComponents = {
     number: (props: PortableTextComponent) => <li>{props.children}</li>,
   },
   marks: {
-    internalLink: (props: PortableTextComponent<{ reference: string }>) => {
-      const { reference } = props.value || {};
+    internalLink: (
+      props: PortableTextComponent<{
+        reference?: any;
+      }>
+    ) => {
+      if (!props.value?.reference) {
+        console.warn("Unable to render internal link for props:", props);
+        return null;
+      }
+
+      const href = resolveInternalHref(props.value.reference);
+
+      if (!href) {
+        console.warn("Unable to render internal link for props:", props);
+        return null;
+      }
       return (
-        <>
-          {/* TODO: wait for Ross's PR to resolve link */}
-          <a href="https://thenational.academy/404" style={{ color: "red" }}>
-            {props.children}
-          </a>
-          <code>{JSON.stringify(JSON.stringify(reference), null, 2)}</code>
-        </>
+        <Span $color={"hyperlink"}>
+          <Link href={href}>
+            <a>{props.children}</a>
+          </Link>
+        </Span>
       );
     },
     link: (props: PortableTextComponent<{ href: string }>) => {
@@ -156,6 +174,15 @@ const portableTextComponents = {
             <Box $mt={32}>
               <PortableText value={params.body} />
             </Box>
+            {params.cta && (
+              <ButtonAsLink
+                $mt={24}
+                label={params.cta.label}
+                href={getCTAHref(params.cta)}
+                icon={"Share"}
+                background={"teachersHighlight"}
+              />
+            )}
           </div>
           {params.mediaType === "image" && params.image && (
             <Box $mr={24}>
@@ -190,6 +217,21 @@ const portableTextComponents = {
             <cite>{props.value?.attribution}</cite>, {props.value?.role}
           </P>
         </Flex>
+      );
+    },
+    cta: (props: PortableTextComponent<CTA>) => {
+      if (!props.value) {
+        return null;
+      }
+      const cta = props.value;
+
+      return (
+        <ButtonAsLink
+          label={cta.label}
+          href={getCTAHref(cta)}
+          icon={"Share"}
+          background={"teachersHighlight"}
+        />
       );
     },
   },
