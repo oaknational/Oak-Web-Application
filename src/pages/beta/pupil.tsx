@@ -7,7 +7,7 @@ import AppLayout from "../../components/AppLayout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { Heading } from "../../components/Typography";
 
-const PupilHome: FC = () => {
+const PupilHomePage: FC = () => {
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <MaxWidth>
@@ -28,4 +28,4 @@ const PupilHome: FC = () => {
   );
 };
 
-export default PupilHome;
+export default PupilHomePage;

@@ -31,7 +31,7 @@ export interface SearchHit {
   };
 }
 
-const Search: NextPage = () => {
+const Search = () => {
   const { fetchSearchResults, loading, error, results } =
     useFetchSearchResults();
 
@@ -56,7 +56,7 @@ const Search: NextPage = () => {
   }, [fetchSearchResults]);
 
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+    <>
       <BrowserWidthBar $background="white" $pv={20}>
         <Flex>
           {ALL_KEY_STAGES.map((ks) => (
@@ -67,8 +67,16 @@ const Search: NextPage = () => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <SearchResults hits={results} />
+    </>
+  );
+};
+
+const SearchPage: NextPage = () => {
+  return (
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+      <Search />
     </AppLayout>
   );
 };
 
-export default Search;
+export default SearchPage;

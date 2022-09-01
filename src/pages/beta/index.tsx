@@ -1,15 +1,12 @@
 import { FC } from "react";
 
-import { useUser } from "../../context/Auth";
 import AppLayout from "../../components/AppLayout";
-import Bookmarks from "../../components/Bookmarks";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Grid from "../../components/Grid";
 import GridArea from "../../components/Grid/GridArea";
 import { Heading } from "../../components/Typography";
 
 const Beta: FC = () => {
-  const user = useUser();
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <Grid $cg={16} $rg={[16, 48, 80]}>
@@ -24,7 +21,6 @@ const Beta: FC = () => {
           </Heading>
         </GridArea>
       </Grid>
-      {user && <Bookmarks />}
     </AppLayout>
   );
 };

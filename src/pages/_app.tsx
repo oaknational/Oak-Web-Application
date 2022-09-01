@@ -10,7 +10,6 @@ import "../browser-lib/gleap/gleap.css";
 import "../browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "../styles/GlobalStyle";
 import SpriteSheet from "../components/SpriteSheet";
-import { SearchProvider } from "../context/Search/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
@@ -30,14 +29,12 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           <ErrorBoundary>
             <SSRProvider>
               <AnalyticsProvider>
-                <SearchProvider>
-                  <DefaultSeo />
-                  <MenuProvider>
-                    <Component {...pageProps} />
-                  </MenuProvider>
-                  <SpriteSheet />
-                  <AppHooks />
-                </SearchProvider>
+                <DefaultSeo />
+                <MenuProvider>
+                  <Component {...pageProps} />
+                </MenuProvider>
+                <SpriteSheet />
+                <AppHooks />
               </AnalyticsProvider>
             </SSRProvider>
           </ErrorBoundary>

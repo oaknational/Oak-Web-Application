@@ -1,12 +1,13 @@
 import { NextPage } from "next";
-import Link from "next/link";
 
-import { useUser } from "../../context/Auth";
 import Bookmarks from "../../components/Bookmarks";
-import AppLayout from "../../components/AppLayout";
+import AppLayout, { AppLayoutProps } from "../../components/AppLayout";
 
-const BookmarksPage: NextPage = () => {
-  const user = useUser();
+type BookmarksPageProps = {
+  __testAppLayoutProps?: Partial<AppLayoutProps>;
+};
+const BookmarksPage: NextPage<BookmarksPageProps> = (props) => {
+  const { __testAppLayoutProps } = props;
   return (
     <AppLayout
       seoProps={{
@@ -14,18 +15,9 @@ const BookmarksPage: NextPage = () => {
         description:
           "Bookmarks - giving you quick and easy access to Oak National Academy lessons and resources",
       }}
+      {...__testAppLayoutProps}
     >
-      <header>
-        <h1>Bookmarks</h1>
-      </header>
-      {!user ? (
-        <p data-testid="anonymous-vistor-message">
-          Currently bookmarks are only available for logged in users.{" "}
-          <Link href="/beta/sign-in">Sign in</Link> to start adding bookmarks!
-        </p>
-      ) : (
-        <Bookmarks />
-      )}
+      <Bookmarks />
     </AppLayout>
   );
 };

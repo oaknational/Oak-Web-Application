@@ -19,7 +19,14 @@ export type SearchQuery = {
 
 export const searchContext = createContext<SearchQuery | null>(null);
 
-export const SearchProvider: FC = ({ children }) => {
+export type SearchProviderValue = SearchQuery;
+export type SearchProviderProps = {
+  value?: Partial<SearchProviderValue>;
+};
+export const SearchProvider: FC<SearchProviderProps> = ({
+  children,
+  value: propsValue,
+}) => {
   const [searchText, setSearchText] = useState("");
   const [keyStages, setKeyStages] = useState(new Set<KeyStage>());
   const searchQuery: SearchQuery = {
@@ -30,7 +37,7 @@ export const SearchProvider: FC = ({ children }) => {
   };
 
   return (
-    <searchContext.Provider value={searchQuery}>
+    <searchContext.Provider value={{ ...searchQuery, ...propsValue }}>
       {children}
     </searchContext.Provider>
   );

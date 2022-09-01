@@ -19,7 +19,7 @@ const Form = styled.form`
   max-width: 450px;
 `;
 
-const SignInCallback: NextPage = () => {
+const SignInCallback = () => {
   const { signInWithEmailCallback } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -67,36 +67,42 @@ const SignInCallback: NextPage = () => {
   };
 
   return (
+    <Flex
+      $flexDirection="column"
+      $justifyContent="center"
+      $alignItems="center"
+      $flexGrow={1}
+    >
+      {!confirmedEmail && (
+        <Form onSubmit={confirmEmail}>
+          <Flex>
+            <Input
+              id="sign-in-callback-email-inptu"
+              name="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <Button
+              data-testid="callback-signin-button"
+              onClick={confirmEmail}
+              label="Sign in"
+              $ml={8}
+            />
+          </Flex>
+        </Form>
+      )}
+      {loading && <LoadingSpinner />}
+    </Flex>
+  );
+};
+
+const SignInCallbackPage: NextPage = () => {
+  return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS}>
-      <Flex
-        $flexDirection="column"
-        $justifyContent="center"
-        $alignItems="center"
-        $flexGrow={1}
-      >
-        {!confirmedEmail && (
-          <Form onSubmit={confirmEmail}>
-            <Flex>
-              <Input
-                id="sign-in-callback-email-inptu"
-                name="email"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-              <Button
-                data-testid="callback-signin-button"
-                onClick={confirmEmail}
-                label="Sign in"
-                $ml={8}
-              />
-            </Flex>
-          </Form>
-        )}
-        {loading && <LoadingSpinner />}
-      </Flex>
+      <SignInCallback />
     </AppLayout>
   );
 };
 
-export default SignInCallback;
+export default SignInCallbackPage;
