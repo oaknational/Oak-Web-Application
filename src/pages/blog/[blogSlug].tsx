@@ -5,10 +5,11 @@ import {
   PortableText,
   PortableTextComponentsProvider,
 } from "@portabletext/react";
+import Image from "next/image";
+import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
 import CMSClient, {
   BlogPost,
   PortableTextJSON,
@@ -19,6 +20,13 @@ import CMSClient, {
 import CMSImage from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
+import Grid, { GridArea } from "../../components/Grid";
+import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import Box from "../../components/Box";
+import Card from "../../components/Card";
+import Cover from "../../components/Cover";
+import { Heading, P, Span } from "../../components/Typography";
+// import CopyLinkButton from "../../components/Button/CopyLinkButton";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -55,15 +63,35 @@ const portableTextComponents = {
   block: {
     sectionHeading: (props: PortableTextComponent) => {
       // @TODO: Choose an appropriate section heading level
-      return <h2>{props.children}</h2>;
+      return (
+        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={56} $mb={32}>
+          {props.children}
+        </Heading>
+      );
     },
+    normal: (props: PortableTextComponent) => {
+      return (
+        <P $lineHeight={"28px"} $fontSize={16} $mt={16}>
+          {props.children}
+        </P>
+      );
+    },
+  },
+  list: {
+    bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
+    number: (props: PortableTextComponent) => <ol>{props.children}</ol>,
+  },
+  listItem: {
+    bullet: (props: PortableTextComponent) => <li>{props.children}</li>,
+    number: (props: PortableTextComponent) => <li>{props.children}</li>,
   },
   marks: {
     internalLink: (props: PortableTextComponent<{ reference: string }>) => {
       const { reference } = props.value || {};
       return (
         <>
-          <a href="https://thenational.academy" style={{ color: "red" }}>
+          {/* TODO: wait for Ross's PR to resolve link */}
+          <a href="https://thenational.academy/404" style={{ color: "red" }}>
             {props.children}
           </a>
           <code>{JSON.stringify(JSON.stringify(reference), null, 2)}</code>
@@ -78,41 +106,24 @@ const portableTextComponents = {
       const { href } = props.value;
 
       return (
-        <a href={href} style={{ color: "blue" }}>
-          {props.children}
-        </a>
+        <Span $color={"hyperlink"}>
+          <Link href={href}>
+            <a>{props.children}</a>
+          </Link>
+        </Span>
       );
     },
   },
   types: {
-    textBlock: (
-      props: PortableTextComponent<{ title: string; body: PortableTextJSON }>
-    ) => {
-      if (!props.value) {
-        return null;
-      }
-
-      const { body, title, ...params } = props.value;
-
-      return (
-        <div style={{ border: "1px solid red" }}>
-          TextBlock example
-          <pre>{JSON.stringify(params, null, 2)}</pre>
-          <h2>{title}</h2>
-          <PortableText value={body} />
-        </div>
-      );
-    },
     image: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
       if (!props.value) {
         return null;
       }
 
       return (
-        <div style={{ border: "1px solid red" }}>
-          Image example
+        <Box $width={"100%"} $mt={80} $mb={[64]}>
           <CMSImage image={props.value} />
-        </div>
+        </Box>
       );
     },
     video: (props: PortableTextComponent<Video>) => {
@@ -123,11 +134,13 @@ const portableTextComponents = {
       const { video, title } = props.value;
 
       return (
-        <div style={{ border: "1px solid red" }}>
+        <Box>
           {video && (
-            <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+            <Flex $position={"relative"} $mt={56}>
+              <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+            </Flex>
           )}
-        </div>
+        </Box>
       );
     },
     textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
@@ -142,24 +155,29 @@ const portableTextComponents = {
         params.alignMedia === "left" ? "row-reverse" : "row";
 
       return (
-        <div style={{ border: "1px solid red" }}>
-          Text and media example
-          <Flex $flexDirection={flexDirection}>
-            <div>
-              <h2>{params.title}</h2>
+        <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
+          <div>
+            <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
+              {params.title}
+            </Heading>
+            <Box $mt={32}>
               <PortableText value={params.body} />
-            </div>
-            {params.mediaType === "image" && params.image && (
+            </Box>
+          </div>
+          {params.mediaType === "image" && params.image && (
+            <Box $mr={24}>
               <CMSImage image={params.image} />
-            )}
-            {params.mediaType === "video" && params.video && (
+            </Box>
+          )}
+          {params.mediaType === "video" && params.video && (
+            <Box $mr={24}>
               <VideoPlayer
                 title={params.video.title}
                 playbackId={params.video.video.asset.playbackId}
               />
-            )}
-          </Flex>
-        </div>
+            </Box>
+          )}
+        </Flex>
       );
     },
     quote: (
@@ -171,10 +189,14 @@ const portableTextComponents = {
       }>
     ) => {
       return (
-        <div style={{ border: "1px solid red" }}>
-          Quote example
-          <pre>{JSON.stringify(props.value, null, 2)}</pre>
-        </div>
+        <Flex $flexDirection={"column"} $mt={56}>
+          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+            <blockquote>&ldquo;{props.value?.text}&rdquo;</blockquote>
+          </P>
+          <P $fontSize={16} $lineHeight={"20px"} $mt={16}>
+            <cite>{props.value?.attribution}</cite>, {props.value?.role}
+          </P>
+        </Flex>
       );
     },
   },
@@ -191,23 +213,113 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 };
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
+  const { blog } = props;
+
+  const cardImage = {
+    src: "/images/illustrations/teacher-carrying-stuff.png",
+    alt: "",
+  };
+
+  const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
+      $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <Heading tag="h1" $fontSize={24}>
-        {props.blog.title}
-      </Heading>
-      {props.blog.date} <br />
-      Hosted by: {props.blog.author.name}
-      <PortableTextComponentsProvider components={portableTextComponents}>
-        <PortableText
-          value={props.blog.contentPortableText}
-          onMissingComponent={logMissingPortableTextComponents}
-        />
-      </PortableTextComponentsProvider>
+      <MaxWidth $ph={[12, 12, 0]} $pt={56}>
+        <Card
+          $pa={0}
+          $background={"teachersPastelYellow"}
+          $flexDirection={"row"}
+          $justifyContent={"space-between"}
+          $width="100%"
+          $pv={[24]}
+          $ph={[16, 24]}
+        >
+          <Flex
+            $justifyContent={"center"}
+            $flexDirection={"column"}
+            $maxWidth={812}
+            $mr={48}
+          >
+            <Heading
+              $mb={8}
+              tag={"h2"}
+              $fontSize={[20, 24]}
+              $color={"oakGrey4"}
+              $fontFamily="heading"
+            >
+              Blog page
+            </Heading>
+            <Heading
+              $mb={16}
+              $color={"black"}
+              $fontSize={[24, 32, 32]}
+              tag={"h1"}
+            >
+              {blog.title}
+            </Heading>
+            <P $color="black" $fontSize={18}>
+              {blog.summary}
+            </P>
+          </Flex>
+          <Flex
+            $display={["none", "flex"]}
+            $position="relative"
+            $minWidth={"30%"}
+            $justifyContent={["center", "flex-end"]}
+            $alignItems={["flex-end"]}
+            $pr={[0, 24]}
+            $pb={24}
+          >
+            <Cover>
+              <Image
+                aria-hidden={true}
+                layout="fill"
+                objectFit="contain"
+                objectPosition={"right"}
+                alt={cardImage.alt}
+                src={cardImage.src}
+                priority
+              />
+            </Cover>
+          </Flex>
+        </Card>
+
+        <Grid $mt={[48, 64]}>
+          <GridArea $colSpan={[12, 7]}>
+            <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
+              {blog.category.title}
+            </P>
+            <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
+              {formattedDate}
+            </P>
+            <Flex $alignItems={"center"} $mt={16}>
+              <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
+                {blog.author.name}
+              </Heading>
+              {/* TODO: add more UI for copy link button */}
+              {/* <CopyLinkButton /> */}
+            </Flex>
+            <Box $mt={[96, 64]}>
+              <PortableTextComponentsProvider
+                components={portableTextComponents}
+              >
+                <PortableText
+                  value={props.blog.contentPortableText}
+                  onMissingComponent={logMissingPortableTextComponents}
+                />
+              </PortableTextComponentsProvider>
+            </Box>
+          </GridArea>
+        </Grid>
+      </MaxWidth>
     </Layout>
   );
 };
