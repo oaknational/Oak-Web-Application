@@ -101,6 +101,7 @@ export const testAboutPageData: AboutPage = {
   },
   board: {
     sectionHeading: "Board",
+    boardMembers: [{ id: "1", name: "name" }],
     introPortableText: [
       {
         _key: "fba015024518",

@@ -34,6 +34,9 @@ query aboutCorePage($isDraft: Boolean = false) {
     board {
       sectionHeading
       introPortableText: introRaw
+      boardMembers {
+        ...TeamMember
+      }
       documents {
         title
         file {

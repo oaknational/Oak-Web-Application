@@ -13,10 +13,10 @@ import Typography, { Heading, Hr, P } from "../../components/Typography";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
-import aboutNavLinks from "../../browser-lib/fixtures/aboutNav";
+import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
-import AvatarCard from "../../components/Card/AvatarCard";
+import Box from "../../components/Box";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -27,7 +27,6 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
   pageData,
   isPreviewMode,
 }) => {
-  console.log(pageData);
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -40,8 +39,17 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           heading={pageData.board.sectionHeading}
           summary={pageData.board.introPortableText}
           background={"teachersPastelYellow"}
+          cardImageProps={{
+            imageSrc: "/images/oak-logo.svg",
+            alt: "who we are illustration",
+            position: "left center",
+          }}
         >
-          <ButtonLinkNav $mt={36} buttons={aboutNavLinks} selected={"board"} />
+          <ButtonLinkNav
+            $mt={36}
+            buttons={reducedAboutNavLinks}
+            selected={"board"}
+          />
         </SummaryCard>
         <AboutIntroCard
           image={{
@@ -54,39 +62,25 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
         <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h3"}>
           {pageData.board.sectionHeading}
         </Heading>
-        <Grid $mb={[80, 92]} $rg={[16, 32]} $cg={16}>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]}>
-            <AvatarCard />
-          </GridArea>
-        </Grid>
+
+        <Box $mb={[80, 92]}>
+          {pageData.board.boardMembers?.map((boardMember) => (
+            <Heading tag={"h4"} $fontSize={[24, 32]}>
+              {boardMember.name}
+            </Heading>
+          ))}
+        </Box>
+
         <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
-          <Heading $mb={20} $fontSize={24} tag={"h4"}>
+          <Heading $fontSize={24} tag={"h4"}>
             Documents
           </Heading>
         </Flex>
-        <Hr />
-        <Grid $mb={[80, 92]} $cg={20}>
+        <Typography $width={"100%"}>
+          <Hr $mv={32} />
+        </Typography>
+
+        <Grid $cg={20}>
           {pageData.board.documents.map((doc) => (
             <GridArea key={doc.title} $colSpan={[6, 2]}>
               <Card $height={220} $pa={16}>
@@ -99,7 +93,6 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                   <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
                     {doc.title}
                   </Heading>
-
                   <Flex
                     $alignItems={"center"}
                     $justifyContent={"space-between"}
@@ -119,7 +112,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             </GridArea>
           ))}
         </Grid>
-        <Card $mb={[80, 92]} $ph={[0, 80]} $width={["100%", "70%"]}>
+        <Typography $width={"100%"}>
+          <Hr $mv={0} $mt={32} />
+        </Typography>
+        <Card $pv={0} $mv={[80, 92]} $ph={[0, 80]} $width={["100%", "70%"]}>
           <Heading $mb={20} $fontSize={24} tag={"h4"}>
             Governance
           </Heading>

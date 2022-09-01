@@ -8,6 +8,7 @@ import {
   Attachment,
   TextBlock,
 } from "..";
+import { TeamMember } from "../sanity-client/schemas/teamMember";
 
 export type PlanningPage = Document & {
   title: string;
@@ -50,6 +51,7 @@ export type AboutPage = Document & {
     introPortableText: PortableTextJSON;
     documents: Attachment[];
     governancePortableText: PortableTextJSON;
+    boardMembers: TeamMember[];
   };
   partners: {
     sectionHeading: string;

@@ -1,5 +1,6 @@
 import * as z from "zod";
 
+import { teamMemberSchema } from "./teamMember";
 import {
   cardSchema,
   CTASchema,
@@ -77,6 +78,7 @@ export const aboutPageSchema = z
       introPortableText: portableTextSchema,
       documents: z.array(attachmentSchema),
       governancePortableText: portableTextSchema,
+      boardMembers: z.array(teamMemberSchema),
     }),
     partners: z.object({
       sectionHeading: z.string(),
