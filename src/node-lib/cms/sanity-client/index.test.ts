@@ -1,8 +1,18 @@
 import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
-import planningPageRawFixture from "../../../browser-lib/fixtures/lessonPlanningRaw.json";
-import aboutRaw from "../../../browser-lib/fixtures/aboutRaw.json";
+import aboutCorePageFixture from "../../sanity-graphql/fixtures/aboutCorePage.json";
+import allWebinarsFixture from "../../sanity-graphql/fixtures/allWebinars.json";
+import planningCorePageFixture from "../../sanity-graphql/fixtures/planningCorePage.json";
+import allBlogPostsFixture from "../../sanity-graphql/fixtures/allBlogPosts.json";
+import blogPostBySlugFixture from "../../sanity-graphql/fixtures/blogPostBySlug.json";
+import webinarBySlugFixture from "../../sanity-graphql/fixtures/webinarBySlug.json";
+import allLandingPagesFixture from "../../sanity-graphql/fixtures/allLandingPages.json";
+import curriculumCorePageFixture from "../../sanity-graphql/fixtures/curriculumCorePage.json";
+import allPolicyPagesFixture from "../../sanity-graphql/fixtures/allPolicyPages.json";
+import policyPageBySlugFixture from "../../sanity-graphql/fixtures/policyPageBySlug.json";
+import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageBySlug.json";
+import blogPortableTextReferences from "../../sanity-graphql/fixtures/blogPortableTextReferences.json";
 
 import { videoSchema } from "./schemas/base";
 
@@ -13,21 +23,6 @@ jest.mock("../../sanity-graphql");
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
   typeof sanityGraphqlApi
 >;
-
-const testWebinar = {
-  title: "An upcoming webinar",
-  id: "5",
-  date: new Date("2025-01-01"),
-  slug: { current: "an-upcoming-webinar" },
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
-  category: { title: "Some category", slug: { current: "some-category" } },
-  summaryPortableText: [],
-};
-
-const testLandingPage = {
-  id: "001",
-  slug: { current: "some-landing-page" },
-};
 
 const testVideo = {
   title: "Some video from the library because it's the only one I can find",
@@ -44,23 +39,36 @@ describe("cms/sanity-client", () => {
     jest.clearAllMocks();
     jest.resetModules();
 
-    mockSanityGraphqlApi.allWebinars.mockResolvedValue({
-      allWebinar: [testWebinar],
-    });
-    mockSanityGraphqlApi.webinarBySlug.mockResolvedValue({
-      allWebinar: [testWebinar],
-    });
-    mockSanityGraphqlApi.planningCorePage.mockResolvedValue(
-      planningPageRawFixture
+    // @TODO: Can this be moved to a __mocks__ folder?
+    mockSanityGraphqlApi.allWebinars.mockResolvedValue(allWebinarsFixture);
+    mockSanityGraphqlApi.webinarBySlug.mockResolvedValue(webinarBySlugFixture);
+    mockSanityGraphqlApi.allBlogPosts.mockResolvedValue(allBlogPostsFixture);
+    mockSanityGraphqlApi.blogPostBySlug.mockResolvedValue(
+      blogPostBySlugFixture
     );
-    mockSanityGraphqlApi.aboutCorePage.mockResolvedValue(aboutRaw);
-
-    mockSanityGraphqlApi.allLandingPages.mockResolvedValue({
-      allLandingPage: [testLandingPage],
-    });
-    mockSanityGraphqlApi.landingPageBySlug.mockResolvedValue({
-      allLandingPage: [testLandingPage],
-    });
+    mockSanityGraphqlApi.blogPortableTextReferences.mockResolvedValue(
+      blogPortableTextReferences
+    );
+    // mockSanityGraphqlApi.homepage.mockResolvedValue()
+    mockSanityGraphqlApi.planningCorePage.mockResolvedValue(
+      planningCorePageFixture
+    );
+    mockSanityGraphqlApi.aboutCorePage.mockResolvedValue(aboutCorePageFixture);
+    mockSanityGraphqlApi.curriculumCorePage.mockResolvedValue(
+      curriculumCorePageFixture
+    );
+    mockSanityGraphqlApi.allPolicyPages.mockResolvedValue(
+      allPolicyPagesFixture
+    );
+    mockSanityGraphqlApi.policyPageBySlug.mockResolvedValue(
+      policyPageBySlugFixture
+    );
+    mockSanityGraphqlApi.allLandingPages.mockResolvedValue(
+      allLandingPagesFixture
+    );
+    mockSanityGraphqlApi.landingPageBySlug.mockResolvedValue(
+      landingPageBySlugFixture
+    );
   });
 
   describe("webinarsBySlug", () => {
@@ -77,7 +85,9 @@ describe("cms/sanity-client", () => {
         "an-upcoming-webinar"
       );
 
-      expect(result.slug).toBe("an-upcoming-webinar");
+      expect(result.slug).toBe(
+        webinarBySlugFixture.allWebinar[0]?.slug.current
+      );
     });
 
     it("throws when a webinar is invalid", async () => {
@@ -96,7 +106,12 @@ describe("cms/sanity-client", () => {
   describe("webinars", () => {
     it("returns parsed webinars", async () => {
       const result = await getSanityClient().webinars();
-      expect(result?.[0]?.slug).toBe("an-upcoming-webinar");
+      expect(result?.[0]?.slug).toBe(
+        allWebinarsFixture.allWebinar[0]?.slug.current
+      );
+      expect(result?.[1]?.slug).toBe(
+        allWebinarsFixture.allWebinar[1]?.slug.current
+      );
     });
 
     it("throws when a webinar is invalid", async () => {
@@ -126,16 +141,16 @@ describe("cms/sanity-client", () => {
     describe.each([
       ["webinars", "allWebinars", false],
       ["webinarBySlug", "webinarBySlug", true],
-      // ["blogPosts",  "allBlogPosts", false],
-      // ["blogPostBySlug", "blogPostBySlug", true],
+      ["blogPosts", "allBlogPosts", false],
+      ["blogPostBySlug", "blogPostBySlug", true],
       // ["homepage", "homepage", false],
       ["planningPage", "planningCorePage", false],
       ["aboutPage", "aboutCorePage", false],
-      // ["curriculumPage", "curriculumCorePage", false],
-      // ["policyPages", "allPolicyPages", false],
-      // ["policyPageBySlug", "policyPageBySlug", true],
-      // ["landingPages", "allLandingPages", false],
-      // ["landingPageBySlug", "landingPageBySlug", true],
+      ["curriculumPage", "curriculumCorePage", false],
+      ["policyPages", "allPolicyPages", false],
+      ["policyPageBySlug", "policyPageBySlug", true],
+      ["landingPages", "allLandingPages", false],
+      ["landingPageBySlug", "landingPageBySlug", true],
     ])(`.%s()`, (methodName, mockMethodName, methodAcceptsSlug) => {
       const mockMethod = mockMethodName as keyof typeof mockSanityGraphqlApi;
       const clientMethod = client[methodName as keyof typeof client];
@@ -177,7 +192,9 @@ describe("cms/sanity-client", () => {
         "some-landing-page"
       );
 
-      expect(result.slug).toBe("some-landing-page");
+      expect(result.slug).toBe(
+        landingPageBySlugFixture.allLandingPage[0]?.slug.current
+      );
     });
 
     it("throws when a landing page is invalid", async () => {
@@ -196,7 +213,10 @@ describe("cms/sanity-client", () => {
   describe("landingPages", () => {
     it("returns parsed landing pages", async () => {
       const result = await getSanityClient().landingPages();
-      expect(result?.[0]?.slug).toBe("some-landing-page");
+
+      expect(result?.[0]?.slug).toBe(
+        landingPageBySlugFixture.allLandingPage[0]?.slug.current
+      );
     });
 
     it("throws when a landing page is invalid", async () => {

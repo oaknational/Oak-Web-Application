@@ -133,11 +133,9 @@
         "linkType": "internal",
         "external": "https://foo.com",
         "internal": {
-          "id": "000",
+          "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
           "contentType": "policyPage",
-          "slug": {
-            "current": "privacy-policy"
-          }
+          "slug": { "current": "privacy-policy" }
         }
       },
       "stepsHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
@@ -242,6 +240,7 @@
         "linkType": "internal",
         "external": "https://google.com",
         "internal": {
+          "id": "planningCorePage",
           "contentType": "planningCorePage"
         }
       },
@@ -273,6 +272,7 @@
           "internal": null
         },
         "image": {
+          "altText": null,
           "asset": {
             "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
             "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
@@ -316,6 +316,7 @@
           "internal": null
         },
         "image": {
+          "altText": null,
           "asset": {
             "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
             "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
