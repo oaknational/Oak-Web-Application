@@ -7,7 +7,9 @@
 const config = {
   defaults: {
     runners: ["axe"],
-    hideElements: "#mtm-root-container, #mtm-frame-container, #avo-debugger",
+    // TODO: Video showing as NOT captioned when it is - check with Jim Creswell
+    hideElements:
+      "video, #mtm-root-container, #mtm-frame-container, #avo-debugger",
   },
   urls: [],
 };
