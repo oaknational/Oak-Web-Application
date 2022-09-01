@@ -294,6 +294,9 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
 
         <Grid $mt={[48, 64]}>
           <GridArea $colSpan={[12, 7]}>
+            <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
+              {blog.category.title}
+            </P>
             <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
               {formattedDate}
             </P>
