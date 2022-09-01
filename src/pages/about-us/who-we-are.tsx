@@ -88,7 +88,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             alt: "who we are illustration",
           }}
           imageContainerProps={{
-            $minHeight: 220,
+            $height: 240,
             $mr: 32,
           }}
         >

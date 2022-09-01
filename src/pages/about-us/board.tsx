@@ -43,6 +43,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",
           }}
+          imageContainerProps={{
+            $height: 240,
+            $mr: 32,
+          }}
         >
           <ButtonLinkNav
             $mt={36}
