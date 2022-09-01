@@ -18,6 +18,7 @@ const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 // e.g. `/unit` to `/unit/index.html` during tests.
 const relativeUrls = [
   "/",
+  "/lesson-planning",
   "/beta/lessons/physics-only-review-chj3cd/",
   "/beta/sign-in",
   "/beta/search",
