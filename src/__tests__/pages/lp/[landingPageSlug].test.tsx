@@ -3,7 +3,6 @@ import { screen, waitFor } from "@testing-library/react";
 import LandingPageTemplate, {
   getStaticPaths,
   getStaticProps,
-  LandingPageProps,
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient, { LandingPage } from "../../../node-lib/cms";
@@ -26,7 +25,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     mockCMSClient.landingPageBySlug.mockResolvedValue(testLandingPage);
   });
 
-  describe("PolicyPage", () => {
+  describe("LandingPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
         <LandingPageTemplate pageData={testLandingPage} isPreviewMode={false} />
@@ -39,7 +38,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
   });
 
   describe("getStaticPaths", () => {
-    it("Should return the paths of all policy pages", async () => {
+    it("Should return the paths of all landing pages", async () => {
       const pathsResult = await getStaticPaths({});
 
       expect(pathsResult.paths).toEqual([
@@ -49,7 +48,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should fetch the correct policy page", async () => {
+    it("Should fetch the correct landing page", async () => {
       await getStaticProps({
         params: { landingPageSlug: "some-landing-page" },
       });
@@ -58,16 +57,6 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
         "some-landing-page",
         expect.anything()
       );
-    });
-
-    it("Should serialize the policy updated at date to an ISO date", async () => {
-      const propsResult = (await getStaticProps({
-        params: { landingPageSlug: "some-landing-page" },
-      })) as { props: LandingPageProps };
-
-      expect(propsResult?.props?.pageData).toMatchObject({
-        slug: "some-landing-page",
-      });
     });
   });
 });
