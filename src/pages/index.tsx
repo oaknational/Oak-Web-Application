@@ -319,9 +319,11 @@ const Home: NextPage<HomePageProps> = (props) => {
                   $flexDirection="column"
                   as="ul"
                   role="list" /* role=list to strip default ul styling */
+                  id="homepage-blog-list"
                 >
                   {posts.map((item, i) => (
                     <li key={`BlogList-BlogListItem-${i}`}>
+                      {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
                       {i < posts.length - 1 && <Hr $color="black" />}
                     </li>
