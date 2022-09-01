@@ -52,12 +52,21 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
-  const blogDate = new Date(date);
+  const blogDate = new Date(date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
-    <Flex $position={"relative"} $mt={24} $flexDirection={["column", "row"]}>
+    <Flex
+      $position={"relative"}
+      $flexDirection={["column", "row"]}
+      $alignItems={["initial", "center"]}
+      $minHeight={200}
+    >
       {withImage && mainImage && (
-        <Box $position={"relative"} $minWidth={240}>
+        <Box $position={"relative"} $minWidth={240} $mr={[0, 32]}>
           <AspectRatio ratio={"3:2"}>
             <CMSImage
               layout="fill"
@@ -70,7 +79,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </AspectRatio>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start" $ml={[0, 32]}>
+
+      <Flex $flexDirection="column" $alignItems="flex-start">
         <P
           $fontSize={16}
           $lineHeight={"20px"}
@@ -81,13 +91,9 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           {category.title}
         </P>
         <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-          {blogDate.toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
+          {blogDate}
         </P>
-        <Heading tag={titleTag} $fontSize={20} $mt={8}>
+        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
           <ActionLink href={href} title={title}>
             {title}
           </ActionLink>
