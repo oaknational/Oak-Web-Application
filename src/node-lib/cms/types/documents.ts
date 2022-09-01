@@ -68,3 +68,9 @@ export type PolicyPage = Document & {
 };
 
 export type PolicyPagePreview = Pick<PolicyPage, "title" | "slug">;
+
+export type LandingPage = Document & {
+  slug: string;
+};
+
+export type LandingPagePreview = Pick<LandingPage, "slug">;
