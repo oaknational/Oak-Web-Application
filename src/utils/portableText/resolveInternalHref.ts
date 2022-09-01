@@ -1,47 +1,32 @@
+import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
+import { assertUnreachable } from "../assertUnreachable";
+
 export const resolveInternalHref = (
-    contentType: string,
-    slug?: { current: string }
-  ) => {
-    let href;
-    switch (contentType) {
-      case "aboutCorePage":
-        href = `/about`;
-        break;
-      case "planningCorePage":
-        href = `/planning`;
-        break;
-      case "supportCorePage":
-        href = `/support`;
-        break;
-      case "curriculumCorePage":
-        href = `/curriculum`;
-        break;
-      case "webinar":
-        if (slug) {
-          href = `/webinars/${slug.current}`;
-        }
-        break;
-      case "webinarListingPage":
-        href = `/webinars`;
-        break;
-      case "newsPost":
-        if (slug) {
-          href = `/blog/${slug.current}`;
-        }
-        break;
-      case "newsListingPage":
-        href = `/blog`;
-        break;
-      case "policyPage":
-        if (slug) {
-          href = `/legal/${slug.current}`;
-        }
-        break;
-    }
-  
-    if (!href) {
-      throw new Error(`No URL found for content type ${contentType}`);
-    }
-  
-    return href;
-  };
+  entry: CTAInternalLinkEntry
+): string | null => {
+  switch (entry.contentType) {
+    case "aboutCorePage":
+      return `/about-us`;
+    case "planningCorePage":
+      return `/lesson-planning`;
+    case "supportCorePage":
+      return `/support`;
+    case "curriculumCorePage":
+      return `/develop-your-curriculum`;
+    case "webinar":
+      return entry.slug ? `/webinars/${entry.slug}` : null;
+    case "webinarListingPage":
+      return `/webinars`;
+    case "newsPost":
+      return entry.slug ? `/blog/${entry.slug}` : null;
+    case "newsListingPage":
+      return `/blog`;
+    case "policyPage":
+      return entry.slug ? `/legal/${entry.slug}` : null;
+    case "attachment":
+      return entry.file.asset.url;
+    default:
+      console.log(`Error resolving internal href for`, entry);
+      assertUnreachable(entry, new Error("Error resolving internal href"));
+  }
+};

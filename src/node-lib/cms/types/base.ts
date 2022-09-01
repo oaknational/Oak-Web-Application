@@ -31,7 +31,7 @@ export type CTA = {
 } & (
   | {
       linkType: "internal";
-      internal: { contentType: string; slug?: string };
+      internal: CTAInternalLinkEntry;
     }
   | { linkType: "external"; external: string }
 );
