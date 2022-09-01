@@ -8,7 +8,7 @@ import CMSClient, { WebinarPreview } from "../node-lib/cms";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import Typography, { Heading, P, Span } from "../components/Typography";
+import Typography, { Heading, Hr, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
@@ -323,6 +323,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   {posts.map((item, i) => (
                     <li key={`BlogList-BlogListItem-${i}`}>
                       <BlogListItem {...item} withImage={true} />
+                      {i < posts.length - 1 && <Hr $color="black" />}
                     </li>
                   ))}
                 </Flex>
