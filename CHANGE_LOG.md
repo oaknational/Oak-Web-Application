@@ -1,3 +1,14 @@
+# [0.88.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.2...v0.88.0) (2022-09-01)
+
+
+### Features
+
+* add styling for policy pages ([f0a7cf8](https://github.com/oaknational/Oak-Web-Application/commit/f0a7cf8556a93b8ab98c6e640bf953f22b83d656))
+* update margin botton for h4 heading ([8e3184d](https://github.com/oaknational/Oak-Web-Application/commit/8e3184d34d6643cf4bb926a98dfb6c98a2da17b7))
+* update styling in line with feedback ([c198786](https://github.com/oaknational/Oak-Web-Application/commit/c198786eadbb2dcf842fa15bdd5952228b5d14f3))
+
+## [0.87.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.1...v0.87.2) (2022-09-01)
+
 ## [0.87.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.0...v0.87.1) (2022-09-01)
 
 

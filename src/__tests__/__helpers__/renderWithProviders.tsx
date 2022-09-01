@@ -28,6 +28,14 @@ type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
 };
 
+const noopAvoLogger = {
+  logDebug: () => true,
+  logWarn: () => true,
+  // returning false will make avo use console errors, which
+  // we may prefer for actual errors
+  logError: () => false,
+};
+
 export const AllTheProviders: FC<ProviderProps> = ({
   children,
   authProviderProps,
@@ -36,7 +44,7 @@ export const AllTheProviders: FC<ProviderProps> = ({
     <CookieConsentProvider>
       <ThemeProvider theme={theme}>
         <ErrorBoundary>
-          <AnalyticsProvider>
+          <AnalyticsProvider avoOptions={{ avoLogger: noopAvoLogger }}>
             <MockedAuthProvider {...authProviderProps}>
               <MockedApolloProvider>
                 <MemoryRouterProvider>
