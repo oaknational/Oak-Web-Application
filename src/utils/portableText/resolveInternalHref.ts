@@ -2,9 +2,7 @@ import { CTA } from "../../node-lib/cms";
 import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
 import { assertUnreachable } from "../assertUnreachable";
 
-export const resolveInternalHref = (
-  entry: CTAInternalLinkEntry
-): string | null => {
+export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
   switch (entry.contentType) {
     case "aboutCorePage":
       return `/about-us`;
@@ -15,15 +13,15 @@ export const resolveInternalHref = (
     case "curriculumCorePage":
       return `/develop-your-curriculum`;
     case "webinar":
-      return entry.slug ? `/webinars/${entry.slug}` : null;
+      return `/webinars/${entry.slug}`;
     case "webinarListingPage":
       return `/webinars`;
     case "newsPost":
-      return entry.slug ? `/blog/${entry.slug}` : null;
+      return `/blog/${entry.slug}`;
     case "newsListingPage":
       return `/blog`;
     case "policyPage":
-      return entry.slug ? `/legal/${entry.slug}` : null;
+      return `/legal/${entry.slug}`;
     case "attachment":
       return entry.file.asset.url;
     default:
@@ -32,7 +30,7 @@ export const resolveInternalHref = (
   }
 };
 
-export const getCTAHref = (cta: CTA): string | null => {
+export const getCTAHref = (cta: CTA): string => {
   if (cta.linkType === "internal") {
     return resolveInternalHref(cta.internal);
   } else {
