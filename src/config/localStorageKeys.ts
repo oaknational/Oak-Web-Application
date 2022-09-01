@@ -1,5 +1,6 @@
-export const LS_KEY_EMAIL_FOR_SIGN_IN = "emailForSignIn";
-export const LS_KEY_THEME = "theme";
-export const LS_KEY_USER = "user";
-export const LS_KEY_ACCESS_TOKEN = "accessToken";
-export const LS_KEY_BOOKMARKS = "bookmarks";
+export const LS_KEY_EMAIL_FOR_SIGN_IN = "oak-email-for-sign-in";
+export const LS_KEY_THEME = "oak-theme";
+export const LS_KEY_USER = "oak-user";
+export const LS_KEY_ACCESS_TOKEN = "oak-access-token";
+export const LS_KEY_BOOKMARKS = "oak-bookmarks";
+export const LS_KEY_ANONYMOUS_ID = "oak-anonymous-id";

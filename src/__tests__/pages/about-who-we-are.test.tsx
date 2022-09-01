@@ -385,11 +385,7 @@ export const testAboutPageData: AboutPage = {
 describe("pages/about us who we arew.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
-      <AboutWhoWeAre
-        renderPlayer={false}
-        pageData={testAboutPageData}
-        isPreviewMode={false}
-      />
+      <AboutWhoWeAre pageData={testAboutPageData} isPreviewMode={false} />
     );
 
     await waitFor(() => {

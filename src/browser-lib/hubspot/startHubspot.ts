@@ -6,11 +6,24 @@
  */
 
 import isBrowser from "../../utils/isBrowser";
-import scriptAlreadyLoaded from "../../utils/scriptAlreadyLoaded";
+import { getOakGlobals, setOakGlobals } from "../oak-globals/oakGlobals";
+
+export type WindowOakHubspot = {
+  scriptLoaded?: boolean;
+};
 
 if (isBrowser) {
+  window.__oakGlobals.hubspot = window.__oakGlobals?.hubspot || {};
   window._hsq = window._hsq || [];
 }
+
+const isScriptLoaded = () => getOakGlobals().hubspot?.scriptLoaded;
+const setScriptLoaded = () =>
+  setOakGlobals({
+    hubspot: {
+      scriptLoaded: true,
+    },
+  });
 
 const getScriptSrc = ({ scriptDomain, portalId }: HubspotConfig) => {
   const bustCache = Math.floor(new Date().getTime() / 3600000);
@@ -25,16 +38,21 @@ export type HubspotConfig = {
   scriptDomain: string;
 };
 const startHubspot = (config: HubspotConfig) => {
-  const { portalId, scriptDomain } = config;
+  const { portalId } = config;
 
   if (!portalId) {
     throw new Error("No hubspot portalId defined");
   }
 
-  // NoOp if hubspot already loaded by external source
-  if (scriptAlreadyLoaded(scriptDomain)) {
+  if (isScriptLoaded()) {
+    /**
+     * @todo check if that if consent is given, then denied, then given that
+     * hubspot still works
+     */
     return;
   }
+
+  setScriptLoaded();
 
   // Create script & append to DOM
   const script = document.createElement("script");

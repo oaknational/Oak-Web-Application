@@ -1,4 +1,4 @@
-import { PortableTextJSON, SanityImage } from "../../node-lib/cms";
+import { PortableTextJSON, SanityImage, Video } from "../../node-lib/cms";
 
 /**
  * Return a representation of a string as sanity's "portable text"
@@ -26,6 +26,19 @@ export const mockImageAsset = (id = "abcdef"): SanityImage => {
     asset: {
       _id: `image-${id}-300x300-png`,
       url: `https://cdn.sanity.io/images/p/d/${id}-300x300.png`,
+    },
+  };
+};
+
+export const mockVideoAsset = (): Video => {
+  return {
+    title: "video title",
+    video: {
+      asset: {
+        assetId: "1234",
+        playbackId: "1234",
+        thumbTime: 1,
+      },
     },
   };
 };

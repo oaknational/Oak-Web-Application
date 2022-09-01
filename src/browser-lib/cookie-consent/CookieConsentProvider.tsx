@@ -11,15 +11,18 @@ import { createContext, FC, useContext } from "react";
 import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
 import useConfirmicConsents from "./confirmic/useConfirmicConsents";
 import {
-  CookieConsentChoice,
+  CookieConsent,
+  CookieConsentState,
   CookiePolicyName,
   servicePolicyMap,
   ServiceType,
 } from "./types";
 
-export type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
-export type HasConsentedTo = (serviceType: ServiceType) => boolean;
-export type HasConsentedToPolicy = (policyName: CookiePolicyName) => boolean;
+export type CookieConsents = Record<CookiePolicyName, CookieConsent>;
+export type HasConsentedTo = (serviceType: ServiceType) => CookieConsentState;
+export type HasConsentedToPolicy = (
+  policyName: CookiePolicyName
+) => CookieConsentState;
 
 type CookieConsentContext = {
   // makes consent manager modal visible
@@ -58,11 +61,11 @@ const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
   const hasConsentedTo = (serviceType: ServiceType) => {
     const policyName = servicePolicyMap[serviceType];
 
-    return consents[policyName].enabled;
+    return consents[policyName].state;
   };
 
   const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
-    return consents[policyName].enabled;
+    return consents[policyName].state;
   };
 
   return (

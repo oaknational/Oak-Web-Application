@@ -1,6 +1,5 @@
 import { FC } from "react";
 import type { AppProps } from "next/app";
-import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
 import { SSRProvider } from "@react-aria/ssr";
 
@@ -11,20 +10,16 @@ import "../browser-lib/gleap/gleap.css";
 import "../browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "../styles/GlobalStyle";
 import SpriteSheet from "../components/SpriteSheet";
-import { AuthProvider } from "../context/Auth";
-import useApolloClient from "../browser-lib/graphql/useApolloClient";
-import { SearchProvider } from "../context/Search/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
-import { BookmarksProvider } from "../context/Bookmarks";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
 import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
 import AnalyticsProvider from "../context/Analytics/AnalyticsProvider";
 import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
+import { SearchProvider } from "../context/Search/SearchContext";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
-  const apolloClient = useApolloClient();
   const { theme } = useOakTheme();
 
   return (
@@ -35,20 +30,14 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           <ErrorBoundary>
             <SSRProvider>
               <AnalyticsProvider>
-                <AuthProvider>
-                  <ApolloProvider client={apolloClient}>
-                    <BookmarksProvider>
-                      <SearchProvider>
-                        <DefaultSeo />
-                        <MenuProvider>
-                          <Component {...pageProps} />
-                        </MenuProvider>
-                        <SpriteSheet />
-                        <AppHooks />
-                      </SearchProvider>
-                    </BookmarksProvider>
-                  </ApolloProvider>
-                </AuthProvider>
+                <DefaultSeo />
+                <SearchProvider>
+                  <MenuProvider>
+                    <Component {...pageProps} />
+                    <SpriteSheet />
+                    <AppHooks />
+                  </MenuProvider>
+                </SearchProvider>
               </AnalyticsProvider>
             </SSRProvider>
           </ErrorBoundary>

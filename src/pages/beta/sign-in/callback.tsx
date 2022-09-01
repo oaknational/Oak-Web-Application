@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import useAuth from "../../../context/Auth/useAuth";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import Layout from "../../../components/Layout";
+import AppLayout from "../../../components/AppLayout";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import Flex from "../../../components/Flex";
 import { useUser } from "../../../context/Auth";
@@ -19,7 +19,7 @@ const Form = styled.form`
   max-width: 450px;
 `;
 
-const SignInCallback: NextPage = () => {
+const SignInCallback = () => {
   const { signInWithEmailCallback } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -67,36 +67,42 @@ const SignInCallback: NextPage = () => {
   };
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
-      <Flex
-        $flexDirection="column"
-        $justifyContent="center"
-        $alignItems="center"
-        $flexGrow={1}
-      >
-        {!confirmedEmail && (
-          <Form onSubmit={confirmEmail}>
-            <Flex>
-              <Input
-                id="sign-in-callback-email-inptu"
-                name="email"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-              <Button
-                data-testid="callback-signin-button"
-                onClick={confirmEmail}
-                label="Sign in"
-                $ml={8}
-              />
-            </Flex>
-          </Form>
-        )}
-        {loading && <LoadingSpinner />}
-      </Flex>
-    </Layout>
+    <Flex
+      $flexDirection="column"
+      $justifyContent="center"
+      $alignItems="center"
+      $flexGrow={1}
+    >
+      {!confirmedEmail && (
+        <Form onSubmit={confirmEmail}>
+          <Flex>
+            <Input
+              id="sign-in-callback-email-inptu"
+              name="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <Button
+              data-testid="callback-signin-button"
+              onClick={confirmEmail}
+              label="Sign in"
+              $ml={8}
+            />
+          </Flex>
+        </Form>
+      )}
+      {loading && <LoadingSpinner />}
+    </Flex>
   );
 };
 
-export default SignInCallback;
+const SignInCallbackPage: NextPage = () => {
+  return (
+    <AppLayout seoProps={DEFAULT_SEO_PROPS}>
+      <SignInCallback />
+    </AppLayout>
+  );
+};
+
+export default SignInCallbackPage;

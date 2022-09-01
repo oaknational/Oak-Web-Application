@@ -8,7 +8,7 @@ import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
-import footerSections from "../../browser-lib/fixtures/footerSectionLinks";
+import footerSections from "../../browser-lib/fixtures/footerSections";
 import SiteHeader from "../SiteHeader";
 import PreviewControls from "../PreviewControls";
 
@@ -30,16 +30,13 @@ const headers: Record<HeaderVariant, FC> = {
   app: AppHeader,
   site: SiteHeader,
 };
-interface LayoutProps {
+export interface LayoutProps {
   seoProps: SeoProps;
   headerVariant?: "app" | "site";
   $background?: OakColorName;
   isPreviewMode?: boolean;
 }
 
-/** 1. Titles for SEO should be between 50-60 characters long 
-    2. Title should contain app name
-    3. SEO descriptions should be between 150-300 characters long */
 const Layout: FC<LayoutProps> = (props) => {
   const {
     children,
@@ -60,7 +57,7 @@ const Layout: FC<LayoutProps> = (props) => {
       <Container $background={$background}>
         <Header />
         <StyledLayout>{children}</StyledLayout>
-        <SiteFooter footerSections={footerSections} />
+        <SiteFooter sections={footerSections} />
         {isPreviewMode && <PreviewControls />}
       </Container>
     </>

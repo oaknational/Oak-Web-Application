@@ -12,16 +12,24 @@ import MenuLinks from "../MenuLinks";
 import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
 import { MenuListItemProps } from "../MenuLinks/types";
+import {
+  getHelpUrl,
+  getPupilsUrl,
+  getTeachersUrl,
+} from "../../common-lib/urls";
+import useAnalytics from "../../context/Analytics/useAnalytics";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
-
   const { toggleMenu } = useMenuContext();
   const { asPath } = useRouter();
+  const { track } = useAnalytics();
 
   const menuLinks: Omit<MenuListItemProps, "currentPath">[] = [
     {
-      href: "https://teachers.thenational.academy",
+      href: getTeachersUrl(),
+      target: "_blank",
+      onClick: () => track.teacherHubSelected({ navigatedFrom: "menu" }),
       linkText: "Teacher hub",
       fontFamily: "heading",
       fontSize: [32],
@@ -29,7 +37,9 @@ const SiteHeader: FC = () => {
       arrowSize: [48],
     },
     {
-      href: "https://classroom.thenational.academy/",
+      href: getPupilsUrl(),
+      target: "_blank",
+      onClick: () => track.teacherHubSelected({ navigatedFrom: "menu" }),
       linkText: "Classroom",
       fontSize: [32],
       fontFamily: "heading",
@@ -38,7 +48,7 @@ const SiteHeader: FC = () => {
     },
     {
       href: "/lesson-planning",
-      linkText: "Plan a Lesson",
+      linkText: "Plan a lesson",
       fontSize: [24],
       fontFamily: "heading",
       $mt: [32],
@@ -46,7 +56,7 @@ const SiteHeader: FC = () => {
     },
     {
       href: "/develop-your-curriculum",
-      linkText: "Develop Your Curriculum",
+      linkText: "Develop your curriculum",
       fontSize: [24],
       fontFamily: "heading",
       $mt: [12],
@@ -70,14 +80,14 @@ const SiteHeader: FC = () => {
     },
     {
       href: "/contact-us",
-      linkText: "Contact Us",
+      linkText: "Contact us",
       fontSize: [16],
       fontFamily: "ui",
       $mt: [8],
       arrowSize: [20],
     },
     {
-      href: "https://support.thenational.academy",
+      href: getHelpUrl(),
       linkText: "Help",
       fontSize: [16],
       fontFamily: "ui",
@@ -95,11 +105,27 @@ const SiteHeader: FC = () => {
       </Link>
       <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
         <P>
-          <Link href={"https://classroom.thenational.academy/"}>Classroom</Link>
+          <Link href={getPupilsUrl()}>
+            <a
+              onClick={() =>
+                track.classroomSelected({ navigatedFrom: "header" })
+              }
+              target="_blank"
+            >
+              Classroom
+            </a>
+          </Link>
         </P>
         <P $ml={24} $mr={32}>
-          <Link href={"https://teachers.thenational.academy/"}>
-            Teacher Hub
+          <Link href={getTeachersUrl()}>
+            <a
+              onClick={() =>
+                track.teacherHubSelected({ navigatedFrom: "header" })
+              }
+              target="_blank"
+            >
+              Teacher Hub
+            </a>
           </Link>
         </P>
       </Flex>
