@@ -88,14 +88,14 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             alt: "who we are illustration",
           }}
           imageContainerProps={{
-            $height: 240,
+            $minHeight: 220,
             $mr: 32,
           }}
         >
           <ButtonLinkNav
             $mt={36}
             buttons={reducedAboutNavLinks}
-            selected={"who we are"}
+            selected={"Who we are"}
           />
         </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">

@@ -37,21 +37,23 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
         <SummaryCard
           title={"About us"}
           heading={pageData.board.sectionHeading}
-          summary={pageData.board.introPortableText}
+          summary={
+            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
+          }
           background={"teachersPastelYellow"}
           imageProps={{
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",
           }}
           imageContainerProps={{
-            $height: 240,
+            $minHeight: 220,
             $mr: 32,
           }}
         >
           <ButtonLinkNav
             $mt={36}
             buttons={reducedAboutNavLinks}
-            selected={"board"}
+            selected={"Board"}
           />
         </SummaryCard>
         <AboutIntroCard

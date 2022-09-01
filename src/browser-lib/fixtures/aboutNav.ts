@@ -20,11 +20,11 @@ const aboutNavLinks = [
 
 export const reducedAboutNavLinks = [
   {
-    label: "who we are",
+    label: "Who we are",
     href: "/about-us/who-we-are",
   },
 
-  { label: "board", href: "/about-us/board" },
+  { label: "Board", href: "/about-us/board" },
 ];
 
 export default aboutNavLinks;
