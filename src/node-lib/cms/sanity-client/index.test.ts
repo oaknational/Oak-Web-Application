@@ -24,6 +24,11 @@ const testWebinar = {
   summaryPortableText: [],
 };
 
+const testLandingPage = {
+  id: "001",
+  slug: { current: "some-landing-page" },
+};
+
 const testVideo = {
   title: "Some video from the library because it's the only one I can find",
   video: {
@@ -50,6 +55,13 @@ describe("cms/sanity-client", () => {
       planningPageRawFixture
     );
     mockSanityGraphqlApi.aboutCorePage.mockResolvedValue(aboutRaw);
+
+    mockSanityGraphqlApi.allLandingPages.mockResolvedValue({
+      allLandingPage: [testLandingPage],
+    });
+    mockSanityGraphqlApi.landingPageBySlug.mockResolvedValue({
+      allLandingPage: [testLandingPage],
+    });
   });
 
   describe("webinarsBySlug", () => {
@@ -70,9 +82,11 @@ describe("cms/sanity-client", () => {
     });
 
     it("throws when a webinar is invalid", async () => {
-      mockSanityGraphqlApi.webinarBySlug.mockReturnValueOnce({
-        allWebinar: [{ slug: "foo" }],
-      } as never);
+      mockSanityGraphqlApi.webinarBySlug.mockResolvedValueOnce(
+        {
+          allWebinar: [{ slug: "foo" }],
+        } as never /* silence error about incorrect slug type */
+      );
 
       await expect(
         getSanityClient().webinarBySlug("an-upcoming-webinar")
@@ -103,9 +117,11 @@ describe("cms/sanity-client", () => {
     });
 
     it("throws when a webinar is invalid", async () => {
-      mockSanityGraphqlApi.allWebinars.mockReturnValueOnce({
-        allWebinar: [{ slug: "foo" }],
-      } as never);
+      mockSanityGraphqlApi.allWebinars.mockResolvedValueOnce(
+        {
+          allWebinar: [{ slug: "foo" }],
+        } as never /* silence error about incorrect slug type */
+      );
 
       await expect(getSanityClient().webinars()).rejects.toThrow();
     });
@@ -138,6 +154,53 @@ describe("cms/sanity-client", () => {
       expect(sanityGraphqlApi.planningCorePage).toBeCalledWith(
         expect.objectContaining({ isDraft: true })
       );
+    });
+  });
+
+  describe("landingPageBySlug", () => {
+    it("fetches the specified landing page", async () => {
+      await getSanityClient().landingPageBySlug("some-landing-page");
+
+      expect(sanityGraphqlApi.landingPageBySlug).toBeCalledWith(
+        expect.objectContaining({ slug: "some-landing-page" })
+      );
+    });
+
+    it("returns a parsed landing page", async () => {
+      const result = await getSanityClient().landingPageBySlug(
+        "some-landing-page"
+      );
+
+      expect(result.slug).toBe("some-landing-page");
+    });
+
+    it("throws when a landing page is invalid", async () => {
+      mockSanityGraphqlApi.landingPageBySlug.mockResolvedValueOnce(
+        {
+          allLandingPage: [{ slug: "foo" }],
+        } as never /* silence error about incorrect slug type */
+      );
+
+      await expect(
+        getSanityClient().landingPageBySlug("some-landing-page")
+      ).rejects.toThrow();
+    });
+  });
+
+  describe("landingPages", () => {
+    it("returns parsed landing pages", async () => {
+      const result = await getSanityClient().landingPages();
+      expect(result?.[0]?.slug).toBe("some-landing-page");
+    });
+
+    it("throws when a landing page is invalid", async () => {
+      mockSanityGraphqlApi.allLandingPages.mockResolvedValueOnce(
+        {
+          allLandingPage: [{ slug: "foo" }],
+        } as never /* silence error about incorrect slug type */
+      );
+
+      await expect(getSanityClient().landingPages()).rejects.toThrow();
     });
   });
 
