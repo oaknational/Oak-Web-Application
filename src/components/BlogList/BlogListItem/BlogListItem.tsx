@@ -93,7 +93,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
           {blogDate}
         </P>
-        <Heading tag={titleTag} $fontSize={20} $mt={8}>
+        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
           <ActionLink href={href} title={title}>
             {title}
           </ActionLink>
