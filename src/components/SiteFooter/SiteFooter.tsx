@@ -1,35 +1,83 @@
 import Link from "next/link";
 import { FC } from "react";
-import styled from "styled-components";
 
-import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
 import Typography, { Heading, P } from "../Typography";
-import {
-  FooterSection,
-  FooterLink,
-} from "../../browser-lib/fixtures/footerSectionLinks";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
-import UnstyledButton from "../UnstyledButton";
+import Box from "../Box";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
+import { getPupilsUrl, getTeachersUrl } from "../../common-lib/urls";
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import UnstyledButton from "../UnstyledButton";
 
-const StyledSiteFooter = styled.footer`
-  background: ${getColorByName("white")};
-  width: 100%;
-  margin-top: 80px;
-  z-index: 0;
-`;
+type FooterLinkProps = {
+  text: string;
+} & (
+  | {
+      href: string;
+      type?: "link";
+    }
+  | {
+      type: "consent-manager-toggle";
+    }
+  | {
+      type: "pupils-link";
+    }
+  | {
+      type: "teachers-link";
+    }
+);
 
-const FooterSectionLinks: FC<FooterSection> = ({
-  title,
-  links,
-  children,
-  ...props
-}) => {
+const FooterLink: FC<FooterLinkProps> = (props) => {
+  const { track } = useAnalytics();
+  const { showConsentManager } = useCookieConsent();
+
+  if (props.type === "consent-manager-toggle") {
+    return (
+      <UnstyledButton onClick={showConsentManager}>{props.text}</UnstyledButton>
+    );
+  }
+
+  if (props.type === "pupils-link") {
+    const href = getPupilsUrl();
+    return (
+      <Link href={href}>
+        <a
+          onClick={() => track.classroomSelected({ navigatedFrom: "footer" })}
+          target="_blank"
+        >
+          {props.text}
+        </a>
+      </Link>
+    );
+  }
+
+  if (props.type === "teachers-link") {
+    const href = getTeachersUrl();
+    return (
+      <Link href={href}>
+        <a
+          onClick={() => track.teacherHubSelected({ navigatedFrom: "footer" })}
+          target="_blank"
+        >
+          {props.text}
+        </a>
+      </Link>
+    );
+  }
+
+  return <Link href={props.href}>{props.text}</Link>;
+};
+
+export type FooterSection = {
+  title: string;
+  links: FooterLinkProps[];
+};
+const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <Flex $flexDirection="column" {...props}>
+    <Flex $flexDirection="column">
       <Heading
         $mb={8}
         $fontSize={16}
@@ -46,10 +94,9 @@ const FooterSectionLinks: FC<FooterSection> = ({
         $color="grey9"
       >
         <ul role="list">
-          {children}
-          {links?.map((footerLink: FooterLink) => (
-            <li key={footerLink.text}>
-              <Link href={footerLink.href}>{footerLink.text}</Link>
+          {links.map((link) => (
+            <li key={link.text}>
+              <FooterLink {...link} />
             </li>
           ))}
         </ul>
@@ -58,17 +105,23 @@ const FooterSectionLinks: FC<FooterSection> = ({
   );
 };
 
+export type FooterSections = Record<
+  "pupils" | "teachers" | "oak" | "legal",
+  FooterSection
+>;
 type SiteFooterProps = {
-  footerSections: FooterSection[];
-  footerNotification?: React.ReactNode;
+  sections: FooterSections;
+  notification?: React.ReactNode;
 };
-const SiteFooter: FC<SiteFooterProps> = ({
-  footerSections,
-  footerNotification,
-}) => {
-  const { showConsentManager } = useCookieConsent();
+const SiteFooter: FC<SiteFooterProps> = ({ sections, notification }) => {
   return (
-    <StyledSiteFooter>
+    <Box
+      as="footer"
+      $zIndex="neutral"
+      $width="100%"
+      $mt={80}
+      $background="white"
+    >
       <nav>
         <MaxWidth
           $position={"relative"}
@@ -81,16 +134,10 @@ const SiteFooter: FC<SiteFooterProps> = ({
           <Flex $width={"100%"} $flexWrap={["wrap"]}>
             <Flex $mb={32} $flexGrow={[1, 0]} $mr={48} $flexDirection="column">
               <Flex $mb={16} $flexDirection={"column"}>
-                <FooterSectionLinks
-                  title={footerSections[0]?.title}
-                  links={footerSections[0]?.links}
-                />
+                <FooterSectionLinks {...sections.pupils} />
               </Flex>
               <Flex $mb={16} $flexDirection={"column"}>
-                <FooterSectionLinks
-                  title={footerSections[1]?.title}
-                  links={footerSections[1]?.links}
-                />
+                <FooterSectionLinks {...sections.teachers} />
               </Flex>
             </Flex>
 
@@ -100,23 +147,11 @@ const SiteFooter: FC<SiteFooterProps> = ({
               $mb={[24, 0]}
               $mr={48}
             >
-              <FooterSectionLinks
-                title={footerSections[2]?.title}
-                links={footerSections[2]?.links}
-              />
+              <FooterSectionLinks {...sections.oak} />
             </Flex>
 
             <Flex $flexDirection="column">
-              <FooterSectionLinks
-                title={footerSections[3]?.title}
-                links={footerSections[3]?.links}
-              >
-                <li>
-                  <UnstyledButton onClick={showConsentManager}>
-                    Manage cookie settings
-                  </UnstyledButton>
-                </li>
-              </FooterSectionLinks>
+              <FooterSectionLinks {...sections.legal} />
             </Flex>
 
             <Flex
@@ -127,20 +162,20 @@ const SiteFooter: FC<SiteFooterProps> = ({
               $ml={"auto"}
             >
               <Logo title={"Oak National Academy"} height={66} width={150} />
-              {footerNotification}
+              {notification}
             </Flex>
           </Flex>
-          <Flex $mb={80} $width={"100%"}>
+          <Flex $mb={80} $mt={64} $width={"100%"}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
-              <P $lineHeight={16} $textAlign="center" $fontSize={[12, 16]}>
+              <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
                 © Oak National Academy
               </P>
             </Flex>
           </Flex>
         </MaxWidth>
       </nav>
-    </StyledSiteFooter>
+    </Box>
   );
 };
 

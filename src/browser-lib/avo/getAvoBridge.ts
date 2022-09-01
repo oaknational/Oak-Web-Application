@@ -41,6 +41,8 @@ const getAvoBridge = ({ hubspot, posthog }: AnalyticsServices) => {
 
   const identify: CustomDestination["identify"] = (userId) => {
     // @todo hubspot requires email for identify call
+    console.log("avo bridge identify");
+
     hubspot.identify(userId, {});
     posthog.identify(userId, {});
   };

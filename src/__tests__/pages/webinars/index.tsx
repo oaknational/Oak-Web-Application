@@ -2,6 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 
 import { WebinarPreview } from "../../../node-lib/cms";
 import WebinarListingPage, {
+  SerializedWebinarPreview,
   WebinarListingPageProps,
 } from "../../../pages/webinars";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -10,14 +11,28 @@ const testWebinarPreview: WebinarPreview = {
   title: "An upcoming webinar",
   id: "5",
   slug: "an-upcoming-webinar",
+  date: new Date("2022-12-01"),
+  category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+};
+
+const testSerializedWebinarPreview: SerializedWebinarPreview = {
+  ...testWebinarPreview,
+  date: new Date("2022-12-01").toISOString(),
 };
 
 const testWebinarPreview2: WebinarPreview = {
   title: "A past webinar",
   id: "6",
   slug: "a-past-webinar",
+  date: new Date("2022-12-31"),
+  category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+};
+
+const testSerializedWebinarPreview2: SerializedWebinarPreview = {
+  ...testWebinarPreview2,
+  date: new Date("2022-12-31").toISOString(),
 };
 
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
@@ -38,7 +53,10 @@ describe("pages/webinar/index.tsx", () => {
     it("Renders a link to each webinar ", async () => {
       renderWithProviders(
         <WebinarListingPage
-          webinars={[testWebinarPreview, testWebinarPreview2]}
+          webinars={[
+            testSerializedWebinarPreview,
+            testSerializedWebinarPreview2,
+          ]}
           isPreviewMode={false}
         />
       );
@@ -64,8 +82,8 @@ describe("pages/webinar/index.tsx", () => {
         props: WebinarListingPageProps;
       };
       expect(propsResult?.props?.webinars).toEqual([
-        testWebinarPreview,
-        testWebinarPreview2,
+        testSerializedWebinarPreview,
+        testSerializedWebinarPreview2,
       ]);
     });
 

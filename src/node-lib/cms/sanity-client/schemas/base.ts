@@ -84,6 +84,12 @@ export const videoSchema = z.object({
     asset: z.object({
       assetId: z.string(),
       playbackId: z.string(),
+      thumbTime: z
+        .number()
+        .nullish()
+        .transform((val) => {
+          return val === null ? undefined : val;
+        }),
     }),
   }),
 });
@@ -99,7 +105,7 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
   }),
 ]);
 
-export const blogWebinarCategory = z.object({
+export const blogWebinarCategorySchema = z.object({
   title: z.string(),
-  slug: z.object({ current: z.string() }),
+  slug: slugSchema,
 });

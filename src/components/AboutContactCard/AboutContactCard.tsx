@@ -1,5 +1,6 @@
 import { FC, Fragment } from "react";
 
+import { getHelpUrl } from "../../common-lib/urls";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
 import Flex from "../Flex";
@@ -26,7 +27,7 @@ const cardCopy = [
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
     linkText: "Help Centre.",
-    href: "https://www.thenational.academy/help",
+    href: getHelpUrl(),
     linkType: "link",
   },
 ];
@@ -37,7 +38,7 @@ const AboutContactCard: FC = () => {
     <Grid>
       <GridArea $order={[2, 1]} $colSpan={[12, 8]}>
         <Card
-          $pa={[16, 32]}
+          $pa={[16, 24]}
           $justifyContent={["center"]}
           $background={"pupilsLightGreen"}
           $pt={[32, 0]}
@@ -59,7 +60,7 @@ const AboutContactCard: FC = () => {
         </Card>
       </GridArea>
       <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 4]}>
-        <Flex $background={"pupilsLightGreen"} $pa={[0, 32]}>
+        <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
           <NewsletterForm onSubmit={onSubmit} />
         </Flex>
       </GridArea>

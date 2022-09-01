@@ -11,6 +11,7 @@ export type CardImageProps = {
   position?: CSSProperties["objectPosition"];
   aspectRatio?: AspectRatios;
   priority?: boolean;
+  ariaHidden?: boolean;
 };
 
 const CardImage: FC<CardImageProps> = ({
@@ -19,10 +20,12 @@ const CardImage: FC<CardImageProps> = ({
   position = "center center",
   aspectRatio = DEFAULT_ASPECT_RATIO,
   priority,
+  ariaHidden = false,
 }) => {
   return (
     <AspectRatio ratio={aspectRatio}>
       <NextImage
+        aria-hidden={ariaHidden}
         layout="fill"
         objectFit="contain"
         objectPosition={position}

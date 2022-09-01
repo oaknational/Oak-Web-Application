@@ -16,13 +16,12 @@ import OutlineHeading from "../../components/OutlineHeading";
 import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
-import ButtonLinkNav from "../../components/ButtonLinkNav";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
+import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 
 export type AboutPageProps = {
   pageData: AboutPage;
   isPreviewMode: boolean;
-  renderPlayer: boolean;
 };
 
 type TimeLineProps = TextBlock & FlexProps;
@@ -47,19 +46,21 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
           {title}
         </OutlineHeading>
-        <PortableText value={bodyPortableText} />
+        <Typography $fontSize={18}>
+          <PortableText value={bodyPortableText} />
+        </Typography>
+        {cta?.linkType == "internal" && (
+          <Flex>
+            <ButtonAsLink
+              $mt={[36]}
+              icon={"ArrowRight"}
+              iconPosition={"trailing"}
+              label={cta.label}
+              href={`/blog/${cta.internal.slug}`}
+            />
+          </Flex>
+        )}
       </Flex>
-      {cta?.label && (
-        <Flex>
-          <ButtonAsLink
-            $mt={[36]}
-            icon={"ArrowRight"}
-            iconPosition={"trailing"}
-            label={cta.label}
-            href={"/"}
-          />
-        </Flex>
-      )}
     </Flex>
   );
 };
@@ -67,7 +68,6 @@ const TimeLineCard: FC<TimeLineProps> = ({
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({
   pageData,
   isPreviewMode,
-  renderPlayer,
 }) => {
   return (
     <Layout
@@ -80,15 +80,16 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           title={"About us"}
           heading={pageData.whoWeAre.sectionHeading}
           summary={
-            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantaged gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum"
+            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
           }
           background={"teachersPastelYellow"}
-          textMaxWidth={740}
-          imageMinWidth={180}
-          cardImageProps={{
-            imageSrc: "/images/oak-logo.svg",
+          imageProps={{
+            src: "/images/oak-logo.svg",
             alt: "who we are illustration",
-            position: "left center",
+          }}
+          imageContainerProps={{
+            $minHeight: 220,
+            $mr: 32,
           }}
         >
           <ButtonLinkNav
@@ -98,7 +99,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           />
         </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
-          <Card $pv={32} $ph={[16, 32]} $flexDirection={["column", "row"]}>
+          <Card $pv={32} $ph={[16, 24]} $flexDirection={["column", "row"]}>
             <Flex
               $justifyContent={"center"}
               $alignItems={"center"}
@@ -106,12 +107,15 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $pr={[0, 72]}
               $minWidth={["50%"]}
             >
-              {pageData.whoWeAre.intro.mediaType == "video" && renderPlayer && (
+              {pageData.whoWeAre.intro.mediaType == "video" && (
                 <VideoPlayer
                   playbackId={
                     pageData.whoWeAre.intro.video.video.asset.playbackId
                   }
                   title={pageData.whoWeAre.intro.video.title}
+                  thumbnailTime={
+                    pageData.whoWeAre.intro.video.video.asset.thumbTime
+                  }
                 />
               )}
             </Flex>
@@ -126,12 +130,12 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                 />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
-                {pageData.whoWeAre.intro.cta?.linkType && (
+                {pageData.whoWeAre.intro.cta?.linkType == "internal" && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     iconPosition="trailing"
                     label={pageData.whoWeAre.intro.cta.label}
-                    href={"/"}
+                    href={`/blog/${pageData.whoWeAre.intro.cta.internal.slug}`}
                   />
                 )}
               </Flex>
@@ -197,7 +201,6 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutPage,
       isPreviewMode,
-      renderPlayer: true,
     },
     revalidate: 10,
   };

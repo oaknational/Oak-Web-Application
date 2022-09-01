@@ -39,10 +39,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           heading={pageData.board.sectionHeading}
           summary={pageData.board.introPortableText}
           background={"teachersPastelYellow"}
-          cardImageProps={{
-            imageSrc: "/images/oak-logo.svg",
+          imageProps={{
+            src: "/images/oak-logo.svg",
             alt: "who we are illustration",
-            position: "left center",
           }}
         >
           <ButtonLinkNav

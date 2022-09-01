@@ -1,51 +1,40 @@
-import { SizeProps } from "../../styles/utils/size";
-import { SpacingProps } from "../../styles/utils/spacing";
+import { getCareersUrl, getHelpUrl } from "../../common-lib/urls";
+import { FooterSections } from "../../components/SiteFooter/SiteFooter";
 
-export type FooterLink = {
-  text: string;
-  href: string;
-};
-
-export type FooterSection = {
-  title?: string;
-  links?: FooterLink[];
-} & SpacingProps &
-  SizeProps;
-
-const footerSections: FooterSection[] = [
-  {
+const footerSections: FooterSections = {
+  pupils: {
     title: "Pupils",
-    links: [
-      { text: "Classroom", href: "https://classroom.thenational.academy/" },
-    ],
+    links: [{ text: "Classroom", type: "pupils-link" }],
   },
-  {
+  teachers: {
     title: "Teachers",
     links: [
-      { text: "Teacher Hub", href: "https://teachers.thenational.academy" },
+      { text: "Teacher Hub", type: "teachers-link" },
       { text: "Plan a lesson", href: "/lesson-planning" },
       { text: "Develop your curriculum", href: "/develop-your-curriculum" },
-      { text: "Support your team", href: "/support-your-team" },
     ],
   },
-  {
+  oak: {
     title: "Oak",
     links: [
       { text: "Home", href: "/" },
-      { text: "About Oak", href: "/about-us/who-we-are" },
-      { text: "Careers", href: "about-us/work-with-us" },
+      { text: "About us", href: "/about-us/who-we-are" },
+      {
+        text: "Careers",
+        href: getCareersUrl(),
+      },
       { text: "Contact us", href: "/contact-us" },
-      { text: "Help", href: "https://support.thenational.academy/" },
-      { text: "Webinars", href: "/webinars" },
+      { text: "Help", href: getHelpUrl() },
       { text: "Blog", href: "/blog" },
     ],
   },
 
-  {
+  legal: {
     title: "Legal",
     links: [
       { text: "Privacy policy", href: "/legal/privacy-policy" },
       { text: "Cookie policy", href: "/legal/cookie-policy" },
+      { text: "Manage cookie settings", type: "consent-manager-toggle" },
       { text: "Copyright notice", href: "/legal/copyright-notice" },
       { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
       { text: "Accessibilty statement", href: "/legal/accessibilty-statement" },
@@ -54,13 +43,13 @@ const footerSections: FooterSection[] = [
         text: "Physical activity disclaimer",
         href: "/legal/physical-activity-disclaimer",
       },
-      { text: "Complaints", href: "legal/complaints" },
+      { text: "Complaints", href: "/legal/complaints" },
       {
         text: "Freedom of information requests",
-        href: "legal/freedom-of-information-requests",
+        href: "/legal/freedom-of-information-requests",
       },
     ],
   },
-];
+};
 
 export default footerSections;

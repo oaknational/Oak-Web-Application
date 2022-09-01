@@ -103,7 +103,7 @@ function getAppVersion(isProductionBuild) {
   }
 }
 
-const RELEASE_STAGE_TESTING = "testing";
+const RELEASE_STAGE_TESTING = "test";
 const RELEASE_STAGE_DEVELOPMENT = "development";
 const RELEASE_STAGE_PREVIEW = "preview";
 const RELEASE_STAGE_PRODUCTION = "production";
