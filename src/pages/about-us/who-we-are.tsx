@@ -46,7 +46,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
           {title}
         </OutlineHeading>
-        <Typography $fontSize={18}>
+        <Typography $fontSize={[16, 18]}>
           <PortableText value={bodyPortableText} />
         </Typography>
         {cta?.linkType == "internal" && (
