@@ -1,3 +1,11 @@
+# [0.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.1...v0.90.0) (2022-09-02)
+
+
+### Features
+
+* add basic schema for landing pages ([0b31d7d](https://github.com/oaknational/Oak-Web-Application/commit/0b31d7db6b511e3eee9b549ddc59e872ccfef2dc))
+* add basic template for landing pages ([cb65234](https://github.com/oaknational/Oak-Web-Application/commit/cb65234d7249a92474619c4a4e951a225d975b68))
+
 ## [0.89.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.0...v0.89.1) (2022-09-02)
 
 
