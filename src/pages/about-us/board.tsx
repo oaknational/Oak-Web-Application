@@ -111,7 +111,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                     >
                       <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(
                         1
-                      )}mb ${doc.file.asset.extension}`}</P>
+                      )}mb ${doc.file.asset.extension.toUpperCase()}`}</P>
                       <IconButtonAsLink
                         icon={"Download"}
                         aria-label={""}
