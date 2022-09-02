@@ -25,7 +25,7 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import Card from "../../components/Card";
 import Cover from "../../components/Cover";
-import { Heading, P, Span } from "../../components/Typography";
+import { Heading, P, Span, OL } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
@@ -79,7 +79,7 @@ const portableTextComponents = {
   },
   list: {
     bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
-    number: (props: PortableTextComponent) => <ol>{props.children}</ol>,
+    number: (props: PortableTextComponent) => <OL>{props.children}</OL>,
   },
   listItem: {
     bullet: (props: PortableTextComponent) => <li>{props.children}</li>,

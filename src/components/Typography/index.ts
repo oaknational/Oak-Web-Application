@@ -4,3 +4,4 @@ export { default } from "./Typography";
 export { default as Span } from "./Span";
 export { default as P } from "./P";
 export { default as Hr } from "./Hr";
+export { default as OL } from "./OL";
