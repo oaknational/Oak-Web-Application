@@ -35,7 +35,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
       >
         {buttons.map((button) => (
           <Fragment key={button.label}>
-            {/* Add responsive button icon and variant */}
+            {/* @todo Add responsive button icon and variant */}
             <Box $display={["none", "block"]}>
               <ButtonAsLink
                 variant={selected === button.label ? "minimal" : "brush"}

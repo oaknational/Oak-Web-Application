@@ -64,8 +64,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           bodyPortableText={pageData.board.introPortableText}
         />
 
-        <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h3"}>
-          {pageData.board.sectionHeading}
+        <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h2"}>
+          Our interim board
         </Heading>
 
         <Box $mb={[80, 92]}>
@@ -83,7 +83,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
         </Box>
 
         <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
-          <Heading $fontSize={24} tag={"h4"}>
+          <Heading $fontSize={24} tag={"h2"}>
             Documents
           </Heading>
         </Flex>
@@ -114,7 +114,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                       )}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
                       <IconButtonAsLink
                         icon={"Download"}
-                        aria-label={""}
+                        aria-label={`Download ${doc.title} as ${doc.file.asset.size} ${doc.file.asset.extension}`}
                         href={`${doc.file.asset.url}?dl`}
                         background={"teachersHighlight"}
                       />
@@ -129,7 +129,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           </Typography>
         </Flex>
         <Card $pv={0} $mv={[80, 92]} $ph={[16, 80]} $width={["100%", "70%"]}>
-          <Heading $mb={20} $fontSize={24} tag={"h4"}>
+          <Heading $mb={20} $fontSize={24} tag={"h2"}>
             Governance
           </Heading>
 

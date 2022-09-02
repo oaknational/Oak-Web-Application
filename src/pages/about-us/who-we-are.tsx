@@ -172,7 +172,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                   <Heading
                     $fontSize={[24, 32]}
                     $lineHeight={["32px", "40px"]}
-                    tag={"h4"}
+                    tag={"h2"}
                     $mb={[24]}
                   >
                     {principle.title}
