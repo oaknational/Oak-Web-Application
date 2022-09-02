@@ -50,6 +50,6 @@
     "previewSecret": "preview-secret",
     "useCDN": "true",
     "requiredSecrets": ["SANITY_AUTH_SECRET", "SANITY_PREVIEW_SECRET"],
-    "apiHost": "example.com"
+    "assetCDNHost": "example.com"
   }
 }

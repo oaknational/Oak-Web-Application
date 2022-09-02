@@ -21,7 +21,7 @@ const clientLike: SanityClientLike = {
   clientConfig: {
     projectId: config.get("sanityProjectId"),
     dataset: config.get("sanityDataset"),
-    apiHost: `https://${config.get("sanityApiHost")}`,
+    apiHost: `https://${config.get("sanityAssetCDNHost")}`,
   },
 };
 

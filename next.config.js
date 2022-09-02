@@ -62,10 +62,10 @@ module.exports = async (phase) => {
   const isStaticWWWBuild =
     isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
 
-  const SANITY_API_HOST =
-    process.env.SANITY_API_HOST || oakConfig.sanity.apiHost;
+  const SANITY_ASSET_CDN_HOST =
+    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
-  const imageDomains = [SANITY_API_HOST].filter(Boolean);
+  const imageDomains = [SANITY_ASSET_CDN_HOST].filter(Boolean);
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -184,7 +184,7 @@ module.exports = async (phase) => {
       SANITY_PREVIEW_SECRET:
         process.env.SANITY_PREVIEW_SECRET ||
         secretsFromNetwork.SANITY_PREVIEW_SECRET,
-      SANITY_API_HOST,
+      SANITY_ASSET_CDN_HOST,
     },
     images: {
       domains: imageDomains,
