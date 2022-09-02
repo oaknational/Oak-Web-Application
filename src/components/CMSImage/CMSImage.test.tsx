@@ -36,7 +36,7 @@ describe("CMSImage", () => {
     expect(img.getAttribute("alt")).toBe(altString);
   });
 
-  it("sets the provided alt text", async () => {
+  it("overrides the image altText with the `alt` prop", async () => {
     const altString = "a donkey in a field on a sunny day";
     const altStringOverride = "a horse in a field on an overcast day";
     const mockImage = { ...mockImageAsset(), altText: altString };
