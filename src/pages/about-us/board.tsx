@@ -73,9 +73,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             <Heading
               key={boardMember.id}
               $textAlign="center"
-              $lineHeight={"40px"}
+              $fontFamily={"headingLight"}
               tag={"h4"}
-              $fontSize={[24, 32]}
+              $fontSize={[16, 20]}
             >
               {boardMember.name}
             </Heading>
@@ -111,7 +111,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                     >
                       <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(
                         1
-                      )}mb ${doc.file.asset.extension.toUpperCase()}`}</P>
+                      )}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
                       <IconButtonAsLink
                         icon={"Download"}
                         aria-label={""}
@@ -133,7 +133,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             Governance
           </Heading>
 
-          <Typography $fontSize={[18, 16]}>
+          <Typography $fontSize={[16, 18]}>
             <PortableText value={pageData.board.governancePortableText} />
           </Typography>
         </Card>

@@ -1,4 +1,5 @@
 import { FC, Fragment } from "react";
+import styled from "styled-components";
 
 import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
@@ -9,6 +10,15 @@ type ButtonLinkNavProps = {
   buttons: { label: string; href: string }[];
   selected: string;
 } & FlexProps;
+
+const ButtonAsLinkOpacity = styled(ButtonAsLink)<{ opacity: string }>`
+  opacity: ${(props) => props.opacity};
+`;
+
+const IconOpacity = styled(Icon)<{ opacity: string }>`
+  opacity: ${(props) => props.opacity};
+  margin-left: ${(props) => props.$ml}px;
+`;
 
 const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
@@ -38,15 +48,16 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
             <Flex $flexDirection={"row"} $display={["flex", "none"]}>
               {selected === button.label && (
                 <Flex $alignItems={"center"}>
-                  <Icon
-                    $ml={4}
-                    $color={"black"}
+                  <IconOpacity
+                    opacity={selected === button.label ? "60%" : "100%"}
+                    $ml={12}
                     variant={"minimal"}
                     name={"ArrowRight"}
                   />
                 </Flex>
               )}
-              <ButtonAsLink
+              <ButtonAsLinkOpacity
+                opacity={selected === button.label ? "60%" : "100%"}
                 variant={"minimal"}
                 label={button.label}
                 href={button.href}

@@ -12,7 +12,7 @@ const cardCopy = [
   {
     heading: "General enquiries",
     p: "For general enquiries and help please email ",
-    linkText: "help@thenational.academy",
+    linkText: "help@thenational.academy.",
     href: "mailto: help@thenational.academy",
     linkType: "email",
   },
@@ -20,7 +20,7 @@ const cardCopy = [
     heading: "Media enquiries",
     p: "For media enquiries, please contact ",
     linkText: "media@thenational.academy.",
-    href: "mailto: media@thenational.academy.",
+    href: "mailto: media@thenational.academy",
     linkType: "email",
   },
   {

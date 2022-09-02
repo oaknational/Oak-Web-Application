@@ -4,6 +4,7 @@ import { PortableText, PortableTextProps } from "@portabletext/react";
 import Card from "../Card";
 import Flex from "../Flex";
 import CardImage, { CardImageProps } from "../Card/CardComponents/CardImage";
+import Typography from "../Typography";
 
 type AboutIntroCardProps = {
   image: CardImageProps;
@@ -26,7 +27,9 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
         <CardImage imageSrc={image.imageSrc} alt={image.alt} />
       </Flex>
       <Flex $alignItems="center">
-        <PortableText value={bodyPortableText} />
+        <Typography $fontSize={[16, 18]}>
+          <PortableText value={bodyPortableText} />
+        </Typography>
       </Flex>
     </Card>
   );

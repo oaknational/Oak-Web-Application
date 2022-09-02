@@ -99,12 +99,17 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           />
         </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
-          <Card $pv={32} $ph={[16, 24]} $flexDirection={["column", "row"]}>
+          <Card
+            $pv={32}
+            $ph={[16, 24]}
+            $flexDirection={["column", "column", "row"]}
+            $maxWidth={["100%", 812, "100%"]}
+          >
             <Flex
               $justifyContent={"center"}
               $alignItems={"center"}
-              $pb={[24, 0]}
-              $pr={[0, 72]}
+              $pb={[24, 24, 0]}
+              $pr={[0, 0, 72]}
               $minWidth={["50%"]}
             >
               {pageData.whoWeAre.intro.mediaType == "video" && (
