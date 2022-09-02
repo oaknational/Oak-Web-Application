@@ -12,21 +12,21 @@ const cardCopy = [
   {
     heading: "General enquiries",
     p: "For general enquiries and help please email ",
-    linkText: "help@thenational.academy.",
+    linkText: "help@thenational.academy",
     href: "mailto: help@thenational.academy",
     linkType: "email",
   },
   {
     heading: "Media enquiries",
     p: "For media enquiries, please contact ",
-    linkText: "media@thenational.academy.",
+    linkText: "media@thenational.academy",
     href: "mailto: media@thenational.academy",
     linkType: "email",
   },
   {
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
-    linkText: "Help Centre.",
+    linkText: "Help Centre",
     href: getHelpUrl(),
     linkType: "link",
   },
@@ -50,7 +50,7 @@ const AboutContactCard: FC = () => {
               </Heading>
               <P $mb={32} $fontSize={[16, 18]}>
                 {section.p}
-                <a href={section.href}>{section.linkText}</a>
+                <a href={section.href}>{section.linkText}</a>.
               </P>
             </Fragment>
           ))}
