@@ -3,11 +3,11 @@ import * as z from "zod";
 import {
   slugSchema,
   documentSchema,
-  portableTextSchema,
   dateSchema,
   blogWebinarCategorySchema,
   imageSchema,
 } from "./base";
+import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
 
 export const blogPostSchema = z
@@ -30,7 +30,6 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   title: true,
   slug: true,
   summary: true,
-  contentPortableText: true,
   author: true,
   category: true,
   date: true,

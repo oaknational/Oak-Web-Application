@@ -3,10 +3,10 @@ import * as z from "zod";
 import {
   slugSchema,
   documentSchema,
-  portableTextSchema,
   dateSchema,
   blogWebinarCategorySchema,
 } from "./base";
+import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
 
 export const webinarSchema = z

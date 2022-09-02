@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+import { OmitKeepDiscriminated } from "../../../../utils/generics";
+
 export const documentSchema = z.object({
   id: z.string(),
 });
@@ -12,70 +14,17 @@ export const slugSchema = z
 
 export type Slug = z.infer<typeof slugSchema>;
 
-// @TODO: Proper shape here
-export const portableTextSchema = z.array(z.any());
-
-export type PortableText = z.infer<typeof portableTextSchema>;
-
 export const dateSchema = z.preprocess((arg) => {
   if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
 }, z.date());
 
-const CTASchemaBase = z.object({
-  label: z.string(),
+export const imageAssetSchema = z.object({
+  _id: z.string(),
+  url: z.string(),
 });
-
-export const CTASchema = z.discriminatedUnion("linkType", [
-  CTASchemaBase.extend({
-    linkType: z.literal("internal"),
-    internal: z.object({
-      /**
-       * If you've ended up here because of a validation error
-       * about internal.type not being defined, the fragments
-       * in cta.fragment.gql may be out of date.
-       * It'll need a separate inline fragment for each possible
-       * document type in the generated union, e.g.
-       * ```
-       *   ...on DocumentType {
-       *     type: _type
-       *   }
-       * ```
-       */
-      contentType: z.string(),
-      slug: slugSchema.optional(),
-    }),
-  }),
-  CTASchemaBase.extend({
-    linkType: z.literal("external"),
-    external: z.string().url(),
-  }),
-]);
 
 export const imageSchema = z.object({
-  asset: z.object({
-    _id: z.string(),
-    url: z.string(),
-  }),
-});
-
-export const cardSchema = z.object({
-  title: z.string().nonempty(),
-  bodyPortableText: portableTextSchema,
-  image: imageSchema.nullable().optional(),
-  cta: CTASchema.nullable().optional(),
-});
-
-export const textBlockSchema = z.object({
-  title: z.string().nonempty(),
-  bodyPortableText: portableTextSchema,
-  cta: CTASchema.nullable().optional(),
-});
-
-export const textAndMediaSchemaBase = z.object({
-  title: z.string().nonempty(),
-  bodyPortableText: portableTextSchema,
-  cta: CTASchema.nullable().optional(),
-  alignMedia: z.enum(["left", "right"]),
+  asset: imageAssetSchema,
 });
 
 export const videoSchema = z.object({
@@ -88,24 +37,113 @@ export const videoSchema = z.object({
         .number()
         .nullish()
         .transform((val) => {
-          return val === null ? undefined : val;
+          return val === undefined ? null : val;
         }),
     }),
   }),
 });
 
-export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
-  textAndMediaSchemaBase.extend({
-    mediaType: z.literal("image"),
-    image: imageSchema,
-  }),
-  textAndMediaSchemaBase.extend({
-    mediaType: z.literal("video"),
-    video: videoSchema,
-  }),
-]);
-
 export const blogWebinarCategorySchema = z.object({
   title: z.string(),
   slug: slugSchema,
 });
+
+export const attachmentSchema = z.object({
+  title: z.string(),
+  file: z.object({
+    asset: z.object({
+      extension: z.string(),
+      size: z.number(),
+      url: z.string(),
+    }),
+  }),
+});
+
+/**
+ * All content types that can be linked to from within sanity
+ *
+ * If you've ended up here because of a validation error
+ * about internal.type not being defined, the fragments
+ * in internalLinkFields.fragment.gql may be out of date.
+ *
+ * It'll need a separate inline fragment for each possible
+ * document type allowed in sanity
+ * ```
+ *   ...on DocumentType {
+ *     type: _type
+ *   }
+ * ```
+ */
+const internalLinkEntryTypes = [
+  // For internal links with slugs
+  z
+    .object({ contentType: z.literal("webinar"), slug: slugSchema })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("newsPost"), slug: slugSchema })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("policyPage"), slug: slugSchema })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("landingPage"), slug: slugSchema })
+    .merge(documentSchema),
+
+  // For internal links to fixed pages
+  z.object({ contentType: z.literal("homepage") }).merge(documentSchema),
+  z.object({ contentType: z.literal("aboutCorePage") }).merge(documentSchema),
+  z
+    .object({ contentType: z.literal("planningCorePage") })
+    .merge(documentSchema),
+  z.object({ contentType: z.literal("supportCorePage") }).merge(documentSchema),
+  z
+    .object({ contentType: z.literal("curriculumCorePage") })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("webinarListingPage") })
+    .merge(documentSchema),
+  z.object({ contentType: z.literal("newsListingPage") }).merge(documentSchema),
+
+  // Other
+  z
+    .object({ contentType: z.literal("attachment") })
+    .merge(attachmentSchema)
+    .merge(documentSchema),
+] as const;
+
+export const internalLinkEntrySchema = z.discriminatedUnion("contentType", [
+  ...internalLinkEntryTypes,
+]);
+
+export type InternalLinkEntry = z.infer<typeof internalLinkEntrySchema>;
+
+export type CTAInternalLinkEntry = OmitKeepDiscriminated<
+  InternalLinkEntry,
+  "id"
+>;
+
+// Documents that can be referenced from within portable text
+export const portableTextReferencedEntrySchema = z.discriminatedUnion(
+  "contentType",
+  [
+    ...internalLinkEntryTypes,
+
+    // Embedded content
+    z
+      .object({
+        contentType: z.literal("sanity.imageAsset"),
+        _type: z.literal("sanity.imageAsset"),
+      })
+      .merge(imageAssetSchema)
+      .merge(documentSchema),
+
+    z
+      .object({ contentType: z.literal("video"), _type: z.literal("video") })
+      .merge(videoSchema)
+      .merge(documentSchema),
+  ]
+);
+
+export type PortableTextReferencedEntry = z.infer<
+  typeof portableTextReferencedEntrySchema
+>;

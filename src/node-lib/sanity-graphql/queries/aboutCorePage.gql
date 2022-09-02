@@ -35,14 +35,7 @@ query aboutCorePage($isDraft: Boolean = false) {
       sectionHeading
       introPortableText: introRaw
       documents {
-        title
-        file {
-          asset {
-            extension
-            size
-            url
-          }
-        }
+       ...Attachment
       }
       governancePortableText: governanceRaw
     }

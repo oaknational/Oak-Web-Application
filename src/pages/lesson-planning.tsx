@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
-import { PortableText, PortableTextProps } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 
-import CMSClient, { PlanningPage } from "../node-lib/cms";
+import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -43,7 +43,7 @@ const getLessonElementCards = (
   id: string;
   icon: IconName;
   title: string;
-  portableText: PortableTextProps["value"];
+  portableText: PortableTextJSON;
   background?: OakColorName;
 }[] => [
   {
