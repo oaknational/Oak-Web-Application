@@ -21,7 +21,7 @@ export type Video = {
   title: string;
   video: {
     asset: {
-      thumbTime?: number;
+      thumbTime?: number | null;
       assetId: string;
       playbackId: string;
     };

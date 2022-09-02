@@ -37,7 +37,7 @@ export const videoSchema = z.object({
         .number()
         .nullish()
         .transform((val) => {
-          return val === null ? undefined : val;
+          return val === undefined ? null : val;
         }),
     }),
   }),
