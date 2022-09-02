@@ -78,7 +78,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 type InputProps = UnstyledInputProps &
   StyledInputProps & {
     id: string;
-    label: string;
+    label?: string;
     error?: string;
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
