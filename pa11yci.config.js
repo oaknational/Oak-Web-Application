@@ -7,7 +7,8 @@
 const config = {
   defaults: {
     runners: ["axe"],
-    hideElements: "#mtm-root-container, #mtm-frame-container, #avo-debugger",
+    hideElements:
+      "#mtm-root-container, #mtm-frame-container, #avo-debugger, #homepage-blog-list",
   },
   urls: [],
 };

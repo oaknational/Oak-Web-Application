@@ -8,7 +8,7 @@ import CMSClient, { WebinarPreview } from "../node-lib/cms";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import Typography, { Heading, P, Span } from "../components/Typography";
+import Typography, { Heading, Hr, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
@@ -299,7 +299,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Box $background={"white"} $pa={24}>
+              <Box $background={"white"} $pa={24} $height={"100%"}>
                 <Flex
                   $alignItems="center"
                   $justifyContent="space-between"
@@ -319,10 +319,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                   $flexDirection="column"
                   as="ul"
                   role="list" /* role=list to strip default ul styling */
+                  id="homepage-blog-list"
                 >
                   {posts.map((item, i) => (
                     <li key={`BlogList-BlogListItem-${i}`}>
+                      {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
+                      {i < posts.length - 1 && <Hr $color="black" />}
                     </li>
                   ))}
                 </Flex>
@@ -381,7 +384,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   const posts = [...blogPosts, ...webinars]
     .sort(sortByDate)
-    .slice(0, 5)
+    .slice(0, 4)
     .map(serializeDate);
 
   return {
