@@ -1,3 +1,10 @@
+# [0.93.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.92.0...v0.93.0) (2022-09-02)
+
+
+### Features
+
+* adds sanity apiHost to config ([f7180ff](https://github.com/oaknational/Oak-Web-Application/commit/f7180fff35585ff90d9ed7454fa01990d6b684ac))
+
 # [0.92.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.91.0...v0.92.0) (2022-09-02)
 
 
