@@ -1,3 +1,18 @@
+# [0.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.1...v0.90.0) (2022-09-02)
+
+
+### Features
+
+* add basic schema for landing pages ([0b31d7d](https://github.com/oaknational/Oak-Web-Application/commit/0b31d7db6b511e3eee9b549ddc59e872ccfef2dc))
+* add basic template for landing pages ([cb65234](https://github.com/oaknational/Oak-Web-Application/commit/cb65234d7249a92474619c4a4e951a225d975b68))
+
+## [0.89.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.0...v0.89.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* **analytics:** only fire single page view ([c729d42](https://github.com/oaknational/Oak-Web-Application/commit/c729d42b4166c22ee871af6e611ff16a20c6ac97))
+
 # [0.89.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.88.1...v0.89.0) (2022-09-02)
 
 
