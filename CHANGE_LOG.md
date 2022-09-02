@@ -1,3 +1,22 @@
+# [0.91.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.90.0...v0.91.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* add some extra spacing on mobile ([ff3a41b](https://github.com/oaknational/Oak-Web-Application/commit/ff3a41b124cdd3b9a45c27a7066599b731e312b2))
+* **bloglist:** improve a11y label on pagination buttons ([4a455f9](https://github.com/oaknational/Oak-Web-Application/commit/4a455f92922ea446973c209edc78f3d61c493023))
+* correct typo ([d7179e2](https://github.com/oaknational/Oak-Web-Application/commit/d7179e23f1462f9569e312316094317e8b893842))
+* **homepage:** homepage a11y fixes ([6170b3e](https://github.com/oaknational/Oak-Web-Application/commit/6170b3efa22efcae4f206ac424ff9712bb3c5ad6))
+* increase column width now we have images ([c72b326](https://github.com/oaknational/Oak-Web-Application/commit/c72b326027be58f7c6b33e046512c54b11207dd4))
+* input a11y ([3b4db0c](https://github.com/oaknational/Oak-Web-Application/commit/3b4db0c3d11b0cbd44fc3b75192ca7de87b081de))
+* **menu:** make backdrop a div rather than a button ([36d4890](https://github.com/oaknational/Oak-Web-Application/commit/36d4890ed19a918efd228da294453f600e57bb9a))
+
+
+### Features
+
+* show images on blog page ([934557f](https://github.com/oaknational/Oak-Web-Application/commit/934557fcc3b718f525ab6d7a81409527deb373a9))
+* update hyperlink colour for overlay on pink ([b4fb543](https://github.com/oaknational/Oak-Web-Application/commit/b4fb5437f066bcce76ff622f3682097472fdde6d))
+
 # [0.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.1...v0.90.0) (2022-09-02)
 
 
