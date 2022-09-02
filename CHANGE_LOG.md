@@ -1,3 +1,10 @@
+## [0.89.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.0...v0.89.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* **analytics:** only fire single page view ([c729d42](https://github.com/oaknational/Oak-Web-Application/commit/c729d42b4166c22ee871af6e611ff16a20c6ac97))
+
 # [0.89.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.88.1...v0.89.0) (2022-09-02)
 
 
