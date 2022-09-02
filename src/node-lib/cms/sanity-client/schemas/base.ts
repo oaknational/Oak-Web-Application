@@ -24,7 +24,7 @@ export const imageAssetSchema = z.object({
 });
 
 export const imageSchema = z.object({
-  altText: z.string().nonempty().nullable(),
+  altText: z.string().nonempty().nullish(),
   asset: imageAssetSchema,
 });
 

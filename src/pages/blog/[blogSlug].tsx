@@ -127,7 +127,7 @@ const portableTextComponents = {
     },
   },
   types: {
-    image: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
+    imageWithAltText: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
       if (!props.value) {
         return null;
       }
