@@ -78,6 +78,7 @@ const SignInCallback = () => {
           <Flex>
             <Input
               id="sign-in-callback-email-inptu"
+              label="Email address"
               name="email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}

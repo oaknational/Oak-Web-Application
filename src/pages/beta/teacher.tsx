@@ -44,6 +44,7 @@ const TeacherHome: FC = () => {
           <GridArea $colSpan={[12, 12, 12]}>
             <Input
               icon="Search"
+              label="Search"
               onChange={(e) => setValue(e.target.value)}
               placeholder="Search for subjects, lessons, quizes, lessons plans and much much more..."
               value={value}
