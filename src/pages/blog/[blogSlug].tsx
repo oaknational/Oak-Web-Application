@@ -128,7 +128,6 @@ const blogPortableTextComponents: PortableTextComponents = {
                 $mt={24}
                 label={params.cta.label}
                 href={getCTAHref(params.cta)}
-                icon={"Share"}
                 background={"teachersHighlight"}
               />
             )}
@@ -208,7 +207,6 @@ const blogPortableTextComponents: PortableTextComponents = {
         <ButtonAsLink
           label={cta.label}
           href={getCTAHref(cta)}
-          icon={"Share"}
           background={"teachersHighlight"}
         />
       );
