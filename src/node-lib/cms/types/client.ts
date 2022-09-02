@@ -2,6 +2,8 @@ import { AboutPage, PlanningPage, CurriculumPage } from "./pages";
 import {
   BlogPost,
   BlogPostPreview,
+  LandingPage,
+  LandingPagePreview,
   PolicyPage,
   PolicyPagePreview,
   Webinar,
@@ -27,5 +29,7 @@ export interface CMSClient {
     curriculumPage(params?: Params): Promise<CurriculumPage>;
     policyPageBySlug(slug: string, params?: Params): Promise<PolicyPage>;
     policyPages(params?: ListParams): Promise<PolicyPagePreview[]>;
+    landingPages(params?: ListParams): Promise<LandingPagePreview[]>;
+    landingPageBySlug(slug: string, params?: Params): Promise<LandingPage>;
   };
 }

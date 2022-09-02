@@ -42,7 +42,6 @@ export type BlogPostPreview = Pick<
   | "title"
   | "slug"
   | "summary"
-  | "contentPortableText"
   | "author"
   | "category"
   | "date"
@@ -68,3 +67,9 @@ export type PolicyPage = Document & {
 };
 
 export type PolicyPagePreview = Pick<PolicyPage, "title" | "slug">;
+
+export type LandingPage = Document & {
+  slug: string;
+};
+
+export type LandingPagePreview = Pick<LandingPage, "slug">;

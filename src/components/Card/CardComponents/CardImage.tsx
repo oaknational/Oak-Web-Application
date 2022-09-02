@@ -1,5 +1,5 @@
 import { CSSProperties, FC } from "react";
-import NextImage, { StaticImageData } from "next/image";
+import NextImage, { ImageProps, StaticImageData } from "next/image";
 
 import AspectRatio, { AspectRatios } from "../../AspectRatio";
 
@@ -12,7 +12,7 @@ export type CardImageProps = {
   aspectRatio?: AspectRatios;
   priority?: boolean;
   ariaHidden?: boolean;
-};
+} & Partial<ImageProps>;
 
 const CardImage: FC<CardImageProps> = ({
   imageSrc,
@@ -21,6 +21,7 @@ const CardImage: FC<CardImageProps> = ({
   aspectRatio = DEFAULT_ASPECT_RATIO,
   priority,
   ariaHidden = false,
+  ...imageProps
 }) => {
   return (
     <AspectRatio ratio={aspectRatio}>
@@ -32,6 +33,7 @@ const CardImage: FC<CardImageProps> = ({
         src={imageSrc}
         alt={alt}
         priority={priority}
+        {...imageProps}
       />
     </AspectRatio>
   );

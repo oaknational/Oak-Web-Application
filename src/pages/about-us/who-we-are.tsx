@@ -18,6 +18,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
+import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -49,14 +50,14 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <Typography $fontSize={[16, 18]}>
           <PortableText value={bodyPortableText} />
         </Typography>
-        {cta?.linkType == "internal" && (
+        {cta && (
           <Flex>
             <ButtonAsLink
               $mt={[36]}
               icon={"ArrowRight"}
               iconPosition={"trailing"}
               label={cta.label}
-              href={`/blog/${cta.internal.slug}`}
+              href={getCTAHref(cta)}
             />
           </Flex>
         )}
@@ -135,12 +136,12 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                 />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
-                {pageData.whoWeAre.intro.cta?.linkType == "internal" && (
+                {pageData.whoWeAre.intro.cta && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     iconPosition="trailing"
                     label={pageData.whoWeAre.intro.cta.label}
-                    href={`/blog/${pageData.whoWeAre.intro.cta.internal.slug}`}
+                    href={getCTAHref(pageData.whoWeAre.intro.cta)}
                   />
                 )}
               </Flex>

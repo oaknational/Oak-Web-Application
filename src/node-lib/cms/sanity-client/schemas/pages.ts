@@ -1,14 +1,9 @@
 import * as z from "zod";
 
-import {
-  cardSchema,
-  CTASchema,
-  documentSchema,
-  imageSchema,
-  portableTextSchema,
-  textAndMediaSchema,
-  textBlockSchema,
-} from "./base";
+import { attachmentSchema, documentSchema, imageSchema } from "./base";
+import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
+import { CTASchema } from "./cta";
+import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
 
 export const planningPageSchema = z
@@ -43,17 +38,6 @@ export const planningPageSchema = z
   .merge(documentSchema);
 
 export type PlanningPage = z.infer<typeof planningPageSchema>;
-
-const attachmentSchema = z.object({
-  title: z.string(),
-  file: z.object({
-    asset: z.object({
-      extension: z.string(),
-      size: z.number(),
-      url: z.string(),
-    }),
-  }),
-});
 
 export const aboutPageSchema = z
   .object({

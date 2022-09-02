@@ -46,7 +46,7 @@ const theme: OakTheme = {
     twilight: "#E5D1E0",
     videoBlue: "#CEE7E5",
     // hyperlinks
-    hyperlink: "#374CF1",
+    hyperlink: "#0D24C4",
   },
   contrastColors: {
     white: "black",

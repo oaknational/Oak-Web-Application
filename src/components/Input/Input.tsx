@@ -8,15 +8,12 @@ import { margin, MarginProps } from "../../styles/utils/spacing";
 import Box from "../Box";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
+import ScreenReaderOnly from "../ScreenReaderOnly";
 import { Span } from "../Typography";
 import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 
 import InputIcon from "./InputIcon";
-
-const LabelWrapper = styled(Box)`
-  transform: translateY(-100%);
-`;
 
 type StyledInputProps = MarginProps & {
   value?: string;
@@ -88,15 +85,16 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
     const { id, icon, label, error, ...inputProps } = props;
     const errorId = `${id}-error`;
+    const labelId = `${id}-label`;
 
     return (
       <>
         {label && (
-          <LabelWrapper $position="absolute">
-            <Label $fontSize={12} htmlFor={id}>
+          <ScreenReaderOnly>
+            <Label $fontSize={12} htmlFor={id} id={labelId}>
               {label}
             </Label>
-          </LabelWrapper>
+          </ScreenReaderOnly>
         )}
         <Flex $alignItems="center">
           <StyledInput
@@ -106,6 +104,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? errorId : undefined}
+            aria-labelledby={labelId}
           />
           {icon && <InputIcon $pa={8} size={40} name={icon} />}
         </Flex>

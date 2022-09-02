@@ -28,5 +28,4 @@ fragment BlogPreviewFields on NewsPost {
     }
   }
   summary
-  contentPortableText: contentRaw
 }

@@ -128,6 +128,7 @@
         "linkType": "internal",
         "external": "https://foo.com",
         "internal": {
+          "id": "000",
           "contentType": "policyPage",
           "slug": { "current": "privacy" }
         }
@@ -229,7 +230,7 @@
         "label": "Search our lessons",
         "linkType": "internal",
         "external": "https://google.com",
-        "internal": { "contentType": "planningCorePage" }
+        "internal": { "id": "000", "contentType": "planningCorePage" }
       },
       "learnMoreHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
       "learnMoreBlock1": {
@@ -328,6 +329,7 @@
           "linkType": "internal",
           "external": null,
           "internal": {
+            "id": "000",
             "contentType": "policyPage",
             "slug": { "current": "privacy" }
           }

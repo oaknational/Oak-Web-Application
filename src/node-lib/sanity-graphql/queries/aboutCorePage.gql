@@ -38,14 +38,7 @@ query aboutCorePage($isDraft: Boolean = false) {
         ...TeamMember
       }
       documents {
-        title
-        file {
-          asset {
-            extension
-            size
-            url
-          }
-        }
+       ...Attachment
       }
       governancePortableText: governanceRaw
     }
