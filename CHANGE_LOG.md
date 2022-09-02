@@ -1,3 +1,10 @@
+## [0.94.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.1...v0.94.2) (2022-09-02)
+
+
+### Bug Fixes
+
+* **hubspot:** don't fire an initial pageview, ti's done automatically ([e43f1ea](https://github.com/oaknational/Oak-Web-Application/commit/e43f1eadf2b0e098833a5b16cdfab052177fa150))
+
 ## [0.94.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.0...v0.94.1) (2022-09-02)
 
 # [0.94.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.93.0...v0.94.0) (2022-09-02)
