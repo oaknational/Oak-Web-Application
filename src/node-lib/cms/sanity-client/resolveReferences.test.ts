@@ -29,8 +29,19 @@ describe("resolveReferences", () => {
         sanityGraphqlApi.blogPortableTextReferences as jest.Mock
       ).mockReturnValue({
         allDocument: [
-          { _id: "ref2", assetId: "abcdef" },
-          { _id: "ref1", url: "https://example.com/foo.png" },
+          {
+            contentType: "newsPost",
+            _type: "newsPost",
+            id: "ref2",
+            slug: { current: "some-blog-post" },
+          },
+          {
+            contentType: "sanity.imageAsset",
+            _type: "sanity.imageAsset",
+            id: "ref1",
+            _id: "ref1",
+            url: "https://example.com/foo.png",
+          },
         ],
       });
     });
@@ -38,26 +49,29 @@ describe("resolveReferences", () => {
     const mockObjWithReferences = {
       foo: {
         bar: {
-          image: { _type: "reference", _ref: "ref1" },
+          post: { _type: "reference", _ref: "ref1", _key: "001" },
         },
       },
       baz: [
         {
-          video: { _type: "reference", _ref: "ref2" },
+          image: { _type: "reference", _ref: "ref2" },
         },
       ],
     };
 
-    it("replaces each _ref object with the result of the query", async () => {
+    it("merges each _ref object with the result of the query", async () => {
       const resolved = await resolveReferences(mockObjWithReferences);
-      expect(resolved.foo.bar.image).toMatchObject({
-        _id: "ref1",
+      expect(resolved.foo.bar.post).toMatchObject({
+        contentType: "sanity.imageAsset",
+        id: "ref1",
         url: "https://example.com/foo.png",
+        _key: "001",
       });
 
-      expect(resolved.baz[0].video).toMatchObject({
-        _id: "ref2",
-        assetId: "abcdef",
+      expect(resolved.baz[0].image).toMatchObject({
+        contentType: "newsPost",
+        id: "ref2",
+        slug: "some-blog-post",
       });
     });
 

@@ -1,3 +1,23 @@
+# [0.92.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.91.0...v0.92.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* cast video thumbTime's to null not undefined ([8bebc1e](https://github.com/oaknational/Oak-Web-Application/commit/8bebc1e390836f6ee2a42222cc66e146d60fea8f))
+
+
+### Features
+
+* add assertUnreachable util ([74ffdb4](https://github.com/oaknational/Oak-Web-Application/commit/74ffdb4b005fcc6617d7c413e2ac50666266d66c))
+* add getCTAHref utility function ([6f54f61](https://github.com/oaknational/Oak-Web-Application/commit/6f54f61d2843d30b98b6661711c897993c48c5fd))
+* allow linking to home and landing pages ([a9a2354](https://github.com/oaknational/Oak-Web-Application/commit/a9a23540d6c931fa299d322fe7ae9254b8f15dda))
+* create resolveInternalHref function to map sanity links to hrefs ([0e8423b](https://github.com/oaknational/Oak-Web-Application/commit/0e8423b2c88a683d1bc36d919c21905a0ce74ad9))
+* don't accept or return nulls throughout cta/href utils ([49e6755](https://github.com/oaknational/Oak-Web-Application/commit/49e6755483b3098004c4e9bb5e14c0e2b2b860f1))
+* fetch necessary fields for internal linking ([68295db](https://github.com/oaknational/Oak-Web-Application/commit/68295db64c0903f73f6a484212a9a2e91558be66))
+* integrate cta href logic in blog and about pages ([8a33cf0](https://github.com/oaknational/Oak-Web-Application/commit/8a33cf0b3548a697becd67d9c7b2ed85c4b9d88e))
+* parse portable text references with zod ([52db7f3](https://github.com/oaknational/Oak-Web-Application/commit/52db7f3522a01197cbc8d8504ea855784aba444e))
+* update generated sdk types ([21ac7d4](https://github.com/oaknational/Oak-Web-Application/commit/21ac7d44a66eb0a1714e4b930ee2d5d5687ec55b))
+
 # [0.91.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.90.0...v0.91.0) (2022-09-02)
 
 

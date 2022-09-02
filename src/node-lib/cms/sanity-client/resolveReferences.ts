@@ -1,10 +1,14 @@
-import { get, set } from "lodash/fp";
+import { get, update } from "lodash/fp";
+import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
 import { PortableTextJSON } from "../types/base";
 
+import { portableTextReferencedEntrySchema } from "./schemas";
+
 type ObjectPath = string[];
 
+const referencedDocumentsSchema = z.array(portableTextReferencedEntrySchema);
 /**
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
@@ -31,14 +35,22 @@ export const resolveReferences = async (
     ids: pathsAndRefs.map(([, id]) => id),
   });
 
+  const parsedResults = referencedDocumentsSchema.parse(
+    queryResults.allDocument
+  );
+
   /**
    * For each of the paths we found earlier, replace the _ref object at that
    * location with the result of the graphql query for it's data
    */
   const updated = pathsAndRefs.reduce((acc, [path, id]) => {
-    const queryPart = queryResults.allDocument.find((doc) => doc._id === id);
+    const queryPart = parsedResults.find((doc) => doc.id === id);
 
-    return set(path, queryPart)(acc);
+    if (!queryPart) {
+      throw new Error(`Couldn't find a matching portable text reference`);
+    }
+
+    return update(path, (data) => ({ ...data, ...queryPart }), acc);
   }, portableText);
 
   return updated;
