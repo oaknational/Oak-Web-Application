@@ -94,7 +94,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
 
           <Grid $cg={[12, 20]}>
             {pageData.board.documents.map((doc) => (
-              <GridArea key={doc.title} $colSpan={[6, 2]}>
+              <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
                 <Card $height={220} $pa={16}>
                   <BoxBorders />
                   <Flex

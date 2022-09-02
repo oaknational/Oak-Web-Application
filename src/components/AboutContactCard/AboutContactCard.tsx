@@ -36,7 +36,7 @@ const AboutContactCard: FC = () => {
   const { onSubmit } = useNewsletterForm();
   return (
     <Grid>
-      <GridArea $order={[2, 1]} $colSpan={[12, 8]}>
+      <GridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
         <Card
           $pa={[16, 24]}
           $justifyContent={["center"]}
@@ -59,7 +59,7 @@ const AboutContactCard: FC = () => {
           </Flex>
         </Card>
       </GridArea>
-      <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 4]}>
+      <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 6, 4]}>
         <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
           <NewsletterForm onSubmit={onSubmit} />
         </Flex>

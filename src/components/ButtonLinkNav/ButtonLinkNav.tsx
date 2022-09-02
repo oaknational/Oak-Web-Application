@@ -36,6 +36,16 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
               />
             </Box>
             <Flex $flexDirection={"row"} $display={["flex", "none"]}>
+              {selected === button.label && (
+                <Flex $alignItems={"center"}>
+                  <Icon
+                    $ml={4}
+                    $color={"black"}
+                    variant={"minimal"}
+                    name={"ArrowRight"}
+                  />
+                </Flex>
+              )}
               <ButtonAsLink
                 variant={"minimal"}
                 label={button.label}
@@ -43,16 +53,6 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
                 $mr={[0, 36]}
                 disabled={selected === button.label}
               />
-              {selected === button.label && (
-                <Flex $alignItems={"center"}>
-                  <Icon
-                    $ml={4}
-                    $color={"white"}
-                    variant="brush"
-                    name={"ChevronLeft"}
-                  />
-                </Flex>
-              )}
             </Flex>
           </Fragment>
         ))}
