@@ -303,6 +303,16 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  sanityAssetCDNHost: {
+    /**
+     * Domain without 'https://', eg: "cdn.sanity.io"
+     */
+    value: process.env.SANITY_ASSET_CDN_HOST,
+    envName: "SANITY_API_HOST",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   gleapApiKey: {
     value: process.env.NEXT_PUBLIC_GLEAP_API_KEY,
     envName: "NEXT_PUBLIC_GLEAP_API_KEY",
