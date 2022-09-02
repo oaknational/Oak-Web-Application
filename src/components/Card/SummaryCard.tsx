@@ -1,15 +1,14 @@
 import { FC } from "react";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import type { PortableTextSpan } from "@portabletext/types";
 
+import { PortableTextJSON } from "../../node-lib/cms";
 import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
 
 import Card from "./Card";
-import { PortableTextJSON } from "../../node-lib/cms";
 
 type ImageProps = {
   src: string;

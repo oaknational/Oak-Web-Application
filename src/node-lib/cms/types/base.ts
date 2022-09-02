@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { CTAInternalLinkEntry } from "../sanity-client/schemas";
+
 export type Document = {
   id: string;
 };

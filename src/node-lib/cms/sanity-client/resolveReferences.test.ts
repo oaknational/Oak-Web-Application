@@ -31,11 +31,13 @@ describe("resolveReferences", () => {
         allDocument: [
           {
             contentType: "newsPost",
+            _type: "newsPost",
             id: "ref2",
             slug: { current: "some-blog-post" },
           },
           {
             contentType: "sanity.imageAsset",
+            _type: "sanity.imageAsset",
             id: "ref1",
             _id: "ref1",
             url: "https://example.com/foo.png",
@@ -69,7 +71,7 @@ describe("resolveReferences", () => {
       expect(resolved.baz[0].image).toMatchObject({
         contentType: "newsPost",
         id: "ref2",
-        slug: { current: "some-blog-post" },
+        slug: "some-blog-post",
       });
     });
 

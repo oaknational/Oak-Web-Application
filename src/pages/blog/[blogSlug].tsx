@@ -34,6 +34,7 @@ import {
 } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
+import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -87,7 +88,7 @@ const portableTextComponents = {
   marks: {
     internalLink: (
       props: PortableTextComponent<{
-        reference?: any;
+        reference?: CTAInternalLinkEntry;
       }>
     ) => {
       if (!props.value?.reference) {

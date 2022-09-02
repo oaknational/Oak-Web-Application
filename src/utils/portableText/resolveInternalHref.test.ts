@@ -15,9 +15,9 @@ describe("resolveInternalHref()", () => {
     expect(resolveInternalHref(entry as never)).toBe(expectedHref);
   });
 
-  it("throws when enountering an unknown contentType", () => {
+  it("throws when encountering an unknown contentType", () => {
     expect(() => {
-      resolveInternalHref("foo" as never);
+      resolveInternalHref({ contentType: "foo" as never });
     }).toThrow();
   });
 });
