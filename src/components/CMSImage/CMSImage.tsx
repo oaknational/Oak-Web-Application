@@ -7,6 +7,7 @@ import {
 } from "@sanity/image-url/lib/types/types";
 
 import config from "../../config";
+import Box from "../Box";
 
 type CMSImageProps = Omit<ImageProps, "src"> & {
   image: SanityImageSource;
@@ -25,15 +26,14 @@ const clientLike: SanityClientLike = {
 };
 
 const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
-  const imageProps = useNextSanityImage(clientLike, image);
+  const imageProps = useNextSanityImage(clientLike, image, {
+    enableBlurUp: false,
+  });
 
   return (
-    <Img
-      {...imageProps}
-      layout="intrinsic"
-      {...rest}
-      //   sizes="(max-width: 1200px) 12vw, 800px"
-    />
+    <Box $background="pastelTurqoise" $width="100%">
+      <Img {...imageProps} layout="intrinsic" {...rest} />
+    </Box>
   );
 };
 

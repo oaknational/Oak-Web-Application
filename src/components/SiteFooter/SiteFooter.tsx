@@ -83,7 +83,7 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
         $fontSize={16}
         $lineHeight="20px"
         $color="grey9"
-        tag="h4"
+        tag="h2"
         $fontFamily={"headingLight"}
       >
         {title}
