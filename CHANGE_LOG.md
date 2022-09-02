@@ -1,3 +1,10 @@
+# [0.94.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.93.0...v0.94.0) (2022-09-02)
+
+
+### Features
+
+* about board page ([7dbf842](https://github.com/oaknational/Oak-Web-Application/commit/7dbf8421ce5212f4d1d792f929ae8393a112ffa2))
+
 # [0.93.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.92.0...v0.93.0) (2022-09-02)
 
 
