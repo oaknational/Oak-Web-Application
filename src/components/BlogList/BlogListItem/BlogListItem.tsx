@@ -103,7 +103,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
             {title}
           </ActionLink>
         </Heading>
-        <P $fontSize={14} $mt={8}>
+        <P $fontSize={14} $mt={8} $mb={[16, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>
