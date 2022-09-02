@@ -1,6 +1,6 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 
-import { CurriculumPage } from "../../node-lib/cms";
+import { BlogPostPreview, CurriculumPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 import Curriculum from "../../pages/develop-your-curriculum";
@@ -35,10 +35,15 @@ const testCurriculumPageData: CurriculumPage = {
         title: "blog title",
         post: {
           title: "post title",
-          slug: {
-            current: "/",
-          },
-        },
+          slug: "some-post",
+        } as BlogPostPreview,
+      },
+      {
+        title: "other blog title",
+        post: {
+          title: "other post title",
+          slug: "some-other-post",
+        } as BlogPostPreview,
       },
     ],
   },
@@ -77,6 +82,23 @@ describe("pages/curriculum.tsx", () => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "Curriculum title"
       );
+    });
+  });
+
+  it("renders the blog posts", async () => {
+    renderWithProviders(
+      <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
+    );
+    const { posts } = testCurriculumPageData.elements;
+
+    await waitFor(() => {
+      const container = screen.getByTestId("elements-of-curriculum");
+      const links = within(container).getAllByRole("link");
+
+      expect(links).toHaveLength(posts.length);
+
+      expect(links[0]).toHaveAttribute("href", "/blog/some-post");
+      expect(links[1]).toHaveAttribute("href", "/blog/some-other-post");
     });
   });
 
