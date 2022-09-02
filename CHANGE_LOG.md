@@ -1,3 +1,18 @@
+# [0.89.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.88.1...v0.89.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* four not five blog posts, make the container 100% height ([6bf3164](https://github.com/oaknational/Oak-Web-Application/commit/6bf31649f465b87c52cf7d5018a57fd51b471f83))
+* margin in blog list items on mobile with images ([fe684a6](https://github.com/oaknational/Oak-Web-Application/commit/fe684a6a6331b4118b5822b233f8b078ebd1bf16))
+
+
+### Features
+
+* add standard rule to blog sectio ([76564aa](https://github.com/oaknational/Oak-Web-Application/commit/76564aa0b43d4bae87b51d8622676bcd9578e941))
+
+## [0.88.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.88.0...v0.88.1) (2022-09-01)
+
 # [0.88.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.2...v0.88.0) (2022-09-01)
 
 
