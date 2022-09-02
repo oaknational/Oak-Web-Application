@@ -4,6 +4,8 @@ import { assertUnreachable } from "../assertUnreachable";
 
 export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
   switch (entry.contentType) {
+    case "homepage":
+      return `/`;
     case "aboutCorePage":
       return `/about-us`;
     case "planningCorePage":
@@ -12,6 +14,8 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
       return `/support`;
     case "curriculumCorePage":
       return `/develop-your-curriculum`;
+    case "landingPage":
+      return `/lp/${entry.slug}`;
     case "webinar":
       return `/webinars/${entry.slug}`;
     case "webinarListingPage":

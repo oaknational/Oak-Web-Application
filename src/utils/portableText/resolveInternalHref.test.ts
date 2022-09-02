@@ -2,6 +2,7 @@ import { resolveInternalHref } from "./resolveInternalHref";
 
 describe("resolveInternalHref()", () => {
   it.each([
+    [{ contentType: "homepage" }, "/"],
     [{ contentType: "aboutCorePage" }, "/about-us"],
     [{ contentType: "planningCorePage" }, "/lesson-planning"],
     [{ contentType: "supportCorePage" }, "/support"],
@@ -11,6 +12,7 @@ describe("resolveInternalHref()", () => {
     [{ contentType: "newsPost", slug: "the-post" }, "/blog/the-post"],
     [{ contentType: "newsListingPage" }, "/blog"],
     [{ contentType: "policyPage", slug: "the-policy" }, "/legal/the-policy"],
+    [{ contentType: "landingPage", slug: "landing-page" }, "/lp/landing-page"],
   ])("generates the correct href for %s", (entry, expectedHref) => {
     expect(resolveInternalHref(entry as never)).toBe(expectedHref);
   });

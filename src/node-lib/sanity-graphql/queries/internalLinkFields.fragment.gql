@@ -16,6 +16,11 @@ fragment InternalLinkFields on Document {
       current
     }
   }
+  ... on LandingPage {
+    slug {
+      current
+    }
+  }
   ... on Attachment {
     ...Attachment
   }

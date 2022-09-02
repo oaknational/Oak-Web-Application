@@ -85,8 +85,12 @@ const internalLinkEntryTypes = [
   z
     .object({ contentType: z.literal("policyPage"), slug: slugSchema })
     .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("landingPage"), slug: slugSchema })
+    .merge(documentSchema),
 
   // For internal links to fixed pages
+  z.object({ contentType: z.literal("homepage") }).merge(documentSchema),
   z.object({ contentType: z.literal("aboutCorePage") }).merge(documentSchema),
   z
     .object({ contentType: z.literal("planningCorePage") })
