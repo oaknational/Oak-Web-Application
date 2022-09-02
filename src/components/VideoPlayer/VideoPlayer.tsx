@@ -61,6 +61,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   return (
     <Flex $flexDirection={"column"}>
       <MuxPlayer
+        streamType="on-demand"
         ref={mediaElRef}
         // style={{ aspectRatio: "16 / 9" }}
         envKey={envKey}
