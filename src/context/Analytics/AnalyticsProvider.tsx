@@ -14,6 +14,8 @@ import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedT
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 
+let loaded = false;
+
 export type UserId = string;
 export type EventName = string;
 export type EventProperties = Record<string, unknown>;
@@ -110,7 +112,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     hubspot.page(props);
   });
   useEffect(() => {
-    page();
+    if (!loaded) {
+      // fire page event on first load only
+      page();
+    }
+    loaded = true;
   }, [page]);
   useEffect(() => {
     router.events.on("routeChangeComplete", () => page());
