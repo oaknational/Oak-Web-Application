@@ -8,6 +8,7 @@ import {
   Attachment,
   TextBlock,
   TeamMember,
+  BlogPostPreview,
   Seo,
 } from "..";
 
@@ -87,7 +88,7 @@ export type CurriculumPage = Document & {
     title: string;
     posts: {
       title: string;
-      post: { title: string; slug: { current: string } };
+      post: Pick<BlogPostPreview, "title" | "slug">;
     }[];
   };
   ourApproach: TextBlock;
