@@ -138,5 +138,18 @@ describe("pages/blog/[blogSlug].tsx", () => {
         date: "2025-01-01T00:00:00.000Z",
       });
     });
+
+    it("should return notFound when a blog post is missing", async () => {
+      blogPostBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const propsResult = (await getStaticProps({
+        params: { blogSlug: "another-blog" },
+      })) as { props: BlogPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
   });
 });

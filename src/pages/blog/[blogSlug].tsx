@@ -361,6 +361,12 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     previewMode: isPreviewMode,
   });
 
+  if (!blogResult) {
+    return {
+      notFound: true,
+    };
+  }
+
   const blog = {
     ...blogResult,
     date: blogResult.date.toISOString(),

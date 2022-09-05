@@ -108,5 +108,20 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
         lastUpdatedAt: "2022-12-01T00:00:00.000Z",
       });
     });
+
+    it("should return notFound when a policy page is missing", async () => {
+      policyPageBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import(
+        "../../../pages/legal/[policyPageSlug]"
+      );
+      const propsResult = (await getStaticProps({
+        params: { policyPageSlug: "privacy-policy" },
+      })) as { props: PolicyPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
   });
 });
