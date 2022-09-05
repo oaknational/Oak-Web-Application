@@ -2,11 +2,14 @@
  * @see https://www.avo.app/docs/implementation/start-using-avo-functions
  */
 
+import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import { HubspotConfig } from "../hubspot/startHubspot";
 import { PosthogConfig } from "../posthog/posthog";
 
 import { CustomDestination } from "./Avo";
+
+const reportError = errorReporter("getAvoBridge");
 
 type AnalyticsServices = {
   hubspot: Pick<AnalyticsService<HubspotConfig>, "identify" | "track">;
@@ -15,9 +18,10 @@ type AnalyticsServices = {
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
  * Namely, when we call Avo.myEvent(), logEvent() gets fired below.
- * Likewise when we call Avo.identify()
+ * We are only using it for named tracking events, not for page views or
+ * identify calls.
  */
-const getAvoBridge = ({ hubspot, posthog }: AnalyticsServices) => {
+const getAvoBridge = ({ posthog }: AnalyticsServices) => {
   const logEvent: CustomDestination["logEvent"] = (
     eventName,
     eventProperties = {}
@@ -32,24 +36,24 @@ const getAvoBridge = ({ hubspot, posthog }: AnalyticsServices) => {
       );
     };
     if (!isObject(eventProperties)) {
-      // @todo reportError warning here
+      const error = new Error(
+        "Could not track event. Event properties not an object"
+      );
+      reportError(error, {
+        severity: "warning",
+        eventName,
+        eventProperties,
+        typeofEventProperties: typeof eventProperties,
+      });
       return;
     }
-    hubspot.track(eventName, eventProperties);
+    // Uncomment the below line to send track events to hubspot
+    // hubspot.track(eventName, eventProperties);
     posthog.track(eventName, eventProperties);
-  };
-
-  const identify: CustomDestination["identify"] = (userId) => {
-    // @todo hubspot requires email for identify call
-    console.log("avo bridge identify");
-
-    hubspot.identify(userId, {});
-    posthog.identify(userId, {});
   };
 
   return {
     logEvent,
-    identify,
   };
 };
 
