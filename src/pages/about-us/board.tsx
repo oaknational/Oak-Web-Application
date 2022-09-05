@@ -58,8 +58,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
         </SummaryCard>
         <AboutIntroCard
           image={{
-            imageSrc: "/images/illustrations/work-with-us.svg",
-            alt: "work with us illustration",
+            imageSrc: "/images/illustrations/work-with-us-500.png",
+            alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
+            priority: true,
           }}
           bodyPortableText={pageData.board.introPortableText}
         />

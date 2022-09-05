@@ -12,7 +12,7 @@ describe("CardLinkIcon", () => {
         heading={"heading"}
         summary={"text"}
         imageProps={{
-          src: "/images/illustrations/planning.svg",
+          src: "/images/illustrations/planning.png",
           alt: "planning illustration",
         }}
       />
