@@ -1,0 +1,8 @@
+query allLandingPages($isDraft: Boolean = false, $limit: Int = 9999) {
+  allLandingPage(where: { _: { is_draft: $isDraft } }, limit: $limit) {
+    id: _id
+    slug {
+      current
+    }
+  }
+}

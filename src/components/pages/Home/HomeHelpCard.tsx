@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { getHelpUrl } from "../../../common-lib/urls";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
@@ -18,8 +19,8 @@ const HomeHelpCard: FC = () => {
       <ButtonAsLink
         $mt={"auto"}
         fullWidth
-        href="https://support.thenational.academy/"
-        label="Visit help center"
+        href={getHelpUrl()}
+        label="Visit help centre"
         htmlAnchorProps={{ target: "_blank" }}
       />
     </Card>

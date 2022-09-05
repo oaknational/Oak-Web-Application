@@ -20,6 +20,7 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
+import { getOakCurriculumUrl } from "../common-lib/urls";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
@@ -34,7 +35,7 @@ export type CurriculumPageProps = {
 };
 
 const elementsOfCurriculumDesignHeadings = [
-  "Revising part of your Curriculum:",
+  "Revising part of your curriculum:",
   "Rebuilding or changing your curriculum:",
   "An easy way to refresh resources:",
 ];
@@ -185,7 +186,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                 <ButtonAsLink
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
-                  href={"https://teachers.thenational.academy/oaks-curricula"}
+                  href={getOakCurriculumUrl()}
                 />
               </Flex>
             )}

@@ -20,7 +20,6 @@ export type BlogListingPageProps = {
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
-  console.log(props);
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff.png",
@@ -45,11 +44,12 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           imageProps={cardImage}
         />
         <Grid>
-          <GridArea $colSpan={[12, 12, 7]} $mt={[48, 72]}>
+          <GridArea $colSpan={[12, 12, 8]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}
               items={blogs}
               titleTag={"h2"}
+              withImage
             />
           </GridArea>
         </Grid>

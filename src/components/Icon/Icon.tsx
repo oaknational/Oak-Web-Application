@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styled, { useTheme } from "styled-components";
+import styled, { css, useTheme } from "styled-components";
 
 import { OakColorName, PixelSpacing } from "../../styles/theme";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
@@ -10,21 +10,33 @@ import { ResponsiveValues } from "../../styles/utils/responsive";
 import { IconSvgName } from "../SpriteSheet/IconSvgs";
 import { GraphicSvgName } from "../SpriteSheet/GraphicSvgs";
 import { LessonElementSvgName } from "../SpriteSheet/LessonElementSvgs";
+import opacity, { OpacityProps } from "../../styles/utils/opacity";
 
 export type IconName = IconSvgName | GraphicSvgName | LessonElementSvgName;
 type IconVariant = "minimal" | "brush";
 
 type RotateValue = 0 | 180;
 type TransformProps = { rotate?: RotateValue; flip?: boolean };
-const IconOuterWrapper = styled.span<
-  SizeProps & TransformProps & { variant: IconVariant } & SpacingProps
->`
+type IconOuterWrapperProps = { variant: IconVariant } & SizeProps &
+  TransformProps &
+  SpacingProps &
+  OpacityProps;
+const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
   position: relative;
   display: inline-block;
-  transform: rotate(${(props) => props.rotate}deg);
-  transform: scaleY(${(props) => (props.flip ? -1 : 1)});
+  ${(props) =>
+    typeof props.rotate === "number" &&
+    css`
+      transform: rotate(${props.rotate}deg);
+    `}
+  ${(props) =>
+    typeof props.flip === "number" &&
+    css`
+      transform: scaleY(${props.flip ? -1 : 1});
+    `}
   ${size}
   ${spacing}
+  ${opacity}
 `;
 
 const IconWrapper = styled.span<SpacingProps & ColorProps>`
@@ -49,7 +61,7 @@ export const BackgroundIcon = styled(Svg)<ColorProps>`
   ${color}
 `;
 
-type IconProps = SpacingProps & {
+type IconProps = Partial<IconOuterWrapperProps> & {
   name: IconName;
   variant?: IconVariant;
   /**

@@ -21,7 +21,7 @@ export type VideoStyleConfig = {
 
 type VideoPlayerProps = {
   playbackId: string;
-  thumbnailTime?: number;
+  thumbnailTime?: number | null;
   title: string;
 };
 
@@ -61,12 +61,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   return (
     <Flex $flexDirection={"column"}>
       <MuxPlayer
+        streamType="on-demand"
         ref={mediaElRef}
         // style={{ aspectRatio: "16 / 9" }}
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        thumbnailTime={thumbTime}
+        thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
         // forwardSeekOffset={10}
         // backwardSeekOffset={10}

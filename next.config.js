@@ -62,8 +62,21 @@ module.exports = async (phase) => {
   const isStaticWWWBuild =
     isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
 
+  const SANITY_ASSET_CDN_HOST =
+    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
+
+  const imageDomains = [SANITY_ASSET_CDN_HOST].filter(Boolean);
+
   /** @type {import('next').NextConfig} */
   const nextConfig = {
+    /**
+     * Disable font optimization as we're using Cloudflare's fast-google-fonts
+     * worker which not only includes this optimization but also rewrites all
+     * relevant domains to be first party.
+     * @see https://nextjs.org/docs/basic-features/font-optimization
+     * @see https://blog.cloudflare.com/fast-google-fonts-with-cloudflare-workers/
+     */
+    optimizeFonts: false,
     poweredByHeader: false,
     reactStrictMode: true,
     compiler: {
@@ -87,6 +100,8 @@ module.exports = async (phase) => {
     },
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
+    // Make sure production source maps exist for e.g. Bugsnag
+    productionBrowserSourceMaps: true,
     env: {
       // Values calculated in this file.
       NEXT_PUBLIC_APP_VERSION: appVersion,
@@ -171,9 +186,18 @@ module.exports = async (phase) => {
       SANITY_PREVIEW_SECRET:
         process.env.SANITY_PREVIEW_SECRET ||
         secretsFromNetwork.SANITY_PREVIEW_SECRET,
+      SANITY_ASSET_CDN_HOST,
     },
     images: {
-      domains: ["cdn.sanity.io"],
+      domains: imageDomains,
+      /**
+       * deviceSizes
+       * @see https://github.com/vercel/next.js/issues/18413#issuecomment-775591999
+       */
+      deviceSizes: [
+        16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920,
+        2048, 3840,
+      ],
     },
   };
 

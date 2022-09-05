@@ -17,6 +17,10 @@ import {
   webinarSchema,
 } from "./schemas";
 import { resolveReferences } from "./resolveReferences";
+import {
+  landingPagePreviewSchema,
+  landingPageSchema,
+} from "./schemas/landingPage";
 
 const getSanityClient: CMSClient = () => ({
   webinars: async ({ previewMode, ...params } = {}) => {
@@ -111,6 +115,25 @@ const getSanityClient: CMSClient = () => ({
     const webinar = policyPageResult.allPolicyPage[0];
 
     return policyPageSchema.parse(webinar);
+  },
+  landingPages: async ({ previewMode, ...params } = {}) => {
+    const landingPageListSchema = z.array(landingPagePreviewSchema);
+    const landingPageResults = await sanityGraphqlApi.allLandingPages({
+      isDraft: previewMode === true,
+      ...params,
+    });
+
+    return landingPageListSchema.parse(landingPageResults.allLandingPage);
+  },
+  landingPageBySlug: async (slug, { previewMode, ...params } = {}) => {
+    const landingPageResult = await sanityGraphqlApi.landingPageBySlug({
+      isDraft: previewMode === true,
+      ...params,
+      slug,
+    });
+    const landingPage = landingPageResult.allLandingPage[0];
+
+    return landingPageSchema.parse(landingPage);
   },
 });
 

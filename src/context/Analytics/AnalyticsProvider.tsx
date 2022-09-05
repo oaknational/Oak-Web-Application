@@ -7,12 +7,17 @@ import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
-import posthogWithQueue from "../../browser-lib/posthog/posthog";
+import posthogWithQueue, {
+  PosthogConfig,
+} from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
 import config from "../../config";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
+import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
+
+let loaded = false;
 
 export type UserId = string;
 export type EventName = string;
@@ -45,6 +50,15 @@ export type AnalyticsService<ServiceConfig> = {
   optOut: () => void;
   optIn: () => void;
 };
+type AnalyticsServiceWithConfig =
+  | AnalyticsService<HubspotConfig>
+  | AnalyticsService<PosthogConfig>;
+
+type AvoOptions = Parameters<typeof initAvo>[0];
+
+export type AnalyticsProviderProps = {
+  avoOptions?: Partial<AvoOptions>;
+};
 
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
@@ -55,8 +69,8 @@ const getPathAndQuery = () => {
   return window.location.pathname + window.location.search;
 };
 
-const AnalyticsProvider: FC = (props) => {
-  const { children } = props;
+const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
+  const { children, avoOptions = {} } = props;
 
   const trackingEnabled = useCookieConsent().hasConsentedToPolicy("statistics");
 
@@ -89,26 +103,40 @@ const AnalyticsProvider: FC = (props) => {
   /**
    * Avo
    */
-  initAvo({ env: getAvoEnv() }, {}, getAvoBridge({ posthog, hubspot }));
+  initAvo(
+    { env: getAvoEnv(), ...avoOptions },
+    {},
+    getAvoBridge({ posthog, hubspot })
+  );
 
   /**
    * Page view tracking
    */
-  const page = useStableCallback(() => {
-    const props = { path: getPathAndQuery() };
-    posthog.page(props);
-    hubspot.page(props);
-  });
+  const page = useStableCallback(
+    (opts: { services: AnalyticsServiceWithConfig[] }) => {
+      const { services } = opts;
+      const props = { path: getPathAndQuery() };
+      services.forEach((service) => {
+        service.page(props);
+      });
+    }
+  );
   useEffect(() => {
-    page();
-  }, [page]);
+    if (!loaded) {
+      // fire page event on first load only
+      page({ services: [posthog] });
+    }
+    loaded = true;
+  }, [page, posthog]);
   useEffect(() => {
-    router.events.on("routeChangeComplete", () => page());
+    router.events.on("routeChangeComplete", () =>
+      page({ services: [posthog, hubspot] })
+    );
 
     return () => {
       router.events.off("routeChangeComplete", page);
     };
-  }, [page]);
+  }, [page, posthog, hubspot]);
 
   /**
    * Identify

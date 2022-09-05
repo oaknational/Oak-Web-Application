@@ -1,8 +1,8 @@
 import { FC } from "react";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import type { PortableTextSpan } from "@portabletext/types";
 
+import { PortableTextJSON } from "../../node-lib/cms";
 import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
@@ -18,7 +18,7 @@ type ImageProps = {
 type SummaryCardProps = {
   title: string;
   heading: string;
-  summary: PortableTextSpan | string;
+  summary: PortableTextJSON;
   background?: OakColorName;
   imageProps?: ImageProps;
   imageContainerProps?: FlexProps;
@@ -39,6 +39,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
   background,
   imageProps,
   imageContainerProps,
+  children,
 }) => {
   return (
     <Card
@@ -68,13 +69,14 @@ const SummaryCard: FC<SummaryCardProps> = ({
         <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h2"}>
           {heading}
         </Heading>
-        <Typography $color="black" $fontSize={18}>
+        <Typography $color="black" $fontSize={[16, 18]}>
           {typeof summary === "string" ? (
             <p>{summary}</p>
           ) : (
             <PortableText value={summary} />
           )}
         </Typography>
+        {children}
       </Flex>
       {imageProps && (
         <Flex

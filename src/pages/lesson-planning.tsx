@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
-import { PortableText, PortableTextProps } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 
-import CMSClient, { PlanningPage } from "../node-lib/cms";
+import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -21,6 +21,7 @@ import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
+import { getTeachersUrl } from "../common-lib/urls";
 import VideoPlayer from "../components/VideoPlayer";
 
 export type PlanALessonProps = {
@@ -42,7 +43,7 @@ const getLessonElementCards = (
   id: string;
   icon: IconName;
   title: string;
-  portableText: PortableTextProps["value"];
+  portableText: PortableTextJSON;
   background?: OakColorName;
 }[] => [
   {
@@ -248,12 +249,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     src={"/images/illustrations/teacher-carrying-stuff.png"}
                   />
                 </Cover>
-
                 <ButtonAsLink
                   icon="Search"
                   iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={"https://teachers.thenational.academy/"}
+                  href={getTeachersUrl()}
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -325,7 +325,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                               iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={"https://teachers.thenational.academy/"}
+                              href={getTeachersUrl()}
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -345,17 +345,22 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
         {/* `Plan for section` */}
         <MaxWidth $mb={120}>
           <Flex $mt={[56, 80]} $mb={32} $background="teachersPastelYellow">
-            <Card $pv={24} $ph={[16, 24]} $flexDirection={["column", "row"]}>
+            <Card
+              $maxWidth={["100%", 812, "100%"]}
+              $pv={24}
+              $ph={[16, 24]}
+              $flexDirection={["column", "column", "row"]}
+            >
               <Box $minWidth={["50%"]}>
-                <Box $display={["block", "none"]}>
-                  <CardTitle fontSize={24} tag="h4">
+                <Box $display={["block", "block", "none"]}>
+                  <CardTitle fontSize={[24, 32, 32]} tag="h4">
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
                 <Flex
                   $justifyContent={"center"}
-                  $pb={[24, 0]}
-                  $pr={[0, 72]}
+                  $pb={[24, 24, 0]}
+                  $pr={[0, 0, 72]}
                   $minWidth={["50%"]}
                 >
                   {pageData.learnMoreBlock1.mediaType == "video" && (
@@ -376,7 +381,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 $flexDirection={"column"}
                 $minWidth={["50%"]}
               >
-                <Box $display={["none", "block"]}>
+                <Box $display={["none", "none", "block"]}>
                   <CardTitle fontSize={32} tag="h4">
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
@@ -391,12 +396,18 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           </Flex>
           <Card
             $pv={[24, 24]}
-            $ph={[0, 24]}
-            $flexDirection={["column", "row"]}
+            $ph={[0, 24, 24]}
+            $flexDirection={["column", "column", "row"]}
             $background={"teachersPastelYellow"}
             $alignItems="center"
+            $maxWidth={["100%", 812, "100%"]}
           >
-            <Box $minWidth={"50%"} $pr={[null, 72]} $mb={[72, 0]} $ph={[16, 0]}>
+            <Box
+              $minWidth={"50%"}
+              $pr={[null, null, 72]}
+              $mb={[48, 48, 0]}
+              $ph={[16, 0, 0]}
+            >
               <CardTitle fontSize={[24, 32]} tag={"h4"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
@@ -408,7 +419,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
             </Box>
             <Card
               $position="relative"
-              $width={["100%", "auto"]}
+              $width={["100%", "100%", "auto"]}
               $minWidth={"50%"}
               $height={[360, 240]}
               $background="pastelTurqoise"
@@ -437,7 +448,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 icon="Search"
                 iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={"https://teachers.thenational.academy/"}
+                href={getTeachersUrl()}
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

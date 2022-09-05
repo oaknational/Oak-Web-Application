@@ -7,6 +7,7 @@ import {
   SanityImage,
   Attachment,
   TextBlock,
+  TeamMember,
 } from "..";
 
 export type PlanningPage = Document & {
@@ -50,6 +51,7 @@ export type AboutPage = Document & {
     introPortableText: PortableTextJSON;
     documents: Attachment[];
     governancePortableText: PortableTextJSON;
+    boardMembers: TeamMember[];
   };
   partners: {
     sectionHeading: string;

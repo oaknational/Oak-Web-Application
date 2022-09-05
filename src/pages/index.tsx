@@ -8,7 +8,7 @@ import CMSClient, { WebinarPreview } from "../node-lib/cms";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import Typography, { Heading, P, Span } from "../components/Typography";
+import Typography, { Heading, Hr, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
@@ -23,6 +23,8 @@ import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
+import useAnalytics from "../context/Analytics/useAnalytics";
+import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
@@ -35,6 +37,9 @@ import {
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
 const Notification: FC = () => {
+  const { track } = useAnalytics();
+  const href = "/blog/evolution-of-oak";
+  const heading = "About the future of Oak";
   return (
     <Card
       $background="white"
@@ -62,8 +67,16 @@ const Notification: FC = () => {
         Blog
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
-        <CardLink href="/blog/evolution-of-oak">
-          About the future of Oak
+        <CardLink
+          href={href}
+          onClick={() =>
+            track.notificationSelected({
+              linkUrl: href,
+              notificationHeadline: heading,
+            })
+          }
+        >
+          {heading}
         </CardLink>
       </Heading>
       <P $mt={4}>Find out more</P>
@@ -82,7 +95,10 @@ export type HomePageProps = {
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
-  const newsletterFormProps = useNewsletterForm();
+  const { track } = useAnalytics();
+  const newsletterFormProps = useNewsletterForm({
+    onSubmit: track.newsletterSignUpCompleted,
+  });
   const posts = props.posts.map(postToBlogListItem);
 
   return (
@@ -163,7 +179,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                     tag={"h3"}
                     $color={"black"}
                   >
-                    <CardLink href="https://classroom.thenational.academy/">
+                    <CardLink
+                      href={getPupilsUrl()}
+                      onClick={() =>
+                        track.classroomSelected({ navigatedFrom: "card" })
+                      }
+                    >
                       Classroom
                     </CardLink>
                   </Heading>
@@ -220,7 +241,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                     tag={"h3"}
                     $color={"black"}
                   >
-                    <CardLink href="https://teachers.thenational.academy/">
+                    <CardLink
+                      href={getTeachersUrl()}
+                      onClick={() =>
+                        track.teacherHubSelected({ navigatedFrom: "card" })
+                      }
+                    >
                       Teacher Hub
                     </CardLink>
                   </Heading>
@@ -243,6 +269,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
                   href={"/lesson-planning"}
+                  cardLinkProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
@@ -251,6 +278,9 @@ const Home: NextPage<HomePageProps> = (props) => {
                   titleTag={"h4"}
                   background={"teachersYellow"}
                   href={"/develop-your-curriculum"}
+                  cardLinkProps={{
+                    onClick: track.developYourCurriculumSelected,
+                  }}
                 />
               </GridArea>
             </Grid>
@@ -269,7 +299,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Box $background={"white"} $pa={24}>
+              <Box $background={"white"} $pa={24} $height={"100%"}>
                 <Flex
                   $alignItems="center"
                   $justifyContent="space-between"
@@ -289,16 +319,18 @@ const Home: NextPage<HomePageProps> = (props) => {
                   $flexDirection="column"
                   as="ul"
                   role="list" /* role=list to strip default ul styling */
+                  id="homepage-blog-list"
                 >
                   {posts.map((item, i) => (
                     <li key={`BlogList-BlogListItem-${i}`}>
+                      {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
+                      {i < posts.length - 1 && <Hr $color="black" />}
                     </li>
                   ))}
                 </Flex>
               </Box>
             </GridArea>
-
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
               <HomeHelpCard />
             </GridArea>
@@ -352,7 +384,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   const posts = [...blogPosts, ...webinars]
     .sort(sortByDate)
-    .slice(0, 5)
+    .slice(0, 4)
     .map(serializeDate);
 
   return {

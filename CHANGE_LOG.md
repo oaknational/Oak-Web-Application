@@ -1,3 +1,161 @@
+## [0.94.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.2...v0.94.3) (2022-09-05)
+
+## [0.94.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.1...v0.94.2) (2022-09-02)
+
+
+### Bug Fixes
+
+* **hubspot:** don't fire an initial pageview, ti's done automatically ([e43f1ea](https://github.com/oaknational/Oak-Web-Application/commit/e43f1eadf2b0e098833a5b16cdfab052177fa150))
+
+## [0.94.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.0...v0.94.1) (2022-09-02)
+
+# [0.94.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.93.0...v0.94.0) (2022-09-02)
+
+
+### Features
+
+* about board page ([7dbf842](https://github.com/oaknational/Oak-Web-Application/commit/7dbf8421ce5212f4d1d792f929ae8393a112ffa2))
+
+# [0.93.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.92.0...v0.93.0) (2022-09-02)
+
+
+### Features
+
+* adds sanity apiHost to config ([f7180ff](https://github.com/oaknational/Oak-Web-Application/commit/f7180fff35585ff90d9ed7454fa01990d6b684ac))
+
+# [0.92.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.91.0...v0.92.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* cast video thumbTime's to null not undefined ([8bebc1e](https://github.com/oaknational/Oak-Web-Application/commit/8bebc1e390836f6ee2a42222cc66e146d60fea8f))
+
+
+### Features
+
+* add assertUnreachable util ([74ffdb4](https://github.com/oaknational/Oak-Web-Application/commit/74ffdb4b005fcc6617d7c413e2ac50666266d66c))
+* add getCTAHref utility function ([6f54f61](https://github.com/oaknational/Oak-Web-Application/commit/6f54f61d2843d30b98b6661711c897993c48c5fd))
+* allow linking to home and landing pages ([a9a2354](https://github.com/oaknational/Oak-Web-Application/commit/a9a23540d6c931fa299d322fe7ae9254b8f15dda))
+* create resolveInternalHref function to map sanity links to hrefs ([0e8423b](https://github.com/oaknational/Oak-Web-Application/commit/0e8423b2c88a683d1bc36d919c21905a0ce74ad9))
+* don't accept or return nulls throughout cta/href utils ([49e6755](https://github.com/oaknational/Oak-Web-Application/commit/49e6755483b3098004c4e9bb5e14c0e2b2b860f1))
+* fetch necessary fields for internal linking ([68295db](https://github.com/oaknational/Oak-Web-Application/commit/68295db64c0903f73f6a484212a9a2e91558be66))
+* integrate cta href logic in blog and about pages ([8a33cf0](https://github.com/oaknational/Oak-Web-Application/commit/8a33cf0b3548a697becd67d9c7b2ed85c4b9d88e))
+* parse portable text references with zod ([52db7f3](https://github.com/oaknational/Oak-Web-Application/commit/52db7f3522a01197cbc8d8504ea855784aba444e))
+* update generated sdk types ([21ac7d4](https://github.com/oaknational/Oak-Web-Application/commit/21ac7d44a66eb0a1714e4b930ee2d5d5687ec55b))
+
+# [0.91.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.90.0...v0.91.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* add some extra spacing on mobile ([ff3a41b](https://github.com/oaknational/Oak-Web-Application/commit/ff3a41b124cdd3b9a45c27a7066599b731e312b2))
+* **bloglist:** improve a11y label on pagination buttons ([4a455f9](https://github.com/oaknational/Oak-Web-Application/commit/4a455f92922ea446973c209edc78f3d61c493023))
+* correct typo ([d7179e2](https://github.com/oaknational/Oak-Web-Application/commit/d7179e23f1462f9569e312316094317e8b893842))
+* **homepage:** homepage a11y fixes ([6170b3e](https://github.com/oaknational/Oak-Web-Application/commit/6170b3efa22efcae4f206ac424ff9712bb3c5ad6))
+* increase column width now we have images ([c72b326](https://github.com/oaknational/Oak-Web-Application/commit/c72b326027be58f7c6b33e046512c54b11207dd4))
+* input a11y ([3b4db0c](https://github.com/oaknational/Oak-Web-Application/commit/3b4db0c3d11b0cbd44fc3b75192ca7de87b081de))
+* **menu:** make backdrop a div rather than a button ([36d4890](https://github.com/oaknational/Oak-Web-Application/commit/36d4890ed19a918efd228da294453f600e57bb9a))
+
+
+### Features
+
+* show images on blog page ([934557f](https://github.com/oaknational/Oak-Web-Application/commit/934557fcc3b718f525ab6d7a81409527deb373a9))
+* update hyperlink colour for overlay on pink ([b4fb543](https://github.com/oaknational/Oak-Web-Application/commit/b4fb5437f066bcce76ff622f3682097472fdde6d))
+
+# [0.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.1...v0.90.0) (2022-09-02)
+
+
+### Features
+
+* add basic schema for landing pages ([0b31d7d](https://github.com/oaknational/Oak-Web-Application/commit/0b31d7db6b511e3eee9b549ddc59e872ccfef2dc))
+* add basic template for landing pages ([cb65234](https://github.com/oaknational/Oak-Web-Application/commit/cb65234d7249a92474619c4a4e951a225d975b68))
+
+## [0.89.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.0...v0.89.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* **analytics:** only fire single page view ([c729d42](https://github.com/oaknational/Oak-Web-Application/commit/c729d42b4166c22ee871af6e611ff16a20c6ac97))
+
+# [0.89.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.88.1...v0.89.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* four not five blog posts, make the container 100% height ([6bf3164](https://github.com/oaknational/Oak-Web-Application/commit/6bf31649f465b87c52cf7d5018a57fd51b471f83))
+* margin in blog list items on mobile with images ([fe684a6](https://github.com/oaknational/Oak-Web-Application/commit/fe684a6a6331b4118b5822b233f8b078ebd1bf16))
+
+
+### Features
+
+* add standard rule to blog sectio ([76564aa](https://github.com/oaknational/Oak-Web-Application/commit/76564aa0b43d4bae87b51d8622676bcd9578e941))
+
+## [0.88.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.88.0...v0.88.1) (2022-09-01)
+
+# [0.88.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.2...v0.88.0) (2022-09-01)
+
+
+### Features
+
+* add styling for policy pages ([f0a7cf8](https://github.com/oaknational/Oak-Web-Application/commit/f0a7cf8556a93b8ab98c6e640bf953f22b83d656))
+* update margin botton for h4 heading ([8e3184d](https://github.com/oaknational/Oak-Web-Application/commit/8e3184d34d6643cf4bb926a98dfb6c98a2da17b7))
+* update styling in line with feedback ([c198786](https://github.com/oaknational/Oak-Web-Application/commit/c198786eadbb2dcf842fa15bdd5952228b5d14f3))
+
+## [0.87.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.1...v0.87.2) (2022-09-01)
+
+## [0.87.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.87.0...v0.87.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* move 'app' providers into AppLayout to enable smaller bundle ([660ea78](https://github.com/oaknational/Oak-Web-Application/commit/660ea782911a233933b19b5e97967f17280272b1))
+
+# [0.87.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.86.0...v0.87.0) (2022-09-01)
+
+
+### Bug Fixes
+
+* add category to blog post ([921861e](https://github.com/oaknational/Oak-Web-Application/commit/921861e07ecab49bfb5e403d42578115eb7a3ef2))
+* add line height to blog title ([4a75d92](https://github.com/oaknational/Oak-Web-Application/commit/4a75d92b99406221df1bea1f9e481ebb0245b841))
+* add list section to portable text - fix spacing ([cdb36ce](https://github.com/oaknational/Oak-Web-Application/commit/cdb36ce334b1bb8b2101b1cb92409b951ffedd8d))
+* give blog list sections min height and vertical centre ([bfde73d](https://github.com/oaknational/Oak-Web-Application/commit/bfde73d76672a3943688213b2f5c138c7e7e4ac7))
+* hide margin if now images ([ebdae8f](https://github.com/oaknational/Oak-Web-Application/commit/ebdae8f25f76151c316201677dc705ad526e1acf))
+* making page background white ([2588c37](https://github.com/oaknational/Oak-Web-Application/commit/2588c379270d17ef26f1b8d522966ab0cc0750c9))
+* put title in header ([239d4af](https://github.com/oaknational/Oak-Web-Application/commit/239d4af78fc2810ee8481b0a77575aaed84a174c))
+* remove spacing left if there is no image ([3f8900f](https://github.com/oaknational/Oak-Web-Application/commit/3f8900f4a4209d05bc3d059873902d0a348f8f4a))
+
+
+### Features
+
+* add copy to clipboard button ([f3fa409](https://github.com/oaknational/Oak-Web-Application/commit/f3fa409942423c8f9aa4b2d3bfdee4b10de9a59c))
+* add copylink button ([7037eb3](https://github.com/oaknational/Oak-Web-Application/commit/7037eb385598bb0931d86ae265fab269818cf0dd))
+* margin spacing ([c844309](https://github.com/oaknational/Oak-Web-Application/commit/c8443092217e1562a113d7d97bb7531e4093fbab))
+* small blog list and blog page styling changes ([82672be](https://github.com/oaknational/Oak-Web-Application/commit/82672be1cb6fda42cb7e88671c54404738769fbb))
+* style quote ([23772b1](https://github.com/oaknational/Oak-Web-Application/commit/23772b1950f5578e23308bb9aa92ac3961853bb1))
+* style quote in blog ([2e904d5](https://github.com/oaknational/Oak-Web-Application/commit/2e904d5ecf02e949650988d280ebbedb15afe525))
+* style up quote ([71f332c](https://github.com/oaknational/Oak-Web-Application/commit/71f332ce8d29a574677e7e16002be99ed94ec9e0))
+* use correct colour for share button ([52e35bd](https://github.com/oaknational/Oak-Web-Application/commit/52e35bd935205d93a76f32971909fb088bd5f7ed))
+
+# [0.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.85.0...v0.86.0) (2022-08-31)
+
+
+### Features
+
+* disable font optimization which will be implemented in a cloudflare worker ([2bfe913](https://github.com/oaknational/Oak-Web-Application/commit/2bfe9131c59d27793431e068ea18863bb8e8c2df))
+
+# [0.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.2...v0.85.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* fix teacher pupils link tracking from menu ([a070c82](https://github.com/oaknational/Oak-Web-Application/commit/a070c8215ca3c84e5fdf2ded47b58e9528618901))
+
+
+### Features
+
+* homepage tracking events ([923141f](https://github.com/oaknational/Oak-Web-Application/commit/923141fb0dd82b86312b5d17c965bbb542c1b357))
+* track teacher/pupils navigation from header ([f4dfbfd](https://github.com/oaknational/Oak-Web-Application/commit/f4dfbfd529661bf10562b7b9d8a7a7b5a33eec3a))
+
 ## [0.84.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.84.1...v0.84.2) (2022-08-31)
 
 
