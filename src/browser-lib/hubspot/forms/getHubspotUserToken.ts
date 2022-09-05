@@ -1,9 +1,10 @@
+import Cookies from "js-cookie";
+
 /**
  * Retrieves 'hutk' value from cookies
  */
 const getHubspotUserToken = () => {
-  // Cookies.get("hubspotutk");
-  return undefined;
+  return Cookies.get("hubspotutk");
 };
 
 export default getHubspotUserToken;
