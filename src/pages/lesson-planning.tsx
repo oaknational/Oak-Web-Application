@@ -23,6 +23,7 @@ import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getTeachersUrl } from "../common-lib/urls";
 import VideoPlayer from "../components/VideoPlayer";
+import CMSVideo from "../components/CMSVideo";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -366,15 +367,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   $minWidth={["50%"]}
                 >
                   {pageData.learnMoreBlock1.mediaType == "video" && (
-                    <VideoPlayer
-                      thumbnailTime={
-                        pageData.learnMoreBlock1.video.video.asset.thumbTime
-                      }
-                      playbackId={
-                        pageData.learnMoreBlock1.video.video.asset.playbackId
-                      }
-                      title={pageData.learnMoreBlock1.video.title}
-                    />
+                    <CMSVideo video={pageData.learnMoreBlock1.video} />
                   )}
                 </Flex>
               </Box>

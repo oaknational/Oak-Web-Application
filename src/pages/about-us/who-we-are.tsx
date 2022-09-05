@@ -19,6 +19,7 @@ import AboutContactCard from "../../components/AboutContactCard";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
+import CMSVideo from "../../components/CMSVideo";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -114,15 +115,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $minWidth={["50%"]}
             >
               {pageData.whoWeAre.intro.mediaType == "video" && (
-                <VideoPlayer
-                  playbackId={
-                    pageData.whoWeAre.intro.video.video.asset.playbackId
-                  }
-                  title={pageData.whoWeAre.intro.video.title}
-                  thumbnailTime={
-                    pageData.whoWeAre.intro.video.video.asset.thumbTime
-                  }
-                />
+                <CMSVideo video={pageData.whoWeAre.intro.video} />
               )}
             </Flex>
             <Box $minWidth={["50%"]}>
