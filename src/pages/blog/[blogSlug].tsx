@@ -68,6 +68,15 @@ const portableTextComponents: PortableTextComponents = {
         </Heading>
       );
     },
+    callout: (props) => {
+      return (
+        <Flex $flexDirection={"column"} $mt={56}>
+          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+            <blockquote>{props.children}</blockquote>
+          </P>
+        </Flex>
+      );
+    },
     normal: (props) => {
       return (
         <P $lineHeight={"28px"} $fontSize={[16, 18]} $mt={16}>
@@ -229,6 +238,34 @@ const portableTextComponents: PortableTextComponents = {
             <cite>{props.value?.attribution}</cite>
             {props.value.role && `, ${props.value.role}`}
           </P>
+        </Flex>
+      );
+    },
+    callout: (
+      props: PortableTextComponentProps<{ body: PortableTextJSON }>
+    ) => {
+      if (!props.value?.body) {
+        return null;
+      }
+
+      return (
+        <Flex
+          $flexDirection={"column"}
+          $mt={56}
+          $pv={24}
+          $ph={16}
+          $background="teachersPastelYellow"
+        >
+          <PortableText
+            value={props.value.body}
+            components={{
+              block: {
+                sectionHeading: (props) => {
+                  return <P $fontSize={24}>{props.children}</P>;
+                },
+              },
+            }}
+          />
         </Flex>
       );
     },
