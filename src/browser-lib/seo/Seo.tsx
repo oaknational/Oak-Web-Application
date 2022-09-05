@@ -20,6 +20,7 @@ export type SeoProps = {
   title: string;
   description: string;
   noIndex?: boolean;
+  noFollow?: boolean;
   image?: Image;
 };
 
@@ -27,7 +28,13 @@ export type SeoProps = {
  * Oak Seo component. A wrapper round NextSeo with sensible defaults.
  * @see [seo.md](../../../docs/seo.md)
  */
-const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
+const Seo: FC<SeoProps> = ({
+  title,
+  description,
+  image = "default",
+  noIndex = false,
+  noFollow = false,
+}) => {
   const router = useRouter();
 
   const sharingImage = IMAGES[image] ? IMAGES[image] : IMAGES["default"];
@@ -56,6 +63,8 @@ const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
         site: config.get("appTwitterHandle"),
         cardType: "summary_large_image",
       }}
+      noindex={noIndex}
+      nofollow={noFollow}
     />
   );
 };
