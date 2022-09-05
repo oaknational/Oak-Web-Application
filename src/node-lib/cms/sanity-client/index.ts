@@ -31,7 +31,7 @@ const getSanityClient: CMSClient = () => ({
     });
 
     if (!webinarResults.allWebinar) {
-      return null;
+      return [];
     }
 
     return webinarListSchema.parse(webinarResults.allWebinar);
@@ -58,7 +58,7 @@ const getSanityClient: CMSClient = () => ({
     });
 
     if (!blogPostsResult.allNewsPost) {
-      return null;
+      return [];
     }
 
     return blogPostListSchema.parse(blogPostsResult.allNewsPost);
@@ -133,7 +133,7 @@ const getSanityClient: CMSClient = () => ({
     });
 
     if (!policyPageResults.allPolicyPage) {
-      return null;
+      return [];
     }
 
     return policyPageListSchema.parse(policyPageResults.allPolicyPage);
@@ -163,7 +163,7 @@ const getSanityClient: CMSClient = () => ({
     });
 
     if (!landingPageResults.allLandingPage) {
-      return null;
+      return [];
     }
 
     return landingPageListSchema.parse(landingPageResults.allLandingPage);
