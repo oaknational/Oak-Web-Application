@@ -84,6 +84,12 @@ const portableTextComponents: PortableTextComponents = {
     number: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
   },
   marks: {
+    strong: (props) => {
+      return <Span as="strong">{props.children}</Span>;
+    },
+    em: (props) => {
+      return <Span as="em">{props.children}</Span>;
+    },
     internalLink: (
       props: PortableTextMarkComponentProps<{
         _type: "internalLink";
