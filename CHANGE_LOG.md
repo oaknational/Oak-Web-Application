@@ -1,3 +1,11 @@
+## [0.99.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.0...v0.99.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* change vertical margin on hr ([7faf618](https://github.com/oaknational/Oak-Web-Application/commit/7faf6181e8a1bbb97afd13800677005b15b66055))
+* mobile spacing around rule ([621ab6d](https://github.com/oaknational/Oak-Web-Application/commit/621ab6dfd1b013903924cc20656a7f2760c6f354))
+
 # [0.99.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.98.0...v0.99.0) (2022-09-05)
 
 
