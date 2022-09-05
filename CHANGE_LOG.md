@@ -1,3 +1,11 @@
+## [0.96.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.96.0...v0.96.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* prevent p tags from portable text being nested ([16b8772](https://github.com/oaknational/Oak-Web-Application/commit/16b8772dcfdd302ae318cee5e5ff4cee54de1634))
+* use typography and not span ([8e49e1f](https://github.com/oaknational/Oak-Web-Application/commit/8e49e1fae6eed2b6a77aa2b2ccb13c2a8616bb00))
+
 # [0.96.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.95.0...v0.96.0) (2022-09-05)
 
 
