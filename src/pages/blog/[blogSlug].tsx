@@ -3,13 +3,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import {
   MissingComponentHandler,
   PortableText,
-  PortableTextComponentsProvider,
   PortableTextComponents,
   PortableTextComponentProps,
-  PortableTextMarkComponentProps,
 } from "@portabletext/react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
@@ -30,15 +27,12 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import Card from "../../components/Card";
 import Cover from "../../components/Cover";
-import { Heading, P, Span, OL, LI } from "../../components/Typography";
+import { Heading, P } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
-import {
-  getCTAHref,
-  resolveInternalHref,
-} from "../../utils/portableText/resolveInternalHref";
+import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
-import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
+import { BasePortableTextProvider } from "../../components/PortableText";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -58,7 +52,7 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
   body: PortableTextJSON;
 };
 
-const portableTextComponents: PortableTextComponents = {
+const blogPortableTextComponents: PortableTextComponents = {
   block: {
     sectionHeading: (props) => {
       // @TODO: Choose an appropriate section heading level
@@ -75,71 +69,6 @@ const portableTextComponents: PortableTextComponents = {
             <blockquote>{props.children}</blockquote>
           </P>
         </Flex>
-      );
-    },
-    normal: (props) => {
-      return (
-        <P $lineHeight={"28px"} $fontSize={[16, 18]} $mt={16}>
-          {props.children}
-        </P>
-      );
-    },
-  },
-  list: {
-    bullet: (props) => <ul>{props.children}</ul>,
-    number: (props) => <OL $ml={[16, 28]}>{props.children}</OL>,
-  },
-  listItem: {
-    bullet: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
-    number: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
-  },
-  marks: {
-    strong: (props) => {
-      return <Span as="strong">{props.children}</Span>;
-    },
-    em: (props) => {
-      return <Span as="em">{props.children}</Span>;
-    },
-    internalLink: (
-      props: PortableTextMarkComponentProps<{
-        _type: "internalLink";
-        reference?: CTAInternalLinkEntry;
-      }>
-    ) => {
-      if (!props.value?.reference) {
-        console.warn("Unable to render internal link for props:", props);
-        return null;
-      }
-
-      const href = resolveInternalHref(props.value.reference);
-
-      if (!href) {
-        console.warn("Unable to render internal link for props:", props);
-        return null;
-      }
-      return (
-        <Span $color={"hyperlink"}>
-          <Link href={href}>
-            <a>{props.children}</a>
-          </Link>
-        </Span>
-      );
-    },
-    link: (
-      props: PortableTextMarkComponentProps<{ _type: "link"; href: string }>
-    ) => {
-      if (!props.value?.href) {
-        return null;
-      }
-
-      const { href } = props.value;
-
-      return (
-        <Span $color={"hyperlink"}>
-          <Link href={href}>
-            <a>{props.children}</a>
-          </Link>
-        </Span>
       );
     },
   },
@@ -393,14 +322,13 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               {/* <CopyLinkButton /> */}
             </Flex>
             <Box $mt={[56, 64]}>
-              <PortableTextComponentsProvider
-                components={portableTextComponents}
-              >
+              <BasePortableTextProvider>
                 <PortableText
+                  components={blogPortableTextComponents}
                   value={props.blog.contentPortableText}
                   onMissingComponent={logMissingPortableTextComponents}
                 />
-              </PortableTextComponentsProvider>
+              </BasePortableTextProvider>
             </Box>
           </GridArea>
         </Grid>
