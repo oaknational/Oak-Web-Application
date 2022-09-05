@@ -79,7 +79,9 @@ const portableTextComponents = {
   },
   list: {
     bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
-    number: (props: PortableTextComponent) => <OL>{props.children}</OL>,
+    number: (props: PortableTextComponent) => (
+      <OL $ml={[16, 28]}>{props.children}</OL>
+    ),
   },
   listItem: {
     bullet: (props: PortableTextComponent) => (
