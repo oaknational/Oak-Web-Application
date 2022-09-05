@@ -112,9 +112,9 @@ const getSanityClient: CMSClient = () => ({
       ...params,
       slug,
     });
-    const webinar = policyPageResult.allPolicyPage[0];
+    const policyPage = await resolveReferences(policyPageResult.allPolicyPage[0]);
 
-    return policyPageSchema.parse(webinar);
+    return policyPageSchema.parse(policyPage);
   },
   landingPages: async ({ previewMode, ...params } = {}) => {
     const landingPageListSchema = z.array(landingPagePreviewSchema);
