@@ -1,6 +1,13 @@
+import { PortableText } from "@portabletext/react";
+
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import { PTExternalLink, PTInternalLink } from "./PortableText";
+import {
+  BasePortableTextProvider,
+  PTExternalLink,
+  PTInternalLink,
+} from "./PortableText";
+import portableTextFixture from "./portableTextFixture.json";
 
 const reportError = jest.fn();
 jest.mock("../../common-lib/error-reporter", () => ({
@@ -68,6 +75,22 @@ describe("PortableText", () => {
       expect(link).not.toBeInTheDocument();
 
       expect(reportError).toHaveBeenCalled();
+    });
+  });
+
+  describe("BasePortableTextProvider", () => {
+    it("renders basic html", () => {
+      const { getAllByRole, container } = renderWithProviders(
+        <BasePortableTextProvider>
+          <PortableText value={portableTextFixture} />
+        </BasePortableTextProvider>
+      );
+
+      const lists = getAllByRole("list");
+      expect(lists).toHaveLength(2);
+
+      expect(container.querySelector("em")).toBeInTheDocument();
+      expect(container.querySelector("strong")).toBeInTheDocument();
     });
   });
 });
