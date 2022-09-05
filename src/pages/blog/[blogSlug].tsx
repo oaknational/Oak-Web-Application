@@ -17,6 +17,7 @@ import CMSClient, {
   BlogPost,
   CTA,
   PortableTextJSON,
+  Quote,
   SanityImage,
   TextAndMedia,
   Video,
@@ -210,14 +211,11 @@ const portableTextComponents: PortableTextComponents = {
         </Flex>
       );
     },
-    quote: (
-      props: PortableTextComponentProps<{
-        // @TODO: Reference shared quote type when it's added in another PR
-        text: string;
-        attribution: string;
-        role: string;
-      }>
-    ) => {
+    quote: (props: PortableTextComponentProps<Quote>) => {
+      if (!props.value?.text) {
+        return null;
+      }
+
       return (
         <Flex $flexDirection={"column"} $mt={56}>
           <P
@@ -225,10 +223,11 @@ const portableTextComponents: PortableTextComponents = {
             $lineHeight={"40px"}
             $fontFamily={"headingLight"}
           >
-            <blockquote>&ldquo;{props.value?.text}&rdquo;</blockquote>
+            <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
           <P $fontSize={[16, 18]} $lineHeight={"20px"} $mt={[16]}>
-            <cite>{props.value?.attribution}</cite>, {props.value?.role}
+            <cite>{props.value?.attribution}</cite>
+            {props.value.role && `, ${props.value.role}`}
           </P>
         </Flex>
       );
