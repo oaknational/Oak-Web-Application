@@ -5,10 +5,10 @@ import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 
 /**
  * Styled `ol` (ordered list) component.
+ *
  * ## Usage
  *
- * Use where we have an ordered list to ensure numbers are styled the same
- * li content
+ * Use where we have an ordered list to ensure numbers are styled
  *
  * */
 const OL = styled.ol<MarginProps>`
@@ -24,6 +24,13 @@ const OL = styled.ol<MarginProps>`
     text-indent: -16px;
     list-style-type: none;
     margin-bottom: 32px;
+
+    // Portable text generates linebreaks within list items
+    br {
+      content: "";
+      display: block;
+      margin-top: 8px;
+    }
   }
 
   & li::before {
