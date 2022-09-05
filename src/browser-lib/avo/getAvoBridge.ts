@@ -4,7 +4,6 @@
 
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
-import { HubspotConfig } from "../hubspot/startHubspot";
 import { PosthogConfig } from "../posthog/posthog";
 
 import { CustomDestination } from "./Avo";
@@ -12,8 +11,7 @@ import { CustomDestination } from "./Avo";
 const reportError = errorReporter("getAvoBridge");
 
 type AnalyticsServices = {
-  hubspot: Pick<AnalyticsService<HubspotConfig>, "identify" | "track">;
-  posthog: Pick<AnalyticsService<PosthogConfig>, "identify" | "track">;
+  posthog: Pick<AnalyticsService<PosthogConfig>, "track">;
 };
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
