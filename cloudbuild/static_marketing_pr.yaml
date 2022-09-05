@@ -59,7 +59,7 @@ steps:
         --project oak-national-academy-2022
         hosting:channel:deploy
         "${SHORT_SHA}"
-        --expires 30d
+        --expires 8d
         --only ${_FIREBASE_TARGET}
         | tee /workspace/deploy.log
 

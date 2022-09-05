@@ -5,14 +5,36 @@
       "public": "out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "trailingSlash": false,
-      "cleanUrls": true
+      "cleanUrls": true,
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=61, s-maxage=300, stale-while-revalidate=60"
+            }
+          ]
+        }
+      ]
     },
     {
       "target": "static-marketing-prod",
       "public": "out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "trailingSlash": false,
-      "cleanUrls": true
+      "cleanUrls": true,
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=61, s-maxage=300, stale-while-revalidate=60"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
