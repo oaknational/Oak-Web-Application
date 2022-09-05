@@ -16,6 +16,11 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: London, UK
   
 
+  Jack Skerrett (QA)
+  LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
+  From: Cornwall, UK
+
+
   Jim Cresswell (Developer)
   Site: https://jimcresswell.net/
   LinkedIn: https://uk.linkedin.com/in/jimcresswell/
@@ -74,6 +79,11 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Site: https://putty.studio
   LinkedIn: https://www.linkedin.com/in/tom-wise1234/
   From: Brighton, UK
+
+
+  Verity Roberts (Product Manager)
+  From: Cambridge, UK
+
 
 
 /* THANKS */
