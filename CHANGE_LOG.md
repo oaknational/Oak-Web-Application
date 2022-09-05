@@ -1,3 +1,12 @@
+# [0.96.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.95.0...v0.96.0) (2022-09-05)
+
+
+### Features
+
+* **firebase:** add custom caching headers ([b5f2830](https://github.com/oaknational/Oak-Web-Application/commit/b5f2830b40a3468daf04ef8ee6914f5e0f06b9e1))
+* **firebase:** reduce preview deployment retainment ([227eced](https://github.com/oaknational/Oak-Web-Application/commit/227eced70a84d5ac0246e1d2775dc1f1e71d2821))
+* **firebase:** try to keep number of preview deployments within quota ([5ca9c6e](https://github.com/oaknational/Oak-Web-Application/commit/5ca9c6e4b4ba47398b0c52a03c928e7ac909732d))
+
 # [0.95.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.3...v0.95.0) (2022-09-05)
 
 
