@@ -100,6 +100,7 @@ const internalLinkEntryTypes = [
   z
     .object({ contentType: z.literal("curriculumCorePage") })
     .merge(documentSchema),
+  z.object({ contentType: z.literal("contactCorePage") }).merge(documentSchema),
   z
     .object({ contentType: z.literal("webinarListingPage") })
     .merge(documentSchema),

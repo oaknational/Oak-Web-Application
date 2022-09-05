@@ -14,6 +14,8 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
       return `/support`;
     case "curriculumCorePage":
       return `/develop-your-curriculum`;
+    case "contactCorePage":
+      return `/contact-us`;
     case "landingPage":
       return `/lp/${entry.slug}`;
     case "webinar":

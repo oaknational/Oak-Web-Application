@@ -47,6 +47,14 @@ export const resolveReferences = async (
     const queryPart = parsedResults.find((doc) => doc.id === id);
 
     if (!queryPart) {
+      /**
+       * If you're getting errors here make sure:
+       * - You've checked you're fetching the correct data in blogPortableTextReferences.gql
+       * - You've ran gql-codegen:sanity
+       * - Checked they're covered in portableTextReferencedEntrySchema
+       */
+      console.log("path, id:", path, id);
+      console.log("queryResults:", queryResults);
       throw new Error(`Couldn't find a matching portable text reference`);
     }
 
