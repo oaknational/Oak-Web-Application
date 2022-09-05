@@ -1,11 +1,7 @@
 import * as z from "zod";
 
-import {
-  dateSchema,
-  documentSchema,
-  portableTextSchema,
-  slugSchema,
-} from "./base";
+import { dateSchema, documentSchema, slugSchema } from "./base";
+import { portableTextSchema } from "./portableText";
 
 export const policyPageSchema = z
   .object({

@@ -37,7 +37,7 @@ const SearchForm: FC = () => {
         value={value}
         type="search"
         onChange={onTextChange}
-        aria-label="Search"
+        label="Search"
         placeholder="Search"
       />
       <IconButton

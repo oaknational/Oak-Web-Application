@@ -20,7 +20,7 @@ const HomeHelpCard: FC = () => {
         $mt={"auto"}
         fullWidth
         href={getHelpUrl()}
-        label="Visit help center"
+        label="Visit help centre"
         htmlAnchorProps={{ target: "_blank" }}
       />
     </Card>

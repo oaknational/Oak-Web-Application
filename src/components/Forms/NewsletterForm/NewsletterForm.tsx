@@ -111,6 +111,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         <Input
           id="newsletter-signup-name"
           $mt={24}
+          label="Name"
           placeholder="Name"
           {...register("name")}
           error={errors.name?.message}
@@ -118,6 +119,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         <Input
           id="newsletter-signup-email"
           $mt={24}
+          label="Email Address"
           placeholder="Email Address"
           {...register("email")}
           error={errors.email?.message}

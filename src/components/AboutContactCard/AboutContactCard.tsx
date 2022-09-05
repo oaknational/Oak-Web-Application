@@ -19,14 +19,14 @@ const cardCopy = [
   {
     heading: "Media enquiries",
     p: "For media enquiries, please contact ",
-    linkText: "media@thenational.academy.",
-    href: "mailto: media@thenational.academy.",
+    linkText: "media@thenational.academy",
+    href: "mailto: media@thenational.academy",
     linkType: "email",
   },
   {
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
-    linkText: "Help Centre.",
+    linkText: "Help Centre",
     href: getHelpUrl(),
     linkType: "link",
   },
@@ -36,7 +36,7 @@ const AboutContactCard: FC = () => {
   const { onSubmit } = useNewsletterForm();
   return (
     <Grid>
-      <GridArea $order={[2, 1]} $colSpan={[12, 8]}>
+      <GridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
         <Card
           $pa={[16, 24]}
           $justifyContent={["center"]}
@@ -50,7 +50,7 @@ const AboutContactCard: FC = () => {
               </Heading>
               <P $mb={32} $fontSize={[16, 18]}>
                 {section.p}
-                <a href={section.href}>{section.linkText}</a>
+                <a href={section.href}>{section.linkText}</a>.
               </P>
             </Fragment>
           ))}
@@ -59,7 +59,7 @@ const AboutContactCard: FC = () => {
           </Flex>
         </Card>
       </GridArea>
-      <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 4]}>
+      <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 6, 4]}>
         <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
           <NewsletterForm onSubmit={onSubmit} />
         </Flex>

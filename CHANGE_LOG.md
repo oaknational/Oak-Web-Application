@@ -1,3 +1,65 @@
+## [0.94.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.1...v0.94.2) (2022-09-02)
+
+
+### Bug Fixes
+
+* **hubspot:** don't fire an initial pageview, ti's done automatically ([e43f1ea](https://github.com/oaknational/Oak-Web-Application/commit/e43f1eadf2b0e098833a5b16cdfab052177fa150))
+
+## [0.94.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.0...v0.94.1) (2022-09-02)
+
+# [0.94.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.93.0...v0.94.0) (2022-09-02)
+
+
+### Features
+
+* about board page ([7dbf842](https://github.com/oaknational/Oak-Web-Application/commit/7dbf8421ce5212f4d1d792f929ae8393a112ffa2))
+
+# [0.93.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.92.0...v0.93.0) (2022-09-02)
+
+
+### Features
+
+* adds sanity apiHost to config ([f7180ff](https://github.com/oaknational/Oak-Web-Application/commit/f7180fff35585ff90d9ed7454fa01990d6b684ac))
+
+# [0.92.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.91.0...v0.92.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* cast video thumbTime's to null not undefined ([8bebc1e](https://github.com/oaknational/Oak-Web-Application/commit/8bebc1e390836f6ee2a42222cc66e146d60fea8f))
+
+
+### Features
+
+* add assertUnreachable util ([74ffdb4](https://github.com/oaknational/Oak-Web-Application/commit/74ffdb4b005fcc6617d7c413e2ac50666266d66c))
+* add getCTAHref utility function ([6f54f61](https://github.com/oaknational/Oak-Web-Application/commit/6f54f61d2843d30b98b6661711c897993c48c5fd))
+* allow linking to home and landing pages ([a9a2354](https://github.com/oaknational/Oak-Web-Application/commit/a9a23540d6c931fa299d322fe7ae9254b8f15dda))
+* create resolveInternalHref function to map sanity links to hrefs ([0e8423b](https://github.com/oaknational/Oak-Web-Application/commit/0e8423b2c88a683d1bc36d919c21905a0ce74ad9))
+* don't accept or return nulls throughout cta/href utils ([49e6755](https://github.com/oaknational/Oak-Web-Application/commit/49e6755483b3098004c4e9bb5e14c0e2b2b860f1))
+* fetch necessary fields for internal linking ([68295db](https://github.com/oaknational/Oak-Web-Application/commit/68295db64c0903f73f6a484212a9a2e91558be66))
+* integrate cta href logic in blog and about pages ([8a33cf0](https://github.com/oaknational/Oak-Web-Application/commit/8a33cf0b3548a697becd67d9c7b2ed85c4b9d88e))
+* parse portable text references with zod ([52db7f3](https://github.com/oaknational/Oak-Web-Application/commit/52db7f3522a01197cbc8d8504ea855784aba444e))
+* update generated sdk types ([21ac7d4](https://github.com/oaknational/Oak-Web-Application/commit/21ac7d44a66eb0a1714e4b930ee2d5d5687ec55b))
+
+# [0.91.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.90.0...v0.91.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* add some extra spacing on mobile ([ff3a41b](https://github.com/oaknational/Oak-Web-Application/commit/ff3a41b124cdd3b9a45c27a7066599b731e312b2))
+* **bloglist:** improve a11y label on pagination buttons ([4a455f9](https://github.com/oaknational/Oak-Web-Application/commit/4a455f92922ea446973c209edc78f3d61c493023))
+* correct typo ([d7179e2](https://github.com/oaknational/Oak-Web-Application/commit/d7179e23f1462f9569e312316094317e8b893842))
+* **homepage:** homepage a11y fixes ([6170b3e](https://github.com/oaknational/Oak-Web-Application/commit/6170b3efa22efcae4f206ac424ff9712bb3c5ad6))
+* increase column width now we have images ([c72b326](https://github.com/oaknational/Oak-Web-Application/commit/c72b326027be58f7c6b33e046512c54b11207dd4))
+* input a11y ([3b4db0c](https://github.com/oaknational/Oak-Web-Application/commit/3b4db0c3d11b0cbd44fc3b75192ca7de87b081de))
+* **menu:** make backdrop a div rather than a button ([36d4890](https://github.com/oaknational/Oak-Web-Application/commit/36d4890ed19a918efd228da294453f600e57bb9a))
+
+
+### Features
+
+* show images on blog page ([934557f](https://github.com/oaknational/Oak-Web-Application/commit/934557fcc3b718f525ab6d7a81409527deb373a9))
+* update hyperlink colour for overlay on pink ([b4fb543](https://github.com/oaknational/Oak-Web-Application/commit/b4fb5437f066bcce76ff622f3682097472fdde6d))
+
 # [0.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.89.1...v0.90.0) (2022-09-02)
 
 

@@ -41,6 +41,7 @@ oak.config.js
 oak.config.json
 oak.config.ts
 oak.config.old.json
+oak.config.production.json
 
 # vercel
 .vercel

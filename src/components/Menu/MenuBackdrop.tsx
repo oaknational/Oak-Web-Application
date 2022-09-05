@@ -12,7 +12,11 @@ type BackdropProps = {
   background: OakColorName;
 };
 
-const Backdrop = styled.button<BackdropProps & TransitionProps>`
+/**
+ * Making this a div rather than a button so that it's not exposed to the
+ * accessiblity api (there is already an accessible close menu button)
+ */
+const Backdrop = styled.div<BackdropProps & TransitionProps>`
   position: fixed;
   top: 0;
   right: 0;
