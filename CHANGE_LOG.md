@@ -1,3 +1,17 @@
+# [0.95.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.3...v0.95.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* add missing team mate ([7e60f6a](https://github.com/oaknational/Oak-Web-Application/commit/7e60f6a556e542356ad5727315bab20bee4074c2))
+* crediting Verity and Jack ([bd85ee4](https://github.com/oaknational/Oak-Web-Application/commit/bd85ee454403d1106682bb78dae1f54337a3948d))
+* remove Jim's twitter as requested ([f4bbf7d](https://github.com/oaknational/Oak-Web-Application/commit/f4bbf7d521624941f681fc9fd5ad05131f826d62))
+
+
+### Features
+
+* add humans.txt file ([5c8ccfd](https://github.com/oaknational/Oak-Web-Application/commit/5c8ccfd344a9dba46a9fe73abfabee2902f6075c))
+
 ## [0.94.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.2...v0.94.3) (2022-09-05)
 
 ## [0.94.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.94.1...v0.94.2) (2022-09-02)
