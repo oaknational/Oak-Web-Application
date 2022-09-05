@@ -1,4 +1,5 @@
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
+import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
 
 import BlogListItem, { BlogListItemProps } from ".";
 
@@ -9,6 +10,7 @@ const testProps: BlogListItemProps = {
   href: "https://www.test.com/",
   contentType: "blog-post",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+  mainImage: mockImageAsset(),
   date: new Date(2022, 7, 22).toISOString(),
 };
 
@@ -28,5 +30,38 @@ describe("components/BlogListItem", () => {
     );
     const button = getByRole("link");
     expect(button).toHaveAttribute("href", "https://www.test.com/");
+  });
+
+  test("renders the provided image", () => {
+    const { getByRole } = renderWithProviders(
+      <BlogListItem {...testProps} withImage />
+    );
+
+    const image = getByRole("img");
+    /**
+     * We can't really assert on the srcset, but the withImage=false test
+     * should catch any false positives if another unrealted role=img was
+     * introduced to the component
+     */
+    expect(image).toBeInTheDocument();
+  });
+
+  test("doesn't render an image without withImage=true", () => {
+    const { queryByRole } = renderWithProviders(
+      <BlogListItem {...testProps} withImage={false} />
+    );
+
+    const image = queryByRole("img");
+    expect(image).not.toBeInTheDocument();
+  });
+
+  test("sets the image alt text to be empty when not provided", () => {
+    const { getByRole } = renderWithProviders(
+      <BlogListItem {...testProps} withImage />
+    );
+
+    const image = getByRole("img");
+    // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
+    expect(image?.getAttribute("alt")).toBe("");
   });
 });
