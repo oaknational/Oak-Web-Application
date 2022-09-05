@@ -1,3 +1,11 @@
+## [0.99.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.1...v0.99.2) (2022-09-05)
+
+
+### Bug Fixes
+
+* add plan a lesson to Pa11y config ([81a1aae](https://github.com/oaknational/Oak-Web-Application/commit/81a1aaeb18d1a38c4ab7c59c389e6c6e5798c9f4))
+* **Pa11y:** Mux player and Pa11y aren't compatible yet, ignoring failing rules ([e3629ec](https://github.com/oaknational/Oak-Web-Application/commit/e3629ecc3e73471113c7a43aaa12723115b37663))
+
 ## [0.99.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.0...v0.99.1) (2022-09-05)
 
 
