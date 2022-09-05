@@ -17,7 +17,7 @@ import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
 
-let loaded = false;
+// let loaded = false;
 
 export type UserId = string;
 export type EventName = string;
@@ -121,17 +121,17 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       });
     }
   );
+  // useEffect(() => {
+  //   if (!loaded) {
+  //     // fire page event on first load only
+  //     page({ services: [posthog] });
+  //   }
+  //   loaded = true;
+  // }, [page, posthog]);
   useEffect(() => {
-    if (!loaded) {
-      // fire page event on first load only
-      page({ services: [posthog] });
-    }
-    loaded = true;
-  }, [page, posthog]);
-  useEffect(() => {
-    router.events.on("routeChangeComplete", () =>
-      page({ services: [posthog, hubspot] })
-    );
+    router.events.on("routeChangeComplete", () => {
+      page({ services: [posthog, hubspot] });
+    });
 
     return () => {
       router.events.off("routeChangeComplete", page);

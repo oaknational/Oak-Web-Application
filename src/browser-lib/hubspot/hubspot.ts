@@ -11,6 +11,8 @@ import withQueue from "../analytics/withQueue";
 
 import startHubspot, { HubspotConfig } from "./startHubspot";
 
+const log = (...m: unknown[]) => console.log("hubspot:", ...m);
+
 const reportError = errorReporter("hubspot.ts");
 const reportNotLoadedError = () => {
   const error = new OakError({
@@ -50,6 +52,7 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
   name: "hubspot",
   init: (config) =>
     new Promise<void>((resolve) => {
+      log("init");
       startHubspot(config);
       if (loaded()) {
         resolve();
@@ -76,6 +79,7 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
       reportError(error);
     }
 
+    log("identify", userId, properties);
     // @todo do we need to snakecase properties like DavidWells/analytics
     _hsq.push(["identify", { id: userId, ...properties }]);
   },
@@ -90,7 +94,9 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
      * We call setPath here, since sometimes this page() function is queued,
      * so would be incorrectly
      */
+    log("setPath", properties.path);
     _hsq.push(["setPath", properties.path]);
+    log("trackPageView");
     _hsq.push(["trackPageView"]);
   },
   track: (name, properties) => {
@@ -107,7 +113,7 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
       });
       reportError(error);
     }
-
+    log("trackEvent", properties);
     _hsq.push(["trackEvent", { ...properties, id: name }]);
   },
   optIn: () => {

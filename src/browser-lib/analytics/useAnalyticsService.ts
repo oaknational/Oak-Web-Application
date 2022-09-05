@@ -16,7 +16,7 @@ const useAnalyticsService = <T>({
    */
   consentState: CookieConsentState;
 }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [, setLoaded] = useState(false);
   const [hasAttemptedInit, setHasAttemptedInit] = useState(false);
 
   useEffect(() => {
@@ -37,17 +37,17 @@ const useAnalyticsService = <T>({
     };
   }, [consentState, hasAttemptedInit, config, service]);
 
-  useEffect(() => {
-    // do not track
-    if (loaded) {
-      if (consentState === "enabled") {
-        service.optIn();
-      }
-      if (consentState === "disabled") {
-        service.optOut();
-      }
-    }
-  }, [consentState, service, loaded]);
+  // useEffect(() => {
+  //   // do not track
+  //   if (loaded) {
+  //     if (consentState === "enabled") {
+  //       service.optIn();
+  //     }
+  //     if (consentState === "disabled") {
+  //       service.optOut();
+  //     }
+  //   }
+  // }, [consentState, service, loaded]);
 
   return service;
 };
