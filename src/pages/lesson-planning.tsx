@@ -9,7 +9,7 @@ import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
 import Layout from "../components/Layout";
-import Typography, { Heading, Span } from "../components/Typography";
+import Typography, { Heading } from "../components/Typography";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Icon, { IconName } from "../components/Icon";
 import LessonElementLinks from "../components/LessonElementLinks";
@@ -315,9 +315,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                         >
                           {title}
                         </Heading>
-                        <Span $fontSize={18} $lineHeight={"24px"}>
+                        <Typography $fontSize={18} $lineHeight={"24px"}>
                           <PortableText value={portableText} />
-                        </Span>
+                        </Typography>
                         {withSearchCTA && (
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
