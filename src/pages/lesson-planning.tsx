@@ -246,7 +246,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     objectFit="contain"
                     objectPosition="center bottom"
                     alt=""
-                    src={"/images/illustrations/teacher-carrying-stuff.png"}
+                    src={"/images/illustrations/teacher-carrying-stuff-237-286.png"}
                   />
                 </Cover>
                 <ButtonAsLink
@@ -440,7 +440,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   objectFit="contain"
                   objectPosition="center bottom"
                   alt=""
-                  src={"/images/illustrations/teacher-carrying-stuff.png"}
+                  src={"/images/illustrations/teacher-carrying-stuff-237-286.png"}
                 />
               </Cover>
 

@@ -228,7 +228,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     >
                       <Image
                         alt=""
-                        src={"/images/illustrations/teacher-carrying-stuff.png"}
+                        src={"/images/illustrations/teacher-carrying-stuff-165-200.png"}
                         layout="fill"
                         objectFit="contain"
                         priority

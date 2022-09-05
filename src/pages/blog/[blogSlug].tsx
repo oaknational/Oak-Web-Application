@@ -252,7 +252,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog } = props;
 
   const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff.png",
+    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
     alt: "",
   };
 

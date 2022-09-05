@@ -22,7 +22,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const blogs = props.blogs.map(blogToBlogListItem);
 
   const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff.png",
+    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
     alt: "",
   };
 
