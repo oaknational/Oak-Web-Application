@@ -3,9 +3,10 @@ import * as z from "zod";
 import {
   slugSchema,
   documentSchema,
-  portableTextSchema,
   dateSchema,
+  blogWebinarCategorySchema,
 } from "./base";
+import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
 
 export const webinarSchema = z
@@ -14,6 +15,7 @@ export const webinarSchema = z
     slug: slugSchema,
     date: dateSchema,
     hosts: z.array(teamMemberPreviewSchema),
+    category: blogWebinarCategorySchema,
     // @TODO: Portable text type
     summaryPortableText: portableTextSchema,
   })
@@ -25,6 +27,8 @@ export const webinarPreviewSchema = webinarSchema.pick({
   id: true,
   title: true,
   slug: true,
+  date: true,
+  category: true,
   summaryPortableText: true,
 });
 

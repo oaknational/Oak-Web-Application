@@ -12,6 +12,12 @@ Each page is currently given a no-index metatag from config here [src/browser-li
 
 Each page should have basic meta data added via the <SEO> tag [src/browser-lib/seo/Seo.tsx](../src/browser-lib/seo/Seo.tsx).
 
+### Guidance
+
+- Titles should be between 50-60 characters long
+- Titles should contain app name
+- Descriptions should be between 150-300 characters long
+
 ## JSON-LD
 
 Each page should have JSON-LD data added via [src/browser-lib/seo/getJsonLd.tsx](../src/browser-lib/seo/getJsonLd.tsx)

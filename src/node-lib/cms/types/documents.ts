@@ -1,6 +1,4 @@
-import { Image } from "../../sanity-graphql/generated/sdk";
-
-import { Document, PortableTextJSON } from "./base";
+import { Document, PortableTextJSON, SanityImage } from "./base";
 
 export type TeamMember = Document & {
   name: string;
@@ -8,31 +6,34 @@ export type TeamMember = Document & {
 
 export type TeamMemberPreview = Pick<TeamMember, "name">;
 
+export type BlogWebinarCategory = {
+  title: string;
+  slug: string;
+};
+
 export type Webinar = Document & {
   title: string;
   slug: string;
   date: Date;
   hosts: TeamMember[];
+  category: BlogWebinarCategory;
   summaryPortableText: PortableTextJSON;
 };
 
 export type WebinarPreview = Pick<
   Webinar,
-  "id" | "title" | "slug" | "summaryPortableText"
+  "id" | "title" | "slug" | "date" | "category" | "summaryPortableText"
 >;
 
 export type BlogPost = Document & {
   title: string;
   slug: string;
   date: Date;
-  mainImage: Image;
+  mainImage: SanityImage;
   author: TeamMember;
   summary: string;
+  category: BlogWebinarCategory;
   contentPortableText: PortableTextJSON;
-  category: {
-    title: string;
-    slug: string;
-  };
 };
 
 export type BlogPostPreview = Pick<
@@ -41,7 +42,6 @@ export type BlogPostPreview = Pick<
   | "title"
   | "slug"
   | "summary"
-  | "contentPortableText"
   | "author"
   | "category"
   | "date"
@@ -54,6 +54,7 @@ export type Attachment = {
     asset: {
       extension: string;
       size: number;
+      url: string;
     };
   };
 };
@@ -66,3 +67,9 @@ export type PolicyPage = Document & {
 };
 
 export type PolicyPagePreview = Pick<PolicyPage, "title" | "slug">;
+
+export type LandingPage = Document & {
+  slug: string;
+};
+
+export type LandingPagePreview = Pick<LandingPage, "slug">;

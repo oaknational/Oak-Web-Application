@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 
-import Layout from "../../../components/Layout";
+import AppLayout from "../../../components/AppLayout";
 import SignIn from "../../../components/SignIn";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import Flex from "../../../components/Flex";
 
 const SignInPage: NextPage = () => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} headerVariant="app">
+    <AppLayout seoProps={DEFAULT_SEO_PROPS}>
       <Flex
         $flexDirection="column"
         $justifyContent="center"
@@ -16,7 +16,7 @@ const SignInPage: NextPage = () => {
       >
         <SignIn />
       </Flex>
-    </Layout>
+    </AppLayout>
   );
 };
 

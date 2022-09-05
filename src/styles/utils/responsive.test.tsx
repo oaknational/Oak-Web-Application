@@ -72,7 +72,7 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0px;
 
-      @media (min-width: 800px) {
+      @media (min-width: 750px) {
         padding-left: 12px;
       }
     `;
@@ -92,7 +92,7 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 36px;
 
-      @media (min-width: 800px) {
+      @media (min-width: 750px) {
         padding-left: 12px;
       }
 

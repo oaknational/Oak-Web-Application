@@ -1,0 +1,10 @@
+query landingPageBySlug($slug: String, $isDraft: Boolean = false) {
+  allLandingPage(
+    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+  ) {
+    id: _id
+    slug {
+      current
+    }
+  }
+}

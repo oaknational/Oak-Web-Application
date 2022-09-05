@@ -80,7 +80,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
       <P color={"black"} id={descriptionId}>
         Join 80,000 teachers and get free resources and other helpful content by
         email. Unsubscribe at any time. Read our{" "}
-        <Link href="/">
+        <Link href="/legal/privacy-policy">
           <a>privacy policy</a>
         </Link>
         .
@@ -111,6 +111,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         <Input
           id="newsletter-signup-name"
           $mt={24}
+          label="Name"
           placeholder="Name"
           {...register("name")}
           error={errors.name?.message}
@@ -118,6 +119,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         <Input
           id="newsletter-signup-email"
           $mt={24}
+          label="Email Address"
           placeholder="Email Address"
           {...register("email")}
           error={errors.email?.message}
@@ -133,7 +135,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         />
         <Button
           $mt={24}
-          label="Sign Up"
+          label="Sign up"
           fullWidth
           htmlButtonProps={{ disabled: loading }}
           background="teachersHighlight"

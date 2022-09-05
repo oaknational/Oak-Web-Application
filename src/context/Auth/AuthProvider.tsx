@@ -23,7 +23,7 @@ import OakError from "../../errors/OakError";
 import useStableCallback from "../../hooks/useStableCallback";
 
 import useAccessToken from "./useAccessToken";
-import authContext, { OakUser } from "./authContext";
+import authContext, { OakAuth, OakUser } from "./authContext";
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: config.get("firebaseApiKey"),
@@ -63,7 +63,14 @@ const getClientAppBaseUrl = () => {
 export const getSignInCallbackUrl = () =>
   `${getClientAppBaseUrl()}/beta/sign-in/callback`;
 
-const AuthProvider: FC = ({ children }) => {
+export type AuthProviderValue = OakAuth;
+export type AuthProviderProps = {
+  value?: Partial<AuthProviderValue>;
+};
+const AuthProvider: FC<AuthProviderProps> = ({
+  children,
+  value: propsValue,
+}) => {
   const [, setBookmarks] = useBookmarksCache();
   const [userRaw, setUser] = useLocalStorage<OakUser | null>(LS_KEY_USER, null);
   const [, setAccessToken] = useAccessToken();
@@ -210,7 +217,11 @@ const AuthProvider: FC = ({ children }) => {
     signInWithEmail,
     signInWithEmailCallback,
   };
-  return <authContext.Provider value={value}>{children}</authContext.Provider>;
+  return (
+    <authContext.Provider value={{ ...value, ...propsValue }}>
+      {children}
+    </authContext.Provider>
+  );
 };
 
 export default AuthProvider;

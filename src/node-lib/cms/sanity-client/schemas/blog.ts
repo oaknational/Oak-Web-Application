@@ -3,11 +3,11 @@ import * as z from "zod";
 import {
   slugSchema,
   documentSchema,
-  portableTextSchema,
   dateSchema,
-  blogWebinarCategory,
+  blogWebinarCategorySchema,
   imageSchema,
 } from "./base";
+import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
 
 export const blogPostSchema = z
@@ -18,7 +18,7 @@ export const blogPostSchema = z
     author: teamMemberPreviewSchema,
     summary: z.string().nonempty(),
     contentPortableText: portableTextSchema,
-    category: blogWebinarCategory,
+    category: blogWebinarCategorySchema,
     mainImage: imageSchema,
   })
   .merge(documentSchema);
@@ -30,7 +30,6 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   title: true,
   slug: true,
   summary: true,
-  contentPortableText: true,
   author: true,
   category: true,
   date: true,

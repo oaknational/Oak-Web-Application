@@ -11,11 +11,18 @@ import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 
 /**
+ * Adds a finite list of pixel values which we're allowed to use throughout the
+ * app's styles.
+ * Keeping this list finite and explicit means that that (1) consistency is
+ * encouraged and (2) if we want to migrate our styles to a static css solution
+ * e.g. Vanilla Extract, then we can (otherwise we rely on runtime css to
+ * generate classes for adhoc pixel values).
  * @todo use negative number type
  * @see https://stackoverflow.com/questions/21224922/is-there-a-way-to-represent-a-non-negative-integer-in-typescript-so-that-the-com
  */
 export type PixelSpacing =
   | 0
+  | 1
   | 4
   | 6
   | 8
@@ -34,12 +41,18 @@ export type PixelSpacing =
   | 72
   | 80
   | 92
+  | 96
   | 120
+  | 140
+  | 160
+  | 200
+  | 220
   | 240
   | 360
   | 480
   | 600
   | 720
+  | 812
   | 840
   | 960
   | 1280;

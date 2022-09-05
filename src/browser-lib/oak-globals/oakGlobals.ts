@@ -1,9 +1,12 @@
+import { merge } from "lodash/fp";
+
 import { WindowOakThemes } from "../../hooks/useOakTheme";
-import { WindowOakPosthog } from "../posthog/usePosthog";
+import isBrowser from "../../utils/isBrowser";
+import { WindowOakHubspot } from "../hubspot/startHubspot";
 
 type OakGlobals = {
   oakThemes?: WindowOakThemes;
-  posthog?: WindowOakPosthog;
+  hubspot?: WindowOakHubspot;
 };
 
 declare global {
@@ -12,21 +15,18 @@ declare global {
   }
 }
 
-if (typeof window !== "undefined") {
+if (isBrowser) {
   window.__oakGlobals = window.__oakGlobals || {};
 }
 
 export const getOakGlobals = () => {
-  if (typeof window !== "undefined") {
+  if (isBrowser) {
     return window.__oakGlobals;
   }
   return {};
 };
 export const setOakGlobals = (value: Partial<OakGlobals>) => {
-  if (typeof window !== "undefined") {
-    window.__oakGlobals = {
-      ...getOakGlobals(),
-      ...value,
-    };
+  if (isBrowser) {
+    window.__oakGlobals = merge(getOakGlobals(), value);
   }
 };

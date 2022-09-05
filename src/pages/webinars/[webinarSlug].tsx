@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { Webinar } from "../../node-lib/cms";
 
-type SerializedWebinar = Omit<Webinar, "date"> & {
+export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
 };
 

@@ -9,6 +9,12 @@ query webinarBySlug($slug: String, $isDraft: Boolean = false) {
     }
     date
     summaryPortableText: summaryRaw
+    category {
+      title
+      slug {
+        current
+      }
+    }
     hosts {
       id: _id
       _key

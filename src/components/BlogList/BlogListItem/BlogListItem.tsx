@@ -1,11 +1,13 @@
-import Image from "next/image";
 import { FC } from "react";
 import styled from "styled-components";
 
+import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
+import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
+import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../Typography";
 
 const ActionLink = styled.a`
@@ -27,9 +29,9 @@ export type BlogListItemProps = {
   snippet: string;
   href: string;
   contentType: BlogListItemContentType;
-  category: string;
+  category: BlogWebinarCategory;
   date: string;
-  mainImage: string;
+  mainImage?: SanityImage | null;
   withImage?: boolean;
 };
 
@@ -51,40 +53,57 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
-  const blogDate = new Date(date);
+  const blogDate = new Date(date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
-    <Flex $position={"relative"} $mt={24} $flexDirection={["column", "row"]}>
+    <Flex
+      $position={"relative"}
+      $flexDirection={["column", "row"]}
+      $alignItems={["initial", "center"]}
+      $minHeight={200}
+    >
       {withImage && mainImage && (
-        <Box $position={"relative"} $minWidth={240}>
-          <AspectRatio ratio={"3:2"}>
-            <Image
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center center"
-              src={mainImage}
-              alt=""
-            />
-          </AspectRatio>
+        <Box $position={"relative"} $minWidth={240} $mr={[0, 32]} $mb={[32, 0]}>
+          <BoxBorders />
+          <Box $ma={1}>
+            <AspectRatio ratio={"3:2"}>
+              <CMSImage
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center center"
+                image={mainImage}
+                sizes="(min-width: 750px) 256px, 100vw"
+                // @TODO: Replace with valid alt text when supported by the CMS
+                alt=""
+              />
+            </AspectRatio>
+          </Box>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start" $ml={[0, 32]}>
-        <P $fontSize={16} $lineHeight={"20px"}>
-          {category}
+
+      <Flex $flexDirection="column" $alignItems="flex-start">
+        <P
+          $fontSize={16}
+          $lineHeight={"20px"}
+          // Not blue until link to category filter is added
+          // $color="teachersHighlight"
+          $fontFamily="ui"
+        >
+          {category.title}
         </P>
         <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-          {blogDate.toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
+          {blogDate}
         </P>
-        <Heading tag={titleTag} $fontSize={20} $mt={8}>
+        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
           <ActionLink href={href} title={title}>
             {title}
           </ActionLink>
         </Heading>
-        <P $fontSize={18} $mt={8}>
+        <P $fontSize={14} $mt={8} $mb={[16, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>

@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { CTAInternalLinkEntry } from "../sanity-client/schemas";
+
 export type Document = {
   id: string;
 };
@@ -19,6 +21,7 @@ export type Video = {
   title: string;
   video: {
     asset: {
+      thumbTime?: number | null;
       assetId: string;
       playbackId: string;
     };
@@ -30,7 +33,7 @@ export type CTA = {
 } & (
   | {
       linkType: "internal";
-      internal: { contentType: string; slug?: string };
+      internal: CTAInternalLinkEntry;
     }
   | { linkType: "external"; external: string }
 );

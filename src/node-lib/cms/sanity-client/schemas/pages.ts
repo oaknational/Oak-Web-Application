@@ -1,14 +1,10 @@
 import * as z from "zod";
 
-import {
-  cardSchema,
-  CTASchema,
-  documentSchema,
-  imageSchema,
-  portableTextSchema,
-  textAndMediaSchema,
-  textBlockSchema,
-} from "./base";
+import { attachmentSchema, documentSchema, imageSchema } from "./base";
+import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
+import { CTASchema } from "./cta";
+import { portableTextSchema } from "./portableText";
+import { teamMemberSchema } from "./teamMember";
 
 export const planningPageSchema = z
   .object({
@@ -43,16 +39,6 @@ export const planningPageSchema = z
 
 export type PlanningPage = z.infer<typeof planningPageSchema>;
 
-const attachmentSchema = z.object({
-  title: z.string(),
-  file: z.object({
-    asset: z.object({
-      extension: z.string(),
-      size: z.number(),
-    }),
-  }),
-});
-
 export const aboutPageSchema = z
   .object({
     title: z.string(),
@@ -76,6 +62,7 @@ export const aboutPageSchema = z
       introPortableText: portableTextSchema,
       documents: z.array(attachmentSchema),
       governancePortableText: portableTextSchema,
+      boardMembers: z.array(teamMemberSchema),
     }),
     partners: z.object({
       sectionHeading: z.string(),
@@ -120,6 +107,7 @@ export const curriculumPageSchema = z
       title: z.string(),
       posts: z.array(
         z.object({
+          title: z.string(),
           post: z.object({
             title: z.string(),
             slug: z.object({ current: z.string() }),
