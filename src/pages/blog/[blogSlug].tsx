@@ -4,6 +4,9 @@ import {
   MissingComponentHandler,
   PortableText,
   PortableTextComponentsProvider,
+  PortableTextComponents,
+  PortableTextComponentProps,
+  PortableTextMarkComponentProps,
 } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,11 +48,6 @@ export type BlogPageProps = {
   isPreviewMode: boolean;
 };
 
-type PortableTextComponent<T = unknown> = {
-  children?: React.ReactNode;
-  value?: T;
-};
-
 // When we get the JSON portable text it doesn't have the same field names as
 // our generic types / what comes from our graphql queries
 type TextAndMediaBlock = OmitKeepDiscriminated<
@@ -59,9 +57,9 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
   body: PortableTextJSON;
 };
 
-const portableTextComponents = {
+const portableTextComponents: PortableTextComponents = {
   block: {
-    sectionHeading: (props: PortableTextComponent) => {
+    sectionHeading: (props) => {
       // @TODO: Choose an appropriate section heading level
       return (
         <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={56} $mb={32}>
@@ -69,7 +67,7 @@ const portableTextComponents = {
         </Heading>
       );
     },
-    normal: (props: PortableTextComponent) => {
+    normal: (props) => {
       return (
         <P $lineHeight={"28px"} $fontSize={[16, 18]} $mt={16}>
           {props.children}
@@ -78,22 +76,17 @@ const portableTextComponents = {
     },
   },
   list: {
-    bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
-    number: (props: PortableTextComponent) => (
-      <OL $ml={[16, 28]}>{props.children}</OL>
-    ),
+    bullet: (props) => <ul>{props.children}</ul>,
+    number: (props) => <OL $ml={[16, 28]}>{props.children}</OL>,
   },
   listItem: {
-    bullet: (props: PortableTextComponent) => (
-      <LI $fontSize={[16, 18]}>{props.children}</LI>
-    ),
-    number: (props: PortableTextComponent) => (
-      <LI $fontSize={[16, 18]}>{props.children}</LI>
-    ),
+    bullet: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
+    number: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
   },
   marks: {
     internalLink: (
-      props: PortableTextComponent<{
+      props: PortableTextMarkComponentProps<{
+        _type: "internalLink";
         reference?: CTAInternalLinkEntry;
       }>
     ) => {
@@ -116,7 +109,9 @@ const portableTextComponents = {
         </Span>
       );
     },
-    link: (props: PortableTextComponent<{ href: string }>) => {
+    link: (
+      props: PortableTextMarkComponentProps<{ _type: "link"; href: string }>
+    ) => {
       if (!props.value?.href) {
         return null;
       }
@@ -133,7 +128,9 @@ const portableTextComponents = {
     },
   },
   types: {
-    imageWithAltText: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
+    imageWithAltText: (
+      props: PortableTextComponentProps<{ asset: SanityImage["asset"] }>
+    ) => {
       if (!props.value) {
         return null;
       }
@@ -144,7 +141,7 @@ const portableTextComponents = {
         </Box>
       );
     },
-    video: (props: PortableTextComponent<Video>) => {
+    video: (props: PortableTextComponentProps<Video>) => {
       if (!props.value) {
         return null;
       }
@@ -161,7 +158,7 @@ const portableTextComponents = {
         </Box>
       );
     },
-    textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
+    textAndMedia: (props: PortableTextComponentProps<TextAndMediaBlock>) => {
       if (!props.value) {
         return null;
       }
@@ -208,7 +205,7 @@ const portableTextComponents = {
       );
     },
     quote: (
-      props: PortableTextComponent<{
+      props: PortableTextComponentProps<{
         // @TODO: Reference shared quote type when it's added in another PR
         text: string;
         attribution: string;
@@ -230,7 +227,7 @@ const portableTextComponents = {
         </Flex>
       );
     },
-    cta: (props: PortableTextComponent<CTA>) => {
+    cta: (props: PortableTextComponentProps<CTA>) => {
       if (!props.value) {
         return null;
       }
