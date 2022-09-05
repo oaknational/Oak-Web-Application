@@ -9,10 +9,13 @@ export type PosthogConfig = {
   apiHost: string;
 };
 
+const log = (...m: unknown[]) => console.log("posthog:", ...m);
+
 export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
   name: "posthog",
   init: ({ apiKey, apiHost }) =>
     new Promise((resolve) => {
+      log("init");
       posthogJs.init(apiKey, {
         api_host: apiHost,
         debug: true,
@@ -20,12 +23,15 @@ export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
       });
     }),
   identify: (userId, properties) => {
+    log("identify", userId, properties);
     posthogJs.identify(userId, properties);
   },
   page: () => {
+    log("page");
     posthogJs.capture("$pageview");
   },
   track: (name, properties) => {
+    log("track", name, properties);
     posthogJs.capture(name, properties);
   },
   optIn: () => {
