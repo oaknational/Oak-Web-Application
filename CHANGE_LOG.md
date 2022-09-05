@@ -1,3 +1,22 @@
+# [0.99.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.98.0...v0.99.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* **hubspot:** get cookie hubspot cookie ([a12396d](https://github.com/oaknational/Oak-Web-Application/commit/a12396d51c6d138b897c5143d18e8bfd9292b417))
+* remove hard-coded icons from blog CTAs ([03d6c5e](https://github.com/oaknational/Oak-Web-Application/commit/03d6c5e1e3156da594e715c7c5bf29b3aa108a7f))
+* resolve portable text references for policy page ([cc2449c](https://github.com/oaknational/Oak-Web-Application/commit/cc2449ce95238950e80f91e294a0f055a1965a9c))
+* use errorReporter for internal link resolving ([7c9b2f6](https://github.com/oaknational/Oak-Web-Application/commit/7c9b2f66161146fac86a04028d473d41bf41b9e1))
+
+
+### Features
+
+* add callout block and style to blog portable text ([bf11365](https://github.com/oaknational/Oak-Web-Application/commit/bf11365aa7058f0997fa5a64b8dd2c3be93d0064))
+* add missing strong/em marks to blog portable text ([8d3819e](https://github.com/oaknational/Oak-Web-Application/commit/8d3819ec5eb3befa15698f6cb7b958434e730c2d))
+* extract shared portable text styles to BasePortableTextProvider ([760755d](https://github.com/oaknational/Oak-Web-Application/commit/760755d90fb06cc60383ba2160ef605516609338))
+* lift quote type, fix blog rendering of optional fields ([85d9819](https://github.com/oaknational/Oak-Web-Application/commit/85d9819042c0272b1e41982cdd5437df95822f4b))
+* re-use portable text provider in policy page, lift out of render ([7b91f7b](https://github.com/oaknational/Oak-Web-Application/commit/7b91f7b44606fa2e3115df0af523934439d17029))
+
 # [0.98.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.97.1...v0.98.0) (2022-09-05)
 
 
