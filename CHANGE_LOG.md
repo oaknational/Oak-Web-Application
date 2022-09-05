@@ -1,3 +1,18 @@
+# [0.98.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.97.1...v0.98.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* type ([7e401bb](https://github.com/oaknational/Oak-Web-Application/commit/7e401bbba25f0e17004bb614099392f9d006013f))
+* typography adjustments on blog ([5adf3a1](https://github.com/oaknational/Oak-Web-Application/commit/5adf3a1db39917b64ddce50cc0c80fef1b2d8dd8))
+
+
+### Features
+
+* Add ordered list component ([b56949d](https://github.com/oaknational/Oak-Web-Application/commit/b56949d52dc3ac74ee7d837dfd2efb275a088cd7))
+* margin on left of list ([213ae20](https://github.com/oaknational/Oak-Web-Application/commit/213ae20530e8cf5c82c5636a791f45f6cf42d595))
+* style linebreaks in list items ([826a3a7](https://github.com/oaknational/Oak-Web-Application/commit/826a3a7e6a1fb403f6ddbb99e967b6d067a4f438))
+
 ## [0.97.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.97.0...v0.97.1) (2022-09-05)
 
 # [0.97.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.96.1...v0.97.0) (2022-09-05)
