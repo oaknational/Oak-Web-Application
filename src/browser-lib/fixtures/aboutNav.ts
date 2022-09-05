@@ -18,4 +18,13 @@ const aboutNavLinks = [
   },
 ];
 
+export const reducedAboutNavLinks = [
+  {
+    label: "Who we are",
+    href: "/about-us/who-we-are",
+  },
+
+  { label: "Board", href: "/about-us/board" },
+];
+
 export default aboutNavLinks;

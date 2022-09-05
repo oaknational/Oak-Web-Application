@@ -1,0 +1,4 @@
+fragment TeamMemberSocials on TeamMemberSocials {
+  twitterUsername
+  linkedinUrl
+}

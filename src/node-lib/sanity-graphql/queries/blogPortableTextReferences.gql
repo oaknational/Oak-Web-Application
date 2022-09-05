@@ -1,12 +1,8 @@
 query blogPortableTextReferences($ids: [ID!]) {
   allDocument(where: { _id: { in: $ids } }) {
-    _id
+    id: _id
     _type
-    ... on Webinar {
-      slug {
-        current
-      }
-    }
+    ...InternalLinkFields
     ... on SanityImageAsset {
       _id
       url

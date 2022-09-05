@@ -35,7 +35,6 @@ const testVideo = {
     asset: {
       assetId: "ByqZ4KA9mLdyrtWnAvRMHbcQnNk2uUnf3NNdahrey5o",
       playbackId: "5VfBnOXD87KnXMJrYNG6HtCIizY6q6thP5EjjqkU1kI",
-      thumbTime: null,
     },
   },
 };
@@ -205,10 +204,12 @@ describe("cms/sanity-client", () => {
   });
 
   describe("videoSchema", () => {
-    it("transforms a null thumbnail to undefined", async () => {
+    it("transforms an undefined thumbnail to null", async () => {
+      // Serializing `undefined` from getStaticProps causes nextjs errors
+      // so explicitly cast it to null
       type video = z.infer<typeof videoSchema>;
       const passResult = videoSchema.safeParse(testVideo) as { data: video };
-      expect(passResult.data.video.asset.thumbTime).toBeUndefined();
+      expect(passResult.data.video.asset.thumbTime).toBeNull();
     });
   });
 });

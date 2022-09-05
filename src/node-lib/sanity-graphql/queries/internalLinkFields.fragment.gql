@@ -1,0 +1,27 @@
+fragment InternalLinkFields on Document {
+  id: _id
+  contentType: _type
+  ... on Webinar {
+    slug {
+      current
+    }
+  }
+  ... on NewsPost {
+    slug {
+      current
+    }
+  }
+  ... on PolicyPage {
+    slug {
+      current
+    }
+  }
+  ... on LandingPage {
+    slug {
+      current
+    }
+  }
+  ... on Attachment {
+    ...Attachment
+  }
+}

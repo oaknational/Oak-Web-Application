@@ -117,7 +117,7 @@ describe("Pagination", () => {
         onPageChange={onPageChange}
       />
     );
-    const nextButton = getByLabelText("next");
+    const nextButton = getByLabelText("next page");
 
     getByText("page 25/25");
 
@@ -136,7 +136,7 @@ describe("Pagination", () => {
         onPageChange={onPageChange}
       />
     );
-    const previousButton = getByLabelText("previous");
+    const previousButton = getByLabelText("previous page");
 
     getByText("page 1/25");
 

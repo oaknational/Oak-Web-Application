@@ -64,6 +64,7 @@ const SignIn: FC = () => {
             <label htmlFor={emailInputId}>Email</label>
             <Input
               id={emailInputId}
+              label="Email address"
               name="email"
               type="email"
               value={email}

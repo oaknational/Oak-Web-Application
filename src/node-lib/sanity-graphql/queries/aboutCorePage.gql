@@ -34,15 +34,11 @@ query aboutCorePage($isDraft: Boolean = false) {
     board {
       sectionHeading
       introPortableText: introRaw
+      boardMembers {
+        ...TeamMember
+      }
       documents {
-        title
-        file {
-          asset {
-            extension
-            size
-            url
-          }
-        }
+       ...Attachment
       }
       governancePortableText: governanceRaw
     }
