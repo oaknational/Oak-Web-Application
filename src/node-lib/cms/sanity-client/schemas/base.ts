@@ -94,6 +94,21 @@ const internalLinkEntryTypes = [
   z.object({ contentType: z.literal("homepage") }).merge(documentSchema),
   z.object({ contentType: z.literal("aboutCorePage") }).merge(documentSchema),
   z
+    .object({ contentType: z.literal("aboutCorePage.whoWeAre") })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("aboutCorePage.board") })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("aboutCorePage.leadership") })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("aboutCorePage.partners") })
+    .merge(documentSchema),
+  z
+    .object({ contentType: z.literal("aboutCorePage.workWithUs") })
+    .merge(documentSchema),
+  z
     .object({ contentType: z.literal("planningCorePage") })
     .merge(documentSchema),
   z.object({ contentType: z.literal("supportCorePage") }).merge(documentSchema),

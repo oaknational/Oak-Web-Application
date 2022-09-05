@@ -7,7 +7,16 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
     case "homepage":
       return `/`;
     case "aboutCorePage":
-      return `/about-us`;
+    case "aboutCorePage.whoWeAre":
+      return `/about-us/who-we-are`;
+    case "aboutCorePage.board":
+      return `/about-us/board`;
+    case "aboutCorePage.leadership":
+      return `/about-us/leadership`;
+    case "aboutCorePage.partners":
+      return `/about-us/partners`;
+    case "aboutCorePage.workWithUs":
+      return `/about-us/work-with-us`;
     case "planningCorePage":
       return `/lesson-planning`;
     case "supportCorePage":
