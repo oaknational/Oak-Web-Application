@@ -5,7 +5,7 @@ import AboutBoard from "../../pages/about-us/board";
 
 import { testAboutPageData } from "./about-who-we-are.test";
 
-describe("pages/about us who we arew.tsx", () => {
+describe("pages/about us who we are.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
       <AboutBoard pageData={testAboutPageData} isPreviewMode={false} />

@@ -10,16 +10,11 @@ fragment BlogPreviewFields on NewsPost {
     _key
     name
     image {
-      asset {
-        url
-      }
+      ...Image
     }
   }
   mainImage {
-    asset {
-      _id
-      url
-    }
+    ...ImageWithAltText
   }
   category {
     title

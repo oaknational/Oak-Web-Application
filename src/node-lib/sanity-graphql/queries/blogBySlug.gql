@@ -19,10 +19,7 @@ query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
       current
     }
     mainImage {
-      asset {
-        _id
-        url
-      }
+      ...ImageWithAltText
     }
     category {
       title

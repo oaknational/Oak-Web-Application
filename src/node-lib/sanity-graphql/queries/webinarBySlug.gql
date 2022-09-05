@@ -20,9 +20,7 @@ query webinarBySlug($slug: String, $isDraft: Boolean = false) {
       _key
       name
       image {
-        asset {
-          url
-        }
+        ...Image
       }
     }
   }

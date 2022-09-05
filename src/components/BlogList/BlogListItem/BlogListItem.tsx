@@ -77,8 +77,9 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
                 objectPosition="center center"
                 image={mainImage}
                 sizes="(min-width: 750px) 256px, 100vw"
-                // @TODO: Replace with valid alt text when supported by the CMS
-                alt=""
+                // Explicitly set an empty string for missing alt text in thumbnails
+                // pending a a11y decision on alt for thumbs
+                alt={mainImage.altText || ""}
               />
             </AspectRatio>
           </Box>

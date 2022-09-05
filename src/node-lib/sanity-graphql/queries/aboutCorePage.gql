@@ -48,15 +48,13 @@ query aboutCorePage($isDraft: Boolean = false) {
       techPartners {
         name
         asset {
-          _id
-          url
+          ...ImageAsset
         }
       }
       curriculumPartners {
         name
         asset {
-          _id
-          url
+          ...ImageAsset
         }
       }
     }
