@@ -119,6 +119,13 @@ describe("cms/sanity-client", () => {
       const mockMethod = mockMethodName as keyof typeof mockSanityGraphqlApi;
       const clientMethod = client[methodName as keyof typeof client];
 
+      it("returns null when no content is found", async () => {
+        mockSanityGraphqlApi[mockMethod].mockResolvedValueOnce({} as never);
+
+        const res = await clientMethod("some-slug");
+        expect(res).toBeNull();
+      });
+
       it("does not fetch draft content by default", async () => {
         await clientMethod("some-slug");
         expect(mockSanityGraphqlApi[mockMethod]).toBeCalledWith(
