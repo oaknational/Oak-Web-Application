@@ -94,7 +94,7 @@ describe("pages/index.tsx", () => {
       jest.resetModules();
     });
 
-    it("Should return no more than 5 posts", async () => {
+    it("Should return no more than 4 posts", async () => {
       (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([
         mockPost,
         mockPost2,
@@ -105,7 +105,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({})) as { props: HomePageProps };
 
-      expect(result.props?.posts).toHaveLength(5);
+      expect(result.props?.posts).toHaveLength(4);
     });
 
     it("Should sort posts by date ascending", async () => {

@@ -35,7 +35,7 @@ export type CurriculumPageProps = {
 };
 
 const elementsOfCurriculumDesignHeadings = [
-  "Revising part of your Curriculum:",
+  "Revising part of your curriculum:",
   "Rebuilding or changing your curriculum:",
   "An easy way to refresh resources:",
 ];

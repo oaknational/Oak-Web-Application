@@ -16,6 +16,9 @@ import OutlineHeading from "../../components/OutlineHeading";
 import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
+import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
+import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
+import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -44,17 +47,17 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
           {title}
         </OutlineHeading>
-        <Typography $fontSize={18}>
+        <Typography $fontSize={[16, 18]}>
           <PortableText value={bodyPortableText} />
         </Typography>
-        {cta?.linkType == "internal" && (
+        {cta && (
           <Flex>
             <ButtonAsLink
               $mt={[36]}
               icon={"ArrowRight"}
               iconPosition={"trailing"}
               label={cta.label}
-              href={`/blog/${cta.internal.slug}`}
+              href={getCTAHref(cta)}
             />
           </Flex>
         )}
@@ -89,14 +92,25 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             $minHeight: 220,
             $mr: 32,
           }}
-        />
+        >
+          <ButtonLinkNav
+            $mt={36}
+            buttons={reducedAboutNavLinks}
+            selected={"Who we are"}
+          />
+        </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
-          <Card $pv={32} $ph={[16, 24]} $flexDirection={["column", "row"]}>
+          <Card
+            $pv={32}
+            $ph={[16, 24]}
+            $flexDirection={["column", "column", "row"]}
+            $maxWidth={["100%", 812, "100%"]}
+          >
             <Flex
               $justifyContent={"center"}
               $alignItems={"center"}
-              $pb={[24, 0]}
-              $pr={[0, 72]}
+              $pb={[24, 24, 0]}
+              $pr={[0, 0, 72]}
               $minWidth={["50%"]}
             >
               {pageData.whoWeAre.intro.mediaType == "video" && (
@@ -122,12 +136,12 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                 />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
-                {pageData.whoWeAre.intro.cta?.linkType == "internal" && (
+                {pageData.whoWeAre.intro.cta && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     iconPosition="trailing"
                     label={pageData.whoWeAre.intro.cta.label}
-                    href={`/blog/${pageData.whoWeAre.intro.cta.internal.slug}`}
+                    href={getCTAHref(pageData.whoWeAre.intro.cta)}
                   />
                 )}
               </Flex>
@@ -158,7 +172,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
                   <Heading
                     $fontSize={[24, 32]}
                     $lineHeight={["32px", "40px"]}
-                    tag={"h4"}
+                    tag={"h2"}
                     $mb={[24]}
                   >
                     {principle.title}
