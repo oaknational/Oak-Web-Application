@@ -6,9 +6,12 @@ import {
   PortableTextMarkComponent,
 } from "@portabletext/react";
 
+import errorReporter from "../../common-lib/error-reporter";
 import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
 import { LI, OL, P, Span } from "../Typography";
+
+const reportError = errorReporter("PortableText");
 
 export const PTInternalLink: PortableTextMarkComponent<{
   _type: "internalLink";
@@ -19,10 +22,15 @@ export const PTInternalLink: PortableTextMarkComponent<{
     return null;
   }
 
-  const href = resolveInternalHref(props.value.reference);
+  let href;
+  try {
+    href = resolveInternalHref(props.value.reference);
+  } catch (err) {
+    reportError(err, { severity: "warning" });
+    console.warn("Unable to render internal link for props:", props);
+  }
 
   if (!href) {
-    console.warn("Unable to render internal link for props:", props);
     return null;
   }
   return (
