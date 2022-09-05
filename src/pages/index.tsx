@@ -325,7 +325,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     <li key={`BlogList-BlogListItem-${i}`}>
                       {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
-                      {i < posts.length - 1 && <Hr $color="black" />}
+                      {i < posts.length - 1 && <Hr $color="black" $mv={16} />}
                     </li>
                   ))}
                 </Flex>
