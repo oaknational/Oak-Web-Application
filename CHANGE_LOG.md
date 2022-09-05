@@ -1,3 +1,16 @@
+# [0.97.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.96.1...v0.97.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* swap image for imageWithAltText in blog PT rendering ([0b10beb](https://github.com/oaknational/Oak-Web-Application/commit/0b10beba4fbb57a6ad0ea7fe2a827393a642424b))
+
+
+### Features
+
+* pull image alt text from CMS ([28b1d4d](https://github.com/oaknational/Oak-Web-Application/commit/28b1d4df000999eb04f836cc774be098fd3551aa))
+* render alt text in CMSImage ([783fe53](https://github.com/oaknational/Oak-Web-Application/commit/783fe5375356bdbfcd2680eb8005f7c6b926e898))
+
 ## [0.96.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.96.0...v0.96.1) (2022-09-05)
 
 
