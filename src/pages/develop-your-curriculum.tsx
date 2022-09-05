@@ -56,7 +56,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           heading={pageData.heading}
           summary={pageData.summaryPortableText}
           imageProps={{
-            src: "/images/illustrations/curriculum.svg",
+            src: "/images/illustrations/curriculum-371.png",
             alt: "Develop Your Curriculum illustration",
           }}
         />
@@ -82,7 +82,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             >
               <CardImage
                 alt={"curriculum design illustration"}
-                imageSrc={"/images/illustrations/curriculum-design.svg"}
+                imageSrc={"/images/illustrations/curriculum-design-800.png"}
                 position={"center center"}
               />
             </Flex>

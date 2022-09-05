@@ -91,25 +91,25 @@ const getLessonPlanningCards = (planningPage: PlanningPage) => {
   return [
     {
       id: "find",
-      image: "/images/illustrations/calendar.svg",
+      imageSrc: "/images/illustrations/calendar.png",
       title: getTitle(0),
       portableText: getPortableText(0),
     },
     {
       id: "personalise",
-      image: "/images/illustrations/atoms.svg",
+      imageSrc: "/images/illustrations/atoms.png",
       title: getTitle(1),
       portableText: getPortableText(1),
     },
     {
       id: "tailor",
-      image: "/images/illustrations/test-tubes.svg",
+      imageSrc: "/images/illustrations/test-tubes.png",
       title: getTitle(2),
       portableText: getPortableText(2),
     },
     {
       id: "teach",
-      image: "/images/illustrations/pupils-at-desk.svg",
+      imageSrc: "/images/illustrations/pupils-at-desk.png",
       title: getTitle(3),
       portableText: getPortableText(3),
       withSearchCTA: true,
@@ -273,7 +273,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
           </SectionHeader>
           <Grid $cg={24} $rg={0}>
             {getLessonPlanningCards(pageData).map(
-              ({ title, portableText, image, withSearchCTA }, i, arr) => {
+              ({ title, portableText, imageSrc, withSearchCTA }, i, arr) => {
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
                 return (
                   <GridArea
@@ -302,7 +302,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                           layout="fill"
                           objectFit="contain"
                           objectPosition="left bottom"
-                          src={image}
+                          src={imageSrc}
                         />
                       </Box>
 
