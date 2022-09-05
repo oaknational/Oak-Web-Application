@@ -335,7 +335,10 @@ const Home: NextPage<HomePageProps> = (props) => {
               <HomeHelpCard />
             </GridArea>
             <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
-              <NewsletterForm {...newsletterFormProps} />
+              <NewsletterForm
+                {...newsletterFormProps}
+                anchorTargetId="email-sign-up"
+              />
             </GridArea>
           </Grid>
         </MaxWidth>

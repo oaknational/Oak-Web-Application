@@ -15,6 +15,7 @@ import {
   UserRole,
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
+import AnchorTarget from "../../AnchorTarget";
 
 const schema = z.object({
   name: z
@@ -51,6 +52,7 @@ type NewsletterFormValues = z.infer<typeof schema>;
 type NewsletterFormProps = {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
   containerProps?: CardProps;
+  anchorTargetId?: string;
 };
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
@@ -59,7 +61,7 @@ type NewsletterFormProps = {
  * Submitting this form will send data to Hubspot.
  */
 const NewsletterForm: FC<NewsletterFormProps> = (props) => {
-  const { onSubmit, containerProps } = props;
+  const { onSubmit, containerProps, anchorTargetId } = props;
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -74,6 +76,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
 
   return (
     <Card $borderRadius={0} $background="white" {...containerProps}>
+      <AnchorTarget id={anchorTargetId} />
       <CardTitle tag="h2" icon="MagicCarpet" iconSize={56}>
         Don’t miss out
       </CardTitle>
