@@ -1,23 +1,18 @@
 import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
-import aboutCorePageFixture from "../../sanity-graphql/fixtures/aboutCorePage.json";
 import allWebinarsFixture from "../../sanity-graphql/fixtures/allWebinars.json";
-import planningCorePageFixture from "../../sanity-graphql/fixtures/planningCorePage.json";
-import allBlogPostsFixture from "../../sanity-graphql/fixtures/allBlogPosts.json";
-import blogPostBySlugFixture from "../../sanity-graphql/fixtures/blogPostBySlug.json";
 import webinarBySlugFixture from "../../sanity-graphql/fixtures/webinarBySlug.json";
-import allLandingPagesFixture from "../../sanity-graphql/fixtures/allLandingPages.json";
-import curriculumCorePageFixture from "../../sanity-graphql/fixtures/curriculumCorePage.json";
-import allPolicyPagesFixture from "../../sanity-graphql/fixtures/allPolicyPages.json";
-import policyPageBySlugFixture from "../../sanity-graphql/fixtures/policyPageBySlug.json";
 import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageBySlug.json";
-import blogPortableTextReferences from "../../sanity-graphql/fixtures/blogPortableTextReferences.json";
 
 import { videoSchema } from "./schemas/base";
 
 import getSanityClient from "./";
 
+/**
+ * Note: sanity-graphql mocks are configured in
+ * sanity-graphql/__mocks__
+ */
 jest.mock("../../sanity-graphql");
 
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
@@ -38,37 +33,6 @@ describe("cms/sanity-client", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-
-    // @TODO: Can this be moved to a __mocks__ folder?
-    mockSanityGraphqlApi.allWebinars.mockResolvedValue(allWebinarsFixture);
-    mockSanityGraphqlApi.webinarBySlug.mockResolvedValue(webinarBySlugFixture);
-    mockSanityGraphqlApi.allBlogPosts.mockResolvedValue(allBlogPostsFixture);
-    mockSanityGraphqlApi.blogPostBySlug.mockResolvedValue(
-      blogPostBySlugFixture
-    );
-    mockSanityGraphqlApi.blogPortableTextReferences.mockResolvedValue(
-      blogPortableTextReferences
-    );
-    // mockSanityGraphqlApi.homepage.mockResolvedValue()
-    mockSanityGraphqlApi.planningCorePage.mockResolvedValue(
-      planningCorePageFixture
-    );
-    mockSanityGraphqlApi.aboutCorePage.mockResolvedValue(aboutCorePageFixture);
-    mockSanityGraphqlApi.curriculumCorePage.mockResolvedValue(
-      curriculumCorePageFixture
-    );
-    mockSanityGraphqlApi.allPolicyPages.mockResolvedValue(
-      allPolicyPagesFixture
-    );
-    mockSanityGraphqlApi.policyPageBySlug.mockResolvedValue(
-      policyPageBySlugFixture
-    );
-    mockSanityGraphqlApi.allLandingPages.mockResolvedValue(
-      allLandingPagesFixture
-    );
-    mockSanityGraphqlApi.landingPageBySlug.mockResolvedValue(
-      landingPageBySlugFixture
-    );
   });
 
   describe("webinarsBySlug", () => {
