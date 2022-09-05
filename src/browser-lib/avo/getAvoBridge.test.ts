@@ -14,7 +14,6 @@ const testEventName = "test-event";
 const testEventProperties = {
   org: "oak national",
 };
-const testUserId = "user-id-123";
 
 describe("getAvoBridge", () => {
   test("logEvent", () => {
@@ -28,11 +27,5 @@ describe("getAvoBridge", () => {
       testEventName,
       testEventProperties
     );
-  });
-  test("identify", () => {
-    const avoBridge = getAvoBridge({ hubspot, posthog });
-    avoBridge.identify(testUserId);
-    expect(hubspot.identify).toHaveBeenCalledWith(testUserId, {});
-    expect(posthog.identify).toHaveBeenCalledWith(testUserId, {});
   });
 });
