@@ -26,7 +26,7 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import Card from "../../components/Card";
 import Cover from "../../components/Cover";
-import { Heading, P, Span } from "../../components/Typography";
+import { Heading, P, Span, OL, LI } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import {
   getCTAHref,
@@ -71,7 +71,7 @@ const portableTextComponents = {
     },
     normal: (props: PortableTextComponent) => {
       return (
-        <P $lineHeight={"28px"} $fontSize={16} $mt={16}>
+        <P $lineHeight={"28px"} $fontSize={[16, 18]} $mt={16}>
           {props.children}
         </P>
       );
@@ -79,11 +79,17 @@ const portableTextComponents = {
   },
   list: {
     bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
-    number: (props: PortableTextComponent) => <ol>{props.children}</ol>,
+    number: (props: PortableTextComponent) => (
+      <OL $ml={[16, 28]}>{props.children}</OL>
+    ),
   },
   listItem: {
-    bullet: (props: PortableTextComponent) => <li>{props.children}</li>,
-    number: (props: PortableTextComponent) => <li>{props.children}</li>,
+    bullet: (props: PortableTextComponent) => (
+      <LI $fontSize={[16, 18]}>{props.children}</LI>
+    ),
+    number: (props: PortableTextComponent) => (
+      <LI $fontSize={[16, 18]}>{props.children}</LI>
+    ),
   },
   marks: {
     internalLink: (
@@ -169,7 +175,7 @@ const portableTextComponents = {
       return (
         <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
           <div>
-            <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
+            <Heading $fontSize={[24, 32]} $lineHeight={"40px"} tag="h2">
               {params.title}
             </Heading>
             <Box $mt={32}>
@@ -211,10 +217,14 @@ const portableTextComponents = {
     ) => {
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+          <P
+            $fontSize={[24, 32]}
+            $lineHeight={"40px"}
+            $fontFamily={"headingLight"}
+          >
             <blockquote>&ldquo;{props.value?.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={16} $lineHeight={"20px"} $mt={16}>
+          <P $fontSize={[16, 18]} $lineHeight={"20px"} $mt={[16]}>
             <cite>{props.value?.attribution}</cite>, {props.value?.role}
           </P>
         </Flex>
@@ -274,7 +284,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           $background={"teachersPastelYellow"}
           $flexDirection={"row"}
           $justifyContent={"space-between"}
-          $width="100%"
+          $width={"100%"}
           $pv={[24]}
           $ph={[16, 24]}
         >
@@ -301,7 +311,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             >
               {blog.title}
             </Heading>
-            <P $color="black" $fontSize={18}>
+            <P $color="black" $fontSize={[16, 18]}>
               {blog.summary}
             </P>
           </Flex>
@@ -343,7 +353,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               {/* TODO: add more UI for copy link button */}
               {/* <CopyLinkButton /> */}
             </Flex>
-            <Box $mt={[96, 64]}>
+            <Box $mt={[56, 64]}>
               <PortableTextComponentsProvider
                 components={portableTextComponents}
               >
