@@ -1,9 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import renderWithProviders from "../__helpers__/renderWithProviders";
-import AboutBoard from "../../pages/about-us/board";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
+import AboutBoard from "../../../pages/about-us/board";
 
-import { testAboutPageData } from "./about-who-we-are.test";
+import { testAboutPageData } from "./who-we-are.test";
 
 describe("pages/about us who we are.tsx", () => {
   it("Renders correct title ", async () => {
