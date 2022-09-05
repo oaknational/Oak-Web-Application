@@ -77,14 +77,29 @@ describe("pages/lesson-planning.tsx", () => {
     });
   });
 
-  it("Should not fetch draft content by default", async () => {
-    const { getStaticProps } = await import("../../pages/lesson-planning");
-    await getStaticProps({
-      params: {},
+  describe("getStaticProps", () => {
+    it("Should not fetch draft content by default", async () => {
+      const { getStaticProps } = await import("../../pages/lesson-planning");
+      await getStaticProps({
+        params: {},
+      });
+
+      expect(getPageData).toHaveBeenCalledWith({
+        previewMode: false,
+      });
     });
 
-    expect(getPageData).toHaveBeenCalledWith({
-      previewMode: false,
+    it("should return notFound when the page data is missing", async () => {
+      getPageData.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import("../../pages/lesson-planning");
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
     });
   });
 });

@@ -49,7 +49,7 @@ describe("cms/sanity-client", () => {
         "an-upcoming-webinar"
       );
 
-      expect(result.slug).toBe(
+      expect(result?.slug).toBe(
         webinarBySlugFixture.allWebinar[0]?.slug.current
       );
     });
@@ -216,7 +216,7 @@ describe("cms/sanity-client", () => {
         "some-landing-page"
       );
 
-      expect(result.slug).toBe(
+      expect(result?.slug).toBe(
         landingPageBySlugFixture.allLandingPage[0]?.slug.current
       );
     });

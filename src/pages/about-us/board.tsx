@@ -154,6 +154,12 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     previewMode: isPreviewMode,
   });
 
+  if (!aboutPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       pageData: aboutPage,
