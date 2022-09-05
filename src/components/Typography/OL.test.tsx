@@ -4,7 +4,7 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 
 import OL from "./OL";
 
-describe("P", () => {
+describe("OL", () => {
   test("it renders a list", () => {
     renderWithProviders(
       <OL>
