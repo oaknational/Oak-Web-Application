@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import Link from "next/link";
+import { useId } from "react-aria";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -72,7 +73,9 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
 
   const { errors } = formState;
 
-  const descriptionId = "newsletter-form-description";
+  const id = useId();
+
+  const descriptionId = `${id}-newsletter-form-description`;
 
   return (
     <Card $borderRadius={0} $background="white" {...containerProps}>
@@ -112,7 +115,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         aria-describedby={descriptionId}
       >
         <Input
-          id="newsletter-signup-name"
+          id={`${id}-newsletter-signup-name`}
           $mt={24}
           label="Name"
           placeholder="Name"
@@ -120,7 +123,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           error={errors.name?.message}
         />
         <Input
-          id="newsletter-signup-email"
+          id={`${id}-newsletter-signup-email`}
           $mt={24}
           label="Email Address"
           placeholder="Email Address"
@@ -128,7 +131,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           error={errors.email?.message}
         />
         <DropdownSelect
-          id="newsletter-signup-userrole"
+          id={`${id}-newsletter-signup-userrole`}
           $mt={24}
           label="User type"
           placeholder="What describes you best?"
@@ -144,7 +147,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           background="teachersHighlight"
         />
         <P
-          $mt={error ? 12 : 0}
+          $mt={error ? 16 : 0}
           $fontSize={14}
           aria-live="assertive"
           role="alert"
@@ -152,11 +155,13 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         >
           {error}
         </P>
-        {!error && successMessage && (
-          <P $mt={12} $fontSize={14}>
-            {successMessage}
-          </P>
-        )}
+        <P
+          $mt={!error && successMessage ? 16 : 0}
+          $fontSize={14}
+          aria-live="polite"
+        >
+          {!error && successMessage}
+        </P>
       </form>
     </Card>
   );
