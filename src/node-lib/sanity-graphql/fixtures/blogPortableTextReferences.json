@@ -1,0 +1,28 @@
+{
+  "allDocument": [
+    {
+      "id": "11b93e08-25a4-45fc-9e3f-4da8bb45e203",
+      "_type": "video",
+      "contentType": "video",
+      "title": "Oak is evolving",
+      "video": {
+        "asset": {
+          "assetId": "yHfnlREULGomTLTAcdt3iybOa8kDC005UOXYrLE1qvaU",
+          "thumbTime": 2,
+          "playbackId": "4zX2n02AxYTM4bhm4SvJnA5leiiZVgMMnHM8w4hesP4c"
+        }
+      }
+    },
+    {
+      "id": "9285c122-ebb3-4a6d-a318-a121c412e31b",
+      "_type": "newsPost",
+      "contentType": "newsPost",
+      "slug": { "current": "market-engagement-webinar" }
+    },
+    {
+      "id": "planningCorePage",
+      "_type": "planningCorePage",
+      "contentType": "planningCorePage"
+    }
+  ]
+}

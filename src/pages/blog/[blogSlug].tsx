@@ -3,10 +3,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import {
   MissingComponentHandler,
   PortableText,
-  PortableTextComponentsProvider,
+  PortableTextComponents,
+  PortableTextComponentProps,
 } from "@portabletext/react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
@@ -14,6 +14,7 @@ import CMSClient, {
   BlogPost,
   CTA,
   PortableTextJSON,
+  Quote,
   SanityImage,
   TextAndMedia,
   Video,
@@ -26,15 +27,14 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import Card from "../../components/Card";
 import Cover from "../../components/Cover";
-import { Heading, P, Span } from "../../components/Typography";
+import { Heading, P } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
-import {
-  getCTAHref,
-  resolveInternalHref,
-} from "../../utils/portableText/resolveInternalHref";
+import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
-import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
+import { BasePortableTextProvider } from "../../components/PortableText";
+import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
+import CMSVideo from "../../components/CMSVideo";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -43,11 +43,6 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 export type BlogPageProps = {
   blog: SerializedBlog;
   isPreviewMode: boolean;
-};
-
-type PortableTextComponent<T = unknown> = {
-  children?: React.ReactNode;
-  value?: T;
 };
 
 // When we get the JSON portable text it doesn't have the same field names as
@@ -59,9 +54,9 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
   body: PortableTextJSON;
 };
 
-const portableTextComponents = {
+const blogPortableTextComponents: PortableTextComponents = {
   block: {
-    sectionHeading: (props: PortableTextComponent) => {
+    sectionHeading: (props) => {
       // @TODO: Choose an appropriate section heading level
       return (
         <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={56} $mb={32}>
@@ -69,65 +64,20 @@ const portableTextComponents = {
         </Heading>
       );
     },
-    normal: (props: PortableTextComponent) => {
+    callout: (props) => {
       return (
-        <P $lineHeight={"28px"} $fontSize={16} $mt={16}>
-          {props.children}
-        </P>
-      );
-    },
-  },
-  list: {
-    bullet: (props: PortableTextComponent) => <ul>{props.children}</ul>,
-    number: (props: PortableTextComponent) => <ol>{props.children}</ol>,
-  },
-  listItem: {
-    bullet: (props: PortableTextComponent) => <li>{props.children}</li>,
-    number: (props: PortableTextComponent) => <li>{props.children}</li>,
-  },
-  marks: {
-    internalLink: (
-      props: PortableTextComponent<{
-        reference?: CTAInternalLinkEntry;
-      }>
-    ) => {
-      if (!props.value?.reference) {
-        console.warn("Unable to render internal link for props:", props);
-        return null;
-      }
-
-      const href = resolveInternalHref(props.value.reference);
-
-      if (!href) {
-        console.warn("Unable to render internal link for props:", props);
-        return null;
-      }
-      return (
-        <Span $color={"hyperlink"}>
-          <Link href={href}>
-            <a>{props.children}</a>
-          </Link>
-        </Span>
-      );
-    },
-    link: (props: PortableTextComponent<{ href: string }>) => {
-      if (!props.value?.href) {
-        return null;
-      }
-
-      const { href } = props.value;
-
-      return (
-        <Span $color={"hyperlink"}>
-          <Link href={href}>
-            <a>{props.children}</a>
-          </Link>
-        </Span>
+        <Flex $flexDirection={"column"} $mt={56}>
+          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+            <blockquote>{props.children}</blockquote>
+          </P>
+        </Flex>
       );
     },
   },
   types: {
-    imageWithAltText: (props: PortableTextComponent<{ asset: SanityImage["asset"] }>) => {
+    imageWithAltText: (
+      props: PortableTextComponentProps<{ asset: SanityImage["asset"] }>
+    ) => {
       if (!props.value) {
         return null;
       }
@@ -138,24 +88,22 @@ const portableTextComponents = {
         </Box>
       );
     },
-    video: (props: PortableTextComponent<Video>) => {
+    video: (props: PortableTextComponentProps<Video>) => {
       if (!props.value) {
         return null;
       }
 
-      const { video, title } = props.value;
-
       return (
         <Box>
-          {video && (
+          {props.value && (
             <Flex $position={"relative"} $mt={56}>
-              <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+              <CMSVideo video={props.value} />
             </Flex>
           )}
         </Box>
       );
     },
-    textAndMedia: (props: PortableTextComponent<TextAndMediaBlock>) => {
+    textAndMedia: (props: PortableTextComponentProps<TextAndMediaBlock>) => {
       if (!props.value) {
         return null;
       }
@@ -169,7 +117,7 @@ const portableTextComponents = {
       return (
         <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
           <div>
-            <Heading $fontSize={32} $lineHeight={"40px"} tag="h2">
+            <Heading $fontSize={[24, 32]} $lineHeight={"40px"} tag="h2">
               {params.title}
             </Heading>
             <Box $mt={32}>
@@ -180,7 +128,6 @@ const portableTextComponents = {
                 $mt={24}
                 label={params.cta.label}
                 href={getCTAHref(params.cta)}
-                icon={"Share"}
                 background={"teachersHighlight"}
               />
             )}
@@ -201,26 +148,56 @@ const portableTextComponents = {
         </Flex>
       );
     },
-    quote: (
-      props: PortableTextComponent<{
-        // @TODO: Reference shared quote type when it's added in another PR
-        text: string;
-        attribution: string;
-        role: string;
-      }>
-    ) => {
+    quote: (props: PortableTextComponentProps<Quote>) => {
+      if (!props.value?.text) {
+        return null;
+      }
+
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
-            <blockquote>&ldquo;{props.value?.text}&rdquo;</blockquote>
+          <P
+            $fontSize={[24, 32]}
+            $lineHeight={"40px"}
+            $fontFamily={"headingLight"}
+          >
+            <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={16} $lineHeight={"20px"} $mt={16}>
-            <cite>{props.value?.attribution}</cite>, {props.value?.role}
+          <P $fontSize={[16, 18]} $lineHeight={"20px"} $mt={[16]}>
+            <cite>{props.value?.attribution}</cite>
+            {props.value.role && `, ${props.value.role}`}
           </P>
         </Flex>
       );
     },
-    cta: (props: PortableTextComponent<CTA>) => {
+    callout: (
+      props: PortableTextComponentProps<{ body: PortableTextJSON }>
+    ) => {
+      if (!props.value?.body) {
+        return null;
+      }
+
+      return (
+        <Flex
+          $flexDirection={"column"}
+          $mt={56}
+          $pv={24}
+          $ph={16}
+          $background="teachersPastelYellow"
+        >
+          <PortableText
+            value={props.value.body}
+            components={{
+              block: {
+                sectionHeading: (props) => {
+                  return <P $fontSize={24}>{props.children}</P>;
+                },
+              },
+            }}
+          />
+        </Flex>
+      );
+    },
+    cta: (props: PortableTextComponentProps<CTA>) => {
       if (!props.value) {
         return null;
       }
@@ -230,7 +207,6 @@ const portableTextComponents = {
         <ButtonAsLink
           label={cta.label}
           href={getCTAHref(cta)}
-          icon={"Share"}
           background={"teachersHighlight"}
         />
       );
@@ -268,13 +244,13 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $ph={[12, 12, 0]} $pt={56}>
+      <MaxWidth $pt={56}>
         <Card
           $pa={0}
           $background={"teachersPastelYellow"}
           $flexDirection={"row"}
           $justifyContent={"space-between"}
-          $width="100%"
+          $width={"100%"}
           $pv={[24]}
           $ph={[16, 24]}
         >
@@ -301,7 +277,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             >
               {blog.title}
             </Heading>
-            <P $color="black" $fontSize={18}>
+            <P $color="black" $fontSize={[16, 18]}>
               {blog.summary}
             </P>
           </Flex>
@@ -328,7 +304,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </Flex>
         </Card>
 
-        <Grid $mt={[48, 64]}>
+        <Grid $mt={[48, 64]} $ph={[12, 0]}>
           <GridArea $colSpan={[12, 7]}>
             <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
               {blog.category.title}
@@ -343,19 +319,19 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               {/* TODO: add more UI for copy link button */}
               {/* <CopyLinkButton /> */}
             </Flex>
-            <Box $mt={[96, 64]}>
-              <PortableTextComponentsProvider
-                components={portableTextComponents}
-              >
+            <Box $mt={[56, 64]}>
+              <BasePortableTextProvider>
                 <PortableText
+                  components={blogPortableTextComponents}
                   value={props.blog.contentPortableText}
                   onMissingComponent={logMissingPortableTextComponents}
                 />
-              </PortableTextComponentsProvider>
+              </BasePortableTextProvider>
             </Box>
           </GridArea>
         </Grid>
       </MaxWidth>
+      <BlogJsonLd {...props.blog} />
     </Layout>
   );
 };

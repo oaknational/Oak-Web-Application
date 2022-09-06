@@ -1,0 +1,159 @@
+{
+  "allNewsPost": [
+    {
+      "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
+      "title": "The evolution of Oak: supporting you to thrive",
+      "date": "2022-09-07",
+      "slug": {
+        "current": "evolution-of-oak"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "image": {
+          "asset": {
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+          }
+        }
+      },
+      "mainImage": {
+        "asset": {
+          "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+        }
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Summary to be added"
+    },
+    {
+      "id": "a4e50440-d1a6-499f-a507-e0298d39a5a1",
+      "title": "How to design a subject curriculum",
+      "date": "2022-09-01",
+      "slug": {
+        "current": "how-to-design-a-subject-curriculum"
+      },
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "image": {
+          "asset": {
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          }
+        }
+      },
+      "mainImage": {
+        "asset": {
+          "_id": "image-a49a19cac079b0f511360c6580d088c8b4472b17-4961x3508-jpg",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/a49a19cac079b0f511360c6580d088c8b4472b17-4961x3508.jpg"
+        }
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Post summary here"
+    },
+    {
+      "id": "cea99f06-77a8-49bf-a608-39b3b572b86d",
+      "title": "How to refresh your curriculum using Oak units",
+      "date": "2022-09-01",
+      "slug": {
+        "current": "how-to-refresh-your-curriculum-using-oak-units"
+      },
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "image": {
+          "asset": {
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          }
+        }
+      },
+      "mainImage": {
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        }
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Post summary here"
+    },
+    {
+      "id": "e0ae4001-2936-4613-b2ad-8fec90ccacfa",
+      "title": "How to design a unit of study",
+      "date": "2022-09-01",
+      "slug": {
+        "current": "how-to-design-a-unit-of-study"
+      },
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "image": {
+          "asset": {
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          }
+        }
+      },
+      "mainImage": {
+        "asset": {
+          "_id": "image-7bf4e1b0afe918577b25de0056ee5c36e607e2d3-2160x1313-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/7bf4e1b0afe918577b25de0056ee5c36e607e2d3-2160x1313.png"
+        }
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Post summary here"
+    },
+    {
+      "id": "9285c122-ebb3-4a6d-a318-a121c412e31b",
+      "title": "Join us for our market engagement webinar",
+      "date": "2022-08-31",
+      "slug": {
+        "current": "market-engagement-webinar"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "image": {
+          "asset": {
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+          }
+        }
+      },
+      "mainImage": {
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        }
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Find out more and save your place for a market engagement webinar providing further information about the proposed open procurement process for the creation of the new curriculum packages."
+    }
+  ]
+}

@@ -19,6 +19,7 @@ type Image = keyof Images;
 export type SeoProps = {
   title: string;
   description: string;
+  canonicalURL?: string;
   noIndex?: boolean;
   noFollow?: boolean;
   image?: Image;
@@ -34,6 +35,8 @@ const Seo: FC<SeoProps> = ({
   image = "default",
   noIndex = false,
   noFollow = false,
+
+  canonicalURL,
 }) => {
   const router = useRouter();
 
@@ -43,7 +46,7 @@ const Seo: FC<SeoProps> = ({
     <NextSeo
       title={title}
       description={description}
-      canonical={`${config.get("appUrl")}${router.asPath}`}
+      canonical={canonicalURL || `${config.get("appUrl")}${router.asPath}`}
       openGraph={{
         title,
         description,

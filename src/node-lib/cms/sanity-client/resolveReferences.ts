@@ -1,6 +1,7 @@
 import { get, update } from "lodash/fp";
 import { z } from "zod";
 
+import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
 import { PortableTextJSON } from "../types/base";
 
@@ -47,7 +48,20 @@ export const resolveReferences = async (
     const queryPart = parsedResults.find((doc) => doc.id === id);
 
     if (!queryPart) {
-      throw new Error(`Couldn't find a matching portable text reference`);
+      /**
+       * If you're getting errors here make sure:
+       * - You've checked you're fetching the correct data in blogPortableTextReferences.gql
+       * - You've ran gql-codegen:sanity
+       * - Checked they're covered in portableTextReferencedEntrySchema
+       */
+      throw new OakError({
+        code: "cms/invalid-reference-data",
+        meta: {
+          portableTextPath: path,
+          portableTextRefId: id,
+          queryResults: JSON.stringify(queryResults.allDocument),
+        },
+      });
     }
 
     return update(path, (data) => ({ ...data, ...queryPart }), acc);

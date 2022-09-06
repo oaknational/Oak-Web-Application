@@ -1,0 +1,110 @@
+[
+  {
+    "_type": "block",
+    "_key": "b4483d8ef353",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "c40bf8840e83",
+        "text": "This is some text",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "962f23ff5cad",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "4ff45efd51e7",
+        "marks": [],
+        "text": "This is "
+      },
+      {
+        "_type": "span",
+        "_key": "3e7837cc9046",
+        "marks": ["strong"],
+        "text": "bold"
+      },
+      {
+        "text": ", this is ",
+        "_type": "span",
+        "_key": "f5e6c37618d8",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "69bb5e2721d9",
+        "marks": ["em"],
+        "text": "italic"
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "6d1cab06b89f",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "c909c79a7f0d",
+        "marks": [],
+        "text": "This is"
+      }
+    ],
+    "level": 1,
+    "listItem": "bullet"
+  },
+  {
+    "_type": "block",
+    "_key": "1a6665aa69cf",
+    "style": "normal",
+    "markDefs": [],
+    "level": 1,
+    "listItem": "bullet",
+    "children": [
+      {
+        "_type": "span",
+        "_key": "0ea8ce394f2a",
+        "marks": [],
+        "text": "an unordered list"
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "110aa738c54d",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "46ea273757b4",
+        "marks": [],
+        "text": "Followed by"
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "4a5eae2ea785",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "bff285706ed2",
+        "marks": [],
+        "text": "An ordered list"
+      }
+    ],
+    "level": 1,
+    "listItem": "number"
+  }
+]

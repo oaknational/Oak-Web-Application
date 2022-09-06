@@ -67,3 +67,16 @@ export type TextAndMedia = {
       video: Video;
     }
 );
+
+export type Quote = {
+  text: string;
+  attribution?: string;
+  role?: string;
+  organisation?: string;
+};
+
+export type Seo = {
+  title?: string | null;
+  description?: string | null;
+  canonicalURL?: string | null;
+};

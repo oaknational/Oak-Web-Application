@@ -1,4 +1,9 @@
-import { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from "react";
+import {
+  DetailedHTMLProps,
+  forwardRef,
+  InputHTMLAttributes,
+  ReactNode,
+} from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import styled from "styled-components";
 
@@ -8,7 +13,7 @@ import { zIndexMap } from "../../styles/utils/zIndex";
  * 'CardLinkProps' is the combination of AnchorElement props and Next's Link
  * props. We use the href prop from next/link so omit it from Anchor props
  */
-export type CardLinkProps = Omit<
+export type CardLinkProps = { children: ReactNode } & Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
   "href" | "ref"
 > &

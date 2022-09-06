@@ -1,3 +1,121 @@
+# [0.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.103.0...v0.104.0) (2022-09-06)
+
+
+### Features
+
+* add ability to link to about sub-pages from the CMS ([c265db6](https://github.com/oaknational/Oak-Web-Application/commit/c265db687e8dc0f8b2b7e2496cfbc1e307d4f5be))
+* add ability to link to contact page from CMS ([b5ede8c](https://github.com/oaknational/Oak-Web-Application/commit/b5ede8c00874da44486fc7e21e12e42b95d9168f))
+* add sanity base schemas to sonar duplication ignore ([2ceadb3](https://github.com/oaknational/Oak-Web-Application/commit/2ceadb3877adee3154eb696b88b32ee9af09e19a))
+
+# [0.103.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.2...v0.103.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* **video-analytics:** only send working events ([4479c60](https://github.com/oaknational/Oak-Web-Application/commit/4479c60f3d9ec30c21dd912ffc57e50fb4d91bfb))
+
+
+### Features
+
+* video analytics ([420428c](https://github.com/oaknational/Oak-Web-Application/commit/420428ccd3286897ca6e1b72307fbfc671776555))
+* video analytics ([eacb45d](https://github.com/oaknational/Oak-Web-Application/commit/eacb45d16a86b1055c1bd94274e348e65880983d))
+
+## [0.102.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.1...v0.102.2) (2022-09-06)
+
+## [0.102.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.0...v0.102.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* link discernable text a11y error ([604d808](https://github.com/oaknational/Oak-Web-Application/commit/604d80895192f0cc99a157923a5ea2ea91eee13c))
+* put padding on grid not max width ([18843d3](https://github.com/oaknational/Oak-Web-Application/commit/18843d3d5788265f557398e814509109df214875))
+
+# [0.102.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.101.0...v0.102.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* image links and title template from sanity ([ab73a00](https://github.com/oaknational/Oak-Web-Application/commit/ab73a00a847824aed4f23259b91445cd58ac93b7))
+* zod error when no seo props exist in sanity ([921c0b2](https://github.com/oaknational/Oak-Web-Application/commit/921c0b244c06e4d197d5fc4b0a1ca32dcd61b803))
+
+
+### Features
+
+* seo and json ld from sanity ([e5fd619](https://github.com/oaknational/Oak-Web-Application/commit/e5fd619e3c3bd061d91594ed85f68ba696550d25))
+
+# [0.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.100.0...v0.101.0) (2022-09-06)
+
+
+### Features
+
+* integrate CMSVideo in pages ([8b4a11c](https://github.com/oaknational/Oak-Web-Application/commit/8b4a11ce7f06de47ba1a820129aba786b978a49d))
+* make CMSVideo component ([f967eeb](https://github.com/oaknational/Oak-Web-Application/commit/f967eebe908cd9870e1b6011f4110a4c5a1af26c))
+
+# [0.100.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.3...v0.100.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* add useId to newsletter form to ensure unique ids when multiple forms are on a page ([6538429](https://github.com/oaknational/Oak-Web-Application/commit/6538429a39f30c9e23ca891005f6471d5a494416))
+
+
+### Features
+
+* add latest utm params to hubspot form submissions ([bf3532f](https://github.com/oaknational/Oak-Web-Application/commit/bf3532f908b1d2df0183bb87f57670335b19d640))
+* programatically generate fixtures, add __mocks__ ([8b79e3b](https://github.com/oaknational/Oak-Web-Application/commit/8b79e3b2163967116e0ca09e6daeeb6c63ceaf07))
+
+## [0.99.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.2...v0.99.3) (2022-09-06)
+
+## [0.99.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.1...v0.99.2) (2022-09-05)
+
+
+### Bug Fixes
+
+* add plan a lesson to Pa11y config ([81a1aae](https://github.com/oaknational/Oak-Web-Application/commit/81a1aaeb18d1a38c4ab7c59c389e6c6e5798c9f4))
+* **Pa11y:** Mux player and Pa11y aren't compatible yet, ignoring failing rules ([e3629ec](https://github.com/oaknational/Oak-Web-Application/commit/e3629ecc3e73471113c7a43aaa12723115b37663))
+
+## [0.99.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.0...v0.99.1) (2022-09-05)
+
+
+### Bug Fixes
+
+* change vertical margin on hr ([7faf618](https://github.com/oaknational/Oak-Web-Application/commit/7faf6181e8a1bbb97afd13800677005b15b66055))
+* mobile spacing around rule ([621ab6d](https://github.com/oaknational/Oak-Web-Application/commit/621ab6dfd1b013903924cc20656a7f2760c6f354))
+
+# [0.99.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.98.0...v0.99.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* **hubspot:** get cookie hubspot cookie ([a12396d](https://github.com/oaknational/Oak-Web-Application/commit/a12396d51c6d138b897c5143d18e8bfd9292b417))
+* remove hard-coded icons from blog CTAs ([03d6c5e](https://github.com/oaknational/Oak-Web-Application/commit/03d6c5e1e3156da594e715c7c5bf29b3aa108a7f))
+* resolve portable text references for policy page ([cc2449c](https://github.com/oaknational/Oak-Web-Application/commit/cc2449ce95238950e80f91e294a0f055a1965a9c))
+* use errorReporter for internal link resolving ([7c9b2f6](https://github.com/oaknational/Oak-Web-Application/commit/7c9b2f66161146fac86a04028d473d41bf41b9e1))
+
+
+### Features
+
+* add callout block and style to blog portable text ([bf11365](https://github.com/oaknational/Oak-Web-Application/commit/bf11365aa7058f0997fa5a64b8dd2c3be93d0064))
+* add missing strong/em marks to blog portable text ([8d3819e](https://github.com/oaknational/Oak-Web-Application/commit/8d3819ec5eb3befa15698f6cb7b958434e730c2d))
+* extract shared portable text styles to BasePortableTextProvider ([760755d](https://github.com/oaknational/Oak-Web-Application/commit/760755d90fb06cc60383ba2160ef605516609338))
+* lift quote type, fix blog rendering of optional fields ([85d9819](https://github.com/oaknational/Oak-Web-Application/commit/85d9819042c0272b1e41982cdd5437df95822f4b))
+* re-use portable text provider in policy page, lift out of render ([7b91f7b](https://github.com/oaknational/Oak-Web-Application/commit/7b91f7b44606fa2e3115df0af523934439d17029))
+
+# [0.98.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.97.1...v0.98.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* type ([7e401bb](https://github.com/oaknational/Oak-Web-Application/commit/7e401bbba25f0e17004bb614099392f9d006013f))
+* typography adjustments on blog ([5adf3a1](https://github.com/oaknational/Oak-Web-Application/commit/5adf3a1db39917b64ddce50cc0c80fef1b2d8dd8))
+
+
+### Features
+
+* Add ordered list component ([b56949d](https://github.com/oaknational/Oak-Web-Application/commit/b56949d52dc3ac74ee7d837dfd2efb275a088cd7))
+* margin on left of list ([213ae20](https://github.com/oaknational/Oak-Web-Application/commit/213ae20530e8cf5c82c5636a791f45f6cf42d595))
+* style linebreaks in list items ([826a3a7](https://github.com/oaknational/Oak-Web-Application/commit/826a3a7e6a1fb403f6ddbb99e967b6d067a4f438))
+
 ## [0.97.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.97.0...v0.97.1) (2022-09-05)
 
 # [0.97.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.96.1...v0.97.0) (2022-09-05)

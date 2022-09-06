@@ -8,6 +8,7 @@ import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Typography, { Heading, P } from "../../components/Typography";
 import CMSClient, { PolicyPage } from "../../node-lib/cms";
+import { BasePortableTextProvider } from "../../components/PortableText";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -18,28 +19,28 @@ export type PolicyPageProps = {
   isPreviewMode: boolean;
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
-  const customPolicyComponent: PortableTextComponents = {
-    block: {
-      h2: ({ children }) => (
-        <Heading $mb={[32, 48]} $mt={[64, 80]} tag={"h2"} $fontSize={[24, 32]}>
-          {children}
-        </Heading>
-      ),
-      h3: ({ children }) => (
-        <Heading $mb={[32, 24]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
-          {children}
-        </Heading>
-      ),
-      h4: ({ children }) => (
-        <Heading $mb={[32, 24]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
-          {children}
-        </Heading>
-      ),
-      normal: ({ children }) => <P $mb={[32, 32]}>{children}</P>,
-    },
-  };
+const customPolicyComponent: PortableTextComponents = {
+  block: {
+    h2: ({ children }) => (
+      <Heading $mb={[32, 48]} $mt={[64, 80]} tag={"h2"} $fontSize={[24, 32]}>
+        {children}
+      </Heading>
+    ),
+    h3: ({ children }) => (
+      <Heading $mb={[32, 24]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
+        {children}
+      </Heading>
+    ),
+    h4: ({ children }) => (
+      <Heading $mb={[32, 24]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
+        {children}
+      </Heading>
+    ),
+    normal: ({ children }) => <P $mb={[32, 32]}>{children}</P>,
+  },
+};
 
+const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
@@ -66,10 +67,12 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
               </time>
             </P>
             <Typography>
-              <PortableText
-                value={policy.bodyPortableText}
-                components={customPolicyComponent}
-              />
+              <BasePortableTextProvider>
+                <PortableText
+                  value={policy.bodyPortableText}
+                  components={customPolicyComponent}
+                />
+              </BasePortableTextProvider>
             </Typography>
           </GridArea>
         </Grid>

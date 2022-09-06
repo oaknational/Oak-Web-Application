@@ -107,7 +107,6 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
       });
       reportError(error);
     }
-
     _hsq.push(["trackEvent", { ...properties, id: name }]);
   },
   optIn: () => {

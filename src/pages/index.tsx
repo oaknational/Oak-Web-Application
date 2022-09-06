@@ -228,7 +228,9 @@ const Home: NextPage<HomePageProps> = (props) => {
                     >
                       <Image
                         alt=""
-                        src={"/images/illustrations/teacher-carrying-stuff-165-200.png"}
+                        src={
+                          "/images/illustrations/teacher-carrying-stuff-165-200.png"
+                        }
                         layout="fill"
                         objectFit="contain"
                         priority
@@ -325,7 +327,9 @@ const Home: NextPage<HomePageProps> = (props) => {
                     <li key={`BlogList-BlogListItem-${i}`}>
                       {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
-                      {i < posts.length - 1 && <Hr $color="black" />}
+                      {i < posts.length - 1 && (
+                        <Hr $color="black" $mt={[0, 16]} $mb={16} />
+                      )}
                     </li>
                   ))}
                 </Flex>
@@ -335,7 +339,10 @@ const Home: NextPage<HomePageProps> = (props) => {
               <HomeHelpCard />
             </GridArea>
             <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
-              <NewsletterForm {...newsletterFormProps} />
+              <NewsletterForm
+                {...newsletterFormProps}
+                anchorTargetId="email-sign-up"
+              />
             </GridArea>
           </Grid>
         </MaxWidth>

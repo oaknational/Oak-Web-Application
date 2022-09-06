@@ -4,7 +4,6 @@ import router from "next/router";
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
 import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
 import posthogWithQueue, {
@@ -16,8 +15,6 @@ import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedT
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
-
-let loaded = false;
 
 export type UserId = string;
 export type EventName = string;
@@ -72,8 +69,6 @@ const getPathAndQuery = () => {
 const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const { children, avoOptions = {} } = props;
 
-  const trackingEnabled = useCookieConsent().hasConsentedToPolicy("statistics");
-
   /**
    * Posthog
    */
@@ -103,11 +98,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Avo
    */
-  initAvo(
-    { env: getAvoEnv(), ...avoOptions },
-    {},
-    getAvoBridge({ posthog, hubspot })
-  );
+  initAvo({ env: getAvoEnv(), ...avoOptions }, {}, getAvoBridge({ posthog }));
 
   /**
    * Page view tracking
@@ -121,17 +112,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       });
     }
   );
+
   useEffect(() => {
-    if (!loaded) {
-      // fire page event on first load only
-      page({ services: [posthog] });
-    }
-    loaded = true;
-  }, [page, posthog]);
-  useEffect(() => {
-    router.events.on("routeChangeComplete", () =>
-      page({ services: [posthog, hubspot] })
-    );
+    router.events.on("routeChangeComplete", () => {
+      page({ services: [posthog, hubspot] });
+    });
 
     return () => {
       router.events.off("routeChangeComplete", page);
@@ -140,14 +125,14 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
 
   /**
    * Identify
-   * To be called on form submission (or later on sign up)
+   * To be called on form submission (or later on sign up).
+   * Currently we're only sending identify calls to hubspot.
    */
   const identify: IdentifyFn = useCallback(
     (id, props) => {
-      posthog.identify(id, props);
       hubspot.identify(id, props);
     },
-    [posthog, hubspot]
+    [hubspot]
   );
 
   /**
@@ -155,23 +140,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Object containing Track functions as defined in the Avo tracking plan.
    * Track functions are then called for individual services as found in
    * getAvoBridge.
+   * @todo explicitly define track event names and pick them from Avo.
    */
   const track = useMemo(() => {
-    const avoTrack = Object.keys(Avo).reduce((accum, key) => {
-      if (trackingEnabled) {
-        return Avo;
-      } else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        accum[key] = () => {
-          console.log("Track called, but no consent given");
-        };
-        return accum;
-      }
-    }, Avo);
-
-    return avoTrack;
-  }, [trackingEnabled]);
+    return Avo;
+  }, []);
 
   /**
    * analytics

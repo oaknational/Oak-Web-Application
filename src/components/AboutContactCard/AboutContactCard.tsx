@@ -26,7 +26,7 @@ const cardCopy = [
   {
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
-    linkText: "Help Centre",
+    linkText: "help centre",
     href: getHelpUrl(),
     linkType: "link",
   },

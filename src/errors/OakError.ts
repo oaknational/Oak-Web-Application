@@ -20,6 +20,7 @@ const ERROR_CODES = [
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
+  "cms/invalid-reference-data",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -107,6 +108,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Invalid CMS preview token provided",
     responseStatusCode: 401,
     shouldNotify: false,
+  },
+  "cms/invalid-reference-data": {
+    message: "Couldn't find a matching portable text reference",
+    shouldNotify: true,
+    responseStatusCode: 500,
   },
 };
 
