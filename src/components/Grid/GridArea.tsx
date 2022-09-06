@@ -21,11 +21,10 @@ const combineSpanStart = (start: number | undefined, span: number) => {
 
 const parseSpanStart = (value: string | null | undefined) => {
   if (value?.includes("/")) {
-    const start = value[0];
-    const span = value[2];
+    const [start, span] = value.split("/");
     return `${start} / span ${span}`;
   }
-  const span = value?.[0];
+  const span = value;
   return `span ${span}`;
 };
 
