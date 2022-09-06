@@ -1,3 +1,16 @@
+# [0.103.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.2...v0.103.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* **video-analytics:** only send working events ([4479c60](https://github.com/oaknational/Oak-Web-Application/commit/4479c60f3d9ec30c21dd912ffc57e50fb4d91bfb))
+
+
+### Features
+
+* video analytics ([420428c](https://github.com/oaknational/Oak-Web-Application/commit/420428ccd3286897ca6e1b72307fbfc671776555))
+* video analytics ([eacb45d](https://github.com/oaknational/Oak-Web-Application/commit/eacb45d16a86b1055c1bd94274e348e65880983d))
+
 ## [0.102.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.1...v0.102.2) (2022-09-06)
 
 ## [0.102.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.0...v0.102.1) (2022-09-06)
