@@ -1,0 +1,64 @@
+{
+  "allWebinar": [
+    {
+      "id": "49694fbe-a31e-4294-aabb-d865f400865a",
+      "title": "Effective Feedback: a practical guide to using feedback to enhance student learning",
+      "slug": {
+        "current": "effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student"
+      },
+      "date": "2022-07-26T14:40:00.000Z",
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "95d1ea0c6bda",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "75562784d65f",
+              "_type": "span",
+              "marks": [],
+              "text": "Hello"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "7c3a2ebb-f910-45c5-8d15-d4cabae37062",
+      "title": "raining new teachers: creating a coherent curriculum that models the science of learning",
+      "slug": {
+        "current": "training-new-teachers-creating-a-coherent-curriculum-that-models-the-science"
+      },
+      "date": "2022-03-31T08:47:00.000Z",
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "8acafed7fafd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c9461e7e74fb",
+              "_type": "span",
+              "marks": [],
+              "text": "Test body"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,21 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
   headers: { Authorization: `Bearer ${config.get("sanityGraphqlApiSecret")}` },
 });
 
+/**
+ * Pass fixtureGenerationWrapper as a second argument to getSdk to have fixtures
+ * automatically generated for each API operation
+ *
+ * n.b Make sure tests aren't running when this happens
+ */
+// const fixtureGenerationWrapper: SdkFunctionWrapper = async (action, operationName) => {
+//   const response = await action();
+//   writeFileSync(
+//     `./src/node-lib/sanity-graphql/fixtures/${operationName}.json`,
+//     JSON.stringify(response, null, 2)
+//   );
+//   return response;
+// };
+
 const sanityGraphqlApi = getSdk(sanityGraphqlClient);
 
 export default sanityGraphqlApi;

@@ -71,7 +71,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         customDomain={"video.thenational.academy"}
         // forwardSeekOffset={10}
         // backwardSeekOffset={10}
-        onPlayerReady={() => console.log("ready!")}
+        onPlayerReady={() => {
+          // debug
+        }}
         debug={debug}
         muted={muted}
         paused={paused}
