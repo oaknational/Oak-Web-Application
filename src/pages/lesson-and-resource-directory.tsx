@@ -119,12 +119,10 @@ type LandingPageProps = {
   pageData: LandingPage;
 };
 
-type Propz = {
+const LandingPageHeader: FC<{
   title: string;
   heading: string;
-};
-
-const LandingPageHeader: FC<Propz> = (props) => {
+}> = (props) => {
   return (
     <Flex
       $justifyContent={"center"}
@@ -280,57 +278,20 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
   },
 };
 
-const NEW_FEATURE = "true";
-
 const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
   pageData,
 }) => {
-  if (NEW_FEATURE) {
-    return (
-      <Layout seoProps={DEFAULT_SEO_PROPS}>
-        <MaxWidth>
-          <LandingPageHeader {...pageData.hero} />
-          <BasePortableTextProvider>
-            <PortableText
-              components={lessonDirectoryPortableTextComponents}
-              value={pageData.content}
-            />
-          </BasePortableTextProvider>
-        </MaxWidth>
-      </Layout>
-    );
-  }
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS}>
-      <section>
-        <MaxWidth>
-          <LandingPageHeader {...pageData.hero} />
-        </MaxWidth>
-      </section>
-      <section>
-        <Flex $mb={[92]}>
-          <MaxWidth>
-            <Card $width={"100%"} $background={"teachersPastelYellow"}>
-              <ol>
-                <li>some info here</li>
-                <li>more info here</li>
-                <li>and more...</li>
-              </ol>
-            </Card>
-          </MaxWidth>
-        </Flex>
-      </section>
-      <section>
-        <Flex $justifyContent={"center"} $mb={[92]}>
-          <Typography $fontSize={[18]}>hello</Typography>
-        </Flex>
-      </section>
-      <section>
-        <MaxWidth $mb={[92]}>{/* <SignupPrompt /> */}</MaxWidth>
-      </section>
-      <section>
-        <Quote text={"I think therefore I am"} author={"Rene Descartes"} />
-      </section>
+      <MaxWidth>
+        <LandingPageHeader {...pageData.hero} />
+        <BasePortableTextProvider>
+          <PortableText
+            components={lessonDirectoryPortableTextComponents}
+            value={pageData.content}
+          />
+        </BasePortableTextProvider>
+      </MaxWidth>
     </Layout>
   );
 };
