@@ -34,13 +34,13 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
                 <SearchProvider>
                   <MenuProvider>
                     <Component {...pageProps} />
-                    <SpriteSheet />
                     <AppHooks />
                   </MenuProvider>
                 </SearchProvider>
               </AnalyticsProvider>
             </SSRProvider>
           </ErrorBoundary>
+          <SpriteSheet />
         </ThemeProvider>
       </CookieConsentProvider>
     </>
