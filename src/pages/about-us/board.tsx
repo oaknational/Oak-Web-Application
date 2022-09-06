@@ -116,7 +116,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
                       <IconButtonAsLink
                         icon={"Download"}
                         aria-label={`Download ${doc.title} as ${doc.file.asset.size} ${doc.file.asset.extension}`}
-                        href={`${doc.file.asset.url}?dl`}
+                        href={`${doc.file.asset.url}?dl=${doc.title}.pdf`}
                         background={"teachersHighlight"}
                       />
                     </Flex>
