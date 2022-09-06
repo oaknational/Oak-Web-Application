@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
+import footerSections from "../browser-lib/fixtures/footerSections";
 import Button from "../components/Button";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Card from "../components/Card";
@@ -16,6 +17,7 @@ import Input from "../components/Input";
 import Logo from "../components/Logo";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../components/PortableText";
+import SiteFooter from "../components/SiteFooter";
 import Typography, { Heading } from "../components/Typography";
 import { CTA, TextAndMedia, PortableTextJSON } from "../node-lib/cms";
 import {
@@ -183,10 +185,10 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
 }) => {
   return (
     <>
-      <Grid $mb={[92]} $cg={[12]}>
+      <Grid $mb={[92]} $cg={[8]}>
         <GridArea
-          $colSpan={[3]}
-          $colStart={4}
+          $colSpan={[4]}
+          $colStart={3}
           $width={"100%"}
           $alignItems={"flex-start"}
           $justifyContent={"center"}
@@ -199,7 +201,7 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
             <PortableText value={portableText} />
           </Typography>
         </GridArea>
-        <GridArea $colSpan={[3]} $colStart={7}>
+        <GridArea $colSpan={[4]} $colStart={7}>
           <SignUpForm />
         </GridArea>
       </Grid>
@@ -327,6 +329,7 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
           />
         </BasePortableTextProvider>
       </MaxWidth>
+      <SiteFooter sections={footerSections} />
     </>
   );
 };
