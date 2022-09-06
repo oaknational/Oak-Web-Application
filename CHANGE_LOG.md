@@ -1,3 +1,11 @@
+## [0.106.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.0...v0.106.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* blog image ([95fee90](https://github.com/oaknational/Oak-Web-Application/commit/95fee908b094d08a427d64d0e038bf158b835130))
+* blog sharing image ([ffe53fc](https://github.com/oaknational/Oak-Web-Application/commit/ffe53fc2e8fa7785669183d6c4928d1cba2a2309))
+
 # [0.106.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.105.0...v0.106.0) (2022-09-06)
 
 
