@@ -1,3 +1,12 @@
+# [0.105.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.104.0...v0.105.0) (2022-09-06)
+
+
+### Features
+
+* **SEO:** allow noindex and nofollow on individual page SEO instances ([3d9a718](https://github.com/oaknational/Oak-Web-Application/commit/3d9a7181e63d7f98ecab8c51a79c517872c7b21c))
+* **SEO:** production index and follow meta tags for page heads ([08eb2cd](https://github.com/oaknational/Oak-Web-Application/commit/08eb2cd09cbdad5dcdeaac6e7271770f0dbb08fd))
+* **SEO:** production robots.txt ([39bcfae](https://github.com/oaknational/Oak-Web-Application/commit/39bcfaebb80d0dfe17586389749a83ff3523cd9a))
+
 # [0.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.103.0...v0.104.0) (2022-09-06)
 
 
