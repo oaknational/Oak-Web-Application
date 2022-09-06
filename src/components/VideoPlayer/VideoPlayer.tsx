@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, RefObject, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
 import MuxPlayerElement from "@mux/mux-player";
 
@@ -11,8 +11,16 @@ import useVideoTracking from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 
+const getDuration = (ref: RefObject<MuxPlayerElement>) => {
+  const duration = ref.current?.duration;
+  if (typeof duration === "number" && !isNaN(duration)) {
+    return Math.floor(duration);
+  }
+
+  return null;
+};
+
 const INITIAL_DEBUG = false;
-const INITIAL_MUTED = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
 
 export type VideoStyleConfig = {
@@ -33,40 +41,23 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const { playbackId, thumbnailTime: thumbTime, title } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
-  const [paused, setPaused] = useState<boolean>(true);
-  const [muted] = useState(INITIAL_MUTED);
-  const [duration, setDuration] = useState<number | null>(null);
-  const [captioned, setCaptioned] = useState<boolean | null>(null);
   const [debug] = useState(INITIAL_DEBUG);
+  const duration = getDuration(mediaElRef);
+  const captioned = Boolean(getSubtitleTrack(mediaElRef));
+  const timeElapsed = getTimeElapsed(mediaElRef);
 
-  const videoTracking = useVideoTracking({
+  const trackingProps = {
     video: {
       duration,
       captioned,
+      playbackId,
+      title,
     },
     state: {
-      muted,
-      timeElapsed: getTimeElapsed(mediaElRef),
+      timeElapsed,
     },
-  });
-
-  useEffect(() => {
-    if (mediaElRef.current) {
-      const subtitleTrack = getSubtitleTrack(mediaElRef);
-      if (subtitleTrack) {
-        setCaptioned(true);
-      } else {
-        setCaptioned(false);
-      }
-
-      const duration = mediaElRef.current.duration;
-      if (duration) {
-        return setDuration(Math.floor(duration));
-      } else {
-        //  duration undefined or NaN or 0
-      }
-    }
-  }, [mediaElRef]);
+  };
+  const videoTracking = useVideoTracking(trackingProps);
 
   const metadata = {
     "metadata-video-id": playbackId,
@@ -79,12 +70,10 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const onPlay = () => {
     videoTracking.onPlay();
-    setPaused(false);
   };
 
   const onPause = () => {
     videoTracking.onPause();
-    setPaused(true);
   };
 
   const onEnded = () => {
@@ -111,33 +100,24 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       <MuxPlayer
         streamType="on-demand"
         ref={mediaElRef}
-        // style={{ aspectRatio: "16 / 9" }}
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
-        // forwardSeekOffset={10}
-        // backwardSeekOffset={10}
-        onPlayerReady={(video) => {
-          console.log(">>>>>>>.", video);
-          // debug
-        }}
         debug={debug}
-        muted={muted}
-        paused={paused}
-        // autoPlay
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
         onPlay={onPlay}
         onPause={onPause}
-        onResize={() => {
-          // props.track?.("video-resized", { playbackId });
-        }}
         onEnded={onEnded}
         onError={(evt: Event) => {
           onError(evt);
         }}
+        // onDurationChange={(p) => console.log("duration change", p)}
+        // onVolumeChange={(p) => console.log("volumn", p)}
+        // onLoadedMetadata={(p) => console.log("onLoadedMetadata", p)}
+        // onTimeUpdate={(p) => console.log("onTimeUpdate", p)}
       />
     </Flex>
   );

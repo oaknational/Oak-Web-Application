@@ -12,10 +12,10 @@ const reportError = errorReporter("useVideoTracking");
  */
 const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
   const { video, state } = props;
-  const { duration, captioned } = video;
-  const { muted, timeElapsed } = state;
+  const { duration, captioned, playbackId, title } = video;
+  const { timeElapsed } = state;
   if (
-    typeof duration !== "number" ||
+    // typeof duration !== "number" ||
     typeof captioned !== "boolean" ||
     typeof timeElapsed !== "number"
   ) {
@@ -25,11 +25,14 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
   }
 
   return {
-    durationSeconds: duration,
+    // @todo duration is NaN on first play, speaking with mux about this
+    durationSeconds: duration || 0,
     isCaptioned: captioned,
-    isMuted: muted,
-    timeElapsedSeconds: timeElapsed,
-    videoSlug: "?????",
+    // @todo muted and timeElapsed is not currently working
+    // isMuted: muted,
+    // timeElapsedSeconds: timeElapsed,
+    videoTitle: playbackId,
+    videoPlaybackId: title,
   };
 };
 
@@ -37,10 +40,11 @@ type UseVideoTrackingProps = {
   video: {
     duration: number | null;
     captioned: boolean | null;
-    // slug: string;
+    playbackId: string;
+    title: string;
   };
   state: {
-    muted: boolean;
+    // muted: boolean;
     timeElapsed: number | null;
   };
 };

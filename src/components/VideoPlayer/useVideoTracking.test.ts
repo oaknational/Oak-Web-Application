@@ -23,6 +23,8 @@ const video = {
   duration: 234,
   slug: "something",
   captioned: true,
+  title: "Top video",
+  playbackId: "12mux67"
 };
 const state = {
   muted: false,
