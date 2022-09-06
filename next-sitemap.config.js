@@ -17,20 +17,16 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
-        disallow: [
-          // Pre-release disallow all paths.
-          "/",
-          // Pre-beta disallow all beta paths
-          "/beta/",
-        ],
+        // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
+        allow: ["/"],
       },
     ],
   },
   exclude: [
-    // Don't add beta pages for now.
+    // Don't add beta pages to the sitemap for now.
     "/beta",
     "/beta/*",
-    // Don't index the file that generates the sitemaps for the dynamic pages.
+    // Don't list the file that generates the sitemaps for the dynamic pages.
     "/server-sitemap-index.xml",
   ],
   // Ignore server-side sitemap config for static version of site.

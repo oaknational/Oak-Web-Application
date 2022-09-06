@@ -21,6 +21,7 @@ export type SeoProps = {
   description: string;
   canonicalURL?: string;
   noIndex?: boolean;
+  noFollow?: boolean;
   image?: Image;
 };
 
@@ -31,8 +32,11 @@ export type SeoProps = {
 const Seo: FC<SeoProps> = ({
   title,
   description,
-  canonicalURL,
   image = "default",
+  noIndex = false,
+  noFollow = false,
+
+  canonicalURL,
 }) => {
   const router = useRouter();
 
@@ -62,6 +66,8 @@ const Seo: FC<SeoProps> = ({
         site: config.get("appTwitterHandle"),
         cardType: "summary_large_image",
       }}
+      noindex={noIndex}
+      nofollow={noFollow}
     />
   );
 };
