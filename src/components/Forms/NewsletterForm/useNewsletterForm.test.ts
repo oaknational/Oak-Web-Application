@@ -1,5 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 
+import { HubspotFormData } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
+
 import useNewsletterForm from "./useNewsletterForm";
 
 const identify = jest.fn();
@@ -16,10 +18,36 @@ jest.mock("../../../browser-lib/analytics/useAnonymousId", () => ({
   __esModule: true,
   default: () => testAnonymousId,
 }));
+const hubspotSubmitForm = jest.fn();
+jest.mock("../../../browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+  __esModule: true,
+  default: (...args: []) => hubspotSubmitForm(...args),
+}));
+jest.mock("../../../hooks/useUtmParams", () => ({
+  __esModule: true,
+  default: () => ({ utm_source: "les_twitz" }),
+}));
 
 describe("useNewsletterForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+  test("should call hubspotSubmitForm() and include utm params", () => {
+    const { result } = renderHook(() => useNewsletterForm());
+    const data: HubspotFormData = {
+      email: "test",
+      name: "sdfo9dfj",
+      userRole: "Teacher",
+    };
+    result.current.onSubmit(data);
+
+    expect(hubspotSubmitForm).toHaveBeenCalledWith({
+      data: {
+        ...data,
+        utm_source: "les_twitz",
+      },
+      hubspotFormId: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
+    });
   });
   test("should call analytics.identify() with email", () => {
     const { result } = renderHook(() => useNewsletterForm());

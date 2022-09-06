@@ -3,6 +3,7 @@ import { HubspotFormData } from "../../../browser-lib/hubspot/forms/hubspotSubmi
 import config from "../../../config";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useAnonymousId from "../../../browser-lib/analytics/useAnonymousId";
+import useUtmParams from "../../../hooks/useUtmParams";
 
 const hubspotNewsletterFormId = config.get("hubspotNewsletterFormId");
 
@@ -12,6 +13,7 @@ type UseNewsletterFormProps = {
 const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
   const anonymousId = useAnonymousId();
   const { identify } = useAnalytics();
+  const utmParams = useUtmParams();
 
   const onSubmit = (data: HubspotFormData) => {
     if (props.onSubmit) {
@@ -20,7 +22,7 @@ const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
 
     const hubspotFormResponse = hubspotSubmitForm({
       hubspotFormId: hubspotNewsletterFormId,
-      data,
+      data: { ...data, ...utmParams },
     });
 
     identify(anonymousId, { email: data.email || data.emailTextOnly });

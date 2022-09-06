@@ -11,6 +11,11 @@ const getHubspotFormPayload = (props: {
     full_name: data.name,
     user_type: data.userRole,
     oak_user_id: data.oakUserId,
+    latest_utm_campaign: data.utm_campaign,
+    latest_utm_content: data.utm_content,
+    latest_utm_medium: data.utm_medium,
+    latest_utm_source: data.utm_source,
+    latest_utm_term: data.utm_term,
   };
 
   const payload = {
