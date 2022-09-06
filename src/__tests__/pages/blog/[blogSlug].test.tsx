@@ -4,6 +4,21 @@ import { BlogPost } from "../../../node-lib/cms";
 import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
+jest.mock("next/router", () => ({
+  __esModule: true,
+  ...jest.requireActual("next/router"),
+  useRouter: () => ({
+    ...jest.requireActual("next/router").useRouter,
+    asPath: "asPath test value",
+  }),
+}));
+jest.mock("next-sanity-image", () => ({
+  __esModule: true,
+  useNextSanityImage: () => ({
+    src: "www.example.com/img.png",
+  }),
+}));
+
 const testBlog: BlogPost = {
   title: "A blog",
   id: "5",

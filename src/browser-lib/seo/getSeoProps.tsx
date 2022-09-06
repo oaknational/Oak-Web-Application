@@ -1,7 +1,11 @@
 import { DEFAULT_SEO_PROPS, SeoProps } from "../../browser-lib/seo/Seo";
 import { Seo } from "../../node-lib/cms";
 
-export const getSeoProps = (props: Seo | undefined | null): SeoProps => {
+type GetSeoProps = Pick<SeoProps, "imageUrl">;
+
+export const getSeoProps = (
+  props: (Seo & GetSeoProps) | undefined | null
+): SeoProps => {
   if (props == null) {
     return DEFAULT_SEO_PROPS;
   }
@@ -9,5 +13,6 @@ export const getSeoProps = (props: Seo | undefined | null): SeoProps => {
     title: `${props.title} | Oak National Academy` || DEFAULT_SEO_PROPS.title,
     description: props.description || DEFAULT_SEO_PROPS.description,
     canonicalURL: props.canonicalURL || undefined,
+    imageUrl: props.imageUrl,
   };
 };

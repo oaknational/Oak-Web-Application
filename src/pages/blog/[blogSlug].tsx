@@ -7,8 +7,8 @@ import {
   PortableTextComponentProps,
 } from "@portabletext/react";
 import Image from "next/image";
+import { useNextSanityImage } from "next-sanity-image";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -19,7 +19,7 @@ import CMSClient, {
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
-import CMSImage from "../../components/CMSImage";
+import CMSImage, { sanityClientLike } from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
@@ -35,6 +35,7 @@ import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -238,9 +239,26 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     year: "numeric",
   });
 
+  /**
+   * @todo add various sizes for sharing on different platforms
+   * Possibly add options on CMS too, at the moment it crops images
+   * 2:1 (optimised for twitter)
+   */
+  const sharingImage = useNextSanityImage(
+    sanityClientLike,
+    props.blog.mainImage,
+    {
+      imageBuilder: (imageUrlBuilder) =>
+        imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
+    }
+  );
+
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        ...props.blog,
+        imageUrl: sharingImage.src,
+      })}
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >

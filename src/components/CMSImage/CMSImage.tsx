@@ -15,7 +15,7 @@ type CMSImageProps = Omit<ImageProps, "src"> & {
  * Provide a "client like" object instead of using the
  * actual sanity client to cut down on dependency size
  */
-const clientLike: SanityClientLike = {
+export const sanityClientLike: SanityClientLike = {
   clientConfig: {
     projectId: config.get("sanityProjectId"),
     dataset: config.get("sanityDataset"),
@@ -24,7 +24,7 @@ const clientLike: SanityClientLike = {
 };
 
 const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
-  const imageProps = useNextSanityImage(clientLike, image, {
+  const imageProps = useNextSanityImage(sanityClientLike, image, {
     enableBlurUp: false,
   });
 
