@@ -33,7 +33,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $ph={[12, 12, 0]} $pt={[72, 80, 80]}>
+      <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={"Blog Listing"}
           heading={"Inspiration for inside and outside the classroom"}
@@ -44,7 +44,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           background="teachersPastelYellow"
           imageProps={cardImage}
         />
-        <Grid>
+        <Grid $ph={[12, 0]}>
           <GridArea $colSpan={[12, 12, 8]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}

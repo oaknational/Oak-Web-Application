@@ -244,7 +244,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $ph={[12, 12, 0]} $pt={56}>
+      <MaxWidth $pt={56}>
         <Card
           $pa={0}
           $background={"teachersPastelYellow"}
@@ -304,7 +304,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </Flex>
         </Card>
 
-        <Grid $mt={[48, 64]}>
+        <Grid $mt={[48, 64]} $ph={[12, 0]}>
           <GridArea $colSpan={[12, 7]}>
             <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
               {blog.category.title}
