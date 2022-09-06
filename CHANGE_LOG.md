@@ -1,3 +1,12 @@
+# [0.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.103.0...v0.104.0) (2022-09-06)
+
+
+### Features
+
+* add ability to link to about sub-pages from the CMS ([c265db6](https://github.com/oaknational/Oak-Web-Application/commit/c265db687e8dc0f8b2b7e2496cfbc1e307d4f5be))
+* add ability to link to contact page from CMS ([b5ede8c](https://github.com/oaknational/Oak-Web-Application/commit/b5ede8c00874da44486fc7e21e12e42b95d9168f))
+* add sanity base schemas to sonar duplication ignore ([2ceadb3](https://github.com/oaknational/Oak-Web-Application/commit/2ceadb3877adee3154eb696b88b32ee9af09e19a))
+
 # [0.103.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.2...v0.103.0) (2022-09-06)
 
 
