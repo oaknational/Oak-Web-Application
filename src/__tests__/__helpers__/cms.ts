@@ -21,6 +21,15 @@ export const portableTextFromString = (text: string): PortableTextJSON => [
   },
 ];
 
+export const createPortableListItem = (text: string): PortableTextJSON => {
+  return {
+    listItem: "bullet",
+    style: "normal",
+    children: [{ text, _type: "span" }],
+    _type: "block",
+  };
+};
+
 export const mockImageAsset = (id = "abcdef"): SanityImage => {
   return {
     asset: {

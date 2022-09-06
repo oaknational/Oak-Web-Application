@@ -12,7 +12,22 @@ type GridAreaProps = {
   $colSpan: Array<ColSpans>;
   $rowSpan?: number;
   $order?: Array<number>;
+  $colStart?: ColSpans;
 } & SpacingProps;
+
+const combineSpanStart = (start: number | undefined, span: number) => {
+  return start ? `${start}/${span}` : `${span}`;
+};
+
+const parseSpanStart = (value: string | null | undefined) => {
+  if (value?.includes("/")) {
+    const start = value[0];
+    const span = value[2];
+    return `${start} / span ${span}`;
+  }
+  const span = value?.[0];
+  return `span ${span}`;
+};
 
 const GridArea = styled(Box)<GridAreaProps & BoxProps & FlexProps>`
   ${spacing}
@@ -20,8 +35,12 @@ const GridArea = styled(Box)<GridAreaProps & BoxProps & FlexProps>`
   flex-direction: column;
   ${responsive(
     "grid-column",
-    (props) => props.$colSpan,
-    (value) => `span ${value}`
+    (props) => {
+      return Array.isArray(props.$colSpan)
+        ? props.$colSpan.map((span) => combineSpanStart(props.$colStart, span))
+        : combineSpanStart(props.$colStart, props.$colSpan);
+    },
+    (value) => parseSpanStart(value)
   )};
   ${responsive(
     "order",
