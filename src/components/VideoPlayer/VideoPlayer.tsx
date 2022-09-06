@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, RefObject, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
 import MuxPlayerElement from "@mux/mux-player";
 
@@ -7,8 +7,20 @@ import OakError from "../../errors/OakError";
 import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
 
+import useVideoTracking from "./useVideoTracking";
+import getTimeElapsed from "./getTimeElapsed";
+import getSubtitleTrack from "./getSubtitleTrack";
+
+const getDuration = (ref: RefObject<MuxPlayerElement>) => {
+  const duration = ref.current?.duration;
+  if (typeof duration === "number" && !isNaN(duration)) {
+    return Math.floor(duration);
+  }
+
+  return null;
+};
+
 const INITIAL_DEBUG = false;
-const INITIAL_MUTED = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
 
 export type VideoStyleConfig = {
@@ -29,9 +41,23 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const { playbackId, thumbnailTime: thumbTime, title } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
-  const [paused, setPaused] = useState<boolean | undefined>(true);
-  const [muted] = useState(INITIAL_MUTED);
   const [debug] = useState(INITIAL_DEBUG);
+  const duration = getDuration(mediaElRef);
+  const captioned = Boolean(getSubtitleTrack(mediaElRef));
+  const timeElapsed = getTimeElapsed(mediaElRef);
+
+  const trackingProps = {
+    video: {
+      duration,
+      captioned,
+      playbackId,
+      title,
+    },
+    state: {
+      timeElapsed,
+    },
+  };
+  const videoTracking = useVideoTracking(trackingProps);
 
   const metadata = {
     "metadata-video-id": playbackId,
@@ -42,6 +68,17 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const reportError = errorReporter("VideoPlayer.tsx");
 
+  const onPlay = () => {
+    videoTracking.onPlay();
+  };
+
+  const onPause = () => {
+    videoTracking.onPause();
+  };
+
+  const onEnded = () => {
+    videoTracking.onEnd();
+  };
   const onError = (evt: Event) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
@@ -63,37 +100,24 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       <MuxPlayer
         streamType="on-demand"
         ref={mediaElRef}
-        // style={{ aspectRatio: "16 / 9" }}
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
-        // forwardSeekOffset={10}
-        // backwardSeekOffset={10}
-        onPlayerReady={() => {
-          // debug
-        }}
         debug={debug}
-        muted={muted}
-        paused={paused}
-        // autoPlay
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
-        onPlay={() => {
-          setPaused(false);
-          // props.track?.("video-played", { playbackId });
-        }}
-        onPause={() => {
-          setPaused(true);
-          // props.track?.("video-paused", { playbackId });
-        }}
-        onResize={() => {
-          // props.track?.("video-resized", { playbackId });
-        }}
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnded={onEnded}
         onError={(evt: Event) => {
           onError(evt);
         }}
+        // onDurationChange={(p) => console.log("duration change", p)}
+        // onVolumeChange={(p) => console.log("volumn", p)}
+        // onLoadedMetadata={(p) => console.log("onLoadedMetadata", p)}
+        // onTimeUpdate={(p) => console.log("onTimeUpdate", p)}
       />
     </Flex>
   );

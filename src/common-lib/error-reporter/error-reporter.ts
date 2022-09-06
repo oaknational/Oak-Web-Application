@@ -109,6 +109,8 @@ const errorify = (maybeError: unknown): Error => {
 const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
   const reportError = async (maybeError: Error | unknown, data?: ErrorData) => {
     console.error(maybeError);
+    console.log(context, metadata, data);
+
     if (isBrowser) {
       const bugsnagAllowed = getHasConsentedTo("bugsnag");
       if (!bugsnagAllowed) {
