@@ -1,3 +1,16 @@
+# [0.100.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.3...v0.100.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* add useId to newsletter form to ensure unique ids when multiple forms are on a page ([6538429](https://github.com/oaknational/Oak-Web-Application/commit/6538429a39f30c9e23ca891005f6471d5a494416))
+
+
+### Features
+
+* add latest utm params to hubspot form submissions ([bf3532f](https://github.com/oaknational/Oak-Web-Application/commit/bf3532f908b1d2df0183bb87f57670335b19d640))
+* programatically generate fixtures, add __mocks__ ([8b79e3b](https://github.com/oaknational/Oak-Web-Application/commit/8b79e3b2163967116e0ca09e6daeeb6c63ceaf07))
+
 ## [0.99.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.2...v0.99.3) (2022-09-06)
 
 ## [0.99.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.1...v0.99.2) (2022-09-05)
