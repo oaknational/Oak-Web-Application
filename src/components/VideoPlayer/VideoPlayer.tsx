@@ -87,6 +87,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     setPaused(true);
   };
 
+  const onEnded = () => {
+    videoTracking.onEnd();
+  };
   const onError = (evt: Event) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
@@ -131,6 +134,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onResize={() => {
           // props.track?.("video-resized", { playbackId });
         }}
+        onEnded={onEnded}
         onError={(evt: Event) => {
           onError(evt);
         }}
