@@ -8,7 +8,6 @@ import {
 } from "@portabletext/react";
 import Image from "next/image";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -35,6 +34,7 @@ import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -240,7 +240,10 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
 
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        ...props.blog,
+        imageUrl: props.blog.mainImage.asset?.url,
+      })}
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
