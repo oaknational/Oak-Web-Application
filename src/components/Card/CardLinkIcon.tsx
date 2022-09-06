@@ -14,7 +14,7 @@ type CardLinkIconProps = {
   icon?: IconName;
   background?: OakColorName;
   href: string;
-  cardLinkProps?: Omit<CardLinkProps, "href">;
+  cardLinkProps?: Omit<CardLinkProps, "href" | "children">;
 };
 const CardLinkIcon: FC<CardLinkIconProps> = ({
   title,

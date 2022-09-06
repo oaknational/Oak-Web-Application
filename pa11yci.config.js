@@ -36,6 +36,7 @@ const relativeUrls = [
     //   info: console.info,
     // },
   },
+  "/develop-your-curriculum",
   // Ignore beta pages for now.
   // "/beta/lessons/physics-only-review-chj3cd/",
   // "/beta/sign-in",
