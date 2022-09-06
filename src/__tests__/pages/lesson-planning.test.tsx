@@ -5,6 +5,7 @@ import { PlanningPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import {
   mockImageAsset,
+  mockSeo,
   mockVideoAsset,
   portableTextFromString,
 } from "../__helpers__/cms";
@@ -48,6 +49,7 @@ const testPlanningPageData: PlanningPage = {
     mediaType: "image",
     image: mockImageAsset("block2"),
   },
+  seo: mockSeo(),
 };
 
 const getPageData = jest.fn(() => testPlanningPageData);
@@ -73,17 +75,6 @@ describe("pages/lesson-planning.tsx", () => {
         "Planning title"
       );
     });
-  });
-  it("uses correct src", async () => {
-    const { getByAltText } = renderWithProviders(
-      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
-    );
-
-    const image = getByAltText("planning illustration");
-    expect(image).toHaveAttribute(
-      "src",
-      "/_next/image?url=%2Fimages%2Fillustrations%2Fplanning.png&w=3840&q=75"
-    );
   });
 
   it("Should not fetch draft content by default", async () => {

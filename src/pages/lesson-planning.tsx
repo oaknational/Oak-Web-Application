@@ -4,7 +4,6 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
@@ -22,6 +21,7 @@ import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getTeachersUrl } from "../common-lib/urls";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
 
 export type PlanALessonProps = {
@@ -153,7 +153,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
 }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps(pageData.seo)}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >

@@ -36,6 +36,7 @@ const relativeUrls = [
     //   info: console.info,
     // },
   },
+  "/develop-your-curriculum",
   "/about-us/who-we-are",
   "/about-us/board",
   // Ignore beta pages for now.

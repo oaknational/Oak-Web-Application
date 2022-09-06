@@ -2,7 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 
 import { CurriculumPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import { portableTextFromString } from "../__helpers__/cms";
+import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 import Curriculum from "../../pages/develop-your-curriculum";
 
 const testCurriculumPageData: CurriculumPage = {
@@ -51,6 +51,7 @@ const testCurriculumPageData: CurriculumPage = {
       linkType: "external",
     },
   },
+  seo: mockSeo(),
 };
 
 describe("pages/curriculum.tsx", () => {

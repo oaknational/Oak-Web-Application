@@ -5,7 +5,6 @@ import { Fragment } from "react";
 
 import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
@@ -21,6 +20,7 @@ import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getOakCurriculumUrl } from "../common-lib/urls";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
@@ -46,7 +46,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
 }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps(pageData.seo)}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >
@@ -145,14 +145,15 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                     $pv={[72, 80]}
                     $maxHeight={240}
                   >
-                    <CardLink href={`/blog/${element.post.slug.current}`} />
                     <BoxBorders />
                     <Box $mv={12}>
                       <Heading $mb={8} $fontSize={16} tag={"h3"}>
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        {element.title}
+                        <CardLink href={`/blog/${element.post.slug.current}`}>
+                          {element.title}
+                        </CardLink>
                       </Heading>
                     </Box>
                   </Card>

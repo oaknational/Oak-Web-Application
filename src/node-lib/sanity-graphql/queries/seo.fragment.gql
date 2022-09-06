@@ -1,0 +1,5 @@
+fragment Seo on Seo {
+  title
+  description
+  canonicalURL
+}
