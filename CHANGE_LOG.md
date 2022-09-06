@@ -1,3 +1,11 @@
+# [0.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.100.0...v0.101.0) (2022-09-06)
+
+
+### Features
+
+* integrate CMSVideo in pages ([8b4a11c](https://github.com/oaknational/Oak-Web-Application/commit/8b4a11ce7f06de47ba1a820129aba786b978a49d))
+* make CMSVideo component ([f967eeb](https://github.com/oaknational/Oak-Web-Application/commit/f967eebe908cd9870e1b6011f4110a4c5a1af26c))
+
 # [0.100.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.3...v0.100.0) (2022-09-06)
 
 
