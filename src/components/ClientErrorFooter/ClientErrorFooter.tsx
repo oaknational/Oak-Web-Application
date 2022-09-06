@@ -6,16 +6,14 @@ import { P } from "../Typography";
 
 const ClientErrorFooter: FC = () => {
   return (
-    <>
-      <Flex $mb={80} $mt={64} $width={"100%"}>
-        <SocialButtons />
-        <Flex $alignItems={"center"}>
-          <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
-            © Oak National Academy
-          </P>
-        </Flex>
+    <Flex $ph={16} $mb={12} $mt={64} $width={"100%"}>
+      <SocialButtons />
+      <Flex $alignItems={"center"}>
+        <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
+          © Oak National Academy
+        </P>
       </Flex>
-    </>
+    </Flex>
   );
 };
 
