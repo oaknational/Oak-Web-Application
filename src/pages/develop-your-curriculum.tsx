@@ -5,7 +5,6 @@ import { Fragment } from "react";
 
 import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
@@ -21,6 +20,7 @@ import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getOakCurriculumUrl } from "../common-lib/urls";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
@@ -46,7 +46,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
 }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps(pageData.seo)}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >

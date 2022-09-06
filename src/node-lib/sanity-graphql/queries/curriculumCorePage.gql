@@ -30,6 +30,9 @@ query curriculumCorePage($isDraft: Boolean = false) {
         }
       }
     }
+    seo {
+      ...Seo
+    }
 
     #   relatedBlogs {
     #     author {

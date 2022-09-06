@@ -19,6 +19,7 @@ type Image = keyof Images;
 export type SeoProps = {
   title: string;
   description: string;
+  canonicalURL?: string;
   noIndex?: boolean;
   image?: Image;
 };
@@ -27,7 +28,12 @@ export type SeoProps = {
  * Oak Seo component. A wrapper round NextSeo with sensible defaults.
  * @see [seo.md](../../../docs/seo.md)
  */
-const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
+const Seo: FC<SeoProps> = ({
+  title,
+  description,
+  canonicalURL,
+  image = "default",
+}) => {
   const router = useRouter();
 
   const sharingImage = IMAGES[image] ? IMAGES[image] : IMAGES["default"];
@@ -36,7 +42,7 @@ const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
     <NextSeo
       title={title}
       description={description}
-      canonical={`${config.get("appUrl")}${router.asPath}`}
+      canonical={canonicalURL || `${config.get("appUrl")}${router.asPath}`}
       openGraph={{
         title,
         description,

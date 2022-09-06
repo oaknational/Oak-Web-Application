@@ -33,6 +33,7 @@ import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import { BasePortableTextProvider } from "../../components/PortableText";
+import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
@@ -330,6 +331,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </GridArea>
         </Grid>
       </MaxWidth>
+      <BlogJsonLd {...props.blog} />
     </Layout>
   );
 };

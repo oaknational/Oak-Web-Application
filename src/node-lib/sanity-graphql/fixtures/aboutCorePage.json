@@ -662,6 +662,11 @@
             "style": "normal"
           }
         ]
+      },
+      "seo": {
+        "_type": "seo",
+        "description": "Join Our Community For Teachers We've Supported Teachers Since 2020 To Find Inspiration To Create Great Lessons And Design Their Own Curriculum",
+        "title": "Join The Oak National Academy Community"
       }
     }
   ]

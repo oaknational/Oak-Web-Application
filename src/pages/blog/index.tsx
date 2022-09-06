@@ -8,6 +8,7 @@ import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Grid, { GridArea } from "../../components/Grid";
 import SummaryCard from "../../components/Card/SummaryCard";
+import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -54,6 +55,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           </GridArea>
         </Grid>
       </MaxWidth>
+      <BlogListJsonLd blogs={props.blogs} />
     </Layout>
   );
 };
