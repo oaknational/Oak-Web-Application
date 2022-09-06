@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 import Button from "../components/Button";
+import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Card from "../components/Card";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import Cover from "../components/Cover";
@@ -65,9 +66,7 @@ const mockData: LandingPage = {
     heading:
       "Get a complete list of every one of our resources and save time searching",
     // cta: {
-    //   label: "Some form of CTA",
-    //   linkType: 'external',
-    //   external: '#anchor'
+    //   label: "Lesson & Resource Directory",
     // },
   },
   content: [
@@ -158,7 +157,7 @@ const SignUpForm: FC = () => {
   return (
     <Card $background={"white"} $dropShadow={"notificationCard"}>
       <CardTitle tag="h2">Directory sign-up</CardTitle>
-      <form>
+      <form id="signup-form">
         <Input id="name" label="Name" $mt={24} placeholder={"Name"} />
         <Input id="email" label="Email" $mt={24} placeholder={"Email"} />
         <Input
@@ -293,6 +292,14 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
             <Logo title={"Oak National Academy"} height={48} width={104} />
           </a>
         </Link>
+        {pageData.hero.cta && (
+          <ButtonAsLink
+            $mt={24}
+            label={"Lesson & Resource Directory"}
+            href={"#signup-form"}
+            background={"teachersHighlight"}
+          />
+        )}
       </FixedHeader>
       <MaxWidth>
         <LandingPageHeader {...pageData.hero} />
