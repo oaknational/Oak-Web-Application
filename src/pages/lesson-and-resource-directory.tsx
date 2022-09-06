@@ -119,7 +119,7 @@ type LandingPageProps = {
   pageData: LandingPage;
 };
 
-const LandingPageHeader: FC<{
+const LandingPageTitle: FC<{
   title: string;
   heading: string;
 }> = (props) => {
@@ -233,27 +233,46 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
   },
   types: {
     textAndMedia: (props) => {
-      console.log(props.value.image.asset.url, "url");
       return (
-        <MaxWidth>
-          <Card $mb={[92]} $width={"100%"} $background={"teachersPastelYellow"}>
-            <Flex $justifyContent={"space-between"}>
-              <Cover>
-                <Image
-                  alt={""}
-                  src={"/images/illustrations/magic-carpet.png"}
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition={"left"}
-                  priority
-                />
-              </Cover>
-            </Flex>
-            <Flex $justifyContent={"end"}>
-              <PortableText value={props.value.bodyPortableText} />
-            </Flex>
-          </Card>
-        </MaxWidth>
+        <Card
+          $pa={0}
+          $mb={[92]}
+          $pv={[24]}
+          $pl={[0, 32]}
+          $width={"100%"}
+          $flexDirection={"row"}
+          $justifyContent={"space-between"}
+          $background={"teachersPastelYellow"}
+        >
+          <Flex
+            $display={["none", "flex"]}
+            $position="relative"
+            $minWidth={480}
+            $minHeight={360}
+            $justifyContent={["center", "flex-end"]}
+            $alignItems={["flex-end"]}
+            $pb={24}
+          >
+            <Cover>
+              <Image
+                alt={""}
+                src={"/images/illustrations/magic-carpet.png"}
+                layout="fill"
+                objectFit="contain"
+                objectPosition={"left"}
+                priority
+              />
+            </Cover>
+          </Flex>
+          <Flex
+            $justifyContent={"center"}
+            $flexDirection={"column"}
+            $maxWidth={812}
+            $pr={[32]}
+          >
+            <PortableText value={props.value.bodyPortableText} />
+          </Flex>
+        </Card>
       );
     },
     text: (props) => {
@@ -292,17 +311,15 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
             <Logo title={"Oak National Academy"} height={48} width={104} />
           </a>
         </Link>
-        {pageData.hero.cta && (
-          <ButtonAsLink
-            $mt={24}
-            label={"Lesson & Resource Directory"}
-            href={"#signup-form"}
-            background={"teachersHighlight"}
-          />
-        )}
+        <ButtonAsLink
+          $mt={24}
+          label={"Lesson & Resource Directory"}
+          href={"#signup-form"}
+          background={"teachersHighlight"}
+        />
       </FixedHeader>
       <MaxWidth>
-        <LandingPageHeader {...pageData.hero} />
+        <LandingPageTitle {...pageData.hero} />
         <BasePortableTextProvider>
           <PortableText
             components={lessonDirectoryPortableTextComponents}
