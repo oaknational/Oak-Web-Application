@@ -7,6 +7,7 @@ import {
   PortableTextComponentProps,
 } from "@portabletext/react";
 import Image from "next/image";
+import { useNextSanityImage } from "next-sanity-image";
 
 import Layout from "../../components/Layout";
 import CMSClient, {
@@ -18,7 +19,7 @@ import CMSClient, {
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
-import CMSImage from "../../components/CMSImage";
+import CMSImage, { sanityClientLike } from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
@@ -238,11 +239,16 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     year: "numeric",
   });
 
+  const image = useNextSanityImage(sanityClientLike, props.blog.mainImage, {
+    imageBuilder: (imageUrlBuilder) =>
+      imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
+  });
+
   return (
     <Layout
       seoProps={getSeoProps({
         ...props.blog,
-        imageUrl: props.blog.mainImage.asset?.url,
+        imageUrl: image.src,
       })}
       $background="white"
       isPreviewMode={props.isPreviewMode}
