@@ -34,6 +34,7 @@ import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
+import CMSVideo from "../../components/CMSVideo";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -92,13 +93,11 @@ const blogPortableTextComponents: PortableTextComponents = {
         return null;
       }
 
-      const { video, title } = props.value;
-
       return (
         <Box>
-          {video && (
+          {props.value && (
             <Flex $position={"relative"} $mt={56}>
-              <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+              <CMSVideo video={props.value} />
             </Flex>
           )}
         </Box>

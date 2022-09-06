@@ -12,13 +12,13 @@ import Box from "../../components/Box";
 import Typography, { Heading } from "../../components/Typography";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import OutlineHeading from "../../components/OutlineHeading";
-import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import CMSVideo from "../../components/CMSVideo";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -114,15 +114,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $minWidth={["50%"]}
             >
               {pageData.whoWeAre.intro.mediaType == "video" && (
-                <VideoPlayer
-                  playbackId={
-                    pageData.whoWeAre.intro.video.video.asset.playbackId
-                  }
-                  title={pageData.whoWeAre.intro.video.title}
-                  thumbnailTime={
-                    pageData.whoWeAre.intro.video.video.asset.thumbTime
-                  }
-                />
+                <CMSVideo video={pageData.whoWeAre.intro.video} />
               )}
             </Flex>
             <Box $minWidth={["50%"]}>

@@ -19,7 +19,7 @@ export type VideoStyleConfig = {
   };
 };
 
-type VideoPlayerProps = {
+export type VideoPlayerProps = {
   playbackId: string;
   thumbnailTime?: number | null;
   title: string;

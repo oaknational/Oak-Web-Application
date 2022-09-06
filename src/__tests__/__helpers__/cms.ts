@@ -36,7 +36,7 @@ export const mockVideoAsset = (): Video => {
     video: {
       asset: {
         assetId: "1234",
-        playbackId: "1234",
+        playbackId: "5678",
         thumbTime: 1,
       },
     },
