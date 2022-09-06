@@ -1,3 +1,11 @@
+## [0.102.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.0...v0.102.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* link discernable text a11y error ([604d808](https://github.com/oaknational/Oak-Web-Application/commit/604d80895192f0cc99a157923a5ea2ea91eee13c))
+* put padding on grid not max width ([18843d3](https://github.com/oaknational/Oak-Web-Application/commit/18843d3d5788265f557398e814509109df214875))
+
 # [0.102.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.101.0...v0.102.0) (2022-09-06)
 
 
