@@ -1,3 +1,16 @@
+# [0.102.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.101.0...v0.102.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* image links and title template from sanity ([ab73a00](https://github.com/oaknational/Oak-Web-Application/commit/ab73a00a847824aed4f23259b91445cd58ac93b7))
+* zod error when no seo props exist in sanity ([921c0b2](https://github.com/oaknational/Oak-Web-Application/commit/921c0b244c06e4d197d5fc4b0a1ca32dcd61b803))
+
+
+### Features
+
+* seo and json ld from sanity ([e5fd619](https://github.com/oaknational/Oak-Web-Application/commit/e5fd619e3c3bd061d91594ed85f68ba696550d25))
+
 # [0.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.100.0...v0.101.0) (2022-09-06)
 
 
