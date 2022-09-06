@@ -32,7 +32,7 @@ const ContactUs: NextPage = () => {
             Search our FAQs and find useful information for teachers, schools,
             pupils and parents in our{" "}
             <a href={getHelpUrl()} target="_blank">
-              Help Centre.
+              help centre.
             </a>
           </>
         ),
