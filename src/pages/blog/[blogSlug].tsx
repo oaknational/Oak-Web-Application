@@ -239,16 +239,25 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     year: "numeric",
   });
 
-  const image = useNextSanityImage(sanityClientLike, props.blog.mainImage, {
-    imageBuilder: (imageUrlBuilder) =>
-      imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
-  });
+  /**
+   * @todo add various sizes for sharing on different platforms
+   * Possibly add options on CMS too, at the moment it crops images
+   * 2:1 (optimised for twitter)
+   */
+  const sharingImage = useNextSanityImage(
+    sanityClientLike,
+    props.blog.mainImage,
+    {
+      imageBuilder: (imageUrlBuilder) =>
+        imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
+    }
+  );
 
   return (
     <Layout
       seoProps={getSeoProps({
         ...props.blog,
-        imageUrl: image.src,
+        imageUrl: sharingImage.src,
       })}
       $background="white"
       isPreviewMode={props.isPreviewMode}
