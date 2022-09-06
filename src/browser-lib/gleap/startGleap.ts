@@ -1,8 +1,6 @@
-import Gleap from "gleap";
-
 declare global {
   interface Window {
-    Gleap?: typeof Gleap;
+    Gleap?: typeof import("gleap/index").default;
   }
 }
 
@@ -11,7 +9,8 @@ type GleapConfig = {
   apiUrl: string;
   widgetUrl: string;
 };
-const startGleap = ({ apiKey, apiUrl, widgetUrl }: GleapConfig) => {
+const startGleap = async ({ apiKey, apiUrl, widgetUrl }: GleapConfig) => {
+  const Gleap = (await import("gleap")).default;
   window.Gleap = Gleap;
   window.Gleap.setWidgetUrl(widgetUrl);
   window.Gleap.setApiUrl(apiUrl);

@@ -27,23 +27,23 @@ describe("startGleap", () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
-  test("should set Gleap on the window object", () => {
-    startGleap(gleapConfig);
+  test("should set Gleap on the window object", async () => {
+    await startGleap(gleapConfig);
 
     expect(window.Gleap).toBeTruthy();
   });
-  test("should set the correct widget url", () => {
-    startGleap(gleapConfig);
+  test("should set the correct widget url", async () => {
+    await startGleap(gleapConfig);
 
     expect(setWidgetUrl).toHaveBeenCalledWith(widgetUrl);
   });
-  test("should set the correct api url", () => {
-    startGleap(gleapConfig);
+  test("should set the correct api url", async () => {
+    await startGleap(gleapConfig);
 
     expect(setApiUrl).toHaveBeenCalledWith(apiUrl);
   });
-  test("should call Gleap.initialise with apiKey", () => {
-    startGleap(gleapConfig);
+  test("should call Gleap.initialise with apiKey", async () => {
+    await startGleap(gleapConfig);
 
     expect(initialize).toHaveBeenCalledWith(apiKey);
   });
