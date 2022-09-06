@@ -894,8 +894,8 @@ _avo_invoke = function _avo_invoke(env: string, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "7xcIeyiAM5uLqj8negi2",
-          "br": "cfgp8cXmJ",
+          "ac": "a2kGXopkcZ7jgpmtc0zu",
+          "br": "master",
           "en": env,
           "ev": eventId,
           "ha": hash,
@@ -921,8 +921,8 @@ _avo_invoke_meta = function _avo_invoke_meta(env: string, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "7xcIeyiAM5uLqj8negi2",
-          "br": "cfgp8cXmJ",
+          "ac": "a2kGXopkcZ7jgpmtc0zu",
+          "br": "master",
           "en": env,
           "ty": type,
           "sc": "5PhajbVijwhXVKIJtGMT",
@@ -1090,9 +1090,9 @@ export function setAvoLogger(avoLogger: AvoLogger | null) {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/6FJxOlnzBp/trigger/Hgd_u_6rr
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6FJxOlnzBp/trigger/Hgd_u_6rr
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/6FJxOlnzBp}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6FJxOlnzBp}
  */
 export function planALessonSelected() {
   // assert properties
@@ -1132,9 +1132,9 @@ export function planALessonSelected() {
  *
  * When to trigger this event:
  * 1. User has completed the newsletter fields and pressed the Sign Up button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/sLqKBjU-Wt/trigger/_MC_apwfp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt/trigger/_MC_apwfp
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/sLqKBjU-Wt}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt}
  */
 export function newsletterSignUpCompleted() {
   // assert properties
@@ -1177,14 +1177,14 @@ export interface ClassroomSelectedProperties {
  *
  * When to trigger this event:
  * 1. Classroom app selected from homepage card
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/esgLdNSBsj/trigger/d46nqqMBY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/d46nqqMBY
  * 2. Classroom app selected from menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/esgLdNSBsj/trigger/M_vqoTLFQ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/M_vqoTLFQ
  *
  * @param properties the properties associatied with this event
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/esgLdNSBsj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj}
  */
 export function classroomSelected(properties: ClassroomSelectedProperties) {
   // assert properties
@@ -1234,14 +1234,14 @@ export interface TeacherHubSelectedProperties {
  *
  * When to trigger this event:
  * 1. Teacher Hub selected from homepage card
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/kp-dTd4WU3/trigger/8sYQASFRC
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/kp-dTd4WU3/trigger/8sYQASFRC
  * 2. Teacher Hub selected from menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/kp-dTd4WU3/trigger/_JhfvPPiP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/kp-dTd4WU3/trigger/_JhfvPPiP
  *
  * @param properties the properties associatied with this event
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/kp-dTd4WU3}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/kp-dTd4WU3}
  */
 export function teacherHubSelected(properties: TeacherHubSelectedProperties) {
   // assert properties
@@ -1288,9 +1288,9 @@ export function teacherHubSelected(properties: TeacherHubSelectedProperties) {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/pI9xLEeG6a/trigger/dRt9RWsfe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/pI9xLEeG6a/trigger/dRt9RWsfe
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/pI9xLEeG6a}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/pI9xLEeG6a}
  */
 export function developYourCurriculumSelected() {
   // assert properties
@@ -1334,13 +1334,13 @@ export interface NotificationSelectedProperties {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/M_zZRmq4zA/trigger/8JSZfjNwi
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/M_zZRmq4zA/trigger/8JSZfjNwi
  *
  * @param properties the properties associatied with this event
  * @param properties.linkUrl: The href of a link
  * @param properties.notificationHeadline: The heading/link text in a notification card
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/M_zZRmq4zA}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/M_zZRmq4zA}
  */
 export function notificationSelected(
   properties: NotificationSelectedProperties) {
@@ -1390,7 +1390,7 @@ export function notificationSelected(
 /**
  * About Selected: About us is selected from the Launch homepage
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cfgp8cXmJ/events/Aj3imCEK7t}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Aj3imCEK7t}
  */
 export function aboutSelected() {
   // assert properties
@@ -1425,6 +1425,306 @@ export function aboutSelected() {
   }
 }
 
+export interface VideoStartedProperties {
+  durationSeconds: number;
+  isMuted: boolean;
+  isCaptioned: boolean;
+  videoSlug: string;
+  timeElapsedSeconds: number;
+}
+/**
+ * Video Started: A video is played for the first time after a user lands on a page
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.durationSeconds: Video length in seconds
+ * @param properties.isMuted: Indicates whether video was muted when the event was triggered
+ * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
+ * @param properties.videoSlug: Human-readable unique ID of the selected video.
+ * @param properties.timeElapsedSeconds: Progress made through a video in seconds
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/G0I28K0B2f}
+ */
+export function videoStarted(properties: VideoStartedProperties) {
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "bce51c78fb11d8a552eb49bc11d0e08cdef786e583e0969fe7347e27f7740c19", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Video Started", {
+      "Duration (Seconds)": properties.durationSeconds,
+      "Is Muted": properties.isMuted,
+      "Is Captioned": properties.isCaptioned,
+      "Video Slug": properties.videoSlug,
+      "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+      }, {});
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("G0I28K0B2f", "Video Started", messages, [
+      {id: "NqtddGscIh", name: "Duration (Seconds)", value: properties.durationSeconds},
+      {id: "8AC7R8LYpO", name: "Is Muted", value: properties.isMuted},
+      {id: "xHdFKUwmsd", name: "Is Captioned", value: properties.isCaptioned},
+      {id: "gPpoyntqZe", name: "Video Slug", value: properties.videoSlug},
+      {id: "3a0mowzVyL", name: "Time Elapsed (Seconds)", value: properties.timeElapsedSeconds},
+      ], []);
+    }
+  }
+
+  // @ts-ignore
+  let eventProperties: any = {};
+  eventProperties["Duration (Seconds)"] = properties.durationSeconds;
+  eventProperties["Is Muted"] = properties.isMuted;
+  eventProperties["Is Captioned"] = properties.isCaptioned;
+  eventProperties["Video Slug"] = properties.videoSlug;
+  eventProperties["Time Elapsed (Seconds)"] = properties.timeElapsedSeconds;
+
+  // @ts-ignore
+  let userProperties: any = {};
+
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", {
+        "Duration (Seconds)": properties.durationSeconds,
+        "Is Muted": properties.isMuted,
+        "Is Captioned": properties.isCaptioned,
+        "Video Slug": properties.videoSlug,
+        "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+        }, "G0I28K0B2f", "bce51c78fb11d8a552eb49bc11d0e08cdef786e583e0969fe7347e27f7740c19");
+    }
+    // destination PostHog
+    PostHog.logEvent("Video Started", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface VideoPausedProperties {
+  durationSeconds: number;
+  isMuted: boolean;
+  isCaptioned: boolean;
+  videoSlug: string;
+  timeElapsedSeconds: number;
+}
+/**
+ * Video Paused: A video is paused before it it finished
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.durationSeconds: Video length in seconds
+ * @param properties.isMuted: Indicates whether video was muted when the event was triggered
+ * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
+ * @param properties.videoSlug: Human-readable unique ID of the selected video.
+ * @param properties.timeElapsedSeconds: Progress made through a video in seconds
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/z91WauKeVB}
+ */
+export function videoPaused(properties: VideoPausedProperties) {
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "z91WauKeVB", "ef5b67bbc8144652f0f0e4dbb136ff0f606bb8c1e2010707a9d3094246e789ed", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Video Paused", {
+      "Duration (Seconds)": properties.durationSeconds,
+      "Is Muted": properties.isMuted,
+      "Is Captioned": properties.isCaptioned,
+      "Video Slug": properties.videoSlug,
+      "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+      }, {});
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("z91WauKeVB", "Video Paused", messages, [
+      {id: "NqtddGscIh", name: "Duration (Seconds)", value: properties.durationSeconds},
+      {id: "8AC7R8LYpO", name: "Is Muted", value: properties.isMuted},
+      {id: "xHdFKUwmsd", name: "Is Captioned", value: properties.isCaptioned},
+      {id: "gPpoyntqZe", name: "Video Slug", value: properties.videoSlug},
+      {id: "3a0mowzVyL", name: "Time Elapsed (Seconds)", value: properties.timeElapsedSeconds},
+      ], []);
+    }
+  }
+
+  // @ts-ignore
+  let eventProperties: any = {};
+  eventProperties["Duration (Seconds)"] = properties.durationSeconds;
+  eventProperties["Is Muted"] = properties.isMuted;
+  eventProperties["Is Captioned"] = properties.isCaptioned;
+  eventProperties["Video Slug"] = properties.videoSlug;
+  eventProperties["Time Elapsed (Seconds)"] = properties.timeElapsedSeconds;
+
+  // @ts-ignore
+  let userProperties: any = {};
+
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", {
+        "Duration (Seconds)": properties.durationSeconds,
+        "Is Muted": properties.isMuted,
+        "Is Captioned": properties.isCaptioned,
+        "Video Slug": properties.videoSlug,
+        "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+        }, "z91WauKeVB", "ef5b67bbc8144652f0f0e4dbb136ff0f606bb8c1e2010707a9d3094246e789ed");
+    }
+    // destination PostHog
+    PostHog.logEvent("Video Paused", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface VideoPlayedProperties {
+  durationSeconds: number;
+  isMuted: boolean;
+  isCaptioned: boolean;
+  videoSlug: string;
+  timeElapsedSeconds: number;
+}
+/**
+ * Video Played: A video is played again after being paused
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.durationSeconds: Video length in seconds
+ * @param properties.isMuted: Indicates whether video was muted when the event was triggered
+ * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
+ * @param properties.videoSlug: Human-readable unique ID of the selected video.
+ * @param properties.timeElapsedSeconds: Progress made through a video in seconds
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/r4DFADUHFh}
+ */
+export function videoPlayed(properties: VideoPlayedProperties) {
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "r4DFADUHFh", "69f49f9b9a2e01b86666b7a36618274504e25cbe3c5ceea3a2a008951c94d2a9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Video Played", {
+      "Duration (Seconds)": properties.durationSeconds,
+      "Is Muted": properties.isMuted,
+      "Is Captioned": properties.isCaptioned,
+      "Video Slug": properties.videoSlug,
+      "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+      }, {});
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("r4DFADUHFh", "Video Played", messages, [
+      {id: "NqtddGscIh", name: "Duration (Seconds)", value: properties.durationSeconds},
+      {id: "8AC7R8LYpO", name: "Is Muted", value: properties.isMuted},
+      {id: "xHdFKUwmsd", name: "Is Captioned", value: properties.isCaptioned},
+      {id: "gPpoyntqZe", name: "Video Slug", value: properties.videoSlug},
+      {id: "3a0mowzVyL", name: "Time Elapsed (Seconds)", value: properties.timeElapsedSeconds},
+      ], []);
+    }
+  }
+
+  // @ts-ignore
+  let eventProperties: any = {};
+  eventProperties["Duration (Seconds)"] = properties.durationSeconds;
+  eventProperties["Is Muted"] = properties.isMuted;
+  eventProperties["Is Captioned"] = properties.isCaptioned;
+  eventProperties["Video Slug"] = properties.videoSlug;
+  eventProperties["Time Elapsed (Seconds)"] = properties.timeElapsedSeconds;
+
+  // @ts-ignore
+  let userProperties: any = {};
+
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Played", {
+        "Duration (Seconds)": properties.durationSeconds,
+        "Is Muted": properties.isMuted,
+        "Is Captioned": properties.isCaptioned,
+        "Video Slug": properties.videoSlug,
+        "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+        }, "r4DFADUHFh", "69f49f9b9a2e01b86666b7a36618274504e25cbe3c5ceea3a2a008951c94d2a9");
+    }
+    // destination PostHog
+    PostHog.logEvent("Video Played", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface VideoFinishedProperties {
+  durationSeconds: number;
+  isMuted: boolean;
+  isCaptioned: boolean;
+  videoSlug: string;
+  timeElapsedSeconds: number;
+}
+/**
+ * Video Finished: The end of a video is reached
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.durationSeconds: Video length in seconds
+ * @param properties.isMuted: Indicates whether video was muted when the event was triggered
+ * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
+ * @param properties.videoSlug: Human-readable unique ID of the selected video.
+ * @param properties.timeElapsedSeconds: Progress made through a video in seconds
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NP9klWkaki}
+ */
+export function videoFinished(properties: VideoFinishedProperties) {
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "NP9klWkaki", "0c7042f0e6335a28cde58db238de6ea24aea37d981749d286bd3a64718ab788b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Video Finished", {
+      "Duration (Seconds)": properties.durationSeconds,
+      "Is Muted": properties.isMuted,
+      "Is Captioned": properties.isCaptioned,
+      "Video Slug": properties.videoSlug,
+      "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+      }, {});
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("NP9klWkaki", "Video Finished", messages, [
+      {id: "NqtddGscIh", name: "Duration (Seconds)", value: properties.durationSeconds},
+      {id: "8AC7R8LYpO", name: "Is Muted", value: properties.isMuted},
+      {id: "xHdFKUwmsd", name: "Is Captioned", value: properties.isCaptioned},
+      {id: "gPpoyntqZe", name: "Video Slug", value: properties.videoSlug},
+      {id: "3a0mowzVyL", name: "Time Elapsed (Seconds)", value: properties.timeElapsedSeconds},
+      ], []);
+    }
+  }
+
+  // @ts-ignore
+  let eventProperties: any = {};
+  eventProperties["Duration (Seconds)"] = properties.durationSeconds;
+  eventProperties["Is Muted"] = properties.isMuted;
+  eventProperties["Is Captioned"] = properties.isCaptioned;
+  eventProperties["Video Slug"] = properties.videoSlug;
+  eventProperties["Time Elapsed (Seconds)"] = properties.timeElapsedSeconds;
+
+  // @ts-ignore
+  let userProperties: any = {};
+
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", {
+        "Duration (Seconds)": properties.durationSeconds,
+        "Is Muted": properties.isMuted,
+        "Is Captioned": properties.isCaptioned,
+        "Video Slug": properties.videoSlug,
+        "Time Elapsed (Seconds)": properties.timeElapsedSeconds,
+        }, "NP9klWkaki", "0c7042f0e6335a28cde58db238de6ea24aea37d981749d286bd3a64718ab788b");
+    }
+    // destination PostHog
+    PostHog.logEvent("Video Finished", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -1437,7 +1737,11 @@ export default {
   developYourCurriculumSelected,
   notificationSelected,
   aboutSelected,
+  videoStarted,
+  videoPaused,
+  videoPlayed,
+  videoFinished,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","notificationSelected","aboutSelected"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished"]

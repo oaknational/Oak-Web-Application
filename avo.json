@@ -7,17 +7,17 @@
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "cfgp8cXmJ",
-    "name": "homepage-events"
+    "id": "master",
+    "name": "main"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "7xcIeyiAM5uLqj8negi2",
-      "branchId": "cfgp8cXmJ",
-      "updatedAt": "2022-08-30T17:32:44.773Z"
+      "actionId": "a2kGXopkcZ7jgpmtc0zu",
+      "branchId": "master",
+      "updatedAt": "2022-09-06T10:02:36.589Z"
     }
   ],
   "force": false
