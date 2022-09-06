@@ -4,6 +4,7 @@ import { BlogPostPreview, CurriculumPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 import Curriculum from "../../pages/develop-your-curriculum";
+import renderWithSeo from "../__helpers__/renderWithSeo";
 
 const testCurriculumPageData: CurriculumPage = {
   id: "01",
@@ -61,7 +62,16 @@ const testCurriculumPageData: CurriculumPage = {
 
 const getPageData = jest.fn(() => testCurriculumPageData);
 
-describe("pages/curriculum.tsx", () => {
+jest.mock("next/head", () => {
+  return {
+    __esModule: true,
+    default: ({ children }: { children: Array<React.ReactElement> }) => {
+      return <fake-head>{children}</fake-head>;
+    },
+  };
+});
+
+describe("pages/develop-your-curriculum.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
@@ -99,6 +109,16 @@ describe("pages/curriculum.tsx", () => {
 
       expect(links[0]).toHaveAttribute("href", "/blog/some-post");
       expect(links[1]).toHaveAttribute("href", "/blog/some-other-post");
+    });
+  });
+
+  describe("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 

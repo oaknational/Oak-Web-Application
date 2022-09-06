@@ -3,6 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import { BlogPost } from "../../../node-lib/cms";
 import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -67,6 +68,15 @@ const testSerializedBlog = {
 const blogPosts = jest.fn(() => [testBlog, testBlog2]);
 const blogPostBySlug = jest.fn(() => testBlog);
 
+jest.mock("next/head", () => {
+  return {
+    __esModule: true,
+    default: ({ children }: { children: Array<React.ReactElement> }) => {
+      return <fake-head>{children}</fake-head>;
+    },
+  };
+});
+
 describe("pages/blog/[blogSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -90,6 +100,16 @@ describe("pages/blog/[blogSlug].tsx", () => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "A blog"
         );
+      });
+    });
+
+    describe("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <BlogDetailPage blog={testSerializedBlog} isPreviewMode={false} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });

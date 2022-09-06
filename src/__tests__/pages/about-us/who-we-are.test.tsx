@@ -6,6 +6,7 @@ import AboutWhoWeAre, {
 } from "../../../pages/about-us/who-we-are";
 import CMSClient, { AboutPage } from "../../../node-lib/cms";
 import { mockSeo, portableTextFromString } from "../../__helpers__/cms";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 export const testAboutPageData: AboutPage = {
   title: "About Oak",
@@ -386,11 +387,20 @@ export const testAboutPageData: AboutPage = {
   seo: mockSeo(),
 };
 
+jest.mock("next/head", () => {
+  return {
+    __esModule: true,
+    default: ({ children }: { children: Array<React.ReactElement> }) => {
+      return <fake-head>{children}</fake-head>;
+    },
+  };
+});
+
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-describe("pages/about us who we are.tsx", () => {
+describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
@@ -405,6 +415,16 @@ describe("pages/about us who we are.tsx", () => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "About us"
       );
+    });
+  });
+
+  describe("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <AboutWhoWeAre pageData={testAboutPageData} isPreviewMode={false} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 

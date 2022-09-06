@@ -7,6 +7,7 @@ import Home, {
 } from "../../pages";
 import CMSClient, { BlogPostPreview, HomePage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
+import renderWithSeo from "../__helpers__/renderWithSeo";
 import { portableTextFromString } from "../__helpers__/cms";
 
 jest.mock("../../node-lib/cms");
@@ -18,6 +19,15 @@ const pageData = {
   heading: "Oak",
   summaryPortableText: portableTextFromString("Here's the page summary"),
 } as HomePage;
+
+jest.mock("next/head", () => {
+  return {
+    __esModule: true,
+    default: ({ children }: { children: Array<React.ReactElement> }) => {
+      return <fake-head>{children}</fake-head>;
+    },
+  };
+});
 
 describe("pages/index.tsx", () => {
   it("Renders correct title and summary", async () => {
@@ -86,6 +96,14 @@ describe("pages/index.tsx", () => {
         "href",
         "/blog/some-blog-post"
       );
+    });
+  });
+
+  describe("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(<Home posts={[]} isPreviewMode={false} />);
+
+      expect(seo).toEqual({});
     });
   });
 

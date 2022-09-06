@@ -5,6 +5,7 @@ import WebinarDetailPage, {
   WebinarPageProps,
 } from "../../../pages/webinars/[webinarSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
@@ -34,6 +35,15 @@ const testSerializedWebinar = {
 const webinars = jest.fn(() => [testWebinar, testWebinar2]);
 const webinarBySlug = jest.fn(() => testWebinar);
 
+jest.mock("next/head", () => {
+  return {
+    __esModule: true,
+    default: ({ children }: { children: Array<React.ReactElement> }) => {
+      return <fake-head>{children}</fake-head>;
+    },
+  };
+});
+
 describe("pages/webinar/[webinarSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -60,6 +70,19 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "An upcoming webinar"
         );
+      });
+    });
+
+    describe("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <WebinarDetailPage
+            webinar={testSerializedWebinar}
+            isPreviewMode={false}
+          />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });

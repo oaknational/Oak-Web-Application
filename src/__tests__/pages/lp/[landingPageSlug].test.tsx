@@ -6,8 +6,18 @@ import LandingPageTemplate, {
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient, { LandingPage } from "../../../node-lib/cms";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 jest.mock("../../../node-lib/cms");
+
+jest.mock("next/head", () => {
+  return {
+    __esModule: true,
+    default: ({ children }: { children: Array<React.ReactElement> }) => {
+      return <fake-head>{children}</fake-head>;
+    },
+  };
+});
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
@@ -33,6 +43,19 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
+      });
+    });
+
+    describe("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <LandingPageTemplate
+            pageData={testLandingPage}
+            isPreviewMode={false}
+          />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });

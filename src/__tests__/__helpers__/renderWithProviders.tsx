@@ -24,7 +24,7 @@ import MockedAuthProvider, {
 } from "./MockedAuthProvider";
 import MockedApolloProvider from "./MockedApolloProvider";
 
-type ProviderProps = {
+export type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
 };
 
