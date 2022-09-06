@@ -183,10 +183,9 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
 }) => {
   return (
     <>
-      <Grid $mb={[92]}>
+      <Grid $mb={[92]} $cg={[12]}>
         <GridArea
           $colSpan={[3]}
-          $mr={[8]}
           $colStart={4}
           $width={"100%"}
           $alignItems={"flex-start"}
@@ -210,17 +209,19 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
 
 const Quote: FC<{ text: string; author: string }> = ({ text, author }) => {
   return (
-    <Flex
-      $flexDirection={"column"}
-      $justifyContent={"center"}
-      $alignItems={"center"}
-      $mb={[92]}
-    >
-      <Heading tag={"h3"} $mb={[16]} $fontSize={[16]}>
-        {text}
-      </Heading>
-      <Typography $fontSize={[16]}>{author}</Typography>
-    </Flex>
+    <MaxWidth $width={[720]}>
+      <Flex
+        $flexDirection={"column"}
+        $justifyContent={"center"}
+        $alignItems={"center"}
+        $mb={[92]}
+      >
+        <Heading tag={"h3"} $mb={[16]} $fontSize={[16]}>
+          {text}
+        </Heading>
+        <Typography $fontSize={[16]}>{author}</Typography>
+      </Flex>
+    </MaxWidth>
   );
 };
 
@@ -257,11 +258,13 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
     },
     text: (props) => {
       return (
-        <Flex $justifyContent={"center"} $mb={[92]}>
-          <Typography $fontSize={[18]}>
-            <PortableText value={props.value.bodyPortableText} />
-          </Typography>
-        </Flex>
+        <MaxWidth $width={[720]}>
+          <Flex $justifyContent={"center"} $mb={[92]}>
+            <Typography $fontSize={[18]}>
+              <PortableText value={props.value.bodyPortableText} />
+            </Typography>
+          </Flex>
+        </MaxWidth>
       );
     },
     quote: (props) => {
