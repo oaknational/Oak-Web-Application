@@ -13,6 +13,7 @@ import {
 import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
 import config from "../../config";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
+import { SerializedBlogPostPreview } from "../../pages/blog/index";
 
 const courseProvider = {
   name: config.get("appName"),
@@ -63,7 +64,7 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
 
 // Blogs
 
-const blogObject = (blog: SerializedBlog): ArticleJsonLdProps => {
+const blogObject = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
   return {
     type: "Article",
     url: `${config.get("appUrl")}/blog/${blog.slug}`,
@@ -77,7 +78,7 @@ const blogObject = (blog: SerializedBlog): ArticleJsonLdProps => {
 };
 
 type BlogListJsonLdProps = {
-  blogs: SerializedBlog[];
+  blogs: SerializedBlogPostPreview[];
 };
 
 export const BlogListJsonLd: FC<BlogListJsonLdProps> = ({ blogs }) => {
