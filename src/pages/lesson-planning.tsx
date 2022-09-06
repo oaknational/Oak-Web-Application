@@ -22,7 +22,6 @@ import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getTeachersUrl } from "../common-lib/urls";
-import VideoPlayer from "../components/VideoPlayer";
 import CMSVideo from "../components/CMSVideo";
 
 export type PlanALessonProps = {

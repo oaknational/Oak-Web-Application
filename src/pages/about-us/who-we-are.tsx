@@ -13,7 +13,6 @@ import Box from "../../components/Box";
 import Typography, { Heading } from "../../components/Typography";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import OutlineHeading from "../../components/OutlineHeading";
-import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
