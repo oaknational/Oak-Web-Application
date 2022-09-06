@@ -51,7 +51,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               </ErrorHeading>
             ) : (
               <Heading $fontSize={24} $mb={12} tag="h1">
-                An error occurred on client
+                An error occurred
               </Heading>
             )}
           </Flex>
@@ -60,7 +60,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             Whoops! It looks like you have fallen too far from the tree.
           </Heading>
 
-          <P $mb={24}>Lets get you back to browsing</P>
+          <P $mb={24}>Let's get you back to browsing</P>
           <ButtonGroup>
             {onBackClick && (
               <Button

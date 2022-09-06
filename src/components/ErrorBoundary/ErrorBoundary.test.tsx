@@ -76,7 +76,7 @@ describe("ErrorBoundary.tsx", () => {
       { wrapper: WithStatisticsConsent }
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "An error occurred on client"
+      "An error occurred"
     );
   });
   test.skip("[bugsnag:enabled] should call reportError", () => {
@@ -108,7 +108,7 @@ describe("ErrorBoundary.tsx", () => {
       { wrapper: WithoutStatisticsConsent }
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "An error occurred on client"
+      "An error occurred"
     );
   });
   test("[bugsnag:disabled] should not call reportError", () => {

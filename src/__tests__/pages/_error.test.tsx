@@ -21,7 +21,7 @@ describe("pages/_error.tsx", () => {
     renderWithProviders(<ErrorPage />);
     expect(
       screen.getByTestId("errorStatus").querySelector("h1")
-    ).toHaveTextContent("An error occurred on client");
+    ).toHaveTextContent("An error occurred");
   });
   it("contains a button with link to homepage", () => {
     renderWithProviders(<ErrorPage />);
