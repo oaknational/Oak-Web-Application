@@ -20,7 +20,7 @@ describe("pages/_error.tsx", () => {
   it("Renders error page with no statusCode ", async () => {
     renderWithProviders(<ErrorPage />);
     expect(
-      screen.getByTestId("errorStatus").querySelector("p")
+      screen.getByTestId("errorStatus").querySelector("h1")
     ).toHaveTextContent("An error occurred on client");
   });
   it("contains a button with link to homepage", () => {

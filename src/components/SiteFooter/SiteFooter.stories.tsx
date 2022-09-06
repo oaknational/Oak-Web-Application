@@ -1,9 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import sections from "../../browser-lib/fixtures/footerSections";
-import ButtonAsLink from "../Button/ButtonAsLink";
-
 import Component from "./SiteFooter";
 
 export default {
@@ -19,20 +16,3 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const SiteFooter = Template.bind({});
-SiteFooter.args = {
-  sections,
-};
-
-export const SiteFooterWithNotifcation = Template.bind({});
-SiteFooterWithNotifcation.args = {
-  sections,
-  notification: (
-    <ButtonAsLink
-      label={"Join new Oak"}
-      icon={"Download"}
-      aria-label={"Join new oak"}
-      href={"/beta/onboarding"}
-      variant="minimal"
-    />
-  ),
-};

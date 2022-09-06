@@ -1,11 +1,19 @@
 import Bugsnag from "@bugsnag/js";
 import { render } from "@testing-library/react";
 import { FC, useEffect } from "react";
+import { ThemeProvider } from "styled-components";
 
 import "../../__tests__/__helpers__/LocalStorageMock";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
+import theme from "../../styles/theme";
 
 import ErrorBoundary from ".";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
+useRouter.mockReturnValue({
+  asPath: "test asPath value",
+});
 
 const mockNotify = jest.fn(async (err, cb) => cb(event));
 Bugsnag.notify = mockNotify;
@@ -20,26 +28,30 @@ const TantrumChild = () => {
 
 const WithStatisticsConsent: FC = (props) => {
   return (
-    <CookieConsentProvider
-      {...props}
-      __testMockValue={{
-        showConsentManager: jest.fn(),
-        hasConsentedTo: () => "enabled",
-        hasConsentedToPolicy: () => "enabled",
-      }}
-    />
+    <ThemeProvider theme={theme}>
+      <CookieConsentProvider
+        {...props}
+        __testMockValue={{
+          showConsentManager: jest.fn(),
+          hasConsentedTo: () => "enabled",
+          hasConsentedToPolicy: () => "enabled",
+        }}
+      />
+    </ThemeProvider>
   );
 };
 const WithoutStatisticsConsent: FC = (props) => {
   return (
-    <CookieConsentProvider
-      {...props}
-      __testMockValue={{
-        showConsentManager: jest.fn(),
-        hasConsentedTo: () => "disabled",
-        hasConsentedToPolicy: () => "disabled",
-      }}
-    />
+    <ThemeProvider theme={theme}>
+      <CookieConsentProvider
+        {...props}
+        __testMockValue={{
+          showConsentManager: jest.fn(),
+          hasConsentedTo: () => "disabled",
+          hasConsentedToPolicy: () => "disabled",
+        }}
+      />
+    </ThemeProvider>
   );
 };
 
@@ -64,7 +76,7 @@ describe("ErrorBoundary.tsx", () => {
       { wrapper: WithStatisticsConsent }
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Client error occurred"
+      "An error occurred on client"
     );
   });
   test.skip("[bugsnag:enabled] should call reportError", () => {
@@ -96,7 +108,7 @@ describe("ErrorBoundary.tsx", () => {
       { wrapper: WithoutStatisticsConsent }
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Client error occurred"
+      "An error occurred on client"
     );
   });
   test("[bugsnag:disabled] should not call reportError", () => {
@@ -107,5 +119,14 @@ describe("ErrorBoundary.tsx", () => {
       { wrapper: WithoutStatisticsConsent }
     );
     expect(mockNotify).not.toHaveBeenCalled();
+  });
+  it("contains a button with link to homepage", () => {
+    const { getByTestId } = render(
+      <ErrorBoundary>
+        <TantrumChild />
+      </ErrorBoundary>,
+      { wrapper: WithoutStatisticsConsent }
+    );
+    expect(getByTestId("homeButton").closest("a")).toHaveAttribute("href", "/");
   });
 });

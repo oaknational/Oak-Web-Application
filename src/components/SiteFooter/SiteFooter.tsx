@@ -11,6 +11,7 @@ import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsent
 import { getPupilsUrl, getTeachersUrl } from "../../common-lib/urls";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import UnstyledButton from "../UnstyledButton";
+import footerSections from "../../browser-lib/fixtures/footerSections";
 
 type FooterLinkProps = {
   text: string;
@@ -109,11 +110,9 @@ export type FooterSections = Record<
   "pupils" | "teachers" | "oak" | "legal",
   FooterSection
 >;
-type SiteFooterProps = {
-  sections: FooterSections;
-  notification?: React.ReactNode;
-};
-const SiteFooter: FC<SiteFooterProps> = ({ sections, notification }) => {
+
+const SiteFooter: FC = () => {
+  const sections = footerSections;
   return (
     <Box
       as="footer"
@@ -162,7 +161,6 @@ const SiteFooter: FC<SiteFooterProps> = ({ sections, notification }) => {
               $ml={"auto"}
             >
               <Logo title={"Oak National Academy"} height={66} width={150} />
-              {notification}
             </Flex>
           </Flex>
           <Flex $mb={80} $mt={64} $width={"100%"}>
