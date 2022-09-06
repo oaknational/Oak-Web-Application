@@ -36,6 +36,8 @@ const relativeUrls = [
     //   info: console.info,
     // },
   },
+  "/about-us/who-we-are",
+  "/about-us/board",
   // Ignore beta pages for now.
   // "/beta/lessons/physics-only-review-chj3cd/",
   // "/beta/sign-in",
