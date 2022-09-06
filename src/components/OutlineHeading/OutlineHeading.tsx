@@ -4,7 +4,11 @@ import color from "../../styles/utils/color";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import { margin } from "../../styles/utils/spacing";
 import typography from "../../styles/utils/typography";
-import { headingDefaults, HeadingProps , HeadingTagComponent } from "../Typography/Heading";
+import {
+  headingDefaults,
+  HeadingProps,
+  HeadingTagComponent,
+} from "../Typography/Heading";
 
 const shadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
@@ -25,9 +29,11 @@ const fontSize = css<{ $fontSize?: OutlineSizeResponsive }>`
   ${responsive("font-size", (props) => props.$fontSize, parse)}
 `;
 
-const OutlineHeading = styled(HeadingTagComponent)<
-  OutlineHeadingProps & { $fontSize: OutlineSizeResponsive }
->`
+// Pa11y complains about the "color" being white on white
+// Todo: use the theme to ensure the shadow color is the contrast color
+const OutlineHeading = styled(HeadingTagComponent).attrs({
+  className: "pa11y-ignore",
+})<OutlineHeadingProps & { $fontSize: OutlineSizeResponsive }>`
   color: white;
   text-shadow: ${shadow};
   ${fontSize}
