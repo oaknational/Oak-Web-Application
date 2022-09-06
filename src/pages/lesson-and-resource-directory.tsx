@@ -1,17 +1,18 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import Cover from "../components/Cover";
+import FixedHeader from "../components/FixedHeader";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
 import Input from "../components/Input";
-import Layout from "../components/Layout";
+import Logo from "../components/Logo";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../components/PortableText";
 import Typography, { Heading } from "../components/Typography";
@@ -285,7 +286,14 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
   pageData,
 }) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS}>
+    <>
+      <FixedHeader $background={"white"}>
+        <Link href={"/"}>
+          <a>
+            <Logo title={"Oak National Academy"} height={48} width={104} />
+          </a>
+        </Link>
+      </FixedHeader>
       <MaxWidth>
         <LandingPageHeader {...pageData.hero} />
         <BasePortableTextProvider>
@@ -295,7 +303,7 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
           />
         </BasePortableTextProvider>
       </MaxWidth>
-    </Layout>
+    </>
   );
 };
 
