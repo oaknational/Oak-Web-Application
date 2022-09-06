@@ -1,3 +1,10 @@
+# [0.106.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.105.0...v0.106.0) (2022-09-06)
+
+
+### Features
+
+* add client-side error view ([874c625](https://github.com/oaknational/Oak-Web-Application/commit/874c6259e17517752e6f335911ab35a272e62e11))
+
 # [0.105.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.104.0...v0.105.0) (2022-09-06)
 
 
