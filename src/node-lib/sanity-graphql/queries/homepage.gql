@@ -1,0 +1,22 @@
+query homepage($isDraft: Boolean = false) {
+  allHomepage(
+    where: { _: { is_draft: $isDraft }, _id: { matches: "*homepage" } }
+  ) {
+    id: _id
+    heading
+    summaryPortableText: summaryRaw
+    sidebarCard1 {
+      ...Card
+    }
+    sidebarCard2 {
+      ...Card
+    }
+    sidebarForm {
+      title
+      bodyPortableText: bodyRaw
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

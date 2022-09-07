@@ -7,6 +7,7 @@ import {
   aboutPageSchema,
   planningPageSchema,
   curriculumPageSchema,
+  homePageSchema,
 } from "./schemas/pages";
 import {
   blogPostPreviewSchema,
@@ -85,6 +86,19 @@ const getSanityClient: CMSClient = () => ({
     };
 
     return blogPostSchema.parse(blogWithResolvedRefs);
+  },
+  homepage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.homepage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const homepageData = result?.allHomepage?.[0];
+
+    if (!homepageData) {
+      return null;
+    }
+
+    return homePageSchema.parse(homepageData);
   },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
