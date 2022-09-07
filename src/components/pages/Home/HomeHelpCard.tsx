@@ -30,6 +30,7 @@ const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
           // @TODO: This link is dynamic, not always a support link
           // so we may not always want to open it in a new tab
           // See owa issue #619
+          // When this is standardized remove the exclusions from sonar
           htmlAnchorProps={{ target: "_blank" }}
         />
       )}

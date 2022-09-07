@@ -33,6 +33,7 @@ const HomeAboutCard: FC<HomeSidebarTextCard> = (props) => {
           // @TODO: This link is dynamic, not always an about link
           // so tracking may become incorrect
           // See owa issue #619
+          // When this is standardized remove the exclusions from sonar
           htmlAnchorProps={{ onClick: track.aboutSelected }}
         />
       )}
