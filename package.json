@@ -32,7 +32,7 @@
     "hasura:curriculum:start": "docker-compose -f 'hasura-curriculum/docker-compose.yaml' up -d",
     "hasura:curriculum:stop": "docker-compose -f 'hasura-curriculum/docker-compose.yaml' stop",
     "lint": "NODE_ENV=test next lint",
-    "lint:styles": "stylelint src/**/*.{ts,tsx}",
+    "lint:styles": "stylelint 'src/**/*.{ts,tsx}'",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
     "playwright:install": "npx playwright install #install Playwright binaries on system",
     "playwright:test": "LOCAL_E2E=on npx playwright test",
