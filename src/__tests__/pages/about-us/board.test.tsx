@@ -24,7 +24,7 @@ describe("pages/about-us/board.tsx", () => {
     });
   });
 
-  describe("SEO", () => {
+  describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
         <AboutBoard pageData={testAboutPageData} isPreviewMode={false} />

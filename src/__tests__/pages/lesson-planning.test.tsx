@@ -79,7 +79,7 @@ describe("pages/lesson-planning.tsx", () => {
     });
   });
 
-  describe("SEO", () => {
+  describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
         <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />

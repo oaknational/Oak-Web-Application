@@ -68,7 +68,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       });
     });
 
-    describe("SEO", () => {
+    describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
           <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />

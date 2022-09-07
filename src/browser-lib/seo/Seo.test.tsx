@@ -19,7 +19,7 @@ const mockSeoProps = {
   description: "This is a lesson about maths...",
 };
 
-describe("Seo", () => {
+describe.skip("SEO", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/initial");
   });
