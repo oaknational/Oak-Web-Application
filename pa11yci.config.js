@@ -41,6 +41,7 @@ const relativeUrls = [
   "/blog/how-to-design-a-unit-of-study",
   "/blog/evolution-of-oak",
   "/blog/join-the-childrens-mental-health-week-assembly-2022",
+  "/legal/accessibility-statement",
   // Ignore beta pages for now.
   // "/beta/lessons/physics-only-review-chj3cd/",
   // "/beta/sign-in",
