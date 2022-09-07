@@ -11,24 +11,18 @@ const reportError = errorReporter("useVideoTracking");
  * @todo use zod for this
  */
 const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
-  const { video, getState } = props;
-  const { duration, captioned, playbackId, title } = video;
-  const { timeElapsed, muted } = getState();
-  if (
-    typeof duration !== "number" ||
-    typeof captioned !== "boolean" ||
-    typeof timeElapsed !== "number"
-  ) {
+  const state = props.getState();
+  const { duration, captioned, playbackId, title, timeElapsed, muted } = state;
+
+  if (typeof duration !== "number" || typeof timeElapsed !== "number") {
     const error = new Error("Could not track video event, props malformed");
     reportError(error, props);
     return;
   }
 
   return {
-    // @todo duration is NaN on first play, speaking with mux about this
-    durationSeconds: duration || 0,
+    durationSeconds: duration,
     isCaptioned: captioned,
-    // @todo muted and timeElapsed is not currently working
     isMuted: muted,
     timeElapsedSeconds: timeElapsed,
     videoTitle: playbackId,
@@ -37,15 +31,13 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
 };
 
 type UseVideoTrackingProps = {
-  video: {
-    duration: number | null;
-    captioned: boolean | null;
-    playbackId: string;
-    title: string;
-  };
   getState: () => {
-    muted: boolean | null;
+    captioned: boolean;
+    duration: number | null;
+    muted: boolean;
+    playbackId: string;
     timeElapsed: number | null;
+    title: string;
   };
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {

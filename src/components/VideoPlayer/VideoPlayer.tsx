@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
 import MuxPlayerElement from "@mux/mux-player";
 
@@ -10,15 +10,7 @@ import errorReporter from "../../common-lib/error-reporter";
 import useVideoTracking from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
-
-const getDuration = (ref: RefObject<MuxPlayerElement>) => {
-  const duration = ref.current?.duration;
-  if (typeof duration === "number" && !isNaN(duration)) {
-    return Math.floor(duration);
-  }
-
-  return null;
-};
+import getDuration from "./getDuration";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -42,26 +34,24 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
-  const duration = getDuration(mediaElRef);
-  const captioned = Boolean(getSubtitleTrack(mediaElRef));
 
-  console.log(mediaElRef?.current?.muted);
+  const getState = () => {
+    const captioned = Boolean(getSubtitleTrack(mediaElRef));
+    const duration = getDuration(mediaElRef);
+    const muted = Boolean(mediaElRef.current?.muted);
+    const timeElapsed = getTimeElapsed(mediaElRef);
 
-  const trackingProps = {
-    video: {
-      duration,
+    return {
       captioned,
+      duration,
+      muted,
       playbackId,
+      timeElapsed,
       title,
-    },
-    getState: () => {
-      const muted = mediaElRef.current?.muted || null;
-      const timeElapsed = getTimeElapsed(mediaElRef);
-
-      return { muted, timeElapsed };
-    },
+    };
   };
-  const videoTracking = useVideoTracking(trackingProps);
+
+  const videoTracking = useVideoTracking({ getState });
 
   const metadata = {
     "metadata-video-id": playbackId,
