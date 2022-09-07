@@ -36,7 +36,6 @@ import {
   SerializedBlogPostPreview,
 } from "./blog";
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
