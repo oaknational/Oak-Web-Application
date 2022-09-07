@@ -14,12 +14,42 @@ jest.mock("next/head", () => {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const mockSeoProps = {
+  title: "Maths lesson",
+  description: "This is a lesson about maths...",
+};
+
 describe("Seo", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/initial");
   });
 
   it("should render the title meta tags", () => {
+    render(<SEO {...mockSeoProps} />, {
+      container: document.head,
+    });
+
+    expect(document.title).toBe("Maths lesson");
+  });
+
+  it("should trim trailing slashes from canonical URLs", () => {
+    render(
+      <SEO {...mockSeoProps} canonicalURL={"https://thenational.academy/"} />,
+      {
+        container: document.head,
+      }
+    );
+
+    const canonical = document
+      .querySelector("link[rel=canonical]")
+      ?.getAttribute("href");
+
+    expect(canonical).toBe("https://thenational.academy");
+  });
+
+  it("should build a default canonical URL from the current route", () => {
+    mockRouter.setCurrentUrl("/foo/");
+
     const props = {
       title: "Maths lesson",
       description: "This is a lesson about maths...",
@@ -29,6 +59,11 @@ describe("Seo", () => {
       container: document.head,
     });
 
-    expect(document.title).toBe("Maths lesson");
+    const canonical = document
+      .querySelector("link[rel=canonical]")
+      ?.getAttribute("href");
+
+    // The host is coming from config, we may also want to test mocking that
+    expect(canonical).toBe("https://www.thenational.academy/foo");
   });
 });
