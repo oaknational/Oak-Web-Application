@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { dateSchema, documentSchema, slugSchema } from "./base";
+import { dateSchema, documentSchema, seoSchema, slugSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
 export const policyPageSchema = z
@@ -8,8 +8,8 @@ export const policyPageSchema = z
     title: z.string(),
     slug: slugSchema,
     lastUpdatedAt: dateSchema,
-    // @TODO: Portable text type
     bodyPortableText: portableTextSchema,
+    seo: seoSchema,
   })
   .merge(documentSchema);
 

@@ -6,6 +6,7 @@ import {
   dateSchema,
   blogWebinarCategorySchema,
   imageSchema,
+  seoSchema,
 } from "./base";
 import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
@@ -20,6 +21,7 @@ export const blogPostSchema = z
     contentPortableText: portableTextSchema,
     category: blogWebinarCategorySchema,
     mainImage: imageSchema,
+    seo: seoSchema,
   })
   .merge(documentSchema);
 

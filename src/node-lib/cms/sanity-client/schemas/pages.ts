@@ -22,6 +22,7 @@ export const homePageSchema = z
       title: z.string(),
       bodyPortableText: portableTextSchema,
     }),
+    seo: seoSchema,
   })
   .merge(documentSchema);
 
