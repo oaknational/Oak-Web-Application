@@ -119,7 +119,7 @@ const ContactUs: NextPage = () => {
   const { title, heading, summaryPortableText, contactDetails } = data;
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(data.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
         <SummaryCard
           title={title}
