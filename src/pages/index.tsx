@@ -374,6 +374,12 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     previewMode: isPreviewMode,
   });
 
+  if (!homepageData) {
+    return {
+      notFound: true,
+    };
+  }
+
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
     limit: 5,

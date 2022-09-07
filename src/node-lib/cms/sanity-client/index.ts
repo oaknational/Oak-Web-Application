@@ -92,7 +92,7 @@ const getSanityClient: CMSClient = () => ({
       isDraft: previewMode === true,
       ...params,
     });
-    const homepageData = result.allHomepage[0];
+    const homepageData = result?.allHomepage?.[0];
 
     if (!homepageData) {
       return null;

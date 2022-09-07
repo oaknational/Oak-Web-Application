@@ -101,10 +101,10 @@ describe("cms/sanity-client", () => {
      * mockMethodName: the name of a method on sanityGraphqlApi that's been mocked
      */
     const singletonMethods = [
+      ["homepage", "homepage"],
       ["planningPage", "planningCorePage"],
       ["aboutPage", "aboutCorePage"],
       ["curriculumPage", "curriculumCorePage"],
-      // ["homepage", "homepage"],
     ] as const;
 
     const listMethods = [

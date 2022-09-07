@@ -10,13 +10,15 @@ import renderWithProviders from "../__helpers__/renderWithProviders";
 
 jest.mock("../../node-lib/cms");
 
-describe("pages/index.tsx", () => {
-  it("Renders correct title ", async () => {
-    const pageData = {
-      id: "homepage",
-      heading: "Oak",
-    } as HomePage;
+const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
+const pageData = {
+  id: "homepage",
+  heading: "Oak",
+} as HomePage;
+
+describe("pages/index.tsx", () => {
+  it("Renders correct title", async () => {
     renderWithProviders(
       <Home pageData={pageData} posts={[]} isPreviewMode={false} />
     );
@@ -29,7 +31,9 @@ describe("pages/index.tsx", () => {
   });
 
   it("Renders a link to the blog list", async () => {
-    renderWithProviders(<Home posts={[]} isPreviewMode={false} />);
+    renderWithProviders(
+      <Home pageData={pageData} posts={[]} isPreviewMode={false} />
+    );
 
     await waitFor(() => {
       const blogLink = screen.getByText("All blogs");
@@ -58,7 +62,9 @@ describe("pages/index.tsx", () => {
       },
     ] as SerializedPost[];
 
-    renderWithProviders(<Home posts={mockPosts} isPreviewMode={false} />);
+    renderWithProviders(
+      <Home pageData={pageData} posts={mockPosts} isPreviewMode={false} />
+    );
 
     await waitFor(() => {
       const list = screen
@@ -99,10 +105,13 @@ describe("pages/index.tsx", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetModules();
+
+      mockCMSClient.homepage.mockResolvedValue(pageData);
+      mockCMSClient.blogPosts.mockResolvedValue([]);
     });
 
     it("Should return no more than 4 posts", async () => {
-      (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([
+      mockCMSClient.blogPosts.mockResolvedValueOnce([
         mockPost,
         mockPost2,
         mockPost,
@@ -116,7 +125,7 @@ describe("pages/index.tsx", () => {
     });
 
     it("Should sort posts by date ascending", async () => {
-      (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([
+      mockCMSClient.blogPosts.mockResolvedValueOnce([
         { ...mockPost, id: "2", date: new Date("2022-01-01") },
         { ...mockPost, id: "3", date: new Date("2021-01-01") },
         { ...mockPost, id: "1", date: new Date("2023-01-01") },
@@ -128,14 +137,26 @@ describe("pages/index.tsx", () => {
     });
 
     it("Should not fetch draft content by default", async () => {
-      (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([mockPost]);
+      mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
       await getStaticProps({});
 
-      expect(CMSClient.blogPosts).toHaveBeenCalledWith(
+      expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
         expect.objectContaining({
           previewMode: false,
         })
       );
+    });
+
+    it("should return notFound when the page data is missing", async () => {
+      mockCMSClient.homepage.mockResolvedValueOnce(null);
+
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
     });
   });
 });
