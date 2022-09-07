@@ -5,7 +5,7 @@ type GetSeoProps = Pick<SeoProps, "imageUrl">;
 
 export const getSeoProps = (
   props: (Seo & GetSeoProps) | undefined | null,
-  options: { addTitleSuffix?: boolean } = { addTitleSuffix: false }
+  options: { addTitleSuffix?: boolean } = { addTitleSuffix: true }
 ): SeoProps => {
   if (props == null) {
     return DEFAULT_SEO_PROPS;
