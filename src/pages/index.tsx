@@ -2,6 +2,7 @@ import { FC } from "react";
 import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { toPlainText } from "@portabletext/react";
 
 import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
@@ -130,7 +131,10 @@ const Home: NextPage<HomePageProps> = (props) => {
                   {props.pageData.heading}
                 </Heading>
                 <Heading tag={"h2"} $fontSize={[20]}>
-                  We’re growing our support to help you thrive.
+                  {/* @TODO: The portable text in the CMS allows more features
+                             than just plain text. We should decide if we want
+                             to lock that down, or handle more cases here */}
+                  {toPlainText(props.pageData.summaryPortableText)}
                 </Heading>
               </Flex>
               <Box $ph={[16, 0]}>

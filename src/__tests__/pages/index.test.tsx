@@ -7,6 +7,7 @@ import Home, {
 } from "../../pages";
 import CMSClient, { BlogPostPreview, HomePage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
+import { portableTextFromString } from "../__helpers__/cms";
 
 jest.mock("../../node-lib/cms");
 
@@ -15,18 +16,21 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const pageData = {
   id: "homepage",
   heading: "Oak",
+  summaryPortableText: portableTextFromString("Here's the page summary"),
 } as HomePage;
 
 describe("pages/index.tsx", () => {
-  it("Renders correct title", async () => {
+  it("Renders correct title and summary", async () => {
     renderWithProviders(
       <Home pageData={pageData} posts={[]} isPreviewMode={false} />
     );
 
     await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Oak"
-      );
+      const h1 = screen.getByRole("heading", { level: 1 });
+      expect(h1).toHaveTextContent("Oak");
+
+      const firstH2 = screen.getAllByRole("heading", { level: 2 })[0];
+      expect(firstH2).toHaveTextContent("Here's the page summary");
     });
   });
 
