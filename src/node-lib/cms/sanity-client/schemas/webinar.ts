@@ -18,7 +18,7 @@ export const webinarSchema = z
     hosts: z.array(teamMemberPreviewSchema),
     category: blogWebinarCategorySchema,
     summaryPortableText: portableTextSchema,
-    seo: seoSchema,
+    seo: seoSchema.nullable(),
   })
   .merge(documentSchema);
 

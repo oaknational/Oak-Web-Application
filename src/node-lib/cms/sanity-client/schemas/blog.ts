@@ -21,7 +21,7 @@ export const blogPostSchema = z
     contentPortableText: portableTextSchema,
     category: blogWebinarCategorySchema,
     mainImage: imageSchema,
-    seo: seoSchema,
+    seo: seoSchema.nullable(),
   })
   .merge(documentSchema);
 

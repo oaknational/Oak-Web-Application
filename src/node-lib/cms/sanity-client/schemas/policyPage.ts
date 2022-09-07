@@ -9,7 +9,7 @@ export const policyPageSchema = z
     slug: slugSchema,
     lastUpdatedAt: dateSchema,
     bodyPortableText: portableTextSchema,
-    seo: seoSchema,
+    seo: seoSchema.nullable(),
   })
   .merge(documentSchema);
 
