@@ -22,7 +22,7 @@ export const homePageSchema = z
       title: z.string(),
       bodyPortableText: portableTextSchema,
     }),
-    seo: seoSchema.nullable(),
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 
@@ -56,7 +56,7 @@ export const planningPageSchema = z
     learnMoreHeading: z.string(),
     learnMoreBlock1: textAndMediaSchema,
     learnMoreBlock2: textAndMediaSchema,
-    seo: seoSchema.nullable(),
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 
@@ -114,7 +114,7 @@ export const aboutPageSchema = z
     contactSection: z.object({
       infoPortableText: portableTextSchema,
     }),
-    seo: seoSchema.nullable(),
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 
