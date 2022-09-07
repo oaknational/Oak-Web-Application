@@ -24,7 +24,7 @@ const video = {
   slug: "something",
   captioned: true,
   title: "Top video",
-  playbackId: "12mux67"
+  playbackId: "12mux67",
 };
 const state = {
   muted: false,

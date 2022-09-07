@@ -112,7 +112,9 @@ const getSanityClient: CMSClient = () => ({
       ...params,
       slug,
     });
-    const policyPage = await resolveReferences(policyPageResult.allPolicyPage[0]);
+    const policyPage = await resolveReferences(
+      policyPageResult.allPolicyPage[0]
+    );
 
     return policyPageSchema.parse(policyPage);
   },
