@@ -9,6 +9,8 @@
 /coverage
 playwright-report/
 test-results/
+npm_audit.json
+
 # Browserstack Local log
 local.log
 
