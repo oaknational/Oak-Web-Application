@@ -1,4 +1,4 @@
-import { z, ZodSchema } from "zod";
+import { z, ZodArray, ZodSchema, ZodTypeAny } from "zod";
 
 import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
@@ -282,11 +282,42 @@ const getSanityClient: CMSClient = () => ({
   },
 });
 
+type WrapValue = {
+  <D, T extends Array<D>>(item: T): T;
+  <T>(item: T): T[];
+};
+
+const wrapValue: WrapValue = (item: unknown) =>
+  Array.isArray(item) ? item : [item];
+
+export function createInvalidRejectingSchema<E, S extends ZodArray<E, "many">>(
+  arraySchema: S
+) {
+  const validate = (item: unknown) =>
+    arraySchema.element.safeParse(item).success;
+  return z.preprocess((val) => wrapValue(val).filter(validate), arraySchema);
+}
+
+const isZodArraySchema = <T extends ZodTypeAny>(
+  schema: unknown
+): schema is ZodArray<T> => {
+  return "element" in schema;
+};
+
 const parse = <S extends ZodSchema, D>(
   schema: S,
-  data: D
-  // _isPreviewMode?: boolean
+  data: D,
+  isPreviewMode?: boolean
 ): ReturnType<typeof schema["parse"]> => {
+  if (isPreviewMode) {
+    if (isZodArraySchema(schema)) {
+      const invalidRejectingSchema = createInvalidRejectingSchema(schema);
+      return invalidRejectingSchema.parse(data);
+    } else {
+      return schema.parse(data);
+    }
+  }
+
   return schema.parse(data);
 };
 
