@@ -16,6 +16,7 @@ export type SeoProps = {
   noIndex?: boolean;
   noFollow?: boolean;
   imageUrl?: string;
+  imageAlt?: string;
 };
 
 /**
@@ -26,6 +27,7 @@ const Seo: FC<SeoProps> = ({
   title,
   description,
   imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}`,
+  imageAlt,
   noIndex = false,
   noFollow = false,
   canonicalURL,
@@ -44,6 +46,7 @@ const Seo: FC<SeoProps> = ({
         images: [
           {
             url: imageUrl,
+            alt: imageAlt,
           },
         ],
         site_name: config.get("appName"),
