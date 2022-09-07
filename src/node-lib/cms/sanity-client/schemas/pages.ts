@@ -7,6 +7,7 @@ import {
   seoSchema,
 } from "./base";
 import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
+import { blogPostPreviewSchema } from "./blog";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
@@ -130,9 +131,9 @@ export const curriculumPageSchema = z
       posts: z.array(
         z.object({
           title: z.string(),
-          post: z.object({
-            title: z.string(),
-            slug: z.object({ current: z.string() }),
+          post: blogPostPreviewSchema.pick({
+            title: true,
+            slug: true,
           }),
         })
       ),
