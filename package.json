@@ -11,8 +11,8 @@
     "check-types": "tsc --noEmit",
     "dev": "next dev",
     "export": "next export",
-    "format": "prettier **/*.{j,t}{s,sx} --write",
-    "format:check": "prettier **/*.{j,t}{s,sx} --check",
+    "format": "prettier '**/*.{j,t}{s,sx}' --write",
+    "format:check": "prettier '**/*.{j,t}{s,sx}' --check",
     "gql-codegen": "npm run gql-codegen:browser && npm run gql-codegen:node",
     "gql-codegen:browser": "graphql-codegen --config src/browser-lib/graphql/codegen.yml -r dotenv/config",
     "gql-codegen:node": "graphql-codegen --config src/node-lib/graphql/codegen.yml -r dotenv/config",
@@ -50,9 +50,6 @@
     "test:ci": "jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
-  },
-  "overrides": {
-    "prettier": "2.7.1"
   },
   "dependencies": {
     "@bugsnag/js": "^7.16.2",
