@@ -5,12 +5,12 @@ import Link from "next/link";
 import { FC } from "react";
 
 import Button from "../components/Button";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Card from "../components/Card";
 import Cover from "../components/Cover";
 import FixedHeader from "../components/FixedHeader";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
+import Icon from "../components/Icon";
 import Input from "../components/Input";
 import Logo from "../components/Logo";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -334,12 +334,21 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
             <Logo title={"Oak National Academy"} height={48} width={104} />
           </a>
         </Link>
-        <ButtonAsLink
-          $mt={24}
-          label={"Lesson & Resource Directory"}
-          href={"#signup-form"}
-          background={"teachersHighlight"}
-        />
+        <Link href={"#signup-form"}>
+          <a>
+            <Flex $alignItems={"center"}>
+              <Typography $fontFamily={"heading"} $fontSize={16}>
+                Lesson & Resource Directory CTA
+              </Typography>
+              <Icon
+                variant="minimal"
+                name="ArrowRight"
+                size={[48]}
+                $opacity={1.0}
+              />
+            </Flex>
+          </a>
+        </Link>
       </FixedHeader>
 
       <LandingPageTitle {...pageData.hero} />
