@@ -25,7 +25,7 @@ export type SeoProps = {
 const Seo: FC<SeoProps> = ({
   title,
   description,
-  imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}`,
+  imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}?2022`,
   noIndex = false,
   noFollow = false,
   canonicalURL,
