@@ -109,6 +109,12 @@ export const getStaticProps: GetStaticProps<
     previewMode: isPreviewMode,
   });
 
+  if (!policyResult) {
+    return {
+      notFound: true,
+    };
+  }
+
   const policy = {
     ...policyResult,
     lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),

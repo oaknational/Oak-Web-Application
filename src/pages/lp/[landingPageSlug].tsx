@@ -53,6 +53,12 @@ export const getStaticProps: GetStaticProps<
     previewMode: isPreviewMode,
   });
 
+  if (!landingPageResult) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       pageData: landingPageResult,
