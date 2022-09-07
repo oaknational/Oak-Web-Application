@@ -51,6 +51,9 @@
     "test:storybook": "jest --config=jest.storybook.config.js",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
+  "overrides": {
+    "prettier": "2.7.1"
+  },
   "dependencies": {
     "@bugsnag/js": "^7.16.2",
     "@bugsnag/plugin-react": "^7.16.2",
@@ -125,7 +128,7 @@
     "dotenv": "^16.0.0",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.6",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.30.1",
