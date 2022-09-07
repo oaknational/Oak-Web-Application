@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1.0...v1.2.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* use new slug structure for curriculum blog links, tests ([cee4ef6](https://github.com/oaknational/Oak-Web-Application/commit/cee4ef607afeda4fd0710b6ee8d109c34857fe54))
+
+
+### Features
+
+* re-use blog schema for curriculum blogs ([5808008](https://github.com/oaknational/Oak-Web-Application/commit/580800899d01310bfcec0cdb3f24b35105e87293))
+
 # [1.1.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.0.0...v1.1.0) (2022-09-07)
 
 
