@@ -105,7 +105,7 @@ const Home: NextPage<HomePageProps> = (props) => {
 
   return (
     <Layout
-      seoProps={getSeoProps(props.pageData.seo)}
+      seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
       isPreviewMode={props.isPreviewMode}
     >
       <Flex $flexDirection={"column"} $position="relative">
