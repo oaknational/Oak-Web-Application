@@ -334,7 +334,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                       {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
                       {i < posts.length - 1 && (
-                        <Hr $color="black" $mt={[0, 16]} $mb={16} />
+                        <Hr
+                          thickness={2}
+                          $color="black"
+                          $mt={[0, 16]}
+                          $mb={16}
+                        />
                       )}
                     </li>
                   ))}

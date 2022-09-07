@@ -3,6 +3,7 @@ import { FC, Fragment, useMemo, useState } from "react";
 import Box from "../Box";
 import Flex from "../Flex";
 import { Pagination } from "../Pagination";
+import Typography, { Hr } from "../Typography";
 import { HeadingTag } from "../Typography/Heading";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
@@ -35,6 +36,9 @@ const BlogList: FC<BlogListProps> = (props) => {
       {currentTableData.map((item, i) => (
         <Fragment key={`BlogList-BlogListItem-${i}`}>
           <BlogListItem {...item} withImage={withImage} />
+          <Typography $display={["block", "none"]}>
+            <Hr thickness={2} $color="black" $mb={32} />
+          </Typography>
         </Fragment>
       ))}
       <Box $mt={[0, "auto"]} $pt={48}>
