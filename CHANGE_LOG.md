@@ -1,3 +1,10 @@
+## [0.106.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.2...v0.106.3) (2022-09-07)
+
+
+### Bug Fixes
+
+* use transform to postion flying carpet image ([ccde52f](https://github.com/oaknational/Oak-Web-Application/commit/ccde52f343b49d2c976b46c20113c1c7446c80cc))
+
 ## [0.106.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.1...v0.106.2) (2022-09-07)
 
 
