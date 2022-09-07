@@ -2,7 +2,6 @@ import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { AboutPage } from "../../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
@@ -17,6 +16,7 @@ import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import Box from "../../components/Box";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -29,7 +29,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
 }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps(pageData.seo)}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >

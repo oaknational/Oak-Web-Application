@@ -36,6 +36,7 @@ import {
   SerializedBlogPostPreview,
 } from "./blog";
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -103,7 +104,10 @@ const Home: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={props.isPreviewMode}>
+    <Layout
+      seoProps={getSeoProps(props.pageData.seo)}
+      isPreviewMode={props.isPreviewMode}
+    >
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>
