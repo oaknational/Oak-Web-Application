@@ -12,6 +12,7 @@ export type PortableTextJSON = z.infer<typeof any>;
 
 export type SanityImage = {
   altText?: string | null;
+  isPresentational?: boolean | null;
   asset?: {
     _id: string; // _id required by next-sanity-image
     url: string;
