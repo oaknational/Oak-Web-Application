@@ -304,7 +304,7 @@ const isZodArraySchema = <T extends ZodTypeAny>(
   return "element" in schema;
 };
 
-const parse = <S extends ZodSchema, D>(
+export const parse = <S extends ZodSchema, D>(
   schema: S,
   data: D,
   isPreviewMode?: boolean

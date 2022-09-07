@@ -7,7 +7,7 @@ import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageB
 
 import { videoSchema } from "./schemas/base";
 
-import getSanityClient from "./";
+import getSanityClient, { parse } from "./";
 
 /**
  * Note: sanity-graphql mocks are configured in
@@ -265,6 +265,27 @@ describe("cms/sanity-client", () => {
       type video = z.infer<typeof videoSchema>;
       const passResult = videoSchema.safeParse(testVideo) as { data: video };
       expect(passResult.data.video.asset.thumbTime).toBeNull();
+    });
+  });
+
+  describe("parse", () => {
+    it("parses data with the given schema", () => {
+      const schema = z.object({ foo: z.boolean() });
+      expect(parse(schema, { foo: true })).toEqual({ foo: true });
+    });
+
+    it("throws on invalid list items without isPreviewMode", () => {
+      const schema = z.array(z.object({ foo: z.boolean() }));
+      const data = [{ foo: null }, { foo: true }];
+      expect(() => {
+        parse(schema, data);
+      }).toThrow();
+    });
+
+    it("filters invalid list items with isPreviewMode=true", () => {
+      const schema = z.array(z.object({ foo: z.boolean() }));
+      const data = [{ foo: "bar" }, { foo: true }];
+      expect(parse(schema, data, true)).toEqual([{ foo: true }]);
     });
   });
 });
