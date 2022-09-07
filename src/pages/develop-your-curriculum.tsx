@@ -19,7 +19,6 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
-import { getOakCurriculumUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 
 const RotatedCard = styled(Card)`
@@ -187,7 +186,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                 <ButtonAsLink
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
-                  href={getOakCurriculumUrl()}
+                  href={"https://teachers.thenational.academy/oaks-curricula"}
                 />
               </Flex>
             )}

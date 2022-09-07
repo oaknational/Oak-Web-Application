@@ -25,7 +25,6 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
@@ -186,7 +185,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={getPupilsUrl()}
+                      href={"https://classroom.thenational.academy"}
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
@@ -250,7 +249,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={getTeachersUrl()}
+                      href={"https://teachers.thenational.academy"}
                       onClick={() =>
                         track.teacherHubSelected({ navigatedFrom: "card" })
                       }

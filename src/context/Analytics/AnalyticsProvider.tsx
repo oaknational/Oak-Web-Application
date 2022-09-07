@@ -98,7 +98,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Avo
    */
-  initAvo({ env: getAvoEnv(), ...avoOptions }, {}, getAvoBridge({ posthog }));
+  initAvo(
+    { env: getAvoEnv(), webDebugger: false, ...avoOptions },
+    {},
+    getAvoBridge({ posthog })
+  );
 
   /**
    * Page view tracking

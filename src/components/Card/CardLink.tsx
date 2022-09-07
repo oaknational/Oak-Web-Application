@@ -4,10 +4,10 @@ import {
   InputHTMLAttributes,
   ReactNode,
 } from "react";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import styled from "styled-components";
 
 import { zIndexMap } from "../../styles/utils/zIndex";
+import OakLink, { OakLinkProps } from "../OakLink/OakLink";
 
 /**
  * 'CardLinkProps' is the combination of AnchorElement props and Next's Link
@@ -17,7 +17,7 @@ export type CardLinkProps = { children: ReactNode } & Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
   "href" | "ref"
 > &
-  Omit<NextLinkProps, "as" | "passHref" | "children">;
+  Omit<OakLinkProps, "as" | "passHref" | "children">;
 
 const CardLinkA = styled.a`
   ::after {
@@ -40,7 +40,7 @@ const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
     ref
   ) => {
     return (
-      <NextLink
+      <OakLink
         href={href}
         replace={replace}
         scroll={scroll}
@@ -49,7 +49,7 @@ const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
         passHref
       >
         <CardLinkA ref={ref} {...cardLinkProps} />
-      </NextLink>
+      </OakLink>
     );
   }
 );
