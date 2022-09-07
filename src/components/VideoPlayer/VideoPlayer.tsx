@@ -44,7 +44,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const [debug] = useState(INITIAL_DEBUG);
   const duration = getDuration(mediaElRef);
   const captioned = Boolean(getSubtitleTrack(mediaElRef));
-  const timeElapsed = getTimeElapsed(mediaElRef);
+
+  console.log(mediaElRef?.current?.muted);
 
   const trackingProps = {
     video: {
@@ -53,8 +54,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       playbackId,
       title,
     },
-    state: {
-      timeElapsed,
+    getState: () => {
+      const muted = mediaElRef.current?.muted || null;
+      const timeElapsed = getTimeElapsed(mediaElRef);
+
+      return { muted, timeElapsed };
     },
   };
   const videoTracking = useVideoTracking(trackingProps);
@@ -111,9 +115,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onPlay={onPlay}
         onPause={onPause}
         onEnded={onEnded}
-        onError={(evt: Event) => {
-          onError(evt);
-        }}
+        onError={onError}
         // onDurationChange={(p) => console.log("duration change", p)}
         // onVolumeChange={(p) => console.log("volumn", p)}
         // onLoadedMetadata={(p) => console.log("onLoadedMetadata", p)}

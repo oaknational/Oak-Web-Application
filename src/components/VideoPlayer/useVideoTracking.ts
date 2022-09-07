@@ -11,11 +11,11 @@ const reportError = errorReporter("useVideoTracking");
  * @todo use zod for this
  */
 const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
-  const { video, state } = props;
+  const { video, getState } = props;
   const { duration, captioned, playbackId, title } = video;
-  const { timeElapsed } = state;
+  const { timeElapsed, muted } = getState();
   if (
-    // typeof duration !== "number" ||
+    typeof duration !== "number" ||
     typeof captioned !== "boolean" ||
     typeof timeElapsed !== "number"
   ) {
@@ -29,8 +29,8 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
     durationSeconds: duration || 0,
     isCaptioned: captioned,
     // @todo muted and timeElapsed is not currently working
-    // isMuted: muted,
-    // timeElapsedSeconds: timeElapsed,
+    isMuted: muted,
+    timeElapsedSeconds: timeElapsed,
     videoTitle: playbackId,
     videoPlaybackId: title,
   };
@@ -43,8 +43,8 @@ type UseVideoTrackingProps = {
     playbackId: string;
     title: string;
   };
-  state: {
-    // muted: boolean;
+  getState: () => {
+    muted: boolean | null;
     timeElapsed: number | null;
   };
 };
