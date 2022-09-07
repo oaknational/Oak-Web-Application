@@ -1,1 +1,1 @@
-export { default } from "./CMSImage";
+export { default, sanityClientLike } from "./CMSImage";

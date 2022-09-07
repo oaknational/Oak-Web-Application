@@ -7,8 +7,8 @@ import {
   PortableTextComponentProps,
 } from "@portabletext/react";
 import Image from "next/image";
+import { useNextSanityImage } from "next-sanity-image";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -19,7 +19,7 @@ import CMSClient, {
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
-import CMSImage from "../../components/CMSImage";
+import CMSImage, { sanityClientLike } from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
@@ -33,6 +33,9 @@ import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import { BasePortableTextProvider } from "../../components/PortableText";
+import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
+import CMSVideo from "../../components/CMSVideo";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -91,13 +94,11 @@ const blogPortableTextComponents: PortableTextComponents = {
         return null;
       }
 
-      const { video, title } = props.value;
-
       return (
         <Box>
-          {video && (
+          {props.value && (
             <Flex $position={"relative"} $mt={56}>
-              <VideoPlayer title={title} playbackId={video.asset.playbackId} />
+              <CMSVideo video={props.value} />
             </Flex>
           )}
         </Box>
@@ -238,13 +239,30 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     year: "numeric",
   });
 
+  /**
+   * @todo add various sizes for sharing on different platforms
+   * Possibly add options on CMS too, at the moment it crops images
+   * 2:1 (optimised for twitter)
+   */
+  const sharingImage = useNextSanityImage(
+    sanityClientLike,
+    props.blog.mainImage,
+    {
+      imageBuilder: (imageUrlBuilder) =>
+        imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
+    }
+  );
+
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        ...props.blog,
+        imageUrl: sharingImage.src,
+      })}
       $background="white"
       isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $ph={[12, 12, 0]} $pt={56}>
+      <MaxWidth $pt={56}>
         <Card
           $pa={0}
           $background={"teachersPastelYellow"}
@@ -304,7 +322,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </Flex>
         </Card>
 
-        <Grid $mt={[48, 64]}>
+        <Grid $mt={[48, 64]} $ph={[12, 0]}>
           <GridArea $colSpan={[12, 7]}>
             <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
               {blog.category.title}
@@ -331,6 +349,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </GridArea>
         </Grid>
       </MaxWidth>
+      <BlogJsonLd {...props.blog} />
     </Layout>
   );
 };
@@ -359,6 +378,12 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
   const blogResult = await CMSClient.blogPostBySlug(blogSlug, {
     previewMode: isPreviewMode,
   });
+
+  if (!blogResult) {
+    return {
+      notFound: true,
+    };
+  }
 
   const blog = {
     ...blogResult,

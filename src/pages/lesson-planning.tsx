@@ -4,7 +4,6 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
@@ -22,7 +21,8 @@ import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getTeachersUrl } from "../common-lib/urls";
-import VideoPlayer from "../components/VideoPlayer";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
+import CMSVideo from "../components/CMSVideo";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -153,7 +153,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
 }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps(pageData.seo)}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >
@@ -366,15 +366,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   $minWidth={["50%"]}
                 >
                   {pageData.learnMoreBlock1.mediaType == "video" && (
-                    <VideoPlayer
-                      thumbnailTime={
-                        pageData.learnMoreBlock1.video.video.asset.thumbTime
-                      }
-                      playbackId={
-                        pageData.learnMoreBlock1.video.video.asset.playbackId
-                      }
-                      title={pageData.learnMoreBlock1.video.title}
-                    />
+                    <CMSVideo video={pageData.learnMoreBlock1.video} />
                   )}
                 </Flex>
               </Box>
@@ -473,6 +465,12 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   const planningPage = await CMSClient.planningPage({
     previewMode: isPreviewMode,
   });
+
+  if (!planningPage) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

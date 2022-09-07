@@ -74,3 +74,9 @@ export type Quote = {
   role?: string;
   organisation?: string;
 };
+
+export type Seo = {
+  title?: string | null;
+  description?: string | null;
+  canonicalURL?: string | null;
+};

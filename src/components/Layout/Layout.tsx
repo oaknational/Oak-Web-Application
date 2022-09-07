@@ -8,9 +8,10 @@ import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
-import footerSections from "../../browser-lib/fixtures/footerSections";
 import SiteHeader from "../SiteHeader";
 import PreviewControls from "../PreviewControls";
+import ClientErrorHeader from "../ClientErrorHeader";
+import ClientErrorFooter from "../ClientErrorFooter";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -25,14 +26,21 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
-type HeaderVariant = "app" | "site";
+export type HeaderVariant = "app" | "site" | "client-error";
 const headers: Record<HeaderVariant, FC> = {
   app: AppHeader,
   site: SiteHeader,
+  "client-error": ClientErrorHeader,
+};
+export type FooterVariant = "default" | "client-error";
+const footers: Record<FooterVariant, FC> = {
+  default: SiteFooter,
+  "client-error": ClientErrorFooter,
 };
 export interface LayoutProps {
   seoProps: SeoProps;
-  headerVariant?: "app" | "site";
+  headerVariant?: HeaderVariant;
+  footerVariant?: FooterVariant;
   $background?: OakColorName;
   isPreviewMode?: boolean;
 }
@@ -44,8 +52,10 @@ const Layout: FC<LayoutProps> = (props) => {
     $background,
     headerVariant = "site",
     isPreviewMode,
+    footerVariant = "default",
   } = props;
   const Header = headers[headerVariant];
+  const Footer = footers[footerVariant];
 
   return (
     <>
@@ -57,7 +67,7 @@ const Layout: FC<LayoutProps> = (props) => {
       <Container $background={$background}>
         <Header />
         <StyledLayout>{children}</StyledLayout>
-        <SiteFooter sections={footerSections} />
+        <Footer />
         {isPreviewMode && <PreviewControls />}
       </Container>
     </>

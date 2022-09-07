@@ -58,5 +58,17 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
         expect.anything()
       );
     });
+
+    it("should return notFound when a landing page is missing", async () => {
+      mockCMSClient.landingPageBySlug.mockResolvedValueOnce(null as never);
+
+      const propsResult = await getStaticProps({
+        params: { landingPageSlug: "some-landing-page" },
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
   });
 });

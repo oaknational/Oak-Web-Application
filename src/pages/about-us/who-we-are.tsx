@@ -3,7 +3,6 @@ import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { AboutPage, TextBlock } from "../../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
@@ -13,12 +12,13 @@ import Box from "../../components/Box";
 import Typography, { Heading } from "../../components/Typography";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import OutlineHeading from "../../components/OutlineHeading";
-import VideoPlayer from "../../components/VideoPlayer";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import CMSVideo from "../../components/CMSVideo";
 
 export type AboutPageProps = {
   pageData: AboutPage;
@@ -72,7 +72,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
 }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps(pageData.seo)}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >
@@ -114,15 +114,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $minWidth={["50%"]}
             >
               {pageData.whoWeAre.intro.mediaType == "video" && (
-                <VideoPlayer
-                  playbackId={
-                    pageData.whoWeAre.intro.video.video.asset.playbackId
-                  }
-                  title={pageData.whoWeAre.intro.video.title}
-                  thumbnailTime={
-                    pageData.whoWeAre.intro.video.video.asset.thumbTime
-                  }
-                />
+                <CMSVideo video={pageData.whoWeAre.intro.video} />
               )}
             </Flex>
             <Box $minWidth={["50%"]}>
@@ -202,6 +194,12 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   const aboutPage = await CMSClient.aboutPage({
     previewMode: isPreviewMode,
   });
+
+  if (!aboutPage) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

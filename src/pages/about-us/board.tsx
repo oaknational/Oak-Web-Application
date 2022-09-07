@@ -93,7 +93,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             <Hr $mv={32} />
           </Typography>
 
-          <Grid $cg={[12, 20]}>
+          <Grid $rg={[16]} $cg={[12, 20]}>
             {pageData.board.documents.map((doc) => (
               <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
                 <Card $height={220} $pa={16}>
@@ -153,6 +153,12 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   const aboutPage = await CMSClient.aboutPage({
     previewMode: isPreviewMode,
   });
+
+  if (!aboutPage) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

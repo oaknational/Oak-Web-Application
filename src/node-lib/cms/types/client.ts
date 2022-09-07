@@ -20,16 +20,19 @@ export type ListParams = Params & {
 
 export interface CMSClient {
   (): {
-    webinarBySlug(slug: string, params?: Params): Promise<Webinar>;
+    webinarBySlug(slug: string, params?: Params): Promise<Webinar | null>;
     webinars(params?: ListParams): Promise<WebinarPreview[]>;
     blogPosts(params?: ListParams): Promise<BlogPostPreview[]>;
-    blogPostBySlug(slug: string, params?: Params): Promise<BlogPost>;
-    planningPage(params?: Params): Promise<PlanningPage>;
-    aboutPage(params?: Params): Promise<AboutPage>;
-    curriculumPage(params?: Params): Promise<CurriculumPage>;
-    policyPageBySlug(slug: string, params?: Params): Promise<PolicyPage>;
+    blogPostBySlug(slug: string, params?: Params): Promise<BlogPost | null>;
+    planningPage(params?: Params): Promise<PlanningPage | null>;
+    aboutPage(params?: Params): Promise<AboutPage | null>;
+    curriculumPage(params?: Params): Promise<CurriculumPage | null>;
+    policyPageBySlug(slug: string, params?: Params): Promise<PolicyPage | null>;
     policyPages(params?: ListParams): Promise<PolicyPagePreview[]>;
     landingPages(params?: ListParams): Promise<LandingPagePreview[]>;
-    landingPageBySlug(slug: string, params?: Params): Promise<LandingPage>;
+    landingPageBySlug(
+      slug: string,
+      params?: Params
+    ): Promise<LandingPage | null>;
   };
 }

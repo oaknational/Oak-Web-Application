@@ -1,3 +1,104 @@
+# [0.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.3...v0.107.0) (2022-09-07)
+
+
+### Features
+
+* make all CMSClient methods return null with no data ([779ecff](https://github.com/oaknational/Oak-Web-Application/commit/779ecffd1e892b45b995d18d95e265efb92969f1))
+* more notFound/404 logic added to remaining pages ([36132aa](https://github.com/oaknational/Oak-Web-Application/commit/36132aa8a0f0d3cb2cae7967eed67f99dcedbd30))
+* return empty arrays instead for cms methods that return lists ([7e8c27e](https://github.com/oaknational/Oak-Web-Application/commit/7e8c27e444b209606b1dd8738e183609ad309a86))
+* return notFound and 404 when page data is missing ([a1a2b3d](https://github.com/oaknational/Oak-Web-Application/commit/a1a2b3d325dac94369a8efc98ed65c82a4a5c6a3))
+
+## [0.106.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.2...v0.106.3) (2022-09-07)
+
+
+### Bug Fixes
+
+* use transform to postion flying carpet image ([ccde52f](https://github.com/oaknational/Oak-Web-Application/commit/ccde52f343b49d2c976b46c20113c1c7446c80cc))
+
+## [0.106.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.1...v0.106.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* twitterbot treats logo image as unique URL ([56847ce](https://github.com/oaknational/Oak-Web-Application/commit/56847ce1525aa96bd06e482271c12f9ff72ba537))
+
+## [0.106.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.0...v0.106.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* blog image ([95fee90](https://github.com/oaknational/Oak-Web-Application/commit/95fee908b094d08a427d64d0e038bf158b835130))
+* blog sharing image ([ffe53fc](https://github.com/oaknational/Oak-Web-Application/commit/ffe53fc2e8fa7785669183d6c4928d1cba2a2309))
+
+# [0.106.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.105.0...v0.106.0) (2022-09-06)
+
+
+### Features
+
+* add client-side error view ([874c625](https://github.com/oaknational/Oak-Web-Application/commit/874c6259e17517752e6f335911ab35a272e62e11))
+
+# [0.105.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.104.0...v0.105.0) (2022-09-06)
+
+
+### Features
+
+* **SEO:** allow noindex and nofollow on individual page SEO instances ([3d9a718](https://github.com/oaknational/Oak-Web-Application/commit/3d9a7181e63d7f98ecab8c51a79c517872c7b21c))
+* **SEO:** production index and follow meta tags for page heads ([08eb2cd](https://github.com/oaknational/Oak-Web-Application/commit/08eb2cd09cbdad5dcdeaac6e7271770f0dbb08fd))
+* **SEO:** production robots.txt ([39bcfae](https://github.com/oaknational/Oak-Web-Application/commit/39bcfaebb80d0dfe17586389749a83ff3523cd9a))
+
+# [0.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.103.0...v0.104.0) (2022-09-06)
+
+
+### Features
+
+* add ability to link to about sub-pages from the CMS ([c265db6](https://github.com/oaknational/Oak-Web-Application/commit/c265db687e8dc0f8b2b7e2496cfbc1e307d4f5be))
+* add ability to link to contact page from CMS ([b5ede8c](https://github.com/oaknational/Oak-Web-Application/commit/b5ede8c00874da44486fc7e21e12e42b95d9168f))
+* add sanity base schemas to sonar duplication ignore ([2ceadb3](https://github.com/oaknational/Oak-Web-Application/commit/2ceadb3877adee3154eb696b88b32ee9af09e19a))
+
+# [0.103.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.2...v0.103.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* **video-analytics:** only send working events ([4479c60](https://github.com/oaknational/Oak-Web-Application/commit/4479c60f3d9ec30c21dd912ffc57e50fb4d91bfb))
+
+
+### Features
+
+* video analytics ([420428c](https://github.com/oaknational/Oak-Web-Application/commit/420428ccd3286897ca6e1b72307fbfc671776555))
+* video analytics ([eacb45d](https://github.com/oaknational/Oak-Web-Application/commit/eacb45d16a86b1055c1bd94274e348e65880983d))
+
+## [0.102.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.1...v0.102.2) (2022-09-06)
+
+## [0.102.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.102.0...v0.102.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* link discernable text a11y error ([604d808](https://github.com/oaknational/Oak-Web-Application/commit/604d80895192f0cc99a157923a5ea2ea91eee13c))
+* put padding on grid not max width ([18843d3](https://github.com/oaknational/Oak-Web-Application/commit/18843d3d5788265f557398e814509109df214875))
+
+# [0.102.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.101.0...v0.102.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* image links and title template from sanity ([ab73a00](https://github.com/oaknational/Oak-Web-Application/commit/ab73a00a847824aed4f23259b91445cd58ac93b7))
+* zod error when no seo props exist in sanity ([921c0b2](https://github.com/oaknational/Oak-Web-Application/commit/921c0b244c06e4d197d5fc4b0a1ca32dcd61b803))
+
+
+### Features
+
+* seo and json ld from sanity ([e5fd619](https://github.com/oaknational/Oak-Web-Application/commit/e5fd619e3c3bd061d91594ed85f68ba696550d25))
+
+# [0.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.100.0...v0.101.0) (2022-09-06)
+
+
+### Features
+
+* integrate CMSVideo in pages ([8b4a11c](https://github.com/oaknational/Oak-Web-Application/commit/8b4a11ce7f06de47ba1a820129aba786b978a49d))
+* make CMSVideo component ([f967eeb](https://github.com/oaknational/Oak-Web-Application/commit/f967eebe908cd9870e1b6011f4110a4c5a1af26c))
+
 # [0.100.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.99.3...v0.100.0) (2022-09-06)
 
 

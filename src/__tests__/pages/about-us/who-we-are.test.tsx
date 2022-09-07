@@ -1,9 +1,11 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import renderWithProviders from "../__helpers__/renderWithProviders";
-import AboutWhoWeAre from "../../pages/about-us/who-we-are";
-import { AboutPage } from "../../node-lib/cms";
-import { portableTextFromString } from "../__helpers__/cms";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
+import AboutWhoWeAre, {
+  getStaticProps,
+} from "../../../pages/about-us/who-we-are";
+import CMSClient, { AboutPage } from "../../../node-lib/cms";
+import { mockSeo, portableTextFromString } from "../../__helpers__/cms";
 
 export const testAboutPageData: AboutPage = {
   title: "About Oak",
@@ -381,9 +383,19 @@ export const testAboutPageData: AboutPage = {
     ],
   },
   id: "aboutCorePage",
+  seo: mockSeo(),
 };
 
-describe("pages/about us who we arew.tsx", () => {
+jest.mock("../../../node-lib/cms");
+
+const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+describe("pages/about us who we are.tsx", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
+
   it("Renders correct title ", async () => {
     renderWithProviders(
       <AboutWhoWeAre pageData={testAboutPageData} isPreviewMode={false} />
@@ -393,6 +405,20 @@ describe("pages/about us who we arew.tsx", () => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "About us"
       );
+    });
+  });
+
+  describe("getStaticProps", () => {
+    it("should return notFound when the page data is missing", async () => {
+      mockCMSClient.aboutPage.mockResolvedValueOnce(null);
+
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
     });
   });
 });

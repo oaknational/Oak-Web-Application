@@ -133,5 +133,20 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
         date: "2025-01-01T00:00:00.000Z",
       });
     });
+
+    it("should return notFound when a webinar is missing", async () => {
+      webinarBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import(
+        "../../../pages/webinars/[webinarSlug]"
+      );
+      const propsResult = (await getStaticProps({
+        params: { webinarSlug: "an-upcoming-webinar" },
+      })) as { props: WebinarPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
   });
 });

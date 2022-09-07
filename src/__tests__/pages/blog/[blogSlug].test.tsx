@@ -4,6 +4,21 @@ import { BlogPost } from "../../../node-lib/cms";
 import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
+jest.mock("next/router", () => ({
+  __esModule: true,
+  ...jest.requireActual("next/router"),
+  useRouter: () => ({
+    ...jest.requireActual("next/router").useRouter,
+    asPath: "asPath test value",
+  }),
+}));
+jest.mock("next-sanity-image", () => ({
+  __esModule: true,
+  useNextSanityImage: () => ({
+    src: "www.example.com/img.png",
+  }),
+}));
+
 const testBlog: BlogPost = {
   title: "A blog",
   id: "5",
@@ -136,6 +151,19 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
       expect(propsResult?.props?.blog).toMatchObject({
         date: "2025-01-01T00:00:00.000Z",
+      });
+    });
+
+    it("should return notFound when a blog post is missing", async () => {
+      blogPostBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const propsResult = (await getStaticProps({
+        params: { blogSlug: "another-blog" },
+      })) as { props: BlogPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });

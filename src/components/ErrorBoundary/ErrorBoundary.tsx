@@ -2,14 +2,11 @@ import React, { Component, ErrorInfo, FC, ReactNode } from "react";
 import Bugsnag from "@bugsnag/js";
 
 import { bugsnagInitialised } from "../../browser-lib/bugsnag/useBugsnag";
+import ErrorView from "../ErrorView";
 
 const ClientErrorView: FC = () => {
   return (
-    <div>
-      <h1>
-        Client error occurred (<em>style me</em>)
-      </h1>
-    </div>
+    <ErrorView headerVariant="client-error" footerVariant="client-error" />
   );
 };
 

@@ -1,8 +1,13 @@
+import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import { getAllPaths, resolveReferences } from "./resolveReferences";
 
 jest.mock("../../sanity-graphql");
+
+const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
+  typeof sanityGraphqlApi
+>;
 
 describe("resolveReferences", () => {
   describe("getAllPaths", () => {
@@ -25,9 +30,7 @@ describe("resolveReferences", () => {
       jest.clearAllMocks();
       jest.resetModules();
 
-      (
-        sanityGraphqlApi.blogPortableTextReferences as jest.Mock
-      ).mockReturnValue({
+      mockSanityGraphqlApi.blogPortableTextReferences.mockResolvedValue({
         allDocument: [
           {
             contentType: "newsPost",
@@ -80,6 +83,36 @@ describe("resolveReferences", () => {
 
       expect(sanityGraphqlApi.blogPortableTextReferences).toBeCalledWith({
         ids: ["ref1", "ref2"],
+      });
+    });
+
+    it("throws an OakError with metadata when it can't match refs to responses", async () => {
+      const mockErrorCausingResponse = [
+        {
+          contentType: "aboutCorePage",
+          _type: "aboutCorePage",
+          id: "wont-be-found",
+        },
+      ];
+
+      mockSanityGraphqlApi.blogPortableTextReferences.mockResolvedValue({
+        allDocument: mockErrorCausingResponse,
+      });
+
+      const capturedError = await resolveReferences(
+        mockObjWithReferences
+      ).catch((err) => err);
+
+      await expect(
+        async () => await resolveReferences(mockObjWithReferences)
+      ).rejects.toThrowError(
+        new OakError({ code: "cms/invalid-reference-data" })
+      );
+
+      expect(capturedError.meta).toEqual({
+        portableTextPath: ["foo", "bar", "post"],
+        portableTextRefId: "ref1",
+        queryResults: JSON.stringify(mockErrorCausingResponse),
       });
     });
   });

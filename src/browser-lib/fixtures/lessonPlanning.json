@@ -323,5 +323,9 @@
       }
     }
   },
-  "id": "planningCorePage"
+  "id": "planningCorePage",
+  "seo": {
+    "title": "title",
+    "description": "description"
+  }
 }
