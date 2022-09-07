@@ -337,8 +337,8 @@ const Home: NextPage<HomePageProps> = (props) => {
                         <Hr
                           thickness={2}
                           $color="black"
-                          $mt={[0, 16]}
-                          $mb={16}
+                          $mt={[24, 16]}
+                          $mb={[32, 16]}
                         />
                       )}
                     </li>
