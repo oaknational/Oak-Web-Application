@@ -1,3 +1,10 @@
+## [0.106.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.1...v0.106.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* twitterbot treats logo image as unique URL ([56847ce](https://github.com/oaknational/Oak-Web-Application/commit/56847ce1525aa96bd06e482271c12f9ff72ba537))
+
 ## [0.106.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.0...v0.106.1) (2022-09-06)
 
 
