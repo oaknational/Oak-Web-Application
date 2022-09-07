@@ -47,7 +47,10 @@ const customPolicyComponent: PortableTextComponents = {
 const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
   return (
     <Layout
-      seoProps={getSeoProps(policy.seo)}
+      seoProps={getSeoProps({
+        ...policy.seo,
+        title: policy.seo?.title || policy.title,
+      })}
       $background={"white"}
       isPreviewMode={isPreviewMode}
     >

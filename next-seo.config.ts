@@ -1,6 +1,6 @@
 const seoConfig = {
   NEXT_PUBLIC_APP_NAME:
-    "Oak National Academy | FREE Lessons for Students & Teachers",
+    "Oak National Academy",
   NEXT_PUBLIC_APP_DESCRIPTION:
     "Explore thousands of high-quality resources for lesson planning and curriculum design. All optional, adaptable and free.",
   NEXT_PUBLIC_APP_LOCALE: "en_GB",

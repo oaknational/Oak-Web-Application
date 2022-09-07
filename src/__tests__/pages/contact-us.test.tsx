@@ -1,4 +1,3 @@
-import { waitFor } from "@testing-library/react";
 import ContactUs from "../../pages/contact-us";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";

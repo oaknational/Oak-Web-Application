@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
