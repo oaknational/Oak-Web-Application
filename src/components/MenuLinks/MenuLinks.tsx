@@ -21,6 +21,7 @@ const isSubPath = ({
 const MenuListItem: FC<MenuListItemProps> = (props) => {
   const {
     href,
+    activeLinkSubPath,
     linkText,
     fontFamily,
     fontSize,
@@ -30,6 +31,8 @@ const MenuListItem: FC<MenuListItemProps> = (props) => {
     onClick,
     target,
   } = props;
+
+  const subPathHref = activeLinkSubPath || href;
 
   return (
     <li>
@@ -42,6 +45,7 @@ const MenuListItem: FC<MenuListItemProps> = (props) => {
           currentPath,
           href,
           arrowSize,
+          activeLinkSubPath,
           $mr: (fontSize[0] / 2) as PixelSpacing,
         })}
         <P
@@ -49,9 +53,9 @@ const MenuListItem: FC<MenuListItemProps> = (props) => {
           $fontSize={fontSize}
           $mt={0}
           $textDecoration={
-            isSubPath({ href, currentPath }) ? "underline" : "none"
+            isSubPath({ href: subPathHref, currentPath }) ? "underline" : "none"
           }
-          $opacity={isSubPath({ href, currentPath }) ? 0.6 : 1}
+          $opacity={isSubPath({ href: subPathHref, currentPath }) ? 0.6 : 1}
         >
           <Link href={href}>
             <a onClick={onClick} target={target}>
@@ -67,12 +71,16 @@ const MenuListItem: FC<MenuListItemProps> = (props) => {
 const renderLocationIcon = ({
   href,
   currentPath,
+  activeLinkSubPath,
   arrowSize,
   $mr,
-}: Pick<MenuListItemProps, "href" | "currentPath" | "arrowSize"> & {
+}: Pick<
+  MenuListItemProps,
+  "href" | "currentPath" | "arrowSize" | "activeLinkSubPath"
+> & {
   $mr: PixelSpacing;
 }) => {
-  return isSubPath({ currentPath, href }) ? (
+  return isSubPath({ currentPath, href: activeLinkSubPath || href }) ? (
     <Flex $mr={$mr}>
       <Icon
         variant="minimal"
