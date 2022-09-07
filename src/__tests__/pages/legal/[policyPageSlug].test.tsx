@@ -1,8 +1,10 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import Policies, { PolicyPageProps } from "../../pages/legal/[policyPageSlug]";
-import renderWithProviders from "../__helpers__/renderWithProviders";
-import { PolicyPage } from "../../node-lib/cms";
+import Policies, {
+  PolicyPageProps,
+} from "../../../pages/legal/[policyPageSlug]";
+import renderWithProviders from "../../__helpers__/renderWithProviders";
+import { PolicyPage } from "../../../node-lib/cms";
 
 const testPolicyPage: PolicyPage = {
   title: "Privacy Policy",
@@ -32,7 +34,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    jest.mock("../../node-lib/cms", () => ({
+    jest.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
         policyPages: jest.fn(policyPages),
@@ -69,7 +71,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all policy pages", async () => {
       const { getStaticPaths } = await import(
-        "../../pages/legal/[policyPageSlug]"
+        "../../../pages/legal/[policyPageSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -84,7 +86,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct policy page", async () => {
       const { getStaticProps } = await import(
-        "../../pages/legal/[policyPageSlug]"
+        "../../../pages/legal/[policyPageSlug]"
       );
       await getStaticProps({ params: { policyPageSlug: "privacy-policy" } });
 
@@ -96,7 +98,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
 
     it("Should serialize the policy updated at date to an ISO date", async () => {
       const { getStaticProps } = await import(
-        "../../pages/legal/[policyPageSlug]"
+        "../../../pages/legal/[policyPageSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { policyPageSlug: "privacy-policy" },
@@ -104,6 +106,21 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
 
       expect(propsResult?.props?.policy).toMatchObject({
         lastUpdatedAt: "2022-12-01T00:00:00.000Z",
+      });
+    });
+
+    it("should return notFound when a policy page is missing", async () => {
+      policyPageBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import(
+        "../../../pages/legal/[policyPageSlug]"
+      );
+      const propsResult = (await getStaticProps({
+        params: { policyPageSlug: "privacy-policy" },
+      })) as { props: PolicyPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });
