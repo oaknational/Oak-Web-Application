@@ -295,7 +295,7 @@ const Home: NextPage<HomePageProps> = (props) => {
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
             <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
-              <HomeAboutCard />
+              <HomeAboutCard {...props.pageData.sidebarCard1} />
             </GridArea>
             <GridArea
               $mb={[64, 0]}
@@ -338,7 +338,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
-              <HomeHelpCard />
+              <HomeHelpCard {...props.pageData.sidebarCard2} />
             </GridArea>
             <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
               <NewsletterForm
