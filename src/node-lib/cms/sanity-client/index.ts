@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z, ZodSchema } from "zod";
 
 import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
@@ -39,7 +39,7 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return webinarListSchema.parse(webinarResults.allWebinar);
+    return parse(webinarListSchema, webinarResults.allWebinar, previewMode);
   },
   webinarBySlug: async (slug, { previewMode, ...params } = {}) => {
     const webinarResult = await sanityGraphqlApi.webinarBySlug({
@@ -53,7 +53,7 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return webinarSchema.parse(webinar);
+    return parse(webinarSchema, webinar, previewMode);
   },
   blogPosts: async ({ previewMode, ...params } = {}) => {
     const blogPostListSchema = z.array(blogPostPreviewSchema);
@@ -66,7 +66,7 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return blogPostListSchema.parse(blogPostsResult.allNewsPost);
+    return parse(blogPostListSchema, blogPostsResult.allNewsPost, previewMode);
   },
   blogPostBySlug: async (slug, { previewMode, ...params } = {}) => {
     const blogPostResult = await sanityGraphqlApi.blogPostBySlug({
@@ -89,7 +89,7 @@ const getSanityClient: CMSClient = () => ({
       contentPortableText: contentWithReferences,
     };
 
-    return blogPostSchema.parse(blogWithResolvedRefs);
+    return parse(blogPostSchema, blogWithResolvedRefs, previewMode);
   },
   homepage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.homepage({
@@ -102,7 +102,7 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return homePageSchema.parse(homepageData);
+    return parse(homePageSchema, homepageData);
   },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
@@ -115,7 +115,7 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return planningPageSchema.parse(planningPageData);
+    return parse(planningPageSchema, planningPageData, previewMode);
   },
   aboutWhoWeArePage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutCorePage({
@@ -132,7 +132,7 @@ const getSanityClient: CMSClient = () => ({
       ...aboutPageData,
       ...aboutPageData.whoWeAre,
     };
-    return aboutWhoWeArePageSchema.parse(subPageData);
+    return parse(aboutWhoWeArePageSchema, subPageData);
   },
   aboutLeadershipPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutCorePage({
@@ -149,7 +149,7 @@ const getSanityClient: CMSClient = () => ({
       ...aboutPageData,
       ...aboutPageData.leadership,
     };
-    return aboutLeadershipPageSchema.parse(data);
+    return parse(aboutLeadershipPageSchema, data, previewMode);
   },
   aboutBoardPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutCorePage({
@@ -166,7 +166,7 @@ const getSanityClient: CMSClient = () => ({
       ...aboutPageData,
       ...aboutPageData.board,
     };
-    return aboutBoardPageSchema.parse(data);
+    return parse(aboutBoardPageSchema, data, previewMode);
   },
   aboutPartnersPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutCorePage({
@@ -183,7 +183,7 @@ const getSanityClient: CMSClient = () => ({
       ...aboutPageData,
       ...aboutPageData.partners,
     };
-    return aboutPartnersPageSchema.parse(data);
+    return parse(aboutPartnersPageSchema, data, previewMode);
   },
   aboutWorkWithUsPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutCorePage({
@@ -200,7 +200,7 @@ const getSanityClient: CMSClient = () => ({
       ...aboutPageData,
       ...aboutPageData.workWithUs,
     };
-    return aboutWorkWithUsPageSchema.parse(data);
+    return parse(aboutWorkWithUsPageSchema, data, previewMode);
   },
   curriculumPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.curriculumCorePage({
@@ -213,7 +213,7 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return curriculumPageSchema.parse(curriculumPageData);
+    return parse(curriculumPageSchema, curriculumPageData, previewMode);
   },
   policyPages: async ({ previewMode, ...params } = {}) => {
     const policyPageListSchema = z.array(policyPagePreviewSchema);
@@ -226,7 +226,11 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return policyPageListSchema.parse(policyPageResults.allPolicyPage);
+    return parse(
+      policyPageListSchema,
+      policyPageResults.allPolicyPage,
+      previewMode
+    );
   },
   policyPageBySlug: async (slug, { previewMode, ...params } = {}) => {
     const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
@@ -243,7 +247,7 @@ const getSanityClient: CMSClient = () => ({
       policyPageResult.allPolicyPage[0]
     );
 
-    return policyPageSchema.parse(policyPage);
+    return parse(policyPageSchema, policyPage, previewMode);
   },
   landingPages: async ({ previewMode, ...params } = {}) => {
     const landingPageListSchema = z.array(landingPagePreviewSchema);
@@ -256,7 +260,11 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return landingPageListSchema.parse(landingPageResults.allLandingPage);
+    return parse(
+      landingPageListSchema,
+      landingPageResults.allLandingPage,
+      previewMode
+    );
   },
   landingPageBySlug: async (slug, { previewMode, ...params } = {}) => {
     const landingPageResult = await sanityGraphqlApi.landingPageBySlug({
@@ -270,9 +278,17 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return landingPageSchema.parse(landingPage);
+    return parse(landingPageSchema, landingPage, previewMode);
   },
 });
+
+const parse = <S extends ZodSchema, D>(
+  schema: S,
+  data: D
+  // _isPreviewMode?: boolean
+): ReturnType<typeof schema["parse"]> => {
+  return schema.parse(data);
+};
 
 /**
  * When in preview mode we want to fetch draft and non-draft
