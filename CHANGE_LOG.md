@@ -1,3 +1,10 @@
+## [0.107.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.107.1...v0.107.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* pa11y on blog pages ([bcf12be](https://github.com/oaknational/Oak-Web-Application/commit/bcf12be5a06e111b0580feffb81c3e9d0206ce94))
+
 ## [0.107.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.107.0...v0.107.1) (2022-09-07)
 
 # [0.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.3...v0.107.0) (2022-09-07)
