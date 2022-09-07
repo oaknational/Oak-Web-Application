@@ -68,15 +68,6 @@ const testSerializedBlog = {
 const blogPosts = jest.fn(() => [testBlog, testBlog2]);
 const blogPostBySlug = jest.fn(() => testBlog);
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 describe("pages/blog/[blogSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();

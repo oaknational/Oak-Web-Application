@@ -20,15 +20,6 @@ const pageData = {
   summaryPortableText: portableTextFromString("Here's the page summary"),
 } as HomePage;
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 describe("pages/index.tsx", () => {
   it("Renders correct title and summary", async () => {
     renderWithProviders(

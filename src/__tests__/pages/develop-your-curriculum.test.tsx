@@ -62,15 +62,6 @@ const testCurriculumPageData: CurriculumPage = {
 
 const getPageData = jest.fn(() => testCurriculumPageData);
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 describe("pages/develop-your-curriculum.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();

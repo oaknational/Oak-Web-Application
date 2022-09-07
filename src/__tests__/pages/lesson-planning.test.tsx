@@ -11,15 +11,6 @@ import {
 } from "../__helpers__/cms";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 const testPlanningPageData: PlanningPage = {
   id: "01",
   title: "Planning title",

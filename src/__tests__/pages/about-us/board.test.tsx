@@ -7,15 +7,6 @@ import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
 
 import { testAboutPageData } from "./who-we-are.test";
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;

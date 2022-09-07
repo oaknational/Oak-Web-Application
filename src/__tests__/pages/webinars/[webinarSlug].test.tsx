@@ -35,15 +35,6 @@ const testSerializedWebinar = {
 const webinars = jest.fn(() => [testWebinar, testWebinar2]);
 const webinarBySlug = jest.fn(() => testWebinar);
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 describe("pages/webinar/[webinarSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();

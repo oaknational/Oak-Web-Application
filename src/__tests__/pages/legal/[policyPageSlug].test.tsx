@@ -31,15 +31,6 @@ const testSerializedPolicyPage = {
 const policyPages = jest.fn(() => [testPolicyPage, testPolicyPage2]);
 const policyPageBySlug = jest.fn(() => testPolicyPage);
 
-jest.mock("next/head", () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
-      return <fake-head>{children}</fake-head>;
-    },
-  };
-});
-
 describe("pages/legal/[policyPageSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
