@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.0.0...v1.1.0) (2022-09-07)
+
+
+### Features
+
+* add homepage method to CMSClient ([65be929](https://github.com/oaknational/Oak-Web-Application/commit/65be9295388edf7fe4fb3e15c48adb96fc557ea8))
+* integrate homepage title with CMS ([2fb160a](https://github.com/oaknational/Oak-Web-Application/commit/2fb160a8eaa1371777a78aafaddff33c09694964))
+* wire up home summary to CMS ([db84c77](https://github.com/oaknational/Oak-Web-Application/commit/db84c774b6822643b4fe5b74ffdebb7ab9022e74))
+* wire up sidebar text cards with CMS ([2930cdc](https://github.com/oaknational/Oak-Web-Application/commit/2930cdcf295e58edbff5d83dd66a0d3a7924c292))
+
 ## [0.107.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.107.1...v0.107.2) (2022-09-07)
 
 
