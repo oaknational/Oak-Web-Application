@@ -29,8 +29,6 @@ const customJestConfig = {
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
-  // Custom resolver needed because of firebase exports. See: https://github.com/firebase/firebase-admin-node/issues/1465
-  resolver: "jest-node-exports-resolver",
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
