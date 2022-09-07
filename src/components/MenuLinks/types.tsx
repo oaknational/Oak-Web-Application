@@ -7,6 +7,7 @@ export type MenuListItemProps = {
   fontFamily: OakFontName;
   fontSize: [PixelSpacing];
   href: string;
+  activeLinkSubPath?: string;
   target?: HTMLAttributeAnchorTarget;
   onClick?: () => void;
   linkText: string;
