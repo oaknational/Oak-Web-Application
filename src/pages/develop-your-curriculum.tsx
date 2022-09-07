@@ -207,6 +207,12 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
     previewMode: isPreviewMode,
   });
 
+  if (!curriculumPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       pageData: curriculumPage,

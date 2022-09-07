@@ -66,6 +66,12 @@ export const getStaticProps: GetStaticProps<
     previewMode: isPreviewMode,
   });
 
+  if (!webinarResult) {
+    return {
+      notFound: true,
+    };
+  }
+
   const webinar = {
     ...webinarResult,
     date: webinarResult.date.toISOString(),

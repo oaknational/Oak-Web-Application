@@ -154,14 +154,16 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $top={0}
                     $bottom={0}
                     $left={0}
-                    $right={[56, "60%", "50%"]}
+                    $right={[0, "60%", "50%"]}
                     $overflow="hidden"
                   >
                     <Box
-                      $position="relative"
-                      $height="100%"
-                      $top={[32, 0]}
-                      $bottom={[-32, 0]}
+                      $height={["90%", "100%"]}
+                      $transform={[
+                        "translate(-30%,30%)",
+                        "translate(0,0)",
+                        "translate(0,0)",
+                      ]}
                     >
                       <Image
                         alt={""}

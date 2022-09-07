@@ -1,3 +1,20 @@
+# [0.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.3...v0.107.0) (2022-09-07)
+
+
+### Features
+
+* make all CMSClient methods return null with no data ([779ecff](https://github.com/oaknational/Oak-Web-Application/commit/779ecffd1e892b45b995d18d95e265efb92969f1))
+* more notFound/404 logic added to remaining pages ([36132aa](https://github.com/oaknational/Oak-Web-Application/commit/36132aa8a0f0d3cb2cae7967eed67f99dcedbd30))
+* return empty arrays instead for cms methods that return lists ([7e8c27e](https://github.com/oaknational/Oak-Web-Application/commit/7e8c27e444b209606b1dd8738e183609ad309a86))
+* return notFound and 404 when page data is missing ([a1a2b3d](https://github.com/oaknational/Oak-Web-Application/commit/a1a2b3d325dac94369a8efc98ed65c82a4a5c6a3))
+
+## [0.106.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.2...v0.106.3) (2022-09-07)
+
+
+### Bug Fixes
+
+* use transform to postion flying carpet image ([ccde52f](https://github.com/oaknational/Oak-Web-Application/commit/ccde52f343b49d2c976b46c20113c1c7446c80cc))
+
 ## [0.106.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.1...v0.106.2) (2022-09-07)
 
 
