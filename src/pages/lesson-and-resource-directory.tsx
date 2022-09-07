@@ -4,11 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-import footerSections from "../browser-lib/fixtures/footerSections";
 import Button from "../components/Button";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Card from "../components/Card";
-import CardTitle from "../components/Card/CardComponents/CardTitle";
 import Cover from "../components/Cover";
 import FixedHeader from "../components/FixedHeader";
 import Flex from "../components/Flex";
@@ -126,50 +124,61 @@ const LandingPageTitle: FC<{
   heading: string;
 }> = (props) => {
   return (
-    <Flex
-      $justifyContent={"center"}
-      $mv={[92]}
-      $flexDirection={"column"}
-      $alignItems={"center"}
-    >
-      <Heading
-        $mb={[8]}
-        $fontSize={[24]}
-        $color={"grey6"}
-        $fontFamily={"headingLight"}
-        tag="h4"
-        {...props}
+    <MaxWidth $width={840}>
+      <Flex
+        $justifyContent={"center"}
+        $mv={[92]}
+        $flexDirection={"column"}
+        $alignItems={"center"}
       >
-        {props.title}
-      </Heading>
-      <Heading
-        $mv={[0]}
-        $fontSize={[32]}
-        $fontFamily={"headingLight"}
-        tag="h5"
-        {...props}
-      >
-        {props.heading}
-      </Heading>
-    </Flex>
+        <Heading
+          $mb={[8]}
+          $fontSize={[24]}
+          $color={"grey6"}
+          $fontFamily={"heading"}
+          tag="h4"
+          {...props}
+        >
+          {props.title}
+        </Heading>
+        <Heading
+          $mv={[0]}
+          $fontSize={[32]}
+          $textAlign={"center"}
+          $fontFamily={"heading"}
+          tag="h5"
+          {...props}
+        >
+          {props.heading}
+        </Heading>
+      </Flex>
+    </MaxWidth>
   );
 };
 
 const SignUpForm: FC = () => {
   return (
-    <Card $background={"white"} $dropShadow={"notificationCard"}>
-      <CardTitle tag="h2">Directory sign-up</CardTitle>
+    <Card
+      $ml={48}
+      $width={"70%"}
+      $pv={40}
+      $background={"white"}
+      $dropShadow={"notificationCard"}
+    >
+      <Heading $fontSize={24} tag="h3" $mb={0}>
+        Directory sign-up
+      </Heading>
       <form id="signup-form">
-        <Input id="name" label="Name" $mt={24} placeholder={"Name"} />
-        <Input id="email" label="Email" $mt={24} placeholder={"Email"} />
+        <Input id="name" label="Name" $mt={36} placeholder={"Name"} />
+        <Input id="email" label="Email" $mt={32} placeholder={"Email"} />
         <Input
           id="role"
           label="Role"
-          $mt={24}
+          $mt={32}
           placeholder={"What describes you best ?"}
         />
         <Button
-          $mt={24}
+          $mt={28}
           label="Sign up"
           fullWidth
           background="teachersHighlight"
@@ -187,21 +196,26 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
     <>
       <Grid $mb={[92]} $cg={[8]}>
         <GridArea
-          $colSpan={[4]}
-          $colStart={3}
+          $colSpan={[5]}
+          $colStart={2}
           $width={"100%"}
           $alignItems={"flex-start"}
           $justifyContent={"center"}
           $flexDirection={"column"}
         >
-          <Heading tag={"h4"} $fontSize={[32]} $mb={[32]}>
+          <Heading
+            $fontFamily={"heading"}
+            tag={"h4"}
+            $fontSize={[32]}
+            $mb={[32]}
+          >
             {title}
           </Heading>
           <Typography $fontSize={[18]}>
             <PortableText value={portableText} />
           </Typography>
         </GridArea>
-        <GridArea $colSpan={[4]} $colStart={7}>
+        <GridArea $colSpan={[5]} $colStart={7}>
           <SignUpForm />
         </GridArea>
       </Grid>
@@ -218,10 +232,17 @@ const Quote: FC<{ text: string; author: string }> = ({ text, author }) => {
         $alignItems={"center"}
         $mb={[92]}
       >
-        <Heading tag={"h3"} $mb={[16]} $fontSize={[16]}>
+        <Heading
+          $fontFamily={"headingLight"}
+          tag={"h3"}
+          $mb={[16]}
+          $fontSize={[32]}
+        >
           {text}
         </Heading>
-        <Typography $fontSize={[16]}>{author}</Typography>
+        <Typography $fontFamily={"body"} $fontSize={[16]}>
+          {author}
+        </Typography>
       </Flex>
     </MaxWidth>
   );
@@ -320,8 +341,9 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
           background={"teachersHighlight"}
         />
       </FixedHeader>
+
+      <LandingPageTitle {...pageData.hero} />
       <MaxWidth>
-        <LandingPageTitle {...pageData.hero} />
         <BasePortableTextProvider>
           <PortableText
             components={lessonDirectoryPortableTextComponents}
@@ -329,7 +351,7 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
           />
         </BasePortableTextProvider>
       </MaxWidth>
-      <SiteFooter sections={footerSections} />
+      <SiteFooter />
     </>
   );
 };
