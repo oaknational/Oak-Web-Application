@@ -9,7 +9,8 @@ const seoConfig = {
   NEXT_PUBLIC_APP_FACEBOOK: "https://www.facebook.com/oaknationalacademy/",
   NEXT_PUBLIC_APP_TWITTER: "https://twitter.com/OakNational",
   NEXT_PUBLIC_APP_TWITTER_HANDLE: "@oaknational",
-  NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG: "/images/sharing/social-sharing.png",
+  NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG:
+    "/images/sharing/default-social-sharing-2022.png",
 };
 
 export default seoConfig;
