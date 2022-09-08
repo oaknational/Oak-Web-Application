@@ -23,7 +23,7 @@ export const portableTextFromString = (text: string): PortableTextJSON => [
 
 export const createPortableListItem = (text: string): PortableTextJSON => {
   return {
-    listItem: "bullet",
+    listItem: "number",
     style: "normal",
     children: [{ text, _type: "span" }],
     _type: "block",

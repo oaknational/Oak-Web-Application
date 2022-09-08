@@ -22,6 +22,7 @@ import {
   createPortableListItem,
   portableTextFromString,
 } from "../__tests__/__helpers__/cms";
+import OutlineHeading from "../components/OutlineHeading";
 
 type LandingPageHero = {
   title: string;
@@ -76,13 +77,13 @@ const mockData: LandingPage = {
       title: "",
       bodyPortableText: [
         createPortableListItem(
-          "Instantly see all subjects, units and lessons available for each key stage."
+          "1. Instantly see all subjects, units and lessons available for each key stage."
         ),
         createPortableListItem(
-          "Quickly search and filter for lessons with downloadable resources."
+          "2. Quickly search and filter for lessons with downloadable resources."
         ),
         createPortableListItem(
-          "Ideal for setting last-minute cover or saving time when planning."
+          "3. Ideal for setting last-minute cover or saving time when planning."
         ),
       ],
       mediaType: "image",
@@ -321,6 +322,28 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
       );
     },
   },
+  listItem: {
+    number: (props) => {
+      const listItemText = props?.value?.children[0]?.text;
+      const number = listItemText?.[0];
+      const remainingText = listItemText?.slice(3);
+
+      return (
+        <Flex $alignItems={"center"}>
+          <OutlineHeading
+            $color={"teachersPastelYellow"}
+            $mb={[32, 0]}
+            $mr={[24]}
+            $fontSize={[50]}
+            tag={"h2"}
+          >
+            {number}
+          </OutlineHeading>
+          <p>{remainingText}</p>
+        </Flex>
+      );
+    },
+  },
 };
 
 const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
@@ -341,10 +364,12 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
                 Lesson & Resource Directory CTA
               </Typography>
               <Icon
-                variant="minimal"
-                name="ArrowRight"
-                size={[48]}
-                $opacity={1.0}
+                $ml={8}
+                aria-label={"arrow-right"}
+                name={"ArrowRight"}
+                $background={"black"}
+                $color={"white"}
+                variant={"brush"}
               />
             </Flex>
           </a>
