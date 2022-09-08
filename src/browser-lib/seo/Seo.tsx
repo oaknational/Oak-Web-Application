@@ -32,11 +32,16 @@ const Seo: FC<SeoProps> = ({
 }) => {
   const router = useRouter();
 
+  // Trim trailing slashes
+  const formattedCanonicalURL = (
+    canonicalURL || `${config.get("appUrl")}${router.asPath}`
+  )?.replace(/\/$/, ""); //?
+
   return (
     <NextSeo
       title={title}
       description={description}
-      canonical={canonicalURL || `${config.get("appUrl")}${router.asPath}`}
+      canonical={formattedCanonicalURL}
       openGraph={{
         title,
         description,

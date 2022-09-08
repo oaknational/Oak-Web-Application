@@ -2715,7 +2715,7 @@ export type AllLandingPagesQueryVariables = Exact<{
 }>;
 
 
-export type AllLandingPagesQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type AllLandingPagesQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type AllPolicyPagesQueryVariables = Exact<{
   isDraft?: InputMaybe<Scalars['Boolean']>;
@@ -2741,7 +2741,7 @@ export type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-export type BlogPostBySlugQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, contentPortableText?: any | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
+export type BlogPostBySlugQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, contentPortableText?: any | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type BlogPortableTextReferencesQueryVariables = Exact<{
   ids?: InputMaybe<Array<Scalars['ID']> | Scalars['ID']>;
@@ -2830,7 +2830,7 @@ export type LandingPageBySlugQueryVariables = Exact<{
 }>;
 
 
-export type LandingPageBySlugQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type LandingPageBySlugQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type PlanningCorePageQueryVariables = Exact<{
   isDraft?: InputMaybe<Scalars['Boolean']>;
@@ -2845,7 +2845,7 @@ export type PolicyPageBySlugQueryVariables = Exact<{
 }>;
 
 
-export type PolicyPageBySlugQuery = { __typename?: 'RootQuery', allPolicyPage: Array<{ __typename?: 'PolicyPage', title?: string | null, id?: string | null, lastUpdatedAt?: any | null, bodyPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+export type PolicyPageBySlugQuery = { __typename?: 'RootQuery', allPolicyPage: Array<{ __typename?: 'PolicyPage', title?: string | null, id?: string | null, lastUpdatedAt?: any | null, bodyPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type SeoFragment = { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null };
 
@@ -2865,7 +2865,7 @@ export type WebinarBySlugQueryVariables = Exact<{
 }>;
 
 
-export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null }> };
+export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
 
@@ -3186,9 +3186,12 @@ export const AllLandingPagesDocument = gql`
     slug {
       current
     }
+    seo {
+      ...Seo
+    }
   }
 }
-    `;
+    ${SeoFragmentDoc}`;
 export const AllPolicyPagesDocument = gql`
     query allPolicyPages($isDraft: Boolean = false, $limit: Int = 9999) {
   allPolicyPage(where: {_: {is_draft: $isDraft}}, limit: $limit) {
@@ -3244,9 +3247,13 @@ export const BlogPostBySlugDocument = gql`
     }
     summary
     contentPortableText: contentRaw
+    seo {
+      ...Seo
+    }
   }
 }
-    ${ImageWithAltTextFragmentDoc}`;
+    ${ImageWithAltTextFragmentDoc}
+${SeoFragmentDoc}`;
 export const BlogPortableTextReferencesDocument = gql`
     query blogPortableTextReferences($ids: [ID!]) {
   allDocument(where: {_id: {in: $ids}}) {
@@ -3329,9 +3336,12 @@ export const LandingPageBySlugDocument = gql`
     slug {
       current
     }
+    seo {
+      ...Seo
+    }
   }
 }
-    `;
+    ${SeoFragmentDoc}`;
 export const PlanningCorePageDocument = gql`
     query planningCorePage($isDraft: Boolean = false) {
   allPlanningCorePage(
@@ -3406,9 +3416,12 @@ export const PolicyPageBySlugDocument = gql`
       current
     }
     bodyPortableText: bodyRaw
+    seo {
+      ...Seo
+    }
   }
 }
-    `;
+    ${SeoFragmentDoc}`;
 export const WebinarBySlugDocument = gql`
     query webinarBySlug($slug: String, $isDraft: Boolean = false) {
   allWebinar(where: {_: {is_draft: $isDraft}, slug: {current: {eq: $slug}}}) {
@@ -3433,9 +3446,13 @@ export const WebinarBySlugDocument = gql`
         ...Image
       }
     }
+    seo {
+      ...Seo
+    }
   }
 }
-    ${ImageFragmentDoc}`;
+    ${ImageFragmentDoc}
+${SeoFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 

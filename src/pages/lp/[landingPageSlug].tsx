@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -13,7 +13,7 @@ export type LandingPageProps = {
 
 const Landing: NextPage<LandingPageProps> = ({ pageData, isPreviewMode }) => {
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={isPreviewMode}>
+    <Layout seoProps={getSeoProps(pageData.seo)} isPreviewMode={isPreviewMode}>
       <MaxWidth>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>

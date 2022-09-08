@@ -21,6 +21,7 @@ export type HomePage = Document & {
     title: string;
     bodyPortableText: PortableTextJSON;
   };
+  seo?: Seo | null;
 };
 
 export type PlanningPage = Document & {

@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
@@ -103,7 +103,10 @@ const Home: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={props.isPreviewMode}>
+    <Layout
+      seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
+      isPreviewMode={props.isPreviewMode}
+    >
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>

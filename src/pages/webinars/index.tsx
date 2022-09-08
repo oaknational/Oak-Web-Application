@@ -1,12 +1,12 @@
 import { GetStaticProps, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -22,7 +22,10 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
 
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        title: "Webinars",
+        description: "Webinars",
+      })}
       $background="grey1"
       isPreviewMode={props.isPreviewMode}
     >

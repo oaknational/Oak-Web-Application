@@ -4,6 +4,7 @@ import Policies, {
   PolicyPageProps,
 } from "../../../pages/legal/[policyPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { PolicyPage } from "../../../node-lib/cms";
 
 const testPolicyPage: PolicyPage = {
@@ -64,6 +65,16 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       await waitFor(() => {
         const dateElem = screen.getByText(/1 December 2022/);
         expect(dateElem).toBeInTheDocument();
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });
