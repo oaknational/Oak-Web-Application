@@ -27,16 +27,20 @@ const customPolicyComponent: PortableTextComponents = {
       </Heading>
     ),
     h3: ({ children }) => (
-      <Heading $mb={[32, 24]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
+      <Heading $mb={[24, 32]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
         {children}
       </Heading>
     ),
     h4: ({ children }) => (
-      <Heading $mb={[32, 24]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
+      <Heading $mb={[24, 32]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
         {children}
       </Heading>
     ),
-    normal: ({ children }) => <P $mb={[32, 32]}>{children}</P>,
+    normal: ({ children }) => (
+      <P $fontSize={[16, 18]} $mb={[24]}>
+        {children}
+      </P>
+    ),
   },
 };
 
@@ -52,7 +56,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
           <GridArea $colSpan={[12, 12, 12]}>
             {/* change flex justify center to textAlign when PR fix is in */}
             <Flex $alignItems={"center"}>
-              <Heading $mv={48} $fontSize={40} tag={"h1"}>
+              <Heading $mt={80} $mb={32} $fontSize={40} tag={"h1"}>
                 {policy.title}
               </Heading>
             </Flex>
@@ -108,6 +112,12 @@ export const getStaticProps: GetStaticProps<
   const policyResult = await CMSClient.policyPageBySlug(policyPageSlug, {
     previewMode: isPreviewMode,
   });
+
+  if (!policyResult) {
+    return {
+      notFound: true,
+    };
+  }
 
   const policy = {
     ...policyResult,

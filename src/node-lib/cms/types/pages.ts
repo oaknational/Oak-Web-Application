@@ -8,8 +8,20 @@ import {
   Attachment,
   TextBlock,
   TeamMember,
+  BlogPostPreview,
   Seo,
 } from "..";
+
+export type HomePage = Document & {
+  heading: string;
+  summaryPortableText: PortableTextJSON;
+  sidebarCard1: Card;
+  sidebarCard2: Card;
+  sidebarForm: {
+    title: string;
+    bodyPortableText: PortableTextJSON;
+  };
+};
 
 export type PlanningPage = Document & {
   title: string;
@@ -87,7 +99,7 @@ export type CurriculumPage = Document & {
     title: string;
     posts: {
       title: string;
-      post: { title: string; slug: { current: string } };
+      post: Pick<BlogPostPreview, "title" | "slug">;
     }[];
   };
   ourApproach: TextBlock;

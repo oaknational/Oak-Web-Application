@@ -1,3 +1,51 @@
+# [1.2.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1.0...v1.2.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* use new slug structure for curriculum blog links, tests ([cee4ef6](https://github.com/oaknational/Oak-Web-Application/commit/cee4ef607afeda4fd0710b6ee8d109c34857fe54))
+
+
+### Features
+
+* re-use blog schema for curriculum blogs ([5808008](https://github.com/oaknational/Oak-Web-Application/commit/580800899d01310bfcec0cdb3f24b35105e87293))
+
+# [1.1.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.0.0...v1.1.0) (2022-09-07)
+
+
+### Features
+
+* add homepage method to CMSClient ([65be929](https://github.com/oaknational/Oak-Web-Application/commit/65be9295388edf7fe4fb3e15c48adb96fc557ea8))
+* integrate homepage title with CMS ([2fb160a](https://github.com/oaknational/Oak-Web-Application/commit/2fb160a8eaa1371777a78aafaddff33c09694964))
+* wire up home summary to CMS ([db84c77](https://github.com/oaknational/Oak-Web-Application/commit/db84c774b6822643b4fe5b74ffdebb7ab9022e74))
+* wire up sidebar text cards with CMS ([2930cdc](https://github.com/oaknational/Oak-Web-Application/commit/2930cdcf295e58edbff5d83dd66a0d3a7924c292))
+
+## [0.107.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.107.1...v0.107.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* pa11y on blog pages ([bcf12be](https://github.com/oaknational/Oak-Web-Application/commit/bcf12be5a06e111b0580feffb81c3e9d0206ce94))
+
+## [0.107.1](https://github.com/oaknational/Oak-Web-Application/compare/v0.107.0...v0.107.1) (2022-09-07)
+
+# [0.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.3...v0.107.0) (2022-09-07)
+
+
+### Features
+
+* make all CMSClient methods return null with no data ([779ecff](https://github.com/oaknational/Oak-Web-Application/commit/779ecffd1e892b45b995d18d95e265efb92969f1))
+* more notFound/404 logic added to remaining pages ([36132aa](https://github.com/oaknational/Oak-Web-Application/commit/36132aa8a0f0d3cb2cae7967eed67f99dcedbd30))
+* return empty arrays instead for cms methods that return lists ([7e8c27e](https://github.com/oaknational/Oak-Web-Application/commit/7e8c27e444b209606b1dd8738e183609ad309a86))
+* return notFound and 404 when page data is missing ([a1a2b3d](https://github.com/oaknational/Oak-Web-Application/commit/a1a2b3d325dac94369a8efc98ed65c82a4a5c6a3))
+
+## [0.106.3](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.2...v0.106.3) (2022-09-07)
+
+
+### Bug Fixes
+
+* use transform to postion flying carpet image ([ccde52f](https://github.com/oaknational/Oak-Web-Application/commit/ccde52f343b49d2c976b46c20113c1c7446c80cc))
+
 ## [0.106.2](https://github.com/oaknational/Oak-Web-Application/compare/v0.106.1...v0.106.2) (2022-09-07)
 
 

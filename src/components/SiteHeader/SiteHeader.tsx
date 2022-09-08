@@ -72,6 +72,7 @@ const SiteHeader: FC = () => {
     },
     {
       href: "/about-us/who-we-are",
+      activeLinkSubPath: "/about-us",
       linkText: "About us",
       fontSize: [16],
       fontFamily: "ui",

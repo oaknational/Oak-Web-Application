@@ -466,6 +466,12 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     previewMode: isPreviewMode,
   });
 
+  if (!planningPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       pageData: planningPage,

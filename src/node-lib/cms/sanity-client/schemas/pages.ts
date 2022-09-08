@@ -7,9 +7,25 @@ import {
   seoSchema,
 } from "./base";
 import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
+import { blogPostPreviewSchema } from "./blog";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
+
+export const homePageSchema = z
+  .object({
+    heading: z.string(),
+    summaryPortableText: portableTextSchema,
+    sidebarCard1: cardSchema,
+    sidebarCard2: cardSchema,
+    sidebarForm: z.object({
+      title: z.string(),
+      bodyPortableText: portableTextSchema,
+    }),
+  })
+  .merge(documentSchema);
+
+export type HomePage = z.infer<typeof homePageSchema>;
 
 export const planningPageSchema = z
   .object({
@@ -115,9 +131,9 @@ export const curriculumPageSchema = z
       posts: z.array(
         z.object({
           title: z.string(),
-          post: z.object({
-            title: z.string(),
-            slug: z.object({ current: z.string() }),
+          post: blogPostPreviewSchema.pick({
+            title: true,
+            slug: true,
           }),
         })
       ),

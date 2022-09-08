@@ -7,6 +7,7 @@ import {
   aboutPageSchema,
   planningPageSchema,
   curriculumPageSchema,
+  homePageSchema,
 } from "./schemas/pages";
 import {
   blogPostPreviewSchema,
@@ -30,6 +31,10 @@ const getSanityClient: CMSClient = () => ({
       ...params,
     });
 
+    if (!webinarResults.allWebinar) {
+      return [];
+    }
+
     return webinarListSchema.parse(webinarResults.allWebinar);
   },
   webinarBySlug: async (slug, { previewMode, ...params } = {}) => {
@@ -38,7 +43,11 @@ const getSanityClient: CMSClient = () => ({
       isDraft: previewMode === true,
       slug,
     });
-    const webinar = webinarResult.allWebinar[0];
+    const webinar = webinarResult?.allWebinar?.[0];
+
+    if (!webinar) {
+      return null;
+    }
 
     return webinarSchema.parse(webinar);
   },
@@ -49,6 +58,10 @@ const getSanityClient: CMSClient = () => ({
       ...params,
     });
 
+    if (!blogPostsResult.allNewsPost) {
+      return [];
+    }
+
     return blogPostListSchema.parse(blogPostsResult.allNewsPost);
   },
   blogPostBySlug: async (slug, { previewMode, ...params } = {}) => {
@@ -57,7 +70,11 @@ const getSanityClient: CMSClient = () => ({
       isDraft: previewMode === true,
       slug,
     });
-    const blogPost = blogPostResult.allNewsPost[0];
+    const blogPost = blogPostResult?.allNewsPost?.[0];
+
+    if (!blogPost) {
+      return null;
+    }
 
     const contentWithReferences = blogPost?.contentPortableText
       ? await resolveReferences(blogPost.contentPortableText)
@@ -70,12 +87,29 @@ const getSanityClient: CMSClient = () => ({
 
     return blogPostSchema.parse(blogWithResolvedRefs);
   },
+  homepage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.homepage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const homepageData = result?.allHomepage?.[0];
+
+    if (!homepageData) {
+      return null;
+    }
+
+    return homePageSchema.parse(homepageData);
+  },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
       isDraft: previewMode === true,
       ...params,
     });
-    const planningPageData = result.allPlanningCorePage[0];
+    const planningPageData = result?.allPlanningCorePage?.[0];
+
+    if (!planningPageData) {
+      return null;
+    }
 
     return planningPageSchema.parse(planningPageData);
   },
@@ -84,7 +118,11 @@ const getSanityClient: CMSClient = () => ({
       isDraft: previewMode === true,
       ...params,
     });
-    const planningPageData = result.allAboutCorePage[0];
+    const planningPageData = result?.allAboutCorePage?.[0];
+
+    if (!planningPageData) {
+      return null;
+    }
 
     return aboutPageSchema.parse(planningPageData);
   },
@@ -93,7 +131,11 @@ const getSanityClient: CMSClient = () => ({
       isDraft: previewMode === true,
       ...params,
     });
-    const curriculumPageData = result.allCurriculumCorePage[0];
+    const curriculumPageData = result?.allCurriculumCorePage?.[0];
+
+    if (!curriculumPageData) {
+      return null;
+    }
 
     return curriculumPageSchema.parse(curriculumPageData);
   },
@@ -104,6 +146,10 @@ const getSanityClient: CMSClient = () => ({
       ...params,
     });
 
+    if (!policyPageResults.allPolicyPage) {
+      return [];
+    }
+
     return policyPageListSchema.parse(policyPageResults.allPolicyPage);
   },
   policyPageBySlug: async (slug, { previewMode, ...params } = {}) => {
@@ -112,7 +158,14 @@ const getSanityClient: CMSClient = () => ({
       ...params,
       slug,
     });
-    const policyPage = await resolveReferences(policyPageResult.allPolicyPage[0]);
+
+    if (!policyPageResult?.allPolicyPage?.[0]) {
+      return null;
+    }
+
+    const policyPage = await resolveReferences(
+      policyPageResult.allPolicyPage[0]
+    );
 
     return policyPageSchema.parse(policyPage);
   },
@@ -123,6 +176,10 @@ const getSanityClient: CMSClient = () => ({
       ...params,
     });
 
+    if (!landingPageResults.allLandingPage) {
+      return [];
+    }
+
     return landingPageListSchema.parse(landingPageResults.allLandingPage);
   },
   landingPageBySlug: async (slug, { previewMode, ...params } = {}) => {
@@ -131,7 +188,11 @@ const getSanityClient: CMSClient = () => ({
       ...params,
       slug,
     });
-    const landingPage = landingPageResult.allLandingPage[0];
+    const landingPage = landingPageResult?.allLandingPage?.[0];
+
+    if (!landingPage) {
+      return null;
+    }
 
     return landingPageSchema.parse(landingPage);
   },
