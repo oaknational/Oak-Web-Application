@@ -16,7 +16,7 @@ import Logo from "../components/Logo";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../components/PortableText";
 import SiteFooter from "../components/SiteFooter";
-import Typography, { Heading } from "../components/Typography";
+import Typography, { Heading, P } from "../components/Typography";
 import { CTA, TextAndMedia, PortableTextJSON } from "../node-lib/cms";
 import {
   createPortableListItem,
@@ -261,7 +261,7 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
         <Card
           $pa={0}
           $mb={[92]}
-          $pv={[24]}
+          $pv={[0]}
           $pl={[0, 32]}
           $width={"100%"}
           $flexDirection={"row"}
@@ -339,7 +339,9 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
           >
             {number}
           </OutlineHeading>
-          <p>{remainingText}</p>
+          <P $fontFamily={"heading"} $fontSize={20} $lineHeight={"24px"}>
+            {remainingText}
+          </P>
         </Flex>
       );
     },
