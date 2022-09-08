@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.1...v1.4.0) (2022-09-08)
+
+
+### Features
+
+* add support for presentational-only images ([446c56a](https://github.com/oaknational/Oak-Web-Application/commit/446c56a99fe82c3ee316bb2cbfae5896c2678067))
+
 ## [1.3.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.0...v1.3.1) (2022-09-08)
 
 
