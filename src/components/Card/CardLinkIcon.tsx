@@ -36,7 +36,11 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
     >
       <BoxBorders />
       <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
-        <CardLink href={href} {...cardLinkProps}>
+        <CardLink
+          href={href}
+          hoverStyles={["underline-link-text", "drop-shadow"]}
+          {...cardLinkProps}
+        >
           {title}
         </CardLink>
       </Heading>
