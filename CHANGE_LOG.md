@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.0...v1.4.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* sharing-image-name ([e47b00c](https://github.com/oaknational/Oak-Web-Application/commit/e47b00c5de7cef688625e2823176ac1d58933c64))
+
 # [1.4.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.1...v1.4.0) (2022-09-08)
 
 
