@@ -190,6 +190,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
+                      target="_blank"
                     >
                       Classroom
                     </CardLink>
@@ -254,6 +255,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       onClick={() =>
                         track.teacherHubSelected({ navigatedFrom: "card" })
                       }
+                      target="_blank"
                     >
                       Teacher Hub
                     </CardLink>
