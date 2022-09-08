@@ -8,6 +8,10 @@ import CMSClient, { AboutWhoWeArePage } from "../../../node-lib/cms";
 import { mockSeo, portableTextFromString } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
+jest.mock("../../../node-lib/cms");
+
+const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
 export const testAboutPageBaseData = {
   title: "About Oak",
   contactSection: {
@@ -196,10 +200,6 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
     },
   ],
 };
-
-jest.mock("../../../node-lib/cms");
-
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
