@@ -16,7 +16,6 @@ import {
 
 const StyledA = styled.a<ButtonStylesProps>`
   ${buttonStyles}
-  outline: ${(props) => `solid ${props.background} 2px`};
   ${({ disabled }) =>
     disabled === true &&
     `
