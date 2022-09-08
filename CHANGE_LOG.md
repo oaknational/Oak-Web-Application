@@ -1,3 +1,11 @@
+## [1.3.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.0...v1.3.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* video track more properties ([3a23a02](https://github.com/oaknational/Oak-Web-Application/commit/3a23a028ad5c235275f81d2590541c9ceced284a))
+* **video:** tracking plan ([5f3b88e](https://github.com/oaknational/Oak-Web-Application/commit/5f3b88e4a1fc58cc550374aadcdf3e03cad31847))
+
 # [1.3.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.2.0...v1.3.0) (2022-09-08)
 
 
