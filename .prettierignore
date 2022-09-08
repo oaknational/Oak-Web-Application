@@ -10,6 +10,7 @@ src/node-lib/sanity-graphql/generated
 .next
 next-env.d.ts
 out
+storybook-static
 
 # Test coverage
 coverage

@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
 import MuxPlayerElement from "@mux/mux-player";
 
@@ -10,15 +10,7 @@ import errorReporter from "../../common-lib/error-reporter";
 import useVideoTracking from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
-
-const getDuration = (ref: RefObject<MuxPlayerElement>) => {
-  const duration = ref.current?.duration;
-  if (typeof duration === "number" && !isNaN(duration)) {
-    return Math.floor(duration);
-  }
-
-  return null;
-};
+import getDuration from "./getDuration";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -42,22 +34,24 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
-  const duration = getDuration(mediaElRef);
-  const captioned = Boolean(getSubtitleTrack(mediaElRef));
-  const timeElapsed = getTimeElapsed(mediaElRef);
 
-  const trackingProps = {
-    video: {
-      duration,
+  const getState = () => {
+    const captioned = Boolean(getSubtitleTrack(mediaElRef));
+    const duration = getDuration(mediaElRef);
+    const muted = Boolean(mediaElRef.current?.muted);
+    const timeElapsed = getTimeElapsed(mediaElRef);
+
+    return {
       captioned,
+      duration,
+      muted,
       playbackId,
-      title,
-    },
-    state: {
       timeElapsed,
-    },
+      title,
+    };
   };
-  const videoTracking = useVideoTracking(trackingProps);
+
+  const videoTracking = useVideoTracking({ getState });
 
   const metadata = {
     "metadata-video-id": playbackId,
@@ -111,9 +105,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onPlay={onPlay}
         onPause={onPause}
         onEnded={onEnded}
-        onError={(evt: Event) => {
-          onError(evt);
-        }}
+        onError={onError}
         // onDurationChange={(p) => console.log("duration change", p)}
         // onVolumeChange={(p) => console.log("volumn", p)}
         // onLoadedMetadata={(p) => console.log("onLoadedMetadata", p)}
