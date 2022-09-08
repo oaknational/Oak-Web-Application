@@ -44,7 +44,7 @@ const customPolicyComponent: PortableTextComponents = {
   },
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
   return (
     <Layout
       seoProps={getSeoProps({

@@ -23,10 +23,7 @@ export type AboutPageProps = {
   isPreviewMode: boolean;
 };
 
-const AboutUsBoard: NextPage<AboutPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
