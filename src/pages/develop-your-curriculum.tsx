@@ -45,11 +45,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
   isPreviewMode,
 }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}

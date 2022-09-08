@@ -13,9 +13,7 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <AboutBoard pageData={testAboutPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<AboutBoard pageData={testAboutPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -27,7 +25,7 @@ describe("pages/about-us/board.tsx", () => {
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <AboutBoard pageData={testAboutPageData} isPreviewMode={false} />
+        <AboutBoard pageData={testAboutPageData} />
       );
 
       expect(seo).toEqual({});

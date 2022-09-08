@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { FC } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import AppHeader from "../AppHeader";
@@ -42,7 +43,6 @@ export interface LayoutProps {
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   $background?: OakColorName;
-  isPreviewMode?: boolean;
 }
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -51,11 +51,13 @@ const Layout: FC<LayoutProps> = (props) => {
     seoProps,
     $background,
     headerVariant = "site",
-    isPreviewMode,
+
     footerVariant = "default",
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
+
+  const { isPreview } = useRouter();
 
   return (
     <>
@@ -67,8 +69,9 @@ const Layout: FC<LayoutProps> = (props) => {
       <Container $background={$background}>
         <Header />
         <StyledLayout>{children}</StyledLayout>
+
         <Footer />
-        {isPreviewMode && <PreviewControls />}
+        {isPreview && <PreviewControls />}
       </Container>
     </>
   );

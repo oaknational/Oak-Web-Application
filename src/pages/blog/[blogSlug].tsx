@@ -262,7 +262,6 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $pt={56}>
         <Card

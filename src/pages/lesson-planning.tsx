@@ -152,11 +152,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
   isPreviewMode,
 }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}
