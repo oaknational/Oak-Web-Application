@@ -304,6 +304,54 @@ const isZodArraySchema = <T extends ZodTypeAny>(
   return "element" in schema;
 };
 
+/**
+ * Filters a list to only unique items
+ * - calls getProp on each item to get the value to compare
+ * - when 2 items clash (getProp returns the same for both) onConflict
+ *   is invoked. If it returns the previously seen value it's left at
+ *   it's current index, otherwise the current/new value will be appended to acc
+ *
+ * @example
+ *   uniqBy(
+ *     [{ id: 1 }, { id: 2, keepMe: true }, { id: 3 }, { id: 2 }],
+ *     (x) => x.id,
+ *     (prev, current) =>
+ *       current.keepMe ? current : prev.keepMe ? prev : current
+ *   )
+ *   // -> [{ id: 1 }, { id: 2, keepMe: true }, { id: 3 }]
+ */
+export const uniqBy = <T>(
+  data: T[],
+  getProp: (el: T) => unknown,
+  onConflict: (prev: T, current: T) => T
+): T[] => {
+  return data.reduce<T[]>((acc, item) => {
+    const alreadyExistsIdx = acc.findIndex(
+      (el) => getProp(el) === getProp(item)
+    );
+    const alreadyExists = alreadyExistsIdx >= 0;
+    const prevItem = acc[alreadyExistsIdx];
+
+    if (alreadyExists && prevItem) {
+      const itemToKeep = onConflict(prevItem, item);
+      const keepPrev = itemToKeep === prevItem;
+
+      if (keepPrev) {
+        return acc;
+      } else {
+        const withoutPrevious = acc.filter((_, i) => i !== alreadyExistsIdx);
+        return [...withoutPrevious, itemToKeep];
+      }
+    } else {
+      return [...acc, item];
+    }
+  }, []);
+};
+
+const draftPrefixRegex = /^drafts\./;
+const isDraft = (id: string): boolean => draftPrefixRegex.test(id);
+const trimDraftsPrefix = (id: string) => id.replace(draftPrefixRegex, "");
+
 export const parse = <S extends ZodSchema, D>(
   schema: S,
   data: D,
@@ -312,7 +360,19 @@ export const parse = <S extends ZodSchema, D>(
   if (isPreviewMode) {
     if (isZodArraySchema(schema)) {
       const invalidRejectingSchema = createInvalidRejectingSchema(schema);
-      return invalidRejectingSchema.parse(data);
+      const parsedItems = invalidRejectingSchema.parse(data);
+
+      /**
+       * Filter out any duplicates, rejecting the non-draft version
+       * when a draft with a matching ID exists
+       */
+      const uniqueItems = uniqBy(
+        parsedItems,
+        (x) => trimDraftsPrefix(x.id),
+        (prev, current) => (isDraft(prev.id) ? prev : current)
+      );
+
+      return uniqueItems;
     } else {
       return schema.parse(data);
     }
