@@ -1,3 +1,11 @@
+## [1.5.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.1...v1.5.2) (2022-09-09)
+
+
+### Bug Fixes
+
+* add outline around content of button to prevent gaps ([ee2d538](https://github.com/oaknational/Oak-Web-Application/commit/ee2d53855d3233bd0d9382d62166aa78b827c54f))
+* push borders in one by pixel for browser pixel rounding errors ([8861aba](https://github.com/oaknational/Oak-Web-Application/commit/8861aba93f19916c4324839e7a9ccd8993e9d212))
+
 ## [1.5.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.0...v1.5.1) (2022-09-09)
 
 
