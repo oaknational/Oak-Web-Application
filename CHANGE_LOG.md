@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.1...v1.5.0) (2022-09-09)
+
+
+### Features
+
+* **favicon:** update favicon to black bg ([c04f987](https://github.com/oaknational/Oak-Web-Application/commit/c04f987fa6a2c82e39dc188d03d82b63a4bce6f1))
+
 ## [1.4.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.0...v1.4.1) (2022-09-08)
 
 
