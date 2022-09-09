@@ -14,7 +14,7 @@ const preview: NextApiHandler = async (req, res) => {
       .transform((segments) => {
         return `/${segments.join("/")}`;
       })
-      .parse(req.query.path || []);
+      .parse(req.query.path);
 
     res.clearPreviewData();
 
