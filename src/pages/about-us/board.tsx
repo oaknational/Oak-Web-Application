@@ -20,7 +20,6 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
-  isPreviewMode: boolean;
 };
 
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
@@ -156,7 +155,6 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   return {
     props: {
       pageData: aboutBoardPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

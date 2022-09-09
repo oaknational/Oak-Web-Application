@@ -22,7 +22,6 @@ import CMSVideo from "../../components/CMSVideo";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
-  isPreviewMode: boolean;
 };
 
 type TimeLineProps = TextBlock & FlexProps;
@@ -195,7 +194,6 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   return {
     props: {
       pageData: aboutWhoWeArePage,
-      isPreviewMode,
     },
     revalidate: 10,
   };
