@@ -27,7 +27,6 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         description: "Webinars",
       })}
       $background="grey1"
-      isPreviewMode={props.isPreviewMode}
     >
       <Heading tag="h1" $fontSize={32}>
         Webinars

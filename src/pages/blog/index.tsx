@@ -35,7 +35,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
       })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard

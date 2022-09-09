@@ -40,16 +40,9 @@ const elementsOfCurriculumDesignHeadings = [
   "An easy way to refresh resources:",
 ];
 
-const Curriculum: NextPage<CurriculumPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}

@@ -66,16 +66,9 @@ const TimeLineCard: FC<TimeLineProps> = ({
   );
 };
 
-const AboutWhoWeAre: NextPage<AboutPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={"About us"}

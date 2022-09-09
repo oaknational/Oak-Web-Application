@@ -11,9 +11,9 @@ export type LandingPageProps = {
   isPreviewMode: boolean;
 };
 
-const Landing: NextPage<LandingPageProps> = ({ pageData, isPreviewMode }) => {
+const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} isPreviewMode={isPreviewMode}>
+    <Layout seoProps={getSeoProps(pageData.seo)}>
       <MaxWidth>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>

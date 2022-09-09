@@ -28,9 +28,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
   describe("LandingPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
-        <LandingPageTemplate pageData={testLandingPage} isPreviewMode={false} />
-      );
+      renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
 
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
@@ -40,10 +38,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <LandingPageTemplate
-            pageData={testLandingPage}
-            isPreviewMode={false}
-          />
+          <LandingPageTemplate pageData={testLandingPage} />
         );
 
         expect(seo).toEqual({});

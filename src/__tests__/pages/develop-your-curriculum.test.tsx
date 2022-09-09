@@ -75,9 +75,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -87,9 +85,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   });
 
   it("renders the blog posts", async () => {
-    renderWithProviders(
-      <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
     const { posts } = testCurriculumPageData.elements;
 
     await waitFor(() => {
@@ -106,7 +102,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
+        <Curriculum pageData={testCurriculumPageData} />
       );
 
       expect(seo).toEqual({});
