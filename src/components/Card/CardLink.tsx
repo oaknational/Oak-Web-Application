@@ -1,13 +1,9 @@
-import {
-  DetailedHTMLProps,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import { forwardRef, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import styled, { css } from "styled-components";
 
 import { zIndexMap } from "../../styles/utils/zIndex";
+import { HTMLAnchorProps } from "../Button/common";
 import { DROP_SHADOW } from "../../styles/utils/dropShadow";
 
 type HoverStyles = ("underline-link-text" | "drop-shadow")[];
@@ -18,10 +14,7 @@ type HoverStyles = ("underline-link-text" | "drop-shadow")[];
 export type CardLinkProps = {
   children: ReactNode;
   hoverStyles?: HoverStyles;
-} & Omit<
-  DetailedHTMLProps<InputHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
-  "href" | "ref"
-> &
+} & Omit<HTMLAnchorProps, "href" | "ref"> &
   Omit<NextLinkProps, "as" | "passHref" | "children">;
 
 const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
