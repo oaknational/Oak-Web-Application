@@ -1,3 +1,13 @@
+# [1.6.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.2...v1.6.0) (2022-09-09)
+
+
+### Features
+
+* concat current path on preview mode indicator exit-preview link ([414f60c](https://github.com/oaknational/Oak-Web-Application/commit/414f60c7c68e5a56c0452c32a23340a925951e1c))
+* exit-preview now returns you to the page you were viewing ([e4745b0](https://github.com/oaknational/Oak-Web-Application/commit/e4745b05a15e3352b89000904064b465e0a620c8))
+* remove isPreviewMode prop from layout, infer from router context ([5101747](https://github.com/oaknational/Oak-Web-Application/commit/510174743432bb8be64603a150a014c2e6c4706f))
+* tests for exit-preview, bring back in line with enter preview api ([4dc116e](https://github.com/oaknational/Oak-Web-Application/commit/4dc116e87f8559e9d07692cfa20993db0b5d2ddb))
+
 ## [1.5.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.1...v1.5.2) (2022-09-09)
 
 
