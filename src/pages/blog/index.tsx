@@ -16,7 +16,6 @@ export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
 
 export type BlogListingPageProps = {
   blogs: SerializedBlogPostPreview[];
-  isPreviewMode: boolean;
 };
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
@@ -97,7 +96,6 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
   return {
     props: {
       blogs,
-      isPreviewMode,
     },
     revalidate: 10,
   };

@@ -1,7 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { AboutPage } from "../../node-lib/cms";
+import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
@@ -19,8 +19,7 @@ import Box from "../../components/Box";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
-  pageData: AboutPage;
-  isPreviewMode: boolean;
+  pageData: AboutBoardPage;
 };
 
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
@@ -29,7 +28,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={"About us"}
-          heading={pageData.board.sectionHeading}
+          heading={pageData.sectionHeading}
           summary={
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
           }
@@ -55,7 +54,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
             priority: true,
           }}
-          bodyPortableText={pageData.board.introPortableText}
+          bodyPortableText={pageData.introPortableText}
         />
 
         <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h2"}>
@@ -63,7 +62,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
 
         <Box $mb={[80, 92]}>
-          {pageData.board.boardMembers?.map((boardMember) => (
+          {pageData.boardMembers?.map((boardMember) => (
             <Heading
               key={boardMember.id}
               $textAlign="center"
@@ -87,7 +86,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
-            {pageData.board.documents.map((doc) => (
+            {pageData.documents.map((doc) => (
               <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
                 <Card $height={220} $pa={16}>
                   <BoxBorders />
@@ -128,7 +127,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Heading>
 
           <Typography $fontSize={[16, 18]}>
-            <PortableText value={pageData.board.governancePortableText} />
+            <PortableText value={pageData.governancePortableText} />
           </Typography>
         </Card>
 
@@ -143,11 +142,11 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
-  const aboutPage = await CMSClient.aboutPage({
+  const aboutBoardPage = await CMSClient.aboutBoardPage({
     previewMode: isPreviewMode,
   });
 
-  if (!aboutPage) {
+  if (!aboutBoardPage) {
     return {
       notFound: true,
     };
@@ -155,8 +154,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 
   return {
     props: {
-      pageData: aboutPage,
-      isPreviewMode,
+      pageData: aboutBoardPage,
     },
     revalidate: 10,
   };

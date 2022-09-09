@@ -92,7 +92,6 @@ export type SerializedPost =
 export type HomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
-  isPreviewMode: boolean;
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
@@ -423,7 +422,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     props: {
       pageData: homepageData,
       posts,
-      isPreviewMode,
     },
     revalidate: 10,
   };

@@ -26,7 +26,6 @@ import CMSVideo from "../components/CMSVideo";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
-  isPreviewMode: boolean;
 };
 
 const lessonElementIds = {
@@ -468,7 +467,6 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   return {
     props: {
       pageData: planningPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

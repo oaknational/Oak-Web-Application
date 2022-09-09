@@ -12,7 +12,6 @@ export type SerializedWebinar = Omit<Webinar, "date"> & {
 
 export type WebinarPageProps = {
   webinar: SerializedWebinar;
-  isPreviewMode: boolean;
 };
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {

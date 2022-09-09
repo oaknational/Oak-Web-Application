@@ -31,7 +31,6 @@ const RotatedCard = styled(Card)`
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
-  isPreviewMode: boolean;
 };
 
 const elementsOfCurriculumDesignHeadings = [
@@ -209,7 +208,6 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
   return {
     props: {
       pageData: curriculumPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

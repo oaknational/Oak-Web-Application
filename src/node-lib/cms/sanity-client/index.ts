@@ -4,10 +4,14 @@ import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import {
-  aboutPageSchema,
   planningPageSchema,
   curriculumPageSchema,
   homePageSchema,
+  aboutBoardPageSchema,
+  aboutLeadershipPageSchema,
+  aboutPartnersPageSchema,
+  aboutWhoWeArePageSchema,
+  aboutWorkWithUsPageSchema,
 } from "./schemas/pages";
 import {
   blogPostPreviewSchema,
@@ -113,18 +117,90 @@ const getSanityClient: CMSClient = () => ({
 
     return planningPageSchema.parse(planningPageData);
   },
-  aboutPage: async ({ previewMode, ...params } = {}) => {
+  aboutWhoWeArePage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutCorePage({
       isDraft: previewMode === true,
       ...params,
     });
-    const planningPageData = result?.allAboutCorePage?.[0];
+    const aboutPageData = result?.allAboutCorePage?.[0];
 
-    if (!planningPageData) {
+    if (!aboutPageData) {
       return null;
     }
 
-    return aboutPageSchema.parse(planningPageData);
+    const subPageData = {
+      ...aboutPageData,
+      ...aboutPageData.whoWeAre,
+    };
+    return aboutWhoWeArePageSchema.parse(subPageData);
+  },
+  aboutLeadershipPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.aboutCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const aboutPageData = result?.allAboutCorePage?.[0];
+
+    if (!aboutPageData) {
+      return null;
+    }
+
+    const data = {
+      ...aboutPageData,
+      ...aboutPageData.leadership,
+    };
+    return aboutLeadershipPageSchema.parse(data);
+  },
+  aboutBoardPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.aboutCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const aboutPageData = result?.allAboutCorePage?.[0];
+
+    if (!aboutPageData) {
+      return null;
+    }
+
+    const data = {
+      ...aboutPageData,
+      ...aboutPageData.board,
+    };
+    return aboutBoardPageSchema.parse(data);
+  },
+  aboutPartnersPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.aboutCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const aboutPageData = result?.allAboutCorePage?.[0];
+
+    if (!aboutPageData) {
+      return null;
+    }
+
+    const data = {
+      ...aboutPageData,
+      ...aboutPageData.partners,
+    };
+    return aboutPartnersPageSchema.parse(data);
+  },
+  aboutWorkWithUsPage: async ({ previewMode, ...params } = {}) => {
+    const result = await sanityGraphqlApi.aboutCorePage({
+      isDraft: previewMode === true,
+      ...params,
+    });
+    const aboutPageData = result?.allAboutCorePage?.[0];
+
+    if (!aboutPageData) {
+      return null;
+    }
+
+    const data = {
+      ...aboutPageData,
+      ...aboutPageData.workWithUs,
+    };
+    return aboutWorkWithUsPageSchema.parse(data);
   },
   curriculumPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.curriculumCorePage({
