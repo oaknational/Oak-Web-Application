@@ -147,16 +147,9 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}

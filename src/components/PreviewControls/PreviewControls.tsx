@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
@@ -10,15 +11,17 @@ const PreviewWrapper = styled.div`
 `;
 
 const PreviewControls: FC = () => {
+  const router = useRouter();
+
   return (
     <PreviewWrapper>
       <span>Preview mode enabled</span>
 
       <ButtonAsLink
         label="Exit preview"
-        href="/api/exit-preview"
+        href={`/api/exit-preview${router.asPath}`}
         size="tiny"
-        $ml={[8]}
+        $ml={24}
       />
     </PreviewWrapper>
   );

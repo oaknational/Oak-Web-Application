@@ -1,17 +1,14 @@
-import handler from "../../../../pages/api/preview/[[...path]]";
+import handler from "../../../../pages/api/exit-preview/[[...path]]";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
-const setPreviewData = jest.fn();
+const clearPreviewData = jest.fn();
 
-const createReqRes = (path: string[], secret = "SANITY_PREVIEW_SECRET") => {
+const createReqRes = (path: string[]) => {
   const { req, res } = createNextApiMocks({
-    query: {
-      path,
-      secret,
-    },
+    query: { path },
   });
 
-  res.setPreviewData = setPreviewData;
+  res.clearPreviewData = clearPreviewData;
 
   return { req, res };
 };
@@ -21,17 +18,17 @@ jest.mock("../../../../common-lib/error-reporter", () => ({
   default: () => () => null,
 }));
 
-describe("/api/preview/[[...path]]", () => {
+describe("/api/exit-preview/[[...path]]", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
   });
 
-  it("should set preview data", async () => {
+  it("should clear preview data", async () => {
     const { req, res } = createReqRes(["webinars", "some-webinar"]);
     await handler(req, res);
 
-    expect(setPreviewData).toBeCalled();
+    expect(clearPreviewData).toBeCalled();
   });
 
   it("should redirect to the desired path", async () => {
@@ -49,17 +46,6 @@ describe("/api/preview/[[...path]]", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(500);
-    expect(res.getHeaders().location).toBeUndefined();
-  });
-
-  it("should reject an invalid preview secret", async () => {
-    const { req, res } = createReqRes(
-      ["https://", "google.com"],
-      "invalid-secret"
-    );
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(401);
     expect(res.getHeaders().location).toBeUndefined();
   });
 });

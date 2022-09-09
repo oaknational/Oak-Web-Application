@@ -1,5 +1,6 @@
 import ContactUs from "../../pages/contact-us";
 import renderWithProviders from "../__helpers__/renderWithProviders";
+import renderWithSeo from "../__helpers__/renderWithSeo";
 
 describe("pages/contact-us.tsx", () => {
   it("contains an h1 ", () => {
@@ -15,5 +16,13 @@ describe("pages/contact-us.tsx", () => {
         name: /sign up/i,
       })
     ).toHaveAccessibleName("Sign up");
+  });
+
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(<ContactUs />);
+
+      expect(seo).toEqual({});
+    });
   });
 });

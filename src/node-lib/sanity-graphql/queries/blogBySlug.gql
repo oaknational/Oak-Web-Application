@@ -32,5 +32,8 @@ query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
     # referenced entities
     summary
     contentPortableText: contentRaw
+    seo {
+      ...Seo
+    }
   }
 }

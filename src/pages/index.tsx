@@ -2,9 +2,10 @@ import { FC } from "react";
 import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import CMSClient, { WebinarPreview } from "../node-lib/cms";
+import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
@@ -89,8 +90,8 @@ export type SerializedPost =
   | ({ type: "webinar" } & SerializedWebinarPreview);
 
 export type HomePageProps = {
+  pageData: HomePage;
   posts: SerializedPost[];
-  // webinars
   isPreviewMode: boolean;
 };
 
@@ -102,7 +103,9 @@ const Home: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={props.isPreviewMode}>
+    <Layout
+      seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
+    >
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>
@@ -127,10 +130,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                   data-testid="home-page-title"
                   $color={"black"}
                 >
-                  Oak is evolving
+                  {props.pageData.heading}
                 </Heading>
                 <Heading tag={"h2"} $fontSize={[20]}>
-                  We’re growing our support to help you thrive.
+                  {/* @TODO: The portable text in the CMS allows more features
+                             than just plain text. We should decide if we want
+                             to lock that down, or handle more cases here */}
+                  {toPlainText(props.pageData.summaryPortableText)}
                 </Heading>
               </Flex>
               <Box $ph={[16, 0]}>
@@ -186,6 +192,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
+                      target="_blank"
                     >
                       Classroom
                     </CardLink>
@@ -250,6 +257,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       onClick={() =>
                         track.teacherHubSelected({ navigatedFrom: "card" })
                       }
+                      target="_blank"
                     >
                       Teacher Hub
                     </CardLink>
@@ -295,7 +303,7 @@ const Home: NextPage<HomePageProps> = (props) => {
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
             <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
-              <HomeAboutCard />
+              <HomeAboutCard {...props.pageData.sidebarCard1} />
             </GridArea>
             <GridArea
               $mb={[64, 0]}
@@ -330,7 +338,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                       {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
                       {i < posts.length - 1 && (
-                        <Hr $color="black" $mt={[0, 16]} $mb={16} />
+                        <Hr
+                          thickness={2}
+                          $color="black"
+                          $mt={[24, 16]}
+                          $mb={[32, 16]}
+                        />
                       )}
                     </li>
                   ))}
@@ -338,7 +351,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
-              <HomeHelpCard />
+              <HomeHelpCard {...props.pageData.sidebarCard2} />
             </GridArea>
             <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
               <NewsletterForm
@@ -370,6 +383,16 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
+  const homepageData = await CMSClient.homepage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!homepageData) {
+    return {
+      notFound: true,
+    };
+  }
+
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
     limit: 5,
@@ -398,6 +421,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   return {
     props: {
+      pageData: homepageData,
       posts,
       isPreviewMode,
     },

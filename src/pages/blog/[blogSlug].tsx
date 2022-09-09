@@ -256,11 +256,12 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   return (
     <Layout
       seoProps={getSeoProps({
-        ...props.blog,
+        ...props.blog.seo,
+        title: props.blog.seo?.title || props.blog.title,
+        description: props.blog.seo?.description || props.blog.summary,
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $pt={56}>
         <Card

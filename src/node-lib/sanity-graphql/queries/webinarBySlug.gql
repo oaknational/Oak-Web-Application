@@ -23,5 +23,8 @@ query webinarBySlug($slug: String, $isDraft: Boolean = false) {
         ...Image
       }
     }
+    seo {
+      ...Seo
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient from "../../../node-lib/cms";
 import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
 
@@ -10,16 +11,24 @@ jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-describe("pages/about us who we are.tsx", () => {
+describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <AboutBoard pageData={testAboutPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<AboutBoard pageData={testAboutPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "About us"
       );
+    });
+  });
+
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <AboutBoard pageData={testAboutPageData} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 

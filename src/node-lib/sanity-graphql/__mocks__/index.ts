@@ -1,3 +1,4 @@
+import homepageFixture from "../fixtures/homepage.json";
 import aboutCorePageFixture from "../fixtures/aboutCorePage.json";
 import allWebinarsFixture from "../fixtures/allWebinars.json";
 import planningCorePageFixture from "../fixtures/planningCorePage.json";
@@ -21,7 +22,7 @@ export default {
   allBlogPosts: jest.fn(() => allBlogPostsFixture),
   blogPostBySlug: jest.fn(() => blogPostBySlugFixture),
   blogPortableTextReferences: jest.fn(() => blogPortableTextReferences),
-  // homepage:
+  homepage: jest.fn(() => homepageFixture),
   planningCorePage: jest.fn(() => planningCorePageFixture),
   aboutCorePage: jest.fn(() => aboutCorePageFixture),
   curriculumCorePage: jest.fn(() => curriculumCorePageFixture),
