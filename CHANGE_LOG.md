@@ -1,3 +1,20 @@
+## [1.7.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.0...v1.7.1) (2022-09-09)
+
+# [1.7.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.2...v1.7.0) (2022-09-09)
+
+
+### Bug Fixes
+
+* **Next config:** typo ([3c7048d](https://github.com/oaknational/Oak-Web-Application/commit/3c7048d762bb648b5042e2f867bc29cdf8e4164a))
+
+
+### Features
+
+* **Bugsnag:** report builds to Bugsnag at build time ([56aed88](https://github.com/oaknational/Oak-Web-Application/commit/56aed884391968d302b7757c63ce1c10913f8555))
+* **Bugsnag:** upload sourcemaps for production builds ([ebedf2c](https://github.com/oaknational/Oak-Web-Application/commit/ebedf2c92274c72b5d560b1354f991bf100689db))
+
+## [1.6.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.1...v1.6.2) (2022-09-09)
+
 ## [1.6.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.0...v1.6.1) (2022-09-09)
 
 # [1.6.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.2...v1.6.0) (2022-09-09)

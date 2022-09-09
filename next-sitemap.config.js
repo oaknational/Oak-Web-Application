@@ -26,6 +26,9 @@ module.exports = {
     // Don't add beta pages to the sitemap for now.
     "/beta",
     "/beta/*",
+    // Exclude WIP webinar pages
+    "/webinars",
+    "/webinars/*",
     // Don't list the file that generates the sitemaps for the dynamic pages.
     "/server-sitemap-index.xml",
   ],
