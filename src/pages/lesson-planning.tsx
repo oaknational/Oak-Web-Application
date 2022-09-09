@@ -23,6 +23,7 @@ import Cover from "../components/Cover";
 import { getTeachersUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -187,7 +188,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={16} $rg={[32]}>
+
+          <Grid $cg={48} $rg={[32]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea
@@ -195,6 +197,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   $colSpan={[12, 6]}
                 >
                   <LessonElementsCard $background={"twilight"}>
+                    <BrushBorders background={"twilight"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
