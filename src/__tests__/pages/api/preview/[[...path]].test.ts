@@ -3,7 +3,7 @@ import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
 const setPreviewData = jest.fn();
 
-const createReqRes = (path: string[], secret = "SANITY_PREVIEW_SECRET") => {
+const createReqRes = (path?: string[], secret = "SANITY_PREVIEW_SECRET") => {
   const { req, res } = createNextApiMocks({
     query: {
       path,
@@ -41,6 +41,16 @@ describe("/api/preview/[[...path]]", () => {
     expect(res._getStatusCode()).toBe(307);
     expect(res.getHeaders()).toMatchObject({
       location: "/webinars/some-webinar",
+    });
+  });
+
+  it("should treat an undefined path as empty", async () => {
+    const { req, res } = createReqRes();
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(307);
+    expect(res.getHeaders()).toMatchObject({
+      location: "/",
     });
   });
 
