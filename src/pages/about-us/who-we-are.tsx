@@ -160,7 +160,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           {pageData.whoWeAre.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $background={"videoBlue"}>
                   <Heading
                     $fontSize={[24, 32]}
                     $lineHeight={["32px", "40px"]}
