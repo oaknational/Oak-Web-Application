@@ -51,10 +51,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage
-          webinar={testSerializedWebinar}
-          isPreviewMode={false}
-        />
+        <WebinarDetailPage webinar={testSerializedWebinar} />
       );
 
       await waitFor(() => {
@@ -67,10 +64,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <WebinarDetailPage
-            webinar={testSerializedWebinar}
-            isPreviewMode={false}
-          />
+          <WebinarDetailPage webinar={testSerializedWebinar} />
         );
 
         expect(seo).toEqual({});

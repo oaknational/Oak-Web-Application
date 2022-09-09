@@ -43,7 +43,6 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 
 export type BlogPageProps = {
   blog: SerializedBlog;
-  isPreviewMode: boolean;
 };
 
 // When we get the JSON portable text it doesn't have the same field names as
@@ -262,7 +261,6 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $pt={56}>
         <Card

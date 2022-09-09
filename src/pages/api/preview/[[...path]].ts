@@ -5,7 +5,7 @@ import config from "../../../config";
 import errorReporter from "../../../common-lib/error-reporter";
 import OakError from "../../../errors/OakError";
 
-const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
+export const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
 
 const reportError = errorReporter("/api/preview/[[...path]]");
 

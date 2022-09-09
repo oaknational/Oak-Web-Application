@@ -68,9 +68,7 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<PlanALesson pageData={testPlanningPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -82,7 +80,7 @@ describe("pages/lesson-planning.tsx", () => {
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
+        <PlanALesson pageData={testPlanningPageData} />
       );
 
       expect(seo).toEqual({});

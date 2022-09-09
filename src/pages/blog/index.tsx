@@ -16,7 +16,6 @@ export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
 
 export type BlogListingPageProps = {
   blogs: SerializedBlogPostPreview[];
-  isPreviewMode: boolean;
 };
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
@@ -35,7 +34,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
       })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
@@ -98,7 +96,6 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
   return {
     props: {
       blogs,
-      isPreviewMode,
     },
     revalidate: 10,
   };

@@ -1,3 +1,37 @@
+## [1.6.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.0...v1.6.1) (2022-09-09)
+
+# [1.6.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.2...v1.6.0) (2022-09-09)
+
+
+### Features
+
+* concat current path on preview mode indicator exit-preview link ([414f60c](https://github.com/oaknational/Oak-Web-Application/commit/414f60c7c68e5a56c0452c32a23340a925951e1c))
+* exit-preview now returns you to the page you were viewing ([e4745b0](https://github.com/oaknational/Oak-Web-Application/commit/e4745b05a15e3352b89000904064b465e0a620c8))
+* remove isPreviewMode prop from layout, infer from router context ([5101747](https://github.com/oaknational/Oak-Web-Application/commit/510174743432bb8be64603a150a014c2e6c4706f))
+* tests for exit-preview, bring back in line with enter preview api ([4dc116e](https://github.com/oaknational/Oak-Web-Application/commit/4dc116e87f8559e9d07692cfa20993db0b5d2ddb))
+
+## [1.5.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.1...v1.5.2) (2022-09-09)
+
+
+### Bug Fixes
+
+* add outline around content of button to prevent gaps ([ee2d538](https://github.com/oaknational/Oak-Web-Application/commit/ee2d53855d3233bd0d9382d62166aa78b827c54f))
+* push borders in one by pixel for browser pixel rounding errors ([8861aba](https://github.com/oaknational/Oak-Web-Application/commit/8861aba93f19916c4324839e7a9ccd8993e9d212))
+
+## [1.5.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.0...v1.5.1) (2022-09-09)
+
+
+### Bug Fixes
+
+* homepage classroom teacher links to open in new tab ([da94277](https://github.com/oaknational/Oak-Web-Application/commit/da94277d5aa101b8669b1da5beb4fdd0805ab3e8))
+
+# [1.5.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.1...v1.5.0) (2022-09-09)
+
+
+### Features
+
+* **favicon:** update favicon to black bg ([c04f987](https://github.com/oaknational/Oak-Web-Application/commit/c04f987fa6a2c82e39dc188d03d82b63a4bce6f1))
+
 ## [1.4.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.0...v1.4.1) (2022-09-08)
 
 

@@ -58,7 +58,6 @@ describe("pages/webinar/index.tsx", () => {
             testSerializedWebinarPreview,
             testSerializedWebinarPreview2,
           ]}
-          isPreviewMode={false}
         />
       );
 
@@ -82,7 +81,6 @@ describe("pages/webinar/index.tsx", () => {
               testSerializedWebinarPreview,
               testSerializedWebinarPreview2,
             ]}
-            isPreviewMode={false}
           />
         );
 

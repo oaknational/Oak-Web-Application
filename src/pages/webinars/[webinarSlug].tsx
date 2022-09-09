@@ -12,16 +12,11 @@ export type SerializedWebinar = Omit<Webinar, "date"> & {
 
 export type WebinarPageProps = {
   webinar: SerializedWebinar;
-  isPreviewMode: boolean;
 };
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
-    <Layout
-      seoProps={getSeoProps(props.webinar.seo)}
-      $background="grey1"
-      isPreviewMode={props.isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(props.webinar.seo)} $background="grey1">
       <Heading tag="h1" $fontSize={24}>
         {props.webinar.title}
       </Heading>

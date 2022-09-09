@@ -16,7 +16,6 @@ type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
 
 export type PolicyPageProps = {
   policy: SerializedPolicyPage;
-  isPreviewMode: boolean;
 };
 
 const customPolicyComponent: PortableTextComponents = {
@@ -44,7 +43,7 @@ const customPolicyComponent: PortableTextComponents = {
   },
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
   return (
     <Layout
       seoProps={getSeoProps({
@@ -52,7 +51,6 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
         title: policy.seo?.title || policy.title,
       })}
       $background={"white"}
-      isPreviewMode={isPreviewMode}
     >
       <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
         <Grid>
@@ -130,7 +128,6 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       policy,
-      isPreviewMode,
     },
     revalidate: 10,
   };

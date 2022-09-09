@@ -14,7 +14,6 @@ export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
 
 export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];
-  isPreviewMode: boolean;
 };
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
@@ -27,7 +26,6 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         description: "Webinars",
       })}
       $background="grey1"
-      isPreviewMode={props.isPreviewMode}
     >
       <Heading tag="h1" $fontSize={32}>
         Webinars
@@ -72,7 +70,6 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
   return {
     props: {
       webinars,
-      isPreviewMode,
     },
     revalidate: 10,
   };
