@@ -208,9 +208,7 @@ module.exports = async (phase) => {
       // Allow static builds with the default image loader.
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
       // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
-      images: {
-        unoptimized: isStaticBuild,
-      },
+      unoptimized: isStaticBuild,
 
       domains: imageDomains,
       /**
