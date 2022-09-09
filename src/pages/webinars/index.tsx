@@ -14,7 +14,6 @@ export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
 
 export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];
-  isPreviewMode: boolean;
 };
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
@@ -71,7 +70,6 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
   return {
     props: {
       webinars,
-      isPreviewMode,
     },
     revalidate: 10,
   };

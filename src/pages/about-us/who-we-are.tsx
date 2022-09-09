@@ -2,7 +2,7 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { AboutPage, TextBlock } from "../../node-lib/cms";
+import CMSClient, { AboutWhoWeArePage, TextBlock } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
@@ -21,8 +21,7 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
 
 export type AboutPageProps = {
-  pageData: AboutPage;
-  isPreviewMode: boolean;
+  pageData: AboutWhoWeArePage;
 };
 
 type TimeLineProps = TextBlock & FlexProps;
@@ -72,7 +71,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={"About us"}
-          heading={pageData.whoWeAre.sectionHeading}
+          heading={pageData.sectionHeading}
           summary={
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
           }
@@ -106,8 +105,8 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
               $pr={[0, 0, 72]}
               $minWidth={["50%"]}
             >
-              {pageData.whoWeAre.intro.mediaType == "video" && (
-                <CMSVideo video={pageData.whoWeAre.intro.video} />
+              {pageData.intro.mediaType == "video" && (
+                <CMSVideo video={pageData.intro.video} />
               )}
             </Flex>
             <Box $minWidth={["50%"]}>
@@ -116,17 +115,15 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                 $fontSize={[16, 18]}
                 $lineHeight={["24px", "28px"]}
               >
-                <PortableText
-                  value={pageData.whoWeAre.intro.bodyPortableText}
-                />
+                <PortableText value={pageData.intro.bodyPortableText} />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
-                {pageData.whoWeAre.intro.cta && (
+                {pageData.intro.cta && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     iconPosition="trailing"
-                    label={pageData.whoWeAre.intro.cta.label}
-                    href={getCTAHref(pageData.whoWeAre.intro.cta)}
+                    label={pageData.intro.cta.label}
+                    href={getCTAHref(pageData.intro.cta)}
                   />
                 )}
               </Flex>
@@ -134,23 +131,23 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           </Card>
         </Flex>
         <TimeLineCard
-          bodyPortableText={pageData.whoWeAre.timeline.from.bodyPortableText}
-          title={pageData.whoWeAre.timeline.from.title}
+          bodyPortableText={pageData.timeline.from.bodyPortableText}
+          title={pageData.timeline.from.title}
           $alignItems={"flex-start"}
         />
         <TimeLineCard
-          bodyPortableText={pageData.whoWeAre.timeline.to.bodyPortableText}
-          title={pageData.whoWeAre.timeline.to.title}
+          bodyPortableText={pageData.timeline.to.bodyPortableText}
+          title={pageData.timeline.to.title}
           $alignItems={["flex-start", "center"]}
         />
         <TimeLineCard
-          bodyPortableText={pageData.whoWeAre.timeline.beyond.bodyPortableText}
-          title={pageData.whoWeAre.timeline.beyond.title}
-          cta={pageData.whoWeAre.timeline.beyond.cta}
+          bodyPortableText={pageData.timeline.beyond.bodyPortableText}
+          title={pageData.timeline.beyond.title}
+          cta={pageData.timeline.beyond.cta}
           $alignItems={["flex-start", "flex-end"]}
         />
         <Grid $mb={80} $cg={28} $rg={32}>
-          {pageData.whoWeAre.principles.map((principle) => (
+          {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
                 <Card $background={"videoBlue"}>
@@ -184,11 +181,11 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
-  const aboutPage = await CMSClient.aboutPage({
+  const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
     previewMode: isPreviewMode,
   });
 
-  if (!aboutPage) {
+  if (!aboutWhoWeArePage) {
     return {
       notFound: true,
     };
@@ -196,8 +193,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 
   return {
     props: {
-      pageData: aboutPage,
-      isPreviewMode,
+      pageData: aboutWhoWeArePage,
     },
     revalidate: 10,
   };
