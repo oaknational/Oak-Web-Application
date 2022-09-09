@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.0...v1.5.1) (2022-09-09)
+
+
+### Bug Fixes
+
+* homepage classroom teacher links to open in new tab ([da94277](https://github.com/oaknational/Oak-Web-Application/commit/da94277d5aa101b8669b1da5beb4fdd0805ab3e8))
+
 # [1.5.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.1...v1.5.0) (2022-09-09)
 
 
