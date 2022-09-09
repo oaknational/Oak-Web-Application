@@ -70,31 +70,31 @@ const buttonBorderTop = css`
   ${buttonBorder}
   height: ${TOP_THICKNESS}px;
   left: 0;
-  bottom: 100%;
+  bottom: calc(100% - 1px);
 `;
 
 const buttonBorderRight = css`
   ${buttonBorder}
   width: ${RIGHT_THICKNESS}px;
-  top: -${TOP_THICKNESS}px;
-  left: 100%;
-  height: calc(100% + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
+  top: -${TOP_THICKNESS - 1}px;
+  left: calc(100% - 1px);
+  height: calc(100% - 2px + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
 `;
 
 const buttonBorderBottom = css`
   ${buttonBorder}
   height: ${BOTTOM_THICKNESS}px;
   height: 6px;
-  top: 100%;
+  top: calc(100% - 1px);
   left: 0;
 `;
 
 const buttonBorderLeft = css`
   ${buttonBorder}
   width: ${LEFT_THICKNESS}px;
-  top: -${TOP_THICKNESS}px;
-  right: 100%;
-  height: calc(100% + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
+  top: -${TOP_THICKNESS - 1}px;
+  right: calc(100% - 1px);
+  height: calc(100% - 2px + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
 `;
 
 const ButtonBorderTop = styled(Svg)`
