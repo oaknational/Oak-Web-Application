@@ -139,6 +139,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $background="pastelTurqoise"
                     $pv={[72, 80]}
                     $maxHeight={240}
+                    $ph={[16, 24]}
                   >
                     <BoxBorders />
                     <Box $mv={12}>
@@ -183,12 +184,6 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                 priority
               />
             </Cover>
-
-            {/* <CardImage
-              alt={"curriculum design illustration"}
-              imageSrc={"/images/illustrations/curriculum-approach.svg"}
-              position={"center center"}
-            /> */}
           </Flex>
           <Flex $flexDirection={"column"}>
             <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
