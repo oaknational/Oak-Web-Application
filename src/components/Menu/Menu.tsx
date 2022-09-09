@@ -33,7 +33,6 @@ const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
   position: fixed;
   top: 0;
   right: 0;
-  padding: 0 0 0 16px;
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
