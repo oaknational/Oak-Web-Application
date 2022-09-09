@@ -5,6 +5,7 @@ import WebinarDetailPage, {
   WebinarPageProps,
 } from "../../../pages/webinars/[webinarSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
@@ -60,6 +61,19 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "An upcoming webinar"
         );
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <WebinarDetailPage
+            webinar={testSerializedWebinar}
+            isPreviewMode={false}
+          />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });

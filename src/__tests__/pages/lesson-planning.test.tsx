@@ -9,6 +9,7 @@ import {
   mockVideoAsset,
   portableTextFromString,
 } from "../__helpers__/cms";
+import renderWithSeo from "../__helpers__/renderWithSeo";
 
 const testPlanningPageData: PlanningPage = {
   id: "01",
@@ -65,6 +66,7 @@ describe("pages/lesson-planning.tsx", () => {
       },
     }));
   });
+
   it("Renders correct title ", async () => {
     renderWithProviders(
       <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
@@ -74,6 +76,16 @@ describe("pages/lesson-planning.tsx", () => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "Planning title"
       );
+    });
+  });
+
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 

@@ -5,6 +5,7 @@ import {
   documentSchema,
   dateSchema,
   blogWebinarCategorySchema,
+  seoSchema,
 } from "./base";
 import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
@@ -16,8 +17,8 @@ export const webinarSchema = z
     date: dateSchema,
     hosts: z.array(teamMemberPreviewSchema),
     category: blogWebinarCategorySchema,
-    // @TODO: Portable text type
     summaryPortableText: portableTextSchema,
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 

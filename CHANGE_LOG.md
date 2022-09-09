@@ -1,3 +1,43 @@
+## [1.4.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.0...v1.4.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* sharing-image-name ([e47b00c](https://github.com/oaknational/Oak-Web-Application/commit/e47b00c5de7cef688625e2823176ac1d58933c64))
+
+# [1.4.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.1...v1.4.0) (2022-09-08)
+
+
+### Features
+
+* add support for presentational-only images ([446c56a](https://github.com/oaknational/Oak-Web-Application/commit/446c56a99fe82c3ee316bb2cbfae5896c2678067))
+
+## [1.3.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.0...v1.3.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* video track more properties ([3a23a02](https://github.com/oaknational/Oak-Web-Application/commit/3a23a028ad5c235275f81d2590541c9ceced284a))
+* **video:** tracking plan ([5f3b88e](https://github.com/oaknational/Oak-Web-Application/commit/5f3b88e4a1fc58cc550374aadcdf3e03cad31847))
+
+# [1.3.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.2.0...v1.3.0) (2022-09-08)
+
+
+### Bug Fixes
+
+* add getSeoProps to each cms page template ([f2b36a3](https://github.com/oaknational/Oak-Web-Application/commit/f2b36a3bdce9701819e81c2afff37d07675fd7de))
+* add Seo to document schemas/types where missing ([5d14dd5](https://github.com/oaknational/Oak-Web-Application/commit/5d14dd567c3841afdbf5910fe3c8320626ddea0c))
+* add suffix to seo titles by default ([2fd5f4d](https://github.com/oaknational/Oak-Web-Application/commit/2fd5f4d564b7188bf8e90f968f5061f9ed9affbd))
+* correct typo in contact-us seo ([31bafb5](https://github.com/oaknational/Oak-Web-Application/commit/31bafb5716c76916ef79111d864cf6aef44163e6))
+* don't concat missing title into string, opt out of title template ([48ae6b3](https://github.com/oaknational/Oak-Web-Application/commit/48ae6b34c91e6db34c846dd45de742557a4e3e4d))
+* more correct seo titles ([6fb6596](https://github.com/oaknational/Oak-Web-Application/commit/6fb6596e767c9ce6c346ab4156ecac5691c2e3bd))
+* trim trailing slashes on canonical urls ([bf8a6df](https://github.com/oaknational/Oak-Web-Application/commit/bf8a6dfd4d53db845931a5589393ed470a54c4a9))
+
+
+### Features
+
+* add SEO tests to page templates ([4a44021](https://github.com/oaknational/Oak-Web-Application/commit/4a4402187f4973847aba4cd247917340231a9a32))
+
 # [1.2.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1.0...v1.2.0) (2022-09-07)
 
 

@@ -6,6 +6,7 @@ import WebinarListingPage, {
   WebinarListingPageProps,
 } from "../../../pages/webinars";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 const testWebinarPreview: WebinarPreview = {
   title: "An upcoming webinar",
@@ -70,6 +71,22 @@ describe("pages/webinar/index.tsx", () => {
           "href",
           "/webinars/a-past-webinar"
         );
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <WebinarListingPage
+            webinars={[
+              testSerializedWebinarPreview,
+              testSerializedWebinarPreview2,
+            ]}
+            isPreviewMode={false}
+          />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });
