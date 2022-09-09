@@ -14,6 +14,10 @@ export type WebinarPageProps = {
   webinar: SerializedWebinar;
 };
 
+/**
+ * @TODO: Remove /webinars/* from next-sitemap.config.js when built
+ */
+
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
     <Layout seoProps={getSeoProps(props.webinar.seo)} $background="grey1">

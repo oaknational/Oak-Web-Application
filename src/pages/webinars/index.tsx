@@ -16,6 +16,10 @@ export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];
 };
 
+/**
+ * @TODO: Remove /webinars/* from next-sitemap.config.js when built
+ */
+
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
 
