@@ -43,7 +43,6 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 
 export type BlogPageProps = {
   blog: SerializedBlog;
-  isPreviewMode: boolean;
 };
 
 // When we get the JSON portable text it doesn't have the same field names as

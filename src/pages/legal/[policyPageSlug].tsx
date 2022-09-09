@@ -16,7 +16,6 @@ type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
 
 export type PolicyPageProps = {
   policy: SerializedPolicyPage;
-  isPreviewMode: boolean;
 };
 
 const customPolicyComponent: PortableTextComponents = {
@@ -129,7 +128,6 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       policy,
-      isPreviewMode,
     },
     revalidate: 10,
   };

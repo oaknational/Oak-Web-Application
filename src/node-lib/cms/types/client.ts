@@ -1,4 +1,13 @@
-import { HomePage, AboutPage, PlanningPage, CurriculumPage } from "./pages";
+import {
+  HomePage,
+  PlanningPage,
+  CurriculumPage,
+  AboutBoardPage,
+  AboutLeadershipPage,
+  AboutPartnersPage,
+  AboutWhoWeArePage,
+  AboutWorkWithUsPage,
+} from "./pages";
 import {
   BlogPost,
   BlogPostPreview,
@@ -26,7 +35,11 @@ export interface CMSClient {
     blogPostBySlug(slug: string, params?: Params): Promise<BlogPost | null>;
     homepage(params?: Params): Promise<HomePage | null>;
     planningPage(params?: Params): Promise<PlanningPage | null>;
-    aboutPage(params?: Params): Promise<AboutPage | null>;
+    aboutWhoWeArePage(params?: Params): Promise<AboutWhoWeArePage | null>;
+    aboutLeadershipPage(params?: Params): Promise<AboutLeadershipPage | null>;
+    aboutBoardPage(params?: Params): Promise<AboutBoardPage | null>;
+    aboutPartnersPage(params?: Params): Promise<AboutPartnersPage | null>;
+    aboutWorkWithUsPage(params?: Params): Promise<AboutWorkWithUsPage | null>;
     curriculumPage(params?: Params): Promise<CurriculumPage | null>;
     policyPageBySlug(slug: string, params?: Params): Promise<PolicyPage | null>;
     policyPages(params?: ListParams): Promise<PolicyPagePreview[]>;

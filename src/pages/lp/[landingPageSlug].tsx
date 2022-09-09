@@ -8,7 +8,6 @@ import CMSClient, { LandingPage } from "../../node-lib/cms";
 
 export type LandingPageProps = {
   pageData: LandingPage;
-  isPreviewMode: boolean;
 };
 
 const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
@@ -62,7 +61,6 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       pageData: landingPageResult,
-      isPreviewMode,
     },
     revalidate: 10,
   };
