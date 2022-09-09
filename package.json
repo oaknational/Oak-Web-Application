@@ -158,6 +158,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "typescript": "^4.6.3",
     "typescript-plugin-css-modules": "^3.4.0",
+    "webpack-bugsnag-plugins": "^1.8.0",
     "whatwg-fetch": "^3.6.2"
   },
   "repository": {

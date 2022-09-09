@@ -1,5 +1,6 @@
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 
+const { BugsnagBuildReporterPlugin } = require("webpack-bugsnag-plugins");
 const { PHASE_TEST } = require("next/constants");
 
 const {
@@ -69,6 +70,28 @@ module.exports = async (phase) => {
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
+    webpack: (config, { dev }) => {
+      // Non-dev builds only.
+      if (!dev) {
+        // Add source maps to production builds.
+        console.log("Generating production sourcemaps");
+        config.devtool = "source-map";
+
+        // Tell Bugsnag about the build.
+        const bugsnagBuildInfo = {
+          apiKey: oakConfig.bugsnag.apiKey,
+          appVersion,
+          releaseStage,
+        };
+        config.plugins.push(
+          new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
+            logLevel: "error",
+          })
+        );
+      }
+
+      return config;
+    },
     /**
      * Disable font optimization as we're using Cloudflare's fast-google-fonts
      * worker which not only includes this optimization but also rewrites all
@@ -82,14 +105,7 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
-    experimental: {
-      // Allow static builds with the default image loader.
-      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
-      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
-      images: {
-        unoptimized: isStaticBuild,
-      },
-    },
+
     // Allow static builds with deleted beta pages to build.
     eslint: {
       ignoreDuringBuilds: isStaticWWWBuild,
@@ -189,6 +205,13 @@ module.exports = async (phase) => {
       SANITY_ASSET_CDN_HOST,
     },
     images: {
+      // Allow static builds with the default image loader.
+      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
+      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
+      images: {
+        unoptimized: isStaticBuild,
+      },
+
       domains: imageDomains,
       /**
        * deviceSizes
