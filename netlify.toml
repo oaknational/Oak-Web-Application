@@ -3,7 +3,7 @@
 # need changing to `www` and the status to `301`.
 [[redirects]]
 from = 'http://oak-web-application.netlify.app/*'
-to = 'https://owa-n.thenational.academy/:splat'
+to = 'https://netlify-test.thenational.academy/:splat'
 status = 302
 force = true
 
@@ -12,7 +12,7 @@ force = true
 # need changing to `www` and the status to `301`.
 [[redirects]]
 from = 'https://oak-web-application.netlify.app/*'
-to = 'https://owa-n.thenational.academy/:splat'
+to = 'https://netlify-test.thenational.academy/:splat'
 status = 302
 force = true
 
