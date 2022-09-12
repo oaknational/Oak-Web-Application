@@ -8,6 +8,7 @@ import {
   Attachment,
   TextBlock,
   TeamMember,
+  BlogPostPreview,
   Seo,
 } from "..";
 
@@ -20,6 +21,7 @@ export type HomePage = Document & {
     title: string;
     bodyPortableText: PortableTextJSON;
   };
+  seo?: Seo | null;
 };
 
 export type PlanningPage = Document & {
@@ -42,50 +44,55 @@ export type PlanningPage = Document & {
   seo?: Seo | null;
 };
 
-export type AboutPage = Document & {
+export type AboutPageBase = Document & {
   title: string;
-  whoWeAre: {
-    sectionHeading: string;
-    intro: TextAndMedia;
-    timeline: {
-      from: TextBlock;
-      to: TextBlock;
-      beyond: TextBlock;
-      cta: CTA;
-    };
-    principles: TextBlock[];
-  };
-  leadership: {
-    sectionHeading: string;
-    introPortableText: PortableTextJSON;
-  };
-  board: {
-    sectionHeading: string;
-    introPortableText: PortableTextJSON;
-    documents: Attachment[];
-    governancePortableText: PortableTextJSON;
-    boardMembers: TeamMember[];
-  };
-  partners: {
-    sectionHeading: string;
-    introPortableText: PortableTextJSON;
-    techPartners: Array<SanityImage & { name: string }>;
-    curriculumPartners: Array<SanityImage & { name: string }>;
-  };
-  workWithUs: {
-    sectionHeading: string;
-    introPortableText: PortableTextJSON;
-    cards: {
-      joinTheTeam: Card;
-      advisory: Card;
-      curriculumPartner: Card;
-      teacherResearch: Card;
-    };
-  };
   contactSection: {
     infoPortableText: PortableTextJSON;
   };
   seo?: Seo | null;
+};
+
+export type AboutWhoWeArePage = AboutPageBase & {
+  sectionHeading: string;
+  intro: TextAndMedia;
+  timeline: {
+    from: TextBlock;
+    to: TextBlock;
+    beyond: TextBlock;
+    cta: CTA;
+  };
+  principles: TextBlock[];
+};
+
+export type AboutLeadershipPage = AboutPageBase & {
+  sectionHeading: string;
+  introPortableText: PortableTextJSON;
+};
+
+export type AboutBoardPage = AboutPageBase & {
+  sectionHeading: string;
+  introPortableText: PortableTextJSON;
+  documents: Attachment[];
+  governancePortableText: PortableTextJSON;
+  boardMembers: TeamMember[];
+};
+
+export type AboutPartnersPage = AboutPageBase & {
+  sectionHeading: string;
+  introPortableText: PortableTextJSON;
+  techPartners: Array<SanityImage & { name: string }>;
+  curriculumPartners: Array<SanityImage & { name: string }>;
+};
+
+export type AboutWorkWithUsPage = AboutPageBase & {
+  sectionHeading: string;
+  introPortableText: PortableTextJSON;
+  cards: {
+    joinTheTeam: Card;
+    advisory: Card;
+    curriculumPartner: Card;
+    teacherResearch: Card;
+  };
 };
 
 export type CurriculumPage = Document & {
@@ -98,7 +105,7 @@ export type CurriculumPage = Document & {
     title: string;
     posts: {
       title: string;
-      post: { title: string; slug: { current: string } };
+      post: Pick<BlogPostPreview, "title" | "slug">;
     }[];
   };
   ourApproach: TextBlock;

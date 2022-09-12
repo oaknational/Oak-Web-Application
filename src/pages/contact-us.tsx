@@ -6,7 +6,6 @@ import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import Card from "../components/Card";
 import Flex from "../components/Flex";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
@@ -14,6 +13,7 @@ import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
 import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import UnstyledButton from "../components/UnstyledButton";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 
 const ContactUs: NextPage = () => {
   const newsletterFormProps = useNewsletterForm();
@@ -109,12 +109,16 @@ const ContactUs: NextPage = () => {
         ),
       },
     ],
+    seo: {
+      title: "Contact us",
+      description: `We love to help and always welcome any feedback too. You'll find options to get in touch with us here.`,
+    },
   };
 
   const { title, heading, summaryPortableText, contactDetails } = data;
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Layout seoProps={getSeoProps(data.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
         <SummaryCard
           title={title}

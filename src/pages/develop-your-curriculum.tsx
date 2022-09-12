@@ -30,7 +30,6 @@ const RotatedCard = styled(Card)`
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
-  isPreviewMode: boolean;
 };
 
 const elementsOfCurriculumDesignHeadings = [
@@ -39,16 +38,9 @@ const elementsOfCurriculumDesignHeadings = [
   "An easy way to refresh resources:",
 ];
 
-const Curriculum: NextPage<CurriculumPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -114,7 +106,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               {pageData.elements.title}
             </Heading>
           </Box>
-          <Grid $ph={[0, 24]} $cg={16}>
+          <Grid $ph={[0, 24]} $cg={16} data-testid="elements-of-curriculum">
             {elementsOfCurriculumDesignHeadings.map((heading, index) => (
               <GridArea
                 $display={["none", "block"]}
@@ -129,8 +121,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               </GridArea>
             ))}
             {pageData.elements.posts.map((element, index) => (
-              <Fragment>
-                <GridArea key={`${index}-${element.title}`} $colSpan={[12, 4]}>
+              <Fragment key={`${index}-${element.title}`}>
+                <GridArea $colSpan={[12, 4]}>
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
                     <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
                       {element.title}
@@ -150,7 +142,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        <CardLink href={`/blog/${element.post.slug.current}`}>
+                        <CardLink href={`/blog/${element.post.slug}`}>
                           {element.title}
                         </CardLink>
                       </Heading>
@@ -215,7 +207,6 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
   return {
     props: {
       pageData: curriculumPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

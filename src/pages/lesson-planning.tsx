@@ -25,7 +25,6 @@ import CMSVideo from "../components/CMSVideo";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
-  isPreviewMode: boolean;
 };
 
 const lessonElementIds = {
@@ -146,16 +145,9 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -474,7 +466,6 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   return {
     props: {
       pageData: planningPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

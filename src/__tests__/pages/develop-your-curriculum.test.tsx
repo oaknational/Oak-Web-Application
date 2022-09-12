@@ -1,9 +1,10 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 
-import { CurriculumPage } from "../../node-lib/cms";
+import { BlogPostPreview, CurriculumPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 import Curriculum from "../../pages/develop-your-curriculum";
+import renderWithSeo from "../__helpers__/renderWithSeo";
 
 const testCurriculumPageData: CurriculumPage = {
   id: "01",
@@ -35,10 +36,15 @@ const testCurriculumPageData: CurriculumPage = {
         title: "blog title",
         post: {
           title: "post title",
-          slug: {
-            current: "/",
-          },
-        },
+          slug: "some-post",
+        } as BlogPostPreview,
+      },
+      {
+        title: "other blog title",
+        post: {
+          title: "other post title",
+          slug: "some-other-post",
+        } as BlogPostPreview,
       },
     ],
   },
@@ -56,7 +62,7 @@ const testCurriculumPageData: CurriculumPage = {
 
 const getPageData = jest.fn(() => testCurriculumPageData);
 
-describe("pages/curriculum.tsx", () => {
+describe("pages/develop-your-curriculum.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
@@ -69,14 +75,37 @@ describe("pages/curriculum.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <Curriculum pageData={testCurriculumPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "Curriculum title"
       );
+    });
+  });
+
+  it("renders the blog posts", async () => {
+    renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
+    const { posts } = testCurriculumPageData.elements;
+
+    await waitFor(() => {
+      const container = screen.getByTestId("elements-of-curriculum");
+      const links = within(container).getAllByRole("link");
+
+      expect(links).toHaveLength(posts.length);
+
+      expect(links[0]).toHaveAttribute("href", "/blog/some-post");
+      expect(links[1]).toHaveAttribute("href", "/blog/some-other-post");
+    });
+  });
+
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <Curriculum pageData={testCurriculumPageData} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 

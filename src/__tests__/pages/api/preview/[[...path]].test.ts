@@ -1,6 +1,8 @@
 import handler from "../../../../pages/api/preview/[[...path]]";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
+const setPreviewData = jest.fn();
+
 const createReqRes = (path: string[], secret = "SANITY_PREVIEW_SECRET") => {
   const { req, res } = createNextApiMocks({
     query: {
@@ -9,15 +11,27 @@ const createReqRes = (path: string[], secret = "SANITY_PREVIEW_SECRET") => {
     },
   });
 
-  res.setPreviewData = jest.fn();
+  res.setPreviewData = setPreviewData;
 
   return { req, res };
 };
+
+jest.mock("../../../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default: () => () => null,
+}));
 
 describe("/api/preview/[[...path]]", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+  });
+
+  it("should set preview data", async () => {
+    const { req, res } = createReqRes(["webinars", "some-webinar"]);
+    await handler(req, res);
+
+    expect(setPreviewData).toBeCalled();
   });
 
   it("should redirect to the desired path", async () => {
