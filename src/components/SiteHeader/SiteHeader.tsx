@@ -105,7 +105,7 @@ const SiteHeader: FC = () => {
         </a>
       </Link>
       <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
-        <P>
+        <P $fontFamily={"ui"}>
           <Link href={getPupilsUrl()}>
             <a
               onClick={() =>
@@ -117,7 +117,7 @@ const SiteHeader: FC = () => {
             </a>
           </Link>
         </P>
-        <P $ml={24} $mr={32}>
+        <P $ml={24} $mr={32} $fontFamily={"ui"}>
           <Link href={getTeachersUrl()}>
             <a
               onClick={() =>
