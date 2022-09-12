@@ -12,7 +12,7 @@ import { useMenuContext } from "../../context/Menu";
 import IconButton from "../Button/IconButton";
 import OakLink from "../OakLink";
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import { menuSections } from "../../browser-lib/fixtures/menuLinks";
+import { menuSections } from "../../browser-lib/fixtures/menuSections";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();

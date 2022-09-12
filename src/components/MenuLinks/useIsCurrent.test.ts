@@ -6,9 +6,6 @@ import useIsCurrent from "./useIsCurrent";
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("useIsCurrent", () => {
-  beforeEach(() => {
-    mockRouter.setCurrentUrl("");
-  });
   test.each([
     {
       linkHref: "/lesson-planning",
