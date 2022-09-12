@@ -1,0 +1,15 @@
+[[redirects]]
+from = 'http://oak-web-application.netlify.app/*'
+to = 'https://owa-n.thenational.academy/:splat'
+status = 301
+force = true
+
+[[redirects]]
+from = 'https://oak-web-application.netlify.app/*'
+to = 'https://owa-n.thenational.academy/:splat'
+status = 301
+force = true
+
+[[edge_functions]]
+  path = '/*'
+  function = 'subdomain-redirect'
