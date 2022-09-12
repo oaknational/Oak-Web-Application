@@ -11,7 +11,7 @@
         "uriFormat": "%s",
         "action": "debugWithChrome"
       }
-    }
+    },
     {
       "name": "OWA: debug client-side",
       "type": "chrome",
@@ -23,6 +23,6 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev"
-    },
+    }
   ]
 }
