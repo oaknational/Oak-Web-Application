@@ -102,10 +102,10 @@ const Menu: FC = ({ children }) => {
               </MenuHeader>
               <Flex
                 $flexDirection={"column"}
-                $overflow={"auto"}
+                $overflowY={"auto"}
                 $flexGrow={1}
                 $pt={[12, 72]}
-                $ml={[16]}
+                $pl={[16]}
               >
                 {/* Mobile logo */}
                 <Flex

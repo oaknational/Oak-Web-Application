@@ -15,7 +15,6 @@ const isSubPath = ({
 
 type UseIsCurrentProps = {
   href: string;
-  startsWith?: string;
 };
 
 /**
@@ -23,12 +22,12 @@ type UseIsCurrentProps = {
  * i.e. if the link's href is a subpath of the current path.
  */
 const useIsCurrent = (props: UseIsCurrentProps) => {
-  const { href, startsWith } = props;
+  const { href } = props;
   const { asPath } = useRouter();
 
   const isCurrent = isSubPath({
     currentPath: asPath,
-    href: startsWith || href,
+    href,
   });
 
   return isCurrent;

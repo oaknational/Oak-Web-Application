@@ -1,15 +1,11 @@
 export type MenuLinkSize = "small" | "medium" | "large";
 
 export type MenuLinkProps = {
-  // fontFamily: OakFontName;
-  // fontSize: [PixelSpacing];
-  // oakPage: OakPageName;
   href: string;
-  // target?: HTMLAttributeAnchorTarget;
-  // onClick?: () => void;
   size: MenuLinkSize;
   linkText: string;
-  // arrowSize: PixelSpacing[];
+  // for styling the active link
+  activeLinkHrefMatch?: string;
 };
 
 type MenuSection = Omit<MenuLinkProps, "size">[];

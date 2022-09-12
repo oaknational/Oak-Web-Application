@@ -31,6 +31,16 @@ export type IdentifyFn = (
   properties: IdentifyProperties
 ) => void;
 
+export type TrackEventName = Extract<
+  keyof typeof Avo,
+  | "planALessonSelected"
+  | "classroomSelected"
+  | "teacherHubSelected"
+  | "developYourCurriculumSelected"
+  | "notificationSelected"
+  | "aboutSelected"
+>;
+
 type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
 type AnalyticsContext = {
   track: TrackFns;

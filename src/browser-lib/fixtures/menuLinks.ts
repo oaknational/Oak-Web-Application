@@ -5,7 +5,18 @@ export const menuSections: MenuSections = {
     {
       // pageName: "",
       //   onClick: () => track.teacherHubSelected({ navigatedFrom: "menu" }),
-      href: "",
+      href: "/",
+      linkText: "Home",
+
+      // fontFamily: "heading",
+      // fontSize: [32],
+      // $mt: [20],
+      // arrowSize: [48],
+    },
+    {
+      // pageName: "",
+      //   onClick: () => track.teacherHubSelected({ navigatedFrom: "menu" }),
+      href: "https://teachers.thenational.academy",
       linkText: "Teacher hub",
 
       // fontFamily: "heading",
@@ -52,6 +63,7 @@ export const menuSections: MenuSections = {
     },
     {
       href: "/about-us/who-we-are",
+      activeLinkHrefMatch: "/about-us",
       linkText: "About us",
       // fontSize: [16],
       // fontFamily: "ui",

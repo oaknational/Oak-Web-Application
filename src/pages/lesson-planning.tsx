@@ -326,9 +326,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                               iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={
-                                "https://teachers.thenational.academy"
-                              }
+                              href={"https://teachers.thenational.academy"}
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}

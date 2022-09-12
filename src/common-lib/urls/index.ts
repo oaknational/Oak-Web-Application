@@ -1,19 +1,3 @@
-// Alphabetical order please
-// export type OakInternalPath =
-//   | "/about-us/board"
-//   | "/about-us/who-we-are"
-//   | "/blog"
-//   | "/contact-us"
-//   | "/develop-your-curriculum"
-//   | "/lesson-planning";
-// export type OakInternalPage =
-//   | "aboutWhoWeAre"
-//   | "aboutBoard"
-//   | "blog"
-//   | "contact"
-//   | "curriculum"
-//   | "planning";
-
 const INTERNAL_PATHS = {
   "about-who-we-are": "/about-us/who-we-are",
   "about-board": "/about-us/who-we-are",
@@ -38,6 +22,7 @@ const EXTERNAL_URLS = {
 type OakExternalPage = keyof typeof EXTERNAL_URLS;
 export type OakExternalUrl = typeof EXTERNAL_URLS[OakExternalPage];
 
+export type OakHref = OakInternalPath | OakExternalUrl;
 export type MaybeOakHref =
   | OakInternalPath
   | OakExternalUrl
@@ -57,43 +42,8 @@ export const isOakExternalUrl = (url: MaybeOakHref): url is OakExternalUrl => {
   );
 };
 
-// export const getPupilsUrl = () => {
-//   return "https://classroom.thenational.academy/";
-// };
-// export const getTeachersUrl = () => {
-//   return "https://teachers.thenational.academy";
-// };
-// /**
-//  * Url for support/help centre
-//  */
-// export const getHelpUrl = () => {
-//   return "https://support.thenational.academy/";
-// };
-// export const getCareersUrl = () => {
-//   return "https://app.beapplied.com/org/1574/oak-national-academy";
-// };
-// export const getOakCurriculumUrl = () => {
-//   return `${getTeachersUrl()}/oaks-curricula`;
-// };
+export const isOakHref = (url: MaybeOakHref): url is OakHref => {
+  return isOakInternalPath(url) || isOakExternalUrl(url);
+};
 
 export type OakPageName = OakInternalPage | OakExternalPage;
-const isInternal = (pageName: OakPageName): pageName is OakInternalPage => {
-  return Object.keys(INTERNAL_PATHS).includes(pageName);
-};
-
-export const getOakLinkProps = (props: {
-  pageName: OakInternalPage | OakExternalPage;
-}) => {
-  const { pageName } = props;
-
-  if (isInternal(pageName)) {
-    return {
-      href: INTERNAL_PATHS[pageName],
-    };
-  }
-
-  return {
-    href: EXTERNAL_URLS[pageName],
-    _target: "_blank",
-  };
-};
