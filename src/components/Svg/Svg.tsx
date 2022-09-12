@@ -1,18 +1,19 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { OakColorName } from "../../styles/theme";
-import color from "../../styles/utils/color";
+import color, { ColorProps } from "../../styles/utils/color";
+import display, { DisplayProps } from "../../styles/utils/display";
 import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 
 const StyledSvg = styled.svg`
   ${color}
+  ${display}
 `;
-type SvgProps = {
-  name: SvgName;
-  className?: string;
-  $color?: OakColorName;
-};
+type SvgProps = DisplayProps &
+  ColorProps & {
+    name: SvgName;
+    className?: string;
+  };
 const Svg: FC<SvgProps> = (props) => {
   return (
     <StyledSvg
