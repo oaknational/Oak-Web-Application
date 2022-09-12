@@ -4,5 +4,8 @@ query allLandingPages($isDraft: Boolean = false, $limit: Int = 9999) {
     slug {
       current
     }
+    seo {
+      ...Seo
+    }
   }
 }

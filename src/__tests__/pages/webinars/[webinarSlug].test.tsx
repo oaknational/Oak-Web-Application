@@ -5,6 +5,7 @@ import WebinarDetailPage, {
   WebinarPageProps,
 } from "../../../pages/webinars/[webinarSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
@@ -50,16 +51,23 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage
-          webinar={testSerializedWebinar}
-          isPreviewMode={false}
-        />
+        <WebinarDetailPage webinar={testSerializedWebinar} />
       );
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "An upcoming webinar"
         );
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <WebinarDetailPage webinar={testSerializedWebinar} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });

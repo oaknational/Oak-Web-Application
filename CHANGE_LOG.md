@@ -1,3 +1,96 @@
+## [1.7.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.1...v1.7.2) (2022-09-12)
+
+## [1.7.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.0...v1.7.1) (2022-09-09)
+
+# [1.7.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.2...v1.7.0) (2022-09-09)
+
+
+### Bug Fixes
+
+* **Next config:** typo ([3c7048d](https://github.com/oaknational/Oak-Web-Application/commit/3c7048d762bb648b5042e2f867bc29cdf8e4164a))
+
+
+### Features
+
+* **Bugsnag:** report builds to Bugsnag at build time ([56aed88](https://github.com/oaknational/Oak-Web-Application/commit/56aed884391968d302b7757c63ce1c10913f8555))
+* **Bugsnag:** upload sourcemaps for production builds ([ebedf2c](https://github.com/oaknational/Oak-Web-Application/commit/ebedf2c92274c72b5d560b1354f991bf100689db))
+
+## [1.6.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.1...v1.6.2) (2022-09-09)
+
+## [1.6.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.0...v1.6.1) (2022-09-09)
+
+# [1.6.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.2...v1.6.0) (2022-09-09)
+
+
+### Features
+
+* concat current path on preview mode indicator exit-preview link ([414f60c](https://github.com/oaknational/Oak-Web-Application/commit/414f60c7c68e5a56c0452c32a23340a925951e1c))
+* exit-preview now returns you to the page you were viewing ([e4745b0](https://github.com/oaknational/Oak-Web-Application/commit/e4745b05a15e3352b89000904064b465e0a620c8))
+* remove isPreviewMode prop from layout, infer from router context ([5101747](https://github.com/oaknational/Oak-Web-Application/commit/510174743432bb8be64603a150a014c2e6c4706f))
+* tests for exit-preview, bring back in line with enter preview api ([4dc116e](https://github.com/oaknational/Oak-Web-Application/commit/4dc116e87f8559e9d07692cfa20993db0b5d2ddb))
+
+## [1.5.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.1...v1.5.2) (2022-09-09)
+
+
+### Bug Fixes
+
+* add outline around content of button to prevent gaps ([ee2d538](https://github.com/oaknational/Oak-Web-Application/commit/ee2d53855d3233bd0d9382d62166aa78b827c54f))
+* push borders in one by pixel for browser pixel rounding errors ([8861aba](https://github.com/oaknational/Oak-Web-Application/commit/8861aba93f19916c4324839e7a9ccd8993e9d212))
+
+## [1.5.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.5.0...v1.5.1) (2022-09-09)
+
+
+### Bug Fixes
+
+* homepage classroom teacher links to open in new tab ([da94277](https://github.com/oaknational/Oak-Web-Application/commit/da94277d5aa101b8669b1da5beb4fdd0805ab3e8))
+
+# [1.5.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.1...v1.5.0) (2022-09-09)
+
+
+### Features
+
+* **favicon:** update favicon to black bg ([c04f987](https://github.com/oaknational/Oak-Web-Application/commit/c04f987fa6a2c82e39dc188d03d82b63a4bce6f1))
+
+## [1.4.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.4.0...v1.4.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* sharing-image-name ([e47b00c](https://github.com/oaknational/Oak-Web-Application/commit/e47b00c5de7cef688625e2823176ac1d58933c64))
+
+# [1.4.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.1...v1.4.0) (2022-09-08)
+
+
+### Features
+
+* add support for presentational-only images ([446c56a](https://github.com/oaknational/Oak-Web-Application/commit/446c56a99fe82c3ee316bb2cbfae5896c2678067))
+
+## [1.3.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.3.0...v1.3.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* video track more properties ([3a23a02](https://github.com/oaknational/Oak-Web-Application/commit/3a23a028ad5c235275f81d2590541c9ceced284a))
+* **video:** tracking plan ([5f3b88e](https://github.com/oaknational/Oak-Web-Application/commit/5f3b88e4a1fc58cc550374aadcdf3e03cad31847))
+
+# [1.3.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.2.0...v1.3.0) (2022-09-08)
+
+
+### Bug Fixes
+
+* add getSeoProps to each cms page template ([f2b36a3](https://github.com/oaknational/Oak-Web-Application/commit/f2b36a3bdce9701819e81c2afff37d07675fd7de))
+* add Seo to document schemas/types where missing ([5d14dd5](https://github.com/oaknational/Oak-Web-Application/commit/5d14dd567c3841afdbf5910fe3c8320626ddea0c))
+* add suffix to seo titles by default ([2fd5f4d](https://github.com/oaknational/Oak-Web-Application/commit/2fd5f4d564b7188bf8e90f968f5061f9ed9affbd))
+* correct typo in contact-us seo ([31bafb5](https://github.com/oaknational/Oak-Web-Application/commit/31bafb5716c76916ef79111d864cf6aef44163e6))
+* don't concat missing title into string, opt out of title template ([48ae6b3](https://github.com/oaknational/Oak-Web-Application/commit/48ae6b34c91e6db34c846dd45de742557a4e3e4d))
+* more correct seo titles ([6fb6596](https://github.com/oaknational/Oak-Web-Application/commit/6fb6596e767c9ce6c346ab4156ecac5691c2e3bd))
+* trim trailing slashes on canonical urls ([bf8a6df](https://github.com/oaknational/Oak-Web-Application/commit/bf8a6dfd4d53db845931a5589393ed470a54c4a9))
+
+
+### Features
+
+* add SEO tests to page templates ([4a44021](https://github.com/oaknational/Oak-Web-Application/commit/4a4402187f4973847aba4cd247917340231a9a32))
+
 # [1.2.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1.0...v1.2.0) (2022-09-07)
 
 

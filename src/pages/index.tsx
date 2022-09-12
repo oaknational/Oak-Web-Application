@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
@@ -93,7 +93,6 @@ export type SerializedPost =
 export type HomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
-  isPreviewMode: boolean;
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
@@ -104,7 +103,9 @@ const Home: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={props.isPreviewMode}>
+    <Layout
+      seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
+    >
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>
@@ -191,6 +192,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
+                      target="_blank"
                     >
                       Classroom
                     </CardLink>
@@ -255,6 +257,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       onClick={() =>
                         track.teacherHubSelected({ navigatedFrom: "card" })
                       }
+                      target="_blank"
                     >
                       Teacher Hub
                     </CardLink>
@@ -335,7 +338,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                       {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
                       {i < posts.length - 1 && (
-                        <Hr $color="black" $mt={[0, 16]} $mb={16} />
+                        <Hr
+                          thickness={2}
+                          $color="black"
+                          $mt={[24, 16]}
+                          $mb={[32, 16]}
+                        />
                       )}
                     </li>
                   ))}
@@ -415,7 +423,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     props: {
       pageData: homepageData,
       posts,
-      isPreviewMode,
     },
     revalidate: 10,
   };

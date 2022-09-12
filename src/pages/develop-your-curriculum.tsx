@@ -31,7 +31,6 @@ const RotatedCard = styled(Card)`
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
-  isPreviewMode: boolean;
 };
 
 const elementsOfCurriculumDesignHeadings = [
@@ -40,16 +39,9 @@ const elementsOfCurriculumDesignHeadings = [
   "An easy way to refresh resources:",
 ];
 
-const Curriculum: NextPage<CurriculumPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -216,7 +208,6 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
   return {
     props: {
       pageData: curriculumPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

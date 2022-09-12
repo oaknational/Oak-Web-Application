@@ -3,6 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import { BlogPost } from "../../../node-lib/cms";
 import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -82,14 +83,22 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("BlogDetailPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
-        <BlogDetailPage blog={testSerializedBlog} isPreviewMode={false} />
-      );
+      renderWithProviders(<BlogDetailPage blog={testSerializedBlog} />);
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "A blog"
         );
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <BlogDetailPage blog={testSerializedBlog} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });

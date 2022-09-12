@@ -1,7 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
@@ -9,6 +8,7 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Typography, { Heading, P } from "../../components/Typography";
 import CMSClient, { PolicyPage } from "../../node-lib/cms";
 import { BasePortableTextProvider } from "../../components/PortableText";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -16,7 +16,6 @@ type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
 
 export type PolicyPageProps = {
   policy: SerializedPolicyPage;
-  isPreviewMode: boolean;
 };
 
 const customPolicyComponent: PortableTextComponents = {
@@ -44,12 +43,14 @@ const customPolicyComponent: PortableTextComponents = {
   },
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        ...policy.seo,
+        title: policy.seo?.title || policy.title,
+      })}
       $background={"white"}
-      isPreviewMode={isPreviewMode}
     >
       <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
         <Grid>
@@ -127,7 +128,6 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       policy,
-      isPreviewMode,
     },
     revalidate: 10,
   };

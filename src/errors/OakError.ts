@@ -141,8 +141,11 @@ export interface ErrorInfo {
  * @constructor
  */
 class OakError extends Error {
-  constructor(private errorInfo: ErrorInfo) {
+  private errorInfo;
+
+  constructor(errorInfo: ErrorInfo) {
     super(getErrorMessage(errorInfo));
+    this.errorInfo = errorInfo;
   }
 
   /** @returns The error code. */

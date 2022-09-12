@@ -55,4 +55,18 @@ describe("CMSImage", () => {
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
     expect(img.getAttribute("alt")).toBe("");
   });
+
+  it("sets an empty alt string when isPresentational is true", async () => {
+    const altString = "a donkey in a field on a sunny day";
+    const mockImage = {
+      ...mockImageAsset(),
+      altText: altString,
+      isPresentational: true,
+    };
+    renderWithProviders(<CMSImage image={mockImage} />);
+
+    const img = screen.getByRole("img");
+    // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
+    expect(img.getAttribute("alt")).toBe("");
+  });
 });

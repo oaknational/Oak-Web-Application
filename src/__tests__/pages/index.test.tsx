@@ -7,7 +7,8 @@ import Home, {
 } from "../../pages";
 import CMSClient, { BlogPostPreview, HomePage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import { portableTextFromString } from "../__helpers__/cms";
+import renderWithSeo from "../__helpers__/renderWithSeo";
+import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 
 jest.mock("../../node-lib/cms");
 
@@ -19,11 +20,11 @@ const pageData = {
   summaryPortableText: portableTextFromString("Here's the page summary"),
 } as HomePage;
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("pages/index.tsx", () => {
   it("Renders correct title and summary", async () => {
-    renderWithProviders(
-      <Home pageData={pageData} posts={[]} isPreviewMode={false} />
-    );
+    renderWithProviders(<Home pageData={pageData} posts={[]} />);
 
     await waitFor(() => {
       const h1 = screen.getByRole("heading", { level: 1 });
@@ -35,9 +36,7 @@ describe("pages/index.tsx", () => {
   });
 
   it("Renders a link to the blog list", async () => {
-    renderWithProviders(
-      <Home pageData={pageData} posts={[]} isPreviewMode={false} />
-    );
+    renderWithProviders(<Home pageData={pageData} posts={[]} />);
 
     await waitFor(() => {
       const blogLink = screen.getByText("All blogs");
@@ -66,9 +65,7 @@ describe("pages/index.tsx", () => {
       },
     ] as SerializedPost[];
 
-    renderWithProviders(
-      <Home pageData={pageData} posts={mockPosts} isPreviewMode={false} />
-    );
+    renderWithProviders(<Home pageData={pageData} posts={mockPosts} />);
 
     await waitFor(() => {
       const list = screen
@@ -86,6 +83,24 @@ describe("pages/index.tsx", () => {
         "href",
         "/blog/some-blog-post"
       );
+    });
+  });
+
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <Home pageData={{ ...pageData, seo: undefined }} posts={[]} />
+      );
+
+      expect(seo).toEqual({});
+    });
+
+    it("renders the correct SEO details from the CMS", async () => {
+      const { seo } = renderWithSeo(
+        <Home pageData={{ ...pageData, seo: mockSeo() }} posts={[]} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 

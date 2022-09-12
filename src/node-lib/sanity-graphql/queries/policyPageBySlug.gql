@@ -9,5 +9,8 @@ query policyPageBySlug($slug: String, $isDraft: Boolean = false) {
       current
     }
     bodyPortableText: bodyRaw
+    seo {
+      ...Seo
+    }
   }
 }

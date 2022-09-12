@@ -6,5 +6,8 @@ query landingPageBySlug($slug: String, $isDraft: Boolean = false) {
     slug {
       current
     }
+    seo {
+      ...Seo
+    }
   }
 }
