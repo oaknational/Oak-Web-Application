@@ -1,5 +1,6 @@
 import Bugsnag, { Event, NotifiableError, OnErrorCallback } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
+import { serializeError } from "serialize-error";
 
 import config from "../../config";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
@@ -139,12 +140,12 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         }
 
         if (originalError && originalError instanceof Error) {
-          // @TODO: Needs to be a bugsnag Error type (w/ stackframes etc)
-          // event.errors.push(originalError);
           // Previously we were using https://github.com/sindresorhus/serialize-error
-          // event.addMetadata("Original error", serializeError(originalError));
+          event.addMetadata("Original error", serializeError(originalError));
+        } else {
+          // If originalError is not an Error, append it to metaFields
+          metaFields.originalError = originalError;
         }
-
         // @todo ensure metaFields are serializable otherwise data is lost
         event.addMetadata("Meta", metaFields);
       });
