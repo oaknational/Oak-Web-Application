@@ -23,10 +23,10 @@ type UseIsCurrentProps = {
  */
 const useIsCurrent = (props: UseIsCurrentProps) => {
   const { href } = props;
-  const { asPath } = useRouter();
+  const { pathname: currentPath } = useRouter();
 
   const isCurrent = isSubPath({
-    currentPath: asPath,
+    currentPath,
     href,
   });
 
