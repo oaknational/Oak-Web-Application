@@ -6,18 +6,17 @@ import { useRouter } from "next/router";
 
 import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme/types";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Flex from "../Flex";
-import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
+import Svg from "../Svg";
+import Box from "../Box";
 
 import MenuBackdrop from "./MenuBackdrop";
 
 export type MenuConfig = {
   width: string;
-  color: OakColorName;
   background: OakColorName;
 };
 
@@ -26,14 +25,7 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
-  ${zIndex}
-  background: ${(props) => getColorByName(props.background)};
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 0 0 0 16px;
+const SideMenu = styled(Flex)<TransitionProps>`
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -49,22 +41,11 @@ const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
   }};
 `;
 
-SideMenu.defaultProps = {
-  $width: ["100%", "50%", "40%"],
-};
-
-const MenuHeader = styled(Flex)`
-  position: fixed;
-  right: 0;
-  top: 20px;
-  width: 30px;
-`;
-
 const Menu: FC = ({ children }) => {
   const { open, toggleMenu, closeMenu } = useMenuContext();
   const theme = useTheme();
   const { menu } = theme;
-  const { background, color, width } = menu;
+  const { background } = menu;
   const { pathname } = useRouter();
 
   useEffect(() => {
@@ -78,34 +59,46 @@ const Menu: FC = ({ children }) => {
           <MenuBackdrop state={state} />
           <FocusScope contain restoreFocus autoFocus>
             <SideMenu
+              $position="fixed"
+              $top={0}
+              $right={0}
+              $height="100%"
+              $maxWidth="100%"
+              $width={720}
               $flexDirection={"column"}
-              background={background}
-              color={color}
-              width={width}
+              $background={background}
               state={state}
               $zIndex={"neutral"}
             >
-              <MenuHeader
-                $justifyContent={"right"}
-                $alignItems={"center"}
-                $pr={16}
-              >
+              <Svg
+                name="LoopingLine"
+                $display={["none", "block"]}
+                $color={"pupilsPink"}
+                $zIndex={"behind"}
+                $cover
+              />
+              <Svg
+                name="LoopingLine2"
+                $display={["block", "none"]}
+                $color={"pupilsPink"}
+                $zIndex={"behind"}
+                $cover
+              />
+              <Box $position={"fixed"} $top={20} $right={16}>
                 <IconButton
                   aria-label="Close Menu"
                   icon={"Cross"}
                   variant={"minimal"}
                   size={"header"}
-                  onClick={() => {
-                    toggleMenu();
-                  }}
+                  onClick={toggleMenu}
                 />
-              </MenuHeader>
+              </Box>
               <Flex
                 $flexDirection={"column"}
                 $overflowY={"auto"}
                 $flexGrow={1}
-                $pt={[12, 72]}
-                $pl={[16]}
+                $pv={[12, 72]}
+                $ph={[16, 72]}
               >
                 {/* Mobile logo */}
                 <Flex
@@ -123,8 +116,6 @@ const Menu: FC = ({ children }) => {
                 {/* Desktop logo */}
                 <Flex
                   $mt={"auto"}
-                  $mb={64}
-                  $mr={[0, 72]}
                   $pt={48}
                   $justifyContent={"space-between"}
                   $alignItems={"flex-end"}
