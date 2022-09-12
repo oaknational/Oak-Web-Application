@@ -145,6 +145,7 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
           // event.addMetadata("Original error", serializeError(originalError));
         }
 
+        // @todo ensure metaFields are serializable otherwise data is lost
         event.addMetadata("Meta", metaFields);
       });
     } catch (bugsnagErr) {
