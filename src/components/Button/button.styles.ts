@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import margin, { MarginProps } from "../../styles/utils/spacing";
 import { BackgroundIcon } from "../Icon/Icon";
 
@@ -61,7 +62,7 @@ const buttonStyles = css<ButtonStylesProps>`
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
-  transition: box-shadow 0.3s ease-in-out;
+  transition: ${HOVER_SHADOW_TRANSITION};
 
   :focus {
     outline: none;
