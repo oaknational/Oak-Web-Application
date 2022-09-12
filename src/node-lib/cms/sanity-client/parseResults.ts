@@ -1,3 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/**
+ * ban-ts-comment is ignored for this file as I can't figure
+ * out the correct generics to unwrap the zod schemas
+ *
+ * Probably something more like this:
+ *    type ArrayElementType<T> = T extends ZodArray<infer E> ? E : T;
+ * but alas, I'm having to write this one off for now
+ * - Ross, Sep '22
+ */
 import { z, ZodArray, ZodSchema, ZodTypeAny } from "zod";
 
 type WrapValue = {
@@ -8,11 +18,14 @@ type WrapValue = {
 const wrapValue: WrapValue = (item: unknown) =>
   Array.isArray(item) ? item : [item];
 
+// @ts-ignore
 export function createInvalidRejectingSchema<E, S extends ZodArray<E, "many">>(
   arraySchema: S
 ) {
-  const validate = (item: unknown) =>
-    arraySchema.element.safeParse(item).success;
+  const validate = (item: unknown) => {
+    // @ts-ignore - `element` does exist on all ZodArrays, my attempt at the generic type is just wrong
+    return arraySchema.element.safeParse(item).success;
+  };
   return z.preprocess((val) => wrapValue(val).filter(validate), arraySchema);
 }
 
@@ -87,14 +100,21 @@ export const parseResults = <S extends ZodSchema, D>(
       /**
        * Filter out any duplicates, rejecting the non-draft version
        * when a draft with a matching ID exists
+       *
+       * The ts-ignore comments are needed as uniqBy correctly infers types
+       * (see tests) but `parsedItems` is unknown because of dodgy types
+       * in `createInvalidRejectingSchema`
        */
       const uniqueItems = uniqBy(
         parsedItems,
+        // @ts-ignore
         (item) => trimDraftsPrefix(item.id),
+        // @ts-ignore
         (prev, current) => (isDraft(prev.id) ? prev : current)
       );
 
-      return uniqueItems;
+      // Explicitly cast the erroneous unknown[] to the right type
+      return uniqueItems as ReturnType<S["parse"]>;
     } else {
       return schema.parse(data);
     }
