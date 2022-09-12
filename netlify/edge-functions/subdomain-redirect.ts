@@ -1,5 +1,15 @@
 import type { Context } from "https://edge.netlify.com";
 
+/**
+ * Given a request at the Netlify edge, check if the subdomain matches the pattern
+ * `<nested_subdomain>.netlify.netlify.app`
+ * if so, redirect to the same nested subdomain on our canonical TLD.
+ *
+ * The intention is to automatically force PR and preview deployments to
+ * only be accessible through our managed TLD.
+ *
+ * Note: this function is interpreted in a deno environment.
+ */
 async function redirectNetlifySubdomains(
   request: Request,
   context: Context
@@ -7,12 +17,19 @@ async function redirectNetlifySubdomains(
   let subdomain;
   let redirected;
   try {
-    subdomain = request.url.match(
+    const subdomainMatches = request?.url?.match(
       /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:netlify\.app)/
-    )[1];
+    );
+    if (Array.isArray(subdomainMatches)) {
+      subdomain = subdomainMatches[1];
+    }
+    // Only redirect once, to avoid infinite redirect loops.
+    // Although this header has to come from Cloudflare, so
+    // don't think this can happen in the current implementation.
     redirected = request.headers.get("x-cloudflare-redirect");
   } catch (err) {
-    console.error("woops", request.url);
+    console.error("Subdomain matching failed.");
+    console.error(err, request.url);
   }
 
   console.log("redirect", redirected);
@@ -24,7 +41,7 @@ async function redirectNetlifySubdomains(
     return Response.redirect(redirectTargetUrl);
   } else {
     console.log("Request allowed through");
-    let res = await context.next();
+    const res = await context.next();
     return res;
   }
 }
