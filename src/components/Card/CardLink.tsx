@@ -26,7 +26,7 @@ export const CardLinkFocusUnderline = styled(Svg).attrs((props) => ({
   height: 10px;
   transform: rotate(-0.3deg);
   color: ${getColorByName("teachersYellow")};
-  filter: drop-shadow(2px 6px 0 rgb(0 0 0));
+  filter: drop-shadow(2px 4px 0 rgb(0 0 0));
   z-index: ${zIndexMap.inFront};
 `;
 
