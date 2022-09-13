@@ -8,21 +8,22 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "./Card";
 import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
-type CardLinkIconProps = {
+type RemoveField<Type, Key extends keyof Type> = {
+  [Property in keyof Type as Exclude<Property, Key>]: Type[Property];
+};
+
+type CardLinkIconProps = RemoveField<CardLinkProps, "children"> & {
   title: string;
   titleTag: HeadingTag;
   icon?: IconName;
   background?: OakColorName;
-  href: string;
-  cardLinkProps?: Omit<CardLinkProps, "href" | "children">;
 };
 const CardLinkIcon: FC<CardLinkIconProps> = ({
   title,
   titleTag,
   icon = "ArrowRight",
   background,
-  href,
-  cardLinkProps,
+  ...cardLinkProps
 }) => {
   return (
     <Card
@@ -37,10 +38,9 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       <BoxBorders />
       <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
         <CardLink
-          href={href}
+          {...cardLinkProps}
           hoverStyles={["underline-link-text", "drop-shadow"]}
           hideDefaultFocus
-          {...cardLinkProps}
         >
           {title}
         </CardLink>

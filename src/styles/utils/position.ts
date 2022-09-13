@@ -14,6 +14,8 @@ export type PositionProps = {
   $bottom?: ResponsiveValues<PxOrPercent>;
   $left?: ResponsiveValues<PxOrPercent>;
   $overflow?: ResponsiveValues<CSSProperties["overflow"]>;
+  $overflowX?: ResponsiveValues<CSSProperties["overflowX"]>;
+  $overflowY?: ResponsiveValues<CSSProperties["overflowY"]>;
 };
 const parsePxOrPercent = (value?: PxOrPercent) => {
   return typeof value === "number" ? `${value}px` : value;
@@ -25,6 +27,8 @@ const position = css<PositionProps>`
   ${responsive("bottom", (props) => props.$bottom, parsePxOrPercent)}
   ${responsive("left", (props) => props.$left, parsePxOrPercent)}
   ${responsive("overflow", (props) => props.$overflow)}
+  ${responsive("overflow-x", (props) => props.$overflowX)}
+  ${responsive("overflow-y", (props) => props.$overflowY)}
 `;
 
 export default position;

@@ -8,10 +8,10 @@ import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Box from "../Box";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
-import { getPupilsUrl, getTeachersUrl } from "../../common-lib/urls";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import UnstyledButton from "../UnstyledButton";
 import footerSections from "../../browser-lib/fixtures/footerSections";
+import OakLink from "../OakLink";
 
 type FooterLinkProps = {
   text: string;
@@ -42,30 +42,28 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
   }
 
   if (props.type === "pupils-link") {
-    const href = getPupilsUrl();
     return (
-      <Link href={href}>
-        <a
-          onClick={() => track.classroomSelected({ navigatedFrom: "footer" })}
-          target="_blank"
-        >
-          {props.text}
-        </a>
-      </Link>
+      <OakLink
+        page="pupils-home"
+        htmlAnchorProps={{
+          onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
+        }}
+      >
+        {props.text}
+      </OakLink>
     );
   }
 
   if (props.type === "teachers-link") {
-    const href = getTeachersUrl();
     return (
-      <Link href={href}>
-        <a
-          onClick={() => track.teacherHubSelected({ navigatedFrom: "footer" })}
-          target="_blank"
-        >
-          {props.text}
-        </a>
-      </Link>
+      <OakLink
+        page="teachers-home"
+        htmlAnchorProps={{
+          onClick: () => track.teacherHubSelected({ navigatedFrom: "footer" }),
+        }}
+      >
+        {props.text}
+      </OakLink>
     );
   }
 
