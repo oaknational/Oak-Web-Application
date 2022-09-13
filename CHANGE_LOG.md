@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.8.0...v1.9.0) (2022-09-13)
+
+
+### Features
+
+* add OakLink 'page' prop ([bea2ffb](https://github.com/oaknational/Oak-Web-Application/commit/bea2ffba12ddaec9989f0ca4e449d08aed6dda89))
+
 # [1.8.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.5...v1.8.0) (2022-09-13)
 
 
