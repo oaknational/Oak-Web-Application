@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+# Cope with nested Node modules because of Netlify plugins doing funnny things.
+**/node_modules/**
 /.pnp
 .pnp.js
 
@@ -48,6 +49,13 @@ oak.config.production.json
 # vercel
 .vercel
 
+# firebase
+firebase-debug.log
+.firebase
+
+# Local Netlify folder
+.netlify
+
 # typescript
 *.tsbuildinfo
 
@@ -56,10 +64,6 @@ oak.config.production.json
 
 # storybook
 /storybook-static
-
-# firebase
-firebase-debug.log
-.firebase
 
 # asdf version manager
 .tool-versions
