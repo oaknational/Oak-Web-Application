@@ -1,6 +1,8 @@
-query homepage($isDraft: Boolean = false) {
+query homepage($isDraftFilter: Sanity_DocumentFilter) {
   allHomepage(
-    where: { _: { is_draft: $isDraft }, _id: { matches: "*homepage" } }
+    where: { _: $isDraftFilter, _id: { matches: "*homepage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
   ) {
     id: _id
     heading

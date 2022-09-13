@@ -8,11 +8,11 @@ import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Box from "../Box";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
-import { getPupilsUrl, getTeachersUrl } from "../../common-lib/urls";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import UnstyledButton from "../UnstyledButton";
 import footerSections from "../../browser-lib/fixtures/footerSections";
 import Grid, { GridArea } from "../Grid";
+import OakLink from "../OakLink";
 
 type FooterLinkProps = {
   text: string;
@@ -43,33 +43,31 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
   }
 
   if (props.type === "pupils-link") {
-    const href = getPupilsUrl();
     return (
-      <Link href={href}>
-        <a
-          onClick={() => track.classroomSelected({ navigatedFrom: "footer" })}
-          target="_blank"
-        >
-          {props.text}
-        </a>
-      </Link>
+      <OakLink
+        page="pupils-home"
+        htmlAnchorProps={{
+          onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
+        }}
+      >
+        {props.text}
+      </OakLink>
     );
   }
 
   if (props.type === "teachers-link") {
-    const href = getTeachersUrl();
     return (
-      <Link href={href}>
-        <a
-          onClick={() => track.teacherHubSelected({ navigatedFrom: "footer" })}
-          target="_blank"
-        >
-          {props.text}
-        </a>
-      </Link>
+      <OakLink
+        page="teachers-home"
+        htmlAnchorProps={{
+          onClick: () => track.teacherHubSelected({ navigatedFrom: "footer" }),
+        }}
+      >
+        {props.text}
+      </OakLink>
     );
   }
-
+  // TODO: change data to have "page" so we can use OakLink
   return <Link href={props.href}>{props.text}</Link>;
 };
 
@@ -123,24 +121,24 @@ const SiteFooter: FC = () => {
           $position={"relative"}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={12}
+          $ph={16}
           $ma={"auto"}
           $width={"100%"}
         >
           <Grid>
-            <GridArea $colSpan={[12, 3]}>
+            <GridArea $colSpan={[12, 6, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <Box $mt={[0, 24]} />
               <FooterSectionLinks {...sections.teachers} />
             </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            <GridArea $colSpan={[12, 6, 3]}>
               <FooterSectionLinks {...sections.oak} />
             </GridArea>
-            <GridArea $colSpan={[12, 3]}>
+            <GridArea $colSpan={[12, 6, 3]}>
               <FooterSectionLinks {...sections.legal} />
             </GridArea>
-            <GridArea $colSpan={[12, 3]}>
-              <Flex $justifyContent={["left", "right"]} $mt={[40, 0]}>
+            <GridArea $colSpan={[12, 6, 3]}>
+              <Flex $justifyContent={["left", "left", "right"]} $mt={[40, 0]}>
                 <Logo title={"Oak National Academy"} height={66} width={150} />
               </Flex>
             </GridArea>

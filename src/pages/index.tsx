@@ -25,7 +25,6 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
@@ -69,13 +68,16 @@ const Notification: FC = () => {
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
         <CardLink
+          page={null}
           href={href}
-          onClick={() =>
-            track.notificationSelected({
-              linkUrl: href,
-              notificationHeadline: heading,
-            })
-          }
+          hoverStyles={["underline-link-text"]}
+          htmlAnchorProps={{
+            onClick: () =>
+              track.notificationSelected({
+                linkUrl: href,
+                notificationHeadline: heading,
+              }),
+          }}
         >
           {heading}
         </CardLink>
@@ -187,11 +189,10 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={getPupilsUrl()}
+                      page="pupils-home"
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
-                      target="_blank"
                     >
                       Classroom
                     </CardLink>
@@ -252,11 +253,11 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={getTeachersUrl()}
-                      onClick={() =>
-                        track.teacherHubSelected({ navigatedFrom: "card" })
-                      }
-                      target="_blank"
+                      page="teachers-home"
+                      htmlAnchorProps={{
+                        onClick: () =>
+                          track.teacherHubSelected({ navigatedFrom: "card" }),
+                      }}
                     >
                       Teacher Hub
                     </CardLink>
@@ -276,20 +277,20 @@ const Home: NextPage<HomePageProps> = (props) => {
             <Grid $cg={[8, 16]} $ph={[12, 0]}>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
+                  page="lesson-planning"
                   title={"Plan a lesson"}
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
-                  href={"/lesson-planning"}
-                  cardLinkProps={{ onClick: track.planALessonSelected }}
+                  htmlAnchorProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
+                  page="develop-your-curriculum"
                   title={"Develop your curriculum"}
                   titleTag={"h4"}
                   background={"teachersYellow"}
-                  href={"/develop-your-curriculum"}
-                  cardLinkProps={{
+                  htmlAnchorProps={{
                     onClick: track.developYourCurriculumSelected,
                   }}
                 />

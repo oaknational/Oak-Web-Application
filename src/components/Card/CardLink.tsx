@@ -1,10 +1,34 @@
 import { forwardRef, ReactNode } from "react";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import styled, { css } from "styled-components";
+import Link from "next/link";
 
+import {
+  getOakLinkLinkProps,
+  getOakLinkAnchorProps,
+  OakLinkProps,
+} from "../OakLink/OakLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
-import { HTMLAnchorProps } from "../Button/common";
 import { DROP_SHADOW } from "../../styles/utils/dropShadow";
+import Svg from "../Svg";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
+import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
+
+export const CardLinkFocusUnderline = styled(Svg).attrs((props) => ({
+  ...props,
+  name: "Underline1",
+}))`
+  display: none;
+  position: absolute;
+  bottom: -9px;
+  left: -2px;
+  right: 0;
+  width: calc(100% + 2);
+  height: 10px;
+  transform: rotate(-0.3deg);
+  color: ${getColorByName("teachersYellow")};
+  filter: drop-shadow(2px 4px 0 rgb(0 0 0));
+  z-index: ${zIndexMap.inFront};
+`;
 
 type HoverStyles = ("underline-link-text" | "drop-shadow")[];
 /**
@@ -13,11 +37,14 @@ type HoverStyles = ("underline-link-text" | "drop-shadow")[];
  */
 export type CardLinkProps = {
   children: ReactNode;
+  hideDefaultFocus?: boolean;
   hoverStyles?: HoverStyles;
-} & Omit<HTMLAnchorProps, "href" | "ref"> &
-  Omit<NextLinkProps, "as" | "passHref" | "children">;
+} & OakLinkProps;
 
-const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
+const CardLinkA = styled.a<{
+  hoverStyles: HoverStyles;
+  hideDefaultFocus?: boolean;
+}>`
   ::after {
     content: "";
     position: absolute;
@@ -26,6 +53,7 @@ const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
     bottom: 0;
     left: 0;
     z-index: ${zIndexMap.inFront};
+    transition: ${HOVER_SHADOW_TRANSITION};
   }
 
   :hover {
@@ -43,6 +71,18 @@ const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
         }
       `}
   }
+
+  :focus {
+    ${(props) =>
+      props.hideDefaultFocus &&
+      css`
+        outline: none;
+      `}
+
+    & + ${CardLinkFocusUnderline} {
+      display: block;
+    }
+  }
 `;
 
 /**
@@ -50,30 +90,15 @@ const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
  * clickable as a link.
  */
 const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
-  (
-    {
-      href,
-      prefetch,
-      replace,
-      scroll,
-      shallow,
-      locale,
-      hoverStyles = [],
-      ...cardLinkProps
-    },
-    ref
-  ) => {
+  ({ hideDefaultFocus, hoverStyles = [], ...props }, ref) => {
     return (
-      <NextLink
-        href={href}
-        replace={replace}
-        scroll={scroll}
-        shallow={shallow}
-        locale={locale}
-        passHref
-      >
-        <CardLinkA ref={ref} hoverStyles={hoverStyles} {...cardLinkProps} />
-      </NextLink>
+      <Link {...getOakLinkLinkProps(props)} passHref>
+        <CardLinkA
+          ref={ref}
+          hoverStyles={hoverStyles}
+          {...getOakLinkAnchorProps(props)}
+        />
+      </Link>
     );
   }
 );
