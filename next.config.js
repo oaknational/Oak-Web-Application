@@ -45,7 +45,10 @@ module.exports = async (phase) => {
     // When we come to sort out a failover we may need to tweak this functionality.
     // Defaults to "development".
     releaseStage = getReleaseStage(
-      process.env.OVERRIDE_RELEASE_STAGE || process.env.VERCEL_ENV
+      process.env.OVERRIDE_RELEASE_STAGE ||
+        process.env.VERCEL_ENV ||
+        // Netlify
+        process.CONTEXT
     );
     isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
