@@ -1,21 +1,18 @@
-import { HTMLAttributeAnchorTarget } from "react";
+import { OakPageName } from "../../common-lib/urls";
 
-import { OakFontName, PixelSpacing } from "../../styles/theme";
-import { MarginProps } from "../../styles/utils/spacing";
-
-export type MenuListItemProps = {
-  fontFamily: OakFontName;
-  fontSize: [PixelSpacing];
-  href: string;
-  activeLinkSubPath?: string;
-  target?: HTMLAttributeAnchorTarget;
-  onClick?: () => void;
-  linkText: string;
-  currentPath: string;
-  arrowSize: PixelSpacing[];
-} & MarginProps;
+export type MenuLinkSize = "small" | "medium" | "large";
 
 export type MenuLinkProps = {
-  menuLinks: Omit<MenuListItemProps, "currentPath">[];
-  currentPath: string;
+  page: OakPageName;
+  size: MenuLinkSize;
+  linkText: string;
+  // for styling the active link
+  activeLinkHrefMatch?: string;
+};
+
+type MenuSection = Omit<MenuLinkProps, "size">[];
+export type MenuSections = Record<MenuLinkSize, MenuSection>;
+
+export type MenuLinksProps = {
+  menuSections: MenuSections;
 };

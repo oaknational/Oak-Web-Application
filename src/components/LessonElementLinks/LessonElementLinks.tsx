@@ -92,7 +92,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer>
           <GraphicCircle icon="Quiz" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.introQuiz}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.introQuiz}`}>
               Intro quiz
             </AnchorLink>
           </LinkText>
@@ -109,7 +109,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
             </OverlapBehind>
           </Flex>
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.video}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
               Lesson slides or video
             </AnchorLink>
           </LinkText>
@@ -122,7 +122,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer>
           <GraphicCircle icon="Worksheet" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.worksheet}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.worksheet}`}>
               Worksheet
             </AnchorLink>
           </LinkText>
@@ -131,7 +131,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer $mr={0}>
           <GraphicCircle icon="Quiz" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.exitQuiz}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.exitQuiz}`}>
               Exit quiz
             </AnchorLink>
           </LinkText>

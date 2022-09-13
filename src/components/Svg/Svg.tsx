@@ -1,19 +1,16 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import color, { ColorProps } from "../../styles/utils/color";
-import display, { DisplayProps } from "../../styles/utils/display";
+import { box, BoxProps } from "../Box";
 import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 
-const StyledSvg = styled.svg`
-  ${color}
-  ${display}
+const StyledSvg = styled.svg<BoxProps>`
+  ${box}
 `;
-type SvgProps = DisplayProps &
-  ColorProps & {
-    name: SvgName;
-    className?: string;
-  };
+type SvgProps = BoxProps & {
+  name: SvgName;
+  className?: string;
+};
 const Svg: FC<SvgProps> = (props) => {
   return (
     <StyledSvg
