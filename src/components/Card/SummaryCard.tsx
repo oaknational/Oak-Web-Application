@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import { PortableTextJSON } from "../../node-lib/cms";
@@ -7,6 +6,7 @@ import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
+import OakImage from "../OakImage/OakImage";
 
 import Card from "./Card";
 
@@ -90,13 +90,13 @@ const SummaryCard: FC<SummaryCardProps> = ({
           {...imageContainerProps}
         >
           <Cover>
-            <Image
+            <OakImage
               aria-hidden={true}
-              layout="fill"
-              objectFit="contain"
-              objectPosition={"right"}
+              $objectFit="contain"
+              $objectPosition={"right"}
               alt={imageProps.alt}
               src={imageProps.src}
+              fill
               priority
             />
           </Cover>

@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
@@ -22,6 +21,7 @@ import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
+import OakImage from "../components/OakImage";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -232,10 +232,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   $top={48}
                   $bottom={[92, 92, 20]}
                 >
-                  <Image
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="center bottom"
+                  <OakImage
+                    fill
+                    $objectFit="contain"
+                    $objectPosition="center bottom"
                     alt=""
                     src={
                       "/images/illustrations/teacher-carrying-stuff-237-286.png"
@@ -290,12 +290,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                         $mb={24}
                         $mh={["auto", null]}
                       >
-                        <Image
+                        <OakImage
                           alt=""
-                          layout="fill"
-                          objectFit="contain"
-                          objectPosition="left bottom"
+                          $objectFit="contain"
+                          $objectPosition="left bottom"
                           src={imageSrc}
+                          fill
                         />
                       </Box>
 
@@ -420,10 +420,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $top={16}
                 $bottom={[92, 92, 20]}
               >
-                <Image
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="center bottom"
+                <OakImage
+                  fill
+                  $objectFit="contain"
+                  $objectPosition="center bottom"
                   alt=""
                   src={
                     "/images/illustrations/teacher-carrying-stuff-237-286.png"
