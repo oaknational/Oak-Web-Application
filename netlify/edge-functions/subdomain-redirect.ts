@@ -24,8 +24,8 @@ async function redirectNetlifySubdomains(
       subdomain = subdomainMatches[1];
     }
     // Only redirect once, to avoid infinite redirect loops.
-    // Although this header has to come from Cloudflare, so
-    // don't think this can happen in the current implementation.
+    // Although this header has to come from Cloudflare,
+    // so don't think this can happen in the current implementation.
     redirected = request.headers.get("x-cloudflare-redirect");
   } catch (err) {
     console.error("Subdomain matching failed.");
