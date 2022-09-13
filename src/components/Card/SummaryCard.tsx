@@ -7,6 +7,7 @@ import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
+import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 
 import Card from "./Card";
 
@@ -102,6 +103,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
           </Cover>
         </Flex>
       )}
+      <BrushBorders hideOnMobile color={background || "inherit"} />
     </Card>
   );
 };

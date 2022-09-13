@@ -15,6 +15,7 @@ import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentPro
 import UnstyledButton from "../components/UnstyledButton";
 import { getHelpUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 const ContactUs: NextPage = () => {
   const newsletterFormProps = useNewsletterForm();
@@ -133,6 +134,7 @@ const ContactUs: NextPage = () => {
           $pv={[24]}
           $mt={[72, 80]}
         >
+          <BrushBorders hideOnMobile color={"twilight"} />{" "}
           <Flex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}

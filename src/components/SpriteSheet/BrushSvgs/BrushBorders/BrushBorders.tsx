@@ -2,27 +2,16 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "../../../../styles/themeHelpers/getColorByName";
-import { ButtonBackground } from "../../../Button/common";
 import Svg from "../../../Svg";
+import { OakColorName } from "../../../../styles/theme/types";
+import { getBreakpoint } from "../../../../styles/utils/responsive";
 
-const brushBorder = css<{ background: ButtonBackground }>`
+const brushBorder = css<{ color: OakColorName }>`
   position: absolute;
-  color: ${(props) => getColorByName(props.background)};
+  color: ${(props) => getColorByName(props.color)};
   mask-position: center;
+  overflow-x: hidden;
 `;
-
-<svg
-  width="7"
-  height="381"
-  viewBox="0 0 7 381"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M5.95062 347.767C5.84838 355.359 5.51951 362.45 5.01823 367.872C4.51695 373.294 3.87318 376.723 3.19306 377.594C2.43071 378.792 1.66876 379.901 0.899662 380.831L0.946416 0.629639C1.65555 3.72393 3.98492 8.81233 4.517 14.8221C5.25211 23.0541 5.82473 32.9368 6.20066 43.8804C6.57133 54.8207 6.73441 66.5972 6.67982 78.4841C6.61613 92.4154 6.78382 106.273 6.76792 120.208C6.72772 141.198 6.63974 162.184 6.5299 182.723C6.37026 217.64 5.84139 253.158 6.04976 287.743C6.10718 308.293 6.40211 327.43 5.95062 347.767Z"
-    fill="#E5D1E0"
-  />
-</svg>;
 
 export const svgSymbols = {
   Top: () => (
@@ -37,18 +26,22 @@ export const svgSymbols = {
       />
     </symbol>
   ),
+
   Right: () => (
     <symbol
       id="svg-sprite-brush-border-right"
       viewBox="0 0 7 381"
       preserveAspectRatio="none"
     >
-      <path d="M5.95062 347.767C5.84838 355.359 5.51951 362.45 5.01823 367.872C4.51695 373.294 3.87318 376.723 3.19306 377.594C2.43071 378.792 1.66876 379.901 0.899662 380.831L0.946416 0.629639C1.65555 3.72393 3.98492 8.81233 4.517 14.8221C5.25211 23.0541 5.82473 32.9368 6.20066 43.8804C6.57133 54.8207 6.73441 66.5972 6.67982 78.4841C6.61613 92.4154 6.78382 106.273 6.76792 120.208C6.72772 141.198 6.63974 162.184 6.5299 182.723C6.37026 217.64 5.84139 253.158 6.04976 287.743C6.10718 308.293 6.40211 327.43 5.95062 347.767Z" />
+      <path
+        d="M5.95062 347.767C5.84838 355.359 5.51951 362.45 5.01823 367.872C4.51695 373.294 3.87318 376.723 3.19306 377.594C2.43071 378.792 1.66876 379.901 0.899662 380.831L0.946416 0.629639C1.65555 3.72393 3.98492 8.81233 4.517 14.8221C5.25211 23.0541 5.82473 32.9368 6.20066 43.8804C6.57133 54.8207 6.73441 66.5972 6.67982 78.4841C6.61613 92.4154 6.78382 106.273 6.76792 120.208C6.72772 141.198 6.63974 162.184 6.5299 182.723C6.37026 217.64 5.84139 253.158 6.04976 287.743C6.10718 308.293 6.40211 327.43 5.95062 347.767Z"
+        fill="currentColor"
+      />
     </symbol>
   ),
   Bottom: () => (
     <symbol
-      id="svg-sprite-button-border-bottom"
+      id="svg-sprite-brush-border-bottom"
       viewBox="0 0 608 13"
       preserveAspectRatio="none"
     >
@@ -60,7 +53,7 @@ export const svgSymbols = {
   ),
   Left: () => (
     <symbol
-      id="svg-sprite-button-border-left"
+      id="svg-sprite-brush-border-left"
       viewBox="0 0 12 383"
       preserveAspectRatio="none"
     >
@@ -72,28 +65,27 @@ export const svgSymbols = {
   ),
 };
 
-const TOP_THICKNESS = 8;
+const TOP_THICKNESS = 12;
 const RIGHT_THICKNESS = 8;
-const BOTTOM_THICKNESS = 8;
-const LEFT_THICKNESS = 9;
-const buttonBorderTop = css`
+const BOTTOM_THICKNESS = 11;
+const LEFT_THICKNESS = 8;
+
+const brushBorderTop = css`
   ${brushBorder}
   height: ${TOP_THICKNESS}px;
   left: 0;
-  bottom: calc(100% - 1px);
+  bottom: calc(100% - 2px);
 `;
 
-const buttonBorderRight = css`
+const brushBorderRight = css`
   ${brushBorder}
   width: ${RIGHT_THICKNESS}px;
-  /* top: -${TOP_THICKNESS}px; */
-  bottom: -27px;
-  left: calc(100% - 1px);
-  height: calc(100% - 2px + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
-  height: 111%;
+  top: -${TOP_THICKNESS - 4}px;
+  left: calc(100% - 2px);
+  height: calc(100% + ${TOP_THICKNESS}px);
 `;
 
-const buttonBorderBottom = css`
+const brushBorderBottom = css`
   ${brushBorder}
   height: ${BOTTOM_THICKNESS}px;
   height: ${BOTTOM_THICKNESS}px;
@@ -101,34 +93,47 @@ const buttonBorderBottom = css`
   left: 0;
 `;
 
-const buttonBorderLeft = css`
+const brushBorderLeft = css`
   ${brushBorder}
   width: ${LEFT_THICKNESS}px;
-  /* top: -${TOP_THICKNESS - 10} px; */
-  bottom: -12px;
+  bottom: -${10}px;
   right: calc(100% - 1px);
-  /* height: calc(100% - 1px + ${TOP_THICKNESS + BOTTOM_THICKNESS}px); */
-  height: calc(108%);
+  height: calc(100% + 4px + ${BOTTOM_THICKNESS}px);
 `;
 
 const BrushBorderTop = styled(Svg)`
-  ${buttonBorderTop}
+  ${brushBorderTop}
 `;
 const BrushBorderRight = styled(Svg)`
-  ${buttonBorderRight}
+  ${brushBorderRight}
+  ${(props) =>
+    props.hideOnMobile &&
+    css`
+      @media (max-width: ${getBreakpoint("small")}px) {
+        display: none;
+      }
+    `}
 `;
 const BrushBorderBottom = styled(Svg)`
-  ${buttonBorderBottom}
+  ${brushBorderBottom}
 `;
 const BrushBorderLeft = styled(Svg)`
-  ${buttonBorderLeft}
+  ${brushBorderLeft}
+  ${(props) =>
+    props.hideOnMobile &&
+    css`
+      @media (max-width: ${getBreakpoint("small")}px) {
+        display: none;
+      }
+    `}
 `;
 
 type BrushBordersProps = {
-  background: ButtonBackground;
+  color: OakColorName;
+  hideOnMobile?: boolean;
 };
 /**
- * Presentational component just for the borders for the brush button variant.
+ * Presentational component just for the borders for the brush cards.
  * This is a single component which renders four spans, one for each side of
  * the border. Attempts at using border-image or mask-image were futile, so
  * resorted to this 'four span' technique.
@@ -144,11 +149,11 @@ type BrushBordersProps = {
  */
 const BrushBorders: FC<BrushBordersProps> = (props) => {
   return (
-    <div aria-hidden="true" data-testid="button-borders">
-      <BrushBorderTop name="button-border-top" {...props} />
-      <BrushBorderRight name="button-border-right" {...props} />
-      <BrushBorderBottom name="button-border-bottom" {...props} />
-      <BrushBorderLeft name="button-border-left" {...props} />
+    <div aria-hidden="true" data-testid="brush-borders">
+      <BrushBorderTop name="brush-border-top" {...props} />
+      <BrushBorderRight name="brush-border-right" {...props} />
+      <BrushBorderBottom name="brush-border-bottom" {...props} />
+      <BrushBorderLeft name="brush-border-left" {...props} />
     </div>
   );
 };

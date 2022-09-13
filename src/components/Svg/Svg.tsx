@@ -13,6 +13,7 @@ type SvgProps = DisplayProps &
   ColorProps & {
     name: SvgName;
     className?: string;
+    hideOnMobile?: boolean;
   };
 const Svg: FC<SvgProps> = (props) => {
   return (
