@@ -1,7 +1,7 @@
-query allBlogPosts($isDraft: Boolean = false, $limit: Int = 9999) {
+query allBlogPosts($isDraftFilter: Sanity_DocumentFilter, $limit: Int = 9999) {
   allNewsPost(
-    where: { _: { is_draft: $isDraft } }
-    sort: [{ date: DESC }]
+    where: { _: $isDraftFilter }
+    sort: [{ date: DESC }, { _updatedAt: DESC }]
     limit: $limit
   ) {
     ...BlogPreviewFields

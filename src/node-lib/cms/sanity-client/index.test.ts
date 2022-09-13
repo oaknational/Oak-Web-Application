@@ -138,7 +138,7 @@ describe("cms/sanity-client", () => {
       it("does not fetch draft content by default", async () => {
         await clientMethod();
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
@@ -148,7 +148,7 @@ describe("cms/sanity-client", () => {
         await clientMethod({ previewMode: true });
 
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
         );
       });
     });
@@ -166,7 +166,7 @@ describe("cms/sanity-client", () => {
       it("does not fetch draft content by default", async () => {
         await clientMethod();
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
@@ -174,7 +174,7 @@ describe("cms/sanity-client", () => {
         await clientMethod({ previewMode: true });
 
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
         );
       });
     });
@@ -192,7 +192,7 @@ describe("cms/sanity-client", () => {
       it("does not fetch draft content by default", async () => {
         await clientMethod("some-slug");
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
@@ -200,7 +200,7 @@ describe("cms/sanity-client", () => {
         await clientMethod("some-slug", { previewMode: true });
 
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
         );
       });
     });
