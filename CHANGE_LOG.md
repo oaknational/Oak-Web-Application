@@ -1,3 +1,16 @@
+# [1.10.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.9.0...v1.10.0) (2022-09-13)
+
+
+### Bug Fixes
+
+* **Netlify:** allow Next build type-checking to ignore Deno Netlify edge functions ([090c788](https://github.com/oaknational/Oak-Web-Application/commit/090c788e3c5659aeb7d9af944d7408f55540f57a))
+
+
+### Features
+
+* **Netlify:** initial support ([2f7b844](https://github.com/oaknational/Oak-Web-Application/commit/2f7b84488d48b33ffb3b0f3fe2390ea8fe7d871f))
+* **Netlify:** satisfy ts, docs ([a0a97b3](https://github.com/oaknational/Oak-Web-Application/commit/a0a97b38880cce2d0db9651b4d21f65410240412))
+
 # [1.9.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.8.0...v1.9.0) (2022-09-13)
 
 
