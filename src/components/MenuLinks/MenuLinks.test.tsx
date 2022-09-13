@@ -2,6 +2,7 @@ import mockRouter from "next-router-mock";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
+import { resolveOakHref } from "../../common-lib/urls";
 
 import MenuLinks from "./MenuLinks";
 
@@ -13,7 +14,8 @@ describe("MenuLinks", () => {
       <MenuLinks menuSections={menuSections} />
     );
     Object.values(menuSections).forEach((section) =>
-      section.forEach(({ linkText, href }) => {
+      section.forEach(({ linkText, page }) => {
+        const href = resolveOakHref({ page });
         expect(getByText(linkText).closest("a")).toHaveAttribute("href", href);
       })
     );

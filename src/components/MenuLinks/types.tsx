@@ -1,7 +1,9 @@
+import { OakPageName } from "../../common-lib/urls";
+
 export type MenuLinkSize = "small" | "medium" | "large";
 
 export type MenuLinkProps = {
-  href: string;
+  page: OakPageName;
   size: MenuLinkSize;
   linkText: string;
   // for styling the active link

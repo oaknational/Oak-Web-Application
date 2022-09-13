@@ -1,9 +1,13 @@
 import { forwardRef, ReactNode } from "react";
 import styled, { css } from "styled-components";
+import Link from "next/link";
 
-import OakLink, { OakLinkProps } from "../OakLink/OakLink";
+import {
+  getOakLinkLinkProps,
+  getOakLinkAnchorProps,
+  OakLinkProps,
+} from "../OakLink/OakLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
-import { HTMLAnchorProps } from "../Button/common";
 import { DROP_SHADOW } from "../../styles/utils/dropShadow";
 import Svg from "../Svg";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
@@ -35,8 +39,7 @@ export type CardLinkProps = {
   children: ReactNode;
   hideDefaultFocus?: boolean;
   hoverStyles?: HoverStyles;
-} & Omit<HTMLAnchorProps, "href" | "ref"> &
-  Omit<OakLinkProps, "as" | "passHref" | "children">;
+} & OakLinkProps;
 
 const CardLinkA = styled.a<{
   hoverStyles: HoverStyles;
@@ -87,30 +90,15 @@ const CardLinkA = styled.a<{
  * clickable as a link.
  */
 const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
-  (
-    {
-      href,
-      prefetch,
-      replace,
-      scroll,
-      shallow,
-      locale,
-      hoverStyles = [],
-      ...cardLinkProps
-    },
-    ref
-  ) => {
+  ({ hideDefaultFocus, hoverStyles = [], ...props }, ref) => {
     return (
-      <OakLink
-        href={href}
-        replace={replace}
-        scroll={scroll}
-        shallow={shallow}
-        locale={locale}
-        passHref
-      >
-        <CardLinkA ref={ref} hoverStyles={hoverStyles} {...cardLinkProps} />
-      </OakLink>
+      <Link {...getOakLinkLinkProps(props)} passHref>
+        <CardLinkA
+          ref={ref}
+          hoverStyles={hoverStyles}
+          {...getOakLinkAnchorProps(props)}
+        />
+      </Link>
     );
   }
 );

@@ -142,7 +142,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        <CardLink href={`/blog/${element.post.slug}`}>
+                        <CardLink page="blog" slug={element.post.slug}>
                           {element.title}
                         </CardLink>
                       </Heading>

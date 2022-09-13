@@ -14,6 +14,7 @@ import Box from "../components/Box";
 import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import UnstyledButton from "../components/UnstyledButton";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
+import OakLink from "../components/OakLink";
 
 const ContactUs: NextPage = () => {
   const newsletterFormProps = useNewsletterForm();
@@ -84,10 +85,7 @@ const ContactUs: NextPage = () => {
             <P>
               At Oak National Academy we're committed to protecting the data of
               all our users. We always treat your data in accordance with our{" "}
-              <a href="https://www.thenational.academy/legal/privacy-policy">
-                privacy policy
-              </a>
-              .
+              <OakLink page="privacy-policy">privacy policy</OakLink>.
             </P>
             <P $mt={[16, 24]}>
               You can make a subject access request to us if you wish to amend
