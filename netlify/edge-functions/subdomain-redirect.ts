@@ -27,7 +27,7 @@ async function redirectNetlifySubdomains(
     redirected = request.headers.get("x-cloudflare-redirect") || false;
 
     console.log(
-      `Subdomain: ${subdomain}  . Redirected from Cloudflare: ${redirected}`
+      `Subdomain identified: ${subdomain}\nRedirected from Cloudflare: ${redirected}`
     );
   } catch (err) {
     console.error("Subdomain matching failed.");
