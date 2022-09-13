@@ -24,6 +24,14 @@ const oakStyles = css`
     text-decoration: none;
     font-family: inherit;
   }
+
+  button {
+    /*
+     * some browsers have a small margin by default
+     * @see https://github.com/oaknational/Oak-Web-Application/issues/709
+     */
+    margin: 0;
+  }
 `;
 
 export default oakStyles;
