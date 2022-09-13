@@ -1,0 +1,21 @@
+# Force all access through our managed TLD.
+# When Netlify becomes the production site hosting for www. the subdomain will
+# need changing to `www` and the status to `301`.
+[[redirects]]
+from = 'http://oak-web-application.netlify.app/*'
+to = 'https://netlify-test.thenational.academy/:splat'
+status = 302
+force = true
+
+# Force all access through our managed TLD.
+# When Netlify becomes the production site hosting for www. the subdomain will
+# need changing to `www` and the status to `301`.
+[[redirects]]
+from = 'https://oak-web-application.netlify.app/*'
+to = 'https://netlify-test.thenational.academy/:splat'
+status = 302
+force = true
+
+[[edge_functions]]
+  path = '/*'
+  function = 'subdomain-redirect'

@@ -71,3 +71,6 @@ firebase-debug.log
 # built files to igore
 public/robots.txt
 public/sitemap*.xml
+
+# Local Netlify folder
+.netlify
