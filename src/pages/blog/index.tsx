@@ -46,7 +46,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           background="teachersPastelYellow"
           imageProps={cardImage}
         />
-        <Grid $ph={[12, 0]}>
+        <Grid $ph={[16, 0]}>
           <GridArea $colSpan={[12, 12, 8]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}

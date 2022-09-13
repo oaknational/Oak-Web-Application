@@ -322,7 +322,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </Flex>
         </Card>
 
-        <Grid $mt={[48, 64]} $ph={[12, 0]}>
+        <Grid $mt={[48, 64]} $ph={[16, 0]}>
           <GridArea $colSpan={[12, 7]}>
             <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
               {blog.category.title}
