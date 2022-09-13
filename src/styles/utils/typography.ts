@@ -7,7 +7,7 @@ import color, { ColorProps } from "./color";
 import position, { PositionProps } from "./position";
 import responsive, { ResponsiveValues } from "./responsive";
 
-type FontSize = string | number;
+export type FontSize = string | number;
 const parseFontSize = (value?: FontSize | null) => {
   if (typeof value === "string") {
     return value;

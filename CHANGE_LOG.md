@@ -1,3 +1,25 @@
+# [1.9.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.8.0...v1.9.0) (2022-09-13)
+
+
+### Features
+
+* add OakLink 'page' prop ([bea2ffb](https://github.com/oaknational/Oak-Web-Application/commit/bea2ffba12ddaec9989f0ca4e449d08aed6dda89))
+
+# [1.8.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.5...v1.8.0) (2022-09-13)
+
+
+### Bug Fixes
+
+* re-handle undefined path in preview endpoint ([ff9f83c](https://github.com/oaknational/Oak-Web-Application/commit/ff9f83c8fe532cdf2dad6b3754bb819971f3e20a))
+
+
+### Features
+
+* graphql queries can return both draft and non-draft content ([b5e10aa](https://github.com/oaknational/Oak-Web-Application/commit/b5e10aafc28de4e92f9ca2116ec6d6de7581eb66))
+* prefer the draft item when draft and non-draft content co-exist ([9c470be](https://github.com/oaknational/Oak-Web-Application/commit/9c470be3091012e41f41d80692aa490bf90b5a19))
+* reject invalid entries in lists when parsing with isPreviewMode ([0366dde](https://github.com/oaknational/Oak-Web-Application/commit/0366dde97246fa0a7afb513a6a5b75eb61038a67))
+* sanity client rejects draft content in prod, allows in preview ([c232904](https://github.com/oaknational/Oak-Web-Application/commit/c232904864d656100ae6e30242b995b03ed90212))
+
 ## [1.7.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.4...v1.7.5) (2022-09-13)
 
 ## [1.7.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.3...v1.7.4) (2022-09-12)

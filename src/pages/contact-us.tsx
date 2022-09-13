@@ -13,9 +13,9 @@ import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
 import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import UnstyledButton from "../components/UnstyledButton";
-import { getHelpUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import OakLink from "../components/OakLink";
 
 const ContactUs: NextPage = () => {
   const newsletterFormProps = useNewsletterForm();
@@ -32,7 +32,7 @@ const ContactUs: NextPage = () => {
           <>
             Search our FAQs and find useful information for teachers, schools,
             pupils and parents in our{" "}
-            <a href={getHelpUrl()} target="_blank">
+            <a href={"https://support.thenational.academy"} target="_blank">
               help centre.
             </a>
           </>
@@ -86,10 +86,7 @@ const ContactUs: NextPage = () => {
             <P>
               At Oak National Academy we're committed to protecting the data of
               all our users. We always treat your data in accordance with our{" "}
-              <a href="https://www.thenational.academy/legal/privacy-policy">
-                privacy policy
-              </a>
-              .
+              <OakLink page="privacy-policy">privacy policy</OakLink>.
             </P>
             <P $mt={[16, 24]}>
               You can make a subject access request to us if you wish to amend

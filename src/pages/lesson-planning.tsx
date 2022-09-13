@@ -20,7 +20,6 @@ import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
-import { getTeachersUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
@@ -250,7 +249,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   icon="Search"
                   iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={getTeachersUrl()}
+                  href={"https://teachers.thenational.academy"}
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -322,7 +321,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={getTeachersUrl()}
+                              href={"https://teachers.thenational.academy"}
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -441,7 +440,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 icon="Search"
                 iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={getTeachersUrl()}
+                href={"https://teachers.thenational.academy"}
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

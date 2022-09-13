@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { margin, MarginProps } from "../../styles/utils/spacing";
+import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
 /**
@@ -11,8 +11,8 @@ import typography, { TypographyProps } from "../../styles/utils/typography";
  * Places where we directly want to style a list item
  *
  * */
-const LI = styled.li<MarginProps & TypographyProps>`
-  ${margin}
+const LI = styled.li<SpacingProps & TypographyProps>`
+  ${spacing}
   ${typography}
 `;
 

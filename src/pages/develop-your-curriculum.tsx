@@ -19,7 +19,6 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
-import { getOakCurriculumUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
@@ -146,7 +145,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        <CardLink href={`/blog/${element.post.slug}`}>
+                        <CardLink page="blog" slug={element.post.slug}>
                           {element.title}
                         </CardLink>
                       </Heading>
@@ -182,7 +181,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                 <ButtonAsLink
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
-                  href={getOakCurriculumUrl()}
+                  href={"https://teachers.thenational.academy/oaks-curricula"}
                 />
               </Flex>
             )}

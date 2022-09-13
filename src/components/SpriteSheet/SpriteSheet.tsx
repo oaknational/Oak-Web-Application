@@ -11,6 +11,7 @@ import lessonElementSvgSymbols, {
   LESSON_ELEMENT_NAMES,
 } from "./LessonElementSvgs";
 import brushSvgSymbols, { BRUSH_NAMES } from "./BrushSvgs";
+import loopingLineSvgSymbols, { LOOPING_LINES } from "./LoopingLineSvgs";
 
 const SpriteSheet: FC = () => {
   return (
@@ -48,6 +49,12 @@ const SpriteSheet: FC = () => {
       <IconBackground id={getSvgId({ name: "icon-brush-background" })} />
       {BRUSH_NAMES.map((name) => {
         const BrushSymbol = brushSvgSymbols[name];
+        return (
+          <BrushSymbol key={`spritesheet-${name}`} id={getSvgId({ name })} />
+        );
+      })}
+      {LOOPING_LINES.map((name) => {
+        const BrushSymbol = loopingLineSvgSymbols[name];
         return (
           <BrushSymbol key={`spritesheet-${name}`} id={getSvgId({ name })} />
         );
