@@ -5,6 +5,26 @@ import styled, { css } from "styled-components";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import { HTMLAnchorProps } from "../Button/common";
 import { DROP_SHADOW } from "../../styles/utils/dropShadow";
+import Svg from "../Svg";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
+import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
+
+export const CardLinkFocusUnderline = styled(Svg).attrs((props) => ({
+  ...props,
+  name: "Underline1",
+}))`
+  display: none;
+  position: absolute;
+  bottom: -9px;
+  left: -2px;
+  right: 0;
+  width: calc(100% + 2);
+  height: 10px;
+  transform: rotate(-0.3deg);
+  color: ${getColorByName("teachersYellow")};
+  filter: drop-shadow(2px 4px 0 rgb(0 0 0));
+  z-index: ${zIndexMap.inFront};
+`;
 
 type HoverStyles = ("underline-link-text" | "drop-shadow")[];
 /**
@@ -13,11 +33,15 @@ type HoverStyles = ("underline-link-text" | "drop-shadow")[];
  */
 export type CardLinkProps = {
   children: ReactNode;
+  hideDefaultFocus?: boolean;
   hoverStyles?: HoverStyles;
 } & Omit<HTMLAnchorProps, "href" | "ref"> &
   Omit<NextLinkProps, "as" | "passHref" | "children">;
 
-const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
+const CardLinkA = styled.a<{
+  hoverStyles: HoverStyles;
+  hideDefaultFocus?: boolean;
+}>`
   ::after {
     content: "";
     position: absolute;
@@ -26,6 +50,7 @@ const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
     bottom: 0;
     left: 0;
     z-index: ${zIndexMap.inFront};
+    transition: ${HOVER_SHADOW_TRANSITION};
   }
 
   :hover {
@@ -42,6 +67,18 @@ const CardLinkA = styled.a<{ hoverStyles: HoverStyles }>`
           box-shadow: ${DROP_SHADOW.interactiveCardHover};
         }
       `}
+  }
+
+  :focus {
+    ${(props) =>
+      props.hideDefaultFocus &&
+      css`
+        outline: none;
+      `}
+
+    & + ${CardLinkFocusUnderline} {
+      display: block;
+    }
   }
 `;
 

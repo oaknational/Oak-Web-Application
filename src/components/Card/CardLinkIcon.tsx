@@ -6,7 +6,7 @@ import { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 
 import Card from "./Card";
-import CardLink, { CardLinkProps } from "./CardLink";
+import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
 type CardLinkIconProps = {
   title: string;
@@ -39,12 +39,13 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
         <CardLink
           href={href}
           hoverStyles={["underline-link-text", "drop-shadow"]}
+          hideDefaultFocus
           {...cardLinkProps}
         >
           {title}
         </CardLink>
+        <CardLinkFocusUnderline />
       </Heading>
-
       <Icon name={icon} size={[32, 48]} $ml="auto" />
     </Card>
   );
