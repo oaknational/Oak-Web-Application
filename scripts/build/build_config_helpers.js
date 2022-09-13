@@ -65,6 +65,10 @@ function getGitRef() {
  * @throws {Error} Throws if a Git ref cannot be determined for a non-production build.
  */
 function getAppVersion(isProductionBuild) {
+  // DEBUG
+  console.log("*****");
+  console.log(process.env);
+
   if (isProductionBuild) {
     // GCP get the tag name.
     const gcpTagName = process.env.GCP_TAG_NAME;
@@ -72,13 +76,22 @@ function getAppVersion(isProductionBuild) {
       return `${gcpTagName}-static`;
     }
 
-    // Vercel, parse the release commit message.
+    // Vercel or Netlify, parse the release commit message.
+    let commitMessage;
     const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
+    if (!vercelCommitMessage) {
+      const netlifyCommitMessage = "don't know how to do this yet";
+      commitMessage = netlifyCommitMessage;
+    } else {
+      commitMessage = vercelCommitMessage;
+    }
+
+    // Vercel or Netlify
     // Release commit format defined in release.config.js
     const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
-    const isVercelReleaseCommit = releaseCommitFormat.test(vercelCommitMessage);
-    if (isVercelReleaseCommit) {
-      const matches = vercelCommitMessage.match(/([vV]\d+\.\d+\.\d+)/);
+    const isReleaseCommit = releaseCommitFormat.test(commitMessage);
+    if (isReleaseCommit) {
+      const matches = commitMessage.match(/([vV]\d+\.\d+\.\d+)/);
       if (matches === null) {
         throw new TypeError(
           "Could not extract app version from commit message"
@@ -87,8 +100,6 @@ function getAppVersion(isProductionBuild) {
       const version = matches[0];
       return version;
     }
-
-    // Netlify... don't know yet.
 
     // Couldn't figure out production version number, bail.
     throw new TypeError("Could not determine production version number.");
