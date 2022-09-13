@@ -83,7 +83,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             </Flex>
           </Flex>
         </Card>
-        {/* getting started  */}
+        {/* getting started */}
         <Flex $width={"100%"} $justifyContent={"flex-end"}>
           <RotatedCard
             $pv={24}
