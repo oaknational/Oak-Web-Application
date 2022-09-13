@@ -1,6 +1,8 @@
-query aboutCorePage($isDraft: Boolean = false) {
+query aboutCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allAboutCorePage(
-    where: { _: { is_draft: $isDraft }, _id: { matches: "*aboutCorePage" } }
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
   ) {
     id: _id
     title
@@ -38,7 +40,7 @@ query aboutCorePage($isDraft: Boolean = false) {
         ...TeamMember
       }
       documents {
-       ...Attachment
+        ...Attachment
       }
       governancePortableText: governanceRaw
     }

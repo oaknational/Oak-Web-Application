@@ -225,9 +225,8 @@ const theme: OakTheme = {
     },
   },
   menu: {
-    background: "pupilsPink",
-    color: "black",
-    width: "40vw",
+    background: "twilight",
+    width: 720,
   },
   badge: {
     size: "54px",
