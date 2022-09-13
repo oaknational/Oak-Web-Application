@@ -1,6 +1,8 @@
-query planningCorePage($isDraft: Boolean = false) {
+query planningCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allPlanningCorePage(
-    where: { _: { is_draft: $isDraft }, _id: { matches: "*planningCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+    where: {  _: $isDraftFilter, _id: { matches: "*planningCorePage" } }
   ) {
     id: _id
     title

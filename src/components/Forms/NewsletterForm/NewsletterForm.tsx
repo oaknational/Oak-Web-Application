@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 import { useId } from "react-aria";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +16,7 @@ import {
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import AnchorTarget from "../../AnchorTarget";
+import OakLink from "../../OakLink";
 
 const schema = z.object({
   name: z
@@ -91,9 +91,9 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
       <P color={"black"} id={descriptionId}>
         Join 80,000 teachers and get free resources and other helpful content by
         email. Unsubscribe at any time. Read our{" "}
-        <Link href="/legal/privacy-policy">
+        <OakLink page="privacy-policy">
           <a>privacy policy</a>
-        </Link>
+        </OakLink>
         .
       </P>
       <form
