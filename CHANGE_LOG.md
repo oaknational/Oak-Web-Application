@@ -1,3 +1,19 @@
+## [1.7.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.3...v1.7.4) (2022-09-12)
+
+
+### Bug Fixes
+
+* bring web app manifest up to minimum requirements ([5976a05](https://github.com/oaknational/Oak-Web-Application/commit/5976a05ce6ec51f1c78730d17625f3d442001fac))
+
+## [1.7.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.2...v1.7.3) (2022-09-12)
+
+
+### Bug Fixes
+
+* typo ([c03071a](https://github.com/oaknational/Oak-Web-Application/commit/c03071a8fd9137a6495a4387c66be6356c861897))
+
+## [1.7.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.1...v1.7.2) (2022-09-12)
+
 ## [1.7.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.7.0...v1.7.1) (2022-09-09)
 
 # [1.7.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.6.2...v1.7.0) (2022-09-09)

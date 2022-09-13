@@ -76,6 +76,7 @@ const Notification: FC = () => {
               notificationHeadline: heading,
             })
           }
+          hoverStyles={["underline-link-text"]}
         >
           {heading}
         </CardLink>
