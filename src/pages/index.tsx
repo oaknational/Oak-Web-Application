@@ -187,7 +187,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={"https://classroom.thenational.academy"}
+                      name="pupils-home"
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }

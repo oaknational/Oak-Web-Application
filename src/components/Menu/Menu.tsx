@@ -5,7 +5,7 @@ import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
 
 import { useMenuContext } from "../../context/Menu/";
-import { OakColorName } from "../../styles/theme/types";
+import { OakColorName, PixelSpacing } from "../../styles/theme/types";
 import Flex from "../Flex";
 import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
@@ -16,7 +16,7 @@ import Box from "../Box";
 import MenuBackdrop from "./MenuBackdrop";
 
 export type MenuConfig = {
-  width: string;
+  width: PixelSpacing;
   background: OakColorName;
 };
 
@@ -44,8 +44,7 @@ const SideMenu = styled(Flex)<TransitionProps>`
 const Menu: FC = ({ children }) => {
   const { open, toggleMenu, closeMenu } = useMenuContext();
   const theme = useTheme();
-  const { menu } = theme;
-  const { background } = menu;
+  const { menu: menuConfig } = theme;
   const { pathname } = useRouter();
 
   useEffect(() => {
@@ -64,9 +63,9 @@ const Menu: FC = ({ children }) => {
               $right={0}
               $height="100%"
               $maxWidth="100%"
-              $width={720}
+              $width={menuConfig.width}
               $flexDirection={"column"}
-              $background={background}
+              $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
             >

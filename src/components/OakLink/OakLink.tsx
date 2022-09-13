@@ -1,15 +1,24 @@
 import Link, { LinkProps } from "next/link";
 import { FC } from "react";
 
-import { isOakExternalUrl, OakHref } from "../../common-lib/urls";
+import {
+  isExternalHref,
+  MaybeOakHref,
+  resolveOakHref,
+  ResolveOakHrefProps,
+} from "../../common-lib/urls";
 import { HTMLAnchorProps } from "../Button/common";
 
-export type OakLinkProps = LinkProps & {
-  // href type pattern below is to allow any string value whilst offering OakHref autocomplete
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  href: OakHref | (string & {});
+export type OakLinkProps = Omit<LinkProps, "href"> & {
   htmlAnchorProps?: HTMLAnchorProps;
-};
+} & (
+    | {
+        // href type pattern below is to allow any string value whilst offering OakHref autocomplete
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        href: MaybeOakHref;
+      }
+    | ResolveOakHrefProps
+  );
 
 /**
  * OakLink renders a next/link with correct props by taking typed values
@@ -22,9 +31,10 @@ export type OakLinkProps = LinkProps & {
  * restrict it?
  */
 const OakLink: FC<OakLinkProps> = (props) => {
-  const { children, href, htmlAnchorProps, ...linkProps } = props;
+  const href = "href" in props ? props.href : resolveOakHref(props);
+  const { children, htmlAnchorProps, ...linkProps } = props;
 
-  const isExternal = isOakExternalUrl(href);
+  const isExternal = isExternalHref(href);
   const target = isExternal ? "_blank" : undefined;
 
   return (

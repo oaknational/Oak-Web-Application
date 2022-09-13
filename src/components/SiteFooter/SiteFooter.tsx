@@ -12,6 +12,7 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import UnstyledButton from "../UnstyledButton";
 import footerSections from "../../browser-lib/fixtures/footerSections";
 import OakLink from "../OakLink";
+import { resolveOakHref } from "../../common-lib/urls";
 
 type FooterLinkProps = {
   text: string;
@@ -44,7 +45,7 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
   if (props.type === "pupils-link") {
     return (
       <OakLink
-        href="https://classroom.thenational.academy"
+        href={resolveOakHref({ name: "pupils-home" })}
         htmlAnchorProps={{
           onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
         }}

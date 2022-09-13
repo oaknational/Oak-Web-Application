@@ -29,7 +29,7 @@ const SiteHeader: FC = () => {
       <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
         <P>
           <OakLink
-            href="https://classroom.thenational.academy"
+            name="pupils-home"
             htmlAnchorProps={{
               onClick: () =>
                 track.classroomSelected({ navigatedFrom: "header" }),

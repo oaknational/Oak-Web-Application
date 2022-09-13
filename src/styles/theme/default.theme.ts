@@ -226,7 +226,7 @@ const theme: OakTheme = {
   },
   menu: {
     background: "twilight",
-    width: "40vw",
+    width: 720,
   },
   badge: {
     size: "54px",

@@ -1,49 +1,41 @@
-const INTERNAL_PATHS = {
+const OAK_PAGES = {
+  "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
-  "about-board": "/about-us/who-we-are",
   blog: "/blog",
+  "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
   contact: "/contact-us",
   curriculum: "/develop-your-curriculum",
+  "help-home": "https://support.thenational.academy",
   planning: "/lesson-planning",
-} as const;
-
-export type OakInternalPage = keyof typeof INTERNAL_PATHS;
-export type OakInternalPath = typeof INTERNAL_PATHS[OakInternalPage];
-
-const EXTERNAL_URLS = {
   "pupils-home": "https://classroom.thenational.academy",
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
-  "help-home": "https://support.thenational.academy",
-  "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
 } as const;
 
-type OakExternalPage = keyof typeof EXTERNAL_URLS;
-export type OakExternalUrl = typeof EXTERNAL_URLS[OakExternalPage];
+export type OakPageName = keyof typeof OAK_PAGES;
+export type OakHref = typeof OAK_PAGES[OakPageName];
 
-export type OakHref = OakInternalPath | OakExternalUrl;
-export type MaybeOakHref =
-  | OakInternalPath
-  | OakExternalUrl
-  | Omit<string, OakInternalPath | OakExternalUrl>;
+// href type pattern below is to allow any string value whilst offering OakHref autocomplete
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type MaybeOakHref = OakHref | (string & {});
 
-export const isOakInternalPath = (
-  path: MaybeOakHref
-): path is OakInternalPath => {
-  return Object.values(INTERNAL_PATHS).some(
-    (internalPath) => internalPath === path
-  );
+export const isOakHref = (path: MaybeOakHref): path is OakHref => {
+  return Object.values(OAK_PAGES).some((internalPath) => internalPath === path);
+};
+export const isExternalHref = (href: MaybeOakHref) => {
+  return !href.startsWith("/");
 };
 
-export const isOakExternalUrl = (url: MaybeOakHref): url is OakExternalUrl => {
-  return Object.values(EXTERNAL_URLS).some(
-    (externalUrl) => externalUrl === url
-  );
+export type ResolveOakHrefProps = {
+  name: OakPageName;
 };
-
-export const isOakHref = (url: MaybeOakHref): url is OakHref => {
-  return isOakInternalPath(url) || isOakExternalUrl(url);
+/**
+ * Pass readable props which are unlikely to need to change, and return an href.
+ * @example
+ * resolveOakHref({ name: "teachers-home "})
+ * resolveOakHref({ name: "pupils-lesson", lessonSlug: "spreadsheet-warm-up-75j64r" })
+ */
+export const resolveOakHref = (props: ResolveOakHrefProps) => {
+  return OAK_PAGES[props.name];
 };
-
-export type OakPageName = OakInternalPage | OakExternalPage;
