@@ -46,8 +46,8 @@
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "storybook:static-serve": "build-storybook --quiet && http-server ./storybook-static --port=6006",
-    "test": "jest --watch --collectCoverage=false",
-    "test:ci": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --watch --collectCoverage=false",
+    "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
@@ -79,7 +79,6 @@
     "react-hook-form": "^7.34.2",
     "react-stately": "^3.17.0",
     "react-transition-group": "^4.4.5",
-    "serialize-error": "^11.0.0",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
     "zod": "^3.19.0"

@@ -1,6 +1,5 @@
 import Bugsnag, { Event, NotifiableError, OnErrorCallback } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
-import { serializeError } from "serialize-error";
 
 import config from "../../config";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
@@ -140,8 +139,13 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         }
 
         if (originalError && originalError instanceof Error) {
-          // Previously we were using https://github.com/sindresorhus/serialize-error
-          event.addMetadata("Original error", serializeError(originalError));
+          /**
+           * Previously we were using https://github.com/sindresorhus/serialize-error
+           * but jest won't run with it, or will storybook
+           * @see https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c#im-having-problems-with-esm-and-jest
+           **/
+          // event.addMetadata("Original error", serializeError(originalError));
+          metaFields.originalError = originalError;
         } else {
           // If originalError is not an Error, append it to metaFields
           metaFields.originalError = originalError;
