@@ -48,7 +48,7 @@ module.exports = async (phase) => {
       process.env.OVERRIDE_RELEASE_STAGE ||
         process.env.VERCEL_ENV ||
         // Netlify
-        process.CONTEXT
+        process.env.CONTEXT
     );
     isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
