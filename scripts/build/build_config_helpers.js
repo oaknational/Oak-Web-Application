@@ -1,3 +1,4 @@
+const { execSync } = require("child_process");
 const { existsSync, readFileSync } = require("fs");
 
 /**
@@ -65,10 +66,6 @@ function getGitRef() {
  * @throws {Error} Throws if a Git ref cannot be determined for a non-production build.
  */
 function getAppVersion(isProductionBuild) {
-  // DEBUG
-  console.log("*****");
-  console.log(process.env);
-
   if (isProductionBuild) {
     // GCP get the tag name.
     const gcpTagName = process.env.GCP_TAG_NAME;
@@ -76,22 +73,24 @@ function getAppVersion(isProductionBuild) {
       return `${gcpTagName}-static`;
     }
 
-    // Vercel or Netlify, parse the release commit message.
-    let commitMessage;
+    // Vercel or Netlify, parse the release commit message or log.
+    let infoMessage;
     const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
-    if (!vercelCommitMessage) {
-      const netlifyCommitMessage = "don't know how to do this yet";
-      commitMessage = netlifyCommitMessage;
+    if (vercelCommitMessage) {
+      infoMessage = vercelCommitMessage;
     } else {
-      commitMessage = vercelCommitMessage;
+      const netlifyCommitLog = execSync(
+        `git show --no-patch --oneline ${process.env.COMMIT_REF}`
+      );
+      infoMessage = netlifyCommitLog;
     }
 
     // Vercel or Netlify
     // Release commit format defined in release.config.js
     const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
-    const isReleaseCommit = releaseCommitFormat.test(commitMessage);
+    const isReleaseCommit = releaseCommitFormat.test(infoMessage);
     if (isReleaseCommit) {
-      const matches = commitMessage.match(/([vV]\d+\.\d+\.\d+)/);
+      const matches = infoMessage.match(/([vV]\d+\.\d+\.\d+)/);
       if (matches === null) {
         throw new TypeError(
           "Could not extract app version from commit message"

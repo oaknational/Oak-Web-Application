@@ -1,3 +1,8 @@
+# Cancel production builds which are not versioning commits.
+[context.production]
+  ignore = "node scripts/build/cancel_netlify_build.js"
+
+
 # Force all access through our managed TLD.
 # When Netlify becomes the production site hosting for www. the subdomain will
 # need changing to `www` and the status to `301`.
