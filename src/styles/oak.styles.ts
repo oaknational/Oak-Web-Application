@@ -1,3 +1,11 @@
+/**
+ * This is our global stylesheet. It's for resets in addition to reset.styles.ts
+ * which is taken from a publically available reset. We want to minimise global
+ * styles where possible so if you add any styles here please comment with what
+ * they are doing and why they belong here (rather than in component specific
+ * styles)
+ */
+
 import { css } from "styled-components";
 
 const oakStyles = css`
