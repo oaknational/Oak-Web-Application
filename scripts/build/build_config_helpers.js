@@ -105,7 +105,12 @@ function getAppVersion(isProductionBuild) {
           "Could not extract app version from commit info message"
         );
       }
-      const version = matches[0];
+      let version = matches[0];
+
+      // Differentiate Vercel and Netlify versions for Bugsnag
+      if (process.env.VERCEL) {
+        version = `${version}-vercel`;
+      }
       return version;
     }
 
