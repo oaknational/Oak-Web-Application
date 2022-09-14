@@ -33,8 +33,9 @@ const Pagination: FC<PaginationProps> = ({
 
   return (
     <nav aria-label="pagination">
-      <Flex $alignItems={"center"} $justifyContent={"right"}>
+      <Flex $alignItems={"center"} $justifyContent={"center"}>
         <IconButton
+          size="small"
           aria-label="previous page"
           onClick={onPrevious}
           icon={"ChevronLeft"}
@@ -42,9 +43,10 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === 1}
         />
         <P $mh={24} $fontSize={16} $lineHeight={"24px"}>
-          page {currentPage}/{totalPageCount}
+          page {currentPage} / {totalPageCount}
         </P>
         <IconButton
+          size="small"
           aria-label="next page"
           onClick={onNext}
           icon={"ChevronRight"}

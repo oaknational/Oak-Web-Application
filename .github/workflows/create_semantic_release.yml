@@ -12,7 +12,8 @@ on:
   push:
     branches:
       - main
-
+    paths-ignore:
+      - "CHANGE_LOG.md"
 jobs:
   semantic_release:
     name: semantic release
