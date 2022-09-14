@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.0...v1.11.1) (2022-09-14)
+
+
+### Bug Fixes
+
+* **Netlify:** return commit log as string, sanitise exec input ([e029300](https://github.com/oaknational/Oak-Web-Application/commit/e029300f8dde6604f03ed8d7aa5ba8fc078b235c))
+
 # [1.11.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.10.0...v1.11.0) (2022-09-14)
 
 
