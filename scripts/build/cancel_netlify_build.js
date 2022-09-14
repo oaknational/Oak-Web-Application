@@ -13,6 +13,8 @@ const { execSync } = require("child_process");
  *
  * We require the version number at build time for reporting to tools
  * such as Bugsnag.
+ *
+ * https://docs.netlify.com/configure-builds/ignore-builds/
  */
 
 const CANCEL_BUILD_EXIT_CODE = 0;
