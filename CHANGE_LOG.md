@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.1...v1.11.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* **Netlify:** env and regex tweaks ([36b1697](https://github.com/oaknational/Oak-Web-Application/commit/36b1697225f19e22a8de7f6850cdc231c9d8c89a))
+
 ## [1.11.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.0...v1.11.1) (2022-09-14)
 
 
