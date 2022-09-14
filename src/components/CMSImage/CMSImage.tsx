@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNextSanityImage } from "next-sanity-image";
 import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
@@ -25,6 +25,8 @@ export const sanityClientLike: SanityClientLike = {
 };
 
 const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
+  const [loaded, setLoaded] = useState(false);
+
   const { width, height, ...imageProps } = useNextSanityImage(
     sanityClientLike,
     image,
@@ -52,8 +54,9 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
   const dimensions = rest.fill ? {} : { width, height };
 
   return (
-    <Box $background="pastelTurqoise" $width="100%">
+    <Box $background={loaded ? undefined : "pastelTurqoise"} $width="100%">
       <OakImage
+        onLoadingComplete={() => setLoaded(true)}
         {...imageProps}
         {...dimensions}
         {...rest}
