@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.2...v1.11.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* **CI:** don't prevent code checks in PRs after merging in version commits ([059b013](https://github.com/oaknational/Oak-Web-Application/commit/059b0139d0dbe0afc912e8cc2c2467fb773f2039))
+
 ## [1.11.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.1...v1.11.2) (2022-09-14)
 
 
