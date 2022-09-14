@@ -85,6 +85,9 @@ function getAppVersion(isProductionBuild) {
       infoMessage = netlifyCommitLog;
     }
 
+    // DEBUG
+    console.log("infoMessage", infoMessage);
+
     // Vercel or Netlify
     // Release commit format defined in release.config.js
     const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
@@ -93,7 +96,7 @@ function getAppVersion(isProductionBuild) {
       const matches = infoMessage.match(/([vV]\d+\.\d+\.\d+)/);
       if (matches === null) {
         throw new TypeError(
-          "Could not extract app version from commit message"
+          "Could not extract app version from commit info message"
         );
       }
       const version = matches[0];
