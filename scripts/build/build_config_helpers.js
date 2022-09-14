@@ -1,3 +1,4 @@
+const { execSync } = require("child_process");
 const { existsSync, readFileSync } = require("fs");
 
 /**
@@ -72,13 +73,24 @@ function getAppVersion(isProductionBuild) {
       return `${gcpTagName}-static`;
     }
 
-    // Vercel, parse the release commit message.
+    // Vercel or Netlify, parse the release commit message or log.
+    let infoMessage;
     const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
+    if (vercelCommitMessage) {
+      infoMessage = vercelCommitMessage;
+    } else {
+      const netlifyCommitLog = execSync(
+        `git show --no-patch --oneline ${process.env.COMMIT_REF}`
+      );
+      infoMessage = netlifyCommitLog;
+    }
+
+    // Vercel or Netlify
     // Release commit format defined in release.config.js
     const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
-    const isVercelReleaseCommit = releaseCommitFormat.test(vercelCommitMessage);
-    if (isVercelReleaseCommit) {
-      const matches = vercelCommitMessage.match(/([vV]\d+\.\d+\.\d+)/);
+    const isReleaseCommit = releaseCommitFormat.test(infoMessage);
+    if (isReleaseCommit) {
+      const matches = infoMessage.match(/([vV]\d+\.\d+\.\d+)/);
       if (matches === null) {
         throw new TypeError(
           "Could not extract app version from commit message"
@@ -87,8 +99,6 @@ function getAppVersion(isProductionBuild) {
       const version = matches[0];
       return version;
     }
-
-    // Netlify... don't know yet.
 
     // Couldn't figure out production version number, bail.
     throw new TypeError("Could not determine production version number.");
@@ -105,7 +115,10 @@ function getAppVersion(isProductionBuild) {
 
 const RELEASE_STAGE_TESTING = "test";
 const RELEASE_STAGE_DEVELOPMENT = "development";
+const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
+const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
 const RELEASE_STAGE_PREVIEW = "preview";
+const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
 const RELEASE_STAGE_PRODUCTION = "production";
 const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
 /**
@@ -120,8 +133,11 @@ const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
 function getReleaseStage(candidateReleaseStage = RELEASE_STAGE_NOT_DEFINED) {
   switch (candidateReleaseStage) {
     case RELEASE_STAGE_DEVELOPMENT:
+    case RELEASE_STAGE_DEVELOPMENT_NETLIFY:
+    case RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY:
       return RELEASE_STAGE_DEVELOPMENT;
     case RELEASE_STAGE_PREVIEW:
+    case RELEASE_STAGE_PREVIEW_NETLIFY:
       return RELEASE_STAGE_PREVIEW;
     case RELEASE_STAGE_PRODUCTION:
       return RELEASE_STAGE_PRODUCTION;

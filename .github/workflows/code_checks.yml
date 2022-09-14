@@ -1,6 +1,9 @@
 name: Code checks
 
-on: push
+on:
+  push:
+    paths-ignore:
+      - "CHANGE_LOG.md"
 
 jobs:
   lint_test_sonar:
