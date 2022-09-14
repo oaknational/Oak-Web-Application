@@ -29,9 +29,9 @@ function continueBuild() {
   process.exit(CONTINUE_BUILD_EXIT_CODE);
 }
 
-const ref = process.env.COMMIT_REF;
+const ref = process.env.BRANCH;
 if (!ref) {
-  const err = new TypeError("COMMIT_REF was not defined, exiting.");
+  const err = new TypeError("BRANCH was not defined, exiting.");
   cancelBuild(err);
 }
 console.log(`ref: ${ref}`);
@@ -56,7 +56,7 @@ if (!netlifyCommitLog) {
 console.log(`commit log: ${netlifyCommitLog}`);
 
 // Release commit format defined in release.config.js
-const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
+const releaseCommitFormat = /build\(release [vV]\d+\.\d+\.\d+\):/;
 const isReleaseCommit = releaseCommitFormat.test(netlifyCommitLog);
 console.log(`isReleaseCommit: ${isReleaseCommit}`);
 

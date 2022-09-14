@@ -96,7 +96,7 @@ function getAppVersion(isProductionBuild) {
 
     // Vercel or Netlify
     // Release commit format defined in release.config.js
-    const releaseCommitFormat = /^build\(release [vV]\d+\.\d+\.\d+\):/;
+    const releaseCommitFormat = /build\(release [vV]\d+\.\d+\.\d+\):/;
     const isReleaseCommit = releaseCommitFormat.test(infoMessage);
     if (isReleaseCommit) {
       const matches = infoMessage.match(/([vV]\d+\.\d+\.\d+)/);
