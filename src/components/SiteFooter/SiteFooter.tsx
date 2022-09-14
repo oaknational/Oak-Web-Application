@@ -13,6 +13,7 @@ import UnstyledButton from "../UnstyledButton";
 import footerSections from "../../browser-lib/fixtures/footerSections";
 import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
+import Svg from "../Svg";
 
 type FooterLinkProps = {
   text: string;
@@ -113,12 +114,13 @@ const SiteFooter: FC = () => {
       as="footer"
       $zIndex="neutral"
       $width="100%"
-      $mt={[48, 80]}
+      $pt={[48, 80]}
       $background="white"
+      $position={"relative"}
+      $overflow={"hidden"}
     >
       <nav>
         <MaxWidth
-          $position={"relative"}
           $justifyContent={"center"}
           $flexDirection={"column"}
           $ph={16}
@@ -126,19 +128,19 @@ const SiteFooter: FC = () => {
           $width={"100%"}
         >
           <Grid>
-            <GridArea $colSpan={[12, 6, 3]}>
+            <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
               <Box $mt={[0, 24]} />
               <FooterSectionLinks {...sections.teachers} />
             </GridArea>
-            <GridArea $colSpan={[12, 6, 3]}>
+            <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.oak} />
             </GridArea>
-            <GridArea $colSpan={[12, 6, 3]}>
+            <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.legal} />
             </GridArea>
-            <GridArea $colSpan={[12, 6, 3]}>
-              <Flex $justifyContent={["left", "left", "right"]} $mt={[40, 0]}>
+            <GridArea $colSpan={[12, 3]}>
+              <Flex $justifyContent={["left", "right"]} $mt={[40, 0]}>
                 <Logo title={"Oak National Academy"} height={66} width={150} />
               </Flex>
             </GridArea>
@@ -153,6 +155,17 @@ const SiteFooter: FC = () => {
           </Flex>
         </MaxWidth>
       </nav>
+      <Svg
+        name="LoopingLine"
+        $color={"pupilsPink"}
+        $zIndex={"behind"}
+        $transform={[
+          "translate(0, 50%)",
+          "translate(50%, 0)",
+          "translate(50%, 0)",
+        ]}
+        $cover
+      />
     </Box>
   );
 };
