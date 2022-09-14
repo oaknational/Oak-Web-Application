@@ -263,16 +263,20 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       <MaxWidth>
         <Grid $ph={[12, 0]}>
           <GridArea $colSpan={[12, 7]}>
-            <Flex $mt={[40, 80]} $justifyContent="space-between">
+            <Flex
+              $mt={[40, 80]}
+              $justifyContent="space-between"
+              $flexDirection={["column", "row"]}
+            >
               <Heading
                 tag={"h2"}
                 $fontSize={[16]}
-                $color="oakGrey3" // change to "hyperlink" when it becomes a link
+                $color="black" // change to "hyperlink" when it becomes a link
                 $fontFamily="heading"
               >
                 {blog.category.title}
               </Heading>
-              <Span $fontFamily={"body"} $fontSize={[14]}>
+              <Span $fontFamily={"body"} $fontSize={[14]} $mt={[8, 0]}>
                 {formattedDate}
               </Span>
             </Flex>
