@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.3...v1.12.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* center the blog pagination buttons ([c186c7b](https://github.com/oaknational/Oak-Web-Application/commit/c186c7b2064c750f7440414e35beaf2eab247397))
+
+
+### Features
+
+* **CI:** poke release process ([176dea4](https://github.com/oaknational/Oak-Web-Application/commit/176dea478070b1d9dd16419b40475e5a72c7bf86))
+
 ## [1.11.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.2...v1.11.3) (2022-09-14)
 
 
