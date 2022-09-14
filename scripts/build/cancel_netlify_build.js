@@ -38,8 +38,14 @@ console.log(`ref: ${ref}`);
 const isMain = ref === "main";
 console.log(`isMain: ${isMain}`);
 
+const commitRef = process.env.COMMIT_REF;
+const commitRegex = /^([a-zA-Z0-9]){8,}$/;
+if (!commitRegex.test(commitRef)) {
+  throw new TypeError(`Invalid exec input: ${commitRef}`);
+}
 const netlifyCommitLog = execSync(
-  `git show --no-patch --oneline ${process.env.COMMIT_REF}`
+  `git show --no-patch --oneline ${commitRef}`,
+  { encoding: "utf8" }
 );
 if (!netlifyCommitLog) {
   const err = new TypeError(
