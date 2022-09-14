@@ -1,3 +1,11 @@
+# [1.11.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.10.0...v1.11.0) (2022-09-14)
+
+
+### Features
+
+* **Netlify:** attempt to cancel production builds for non-versioning commits ([2d2ee6f](https://github.com/oaknational/Oak-Web-Application/commit/2d2ee6fff9214e23f01d19ef9a4d42a5f24aa784))
+* **Netlify:** automatic release stage determination for Netlify deployments ([fac51ce](https://github.com/oaknational/Oak-Web-Application/commit/fac51ceb483a918aa918e211d5f7c3ccd44d23ef))
+
 # [1.10.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.9.0...v1.10.0) (2022-09-13)
 
 
