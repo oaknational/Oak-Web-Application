@@ -20,6 +20,7 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
