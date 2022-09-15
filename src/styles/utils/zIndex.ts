@@ -9,7 +9,7 @@ export const zIndexMap = {
   fixedHeader: 100,
 } as const;
 
-export type ZIndex = keyof typeof zIndexMap;
+export type ZIndex = keyof typeof zIndexMap | null;
 
 export type ZIndexProps = {
   $zIndex?: ResponsiveValues<ZIndex>;
