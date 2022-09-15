@@ -10,6 +10,8 @@ const StyledSvg = styled.svg<BoxProps>`
 type SvgProps = BoxProps & {
   name: SvgName;
   className?: string;
+  hideOnMobileH?: boolean;
+  hideOnMobileV?: boolean;
 };
 const Svg: FC<SvgProps> = (props) => {
   return (

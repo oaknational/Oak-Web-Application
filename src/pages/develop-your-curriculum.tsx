@@ -20,6 +20,7 @@ import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 const RotatedCard = styled(Card)`
   @media (min-width: ${getBreakpoint("small")}px) {
@@ -87,6 +88,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             $background={"twilight"}
             $maxWidth={["100%", "50%"]}
           >
+            <BrushBorders hideOnMobileH color={"twilight"} />
             <Heading $mb={20} $fontSize={[20, 24]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
@@ -123,6 +125,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.elements.posts.map((element, index) => (
               <Fragment key={`${index}-${element.title}`}>
                 <GridArea $colSpan={[12, 4]}>
+                  <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
                     <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
                       {element.title}
