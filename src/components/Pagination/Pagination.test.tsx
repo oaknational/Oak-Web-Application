@@ -1,4 +1,4 @@
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Pagination from "./Pagination";
 
@@ -9,7 +9,7 @@ describe("Pagination", () => {
     const pageSize = 6;
     const onPageChange = jest.fn();
 
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -26,7 +26,7 @@ describe("Pagination", () => {
     const pageSize = 6;
     const onPageChange = jest.fn();
 
-    const { getByText } = renderWithProviders(
+    const { getByText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -43,7 +43,7 @@ describe("Pagination", () => {
     const pageSize = 4;
     const onPageChange = jest.fn();
 
-    const { getByText } = renderWithProviders(
+    const { getByText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -59,7 +59,7 @@ describe("Pagination", () => {
     const currentPage = 6;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, rerender } = renderWithProviders(
+    const { getByText, rerender } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -84,7 +84,7 @@ describe("Pagination", () => {
     const currentPage = 6;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, rerender } = renderWithProviders(
+    const { getByText, rerender } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -109,7 +109,7 @@ describe("Pagination", () => {
     const currentPage = 25;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, getByLabelText } = renderWithProviders(
+    const { getByText, getByLabelText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -128,7 +128,7 @@ describe("Pagination", () => {
     const currentPage = 1;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, getByLabelText } = renderWithProviders(
+    const { getByText, getByLabelText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -147,7 +147,7 @@ describe("Pagination", () => {
     const currentPage = 1;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { queryByRole } = renderWithProviders(
+    const { queryByRole } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}

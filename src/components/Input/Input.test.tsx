@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Input from "./Input";
 
 describe("Input", () => {
   it("renders an input", () => {
-    renderWithProviders(
+    renderWithTheme(
       <Input
         id="test-input"
         label="An input"
@@ -20,7 +20,7 @@ describe("Input", () => {
     expect(input).toBeInTheDocument();
   });
   test("has accessible name", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <Input
         id="test-input"
         label="A particular label"
@@ -32,7 +32,7 @@ describe("Input", () => {
     expect(input).toHaveAccessibleName("A particular label");
   });
   test("has accessible error message", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <Input
         id="test-input"
         label="A particular label"
