@@ -5,6 +5,10 @@ import config from "../../config";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 
+const noop = () => null;
+const consoleLog = config.get("releaseStage") === "test" ? noop : console.log;
+const consoleError = config.get("releaseStage") === "test" ? noop : console.log;
+
 /**
  * Test if a user agent matches any in a list of regex patterns.
  *
@@ -108,8 +112,8 @@ const errorify = (maybeError: unknown): Error => {
 
 const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
   const reportError = async (maybeError: Error | unknown, data?: ErrorData) => {
-    console.error(maybeError);
-    console.log(context, metadata, data);
+    consoleError(maybeError);
+    consoleLog(context, metadata, data);
 
     if (isBrowser) {
       const bugsnagAllowed = getHasConsentedTo("bugsnag");
@@ -148,10 +152,10 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         event.addMetadata("Meta", metaFields);
       });
     } catch (bugsnagErr) {
-      console.log("Failed to send error to bugsnag:");
-      console.error(bugsnagErr);
-      console.log("Original error:");
-      console.error(maybeError);
+      consoleLog("Failed to send error to bugsnag:");
+      consoleError(bugsnagErr);
+      consoleLog("Original error:");
+      consoleError(maybeError);
     }
   };
 

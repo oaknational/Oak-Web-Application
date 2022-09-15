@@ -4,6 +4,14 @@ import { ReactNode } from "react";
 
 import MyApp from "../../pages/_app";
 
+const noopAvoLogger = {
+  logDebug: () => true,
+  logWarn: () => true,
+  // returning false will make avo use console errors, which
+  // we may prefer for actual errors
+  logError: () => false,
+};
+
 jest.mock("@apollo/client", () => ({
   __esModule: true,
   ApolloProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
@@ -33,9 +41,14 @@ describe("<MyApp>", () => {
     const pageProps = {};
 
     render(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      <MyApp pageProps={pageProps} Component={Component} router={mockRouter} />
+      <MyApp
+        pageProps={pageProps}
+        Component={Component}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        router={mockRouter}
+        analyticsOptions={{ avoOptions: { avoLogger: noopAvoLogger } }}
+      />
     );
 
     expect(screen.getByText(/^Test:/).textContent).toBe("Test: value");
