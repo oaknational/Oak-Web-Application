@@ -162,7 +162,7 @@ const SiteFooter: FC = () => {
         $display={["none", "block"]}
         $transform={[
           "none",
-          "translate(25%, 25%) scale(0.6) rotate(-10deg)",
+          "translate(25%, 25%) scale(0.7) rotate(-10deg)",
           "translate(25%, 15%) rotate(-10deg)",
         ]}
         $cover
