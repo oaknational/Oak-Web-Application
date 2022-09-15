@@ -1,3 +1,19 @@
+# [1.13.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.12.1...v1.13.0) (2022-09-15)
+
+
+### Features
+
+* brush borders ([c6788d1](https://github.com/oaknational/Oak-Web-Application/commit/c6788d1f1bb2c32dd063968b859225b436448b9f))
+* button borders hide on mobile ([9e1bacd](https://github.com/oaknational/Oak-Web-Application/commit/9e1bacd9ae8f0a2d0dc2acfcc456bf98ad948770))
+
+## [1.12.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.12.0...v1.12.1) (2022-09-15)
+
+
+### Bug Fixes
+
+* send serialized original error to bugsang ([878ba6f](https://github.com/oaknational/Oak-Web-Application/commit/878ba6fc31e31e933d784661e3646d2335963bc4))
+* video analytics error report meta ([3fee5e0](https://github.com/oaknational/Oak-Web-Application/commit/3fee5e068011ab00fdf42a8da13c4eec37ea2e09))
+
 # [1.12.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.3...v1.12.0) (2022-09-14)
 
 

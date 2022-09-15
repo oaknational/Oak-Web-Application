@@ -3,6 +3,7 @@ import { FC } from "react";
 import iconSvgSymbols, { ICON_NAMES } from "./IconSvgs";
 import { svgSymbols as boxBorderSymbols } from "./BrushSvgs/BoxBorders";
 import { svgSymbols as buttonBorderSymbols } from "./BrushSvgs/ButtonBorders";
+import { svgSymbols as brushBorderSymbols } from "./BrushSvgs/BrushBorders";
 import IconBackground from "./BrushSvgs/IconBackground";
 import getSvgId from "./getSvgId";
 import graphicSvgSymbols, { GRAPHIC_NAMES } from "./GraphicSvgs";
@@ -40,6 +41,9 @@ const SpriteSheet: FC = () => {
         <Symbol key={`spritesheet-${name}`} />
       ))}
       {Object.entries(buttonBorderSymbols).map(([name, Symbol]) => (
+        <Symbol key={`spritesheet-${name}`} />
+      ))}
+      {Object.entries(brushBorderSymbols).map(([name, Symbol]) => (
         <Symbol key={`spritesheet-${name}`} />
       ))}
       <IconBackground id={getSvgId({ name: "icon-brush-background" })} />

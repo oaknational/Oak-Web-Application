@@ -80,7 +80,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       originalError,
       meta: metadata,
     });
-    reportError(error);
+    reportError(error, { ...getState() });
   };
 
   if (process.env.NODE_ENV === "test") {
