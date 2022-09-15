@@ -1,10 +1,8 @@
 import { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
-import styled from "styled-components";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -22,13 +20,6 @@ import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
-
-const RotatedCard = styled(Card)`
-  @media (min-width: ${getBreakpoint("small")}px) {
-    transform: rotate(2deg) translateY(18px) translateX(5px);
-    z-index: 1;
-  }
-`;
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -84,7 +75,9 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
         </Card>
         {/* getting started */}
         <Flex $width={"100%"} $justifyContent={"flex-end"}>
-          <RotatedCard
+          <Card
+            $transform={[null, "rotate(2deg) translateY(18px) translateX(5px)"]}
+            $zIndex={[null, "inFront"]}
             $pv={24}
             $ph={[16, 24]}
             $background={"twilight"}
@@ -96,7 +89,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             <Typography>
               <PortableText value={pageData.gettingStarted.bodyPortableText} />
             </Typography>
-          </RotatedCard>
+          </Card>
         </Flex>
         <Card
           $mb={[56, 80]}
