@@ -1,3 +1,22 @@
+# [1.14.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.13.0...v1.14.0) (2022-09-15)
+
+
+### Bug Fixes
+
+* links are ui font ([6b0502a](https://github.com/oaknational/Oak-Web-Application/commit/6b0502a436b119f7770740b5c2f897611546a8a5))
+* prevent line showing broken at breakpoint ([e90594b](https://github.com/oaknational/Oak-Web-Application/commit/e90594b0b59eef684b899931e7fe54419f5f4206))
+
+
+### Features
+
+* add linkedin to footer and menu ([fa2daf0](https://github.com/oaknational/Oak-Web-Application/commit/fa2daf0f5154c887e773b630e881b0a6c6785b34))
+* add new svg - scrole, rotate and translate ([70589ea](https://github.com/oaknational/Oak-Web-Application/commit/70589ea6e9d4512d1052eb054aa4f974bcfd6892))
+* add ribbon to footer ([1a8b972](https://github.com/oaknational/Oak-Web-Application/commit/1a8b97228a480b7fcfeee718df19f96b84f689e5))
+* make mobile transform none on hidden svg ([de3295a](https://github.com/oaknational/Oak-Web-Application/commit/de3295aa426bc45a895e1247101367dcf6319350))
+* mobile looping line ([ea4bff2](https://github.com/oaknational/Oak-Web-Application/commit/ea4bff254b74e5d2fba6ee9201d108a9c4267c2e))
+* new svg for mobile footer ([55eef21](https://github.com/oaknational/Oak-Web-Application/commit/55eef2111454fd588f579e42ba484ee1ef8ab424))
+* put footer in grid ([49c6d28](https://github.com/oaknational/Oak-Web-Application/commit/49c6d288b1d5f82c6e67275432cb05f6bbf1b1ab))
+
 # [1.13.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.12.1...v1.13.0) (2022-09-15)
 
 
