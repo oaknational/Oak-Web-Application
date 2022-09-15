@@ -14,6 +14,7 @@ import Box from "../components/Box";
 import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import UnstyledButton from "../components/UnstyledButton";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import OakLink from "../components/OakLink";
 
 const ContactUs: NextPage = () => {
@@ -130,6 +131,7 @@ const ContactUs: NextPage = () => {
           $pv={[24]}
           $mt={[72, 80]}
         >
+          <BrushBorders hideOnMobileH color={"twilight"} />
           <Flex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
