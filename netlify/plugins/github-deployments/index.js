@@ -27,9 +27,13 @@ const github = require("@actions/github");
 //   });
 // };
 
-const createComment = async (token, { owner, repo, issue_number, body }) => {
+const createComment = async (token, options) => {
+  // DEBUG
+  console.log("comment call options", options);
+
+  const { owner, repo, issue_number, body } = options;
   const octokit = github.getOctokit(token);
-  octokit.rest.issues.createComment({
+  return octokit.rest.issues.createComment({
     owner,
     repo,
     issue_number,
