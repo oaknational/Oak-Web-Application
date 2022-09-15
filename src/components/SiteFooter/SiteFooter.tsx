@@ -156,13 +156,14 @@ const SiteFooter: FC = () => {
         </MaxWidth>
       </nav>
       <Svg
-        name="LoopingLine"
+        name="LoopingLine3"
         $color={"pupilsPink"}
         $zIndex={"behind"}
+        $display={["none", "block"]}
         $transform={[
-          "translate(0, 50%)",
-          "translate(50%, 0)",
-          "translate(50%, 0)",
+          "translate(0, 0)",
+          "translate(25%, 25%) scale(0.6) rotate(-10deg)",
+          "translate(25%, 15%) rotate(-10deg)",
         ]}
         $cover
       />
