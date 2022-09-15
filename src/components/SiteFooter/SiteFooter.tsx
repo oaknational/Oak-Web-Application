@@ -145,7 +145,7 @@ const SiteFooter: FC = () => {
               </Flex>
             </GridArea>
           </Grid>
-          <Flex $mb={80} $mt={64} $width={"100%"}>
+          <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
               <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
@@ -159,9 +159,8 @@ const SiteFooter: FC = () => {
         name="LoopingLine3"
         $color={"pupilsPink"}
         $zIndex={"behind"}
-        $display={["none", "block"]}
         $transform={[
-          "translate(0, 0)",
+          "translate(0%, 25%) scale(1.2) rotate(15deg)",
           "translate(25%, 25%) scale(0.6) rotate(-10deg)",
           "translate(25%, 15%) rotate(-10deg)",
         ]}
