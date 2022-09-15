@@ -10,7 +10,6 @@ const brushBorder = css<{ color: OakColorName }>`
   position: absolute;
   color: ${(props) => getColorByName(props.color)};
   mask-position: center;
-  overflow-x: hidden;
 `;
 
 export const svgSymbols = {
