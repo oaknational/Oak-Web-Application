@@ -131,7 +131,7 @@ const ContactUs: NextPage = () => {
           $pv={[24]}
           $mt={[72, 80]}
         >
-          <BrushBorders hideOnMobile color={"twilight"} />{" "}
+          <BrushBorders hideOnMobileH color={"twilight"} />{" "}
           <Flex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}

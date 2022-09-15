@@ -65,6 +65,12 @@ export const svgSymbols = {
   ),
 };
 
+const hideBrushOnMobile = css`
+  @media (max-width: ${getBreakpoint("small")}px) {
+    display: none;
+  }
+`;
+
 const TOP_THICKNESS = 12;
 const RIGHT_THICKNESS = 8;
 const BOTTOM_THICKNESS = 11;
@@ -103,34 +109,25 @@ const brushBorderLeft = css`
 
 const BrushBorderTop = styled(Svg)`
   ${brushBorderTop}
+  ${(props) => props.hideOnMobileV && hideBrushOnMobile}
 `;
 const BrushBorderRight = styled(Svg)`
   ${brushBorderRight}
-  ${(props) =>
-    props.hideOnMobile &&
-    css`
-      @media (max-width: ${getBreakpoint("small")}px) {
-        display: none;
-      }
-    `}
+  ${(props) => props.hideOnMobileH && hideBrushOnMobile}
 `;
 const BrushBorderBottom = styled(Svg)`
   ${brushBorderBottom}
+  ${(props) => props.hideOnMobileV && hideBrushOnMobile}
 `;
 const BrushBorderLeft = styled(Svg)`
   ${brushBorderLeft}
-  ${(props) =>
-    props.hideOnMobile &&
-    css`
-      @media (max-width: ${getBreakpoint("small")}px) {
-        display: none;
-      }
-    `}
+  ${(props) => props.hideOnMobileH && hideBrushOnMobile}
 `;
 
 type BrushBordersProps = {
   color: OakColorName;
-  hideOnMobile?: boolean;
+  hideOnMobileH?: boolean;
+  hideOnMobileV?: boolean;
 };
 /**
  * Presentational component just for the borders for the brush cards.

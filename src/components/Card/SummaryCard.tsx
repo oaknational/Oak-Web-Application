@@ -103,7 +103,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
           </Cover>
         </Flex>
       )}
-      <BrushBorders hideOnMobile color={background || "inherit"} />
+      <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );
 };

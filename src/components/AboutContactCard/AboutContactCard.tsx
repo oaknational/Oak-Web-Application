@@ -36,7 +36,7 @@ const AboutContactCard: FC = () => {
   const { onSubmit } = useNewsletterForm();
   return (
     <Flex $position={"relative"} $width={"100%"}>
-      <BrushBorders hideOnMobile color={"pupilsLightGreen"} />
+      <BrushBorders hideOnMobileH hideOnMobileV color={"pupilsLightGreen"} />
       <Grid>
         <GridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
           <Card

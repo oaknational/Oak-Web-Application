@@ -187,7 +187,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={[0, 40]} $rg={[32]}>
+          <Grid $cg={[0, 40]} $rg={[56]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea
@@ -195,7 +195,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   $colSpan={[12, 6]}
                 >
                   <LessonElementsCard $background={"twilight"}>
-                    <BrushBorders hideOnMobile color={"twilight"} />
+                    <BrushBorders hideOnMobileH color={"twilight"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
@@ -228,7 +228,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $pb={24}
                 $pa={0}
               >
-                <BrushBorders hideOnMobile color={"pastelTurqoise"} />
+                <BrushBorders hideOnMobileH color={"pastelTurqoise"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
@@ -347,7 +347,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $ph={[16, 24]}
               $flexDirection={["column", "column", "row"]}
             >
-              <BrushBorders hideOnMobile color={"teachersPastelYellow"} />
+              <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
               <Box $minWidth={["50%"]}>
                 <Box $display={["block", "block", "none"]}>
                   <CardTitle fontSize={[24, 32, 32]} tag="h4">
@@ -391,7 +391,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $alignItems="center"
             $maxWidth={["100%", 812, "100%"]}
           >
-            <BrushBorders hideOnMobile color={"teachersPastelYellow"} />
+            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box
               $minWidth={"50%"}
               $pr={[null, null, 72]}
