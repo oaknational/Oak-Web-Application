@@ -54,7 +54,7 @@ module.exports = function githubDeploymentPlugin() {
      * @todo create deployment event with deployment status pending.
      * @todo use buildContext to set deployment type.
      */
-    onPreBuild: async ({ netlifyConfig }) => {
+    onPreBuild: async ({ netlifyConfig, utils }) => {
       console.log("*** onPreBuild ***");
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const deploymentUrl = process.env.DEPLOY_PRIME_URL;
@@ -82,18 +82,23 @@ module.exports = function githubDeploymentPlugin() {
       // https://github.com/oaknational/Oak-Web-Application
       const repoUrl = new URL(repoUrlString);
       const repoPath = repoUrl.pathname;
-      const [owner, repo] = repoPath.split("/");
+      // Old school!
+      const [owner, repo] = repoPath.slice(1).split("/");
       // Get PR number
       const prNumber = prMergeHead.split("/")[1];
 
-      const result = await createComment(githubToken, {
-        owner,
-        repo,
-        issue_number: prNumber,
-        body: "hellooo!",
-      });
+      try {
+        const result = await createComment(githubToken, {
+          owner,
+          repo,
+          issue_number: prNumber,
+          body: "hellooo!",
+        });
 
-      console.log("result", result);
+        console.log("result", result);
+      } catch (error) {
+        utils.build.failBuild("Failed to set comment", { error });
+      }
     },
 
     /**
