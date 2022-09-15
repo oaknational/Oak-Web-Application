@@ -159,11 +159,20 @@ const SiteFooter: FC = () => {
         name="LoopingLine3"
         $color={"pupilsPink"}
         $zIndex={"behind"}
+        $display={["none", "block"]}
         $transform={[
           "translate(0%, 25%) scale(1.2) rotate(15deg)",
           "translate(25%, 25%) scale(0.6) rotate(-10deg)",
           "translate(25%, 15%) rotate(-10deg)",
         ]}
+        $cover
+      />
+      <Svg
+        name="LoopingLine4"
+        $color={"pupilsPink"}
+        $display={["block", "none"]}
+        $zIndex={"behind"}
+        $transform={"translate(0%, 32%)"}
         $cover
       />
     </Box>
