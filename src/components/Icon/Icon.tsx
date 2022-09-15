@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled, { css, useTheme } from "styled-components";
 
-import { OakColorName, PixelSpacing } from "../../styles/theme";
+import { PixelSpacing } from "../../styles/theme";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import color, { ColorProps } from "../../styles/utils/color";
 import Svg from "../Svg/Svg";
@@ -10,17 +10,16 @@ import { ResponsiveValues } from "../../styles/utils/responsive";
 import { IconSvgName } from "../SpriteSheet/IconSvgs";
 import { GraphicSvgName } from "../SpriteSheet/GraphicSvgs";
 import { LessonElementSvgName } from "../SpriteSheet/LessonElementSvgs";
-import opacity, { OpacityProps } from "../../styles/utils/opacity";
+import { box, BoxProps } from "../Box";
 
 export type IconName = IconSvgName | GraphicSvgName | LessonElementSvgName;
 type IconVariant = "minimal" | "brush";
 
 type RotateValue = 0 | 180;
-type TransformProps = { rotate?: RotateValue; flip?: boolean };
+type FlipRotateProps = { rotate?: RotateValue; flip?: boolean };
 type IconOuterWrapperProps = { variant: IconVariant } & SizeProps &
-  TransformProps &
-  SpacingProps &
-  OpacityProps;
+  FlipRotateProps &
+  BoxProps;
 const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
   position: relative;
   display: inline-block;
@@ -35,8 +34,7 @@ const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
       transform: scaleY(${props.flip ? -1 : 1});
     `}
   ${size}
-  ${spacing}
-  ${opacity}
+  ${box}
 `;
 
 const IconWrapper = styled.span<SpacingProps & ColorProps>`
@@ -62,23 +60,17 @@ export const BackgroundIcon = styled(Svg)<ColorProps>`
 `;
 
 export type IconSize = ResponsiveValues<PixelSpacing>;
-type IconProps = Partial<IconOuterWrapperProps> & {
-  name: IconName;
-  variant?: IconVariant;
-  /**
-   * size in pixels is the value for width and height if they are not separately provided
-   */
-  size?: IconSize;
-  width?: IconSize;
-  height?: IconSize;
-  /**
-   * by default, the color will take the css `color` value of its closest ancester
-   * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to
-   * override this value.
-   */
-  $color?: OakColorName;
-  $background?: OakColorName;
-};
+type IconProps = Partial<IconOuterWrapperProps> &
+  BoxProps & {
+    name: IconName;
+    variant?: IconVariant;
+    /**
+     * size in pixels is the value for width and height if they are not separately provided
+     */
+    size?: IconSize;
+    width?: IconSize;
+    height?: IconSize;
+  };
 /**
  * The `<Icon />` component should be the go to component wherever you seen an
  * icon.
@@ -102,8 +94,18 @@ const Icon: FC<IconProps> = (props) => {
   const outerHeight = height || size;
 
   const theme = useTheme();
+  /**
+   * by default, the color will take the css `color` value of its closest ancester
+   * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to
+   * override this value.
+   */
   const $foregroundColor =
-    $color || ($background ? theme.contrastColors[$background] : undefined);
+    $color ||
+    (typeof $background === "string"
+      ? theme.contrastColors[$background]
+      : Array.isArray($background)
+      ? $background.map(($) => theme.contrastColors[$])
+      : undefined);
 
   return (
     <IconOuterWrapper

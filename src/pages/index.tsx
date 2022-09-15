@@ -28,12 +28,12 @@ import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
-
 import {
   blogToBlogListItem,
-  serializeDate,
   SerializedBlogPostPreview,
-} from "./blog";
+  serializeDate,
+} from "../components/pages/BlogIndex";
+
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
 const Notification: FC = () => {

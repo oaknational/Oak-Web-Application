@@ -1,5 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import { FC, ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 
 import {
   isExternalHref,
@@ -56,16 +56,16 @@ export const getOakLinkAnchorProps = (props: OakLinkProps): HTMLAnchorProps => {
  * It's intended to help centralise information about our url structures,
  * and to facilitate behaviour link "open in a new tab" and tracking.
  *
- * @tood add track props
+ * @todo add track props
  * @todo currently this allows href as any string, do we want to further
  * restrict it?
  */
-const OakLink: FC<OakLinkProps> = (props) => {
+const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   return (
     <Link {...getOakLinkLinkProps(props)}>
-      <a {...getOakLinkAnchorProps(props)} />
+      <a ref={ref} {...getOakLinkAnchorProps(props)} />
     </Link>
   );
-};
+});
 
 export default OakLink;

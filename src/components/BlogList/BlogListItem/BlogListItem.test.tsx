@@ -28,8 +28,19 @@ describe("components/BlogListItem", () => {
     const { getByRole } = renderWithProviders(
       <BlogListItem {...testProps} contentType="webinar" />
     );
-    const button = getByRole("link");
+    const button = getByRole("link", { name: testProps.title });
     expect(button).toHaveAttribute("href", "https://www.test.com/");
+  });
+
+  test("should contain link to category", async () => {
+    const { getByRole } = renderWithProviders(
+      <BlogListItem {...testProps} contentType="webinar" />
+    );
+    const button = getByRole("link", { name: testProps.category.title });
+    expect(button).toHaveAttribute(
+      "href",
+      `/blog/categories/${testProps.category.slug}`
+    );
   });
 
   test("renders the provided image", () => {

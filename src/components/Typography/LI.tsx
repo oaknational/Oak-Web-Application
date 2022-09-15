@@ -1,18 +1,21 @@
 import styled from "styled-components";
 
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import flex from "../../styles/utils/flex";
 import typography, { TypographyProps } from "../../styles/utils/typography";
+import { box } from "../Box";
+import { FlexProps } from "../Flex";
 
 /**
- * Styled `li` (ordered list) component.
+ * Styled `li` (list item) component.
  *
  * ## Usage
  *
  * Places where we directly want to style a list item
  *
  * */
-const LI = styled.li<SpacingProps & TypographyProps>`
-  ${spacing}
+const LI = styled.li<FlexProps & TypographyProps>`
+  ${box}
+  ${flex}
   ${typography}
 `;
 

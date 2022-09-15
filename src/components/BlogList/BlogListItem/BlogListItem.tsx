@@ -1,25 +1,15 @@
-import { FC } from "react";
-import styled from "styled-components";
+import { FC, MouseEventHandler, useRef } from "react";
 
 import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
+import ClickableCard from "../../ClickableCard/ClickableCard";
 import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
+import OakLink from "../../OakLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { P, Heading, HeadingTag } from "../../Typography";
-
-const ActionLink = styled.a`
-  ::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-`;
+import { P, Heading, HeadingTag, Span } from "../../Typography";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -53,18 +43,38 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
+  const titleLinkRef = useRef<HTMLAnchorElement>(null);
+
   const blogDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
 
+  const onCardClick: MouseEventHandler<HTMLDivElement> = () => {
+    if (!titleLinkRef.current) {
+      // @todo bugsnag
+      return;
+    }
+    const isTextSelected = window.getSelection()?.toString();
+    if (!isTextSelected) {
+      titleLinkRef.current.click();
+    }
+  };
+
+  const onCategoryClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <Flex
+    <ClickableCard
+      onClick={onCardClick}
+      clickTargetRef={titleLinkRef}
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={["initial", "center"]}
       $minHeight={200}
+      $pa={0}
     >
       {withImage && mainImage && (
         <Box $position={"relative"} $minWidth={240} $mr={[0, 32]} $mb={[32, 0]}>
@@ -87,28 +97,44 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       )}
 
       <Flex $flexDirection="column" $alignItems="flex-start">
-        <P
-          $fontSize={16}
-          $lineHeight={"20px"}
-          // Not blue until link to category filter is added
-          // $color="teachersHighlight"
-          $fontFamily="ui"
+        <Flex
+          $width="100%"
+          $alignItems="flex-end"
+          $justifyContent="space-between"
         >
-          {category.title}
-        </P>
-        <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-          {blogDate}
-        </P>
+          <OakLink
+            page="blog-index"
+            category={category.slug}
+            htmlAnchorProps={{ onClick: onCategoryClick }}
+          >
+            <Span
+              $fontSize={16}
+              $lineHeight={"20px"}
+              $color="hyperlink"
+              $fontFamily="ui"
+            >
+              {category.title}
+            </Span>
+          </OakLink>
+          <P $fontSize={14} $lineHeight={"20px"}>
+            {blogDate}
+          </P>
+        </Flex>
         <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
-          <ActionLink href={href} title={title}>
+          <OakLink
+            ref={titleLinkRef}
+            page={null}
+            href={href}
+            htmlAnchorProps={{ title }}
+          >
             {title}
-          </ActionLink>
+          </OakLink>
         </Heading>
         <P $fontSize={14} $mt={8} $mb={[8, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>
-    </Flex>
+    </ClickableCard>
   );
 };
 

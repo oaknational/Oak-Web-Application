@@ -3,7 +3,7 @@ import { FC, Fragment, useMemo, useState } from "react";
 import Box from "../Box";
 import Flex from "../Flex";
 import { Pagination } from "../Pagination";
-import Typography, { Hr } from "../Typography";
+import { Hr } from "../Typography";
 import { HeadingTag } from "../Typography/Heading";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
@@ -32,16 +32,20 @@ const BlogList: FC<BlogListProps> = (props) => {
   }, [currentPage, items]);
 
   return (
-    <Flex $flexDirection="column" $minHeight={[0, 840]}>
+    <Flex
+      $flexDirection="column"
+      $alignItems="flex-start"
+      $minHeight={[0, 840]}
+    >
       {currentTableData.map((item, i) => (
         <Fragment key={`BlogList-BlogListItem-${i}`}>
+          {i !== 0 && (
+            <Hr $width="100%" thickness={4} $color="black" $mv={32} />
+          )}
           <BlogListItem {...item} withImage={withImage} />
-          <Typography $display={["block", "none"]}>
-            <Hr thickness={2} $color="black" $mb={32} />
-          </Typography>
         </Fragment>
       ))}
-      <Box $mt={[0, "auto"]} $pt={48}>
+      <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
         <Pagination
           currentPage={currentPage}
           totalCount={items.length}

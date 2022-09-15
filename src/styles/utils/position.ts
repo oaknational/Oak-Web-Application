@@ -6,9 +6,13 @@ import { NegativePixelSpacing, PercentSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type PxOrPercent = NullablePixelSpacing | NegativePixelSpacing | PercentSpacing;
+type PxOrPercent =
+  | NullablePixelSpacing
+  | NegativePixelSpacing
+  | PercentSpacing
+  | null;
 export type PositionProps = {
-  $position?: ResponsiveValues<CSSProperties["position"]>;
+  $position?: ResponsiveValues<CSSProperties["position"] | null>;
   $top?: ResponsiveValues<PxOrPercent>;
   $right?: ResponsiveValues<PxOrPercent>;
   $bottom?: ResponsiveValues<PxOrPercent>;

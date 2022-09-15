@@ -11,6 +11,7 @@ import position, { PositionProps } from "../../styles/utils/position";
 import size, { SizeProps } from "../../styles/utils/size";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import transform, { TransformProps } from "../../styles/utils/transform";
+import transition, { TransitionProps } from "../../styles/utils/transition";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 
 export type BoxProps = CoverProps &
@@ -24,6 +25,7 @@ export type BoxProps = CoverProps &
   DisplayProps &
   ZIndexProps &
   TransformProps &
+  TransitionProps &
   OpacityProps;
 
 export const box = css<BoxProps>`
@@ -38,6 +40,7 @@ export const box = css<BoxProps>`
   ${display}
   ${zIndex}
   ${transform}
+  ${transition}
   ${opacity}
 `;
 /**
