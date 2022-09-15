@@ -16,7 +16,7 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
 
   if (typeof duration !== "number" || typeof timeElapsed !== "number") {
     const error = new Error("Could not track video event, props malformed");
-    reportError(error, props);
+    reportError(error, state);
     return;
   }
 
