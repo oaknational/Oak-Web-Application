@@ -60,8 +60,8 @@ const blogPortableTextComponents: PortableTextComponents = {
           $fontSize={[20, 32]}
           $lineHeight={["24px", "40px"]}
           tag="h2"
-          $mt={56}
-          $mb={32}
+          $mt={[48, 56]}
+          $mb={[24, 32]}
         >
           {props.children}
         </Heading>
@@ -160,7 +160,7 @@ const blogPortableTextComponents: PortableTextComponents = {
         <Flex $flexDirection={"column"} $mt={56}>
           <P
             $fontSize={[24, 32]}
-            $lineHeight={"40px"}
+            $lineHeight={["32px", "40px"]}
             $fontFamily={"headingLight"}
           >
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
