@@ -25,5 +25,5 @@
     "**/*.tsx",
     "e2e_tests/browser/fixtures.ts"
   ],
-  "exclude": ["node_modules", "firebase"]
+  "exclude": ["node_modules", "firebase", "netlify/edge-functions"]
 }

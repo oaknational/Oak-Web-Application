@@ -1,3 +1,57 @@
+# [1.12.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.3...v1.12.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* center the blog pagination buttons ([c186c7b](https://github.com/oaknational/Oak-Web-Application/commit/c186c7b2064c750f7440414e35beaf2eab247397))
+
+
+### Features
+
+* **CI:** poke release process ([176dea4](https://github.com/oaknational/Oak-Web-Application/commit/176dea478070b1d9dd16419b40475e5a72c7bf86))
+
+## [1.11.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.2...v1.11.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* **CI:** don't prevent code checks in PRs after merging in version commits ([059b013](https://github.com/oaknational/Oak-Web-Application/commit/059b0139d0dbe0afc912e8cc2c2467fb773f2039))
+
+## [1.11.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.1...v1.11.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* **Netlify:** env and regex tweaks ([36b1697](https://github.com/oaknational/Oak-Web-Application/commit/36b1697225f19e22a8de7f6850cdc231c9d8c89a))
+
+## [1.11.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.11.0...v1.11.1) (2022-09-14)
+
+
+### Bug Fixes
+
+* **Netlify:** return commit log as string, sanitise exec input ([e029300](https://github.com/oaknational/Oak-Web-Application/commit/e029300f8dde6604f03ed8d7aa5ba8fc078b235c))
+
+# [1.11.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.10.0...v1.11.0) (2022-09-14)
+
+
+### Features
+
+* **Netlify:** attempt to cancel production builds for non-versioning commits ([2d2ee6f](https://github.com/oaknational/Oak-Web-Application/commit/2d2ee6fff9214e23f01d19ef9a4d42a5f24aa784))
+* **Netlify:** automatic release stage determination for Netlify deployments ([fac51ce](https://github.com/oaknational/Oak-Web-Application/commit/fac51ceb483a918aa918e211d5f7c3ccd44d23ef))
+
+# [1.10.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.9.0...v1.10.0) (2022-09-13)
+
+
+### Bug Fixes
+
+* **Netlify:** allow Next build type-checking to ignore Deno Netlify edge functions ([090c788](https://github.com/oaknational/Oak-Web-Application/commit/090c788e3c5659aeb7d9af944d7408f55540f57a))
+
+
+### Features
+
+* **Netlify:** initial support ([2f7b844](https://github.com/oaknational/Oak-Web-Application/commit/2f7b84488d48b33ffb3b0f3fe2390ea8fe7d871f))
+* **Netlify:** satisfy ts, docs ([a0a97b3](https://github.com/oaknational/Oak-Web-Application/commit/a0a97b38880cce2d0db9651b4d21f65410240412))
+
 # [1.9.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.8.0...v1.9.0) (2022-09-13)
 
 
