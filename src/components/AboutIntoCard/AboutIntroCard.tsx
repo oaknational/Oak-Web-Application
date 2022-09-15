@@ -5,6 +5,7 @@ import Card from "../Card";
 import Flex from "../Flex";
 import CardImage, { CardImageProps } from "../Card/CardComponents/CardImage";
 import Typography from "../Typography";
+import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 
 type AboutIntroCardProps = {
   image: CardImageProps;
@@ -31,6 +32,7 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
           <PortableText value={bodyPortableText} />
         </Typography>
       </Flex>
+      <BrushBorders color={"twilight"} />
     </Card>
   );
 };
