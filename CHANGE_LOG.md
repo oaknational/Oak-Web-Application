@@ -1,3 +1,11 @@
+# [1.13.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.12.1...v1.13.0) (2022-09-15)
+
+
+### Features
+
+* brush borders ([c6788d1](https://github.com/oaknational/Oak-Web-Application/commit/c6788d1f1bb2c32dd063968b859225b436448b9f))
+* button borders hide on mobile ([9e1bacd](https://github.com/oaknational/Oak-Web-Application/commit/9e1bacd9ae8f0a2d0dc2acfcc456bf98ad948770))
+
 ## [1.12.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.12.0...v1.12.1) (2022-09-15)
 
 
