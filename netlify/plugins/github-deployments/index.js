@@ -3,23 +3,37 @@
  * @todo are there published types for these functions?
  */
 
-module.exports.onPreBuild = function ({ packageJson, netlifyConfig }) {
-  console.log("*** onPreBuild ***");
-  console.log("packageJson", packageJson);
-  console.log("netlifyConfig", netlifyConfig);
-  console.log("ENV:", process.env);
-};
+module.exports = function githubDeploymentPlugin() {
+  let somePieceOfData;
 
-module.exports.onError = function ({ packageJson, netlifyConfig }) {
-  console.log("*** onError ***");
-  console.log("packageJson", packageJson);
-  console.log("netlifyConfig", netlifyConfig);
-  console.log("ENV:", process.env);
-};
+  return {
+    onPreBuild: ({ packageJson, netlifyConfig }) => {
+      console.log("*** onPreBuild ***");
+      console.log("** package.json **");
+      console.log(packageJson.repository);
+      console.log("** Netlify config **");
+      console.log(netlifyConfig.build.environment.BRANCH);
+      console.log(netlifyConfig.build.environment.CONTEXT);
+      console.log(netlifyConfig.build.environment.DEPLOY_PRIME_URL);
+      console.log("** process.env **");
+      console.log(process.env.HEAD);
+      console.log(process.env.COMMIT_REF);
+      console.log(process.env.REPOSITORY_URL);
+      console.log(process.env.BRANCH);
 
-module.exports.onSuccess = function ({ packageJson, netlifyConfig }) {
-  console.log("*** onSuccess ***");
-  console.log("packageJson", packageJson);
-  console.log("netlifyConfig", netlifyConfig);
-  console.log("ENV:", process.env);
+      // Test inter-hook data passing.
+      somePieceOfData = process.env.HEAD;
+    },
+
+    onError: () => {
+      console.log("*** onError ***");
+      console.log("deployment failed");
+    },
+
+    onSuccess: () => {
+      console.log("*** onSuccess ***");
+      console.log("deployment succeeded");
+      console.log(`somePieceOfData: ${somePieceOfData}`);
+    },
+  };
 };
