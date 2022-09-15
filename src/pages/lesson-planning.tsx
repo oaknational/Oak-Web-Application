@@ -128,7 +128,7 @@ const SectionTitle: FC = (props) => {
       $mh="auto"
       $pt={[56, 80]}
       $pb={48}
-      $ph={12}
+      $ph={16}
       $mt={12}
     >
       <Heading $fontSize={[20, 24]} $textAlign="center" tag="h2" {...props} />
