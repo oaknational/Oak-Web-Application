@@ -136,7 +136,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $pv={[72, 80]}
                     $maxHeight={240}
                   >
-                    <BoxBorders />
+                    <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
                       <Heading $mb={8} $fontSize={16} tag={"h3"}>
                         How to
