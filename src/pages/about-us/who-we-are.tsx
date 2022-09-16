@@ -152,7 +152,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $background={"videoBlue"}>
                   <BrushBorders
                     hideOnMobileH
                     hideOnMobileV
