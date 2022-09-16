@@ -35,7 +35,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       $mb={[16, 0]}
       $borderRadius={0}
     >
-      <BoxBorders />
+      <BoxBorders gapPosition="rightTop" />
       <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
         <CardLink
           {...cardLinkProps}
