@@ -17,6 +17,9 @@ import {
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import AnchorTarget from "../../AnchorTarget";
 import OakLink from "../../OakLink";
+import errorReporter from "../../../common-lib/error-reporter";
+
+const reportError = errorReporter("NewsletterForm.tsx");
 
 const schema = z.object({
   name: z
@@ -78,7 +81,12 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
   const descriptionId = `${id}-newsletter-form-description`;
 
   return (
-    <Card $borderRadius={0} $background="white" {...containerProps}>
+    <Card
+      $ph={[16, 24]}
+      $borderRadius={0}
+      $background="white"
+      {...containerProps}
+    >
       <AnchorTarget id={anchorTargetId} />
       <CardTitle tag="h2" icon="MagicCarpet" iconSize={56}>
         Don’t miss out
@@ -105,7 +113,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
             if (error instanceof OakError) {
               setError(error.message);
             } else {
-              // @todo bugsnag
+              reportError(error);
               setError("An unknown error occurred");
             }
           } finally {

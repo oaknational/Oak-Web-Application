@@ -27,7 +27,7 @@ const SiteHeader: FC = () => {
         </a>
       </Link>
       <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
-        <P>
+        <P $fontFamily={"ui"}>
           <OakLink
             page="pupils-home"
             htmlAnchorProps={{
@@ -38,7 +38,7 @@ const SiteHeader: FC = () => {
             Classroom
           </OakLink>
         </P>
-        <P $ml={24} $mr={32}>
+        <P $ml={24} $mr={32} $fontFamily={"ui"}>
           <OakLink
             page="teachers-home"
             htmlAnchorProps={{
