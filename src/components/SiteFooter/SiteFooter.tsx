@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 import Flex from "../Flex";
-import Typography, { Heading, P } from "../Typography";
+import Typography, { Heading, LI, P } from "../Typography";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
@@ -11,7 +11,9 @@ import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsent
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import UnstyledButton from "../UnstyledButton";
 import footerSections from "../../browser-lib/fixtures/footerSections";
+import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
+import Svg from "../Svg";
 
 type FooterLinkProps = {
   text: string;
@@ -66,7 +68,7 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
       </OakLink>
     );
   }
-
+  // TODO: change data to have "page" so we can use OakLink
   return <Link href={props.href}>{props.text}</Link>;
 };
 
@@ -76,27 +78,23 @@ export type FooterSection = {
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <Flex $flexDirection="column">
+    <Flex $flexDirection="column" $mt={[32, 0]}>
       <Heading
         $mb={8}
         $fontSize={16}
         $lineHeight="20px"
         $color="grey9"
         tag="h2"
-        $fontFamily={"headingLight"}
+        $fontFamily={"body"}
       >
         {title}
       </Heading>
-      <Typography
-        $fontSize={[12, 18]}
-        $lineHeight={["24px", "32px"]}
-        $color="grey9"
-      >
+      <Typography $fontSize={16} $lineHeight={"20px"} $fontFamily={"ui"}>
         <ul role="list">
           {links.map((link) => (
-            <li key={link.text}>
+            <LI key={link.text} $mt={12}>
               <FooterLink {...link} />
-            </li>
+            </LI>
           ))}
         </ul>
       </Typography>
@@ -116,52 +114,38 @@ const SiteFooter: FC = () => {
       as="footer"
       $zIndex="neutral"
       $width="100%"
-      $mt={80}
+      $pt={[48, 80]}
       $background="white"
+      $position={"relative"}
+      $overflow={"hidden"}
     >
       <nav>
         <MaxWidth
-          $position={"relative"}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={12}
+          $ph={16}
           $ma={"auto"}
           $width={"100%"}
         >
-          <Flex $width={"100%"} $flexWrap={["wrap"]}>
-            <Flex $mb={32} $flexGrow={[1, 0]} $mr={48} $flexDirection="column">
-              <Flex $mb={16} $flexDirection={"column"}>
-                <FooterSectionLinks {...sections.pupils} />
-              </Flex>
-              <Flex $mb={16} $flexDirection={"column"}>
-                <FooterSectionLinks {...sections.teachers} />
-              </Flex>
-            </Flex>
-
-            <Flex
-              $flexGrow={[1, 0]}
-              $flexDirection="column"
-              $mb={[24, 0]}
-              $mr={48}
-            >
+          <Grid>
+            <GridArea $colSpan={[12, 3]}>
+              <FooterSectionLinks {...sections.pupils} />
+              <Box $mt={[0, 24]} />
+              <FooterSectionLinks {...sections.teachers} />
+            </GridArea>
+            <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.oak} />
-            </Flex>
-
-            <Flex $flexDirection="column">
+            </GridArea>
+            <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.legal} />
-            </Flex>
-
-            <Flex
-              $flexDirection={"column"}
-              $justifyContent={"space-between"}
-              $alignItems={"flex-end"}
-              $flexGrow={[0, 1]}
-              $ml={"auto"}
-            >
-              <Logo title={"Oak National Academy"} height={66} width={150} />
-            </Flex>
-          </Flex>
-          <Flex $mb={80} $mt={64} $width={"100%"}>
+            </GridArea>
+            <GridArea $colSpan={[12, 3]}>
+              <Flex $justifyContent={["left", "right"]} $mt={[40, 0]}>
+                <Logo title={"Oak National Academy"} height={66} width={150} />
+              </Flex>
+            </GridArea>
+          </Grid>
+          <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
               <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
@@ -171,6 +155,26 @@ const SiteFooter: FC = () => {
           </Flex>
         </MaxWidth>
       </nav>
+      <Svg
+        name="LoopingLine3"
+        $color={"pupilsPink"}
+        $zIndex={"behind"}
+        $display={["none", "block"]}
+        $transform={[
+          "none",
+          "translate(25%, 25%) scale(0.7) rotate(-10deg)",
+          "translate(25%, 15%) rotate(-10deg)",
+        ]}
+        $cover
+      />
+      <Svg
+        name="LoopingLine4"
+        $color={"pupilsPink"}
+        $display={["block", "none"]}
+        $zIndex={"behind"}
+        $transform={"translate(0%, 32%)"}
+        $cover
+      />
     </Box>
   );
 };

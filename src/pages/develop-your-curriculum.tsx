@@ -1,9 +1,8 @@
 import { NextPage, GetStaticProps } from "next";
-import styled from "styled-components";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -20,13 +19,8 @@ import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-
-const RotatedCard = styled(Card)`
-  @media (min-width: ${getBreakpoint("small")}px) {
-    transform: rotate(2deg) translateY(18px);
-    z-index: 1;
-  }
-`;
+import Cover from "../components/Cover";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -57,6 +51,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           $width="100%"
           $mb={[56, 48]}
           $pt={0}
+          $ph={[16, 0]}
         >
           <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
             {pageData.info.title}
@@ -81,19 +76,22 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
         </Card>
         {/* getting started */}
         <Flex $width={"100%"} $justifyContent={"flex-end"}>
-          <RotatedCard
+          <Card
+            $transform={[null, "rotate(2deg) translateY(18px) translateX(5px)"]}
+            $zIndex={[null, "inFront"]}
             $pv={24}
             $ph={[16, 24]}
             $background={"twilight"}
             $maxWidth={["100%", "50%"]}
           >
+            <BrushBorders hideOnMobileH color={"twilight"} />
             <Heading $mb={20} $fontSize={[20, 24]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
             <Typography>
               <PortableText value={pageData.gettingStarted.bodyPortableText} />
             </Typography>
-          </RotatedCard>
+          </Card>
         </Flex>
         <Card
           $mb={[56, 80]}
@@ -123,9 +121,10 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.elements.posts.map((element, index) => (
               <Fragment key={`${index}-${element.title}`}>
                 <GridArea $colSpan={[12, 4]}>
+                  <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
                     <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
-                      {element.title}
+                      {elementsOfCurriculumDesignHeadings[index]}
                     </P>
                   </Box>
                   <Card
@@ -135,6 +134,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $background="pastelTurqoise"
                     $pv={[72, 80]}
                     $maxHeight={240}
+                    $ph={[16, 24]}
                   >
                     <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
@@ -153,18 +153,32 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             ))}
           </Grid>
         </Card>
-        <Card $mb={[56, 92]} $flexDirection={["column", "row"]}>
+        <Card
+          $pt={0}
+          $ph={[16, 0]}
+          $mb={[56, 92]}
+          $flexDirection={["column", "row"]}
+        >
           <Flex
+            $position="relative"
             $alignItems={"center"}
             $justifyContent={"center"}
-            $minWidth={"50%"}
-            $pb={[48, 0]}
+            $minWidth={["100%", "40%"]}
+            $height={[240, "auto"]}
+            $mb={[48, 0]}
+            $mr={[0, 64]}
           >
-            <CardImage
-              alt={"curriculum design illustration"}
-              imageSrc={"/images/illustrations/curriculum-approach.svg"}
-              position={"center center"}
-            />
+            <Cover>
+              <Image
+                aria-hidden={true}
+                layout="fill"
+                objectFit="contain"
+                objectPosition={"center"}
+                alt={"curriculum design illustration"}
+                src={"/images/illustrations/curriculum-approach.svg"}
+                priority
+              />
+            </Cover>
           </Flex>
           <Flex $flexDirection={"column"}>
             <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>

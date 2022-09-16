@@ -22,6 +22,7 @@ import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -127,7 +128,7 @@ const SectionTitle: FC = (props) => {
       $mh="auto"
       $pt={[56, 80]}
       $pb={48}
-      $ph={12}
+      $ph={16}
       $mt={12}
     >
       <Heading $fontSize={[20, 24]} $textAlign="center" tag="h2" {...props} />
@@ -186,7 +187,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={16} $rg={[32]}>
+          <Grid $cg={[0, 40]} $rg={[56]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea
@@ -194,6 +195,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   $colSpan={[12, 6]}
                 >
                   <LessonElementsCard $background={"twilight"}>
+                    <BrushBorders hideOnMobileH color={"twilight"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
@@ -226,6 +228,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $pb={24}
                 $pa={0}
               >
+                <BrushBorders hideOnMobileH color={"pastelTurqoise"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
@@ -344,6 +347,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $ph={[16, 24]}
               $flexDirection={["column", "column", "row"]}
             >
+              <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
               <Box $minWidth={["50%"]}>
                 <Box $display={["block", "block", "none"]}>
                   <CardTitle fontSize={[24, 32, 32]} tag="h4">
@@ -387,6 +391,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $alignItems="center"
             $maxWidth={["100%", 812, "100%"]}
           >
+            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box
               $minWidth={"50%"}
               $pr={[null, null, 72]}

@@ -19,6 +19,7 @@ import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
+import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -98,6 +99,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             $flexDirection={["column", "column", "row"]}
             $maxWidth={["100%", 812, "100%"]}
           >
+            <BrushBorders hideOnMobileH color={"twilight"} />
             <Flex
               $justifyContent={"center"}
               $alignItems={"center"}
@@ -150,7 +152,12 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $background={"videoBlue"}>
+                  <BrushBorders
+                    hideOnMobileH
+                    hideOnMobileV
+                    color={"videoBlue"}
+                  />
                   <Heading
                     $fontSize={[24, 32]}
                     $lineHeight={["32px", "40px"]}
