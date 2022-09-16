@@ -24,7 +24,7 @@ export type TypographyProps = ColorProps &
     $lineHeight?: ResponsiveValues<string | number>;
     $textDecoration?: "underline" | "overline" | "line-through" | "none";
     $opacity?: number;
-    $textAlign?: "left" | "center" | "right";
+    $textAlign?: ResponsiveValues<"left" | "center" | "right">;
   };
 
 const fontFamilyWeightMap: Record<OakFontName, number> = {

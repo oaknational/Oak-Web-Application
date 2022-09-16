@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 import { OakFontName } from "../../styles/theme";
@@ -13,7 +13,6 @@ export type HeadingTag = typeof HEADING_TAGS[number];
 
 export type HeadingTagProps = {
   tag: HeadingTag;
-  textAlign?: CSSProperties["textAlign"];
 };
 export const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
   const { tag, ...otherProps } = props;

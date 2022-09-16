@@ -23,6 +23,7 @@ import {
   portableTextFromString,
 } from "../__tests__/__helpers__/cms";
 import OutlineHeading from "../components/OutlineHeading";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 type LandingPageHero = {
   title: string;
@@ -125,48 +126,47 @@ const LandingPageTitle: FC<{
   heading: string;
 }> = (props) => {
   return (
-    <MaxWidth $width={840}>
-      <Flex
-        $justifyContent={"center"}
-        $mv={[92]}
-        $flexDirection={"column"}
-        $alignItems={"center"}
+    <Flex
+      $maxWidth={840}
+      $mv={[92]}
+      $flexDirection={"column"}
+      $alignItems={["flex-start", "center"]}
+      $ph={16}
+    >
+      <Heading
+        $mb={[8]}
+        $fontSize={[20, 24]}
+        $color={"grey6"}
+        $fontFamily={"heading"}
+        tag="h1"
+        {...props}
       >
-        <Heading
-          $mb={[8]}
-          $fontSize={[24]}
-          $color={"grey6"}
-          $fontFamily={"heading"}
-          tag="h4"
-          {...props}
-        >
-          {props.title}
-        </Heading>
-        <Heading
-          $mv={[0]}
-          $fontSize={[32]}
-          $textAlign={"center"}
-          $fontFamily={"heading"}
-          tag="h5"
-          {...props}
-        >
-          {props.heading}
-        </Heading>
-      </Flex>
-    </MaxWidth>
+        {props.title}
+      </Heading>
+      <Heading
+        $mv={[0]}
+        $fontSize={[24, 32]}
+        $fontFamily={"heading"}
+        tag="h2"
+        $textAlign={["left", "center"]}
+        {...props}
+      >
+        {props.heading}
+      </Heading>
+    </Flex>
   );
 };
 
 const SignUpForm: FC = () => {
   return (
     <Card
-      $ml={48}
-      $width={"70%"}
+      $ml={[0, 48]}
+      $width={["100%"]}
       $pv={40}
       $background={"white"}
       $dropShadow={"notificationCard"}
     >
-      <Heading $fontSize={24} tag="h3" $mb={0}>
+      <Heading $fontSize={[20, 24]} tag="h3" $mb={0}>
         Directory sign-up
       </Heading>
       <form id="signup-form">
@@ -195,28 +195,30 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
 }) => {
   return (
     <>
-      <Grid $mb={[92]} $cg={[8]}>
+      <Grid $mb={[120, 92]} $cg={[8]}>
         <GridArea
-          $colSpan={[5]}
-          $colStart={2}
+          $colSpan={[12, 5]}
+          $colStart={[1, 2]}
           $width={"100%"}
           $alignItems={"flex-start"}
           $justifyContent={"center"}
           $flexDirection={"column"}
+          $ph={[16, 0]}
+          $mb={[56, 0]}
         >
           <Heading
             $fontFamily={"heading"}
             tag={"h4"}
-            $fontSize={[32]}
+            $fontSize={[24, 32]}
             $mb={[32]}
           >
             {title}
           </Heading>
-          <Typography $fontSize={[18]}>
+          <Typography $fontSize={[16, 18]}>
             <PortableText value={portableText} />
           </Typography>
         </GridArea>
-        <GridArea $colSpan={[5]} $colStart={7}>
+        <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
           <SignUpForm />
         </GridArea>
       </Grid>
@@ -226,26 +228,27 @@ const SignupPrompt: FC<{ title: string; portableText: PortableTextJSON }> = ({
 
 const Quote: FC<{ text: string; author: string }> = ({ text, author }) => {
   return (
-    <MaxWidth $width={[720]}>
-      <Flex
-        $flexDirection={"column"}
-        $justifyContent={"center"}
-        $alignItems={"center"}
-        $mb={[92]}
+    <Flex
+      $flexDirection={"column"}
+      $justifyContent={"center"}
+      $alignItems={"center"}
+      $mb={[56, 92]}
+      $ph={[16]}
+      $maxWidth={[720]}
+    >
+      <Heading
+        $fontFamily={"headingLight"}
+        tag={"h3"}
+        $mb={[16]}
+        $fontSize={[32]}
+        $textAlign={"center"}
       >
-        <Heading
-          $fontFamily={"headingLight"}
-          tag={"h3"}
-          $mb={[16]}
-          $fontSize={[32]}
-        >
-          {text}
-        </Heading>
-        <Typography $fontFamily={"body"} $fontSize={[16]}>
-          {author}
-        </Typography>
-      </Flex>
-    </MaxWidth>
+        {text}
+      </Heading>
+      <Typography $fontFamily={"body"} $fontSize={[16]}>
+        {author}
+      </Typography>
+    </Flex>
   );
 };
 
@@ -259,23 +262,21 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
     textAndMedia: (props) => {
       return (
         <Card
-          $pa={0}
-          $mb={[92]}
-          $pv={[0]}
-          $pl={[0, 32]}
-          $width={"100%"}
-          $flexDirection={"row"}
-          $justifyContent={"space-between"}
+          $flexDirection={["column", "row"]}
           $background={"teachersPastelYellow"}
+          $width={"100%"}
+          $ph={[0, 24]}
+          $mb={[56, 92]}
+          $maxHeight={600}
+          $pb={0}
         >
+          <BrushBorders color={"teachersPastelYellow"} />
+
           <Flex
-            $display={["none", "flex"]}
             $position="relative"
-            $minWidth={480}
-            $minHeight={360}
-            $justifyContent={["center", "flex-end"]}
-            $alignItems={["flex-end"]}
-            $pb={24}
+            $minWidth={["100%", "50%"]}
+            $minHeight={[172, 240]}
+            $mv={24}
           >
             <Cover>
               <Image
@@ -283,17 +284,12 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
                 src={"/images/illustrations/magic-carpet.png"}
                 layout="fill"
                 objectFit="contain"
-                objectPosition={"left"}
+                objectPosition={"center"}
                 priority
               />
             </Cover>
           </Flex>
-          <Flex
-            $justifyContent={"center"}
-            $flexDirection={"column"}
-            $maxWidth={812}
-            $pr={[32]}
-          >
+          <Flex $justifyContent={"center"} $flexDirection={"column"}>
             <PortableText value={props.value.bodyPortableText} />
           </Flex>
         </Card>
@@ -301,13 +297,11 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
     },
     text: (props) => {
       return (
-        <MaxWidth $width={[720]}>
-          <Flex $justifyContent={"center"} $mb={[92]}>
-            <Typography $fontSize={[18]}>
-              <PortableText value={props.value.bodyPortableText} />
-            </Typography>
-          </Flex>
-        </MaxWidth>
+        <Flex $ph={[16]} $justifyContent={"center"} $mb={[56, 92]}>
+          <Typography $maxWidth={720} $fontSize={[16, 18]}>
+            <PortableText value={props.value.bodyPortableText} />
+          </Typography>
+        </Flex>
       );
     },
     quote: (props) => {
@@ -329,17 +323,16 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
       const remainingText = listItemText?.slice(3);
 
       return (
-        <Flex $alignItems={"center"}>
+        <Flex $mb={[48]} $alignItems={"center"}>
           <OutlineHeading
             $color={"teachersPastelYellow"}
-            $mb={[32, 0]}
             $mr={[24]}
-            $fontSize={[50]}
+            $fontSize={50}
             tag={"h2"}
           >
             {number}
           </OutlineHeading>
-          <P $fontFamily={"heading"} $fontSize={20} $lineHeight={"24px"}>
+          <P $fontFamily={"heading"} $fontSize={[16, 20]} $lineHeight={"24px"}>
             {remainingText}
           </P>
         </Flex>
@@ -354,32 +347,46 @@ const LessonAndResourceDirectory: NextPage<LandingPageProps> = ({
   return (
     <>
       <FixedHeader $background={"white"}>
-        <Link href={"/"}>
-          <a>
-            <Logo title={"Oak National Academy"} height={48} width={104} />
-          </a>
-        </Link>
-        <Link href={"#signup-form"}>
-          <a>
-            <Flex $alignItems={"center"}>
-              <Typography $fontFamily={"heading"} $fontSize={16}>
-                Lesson & Resource Directory CTA
-              </Typography>
-              <Icon
-                $ml={8}
-                aria-label={"arrow-right"}
-                name={"ArrowRight"}
-                $background={"black"}
-                $color={"white"}
-                variant={"brush"}
-              />
-            </Flex>
-          </a>
-        </Link>
+        <Flex
+          $alignItems={"center"}
+          $width={"100%"}
+          $justifyContent={"space-between"}
+        >
+          <Link href={"/"}>
+            <a>
+              <Logo title={"Oak National Academy"} height={48} width={104} />
+            </a>
+          </Link>
+          <Link href={"#signup-form"}>
+            <a>
+              <Flex
+                $width={[200, "100%"]}
+                $justifyContent={"flex-end"}
+                $alignItems={"center"}
+              >
+                <Typography
+                  $textAlign="right"
+                  $fontFamily={"heading"}
+                  $fontSize={16}
+                >
+                  Lesson & Resource Directory CTA
+                </Typography>
+                <Icon
+                  $ml={12}
+                  aria-label={"arrow-right"}
+                  name={"ArrowRight"}
+                  $background={"teachersHighlight"}
+                  $color={"white"}
+                  variant={"brush"}
+                  size={28}
+                />
+              </Flex>
+            </a>
+          </Link>
+        </Flex>
       </FixedHeader>
-
-      <LandingPageTitle {...pageData.hero} />
-      <MaxWidth>
+      <MaxWidth $justifyContent={"flex-start"}>
+        <LandingPageTitle {...pageData.hero} />
         <BasePortableTextProvider>
           <PortableText
             components={lessonDirectoryPortableTextComponents}

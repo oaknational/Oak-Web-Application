@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import flex from "../../styles/utils/flex";
-import responsive from "../../styles/utils/responsive";
+import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import Box, { BoxProps } from "../Box";
 import { FlexProps } from "../Flex";
@@ -12,10 +12,13 @@ type GridAreaProps = {
   $colSpan: Array<ColSpans>;
   $rowSpan?: number;
   $order?: Array<number>;
-  $colStart?: ColSpans;
+  $colStart?: ResponsiveValues<ColSpans>;
 } & SpacingProps;
 
-const combineSpanStart = (start: number | undefined, span: number) => {
+const combineSpanStart = (
+  start: number | undefined,
+  span: number | undefined
+) => {
   return start ? `${start}/${span}` : `${span}`;
 };
 
@@ -36,8 +39,20 @@ const GridArea = styled(Box)<GridAreaProps & BoxProps & FlexProps>`
     "grid-column",
     (props) => {
       return Array.isArray(props.$colSpan)
-        ? props.$colSpan.map((span) => combineSpanStart(props.$colStart, span))
-        : combineSpanStart(props.$colStart, props.$colSpan);
+        ? props.$colSpan.map((span, index) =>
+            combineSpanStart(
+              Array.isArray(props.$colStart)
+                ? props.$colStart[index]
+                : props.$colStart,
+              span
+            )
+          )
+        : combineSpanStart(
+            Array.isArray(props.$colStart)
+              ? props.$colStart[0]
+              : props.$colStart,
+            props.$colSpan
+          );
     },
     (value) => parseSpanStart(value)
   )};
