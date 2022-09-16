@@ -37,7 +37,9 @@ const OnBoarding: FC = () => {
             $background={"white"}
           >
             <CardTitle textCenter tag={"h2"}>
-              <CardLink href={"/beta/teacher"}>Teacher</CardLink>
+              <CardLink page={null} href={"/beta/teacher"}>
+                Teacher
+              </CardLink>
             </CardTitle>
 
             <P $textAlign={"center"}>
@@ -52,7 +54,9 @@ const OnBoarding: FC = () => {
             $background={"white"}
           >
             <CardTitle textCenter tag={"h2"}>
-              <CardLink href={"/beta/pupil"}>Pupil</CardLink>
+              <CardLink page={null} href={"/beta/pupil"}>
+                Pupil
+              </CardLink>
             </CardTitle>
             <P $textAlign="center">
               Short snappy description of what this card is about.

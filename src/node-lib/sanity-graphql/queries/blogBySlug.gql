@@ -1,6 +1,8 @@
-query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
+query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allNewsPost(
-    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
   ) {
     id: _id
     title
@@ -32,5 +34,8 @@ query blogPostBySlug($slug: String, $isDraft: Boolean = false) {
     # referenced entities
     summary
     contentPortableText: contentRaw
+    seo {
+      ...Seo
+    }
   }
 }

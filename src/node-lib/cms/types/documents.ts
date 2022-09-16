@@ -1,4 +1,4 @@
-import { Document, PortableTextJSON, SanityImage } from "./base";
+import { Document, PortableTextJSON, SanityImage, Seo } from "./base";
 
 export type TeamMember = Document & {
   name: string;
@@ -18,6 +18,7 @@ export type Webinar = Document & {
   hosts: TeamMember[];
   category: BlogWebinarCategory;
   summaryPortableText: PortableTextJSON;
+  seo?: Seo | null;
 };
 
 export type WebinarPreview = Pick<
@@ -34,6 +35,7 @@ export type BlogPost = Document & {
   summary: string;
   category: BlogWebinarCategory;
   contentPortableText: PortableTextJSON;
+  seo?: Seo | null;
 };
 
 export type BlogPostPreview = Pick<
@@ -64,12 +66,14 @@ export type PolicyPage = Document & {
   slug: string;
   lastUpdatedAt: Date;
   bodyPortableText: PortableTextJSON;
+  seo?: Seo | null;
 };
 
 export type PolicyPagePreview = Pick<PolicyPage, "title" | "slug">;
 
 export type LandingPage = Document & {
   slug: string;
+  seo?: Seo | null;
 };
 
 export type LandingPagePreview = Pick<LandingPage, "slug">;

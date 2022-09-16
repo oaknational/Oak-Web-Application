@@ -30,12 +30,20 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
 
   // If alt is explicitly provided, use it even if it's empty
   // otherwise attempt the one from the CMS, or fall back to none
-  const altText =
+  const altTextString =
     typeof rest.alt === "string" ? rest.alt : image.altText || undefined;
+
+  /**
+   * alt="" as per:
+   * https://www.w3.org/WAI/tutorials/images/decorative/
+   * > In these cases, a null (empty) alt text should be provided (alt="")
+   * > so that they can be ignored by assistive technologies, such as screen readers.
+   */
+  const finalAltText = image.isPresentational ? "" : altTextString;
 
   return (
     <Box $background="pastelTurqoise" $width="100%">
-      <Img {...imageProps} layout="intrinsic" {...rest} alt={altText} />
+      <Img {...imageProps} layout="intrinsic" {...rest} alt={finalAltText} />
     </Box>
   );
 };

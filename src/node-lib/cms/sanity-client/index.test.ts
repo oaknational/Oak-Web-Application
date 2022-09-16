@@ -101,10 +101,14 @@ describe("cms/sanity-client", () => {
      * mockMethodName: the name of a method on sanityGraphqlApi that's been mocked
      */
     const singletonMethods = [
+      ["homepage", "homepage"],
       ["planningPage", "planningCorePage"],
-      ["aboutPage", "aboutCorePage"],
+      ["aboutWhoWeArePage", "aboutCorePage"],
+      ["aboutLeadershipPage", "aboutCorePage"],
+      ["aboutBoardPage", "aboutCorePage"],
+      ["aboutPartnersPage", "aboutCorePage"],
+      ["aboutWorkWithUsPage", "aboutCorePage"],
       ["curriculumPage", "curriculumCorePage"],
-      // ["homepage", "homepage"],
     ] as const;
 
     const listMethods = [
@@ -134,7 +138,7 @@ describe("cms/sanity-client", () => {
       it("does not fetch draft content by default", async () => {
         await clientMethod();
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
@@ -144,7 +148,7 @@ describe("cms/sanity-client", () => {
         await clientMethod({ previewMode: true });
 
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
         );
       });
     });
@@ -162,7 +166,7 @@ describe("cms/sanity-client", () => {
       it("does not fetch draft content by default", async () => {
         await clientMethod();
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
@@ -170,7 +174,7 @@ describe("cms/sanity-client", () => {
         await clientMethod({ previewMode: true });
 
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
         );
       });
     });
@@ -188,7 +192,7 @@ describe("cms/sanity-client", () => {
       it("does not fetch draft content by default", async () => {
         await clientMethod("some-slug");
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
@@ -196,7 +200,7 @@ describe("cms/sanity-client", () => {
         await clientMethod("some-slug", { previewMode: true });
 
         expect(mockMethod).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
         );
       });
     });

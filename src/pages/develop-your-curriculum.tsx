@@ -1,9 +1,8 @@
 import { NextPage, GetStaticProps } from "next";
-import styled from "styled-components";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import { getBreakpoint } from "../styles/utils/responsive";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -19,19 +18,12 @@ import ButtonAsLink from "../components/Button/ButtonAsLink";
 import CardLink from "../components/Card/CardLink";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
-import { getOakCurriculumUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-
-const RotatedCard = styled(Card)`
-  @media (min-width: ${getBreakpoint("small")}px) {
-    transform: rotate(2deg) translateY(18px);
-    z-index: 1;
-  }
-`;
+import Cover from "../components/Cover";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
-  isPreviewMode: boolean;
 };
 
 const elementsOfCurriculumDesignHeadings = [
@@ -40,16 +32,9 @@ const elementsOfCurriculumDesignHeadings = [
   "An easy way to refresh resources:",
 ];
 
-const Curriculum: NextPage<CurriculumPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -66,6 +51,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
           $width="100%"
           $mb={[56, 48]}
           $pt={0}
+          $ph={[16, 0]}
         >
           <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
             {pageData.info.title}
@@ -90,19 +76,22 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
         </Card>
         {/* getting started */}
         <Flex $width={"100%"} $justifyContent={"flex-end"}>
-          <RotatedCard
+          <Card
+            $transform={[null, "rotate(2deg) translateY(18px) translateX(5px)"]}
+            $zIndex={[null, "inFront"]}
             $pv={24}
             $ph={[16, 24]}
             $background={"twilight"}
             $maxWidth={["100%", "50%"]}
           >
+            <BrushBorders hideOnMobileH color={"twilight"} />
             <Heading $mb={20} $fontSize={[20, 24]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
             <Typography>
               <PortableText value={pageData.gettingStarted.bodyPortableText} />
             </Typography>
-          </RotatedCard>
+          </Card>
         </Flex>
         <Card
           $mb={[56, 80]}
@@ -115,7 +104,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               {pageData.elements.title}
             </Heading>
           </Box>
-          <Grid $ph={[0, 24]} $cg={16}>
+          <Grid $ph={[0, 24]} $cg={16} data-testid="elements-of-curriculum">
             {elementsOfCurriculumDesignHeadings.map((heading, index) => (
               <GridArea
                 $display={["none", "block"]}
@@ -130,11 +119,12 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
               </GridArea>
             ))}
             {pageData.elements.posts.map((element, index) => (
-              <Fragment>
-                <GridArea key={`${index}-${element.title}`} $colSpan={[12, 4]}>
+              <Fragment key={`${index}-${element.title}`}>
+                <GridArea $colSpan={[12, 4]}>
+                  <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
                     <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
-                      {element.title}
+                      {elementsOfCurriculumDesignHeadings[index]}
                     </P>
                   </Box>
                   <Card
@@ -144,6 +134,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                     $background="pastelTurqoise"
                     $pv={[72, 80]}
                     $maxHeight={240}
+                    $ph={[16, 24]}
                   >
                     <BoxBorders />
                     <Box $mv={12}>
@@ -151,7 +142,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                         How to
                       </Heading>
                       <Heading $fontSize={24} tag="h4">
-                        <CardLink href={`/blog/${element.post.slug.current}`}>
+                        <CardLink page="blog" slug={element.post.slug}>
                           {element.title}
                         </CardLink>
                       </Heading>
@@ -162,18 +153,32 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
             ))}
           </Grid>
         </Card>
-        <Card $mb={[56, 92]} $flexDirection={["column", "row"]}>
+        <Card
+          $pt={0}
+          $ph={[16, 0]}
+          $mb={[56, 92]}
+          $flexDirection={["column", "row"]}
+        >
           <Flex
+            $position="relative"
             $alignItems={"center"}
             $justifyContent={"center"}
-            $minWidth={"50%"}
-            $pb={[48, 0]}
+            $minWidth={["100%", "40%"]}
+            $height={[240, "auto"]}
+            $mb={[48, 0]}
+            $mr={[0, 64]}
           >
-            <CardImage
-              alt={"curriculum design illustration"}
-              imageSrc={"/images/illustrations/curriculum-approach.svg"}
-              position={"center center"}
-            />
+            <Cover>
+              <Image
+                aria-hidden={true}
+                layout="fill"
+                objectFit="contain"
+                objectPosition={"center"}
+                alt={"curriculum design illustration"}
+                src={"/images/illustrations/curriculum-approach.svg"}
+                priority
+              />
+            </Cover>
           </Flex>
           <Flex $flexDirection={"column"}>
             <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
@@ -187,7 +192,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({
                 <ButtonAsLink
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
-                  href={getOakCurriculumUrl()}
+                  href={"https://teachers.thenational.academy/oaks-curricula"}
                 />
               </Flex>
             )}
@@ -216,7 +221,6 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
   return {
     props: {
       pageData: curriculumPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

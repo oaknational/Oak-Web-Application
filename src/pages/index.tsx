@@ -2,9 +2,10 @@ import { FC } from "react";
 import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
-import CMSClient, { WebinarPreview } from "../node-lib/cms";
+import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
@@ -24,7 +25,6 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
@@ -68,13 +68,16 @@ const Notification: FC = () => {
       </Span>
       <Heading $fontSize={20} tag="h2" $mt={4}>
         <CardLink
+          page={null}
           href={href}
-          onClick={() =>
-            track.notificationSelected({
-              linkUrl: href,
-              notificationHeadline: heading,
-            })
-          }
+          hoverStyles={["underline-link-text"]}
+          htmlAnchorProps={{
+            onClick: () =>
+              track.notificationSelected({
+                linkUrl: href,
+                notificationHeadline: heading,
+              }),
+          }}
         >
           {heading}
         </CardLink>
@@ -89,9 +92,8 @@ export type SerializedPost =
   | ({ type: "webinar" } & SerializedWebinarPreview);
 
 export type HomePageProps = {
+  pageData: HomePage;
   posts: SerializedPost[];
-  // webinars
-  isPreviewMode: boolean;
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
@@ -102,7 +104,9 @@ const Home: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToBlogListItem);
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} isPreviewMode={props.isPreviewMode}>
+    <Layout
+      seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
+    >
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>
@@ -127,10 +131,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                   data-testid="home-page-title"
                   $color={"black"}
                 >
-                  Oak is evolving
+                  {props.pageData.heading}
                 </Heading>
                 <Heading tag={"h2"} $fontSize={[20]}>
-                  We’re growing our support to help you thrive.
+                  {/* @TODO: The portable text in the CMS allows more features
+                             than just plain text. We should decide if we want
+                             to lock that down, or handle more cases here */}
+                  {toPlainText(props.pageData.summaryPortableText)}
                 </Heading>
               </Flex>
               <Box $ph={[16, 0]}>
@@ -182,7 +189,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={getPupilsUrl()}
+                      page="pupils-home"
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
@@ -246,10 +253,11 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $color={"black"}
                   >
                     <CardLink
-                      href={getTeachersUrl()}
-                      onClick={() =>
-                        track.teacherHubSelected({ navigatedFrom: "card" })
-                      }
+                      page="teachers-home"
+                      htmlAnchorProps={{
+                        onClick: () =>
+                          track.teacherHubSelected({ navigatedFrom: "card" }),
+                      }}
                     >
                       Teacher Hub
                     </CardLink>
@@ -269,20 +277,20 @@ const Home: NextPage<HomePageProps> = (props) => {
             <Grid $cg={[8, 16]} $ph={[12, 0]}>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
+                  page="lesson-planning"
                   title={"Plan a lesson"}
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
-                  href={"/lesson-planning"}
-                  cardLinkProps={{ onClick: track.planALessonSelected }}
+                  htmlAnchorProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
+                  page="develop-your-curriculum"
                   title={"Develop your curriculum"}
                   titleTag={"h4"}
                   background={"teachersYellow"}
-                  href={"/develop-your-curriculum"}
-                  cardLinkProps={{
+                  htmlAnchorProps={{
                     onClick: track.developYourCurriculumSelected,
                   }}
                 />
@@ -295,7 +303,7 @@ const Home: NextPage<HomePageProps> = (props) => {
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
             <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
-              <HomeAboutCard />
+              <HomeAboutCard {...props.pageData.sidebarCard1} />
             </GridArea>
             <GridArea
               $mb={[64, 0]}
@@ -303,7 +311,12 @@ const Home: NextPage<HomePageProps> = (props) => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Box $background={"white"} $pa={24} $height={"100%"}>
+              <Box
+                $background={"white"}
+                $ph={[16, 24]}
+                $pv={24}
+                $height={"100%"}
+              >
                 <Flex
                   $alignItems="center"
                   $justifyContent="space-between"
@@ -330,7 +343,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                       {/* Blog List Item is failing Pa11y tests and is to be excluded */}
                       <BlogListItem {...item} withImage={true} />
                       {i < posts.length - 1 && (
-                        <Hr $color="black" $mt={[0, 16]} $mb={16} />
+                        <Hr
+                          thickness={2}
+                          $color="black"
+                          $mt={[24, 16]}
+                          $mb={[32, 16]}
+                        />
                       )}
                     </li>
                   ))}
@@ -338,7 +356,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
-              <HomeHelpCard />
+              <HomeHelpCard {...props.pageData.sidebarCard2} />
             </GridArea>
             <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
               <NewsletterForm
@@ -370,6 +388,16 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
+  const homepageData = await CMSClient.homepage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!homepageData) {
+    return {
+      notFound: true,
+    };
+  }
+
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
     limit: 5,
@@ -398,8 +426,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   return {
     props: {
+      pageData: homepageData,
       posts,
-      isPreviewMode,
     },
     revalidate: 10,
   };

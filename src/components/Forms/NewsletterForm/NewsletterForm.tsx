@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 import { useId } from "react-aria";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +16,10 @@ import {
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import AnchorTarget from "../../AnchorTarget";
+import OakLink from "../../OakLink";
+import errorReporter from "../../../common-lib/error-reporter";
+
+const reportError = errorReporter("NewsletterForm.tsx");
 
 const schema = z.object({
   name: z
@@ -78,7 +81,12 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
   const descriptionId = `${id}-newsletter-form-description`;
 
   return (
-    <Card $borderRadius={0} $background="white" {...containerProps}>
+    <Card
+      $ph={[16, 24]}
+      $borderRadius={0}
+      $background="white"
+      {...containerProps}
+    >
       <AnchorTarget id={anchorTargetId} />
       <CardTitle tag="h2" icon="MagicCarpet" iconSize={56}>
         Don’t miss out
@@ -86,9 +94,9 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
       <P color={"black"} id={descriptionId}>
         Join 80,000 teachers and get free resources and other helpful content by
         email. Unsubscribe at any time. Read our{" "}
-        <Link href="/legal/privacy-policy">
+        <OakLink page="privacy-policy">
           <a>privacy policy</a>
-        </Link>
+        </OakLink>
         .
       </P>
       <form
@@ -105,7 +113,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
             if (error instanceof OakError) {
               setError(error.message);
             } else {
-              // @todo bugsnag
+              reportError(error);
               setError("An unknown error occurred");
             }
           } finally {

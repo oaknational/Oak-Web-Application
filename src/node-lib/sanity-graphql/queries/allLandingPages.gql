@@ -1,8 +1,15 @@
-query allLandingPages($isDraft: Boolean = false, $limit: Int = 9999) {
-  allLandingPage(where: { _: { is_draft: $isDraft } }, limit: $limit) {
+query allLandingPages($isDraftFilter: Sanity_DocumentFilter, $limit: Int = 9999) {
+  allLandingPage(
+    where: { _: $isDraftFilter }
+    sort: [{ _updatedAt: DESC }]
+    limit: $limit
+  ) {
     id: _id
     slug {
       current
+    }
+    seo {
+      ...Seo
     }
   }
 }

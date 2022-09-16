@@ -15,7 +15,9 @@ describe("CardLink", () => {
         $alignItems="center"
       >
         <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"}>
-          <CardLink href="https://www.test.com">Click Me</CardLink>
+          <CardLink page={null} href="https://www.test.com">
+            Click Me
+          </CardLink>
         </Heading>
         <P>
           Drop a CardLink component into a Card and pass in href. The whole card
@@ -27,6 +29,14 @@ describe("CardLink", () => {
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",
       "https://www.test.com"
+    );
+  });
+  it("resolves page -> href", async () => {
+    renderWithProviders(<CardLink page="privacy-policy">Click Me</CardLink>);
+
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      "/legal/privacy-policy"
     );
   });
 });
