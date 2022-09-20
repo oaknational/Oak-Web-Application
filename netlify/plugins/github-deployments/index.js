@@ -17,6 +17,7 @@ module.exports = function githubDeploymentPlugin() {
 
   return {
     onPreBuild: async ({ netlifyConfig, utils }) => {
+      // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const deploymentUrl = process.env.DEPLOY_PRIME_URL;
       const headBranchRef = process.env.HEAD;
@@ -35,6 +36,7 @@ module.exports = function githubDeploymentPlugin() {
         );
       }
 
+      // Store the deployment data for use in subsequent build steps.
       deploymentInfo = {
         buildContext,
         deploymentUrl,
