@@ -68,13 +68,13 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     >
       {withImage && mainImage && (
         <Box $position={"relative"} $minWidth={240} $mr={[0, 32]} $mb={[32, 0]}>
-          <BoxBorders />
+          <BoxBorders gapPosition="bottomRight" />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
               <CMSImage
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center center"
+                fill
+                $objectFit="cover"
+                $objectPosition="center center"
                 image={mainImage}
                 sizes="(min-width: 750px) 256px, 100vw"
                 // Explicitly set an empty string for missing alt text in thumbnails

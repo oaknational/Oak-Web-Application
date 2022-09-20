@@ -24,6 +24,11 @@ to = 'https://netlify-test.thenational.academy/:splat'
 status = 302
 force = true
 
-[[edge_functions]]
+# On preview and branch deploys, use the subdomain redirect edge function
+# to force all access through our managed TLD.
+[[context.deploy-preview.edge_functions]]
+  path = '/*'
+  function = 'subdomain-redirect'
+[[context.branch-deploy.edge_functions]]
   path = '/*'
   function = 'subdomain-redirect'

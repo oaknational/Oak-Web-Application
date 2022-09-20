@@ -52,7 +52,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
       })}
       $background={"white"}
     >
-      <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
+      <MaxWidth $ph={[16, 24]} $maxWidth={[720]}>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>
             {/* change flex justify center to textAlign when PR fix is in */}

@@ -1,7 +1,8 @@
+import { StaticImageData } from "next/future/image";
 import { CSSProperties, FC } from "react";
-import NextImage, { ImageProps, StaticImageData } from "next/image";
 
 import AspectRatio, { AspectRatios } from "../../AspectRatio";
+import OakImage, { OakImageProps } from "../../OakImage";
 
 const DEFAULT_ASPECT_RATIO: AspectRatios = ["3:2", "16:9"];
 
@@ -12,7 +13,7 @@ export type CardImageProps = {
   aspectRatio?: AspectRatios;
   priority?: boolean;
   ariaHidden?: boolean;
-} & Partial<ImageProps>;
+} & Partial<OakImageProps>;
 
 const CardImage: FC<CardImageProps> = ({
   imageSrc,
@@ -25,14 +26,14 @@ const CardImage: FC<CardImageProps> = ({
 }) => {
   return (
     <AspectRatio ratio={aspectRatio}>
-      <NextImage
+      <OakImage
         aria-hidden={ariaHidden}
-        layout="fill"
-        objectFit="contain"
-        objectPosition={position}
+        $objectFit="contain"
+        $objectPosition={position}
         src={imageSrc}
         alt={alt}
         priority={priority}
+        fill
         {...imageProps}
       />
     </AspectRatio>
