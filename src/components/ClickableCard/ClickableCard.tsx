@@ -15,7 +15,7 @@ const StyledCard = styled(Flex)`
   }
 `;
 
-type HTMLDivProps = Omit<
+export type HTMLDivProps = Omit<
   DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
   "ref"
 >;

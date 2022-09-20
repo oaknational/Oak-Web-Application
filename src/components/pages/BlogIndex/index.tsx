@@ -12,10 +12,13 @@ import CMSClient, {
 import BlogCategoryList from "../../BlogCategoryList/BlogCategoryList";
 import BlogList from "../../BlogList";
 import { BlogListItemProps } from "../../BlogList/BlogListItem";
+import Box from "../../Box";
 import SummaryCard from "../../Card/SummaryCard";
 import Grid, { GridArea } from "../../Grid";
 import Layout from "../../Layout";
 import MaxWidth from "../../MaxWidth/MaxWidth";
+import MobileBlogFilters from "../../MobileBlogFilters";
+import { P } from "../../Typography";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -35,8 +38,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
     alt: "",
   };
 
-  console.log({ categorySlug });
-
   const blogListItems = blogs.map(blogToBlogListItem);
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
@@ -51,7 +52,13 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
         })}
         $background="white"
       >
-        <MaxWidth $pt={[72, 80, 80]}>
+        <MobileBlogFilters
+          categoryListProps={{
+            categories,
+            selectedCategorySlug: categorySlug,
+          }}
+        />
+        <MaxWidth $pt={[0, 80, 80]}>
           <SummaryCard
             title={"Blog Listing"}
             heading={"Inspiration for inside and outside the classroom"}
@@ -63,13 +70,22 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           />
           <Grid $ph={[12, 0]}>
             <GridArea $order={[0, 0, 2]} $colSpan={[12, 12, 3]}>
-              <BlogCategoryList
+              <Box
+                $display={["none", "block"]}
                 $position={[null, null, "sticky"]}
                 $top={[null, null, HEADER_HEIGHT]}
                 $pt={[48, 72]}
-                categories={categories}
-                selectedCategorySlug={categorySlug}
-              />
+              >
+                {/* @todo this should be a heading once we refactor typography */}
+                <P $fontSize={14} $fontFamily={"body"}>
+                  Categories
+                </P>
+                <BlogCategoryList
+                  $mt={24}
+                  categories={categories}
+                  selectedCategorySlug={categorySlug}
+                />
+              </Box>
             </GridArea>
             {/* @todo is there a nicer way to make this 1 column spacer? */}
             <GridArea $order={1} $colSpan={[12, 12, 1]} />

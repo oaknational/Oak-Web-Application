@@ -4,7 +4,7 @@ import styled, { css, useTheme } from "styled-components";
 import { PixelSpacing } from "../../styles/theme";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import color, { ColorProps } from "../../styles/utils/color";
-import Svg from "../Svg/Svg";
+import Svg, { SvgProps } from "../Svg/Svg";
 import size, { SizeProps } from "../../styles/utils/size";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { IconSvgName } from "../SpriteSheet/IconSvgs";
@@ -59,6 +59,13 @@ export const BackgroundIcon = styled(Svg)<ColorProps>`
   ${color}
 `;
 
+const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, SvgProps>> = {
+  ChevronDown: {
+    name: "ChevronUp",
+    $transform: "rotate(-180deg)",
+  },
+};
+
 export type IconSize = ResponsiveValues<PixelSpacing>;
 type IconProps = Partial<IconOuterWrapperProps> &
   BoxProps & {
@@ -104,8 +111,10 @@ const Icon: FC<IconProps> = (props) => {
     (typeof $background === "string"
       ? theme.contrastColors[$background]
       : Array.isArray($background)
-      ? $background.map(($) => theme.contrastColors[$])
+      ? $background.map(($) => ($ ? theme.contrastColors[$] : null))
       : undefined);
+
+  const svgProps = SPECIAL_ICON_SVG_PROPS[name] ?? { name };
 
   return (
     <IconOuterWrapper
@@ -120,7 +129,7 @@ const Icon: FC<IconProps> = (props) => {
         <BackgroundIcon name="icon-brush-background" $color={$background} />
       )}
       <IconWrapper $pa={$pa} $color={$foregroundColor}>
-        <Svg name={name} />
+        <Svg {...svgProps} />
       </IconWrapper>
     </IconOuterWrapper>
   );

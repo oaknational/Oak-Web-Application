@@ -4,8 +4,8 @@ import { css } from "styled-components";
 import responsive, { ResponsiveValues } from "./responsive";
 
 type PropertyName = "all" | keyof StandardLonghandPropertiesHyphen;
-type Duration = "0.1s" | "0.3s";
-type Easing = "ease";
+type Duration = "0.1s" | "0.3s" | "0.5s";
+type Easing = "ease" | "cubic-bezier(0.34, 1.56, 0.64, 1)";
 
 type Transition = `${PropertyName} ${Duration} ${Easing}`;
 

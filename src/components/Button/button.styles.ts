@@ -32,6 +32,7 @@ export type ButtonStylesProps = MarginProps & {
   background: ButtonBackground;
   fullWidth?: boolean;
   disabled?: boolean;
+  focusStyles?: [];
 };
 export const getButtonStylesProps = (
   props: CommonButtonProps
@@ -42,9 +43,10 @@ export const getButtonStylesProps = (
     size = DEFAULT_BUTTON_SIZE,
     background = DEFAULT_BUTTON_BACKGROUND,
     fullWidth,
+    focusStyles,
   } = props;
 
-  return { size, iconPosition, variant, fullWidth, background };
+  return { size, iconPosition, variant, fullWidth, background, focusStyles };
 };
 const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
@@ -72,9 +74,13 @@ const buttonStyles = css<ButtonStylesProps>`
     display: none;
   }
 
-  :focus ${ButtonFocusUnderline} {
-    display: block;
-  }
+  ${(props) =>
+    !props.focusStyles &&
+    css`
+      :focus ${ButtonFocusUnderline} {
+        display: block;
+      }
+    `}
 
   ${(props) =>
     props.variant === "brush" &&
@@ -97,6 +103,7 @@ const buttonStyles = css<ButtonStylesProps>`
 
   ${(props) =>
     props.variant === "minimal" &&
+    !props.focusStyles &&
     css`
       & ${BackgroundIcon} {
         transition: filter 0.3s ease-in-out;

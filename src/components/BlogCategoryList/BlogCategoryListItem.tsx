@@ -1,9 +1,22 @@
 import { FC } from "react";
+import styled from "styled-components";
 
-import Box from "../Box";
+import { PixelSpacing } from "../../styles/theme";
+import Flex from "../Flex";
 import Icon from "../Icon";
 import OakLink from "../OakLink";
 import { LI } from "../Typography";
+
+const BlogCategoryLink = styled(OakLink)`
+  ::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+`;
 
 type BlogCategoryListItemProps = {
   isSelected: boolean;
@@ -22,44 +35,55 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
     setSelected(slug);
   };
 
-  const ICON_SIZE = 30;
-  const ICON_MARGIN_RIGHT = 12;
+  const ICON_SIZE: [PixelSpacing, PixelSpacing] = [20, 30];
+  const ICON_MARGIN_RIGHT: [PixelSpacing, PixelSpacing] = [16, 12];
   // translate to account for absolutely positioned icon
-  const TRANSLATE_X = ICON_SIZE + ICON_MARGIN_RIGHT;
+  const TRANSLATE_X = [
+    ICON_SIZE[0] + ICON_MARGIN_RIGHT[0],
+    ICON_SIZE[1] + ICON_MARGIN_RIGHT[1],
+  ];
 
   return (
     <LI
-      $display="flex"
       $height={30}
-      $alignItems="center"
       $fontFamily={"ui"}
       $opacity={isSelected ? 0.6 : 1}
+      $position="relative"
     >
-      <Icon
-        name="ArrowRight"
-        size={ICON_SIZE}
-        $mr={ICON_MARGIN_RIGHT}
-        $opacity={arrowHidden ? 0 : 1}
-        $position="absolute"
-        $transform={
-          arrowHidden ? `translateX(-${TRANSLATE_X}px)` : "translateX(0px)"
-        }
-        $transition="all 0.1s ease"
-      />
-      <Box
-        $transition="all 0.1s ease"
-        $transform={
-          !arrowHidden ? `translateX(${TRANSLATE_X}px)` : "translateX(0)"
-        }
+      <BlogCategoryLink
+        $display="flex"
+        $alignItems="center"
+        page="blog-index"
+        category={slug}
+        htmlAnchorProps={{ onClick }}
+        passHref
       >
-        <OakLink
-          page="blog-index"
-          category={slug}
-          htmlAnchorProps={{ onClick }}
+        <Icon
+          name="ArrowRight"
+          size={ICON_SIZE}
+          $mr={ICON_MARGIN_RIGHT}
+          $opacity={arrowHidden ? 0 : 1}
+          $position="absolute"
+          $transform={
+            arrowHidden
+              ? TRANSLATE_X.map((x) => `translateX(-${x}px)`)
+              : "translateX(0px)"
+          }
+          $transition="all 0.1s ease"
+        />
+        <Flex
+          $alignItems="center"
+          $transition="all 0.1s ease"
+          $transform={
+            !arrowHidden
+              ? TRANSLATE_X.map((x) => `translateX(${x}px)`)
+              : "translateX(0)"
+          }
+          $width="100%"
         >
           {title}
-        </OakLink>
-      </Box>
+        </Flex>
+      </BlogCategoryLink>
     </LI>
   );
 };

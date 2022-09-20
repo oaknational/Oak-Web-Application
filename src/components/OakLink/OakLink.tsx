@@ -1,5 +1,6 @@
 import Link, { LinkProps } from "next/link";
 import { forwardRef, ReactNode } from "react";
+import styled from "styled-components";
 
 import {
   isExternalHref,
@@ -7,12 +8,20 @@ import {
   resolveOakHref,
   ResolveOakHrefProps,
 } from "../../common-lib/urls";
+import flex from "../../styles/utils/flex";
 import { HTMLAnchorProps } from "../Button/common";
+import { FlexProps } from "../Flex";
 
-export type OakLinkProps = Omit<LinkProps, "href"> & {
-  children: ReactNode;
-  htmlAnchorProps?: HTMLAnchorProps;
-} & (
+const OakLinkA = styled.a`
+  ${flex}
+`;
+
+export type OakLinkProps = Omit<LinkProps, "href" | "onMouseEnter"> &
+  FlexProps<unknown> & {
+    children: ReactNode;
+    className?: string;
+    htmlAnchorProps?: HTMLAnchorProps;
+  } & (
     | {
         /**
          * To encourage the ues of 'page' prop (which will get resolved to an href)
@@ -33,12 +42,28 @@ const getOakLinkHref = (props: OakLinkProps) => {
 };
 export const getOakLinkLinkProps = (props: OakLinkProps): LinkProps => {
   const href = getOakLinkHref(props);
-  const { children, htmlAnchorProps, ...linkProps } = props;
-  return { href, ...linkProps };
+
+  const { as, replace, scroll, shallow, passHref, prefetch, locale } = props;
+
+  return { href, as, replace, scroll, shallow, passHref, prefetch, locale };
 };
-export const getOakLinkAnchorProps = (props: OakLinkProps): HTMLAnchorProps => {
+export const getOakLinkAnchorProps = (
+  props: OakLinkProps
+): HTMLAnchorProps & FlexProps<unknown> => {
   const href = getOakLinkHref(props);
-  const { children, htmlAnchorProps } = props;
+  const {
+    as,
+    replace,
+    scroll,
+    shallow,
+    passHref,
+    prefetch,
+    locale,
+    children,
+    className,
+    htmlAnchorProps,
+    ...styleProps
+  } = props;
 
   const isExternal = isExternalHref(href);
   const target = isExternal ? "_blank" : undefined;
@@ -46,6 +71,8 @@ export const getOakLinkAnchorProps = (props: OakLinkProps): HTMLAnchorProps => {
   return {
     children,
     target,
+    className,
+    ...styleProps,
     ...htmlAnchorProps,
   };
 };
@@ -63,7 +90,7 @@ export const getOakLinkAnchorProps = (props: OakLinkProps): HTMLAnchorProps => {
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   return (
     <Link {...getOakLinkLinkProps(props)}>
-      <a ref={ref} {...getOakLinkAnchorProps(props)} />
+      <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)} />
     </Link>
   );
 });

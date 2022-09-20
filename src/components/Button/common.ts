@@ -96,6 +96,7 @@ export type CommonButtonProps = MarginProps & {
   size?: ButtonSize;
   "aria-label"?: string;
   fullWidth?: boolean;
+  focusStyles?: [];
 };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,
