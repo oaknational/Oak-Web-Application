@@ -12,9 +12,7 @@ query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
       _key
       name
       image {
-        asset {
-          url
-        }
+        ...Image
       }
     }
     slug {
