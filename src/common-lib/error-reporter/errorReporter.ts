@@ -1,13 +1,12 @@
-import Bugsnag, { Event, NotifiableError, OnErrorCallback } from "@bugsnag/js";
+import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
 import config from "../../config";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 
-const noop = () => null;
-const consoleLog = config.get("releaseStage") === "test" ? noop : console.log;
-const consoleError = config.get("releaseStage") === "test" ? noop : console.log;
+import { consoleError, consoleLog } from "./logging";
+import bugsnagNotify from "./bugsnagNotify";
 
 /**
  * Test if a user agent matches any in a list of regex patterns.
@@ -80,13 +79,6 @@ export const initialiseBugsnag = () => {
   // Manually start a Bugsnag session.
   Bugsnag.startSession();
 };
-
-/**
- * Wrapping Bugsnag.notify otherwise Vercel terminates the process before error is sent
- * See: https://github.com/bugsnag/bugsnag-js/issues/1360
- */
-const bugsnagNotify = (error: NotifiableError, onError: OnErrorCallback) =>
-  new Promise((resolve) => Bugsnag.notify(error, onError, resolve));
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
