@@ -344,7 +344,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                       <BlogListItem {...item} withImage={true} />
                       {i < posts.length - 1 && (
                         <Hr
-                          thickness={2}
+                          thickness={3}
                           $color="black"
                           $mt={[24, 16]}
                           $mb={[32, 16]}
