@@ -54,7 +54,6 @@ const createDeployment = async (token, options) => {
     environment,
     auto_merge: false,
     required_contexts: [],
-    //auto_inactive: false,
     description,
     transient_environment,
     production_environment,
