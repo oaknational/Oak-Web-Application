@@ -12,19 +12,10 @@ const DEPLOY_CONTEXTS = {
   dev: "dev",
 };
 
-/**
- *
- * @todo are there published types for these functions?
- */
 module.exports = function githubDeploymentPlugin() {
   let deploymentInfo = {};
 
   return {
-    /**
-     *
-     * @todo create deployment event with deployment status pending.
-     * @todo use buildContext to set deployment type.
-     */
     onPreBuild: async ({ netlifyConfig, utils }) => {
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const deploymentUrl = process.env.DEPLOY_PRIME_URL;
