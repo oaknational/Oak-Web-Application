@@ -85,11 +85,7 @@ const blogPortableTextComponents: PortableTextComponents = {
         return null;
       }
 
-      return (
-        <Box $width={"100%"} $mt={80} $mb={[64]}>
-          <CMSImage image={props.value} />
-        </Box>
-      );
+      return <CMSImage image={props.value} $mt={80} $mb={64} />;
     },
     video: (props: PortableTextComponentProps<Video>) => {
       if (!props.value) {
