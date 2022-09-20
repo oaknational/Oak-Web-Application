@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.16.0...v1.17.0) (2022-09-20)
+
+
+### Features
+
+* **Netlify:** only apply redirect edge function to preview and branch deploys ([500f17a](https://github.com/oaknational/Oak-Web-Application/commit/500f17a394fbdf734928bbb7ea4c301b29278012))
+
 # [1.16.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.15.0...v1.16.0) (2022-09-20)
 
 
