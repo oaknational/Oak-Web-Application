@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.15.0...v1.16.0) (2022-09-20)
+
+
+### Features
+
+* use next future image ([fb5bf81](https://github.com/oaknational/Oak-Web-Application/commit/fb5bf81d1c64d5bdbfcc2bf31fe7f688921168c5))
+
 # [1.15.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.14.0...v1.15.0) (2022-09-16)
 
 
