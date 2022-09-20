@@ -31,7 +31,7 @@ module.exports = function githubDeploymentPlugin() {
       const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
       const repoUrlString = process.env.REPOSITORY_URL;
-      const infoUrl = `https://app.netlify.com/sites/${process.env.SITE_NAME}/deploys/${process.env.BUILD_ID}`;
+      const infoUrl = `https://app.netlify.com/sites/${process.env.SITE_NAME}/deploys/${process.env.DEPLOY_ID}`;
       // For PR (preview) builds only.
       // const prMergeHead = process.env.BRANCH;
 
