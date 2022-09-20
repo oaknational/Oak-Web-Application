@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
+import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
-type SpanProps = TypographyProps;
+type SpanProps = TypographyProps & MarginProps;
 /**
  * Span renders a `span` (inline text) component, exposing all the typography props.
  * ## Usage
@@ -10,6 +11,7 @@ type SpanProps = TypographyProps;
  */
 const Span = styled.span<SpanProps>`
   ${typography}
+  ${margin}
 `;
 
 export default Span;

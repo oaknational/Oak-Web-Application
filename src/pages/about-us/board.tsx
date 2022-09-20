@@ -88,7 +88,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             {pageData.documents.map((doc) => (
               <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
                 <Card $height={220} $pa={16}>
-                  <BoxBorders />
+                  <BoxBorders gapPosition="rightTop" />
                   <Flex
                     $justifyContent={"space-between"}
                     $height={"100%"}

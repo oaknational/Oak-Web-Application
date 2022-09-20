@@ -49,7 +49,7 @@ const Notification: FC = () => {
       $pr={[0, 48]}
       $dropShadow="notificationCard"
     >
-      <BoxBorders />
+      <BoxBorders gapPosition="rightTop" />
       <Box
         $position="absolute"
         $top={0}

@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.14.0...v1.15.0) (2022-09-16)
+
+
+### Features
+
+* choose position for box border gap ([12c75eb](https://github.com/oaknational/Oak-Web-Application/commit/12c75ebe9004a97445f3083eba640cd492c536c0))
+
 # [1.14.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.13.0...v1.14.0) (2022-09-15)
 
 

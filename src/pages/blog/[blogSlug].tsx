@@ -6,7 +6,6 @@ import {
   PortableTextComponents,
   PortableTextComponentProps,
 } from "@portabletext/react";
-import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 
 import Layout from "../../components/Layout";
@@ -25,9 +24,7 @@ import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
-import Card from "../../components/Card";
-import Cover from "../../components/Cover";
-import { Heading, P } from "../../components/Typography";
+import { Heading, P, Span } from "../../components/Typography";
 // import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
@@ -59,7 +56,13 @@ const blogPortableTextComponents: PortableTextComponents = {
     sectionHeading: (props) => {
       // @TODO: Choose an appropriate section heading level
       return (
-        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={56} $mb={32}>
+        <Heading
+          $fontSize={[20, 32]}
+          $lineHeight={["24px", "40px"]}
+          tag="h2"
+          $mt={[48, 56]}
+          $mb={[24, 32]}
+        >
           {props.children}
         </Heading>
       );
@@ -153,12 +156,12 @@ const blogPortableTextComponents: PortableTextComponents = {
         <Flex $flexDirection={"column"} $mt={56}>
           <P
             $fontSize={[24, 32]}
-            $lineHeight={"40px"}
+            $lineHeight={["32px", "40px"]}
             $fontFamily={"headingLight"}
           >
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={[16, 18]} $lineHeight={"20px"} $mt={[16]}>
+          <P $fontSize={[16]} $lineHeight={1.5} $mt={[16]} $textAlign="center">
             <cite>{props.value?.attribution}</cite>
             {props.value.role && `, ${props.value.role}`}
           </P>
@@ -223,11 +226,6 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog } = props;
 
-  const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
-    alt: "",
-  };
-
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -258,74 +256,29 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       })}
       $background="white"
     >
-      <MaxWidth $pt={56}>
-        <Card
-          $pa={0}
-          $background={"teachersPastelYellow"}
-          $flexDirection={"row"}
-          $justifyContent={"space-between"}
-          $width={"100%"}
-          $pv={[24]}
-          $ph={[16, 24]}
-        >
-          <Flex
-            $justifyContent={"center"}
-            $flexDirection={"column"}
-            $maxWidth={812}
-            $mr={48}
-          >
-            <Heading
-              $mb={8}
-              tag={"h2"}
-              $fontSize={[20, 24]}
-              $color={"oakGrey4"}
-              $fontFamily="heading"
+      <MaxWidth>
+        <Grid $ph={[12, 0]}>
+          <GridArea $colSpan={[12, 7]}>
+            <Flex
+              $mt={[40, 80]}
+              $justifyContent="space-between"
+              $flexDirection={["column", "row"]}
             >
-              Blog page
-            </Heading>
-            <Heading
-              $mb={16}
-              $color={"black"}
-              $fontSize={[24, 32, 32]}
-              tag={"h1"}
-            >
+              <Heading
+                tag={"h2"}
+                $fontSize={[16]}
+                $color="black" // change to "hyperlink" when it becomes a link
+                $fontFamily="heading"
+              >
+                {blog.category.title}
+              </Heading>
+              <Span $fontFamily={"body"} $fontSize={[14]} $mt={[8, 0]}>
+                {formattedDate}
+              </Span>
+            </Flex>
+            <Heading $mt={12} $color={"black"} $fontSize={[24, 32]} tag={"h1"}>
               {blog.title}
             </Heading>
-            <P $color="black" $fontSize={[16, 18]}>
-              {blog.summary}
-            </P>
-          </Flex>
-          <Flex
-            $display={["none", "flex"]}
-            $position="relative"
-            $minWidth={"30%"}
-            $justifyContent={["center", "flex-end"]}
-            $alignItems={["flex-end"]}
-            $pr={[0, 24]}
-            $pb={24}
-          >
-            <Cover>
-              <Image
-                aria-hidden={true}
-                layout="fill"
-                objectFit="contain"
-                objectPosition={"right"}
-                alt={cardImage.alt}
-                src={cardImage.src}
-                priority
-              />
-            </Cover>
-          </Flex>
-        </Card>
-
-        <Grid $mt={[48, 64]} $ph={[16, 0]}>
-          <GridArea $colSpan={[12, 7]}>
-            <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
-              {blog.category.title}
-            </P>
-            <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-              {formattedDate}
-            </P>
             <Flex $alignItems={"center"} $mt={16}>
               <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
                 {blog.author.name}
@@ -333,7 +286,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               {/* TODO: add more UI for copy link button */}
               {/* <CopyLinkButton /> */}
             </Flex>
-            <Box $mt={[56, 64]}>
+            <Box $mt={[48]}>
               <BasePortableTextProvider>
                 <PortableText
                   components={blogPortableTextComponents}
