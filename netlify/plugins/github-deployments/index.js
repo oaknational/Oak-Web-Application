@@ -1,44 +1,15 @@
-const github = require("@actions/github");
+const { createDeployment, updateDeployment } = require("./actions");
 
-// const createDeployment = async (token, branchName, environment) => {
-//   const octokit = github.getOctokit(token);
-//   return octokit.rest.repos.createDeployment({
-//     owner,
-//     repo,
-//     ref,
-//     environment,
-//     auto_merge: false,
-//     required_contexts: [],
-//     auto_inactive: false,
-//     production_environment,
-//     description: `branch: ${branchName}`,
-//   });
-// };
-
-// const updateDeployment = async (token, deployId, state, deploymentUrl) => {
-//   const octokit = github.getOctokit(token);
-//   return octokit.rest.repos.createDeploymentStatus({
-//     owner,
-//     repo,
-//     deployment_id: deployId,
-//     state,
-//     environment_url: deploymentUrl,
-//     target_url: deploymentUrl,
-//   });
-// };
-
-const createComment = async (token, options) => {
-  // DEBUG
-  console.log("comment call options", options);
-
-  const { owner, repo, issue_number, body } = options;
-  const octokit = github.getOctokit(token);
-  return octokit.rest.issues.createComment({
-    owner,
-    repo,
-    issue_number,
-    body,
-  });
+/**
+ * Enum for Netlify deploy context values.
+ * @readonly
+ * @enum {string}
+ */
+const DEPLOY_CONTEXTS = {
+  production: "production",
+  deployPreview: "deploy-preview",
+  branchDeploy: "branch-deploy",
+  dev: "dev",
 };
 
 /**
@@ -55,23 +26,28 @@ module.exports = function githubDeploymentPlugin() {
      * @todo use buildContext to set deployment type.
      */
     onPreBuild: async ({ netlifyConfig, utils }) => {
-      console.log("*** onPreBuild ***");
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const deploymentUrl = process.env.DEPLOY_PRIME_URL;
-      const ref = process.env.HEAD;
+      const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
-      const prMergeHead = process.env.BRANCH;
       const repoUrlString = process.env.REPOSITORY_URL;
       const infoUrl = `https://app.netlify.com/sites/${process.env.SITE_NAME}/deploys/${process.env.BUILD_ID}`;
+      // For PR (preview) builds only.
+      // const prMergeHead = process.env.BRANCH;
 
       // For now use a personal access token, but really this should be done with a GitHub App.
       // This is the only user input, but it needs to be secure.
       const githubToken = process.env.GITHUB_DEPLOYMENT_TOKEN;
+      if (!githubToken) {
+        throw new TypeError(
+          "Please supply a GitHub access token in GITHUB_DEPLOYMENT_TOKEN"
+        );
+      }
 
       deploymentInfo = {
         buildContext,
         deploymentUrl,
-        ref,
+        headBranchRef,
         sha,
         repoUrlString,
         infoUrl,
@@ -84,38 +60,121 @@ module.exports = function githubDeploymentPlugin() {
       const repoPath = repoUrl.pathname;
       // Old school!
       const [owner, repo] = repoPath.slice(1).split("/");
-      // Get PR number
-      const prNumber = prMergeHead.split("/")[1];
+      deploymentInfo.owner = owner;
+      deploymentInfo.repo = repo;
 
+      // Get PR number (only used in creating comments).
+      // const prNumber = prMergeHead.split("/")[1];
+
+      // Get the environment type from the build context,
+      // override naming of preview deployments.
+      const isProduction = buildContext === DEPLOY_CONTEXTS.production;
+      let environmentType = buildContext;
+      if (environmentType === DEPLOY_CONTEXTS.deployPreview) {
+        environmentType = "deploy-preview";
+      }
+      // Add the branch to non-production environments to enable the
+      // transient_environment property to correctly distinguish
+      // transient preview and branch deployments.
+      if (!isProduction) {
+        environmentType = `${environmentType} (${headBranchRef})`;
+      }
+      const deploymentDescription = `owa - ${environmentType}`;
+
+      /** @type {import('./actions').CreateDeploymentOptions} */
+      const options = {
+        owner,
+        repo,
+        branchName: headBranchRef,
+        // Pass the branch as the ref,
+        // assume we will always reference branch/pr rather than commit deployments.
+        ref: headBranchRef,
+        environment: environmentType,
+        description: deploymentDescription,
+        transient_environment: !isProduction,
+        production_environment: isProduction,
+      };
+
+      let createDeploymentResponse;
       try {
-        const result = await createComment(githubToken, {
-          owner,
-          repo,
-          issue_number: prNumber,
-          body: "hellooo!",
-        });
+        const result = await createDeployment(githubToken, options);
+        createDeploymentResponse = result.data;
 
         console.log("result", result);
       } catch (error) {
-        utils.build.failBuild("Failed to set comment", { error });
+        utils.build.failBuild("Failed to create deployment", { error });
+      }
+      deploymentInfo.deploymentId = createDeploymentResponse.id;
+
+      // Set the deployment status to pending
+      /** @type {import('./actions').UpdateDeploymentOptions} */
+      const updateOptions = {
+        owner: deploymentInfo.owner,
+        repo: deploymentInfo.repo,
+        deploymentId: deploymentInfo.deploymentId,
+        state: "pending",
+        logUrl: deploymentInfo.infoUrl,
+      };
+
+      try {
+        const result = await updateDeployment(githubToken, updateOptions);
+        console.log("result", result);
+      } catch (error) {
+        utils.build.failBuild("Failed to update deployment on pending", {
+          error,
+        });
       }
     },
 
     /**
-     * @todo set deployment status failure.
+     * Set deployment status failure.
      */
-    onError: async () => {
-      console.log("*** onError ***");
-      console.log("deployment failed");
+    onError: async ({ utils }) => {
+      const githubToken = deploymentInfo.githubToken;
+
+      /** @type {import('./actions').UpdateDeploymentOptions} */
+      const options = {
+        owner: deploymentInfo.owner,
+        repo: deploymentInfo.repo,
+        deploymentId: deploymentInfo.deploymentId,
+        state: "error",
+        logUrl: deploymentInfo.infoUrl,
+      };
+
+      try {
+        const result = await updateDeployment(githubToken, options);
+        console.log("result", result);
+      } catch (error) {
+        utils.build.failBuild("Failed to update deployment on error", {
+          error,
+        });
+      }
     },
 
     /**
-     * @todo set deployment status success.
+     * Set deployment status success.
      */
-    onSuccess: async () => {
-      console.log("*** onSuccess ***");
-      console.log("deployment succeeded");
-      console.log("deploymentInfo", deploymentInfo);
+    onSuccess: async ({ utils }) => {
+      const githubToken = deploymentInfo.githubToken;
+
+      /** @type {import('./actions').UpdateDeploymentOptions} */
+      const options = {
+        owner: deploymentInfo.owner,
+        repo: deploymentInfo.repo,
+        deploymentId: deploymentInfo.deploymentId,
+        state: "success",
+        deploymentUrl: deploymentInfo.deploymentUrl,
+        logUrl: deploymentInfo.infoUrl,
+      };
+
+      try {
+        const result = await updateDeployment(githubToken, options);
+        console.log("result", result);
+      } catch (error) {
+        utils.build.failBuild("Failed to update deployment on success", {
+          error,
+        });
+      }
     },
   };
 };
