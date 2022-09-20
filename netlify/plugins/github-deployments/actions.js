@@ -106,6 +106,7 @@ const updateDeployment = async (token, options) => {
     repo,
     deployment_id: deploymentId,
     state,
+    description: `Netlify deployment: ${state}`,
     environment_url: deploymentUrl,
     log_url: logUrl,
   });
