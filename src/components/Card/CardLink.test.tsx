@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
 
 import { Heading, P } from "../Typography";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Card from "./Card";
 import CardLink from "./CardLink";
 
 describe("CardLink", () => {
   it("is a link if clicked", async () => {
-    renderWithProviders(
+    renderWithTheme(
       <Card
         $flexDirection={"column"}
         $justifyContent={"center"}
@@ -32,7 +32,7 @@ describe("CardLink", () => {
     );
   });
   it("resolves page -> href", async () => {
-    renderWithProviders(<CardLink page="privacy-policy">Click Me</CardLink>);
+    renderWithTheme(<CardLink page="privacy-policy">Click Me</CardLink>);
 
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",

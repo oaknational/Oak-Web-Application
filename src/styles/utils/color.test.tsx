@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import color, { ColorProps } from "./color";
 
@@ -9,7 +9,7 @@ describe("color", () => {
     const StyledComponent = styled.div<ColorProps>`
       ${color}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $color="teachersLilac" />
     );
 
@@ -19,7 +19,7 @@ describe("color", () => {
     const StyledComponent = styled.div<ColorProps>`
       ${color}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       // eslint-disable-next-line
       // @ts-ignore
       <StyledComponent data-testid="test" $color={["black"]} />

@@ -94,10 +94,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
       <P color={"black"} id={descriptionId}>
         Join 80,000 teachers and get free resources and other helpful content by
         email. Unsubscribe at any time. Read our{" "}
-        <OakLink page="privacy-policy">
-          <a>privacy policy</a>
-        </OakLink>
-        .
+        <OakLink page="privacy-policy">privacy policy</OakLink>.
       </P>
       <form
         onSubmit={handleSubmit(async (data) => {

@@ -1,5 +1,6 @@
 import { PortableText } from "@portabletext/react";
 
+import noop from "../../__tests__/__helpers__/noop";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import {
@@ -8,6 +9,9 @@ import {
   PTInternalLink,
 } from "./PortableText";
 import portableTextFixture from "./portableTextFixture.json";
+
+const consoleWarnSpy = jest.spyOn(console, "warn");
+consoleWarnSpy.mockImplementation(noop);
 
 const reportError = jest.fn();
 jest.mock("../../common-lib/error-reporter", () => ({
@@ -19,6 +23,9 @@ jest.mock("../../common-lib/error-reporter", () => ({
 }));
 
 describe("PortableText", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   describe("PTExternalLink", () => {
     it("renders a link to the provided external href", () => {
       const { getByRole } = renderWithProviders(
@@ -74,6 +81,7 @@ describe("PortableText", () => {
       const link = queryByRole("link");
       expect(link).not.toBeInTheDocument();
 
+      expect(consoleWarnSpy).toHaveBeenCalled();
       expect(reportError).toHaveBeenCalled();
     });
   });
