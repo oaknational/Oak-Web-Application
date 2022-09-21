@@ -93,7 +93,8 @@ module.exports = function githubDeploymentPlugin() {
         const result = await createDeployment(githubToken, options);
         createDeploymentResponse = result.data;
 
-        console.log("result", result);
+        // DEBUG
+        // console.log("result", result);
       } catch (error) {
         utils.build.failBuild("Failed to create deployment", { error });
       }
@@ -135,8 +136,11 @@ module.exports = function githubDeploymentPlugin() {
       };
 
       try {
-        const result = await updateDeployment(githubToken, options);
-        console.log("result", result);
+        // const result = await updateDeployment(githubToken, options);
+        await updateDeployment(githubToken, options);
+
+        // DEBUG
+        // console.log("result", result);
       } catch (error) {
         utils.build.failBuild("Failed to update deployment on error", {
           error,
@@ -161,8 +165,10 @@ module.exports = function githubDeploymentPlugin() {
       };
 
       try {
-        const result = await updateDeployment(githubToken, options);
-        console.log("result", result);
+        //const result = await updateDeployment(githubToken, options);
+        await updateDeployment(githubToken, options);
+        // DEBUG
+        // console.log("result", result);
       } catch (error) {
         utils.build.failBuild("Failed to update deployment on success", {
           error,
