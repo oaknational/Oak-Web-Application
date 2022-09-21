@@ -34,14 +34,17 @@ async function redirectNetlifySubdomains(
     console.error(err, request.url);
   }
 
-  // DEBUG
-  console.log("request headers", JSON.stringify([...request.headers], null, 2));
+  const url = new URL(request.url);
 
-  if (subdomain && !redirected) {
+  const isIpx = url.pathname.startsWith("/_ipx");
+  console.log("Testing IPX", isIpx, " : ", url.pathname);
+
+  if (subdomain && !redirected && !isIpx) {
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`
     ).href;
     console.log("Redirected to Cloudflare - ", redirectTargetUrl);
+
     return Response.redirect(redirectTargetUrl);
   } else {
     console.log(`Request allowed through - ${request?.url}`);
