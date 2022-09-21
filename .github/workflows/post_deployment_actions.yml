@@ -6,7 +6,7 @@ jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml
 
-  # A placeholder workflow triggered by deployment events.
+  # Run Pa11yCI against a deployment.
   pa11y:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
