@@ -111,8 +111,10 @@ module.exports = function githubDeploymentPlugin() {
       };
 
       try {
-        const result = await updateDeployment(githubToken, updateOptions);
-        console.log("result", result);
+        // const result = await updateDeployment(githubToken, updateOptions);
+        await updateDeployment(githubToken, updateOptions);
+        // DEBUG
+        // console.log("result", result);
       } catch (error) {
         utils.build.failBuild("Failed to update deployment on pending", {
           error,
