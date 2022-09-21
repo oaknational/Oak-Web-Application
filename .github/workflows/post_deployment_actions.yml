@@ -1,4 +1,3 @@
-# TO DO, try to turn on caching, under node version spec `cache: 'npm'`
 name: Deployment Actions
 
 on: deployment_status
@@ -25,6 +24,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+          cache: "npm"
       # Install
       - run: npm ci
         env:
@@ -56,6 +56,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+          cache: "npm"
       # Install.
       - run: npm ci
         env:
@@ -103,6 +104,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+          cache: "npm"
       - run: npm ci
         env:
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
@@ -160,6 +162,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+          cache: "npm"
       - run: npm ci
         env:
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
