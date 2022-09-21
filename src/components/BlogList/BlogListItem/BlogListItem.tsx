@@ -1,9 +1,9 @@
-import { FC, MouseEventHandler, useRef } from "react";
+import { FC, MouseEventHandler } from "react";
 
 import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
-import ClickableCard from "../../ClickableCard/ClickableCard";
+import useClickableCard from "../../../hooks/useClickableCard";
 import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
@@ -43,7 +43,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
-  const titleLinkRef = useRef<HTMLAnchorElement>(null);
+  const { containerProps, primaryTargetProps } =
+    useClickableCard<HTMLAnchorElement>();
 
   const blogDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -51,25 +52,13 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     year: "numeric",
   });
 
-  const onCardClick: MouseEventHandler<HTMLDivElement> = () => {
-    if (!titleLinkRef.current) {
-      // @todo bugsnag
-      return;
-    }
-    const isTextSelected = window.getSelection()?.toString();
-    if (!isTextSelected) {
-      titleLinkRef.current.click();
-    }
-  };
-
   const onCategoryClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.stopPropagation();
   };
 
   return (
-    <ClickableCard
-      onClick={onCardClick}
-      clickTargetRef={titleLinkRef}
+    <Flex
+      {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={["initial", "center"]}
@@ -122,7 +111,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         </Flex>
         <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
           <OakLink
-            ref={titleLinkRef}
+            {...primaryTargetProps}
             page={null}
             href={href}
             htmlAnchorProps={{ title }}
@@ -134,7 +123,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>
-    </ClickableCard>
+    </Flex>
   );
 };
 

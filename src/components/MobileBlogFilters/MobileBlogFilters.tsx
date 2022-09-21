@@ -1,3 +1,4 @@
+import { useId, usePreventScroll } from "react-aria";
 import { FC, useState, useRef, useEffect } from "react";
 
 import BlogCategoryList from "../BlogCategoryList";
@@ -37,6 +38,11 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const close = () => {
     setIsOpen(false);
   };
+
+  usePreventScroll({ isDisabled: !isOpen });
+
+  const menuId = useId();
+  const triggerId = useId();
 
   return (
     <>
@@ -100,6 +106,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             </Flex>
           )}
           <Button
+            id={triggerId}
             $ml="auto"
             variant="minimal"
             icon={isOpen ? "ChevronUp" : "ChevronDown"}
@@ -109,15 +116,20 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             label="Categories"
             onClick={() => setIsOpen((isOpen) => !isOpen)}
             focusStyles={[]}
+            aria-expanded={isOpen}
+            aria-controls={menuId}
           />
         </Flex>
         <Box
+          id={menuId}
           ref={categoryListRef}
           $top="100%"
           $transform={`translateY(${isOpen ? 0 : "-100%"})`}
           $transition="all 0.5s ease"
           $width="100%"
           $opacity={isOpen ? 1 : 0}
+          aria-labelledby={triggerId}
+          aria-hidden={!isOpen}
         >
           <BlogCategoryList $pv={32} $ph={16} {...categoryListProps} />
         </Box>

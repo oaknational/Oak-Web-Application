@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 
 import background, { BackgroundProps } from "../../styles/utils/background";
@@ -28,7 +29,9 @@ export type BoxProps = CoverProps &
   TransitionProps &
   OpacityProps;
 
-export const box = css<BoxProps>`
+export const box = css<
+  BoxProps & { onClick?: MouseEventHandler<HTMLDivElement> }
+>`
   ${cover}
   ${position}
   ${size}
@@ -42,6 +45,13 @@ export const box = css<BoxProps>`
   ${transform}
   ${transition}
   ${opacity}
+  ${(props) =>
+    props.onClick &&
+    css`
+      :hover {
+        cursor: pointer;
+      }
+    `}
 `;
 /**
  * Box exposes position, size, spacing, and background props on a div.

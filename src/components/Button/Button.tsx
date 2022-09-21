@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import { forwardRef, MouseEventHandler } from "react";
 import styled from "styled-components";
 
 import UnstyledButton from "../UnstyledButton";
@@ -23,7 +23,7 @@ export type ButtonProps = CommonButtonProps & {
   htmlButtonProps?: HTMLButtonProps;
 };
 
-const Button: FC<ButtonProps> = (props) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     onClick,
     label,
@@ -39,6 +39,7 @@ const Button: FC<ButtonProps> = (props) => {
 
   return (
     <StyledButton
+      ref={ref}
       {...htmlButtonProps}
       title={htmlButtonProps.title || ariaLabel || label}
       aria-label={ariaLabel || label}
@@ -60,7 +61,7 @@ const Button: FC<ButtonProps> = (props) => {
       />
     </StyledButton>
   );
-};
+});
 
 Button.defaultProps = defaultButtonProps;
 

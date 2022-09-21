@@ -87,6 +87,7 @@ export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
 export type CommonButtonProps = MarginProps & {
+  id?: string;
   label: string;
   variant?: ButtonVariant;
   background?: ButtonBackground;
