@@ -1,5 +1,4 @@
-# TO DO: when moving to the custom Netlify deployment events,
-# start using `environment_url` instead of `target_url`.
+# TO DO, try to turn on caching, under node version spec `cache: 'npm'`
 name: Deployment Actions
 
 on: deployment_status
@@ -35,7 +34,7 @@ jobs:
       - uses: ./.github/actions/firebase_auth_domains
         name: configure firebase auth
         with:
-          url: ${{ github.event.deployment_status.target_url }}
+          url: ${{ github.event.deployment_status.environment_url }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
   # A placeholder workflow triggered by deployment events.
@@ -64,14 +63,14 @@ jobs:
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
-        run: echo "${{ github.event.deployment_status.target_url }}"
+        run: echo "${{ github.event.deployment_status.environment_url }}"
 
       # Run pa11y
       - name: Pa11y CI
         id: run_pa11y
         run: npm run pa11y
         env:
-          BASE_URL: ${{ github.event.deployment_status.target_url }}
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
 
       # Set a custom status because there may be more than one deployment_status
       # event due to alternatively themed deployments, and multiple runs of this
@@ -110,7 +109,7 @@ jobs:
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
-        run: echo "${{ github.event.deployment_status.target_url }}"
+        run: echo "${{ github.event.deployment_status.environment_url }}"
 
       - uses: ./.github/actions/ref_from_sha
         name: Get PR Ref from SHA
@@ -127,7 +126,7 @@ jobs:
         name: run percy
         id: run_percy
         with:
-          base_url: ${{ github.event.deployment_status.target_url }}
+          base_url: ${{ github.event.deployment_status.environment_url }}
           branch_name: ${{ steps.ref_from_sha.outputs.branch_name }}
           pr_number: ${{ steps.ref_from_sha.outputs.pr_number }}
           percy_token: ${{ secrets.PERCY_TOKEN }}
@@ -185,7 +184,7 @@ jobs:
         id: run_playwright
         run: npm run playwright:test:ci
         env:
-          BASE_URL: ${{ github.event.deployment_status.target_url }}
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
           BRANCH_NAME: ${{ steps.ref_from_sha.outputs.branch_name }}
           PR_NUMBER: ${{ steps.ref_from_sha.outputs.pr_number }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
