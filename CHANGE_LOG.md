@@ -1,3 +1,25 @@
+# [1.18.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.17.0...v1.18.0) (2022-09-20)
+
+
+### Bug Fixes
+
+* **Netlify:** use CJS because Netlify ([6e12d20](https://github.com/oaknational/Oak-Web-Application/commit/6e12d201d8c42862022024c5c9d394d3e197044a))
+
+
+### Features
+
+* **Netlify:** add GitHub deployment creation and status API calls ([1d35e0b](https://github.com/oaknational/Oak-Web-Application/commit/1d35e0b6542d192c78b1e6bfa810f3b15165c5e9))
+* **Netlify:** basic design for deployments plugin ([6019d14](https://github.com/oaknational/Oak-Web-Application/commit/6019d14c267e8eaf59cec1692b0c50d890db84d7))
+* **Netlify:** start playing with plugins for Github deployment work ([8dcb7b7](https://github.com/oaknational/Oak-Web-Application/commit/8dcb7b7c7d5c9118a4deda568a36c6993b56f90c))
+* **Netlify:** test plugin data passing ([04e5afe](https://github.com/oaknational/Oak-Web-Application/commit/04e5afe468e2c51f98865ea5550e637466a80b77))
+
+# [1.17.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.16.0...v1.17.0) (2022-09-20)
+
+
+### Features
+
+* **Netlify:** only apply redirect edge function to preview and branch deploys ([500f17a](https://github.com/oaknational/Oak-Web-Application/commit/500f17a394fbdf734928bbb7ea4c301b29278012))
+
 # [1.16.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.15.0...v1.16.0) (2022-09-20)
 
 

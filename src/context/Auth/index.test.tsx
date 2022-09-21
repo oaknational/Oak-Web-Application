@@ -6,6 +6,7 @@ import {
   LS_KEY_EMAIL_FOR_SIGN_IN,
   LS_KEY_USER,
 } from "../../config/localStorageKeys";
+import noop from "../../__tests__/__helpers__/noop";
 
 import AuthProvider, { getSignInCallbackUrl } from "./AuthProvider";
 import useAuth from "./useAuth";
@@ -13,6 +14,12 @@ import useAuth from "./useAuth";
 const testEmail = "test email";
 const testUser = { id: "1", email: testEmail, firebaseUid: "123" };
 const testToken = "test token";
+
+const consoleLogSpy = jest.spyOn(console, "log");
+const consoleErrorSpy = jest.spyOn(console, "error");
+
+consoleErrorSpy.mockImplementation(noop);
+consoleLogSpy.mockImplementation(noop);
 
 class LocalStorageMock {
   store: Record<string, unknown> = {};

@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import CardLinkIcon from "./CardLinkIcon";
 
 describe("CardLinkIcon", () => {
   it("is a link, passes href", () => {
-    renderWithProviders(
+    renderWithTheme(
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
@@ -19,7 +19,7 @@ describe("CardLinkIcon", () => {
     expect(screen.getByRole("link")).toHaveAttribute("href", "/planning");
   });
   it("is a link, resolves page -> href", () => {
-    renderWithProviders(
+    renderWithTheme(
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
@@ -31,7 +31,7 @@ describe("CardLinkIcon", () => {
     expect(screen.getByRole("link")).toHaveAttribute("href", "/about-us/board");
   });
   it("Renders correct title ", () => {
-    renderWithProviders(
+    renderWithTheme(
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}

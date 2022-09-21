@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import background from "./background";
 
@@ -9,7 +9,7 @@ describe("background", () => {
     const StyledComponent = styled.div`
       ${background}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $background="pupilsGreen" />
     );
 
@@ -20,7 +20,7 @@ describe("background", () => {
     const StyledComponent = styled.div`
       ${background}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $background={["teachersLilac"]} />
     );
 

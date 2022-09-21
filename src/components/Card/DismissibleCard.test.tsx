@@ -1,19 +1,19 @@
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import DismissibleCard from "./DismissibleCard";
 
 describe("DismissibleCard", () => {
   test("'close' button should have correct label", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <DismissibleCard title="test card" />
     );
     const button = getByRole("button");
     expect(button).toHaveAccessibleName("Dismiss test card");
   });
   test("pressing 'close' button should remove card from document", async () => {
-    const { getByRole, getByTestId } = renderWithProviders(
+    const { getByRole, getByTestId } = renderWithTheme(
       <DismissibleCard title="test card" />
     );
     const button = getByRole("button");
