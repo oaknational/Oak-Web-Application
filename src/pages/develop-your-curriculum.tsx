@@ -170,6 +170,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           >
             <Cover>
               <OakImage
+                $objectFit="contain"
+                $objectPosition={"center"}
                 aria-hidden={true}
                 fill
                 alt={"curriculum design illustration"}
