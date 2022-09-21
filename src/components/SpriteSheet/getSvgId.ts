@@ -27,7 +27,8 @@ export type SvgName =
   | "button-border-top"
   | "button-border-right"
   | "button-border-bottom"
-  | "button-border-left";
+  | "button-border-left"
+  | "hr";
 
 type GetSvgIdProps = {
   name: SvgName;
