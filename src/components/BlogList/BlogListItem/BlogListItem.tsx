@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
 
 import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
@@ -52,17 +52,12 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     year: "numeric",
   });
 
-  const onCategoryClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    e.stopPropagation();
-  };
-
   return (
     <Flex
       {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={["initial", "center"]}
-      $minHeight={200}
       $pa={0}
     >
       {withImage && mainImage && (
@@ -91,11 +86,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $alignItems="flex-end"
           $justifyContent="space-between"
         >
-          <OakLink
-            page="blog-index"
-            category={category.slug}
-            htmlAnchorProps={{ onClick: onCategoryClick }}
-          >
+          <OakLink page="blog-index" category={category.slug}>
             <Span
               $fontSize={16}
               $lineHeight={"20px"}

@@ -16,7 +16,7 @@ export const svgSymbols = {
   ),
 };
 
-type BorderWidth = 1 | 2 | 3 | 4;
+type Thickness = 1 | 2 | 3 | 4;
 
 const HrLine = styled(Svg)<HrProps>`
   mask-position: center;
@@ -25,19 +25,19 @@ const HrLine = styled(Svg)<HrProps>`
 `;
 
 type HrProps = BoxProps & {
-  thickness?: BorderWidth;
+  thickness?: Thickness;
 };
 
 const Hr: FC<HrProps> = (props) => {
   return (
-    <Box role="separator" aria-hidden="true" data-testid="hr">
+    <Box $width="100%" role="separator" aria-hidden="true" data-testid="hr">
       <HrLine name="hr" {...props} />
     </Box>
   );
 };
 
 /**
- * Hr (Horizontal rule) is a svg , which takes thicknes, color and margin props.
+ * Hr (Horizontal rule) is an svg , which takes thickness, color and margin props.
  */
 Hr.defaultProps = {
   $color: "black",

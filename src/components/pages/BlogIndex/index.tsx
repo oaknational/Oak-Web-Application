@@ -72,7 +72,8 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
               $display={["none", "block"]}
               $position={[null, null, "sticky"]}
               $top={[null, null, HEADER_HEIGHT]}
-              $pt={[48, 72]}
+              $mt={[0, 24]}
+              $pt={[48]}
             >
               {/* @todo this should be a heading once we refactor typography */}
               <P $fontSize={14} $fontFamily={"body"}>
@@ -93,6 +94,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
               items={blogListItems}
               titleTag={"h2"}
               withImage
+              withContainingHrs
             />
           </GridArea>
         </Grid>

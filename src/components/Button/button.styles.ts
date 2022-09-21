@@ -5,7 +5,11 @@ import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import margin, { MarginProps } from "../../styles/utils/spacing";
 import { BackgroundIcon } from "../Icon/Icon";
 
-import { ButtonFocusUnderline } from "./ButtonInner";
+import {
+  ButtonFocusUnderline,
+  ButtonMinimalFocusUnderline,
+  ButtonMinimalFocusIconUnderline,
+} from "./ButtonInner";
 import ButtonLabel from "./ButtonLabel";
 import {
   ButtonSize,
@@ -74,6 +78,14 @@ const buttonStyles = css<ButtonStylesProps>`
     display: none;
   }
 
+  ${ButtonMinimalFocusUnderline} {
+    display: none;
+  }
+
+  ${ButtonMinimalFocusIconUnderline} {
+    display: none;
+  }
+
   ${(props) =>
     props.variant === "brush" &&
     css`
@@ -83,6 +95,11 @@ const buttonStyles = css<ButtonStylesProps>`
 
       :focus ${ButtonFocusUnderline} {
         display: block;
+        bottom: -4px;
+        left: -4px;
+        width: calc(100% + 8px);
+        height: 10px;
+        transform: rotate(-1deg);
       }
 
       :disabled {
@@ -108,8 +125,26 @@ const buttonStyles = css<ButtonStylesProps>`
         filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
       }
 
-      ${ButtonFocusUnderline} {
-        filter: drop-shadow(2px 6px 0px rgb(0 0 0));
+      :focus ${ButtonMinimalFocusUnderline} {
+        display: block;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 7px;
+      }
+
+      ${ButtonMinimalFocusUnderline} {
+        filter: drop-shadow(1px 4px 0px rgb(0 0 0));
+      }
+
+      :focus ${ButtonMinimalFocusIconUnderline} {
+        display: block;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        transform: rotate(-2deg);
+        filter: drop-shadow(1px 2px 0px rgb(0 0 0));
       }
     `}
 

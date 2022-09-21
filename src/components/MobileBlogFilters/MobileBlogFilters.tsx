@@ -46,7 +46,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
 
   return (
     <>
-      <Box $height={BUTTON_ROW_HEIGHT} />
+      <Box $height={BUTTON_ROW_HEIGHT} $display={[null, "none"]} />
       <Box
         $cover
         $position="fixed"
