@@ -16,6 +16,9 @@ async function redirectNetlifySubdomains(
 ): Promise<Response> {
   let subdomain;
   let redirected;
+
+  console.log(`Request URL: ${request?.url}`);
+
   try {
     const subdomainMatches = request?.url?.match(
       /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:netlify\.app)/
@@ -34,14 +37,16 @@ async function redirectNetlifySubdomains(
     console.error(err, request.url);
   }
 
-  const url = new URL(request.url);
+  // Netlify makes some requests internally for optimisation functions,
+  // skip the redirect for these.
+  const allowListPathStarts = ["/_ipx", "/images"];
+  const urlPath = new URL(request.url).pathname;
+  const isOnAllowList = allowListPathStarts.some((allowPath) =>
+    urlPath.startsWith(allowPath)
+  );
+  console.log(`URL is on allow list: ${isOnAllowList}`);
 
-  const isIpx = url.pathname.startsWith("/_ipx");
-  const isImage = url.pathname.startsWith("/images");
-  console.log("Testing IPX", isIpx, " : ", url.pathname);
-  console.log("Testing Next", isImage, " : ", url.pathname);
-
-  if (subdomain && !redirected && !isIpx && !isImage) {
+  if (subdomain && !redirected && !isOnAllowList) {
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`
     ).href;
@@ -49,7 +54,7 @@ async function redirectNetlifySubdomains(
 
     return Response.redirect(redirectTargetUrl);
   } else {
-    console.log(`Request allowed through - ${request?.url}`);
+    console.log(`Request allowed through`);
     const res = await context.next();
     return res;
   }
