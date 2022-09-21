@@ -115,7 +115,6 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             size="large"
             label="Categories"
             onClick={() => setIsOpen((isOpen) => !isOpen)}
-            focusStyles={[]}
             aria-expanded={isOpen}
             aria-controls={menuId}
           />

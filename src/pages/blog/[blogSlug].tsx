@@ -278,11 +278,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               <P $fontSize={14} $fontFamily={"body"}>
                 Categories
               </P>
-              <BlogCategoryList
-                $mt={24}
-                categories={categories}
-                selectedCategorySlug={blog.category.slug}
-              />
+              <BlogCategoryList $mt={24} categories={categories} />
             </Box>
           </GridArea>
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
@@ -295,7 +291,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               <Heading
                 tag={"h2"}
                 $fontSize={[16]}
-                $color="black" // change to "hyperlink" when it becomes a link
+                $color="hyperlink"
                 $fontFamily="heading"
               >
                 <OakLink page="blog-index" category={blog.category.slug}>

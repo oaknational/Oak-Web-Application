@@ -75,18 +75,14 @@ const buttonStyles = css<ButtonStylesProps>`
   }
 
   ${(props) =>
-    !props.focusStyles &&
-    css`
-      :focus ${ButtonFocusUnderline} {
-        display: block;
-      }
-    `}
-
-  ${(props) =>
     props.variant === "brush" &&
     css`
       :hover {
         box-shadow: ${getButtonDropShadowColor(props.background)};
+      }
+
+      :focus ${ButtonFocusUnderline} {
+        display: block;
       }
 
       :disabled {
@@ -103,7 +99,6 @@ const buttonStyles = css<ButtonStylesProps>`
 
   ${(props) =>
     props.variant === "minimal" &&
-    !props.focusStyles &&
     css`
       & ${BackgroundIcon} {
         transition: filter 0.3s ease-in-out;
