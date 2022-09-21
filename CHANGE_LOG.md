@@ -1,3 +1,17 @@
+## [1.19.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.19.0...v1.19.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* mobile curriculum image size ([a428634](https://github.com/oaknational/Oak-Web-Application/commit/a428634bb955253246de77a19a79f963c3089df3))
+
+# [1.19.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.18.1...v1.19.0) (2022-09-21)
+
+
+### Features
+
+* svg hr ([9d2118d](https://github.com/oaknational/Oak-Web-Application/commit/9d2118d03dad1a65c4afe0ae81a93c0ed5a999e7))
+
 ## [1.18.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.18.0...v1.18.1) (2022-09-21)
 
 # [1.18.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.17.0...v1.18.0) (2022-09-20)
