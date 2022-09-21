@@ -1,0 +1,31 @@
+query aboutBoardPage($isDraftFilter: Sanity_DocumentFilter) {
+  aboutCorePage: allAboutCorePage(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    contactSection {
+      infoPortableText: infoRaw
+    }
+  }
+  allAboutCorePageBoard(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage.board" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    sectionHeading
+    introPortableText: introRaw
+    boardMembers {
+      ...TeamMember
+    }
+    documents {
+      ...Attachment
+    }
+    governancePortableText: governanceRaw
+    seo {
+      ...Seo
+    }
+  }
+}

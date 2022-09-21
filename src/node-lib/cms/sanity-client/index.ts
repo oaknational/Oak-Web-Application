@@ -127,89 +127,94 @@ const getSanityClient: CMSClient = () => ({
     return parseResults(planningPageSchema, planningPageData, previewMode);
   },
   aboutWhoWeArePage: async ({ previewMode, ...params } = {}) => {
-    const result = await sanityGraphqlApi.aboutCorePage({
+    const result = await sanityGraphqlApi.aboutWhoWeArePage({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
-    const aboutPageData = result?.allAboutCorePage?.[0];
+    const whoWeArePageData = result?.allAboutCorePageWhoWeAre?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!aboutPageData) {
+    if (!whoWeArePageData) {
       return null;
     }
 
-    const subPageData = {
-      ...aboutPageData,
-      ...aboutPageData.whoWeAre,
+    const pageData = {
+      ...parentPageData,
+      ...whoWeArePageData,
     };
-    return parseResults(aboutWhoWeArePageSchema, subPageData);
+    return parseResults(aboutWhoWeArePageSchema, pageData);
   },
   aboutLeadershipPage: async ({ previewMode, ...params } = {}) => {
-    const result = await sanityGraphqlApi.aboutCorePage({
+    const result = await sanityGraphqlApi.aboutLeadershipPage({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
-    const aboutPageData = result?.allAboutCorePage?.[0];
+    const leadershipPageData = result?.allAboutCorePageLeadership?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!aboutPageData) {
+    if (!leadershipPageData) {
       return null;
     }
 
-    const data = {
-      ...aboutPageData,
-      ...aboutPageData.leadership,
+    const pageData = {
+      ...parentPageData,
+      ...leadershipPageData,
     };
-    return parseResults(aboutLeadershipPageSchema, data, previewMode);
+    return parseResults(aboutLeadershipPageSchema, pageData, previewMode);
   },
   aboutBoardPage: async ({ previewMode, ...params } = {}) => {
-    const result = await sanityGraphqlApi.aboutCorePage({
+    const result = await sanityGraphqlApi.aboutBoardPage({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
-    const aboutPageData = result?.allAboutCorePage?.[0];
+    const boardPageData = result?.allAboutCorePageBoard?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!aboutPageData) {
+    if (!boardPageData) {
       return null;
     }
 
-    const data = {
-      ...aboutPageData,
-      ...aboutPageData.board,
+    const pageData = {
+      ...parentPageData,
+      ...boardPageData,
     };
-    return parseResults(aboutBoardPageSchema, data, previewMode);
+    return parseResults(aboutBoardPageSchema, pageData, previewMode);
   },
   aboutPartnersPage: async ({ previewMode, ...params } = {}) => {
-    const result = await sanityGraphqlApi.aboutCorePage({
+    const result = await sanityGraphqlApi.aboutPartnersPage({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
-    const aboutPageData = result?.allAboutCorePage?.[0];
+    const partnersPageData = result?.allAboutCorePagePartners?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!aboutPageData) {
+    if (!partnersPageData) {
       return null;
     }
 
-    const data = {
-      ...aboutPageData,
-      ...aboutPageData.partners,
+    const pageData = {
+      ...parentPageData,
+      ...partnersPageData,
     };
-    return parseResults(aboutPartnersPageSchema, data, previewMode);
+    return parseResults(aboutPartnersPageSchema, pageData, previewMode);
   },
   aboutWorkWithUsPage: async ({ previewMode, ...params } = {}) => {
-    const result = await sanityGraphqlApi.aboutCorePage({
+    const result = await sanityGraphqlApi.aboutWorkWithUsPage({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
-    const aboutPageData = result?.allAboutCorePage?.[0];
+    const workWithUsPage = result?.allAboutCorePageWorkWithUs?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!aboutPageData) {
+    if (!workWithUsPage) {
       return null;
     }
 
-    const data = {
-      ...aboutPageData,
-      ...aboutPageData.workWithUs,
+    const pageData = {
+      ...parentPageData,
+      ...workWithUsPage,
     };
-    return parseResults(aboutWorkWithUsPageSchema, data, previewMode);
+    return parseResults(aboutWorkWithUsPageSchema, pageData, previewMode);
   },
   curriculumPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.curriculumCorePage({

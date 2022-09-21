@@ -1,0 +1,36 @@
+query aboutPartnersPage($isDraftFilter: Sanity_DocumentFilter) {
+  aboutCorePage: allAboutCorePage(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    contactSection {
+      infoPortableText: infoRaw
+    }
+  }
+  allAboutCorePagePartners(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage.partners" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    sectionHeading
+    introPortableText: introRaw
+    techPartners {
+      name
+      asset {
+        ...ImageAsset
+      }
+    }
+    curriculumPartners {
+      name
+      asset {
+        ...ImageAsset
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}
