@@ -33,7 +33,7 @@ describe("components/BlogListItem", () => {
   });
 
   test("should contain link to category", async () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <BlogListItem {...testProps} contentType="webinar" />
     );
     const button = getByRole("link", { name: testProps.category.title });

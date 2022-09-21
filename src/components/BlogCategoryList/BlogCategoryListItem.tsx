@@ -57,7 +57,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         category={slug}
         htmlAnchorProps={{
           onClick,
-          "aria-current": isSelected ?? "page",
+          "aria-current": isSelected ? "page" : undefined,
         }}
       >
         <Icon
@@ -72,6 +72,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
               : "translateX(0px)"
           }
           $transition="all 0.1s ease"
+          aria-hidden
         />
         <Flex
           $alignItems="center"
