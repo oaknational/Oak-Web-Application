@@ -67,11 +67,11 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           imageProps={cardImage}
         />
         <Grid $ph={[12, 0]}>
-          <GridArea $order={[0, 0, 2]} $colSpan={[12, 12, 3]}>
+          <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
             <Box
               $display={["none", "block"]}
-              $position={[null, null, "sticky"]}
-              $top={[null, null, HEADER_HEIGHT]}
+              $position={[null, "sticky"]}
+              $top={[null, HEADER_HEIGHT]}
               $mt={[0, 24]}
               $pt={[48]}
             >
@@ -87,8 +87,8 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
             </Box>
           </GridArea>
           {/* @todo is there a nicer way to make this 1 column spacer? */}
-          <GridArea $order={1} $colSpan={[12, 12, 1]} />
-          <GridArea $order={[1, 1, 0]} $colSpan={[12, 12, 8]} $mt={[48, 72]}>
+          <GridArea $order={1} $colSpan={[12, 1]} />
+          <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}
               items={blogListItems}
