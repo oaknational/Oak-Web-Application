@@ -3,6 +3,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 
 import { getOakGlobals } from "../browser-lib/oak-globals/oakGlobals";
 import { LS_KEY_THEME } from "../config/localStorageKeys";
+import noop from "../__tests__/__helpers__/noop";
 
 import useLocalStorage from "./useLocalStorage";
 import useOakTheme, { THEME_NAMES } from "./useOakTheme";
@@ -20,12 +21,15 @@ declare global {
 const setDocumentStyleProperty = jest.fn();
 document.documentElement.style.setProperty = setDocumentStyleProperty;
 
+const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");
-
 const oakGlobals = getOakGlobals();
 
 describe("useOakTheme()", () => {
   beforeEach(() => {
+    consoleErrorSpy.mockImplementation(noop);
+    consoleLogSpy.mockImplementation(noop);
+
     jest.clearAllMocks();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

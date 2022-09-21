@@ -1,1 +1,1 @@
-export { default, initialiseBugsnag } from "./error-reporter";
+export { default, initialiseBugsnag } from "./errorReporter";

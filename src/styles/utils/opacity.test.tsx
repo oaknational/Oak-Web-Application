@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import opacity, { OpacityProps } from "./opacity";
 
@@ -9,7 +9,7 @@ describe("opacity", () => {
     const StyledComponent = styled.div<OpacityProps>`
       ${opacity}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $opacity={0.2} />
     );
 
@@ -19,7 +19,7 @@ describe("opacity", () => {
     const StyledComponent = styled.div<OpacityProps>`
       ${opacity}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       // eslint-disable-next-line
       // @ts-ignore
       <StyledComponent data-testid="test" $opacity={[0.6]} />

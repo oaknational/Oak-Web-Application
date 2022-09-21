@@ -1,12 +1,12 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SummaryCard from "./SummaryCard";
 
 describe("CardLinkIcon", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(
+    renderWithTheme(
       <SummaryCard
         title={"title"}
         heading={"heading"}
