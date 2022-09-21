@@ -72,6 +72,8 @@ jobs:
         run: npm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
 
       # Set a custom status because there may be more than one deployment_status
       # event due to alternatively themed deployments, and multiple runs of this
