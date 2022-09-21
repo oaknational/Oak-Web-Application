@@ -128,7 +128,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           $width="100%"
           $opacity={isOpen ? 1 : 0}
           aria-labelledby={triggerId}
-          aria-hidden={!isOpen}
+          $visibility={isOpen ? "visible" : "hidden"}
         >
           <BlogCategoryList $pv={32} $ph={16} {...categoryListProps} />
         </Box>

@@ -19,4 +19,8 @@ const LI = styled.li<FlexProps & TypographyProps>`
   ${typography}
 `;
 
+LI.defaultProps = {
+  $display: "block",
+};
+
 export default LI;

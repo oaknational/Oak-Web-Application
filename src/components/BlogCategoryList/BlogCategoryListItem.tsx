@@ -44,10 +44,12 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
 
   return (
     <LI
+      $display="flex"
       $height={30}
       $fontFamily={"ui"}
       $opacity={isSelected ? 0.6 : 1}
       $position="relative"
+      $overflow="hidden"
     >
       <BlogCategoryLink
         $display="flex"

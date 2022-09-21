@@ -12,7 +12,7 @@ type PxOrPercent =
   | PercentSpacing
   | null;
 export type PositionProps = {
-  $position?: ResponsiveValues<CSSProperties["position"] | null>;
+  $position?: ResponsiveValues<CSSProperties["position"]>;
   $top?: ResponsiveValues<PxOrPercent>;
   $right?: ResponsiveValues<PxOrPercent>;
   $bottom?: ResponsiveValues<PxOrPercent>;
@@ -22,7 +22,8 @@ export type PositionProps = {
   $overflowY?: ResponsiveValues<CSSProperties["overflowY"]>;
   $objectFit?: ResponsiveValues<CSSProperties["objectFit"]>;
   $objectPosition?: ResponsiveValues<CSSProperties["objectPosition"]>;
-  $pointerEvents?: ResponsiveValues<CSSProperties["pointerEvents"] | null>;
+  $pointerEvents?: ResponsiveValues<CSSProperties["pointerEvents"]>;
+  $visibility?: ResponsiveValues<CSSProperties["visibility"]>;
 };
 const parsePxOrPercent = (value?: PxOrPercent) => {
   return typeof value === "number" ? `${value}px` : value;
@@ -39,6 +40,7 @@ const position = css<PositionProps>`
   ${responsive("object-fit", (props) => props.$objectFit)}
   ${responsive("object-position", (props) => props.$objectPosition)}
   ${responsive("pointer-events", (props) => props.$pointerEvents)}
+  ${responsive("visibility", (props) => props.$visibility)}
 `;
 
 export default position;

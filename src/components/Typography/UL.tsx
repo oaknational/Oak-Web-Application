@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { box, BoxProps } from "../Box";
 
-type ULProps = BoxProps;
+type ULProps = BoxProps & {
+  $reset?: boolean;
+};
 /**
  * Styled `ul` (unordered list) component.
  *
@@ -12,8 +14,12 @@ type ULProps = BoxProps;
  *
  * */
 const UL = styled.ul<ULProps>`
-  list-style: none;
-  padding: 0;
+  ${(props) =>
+    props.$reset &&
+    css`
+      list-style: none;
+      padding: 0;
+    `}
   margin: 0;
   ${box}
 `;

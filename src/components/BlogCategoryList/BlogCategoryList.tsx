@@ -17,7 +17,7 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
   }, [selectedCategorySlug]);
   return (
     <nav>
-      <UL {...boxProps}>
+      <UL {...boxProps} $reset>
         <BlogCategoryListItem
           isSelected={visiblySelected === null}
           category={{ slug: null, title: "All" }}
