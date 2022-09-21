@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { Heading, P, Span } from "../components/Typography";
+import Typography, { Heading, P, Span } from "../components/Typography";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import Card from "../components/Card";
@@ -147,7 +147,7 @@ const ContactUs: NextPage = () => {
                     <Heading $fontSize={24} tag={"h3"} $mb={8}>
                       {section.title}
                     </Heading>
-                    <P>{section.paragraph}</P>
+                    <Typography>{section.paragraph}</Typography>
                   </Flex>
                 );
               })}

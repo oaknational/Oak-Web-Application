@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { GetStaticProps, NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
@@ -28,6 +27,7 @@ import useAnalytics from "../context/Analytics/useAnalytics";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
+import OakImage from "../components/OakImage";
 
 import {
   blogToBlogListItem,
@@ -172,12 +172,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(0,0)",
                       ]}
                     >
-                      <Image
+                      <OakImage
                         alt={""}
                         src={"/images/illustrations/magic-carpet.png"}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition={"right center"}
+                        $objectFit="cover"
+                        $objectPosition={"right center"}
+                        fill
                         priority
                       />
                     </Box>
@@ -235,13 +235,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(-10%,30%)",
                       ]}
                     >
-                      <Image
+                      <OakImage
                         alt=""
                         src={
                           "/images/illustrations/teacher-carrying-stuff-165-200.png"
                         }
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        $objectFit="contain"
                         priority
                       />
                     </Box>

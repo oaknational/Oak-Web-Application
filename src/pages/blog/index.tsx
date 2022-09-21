@@ -43,7 +43,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           summary={
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
-          background="teachersPastelYellow"
           imageProps={cardImage}
         />
         <Grid $ph={[16, 0]}>

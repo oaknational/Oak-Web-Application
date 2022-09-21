@@ -1,14 +1,15 @@
-import { FC } from "react";
-import Img, { ImageProps } from "next/image";
+import { FC, useState } from "react";
 import { useNextSanityImage } from "next-sanity-image";
 import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
 import config from "../../config";
 import Box from "../Box";
 import { SanityImage } from "../../node-lib/cms";
+import OakImage, { OakImageProps } from "../OakImage";
 
-type CMSImageProps = Omit<ImageProps, "src"> & {
+type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
   image: SanityImage;
+  alt?: string;
 };
 
 /**
@@ -24,14 +25,20 @@ export const sanityClientLike: SanityClientLike = {
 };
 
 const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
-  const imageProps = useNextSanityImage(sanityClientLike, image, {
-    enableBlurUp: false,
-  });
+  const [loaded, setLoaded] = useState(false);
+
+  const { width, height, ...imageProps } = useNextSanityImage(
+    sanityClientLike,
+    image,
+    {
+      enableBlurUp: false,
+    }
+  );
 
   // If alt is explicitly provided, use it even if it's empty
-  // otherwise attempt the one from the CMS, or fall back to none
+  // otherwise attempt the one from the CMS, or fall back to empty
   const altTextString =
-    typeof rest.alt === "string" ? rest.alt : image.altText || undefined;
+    typeof rest.alt === "string" ? rest.alt : image.altText || "";
 
   /**
    * alt="" as per:
@@ -41,9 +48,22 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
    */
   const finalAltText = image.isPresentational ? "" : altTextString;
 
+  /**
+   * If `width` and `fill` are both passed, next/future/image throws an error
+   */
+  const dimensions = rest.fill ? {} : { width, height };
+
   return (
-    <Box $background="pastelTurqoise" $width="100%">
-      <Img {...imageProps} layout="intrinsic" {...rest} alt={finalAltText} />
+    <Box $background={loaded ? undefined : "pastelTurqoise"} $width="100%">
+      <OakImage
+        onLoadingComplete={() => setLoaded(true)}
+        {...imageProps}
+        {...dimensions}
+        {...rest}
+        alt={finalAltText}
+        // $height: auto to keep original aspect ratio of image
+        $height="auto"
+      />
     </Box>
   );
 };
