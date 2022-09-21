@@ -56,7 +56,6 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         page="blog-index"
         category={slug}
         htmlAnchorProps={{ onClick }}
-        passHref
       >
         <Icon
           name="ArrowRight"

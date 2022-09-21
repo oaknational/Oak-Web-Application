@@ -4,7 +4,6 @@ import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
-import { BlogProvider } from "../../../context/Blog";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
@@ -43,65 +42,63 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const HEADER_HEIGHT = theme.header.height;
 
   return (
-    <BlogProvider categories={categories}>
-      <Layout
-        seoProps={getSeoProps({
-          title: "Latest Blogs & Insights",
-          description:
-            "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
-        })}
-        $background="white"
-      >
-        <MobileBlogFilters
-          categoryListProps={{
-            categories,
-            selectedCategorySlug: categorySlug,
-          }}
+    <Layout
+      seoProps={getSeoProps({
+        title: "Latest Blogs & Insights",
+        description:
+          "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
+      })}
+      $background="white"
+    >
+      <MobileBlogFilters
+        categoryListProps={{
+          categories,
+          selectedCategorySlug: categorySlug,
+        }}
+      />
+      <MaxWidth $pt={[0, 80, 80]}>
+        <SummaryCard
+          title={"Blog Listing"}
+          heading={"Inspiration for inside and outside the classroom"}
+          // TODO: Replace line summary with new field from CMS
+          summary={
+            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
+          }
+          imageProps={cardImage}
         />
-        <MaxWidth $pt={[0, 80, 80]}>
-          <SummaryCard
-            title={"Blog Listing"}
-            heading={"Inspiration for inside and outside the classroom"}
-            // TODO: Replace line summary with new field from CMS
-            summary={
-              "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
-            }
-            imageProps={cardImage}
-          />
-          <Grid $ph={[12, 0]}>
-            <GridArea $order={[0, 0, 2]} $colSpan={[12, 12, 3]}>
-              <Box
-                $display={["none", "block"]}
-                $position={[null, null, "sticky"]}
-                $top={[null, null, HEADER_HEIGHT]}
-                $pt={[48, 72]}
-              >
-                {/* @todo this should be a heading once we refactor typography */}
-                <P $fontSize={14} $fontFamily={"body"}>
-                  Categories
-                </P>
-                <BlogCategoryList
-                  $mt={24}
-                  categories={categories}
-                  selectedCategorySlug={categorySlug}
-                />
-              </Box>
-            </GridArea>
-            {/* @todo is there a nicer way to make this 1 column spacer? */}
-            <GridArea $order={1} $colSpan={[12, 12, 1]} />
-            <GridArea $order={[1, 1, 0]} $colSpan={[12, 12, 8]} $mt={[48, 72]}>
-              <BlogList
-                title={"Stay up to date!"}
-                items={blogListItems}
-                titleTag={"h2"}
-                withImage
+        <Grid $ph={[12, 0]}>
+          <GridArea $order={[0, 0, 2]} $colSpan={[12, 12, 3]}>
+            <Box
+              $display={["none", "block"]}
+              $position={[null, null, "sticky"]}
+              $top={[null, null, HEADER_HEIGHT]}
+              $pt={[48, 72]}
+            >
+              {/* @todo this should be a heading once we refactor typography */}
+              <P $fontSize={14} $fontFamily={"body"}>
+                Categories
+              </P>
+              <BlogCategoryList
+                $mt={24}
+                categories={categories}
+                selectedCategorySlug={categorySlug}
               />
-            </GridArea>
-          </Grid>
-        </MaxWidth>
-        <BlogListJsonLd blogs={props.blogs} />
-      </Layout>
-    </BlogProvider>
+            </Box>
+          </GridArea>
+          {/* @todo is there a nicer way to make this 1 column spacer? */}
+          <GridArea $order={1} $colSpan={[12, 12, 1]} />
+          <GridArea $order={[1, 1, 0]} $colSpan={[12, 12, 8]} $mt={[48, 72]}>
+            <BlogList
+              title={"Stay up to date!"}
+              items={blogListItems}
+              titleTag={"h2"}
+              withImage
+            />
+          </GridArea>
+        </Grid>
+      </MaxWidth>
+      <BlogListJsonLd blogs={props.blogs} />
+    </Layout>
   );
 };
 

@@ -16,7 +16,7 @@ const OakLinkA = styled.a`
   ${flex}
 `;
 
-export type OakLinkProps = Omit<LinkProps, "href" | "onMouseEnter"> &
+export type OakLinkProps = Omit<LinkProps, "href" | "passHref"> &
   FlexProps<unknown> & {
     children: ReactNode;
     className?: string;
@@ -43,9 +43,9 @@ const getOakLinkHref = (props: OakLinkProps) => {
 export const getOakLinkLinkProps = (props: OakLinkProps): LinkProps => {
   const href = getOakLinkHref(props);
 
-  const { as, replace, scroll, shallow, passHref, prefetch, locale } = props;
+  const { as, replace, scroll, shallow, prefetch, locale } = props;
 
-  return { href, as, replace, scroll, shallow, passHref, prefetch, locale };
+  return { href, as, replace, scroll, shallow, prefetch, locale };
 };
 export const getOakLinkAnchorProps = (
   props: OakLinkProps
@@ -56,7 +56,6 @@ export const getOakLinkAnchorProps = (
     replace,
     scroll,
     shallow,
-    passHref,
     prefetch,
     locale,
     children,
@@ -89,7 +88,7 @@ export const getOakLinkAnchorProps = (
  */
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   return (
-    <Link {...getOakLinkLinkProps(props)}>
+    <Link {...getOakLinkLinkProps(props)} passHref>
       <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)} />
     </Link>
   );
