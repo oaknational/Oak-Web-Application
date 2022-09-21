@@ -37,11 +37,11 @@ async function redirectNetlifySubdomains(
   const url = new URL(request.url);
 
   const isIpx = url.pathname.startsWith("/_ipx");
-  const isNextImage = url.pathname.startsWith("/_next");
+  const isImage = url.pathname.startsWith("/images");
   console.log("Testing IPX", isIpx, " : ", url.pathname);
-  console.log("Testing Next", isNextImage, " : ", url.pathname);
+  console.log("Testing Next", isImage, " : ", url.pathname);
 
-  if (subdomain && !redirected && !isIpx && !isNextImage) {
+  if (subdomain && !redirected && !isIpx && !isImage) {
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`
     ).href;
