@@ -101,6 +101,9 @@ jobs:
           branch_name: ${{ steps.ref_from_sha.outputs.branch_name }}
           pr_number: ${{ steps.ref_from_sha.outputs.pr_number }}
           percy_token: ${{ secrets.PERCY_TOKEN }}
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
 
       # Set custom status so results preserved between multiple
       # deployment events from same commit
