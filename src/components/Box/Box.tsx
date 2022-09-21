@@ -15,6 +15,10 @@ import transform, { TransformProps } from "../../styles/utils/transform";
 import transition, { TransitionProps } from "../../styles/utils/transition";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 
+type HTMLProps = {
+  onClick?: MouseEventHandler;
+};
+
 export type BoxProps = CoverProps &
   PositionProps &
   SizeProps &
@@ -27,11 +31,11 @@ export type BoxProps = CoverProps &
   ZIndexProps &
   TransformProps &
   TransitionProps &
-  OpacityProps;
+  OpacityProps &
+  // without the below conditional, Svg complains when using BoxProps
+  HTMLProps;
 
-export const box = css<
-  BoxProps & { onClick?: MouseEventHandler<HTMLDivElement> }
->`
+export const box = css<BoxProps>`
   ${cover}
   ${position}
   ${size}

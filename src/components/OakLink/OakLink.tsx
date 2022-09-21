@@ -17,7 +17,7 @@ const OakLinkA = styled.a`
 `;
 
 export type OakLinkProps = Omit<LinkProps, "href" | "passHref"> &
-  FlexProps<unknown> & {
+  FlexProps & {
     children: ReactNode;
     className?: string;
     htmlAnchorProps?: HTMLAnchorProps;
@@ -49,7 +49,7 @@ export const getOakLinkLinkProps = (props: OakLinkProps): LinkProps => {
 };
 export const getOakLinkAnchorProps = (
   props: OakLinkProps
-): HTMLAnchorProps & FlexProps<unknown> => {
+): HTMLAnchorProps & FlexProps => {
   const href = getOakLinkHref(props);
   const {
     as,
