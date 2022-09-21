@@ -16,23 +16,25 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
     setVisiblySelected(selectedCategorySlug);
   }, [selectedCategorySlug]);
   return (
-    <UL {...boxProps}>
-      <BlogCategoryListItem
-        isSelected={visiblySelected === null}
-        category={{ slug: null, title: "All" }}
-        setSelected={setVisiblySelected}
-      />
-      {categories.map((category) => {
-        return (
-          <BlogCategoryListItem
-            key={`BlogCategoryList-${category.slug}`}
-            isSelected={visiblySelected === category.slug}
-            category={category}
-            setSelected={setVisiblySelected}
-          />
-        );
-      })}
-    </UL>
+    <nav>
+      <UL {...boxProps}>
+        <BlogCategoryListItem
+          isSelected={visiblySelected === null}
+          category={{ slug: null, title: "All" }}
+          setSelected={setVisiblySelected}
+        />
+        {categories.map((category) => {
+          return (
+            <BlogCategoryListItem
+              key={`BlogCategoryList-${category.slug}`}
+              isSelected={visiblySelected === category.slug}
+              category={category}
+              setSelected={setVisiblySelected}
+            />
+          );
+        })}
+      </UL>
+    </nav>
   );
 };
 

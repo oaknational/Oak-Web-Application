@@ -55,7 +55,10 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         $alignItems="center"
         page="blog-index"
         category={slug}
-        htmlAnchorProps={{ onClick }}
+        htmlAnchorProps={{
+          onClick,
+          "aria-current": isSelected ?? "page",
+        }}
       >
         <Icon
           name="ArrowRight"
