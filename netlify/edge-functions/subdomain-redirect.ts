@@ -34,6 +34,9 @@ async function redirectNetlifySubdomains(
     console.error(err, request.url);
   }
 
+  // DEBUG
+  console.log("request headers", JSON.stringify([...request.headers], null, 2));
+
   if (subdomain && !redirected) {
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`
