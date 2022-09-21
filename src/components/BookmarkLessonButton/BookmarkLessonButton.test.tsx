@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
@@ -9,18 +8,15 @@ import BookmarkLessonButton from ".";
 const lessonId = "123";
 const addBookmark = jest.fn();
 const removeBookmark = jest.fn();
-const isBookmarked = jest.fn();
+const isBookmarked = jest.fn(() => false);
 
-jest.mock("../../context/Bookmarks", () => ({
-  __esModule: true,
-  useBookmarks: () => ({
-    bookmarks: [],
-    addBookmark,
-    removeBookmark,
-    isBookmarked,
-  }),
-  BookmarksProvider: ({ children }: PropsWithChildren<null>) => children,
-}));
+const bookmarksContext = {
+  bookmarks: [],
+  addBookmark,
+  removeBookmark,
+  isBookmarked,
+};
+
 describe("components/BookmarkLessonButton", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -28,7 +24,9 @@ describe("components/BookmarkLessonButton", () => {
   });
   it("if not logged, in should return null", () => {
     const { queryByRole } = renderWithProviders(
-      <BookmarkLessonButton lessonId={lessonId} />
+      <BookmarkLessonButton lessonId={lessonId} />,
+      {},
+      { bookmarksProviderProps: { value: bookmarksContext } }
     );
     const button = queryByRole("button");
     expect(button).not.toBeInTheDocument();
@@ -37,7 +35,10 @@ describe("components/BookmarkLessonButton", () => {
     const { queryByRole } = renderWithProviders(
       <BookmarkLessonButton lessonId={lessonId} />,
       {},
-      { authProviderProps: loggedInAuthProviderProps }
+      {
+        authProviderProps: loggedInAuthProviderProps,
+        bookmarksProviderProps: { value: bookmarksContext },
+      }
     );
     const button = queryByRole("button");
     expect(button).toBeInTheDocument();
@@ -47,7 +48,10 @@ describe("components/BookmarkLessonButton", () => {
     const { getByRole } = renderWithProviders(
       <BookmarkLessonButton lessonId={lessonId} />,
       {},
-      { authProviderProps: loggedInAuthProviderProps }
+      {
+        authProviderProps: loggedInAuthProviderProps,
+        bookmarksProviderProps: { value: bookmarksContext },
+      }
     );
     const user = userEvent.setup();
     const button = getByRole("button");
@@ -60,7 +64,10 @@ describe("components/BookmarkLessonButton", () => {
     const { getByRole } = renderWithProviders(
       <BookmarkLessonButton lessonId={lessonId} />,
       {},
-      { authProviderProps: loggedInAuthProviderProps }
+      {
+        authProviderProps: loggedInAuthProviderProps,
+        bookmarksProviderProps: { value: bookmarksContext },
+      }
     );
     const button = getByRole("button");
     expect(button).toHaveAccessibleName("Add Bookmark");
@@ -70,7 +77,10 @@ describe("components/BookmarkLessonButton", () => {
     const { getByRole } = renderWithProviders(
       <BookmarkLessonButton lessonId={lessonId} />,
       {},
-      { authProviderProps: loggedInAuthProviderProps }
+      {
+        authProviderProps: loggedInAuthProviderProps,
+        bookmarksProviderProps: { value: bookmarksContext },
+      }
     );
     const user = userEvent.setup();
     const button = getByRole("button");
@@ -83,7 +93,10 @@ describe("components/BookmarkLessonButton", () => {
     const { getByRole } = renderWithProviders(
       <BookmarkLessonButton lessonId={lessonId} />,
       {},
-      { authProviderProps: loggedInAuthProviderProps }
+      {
+        authProviderProps: loggedInAuthProviderProps,
+        bookmarksProviderProps: { value: bookmarksContext },
+      }
     );
     const button = getByRole("button");
     expect(button).toHaveAccessibleName("Remove Bookmark");
