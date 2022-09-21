@@ -32,7 +32,6 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           summary={
             "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
           }
-          background={"teachersPastelYellow"}
           imageProps={{
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",
@@ -89,7 +88,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             {pageData.documents.map((doc) => (
               <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
                 <Card $height={220} $pa={16}>
-                  <BoxBorders />
+                  <BoxBorders gapPosition="rightTop" />
                   <Flex
                     $justifyContent={"space-between"}
                     $height={"100%"}

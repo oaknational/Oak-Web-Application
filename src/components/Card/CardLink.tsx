@@ -95,6 +95,7 @@ const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
       <Link {...getOakLinkLinkProps(props)} passHref>
         <CardLinkA
           ref={ref}
+          hideDefaultFocus={hideDefaultFocus}
           hoverStyles={hoverStyles}
           {...getOakLinkAnchorProps(props)}
         />

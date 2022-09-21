@@ -43,10 +43,9 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           summary={
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
-          background="teachersPastelYellow"
           imageProps={cardImage}
         />
-        <Grid $ph={[12, 0]}>
+        <Grid $ph={[16, 0]}>
           <GridArea $colSpan={[12, 12, 8]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}

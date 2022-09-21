@@ -5,6 +5,7 @@ import {
   PortableTextComponentsProvider,
   PortableTextMarkComponent,
 } from "@portabletext/react";
+import styled from "styled-components";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
@@ -61,13 +62,23 @@ export const PTExternalLink: PortableTextMarkComponent<{
   );
 };
 
+const BodyP = styled(P)`
+  &:first-child {
+    margin-top: 0;
+  }
+`;
+
 export const basePortableTextComponents: PortableTextComponents = {
   block: {
     normal: (props) => {
       return (
-        <P $lineHeight={"28px"} $fontSize={[16, 18]} $mt={16}>
+        <BodyP
+          $lineHeight={["24px", "28px"]}
+          $fontSize={[16, 18]}
+          $mt={[16, 20]}
+        >
           {props.children}
-        </P>
+        </BodyP>
       );
     },
   },

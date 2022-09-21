@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { GetStaticProps, NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
@@ -28,6 +27,7 @@ import useAnalytics from "../context/Analytics/useAnalytics";
 import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
+import OakImage from "../components/OakImage";
 
 import {
   blogToBlogListItem,
@@ -49,7 +49,7 @@ const Notification: FC = () => {
       $pr={[0, 48]}
       $dropShadow="notificationCard"
     >
-      <BoxBorders />
+      <BoxBorders gapPosition="rightTop" />
       <Box
         $position="absolute"
         $top={0}
@@ -172,12 +172,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(0,0)",
                       ]}
                     >
-                      <Image
+                      <OakImage
                         alt={""}
                         src={"/images/illustrations/magic-carpet.png"}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition={"right center"}
+                        $objectFit="cover"
+                        $objectPosition={"right center"}
+                        fill
                         priority
                       />
                     </Box>
@@ -235,13 +235,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(-10%,30%)",
                       ]}
                     >
-                      <Image
+                      <OakImage
                         alt=""
                         src={
                           "/images/illustrations/teacher-carrying-stuff-165-200.png"
                         }
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        $objectFit="contain"
                         priority
                       />
                     </Box>
@@ -311,7 +311,12 @@ const Home: NextPage<HomePageProps> = (props) => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Box $background={"white"} $pa={24} $height={"100%"}>
+              <Box
+                $background={"white"}
+                $ph={[16, 24]}
+                $pv={24}
+                $height={"100%"}
+              >
                 <Flex
                   $alignItems="center"
                   $justifyContent="space-between"

@@ -30,12 +30,12 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       $flexDirection={"row"}
       $alignItems="center"
       $background={background}
-      $ph={16}
+      $ph={[16, 24]}
       $pv={[24, 32]}
       $mb={[16, 0]}
       $borderRadius={0}
     >
-      <BoxBorders />
+      <BoxBorders gapPosition="rightTop" />
       <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
         <CardLink
           {...cardLinkProps}
