@@ -1,5 +1,11 @@
 const { createDeployment, updateDeployment } = require("./actions");
 
+function validateSuccessCode(statusCode) {
+  if (statusCode < 200 || statusCode > 299) {
+    throw new Error(`GitHub API response error, code: ${statusCode}`);
+  }
+}
+
 /**
  * Enum for Netlify deploy context values.
  * @readonly
@@ -91,10 +97,8 @@ module.exports = function githubDeploymentPlugin() {
       let createDeploymentResponse;
       try {
         const result = await createDeployment(githubToken, options);
+        validateSuccessCode(result.status);
         createDeploymentResponse = result.data;
-
-        // DEBUG
-        // console.log("result", result);
       } catch (error) {
         utils.build.failBuild("Failed to create deployment", { error });
       }
@@ -111,10 +115,8 @@ module.exports = function githubDeploymentPlugin() {
       };
 
       try {
-        // const result = await updateDeployment(githubToken, updateOptions);
-        await updateDeployment(githubToken, updateOptions);
-        // DEBUG
-        // console.log("result", result);
+        const result = await updateDeployment(githubToken, updateOptions);
+        validateSuccessCode(result.status);
       } catch (error) {
         utils.build.failBuild("Failed to update deployment on pending", {
           error,
@@ -138,11 +140,8 @@ module.exports = function githubDeploymentPlugin() {
       };
 
       try {
-        // const result = await updateDeployment(githubToken, options);
-        await updateDeployment(githubToken, options);
-
-        // DEBUG
-        // console.log("result", result);
+        const result = await updateDeployment(githubToken, options);
+        validateSuccessCode(result.status);
       } catch (error) {
         utils.build.failBuild("Failed to update deployment on error", {
           error,
@@ -167,10 +166,8 @@ module.exports = function githubDeploymentPlugin() {
       };
 
       try {
-        //const result = await updateDeployment(githubToken, options);
-        await updateDeployment(githubToken, options);
-        // DEBUG
-        // console.log("result", result);
+        const result = await updateDeployment(githubToken, options);
+        validateSuccessCode(result.status);
       } catch (error) {
         utils.build.failBuild("Failed to update deployment on success", {
           error,
