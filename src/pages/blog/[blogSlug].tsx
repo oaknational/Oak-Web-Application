@@ -247,6 +247,8 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     }
   );
 
+  console.log(blog);
+
   return (
     <Layout
       seoProps={getSeoProps({
@@ -292,9 +294,16 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
                   />
                 </Circle>
               )}
-              <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
-                {blog.author.name}
-              </Heading>
+              <Box>
+                <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
+                  {blog.author.name}
+                </Heading>
+                {blog.author.role && (
+                  <P $mt={4} fontSize={14} $color={"oakGrey4"}>
+                    {blog.author.role}
+                  </P>
+                )}
+              </Box>
               {/* TODO: add more UI for copy link button */}
               {/* <CopyLinkButton /> */}
             </Flex>

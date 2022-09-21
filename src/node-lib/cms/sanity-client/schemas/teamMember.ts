@@ -8,6 +8,7 @@ export const teamMemberSchema = z
     bio: z.string().optional(),
     image: imageSchema.nullish(),
     id: z.string(),
+    role: z.string().nullish(),
   })
   .merge(documentSchema);
 
@@ -17,6 +18,7 @@ export const teamMemberPreviewSchema = teamMemberSchema.pick({
   name: true,
   id: true,
   image: true,
+  role: true,
 });
 
 export type TeamMemberPreview = z.infer<typeof teamMemberPreviewSchema>;

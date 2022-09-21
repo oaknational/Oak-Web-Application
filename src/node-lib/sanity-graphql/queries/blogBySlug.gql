@@ -11,6 +11,7 @@ query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
       id: _id
       _key
       name
+      role
       image {
         ...Image
       }

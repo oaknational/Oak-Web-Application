@@ -3,9 +3,10 @@ import { Document, PortableTextJSON, SanityImage, Seo } from "./base";
 export type TeamMember = Document & {
   name: string;
   image?: SanityImage | null;
+  role?: string | null;
 };
 
-export type TeamMemberPreview = Pick<TeamMember, "name" | "image">;
+export type TeamMemberPreview = Pick<TeamMember, "name" | "image" | "role">;
 
 export type BlogWebinarCategory = {
   title: string;
