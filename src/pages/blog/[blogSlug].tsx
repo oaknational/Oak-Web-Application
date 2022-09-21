@@ -25,7 +25,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import { Heading, P, Span } from "../../components/Typography";
-// import CopyLinkButton from "../../components/Button/CopyLinkButton";
+import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
@@ -283,8 +283,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
                 {blog.author.name}
               </Heading>
-              {/* TODO: add more UI for copy link button */}
-              {/* <CopyLinkButton /> */}
+              <CopyLinkButton />
             </Flex>
             <Box $mt={[48]}>
               <BasePortableTextProvider>
