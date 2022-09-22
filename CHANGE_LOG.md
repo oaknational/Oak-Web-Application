@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.0...v1.21.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* lesson planning links same tab ([cc5d37a](https://github.com/oaknational/Oak-Web-Application/commit/cc5d37a37e14a52b55018d0af6e056b97e7515b9))
+
 # [1.21.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.20.1...v1.21.0) (2022-09-22)
 
 
