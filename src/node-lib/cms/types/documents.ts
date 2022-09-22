@@ -2,9 +2,11 @@ import { Document, PortableTextJSON, SanityImage, Seo } from "./base";
 
 export type TeamMember = Document & {
   name: string;
+  image?: SanityImage | null;
+  role?: string | null;
 };
 
-export type TeamMemberPreview = Pick<TeamMember, "name">;
+export type TeamMemberPreview = Pick<TeamMember, "name" | "image" | "role">;
 
 export type BlogWebinarCategory = {
   title: string;
@@ -15,7 +17,7 @@ export type Webinar = Document & {
   title: string;
   slug: string;
   date: Date;
-  hosts: TeamMember[];
+  hosts?: TeamMember[];
   category: BlogWebinarCategory;
   summaryPortableText: PortableTextJSON;
   seo?: Seo | null;
