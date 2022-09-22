@@ -39,9 +39,11 @@ const preview: NextApiHandler = async (req, res) => {
 
     res.setPreviewData({ previewMode: "on" });
 
-    console.log('redirectLocation', redirectLocation)
+    console.log("redirectLocation", redirectLocation);
 
-    res.writeHead(307, { Location: redirectLocation });
+    const redirectWithoutQS = redirectLocation + `?`;
+
+    res.writeHead(307, { Location: redirectWithoutQS });
     res.end();
   } catch (error) {
     reportError(error);
