@@ -13,6 +13,7 @@ import IconButton from "../Button/IconButton";
 import OakLink from "../OakLink";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
+import Toast from "../Toast";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
@@ -62,6 +63,7 @@ const SiteHeader: FC = () => {
       <Menu>
         <MenuLinks menuSections={menuSections} />
       </Menu>
+      <Toast />
     </FixedHeader>
   );
 };
