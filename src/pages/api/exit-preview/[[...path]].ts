@@ -9,6 +9,8 @@ const reportError = errorReporter("/api/exit-preview/[[...path]]");
 
 const preview: NextApiHandler = async (req, res) => {
   try {
+    console.log('exit-preview req.query.path', req.query.path)
+
     const redirectLocation = z
       .array(slugStringSchema)
       .transform((segments) => {

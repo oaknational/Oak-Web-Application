@@ -22,6 +22,8 @@ const preview: NextApiHandler = async (req, res) => {
    * [1]: https://github.com/vercel/next.js/blob/canary/examples/cms-sanity/pages/api/preview.js
    */
   try {
+    console.log("preview req.query.path", req.query.path);
+
     if (req.query.secret !== config.get("sanityPreviewSecret")) {
       throw new OakError({
         code: "preview/invalid-token",
