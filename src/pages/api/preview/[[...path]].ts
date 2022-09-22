@@ -40,7 +40,7 @@ const preview: NextApiHandler = async (req, res) => {
 
     res.setPreviewData({ previewMode: "on" });
 
-    res.redirect(307, redirectLocation);
+    res.redirect(307, `${redirectLocation}?`);
   } catch (error) {
     reportError(error);
 
