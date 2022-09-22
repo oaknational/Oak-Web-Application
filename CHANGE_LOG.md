@@ -1,3 +1,51 @@
+## [1.21.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.0...v1.21.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* lesson planning links same tab ([cc5d37a](https://github.com/oaknational/Oak-Web-Application/commit/cc5d37a37e14a52b55018d0af6e056b97e7515b9))
+
+# [1.21.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.20.1...v1.21.0) (2022-09-22)
+
+
+### Features
+
+* blog author images ([6ecf123](https://github.com/oaknational/Oak-Web-Application/commit/6ecf1231537a393187d7abcb06c4b3472f8d9fdf))
+* blog role added to author ([a5a7b2d](https://github.com/oaknational/Oak-Web-Application/commit/a5a7b2da2a1b07378ba262598de25cf48a3c0e61))
+
+## [1.20.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.20.0...v1.20.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* image position android ([86585c0](https://github.com/oaknational/Oak-Web-Application/commit/86585c0eafae9affb04261c4f078957fb16fe93d))
+
+# [1.20.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.19.1...v1.20.0) (2022-09-21)
+
+
+### Bug Fixes
+
+* **Netlify Edge:** create allow list of paths to skip redirect ([8bad924](https://github.com/oaknational/Oak-Web-Application/commit/8bad9244f3d7013263ec290c0a7067ffb107f5d8))
+
+
+### Features
+
+* **Netlify:** log request headers in redirect edge function ([9655023](https://github.com/oaknational/Oak-Web-Application/commit/9655023937a4fbfd6dd2d320bb15a6f0d9feeb59))
+
+## [1.19.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.19.0...v1.19.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* mobile curriculum image size ([a428634](https://github.com/oaknational/Oak-Web-Application/commit/a428634bb955253246de77a19a79f963c3089df3))
+
+# [1.19.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.18.1...v1.19.0) (2022-09-21)
+
+
+### Features
+
+* svg hr ([9d2118d](https://github.com/oaknational/Oak-Web-Application/commit/9d2118d03dad1a65c4afe0ae81a93c0ed5a999e7))
+
 ## [1.18.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.18.0...v1.18.1) (2022-09-21)
 
 # [1.18.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.17.0...v1.18.0) (2022-09-20)
