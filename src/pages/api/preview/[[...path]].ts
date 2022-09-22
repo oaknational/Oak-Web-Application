@@ -29,8 +29,6 @@ const preview: NextApiHandler = async (req, res) => {
     }
 
     const pathQueryParam = req.query.path;
-    console.log("pathQueryParam", pathQueryParam);
-
     const redirectLocation = z
       .array(slugStringSchema)
       .transform((segments) => {
