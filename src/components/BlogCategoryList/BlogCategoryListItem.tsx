@@ -54,6 +54,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
     >
       <BlogCategoryLink
         $display="flex"
+        $height="100%"
         $alignItems="center"
         page="blog-index"
         category={slug}

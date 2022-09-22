@@ -20,7 +20,7 @@ const LI = styled.li<FlexProps & TypographyProps>`
 `;
 
 LI.defaultProps = {
-  $display: "block",
+  $display: "revert",
 };
 
 export default LI;
