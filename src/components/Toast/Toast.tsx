@@ -33,6 +33,15 @@ const ToastCard = styled(Card)<TransitionProps>`
   }};
 `;
 
+/**
+ * Toasts display brief, temporary notifications.
+ * They are noticeable but do not disrupt the user experience and do not require an action to be taken.
+ *
+ * ## Usage
+ * Toasts should only be used for confirmations, simple notifications,
+ * and low-priority alerts that do not need to completely interrupt the user experience.
+ */
+
 const Toast: FC = () => {
   const { message, shown } = useToastContext();
 
