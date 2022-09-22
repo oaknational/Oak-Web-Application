@@ -9,7 +9,7 @@ const reportError = errorReporter("/api/exit-preview/[[...path]]");
 
 const preview: NextApiHandler = async (req, res) => {
   try {
-    console.log('exit-preview req.query.path', req.query.path)
+    console.log("exit-preview req.query.path", req.query.path);
 
     const redirectLocation = z
       .array(slugStringSchema)
@@ -19,6 +19,8 @@ const preview: NextApiHandler = async (req, res) => {
       .parse(req.query.path || []);
 
     res.clearPreviewData();
+
+    console.log("redirectLocation", redirectLocation);
 
     res.writeHead(307, { Location: redirectLocation });
     res.end();
