@@ -92,7 +92,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
                 iconBackground="teachersHighlight"
                 size="large"
                 label="Back"
-                href="/"
+                href="/blog"
               />
               <Cover
                 $background="black"
