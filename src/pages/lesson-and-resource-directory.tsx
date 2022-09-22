@@ -4,14 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-import Button from "../components/Button";
 import Card from "../components/Card";
 import Cover from "../components/Cover";
 import FixedHeader from "../components/FixedHeader";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
 import Icon from "../components/Icon";
-import Input from "../components/Input";
 import Logo from "../components/Logo";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../components/PortableText";
@@ -24,6 +22,10 @@ import {
 } from "../__tests__/__helpers__/cms";
 import OutlineHeading from "../components/OutlineHeading";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import NewsletterForm, {
+  useNewsletterForm,
+} from "../components/Forms/NewsletterForm";
+import { useId } from "react-aria";
 
 type LandingPageHero = {
   title: string;
@@ -158,6 +160,9 @@ const LandingPageTitle: FC<{
 };
 
 const SignUpForm: FC = () => {
+  const { onSubmit } = useNewsletterForm();
+  const id = useId();
+  const descriptionId = `${id}-newsletter-form-description`;
   return (
     <Card
       $ml={[0, 48]}
@@ -166,25 +171,14 @@ const SignUpForm: FC = () => {
       $background={"white"}
       $dropShadow={"notificationCard"}
     >
-      <Heading $fontSize={[20, 24]} tag="h3" $mb={0}>
+      <Heading id={descriptionId} $fontSize={[20, 24]} tag="h3" $mb={0}>
         Directory sign-up
       </Heading>
-      <form id="signup-form">
-        <Input id="name" label="Name" $mt={36} placeholder={"Name"} />
-        <Input id="email" label="Email" $mt={32} placeholder={"Email"} />
-        <Input
-          id="role"
-          label="Role"
-          $mt={32}
-          placeholder={"What describes you best ?"}
-        />
-        <Button
-          $mt={28}
-          label="Sign up"
-          fullWidth
-          background="teachersHighlight"
-        />
-      </form>
+      <NewsletterForm
+        onSubmit={onSubmit}
+        id={id}
+        descriptionId={descriptionId}
+      />
     </Card>
   );
 };
@@ -270,7 +264,7 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
           $maxHeight={600}
           $pb={0}
         >
-          <BrushBorders color={"teachersPastelYellow"} />
+          <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
 
           <Flex
             $position="relative"

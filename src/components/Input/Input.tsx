@@ -9,16 +9,20 @@ import Box from "../Box";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
 import ScreenReaderOnly from "../ScreenReaderOnly";
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { Span } from "../Typography";
 import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 
 import InputIcon from "./InputIcon";
+import { OakColorName } from "../../styles/theme/types";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 
 type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
 };
+
 const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
@@ -27,13 +31,14 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
     ({ theme }) => theme.input.states.default.border
   )};
   border-width: ${(props) => props.theme.input.borderWidth};
-  border-style: solid;
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
   padding-right: 0;
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
   font-weight: 300;
   width: 100%;
+  margin-top: 20px;
+  outline: none;
 
   @media (max-width: ${getBreakpoint("small")}px) {
     /* iOS zooms in on inputs with font sizes <16px on mobile */
@@ -75,6 +80,25 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 `;
 
+export const RotatedInputLabel = styled(Label)<{
+  background: OakColorName;
+  color: OakColorName;
+}>`
+  position: relative;
+  padding: 4px;
+  transform: rotate(-2deg) translateY(-10px) translateX(5px);
+  display: block;
+  background: ${(props) => getColorByName(props.background)};
+  color: ${(props) => getColorByName(props.color)};
+`;
+
+const InputFieldWrap = styled(Flex)`
+  &:focus-within ${RotatedInputLabel} {
+    background: ${getColorByName("teachersHighlight")};
+    color: ${getColorByName("white")};
+  }
+`;
+
 type InputProps = UnstyledInputProps &
   StyledInputProps & {
     id: string;
@@ -96,20 +120,34 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             </Label>
           </ScreenReaderOnly>
         )}
-        <Flex $alignItems="center">
-          <StyledInput
-            {...inputProps}
-            icon={icon}
-            ref={ref}
-            id={id}
-            aria-invalid={Boolean(error)}
-            aria-describedby={error ? errorId : undefined}
-            aria-labelledby={labelId}
-          />
-          {icon && <InputIcon $pa={8} size={40} name={icon} />}
-        </Flex>
+        <InputFieldWrap $mb={error ? 0 : 32} $alignItems="center">
+          <Flex $width={"100%"} $position={"relative"}>
+            <BoxBorders />
+            <Flex $position={"absolute"}>
+              <RotatedInputLabel
+                background={error ? "teachersRed" : "pastelTurqoise"}
+                color={error ? "white" : "black"}
+                htmlFor={id}
+              >
+                {label}
+              </RotatedInputLabel>
+            </Flex>
+
+            <StyledInput
+              {...inputProps}
+              icon={icon}
+              ref={ref}
+              id={id}
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? errorId : undefined}
+              aria-labelledby={labelId}
+            />
+            {icon && <InputIcon $pa={8} size={40} name={icon} />}
+          </Flex>
+        </InputFieldWrap>
+
         {error && (
-          <Box $position="absolute">
+          <Box $mb={error ? 24 : 0}>
             <Span $color="failure" $fontSize={12} id={errorId}>
               {error}
             </Span>

@@ -19,9 +19,7 @@ import Flex from "../components/Flex";
 import Icon from "../components/Icon";
 import HomeAboutCard from "../components/pages/Home/HomeAboutCard";
 import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
-import NewsletterForm, {
-  useNewsletterForm,
-} from "../components/Forms/NewsletterForm";
+import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import BlogListItem, {
@@ -35,6 +33,7 @@ import {
   SerializedBlogPostPreview,
 } from "./blog";
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
+import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -359,7 +358,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               <HomeHelpCard {...props.pageData.sidebarCard2} />
             </GridArea>
             <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
-              <NewsletterForm
+              <NewsletterFormWrap
                 {...newsletterFormProps}
                 anchorTargetId="email-sign-up"
               />

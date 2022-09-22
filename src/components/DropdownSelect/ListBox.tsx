@@ -5,19 +5,21 @@ import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
 
-import Icon from "../Icon";
 import { OakColorName } from "../../styles/theme";
 import Flex from "../Flex";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SelectListBoxConfig = {
   states: {
     default: {
       background: OakColorName;
+      color: OakColorName;
     };
     isFocused: {
       background: OakColorName;
       color: OakColorName;
+      weight: number;
     };
     isFocusedSelected: {
       color: OakColorName;
@@ -38,28 +40,12 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li<ListItemProps>`
-  background: ${(props) =>
-    props.isFocused
-      ? getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocused.background
-        )
-      : getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.default.background
-        )};
-  color: ${(props) =>
-    props.isFocused
-      ? getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocused.color
-        )
-      : props.isSelected
-      ? getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocusedSelected.color
-        )
-      : getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocusedNotSelected.color
-        )};
+  color: ${getColorByLocation(
+    ({ theme }) => theme.selectListBox.states.default.color
+  )};
   font-size: 14px;
-  font-weight: ${(props) => (props.isSelected ? "600" : "normal")};
+  font-weight: ${(props) =>
+    props.isFocused ? 700 : props.isSelected ? 700 : 300};
   padding: 8px;
   display: flex;
   align-items: center;
@@ -130,8 +116,8 @@ function Option({ item, state }: OptionProps) {
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
+        <BoxBorders color="black" hideTop />
       </Flex>
-      {isSelected && <Icon aria-hidden="true" name={"Tick"} />}
     </ListItem>
   );
 }

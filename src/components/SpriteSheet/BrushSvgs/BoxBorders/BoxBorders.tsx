@@ -1,7 +1,11 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
+import { OakColorName } from "../../../../styles/theme";
+import getColorByName from "../../../../styles/themeHelpers/getColorByName";
 
 import Svg from "../../../Svg";
+import { SvgProps } from "../../../Svg/Svg";
+import { OakColorName } from "../../../../styles/theme/types";
 
 const BORDER_THICKNESS_PX = 3;
 const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
@@ -9,6 +13,8 @@ const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
 export const gapPositionMap = {
   rightTop: 95,
   bottomRight: 85,
+  topHide: 0,
+  bottomHide: 0,
 } as const;
 
 export type GapPosition = keyof typeof gapPositionMap;
@@ -96,8 +102,12 @@ export const svgSymbols = {
   Left,
 };
 
-const boxBorderTop = css`
+const brushBorderBase = css<{ color?: OakColorName }>`
   position: absolute;
+  color: ${(props) => getColorByName(props.color)};
+`;
+
+const boxBorderTop = css`
   height: ${BORDER_THICKNESS_PX}px;
   top: ${BORDER_OFFSET_PX}px;
   right: ${BORDER_OFFSET_PX}px;
@@ -105,14 +115,12 @@ const boxBorderTop = css`
 `;
 
 const boxBorderRight = css`
-  position: absolute;
   width: ${BORDER_THICKNESS_PX}px;
   right: ${BORDER_OFFSET_PX}px;
   bottom: ${BORDER_OFFSET_PX}px;
 `;
 
 const boxBorderBottom = css`
-  position: absolute;
   height: ${BORDER_THICKNESS_PX}px;
   bottom: ${BORDER_OFFSET_PX}px;
   right: ${BORDER_OFFSET_PX}px;
@@ -120,17 +128,23 @@ const boxBorderBottom = css`
 `;
 
 const boxBorderLeft = css`
-  position: absolute;
   width: ${BORDER_THICKNESS_PX}px;
   top: ${BORDER_OFFSET_PX}px;
   left: ${BORDER_OFFSET_PX}px;
   bottom: ${BORDER_OFFSET_PX}px;
 `;
 
-const BoxBorderTop = styled(Svg)`
+const BoxBorderTop = styled(Svg)<SvgProps & BoxBorderProps>`
+  ${brushBorderBase}
   ${boxBorderTop}
+  ${(props) =>
+    props.hideTop &&
+    css`
+      width: 0%;
+    `}
 `;
 const BoxBorderRight = styled(Svg)<GapPositionProps>`
+  ${brushBorderBase}
   ${boxBorderRight}
   ${(props) =>
     props.gapPosition == "rightTop" &&
@@ -138,8 +152,14 @@ const BoxBorderRight = styled(Svg)<GapPositionProps>`
       height: ${gapPositionMap.rightTop}%;
     `}
 `;
-const BoxBorderBottom = styled(Svg)<GapPositionProps>`
+const BoxBorderBottom = styled(Svg)<BoxBorderProps>`
+  ${brushBorderBase}
   ${boxBorderBottom}
+  ${(props) =>
+    props.hideBottom &&
+    css`
+      width: 0%;
+    `}
   ${(props) =>
     props.gapPosition == "bottomRight" &&
     css`
@@ -147,6 +167,7 @@ const BoxBorderBottom = styled(Svg)<GapPositionProps>`
     `}
 `;
 const BoxBorderLeft = styled(Svg)`
+  ${brushBorderBase}
   ${boxBorderLeft}
 `;
 
@@ -163,7 +184,13 @@ const BoxBorderLeft = styled(Svg)`
  * which allows them to be stretched whilst still preserving the effect of being
  * a painted or drawn line.
  */
-const BoxBorders: FC<GapPositionProps> = (props) => {
+type BoxBorderProps = GapPositionProps & {
+  color?: OakColorName;
+  hideTop?: boolean;
+  hideBottom?: boolean;
+};
+
+const BoxBorders: FC<BoxBorderProps> = (props) => {
   return (
     <div aria-hidden="true" data-testid="brush-borders">
       <BoxBorderTop {...props} name="box-border-top" />
