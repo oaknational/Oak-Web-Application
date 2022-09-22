@@ -16,6 +16,9 @@ async function redirectNetlifySubdomains(
 ): Promise<Response> {
   let subdomain;
   let redirected;
+
+  console.log(`Request URL: ${request?.url}`);
+
   try {
     const subdomainMatches = request?.url?.match(
       /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:netlify\.app)/
@@ -34,14 +37,24 @@ async function redirectNetlifySubdomains(
     console.error(err, request.url);
   }
 
-  if (subdomain && !redirected) {
+  // Netlify makes some requests internally for optimisation functions,
+  // skip the redirect for these.
+  const allowListPathStarts = ["/_ipx", "/images"];
+  const urlPath = new URL(request.url).pathname;
+  const isOnAllowList = allowListPathStarts.some((allowPath) =>
+    urlPath.startsWith(allowPath)
+  );
+  console.log(`URL is on allow list: ${isOnAllowList}`);
+
+  if (subdomain && !redirected && !isOnAllowList) {
     const redirectTargetUrl = new URL(
       `https://${subdomain}.netlify.thenational.academy/`
     ).href;
     console.log("Redirected to Cloudflare - ", redirectTargetUrl);
+
     return Response.redirect(redirectTargetUrl);
   } else {
-    console.log(`Request allowed through - ${request?.url}`);
+    console.log(`Request allowed through`);
     const res = await context.next();
     return res;
   }
