@@ -111,7 +111,7 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return parseResults(homePageSchema, homepageData);
+    return parseResults(homePageSchema, homepageData, previewMode);
   },
   planningPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
@@ -142,7 +142,7 @@ const getSanityClient: CMSClient = () => ({
       ...parentPageData,
       ...whoWeArePageData,
     };
-    return parseResults(aboutWhoWeArePageSchema, pageData);
+    return parseResults(aboutWhoWeArePageSchema, pageData, previewMode);
   },
   aboutLeadershipPage: async ({ previewMode, ...params } = {}) => {
     const result = await sanityGraphqlApi.aboutLeadershipPage({
