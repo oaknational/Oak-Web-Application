@@ -50,6 +50,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
       $opacity={isSelected ? 0.6 : 1}
       $position="relative"
       $overflow="hidden"
+      $alignItems="center"
     >
       <BlogCategoryLink
         $display="flex"

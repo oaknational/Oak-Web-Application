@@ -264,7 +264,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       })}
       $background="white"
     >
-      <MobileBlogFilters categoryListProps={{ categories }} />
+      <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>
         <Grid $ph={[12, 0]}>
           <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
@@ -284,7 +284,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
           <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
             <Flex
-              $mt={[40, 80]}
+              $mt={[40, 72]}
               $justifyContent="space-between"
               $flexDirection={["column", "row"]}
             >
