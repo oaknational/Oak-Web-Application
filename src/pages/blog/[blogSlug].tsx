@@ -247,8 +247,6 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     }
   );
 
-  console.log(blog);
-
   return (
     <Layout
       seoProps={getSeoProps({
