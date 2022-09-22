@@ -8,7 +8,7 @@ type ToastContext = {
 
 export const toastContext = createContext<ToastContext | null>(null);
 
-const SHOW_DURATION = 500;
+const SHOW_DURATION = 2000;
 
 export const ToastProvider: FC = ({ children }) => {
   const [message, setMessage] = useState("");
