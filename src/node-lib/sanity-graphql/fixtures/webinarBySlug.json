@@ -36,7 +36,8 @@
           "name": "Person McPherson",
           "image": {
             "asset": {
-              "url": "https://cdn.sanity.io/images/cuvjke51/production/06e8cb0660bed44fd0e139a62ce6ccc6d590c959-300x300.png"
+              "_id": "",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
             }
           }
         }

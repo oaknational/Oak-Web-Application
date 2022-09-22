@@ -9,6 +9,7 @@ fragment BlogPreviewFields on NewsPost {
     id: _id
     _key
     name
+    role
     image {
       ...Image
     }

@@ -14,7 +14,18 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testAboutBoardPageData: AboutBoardPage = {
   ...testAboutPageBaseData,
   sectionHeading: "Board",
-  boardMembers: [{ name: "name", id: "1" }],
+  boardMembers: [
+    {
+      name: "name",
+      id: "1",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   introPortableText: [
     {
       _key: "fba015024518",

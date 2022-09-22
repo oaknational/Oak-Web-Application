@@ -1,3 +1,18 @@
+## [1.21.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.0...v1.21.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* lesson planning links same tab ([cc5d37a](https://github.com/oaknational/Oak-Web-Application/commit/cc5d37a37e14a52b55018d0af6e056b97e7515b9))
+
+# [1.21.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.20.1...v1.21.0) (2022-09-22)
+
+
+### Features
+
+* blog author images ([6ecf123](https://github.com/oaknational/Oak-Web-Application/commit/6ecf1231537a393187d7abcb06c4b3472f8d9fdf))
+* blog role added to author ([a5a7b2d](https://github.com/oaknational/Oak-Web-Application/commit/a5a7b2da2a1b07378ba262598de25cf48a3c0e61))
+
 ## [1.20.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.20.0...v1.20.1) (2022-09-21)
 
 
