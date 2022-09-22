@@ -6,8 +6,12 @@ import { ThemeProvider } from "styled-components";
 import "../../__tests__/__helpers__/LocalStorageMock";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import theme from "../../styles/theme";
+import noop from "../../__tests__/__helpers__/noop";
 
 import ErrorBoundary from ".";
+
+const consoleLogSpy = jest.spyOn(console, "log");
+const consoleErrorSpy = jest.spyOn(console, "error");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
@@ -57,6 +61,9 @@ const WithoutStatisticsConsent: FC = (props) => {
 
 describe("ErrorBoundary.tsx", () => {
   beforeEach(() => {
+    consoleErrorSpy.mockImplementation(noop);
+    consoleLogSpy.mockImplementation(noop);
+
     window.localStorage.clear();
   });
   test("[bugsnag:enabled] should render children if no error", () => {

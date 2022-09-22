@@ -1,4 +1,4 @@
-import { act, fireEvent, waitFor } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 
 import BookmarksPage from "../../../pages/beta/bookmarks";
 import { testBookmarks, testLessons } from "../../__helpers__/apolloMocks";
@@ -26,7 +26,7 @@ describe("pages/beta/bookmarks.tsx", () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
-  it("Renders the page title", async () => {
+  it("Renders the page title", () => {
     const { getByRole } = renderWithProviders(<BookmarksPage />);
 
     expect(getByRole("heading", { level: 1 }).textContent).toBe("Bookmarks");
@@ -38,7 +38,7 @@ describe("pages/beta/bookmarks.tsx", () => {
       "bookmarks are only available for logged in users"
     );
   });
-  it("Renders loading spinner during fetch", async () => {
+  it("Renders loading spinner during fetch", () => {
     const { getByText } = renderWithProviders(
       <BookmarksPage
         __testAppLayoutProps={{ authProviderValue: loggedInAuthProviderValue }}
@@ -47,18 +47,16 @@ describe("pages/beta/bookmarks.tsx", () => {
 
     expect(getByText(/^Loading/).textContent).toBe("Loading");
   });
-  it("Renders bookmarked lesson after fetch", async () => {
+  it("Renders bookmarked lesson after fetch", () => {
     const { getByTestId } = renderWithProviders(
       <BookmarksPage
         __testAppLayoutProps={{ authProviderValue: loggedInAuthProviderValue }}
       />
     );
 
-    await waitFor(() => {
-      expect(getByTestId("bookmark-0").textContent).toBe(testLessons[0]?.title);
-    });
+    expect(getByTestId("bookmark-0").textContent).toBe(testLessons[0]?.title);
   });
-  it("Clicking 'remove' should call 'useBookmark()' with correct lessonId", async () => {
+  it("Clicking 'remove' should call 'removeBookmark()' with correct lessonId", () => {
     const { getAllByRole } = renderWithProviders(
       <BookmarksPage
         __testAppLayoutProps={{
@@ -76,8 +74,6 @@ describe("pages/beta/bookmarks.tsx", () => {
       fireEvent.click(firstRemoveButton);
     });
 
-    await waitFor(() => {
-      expect(removeBookmark).toHaveBeenCalledWith(firstLessonId);
-    });
+    expect(removeBookmark).toHaveBeenCalledWith(firstLessonId);
   });
 });

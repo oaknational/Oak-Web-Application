@@ -6,6 +6,17 @@ import Svg from "../../../Svg";
 const BORDER_THICKNESS_PX = 3;
 const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
 
+export const gapPositionMap = {
+  rightTop: 95,
+  bottomRight: 85,
+} as const;
+
+export type GapPosition = keyof typeof gapPositionMap;
+
+export type GapPositionProps = {
+  gapPosition?: GapPosition;
+};
+
 const Top: FC = (props) => {
   return (
     <symbol
@@ -96,7 +107,6 @@ const boxBorderTop = css`
 const boxBorderRight = css`
   position: absolute;
   width: ${BORDER_THICKNESS_PX}px;
-  height: 80%;
   right: ${BORDER_OFFSET_PX}px;
   bottom: ${BORDER_OFFSET_PX}px;
 `;
@@ -120,11 +130,21 @@ const boxBorderLeft = css`
 const BoxBorderTop = styled(Svg)`
   ${boxBorderTop}
 `;
-const BoxBorderRight = styled(Svg)`
+const BoxBorderRight = styled(Svg)<GapPositionProps>`
   ${boxBorderRight}
+  ${(props) =>
+    props.gapPosition == "rightTop" &&
+    css`
+      height: ${gapPositionMap.rightTop}%;
+    `}
 `;
-const BoxBorderBottom = styled(Svg)`
+const BoxBorderBottom = styled(Svg)<GapPositionProps>`
   ${boxBorderBottom}
+  ${(props) =>
+    props.gapPosition == "bottomRight" &&
+    css`
+      width: ${gapPositionMap.bottomRight}%;
+    `}
 `;
 const BoxBorderLeft = styled(Svg)`
   ${boxBorderLeft}
@@ -143,13 +163,13 @@ const BoxBorderLeft = styled(Svg)`
  * which allows them to be stretched whilst still preserving the effect of being
  * a painted or drawn line.
  */
-const BoxBorders: FC = () => {
+const BoxBorders: FC<GapPositionProps> = (props) => {
   return (
     <div aria-hidden="true" data-testid="brush-borders">
-      <BoxBorderTop name="box-border-top" />
-      <BoxBorderRight name="box-border-right" />
-      <BoxBorderBottom name="box-border-bottom" />
-      <BoxBorderLeft name="box-border-left" />
+      <BoxBorderTop {...props} name="box-border-top" />
+      <BoxBorderRight {...props} name="box-border-right" />
+      <BoxBorderBottom {...props} name="box-border-bottom" />
+      <BoxBorderLeft {...props} name="box-border-left" />
     </div>
   );
 };

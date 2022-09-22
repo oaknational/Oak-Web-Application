@@ -1,5 +1,4 @@
 import { NextPage, GetStaticProps } from "next";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
@@ -21,6 +20,7 @@ import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import OakImage from "../components/OakImage";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -136,7 +136,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $maxHeight={240}
                     $ph={[16, 24]}
                   >
-                    <BoxBorders />
+                    <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
                       <Heading $mb={8} $fontSize={16} tag={"h3"}>
                         How to
@@ -169,14 +169,13 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             $mr={[0, 64]}
           >
             <Cover>
-              <Image
+              <OakImage
+                $objectFit="contain"
+                $objectPosition={"center"}
                 aria-hidden={true}
-                layout="fill"
-                objectFit="contain"
-                objectPosition={"center"}
+                fill
                 alt={"curriculum design illustration"}
                 src={"/images/illustrations/curriculum-approach.svg"}
-                priority
               />
             </Cover>
           </Flex>

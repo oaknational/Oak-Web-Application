@@ -1,13 +1,13 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Toggle from "./Toggle";
 
 describe("Toggle", () => {
   it("renders a Toggle", () => {
-    renderWithProviders(
+    renderWithTheme(
       <Toggle
         checked={true}
         labelOn="label"
@@ -22,7 +22,7 @@ describe("Toggle", () => {
   });
 
   it("renders a label", () => {
-    renderWithProviders(
+    renderWithTheme(
       <Toggle
         checked={true}
         labelOn="label on"
@@ -43,7 +43,7 @@ describe("Toggle", () => {
       value = !value;
     };
 
-    const { rerender } = renderWithProviders(
+    const { rerender } = renderWithTheme(
       <Toggle
         labelOn="label on"
         labelOff="label"
@@ -78,7 +78,7 @@ describe("Toggle", () => {
       value = !value;
     };
 
-    const { rerender } = renderWithProviders(
+    const { rerender } = renderWithTheme(
       <Toggle
         labelOn="label on"
         labelOff="label"
