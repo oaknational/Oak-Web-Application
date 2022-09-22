@@ -1,0 +1,255 @@
+{
+  "aboutCorePage": [
+    {
+      "contactSection": {
+        "infoPortableText": [
+          {
+            "_key": "e0c6f10a0bae",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "16137e0bde570",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "General enquiries"
+              },
+              {
+                "_key": "b582301fb277",
+                "_type": "span",
+                "marks": [],
+                "text": "\nFor general enquiries and help please email help@thenational.academy."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "71550ecd4198",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "b2e4daa056f3",
+                "_type": "span",
+                "marks": [],
+                "text": "\n"
+              },
+              {
+                "_key": "ce05d051065d",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "Media enquiries"
+              },
+              {
+                "_key": "189f67954654",
+                "_type": "span",
+                "marks": [],
+                "text": "\nFor media enquiries, please contact media@thenational.academy."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "8899b1fff883",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "bcf96460c3ca",
+                "_type": "span",
+                "marks": [],
+                "text": "\n"
+              },
+              {
+                "_key": "813237286594",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "Get support"
+              },
+              {
+                "_key": "2931ce4285fa",
+                "_type": "span",
+                "marks": [],
+                "text": "\nYou’ll find lots of help and support for teachers, schools, pupils and parents in our "
+              },
+              {
+                "_key": "37c37aae53f3",
+                "_type": "span",
+                "marks": ["9f907ea04c75"],
+                "text": "help centre"
+              },
+              {
+                "_key": "4b8a6dd13f39",
+                "_type": "span",
+                "marks": [],
+                "text": "."
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "9f907ea04c75",
+                "_type": "link",
+                "href": "https://support.thenational.academy/"
+              }
+            ],
+            "style": "normal"
+          }
+        ]
+      }
+    }
+  ],
+  "allAboutCorePageWorkWithUs": [
+    {
+      "id": "aboutCorePage.workWithUs",
+      "title": "About us",
+      "sectionHeading": "Work with us",
+      "introPortableText": [
+        {
+          "_key": "24e20ee072ab",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "beefb74c12ee0",
+              "_type": "span",
+              "marks": [],
+              "text": "We’re excited to be at the heart of this new national collaboration, but no one can do this alone. A team is required. So if you’re as excited as we are – brilliant. We want to hear from you. There are lots of ways to get involved - find out more below."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "cards": {
+        "joinTheTeam": {
+          "title": "Join the Oak team ",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "8230db06a2de",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "1654a5ff63560",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "If you share our values, and want to help make a difference, then join one of our remote-based teams: Education, Operations, Product and Engineering and School Support."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": {
+            "label": "Find a role",
+            "linkType": "external",
+            "external": "https://app.beapplied.com/org/1574/oak-national-academy",
+            "internal": null
+          }
+        },
+        "advisory": {
+          "title": "Join our Subject Expert Groups",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "46256dbcdab1",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "481d4e12d9430",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "We’re bringing together curriculum experts to advise us on quality standards and provide ongoing feedback on the development of our curricula and resources. We'd love for you to be involved. "
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": {
+            "label": "Sign up",
+            "linkType": "external",
+            "external": "https://share.hsforms.com/1mvbclSXASWizvXl2qRd29Abvumd",
+            "internal": null
+          }
+        },
+        "curriculumPartner": {
+          "title": "Become a Curriculum Partner",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "b914c3fc016d",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "6e009e4fed9c0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "We're looking to work with partners to create new, high quality and entirely optional full curriculum packages. "
+                },
+                {
+                  "_key": "c48724a6e9d9",
+                  "_type": "span",
+                  "marks": ["07dd22103d2a"],
+                  "text": "Find out more"
+                },
+                {
+                  "_key": "02944c9753dd",
+                  "_type": "span",
+                  "marks": [],
+                  "text": " and register your interest. "
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "07dd22103d2a",
+                  "_type": "internalLink",
+                  "reference": {
+                    "_ref": "9285c122-ebb3-4a6d-a318-a121c412e31b",
+                    "_type": "reference"
+                  }
+                }
+              ],
+              "style": "normal"
+            }
+          ],
+          "cta": {
+            "label": "Register your interest",
+            "linkType": "external",
+            "external": "https://share.hsforms.com/1SoVy_QtsRKWj5X8vv6460wbvumd",
+            "internal": null
+          }
+        },
+        "teacherResearch": {
+          "title": "Take part in teacher research",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "fcb9379d2d0e",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "72e00761515d0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "We'll always listen and respond to teachers; have your say by taking part in research with us, or by road-testing our resources in your school. Please register your interest and we’ll be in touch."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": {
+            "label": "Take part in research",
+            "linkType": "external",
+            "external": "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+            "internal": null
+          }
+        }
+      },
+      "seo": {
+        "title": "Join The Oak National Academy Community",
+        "description": "Join our community for teachers. We've supported teachers since 2020 to find inspiration to create great lessons and design their own curriculum",
+        "canonicalURL": null
+      }
+    }
+  ]
+}

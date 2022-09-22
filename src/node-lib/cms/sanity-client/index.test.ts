@@ -103,11 +103,11 @@ describe("cms/sanity-client", () => {
     const singletonMethods = [
       ["homepage", "homepage"],
       ["planningPage", "planningCorePage"],
-      ["aboutWhoWeArePage", "aboutCorePage"],
-      ["aboutLeadershipPage", "aboutCorePage"],
-      ["aboutBoardPage", "aboutCorePage"],
-      ["aboutPartnersPage", "aboutCorePage"],
-      ["aboutWorkWithUsPage", "aboutCorePage"],
+      ["aboutWhoWeArePage", "aboutWhoWeArePage"],
+      ["aboutLeadershipPage", "aboutLeadershipPage"],
+      ["aboutBoardPage", "aboutBoardPage"],
+      ["aboutPartnersPage", "aboutPartnersPage"],
+      ["aboutWorkWithUsPage", "aboutWorkWithUsPage"],
       ["curriculumPage", "curriculumCorePage"],
     ] as const;
 
