@@ -31,7 +31,7 @@ export const isOakPage = (page: MaybeOakPageName): page is OakPageName => {
   return Object.keys(OAK_PAGES).includes(page);
 };
 export const isExternalHref = (href: MaybeOakHref) => {
-  return !href.startsWith("/");
+  return !href.startsWith("/") && !href.startsWith("#");
 };
 
 export type ResolveOakHrefProps =

@@ -1,6 +1,7 @@
 fragment TeamMember on TeamMember {
   id: _id
   name
+  role
   slug {
     current
   }

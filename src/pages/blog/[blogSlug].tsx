@@ -33,6 +33,7 @@ import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import Circle from "../../components/Circle";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -280,9 +281,27 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               {blog.title}
             </Heading>
             <Flex $alignItems={"center"} $mt={16}>
-              <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
-                {blog.author.name}
-              </Heading>
+              {blog.author.image && (
+                <Circle $mr={12} $overflow={"hidden"} size={56}>
+                  <CMSImage
+                    image={{
+                      altText: blog.author.image.altText,
+                      isPresentational: blog.author.image.isPresentational,
+                      asset: blog.author.image.asset,
+                    }}
+                  />
+                </Circle>
+              )}
+              <Box>
+                <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
+                  {blog.author.name}
+                </Heading>
+                {blog.author.role && (
+                  <P $mt={4} fontSize={14} $color={"oakGrey4"}>
+                    {blog.author.role}
+                  </P>
+                )}
+              </Box>
               {/* TODO: add more UI for copy link button */}
               {/* <CopyLinkButton /> */}
             </Flex>

@@ -12,7 +12,18 @@ const testWebinar: Webinar = {
   id: "5",
   date: new Date("2025-01-01"),
   slug: "an-upcoming-webinar",
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  hosts: [
+    {
+      id: "000",
+      name: "Hosty McHostFace",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
@@ -22,7 +33,18 @@ const testWebinar2: Webinar = {
   id: "6",
   date: new Date("2022-01-01"),
   slug: "a-past-webinar",
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  hosts: [
+    {
+      id: "000",
+      name: "Hosty McHostFace",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
