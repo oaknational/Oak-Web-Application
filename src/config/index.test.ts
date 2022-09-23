@@ -24,6 +24,16 @@ describe("config.get()", () => {
     // @ts-ignore
     expect(() => config.get("nonExistentVarName")).toThrowError();
   });
+  it("should throw on import if value not allowed", async () => {
+    process.env.AXE_A11Y_LOGGING = "flagrant disregard for the constitution";
+    try {
+      await import(".");
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(error.message).toContain("Allowed values: on, off");
+    }
+  });
 });
 
 export {};
