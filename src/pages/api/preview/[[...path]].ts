@@ -38,6 +38,8 @@ const preview: NextApiHandler = async (req, res) => {
 
     res.setPreviewData({ previewMode: "on" });
 
+    // We add the `?` to prevent Next from adding the query params
+    // from the original request on to the redirect URL
     res.redirect(307, `${redirectLocation}?`);
   } catch (error) {
     reportError(error);
