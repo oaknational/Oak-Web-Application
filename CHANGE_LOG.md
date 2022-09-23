@@ -1,3 +1,10 @@
+## [1.21.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.1...v1.21.2) (2022-09-23)
+
+
+### Bug Fixes
+
+* **source maps:** don't error when running the same version build repeatedly ([7832c57](https://github.com/oaknational/Oak-Web-Application/commit/7832c57535e08b2b1a4c6ec1ce9ee86dca337ed8))
+
 ## [1.21.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.0...v1.21.1) (2022-09-22)
 
 

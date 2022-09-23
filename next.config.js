@@ -101,6 +101,7 @@ module.exports = async (phase) => {
           apiKey: oakConfig.bugsnag.apiKey,
           appVersion,
           publicPath: "https://*/_next/",
+          overwrite: true,
         };
         config.plugins.push(
           new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo)
