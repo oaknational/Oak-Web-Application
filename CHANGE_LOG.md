@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.20.0...v1.20.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* image position android ([86585c0](https://github.com/oaknational/Oak-Web-Application/commit/86585c0eafae9affb04261c4f078957fb16fe93d))
+
 # [1.20.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.19.1...v1.20.0) (2022-09-21)
 
 
