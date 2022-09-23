@@ -10,6 +10,15 @@ import {
   PLAYWRIGHT_REPORTER,
 } from "./e2e_tests/browser/fixtures/flags";
 
+// Cloudflare Access token
+const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID || "";
+const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET || "";
+if (!LOCAL_TESTING && (!CfAccessClientId || !CfAccessClientSecret)) {
+  throw new TypeError(
+    "Please specify Cloudflare Access token headers in envs\nfor background info see https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/"
+  );
+}
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -41,6 +50,12 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    extraHTTPHeaders: LOCAL_TESTING
+      ? undefined
+      : {
+          "CF-Access-Client-Id": CfAccessClientId,
+          "CF-Access-Client-Secret": CfAccessClientSecret,
+        },
   },
 
   /* Configure projects for major browsers */
