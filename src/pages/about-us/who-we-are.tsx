@@ -47,7 +47,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
           {title}
         </OutlineHeading>
-        <Typography $fontSize={[16, 18]}>
+        <Typography $font={["body-2", "body-1"]}>
           <PortableText value={bodyPortableText} />
         </Typography>
         {cta && (
@@ -111,11 +111,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
               )}
             </Flex>
             <Box $minWidth={["50%"]}>
-              <Typography
-                $mb={36}
-                $fontSize={[16, 18]}
-                $lineHeight={["24px", "28px"]}
-              >
+              <Typography $mb={36} $font={["body-2", "body-1"]}>
                 <PortableText value={pageData.intro.bodyPortableText} />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
@@ -158,17 +154,13 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                     color={"videoBlue"}
                   />
                   <Heading
-                    $fontSize={[24, 32]}
-                    $lineHeight={["32px", "40px"]}
+                    $font={["heading-5", "heading-4"]}
                     tag={"h2"}
                     $mb={[24]}
                   >
                     {principle.title}
                   </Heading>
-                  <Typography
-                    $lineHeight={["24px", "28px"]}
-                    $fontSize={[16, 18]}
-                  >
+                  <Typography $font={["body-2", "body-1"]}>
                     <PortableText value={principle.bodyPortableText} />
                   </Typography>
                 </Card>

@@ -88,23 +88,21 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
 
       <Flex $flexDirection="column" $alignItems="flex-start">
         <P
-          $fontSize={16}
-          $lineHeight={"20px"}
+          $font={"heading-7"}
           // Not blue until link to category filter is added
           // $color="teachersHighlight"
-          $fontFamily="ui"
         >
           {category.title}
         </P>
-        <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
+        <P $font={"body-3"} $mt={16}>
           {blogDate}
         </P>
-        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
+        <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
           <ActionLink href={href} title={title}>
             {title}
           </ActionLink>
         </Heading>
-        <P $fontSize={14} $mt={8} $mb={[8, 0]}>
+        <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>

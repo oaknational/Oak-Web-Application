@@ -144,7 +144,7 @@ const ContactUs: NextPage = () => {
                     $mt={i !== 0 ? 32 : 0}
                     key={`contact-us-contact-details-section-${i}`}
                   >
-                    <Heading $fontSize={24} tag={"h3"} $mb={8}>
+                    <Heading $font={"heading-5"} tag={"h3"} $mb={8}>
                       {section.title}
                     </Heading>
                     <Typography>{section.paragraph}</Typography>

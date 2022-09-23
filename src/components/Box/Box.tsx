@@ -11,6 +11,7 @@ import position, { PositionProps } from "../../styles/utils/position";
 import size, { SizeProps } from "../../styles/utils/size";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import transform, { TransformProps } from "../../styles/utils/transform";
+import typography, { TypographyProps } from "../../styles/utils/typography";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 
 export type BoxProps = CoverProps &
@@ -24,7 +25,8 @@ export type BoxProps = CoverProps &
   DisplayProps &
   ZIndexProps &
   TransformProps &
-  OpacityProps;
+  OpacityProps &
+  TypographyProps;
 
 export const box = css<BoxProps>`
   ${cover}
@@ -39,6 +41,7 @@ export const box = css<BoxProps>`
   ${zIndex}
   ${transform}
   ${opacity}
+  ${typography}
 `;
 /**
  * Box exposes position, size, spacing, and background props on a div.

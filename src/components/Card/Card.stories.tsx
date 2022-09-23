@@ -43,7 +43,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       >
         Title
       </CardTitle>
-      <P $fontSize={16} $mb={24} $color={"grey6"}>
+      <P $font={"body-2"} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink $mt={"auto"} label={"Lable"} fullWidth href={"/"} />
@@ -60,7 +60,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
       />
       <Flex $pa={24} $flexDirection={"column"}>
         <CardTitle tag={"h4"}>Title</CardTitle>
-        <P $fontSize={16} $mb={24} $color={"grey6"}>
+        <P $font={"body-2"} $mb={24} $color={"grey6"}>
           Short snappy description of what this card is about.
         </P>
         <ButtonAsLink
@@ -92,7 +92,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
       >
         Title
       </CardTitle>
-      <P $textAlign="center" $fontSize={16} $mb={24} $color={"grey6"}>
+      <P $textAlign="center" $font={"body-2"} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink

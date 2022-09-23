@@ -31,7 +31,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       })}
       $background="grey1"
     >
-      <Heading tag="h1" $fontSize={32}>
+      <Heading tag="h1" $font="heading-4">
         Webinars
       </Heading>
 
