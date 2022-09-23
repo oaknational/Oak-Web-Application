@@ -1,3 +1,10 @@
+## [1.21.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.2...v1.21.3) (2022-09-23)
+
+
+### Bug Fixes
+
+* **preview mode:** remove the secret value from the redirected URL location ([e15263b](https://github.com/oaknational/Oak-Web-Application/commit/e15263b18c04f2dcab08c0f1254cc22e904f69ee))
+
 ## [1.21.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.1...v1.21.2) (2022-09-23)
 
 
