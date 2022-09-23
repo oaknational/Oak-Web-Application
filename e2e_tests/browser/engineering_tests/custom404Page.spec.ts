@@ -18,11 +18,11 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("404 Not found", () => {
-  test.skip("Should respond with 404 is page not found", async ({ page }) => {
+  test("Should respond with 404 is page not found", async ({ page }) => {
     const response = await page.goto(`${frontPageUrl}/not-a-page`);
     expect(response?.status()).toBe(404);
   });
-  test.skip("Should respond with 404 with incorrect lesson slug", async ({
+  test("Should respond with 404 with incorrect lesson slug", async ({
     page,
   }) => {
     const response = await page.goto(
