@@ -8,6 +8,8 @@ import type { Context } from "https://edge.netlify.com";
  * The intention is to automatically force PR and preview deployments to
  * only be accessible through our managed TLD.
  *
+ * Not deployed on production.
+ *
  * Note: this function is interpreted in a deno environment.
  */
 async function redirectNetlifySubdomains(
