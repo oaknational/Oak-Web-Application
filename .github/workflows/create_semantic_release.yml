@@ -12,6 +12,12 @@ on:
   push:
     branches:
       - main
+    # This stops us getting into an infinite loop when a release commit
+    # is created on `main` containing the changes to CHANGE_LOG.md .
+    # The loop could happen because we use credentials from the machine
+    # user so that a commit to the protected `main` branch is possible
+    # (default workflow credentials can't trigger further workflows via
+    # events, to avoid this exact situation).
     paths-ignore:
       - "CHANGE_LOG.md"
 jobs:
@@ -37,8 +43,7 @@ jobs:
 
       # Create Github release using semantic-release package.
       # See config here release.config.js
-      # Note, this runs on `main` and _creates_ the release tag.
-      # Also updates the version number in the package.json file,
+      # Note, this runs on `main` and creates the release tag.
       # and updates the changelog file.
       - name: do release
         run: npx semantic-release
