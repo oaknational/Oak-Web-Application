@@ -1,3 +1,17 @@
+# [1.22.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.3...v1.22.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **CI:** attempt to use caching in deployment events (now they have correct refs) ([b2bd02a](https://github.com/oaknational/Oak-Web-Application/commit/b2bd02a66182739a1c5ba81c587226da8b35caf6))
+* **CI:** use correct event key for deployment URL ([372d2e5](https://github.com/oaknational/Oak-Web-Application/commit/372d2e58d897b17debf9bae7c4d2bda24d0c7c48))
+
+
+### Features
+
+* **CI:** ignore Vercel deployments, listen to Netlify deployments ([ba08c48](https://github.com/oaknational/Oak-Web-Application/commit/ba08c4837eab3348ee15a2f82b6726588a058fbc))
+* **CI:** use CF token in Pa11y requests ([a2878fd](https://github.com/oaknational/Oak-Web-Application/commit/a2878fd8ab5aa4c8f5628d5ac454ee3eefedee12))
+
 ## [1.21.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.2...v1.21.3) (2022-09-23)
 
 
