@@ -5,7 +5,7 @@ import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 
 export const cardSchema = z.object({
-  title: z.string().nonempty(),
+  title: z.string().min(1),
   bodyPortableText: portableTextSchema,
   image: imageSchema.nullable().optional(),
   cta: CTASchema.nullable().optional(),
@@ -14,7 +14,7 @@ export const cardSchema = z.object({
 export type Card = z.infer<typeof cardSchema>;
 
 export const textBlockSchema = z.object({
-  title: z.string().nonempty(),
+  title: z.string().min(1),
   bodyPortableText: portableTextSchema,
   cta: CTASchema.nullable().optional(),
 });
@@ -22,7 +22,7 @@ export const textBlockSchema = z.object({
 export type TextBlock = z.infer<typeof textBlockSchema>;
 
 export const textAndMediaSchemaBase = z.object({
-  title: z.string().nonempty(),
+  title: z.string().min(1),
   bodyPortableText: portableTextSchema,
   cta: CTASchema.nullable().optional(),
   alignMedia: z.enum(["left", "right"]),

@@ -8,7 +8,7 @@ export const documentSchema = z.object({
 
 export const slugSchema = z
   .object({
-    current: z.string().nonempty(),
+    current: z.string().min(1)
   })
   .transform((slug) => slug.current);
 
@@ -33,7 +33,7 @@ export const imageAssetSchema = z.object({
 });
 
 export const imageSchema = z.object({
-  altText: z.string().nonempty().nullish(),
+  altText: z.string().min(1).nullish(),
   isPresentational: z.boolean().nullish(),
   asset: imageAssetSchema.optional(),
 });
