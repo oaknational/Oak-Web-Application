@@ -46,6 +46,7 @@ export type PlanningPage = Document & {
 
 export type AboutPageBase = Document & {
   title: string;
+  summaryPortableText: PortableTextJSON;
   contactSection: {
     infoPortableText: PortableTextJSON;
   };
@@ -53,7 +54,7 @@ export type AboutPageBase = Document & {
 };
 
 export type AboutWhoWeArePage = AboutPageBase & {
-  sectionHeading: string;
+  heading: string;
   intro: TextAndMedia;
   timeline: {
     from: TextBlock;
@@ -65,12 +66,12 @@ export type AboutWhoWeArePage = AboutPageBase & {
 };
 
 export type AboutLeadershipPage = AboutPageBase & {
-  sectionHeading: string;
+  heading: string;
   introPortableText: PortableTextJSON;
 };
 
 export type AboutBoardPage = AboutPageBase & {
-  sectionHeading: string;
+  heading: string;
   introPortableText: PortableTextJSON;
   documents: Attachment[];
   governancePortableText: PortableTextJSON;
@@ -78,14 +79,14 @@ export type AboutBoardPage = AboutPageBase & {
 };
 
 export type AboutPartnersPage = AboutPageBase & {
-  sectionHeading: string;
+  heading: string;
   introPortableText: PortableTextJSON;
   techPartners: Array<SanityImage & { name: string }>;
   curriculumPartners: Array<SanityImage & { name: string }>;
 };
 
 export type AboutWorkWithUsPage = AboutPageBase & {
-  sectionHeading: string;
+  heading: string;
   introPortableText: PortableTextJSON;
   cards: {
     joinTheTeam: Card;

@@ -13,7 +13,7 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 export const testAboutPartnersPageData: AboutPartnersPage = {
   ...testAboutPageBaseData,
-  sectionHeading: "Partners",
+  heading: "Partners",
   introPortableText: [
     {
       _key: "c740fe769b64",

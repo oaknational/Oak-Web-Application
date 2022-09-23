@@ -1,6 +1,23 @@
 {
   "aboutCorePage": [
     {
+      "title": "About us",
+      "summaryPortableText": [
+        {
+          "_key": "63ea14a8d7cc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6c81dccc1c54",
+              "_type": "span",
+              "marks": [],
+              "text": "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
       "contactSection": {
         "infoPortableText": [
           {
@@ -10,7 +27,9 @@
               {
                 "_key": "16137e0bde570",
                 "_type": "span",
-                "marks": ["strong"],
+                "marks": [
+                  "strong"
+                ],
                 "text": "General enquiries"
               },
               {
@@ -36,7 +55,9 @@
               {
                 "_key": "ce05d051065d",
                 "_type": "span",
-                "marks": ["strong"],
+                "marks": [
+                  "strong"
+                ],
                 "text": "Media enquiries"
               },
               {
@@ -62,7 +83,9 @@
               {
                 "_key": "813237286594",
                 "_type": "span",
-                "marks": ["strong"],
+                "marks": [
+                  "strong"
+                ],
                 "text": "Get support"
               },
               {
@@ -74,7 +97,9 @@
               {
                 "_key": "37c37aae53f3",
                 "_type": "span",
-                "marks": ["9f907ea04c75"],
+                "marks": [
+                  "9f907ea04c75"
+                ],
                 "text": "help centre"
               },
               {
@@ -100,8 +125,7 @@
   "allAboutCorePageBoard": [
     {
       "id": "aboutCorePage.board",
-      "title": "About us",
-      "sectionHeading": "Board",
+      "heading": "Board",
       "introPortableText": [
         {
           "_key": "fba015024518",
@@ -122,13 +146,14 @@
         {
           "id": "tm-cf-ian-bauckham-cbe",
           "name": "Ian Bauckham CBE",
+          "role": "Chair",
           "slug": {
             "current": "ian-bauckham-cbe"
           },
           "image": {
             "asset": {
               "_id": "image-17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048.jpg"
             }
           },
           "contentPortableText": [
@@ -166,13 +191,14 @@
         {
           "id": "3333efb2-96fe-47a6-91f7-22ca301487e1",
           "name": "Cassie Buchanan",
+          "role": "Board member",
           "slug": {
             "current": "cassie-buchanan"
           },
           "image": {
             "asset": {
               "_id": "image-5270e91716484e744583b19fb06b8123f5c03dab-1566x1908-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/5270e91716484e744583b19fb06b8123f5c03dab-1566x1908.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/5270e91716484e744583b19fb06b8123f5c03dab-1566x1908.jpg"
             }
           },
           "contentPortableText": [
@@ -196,13 +222,14 @@
         {
           "id": "7ca0431a-2c45-4e3e-9694-9b13cd3fb205",
           "name": "Ramender Crompton",
+          "role": "Board member",
           "slug": {
             "current": "ramender-crompton"
           },
           "image": {
             "asset": {
               "_id": "image-ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728-png",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728.png"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728.png"
             }
           },
           "contentPortableText": [
@@ -226,13 +253,14 @@
         {
           "id": "bb9c17f1-dd2c-4af7-b144-283f7454ef40",
           "name": "Sean Harford",
+          "role": "Board member",
           "slug": {
             "current": "sean-harford"
           },
           "image": {
             "asset": {
               "_id": "image-af2702688cc146771e68356554906c6c47a90242-481x640-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/af2702688cc146771e68356554906c6c47a90242-481x640.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/af2702688cc146771e68356554906c6c47a90242-481x640.jpg"
             }
           },
           "contentPortableText": [
@@ -256,13 +284,14 @@
         {
           "id": "2a9d2a0c-1545-47f2-8ada-25d1f82736af",
           "name": "Louise Kirby",
+          "role": null,
           "slug": {
             "current": "louise-thompson"
           },
           "image": {
             "asset": {
               "_id": "image-564618e0efbd0051ce433e9f4903bb457af584a8-451x640-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/564618e0efbd0051ce433e9f4903bb457af584a8-451x640.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/564618e0efbd0051ce433e9f4903bb457af584a8-451x640.jpg"
             }
           },
           "contentPortableText": [
@@ -286,13 +315,14 @@
         {
           "id": "323faf9f-d66f-49db-ad21-5224766e9a6b",
           "name": "Henry de Zoete",
+          "role": "Board member",
           "slug": {
             "current": "henry-de-zoete"
           },
           "image": {
             "asset": {
               "_id": "image-abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310.jpg"
             }
           },
           "contentPortableText": [
@@ -330,13 +360,14 @@
         {
           "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
           "name": "Matt Hood",
+          "role": "Chief Executive",
           "slug": {
             "current": "matt-hood"
           },
           "image": {
             "asset": {
               "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
             }
           },
           "contentPortableText": [
@@ -363,13 +394,14 @@
         {
           "id": "tm-cf-emma-beatty",
           "name": "Emma Beatty",
+          "role": "Operations Director",
           "slug": {
             "current": "emma-beatty"
           },
           "image": {
             "asset": {
               "_id": "image-0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137-jpg",
-              "url": "https://cdn.sanity.io/images/cuvjke51/feat-about-sub-pages/0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137.jpg"
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137.jpg"
             }
           },
           "contentPortableText": [
@@ -398,7 +430,7 @@
             "asset": {
               "extension": "pdf",
               "size": 140929,
-              "url": "https://cdn.sanity.io/files/cuvjke51/feat-about-sub-pages/d77a5c9d51c73062a3f28f4c01e4fb2ea9dcf626.pdf"
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/d77a5c9d51c73062a3f28f4c01e4fb2ea9dcf626.pdf"
             }
           }
         },
@@ -408,7 +440,7 @@
             "asset": {
               "extension": "pdf",
               "size": 284382,
-              "url": "https://cdn.sanity.io/files/cuvjke51/feat-about-sub-pages/bee3867526c4bdf9aef9cce065107a6bb8a23ca3.pdf"
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/bee3867526c4bdf9aef9cce065107a6bb8a23ca3.pdf"
             }
           }
         },
@@ -418,7 +450,7 @@
             "asset": {
               "extension": "pdf",
               "size": 1032196,
-              "url": "https://cdn.sanity.io/files/cuvjke51/feat-about-sub-pages/e14d5c1d9239c51ee51f9eac15fe332f0afdd7d7.pdf"
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/e14d5c1d9239c51ee51f9eac15fe332f0afdd7d7.pdf"
             }
           }
         },
@@ -428,7 +460,7 @@
             "asset": {
               "extension": "pdf",
               "size": 1120993,
-              "url": "https://cdn.sanity.io/files/cuvjke51/feat-about-sub-pages/8181512d7b97e8758ff53f574db9413909e7a817.pdf"
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/8181512d7b97e8758ff53f574db9413909e7a817.pdf"
             }
           }
         }

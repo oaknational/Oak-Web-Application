@@ -1,6 +1,23 @@
 {
   "aboutCorePage": [
     {
+      "title": "About us",
+      "summaryPortableText": [
+        {
+          "_key": "63ea14a8d7cc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6c81dccc1c54",
+              "_type": "span",
+              "marks": [],
+              "text": "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
       "contactSection": {
         "infoPortableText": [
           {
@@ -10,7 +27,9 @@
               {
                 "_key": "16137e0bde570",
                 "_type": "span",
-                "marks": ["strong"],
+                "marks": [
+                  "strong"
+                ],
                 "text": "General enquiries"
               },
               {
@@ -36,7 +55,9 @@
               {
                 "_key": "ce05d051065d",
                 "_type": "span",
-                "marks": ["strong"],
+                "marks": [
+                  "strong"
+                ],
                 "text": "Media enquiries"
               },
               {
@@ -62,7 +83,9 @@
               {
                 "_key": "813237286594",
                 "_type": "span",
-                "marks": ["strong"],
+                "marks": [
+                  "strong"
+                ],
                 "text": "Get support"
               },
               {
@@ -74,7 +97,9 @@
               {
                 "_key": "37c37aae53f3",
                 "_type": "span",
-                "marks": ["9f907ea04c75"],
+                "marks": [
+                  "9f907ea04c75"
+                ],
                 "text": "help centre"
               },
               {
@@ -100,8 +125,7 @@
   "allAboutCorePageLeadership": [
     {
       "id": "aboutCorePage.leadership",
-      "title": "About us",
-      "sectionHeading": "Leadership",
+      "heading": "Leadership",
       "introPortableText": [
         {
           "_key": "b4472ccff7a2",

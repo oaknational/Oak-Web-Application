@@ -4,6 +4,8 @@ query aboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
     sort: { _updatedAt: DESC }
     limit: 1
   ) {
+    title
+    summaryPortableText: summaryRaw
     contactSection {
       infoPortableText: infoRaw
     }
@@ -14,8 +16,7 @@ query aboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
     limit: 1
   ) {
     id: _id
-    title
-    sectionHeading
+    heading: title
     intro {
       ...TextAndMedia
     }
