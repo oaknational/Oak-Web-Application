@@ -8,7 +8,7 @@ export const documentSchema = z.object({
 
 export const slugSchema = z
   .object({
-    current: z.string().min(1)
+    current: z.string().min(1),
   })
   .transform((slug) => slug.current);
 

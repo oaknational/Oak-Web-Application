@@ -66,12 +66,6 @@ const portableTextComponents: PortableTextComponents = {
 const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
   const newsletterFormProps = useNewsletterForm();
 
-  // @TODO: Add links with "actions" to enable cookie management
-  // const { showConsentManager } = useCookieConsent();
-  // <UnstyledButton onClick={showConsentManager}>
-  //   <Span $color="hyperlink">Manage cookie settings.</Span>
-  // </UnstyledButton>
-
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
