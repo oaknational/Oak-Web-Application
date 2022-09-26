@@ -21,7 +21,7 @@ const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
   ${iconButtonStyles};
 `;
 
-type IconButtonProps = CommonIconButtonProps & {
+export type IconButtonProps = CommonIconButtonProps & {
   onClick: MouseEventHandler<HTMLButtonElement>;
   "aria-label": string;
   disabled?: boolean;

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
 import { useToastContext } from "../../../context/Toast";
-import IconButton from "../IconButton";
+import ConfirmButton from "../ConfirmButton";
 
 const CopyLinkButton: FC = () => {
   const [label, setLabel] = useState("Copy to clipboard");
@@ -17,7 +17,7 @@ const CopyLinkButton: FC = () => {
   };
 
   return (
-    <IconButton
+    <ConfirmButton
       icon={"Share"}
       aria-label={label}
       onClick={copyLink}
