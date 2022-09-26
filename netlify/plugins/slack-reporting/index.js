@@ -1,4 +1,8 @@
-const getSlackConfig = require("./get_slack_config");
+const {
+  createBuildStartedSlackMessage,
+} = require("./slack/create_slack_message");
+const getSlackConfig = require("./slack/get_slack_config");
+const sendMessage = require("./slack/send_message");
 
 module.exports = function slackBuildReporterPlugin() {
   let sharedInfo = {};
@@ -23,11 +27,16 @@ module.exports = function slackBuildReporterPlugin() {
       const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
       const repoUrlString = process.env.REPOSITORY_URL;
-      const infoUrl = `https://app.netlify.com/sites/${process.env.SITE_NAME}/deploys/${process.env.DEPLOY_ID}`;
+      const siteName = process.env.SITE_NAME;
+      const deployId = process.env.DEPLOY_ID;
+      const infoUrl = `https://app.netlify.com/sites/${siteName}/deploys/${deployId}`;
       // For PR (preview) builds only.
       // const prMergeHead = process.env.BRANCH;
 
       const isProduction = buildContext === DEPLOY_CONTEXTS.production;
+
+      // TO DO: if it's production, parse the commit message for the version.
+      let appVersion = "made up app version";
 
       // Modify the deployment URL so that CI tools using it can go straight
       // to the canonical URL without hitting the edge function redirect.
@@ -50,6 +59,7 @@ module.exports = function slackBuildReporterPlugin() {
         headBranchRef,
         sha,
         repoUrlString,
+        siteName,
         infoUrl,
         slackConfig,
       };
@@ -65,8 +75,23 @@ module.exports = function slackBuildReporterPlugin() {
         environmentType = "deploy-preview";
       }
 
+      const messageConfig = {
+        siteName,
+        environmentType,
+        infoUrl,
+        repoUrlString,
+        appVersion: isProduction ? appVersion : sha,
+      };
+      const slackMessage = createBuildStartedSlackMessage(
+        messageConfig,
+        environmentType
+      );
+
       try {
-        // DO Network thing
+        const result = await sendMessage(slackMessage, slackConfig);
+
+        console.log("*** result");
+        console.log(result);
       } catch (error) {
         utils.build.failBuild("Failed to report build start to Slack", {
           error,

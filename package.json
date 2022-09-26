@@ -64,6 +64,7 @@
     "@sanity/image-url": "^1.0.1",
     "@slack/bolt": "^3.12.1",
     "@types/uuid": "^8.3.4",
+    "change-case": "^4.1.2",
     "firebase": "^9.9.4",
     "firebase-admin": "^11.0.1",
     "gleap": "6.7.5",

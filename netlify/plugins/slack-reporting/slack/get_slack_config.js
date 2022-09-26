@@ -3,10 +3,12 @@ const { camelCase } = require("change-case");
 const SLACK_BOT_TOKEN = "SLACK_BOT_TOKEN";
 const SLACK_SIGNING_SECRET = "SLACK_SIGNING_SECRET";
 const SLACK_CHANNEL_ID_PRODUCTION = "SLACK_CHANNEL_ID_PRODUCTION";
+const SLACK_CHANNEL_ID_PREVIEW = "SLACK_CHANNEL_ID_PREVIEW";
 const slackConfigKeys = [
   SLACK_BOT_TOKEN,
   SLACK_SIGNING_SECRET,
   SLACK_CHANNEL_ID_PRODUCTION,
+  SLACK_CHANNEL_ID_PREVIEW,
 ];
 
 /**
@@ -14,7 +16,8 @@ const slackConfigKeys = [
  * @typedef {Object} SlackConfig
  * @property {string} botToken The Slack app's bot token.
  * @property {string} signingSecret The Slack app's signing secret.
- * @property {string} channelId The Slack channel ID to report to. The app must be a member of the channel.
+ * @property {string} channelIdProduction The Slack channel ID for production builds to report to. The app must be a member of the channel.
+ * @property {string} channelIdPreview The Slack channel ID for non-production builds to report to. The app must be a member of the channel.
  */
 /**
  * Get Slack config from env variables
