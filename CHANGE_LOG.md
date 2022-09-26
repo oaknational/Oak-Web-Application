@@ -1,3 +1,10 @@
+## [1.22.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.1...v1.22.2) (2022-09-26)
+
+
+### Bug Fixes
+
+* kebab-case-to-camel-case-line-svg ([8c70379](https://github.com/oaknational/Oak-Web-Application/commit/8c70379e3714fcbe50af8d64519c89ed3211b53f))
+
 ## [1.22.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.0...v1.22.1) (2022-09-26)
 
 
