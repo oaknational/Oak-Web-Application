@@ -62,6 +62,7 @@
     "@mux/playback-core": "^0.8.0",
     "@portabletext/react": "^1.0.6",
     "@sanity/image-url": "^1.0.1",
+    "@slack/bolt": "^3.12.1",
     "@types/uuid": "^8.3.4",
     "firebase": "^9.9.4",
     "firebase-admin": "^11.0.1",
