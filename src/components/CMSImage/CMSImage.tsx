@@ -63,6 +63,7 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
         alt={finalAltText}
         // $height: auto to keep original aspect ratio of image
         $height="auto"
+        aria-hidden={image.isPresentational ? true : undefined}
       />
     </Box>
   );
