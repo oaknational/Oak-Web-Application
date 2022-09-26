@@ -1,3 +1,10 @@
+## [1.22.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.0...v1.22.1) (2022-09-26)
+
+
+### Bug Fixes
+
+* spelling of accessibility in footer ([8bc99dc](https://github.com/oaknational/Oak-Web-Application/commit/8bc99dc5bbb18327a53eecdbf0afd77cab05e08e))
+
 # [1.22.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.3...v1.22.0) (2022-09-23)
 
 
