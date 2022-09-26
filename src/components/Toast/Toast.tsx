@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
@@ -11,6 +11,7 @@ import Typography from "../Typography";
 import theme from "../../styles/theme";
 
 const TRANSITION_DURATION = 500;
+const SHOW_DURATION = 3500;
 
 export type TransitionProps = {
   state: TransitionStatus;
@@ -43,7 +44,16 @@ const ToastCard = styled(Card)<TransitionProps>`
  */
 
 const Toast: FC = () => {
-  const { message, shown } = useToastContext();
+  const { message, shown, hideToast } = useToastContext();
+
+  useEffect(() => {
+    if (shown) {
+      const timer = setTimeout(() => {
+        hideToast();
+      }, SHOW_DURATION);
+      return () => clearTimeout(timer);
+    }
+  }, [shown, hideToast]);
 
   return (
     <Transition timeout={TRANSITION_DURATION} in={shown} unmountOnExit>
@@ -62,7 +72,12 @@ const Toast: FC = () => {
               variant={"brush"}
               background={"white"}
             />
-            <Typography $color={"black"} $fontFamily={"ui"} $ml={16}>
+            <Typography
+              $color={"black"}
+              $fontFamily={"ui"}
+              $ml={16}
+              aria-role="alert"
+            >
               {message}
             </Typography>
           </Flex>

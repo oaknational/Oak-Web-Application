@@ -4,11 +4,10 @@ type ToastContext = {
   message: string;
   shown: boolean;
   showToast: (message: string) => void;
+  hideToast: () => void;
 };
 
 export const toastContext = createContext<ToastContext | null>(null);
-
-const SHOW_DURATION = 2000;
 
 export const ToastProvider: FC = ({ children }) => {
   const [message, setMessage] = useState("");
@@ -18,17 +17,19 @@ export const ToastProvider: FC = ({ children }) => {
     (message) => {
       setMessage(message);
       setShown(true);
-      setTimeout(() => {
-        setShown(false);
-      }, SHOW_DURATION);
     },
     [setShown]
   );
+
+  const hideToast = useCallback(() => {
+    setShown(false);
+  }, [setShown]);
 
   const toastValue: ToastContext = {
     message,
     shown,
     showToast,
+    hideToast,
   };
 
   return (
