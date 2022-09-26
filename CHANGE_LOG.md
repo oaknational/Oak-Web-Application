@@ -1,3 +1,38 @@
+## [1.22.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.0...v1.22.1) (2022-09-26)
+
+
+### Bug Fixes
+
+* spelling of accessibility in footer ([8bc99dc](https://github.com/oaknational/Oak-Web-Application/commit/8bc99dc5bbb18327a53eecdbf0afd77cab05e08e))
+
+# [1.22.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.3...v1.22.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **CI:** attempt to use caching in deployment events (now they have correct refs) ([b2bd02a](https://github.com/oaknational/Oak-Web-Application/commit/b2bd02a66182739a1c5ba81c587226da8b35caf6))
+* **CI:** use correct event key for deployment URL ([372d2e5](https://github.com/oaknational/Oak-Web-Application/commit/372d2e58d897b17debf9bae7c4d2bda24d0c7c48))
+
+
+### Features
+
+* **CI:** ignore Vercel deployments, listen to Netlify deployments ([ba08c48](https://github.com/oaknational/Oak-Web-Application/commit/ba08c4837eab3348ee15a2f82b6726588a058fbc))
+* **CI:** use CF token in Pa11y requests ([a2878fd](https://github.com/oaknational/Oak-Web-Application/commit/a2878fd8ab5aa4c8f5628d5ac454ee3eefedee12))
+
+## [1.21.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.2...v1.21.3) (2022-09-23)
+
+
+### Bug Fixes
+
+* **preview mode:** remove the secret value from the redirected URL location ([e15263b](https://github.com/oaknational/Oak-Web-Application/commit/e15263b18c04f2dcab08c0f1254cc22e904f69ee))
+
+## [1.21.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.1...v1.21.2) (2022-09-23)
+
+
+### Bug Fixes
+
+* **source maps:** don't error when running the same version build repeatedly ([7832c57](https://github.com/oaknational/Oak-Web-Application/commit/7832c57535e08b2b1a4c6ec1ce9ee86dca337ed8))
+
 ## [1.21.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.0...v1.21.1) (2022-09-22)
 
 
