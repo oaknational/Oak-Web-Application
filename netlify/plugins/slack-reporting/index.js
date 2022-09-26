@@ -1,5 +1,6 @@
 const {
   createBuildStartedSlackMessage,
+  createBuildCompleteSlackMessage,
 } = require("./slack/create_slack_message");
 const getSlackConfig = require("./slack/get_slack_config");
 const sendMessage = require("./slack/send_message");
@@ -24,7 +25,6 @@ module.exports = function slackBuildReporterPlugin() {
       // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const originalDeploymentUrl = process.env.DEPLOY_PRIME_URL;
-      const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
       const repoUrlString = process.env.REPOSITORY_URL;
       const siteName = process.env.SITE_NAME;
@@ -36,7 +36,7 @@ module.exports = function slackBuildReporterPlugin() {
       const isProduction = buildContext === DEPLOY_CONTEXTS.production;
 
       // TO DO: if it's production, parse the commit message for the version.
-      let appVersion = "made up app version";
+      let appVersion = isProduction ? "made up app version" : sha;
 
       // Modify the deployment URL so that CI tools using it can go straight
       // to the canonical URL without hitting the edge function redirect.
@@ -52,18 +52,6 @@ module.exports = function slackBuildReporterPlugin() {
       // Custom plugin config
       const slackConfig = getSlackConfig();
 
-      // Store the deployment data for use in subsequent build steps.
-      sharedInfo = {
-        buildContext,
-        deploymentUrl,
-        headBranchRef,
-        sha,
-        repoUrlString,
-        siteName,
-        infoUrl,
-        slackConfig,
-      };
-
       // Get PR number (only used in creating comments).
       // const prNumber = prMergeHead.split("/")[1];
 
@@ -75,23 +63,28 @@ module.exports = function slackBuildReporterPlugin() {
         environmentType = "deploy-preview";
       }
 
-      const messageConfig = {
+      // Store the deployment data for use in subsequent build steps.
+      sharedInfo = {
         siteName,
         environmentType,
         infoUrl,
         repoUrlString,
-        appVersion: isProduction ? appVersion : sha,
+        appVersion,
+        deploymentUrl,
       };
-      const slackMessage = createBuildStartedSlackMessage(
-        messageConfig,
-        environmentType
-      );
+
+      // Construct the Slack message.
+      const slackMessage = createBuildStartedSlackMessage({
+        siteName,
+        environmentType,
+        infoUrl,
+        repoUrlString,
+        appVersion,
+      });
 
       try {
         const result = await sendMessage(slackMessage, slackConfig);
-
-        console.log("*** result");
-        console.log(result);
+        console.log("Slack call result:", result);
       } catch (error) {
         utils.build.failBuild("Failed to report build start to Slack", {
           error,
@@ -102,13 +95,42 @@ module.exports = function slackBuildReporterPlugin() {
     /**
      * Set deployment status failure.
      */
-    onError: async () => {
-      console.log(sharedInfo);
+    onError: async ({ netlifyConfig }) => {
+      console.log("netlifyConfig", netlifyConfig);
     },
 
     /**
      * Set deployment status success.
      */
-    onSuccess: async () => {},
+    onSuccess: async ({ utils }) => {
+      const {
+        siteName,
+        environmentType,
+        infoUrl,
+        repoUrlString,
+        appVersion,
+        deploymentUrl,
+        slackConfig,
+      } = sharedInfo;
+      const slackMessage = createBuildCompleteSlackMessage({
+        siteName,
+        environmentType,
+        infoUrl,
+        repoUrlString,
+        appVersion,
+        deploymentUrl,
+        buildStatus: "success",
+      });
+
+      try {
+        const result = await sendMessage(slackMessage, slackConfig);
+        console.log("Slack call result:", result);
+        console.log(result);
+      } catch (error) {
+        utils.build.failBuild("Failed to report build success to Slack", {
+          error,
+        });
+      }
+    },
   };
 };

@@ -43,8 +43,6 @@ function createBuildStartedSlackMessage(config) {
       blocks,
     };
     // Various types of dev build.
-  } else {
-    console.log("Only reporting production builds for now");
   }
 }
 
