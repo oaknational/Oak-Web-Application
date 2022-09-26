@@ -1,0 +1,491 @@
+{
+  "aboutCorePage": [
+    {
+      "title": "About us",
+      "summaryPortableText": [
+        {
+          "_key": "63ea14a8d7cc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6c81dccc1c54",
+              "_type": "span",
+              "marks": [],
+              "text": "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "contactSection": {
+        "infoPortableText": [
+          {
+            "_key": "e0c6f10a0bae",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "16137e0bde570",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "General enquiries"
+              },
+              {
+                "_key": "b582301fb277",
+                "_type": "span",
+                "marks": [],
+                "text": "\nFor general enquiries and help please email help@thenational.academy."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "71550ecd4198",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "b2e4daa056f3",
+                "_type": "span",
+                "marks": [],
+                "text": "\n"
+              },
+              {
+                "_key": "ce05d051065d",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Media enquiries"
+              },
+              {
+                "_key": "189f67954654",
+                "_type": "span",
+                "marks": [],
+                "text": "\nFor media enquiries, please contact media@thenational.academy."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "8899b1fff883",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "bcf96460c3ca",
+                "_type": "span",
+                "marks": [],
+                "text": "\n"
+              },
+              {
+                "_key": "813237286594",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Get support"
+              },
+              {
+                "_key": "2931ce4285fa",
+                "_type": "span",
+                "marks": [],
+                "text": "\nYou’ll find lots of help and support for teachers, schools, pupils and parents in our "
+              },
+              {
+                "_key": "37c37aae53f3",
+                "_type": "span",
+                "marks": [
+                  "9f907ea04c75"
+                ],
+                "text": "help centre"
+              },
+              {
+                "_key": "4b8a6dd13f39",
+                "_type": "span",
+                "marks": [],
+                "text": "."
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "9f907ea04c75",
+                "_type": "link",
+                "href": "https://support.thenational.academy/"
+              }
+            ],
+            "style": "normal"
+          }
+        ]
+      }
+    }
+  ],
+  "allAboutCorePageBoard": [
+    {
+      "id": "aboutCorePage.board",
+      "heading": "Board",
+      "introPortableText": [
+        {
+          "_key": "fba015024518",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e55d6209321d0",
+              "_type": "span",
+              "marks": [],
+              "text": "Our interim board oversees all of Oak’s work. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence. The interim board will be in place whilst a permanent board is chosen through a public appointments process."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "boardMembers": [
+        {
+          "id": "tm-cf-ian-bauckham-cbe",
+          "name": "Ian Bauckham CBE",
+          "role": "Chair",
+          "slug": {
+            "current": "ian-bauckham-cbe"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "fd6332d3007d",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "7091e7e5d1ba0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Ian has worked in education since graduating from Cambridge University. He has led modern foreign language departments, a sixth form and was headteacher of a large comprehensive in Kent."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "b936dc0744f9",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "b9fe72a4e8e10",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Ian was president of the Association of School and College Leaders and is currently CEO of teaching school hub, Tenax Schools Trust. He has worked closely with the Department for Education, leading reform of Relationships and Sex Education, Modern Foreign Languages Pedagogy and GCSE reviews, and the recent Initial Teacher Training Market Review. He has been chair of Ofqual since 2021 and has been closely involved in the reforms to teacher professional development, including the Early Career Framework and the new National Professional Qualifications. He is a trustee of Sabre Charitable Trust, an early years educational charity working in Ghana, and was made a CBE in 2017 for services to education."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        },
+        {
+          "id": "3333efb2-96fe-47a6-91f7-22ca301487e1",
+          "name": "Cassie Buchanan",
+          "role": "Board member",
+          "slug": {
+            "current": "cassie-buchanan"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-5270e91716484e744583b19fb06b8123f5c03dab-1566x1908-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/5270e91716484e744583b19fb06b8123f5c03dab-1566x1908.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "cc63e6291cf5",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "19bb8462f8d10",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Cassie is the CEO of The Charter Schools Educational Trust in South London. The Trust leads a teaching school hub, Education Endowment Foundation Research School, a behaviour hub and a flexible working ambassador school. Until 2021, she was the headteacher of Charles Dickens Primary in Southwark. Cassie has been an Ofsted inspector, a National Leader of Education and was awarded an OBE in 2021 for services to education. Cassie is also a member of the advisory board for the London Regional Schools Commissioner and a governor for two South London schools."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        },
+        {
+          "id": "7ca0431a-2c45-4e3e-9694-9b13cd3fb205",
+          "name": "Ramender Crompton",
+          "role": "Board member",
+          "slug": {
+            "current": "ramender-crompton"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728.png"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "3a10173313cb",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "d8a8c26685d40",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Ramender is an Assistant Principal and Head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford before embarking on her PGCSE and taking up a role as English Teacher. In addition to her teaching commitments, Ramender is also an Assistant Lead Examiner for AQA, CPD author and Virtual Community Trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        },
+        {
+          "id": "bb9c17f1-dd2c-4af7-b144-283f7454ef40",
+          "name": "Sean Harford",
+          "role": "Board member",
+          "slug": {
+            "current": "sean-harford"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-af2702688cc146771e68356554906c6c47a90242-481x640-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/af2702688cc146771e68356554906c6c47a90242-481x640.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "3ae0e57ef519",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "39f9c702b14a0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Sean was a teacher, senior leader and associate adviser for Cambridgeshire before joining Ofsted as Her Majesty’s Inspector in 2003. In 2015 he became Ofsted's National Director - Education, a role he held until 2021. Sean has a BSc in Physics from Warwick University and an MA in Early Modern History from Birkbeck."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        },
+        {
+          "id": "2a9d2a0c-1545-47f2-8ada-25d1f82736af",
+          "name": "Louise Kirby",
+          "role": null,
+          "slug": {
+            "current": "louise-thompson"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-564618e0efbd0051ce433e9f4903bb457af584a8-451x640-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/564618e0efbd0051ce433e9f4903bb457af584a8-451x640.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "25ff8ed1418a",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "0b897c390c830",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Louise is an experienced governance, risk and compliance professional and a qualified Chartered Accountant. She works with a broad range of organisations and helps them to design and implement effective governance structures and to understand and manage their exposure to risk. Her experience has been gained across multiple sectors, including the private and public sector. "
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        },
+        {
+          "id": "323faf9f-d66f-49db-ad21-5224766e9a6b",
+          "name": "Henry de Zoete",
+          "role": "Board member",
+          "slug": {
+            "current": "henry-de-zoete"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "757099afc3d4",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "0896172c1d840",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Henry de Zoete is an entrepreneur and alumnus of renowned Silicon Valley start-up accelerator, Y Combinator. In 2014, he co-founded The Big Deal, which uses tech to facilitate collective bargaining for consumers. He later went on to establish Look After My Bills, a tech start-up that became the largest auto-switching service in the UK, saving families money on their gas and electricity. After Henry raised global investment and secured the best deal in the history of BBC’s Dragons’ Den, Look After My Bills was acquired by GoCo Group PLC."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "d4cd699f8924",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5a6dad33daa30",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Henry has previously served on the board of grassroots campaigning organisation, 38 Degrees, and was a special adviser in the Department for Education. Henry is currently a non- executive board member of the Cabinet Office and on the board of Hornby PLC."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        },
+        {
+          "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+          "name": "Matt Hood",
+          "role": "Chief Executive",
+          "slug": {
+            "current": "matt-hood"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "dc86b6aa6ea6",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "92ed01cbc1e90",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Matt is a co-founder and the chief executive at Oak National Academy. He is also chair at Bay Leadership Academy in Morecambe and a governor at Lancaster and Morecambe College He was a co-founder at Ambition Institute, the UK’s larger provider of teacher and school leader professional development. And a founding trustee at The Brilliant Club, the UK’s largest widening participation charity. He was awarded an OBE for services to education in the 2020 Queen’s Birthday Honours."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": {
+            "twitterUsername": "matthewhood",
+            "linkedinUrl": "https://www.linkedin.com/in/matthew-hood-54423237/"
+          }
+        },
+        {
+          "id": "tm-cf-emma-beatty",
+          "name": "Emma Beatty",
+          "role": "Operations Director",
+          "slug": {
+            "current": "emma-beatty"
+          },
+          "image": {
+            "asset": {
+              "_id": "image-0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137.jpg"
+            }
+          },
+          "contentPortableText": [
+            {
+              "_key": "63c223c33085",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "334c236931a90",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Emma leads on operations at Oak National Academy. She has many years experience of working in EdTech and is passionate about using technology to create better opportunities for all. She started her career as a technologist specialising in data and algorithms before setting up one of the UK’s first Wifi networks (primarily for students) across the Northwest before leading the successful turnaround, sale and transition of an assessment business to ensure its long-term legacy."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "socials": null
+        }
+      ],
+      "documents": [
+        {
+          "title": "Oak's Articles of Association",
+          "file": {
+            "asset": {
+              "extension": "pdf",
+              "size": 140929,
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/d77a5c9d51c73062a3f28f4c01e4fb2ea9dcf626.pdf"
+            }
+          }
+        },
+        {
+          "title": "Oak's Framework Agreement",
+          "file": {
+            "asset": {
+              "extension": "pdf",
+              "size": 284382,
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/bee3867526c4bdf9aef9cce065107a6bb8a23ca3.pdf"
+            }
+          }
+        },
+        {
+          "title": "Impact Evaluation of Oak National Academy 2020/21",
+          "file": {
+            "asset": {
+              "extension": "pdf",
+              "size": 1032196,
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/e14d5c1d9239c51ee51f9eac15fe332f0afdd7d7.pdf"
+            }
+          }
+        },
+        {
+          "title": "Impact Evaluation of Oak National Academy 2021/22",
+          "file": {
+            "asset": {
+              "extension": "pdf",
+              "size": 1120993,
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/8181512d7b97e8758ff53f574db9413909e7a817.pdf"
+            }
+          }
+        }
+      ],
+      "governancePortableText": [
+        {
+          "_key": "f6c75b7124d5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4a23014a5ea40",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "seo": {
+        "title": "Join The Oak National Academy Community",
+        "description": "Join our community for teachers. We've supported teachers since 2020 to find inspiration to create great lessons and design their own curriculum",
+        "canonicalURL": null
+      }
+    }
+  ]
+}
