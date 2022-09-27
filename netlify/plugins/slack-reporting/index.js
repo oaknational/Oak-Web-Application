@@ -1,3 +1,5 @@
+const { getAppVersion } = require("../lib");
+
 const {
   createBuildStartedSlackMessage,
   createBuildCompleteSlackMessage,
@@ -36,7 +38,12 @@ module.exports = function slackBuildReporterPlugin() {
       const isProduction = buildContext === DEPLOY_CONTEXTS.production;
 
       // TO DO: if it's production, parse the commit message for the version.
-      let appVersion = isProduction ? "made up app version" : sha;
+      const productionAppVersion = getAppVersion();
+      let appVersion = isProduction ? productionAppVersion : sha;
+
+      // If it's a production build with no version number it's a cancelled merge commit,
+      // do nothing.
+      const willBeCancelled = isProduction && !productionAppVersion;
 
       // Modify the deployment URL so that CI tools using it can go straight
       // to the canonical URL without hitting the edge function redirect.
@@ -65,6 +72,8 @@ module.exports = function slackBuildReporterPlugin() {
 
       // Store the deployment data for use in subsequent build steps.
       sharedInfo = {
+        isProduction,
+        willBeCancelled,
         siteName,
         environmentType,
         infoUrl,
@@ -72,6 +81,17 @@ module.exports = function slackBuildReporterPlugin() {
         appVersion,
         deploymentUrl,
       };
+
+      // Early exits
+      // Only report on production builds for now.
+      // DEBUG, disabled to allow testing on Netlify.
+      // if (!isProduction) {
+      //   return;
+      // }
+      // It's a merge commit on main, it will be cancelled, do nothing.
+      if (willBeCancelled) {
+        return;
+      }
 
       // Construct the Slack message.
       const slackMessage = createBuildStartedSlackMessage({
@@ -95,14 +115,30 @@ module.exports = function slackBuildReporterPlugin() {
     /**
      * Set deployment status failure.
      */
-    onError: async ({ netlifyConfig }) => {
-      console.log("netlifyConfig", netlifyConfig);
+    onError: async () => {
+      // Early exits
+      // Only report on production builds for now.
+      // DEBUG, disabled to allow testing on Netlify.
+      // if (!sharedInfo.isProduction) {
+      //   return;
+      // }
+      // It's a merge commit on main, has been  be cancelled, do nothing.
+      if (sharedInfo.willBeCancelled) {
+        return;
+      }
     },
 
     /**
      * Set deployment status success.
      */
     onSuccess: async ({ utils }) => {
+      // Early exits
+      // Only report on production builds for now.
+      // DEBUG, disabled to allow testing on Netlify.
+      // if (!sharedInfo.isProduction) {
+      //   return;
+      // }
+
       const {
         siteName,
         environmentType,

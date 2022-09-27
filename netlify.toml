@@ -1,6 +1,9 @@
 [[plugins]]
 package = "./netlify/plugins/github-deployments"
 
+[[plugins]]
+package = "./netlify/plugins/slack-reporting"
+
 # Cancel production builds which are not versioning commits.
 [context.production]
   ignore = "node scripts/build/cancel_netlify_build.js"
