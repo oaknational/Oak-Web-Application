@@ -70,7 +70,7 @@ module.exports = function slackBuildReporterPlugin() {
         environmentType = "deploy-preview";
       }
 
-      // Store the deployment data for use in subsequent build steps.
+      // Store data for use in subsequent build steps.
       sharedInfo = {
         isProduction,
         willBeCancelled,
@@ -80,6 +80,7 @@ module.exports = function slackBuildReporterPlugin() {
         repoUrlString,
         appVersion,
         deploymentUrl,
+        slackConfig,
       };
 
       // Early exits
