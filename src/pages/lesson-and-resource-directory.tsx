@@ -1,12 +1,10 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { GetStaticProps, NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { useId } from "react-aria";
 
 import Card from "../components/Card";
-import Cover from "../components/Cover";
 import FixedHeader from "../components/FixedHeader";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
@@ -15,7 +13,7 @@ import Logo from "../components/Logo";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../components/PortableText";
 import SiteFooter from "../components/SiteFooter";
-import Typography, { Heading, P } from "../components/Typography";
+import Typography, { Heading, OL, P } from "../components/Typography";
 import { CTA, TextAndMedia, PortableTextJSON } from "../node-lib/cms";
 import {
   createPortableListItem,
@@ -26,6 +24,7 @@ import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
+import OakImage from "../components/OakImage";
 
 type LandingPageHero = {
   title: string;
@@ -168,10 +167,11 @@ const SignUpForm: FC = () => {
       $ml={[0, 48]}
       $width={["100%"]}
       $pv={40}
+      $ph={[16, 24]}
       $background={"white"}
       $dropShadow={"notificationCard"}
     >
-      <Heading $fontSize={[20, 24]} tag="h3" $mb={0}>
+      <Heading $fontSize={[20, 24]} tag="h3" $mb={32}>
         Directory sign-up
       </Heading>
       <NewsletterForm
@@ -259,10 +259,10 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
           $flexDirection={["column", "row"]}
           $background={"teachersPastelYellow"}
           $width={"100%"}
-          $ph={[0, 24]}
           $mb={[56, 92]}
           $maxHeight={600}
           $pb={0}
+          $ph={[16, 24]}
         >
           <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
 
@@ -270,20 +270,19 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
             $position="relative"
             $minWidth={["100%", "50%"]}
             $minHeight={[172, 240]}
-            $mv={24}
+            $mb={[40, 0]}
           >
-            <Cover>
-              <Image
-                alt={""}
-                src={"/images/illustrations/magic-carpet.png"}
-                layout="fill"
-                objectFit="contain"
-                objectPosition={"center"}
-                priority
-              />
-            </Cover>
+            <OakImage
+              $pr={[0, 24, 72]}
+              alt={""}
+              src={"/images/illustrations/magic-carpet.png"}
+              $objectFit="contain"
+              $objectPosition={"center"}
+              fill
+              priority
+            />
           </Flex>
-          <Flex $justifyContent={"center"} $flexDirection={"column"}>
+          <Flex $minWidth={["100%", "50%"]} $flexDirection={"column"}>
             <PortableText value={props.value.bodyPortableText} />
           </Flex>
         </Card>
@@ -310,6 +309,10 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
       );
     },
   },
+  list: {
+    number: (props) => <OL $mh={0}>{props.children}</OL>,
+  },
+
   listItem: {
     number: (props) => {
       const listItemText = props?.value?.children[0]?.text;
@@ -317,7 +320,7 @@ const lessonDirectoryPortableTextComponents: PortableTextComponents = {
       const remainingText = listItemText?.slice(3);
 
       return (
-        <Flex $mb={[48]} $alignItems={"center"}>
+        <Flex $mb={48} $alignItems={"center"}>
           <OutlineHeading
             $color={"teachersPastelYellow"}
             $mr={[24]}
