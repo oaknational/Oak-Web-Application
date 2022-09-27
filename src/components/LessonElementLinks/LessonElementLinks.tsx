@@ -7,7 +7,6 @@ import Circle from "../Circle";
 import { OakColorName } from "../../styles/theme";
 import Typography from "../Typography";
 import CardLink from "../Card/CardLink";
-import { headingDefaults } from "../Typography/Heading";
 import { zIndexMap } from "../../styles/utils/zIndex";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
@@ -42,10 +41,9 @@ const AnchorLink = styled(CardLink)`
 `;
 const LinkText: FC = (props) => (
   <Typography
-    {...headingDefaults}
     $position="absolute"
     $top={"100%"}
-    $fontSize={16}
+    $font={"heading-7"}
     $textAlign="center"
     $mt={16}
     {...props}

@@ -1,3 +1,10 @@
+## [1.25.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.1...v1.25.2) (2022-09-27)
+
+
+### Bug Fixes
+
+* z index box border index bug ([7e05278](https://github.com/oaknational/Oak-Web-Application/commit/7e052789f1a9339a9a21d85cd46e4c1fe00fa65c))
+
 ## [1.25.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.0...v1.25.1) (2022-09-27)
 
 
