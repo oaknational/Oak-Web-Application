@@ -18,12 +18,12 @@ import UnstyledButton from "../UnstyledButton";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { srOnly } from "../ScreenReaderOnly";
 import ellipsis from "../../styles/ellipsis";
-
-import { Popover } from "./Popover";
-import { ListBox } from "./ListBox";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { RotatedInputLabel } from "../Input/Input";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
+
+import { ListBox } from "./ListBox";
+import { Popover } from "./Popover";
 
 export { Item } from "react-stately";
 
@@ -148,9 +148,12 @@ export function Select<T extends object>(
       $position={"relative"}
       {...containerProps}
     >
-      <BoxBorders hideBottom={state.isOpen} />
+      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
       <Flex $position={"absolute"}>
-        <RotatedInputLabel background={"pastelTurqoise"} color={"black"}>
+        <RotatedInputLabel
+          background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}
+          color={"black"}
+        >
           {props.label}
         </RotatedInputLabel>
       </Flex>
@@ -203,7 +206,7 @@ export function Select<T extends object>(
                   : props.placeholder}
               </SelectSpan>
             </SelectInner>
-            <Icon name={"ChevronDown"} />
+            <Icon $color="black" name={"ChevronDown"} />
           </SelectButton>
           {state.isOpen && (
             <Popover isOpen={state.isOpen} onClose={state.close}>

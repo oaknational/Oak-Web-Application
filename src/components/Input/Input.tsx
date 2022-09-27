@@ -13,15 +13,53 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { Span } from "../Typography";
 import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
-
-import InputIcon from "./InputIcon";
 import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
+import { zIndexMap } from "../../styles/utils/zIndex";
+import Svg from "../Svg";
+
+import InputIcon from "./InputIcon";
 
 type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
 };
+
+export const InputFocusUnderline = styled(Svg)`
+  display: none;
+  position: absolute;
+  bottom: -4px;
+  left: -2px;
+  right: 0;
+  height: 4px;
+  transform: rotate(-0.3deg);
+  color: ${getColorByName("teachersYellow")};
+  filter: drop-shadow(2px 2px 0 rgb(0 0 0));
+  z-index: ${zIndexMap.inFront};
+`;
+
+export const RotatedInputLabel = styled(Label)<{
+  background: OakColorName;
+  color: OakColorName;
+}>`
+  position: relative;
+  padding: 4px;
+  transform: rotate(-2deg) translateY(-10px) translateX(5px);
+  display: block;
+  background: ${(props) => getColorByName(props.background)};
+  color: ${(props) => getColorByName(props.color)};
+`;
+
+const InputFieldWrap = styled(Flex)`
+  &:focus-within ${RotatedInputLabel} {
+    background: ${getColorByName("teachersHighlight")};
+    color: ${getColorByName("white")};
+  }
+
+  &:focus-within ${InputFocusUnderline} {
+    display: inline;
+  }
+`;
 
 const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
@@ -80,25 +118,6 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 `;
 
-export const RotatedInputLabel = styled(Label)<{
-  background: OakColorName;
-  color: OakColorName;
-}>`
-  position: relative;
-  padding: 4px;
-  transform: rotate(-2deg) translateY(-10px) translateX(5px);
-  display: block;
-  background: ${(props) => getColorByName(props.background)};
-  color: ${(props) => getColorByName(props.color)};
-`;
-
-const InputFieldWrap = styled(Flex)`
-  &:focus-within ${RotatedInputLabel} {
-    background: ${getColorByName("teachersHighlight")};
-    color: ${getColorByName("white")};
-  }
-`;
-
 type InputProps = UnstyledInputProps &
   StyledInputProps & {
     id: string;
@@ -122,7 +141,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         )}
         <InputFieldWrap $mb={error ? 0 : 32} $alignItems="center">
           <Flex $width={"100%"} $position={"relative"}>
-            <BoxBorders />
+            <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
               <RotatedInputLabel
                 background={error ? "teachersRed" : "pastelTurqoise"}
@@ -143,11 +162,12 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
               aria-labelledby={labelId}
             />
             {icon && <InputIcon $pa={8} size={40} name={icon} />}
+            <InputFocusUnderline name={"Underline1"} />
           </Flex>
         </InputFieldWrap>
 
         {error && (
-          <Box $mb={error ? 24 : 0}>
+          <Box $mt={4} $mb={error ? 24 : 0}>
             <Span $color="failure" $fontSize={12} id={errorId}>
               {error}
             </Span>

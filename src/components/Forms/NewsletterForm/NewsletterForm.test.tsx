@@ -5,7 +5,8 @@ import { computeAccessibleDescription } from "dom-accessibility-api";
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 import OakError from "../../../errors/OakError";
 
-import NewsletterForm from ".";
+import NewsletterForm from "./NewsletterForm";
+import NewsletterFormWrap from "./NewsletterFormWrap";
 
 const onSubmit = jest.fn();
 
@@ -14,13 +15,15 @@ describe("NewsletterForm", () => {
     jest.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
-    renderWithProviders(<NewsletterForm onSubmit={onSubmit} />);
+    renderWithProviders(
+      <NewsletterFormWrap onSubmit={onSubmit} anchorTargetId="email-sign-up" />
+    );
 
     const user = userEvent.setup();
+    await user.tab();
     // tab -> privacy policy link
     await user.tab();
     // tab -> name
-    await user.tab();
     await user.keyboard("a name");
     await user.tab();
     await user.keyboard("email@example.com");
@@ -45,10 +48,10 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur if no name is entered", async () => {
     const { getByPlaceholderText } = renderWithProviders(
-      <NewsletterForm onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
-    const input = getByPlaceholderText("Name");
+    const input = getByPlaceholderText("Anna Smith");
     const user = userEvent.setup();
     await user.click(input);
     await user.tab();
@@ -58,10 +61,10 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur if name more than 60 chars", async () => {
     const { getByPlaceholderText } = renderWithProviders(
-      <NewsletterForm onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
-    const input = getByPlaceholderText("Name");
+    const input = getByPlaceholderText("Anna Smith");
     const user = userEvent.setup();
     await user.click(input);
     await user.keyboard(
@@ -74,10 +77,10 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur if no email is entered", async () => {
     const { getByPlaceholderText } = renderWithProviders(
-      <NewsletterForm onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
-    const input = getByPlaceholderText("Email Address");
+    const input = getByPlaceholderText("anna@amail.com");
     const user = userEvent.setup();
     await user.click(input);
     await user.tab();
@@ -87,10 +90,10 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur email not formatted correctly", async () => {
     const { getByPlaceholderText } = renderWithProviders(
-      <NewsletterForm onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
-    const input = getByPlaceholderText("Email Address");
+    const input = getByPlaceholderText("anna@amail.com");
     const user = userEvent.setup();
     await user.click(input);
     await user.keyboard("not an email");
@@ -101,10 +104,10 @@ describe("NewsletterForm", () => {
   });
   test("should display all error hints on submit", async () => {
     const { getByLabelText, getByPlaceholderText } = renderWithProviders(
-      <NewsletterForm onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
-    const input = getByPlaceholderText("Name");
+    const input = getByPlaceholderText("Anna Smith");
     // initially error is not shown
     expect(computeAccessibleDescription(input)).toBe("");
     const submit = getByLabelText("Sign up");
@@ -115,7 +118,7 @@ describe("NewsletterForm", () => {
   });
   test("onSubmit() should not be called if form invalid", async () => {
     const { getByLabelText } = renderWithProviders(
-      <NewsletterForm onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
     const submit = getByLabelText("Sign up");
@@ -128,12 +131,14 @@ describe("NewsletterForm", () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByLabelText, getByPlaceholderText, getByRole } =
-      renderWithProviders(<NewsletterForm onSubmit={onSubmit} />);
+      renderWithProviders(
+        <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      );
 
     const user = userEvent.setup();
-    const name = getByPlaceholderText("Name");
+    const name = getByPlaceholderText("Anna Smith");
     await user.type(name, "joe bloggs");
-    const email = getByPlaceholderText("Email Address");
+    const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
     const submit = getByLabelText("Sign up");
     await user.click(submit);
@@ -146,12 +151,14 @@ describe("NewsletterForm", () => {
   test("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
     const { getByLabelText, getByPlaceholderText, getByRole } =
-      renderWithProviders(<NewsletterForm onSubmit={onSubmit} />);
+      renderWithProviders(
+        <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      );
 
     const user = userEvent.setup();
-    const name = getByPlaceholderText("Name");
+    const name = getByPlaceholderText("Anna Smith");
     await user.type(name, "joe bloggs");
-    const email = getByPlaceholderText("Email Address");
+    const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
     const submit = getByLabelText("Sign up");
     await user.click(submit);

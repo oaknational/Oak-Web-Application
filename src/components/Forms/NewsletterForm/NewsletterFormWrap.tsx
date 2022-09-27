@@ -26,7 +26,6 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
 
   const id = useId();
   const descriptionId = `${id}-newsletter-form-description`;
-
   return (
     <Card
       $ph={[16, 24]}

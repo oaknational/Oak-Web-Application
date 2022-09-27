@@ -12,7 +12,6 @@ import {
   UserRole,
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
-
 import errorReporter from "../../../common-lib/error-reporter";
 
 const reportError = errorReporter("NewsletterForm.tsx");
@@ -60,11 +59,11 @@ export type NewsletterFormProps = {
  * ## Usage
  * Submitting this form will send data to Hubspot.
  */
-const NewsletterForm: FC<NewsletterFormProps> = (
-  { id, descriptionId },
-  props
-) => {
-  const { onSubmit } = props;
+const NewsletterForm: FC<NewsletterFormProps> = ({
+  id,
+  descriptionId,
+  onSubmit,
+}) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

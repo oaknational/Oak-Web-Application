@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
+import { useId } from "react-aria";
 
 import Card from "../components/Card";
 import Cover from "../components/Cover";
@@ -25,7 +26,6 @@ import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
-import { useId } from "react-aria";
 
 type LandingPageHero = {
   title: string;
@@ -171,7 +171,7 @@ const SignUpForm: FC = () => {
       $background={"white"}
       $dropShadow={"notificationCard"}
     >
-      <Heading id={descriptionId} $fontSize={[20, 24]} tag="h3" $mb={0}>
+      <Heading $fontSize={[20, 24]} tag="h3" $mb={0}>
         Directory sign-up
       </Heading>
       <NewsletterForm

@@ -1,11 +1,10 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
+
 import { OakColorName } from "../../../../styles/theme";
 import getColorByName from "../../../../styles/themeHelpers/getColorByName";
-
 import Svg from "../../../Svg";
 import { SvgProps } from "../../../Svg/Svg";
-import { OakColorName } from "../../../../styles/theme/types";
 
 const BORDER_THICKNESS_PX = 3;
 const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
@@ -118,6 +117,7 @@ const boxBorderRight = css`
   width: ${BORDER_THICKNESS_PX}px;
   right: ${BORDER_OFFSET_PX}px;
   bottom: ${BORDER_OFFSET_PX}px;
+  height: 101%;
 `;
 
 const boxBorderBottom = css`
