@@ -5,7 +5,7 @@ import ConfirmButton from "../ConfirmButton";
 
 const CopyLinkButton: FC = () => {
   const [label, setLabel] = useState("Copy to clipboard");
-  const { showToast } = useToastContext();
+  const { showToast, shown } = useToastContext();
 
   const copyLink = () => {
     if (navigator.clipboard) {
@@ -22,6 +22,7 @@ const CopyLinkButton: FC = () => {
       aria-label={label}
       onClick={copyLink}
       background={"teachersHighlight"}
+      open={shown}
     />
   );
 };

@@ -13,7 +13,7 @@ import theme from "../../styles/theme";
 const TRANSITION_DURATION = 500;
 const SHOW_DURATION = 3500;
 
-export type TransitionProps = {
+type TransitionProps = {
   state: TransitionStatus;
 };
 
