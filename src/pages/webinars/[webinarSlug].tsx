@@ -21,7 +21,7 @@ export type WebinarPageProps = {
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
     <Layout seoProps={getSeoProps(props.webinar.seo)} $background="grey1">
-      <Heading tag="h1" $fontSize={24}>
+      <Heading tag="h1" $font="heading-5">
         {props.webinar.title}
       </Heading>
       {props.webinar.date} <br />

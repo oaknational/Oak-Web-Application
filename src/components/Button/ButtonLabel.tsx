@@ -8,7 +8,7 @@ const ButtonLabel = styled(Span)`
 `;
 
 ButtonLabel.defaultProps = {
-  $fontFamily: "ui",
+  $font: "heading-7",
 };
 
 export default ButtonLabel;

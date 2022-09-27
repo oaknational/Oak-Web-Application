@@ -72,11 +72,7 @@ export const basePortableTextComponents: PortableTextComponents = {
   block: {
     normal: (props) => {
       return (
-        <BodyP
-          $lineHeight={["24px", "28px"]}
-          $fontSize={[16, 18]}
-          $mt={[16, 20]}
-        >
+        <BodyP $font={["body-2", "body-1"]} $mt={[16, 20]}>
           {props.children}
         </BodyP>
       );
@@ -87,8 +83,12 @@ export const basePortableTextComponents: PortableTextComponents = {
     number: (props) => <OL $ml={[16, 28]}>{props.children}</OL>,
   },
   listItem: {
-    bullet: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
-    number: (props) => <LI $fontSize={[16, 18]}>{props.children}</LI>,
+    bullet: (props) => (
+      <LI $font={["list-item-2", "list-item-1"]}>{props.children}</LI>
+    ),
+    number: (props) => (
+      <LI $font={["list-item-2", "list-item-1"]}>{props.children}</LI>
+    ),
   },
   marks: {
     strong: (props) => {
