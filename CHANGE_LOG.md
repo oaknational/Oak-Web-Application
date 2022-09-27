@@ -1,3 +1,21 @@
+# [1.25.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.24.1...v1.25.0) (2022-09-27)
+
+
+### Bug Fixes
+
+* **Slack reporting:** share Slack config between steps ([f98c61b](https://github.com/oaknational/Oak-Web-Application/commit/f98c61b092693acd7de9008c78c7e5db8e9b6cd0))
+
+
+### Features
+
+* **Slack reporting:** get app version, start testing in builds ([4f1b6be](https://github.com/oaknational/Oak-Web-Application/commit/4f1b6be4c86359b00c8a6ec7c1ca92cd624445d9))
+* **Slack reporting:** make prod formatting conditional ([061c5ba](https://github.com/oaknational/Oak-Web-Application/commit/061c5ba45a1c65c07b3ceaa7f8dfbb64a255198d))
+* **Slack reporting:** only report production builds ([85256c2](https://github.com/oaknational/Oak-Web-Application/commit/85256c2d25bb8fc1dcfcfcc3af61dd20e0583715))
+* **Slack reporting:** only run slack reporting on production ([7034c92](https://github.com/oaknational/Oak-Web-Application/commit/7034c92b7b78d7e4b99ae48f72b45cff12054db0))
+* **Slack reporting:** start 'build complete' message reporting ([510d856](https://github.com/oaknational/Oak-Web-Application/commit/510d8565dc7eabaf2f4ac8678a58571ad743dbda))
+* **Slack reporting:** working 'build complete' formatting ([cb0da64](https://github.com/oaknational/Oak-Web-Application/commit/cb0da6409b53682b60ed9462fbf781ac43f520bf))
+* **Slack reporting:** working 'build started' message reporting ([a9637e0](https://github.com/oaknational/Oak-Web-Application/commit/a9637e07e332c5cd5cb2aae659598df5c132e528))
+
 ## [1.24.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.24.0...v1.24.1) (2022-09-27)
 
 # [1.24.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.23.0...v1.24.0) (2022-09-26)
