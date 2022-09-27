@@ -33,6 +33,9 @@ module.exports = function githubDeploymentPlugin() {
       // For PR (preview) builds only.
       // const prMergeHead = process.env.BRANCH;
 
+      // An optional string to distinguish this deployment environment.
+      const deploymentIdentifier = process.env.DEPLOYMENT_IDENTIFIER;
+
       // Modify the deployment URL so that CI tools using it can go straight
       // to the canonical URL without hitting the edge function redirect.
       // It's a bit fragile, but otherwise access token headers can get lost
@@ -60,6 +63,7 @@ module.exports = function githubDeploymentPlugin() {
         repoUrlString,
         infoUrl,
         githubToken,
+        deploymentIdentifier,
       };
 
       // Get owner, repo
@@ -87,7 +91,12 @@ module.exports = function githubDeploymentPlugin() {
       if (!isProduction) {
         environmentType = `${environmentType} (${headBranchRef})`;
       }
-      const deploymentDescription = `owa - ${environmentType}`;
+      const deploymentDescription = `${
+        deploymentIdentifier ? deploymentIdentifier : "owa"
+      } - ${environmentType}`;
+      const environment = deploymentIdentifier
+        ? `${deploymentIdentifier} - ${environmentType}`
+        : environmentType;
 
       /** @type {import('./actions').CreateDeploymentOptions} */
       const options = {
@@ -97,7 +106,7 @@ module.exports = function githubDeploymentPlugin() {
         // Pass the branch as the ref,
         // assume we will always reference branch/pr rather than commit deployments.
         ref: headBranchRef,
-        environment: environmentType,
+        environment,
         description: deploymentDescription,
         transient_environment: !isProduction,
         production_environment: isProduction,

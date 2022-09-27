@@ -1,9 +1,11 @@
 import { FC } from "react";
 
 import { PixelSpacing } from "../../../styles/theme";
+import { ResponsiveValues } from "../../../styles/utils/responsive";
+import { FontVariant } from "../../../styles/utils/typography";
 import Flex from "../../Flex";
 import Icon, { IconName } from "../../Icon";
-import Heading, { HeadingFontSize, HeadingTag } from "../../Typography/Heading";
+import Heading, { HeadingTag } from "../../Typography/Heading";
 
 export const getIconFlexPosition = (
   iconPosition: CardTitleProps["iconPosition"]
@@ -28,7 +30,7 @@ export type CardTitleProps = {
   iconPosition?: IconPosition;
   iconSize?: PixelSpacing;
   textCenter?: boolean;
-  fontSize?: HeadingFontSize | HeadingFontSize[];
+  $font?: ResponsiveValues<FontVariant>;
 };
 
 const CardTitle: FC<CardTitleProps> = ({
@@ -38,7 +40,7 @@ const CardTitle: FC<CardTitleProps> = ({
   iconSize = 32,
   tag,
   children,
-  fontSize = 24,
+  $font = "heading-5",
 }) => {
   return (
     <Flex
@@ -57,7 +59,7 @@ const CardTitle: FC<CardTitleProps> = ({
           $pa={0}
         />
       )}
-      <Heading $color={"black"} $fontSize={fontSize} tag={tag}>
+      <Heading $font={$font} tag={tag}>
         {children}
       </Heading>
     </Flex>

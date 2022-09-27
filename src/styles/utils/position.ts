@@ -2,11 +2,15 @@ import { CSSProperties } from "react";
 import { css } from "styled-components";
 
 import { NullablePixelSpacing } from "../theme";
-import { NegativePixelSpacing, PercentSpacing } from "../theme/types";
+import { NegativePixelSpacing, PercentSpacing, Unset } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type PxOrPercent = NullablePixelSpacing | NegativePixelSpacing | PercentSpacing;
+type PxOrPercent =
+  | NullablePixelSpacing
+  | NegativePixelSpacing
+  | PercentSpacing
+  | Unset;
 export type PositionProps = {
   $position?: ResponsiveValues<CSSProperties["position"]>;
   $top?: ResponsiveValues<PxOrPercent>;

@@ -153,7 +153,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         />
         <P
           $mt={error ? 16 : 0}
-          $fontSize={14}
+          $font={"body-3"}
           aria-live="assertive"
           role="alert"
           $color="failure"
@@ -162,7 +162,7 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
         </P>
         <P
           $mt={!error && successMessage ? 16 : 0}
-          $fontSize={14}
+          $font={"body-3"}
           aria-live="polite"
         >
           {!error && successMessage}

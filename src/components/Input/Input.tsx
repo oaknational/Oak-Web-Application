@@ -91,7 +91,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       <>
         {label && (
           <ScreenReaderOnly>
-            <Label $fontSize={12} htmlFor={id} id={labelId}>
+            <Label $font={"body-4"} htmlFor={id} id={labelId}>
               {label}
             </Label>
           </ScreenReaderOnly>
@@ -110,7 +110,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         </Flex>
         {error && (
           <Box $position="absolute">
-            <Span $color="failure" $fontSize={12} id={errorId}>
+            <Span $color="failure" $font={"body-4"} id={errorId}>
               {error}
             </Span>
           </Box>

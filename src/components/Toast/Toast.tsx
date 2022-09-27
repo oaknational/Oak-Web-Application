@@ -72,7 +72,7 @@ const Toast: FC = () => {
               variant={"brush"}
               background={"white"}
             />
-            <Typography $color={"black"} $fontFamily={"ui"} $ml={16}>
+            <Typography $color={"black"} $font={"heading-7"} $ml={16}>
               {message}
             </Typography>
           </Flex>
