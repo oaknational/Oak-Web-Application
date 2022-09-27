@@ -65,6 +65,7 @@ export type PlanningPage = z.infer<typeof planningPageSchema>;
 const aboutPageBaseSchema = z
   .object({
     title: z.string(),
+    summaryPortableText: portableTextSchema,
     contactSection: z.object({
       infoPortableText: portableTextSchema,
     }),
@@ -75,7 +76,7 @@ const aboutPageBaseSchema = z
 export const aboutPageSchema = aboutPageBaseSchema;
 
 export const aboutWhoWeArePageSchema = aboutPageBaseSchema.extend({
-  sectionHeading: z.string(),
+  heading: z.string(),
   intro: textAndMediaSchema,
   timeline: z.object({
     from: textBlockSchema,
@@ -87,12 +88,12 @@ export const aboutWhoWeArePageSchema = aboutPageBaseSchema.extend({
 });
 
 export const aboutLeadershipPageSchema = aboutPageBaseSchema.extend({
-  sectionHeading: z.string(),
+  heading: z.string(),
   introPortableText: portableTextSchema,
 });
 
 export const aboutBoardPageSchema = aboutPageBaseSchema.extend({
-  sectionHeading: z.string(),
+  heading: z.string(),
   introPortableText: portableTextSchema,
   documents: z.array(attachmentSchema),
   governancePortableText: portableTextSchema,
@@ -100,7 +101,7 @@ export const aboutBoardPageSchema = aboutPageBaseSchema.extend({
 });
 
 export const aboutPartnersPageSchema = aboutPageBaseSchema.extend({
-  sectionHeading: z.string(),
+  heading: z.string(),
   introPortableText: portableTextSchema,
   techPartners: z.array(
     imageSchema.extend({
@@ -115,7 +116,7 @@ export const aboutPartnersPageSchema = aboutPageBaseSchema.extend({
 });
 
 export const aboutWorkWithUsPageSchema = aboutPageBaseSchema.extend({
-  sectionHeading: z.string(),
+  heading: z.string(),
   introPortableText: portableTextSchema,
   cards: z.object({
     joinTheTeam: cardSchema,

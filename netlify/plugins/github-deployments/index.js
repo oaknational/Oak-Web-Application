@@ -25,13 +25,22 @@ module.exports = function githubDeploymentPlugin() {
     onPreBuild: async ({ netlifyConfig, utils }) => {
       // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
-      const deploymentUrl = process.env.DEPLOY_PRIME_URL;
+      const originalDeploymentUrl = process.env.DEPLOY_PRIME_URL;
       const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
       const repoUrlString = process.env.REPOSITORY_URL;
       const infoUrl = `https://app.netlify.com/sites/${process.env.SITE_NAME}/deploys/${process.env.DEPLOY_ID}`;
       // For PR (preview) builds only.
       // const prMergeHead = process.env.BRANCH;
+
+      // Modify the deployment URL so that CI tools using it can go straight
+      // to the canonical URL without hitting the edge function redirect.
+      // It's a bit fragile, but otherwise access token headers can get lost
+      // in the redirect.
+      const deploymentUrl = originalDeploymentUrl.replace(
+        "netlify.app",
+        "netlify.thenational.academy"
+      );
 
       // For now use a personal access token, but really this should be done with a GitHub App.
       // This is the only user input, but it needs to be secure.

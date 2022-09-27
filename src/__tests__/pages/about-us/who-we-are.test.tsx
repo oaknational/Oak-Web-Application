@@ -13,7 +13,8 @@ jest.mock("../../../node-lib/cms");
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 export const testAboutPageBaseData = {
-  title: "About Oak",
+  title: "About us",
+  summaryPortableText: portableTextFromString("About page summary"),
   contactSection: {
     infoPortableText: [
       {
@@ -114,7 +115,7 @@ export const testAboutPageBaseData = {
 
 const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ...testAboutPageBaseData,
-  sectionHeading: "Who we are",
+  heading: "Who we are",
   intro: {
     title: "IGNORE THIS TITLE - Need to configure hidden fields",
     bodyPortableText: portableTextFromString("text"),

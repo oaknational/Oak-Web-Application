@@ -8,6 +8,8 @@ import type { Context } from "https://edge.netlify.com";
  * The intention is to automatically force PR and preview deployments to
  * only be accessible through our managed TLD.
  *
+ * Not deployed on production.
+ *
  * Note: this function is interpreted in a deno environment.
  */
 async function redirectNetlifySubdomains(
@@ -39,7 +41,7 @@ async function redirectNetlifySubdomains(
 
   // Netlify makes some requests internally for optimisation functions,
   // skip the redirect for these.
-  const allowListPathStarts = ["/_ipx", "/images"];
+  const allowListPathStarts = ["/_ipx", "/images", "/.netlify"];
   const urlPath = new URL(request.url).pathname;
   const isOnAllowList = allowListPathStarts.some((allowPath) =>
     urlPath.startsWith(allowPath)
