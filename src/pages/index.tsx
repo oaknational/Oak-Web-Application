@@ -429,7 +429,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
       pageData: homepageData,
       posts,
     },
-    revalidate: 10,
   };
 };
 
