@@ -59,9 +59,6 @@ module.exports = function slackBuildReporterPlugin() {
       // Custom plugin config
       const slackConfig = getSlackConfig();
 
-      // Get PR number (only used in creating comments).
-      // const prNumber = prMergeHead.split("/")[1];
-
       // Get the environment type from the build context,
       // override naming of preview deployments.
 
@@ -85,10 +82,9 @@ module.exports = function slackBuildReporterPlugin() {
 
       // Early exits
       // Only report on production builds for now.
-      // DEBUG, disabled to allow testing on Netlify.
-      // if (!isProduction) {
-      //   return;
-      // }
+      if (!isProduction) {
+        return;
+      }
       // It's a merge commit on main, it will be cancelled, do nothing.
       if (willBeCancelled) {
         return;
@@ -104,8 +100,8 @@ module.exports = function slackBuildReporterPlugin() {
       });
 
       try {
-        const result = await sendMessage(slackMessage, slackConfig);
-        console.log("Slack call result:", result);
+        await sendMessage(slackMessage, slackConfig);
+        // console.log("Slack call result:", result);
       } catch (error) {
         utils.build.failBuild("Failed to report build start to Slack", {
           error,
@@ -116,16 +112,43 @@ module.exports = function slackBuildReporterPlugin() {
     /**
      * Set deployment status failure.
      */
-    onError: async () => {
+    onError: async ({ utils }) => {
       // Early exits
       // Only report on production builds for now.
-      // DEBUG, disabled to allow testing on Netlify.
-      // if (!sharedInfo.isProduction) {
-      //   return;
-      // }
+      if (!sharedInfo.isProduction) {
+        return;
+      }
       // It's a merge commit on main, has been  be cancelled, do nothing.
       if (sharedInfo.willBeCancelled) {
         return;
+      }
+
+      const {
+        siteName,
+        environmentType,
+        infoUrl,
+        repoUrlString,
+        appVersion,
+        deploymentUrl,
+        slackConfig,
+      } = sharedInfo;
+      const slackMessage = createBuildCompleteSlackMessage({
+        siteName,
+        environmentType,
+        infoUrl,
+        repoUrlString,
+        appVersion,
+        deploymentUrl,
+        buildStatus: "error",
+      });
+
+      try {
+        await sendMessage(slackMessage, slackConfig);
+        // console.log("Slack call result:", result);
+      } catch (error) {
+        utils.build.failBuild("Failed to report build error to Slack", {
+          error,
+        });
       }
     },
 
@@ -135,10 +158,9 @@ module.exports = function slackBuildReporterPlugin() {
     onSuccess: async ({ utils }) => {
       // Early exits
       // Only report on production builds for now.
-      // DEBUG, disabled to allow testing on Netlify.
-      // if (!sharedInfo.isProduction) {
-      //   return;
-      // }
+      if (!sharedInfo.isProduction) {
+        return;
+      }
 
       const {
         siteName,
@@ -160,9 +182,8 @@ module.exports = function slackBuildReporterPlugin() {
       });
 
       try {
-        const result = await sendMessage(slackMessage, slackConfig);
-        console.log("Slack call result:", result);
-        console.log(result);
+        await sendMessage(slackMessage, slackConfig);
+        // console.log("Slack call result:", result);
       } catch (error) {
         utils.build.failBuild("Failed to report build success to Slack", {
           error,
