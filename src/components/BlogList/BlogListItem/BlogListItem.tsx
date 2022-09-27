@@ -61,7 +61,13 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       $pa={0}
     >
       {withImage && mainImage && (
-        <Box $position={"relative"} $minWidth={240} $mr={[0, 32]} $mb={[32, 0]}>
+        <Box
+          $display={["block", "none", "block"]}
+          $position={"relative"}
+          $minWidth={240}
+          $mr={[0, 32]}
+          $mb={[32, 0]}
+        >
           <BoxBorders zIndex={"inFront"} gapPosition="bottomRight" />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
