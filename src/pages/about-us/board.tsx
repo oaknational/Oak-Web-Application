@@ -27,11 +27,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
-          title={"About us"}
-          heading={pageData.sectionHeading}
-          summary={
-            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
-          }
+          title={pageData.title}
+          heading={pageData.heading}
+          summary={pageData.summaryPortableText}
           imageProps={{
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",

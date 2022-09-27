@@ -7,7 +7,7 @@ const { execSync } = require("child_process");
  * This is because we use the semantic-release package to update the
  * version number in the package.json file, create a commit, then create
  * a Github release for that commit. So every merged PR will trigger two
- * Vercel builds, the first for the merge commit, the second for the
+ * Netlify builds, the first for the merge commit, the second for the
  * semantic-release commit, and we only want to build the semantic-release
  * commit.
  *
@@ -50,9 +50,7 @@ const netlifyCommitLog = execSync(
   { encoding: "utf8" }
 );
 if (!netlifyCommitLog) {
-  const err = new TypeError(
-    "VERCEL_GIT_COMMIT_MESSAGE was not defined, exiting."
-  );
+  const err = new TypeError("Could not determine commit message");
   cancelBuild(err);
 }
 console.log(`commit log: ${netlifyCommitLog}`);
