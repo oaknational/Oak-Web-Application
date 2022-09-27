@@ -1,11 +1,21 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-import { useToastContext } from "../../../context/Toast";
+import { useToastContext, SHOW_DURATION } from "../../../context/Toast";
 import ConfirmButton from "../ConfirmButton";
 
 const CopyLinkButton: FC = () => {
   const [label, setLabel] = useState("Copy to clipboard");
-  const { showToast, shown } = useToastContext();
+  const { showToast } = useToastContext();
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (active) {
+      const timer = setTimeout(() => {
+        setActive(false);
+      }, SHOW_DURATION);
+      return () => clearTimeout(timer);
+    }
+  }, [active]);
 
   const copyLink = () => {
     if (navigator.clipboard) {
@@ -13,6 +23,7 @@ const CopyLinkButton: FC = () => {
       const copyMessage = "Copied to clipboard";
       setLabel(copyMessage);
       showToast(copyMessage);
+      setActive(true);
     }
   };
 
@@ -22,7 +33,7 @@ const CopyLinkButton: FC = () => {
       aria-label={label}
       onClick={copyLink}
       background={"teachersHighlight"}
-      open={shown}
+      animate={active}
     />
   );
 };

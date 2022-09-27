@@ -59,14 +59,14 @@ const AnimatedTick = styled.div<TransitionProps>`
 `;
 
 type ConfirmButtonProps = {
-  open: boolean;
+  animate: boolean;
 };
 
 const ConfirmButton: FC<IconButtonProps & ConfirmButtonProps> = (props) => {
-  const { icon, open } = props;
+  const { icon, animate } = props;
 
   return (
-    <Transition timeout={TRANSITION_DURATION} in={open}>
+    <Transition timeout={TRANSITION_DURATION} in={animate}>
       {(state) => (
         <AnimatedButton {...props} icon={icon} state={state}>
           <AnimatedTick state={state}>

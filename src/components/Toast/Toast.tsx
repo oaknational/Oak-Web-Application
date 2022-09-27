@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
-import { useToastContext } from "../../context/Toast";
+import { useToastContext, SHOW_DURATION } from "../../context/Toast";
 import IconButtonInner from "../Button/IconButtonInner";
 import Card from "../Card";
 import Flex from "../Flex";
@@ -11,7 +11,6 @@ import Typography from "../Typography";
 import theme from "../../styles/theme";
 
 const TRANSITION_DURATION = 500;
-const SHOW_DURATION = 3500;
 
 type TransitionProps = {
   state: TransitionStatus;
