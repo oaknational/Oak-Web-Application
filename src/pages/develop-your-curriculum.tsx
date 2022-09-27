@@ -78,6 +78,8 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
         <Flex $width={"100%"} $justifyContent={"flex-end"}>
           <Card
             $transform={[null, "rotate(2deg) translateY(18px) translateX(5px)"]}
+            /** $right: 8 fixes tablet x-overflow */
+            $right={[null, 8, null]}
             $zIndex={[null, "inFront"]}
             $pv={24}
             $ph={[16, 24]}
