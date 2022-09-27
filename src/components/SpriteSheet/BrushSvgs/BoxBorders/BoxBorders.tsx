@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { ZIndex } from "../../../../styles/utils/zIndex";
 import Box from "../../../Box";
 import Svg from "../../../Svg";
 
@@ -12,6 +13,7 @@ export type GapPosition = keyof typeof gapPositionMap;
 
 export type BoxBordersProps = {
   gapPosition?: GapPosition;
+  zIndex?: ZIndex;
 };
 
 const Top: FC = (props) => {
@@ -110,7 +112,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
   return (
     <Box
       $cover
-      $zIndex="inFront"
+      $zIndex={props.zIndex ?? "neutral"}
       aria-hidden="true"
       data-testid="brush-borders"
     >
