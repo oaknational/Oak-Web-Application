@@ -39,29 +39,4 @@ describe("Copy link button", () => {
     const clickedButton = getByLabelText("Copied to clipboard");
     expect(clickedButton).toBeInTheDocument();
   });
-
-  // it.skip("it shows feedback in toast", async () => {
-  //   const { getByLabelText, rerender } = renderWithTheme(
-  //     <ToastProvider>
-  //       <CopyLinkButton />
-  //     </ToastProvider>
-  //   );
-
-  //   const user = userEvent.setup();
-
-  //   const button = getByLabelText("Copy to clipboard");
-  //   expect(button).toBeInTheDocument();
-
-  //   await user.click(button);
-
-  //   rerender(
-  //     <ToastProvider>
-  //       <CopyLinkButton />
-  //     </ToastProvider>
-  //   );
-
-  //   await waitFor(() => {
-  //     expect(screen.getByRole("alert")).toBe("Copied to clipboard");
-  //   });
-  // });
 });

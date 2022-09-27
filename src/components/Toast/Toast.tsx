@@ -67,7 +67,7 @@ const Toast: FC<ToastProps> = ({ role }) => {
           $background="teachersPastelYellow"
           $width={["100%", "auto"]}
           $left={[0, "40%", "50%"]}
-          aria-role={role}
+          role={role}
         >
           <BrushBorders color="teachersPastelYellow" />
           <Flex $alignItems={"center"}>
