@@ -82,15 +82,14 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             $pv={24}
             $ph={[16, 24]}
             $background={"twilight"}
-            $maxWidth={["100%", "50%"]}
+            $maxWidth={["100%", "55%"]}
+            $font="list-item-1"
           >
             <BrushBorders hideOnMobileH color={"twilight"} />
             <Heading $mb={20} $font={["heading-6", "heading-5"]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
-            <Typography>
-              <PortableText value={pageData.gettingStarted.bodyPortableText} />
-            </Typography>
+            <PortableText value={pageData.gettingStarted.bodyPortableText} />
           </Card>
         </Flex>
         <Card

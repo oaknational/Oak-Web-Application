@@ -1,4 +1,4 @@
-import { FontVariantName, FONT_VARIANTS } from "../../styles/utils/typography";
+import { FontVariant, FONT_VARIANTS } from "../../styles/utils/typography";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Typography from "./Typography";
@@ -8,7 +8,7 @@ describe("Typography", () => {
     'should correctly handle prop $font="%s"',
     async (font, [fontSize, lineHeight, fontWeight, letterSpacing]) => {
       const { getByTestId } = renderWithTheme(
-        <Typography data-testid="test" $font={font as FontVariantName} />
+        <Typography data-testid="test" $font={font as FontVariant} />
       );
 
       expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");

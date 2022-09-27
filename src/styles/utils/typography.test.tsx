@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import typography, { FontVariantName, FONT_VARIANTS } from "./typography";
+import typography, { FontVariant, FONT_VARIANTS } from "./typography";
 
 const StyledComponent = styled.div`
   ${typography}
@@ -13,7 +13,7 @@ describe("typography", () => {
     'should correctly handle prop $font="%s"',
     async (font, [fontSize, lineHeight, fontWeight, letterSpacing]) => {
       const { getByTestId } = renderWithTheme(
-        <StyledComponent data-testid="test" $font={font as FontVariantName} />
+        <StyledComponent data-testid="test" $font={font as FontVariant} />
       );
 
       expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");

@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import Typography, { Heading, P, Span } from "../components/Typography";
+import { Heading, P, Span } from "../components/Typography";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import Card from "../components/Card";
@@ -130,6 +130,7 @@ const ContactUs: NextPage = () => {
           $ph={[16, 24]}
           $pv={[24]}
           $mt={[72, 80]}
+          $font={["body-2", "body-1"]}
         >
           <BrushBorders hideOnMobileH color={"twilight"} />
           <Flex
@@ -147,7 +148,7 @@ const ContactUs: NextPage = () => {
                     <Heading $font={"heading-5"} tag={"h3"} $mb={8}>
                       {section.title}
                     </Heading>
-                    <Typography>{section.paragraph}</Typography>
+                    <div>{section.paragraph}</div>
                   </Flex>
                 );
               })}
