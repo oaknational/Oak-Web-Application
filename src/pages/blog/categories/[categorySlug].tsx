@@ -2,4 +2,4 @@ export {
   default,
   getStaticProps,
   getStaticPaths,
-} from "../../../components/pages/BlogIndex";
+} from "../../../components/pages/BlogIndex.page";

@@ -32,7 +32,7 @@ import {
   blogToBlogListItem,
   SerializedBlogPostPreview,
   serializeDate,
-} from "../components/pages/BlogIndex";
+} from "../components/pages/BlogIndex.page";
 
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 

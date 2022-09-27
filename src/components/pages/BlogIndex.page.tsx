@@ -2,22 +2,22 @@ import { uniqBy } from "lodash/fp";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useTheme } from "styled-components";
 
-import { BlogListJsonLd } from "../../../browser-lib/seo/getJsonLd";
-import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
+import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
-} from "../../../node-lib/cms";
-import BlogCategoryList from "../../BlogCategoryList/BlogCategoryList";
-import BlogList from "../../BlogList";
-import { BlogListItemProps } from "../../BlogList/BlogListItem";
-import Box from "../../Box";
-import SummaryCard from "../../Card/SummaryCard";
-import Grid, { GridArea } from "../../Grid";
-import Layout from "../../Layout";
-import MaxWidth from "../../MaxWidth/MaxWidth";
-import MobileBlogFilters from "../../MobileBlogFilters";
-import { Heading } from "../../Typography";
+} from "../../node-lib/cms";
+import BlogCategoryList from "../BlogCategoryList/BlogCategoryList";
+import BlogList from "../BlogList";
+import { BlogListItemProps } from "../BlogList/BlogListItem";
+import Box from "../Box";
+import SummaryCard from "../Card/SummaryCard";
+import Grid, { GridArea } from "../Grid";
+import Layout from "../Layout";
+import MaxWidth from "../MaxWidth/MaxWidth";
+import MobileBlogFilters from "../MobileBlogFilters";
+import { Heading } from "../Typography";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
