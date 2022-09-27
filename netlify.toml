@@ -1,13 +1,13 @@
 [[plugins]]
-package = "./netlify/plugins/github-deployments"
-
-[[plugins]]
-package = "./netlify/plugins/slack-reporting"
+  package = "./netlify/plugins/github-deployments"
 
 # Cancel production builds which are not versioning commits.
 [context.production]
   ignore = "node scripts/build/cancel_netlify_build.js"
 
+  # Report production builds into Slack using custom plugin.
+  [[context.production.plugins]]
+    package = "./netlify/plugins/slack-reporting"
 
 # Force all access through our managed TLD.
 # When Netlify becomes the production site hosting for www. the subdomain will
