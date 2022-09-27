@@ -345,8 +345,8 @@ const envVars = satisfies<Record<string, EnvVar>>()({
       "d6-7d-b6-4b-74-15-da-2e-2c-3c-00-34-3b-5f-f5-44-03-0f-fc-9f-c9-ce-16-7c-97-42-16-ab-1a-2e-82-5d",
   },
   axeA11yLogging: {
-    value: process.env.AXE_A11Y_LOGGING,
-    envName: "AXE_A11Y_LOGGING",
+    value: process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING,
+    envName: "NEXT_PUBLIC_AXE_A11Y_LOGGING",
     required: false,
     availableInBrowser: true,
     allowedValues: ["on", "off"],
