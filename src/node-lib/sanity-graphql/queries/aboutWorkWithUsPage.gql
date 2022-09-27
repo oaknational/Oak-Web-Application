@@ -1,0 +1,39 @@
+query aboutWorkWithUsPage($isDraftFilter: Sanity_DocumentFilter) {
+  aboutCorePage: allAboutCorePage(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    title
+    summaryPortableText: summaryRaw
+    contactSection {
+      infoPortableText: infoRaw
+    }
+  }
+  allAboutCorePageWorkWithUs(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage.workWithUs" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    heading: title
+    introPortableText: introRaw
+    cards {
+      joinTheTeam {
+        ...Card
+      }
+      advisory {
+        ...Card
+      }
+      curriculumPartner {
+        ...Card
+      }
+      teacherResearch {
+        ...Card
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

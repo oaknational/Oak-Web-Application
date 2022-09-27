@@ -4,17 +4,10 @@ import { useRouter } from "next/router";
 
 import config from "../../config";
 
-const IMAGES = {
-  default: config.get("appSocialSharingImg"),
-};
-
 export const DEFAULT_SEO_PROPS = {
   title: config.get("appName"),
   description: config.get("appDescription"),
 };
-
-type Images = typeof IMAGES;
-type Image = keyof Images;
 
 export type SeoProps = {
   title: string;
@@ -22,7 +15,7 @@ export type SeoProps = {
   canonicalURL?: string;
   noIndex?: boolean;
   noFollow?: boolean;
-  image?: Image;
+  imageUrl?: string;
 };
 
 /**
@@ -32,31 +25,30 @@ export type SeoProps = {
 const Seo: FC<SeoProps> = ({
   title,
   description,
-  image = "default",
+  imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}?2022`,
   noIndex = false,
   noFollow = false,
-
   canonicalURL,
 }) => {
   const router = useRouter();
 
-  const sharingImage = IMAGES[image] ? IMAGES[image] : IMAGES["default"];
+  // Trim trailing slashes
+  const formattedCanonicalURL = (
+    canonicalURL || `${config.get("appUrl")}${router.asPath}`
+  )?.replace(/\/$/, ""); //?
 
   return (
     <NextSeo
       title={title}
       description={description}
-      canonical={canonicalURL || `${config.get("appUrl")}${router.asPath}`}
+      canonical={formattedCanonicalURL}
       openGraph={{
         title,
         description,
         url: `${config.get("appUrl")}${router.asPath}`,
         images: [
           {
-            url: `${config.get("appUrl")}${sharingImage}`,
-            width: 1200,
-            height: 630,
-            alt: config.get("appName"),
+            url: imageUrl,
           },
         ],
         site_name: config.get("appName"),

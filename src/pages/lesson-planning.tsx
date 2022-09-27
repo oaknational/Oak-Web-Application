@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
@@ -20,13 +19,13 @@ import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
-import { getTeachersUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
+import OakImage from "../components/OakImage";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
-  isPreviewMode: boolean;
 };
 
 const lessonElementIds = {
@@ -129,7 +128,7 @@ const SectionTitle: FC = (props) => {
       $mh="auto"
       $pt={[56, 80]}
       $pb={48}
-      $ph={12}
+      $ph={16}
       $mt={12}
     >
       <Heading $fontSize={[20, 24]} $textAlign="center" tag="h2" {...props} />
@@ -147,16 +146,9 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -195,7 +187,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={16} $rg={[32]}>
+          <Grid $cg={[0, 40]} $rg={[56]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea
@@ -203,6 +195,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   $colSpan={[12, 6]}
                 >
                   <LessonElementsCard $background={"twilight"}>
+                    <BrushBorders hideOnMobileH color={"twilight"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
@@ -235,16 +228,17 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 $pb={24}
                 $pa={0}
               >
+                <BrushBorders hideOnMobileH color={"pastelTurqoise"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
                   $top={48}
                   $bottom={[92, 92, 20]}
                 >
-                  <Image
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="center bottom"
+                  <OakImage
+                    fill
+                    $objectFit="contain"
+                    $objectPosition="center bottom"
                     alt=""
                     src={
                       "/images/illustrations/teacher-carrying-stuff-237-286.png"
@@ -255,7 +249,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   icon="Search"
                   iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={getTeachersUrl()}
+                  href={"https://teachers.thenational.academy"}
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -299,12 +293,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                         $mb={24}
                         $mh={["auto", null]}
                       >
-                        <Image
+                        <OakImage
                           alt=""
-                          layout="fill"
-                          objectFit="contain"
-                          objectPosition="left bottom"
+                          $objectFit="contain"
+                          $objectPosition="left bottom"
                           src={imageSrc}
+                          fill
                         />
                       </Box>
 
@@ -327,7 +321,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                               iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={getTeachersUrl()}
+                              href={"https://teachers.thenational.academy"}
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -353,6 +347,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
               $ph={[16, 24]}
               $flexDirection={["column", "column", "row"]}
             >
+              <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
               <Box $minWidth={["50%"]}>
                 <Box $display={["block", "block", "none"]}>
                   <CardTitle fontSize={[24, 32, 32]} tag="h4">
@@ -396,6 +391,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
             $alignItems="center"
             $maxWidth={["100%", 812, "100%"]}
           >
+            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box
               $minWidth={"50%"}
               $pr={[null, null, 72]}
@@ -429,10 +425,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 $top={16}
                 $bottom={[92, 92, 20]}
               >
-                <Image
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="center bottom"
+                <OakImage
+                  fill
+                  $objectFit="contain"
+                  $objectPosition="center bottom"
                   alt=""
                   src={
                     "/images/illustrations/teacher-carrying-stuff-237-286.png"
@@ -444,7 +440,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 icon="Search"
                 iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={getTeachersUrl()}
+                href={"https://teachers.thenational.academy"}
                 htmlAnchorProps={{
                   target: "_blank",
                 }}
@@ -466,10 +462,15 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     previewMode: isPreviewMode,
   });
 
+  if (!planningPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       pageData: planningPage,
-      isPreviewMode,
     },
     revalidate: 10,
   };

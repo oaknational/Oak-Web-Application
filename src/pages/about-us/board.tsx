@@ -1,8 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { AboutPage } from "../../node-lib/cms";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
+import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
@@ -17,30 +16,20 @@ import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import Box from "../../components/Box";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
-  pageData: AboutPage;
-  isPreviewMode: boolean;
+  pageData: AboutBoardPage;
 };
 
-const AboutUsBoard: NextPage<AboutPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
-          title={"About us"}
-          heading={pageData.board.sectionHeading}
-          summary={
-            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
-          }
-          background={"teachersPastelYellow"}
+          title={pageData.title}
+          heading={pageData.heading}
+          summary={pageData.summaryPortableText}
           imageProps={{
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",
@@ -62,7 +51,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
             priority: true,
           }}
-          bodyPortableText={pageData.board.introPortableText}
+          bodyPortableText={pageData.introPortableText}
         />
 
         <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h2"}>
@@ -70,7 +59,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
         </Heading>
 
         <Box $mb={[80, 92]}>
-          {pageData.board.boardMembers?.map((boardMember) => (
+          {pageData.boardMembers?.map((boardMember) => (
             <Heading
               key={boardMember.id}
               $textAlign="center"
@@ -90,14 +79,14 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
         </Flex>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
-            <Hr $mv={32} />
+            <Hr $color={"pastelTurqoise"} $mv={32} />
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
-            {pageData.board.documents.map((doc) => (
+            {pageData.documents.map((doc) => (
               <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
                 <Card $height={220} $pa={16}>
-                  <BoxBorders />
+                  <BoxBorders gapPosition="rightTop" />
                   <Flex
                     $justifyContent={"space-between"}
                     $height={"100%"}
@@ -126,7 +115,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
             ))}
           </Grid>
           <Typography $width={"100%"}>
-            <Hr $mv={0} $mt={32} />
+            <Hr $color={"pastelTurqoise"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
         <Card $pv={0} $mv={[80, 92]} $ph={[16, 80]} $width={["100%", "70%"]}>
@@ -135,7 +124,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({
           </Heading>
 
           <Typography $fontSize={[16, 18]}>
-            <PortableText value={pageData.board.governancePortableText} />
+            <PortableText value={pageData.governancePortableText} />
           </Typography>
         </Card>
 
@@ -150,14 +139,19 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
-  const aboutPage = await CMSClient.aboutPage({
+  const aboutBoardPage = await CMSClient.aboutBoardPage({
     previewMode: isPreviewMode,
   });
 
+  if (!aboutBoardPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
-      pageData: aboutPage,
-      isPreviewMode,
+      pageData: aboutBoardPage,
     },
     revalidate: 10,
   };

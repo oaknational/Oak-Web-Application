@@ -25,7 +25,8 @@ export const imageAssetSchema = z.object({
 
 export const imageSchema = z.object({
   altText: z.string().nonempty().nullish(),
-  asset: imageAssetSchema,
+  isPresentational: z.boolean().nullish(),
+  asset: imageAssetSchema.optional(),
 });
 
 export const videoSchema = z.object({

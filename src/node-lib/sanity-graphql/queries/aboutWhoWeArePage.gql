@@ -1,0 +1,44 @@
+query aboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
+  aboutCorePage: allAboutCorePage(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    title
+    summaryPortableText: summaryRaw
+    contactSection {
+      infoPortableText: infoRaw
+    }
+  }
+  allAboutCorePageWhoWeAre(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage.whoWeAre" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    heading: title
+    intro {
+      ...TextAndMedia
+    }
+    timeline {
+      from {
+        ...TextBlock
+      }
+      to {
+        ...TextBlock
+      }
+      beyond {
+        ...TextBlock
+      }
+      cta {
+        ...CTA
+      }
+    }
+    principles {
+      ...TextBlock
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

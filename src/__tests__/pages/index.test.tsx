@@ -5,24 +5,38 @@ import Home, {
   HomePageProps,
   SerializedPost,
 } from "../../pages";
-import CMSClient, { BlogPostPreview } from "../../node-lib/cms";
+import CMSClient, { BlogPostPreview, HomePage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
+import renderWithSeo from "../__helpers__/renderWithSeo";
+import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 
 jest.mock("../../node-lib/cms");
 
+const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+const pageData = {
+  id: "homepage",
+  heading: "Oak",
+  summaryPortableText: portableTextFromString("Here's the page summary"),
+} as HomePage;
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("pages/index.tsx", () => {
-  it("Renders correct title ", async () => {
-    renderWithProviders(<Home posts={[]} isPreviewMode={false} />);
+  it("Renders correct title and summary", async () => {
+    renderWithProviders(<Home pageData={pageData} posts={[]} />);
 
     await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Oak"
-      );
+      const h1 = screen.getByRole("heading", { level: 1 });
+      expect(h1).toHaveTextContent("Oak");
+
+      const firstH2 = screen.getAllByRole("heading", { level: 2 })[0];
+      expect(firstH2).toHaveTextContent("Here's the page summary");
     });
   });
 
   it("Renders a link to the blog list", async () => {
-    renderWithProviders(<Home posts={[]} isPreviewMode={false} />);
+    renderWithProviders(<Home pageData={pageData} posts={[]} />);
 
     await waitFor(() => {
       const blogLink = screen.getByText("All blogs");
@@ -51,7 +65,7 @@ describe("pages/index.tsx", () => {
       },
     ] as SerializedPost[];
 
-    renderWithProviders(<Home posts={mockPosts} isPreviewMode={false} />);
+    renderWithProviders(<Home pageData={pageData} posts={mockPosts} />);
 
     await waitFor(() => {
       const list = screen
@@ -69,6 +83,24 @@ describe("pages/index.tsx", () => {
         "href",
         "/blog/some-blog-post"
       );
+    });
+  });
+
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <Home pageData={{ ...pageData, seo: undefined }} posts={[]} />
+      );
+
+      expect(seo).toEqual({});
+    });
+
+    it("renders the correct SEO details from the CMS", async () => {
+      const { seo } = renderWithSeo(
+        <Home pageData={{ ...pageData, seo: mockSeo() }} posts={[]} />
+      );
+
+      expect(seo).toEqual({});
     });
   });
 
@@ -92,10 +124,13 @@ describe("pages/index.tsx", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetModules();
+
+      mockCMSClient.homepage.mockResolvedValue(pageData);
+      mockCMSClient.blogPosts.mockResolvedValue([]);
     });
 
     it("Should return no more than 4 posts", async () => {
-      (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([
+      mockCMSClient.blogPosts.mockResolvedValueOnce([
         mockPost,
         mockPost2,
         mockPost,
@@ -109,7 +144,7 @@ describe("pages/index.tsx", () => {
     });
 
     it("Should sort posts by date ascending", async () => {
-      (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([
+      mockCMSClient.blogPosts.mockResolvedValueOnce([
         { ...mockPost, id: "2", date: new Date("2022-01-01") },
         { ...mockPost, id: "3", date: new Date("2021-01-01") },
         { ...mockPost, id: "1", date: new Date("2023-01-01") },
@@ -121,14 +156,26 @@ describe("pages/index.tsx", () => {
     });
 
     it("Should not fetch draft content by default", async () => {
-      (CMSClient.blogPosts as jest.Mock).mockResolvedValueOnce([mockPost]);
+      mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
       await getStaticProps({});
 
-      expect(CMSClient.blogPosts).toHaveBeenCalledWith(
+      expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
         expect.objectContaining({
           previewMode: false,
         })
       );
+    });
+
+    it("should return notFound when the page data is missing", async () => {
+      mockCMSClient.homepage.mockResolvedValueOnce(null);
+
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
     });
   });
 });

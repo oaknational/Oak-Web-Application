@@ -1,6 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
@@ -9,6 +8,7 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Grid, { GridArea } from "../../components/Grid";
 import SummaryCard from "../../components/Card/SummaryCard";
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -16,7 +16,6 @@ export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
 
 export type BlogListingPageProps = {
   blogs: SerializedBlogPostPreview[];
-  isPreviewMode: boolean;
 };
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
@@ -29,9 +28,12 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
 
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        title: "Latest Blogs & Insights",
+        description:
+          "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
+      })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
@@ -41,10 +43,9 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           summary={
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
-          background="teachersPastelYellow"
           imageProps={cardImage}
         />
-        <Grid $ph={[12, 0]}>
+        <Grid $ph={[16, 0]}>
           <GridArea $colSpan={[12, 12, 8]} $mt={[48, 72]}>
             <BlogList
               title={"Stay up to date!"}
@@ -94,7 +95,6 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
   return {
     props: {
       blogs,
-      isPreviewMode,
     },
     revalidate: 10,
   };

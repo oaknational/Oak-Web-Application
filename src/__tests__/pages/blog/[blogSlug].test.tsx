@@ -3,6 +3,22 @@ import { screen, waitFor } from "@testing-library/react";
 import { BlogPost } from "../../../node-lib/cms";
 import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
+
+jest.mock("next/router", () => ({
+  __esModule: true,
+  ...jest.requireActual("next/router"),
+  useRouter: () => ({
+    ...jest.requireActual("next/router").useRouter,
+    asPath: "asPath test value",
+  }),
+}));
+jest.mock("next-sanity-image", () => ({
+  __esModule: true,
+  useNextSanityImage: () => ({
+    src: "www.example.com/img.png",
+  }),
+}));
 
 const testBlog: BlogPost = {
   title: "A blog",
@@ -67,14 +83,22 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("BlogDetailPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
-        <BlogDetailPage blog={testSerializedBlog} isPreviewMode={false} />
-      );
+      renderWithProviders(<BlogDetailPage blog={testSerializedBlog} />);
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "A blog"
         );
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <BlogDetailPage blog={testSerializedBlog} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });
@@ -136,6 +160,19 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
       expect(propsResult?.props?.blog).toMatchObject({
         date: "2025-01-01T00:00:00.000Z",
+      });
+    });
+
+    it("should return notFound when a blog post is missing", async () => {
+      blogPostBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
+      const propsResult = (await getStaticProps({
+        params: { blogSlug: "another-blog" },
+      })) as { props: BlogPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });

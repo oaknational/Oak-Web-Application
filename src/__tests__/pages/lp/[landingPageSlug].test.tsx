@@ -6,6 +6,7 @@ import LandingPageTemplate, {
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient, { LandingPage } from "../../../node-lib/cms";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 jest.mock("../../../node-lib/cms");
 
@@ -27,12 +28,20 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
   describe("LandingPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
-        <LandingPageTemplate pageData={testLandingPage} isPreviewMode={false} />
-      );
+      renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
 
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <LandingPageTemplate pageData={testLandingPage} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });
@@ -57,6 +66,18 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
         "some-landing-page",
         expect.anything()
       );
+    });
+
+    it("should return notFound when a landing page is missing", async () => {
+      mockCMSClient.landingPageBySlug.mockResolvedValueOnce(null as never);
+
+      const propsResult = await getStaticProps({
+        params: { landingPageSlug: "some-landing-page" },
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
     });
   });
 });

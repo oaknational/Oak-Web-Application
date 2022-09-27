@@ -7,9 +7,26 @@ import {
   seoSchema,
 } from "./base";
 import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
+import { blogPostPreviewSchema } from "./blog";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
+
+export const homePageSchema = z
+  .object({
+    heading: z.string(),
+    summaryPortableText: portableTextSchema,
+    sidebarCard1: cardSchema,
+    sidebarCard2: cardSchema,
+    sidebarForm: z.object({
+      title: z.string(),
+      bodyPortableText: portableTextSchema,
+    }),
+    seo: seoSchema.nullish(),
+  })
+  .merge(documentSchema);
+
+export type HomePage = z.infer<typeof homePageSchema>;
 
 export const planningPageSchema = z
   .object({
@@ -39,67 +56,75 @@ export const planningPageSchema = z
     learnMoreHeading: z.string(),
     learnMoreBlock1: textAndMediaSchema,
     learnMoreBlock2: textAndMediaSchema,
-    seo: seoSchema,
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 
 export type PlanningPage = z.infer<typeof planningPageSchema>;
 
-export const aboutPageSchema = z
+const aboutPageBaseSchema = z
   .object({
     title: z.string(),
-    whoWeAre: z.object({
-      sectionHeading: z.string(),
-      intro: textAndMediaSchema,
-      timeline: z.object({
-        from: textBlockSchema,
-        to: textBlockSchema,
-        beyond: textBlockSchema,
-        cta: CTASchema,
-      }),
-      principles: z.array(textBlockSchema),
-    }),
-    leadership: z.object({
-      sectionHeading: z.string(),
-      introPortableText: portableTextSchema,
-    }),
-    board: z.object({
-      sectionHeading: z.string(),
-      introPortableText: portableTextSchema,
-      documents: z.array(attachmentSchema),
-      governancePortableText: portableTextSchema,
-      boardMembers: z.array(teamMemberSchema),
-    }),
-    partners: z.object({
-      sectionHeading: z.string(),
-      introPortableText: portableTextSchema,
-      techPartners: z.array(
-        imageSchema.extend({
-          name: z.string(),
-        })
-      ),
-      curriculumPartners: z.array(
-        imageSchema.extend({
-          name: z.string(),
-        })
-      ),
-    }),
-    workWithUs: z.object({
-      sectionHeading: z.string(),
-      introPortableText: portableTextSchema,
-      cards: z.object({
-        joinTheTeam: cardSchema,
-        advisory: cardSchema,
-        curriculumPartner: cardSchema,
-        teacherResearch: cardSchema,
-      }),
-    }),
+    summaryPortableText: portableTextSchema,
     contactSection: z.object({
       infoPortableText: portableTextSchema,
     }),
-    seo: seoSchema,
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
+
+export const aboutPageSchema = aboutPageBaseSchema;
+
+export const aboutWhoWeArePageSchema = aboutPageBaseSchema.extend({
+  heading: z.string(),
+  intro: textAndMediaSchema,
+  timeline: z.object({
+    from: textBlockSchema,
+    to: textBlockSchema,
+    beyond: textBlockSchema,
+    cta: CTASchema,
+  }),
+  principles: z.array(textBlockSchema),
+});
+
+export const aboutLeadershipPageSchema = aboutPageBaseSchema.extend({
+  heading: z.string(),
+  introPortableText: portableTextSchema,
+});
+
+export const aboutBoardPageSchema = aboutPageBaseSchema.extend({
+  heading: z.string(),
+  introPortableText: portableTextSchema,
+  documents: z.array(attachmentSchema),
+  governancePortableText: portableTextSchema,
+  boardMembers: z.array(teamMemberSchema),
+});
+
+export const aboutPartnersPageSchema = aboutPageBaseSchema.extend({
+  heading: z.string(),
+  introPortableText: portableTextSchema,
+  techPartners: z.array(
+    imageSchema.extend({
+      name: z.string(),
+    })
+  ),
+  curriculumPartners: z.array(
+    imageSchema.extend({
+      name: z.string(),
+    })
+  ),
+});
+
+export const aboutWorkWithUsPageSchema = aboutPageBaseSchema.extend({
+  heading: z.string(),
+  introPortableText: portableTextSchema,
+  cards: z.object({
+    joinTheTeam: cardSchema,
+    advisory: cardSchema,
+    curriculumPartner: cardSchema,
+    teacherResearch: cardSchema,
+  }),
+});
 
 export type AboutPage = z.infer<typeof aboutPageSchema>;
 
@@ -115,9 +140,9 @@ export const curriculumPageSchema = z
       posts: z.array(
         z.object({
           title: z.string(),
-          post: z.object({
-            title: z.string(),
-            slug: z.object({ current: z.string() }),
+          post: blogPostPreviewSchema.pick({
+            title: true,
+            slug: true,
           }),
         })
       ),

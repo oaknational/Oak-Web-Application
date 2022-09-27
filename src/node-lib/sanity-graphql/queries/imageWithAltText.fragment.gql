@@ -1,5 +1,6 @@
 fragment ImageWithAltText on ImageWithAltText {
   altText
+  isPresentational
   asset {
     ...ImageAsset
   }

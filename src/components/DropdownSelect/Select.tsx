@@ -9,6 +9,7 @@ import {
   useButton,
   mergeProps,
   useFocusRing,
+  useId,
 } from "react-aria";
 
 import Flex, { FlexProps } from "../Flex";
@@ -143,6 +144,9 @@ export function Select<T extends object>(
           window.navigator.userAgent
         );
 
+  // unique id for map key
+  const id = useId();
+
   return (
     <SelectContainer {...containerProps}>
       <Label {...labelProps} visuallyHidden={!showLabel}>
@@ -162,7 +166,9 @@ export function Select<T extends object>(
         >
           <option value="">{props.placeholder}</option>
           {items.map((item) => (
-            <option value={item.value}>{item.label}</option>
+            <option key={`Select-${id}-${item.value}`} value={item.value}>
+              {item.label}
+            </option>
           ))}
         </NativeSelect>
       ) : (

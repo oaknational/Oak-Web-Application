@@ -1,4 +1,4 @@
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Pagination from "./Pagination";
 
@@ -9,7 +9,7 @@ describe("Pagination", () => {
     const pageSize = 6;
     const onPageChange = jest.fn();
 
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -26,7 +26,7 @@ describe("Pagination", () => {
     const pageSize = 6;
     const onPageChange = jest.fn();
 
-    const { getByText } = renderWithProviders(
+    const { getByText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -35,7 +35,7 @@ describe("Pagination", () => {
       />
     );
 
-    getByText("page 1/17");
+    getByText("page 1 / 17");
   });
   test("displays the correct current page", () => {
     const totalCount = 100;
@@ -43,7 +43,7 @@ describe("Pagination", () => {
     const pageSize = 4;
     const onPageChange = jest.fn();
 
-    const { getByText } = renderWithProviders(
+    const { getByText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -52,14 +52,14 @@ describe("Pagination", () => {
       />
     );
 
-    getByText("page 3/25");
+    getByText("page 3 / 25");
   });
   test("clicking next arrow takes you to the next page", () => {
     const totalCount = 100;
     const currentPage = 6;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, rerender } = renderWithProviders(
+    const { getByText, rerender } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -68,7 +68,7 @@ describe("Pagination", () => {
       />
     );
 
-    getByText("page 6/25");
+    getByText("page 6 / 25");
     rerender(
       <Pagination
         totalCount={totalCount}
@@ -77,14 +77,14 @@ describe("Pagination", () => {
         onPageChange={onPageChange}
       />
     );
-    getByText("page 7/25");
+    getByText("page 7 / 25");
   });
   test("clicking previous arrow takes you to the previous page", () => {
     const totalCount = 100;
     const currentPage = 6;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, rerender } = renderWithProviders(
+    const { getByText, rerender } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -93,7 +93,7 @@ describe("Pagination", () => {
       />
     );
 
-    getByText("page 6/25");
+    getByText("page 6 / 25");
     rerender(
       <Pagination
         totalCount={totalCount}
@@ -102,14 +102,14 @@ describe("Pagination", () => {
         onPageChange={onPageChange}
       />
     );
-    getByText("page 5/25");
+    getByText("page 5 / 25");
   });
   test("the next arrow is disabled when there are no more pages", () => {
     const totalCount = 100;
     const currentPage = 25;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, getByLabelText } = renderWithProviders(
+    const { getByText, getByLabelText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -119,7 +119,7 @@ describe("Pagination", () => {
     );
     const nextButton = getByLabelText("next page");
 
-    getByText("page 25/25");
+    getByText("page 25 / 25");
 
     expect(nextButton).toBeDisabled();
   });
@@ -128,7 +128,7 @@ describe("Pagination", () => {
     const currentPage = 1;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { getByText, getByLabelText } = renderWithProviders(
+    const { getByText, getByLabelText } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}
@@ -138,7 +138,7 @@ describe("Pagination", () => {
     );
     const previousButton = getByLabelText("previous page");
 
-    getByText("page 1/25");
+    getByText("page 1 / 25");
 
     expect(previousButton).toBeDisabled();
   });
@@ -147,7 +147,7 @@ describe("Pagination", () => {
     const currentPage = 1;
     const pageSize = 4;
     const onPageChange = jest.fn();
-    const { queryByRole } = renderWithProviders(
+    const { queryByRole } = renderWithTheme(
       <Pagination
         totalCount={totalCount}
         currentPage={currentPage}

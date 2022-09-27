@@ -1,12 +1,11 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { Heading, P, Span } from "../components/Typography";
+import Typography, { Heading, P, Span } from "../components/Typography";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import Card from "../components/Card";
 import Flex from "../components/Flex";
-import { DEFAULT_SEO_PROPS } from "../browser-lib/seo/Seo";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../components/Forms/NewsletterForm";
@@ -14,7 +13,9 @@ import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
 import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import UnstyledButton from "../components/UnstyledButton";
-import { getHelpUrl } from "../common-lib/urls";
+import { getSeoProps } from "../browser-lib/seo/getSeoProps";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import OakLink from "../components/OakLink";
 
 const ContactUs: NextPage = () => {
   const newsletterFormProps = useNewsletterForm();
@@ -31,7 +32,7 @@ const ContactUs: NextPage = () => {
           <>
             Search our FAQs and find useful information for teachers, schools,
             pupils and parents in our{" "}
-            <a href={getHelpUrl()} target="_blank">
+            <a href={"https://support.thenational.academy"} target="_blank">
               help centre.
             </a>
           </>
@@ -85,10 +86,7 @@ const ContactUs: NextPage = () => {
             <P>
               At Oak National Academy we're committed to protecting the data of
               all our users. We always treat your data in accordance with our{" "}
-              <a href="https://www.thenational.academy/legal/privacy-policy">
-                privacy policy
-              </a>
-              .
+              <OakLink page="privacy-policy">privacy policy</OakLink>.
             </P>
             <P $mt={[16, 24]}>
               You can make a subject access request to us if you wish to amend
@@ -110,12 +108,16 @@ const ContactUs: NextPage = () => {
         ),
       },
     ],
+    seo: {
+      title: "Contact us",
+      description: `We love to help and always welcome any feedback too. You'll find options to get in touch with us here.`,
+    },
   };
 
   const { title, heading, summaryPortableText, contactDetails } = data;
 
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Layout seoProps={getSeoProps(data.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
         <SummaryCard
           title={title}
@@ -129,6 +131,7 @@ const ContactUs: NextPage = () => {
           $pv={[24]}
           $mt={[72, 80]}
         >
+          <BrushBorders hideOnMobileH color={"twilight"} />
           <Flex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
@@ -144,7 +147,7 @@ const ContactUs: NextPage = () => {
                     <Heading $fontSize={24} tag={"h3"} $mb={8}>
                       {section.title}
                     </Heading>
-                    <P>{section.paragraph}</P>
+                    <Typography>{section.paragraph}</Typography>
                   </Flex>
                 );
               })}

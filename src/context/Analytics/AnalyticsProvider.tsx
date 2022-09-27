@@ -31,6 +31,16 @@ export type IdentifyFn = (
   properties: IdentifyProperties
 ) => void;
 
+export type TrackEventName = Extract<
+  keyof typeof Avo,
+  | "planALessonSelected"
+  | "classroomSelected"
+  | "teacherHubSelected"
+  | "developYourCurriculumSelected"
+  | "notificationSelected"
+  | "aboutSelected"
+>;
+
 type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
 type AnalyticsContext = {
   track: TrackFns;
@@ -98,7 +108,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Avo
    */
-  initAvo({ env: getAvoEnv(), ...avoOptions }, {}, getAvoBridge({ posthog }));
+  initAvo(
+    { env: getAvoEnv(), webDebugger: false, ...avoOptions },
+    {},
+    getAvoBridge({ posthog })
+  );
 
   /**
    * Page view tracking

@@ -1,12 +1,12 @@
 import { screen, within } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import OL from "./OL";
 
 describe("OL", () => {
   test("it renders a list", () => {
-    renderWithProviders(
+    renderWithTheme(
       <OL>
         <li>One</li>
         <li>Two</li>

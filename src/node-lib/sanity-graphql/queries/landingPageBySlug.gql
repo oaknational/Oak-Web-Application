@@ -1,10 +1,15 @@
-query landingPageBySlug($slug: String, $isDraft: Boolean = false) {
+query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allLandingPage(
-    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
   ) {
     id: _id
     slug {
       current
+    }
+    seo {
+      ...Seo
     }
   }
 }
