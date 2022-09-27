@@ -36,7 +36,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       $borderRadius={0}
     >
       <BoxBorders gapPosition="rightTop" />
-      <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
+      <Heading $font={["heading-6", "heading-5"]} tag={titleTag}>
         <CardLink
           {...cardLinkProps}
           hoverStyles={["underline-link-text", "drop-shadow"]}

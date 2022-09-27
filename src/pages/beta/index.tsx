@@ -12,7 +12,7 @@ const Beta: FC = () => {
       <Grid $cg={16} $rg={[16, 48, 80]}>
         <GridArea $colSpan={[12, 12, 8]}>
           <Heading
-            $fontSize={48}
+            $font={"heading-1"}
             tag={"h1"}
             $mt={64}
             data-testid="home-page-title"
