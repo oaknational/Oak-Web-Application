@@ -1,21 +1,10 @@
 import { FC } from "react";
-import styled from "styled-components";
 
 import { PixelSpacing } from "../../styles/theme";
 import Flex from "../Flex";
 import Icon from "../Icon";
 import OakLink from "../OakLink";
 import { LI } from "../Typography";
-
-const BlogCategoryLink = styled(OakLink)`
-  ::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-  }
-`;
 
 type BlogCategoryListItemProps = {
   isSelected: boolean;
@@ -46,13 +35,13 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
     <LI
       $display="flex"
       $height={30}
-      $fontFamily={"ui"}
+      $font={"heading-7"}
       $opacity={isSelected ? 0.6 : 1}
       $position="relative"
       $overflow="hidden"
       $alignItems="center"
     >
-      <BlogCategoryLink
+      <OakLink
         $display="flex"
         $height="100%"
         $alignItems="center"
@@ -89,7 +78,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         >
           {title}
         </Flex>
-      </BlogCategoryLink>
+      </OakLink>
     </LI>
   );
 };

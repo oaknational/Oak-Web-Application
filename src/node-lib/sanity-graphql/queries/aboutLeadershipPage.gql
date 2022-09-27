@@ -1,0 +1,25 @@
+query aboutLeadershipPage($isDraftFilter: Sanity_DocumentFilter) {
+  aboutCorePage: allAboutCorePage(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    title
+    summaryPortableText: summaryRaw
+    contactSection {
+      infoPortableText: infoRaw
+    }
+  }
+  allAboutCorePageLeadership(
+    where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage.leadership" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    heading: title
+    introPortableText: introRaw
+    seo {
+      ...Seo
+    }
+  }
+}

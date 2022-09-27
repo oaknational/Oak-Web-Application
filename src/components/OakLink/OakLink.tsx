@@ -94,4 +94,8 @@ const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   );
 });
 
+OakLink.defaultProps = {
+  $display: "inline",
+};
+
 export default OakLink;

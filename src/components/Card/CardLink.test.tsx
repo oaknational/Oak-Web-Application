@@ -14,7 +14,7 @@ describe("CardLink", () => {
         $justifyContent={"center"}
         $alignItems="center"
       >
-        <Heading $mt={24} $mb={0} $fontSize={24} tag={"h5"}>
+        <Heading $mt={24} $mb={0} tag={"h5"}>
           <CardLink page={null} href="https://www.test.com">
             Click Me
           </CardLink>

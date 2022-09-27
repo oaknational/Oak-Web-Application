@@ -17,7 +17,7 @@ import Grid, { GridArea } from "../../Grid";
 import Layout from "../../Layout";
 import MaxWidth from "../../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../../MobileBlogFilters";
-import { P } from "../../Typography";
+import { Heading } from "../../Typography";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -67,7 +67,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           imageProps={cardImage}
         />
         <Grid $ph={[12, 0]}>
-          <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
+          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]}>
             <Box
               $display={["none", "block"]}
               $position={[null, "sticky"]}
@@ -75,10 +75,9 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
               $mt={[0, 24]}
               $pt={[48]}
             >
-              {/* @todo this should be a heading once we refactor typography */}
-              <P $fontSize={14} $fontFamily={"body"}>
+              <Heading tag="h3" $font="body-3">
                 Categories
-              </P>
+              </Heading>
               <BlogCategoryList
                 $mt={24}
                 categories={categories}

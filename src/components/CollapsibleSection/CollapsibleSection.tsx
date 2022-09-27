@@ -74,7 +74,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
           $justifyContent={"space-between"}
           $background={"white"}
         >
-          <SummaryHeading $fontSize={24} tag={headingTag}>
+          <SummaryHeading $font={"heading-5"} tag={headingTag}>
             <a aria-expanded={open} onClick={(e) => handleClick(e)}>
               {title}
             </a>

@@ -13,6 +13,7 @@ import size, { SizeProps } from "../../styles/utils/size";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import transform, { TransformProps } from "../../styles/utils/transform";
 import transition, { TransitionProps } from "../../styles/utils/transition";
+import typography, { TypographyProps } from "../../styles/utils/typography";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 
 type HTMLProps = {
@@ -31,6 +32,7 @@ export type BoxProps = CoverProps &
   ZIndexProps &
   TransformProps &
   TransitionProps &
+  TypographyProps &
   OpacityProps &
   // without the below conditional, Svg complains when using BoxProps
   HTMLProps;
@@ -49,7 +51,9 @@ export const box = css<BoxProps>`
   ${transform}
   ${transition}
   ${opacity}
+  ${typography}
   ${(props) =>
+    /* onClick might be passed in the useClickableCard pattern */
     props.onClick &&
     css`
       :hover {

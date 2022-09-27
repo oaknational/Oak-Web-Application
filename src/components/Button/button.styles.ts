@@ -56,7 +56,6 @@ const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
   max-width: 100%;
   position: relative;
   ${(props) => css`

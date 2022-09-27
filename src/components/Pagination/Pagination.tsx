@@ -42,7 +42,7 @@ const Pagination: FC<PaginationProps> = ({
           background={"teachersHighlight"}
           disabled={currentPage === 1}
         />
-        <P $mh={24} $fontSize={16} $lineHeight={"24px"}>
+        <P $mh={24} $font={"body-2"}>
           page {currentPage} / {totalPageCount}
         </P>
         <IconButton

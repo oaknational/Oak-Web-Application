@@ -64,8 +64,7 @@ const blogPortableTextComponents: PortableTextComponents = {
       // @TODO: Choose an appropriate section heading level
       return (
         <Heading
-          $fontSize={[20, 32]}
-          $lineHeight={["24px", "40px"]}
+          $font={["heading-6", "heading-4"]}
           tag="h2"
           $mt={[48, 56]}
           $mb={[24, 32]}
@@ -77,7 +76,7 @@ const blogPortableTextComponents: PortableTextComponents = {
     callout: (props) => {
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+          <P $font={"heading-light-4"}>
             <blockquote>{props.children}</blockquote>
           </P>
         </Flex>
@@ -123,7 +122,7 @@ const blogPortableTextComponents: PortableTextComponents = {
       return (
         <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
           <div>
-            <Heading $fontSize={[24, 32]} $lineHeight={"40px"} tag="h2">
+            <Heading $font={["heading-5", "heading-4"]} tag="h2">
               {params.title}
             </Heading>
             <Box $mt={32}>
@@ -161,14 +160,10 @@ const blogPortableTextComponents: PortableTextComponents = {
 
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P
-            $fontSize={[24, 32]}
-            $lineHeight={["32px", "40px"]}
-            $fontFamily={"headingLight"}
-          >
+          <P $font={["heading-light-5", "heading-light-4"]}>
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={[16]} $lineHeight={1.5} $mt={[16]} $textAlign="center">
+          <P $font={"body-1"} $mt={[16]} $textAlign="center">
             <cite>{props.value?.attribution}</cite>
             {props.value.role && `, ${props.value.role}`}
           </P>
@@ -195,7 +190,7 @@ const blogPortableTextComponents: PortableTextComponents = {
             components={{
               block: {
                 sectionHeading: (props) => {
-                  return <P $fontSize={24}>{props.children}</P>;
+                  return <P $font={"heading-light-5"}>{props.children}</P>;
                 },
               },
             }}
@@ -275,10 +270,9 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $top={[null, HEADER_HEIGHT]}
               $pt={[48, 72]}
             >
-              {/* @todo this should be a heading once we refactor typography */}
-              <P $fontSize={14} $fontFamily={"body"}>
+              <Heading tag="h3" $font="body-3">
                 Categories
-              </P>
+              </Heading>
               <BlogCategoryList $mt={24} categories={categories} />
             </Box>
           </GridArea>
@@ -289,21 +283,16 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $justifyContent="space-between"
               $flexDirection={["column", "row"]}
             >
-              <Heading
-                tag={"h2"}
-                $fontSize={[16]}
-                $color="hyperlink"
-                $fontFamily="heading"
-              >
+              <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
                 <OakLink page="blog-index" category={blog.category.slug}>
                   {blog.category.title}
                 </OakLink>
               </Heading>
-              <Span $fontFamily={"body"} $fontSize={[14]} $mt={[8, 0]}>
+              <Span $font={"body-3"} $mt={[8, 0]}>
                 {formattedDate}
               </Span>
             </Flex>
-            <Heading $mt={12} $color={"black"} $fontSize={[24, 32]} tag={"h1"}>
+            <Heading $mt={12} $font={["heading-5", "heading-4"]} tag={"h1"}>
               {blog.title}
             </Heading>
             <Flex $alignItems={"center"} $mt={16}>
@@ -319,11 +308,11 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
                 </Circle>
               )}
               <Box>
-                <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
+                <Heading tag="h2" $font={"heading-7"} $mr={40}>
                   {blog.author.name}
                 </Heading>
                 {blog.author.role && (
-                  <P $mt={4} fontSize={14} $color={"oakGrey4"}>
+                  <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
                     {blog.author.role}
                   </P>
                 )}

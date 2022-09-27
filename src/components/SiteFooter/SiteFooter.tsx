@@ -79,17 +79,10 @@ export type FooterSection = {
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
     <Flex $flexDirection="column" $mt={[32, 0]}>
-      <Heading
-        $mb={8}
-        $fontSize={16}
-        $lineHeight="20px"
-        $color="grey9"
-        tag="h2"
-        $fontFamily={"body"}
-      >
+      <Heading $mb={8} $font="body-2" $color="grey9" tag="h2">
         {title}
       </Heading>
-      <Typography $fontSize={16} $lineHeight={"20px"} $fontFamily={"ui"}>
+      <Typography $font={"heading-7"}>
         <ul role="list">
           {links.map((link) => (
             <LI key={link.text} $mt={12}>
@@ -148,7 +141,7 @@ const SiteFooter: FC = () => {
           <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
             <SocialButtons />
             <Flex $alignItems={"center"}>
-              <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
+              <P $textAlign="center" $font={["body-4", "body-2"]}>
                 © Oak National Academy
               </P>
             </Flex>
@@ -169,7 +162,7 @@ const SiteFooter: FC = () => {
       />
       <Svg
         name="LoopingLine4"
-        $color={"pupilsPink"}
+        $color={"twilight"}
         $display={["block", "none"]}
         $zIndex={"behind"}
         $transform={"translate(0%, 32%)"}

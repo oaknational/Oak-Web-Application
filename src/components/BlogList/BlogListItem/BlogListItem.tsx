@@ -67,7 +67,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $mr={[0, 32]}
           $mb={[32, 0]}
         >
-          <BoxBorders gapPosition="bottomRight" />
+          <BoxBorders zIndex={"inFront"} gapPosition="bottomRight" />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
               <CMSImage
@@ -84,7 +84,6 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-
       <Flex $flexDirection="column" $alignItems="flex-start">
         <Flex
           $width="100%"
@@ -92,20 +91,13 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $justifyContent="space-between"
         >
           <OakLink page="blog-index" category={category.slug}>
-            <Span
-              $fontSize={16}
-              $lineHeight={"20px"}
-              $color="hyperlink"
-              $fontFamily="ui"
-            >
+            <Span $font="heading-7" $color="hyperlink">
               {category.title}
             </Span>
           </OakLink>
-          <P $fontSize={14} $lineHeight={"20px"}>
-            {blogDate}
-          </P>
+          <P $font={"body-3"}>{blogDate}</P>
         </Flex>
-        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
+        <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
           <OakLink
             {...primaryTargetProps}
             page={null}
@@ -115,7 +107,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
             {title}
           </OakLink>
         </Heading>
-        <P $fontSize={14} $mt={8} $mb={[8, 0]}>
+        <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>
