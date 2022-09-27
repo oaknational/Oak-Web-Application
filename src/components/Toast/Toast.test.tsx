@@ -12,7 +12,7 @@ describe("toast notification", () => {
     const { getByRole, getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
-        <Toast role={ROLE} />
+        <Toast />
       </ToastProvider>
     );
 
@@ -25,7 +25,7 @@ describe("toast notification", () => {
 
     rerender(
       <ToastProvider>
-        <Toast role={ROLE} />
+        <Toast />
       </ToastProvider>
     );
 

@@ -33,10 +33,6 @@ const ToastCard = styled(Card)<TransitionProps>`
   }};
 `;
 
-type ToastProps = {
-  role: "alert" | "status";
-};
-
 /**
  * Toasts display brief, temporary notifications.
  * They are noticeable but do not disrupt the user experience and do not require an action to be taken.
@@ -46,8 +42,8 @@ type ToastProps = {
  * and low-priority alerts that do not need to completely interrupt the user experience.
  */
 
-const Toast: FC<ToastProps> = ({ role }) => {
-  const { message, shown, hideToast } = useToastContext();
+const Toast: FC = () => {
+  const { message, shown, hideToast, role } = useToastContext();
 
   useEffect(() => {
     if (shown) {

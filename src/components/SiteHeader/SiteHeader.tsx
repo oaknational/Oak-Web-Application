@@ -63,7 +63,7 @@ const SiteHeader: FC = () => {
       <Menu>
         <MenuLinks menuSections={menuSections} />
       </Menu>
-      <Toast role="alert" />
+      <Toast />
     </FixedHeader>
   );
 };
