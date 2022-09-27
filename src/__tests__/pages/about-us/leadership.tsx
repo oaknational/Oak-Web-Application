@@ -14,7 +14,7 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 const testAboutLeadershipPageData: AboutLeadershipPage = {
   ...testAboutPageBaseData,
-  sectionHeading: "Leadership",
+  heading: "Leadership",
   introPortableText: portableTextFromString("text"),
 };
 

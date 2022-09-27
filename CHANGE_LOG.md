@@ -1,3 +1,52 @@
+# [1.24.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.23.0...v1.24.0) (2022-09-26)
+
+
+### Bug Fixes
+
+* ensure previewMode flag is correctly passed to parseResults ([2ab7447](https://github.com/oaknational/Oak-Web-Application/commit/2ab74473bfbd9db9f0082688e1d5a233fd01634f))
+* update about page schema to match field renaming ([b8a6e89](https://github.com/oaknational/Oak-Web-Application/commit/b8a6e8955c47b71d39ef53b08323490ca330afb6))
+
+
+### Features
+
+* add fixtures for about pages ([6202463](https://github.com/oaknational/Oak-Web-Application/commit/620246397a6d81464d28111c227341464b6f2f03))
+* split about page into individual sub-page queries ([1bc636c](https://github.com/oaknational/Oak-Web-Application/commit/1bc636c652836ec559e3221d271f43172aad55df))
+
+## [1.22.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.1...v1.22.2) (2022-09-26)
+
+
+### Bug Fixes
+
+* kebab-case-to-camel-case-line-svg ([8c70379](https://github.com/oaknational/Oak-Web-Application/commit/8c70379e3714fcbe50af8d64519c89ed3211b53f))
+
+## [1.22.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.0...v1.22.1) (2022-09-26)
+
+
+### Bug Fixes
+
+* spelling of accessibility in footer ([8bc99dc](https://github.com/oaknational/Oak-Web-Application/commit/8bc99dc5bbb18327a53eecdbf0afd77cab05e08e))
+
+# [1.22.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.3...v1.22.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **CI:** attempt to use caching in deployment events (now they have correct refs) ([b2bd02a](https://github.com/oaknational/Oak-Web-Application/commit/b2bd02a66182739a1c5ba81c587226da8b35caf6))
+* **CI:** use correct event key for deployment URL ([372d2e5](https://github.com/oaknational/Oak-Web-Application/commit/372d2e58d897b17debf9bae7c4d2bda24d0c7c48))
+
+
+### Features
+
+* **CI:** ignore Vercel deployments, listen to Netlify deployments ([ba08c48](https://github.com/oaknational/Oak-Web-Application/commit/ba08c4837eab3348ee15a2f82b6726588a058fbc))
+* **CI:** use CF token in Pa11y requests ([a2878fd](https://github.com/oaknational/Oak-Web-Application/commit/a2878fd8ab5aa4c8f5628d5ac454ee3eefedee12))
+
+## [1.21.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.2...v1.21.3) (2022-09-23)
+
+
+### Bug Fixes
+
+* **preview mode:** remove the secret value from the redirected URL location ([e15263b](https://github.com/oaknational/Oak-Web-Application/commit/e15263b18c04f2dcab08c0f1254cc22e904f69ee))
+
 ## [1.21.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.21.1...v1.21.2) (2022-09-23)
 
 
