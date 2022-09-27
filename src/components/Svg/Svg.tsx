@@ -7,7 +7,7 @@ import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 const StyledSvg = styled.svg<BoxProps>`
   ${box}
 `;
-type SvgProps = BoxProps & {
+export type SvgProps = BoxProps & {
   name: SvgName;
   className?: string;
   hideOnMobileH?: boolean;
