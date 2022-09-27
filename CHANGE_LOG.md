@@ -1,3 +1,11 @@
+## [1.25.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.2...v1.25.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **storybook deployments:** be more careful in which deployments to ignore ([709ed6d](https://github.com/oaknational/Oak-Web-Application/commit/709ed6d5b5110d045739d63f33bcec6729e2046f))
+* **storybook deployments:** distinguish github environment name for OWA and Storybook deployments ([db5d414](https://github.com/oaknational/Oak-Web-Application/commit/db5d414b06221a2cfe8257c8bca02ec715c17246))
+
 ## [1.25.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.1...v1.25.2) (2022-09-27)
 
 
