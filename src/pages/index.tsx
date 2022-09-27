@@ -26,6 +26,7 @@ import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
+import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 
 import {
   blogToBlogListItem,
@@ -33,7 +34,6 @@ import {
   SerializedBlogPostPreview,
 } from "./blog";
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
-import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
