@@ -27,6 +27,14 @@ const SocialButtons: FC = () => {
         icon={"Twitter"}
         href={"https://twitter.com/oaknational"}
         variant={"minimal"}
+        $mr={16}
+        size={"small"}
+      />
+      <IconButtonAsLink
+        aria-label={"LinkedIn"}
+        icon={"LinkedIn"}
+        href={"https://www.linkedin.com/company/oak-national-academy/"}
+        variant={"minimal"}
         $mr={[12, 32]}
         size={"small"}
       />

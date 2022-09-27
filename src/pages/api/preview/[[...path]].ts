@@ -5,7 +5,7 @@ import config from "../../../config";
 import errorReporter from "../../../common-lib/error-reporter";
 import OakError from "../../../errors/OakError";
 
-const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
+export const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
 
 const reportError = errorReporter("/api/preview/[[...path]]");
 
@@ -28,17 +28,19 @@ const preview: NextApiHandler = async (req, res) => {
       });
     }
 
+    const pathQueryParam = req.query.path;
     const redirectLocation = z
       .array(slugStringSchema)
       .transform((segments) => {
         return `/${segments.join("/")}`;
       })
-      .parse(req.query.path);
+      .parse(pathQueryParam || []);
 
     res.setPreviewData({ previewMode: "on" });
 
-    res.writeHead(307, { Location: redirectLocation });
-    res.end();
+    // We add the `?` to prevent Next from adding the query params
+    // from the original request on to the redirect URL
+    res.redirect(307, `${redirectLocation}?`);
   } catch (error) {
     reportError(error);
 

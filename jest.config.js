@@ -29,8 +29,6 @@ const customJestConfig = {
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
-  // Custom resolver needed because of firebase exports. See: https://github.com/firebase/firebase-admin-node/issues/1465
-  resolver: "jest-node-exports-resolver",
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
@@ -43,6 +41,7 @@ const customJestConfig = {
     // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
     "^uuid$": require.resolve("uuid"),
   },
+  slowTestThreshold: 2,
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

@@ -26,7 +26,7 @@ export type SeoProps = {
 const Seo: FC<SeoProps> = ({
   title,
   description,
-  imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}`,
+  imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}?2022`,
   imageAlt,
   noIndex = false,
   noFollow = false,
@@ -34,11 +34,16 @@ const Seo: FC<SeoProps> = ({
 }) => {
   const router = useRouter();
 
+  // Trim trailing slashes
+  const formattedCanonicalURL = (
+    canonicalURL || `${config.get("appUrl")}${router.asPath}`
+  )?.replace(/\/$/, ""); //?
+
   return (
     <NextSeo
       title={title}
       description={description}
-      canonical={canonicalURL || `${config.get("appUrl")}${router.asPath}`}
+      canonical={formattedCanonicalURL}
       openGraph={{
         title,
         description,

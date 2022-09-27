@@ -6,6 +6,7 @@ import webinarBySlugFixture from "../../sanity-graphql/fixtures/webinarBySlug.js
 import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageBySlug.json";
 
 import { videoSchema } from "./schemas/base";
+import { parseResults } from "./parseResults";
 
 import getSanityClient from "./";
 
@@ -14,6 +15,8 @@ import getSanityClient from "./";
  * sanity-graphql/__mocks__
  */
 jest.mock("../../sanity-graphql");
+
+jest.mock("./parseResults");
 
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
   typeof sanityGraphqlApi
@@ -49,7 +52,7 @@ describe("cms/sanity-client", () => {
         "an-upcoming-webinar"
       );
 
-      expect(result.slug).toBe(
+      expect(result?.slug).toBe(
         webinarBySlugFixture.allWebinar[0]?.slug.current
       );
     });
@@ -89,7 +92,7 @@ describe("cms/sanity-client", () => {
     });
   });
 
-  describe("draft content handling", () => {
+  describe("client methods", () => {
     const client = getSanityClient();
 
     /**
@@ -99,44 +102,169 @@ describe("cms/sanity-client", () => {
      *
      * methodName: the name of the function on CMSClient
      * mockMethodName: the name of a method on sanityGraphqlApi that's been mocked
-     * methodAcceptsSlug: if a slug should be passed to the client method
-     *                    as the methods are variadic
      */
-    describe.each([
-      ["webinars", "allWebinars", false],
-      ["webinarBySlug", "webinarBySlug", true],
-      ["blogPosts", "allBlogPosts", false],
-      ["blogPostBySlug", "blogPostBySlug", true],
-      // ["homepage", "homepage", false],
-      ["planningPage", "planningCorePage", false],
-      ["aboutPage", "aboutCorePage", false],
-      ["curriculumPage", "curriculumCorePage", false],
-      ["policyPages", "allPolicyPages", false],
-      ["policyPageBySlug", "policyPageBySlug", true],
-      ["landingPages", "allLandingPages", false],
-      ["landingPageBySlug", "landingPageBySlug", true],
-    ])(`.%s()`, (methodName, mockMethodName, methodAcceptsSlug) => {
-      const mockMethod = mockMethodName as keyof typeof mockSanityGraphqlApi;
-      const clientMethod = client[methodName as keyof typeof client];
+    const singletonMethods = [
+      ["homepage", "homepage"],
+      ["planningPage", "planningCorePage"],
+      ["aboutWhoWeArePage", "aboutWhoWeArePage"],
+      ["aboutLeadershipPage", "aboutLeadershipPage"],
+      ["aboutBoardPage", "aboutBoardPage"],
+      ["aboutPartnersPage", "aboutPartnersPage"],
+      ["aboutWorkWithUsPage", "aboutWorkWithUsPage"],
+      ["curriculumPage", "curriculumCorePage"],
+    ] as const;
+
+    const listMethods = [
+      ["webinars", "allWebinars"],
+      ["blogPosts", "allBlogPosts"],
+      ["policyPages", "allPolicyPages"],
+      ["landingPages", "allLandingPages"],
+    ] as const;
+
+    const bySlugMethods = [
+      ["webinarBySlug", "webinarBySlug"],
+      ["blogPostBySlug", "blogPostBySlug"],
+      ["policyPageBySlug", "policyPageBySlug"],
+      ["landingPageBySlug", "landingPageBySlug"],
+    ] as const;
+
+    describe.only.each(singletonMethods)(
+      `.%s()`,
+      (methodName, mockMethodName) => {
+        const mockMethod = mockSanityGraphqlApi[mockMethodName];
+        const clientMethod = client[methodName];
+
+        it("returns null when no content is found", async () => {
+          mockMethod.mockResolvedValueOnce({} as never);
+          const res = await clientMethod();
+          expect(res).toBeNull();
+        });
+
+        it("does not fetch draft content by default", async () => {
+          await clientMethod();
+          expect(mockMethod).toBeCalledWith(
+            expect.objectContaining({ isDraftFilter: { is_draft: false } })
+          );
+        });
+
+        it("fetches draft content when previewMode flag is passed", async () => {
+          await clientMethod({ previewMode: true });
+
+          expect(mockMethod).toBeCalledWith(
+            expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
+          );
+        });
+
+        it("passes previewMode flag to parseResults when false", async () => {
+          await clientMethod();
+
+          expect(parseResults).toBeCalledWith(
+            expect.anything(),
+            expect.anything(),
+            undefined
+          );
+        });
+
+        it("passes previewMode flag to parseResults when true", async () => {
+          await clientMethod({ previewMode: true });
+
+          expect(parseResults).toBeCalledWith(
+            expect.anything(),
+            expect.anything(),
+            true
+          );
+        });
+      }
+    );
+
+    describe.each(listMethods)(`.%s()`, (methodName, mockMethodName) => {
+      const mockMethod = mockSanityGraphqlApi[mockMethodName];
+      const clientMethod = client[methodName];
+
+      it("returns an empty array when no content is found", async () => {
+        mockMethod.mockResolvedValueOnce({} as never);
+        const res = await clientMethod();
+        expect(res).toEqual([]);
+      });
 
       it("does not fetch draft content by default", async () => {
-        await clientMethod("some-slug");
-        expect(mockSanityGraphqlApi[mockMethod]).toBeCalledWith(
-          expect.objectContaining({ isDraft: false })
+        await clientMethod();
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
         );
       });
 
       it("fetches draft content when previewMode flag is passed", async () => {
-        const params = methodAcceptsSlug
-          ? ["some-slug", { previewMode: true }]
-          : [{ previewMode: true }];
+        await clientMethod({ previewMode: true });
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore Function call works, TS just gets confused
-        await clientMethod(...params);
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
+        );
+      });
 
-        expect(mockSanityGraphqlApi[mockMethod]).toBeCalledWith(
-          expect.objectContaining({ isDraft: true })
+      it("passes previewMode flag to parseResults when false", async () => {
+        await clientMethod();
+
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          undefined
+        );
+      });
+
+      it("passes previewMode flag to parseResults when true", async () => {
+        await clientMethod({ previewMode: true });
+
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          true
+        );
+      });
+    });
+
+    describe.each(bySlugMethods)(`.%s()`, (methodName, mockMethodName) => {
+      const mockMethod = mockSanityGraphqlApi[mockMethodName];
+      const clientMethod = client[methodName];
+
+      it("returns null/ when no content is found", async () => {
+        mockMethod.mockResolvedValueOnce({} as never);
+        const res = await clientMethod("some-slug");
+        expect(res).toBeNull();
+      });
+
+      it("does not fetch draft content by default", async () => {
+        await clientMethod("some-slug");
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
+        );
+      });
+
+      it("fetches draft content when previewMode flag is passed", async () => {
+        await clientMethod("some-slug", { previewMode: true });
+
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
+        );
+      });
+
+      it("passes previewMode flag to parseResults when false", async () => {
+        await clientMethod("some-slug");
+
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          undefined
+        );
+      });
+
+      it("passes previewMode flag to parseResults when true", async () => {
+        await clientMethod("some-slug", { previewMode: true });
+
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          true
         );
       });
     });
@@ -156,7 +284,7 @@ describe("cms/sanity-client", () => {
         "some-landing-page"
       );
 
-      expect(result.slug).toBe(
+      expect(result?.slug).toBe(
         landingPageBySlugFixture.allLandingPage[0]?.slug.current
       );
     });

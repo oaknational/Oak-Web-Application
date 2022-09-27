@@ -6,12 +6,21 @@ type GetSeoProps =
   | undefined
   | null;
 
-export const getSeoProps = (props: GetSeoProps): SeoProps => {
+export const getSeoProps = (
+  props: GetSeoProps,
+  options: { addTitleSuffix?: boolean } = { addTitleSuffix: true }
+): SeoProps => {
   if (props == null) {
     return DEFAULT_SEO_PROPS;
   }
+
+  const title =
+    options.addTitleSuffix && props.title
+      ? `${props.title} | Oak National Academy`
+      : props.title;
+
   return {
-    title: `${props.title} | Oak National Academy` || DEFAULT_SEO_PROPS.title,
+    title: title || DEFAULT_SEO_PROPS.title,
     description: props.description || DEFAULT_SEO_PROPS.description,
     canonicalURL: props.canonicalURL || undefined,
     imageUrl: props.imageUrl,

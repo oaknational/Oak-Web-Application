@@ -8,7 +8,7 @@ import styled, {
 import { render } from "@testing-library/react";
 
 import { OakColorName } from "../theme";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import responsive from "./responsive";
 
@@ -124,7 +124,7 @@ describe("responsive", () => {
         (colorName) => (props) => props.theme.colors[colorName as OakColorName]
       )}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $color="teachersPurple" />
     );
 

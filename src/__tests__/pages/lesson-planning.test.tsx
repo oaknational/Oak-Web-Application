@@ -9,6 +9,7 @@ import {
   mockVideoAsset,
   portableTextFromString,
 } from "../__helpers__/cms";
+import renderWithSeo from "../__helpers__/renderWithSeo";
 
 const testPlanningPageData: PlanningPage = {
   id: "01",
@@ -65,10 +66,9 @@ describe("pages/lesson-planning.tsx", () => {
       },
     }));
   });
+
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<PlanALesson pageData={testPlanningPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -77,14 +77,39 @@ describe("pages/lesson-planning.tsx", () => {
     });
   });
 
-  it("Should not fetch draft content by default", async () => {
-    const { getStaticProps } = await import("../../pages/lesson-planning");
-    await getStaticProps({
-      params: {},
+  describe.skip("SEO", () => {
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo(
+        <PlanALesson pageData={testPlanningPageData} />
+      );
+
+      expect(seo).toEqual({});
+    });
+  });
+
+  describe("getStaticProps", () => {
+    it("Should not fetch draft content by default", async () => {
+      const { getStaticProps } = await import("../../pages/lesson-planning");
+      await getStaticProps({
+        params: {},
+      });
+
+      expect(getPageData).toHaveBeenCalledWith({
+        previewMode: false,
+      });
     });
 
-    expect(getPageData).toHaveBeenCalledWith({
-      previewMode: false,
+    it("should return notFound when the page data is missing", async () => {
+      getPageData.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import("../../pages/lesson-planning");
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
     });
   });
 });

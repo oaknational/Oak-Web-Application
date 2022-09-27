@@ -21,13 +21,12 @@ module.exports = {
       },
     ],
     // Commit the change log.
-    // Note the `[skip ci]` part of the message, to avoid running pointless checks.
     [
       "@semantic-release/git",
       {
         assets: ["CHANGE_LOG.md"],
-        message:
-          "build(release v${nextRelease.version}): set package.json version to ${nextRelease.version} [skip ci]\n\nSee CHANGE_LOG.md",
+        // Note, this isn't a string literal, it's a Mustache-style template.
+        message: "build(release v${nextRelease.version}): See CHANGE_LOG.md",
       },
     ],
 

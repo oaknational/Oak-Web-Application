@@ -5,13 +5,25 @@ import WebinarDetailPage, {
   WebinarPageProps,
 } from "../../../pages/webinars/[webinarSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
   id: "5",
   date: new Date("2025-01-01"),
   slug: "an-upcoming-webinar",
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  hosts: [
+    {
+      id: "000",
+      name: "Hosty McHostFace",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
@@ -21,7 +33,18 @@ const testWebinar2: Webinar = {
   id: "6",
   date: new Date("2022-01-01"),
   slug: "a-past-webinar",
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  hosts: [
+    {
+      id: "000",
+      name: "Hosty McHostFace",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
@@ -50,16 +73,23 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage
-          webinar={testSerializedWebinar}
-          isPreviewMode={false}
-        />
+        <WebinarDetailPage webinar={testSerializedWebinar} />
       );
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "An upcoming webinar"
         );
+      });
+    });
+
+    describe.skip("SEO", () => {
+      it("renders the correct SEO details", async () => {
+        const { seo } = renderWithSeo(
+          <WebinarDetailPage webinar={testSerializedWebinar} />
+        );
+
+        expect(seo).toEqual({});
       });
     });
   });
@@ -131,6 +161,21 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
       expect(propsResult?.props?.webinar).toMatchObject({
         date: "2025-01-01T00:00:00.000Z",
+      });
+    });
+
+    it("should return notFound when a webinar is missing", async () => {
+      webinarBySlug.mockResolvedValueOnce(null as never);
+
+      const { getStaticProps } = await import(
+        "../../../pages/webinars/[webinarSlug]"
+      );
+      const propsResult = (await getStaticProps({
+        params: { webinarSlug: "an-upcoming-webinar" },
+      })) as { props: WebinarPageProps };
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });

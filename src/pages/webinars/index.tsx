@@ -1,12 +1,12 @@
 import { GetStaticProps, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -14,17 +14,22 @@ export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
 
 export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];
-  isPreviewMode: boolean;
 };
+
+/**
+ * @TODO: Remove /webinars/* from next-sitemap.config.js when built
+ */
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
 
   return (
     <Layout
-      seoProps={DEFAULT_SEO_PROPS}
+      seoProps={getSeoProps({
+        title: "Webinars",
+        description: "Webinars",
+      })}
       $background="grey1"
-      isPreviewMode={props.isPreviewMode}
     >
       <Heading tag="h1" $fontSize={32}>
         Webinars
@@ -69,7 +74,6 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
   return {
     props: {
       webinars,
-      isPreviewMode,
     },
     revalidate: 10,
   };

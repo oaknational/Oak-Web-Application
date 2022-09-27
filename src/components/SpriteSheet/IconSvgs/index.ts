@@ -34,6 +34,7 @@ import SoundOff from "./SoundOff.icon";
 import Star from "./Star.icon";
 import Tick from "./Tick.icon";
 import Twitter from "./Twitter.icon";
+import LinkedIn from "./LinkedIn.icon";
 
 const iconSvgSymbols = {
   ArrowDown,
@@ -57,6 +58,7 @@ const iconSvgSymbols = {
   Hamburger,
   Home,
   Instagram,
+  LinkedIn,
   OutOfWindow,
   Pause,
   Play,

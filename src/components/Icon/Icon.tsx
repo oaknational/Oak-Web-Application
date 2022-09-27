@@ -61,15 +61,16 @@ export const BackgroundIcon = styled(Svg)<ColorProps>`
   ${color}
 `;
 
+export type IconSize = ResponsiveValues<PixelSpacing>;
 type IconProps = Partial<IconOuterWrapperProps> & {
   name: IconName;
   variant?: IconVariant;
   /**
    * size in pixels is the value for width and height if they are not separately provided
    */
-  size?: ResponsiveValues<PixelSpacing>;
-  width?: ResponsiveValues<PixelSpacing>;
-  height?: ResponsiveValues<PixelSpacing>;
+  size?: IconSize;
+  width?: IconSize;
+  height?: IconSize;
   /**
    * by default, the color will take the css `color` value of its closest ancester
    * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to

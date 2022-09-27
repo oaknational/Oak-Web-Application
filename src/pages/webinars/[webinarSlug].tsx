@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText } from "@portabletext/react";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { Webinar } from "../../node-lib/cms";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -12,16 +12,15 @@ export type SerializedWebinar = Omit<Webinar, "date"> & {
 
 export type WebinarPageProps = {
   webinar: SerializedWebinar;
-  isPreviewMode: boolean;
 };
+
+/**
+ * @TODO: Remove /webinars/* from next-sitemap.config.js when built
+ */
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
-    <Layout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
-      isPreviewMode={props.isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(props.webinar.seo)} $background="grey1">
       <Heading tag="h1" $fontSize={24}>
         {props.webinar.title}
       </Heading>
@@ -65,6 +64,12 @@ export const getStaticProps: GetStaticProps<
   const webinarResult = await CMSClient.webinarBySlug(webinarSlug, {
     previewMode: isPreviewMode,
   });
+
+  if (!webinarResult) {
+    return {
+      notFound: true,
+    };
+  }
 
   const webinar = {
     ...webinarResult,

@@ -1,4 +1,13 @@
-import { AboutPage, PlanningPage, CurriculumPage } from "./pages";
+import {
+  HomePage,
+  PlanningPage,
+  CurriculumPage,
+  AboutBoardPage,
+  AboutLeadershipPage,
+  AboutPartnersPage,
+  AboutWhoWeArePage,
+  AboutWorkWithUsPage,
+} from "./pages";
 import {
   BlogPost,
   BlogPostPreview,
@@ -20,16 +29,24 @@ export type ListParams = Params & {
 
 export interface CMSClient {
   (): {
-    webinarBySlug(slug: string, params?: Params): Promise<Webinar>;
+    webinarBySlug(slug: string, params?: Params): Promise<Webinar | null>;
     webinars(params?: ListParams): Promise<WebinarPreview[]>;
     blogPosts(params?: ListParams): Promise<BlogPostPreview[]>;
-    blogPostBySlug(slug: string, params?: Params): Promise<BlogPost>;
-    planningPage(params?: Params): Promise<PlanningPage>;
-    aboutPage(params?: Params): Promise<AboutPage>;
-    curriculumPage(params?: Params): Promise<CurriculumPage>;
-    policyPageBySlug(slug: string, params?: Params): Promise<PolicyPage>;
+    blogPostBySlug(slug: string, params?: Params): Promise<BlogPost | null>;
+    homepage(params?: Params): Promise<HomePage | null>;
+    planningPage(params?: Params): Promise<PlanningPage | null>;
+    aboutWhoWeArePage(params?: Params): Promise<AboutWhoWeArePage | null>;
+    aboutLeadershipPage(params?: Params): Promise<AboutLeadershipPage | null>;
+    aboutBoardPage(params?: Params): Promise<AboutBoardPage | null>;
+    aboutPartnersPage(params?: Params): Promise<AboutPartnersPage | null>;
+    aboutWorkWithUsPage(params?: Params): Promise<AboutWorkWithUsPage | null>;
+    curriculumPage(params?: Params): Promise<CurriculumPage | null>;
+    policyPageBySlug(slug: string, params?: Params): Promise<PolicyPage | null>;
     policyPages(params?: ListParams): Promise<PolicyPagePreview[]>;
     landingPages(params?: ListParams): Promise<LandingPagePreview[]>;
-    landingPageBySlug(slug: string, params?: Params): Promise<LandingPage>;
+    landingPageBySlug(
+      slug: string,
+      params?: Params
+    ): Promise<LandingPage | null>;
   };
 }
