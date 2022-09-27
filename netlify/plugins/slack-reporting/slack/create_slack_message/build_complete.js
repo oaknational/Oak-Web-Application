@@ -31,60 +31,63 @@ function createSlackBuildCompleteMessage(config) {
     deploymentUrl,
   } = config;
 
-  // Only reporting production builds for now.
-  if (environmentType === "production") {
-    // Throw if any config values are missing.
-    validateConfig(
-      [
-        "siteName",
-        "environmentType",
-        "infoUrl",
-        "repoUrlString",
-        "appVersion",
-        "buildStatus",
-      ],
-      config
+  // Throw if any config values are missing.
+  validateConfig(
+    [
+      "siteName",
+      "environmentType",
+      "infoUrl",
+      "repoUrlString",
+      "appVersion",
+      "buildStatus",
+    ],
+    config
+  );
+
+  const isSuccess = buildStatus === "success";
+  if (isSuccess && !deploymentUrl) {
+    throw new TypeError(
+      `Successful build reports require 'deploymentUrl' to be passed.`
     );
-
-    const isSuccess = buildStatus === "success";
-    if (isSuccess && !deploymentUrl) {
-      throw new TypeError(
-        `Successful build reports require 'deploymentUrl' to be passed.`
-      );
-    }
-
-    const buildIcons = {
-      success: ":white_check_mark:",
-      error: ":x:",
-      cancelled: ":heavy_multiplication_x:",
-    };
-
-    const shortText = `${siteName} production deployment ${buildStatus}`;
-    const blocks = [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `*${siteName}*: production deployment (<${repoUrlString}/releases/tag/${appVersion}|${appVersion}>) ${
-            buildIcons[buildStatus] || ":grey_question:"
-          } ${buildStatus}`,
-        },
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `(<${infoUrl}|build log>)${
-            isSuccess ? ` <${deploymentUrl}|open deployment>` : ""
-          }`,
-        },
-      },
-    ];
-    return {
-      shortText,
-      blocks,
-    };
   }
+
+  const buildIcons = {
+    success: ":white_check_mark:",
+    error: ":x:",
+    cancelled: ":heavy_multiplication_x:",
+  };
+
+  let releaseString;
+  const isProduction = environmentType === "production";
+  if (isProduction) {
+    releaseString = `(<${repoUrlString}/releases/tag/${appVersion}|${appVersion}>)`;
+  }
+
+  const shortText = `${siteName} ${environmentType} deployment ${buildStatus}`;
+  const blocks = [
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `*${siteName}*: ${environmentType} deployment ${
+          isProduction ? releaseString + " " : ""
+        }${buildIcons[buildStatus] || ":grey_question:"} ${buildStatus}`,
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `(<${infoUrl}|build log>)${
+          isSuccess ? ` <${deploymentUrl}|open deployment>` : ""
+        }`,
+      },
+    },
+  ];
+  return {
+    shortText,
+    blocks,
+  };
 }
 
 module.exports = createSlackBuildCompleteMessage;
