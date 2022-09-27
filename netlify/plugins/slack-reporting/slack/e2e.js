@@ -28,6 +28,22 @@ const messageConfigProdSuccess = {
   buildStatus: "success",
   deploymentUrl: "https://example.com/deployment_url",
 };
+const messageConfigProdCancelled = {
+  siteName: "fake test app name",
+  environmentType: "production",
+  infoUrl: "https://example.com/build_url",
+  repoUrlString: "https://github.com/oaknational/Oak-Web-Application",
+  appVersion: "v1.23.0",
+  buildStatus: "cancelled",
+};
+const messageConfigProdError = {
+  siteName: "fake test app name",
+  environmentType: "production",
+  infoUrl: "https://example.com/build_url",
+  repoUrlString: "https://github.com/oaknational/Oak-Web-Application",
+  appVersion: "v1.23.0",
+  buildStatus: "error",
+};
 
 const prodStart = createBuildStartedSlackMessage(
   messageConfigProdStart,
@@ -35,6 +51,14 @@ const prodStart = createBuildStartedSlackMessage(
 );
 const prodFinish = createBuildCompleteSlackMessage(
   messageConfigProdSuccess,
+  "production"
+);
+const prodCancelled = createBuildCompleteSlackMessage(
+  messageConfigProdCancelled,
+  "production"
+);
+const prodError = createBuildCompleteSlackMessage(
+  messageConfigProdError,
   "production"
 );
 
@@ -47,5 +71,11 @@ const slackConfig = getSlackConfig();
   console.log("start", result);
 
   result = await sendMessage(prodFinish, slackConfig);
+  console.log("success", result);
+
+  result = await sendMessage(prodCancelled, slackConfig);
+  console.log("success", result);
+
+  result = await sendMessage(prodError, slackConfig);
   console.log("success", result);
 })();

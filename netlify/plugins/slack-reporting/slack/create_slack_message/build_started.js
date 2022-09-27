@@ -19,7 +19,7 @@ function createBuildStartedSlackMessage(config) {
   const { siteName, environmentType, infoUrl, repoUrlString, appVersion } =
     config;
 
-  // Production builds.
+  // Only reporting production builds for now.
   if (environmentType === "production") {
     // Throw if any config values are missing.
     validateConfig(
@@ -27,14 +27,14 @@ function createBuildStartedSlackMessage(config) {
       config
     );
 
-    const shortText = `${siteName}: production deployment started`;
+    const shortText = `${siteName} production deployment started`;
 
     const blocks = [
       {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `*${siteName}* (<${repoUrlString}/releases/tag/${appVersion}|${appVersion}>): production deployment started (<${infoUrl}|*build log*>)`,
+          text: `*${siteName}*: (<${repoUrlString}/releases/tag/${appVersion}|${appVersion}>): production deployment started (<${infoUrl}|*build log*>)`,
         },
       },
     ];

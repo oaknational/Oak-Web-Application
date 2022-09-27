@@ -20,32 +20,38 @@ const validateConfig = require("./validate_config");
  *
  * @throws {TypeError} Throws is config values are undefined.
  */
-function createSlackBuildCompleteMessage(config, buildEnvironment) {
+function createSlackBuildCompleteMessage(config) {
   const {
     siteName,
     environmentType,
     infoUrl,
     repoUrlString,
     appVersion,
-    deploymentUrl,
     buildStatus,
+    deploymentUrl,
   } = config;
 
   // Only reporting production builds for now.
-  if (buildEnvironment === "production") {
+  if (environmentType === "production") {
     // Throw if any config values are missing.
     validateConfig(
       [
-        siteName,
-        environmentType,
-        infoUrl,
-        repoUrlString,
-        appVersion,
-        deploymentUrl,
-        buildStatus,
+        "siteName",
+        "environmentType",
+        "infoUrl",
+        "repoUrlString",
+        "appVersion",
+        "buildStatus",
       ],
       config
     );
+
+    const isSuccess = buildStatus === "success";
+    if (isSuccess && !deploymentUrl) {
+      throw new TypeError(
+        `Successful build reports require 'deploymentUrl' to be passed.`
+      );
+    }
 
     const buildIcons = {
       success: ":white_check_mark:",
@@ -59,34 +65,19 @@ function createSlackBuildCompleteMessage(config, buildEnvironment) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `*${siteName} production deployment ${buildStatus}*`,
+          text: `*${siteName}*: production deployment (<${repoUrlString}/releases/tag/${appVersion}|${appVersion}>) ${
+            buildIcons[buildStatus] || ":grey_question:"
+          } ${buildStatus}`,
         },
-      },
-      {
-        type: "divider",
       },
       {
         type: "section",
         text: {
-          type: "plain_text",
-          text: `${
-            buildIcons[buildStatus] || ":grey_question:"
-          } ${buildStatus}`,
-          emoji: true,
+          type: "mrkdwn",
+          text: `(<${infoUrl}|build log>)${
+            isSuccess ? ` <${deploymentUrl}|open deployment>` : ""
+          }`,
         },
-      },
-      {
-        type: "section",
-        fields: [
-          {
-            type: "mrkdwn",
-            text: `*Release*\n<${repoUrlString}/releases/tag/${appVersion}|${appVersion}>`,
-          },
-          {
-            type: "mrkdwn",
-            text: `(<${infoUrl}|build log>)`,
-          },
-        ],
       },
     ];
     return {
