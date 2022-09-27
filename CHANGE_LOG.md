@@ -1,3 +1,26 @@
+## [1.24.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.24.0...v1.24.1) (2022-09-27)
+
+# [1.24.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.23.0...v1.24.0) (2022-09-26)
+
+
+### Bug Fixes
+
+* ensure previewMode flag is correctly passed to parseResults ([2ab7447](https://github.com/oaknational/Oak-Web-Application/commit/2ab74473bfbd9db9f0082688e1d5a233fd01634f))
+* update about page schema to match field renaming ([b8a6e89](https://github.com/oaknational/Oak-Web-Application/commit/b8a6e8955c47b71d39ef53b08323490ca330afb6))
+
+
+### Features
+
+* add fixtures for about pages ([6202463](https://github.com/oaknational/Oak-Web-Application/commit/620246397a6d81464d28111c227341464b6f2f03))
+* split about page into individual sub-page queries ([1bc636c](https://github.com/oaknational/Oak-Web-Application/commit/1bc636c652836ec559e3221d271f43172aad55df))
+
+## [1.22.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.1...v1.22.2) (2022-09-26)
+
+
+### Bug Fixes
+
+* kebab-case-to-camel-case-line-svg ([8c70379](https://github.com/oaknational/Oak-Web-Application/commit/8c70379e3714fcbe50af8d64519c89ed3211b53f))
+
 ## [1.22.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.22.0...v1.22.1) (2022-09-26)
 
 
