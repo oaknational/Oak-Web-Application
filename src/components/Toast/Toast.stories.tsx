@@ -14,7 +14,7 @@ export default {
 const Template: ComponentStory<typeof Component> = () => {
   return (
     <ToastProvider>
-      <Component />
+      <Component role="status" />
       <CopyLinkButton />
     </ToastProvider>
   );

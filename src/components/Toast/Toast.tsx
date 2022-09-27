@@ -34,6 +34,10 @@ const ToastCard = styled(Card)<TransitionProps>`
   }};
 `;
 
+type ToastProps = {
+  role: "alert" | "status";
+};
+
 /**
  * Toasts display brief, temporary notifications.
  * They are noticeable but do not disrupt the user experience and do not require an action to be taken.
@@ -43,7 +47,7 @@ const ToastCard = styled(Card)<TransitionProps>`
  * and low-priority alerts that do not need to completely interrupt the user experience.
  */
 
-const Toast: FC = () => {
+const Toast: FC<ToastProps> = ({ role }) => {
   const { message, shown, hideToast } = useToastContext();
 
   useEffect(() => {
@@ -63,6 +67,7 @@ const Toast: FC = () => {
           $background="teachersPastelYellow"
           $width={["100%", "auto"]}
           $left={[0, "40%", "50%"]}
+          aria-role={role}
         >
           <BrushBorders color="teachersPastelYellow" />
           <Flex $alignItems={"center"}>
@@ -72,12 +77,7 @@ const Toast: FC = () => {
               variant={"brush"}
               background={"white"}
             />
-            <Typography
-              $color={"black"}
-              $fontFamily={"ui"}
-              $ml={16}
-              aria-role="alert"
-            >
+            <Typography $color={"black"} $fontFamily={"ui"} $ml={16}>
               {message}
             </Typography>
           </Flex>
