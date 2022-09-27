@@ -37,7 +37,7 @@ const footerSections: FooterSections = {
       { text: "Copyright notice", href: "/legal/copyright-notice" },
       { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
       {
-        text: "Accessibilty statement",
+        text: "Accessibility statement",
         href: "/legal/accessibility-statement",
       },
       { text: "Safeguarding statement", href: "/legal/safeguarding-statement" },

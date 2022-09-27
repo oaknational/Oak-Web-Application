@@ -39,9 +39,7 @@ describe("/api/preview/[[...path]]", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(307);
-    expect(res.getHeaders()).toMatchObject({
-      location: "/webinars/some-webinar",
-    });
+    expect(res._getRedirectUrl()).toBe("/webinars/some-webinar?");
   });
 
   it("should treat an undefined path as empty", async () => {
@@ -49,9 +47,7 @@ describe("/api/preview/[[...path]]", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(307);
-    expect(res.getHeaders()).toMatchObject({
-      location: "/",
-    });
+    expect(res._getRedirectUrl()).toBe("/?");
   });
 
   it("should reject an invalid path", async () => {
@@ -59,7 +55,7 @@ describe("/api/preview/[[...path]]", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(500);
-    expect(res.getHeaders().location).toBeUndefined();
+    expect(res._getRedirectUrl()).toBe("");
   });
 
   it("should reject an invalid preview secret", async () => {
@@ -70,6 +66,6 @@ describe("/api/preview/[[...path]]", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(401);
-    expect(res.getHeaders().location).toBeUndefined();
+    expect(res._getRedirectUrl()).toBe("");
   });
 });
