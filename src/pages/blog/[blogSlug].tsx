@@ -280,7 +280,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
                   <CMSImage
                     image={{
                       altText: blog.author.image.altText,
-                      isPresentational: blog.author.image.isPresentational,
+                      isPresentational: true,
                       asset: blog.author.image.asset,
                     }}
                   />
