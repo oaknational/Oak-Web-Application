@@ -274,28 +274,35 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             <Heading $mt={12} $font={["heading-5", "heading-4"]} tag={"h1"}>
               {blog.title}
             </Heading>
-            <Flex $alignItems={"center"} $mt={16}>
-              {blog.author.image && (
-                <Circle $mr={12} $overflow={"hidden"} size={56}>
-                  <CMSImage
-                    image={{
-                      altText: blog.author.image.altText,
-                      isPresentational: blog.author.image.isPresentational,
-                      asset: blog.author.image.asset,
-                    }}
-                  />
-                </Circle>
-              )}
-              <Box $mr={48}>
-                <Heading tag="h2" $font={"heading-7"}>
-                  {blog.author.name}
-                </Heading>
-                {blog.author.role && (
-                  <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
-                    {blog.author.role}
-                  </P>
+            <Flex
+              $alignItems={"center"}
+              $mt={16}
+              $mr={[20, 0]}
+              $justifyContent={["space-between", "left"]}
+            >
+              <Flex $alignItems={"center"}>
+                {blog.author.image && (
+                  <Circle $mr={12} $overflow={"hidden"} size={56}>
+                    <CMSImage
+                      image={{
+                        altText: blog.author.image.altText,
+                        isPresentational: blog.author.image.isPresentational,
+                        asset: blog.author.image.asset,
+                      }}
+                    />
+                  </Circle>
                 )}
-              </Box>
+                <Box $mr={[0, 40]}>
+                  <Heading tag="h2" $font={"heading-7"}>
+                    {blog.author.name}
+                  </Heading>
+                  {blog.author.role && (
+                    <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
+                      {blog.author.role}
+                    </P>
+                  )}
+                </Box>
+              </Flex>
               <CopyLinkButton />
             </Flex>
             <Box $mt={[48]}>
