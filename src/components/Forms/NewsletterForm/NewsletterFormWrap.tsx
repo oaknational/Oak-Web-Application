@@ -43,6 +43,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
         <OakLink page="privacy-policy">
           <a>privacy policy</a>
         </OakLink>
+        .
       </P>
       <NewsletterForm descriptionId={descriptionId} id={id} {...props} />
     </Card>

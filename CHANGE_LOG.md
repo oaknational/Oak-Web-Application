@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.0...v1.25.1) (2022-09-27)
+
+
+### Bug Fixes
+
+* **develop-your-curriculum:** x-overflow bug on ([e6e6313](https://github.com/oaknational/Oak-Web-Application/commit/e6e63133c10976f2c8f862e90d3d06344cdc3c36))
+
 # [1.25.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.24.1...v1.25.0) (2022-09-27)
 
 

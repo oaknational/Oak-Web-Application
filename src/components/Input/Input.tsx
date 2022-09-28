@@ -144,6 +144,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
               <RotatedInputLabel
+                aria-hidden="true"
                 background={error ? "teachersRed" : "pastelTurqoise"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
@@ -162,7 +163,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
               aria-labelledby={labelId}
             />
             {icon && <InputIcon $pa={8} size={40} name={icon} />}
-            <InputFocusUnderline name={"Underline1"} />
+            <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
           </Flex>
         </InputFieldWrap>
 

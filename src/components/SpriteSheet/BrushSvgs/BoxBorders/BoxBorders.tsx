@@ -1,25 +1,21 @@
 import { FC } from "react";
-import styled, { css } from "styled-components";
 
-import { OakColorName } from "../../../../styles/theme";
-import getColorByName from "../../../../styles/themeHelpers/getColorByName";
+import { ZIndex } from "../../../../styles/utils/zIndex";
+import Box from "../../../Box";
 import Svg from "../../../Svg";
-import { SvgProps } from "../../../Svg/Svg";
-
-const BORDER_THICKNESS_PX = 3;
-const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
 
 export const gapPositionMap = {
-  rightTop: 95,
-  bottomRight: 85,
-  topHide: 0,
-  bottomHide: 0,
+  rightTop: "90%",
+  bottomRight: "85%",
 } as const;
 
 export type GapPosition = keyof typeof gapPositionMap;
 
-export type GapPositionProps = {
+export type BoxBordersProps = {
   gapPosition?: GapPosition;
+  $zIndex?: ZIndex;
+  hideTop?: boolean;
+  hideBottom?: boolean;
 };
 
 const Top: FC = (props) => {
@@ -101,76 +97,6 @@ export const svgSymbols = {
   Left,
 };
 
-const brushBorderBase = css<{ color?: OakColorName }>`
-  position: absolute;
-  color: ${(props) => getColorByName(props.color)};
-`;
-
-const boxBorderTop = css`
-  height: ${BORDER_THICKNESS_PX}px;
-  top: ${BORDER_OFFSET_PX}px;
-  right: ${BORDER_OFFSET_PX}px;
-  left: ${BORDER_OFFSET_PX}px;
-`;
-
-const boxBorderRight = css`
-  width: ${BORDER_THICKNESS_PX}px;
-  right: ${BORDER_OFFSET_PX}px;
-  bottom: ${BORDER_OFFSET_PX}px;
-  height: 101%;
-`;
-
-const boxBorderBottom = css`
-  height: ${BORDER_THICKNESS_PX}px;
-  bottom: ${BORDER_OFFSET_PX}px;
-  right: ${BORDER_OFFSET_PX}px;
-  left: ${BORDER_OFFSET_PX}px;
-`;
-
-const boxBorderLeft = css`
-  width: ${BORDER_THICKNESS_PX}px;
-  top: ${BORDER_OFFSET_PX}px;
-  left: ${BORDER_OFFSET_PX}px;
-  bottom: ${BORDER_OFFSET_PX}px;
-`;
-
-const BoxBorderTop = styled(Svg)<SvgProps & BoxBorderProps>`
-  ${brushBorderBase}
-  ${boxBorderTop}
-  ${(props) =>
-    props.hideTop &&
-    css`
-      width: 0%;
-    `}
-`;
-const BoxBorderRight = styled(Svg)<GapPositionProps>`
-  ${brushBorderBase}
-  ${boxBorderRight}
-  ${(props) =>
-    props.gapPosition == "rightTop" &&
-    css`
-      height: ${gapPositionMap.rightTop}%;
-    `}
-`;
-const BoxBorderBottom = styled(Svg)<BoxBorderProps>`
-  ${brushBorderBase}
-  ${boxBorderBottom}
-  ${(props) =>
-    props.hideBottom &&
-    css`
-      width: 0%;
-    `}
-  ${(props) =>
-    props.gapPosition == "bottomRight" &&
-    css`
-      width: ${gapPositionMap.bottomRight}%;
-    `}
-`;
-const BoxBorderLeft = styled(Svg)`
-  ${brushBorderBase}
-  ${boxBorderLeft}
-`;
-
 /**
  * Presentational component just for the brush-stroke borders. This is a single
  * component which renders four spans, one for each side of the border.
@@ -184,20 +110,48 @@ const BoxBorderLeft = styled(Svg)`
  * which allows them to be stretched whilst still preserving the effect of being
  * a painted or drawn line.
  */
-type BoxBorderProps = GapPositionProps & {
-  color?: OakColorName;
-  hideTop?: boolean;
-  hideBottom?: boolean;
-};
-
-const BoxBorders: FC<BoxBorderProps> = (props) => {
+const BoxBorders: FC<BoxBordersProps> = (props) => {
+  const { gapPosition } = props;
   return (
-    <div aria-hidden="true" data-testid="brush-borders">
-      <BoxBorderTop {...props} name="box-border-top" />
-      <BoxBorderRight {...props} name="box-border-right" />
-      <BoxBorderBottom {...props} name="box-border-bottom" />
-      <BoxBorderLeft {...props} name="box-border-left" />
-    </div>
+    <Box aria-hidden="true" data-testid="brush-borders">
+      {!props.hideTop && (
+        <Svg
+          name="box-border-top"
+          {...props}
+          $cover
+          $height={3}
+          $bottom={"unset"}
+        />
+      )}
+      <Svg
+        name="box-border-right"
+        {...props}
+        $cover
+        $width={3}
+        $top={"unset"}
+        $left={"unset"}
+        $height={gapPosition === "rightTop" ? gapPositionMap.rightTop : "100%"}
+      />
+      {!props.hideBottom && (
+        <Svg
+          name="box-border-bottom"
+          {...props}
+          $cover
+          $height={3}
+          $top={"unset"}
+          $width={
+            gapPosition === "bottomRight" ? gapPositionMap.bottomRight : "100%"
+          }
+        />
+      )}
+      <Svg
+        name="box-border-left"
+        {...props}
+        $cover
+        $width={3}
+        $right={"unset"}
+      />
+    </Box>
   );
 };
 

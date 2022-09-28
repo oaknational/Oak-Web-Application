@@ -116,7 +116,7 @@ function Option({ item, state }: OptionProps) {
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
-        <BoxBorders color="black" hideTop />
+        <BoxBorders hideTop />
       </Flex>
     </ListItem>
   );
