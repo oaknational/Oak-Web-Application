@@ -3,28 +3,24 @@ import { z } from "zod";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import {
-  planningPageSchema,
-  curriculumPageSchema,
-  homePageSchema,
   aboutBoardPageSchema,
   aboutLeadershipPageSchema,
   aboutPartnersPageSchema,
   aboutWhoWeArePageSchema,
   aboutWorkWithUsPageSchema,
-} from "./schemas/pages";
-import {
+  homePageSchema,
+  curriculumPageSchema,
   blogPostPreviewSchema,
   blogPostSchema,
+  planningPageSchema,
   policyPagePreviewSchema,
   policyPageSchema,
   webinarPreviewSchema,
   webinarSchema,
-} from "./schemas";
-import { resolveReferences } from "./resolveReferences";
-import {
   landingPagePreviewSchema,
   landingPageSchema,
-} from "./schemas/landingPage";
+} from "./schemas";
+import { resolveReferences } from "./resolveReferences";
 import { parseResults } from "./parseResults";
 
 export type Params = {

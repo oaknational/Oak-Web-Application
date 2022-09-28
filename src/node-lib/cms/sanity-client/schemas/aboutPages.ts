@@ -7,60 +7,9 @@ import {
   seoSchema,
 } from "./base";
 import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
-import { blogPostPreviewSchema } from "./blog";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
-
-export const homePageSchema = z
-  .object({
-    heading: z.string(),
-    summaryPortableText: portableTextSchema,
-    sidebarCard1: cardSchema,
-    sidebarCard2: cardSchema,
-    sidebarForm: z.object({
-      title: z.string(),
-      bodyPortableText: portableTextSchema,
-    }),
-    seo: seoSchema.nullish(),
-  })
-  .merge(documentSchema);
-
-export type HomePage = z.infer<typeof homePageSchema>;
-
-export const planningPageSchema = z
-  .object({
-    title: z.string(),
-    heading: z.string(),
-    summaryPortableText: portableTextSchema,
-    lessonElements: z.object({
-      introQuiz: cardSchema,
-      video: cardSchema,
-      slides: cardSchema,
-      worksheet: cardSchema,
-      exitQuiz: cardSchema,
-    }),
-    lessonElementsCTA: CTASchema,
-    stepsHeading: z.string(),
-    steps: z
-      .object({
-        step1: cardSchema,
-        step2: cardSchema,
-        step3: cardSchema,
-        step4: cardSchema,
-      })
-      .transform(({ step1, step2, step3, step4 }) => {
-        return [step1, step2, step3, step4];
-      }),
-    stepsCTA: CTASchema,
-    learnMoreHeading: z.string(),
-    learnMoreBlock1: textAndMediaSchema,
-    learnMoreBlock2: textAndMediaSchema,
-    seo: seoSchema.nullish(),
-  })
-  .merge(documentSchema);
-
-export type PlanningPage = z.infer<typeof planningPageSchema>;
 
 const aboutPageBaseSchema = z
   .object({
@@ -135,29 +84,3 @@ export const aboutWorkWithUsPageSchema = aboutPageBaseSchema.extend({
 });
 
 export type AboutWorkWithUsPage = z.infer<typeof aboutWorkWithUsPageSchema>;
-
-export const curriculumPageSchema = z
-  .object({
-    title: z.string(),
-    heading: z.string(),
-    summaryPortableText: portableTextSchema,
-    info: textBlockSchema,
-    gettingStarted: textBlockSchema,
-    elements: z.object({
-      title: z.string(),
-      posts: z.array(
-        z.object({
-          title: z.string(),
-          post: blogPostPreviewSchema.pick({
-            title: true,
-            slug: true,
-          }),
-        })
-      ),
-    }),
-    ourApproach: textBlockSchema,
-    seo: seoSchema.nullish(),
-  })
-  .merge(documentSchema);
-
-export type CurriculumPage = z.infer<typeof curriculumPageSchema>;
