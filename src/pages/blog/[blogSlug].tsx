@@ -286,8 +286,8 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
                   />
                 </Circle>
               )}
-              <Box>
-                <Heading tag="h2" $font={"heading-7"} $mr={40}>
+              <Box $mr={48}>
+                <Heading tag="h2" $font={"heading-7"}>
                   {blog.author.name}
                 </Heading>
                 {blog.author.role && (
