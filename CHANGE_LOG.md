@@ -1,3 +1,11 @@
+## [1.25.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.3...v1.25.4) (2022-09-28)
+
+
+### Bug Fixes
+
+* add aria-hidden to presentational images ([5408cde](https://github.com/oaknational/Oak-Web-Application/commit/5408cde631ff0ea4100450f4dd8ef59f90398e1f))
+* hide blog author image from a11y tree ([d306763](https://github.com/oaknational/Oak-Web-Application/commit/d306763234ba3118dd983528fb74d6d8a3592d56))
+
 ## [1.25.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.2...v1.25.3) (2022-09-27)
 
 
