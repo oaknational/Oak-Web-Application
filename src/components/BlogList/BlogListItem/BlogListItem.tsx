@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
+import { BlogWebinarCategory, Image } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
 import useClickableCard from "../../../hooks/useClickableCard";
@@ -21,7 +21,7 @@ export type BlogListItemProps = {
   contentType: BlogListItemContentType;
   category: BlogWebinarCategory;
   date: string;
-  mainImage?: SanityImage | null;
+  mainImage?: Image | null;
   withImage?: boolean;
 };
 

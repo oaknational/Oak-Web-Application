@@ -87,10 +87,14 @@ export const aboutWhoWeArePageSchema = aboutPageBaseSchema.extend({
   principles: z.array(textBlockSchema),
 });
 
+export type AboutWhoWeArePage = z.infer<typeof aboutWhoWeArePageSchema>;
+
 export const aboutLeadershipPageSchema = aboutPageBaseSchema.extend({
   heading: z.string(),
   introPortableText: portableTextSchema,
 });
+
+export type AboutLeadershipPage = z.infer<typeof aboutLeadershipPageSchema>;
 
 export const aboutBoardPageSchema = aboutPageBaseSchema.extend({
   heading: z.string(),
@@ -99,6 +103,8 @@ export const aboutBoardPageSchema = aboutPageBaseSchema.extend({
   governancePortableText: portableTextSchema,
   boardMembers: z.array(teamMemberSchema),
 });
+
+export type AboutBoardPage = z.infer<typeof aboutBoardPageSchema>;
 
 export const aboutPartnersPageSchema = aboutPageBaseSchema.extend({
   heading: z.string(),
@@ -115,6 +121,8 @@ export const aboutPartnersPageSchema = aboutPageBaseSchema.extend({
   ),
 });
 
+export type AboutPartnersPage = z.infer<typeof aboutPartnersPageSchema>;
+
 export const aboutWorkWithUsPageSchema = aboutPageBaseSchema.extend({
   heading: z.string(),
   introPortableText: portableTextSchema,
@@ -126,7 +134,7 @@ export const aboutWorkWithUsPageSchema = aboutPageBaseSchema.extend({
   }),
 });
 
-export type AboutPage = z.infer<typeof aboutPageSchema>;
+export type AboutWorkWithUsPage = z.infer<typeof aboutWorkWithUsPageSchema>;
 
 export const curriculumPageSchema = z
   .object({
