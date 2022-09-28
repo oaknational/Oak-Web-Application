@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 import {
   CookieConsent,
@@ -6,6 +7,8 @@ import {
   COOKIE_POLICY_NAMES,
   defaultConsent,
 } from "../types";
+
+import cookieOptions from "./cookieOptions";
 
 const safeLocalStorage = {
   setItem: (keyName: string, keyValue: string) => {
@@ -43,7 +46,7 @@ const consentPolicyMap: Record<CookiePolicyName, string> = {
     "metomic-consented-pol:3c779fd2-9d6b-4613-8eed-e746cb669d7e",
   embeddedContent: "metomic-consented-pol:68beb01a-65f3-481d-b9db-be05ad95c5a1",
   statistics: "metomic-consented-pol:b109d120-ec88-4dd7-9f6e-fc67ab6f0ffb",
-};
+} as const;
 
 type ConfirmicConsents = {
   strictlyNecessary: CookieConsent;
@@ -91,27 +94,111 @@ export const getConsentsFromLocalStorage = () => {
   );
 };
 
-/**
- * @returns {ConfirmicConsents}
- */
+type ConfirmicPolicyId = string;
+type ConsentTuple = [ConfirmicPolicyId, string];
+export const toTuples = (consents: ConfirmicConsents): ConsentTuple[] => {
+  return Object.entries(consentPolicyMap).map((entry) => {
+    const [policyName, policyId] = entry as [
+      CookiePolicyName,
+      ConfirmicPolicyId
+    ];
+    return [
+      policyId,
+      JSON.stringify({
+        enabled: consents[policyName]?.state === "enabled",
+        version: consents[policyName]?.version,
+      }),
+    ] as ConsentTuple;
+  });
+};
+export const fromTuples = (
+  tuples: ConsentTuple[] | unknown
+): ConfirmicConsents | undefined => {
+  if (!Array.isArray(tuples)) {
+    return;
+  }
+  const fromTuplesByName = (
+    name: CookiePolicyName
+  ): CookieConsent | undefined => {
+    try {
+      const policyId = consentPolicyMap[name];
+      const detailStr = tuples.find(
+        ([_policyId]) => _policyId === policyId
+      )?.[1];
+      if (!detailStr) {
+        return;
+      }
+
+      const detail = JSON.parse(detailStr);
+
+      return {
+        version: detail.version,
+        state: detail.enabled ? "enabled" : "disabled",
+      };
+    } catch (error) {
+      return;
+    }
+  };
+  const strictlyNecessary = fromTuplesByName("strictlyNecessary");
+  const embeddedContent = fromTuplesByName("embeddedContent");
+  const statistics = fromTuplesByName("statistics");
+
+  if (!strictlyNecessary || !embeddedContent || !statistics) {
+    return;
+  }
+  return {
+    strictlyNecessary,
+    embeddedContent,
+    statistics,
+  };
+};
+
+export const safeStringify = (value: unknown) => {
+  try {
+    return JSON.stringify(value);
+  } catch (error) {
+    // non-critical error
+    return;
+  }
+};
+
+const CONFIRMIC_COOKIE_NAME = "cookie-consents";
+
 const useConfirmicConsents = () => {
-  /**
-   * @todo warn if this is called more than once, as that would cause excessive
-   * local storage activity
-   */
+  const [consentCookie, setConsentCookie] = useCookies([CONFIRMIC_COOKIE_NAME]);
+  const consentsFromCookie = fromTuples(consentCookie[CONFIRMIC_COOKIE_NAME]);
   const [consents, setConsents] = useState<ConfirmicConsents>(
-    getConsentsFromLocalStorage()
+    consentsFromCookie || getConsentsFromLocalStorage()
   );
+
+  const tuples = toTuples(consents);
+  const tuplesString = safeStringify(tuples);
+
+  useEffect(() => {
+    /**
+     * If user updates their consents in this browser window, then local
+     * storage will update, which will in turn update state in this hook, which
+     * will then update the value of the cookie, which will propagate to other
+     * thenational.academy subdomains
+     **/
+    if (tuples) {
+      setConsentCookie(CONFIRMIC_COOKIE_NAME, tuples, cookieOptions);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tuplesString, setConsentCookie]);
 
   useEffect(() => {
     const updateStateFromLocalStorage = () => {
       const consentsFromLocalStorage = getConsentsFromLocalStorage();
-      setConsents(consentsFromLocalStorage);
+      if (!consentsFromCookie) {
+        setConsents(consentsFromLocalStorage);
+      }
     };
     updateStateFromLocalStorage();
     window.addEventListener("storage", updateStateFromLocalStorage);
     return () =>
       window.removeEventListener("storage", updateStateFromLocalStorage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return consents;
