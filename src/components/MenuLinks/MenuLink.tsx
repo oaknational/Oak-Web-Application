@@ -3,7 +3,7 @@ import { FC } from "react";
 import { isOakPage, resolveOakHref } from "../../common-lib/urls";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import { PixelSpacing } from "../../styles/theme";
-import { FontSize } from "../../styles/utils/typography";
+import { FontVariant } from "../../styles/utils/typography";
 import Flex from "../Flex";
 import OakLink from "../OakLink";
 import { LI, Span } from "../Typography";
@@ -17,10 +17,10 @@ const MARGIN_TOP: Record<MenuLinkSize, PixelSpacing[]> = {
   medium: [12],
   large: [16],
 };
-const FONT_SIZE: Record<MenuLinkSize, FontSize[]> = {
-  small: [16],
-  medium: [24],
-  large: [32],
+const FONT_VARIANT: Record<MenuLinkSize, FontVariant[]> = {
+  small: ["heading-7"],
+  medium: ["heading-5"],
+  large: ["heading-4"],
 };
 const SECTION_PADDING_TOP: Record<MenuLinkSize, PixelSpacing[]> = {
   small: [32],
@@ -56,12 +56,7 @@ const MenuLink: FC<MenuLinkProps & { isFirstOfSection: boolean }> = (props) => {
         $pt={isFirstOfSection ? SECTION_PADDING_TOP[size] : 0}
       >
         {isCurrent && <MenuLinkActiveIcon href={href} size={size} />}
-        <Span
-          $fontFamily="heading"
-          $fontSize={FONT_SIZE[size]}
-          $lineHeight={1.2}
-          $opacity={isCurrent ? 0.6 : 1}
-        >
+        <Span $font={FONT_VARIANT[size]} $opacity={isCurrent ? 0.6 : 1}>
           <OakLink page={page} htmlAnchorProps={{ onClick }}>
             {linkText}
           </OakLink>

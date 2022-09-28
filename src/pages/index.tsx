@@ -63,10 +63,10 @@ const Notification: FC = () => {
           size={30}
         />
       </Box>
-      <Span $fontSize={14} $color="oakGrey4">
+      <Span $font={"body-3"} $color="oakGrey4">
         Blog
       </Span>
-      <Heading $fontSize={20} tag="h2" $mt={4}>
+      <Heading $font={"heading-6"} tag="h2" $mt={4}>
         <CardLink
           page={null}
           href={href}
@@ -125,7 +125,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $justifyContent="flex-end"
               >
                 <Heading
-                  $fontSize={[32]}
+                  $font={["heading-4"]}
                   tag={"h1"}
                   $mb={[20, 16]}
                   data-testid="home-page-title"
@@ -133,7 +133,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                 >
                   {props.pageData.heading}
                 </Heading>
-                <Heading tag={"h2"} $fontSize={[20]}>
+                <Heading tag={"h2"} $font={["heading-6"]}>
                   {/* @TODO: The portable text in the CMS allows more features
                              than just plain text. We should decide if we want
                              to lock that down, or handle more cases here */}
@@ -184,9 +184,8 @@ const Home: NextPage<HomePageProps> = (props) => {
                   </Box>
                   <Heading
                     $ml={[0, "auto"]}
-                    $fontSize={[20, 32]}
+                    $font={["heading-6", "heading-4"]}
                     tag={"h3"}
-                    $color={"black"}
                   >
                     <CardLink
                       page="pupils-home"
@@ -248,9 +247,8 @@ const Home: NextPage<HomePageProps> = (props) => {
                   </Box>
                   <Heading
                     $ml={[0, "auto"]}
-                    $fontSize={[20, 32]}
+                    $font={["heading-6", "heading-4"]}
                     tag={"h3"}
-                    $color={"black"}
                   >
                     <CardLink
                       page="teachers-home"
@@ -322,11 +320,11 @@ const Home: NextPage<HomePageProps> = (props) => {
                   $justifyContent="space-between"
                   $mb={48}
                 >
-                  <Heading tag={"h3"} $fontSize={24} $fontFamily="heading">
+                  <Heading tag={"h3"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
 
-                  <Typography $fontFamily="ui">
+                  <Typography $font="heading-7">
                     {/* <Link href={"/webinars"}>All webinars</Link> */}
                     <Link href={"/blog"}>All blogs</Link>
                   </Typography>

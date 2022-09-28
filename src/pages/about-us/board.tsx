@@ -54,7 +54,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           bodyPortableText={pageData.introPortableText}
         />
 
-        <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h2"}>
+        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
           Our interim board
         </Heading>
 
@@ -63,9 +63,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             <Heading
               key={boardMember.id}
               $textAlign="center"
-              $fontFamily={"headingLight"}
               tag={"h4"}
-              $fontSize={[16, 20]}
+              $font={["heading-7", "heading-6"]}
             >
               {boardMember.name}
             </Heading>
@@ -73,7 +72,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Box>
 
         <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
-          <Heading $fontSize={24} tag={"h2"}>
+          <Heading $font={"heading-5"} tag={"h2"}>
             Documents
           </Heading>
         </Flex>
@@ -92,7 +91,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                     $height={"100%"}
                     $flexDirection={"column"}
                   >
-                    <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
+                    <Heading $font={"heading-7"} tag={"h4"}>
                       {doc.title}
                     </Heading>
                     <Flex
@@ -119,11 +118,11 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Typography>
         </Flex>
         <Card $pv={0} $mv={[80, 92]} $ph={[16, 80]} $width={["100%", "70%"]}>
-          <Heading $mb={20} $fontSize={24} tag={"h2"}>
+          <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
             Governance
           </Heading>
 
-          <Typography $fontSize={[16, 18]}>
+          <Typography $font={["body-1", "body-2"]}>
             <PortableText value={pageData.governancePortableText} />
           </Typography>
         </Card>

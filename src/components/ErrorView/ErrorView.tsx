@@ -17,6 +17,7 @@ const shadow =
 const ErrorHeading = styled(Heading)`
   color: white;
   font-size: 120px;
+  line-height: 144px;
   text-shadow: ${shadow};
 `;
 
@@ -46,17 +47,15 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             $justifyContent={["flex-end", "flex-start"]}
           >
             {statusCode ? (
-              <ErrorHeading $fontSize={56} tag="h1">
-                {statusCode}
-              </ErrorHeading>
+              <ErrorHeading tag="h1">{statusCode}</ErrorHeading>
             ) : (
-              <Heading $fontSize={24} $mb={12} tag="h1">
+              <Heading $font={"heading-5"} $mb={12} tag="h1">
                 An error occurred
               </Heading>
             )}
           </Flex>
 
-          <Heading $mb={48} $fontSize={[24, 32]} tag={"h2"}>
+          <Heading $mb={48} $font={["heading-5", "heading-4"]} tag={"h2"}>
             Whoops! It looks like you have fallen too far from the tree.
           </Heading>
 
@@ -66,18 +65,22 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               <Button
                 onClick={onBackClick}
                 variant="minimal"
-                icon="ChevronLeft"
+                icon="ArrowLeft"
+                iconPosition="trailing"
+                iconBackground={"teachersHighlight"}
+                size="large"
                 label={"Go back"}
-                iconBackground={"black"}
               />
             )}
             <ButtonAsLink
               data-testid="homeButton"
               variant="minimal"
               icon="Home"
+              iconPosition="trailing"
+              iconBackground={"teachersHighlight"}
+              size="large"
               label={"Home"}
               href={"/"}
-              iconBackground={"black"}
             />
           </ButtonGroup>
         </Flex>
