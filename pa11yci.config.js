@@ -18,7 +18,7 @@ const config = {
   defaults: {
     runners: ["axe"],
     hideElements:
-      "#mtm-root-container, #mtm-frame-container, #avo-debugger, #homepage-blog-list, .pa11y-ignore",
+      "#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore",
     ignore: [
       // Pa11y using Axe is looking for videos with track elements of type=captions, but the
       // Mux player is rendering type=subtitles, so Pa11y is complaining, not sure who is wrong

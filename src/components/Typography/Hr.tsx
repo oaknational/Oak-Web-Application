@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import spacing from "../../styles/utils/spacing";
 import Box, { BoxProps } from "../Box";
 import Svg from "../Svg";
 
@@ -21,7 +20,6 @@ type Thickness = 1 | 2 | 3 | 4;
 const HrLine = styled(Svg)<HrProps>`
   mask-position: center;
   height: ${(props) => props.thickness}px;
-  ${spacing}
 `;
 
 type HrProps = BoxProps & {
@@ -29,9 +27,16 @@ type HrProps = BoxProps & {
 };
 
 const Hr: FC<HrProps> = (props) => {
+  const { thickness, ...boxProps } = props;
   return (
-    <Box $width="100%" role="separator" aria-hidden="true" data-testid="hr">
-      <HrLine name="hr" {...props} />
+    <Box
+      $width="100%"
+      role="separator"
+      aria-hidden="true"
+      data-testid="hr"
+      {...boxProps}
+    >
+      <HrLine name="hr" thickness={thickness} />
     </Box>
   );
 };
@@ -40,6 +45,7 @@ const Hr: FC<HrProps> = (props) => {
  * Hr (Horizontal rule) is an svg , which takes thickness, color and margin props.
  */
 Hr.defaultProps = {
+  $display: "flex",
   $color: "black",
   $mv: 24,
   thickness: 3,

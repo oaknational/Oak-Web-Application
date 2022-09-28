@@ -89,11 +89,10 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           <GridArea $order={1} $colSpan={[12, 1]} />
           <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
             <BlogList
-              title={"Stay up to date!"}
               items={blogListItems}
-              titleTag={"h2"}
               withImage
               withContainingHrs
+              withPagination
             />
           </GridArea>
         </Grid>
