@@ -6,3 +6,4 @@ export { default as P } from "./P";
 export { default as Hr } from "./Hr";
 export { default as OL } from "./OL";
 export { default as LI } from "./LI";
+export { default as UL } from "./UL";

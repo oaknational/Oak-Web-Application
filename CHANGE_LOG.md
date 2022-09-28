@@ -1,3 +1,19 @@
+# [1.26.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.4...v1.26.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **blog-category-list:** wrap in a nav and and relevant aria-current ([3df39d5](https://github.com/oaknational/Oak-Web-Application/commit/3df39d57fe26bda682c30caf8b8b9eea1eab2780))
+* **blog-list-item:** remove image at tablet breakpoint ([e339a54](https://github.com/oaknational/Oak-Web-Application/commit/e339a544b3133df057507c12211675e637131bf0))
+* homepage blog list spacing ([8d382e6](https://github.com/oaknational/Oak-Web-Application/commit/8d382e635fe5f031490e0020f6be8f9c848f61d6))
+
+
+### Features
+
+* blog categories mobile view ([f0d9f48](https://github.com/oaknational/Oak-Web-Application/commit/f0d9f48c72cff5dda481dd38fe3b401b1f3c7bbc))
+* blog-categories ([8c952fb](https://github.com/oaknational/Oak-Web-Application/commit/8c952fbdb9c54965b0a58df59661fe64dca783d9))
+* useClickableCard hook ([27ea27a](https://github.com/oaknational/Oak-Web-Application/commit/27ea27a3debbd5ddc55af5b0756a3358a8027c11))
+
 ## [1.25.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.3...v1.25.4) (2022-09-28)
 
 

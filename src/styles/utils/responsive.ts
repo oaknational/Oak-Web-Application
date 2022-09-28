@@ -19,7 +19,7 @@ export const getBreakpoint = (
   return breakpointsByName[breakpointName];
 };
 
-export type ResponsiveValues<Value> = Value | Value[];
+export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 
 const responsive =
   <Props, T extends string | number | undefined | null>(

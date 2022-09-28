@@ -5,7 +5,8 @@ import { box, BoxProps } from "../Box";
 import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 
 const StyledSvg = styled.svg<BoxProps>`
-  ${box}
+  ${box};
+  transition: all 0.3s ease;
 `;
 export type SvgProps = BoxProps & {
   name: SvgName;

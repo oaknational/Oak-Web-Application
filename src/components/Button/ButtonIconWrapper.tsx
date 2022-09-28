@@ -7,6 +7,7 @@ type ButtonIconWrapperProps = {
 };
 const ButtonIconWrapper = styled.span<ButtonIconWrapperProps>`
   display: inline-flex;
+  position: relative;
   align-items: center;
   ${(props) => css`
     margin-right: ${props.iconPosition === "leading" ? 8 : 0}px;
