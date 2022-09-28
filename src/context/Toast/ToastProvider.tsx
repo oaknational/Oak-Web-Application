@@ -6,8 +6,7 @@ type ToastContext = {
   message: string;
   shown: boolean;
   role: ToastRole;
-  giveRole: (role: ToastRole) => void;
-  showToast: (message: string) => void;
+  showToast: (message: string, role: ToastRole) => void;
   hideToast: () => void;
 };
 
@@ -19,8 +18,9 @@ export const ToastProvider: FC = ({ children }) => {
   const [role, setRole] = useState<ToastRole>("status");
 
   const showToast = useCallback(
-    (message) => {
+    (message, role) => {
       setMessage(message);
+      setRole(role);
       setShown(true);
     },
     [setShown]
@@ -30,18 +30,10 @@ export const ToastProvider: FC = ({ children }) => {
     setShown(false);
   }, [setShown]);
 
-  const giveRole = useCallback(
-    (role) => {
-      setRole(role);
-    },
-    [setRole]
-  );
-
   const toastValue: ToastContext = {
     message,
     shown,
     role,
-    giveRole,
     showToast,
     hideToast,
   };

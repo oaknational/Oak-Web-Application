@@ -5,7 +5,7 @@ import ConfirmButton from "../ConfirmButton";
 
 const CopyLinkButton: FC = () => {
   const [label, setLabel] = useState("Copy to clipboard");
-  const { showToast, giveRole } = useToastContext();
+  const { showToast } = useToastContext();
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -22,8 +22,7 @@ const CopyLinkButton: FC = () => {
       navigator.clipboard.writeText(window.location.href);
       const copyMessage = "Copied to clipboard";
       setLabel(copyMessage);
-      showToast(copyMessage);
-      giveRole("alert");
+      showToast(copyMessage, "alert");
       setActive(true);
     }
   };

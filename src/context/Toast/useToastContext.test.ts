@@ -21,7 +21,7 @@ describe("useToastContext", () => {
     });
     const { showToast } = result.current;
     act(() => {
-      showToast(message);
+      showToast(message, "alert");
     });
 
     expect(result.current.shown).toBe(true);
