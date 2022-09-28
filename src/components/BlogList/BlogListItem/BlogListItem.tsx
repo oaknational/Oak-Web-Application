@@ -1,25 +1,15 @@
 import { FC } from "react";
-import styled from "styled-components";
 
 import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
+import useClickableCard from "../../../hooks/useClickableCard";
 import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
+import OakLink from "../../OakLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { P, Heading, HeadingTag } from "../../Typography";
-
-const ActionLink = styled.a`
-  ::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-`;
+import { P, Heading, HeadingTag, Span } from "../../Typography";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -53,6 +43,9 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
+  const { containerProps, primaryTargetProps } =
+    useClickableCard<HTMLAnchorElement>();
+
   const blogDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -61,14 +54,21 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
 
   return (
     <Flex
+      {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={["initial", "center"]}
-      $minHeight={200}
+      $pa={0}
     >
       {withImage && mainImage && (
-        <Box $position={"relative"} $minWidth={240} $mr={[0, 32]} $mb={[32, 0]}>
-          <BoxBorders gapPosition="bottomRight" />
+        <Box
+          $display={["block", "none", "block"]}
+          $position={"relative"}
+          $minWidth={240}
+          $mr={[0, 32]}
+          $mb={[32, 0]}
+        >
+          <BoxBorders zIndex={"inFront"} gapPosition="bottomRight" />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
               <CMSImage
@@ -85,26 +85,30 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-
       <Flex $flexDirection="column" $alignItems="flex-start">
-        <P
-          $fontSize={16}
-          $lineHeight={"20px"}
-          // Not blue until link to category filter is added
-          // $color="teachersHighlight"
-          $fontFamily="ui"
+        <Flex
+          $width="100%"
+          $alignItems="flex-end"
+          $justifyContent="space-between"
         >
-          {category.title}
-        </P>
-        <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-          {blogDate}
-        </P>
-        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
-          <ActionLink href={href} title={title}>
+          <OakLink page="blog-index" category={category.slug}>
+            <Span $font="heading-7" $color="hyperlink">
+              {category.title}
+            </Span>
+          </OakLink>
+          <P $font={"body-3"}>{blogDate}</P>
+        </Flex>
+        <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
+          <OakLink
+            {...primaryTargetProps}
+            page={null}
+            href={href}
+            htmlAnchorProps={{ title }}
+          >
             {title}
-          </ActionLink>
+          </OakLink>
         </Heading>
-        <P $fontSize={14} $mt={8} $mb={[8, 0]}>
+        <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>

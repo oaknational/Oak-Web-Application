@@ -6,8 +6,6 @@ describe("components/BlogList", () => {
   test("renders the list items", () => {
     const { getByRole } = renderWithProviders(
       <BlogList
-        title="Blog List Title"
-        titleTag="h2"
         items={[
           {
             title: "Item title",
@@ -33,8 +31,6 @@ describe("components/BlogList", () => {
   test("formats the date correctly", () => {
     const { getByText } = renderWithProviders(
       <BlogList
-        title="Blog List Title"
-        titleTag="h2"
         items={[
           {
             title: "Item title",

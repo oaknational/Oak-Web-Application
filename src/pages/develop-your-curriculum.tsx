@@ -53,11 +53,11 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           $pt={0}
           $ph={[16, 0]}
         >
-          <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
+          <Heading $mb={[48, 32]} $font={["heading-5", "heading-4"]} tag={"h3"}>
             {pageData.info.title}
           </Heading>
           <Flex $minWidth={"50%"} $flexDirection={["column-reverse", "row"]}>
-            <Typography $lineHeight={["24px", "28px"]} $fontSize={[16, 18]}>
+            <Typography $font={["body-2", "body-1"]}>
               <PortableText value={pageData.info.bodyPortableText} />
             </Typography>
             <Flex
@@ -78,19 +78,20 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
         <Flex $width={"100%"} $justifyContent={"flex-end"}>
           <Card
             $transform={[null, "rotate(2deg) translateY(18px) translateX(5px)"]}
+            /** $right: 8 fixes tablet x-overflow */
+            $right={[null, 8, null]}
             $zIndex={[null, "inFront"]}
             $pv={24}
             $ph={[16, 24]}
             $background={"twilight"}
-            $maxWidth={["100%", "50%"]}
+            $maxWidth={["100%", "55%"]}
+            $font="list-item-1"
           >
             <BrushBorders hideOnMobileH color={"twilight"} />
-            <Heading $mb={20} $fontSize={[20, 24]} tag={"h3"}>
+            <Heading $mb={20} $font={["heading-6", "heading-5"]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
-            <Typography>
-              <PortableText value={pageData.gettingStarted.bodyPortableText} />
-            </Typography>
+            <PortableText value={pageData.gettingStarted.bodyPortableText} />
           </Card>
         </Flex>
         <Card
@@ -100,7 +101,12 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           $ph={0}
         >
           <Box $ph={[16, 24]} $width={["100%", "50%"]}>
-            <Heading $mt={[24, 0]} $mb={[56, 32]} $fontSize={[24, 32]} tag="h4">
+            <Heading
+              $mt={[24, 0]}
+              $mb={[56, 32]}
+              $font={["heading-5", "heading-4"]}
+              tag="h4"
+            >
               {pageData.elements.title}
             </Heading>
           </Box>
@@ -112,7 +118,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                 $colSpan={[12, 4]}
               >
                 <Box $ph={[16, 0]}>
-                  <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
+                  <P $mb={[24, 16]} $font={"heading-light-6"}>
                     {heading}
                   </P>
                 </Box>
@@ -123,7 +129,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                 <GridArea $colSpan={[12, 4]}>
                   <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
-                    <P $mb={[24, 16]} $fontSize={20} $lineHeight={"24px"}>
+                    <P $mb={[24, 16]} $font={"heading-light-6"}>
                       {elementsOfCurriculumDesignHeadings[index]}
                     </P>
                   </Box>
@@ -138,13 +144,13 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                   >
                     <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
-                      <Heading $mb={8} $fontSize={16} tag={"h3"}>
+                      <Heading $font={"heading-7"} tag={"h3"}>
                         How to
-                      </Heading>
-                      <Heading $fontSize={24} tag="h4">
-                        <CardLink page="blog" slug={element.post.slug}>
-                          {element.title}
-                        </CardLink>
+                        <Box $mt={8} $font={"heading-5"}>
+                          <CardLink page="blog" slug={element.post.slug}>
+                            {element.title}
+                          </CardLink>
+                        </Box>
                       </Heading>
                     </Box>
                   </Card>
@@ -180,10 +186,14 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             </Cover>
           </Flex>
           <Flex $flexDirection={"column"}>
-            <Heading $mb={[48, 32]} $fontSize={[24, 32]} tag={"h3"}>
+            <Heading
+              $mb={[48, 32]}
+              $font={["heading-5", "heading-4"]}
+              tag={"h3"}
+            >
               {pageData.ourApproach.title}
             </Heading>
-            <Typography $mb={16} $lineHeight={["28px", "32px"]} fontSize={18}>
+            <Typography $mb={16} $font={"body-1"}>
               <PortableText value={pageData.ourApproach.bodyPortableText} />
             </Typography>
             {pageData.ourApproach.cta && (

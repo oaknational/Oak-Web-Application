@@ -23,6 +23,7 @@ import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 export type PixelSpacing =
   | 0
   | 1
+  | 3
   | 4
   | 6
   | 8
@@ -61,16 +62,20 @@ export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
 export type PercentSpacing =
   | "100%"
+  | "95%"
   | "90%"
+  | "85%"
   | "80%"
   | "70%"
   | "60%"
+  | "55%"
   | "50%"
   | "40%"
   | "30%"
   | "20%"
   | "15%"
   | "10%";
+export type Unset = "unset";
 
 /**
  * @todo parse theme with zod

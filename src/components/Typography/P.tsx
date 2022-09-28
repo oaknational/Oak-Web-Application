@@ -1,17 +1,10 @@
-import styled, { CSSProperties } from "styled-components";
+import styled from "styled-components";
 
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { ResponsiveValues } from "../../styles/utils/responsive";
+import color, { ColorProps } from "../../styles/utils/color";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
-import { BodyFontSize } from "./Typography";
-
-type PProps = MarginProps &
-  Omit<TypographyProps, "fontSize" | "fontFamily"> & {
-    fontSize?: ResponsiveValues<BodyFontSize>;
-    textAlign?: CSSProperties["textAlign"];
-  };
+type PProps = MarginProps & TypographyProps & ColorProps;
 /**
  * Styled `p` (paragraph) component.
  * ## Usage
@@ -21,9 +14,8 @@ type PProps = MarginProps &
  */
 const P = styled.p<PProps>`
   ${typography}
+  ${color}
   ${margin}
-  font-family: ${getFontFamily("body")};
-  text-align: ${(props) => props.textAlign};
 
   a {
     color: ${(props) => props.theme.colors.hyperlink};
