@@ -209,6 +209,9 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
 
       // Sanity
+      SANITY_REVALIDATE_SECONDS:
+        process.env.SANITY_REVALIDATE_SECONDS ||
+        oakConfig.sanity?.revalidateSeconds,
       SANITY_PROJECT_ID:
         process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
       SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,

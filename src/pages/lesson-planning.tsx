@@ -23,6 +23,7 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
 import OakImage from "../components/OakImage";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import { extractNumberEnvVar } from "../utils/configHelper";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -476,7 +477,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     props: {
       pageData: planningPage,
     },
-    revalidate: 10,
+    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
   };
 };
 

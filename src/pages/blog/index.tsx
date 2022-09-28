@@ -9,6 +9,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import SummaryCard from "../../components/Card/SummaryCard";
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import { extractNumberEnvVar } from "../../utils/configHelper";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -96,7 +97,7 @@ export const getStaticProps: GetStaticProps<BlogListingPageProps> = async (
     props: {
       blogs,
     },
-    revalidate: 10,
+    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
   };
 };
 

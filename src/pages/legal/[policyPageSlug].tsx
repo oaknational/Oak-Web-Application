@@ -9,6 +9,7 @@ import Typography, { Heading, P } from "../../components/Typography";
 import CMSClient, { PolicyPage } from "../../node-lib/cms";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import { extractNumberEnvVar } from "../../utils/configHelper";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -144,7 +145,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       policy,
     },
-    revalidate: 10,
+    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
   };
 };
 

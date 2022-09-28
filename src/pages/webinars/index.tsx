@@ -7,6 +7,7 @@ import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import { extractNumberEnvVar } from "../../utils/configHelper";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -75,7 +76,7 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
     props: {
       webinars,
     },
-    revalidate: 10,
+    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
   };
 };
 

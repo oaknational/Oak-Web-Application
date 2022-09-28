@@ -28,6 +28,7 @@ import BlogListItem, {
   BlogListItemProps,
 } from "../components/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
+import { extractNumberEnvVar } from "../utils/configHelper";
 
 import {
   blogToBlogListItem,
@@ -427,7 +428,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
       pageData: homepageData,
       posts,
     },
-    revalidate: 10,
+    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
   };
 };
 

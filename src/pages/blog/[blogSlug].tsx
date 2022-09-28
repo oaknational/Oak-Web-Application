@@ -34,6 +34,7 @@ import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Circle from "../../components/Circle";
+import { extractNumberEnvVar } from "../../utils/configHelper";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -359,8 +360,8 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 10, // In seconds
+    // - On time set in next config
+    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
   };
 };
 
