@@ -9,6 +9,7 @@ type EnvVar = {
   // useful for messaging in case if missing vars
   envName: string;
   description?: string;
+  allowedValues?: string[];
 };
 
 const parseValue = (value: string | undefined) => {
@@ -343,18 +344,27 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default:
       "d6-7d-b6-4b-74-15-da-2e-2c-3c-00-34-3b-5f-f5-44-03-0f-fc-9f-c9-ce-16-7c-97-42-16-ab-1a-2e-82-5d",
   },
+  axeA11yLogging: {
+    value: process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING,
+    envName: "NEXT_PUBLIC_AXE_A11Y_LOGGING",
+    required: false,
+    availableInBrowser: true,
+    allowedValues: ["on", "off"],
+    default: "off",
+    description:
+      "Logs accessibility concerns to the console. Should be disabled in production",
+  },
 });
 
-for (const [
-  ,
-  {
+for (const [, envVarConfig] of Object.entries(envVars)) {
+  const {
     value: envValue,
     required,
     availableInBrowser,
     default: defaultValue,
     envName,
-  },
-] of Object.entries(envVars)) {
+  } = envVarConfig;
+
   const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
   const isPresent = Boolean(envValue || defaultValue);
 
@@ -364,6 +374,15 @@ for (const [
   if (shouldBePresent && !isPresent) {
     console.error(`- - - WARNING no config value found for required env var:
 - - - ${envName}`);
+  }
+  if ("allowedValues" in envVarConfig && envValue) {
+    const { allowedValues } = envVarConfig;
+    if (!allowedValues.includes(envValue)) {
+      throw new Error(`- - - ERROR invalid value found for env var:
+- - - ${envName}
+- - - Found value: ${envValue}
+- - - Allowed values: ${allowedValues.join(", ")}`);
+    }
   }
 }
 

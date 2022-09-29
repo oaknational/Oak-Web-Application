@@ -1,3 +1,24 @@
+## [1.27.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.3...v1.27.4) (2022-09-29)
+
+
+### Bug Fixes
+
+* **a11y:** aria hide icons and svgs, fixes [#785](https://github.com/oaknational/Oak-Web-Application/issues/785) ([4264f18](https://github.com/oaknational/Oak-Web-Application/commit/4264f181785832cda274b0c7809cd1e9c357f8c8))
+
+## [1.27.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.2...v1.27.3) (2022-09-29)
+
+
+### Bug Fixes
+
+* axe env var ([0a03640](https://github.com/oaknational/Oak-Web-Application/commit/0a0364072b87aee89c45126bc089b5d35d99ee18))
+
+## [1.27.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.1...v1.27.2) (2022-09-29)
+
+
+### Bug Fixes
+
+* Downloads clickable ([c4aaf0e](https://github.com/oaknational/Oak-Web-Application/commit/c4aaf0e4392fb8e9c7fa6f3335b4454781d1fa86))
+
 ## [1.27.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.0...v1.27.1) (2022-09-29)
 
 
