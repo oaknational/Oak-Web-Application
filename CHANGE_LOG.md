@@ -1,3 +1,42 @@
+# [1.27.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.26.0...v1.27.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* animate copylink button on internal state change not general context change ([50585b0](https://github.com/oaknational/Oak-Web-Application/commit/50585b0a5c963a4d7c576723708e89af70abb324))
+* mobile position of copy button on mobile ([1211960](https://github.com/oaknational/Oak-Web-Application/commit/1211960f39d5ebc29f1001f872f578c375697deb))
+* put role into context ([e081a10](https://github.com/oaknational/Oak-Web-Application/commit/e081a107c221aa9ec4f7ce6411363d6d4aaa5824))
+* spacing in heading ([9007035](https://github.com/oaknational/Oak-Web-Application/commit/9007035be31b6ebdf2d8277902a08ae8f467f2a2))
+* wrap copy link button in context ([612fc34](https://github.com/oaknational/Oak-Web-Application/commit/612fc34a9065cbccf195771b293382a96137ca9d))
+
+
+### Features
+
+* add confirm button ([560a52d](https://github.com/oaknational/Oak-Web-Application/commit/560a52db23b239cc191ca9b415b10715a474cb22))
+* add story for toast ([df36f04](https://github.com/oaknational/Oak-Web-Application/commit/df36f044ffa6ee6b1dbdf4e8544062d0cf3d9e8b))
+* correctly animate confirm button ([acb8e6d](https://github.com/oaknational/Oak-Web-Application/commit/acb8e6d482ab60cd9afaf38fa8450271d6ad9454))
+* create toast context and show and hide toast ([93aee0f](https://github.com/oaknational/Oak-Web-Application/commit/93aee0f0f0416986e37cf2ef78bc6103b90aaa9b))
+* make role a prop ([25e2ca7](https://github.com/oaknational/Oak-Web-Application/commit/25e2ca7bce72b16cbf9bf1bcf9698a7274382e59))
+* put timeout in toast ([2cf08de](https://github.com/oaknational/Oak-Web-Application/commit/2cf08de0c683a85bc370be938795a66ba3d81320))
+* set role when opening toast ([8b7fd1d](https://github.com/oaknational/Oak-Web-Application/commit/8b7fd1d464dc7381bb981e4a13ecde0ed29f4dea))
+* style toast and set timings ([c8fa8de](https://github.com/oaknational/Oak-Web-Application/commit/c8fa8deb17f67e8c8e80724ffbf94f5a5b0cd207))
+
+# [1.26.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.4...v1.26.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **blog-category-list:** wrap in a nav and and relevant aria-current ([3df39d5](https://github.com/oaknational/Oak-Web-Application/commit/3df39d57fe26bda682c30caf8b8b9eea1eab2780))
+* **blog-list-item:** remove image at tablet breakpoint ([e339a54](https://github.com/oaknational/Oak-Web-Application/commit/e339a544b3133df057507c12211675e637131bf0))
+* homepage blog list spacing ([8d382e6](https://github.com/oaknational/Oak-Web-Application/commit/8d382e635fe5f031490e0020f6be8f9c848f61d6))
+
+
+### Features
+
+* blog categories mobile view ([f0d9f48](https://github.com/oaknational/Oak-Web-Application/commit/f0d9f48c72cff5dda481dd38fe3b401b1f3c7bbc))
+* blog-categories ([8c952fb](https://github.com/oaknational/Oak-Web-Application/commit/8c952fbdb9c54965b0a58df59661fe64dca783d9))
+* useClickableCard hook ([27ea27a](https://github.com/oaknational/Oak-Web-Application/commit/27ea27a3debbd5ddc55af5b0756a3358a8027c11))
+
 ## [1.25.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.3...v1.25.4) (2022-09-28)
 
 

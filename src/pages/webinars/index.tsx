@@ -36,7 +36,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         Webinars
       </Heading>
 
-      <BlogList title={"Stay up to date!"} items={webinars} titleTag={"h2"} />
+      <BlogList items={webinars} />
     </Layout>
   );
 };

@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 
 import background, { BackgroundProps } from "../../styles/utils/background";
@@ -11,8 +12,13 @@ import position, { PositionProps } from "../../styles/utils/position";
 import size, { SizeProps } from "../../styles/utils/size";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import transform, { TransformProps } from "../../styles/utils/transform";
+import transition, { TransitionProps } from "../../styles/utils/transition";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
+
+type HTMLProps = {
+  onClick?: MouseEventHandler;
+};
 
 export type BoxProps = CoverProps &
   PositionProps &
@@ -25,8 +31,11 @@ export type BoxProps = CoverProps &
   DisplayProps &
   ZIndexProps &
   TransformProps &
+  TransitionProps &
+  TypographyProps &
   OpacityProps &
-  TypographyProps;
+  // without the below conditional, Svg complains when using BoxProps
+  HTMLProps;
 
 export const box = css<BoxProps>`
   ${cover}
@@ -40,8 +49,17 @@ export const box = css<BoxProps>`
   ${display}
   ${zIndex}
   ${transform}
+  ${transition}
   ${opacity}
   ${typography}
+  ${(props) =>
+    /* onClick might be passed in the useClickableCard pattern */
+    props.onClick &&
+    css`
+      :hover {
+        cursor: pointer;
+      }
+    `}
 `;
 /**
  * Box exposes position, size, spacing, and background props on a div.

@@ -16,6 +16,7 @@ import theme from "../../styles/theme";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { MenuProvider } from "../../context/Menu";
+import { ToastProvider } from "../../context/Toast";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
@@ -46,7 +47,9 @@ export const AllTheProviders: FC<ProviderProps> = ({
                 <MemoryRouterProvider>
                   <MockedBookmarksProvider {...bookmarksProviderProps}>
                     <SearchProvider>
-                      <MenuProvider>{children}</MenuProvider>
+                      <ToastProvider>
+                        <MenuProvider>{children}</MenuProvider>
+                      </ToastProvider>
                     </SearchProvider>
                   </MockedBookmarksProvider>
                 </MemoryRouterProvider>

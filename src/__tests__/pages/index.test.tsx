@@ -79,10 +79,11 @@ describe("pages/index.tsx", () => {
 
       expect(items).toHaveLength(2);
 
-      expect(getByRole(items[0] as HTMLElement, "link")).toHaveAttribute(
-        "href",
-        "/blog/some-blog-post"
-      );
+      expect(
+        getByRole(items[0] as HTMLElement, "link", {
+          name: "Some blog post",
+        })
+      ).toHaveAttribute("href", "/blog/some-blog-post");
     });
   });
 

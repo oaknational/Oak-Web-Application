@@ -8,7 +8,7 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import Typography, { Heading, Hr, P, Span } from "../components/Typography";
+import Typography, { Heading, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
@@ -24,17 +24,16 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import BlogListItem, {
-  BlogListItemProps,
-} from "../components/BlogList/BlogListItem";
+import { BlogListItemProps } from "../components/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
 import { extractNumberEnvVar } from "../utils/configHelper";
-
 import {
   blogToBlogListItem,
-  serializeDate,
   SerializedBlogPostPreview,
-} from "./blog";
+  serializeDate,
+} from "../components/pages/BlogIndex.page";
+import BlogList from "../components/BlogList";
+
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
 const Notification: FC = () => {
@@ -330,28 +329,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     <Link href={"/blog"}>All blogs</Link>
                   </Typography>
                 </Flex>
-
-                <Flex
-                  $flexDirection="column"
-                  as="ul"
-                  role="list" /* role=list to strip default ul styling */
-                  id="homepage-blog-list"
-                >
-                  {posts.map((item, i) => (
-                    <li key={`BlogList-BlogListItem-${i}`}>
-                      {/* Blog List Item is failing Pa11y tests and is to be excluded */}
-                      <BlogListItem {...item} withImage={true} />
-                      {i < posts.length - 1 && (
-                        <Hr
-                          thickness={3}
-                          $color="black"
-                          $mt={[24, 16]}
-                          $mb={[32, 16]}
-                        />
-                      )}
-                    </li>
-                  ))}
-                </Flex>
+                <BlogList items={posts} withImage />
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>

@@ -1,12 +1,17 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
-import { OakColorName, OakTheme, PropsWithTheme } from "../../styles/theme";
+import {
+  OakColorName,
+  OakTheme,
+  PixelSpacing,
+  PropsWithTheme,
+} from "../../styles/theme";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import Flex from "../Flex";
 
 export type HeaderConfig = {
-  height: number;
+  height: PixelSpacing;
   color: OakColorName;
   background: OakColorName;
 };
