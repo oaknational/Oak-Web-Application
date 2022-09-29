@@ -1,3 +1,12 @@
+## [1.28.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.0...v1.28.1) (2022-09-29)
+
+# [1.28.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.5...v1.28.0) (2022-09-29)
+
+
+### Features
+
+* **Netlify:** update reference from trial domain to dev domain ([1db821d](https://github.com/oaknational/Oak-Web-Application/commit/1db821d83af7bb9fe97ccb8843267498661111d0))
+
 ## [1.27.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.4...v1.27.5) (2022-09-29)
 
 ## [1.27.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.3...v1.27.4) (2022-09-29)
