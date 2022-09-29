@@ -57,7 +57,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
-      $alignItems={["initial", "center"]}
+      $alignItems={"center"}
       $pa={0}
     >
       {withImage && mainImage && (
@@ -65,6 +65,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $display={["block", "none", "block"]}
           $position={"relative"}
           $minWidth={240}
+          $maxWidth={[160, "auto"]}
           $mr={[0, 32]}
           $mb={[32, 0]}
         >
