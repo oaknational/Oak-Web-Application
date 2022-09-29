@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie";
 
 import {
   CookieConsent,
+  CookieConsentState,
   CookiePolicyName,
   COOKIE_POLICY_NAMES,
   defaultConsent,
@@ -52,6 +53,30 @@ type ConfirmicConsents = {
   strictlyNecessary: CookieConsent;
   embeddedContent: CookieConsent;
   statistics: CookieConsent;
+};
+
+const stateToEnabled = (state: CookieConsentState) => {
+  switch (state) {
+    case "enabled":
+      return true;
+    case "disabled":
+      return false;
+
+    default:
+      return;
+  }
+};
+
+const setConsentsInLocalStorage = (consents: ConfirmicConsents) => {
+  COOKIE_POLICY_NAMES.forEach((name) => {
+    const policyId = consentPolicyMap[name];
+    const { version, state } = consents[name];
+    const value = {
+      enabled: stateToEnabled(state),
+      version,
+    };
+    safeLocalStorage.setItem(policyId, JSON.stringify(value));
+  });
 };
 
 export const getConsentsFromLocalStorage = () => {
@@ -183,7 +208,16 @@ const useConfirmicConsents = () => {
      **/
     if (tuples) {
       setConsentCookie(CONFIRMIC_COOKIE_NAME, tuples, cookieOptions);
+
+      const consentsFromLocalStorage = getConsentsFromLocalStorage();
+      const tuplesStringFromLocalStorage = safeStringify(
+        toTuples(consentsFromLocalStorage)
+      );
+      if (tuplesStringFromLocalStorage !== tuplesString) {
+        setConsentsInLocalStorage(consents);
+      }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tuplesString, setConsentCookie]);
 
