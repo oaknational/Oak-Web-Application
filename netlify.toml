@@ -9,21 +9,17 @@
   [[context.production.plugins]]
     package = "./netlify/plugins/slack-reporting"
 
-# Force all access through our managed TLD.
-# When Netlify becomes the production site hosting for www. the subdomain will
-# need changing to `www` and the status to `301`.
+# Force all access through a managed TLD.
 [[redirects]]
 from = 'http://oak-web-application.netlify.app/*'
-to = 'https://netlify-test.thenational.academy/:splat'
+to = 'https://owa.thenational.academy/:splat'
 status = 302
 force = true
 
-# Force all access through our managed TLD.
-# When Netlify becomes the production site hosting for www. the subdomain will
-# need changing to `www` and the status to `301`.
+# Force all access through a managed TLD.
 [[redirects]]
 from = 'https://oak-web-application.netlify.app/*'
-to = 'https://netlify-test.thenational.academy/:splat'
+to = 'https://owa.thenational.academy/:splat'
 status = 302
 force = true
 
