@@ -30,9 +30,10 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = ({ shareTitle, shareText }) => {
     };
     if (navigator.share) {
       try {
-        await navigator.share(shareData);
-        showToast("Page shared", "alert");
-        setActive(true);
+        await navigator.share(shareData).then(() => {
+          showToast("Page shared", "alert");
+          setActive(true);
+        });
       } catch (error) {
         console.error(`Failed to share: ${error}`);
       }
