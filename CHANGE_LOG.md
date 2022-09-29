@@ -1,3 +1,17 @@
+## [1.27.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.1...v1.27.2) (2022-09-29)
+
+
+### Bug Fixes
+
+* Downloads clickable ([c4aaf0e](https://github.com/oaknational/Oak-Web-Application/commit/c4aaf0e4392fb8e9c7fa6f3335b4454781d1fa86))
+
+## [1.27.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.0...v1.27.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* arialabel to have size in mb rather than bytes ([056ae3b](https://github.com/oaknational/Oak-Web-Application/commit/056ae3ba5a83c98e6bfc17d2a7ad8ea4d5b3368e))
+
 # [1.27.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.26.0...v1.27.0) (2022-09-28)
 
 

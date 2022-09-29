@@ -82,36 +82,39 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
-            {pageData.documents.map((doc) => (
-              <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
-                <Card $height={220} $pa={16}>
-                  <BoxBorders gapPosition="rightTop" />
-                  <Flex
-                    $justifyContent={"space-between"}
-                    $height={"100%"}
-                    $flexDirection={"column"}
-                  >
-                    <Heading $font={"heading-7"} tag={"h4"}>
-                      {doc.title}
-                    </Heading>
+            {pageData.documents.map((doc) => {
+              const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
+                1
+              );
+              return (
+                <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
+                  <Card $height={220} $pa={16}>
+                    <BoxBorders gapPosition="rightTop" />
                     <Flex
-                      $alignItems={"center"}
                       $justifyContent={"space-between"}
+                      $height={"100%"}
+                      $flexDirection={"column"}
                     >
-                      <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(
-                        1
-                      )}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
-                      <IconButtonAsLink
-                        icon={"Download"}
-                        aria-label={`Download ${doc.title} as ${doc.file.asset.size} ${doc.file.asset.extension}`}
-                        href={`${doc.file.asset.url}?dl`}
-                        background={"teachersHighlight"}
-                      />
+                      <Heading $font={"heading-7"} tag={"h4"}>
+                        {doc.title}
+                      </Heading>
+                      <Flex
+                        $alignItems={"center"}
+                        $justifyContent={"space-between"}
+                      >
+                        <P>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
+                        <IconButtonAsLink
+                          icon={"Download"}
+                          aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
+                          href={`${doc.file.asset.url}?dl`}
+                          background={"teachersHighlight"}
+                        />
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </Card>
-              </GridArea>
-            ))}
+                  </Card>
+                </GridArea>
+              );
+            })}
           </Grid>
           <Typography $width={"100%"}>
             <Hr $color={"pastelTurqoise"} $mv={0} $mt={32} />
