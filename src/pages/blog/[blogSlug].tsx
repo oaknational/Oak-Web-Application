@@ -324,7 +324,10 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
                   )}
                 </Box>
               </Flex>
-              <CopyLinkButton />
+              <CopyLinkButton
+                shareTitle={blog.summary}
+                shareText={blog.title}
+              />
             </Flex>
             <Box $mt={[48]}>
               <BasePortableTextProvider>

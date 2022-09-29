@@ -6,6 +6,11 @@ import CopyLinkButton from "../Button/CopyLinkButton";
 
 import Component from ".";
 
+const shareData = {
+  shareTitle: "Title of an article to share",
+  shareText: "Some summary text",
+};
+
 export default {
   title: "Interactive/Toast",
   component: Component,
@@ -15,7 +20,7 @@ const Template: ComponentStory<typeof Component> = () => {
   return (
     <ToastProvider>
       <Component />
-      <CopyLinkButton />
+      <CopyLinkButton {...shareData} />
     </ToastProvider>
   );
 };

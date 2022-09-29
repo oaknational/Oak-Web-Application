@@ -5,11 +5,16 @@ import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import CopyLinkButton from "./CopyLinkButton";
 
+const shareData = {
+  shareTitle: "Title of an article to share",
+  shareText: "Some summary text",
+};
+
 describe("Copy link button", () => {
   it("renders", () => {
     const { getByRole } = renderWithTheme(
       <ToastProvider>
-        <CopyLinkButton />
+        <CopyLinkButton {...shareData} />
       </ToastProvider>
     );
 
@@ -19,7 +24,7 @@ describe("Copy link button", () => {
   it("updates the label", async () => {
     const { getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
-        <CopyLinkButton />
+        <CopyLinkButton {...shareData} />
       </ToastProvider>
     );
 
@@ -32,7 +37,7 @@ describe("Copy link button", () => {
 
     rerender(
       <ToastProvider>
-        <CopyLinkButton />
+        <CopyLinkButton {...shareData} />
       </ToastProvider>
     );
 

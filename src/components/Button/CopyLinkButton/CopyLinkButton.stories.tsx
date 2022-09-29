@@ -5,6 +5,11 @@ import { ToastProvider } from "../../../context/Toast";
 
 import Component from "./CopyLinkButton";
 
+const shareData = {
+  shareTitle: "Title of an article to share",
+  shareText: "Some summary text",
+};
+
 export default {
   title: "Buttons/Copy Link",
   component: Component,
@@ -12,7 +17,7 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <ToastProvider>
-    <Component {...args} />
+    <Component {...args} {...shareData} />
   </ToastProvider>
 );
 

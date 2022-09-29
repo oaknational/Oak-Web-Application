@@ -3,10 +3,21 @@ import { FC, useEffect, useState } from "react";
 import { useToastContext, SHOW_DURATION } from "../../../context/Toast";
 import ConfirmButton from "../ConfirmButton";
 
-const CopyLinkButton: FC = () => {
+type CopyLinkButtonProps = {
+  shareTitle: string;
+  shareText: string;
+};
+
+const CopyLinkButton: FC<CopyLinkButtonProps> = ({ shareTitle, shareText }) => {
   const [label, setLabel] = useState("Copy to clipboard");
   const { showToast } = useToastContext();
   const [active, setActive] = useState(false);
+
+  const shareData = {
+    title: shareTitle,
+    text: shareText,
+    url: window.location.href,
+  };
 
   useEffect(() => {
     if (active) {
@@ -17,9 +28,17 @@ const CopyLinkButton: FC = () => {
     }
   }, [active]);
 
-  const copyLink = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href);
+  const copyLink = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        showToast("Page shared", "alert");
+        setActive(true);
+      } catch (error) {
+        console.error(`Failed to share: ${error}`);
+      }
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareData.url);
       const copyMessage = "Copied to clipboard";
       setLabel(copyMessage);
       showToast(copyMessage, "alert");
