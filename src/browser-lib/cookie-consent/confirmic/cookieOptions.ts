@@ -7,8 +7,6 @@ import config from "../../../config";
 
 const releaseStage = config.get("releaseStage");
 
-console.log(">>>>>>>>>>>>", { releaseStage });
-
 const getDomain = (_releaseStage: string) => {
   switch (_releaseStage) {
     case "production":
