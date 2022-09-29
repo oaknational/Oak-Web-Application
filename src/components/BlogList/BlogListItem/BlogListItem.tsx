@@ -65,7 +65,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $display={["block", "none", "block"]}
           $position={"relative"}
           $minWidth={240}
-          $maxWidth={[160, "auto"]}
+          $maxWidth={[160, "none"]}
           $mr={[0, 32]}
           $mb={[32, 0]}
         >
