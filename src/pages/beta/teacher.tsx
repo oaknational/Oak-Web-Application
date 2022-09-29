@@ -20,7 +20,7 @@ const TeacherHome: FC = () => {
         <Grid $cg={16} $rg={[16, 48, 80]}>
           <GridArea $colSpan={[12, 12, 8]}>
             <Heading
-              $fontSize={48}
+              $font={"heading-1"}
               tag={"h1"}
               $mt={64}
               $mb={16}
@@ -28,14 +28,14 @@ const TeacherHome: FC = () => {
             >
               Big inspiring heading
             </Heading>
-            <Heading $fontSize={20} tag={"h2"} data-testid="home-page-title">
+            <Heading $font="heading-4" tag={"h2"} data-testid="home-page-title">
               Subheading giving further interesting info and details about other
               cool things
             </Heading>
           </GridArea>
           <GridArea $colSpan={[12, 12, 4]}>
             <Card>
-              <Heading tag={"h3"} $fontSize={20}>
+              <Heading tag={"h3"} $font="heading-4">
                 Training new teachers
               </Heading>
               <P>16/08</P>

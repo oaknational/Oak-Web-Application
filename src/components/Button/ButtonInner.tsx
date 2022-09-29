@@ -2,10 +2,11 @@ import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
 import { OakColorName } from "../../styles/theme";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
+import Box from "../Box";
 import Icon, { IconName } from "../Icon";
 import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "../Svg";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
@@ -18,15 +19,23 @@ import {
   IconPosition,
 } from "./common";
 
-export const ButtonFocusUnderline = styled(Svg)<{ color: OakColorName }>`
+export const ButtonFocusUnderline = styled(Svg)<{
+  $color: OakColorName;
+}>`
+  color: ${(props) => getColorByName(props.$color)};
   position: absolute;
-  bottom: -4px;
-  left: -4px;
-  right: -7px;
-  width: calc(100% + 12px);
-  height: 10px;
-  transform: rotate(-3deg);
-  color: ${(props) => getColorByName(props.color)};
+`;
+export const ButtonMinimalFocusUnderline = styled(Svg)<{
+  $color: OakColorName;
+}>`
+  color: ${(props) => getColorByName(props.$color)};
+  position: absolute;
+`;
+export const ButtonMinimalFocusIconUnderline = styled(Svg)<{
+  $color: OakColorName;
+}>`
+  color: ${(props) => getColorByName(props.$color)};
+  position: absolute;
 `;
 export type ButtonInnerProps = {
   label: string;
@@ -52,8 +61,12 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
 
   const theme = useTheme();
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
+
+  const defactoBackground =
+    variant === "minimal" && iconBackground ? iconBackground : background;
+
   const underlineColor =
-    theme.buttonFocusUnderlineColors[background] || "black";
+    theme.buttonFocusUnderlineColors[defactoBackground] || "black";
 
   return (
     <>
@@ -65,11 +78,22 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             size={iconSize}
             $background={iconBackground || defaultIconBackground}
           />
+          <ButtonMinimalFocusIconUnderline
+            $color={underlineColor}
+            name="Underline1"
+          />
         </ButtonIconWrapper>
       )}
-      <ButtonLabel>{label}</ButtonLabel>
+      <Box $position={"relative"}>
+        <ButtonLabel>{label}</ButtonLabel>
+        <ButtonMinimalFocusUnderline
+          // $color={underlineColor}
+          $color="teachersYellow"
+          name="Underline1"
+        />
+      </Box>
       {variant === "brush" && <ButtonBorders background={background} />}
-      <ButtonFocusUnderline color={underlineColor} name="Underline1" />
+      <ButtonFocusUnderline $color={underlineColor} name="Underline1" />
     </>
   );
 };

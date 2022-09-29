@@ -40,7 +40,7 @@ describe("CollapsibleSection", () => {
         headingTag={"h2"}
         startOpen={false}
       >
-        <Heading $fontSize={20} tag={"h2"}>
+        <Heading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </CollapsibleSection>
@@ -71,7 +71,7 @@ describe("CollapsibleSection", () => {
           },
         ]}
       >
-        <Heading $fontSize={20} tag={"h2"}>
+        <Heading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </CollapsibleSection>

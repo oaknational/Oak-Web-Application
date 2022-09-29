@@ -25,7 +25,7 @@ const OnBoarding: FC = () => {
     >
       <OnBoardingGrid $rg={[16, 0, 0]} $cg={16}>
         <GridArea $colSpan={[12, 12, 12]}>
-          <Heading $textAlign={"center"} $mb={32} tag="h1" $fontSize={32}>
+          <Heading $textAlign={"center"} $mb={32} tag="h1" $font={"heading-4"}>
             Use Oak as a:
           </Heading>
         </GridArea>

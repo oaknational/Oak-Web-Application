@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useTheme } from "styled-components";
 
 import Flex from "../Flex";
-import P from "../Typography";
 import FixedHeader from "../FixedHeader";
 import { Menu } from "../Menu";
 import Logo from "../Logo";
@@ -13,6 +12,8 @@ import IconButton from "../Button/IconButton";
 import OakLink from "../OakLink";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
+import Toast from "../Toast";
+import { Span } from "../Typography";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
@@ -26,19 +27,21 @@ const SiteHeader: FC = () => {
           <Logo title={"Oak National Academy"} height={48} width={104} />
         </a>
       </Link>
-      <Flex $alignItems={"center"} $display={["none", "flex"]} $ml={["auto"]}>
-        <P $fontFamily={"ui"}>
-          <OakLink
-            page="pupils-home"
-            htmlAnchorProps={{
-              onClick: () =>
-                track.classroomSelected({ navigatedFrom: "header" }),
-            }}
-          >
-            Classroom
-          </OakLink>
-        </P>
-        <P $ml={24} $mr={32} $fontFamily={"ui"}>
+      <Flex
+        $alignItems={"center"}
+        $display={["none", "flex"]}
+        $ml={["auto"]}
+        $font="heading-7"
+      >
+        <OakLink
+          page="pupils-home"
+          htmlAnchorProps={{
+            onClick: () => track.classroomSelected({ navigatedFrom: "header" }),
+          }}
+        >
+          Classroom
+        </OakLink>
+        <Span $ml={24} $mr={32}>
           <OakLink
             page="teachers-home"
             htmlAnchorProps={{
@@ -48,7 +51,7 @@ const SiteHeader: FC = () => {
           >
             Teacher Hub
           </OakLink>
-        </P>
+        </Span>
       </Flex>
       <IconButton
         aria-label="Menu"
@@ -62,6 +65,7 @@ const SiteHeader: FC = () => {
       <Menu>
         <MenuLinks menuSections={menuSections} />
       </Menu>
+      <Toast />
     </FixedHeader>
   );
 };
