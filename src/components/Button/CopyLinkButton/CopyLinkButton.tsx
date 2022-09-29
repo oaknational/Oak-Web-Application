@@ -13,12 +13,6 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = ({ shareTitle, shareText }) => {
   const { showToast } = useToastContext();
   const [active, setActive] = useState(false);
 
-  const shareData = {
-    title: shareTitle,
-    text: shareText,
-    url: window.location.href,
-  };
-
   useEffect(() => {
     if (active) {
       const timer = setTimeout(() => {
@@ -29,6 +23,11 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = ({ shareTitle, shareText }) => {
   }, [active]);
 
   const copyLink = async () => {
+    const shareData = {
+      title: shareTitle,
+      text: shareText,
+      url: window.location.href,
+    };
     if (navigator.share) {
       try {
         await navigator.share(shareData);
