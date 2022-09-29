@@ -13,7 +13,7 @@ export type GapPosition = keyof typeof gapPositionMap;
 
 export type BoxBordersProps = {
   gapPosition?: GapPosition;
-  zIndex?: ZIndex;
+  $zIndex?: ZIndex;
 };
 
 const Top: FC = (props) => {
@@ -109,13 +109,9 @@ export const svgSymbols = {
  * a painted or drawn line.
  */
 const BoxBorders: FC<BoxBordersProps> = (props) => {
+  const { gapPosition } = props;
   return (
-    <Box
-      $cover
-      $zIndex={props.zIndex ?? "neutral"}
-      aria-hidden="true"
-      data-testid="brush-borders"
-    >
+    <Box aria-hidden="true" data-testid="brush-borders">
       <Svg
         name="box-border-top"
         {...props}
@@ -130,9 +126,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
         $width={3}
         $top={"unset"}
         $left={"unset"}
-        $height={
-          props.gapPosition === "rightTop" ? gapPositionMap.rightTop : "100%"
-        }
+        $height={gapPosition === "rightTop" ? gapPositionMap.rightTop : "100%"}
       />
       <Svg
         name="box-border-bottom"
@@ -141,9 +135,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
         $height={3}
         $top={"unset"}
         $width={
-          props.gapPosition === "bottomRight"
-            ? gapPositionMap.bottomRight
-            : "100%"
+          gapPosition === "bottomRight" ? gapPositionMap.bottomRight : "100%"
         }
       />
       <Svg
