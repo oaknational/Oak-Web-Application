@@ -56,7 +56,7 @@ describe("CMSImage", () => {
     expect(img.getAttribute("alt")).toBe("");
   });
 
-  it("sets an empty alt string when isPresentational is true", async () => {
+  it("hides an image from the accessability tree when isPresentational is true", async () => {
     const altString = "a donkey in a field on a sunny day";
     const mockImage = {
       ...mockImageAsset(),
@@ -65,8 +65,12 @@ describe("CMSImage", () => {
     };
     renderWithProviders(<CMSImage image={mockImage} />);
 
-    const img = screen.getByRole("img");
+    const img = screen.queryByRole("img");
+    expect(img).not.toBeInTheDocument();
+
+    const hiddenImg = screen.getByRole("img", { hidden: true });
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
-    expect(img.getAttribute("alt")).toBe("");
+    expect(hiddenImg.getAttribute("alt")).toBe("");
+    expect(hiddenImg).toHaveAttribute("aria-hidden", "true");
   });
 });

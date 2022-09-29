@@ -83,7 +83,9 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("BlogDetailPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(<BlogDetailPage blog={testSerializedBlog} />);
+      renderWithProviders(
+        <BlogDetailPage blog={testSerializedBlog} categories={[]} />
+      );
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -95,7 +97,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <BlogDetailPage blog={testSerializedBlog} />
+          <BlogDetailPage blog={testSerializedBlog} categories={[]} />
         );
 
         expect(seo).toEqual({});

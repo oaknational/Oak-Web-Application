@@ -13,8 +13,6 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const BlogList = Template.bind({});
 BlogList.args = {
-  title: "Check out these things!",
-  titleTag: "h1",
   items: [
     {
       titleTag: "h2",

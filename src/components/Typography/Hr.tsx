@@ -1,9 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { OakColorName } from "../../styles/theme";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import spacing, { MarginProps } from "../../styles/utils/spacing";
+import Box, { BoxProps } from "../Box";
 import Svg from "../Svg";
 
 export const svgSymbols = {
@@ -17,32 +15,37 @@ export const svgSymbols = {
   ),
 };
 
-type BorderWidth = 1 | 2 | 3 | 4;
+type Thickness = 1 | 2 | 3 | 4;
 
 const HrLine = styled(Svg)<HrProps>`
-  color: ${(props) => getColorByName(props.$color)};
   mask-position: center;
   height: ${(props) => props.thickness}px;
-  ${spacing}
 `;
 
-type HrProps = MarginProps & {
-  $color?: OakColorName;
-  thickness?: BorderWidth;
+type HrProps = BoxProps & {
+  thickness?: Thickness;
 };
 
 const Hr: FC<HrProps> = (props) => {
+  const { thickness, ...boxProps } = props;
   return (
-    <div role="separator" aria-hidden="true" data-testid="hr">
-      <HrLine name="hr" {...props} />
-    </div>
+    <Box
+      $width="100%"
+      role="separator"
+      aria-hidden="true"
+      data-testid="hr"
+      {...boxProps}
+    >
+      <HrLine name="hr" thickness={thickness} />
+    </Box>
   );
 };
 
 /**
- * Hr (Horizontal rule) is a svg , which takes thicknes, color and margin props.
+ * Hr (Horizontal rule) is an svg , which takes thickness, color and margin props.
  */
 Hr.defaultProps = {
+  $display: "flex",
   $color: "black",
   $mv: 24,
   thickness: 3,
