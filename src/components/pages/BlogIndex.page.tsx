@@ -4,11 +4,11 @@ import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import config from "../../config";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../node-lib/cms";
-import { extractNumberEnvVar } from "../../utils/configHelper";
 import BlogCategoryList from "../BlogCategoryList/BlogCategoryList";
 import BlogList from "../BlogList";
 import { BlogListItemProps } from "../BlogList/BlogListItem";
@@ -154,7 +154,7 @@ export const getStaticProps: GetStaticProps<
       categories: blogCategories,
       categorySlug,
     },
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

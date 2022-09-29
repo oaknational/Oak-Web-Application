@@ -21,7 +21,7 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import OakImage from "../components/OakImage";
-import { extractNumberEnvVar } from "../utils/configHelper";
+import config from "../config";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -232,7 +232,7 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
     props: {
       pageData: curriculumPage,
     },
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

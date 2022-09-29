@@ -2,7 +2,7 @@ import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
 type EnvVar = {
-  value: string | undefined;
+  value: string | number | undefined;
   required: boolean;
   availableInBrowser: boolean;
   default: string | null;
@@ -11,7 +11,7 @@ type EnvVar = {
   description?: string;
 };
 
-const parseValue = (value: string | undefined) => {
+const parseValue = (value: string | number | undefined) => {
   if (value === "undefined") {
     return undefined;
   }
@@ -299,6 +299,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   sanityPreviewSecret: {
     value: process.env.SANITY_PREVIEW_SECRET,
     envName: "SANITY_PREVIEW_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  sanityRevalidateSeconds: {
+    value: process.env.SANITY_REVALIDATE_SECONDS
+      ? parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
+      : undefined,
+    envName: "SANITY_REVALIDATE_SECONDS",
     required: true,
     availableInBrowser: false,
     default: null,

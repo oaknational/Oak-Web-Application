@@ -39,7 +39,7 @@ import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
-import { extractNumberEnvVar } from "../../utils/configHelper";
+import config from "../../config";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -395,7 +395,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - On time set in next config
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 
