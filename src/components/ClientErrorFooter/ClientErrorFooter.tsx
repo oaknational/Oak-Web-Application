@@ -9,7 +9,7 @@ const ClientErrorFooter: FC = () => {
     <Flex $ph={16} $mb={12} $mt={64} $width={"100%"}>
       <SocialButtons />
       <Flex $alignItems={"center"}>
-        <P $lineHeight={"16px"} $textAlign="center" $fontSize={[12, 16]}>
+        <P $textAlign="center" $font={["body-4", "body-2"]}>
           © Oak National Academy
         </P>
       </Flex>

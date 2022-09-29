@@ -10,7 +10,7 @@ jobs:
   pa11y:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !contains(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
+    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
     name: Pa11y
     runs-on: ubuntu-latest
 
@@ -59,7 +59,7 @@ jobs:
   percy:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !contains(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
+    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
     name: Percy
     runs-on: ubuntu-latest
 
@@ -120,7 +120,7 @@ jobs:
   # browser_e2e_eng:
   #   # Only want to run on success, otherwise it might be "pending", or "failure".
   #   # Filter out storybook deployments and temporarily Netlify deployments
-  #   if: ${{ (github.event.deployment_status.state == 'success') && !contains(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
+  #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
   #   name: Browser E2E Eng
   #   runs-on: ubuntu-latest
 

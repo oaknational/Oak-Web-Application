@@ -7,6 +7,8 @@ import {
   PortableTextComponentProps,
 } from "@portabletext/react";
 import { useNextSanityImage } from "next-sanity-image";
+import { useTheme } from "styled-components";
+import { uniqBy } from "lodash/fp";
 
 import Layout from "../../components/Layout";
 import CMSClient, {
@@ -25,7 +27,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import { Heading, P, Span } from "../../components/Typography";
-// import CopyLinkButton from "../../components/Button/CopyLinkButton";
+import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
@@ -33,6 +35,9 @@ import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import MobileBlogFilters from "../../components/MobileBlogFilters";
+import OakLink from "../../components/OakLink";
+import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
@@ -41,6 +46,7 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 
 export type BlogPageProps = {
   blog: SerializedBlog;
+  categories: { title: string; slug: string }[];
 };
 
 // When we get the JSON portable text it doesn't have the same field names as
@@ -58,8 +64,7 @@ const blogPortableTextComponents: PortableTextComponents = {
       // @TODO: Choose an appropriate section heading level
       return (
         <Heading
-          $fontSize={[20, 32]}
-          $lineHeight={["24px", "40px"]}
+          $font={["heading-6", "heading-4"]}
           tag="h2"
           $mt={[48, 56]}
           $mb={[24, 32]}
@@ -71,7 +76,7 @@ const blogPortableTextComponents: PortableTextComponents = {
     callout: (props) => {
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+          <P $font={"heading-light-4"}>
             <blockquote>{props.children}</blockquote>
           </P>
         </Flex>
@@ -117,7 +122,7 @@ const blogPortableTextComponents: PortableTextComponents = {
       return (
         <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
           <div>
-            <Heading $fontSize={[24, 32]} $lineHeight={"40px"} tag="h2">
+            <Heading $font={["heading-5", "heading-4"]} tag="h2">
               {params.title}
             </Heading>
             <Box $mt={32}>
@@ -155,14 +160,10 @@ const blogPortableTextComponents: PortableTextComponents = {
 
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P
-            $fontSize={[24, 32]}
-            $lineHeight={["32px", "40px"]}
-            $fontFamily={"headingLight"}
-          >
+          <P $font={["heading-light-5", "heading-light-4"]}>
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={[16]} $lineHeight={1.5} $mt={[16]} $textAlign="center">
+          <P $font={"body-1"} $mt={[16]} $textAlign="center">
             <cite>{props.value?.attribution}</cite>
             {props.value.role && `, ${props.value.role}`}
           </P>
@@ -189,7 +190,7 @@ const blogPortableTextComponents: PortableTextComponents = {
             components={{
               block: {
                 sectionHeading: (props) => {
-                  return <P $fontSize={24}>{props.children}</P>;
+                  return <P $font={"heading-light-5"}>{props.children}</P>;
                 },
               },
             }}
@@ -225,7 +226,7 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 };
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
-  const { blog } = props;
+  const { blog, categories } = props;
 
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -246,6 +247,8 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
     }
   );
+  const theme = useTheme();
+  const HEADER_HEIGHT = theme.header.height;
 
   return (
     <Layout
@@ -257,53 +260,71 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       })}
       $background="white"
     >
+      <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>
         <Grid $ph={[12, 0]}>
-          <GridArea $colSpan={[12, 7]}>
+          <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
+            <Box
+              $display={["none", "block"]}
+              $position={[null, "sticky"]}
+              $top={[null, HEADER_HEIGHT]}
+              $pt={[48, 72]}
+            >
+              <Heading tag="h3" $font="body-3">
+                Categories
+              </Heading>
+              <BlogCategoryList $mt={24} categories={categories} />
+            </Box>
+          </GridArea>
+          <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
+          <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
             <Flex
-              $mt={[40, 80]}
+              $mt={[40, 72]}
               $justifyContent="space-between"
               $flexDirection={["column", "row"]}
             >
-              <Heading
-                tag={"h2"}
-                $fontSize={[16]}
-                $color="black" // change to "hyperlink" when it becomes a link
-                $fontFamily="heading"
-              >
-                {blog.category.title}
+              <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
+                <OakLink page="blog-index" category={blog.category.slug}>
+                  {blog.category.title}
+                </OakLink>
               </Heading>
-              <Span $fontFamily={"body"} $fontSize={[14]} $mt={[8, 0]}>
+              <Span $font={"body-3"} $mt={[8, 0]}>
                 {formattedDate}
               </Span>
             </Flex>
-            <Heading $mt={12} $color={"black"} $fontSize={[24, 32]} tag={"h1"}>
+            <Heading $mt={12} $font={["heading-5", "heading-4"]} tag={"h1"}>
               {blog.title}
             </Heading>
-            <Flex $alignItems={"center"} $mt={16}>
-              {blog.author.image && (
-                <Circle $mr={12} $overflow={"hidden"} size={56}>
-                  <CMSImage
-                    image={{
-                      altText: blog.author.image.altText,
-                      isPresentational: blog.author.image.isPresentational,
-                      asset: blog.author.image.asset,
-                    }}
-                  />
-                </Circle>
-              )}
-              <Box>
-                <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
-                  {blog.author.name}
-                </Heading>
-                {blog.author.role && (
-                  <P $mt={4} fontSize={14} $color={"oakGrey4"}>
-                    {blog.author.role}
-                  </P>
+            <Flex
+              $alignItems={"center"}
+              $mt={16}
+              $mr={[20, 0]}
+              $justifyContent={["space-between", "left"]}
+            >
+              <Flex $alignItems={"center"}>
+                {blog.author.image && (
+                  <Circle $mr={12} $overflow={"hidden"} size={56}>
+                    <CMSImage
+                      image={{
+                        altText: blog.author.image.altText,
+                        isPresentational: blog.author.image.isPresentational,
+                        asset: blog.author.image.asset,
+                      }}
+                    />
+                  </Circle>
                 )}
-              </Box>
-              {/* TODO: add more UI for copy link button */}
-              {/* <CopyLinkButton /> */}
+                <Box $mr={[0, 40]}>
+                  <Heading tag="h2" $font={"heading-7"}>
+                    {blog.author.name}
+                  </Heading>
+                  {blog.author.role && (
+                    <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
+                      {blog.author.role}
+                    </P>
+                  )}
+                </Box>
+              </Flex>
+              <CopyLinkButton />
             </Flex>
             <Box $mt={[48]}>
               <BasePortableTextProvider>
@@ -347,6 +368,12 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     previewMode: isPreviewMode,
   });
 
+  const blogResults = await CMSClient.blogPosts();
+  const categories = uniqBy(
+    "title",
+    blogResults.map((blogResult) => blogResult.category)
+  ).sort((a, b) => (a.title < b.title ? -1 : 1));
+
   if (!blogResult) {
     return {
       notFound: true,
@@ -360,6 +387,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
 
   return {
     props: {
+      categories,
       blog,
       isPreviewMode,
     },
