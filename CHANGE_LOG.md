@@ -1,3 +1,10 @@
+## [1.27.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.1...v1.27.2) (2022-09-29)
+
+
+### Bug Fixes
+
+* Downloads clickable ([c4aaf0e](https://github.com/oaknational/Oak-Web-Application/commit/c4aaf0e4392fb8e9c7fa6f3335b4454781d1fa86))
+
 ## [1.27.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.0...v1.27.1) (2022-09-29)
 
 
