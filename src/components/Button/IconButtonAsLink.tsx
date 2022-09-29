@@ -17,6 +17,7 @@ const StyledA = styled.a<IconButtonStylesProps>`
 type IconButtonAsLinkProps = CommonIconButtonProps & {
   "aria-label": string;
   href: string;
+  disabled?: boolean;
   nextLinkProps?: Omit<LinkProps, "href">;
   anchorProps?: Omit<
     DetailedHTMLProps<
@@ -35,13 +36,14 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     href,
     nextLinkProps,
     anchorProps,
+    disabled,
     ...styleProps
   } = props;
 
   const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
-    <Link {...nextLinkProps} href={href} passHref>
+    <Link {...nextLinkProps} href={href} passHref={!disabled}>
       <StyledA
         {...anchorProps}
         {...useButtonAsLinkProps()}
@@ -49,6 +51,10 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
         size={size}
         variant={variant}
         background={background}
+        disabled={disabled}
+        // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
+        aria-disabled={disabled}
+        role="link"
         {...styleProps}
       >
         <IconButtonInner

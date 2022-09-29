@@ -1,9 +1,10 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 
 import Box from "../Box";
 import Flex from "../Flex";
 import { Pagination } from "../Pagination";
 import { Hr, LI, UL } from "../Typography";
+import usePagination from "../Pagination/usePagination";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
@@ -21,7 +22,13 @@ export type BlogListProps = {
  */
 const BlogList: FC<BlogListProps> = (props) => {
   const { items, withImage, withContainingHrs, withPagination } = props;
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const paginationProps = usePagination({
+    totalResults: items.length,
+    pageSize: PAGE_SIZE,
+  });
+
+  const { currentPage } = paginationProps;
 
   const currentTableData: Array<BlogListItemProps> = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
@@ -47,12 +54,7 @@ const BlogList: FC<BlogListProps> = (props) => {
       {withContainingHrs && <Hr thickness={4} $mt={32} $mb={0} />}
       {withPagination && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-          <Pagination
-            currentPage={currentPage}
-            totalCount={items.length}
-            pageSize={PAGE_SIZE}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
+          <Pagination {...paginationProps} />
         </Box>
       )}
     </Flex>

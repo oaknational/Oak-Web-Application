@@ -45,7 +45,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     getButtonStylesProps(props);
 
   return (
-    <Link {...nextLinkProps} href={href} passHref>
+    <Link {...nextLinkProps} href={href} passHref={!disabled}>
       <StyledA
         {...htmlAnchorProps}
         {...useButtonAsLinkProps()}
@@ -56,6 +56,9 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         background={background}
         iconPosition={iconPosition}
         disabled={disabled}
+        // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
+        aria-disabled={disabled}
+        role="link"
         {...styleProps}
       >
         <ButtonInner

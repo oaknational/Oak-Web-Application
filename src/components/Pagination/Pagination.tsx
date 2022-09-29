@@ -1,57 +1,50 @@
 import React, { FC } from "react";
 
 import Flex from "../Flex";
-import IconButton from "../Button/IconButton";
 import { P } from "../Typography";
+import IconButtonAsLink from "../Button/IconButtonAsLink";
 
 type PaginationProps = {
-  onPageChange: (pageNumber: number) => void | PaginationProps;
-  totalCount: number;
+  totalPages: number;
   pageSize: number;
+  nextPageUrl: string | undefined;
+  prevPageUrl: string | undefined;
   currentPage: number;
 };
 
 const Pagination: FC<PaginationProps> = ({
-  totalCount,
+  totalPages,
   currentPage,
-  pageSize,
-  onPageChange,
+  nextPageUrl = "",
+  prevPageUrl = "",
 }) => {
-  const totalPageCount = Math.ceil(totalCount / pageSize);
-
-  const onNext = () => {
-    onPageChange(currentPage + 1);
-  };
-
-  const onPrevious = () => {
-    onPageChange(currentPage - 1);
-  };
-
-  if (currentPage === 0 || totalPageCount < 2) {
+  if (currentPage === 0 || totalPages < 2) {
     return null;
   }
 
   return (
     <nav aria-label="pagination">
       <Flex $alignItems={"center"} $justifyContent={"center"}>
-        <IconButton
+        <IconButtonAsLink
           size="small"
           aria-label="previous page"
-          onClick={onPrevious}
+          href={prevPageUrl}
           icon={"ChevronLeft"}
           background={"teachersHighlight"}
+          nextLinkProps={{ scroll: false }}
           disabled={currentPage === 1}
         />
         <P $mh={24} $font={"body-2"}>
-          page {currentPage} / {totalPageCount}
+          page {currentPage} / {totalPages}
         </P>
-        <IconButton
+        <IconButtonAsLink
           size="small"
           aria-label="next page"
-          onClick={onNext}
+          href={nextPageUrl}
           icon={"ChevronRight"}
           background={"teachersHighlight"}
-          disabled={currentPage >= totalPageCount}
+          nextLinkProps={{ scroll: false }}
+          disabled={currentPage >= totalPages}
         />
       </Flex>
     </nav>
