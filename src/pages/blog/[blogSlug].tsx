@@ -27,7 +27,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import { Heading, P, Span } from "../../components/Typography";
-// import CopyLinkButton from "../../components/Button/CopyLinkButton";
+import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
@@ -295,30 +295,36 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             <Heading $mt={12} $font={["heading-5", "heading-4"]} tag={"h1"}>
               {blog.title}
             </Heading>
-            <Flex $alignItems={"center"} $mt={16}>
-              {blog.author.image && (
-                <Circle $mr={12} $overflow={"hidden"} size={56}>
-                  <CMSImage
-                    image={{
-                      altText: blog.author.image.altText,
-                      isPresentational: true,
-                      asset: blog.author.image.asset,
-                    }}
-                  />
-                </Circle>
-              )}
-              <Box>
-                <Heading tag="h2" $font={"heading-7"} $mr={40}>
-                  {blog.author.name}
-                </Heading>
-                {blog.author.role && (
-                  <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
-                    {blog.author.role}
-                  </P>
+            <Flex
+              $alignItems={"center"}
+              $mt={16}
+              $mr={[20, 0]}
+              $justifyContent={["space-between", "left"]}
+            >
+              <Flex $alignItems={"center"}>
+                {blog.author.image && (
+                  <Circle $mr={12} $overflow={"hidden"} size={56}>
+                    <CMSImage
+                      image={{
+                        altText: blog.author.image.altText,
+                        isPresentational: blog.author.image.isPresentational,
+                        asset: blog.author.image.asset,
+                      }}
+                    />
+                  </Circle>
                 )}
-              </Box>
-              {/* TODO: add more UI for copy link button */}
-              {/* <CopyLinkButton /> */}
+                <Box $mr={[0, 40]}>
+                  <Heading tag="h2" $font={"heading-7"}>
+                    {blog.author.name}
+                  </Heading>
+                  {blog.author.role && (
+                    <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
+                      {blog.author.role}
+                    </P>
+                  )}
+                </Box>
+              </Flex>
+              <CopyLinkButton />
             </Flex>
             <Box $mt={[48]}>
               <BasePortableTextProvider>

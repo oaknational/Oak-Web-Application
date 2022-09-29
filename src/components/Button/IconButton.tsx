@@ -21,11 +21,12 @@ const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
   ${iconButtonStyles};
 `;
 
-type IconButtonProps = CommonIconButtonProps & {
+export type IconButtonProps = CommonIconButtonProps & {
   onClick: MouseEventHandler<HTMLButtonElement>;
   "aria-label": string;
   disabled?: boolean;
   rotate?: number;
+  children?: React.ReactNode;
   htmlButtonProps?: Omit<
     DetailedHTMLProps<
       ButtonHTMLAttributes<HTMLButtonElement>,
@@ -43,6 +44,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
     "aria-label": ariaLabel,
     disabled,
     onClick,
+    children,
     htmlButtonProps = {},
     ...styleProps
   } = props;
@@ -69,6 +71,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
         background={background}
         iconColorOverride={iconColorOverride}
       />
+      {children}
     </StyledButton>
   );
 };
