@@ -1,3 +1,10 @@
+## [1.27.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.0...v1.27.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* arialabel to have size in mb rather than bytes ([056ae3b](https://github.com/oaknational/Oak-Web-Application/commit/056ae3ba5a83c98e6bfc17d2a7ad8ea4d5b3368e))
+
 # [1.27.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.26.0...v1.27.0) (2022-09-28)
 
 
