@@ -1,7 +1,7 @@
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
-  FC,
+  forwardRef,
   MouseEventHandler,
 } from "react";
 import styled from "styled-components";
@@ -36,44 +36,47 @@ export type IconButtonProps = CommonIconButtonProps & {
   >;
 };
 
-const IconButton: FC<IconButtonProps> = (props) => {
-  const {
-    icon,
-    rotate,
-    iconColorOverride,
-    "aria-label": ariaLabel,
-    disabled,
-    onClick,
-    children,
-    htmlButtonProps = {},
-    ...styleProps
-  } = props;
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  (props, ref) => {
+    const {
+      icon,
+      rotate,
+      iconColorOverride,
+      "aria-label": ariaLabel,
+      disabled,
+      onClick,
+      children,
+      htmlButtonProps = {},
+      ...styleProps
+    } = props;
 
-  const { size, variant, background } = getIconButtonStylesProps(props);
+    const { size, variant, background } = getIconButtonStylesProps(props);
 
-  return (
-    <StyledButton
-      {...htmlButtonProps}
-      onClick={onClick}
-      rotate={rotate}
-      title={htmlButtonProps.title || ariaLabel}
-      aria-label={ariaLabel}
-      disabled={disabled}
-      size={size}
-      background={background}
-      variant={variant}
-      {...styleProps}
-    >
-      <IconButtonInner
-        icon={icon}
+    return (
+      <StyledButton
+        ref={ref}
+        {...htmlButtonProps}
+        onClick={onClick}
+        rotate={rotate}
+        title={htmlButtonProps.title || ariaLabel}
+        aria-label={ariaLabel}
+        disabled={disabled}
         size={size}
-        variant={variant}
         background={background}
-        iconColorOverride={iconColorOverride}
-      />
-      {children}
-    </StyledButton>
-  );
-};
+        variant={variant}
+        {...styleProps}
+      >
+        <IconButtonInner
+          icon={icon}
+          size={size}
+          variant={variant}
+          background={background}
+          iconColorOverride={iconColorOverride}
+        />
+        {children}
+      </StyledButton>
+    );
+  }
+);
 
 export default IconButton;

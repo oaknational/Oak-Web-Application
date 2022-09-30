@@ -25,7 +25,8 @@ describe("config.get()", () => {
     expect(() => config.get("nonExistentVarName")).toThrowError();
   });
   it("should throw on import if value not allowed", async () => {
-    process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING = "flagrant disregard for the constitution";
+    process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING =
+      "flagrant disregard for the constitution";
     try {
       await import(".");
     } catch (error) {
