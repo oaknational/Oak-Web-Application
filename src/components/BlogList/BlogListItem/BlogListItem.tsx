@@ -86,7 +86,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start">
+      <Flex $flexDirection="column" $alignItems="flex-start" $width="100%">
         <Flex
           $width="100%"
           $alignItems={["flex-start", "flex-end"]}
