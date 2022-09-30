@@ -58,7 +58,7 @@ const portableTextComponents: PortableTextComponents = {
       );
     },
     normal: (props) => {
-      return <P $mt={[16, 20]}>{props.children}</P>;
+      return <P $mt={[16, 24]}>{props.children}</P>;
     },
   },
 };
