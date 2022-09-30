@@ -89,15 +89,18 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       <Flex $flexDirection="column" $alignItems="flex-start">
         <Flex
           $width="100%"
-          $alignItems="flex-end"
+          $alignItems={["flex-start", "flex-end"]}
           $justifyContent="space-between"
+          $flexDirection={["column", "row"]}
         >
           <OakLink page="blog-index" category={category.slug}>
             <Span $font="heading-7" $color="hyperlink">
               {category.title}
             </Span>
           </OakLink>
-          <P $font={"body-3"}>{blogDate}</P>
+          <P $font={"body-3"} $mt={[8, 0]}>
+            {blogDate}
+          </P>
         </Flex>
         <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
           <OakLink
