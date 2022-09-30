@@ -4,11 +4,11 @@ import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
 import config from "../../config";
 import Box from "../Box";
-import { SanityImage } from "../../node-lib/cms";
+import { Image } from "../../node-lib/cms";
 import OakImage, { OakImageProps } from "../OakImage";
 
 type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
-  image: SanityImage;
+  image: Image;
   alt?: string;
 };
 

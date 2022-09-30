@@ -6,4 +6,4 @@ import * as z from "zod";
  */
 export const portableTextSchema = z.array(z.any());
 
-export type PortableText = z.infer<typeof portableTextSchema>;
+export type PortableTextJSON = z.infer<typeof portableTextSchema>;
