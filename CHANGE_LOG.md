@@ -1,3 +1,10 @@
+## [1.28.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.1...v1.28.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* copy change on planning page ([1acfa11](https://github.com/oaknational/Oak-Web-Application/commit/1acfa112a039485cf078cafba4c18cf504023f65))
+
 ## [1.28.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.0...v1.28.1) (2022-09-29)
 
 # [1.28.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.5...v1.28.0) (2022-09-29)
