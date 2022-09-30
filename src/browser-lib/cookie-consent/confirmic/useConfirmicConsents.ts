@@ -178,7 +178,7 @@ export const fromTuples = (
   };
 };
 
-export const safeStringify = (value: unknown) => {
+export const safeStringify = (value: ConsentTuple[]) => {
   try {
     return JSON.stringify(value);
   } catch (error) {
@@ -191,7 +191,8 @@ const CONFIRMIC_COOKIE_NAME = "cookie-consents";
 
 const useConfirmicConsents = () => {
   const [consentCookie, setConsentCookie] = useCookies([CONFIRMIC_COOKIE_NAME]);
-  const consentsFromCookie = fromTuples(consentCookie[CONFIRMIC_COOKIE_NAME]);
+  const consentTupleFromCookie = consentCookie[CONFIRMIC_COOKIE_NAME];
+  const consentsFromCookie = fromTuples(consentTupleFromCookie);
   const [consents, setConsents] = useState<ConfirmicConsents>(
     consentsFromCookie || getConsentsFromLocalStorage()
   );
@@ -207,7 +208,11 @@ const useConfirmicConsents = () => {
      * thenational.academy subdomains
      **/
     if (tuples) {
-      setConsentCookie(CONFIRMIC_COOKIE_NAME, tuples, cookieOptions);
+      const tuplesStringFromCookies = safeStringify(consentTupleFromCookie);
+
+      if (tuplesStringFromCookies !== tuplesString) {
+        setConsentCookie(CONFIRMIC_COOKIE_NAME, tuples, cookieOptions);
+      }
 
       const consentsFromLocalStorage = getConsentsFromLocalStorage();
       const tuplesStringFromLocalStorage = safeStringify(
@@ -224,9 +229,7 @@ const useConfirmicConsents = () => {
   useEffect(() => {
     const updateStateFromLocalStorage = () => {
       const consentsFromLocalStorage = getConsentsFromLocalStorage();
-      if (!consentsFromCookie) {
-        setConsents(consentsFromLocalStorage);
-      }
+      setConsents(consentsFromLocalStorage);
     };
     updateStateFromLocalStorage();
     window.addEventListener("storage", updateStateFromLocalStorage);
