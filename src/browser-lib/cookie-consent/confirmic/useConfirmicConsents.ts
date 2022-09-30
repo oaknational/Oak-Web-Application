@@ -122,19 +122,27 @@ export const getConsentsFromLocalStorage = () => {
 type ConfirmicPolicyId = string;
 type ConsentTuple = [ConfirmicPolicyId, string];
 export const toTuples = (consents: ConfirmicConsents): ConsentTuple[] => {
-  return Object.entries(consentPolicyMap).map((entry) => {
-    const [policyName, policyId] = entry as [
-      CookiePolicyName,
-      ConfirmicPolicyId
-    ];
-    return [
-      policyId,
-      JSON.stringify({
-        enabled: consents[policyName]?.state === "enabled",
-        version: consents[policyName]?.version,
-      }),
-    ] as ConsentTuple;
-  });
+  return Object.entries(consentPolicyMap)
+    .filter((entry) => {
+      /**
+       * Filter out "default" consents which aren't compatible with Acorn apps
+       */
+      const [policyName] = entry as [CookiePolicyName, ConfirmicPolicyId];
+      return consents[policyName]?.version !== defaultConsent.version;
+    })
+    .map((entry) => {
+      const [policyName, policyId] = entry as [
+        CookiePolicyName,
+        ConfirmicPolicyId
+      ];
+      return [
+        policyId,
+        JSON.stringify({
+          enabled: consents[policyName]?.state === "enabled",
+          version: consents[policyName]?.version,
+        }),
+      ] as ConsentTuple;
+    });
 };
 export const fromTuples = (
   tuples: ConsentTuple[] | unknown
