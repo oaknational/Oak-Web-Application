@@ -12,9 +12,15 @@ console.log("Percy base url:", baseUrl);
 // https://docs.percy.io/docs/percy-snapshot#configuration
 const snapshotRelativeUrls = [
   "/",
-  "/beta/lessons/physics-only-review-chj3cd/",
-  "/beta/sign-in",
-  "/search",
+  "/lesson-planning",
+  "/develop-your-curriculum",
+  "/about-us/who-we-are",
+  "/about-us/board",
+  "/blog",
+  "/blog/how-to-design-a-unit-of-study",
+  "/blog/evolution-of-oak",
+  "/blog/join-the-childrens-mental-health-week-assembly-2022",
+  "/legal/accessibility-statement",
 ];
 
 const urls = snapshotRelativeUrls.map((relUrl) => {
