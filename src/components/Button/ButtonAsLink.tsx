@@ -23,7 +23,7 @@ const StyledA = styled.a<ButtonStylesProps>`
   `}
 `;
 export type ButtonAsLinkProps = CommonButtonProps & {
-  href: string;
+  href: LinkProps["href"];
   nextLinkProps?: Omit<LinkProps, "href">;
   htmlAnchorProps?: HTMLAnchorProps;
   disabled?: boolean;

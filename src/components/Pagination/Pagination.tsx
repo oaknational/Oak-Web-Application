@@ -1,22 +1,23 @@
+import { UrlObject } from "url";
+
 import React, { FC } from "react";
 
 import Flex from "../Flex";
-import { P } from "../Typography";
+import { Span } from "../Typography";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
 
-type PaginationProps = {
-  totalPages: number;
-  pageSize: number;
-  nextPageUrl: string | undefined;
-  prevPageUrl: string | undefined;
+export type PaginationProps = {
   currentPage: number;
+  totalPages: number;
+  nextPageHref?: UrlObject | string;
+  prevPageHref?: UrlObject | string;
 };
 
 const Pagination: FC<PaginationProps> = ({
   totalPages,
   currentPage,
-  nextPageUrl = "",
-  prevPageUrl = "",
+  nextPageHref = "",
+  prevPageHref = "",
 }) => {
   if (currentPage === 0 || totalPages < 2) {
     return null;
@@ -28,19 +29,19 @@ const Pagination: FC<PaginationProps> = ({
         <IconButtonAsLink
           size="small"
           aria-label="previous page"
-          href={prevPageUrl}
+          href={prevPageHref}
           icon={"ChevronLeft"}
           background={"teachersHighlight"}
           nextLinkProps={{ scroll: false }}
           disabled={currentPage === 1}
         />
-        <P $mh={24} $font={"body-2"}>
+        <Span $mh={24} $font={"body-2"}>
           page {currentPage} / {totalPages}
-        </P>
+        </Span>
         <IconButtonAsLink
           size="small"
           aria-label="next page"
-          href={nextPageUrl}
+          href={nextPageHref}
           icon={"ChevronRight"}
           background={"teachersHighlight"}
           nextLinkProps={{ scroll: false }}

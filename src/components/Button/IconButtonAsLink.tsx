@@ -16,7 +16,7 @@ const StyledA = styled.a<IconButtonStylesProps>`
 
 type IconButtonAsLinkProps = CommonIconButtonProps & {
   "aria-label": string;
-  href: string;
+  href: LinkProps["href"];
   disabled?: boolean;
   nextLinkProps?: Omit<LinkProps, "href">;
   anchorProps?: Omit<
