@@ -11,14 +11,13 @@ type UsePaginationProps = {
 type UsePaginationReturnType = UsePaginationProps & PaginationProps;
 const usePagination = (props: UsePaginationProps): UsePaginationReturnType => {
   const { pageSize, totalResults } = props;
+  const totalPages = Math.ceil(totalResults / pageSize);
   const router = useRouter();
   const { page: pageRaw } = router.query;
   const pageString = (Array.isArray(pageRaw) ? pageRaw[0] : pageRaw) || "";
-  const pageNumber = parseInt(pageString);
+  const pageNumber = Math.max(Math.min(parseInt(pageString), totalPages), 1);
 
   const currentPage = isNaN(pageNumber) ? 1 : pageNumber;
-
-  const totalPages = Math.ceil(totalResults / pageSize);
 
   const nextPageParams = new URLSearchParams(encode(router.query));
   nextPageParams.set("page", (currentPage + 1).toString());

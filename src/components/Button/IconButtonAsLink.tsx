@@ -35,7 +35,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     "aria-label": ariaLabel,
     href,
     nextLinkProps,
-    anchorProps,
+    anchorProps = {},
     disabled,
     ...styleProps
   } = props;
@@ -47,6 +47,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
       <StyledA
         {...anchorProps}
         {...useButtonAsLinkProps()}
+        onClick={disabled ? (e) => e.preventDefault() : anchorProps.onClick}
         aria-label={ariaLabel}
         size={size}
         variant={variant}

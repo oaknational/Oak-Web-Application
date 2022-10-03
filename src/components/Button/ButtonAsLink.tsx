@@ -48,6 +48,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     <Link {...nextLinkProps} href={href} passHref={!disabled}>
       <StyledA
         {...htmlAnchorProps}
+        onClick={disabled ? (e) => e.preventDefault() : htmlAnchorProps.onClick}
         {...useButtonAsLinkProps()}
         title={htmlAnchorProps.title || ariaLabel || label}
         aria-label={ariaLabel || label}
