@@ -1,3 +1,16 @@
+# [1.30.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.1...v1.30.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* correctly infer config.get return types, add test ([79a9ebe](https://github.com/oaknational/Oak-Web-Application/commit/79a9ebea733bb3e8d16baa4a10e65d9debb197db))
+
+
+### Features
+
+* add to config - use config instead of config helper ([1378912](https://github.com/oaknational/Oak-Web-Application/commit/1378912266801cb4f27f7190fcc40594efc8b15a))
+* replace magic number revalidate with single config value ([93edaca](https://github.com/oaknational/Oak-Web-Application/commit/93edaca4e97fffb696114de7435647fe3c8c4ac2))
+
 ## [1.29.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.0...v1.29.1) (2022-10-03)
 
 # [1.29.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.3...v1.29.0) (2022-10-03)
