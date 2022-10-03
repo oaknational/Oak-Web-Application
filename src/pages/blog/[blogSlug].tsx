@@ -40,6 +40,7 @@ import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
+import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -229,6 +230,7 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
 
+  const blogCategoriesListProps = useBlogCategoryList();
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -271,10 +273,18 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $top={[null, HEADER_HEIGHT]}
               $pt={[48, 72]}
             >
-              <Heading tag="h3" $font="body-3">
+              <Heading
+                tag="h3"
+                $font="body-3"
+                id={blogCategoriesListProps.labelId}
+              >
                 Categories
               </Heading>
-              <BlogCategoryList $mt={24} categories={categories} />
+              <BlogCategoryList
+                labelledBy={blogCategoriesListProps.labelId}
+                $mt={24}
+                categories={categories}
+              />
             </Box>
           </GridArea>
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />

@@ -6,17 +6,19 @@ import { UL } from "../Typography";
 import BlogCategoryListItem from "./BlogCategoryListItem";
 
 export type BlogCategoryListProps = BoxProps & {
+  labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
 };
 const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
-  const { categories, selectedCategorySlug, ...boxProps } = props;
+  const { categories, selectedCategorySlug, labelledBy, ...boxProps } = props;
   const [visiblySelected, setVisiblySelected] = useState(selectedCategorySlug);
   useEffect(() => {
     setVisiblySelected(selectedCategorySlug);
   }, [selectedCategorySlug]);
+
   return (
-    <nav>
+    <nav aria-labelledby={labelledBy}>
       <UL {...boxProps} $reset>
         <BlogCategoryListItem
           isSelected={visiblySelected === null}
