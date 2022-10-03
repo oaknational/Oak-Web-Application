@@ -1,3 +1,10 @@
+## [1.28.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.2...v1.28.3) (2022-09-30)
+
+
+### Bug Fixes
+
+* loosen resolveReferences types to more accurately reflect usage ([1015dd4](https://github.com/oaknational/Oak-Web-Application/commit/1015dd4f19383d89de8350f43ccc3435b030caef))
+
 ## [1.28.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.1...v1.28.2) (2022-09-30)
 
 

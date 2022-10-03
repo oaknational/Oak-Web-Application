@@ -11,11 +11,15 @@ export const cardSchema = z.object({
   cta: CTASchema.nullable().optional(),
 });
 
+export type Card = z.infer<typeof cardSchema>;
+
 export const textBlockSchema = z.object({
   title: z.string().nonempty(),
   bodyPortableText: portableTextSchema,
   cta: CTASchema.nullable().optional(),
 });
+
+export type TextBlock = z.infer<typeof textBlockSchema>;
 
 export const textAndMediaSchemaBase = z.object({
   title: z.string().nonempty(),
@@ -34,3 +38,5 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
+
+export type TextAndMedia = z.infer<typeof textAndMediaSchema>;
