@@ -87,6 +87,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             $mt={36}
             buttons={reducedAboutNavLinks}
             selected={"Who we are"}
+            ariaLabel="about us"
           />
         </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">

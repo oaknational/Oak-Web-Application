@@ -7,6 +7,7 @@ import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
 
 type ButtonLinkNavProps = {
+  ariaLabel: string;
   buttons: { label: string; href: string }[];
   selected: string;
 } & FlexProps;
@@ -23,10 +24,11 @@ const IconOpacity = styled(Icon)<{ opacity: string }>`
 const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
   selected,
+  ariaLabel,
   ...props
 }) => {
   return (
-    <nav>
+    <nav aria-label={ariaLabel}>
       <Flex
         $flexWrap={"wrap"}
         $alignItems={["flex-start"]}
