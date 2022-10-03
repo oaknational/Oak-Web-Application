@@ -367,6 +367,8 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   },
 });
 
+console.log("envVars.sanityRevalidateSeconds", envVars.sanityRevalidateSeconds);
+
 for (const [, envVarConfig] of Object.entries(envVars)) {
   const {
     value: envValue,
@@ -411,6 +413,8 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
 
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(value);
+
+  console.log("configGet parsedValue", key, parsedValue);
 
   if (parsedValue) {
     return parsedValue;

@@ -76,6 +76,16 @@ module.exports = async (phase) => {
 
   const imageDomains = [SANITY_ASSET_CDN_HOST].filter(Boolean);
 
+  console.log(
+    "SANITY_REVALIDATE_SECONDS",
+    process.env.SANITY_REVALIDATE_SECONDS
+  );
+
+  console.log(
+    "oakConfig.sanity?.revalidateSeconds",
+    oakConfig.sanity?.revalidateSeconds
+  );
+
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     webpack: (config, { dev }) => {
