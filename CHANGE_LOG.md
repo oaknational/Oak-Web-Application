@@ -1,3 +1,18 @@
+# [1.29.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.3...v1.29.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* max width uses 'none' and not 'auto' ([b4363ef](https://github.com/oaknational/Oak-Web-Application/commit/b4363ef1beb662aa26cb365f47923063cb21d4c0))
+
+
+### Features
+
+* add margin to top of date in mobile view ([5470516](https://github.com/oaknational/Oak-Web-Application/commit/5470516d3c13b65547987d73ee449c8d39bf1358))
+* make blog list item fill available horizontal space ([b3daeb3](https://github.com/oaknational/Oak-Web-Application/commit/b3daeb3c17400d81b4fbbe5f35f146b765c88596))
+* make images smaller on mobile ([7204f1c](https://github.com/oaknational/Oak-Web-Application/commit/7204f1cccb22fa3ce6a6194844058d3798e6f084))
+* remove images on blog listing page ([6782fdb](https://github.com/oaknational/Oak-Web-Application/commit/6782fdbab4407ac1e703aaedae0df1c804474cf7))
+
 ## [1.28.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.2...v1.28.3) (2022-09-30)
 
 

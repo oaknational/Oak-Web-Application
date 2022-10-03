@@ -57,7 +57,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
-      $alignItems={["initial", "center"]}
+      $alignItems={"center"}
       $pa={0}
     >
       {withImage && mainImage && (
@@ -65,6 +65,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $display={["block", "none", "block"]}
           $position={"relative"}
           $minWidth={240}
+          $maxWidth={[160, "none"]}
           $mr={[0, 32]}
           $mb={[32, 0]}
         >
@@ -85,18 +86,21 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-      <Flex $flexDirection="column" $alignItems="flex-start">
+      <Flex $flexDirection="column" $alignItems="flex-start" $width="100%">
         <Flex
           $width="100%"
-          $alignItems="flex-end"
+          $alignItems={["flex-start", "flex-end"]}
           $justifyContent="space-between"
+          $flexDirection={["column", "row"]}
         >
           <OakLink page="blog-index" category={category.slug}>
             <Span $font="heading-7" $color="hyperlink">
               {category.title}
             </Span>
           </OakLink>
-          <P $font={"body-3"}>{blogDate}</P>
+          <P $font={"body-3"} $mt={[8, 0]}>
+            {blogDate}
+          </P>
         </Flex>
         <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
           <OakLink
