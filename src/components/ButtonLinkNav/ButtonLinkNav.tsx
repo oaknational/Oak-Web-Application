@@ -1,7 +1,8 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 
 import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
+import { HTMLAnchorProps } from "../Button/common";
 import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
@@ -16,11 +17,16 @@ type ButtonLinkNavProps = {
 const NavLink = ({ label, href }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
 
+  const htmlAnchorProps: HTMLAnchorProps = {
+    "aria-current": isCurrent ? "page" : undefined,
+  };
+
   return (
-    <Fragment key={label}>
+    <>
       {/* Desktop */}
       <Box $display={["none", "block"]}>
         <ButtonAsLink
+          htmlAnchorProps={htmlAnchorProps}
           variant={isCurrent ? "minimal" : "brush"}
           label={label}
           href={href}
@@ -41,6 +47,7 @@ const NavLink = ({ label, href }: LinkProps) => {
           </Flex>
         )}
         <ButtonAsLink
+          htmlAnchorProps={htmlAnchorProps}
           $opacity={isCurrent ? 0.6 : 1}
           variant={"minimal"}
           label={label}
@@ -49,10 +56,18 @@ const NavLink = ({ label, href }: LinkProps) => {
           disabled={isCurrent}
         />
       </Flex>
-    </Fragment>
+    </>
   );
 };
 
+/**
+ * Renders a 'nav' element containing a list of links styled as buttons.
+ * Stacks vertically and styled differently at mobile.
+ *
+ * ## Usage
+ *
+ * Used in the 'About Us' summary card
+ */
 const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
   ariaLabel,
