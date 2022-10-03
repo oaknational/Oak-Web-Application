@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
+import config from "../../config";
 import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
@@ -75,7 +76,7 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
     props: {
       webinars,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 
