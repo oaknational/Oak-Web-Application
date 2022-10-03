@@ -11,15 +11,11 @@ const totalResults = 41;
 const pageSize = 10;
 
 describe("usePagination()", () => {
-  beforeEach(() => {
-    window.localStorage.clear();
-  });
+  jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
   });
-
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
   test("calculates correct totalPages", () => {
     useRouter.mockReturnValueOnce({ pathname, query: {} });
