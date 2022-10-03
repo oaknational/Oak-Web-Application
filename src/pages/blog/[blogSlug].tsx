@@ -10,13 +10,14 @@ import { useNextSanityImage } from "next-sanity-image";
 import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
   CTA,
   PortableTextJSON,
   Quote,
-  SanityImage,
+  Image,
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
@@ -86,7 +87,7 @@ const blogPortableTextComponents: PortableTextComponents = {
   },
   types: {
     imageWithAltText: (
-      props: PortableTextComponentProps<{ asset: SanityImage["asset"] }>
+      props: PortableTextComponentProps<{ asset: Image["asset"] }>
     ) => {
       if (!props.value) {
         return null;
@@ -401,10 +402,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
       blog,
       isPreviewMode,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 10, // In seconds
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

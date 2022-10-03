@@ -1,3 +1,56 @@
+# [1.30.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.1...v1.30.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* correctly infer config.get return types, add test ([79a9ebe](https://github.com/oaknational/Oak-Web-Application/commit/79a9ebea733bb3e8d16baa4a10e65d9debb197db))
+
+
+### Features
+
+* add to config - use config instead of config helper ([1378912](https://github.com/oaknational/Oak-Web-Application/commit/1378912266801cb4f27f7190fcc40594efc8b15a))
+* replace magic number revalidate with single config value ([93edaca](https://github.com/oaknational/Oak-Web-Application/commit/93edaca4e97fffb696114de7435647fe3c8c4ac2))
+
+## [1.29.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.0...v1.29.1) (2022-10-03)
+
+# [1.29.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.3...v1.29.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* max width uses 'none' and not 'auto' ([b4363ef](https://github.com/oaknational/Oak-Web-Application/commit/b4363ef1beb662aa26cb365f47923063cb21d4c0))
+
+
+### Features
+
+* add margin to top of date in mobile view ([5470516](https://github.com/oaknational/Oak-Web-Application/commit/5470516d3c13b65547987d73ee449c8d39bf1358))
+* make blog list item fill available horizontal space ([b3daeb3](https://github.com/oaknational/Oak-Web-Application/commit/b3daeb3c17400d81b4fbbe5f35f146b765c88596))
+* make images smaller on mobile ([7204f1c](https://github.com/oaknational/Oak-Web-Application/commit/7204f1cccb22fa3ce6a6194844058d3798e6f084))
+* remove images on blog listing page ([6782fdb](https://github.com/oaknational/Oak-Web-Application/commit/6782fdbab4407ac1e703aaedae0df1c804474cf7))
+
+## [1.28.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.2...v1.28.3) (2022-09-30)
+
+
+### Bug Fixes
+
+* loosen resolveReferences types to more accurately reflect usage ([1015dd4](https://github.com/oaknational/Oak-Web-Application/commit/1015dd4f19383d89de8350f43ccc3435b030caef))
+
+## [1.28.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.1...v1.28.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* copy change on planning page ([1acfa11](https://github.com/oaknational/Oak-Web-Application/commit/1acfa112a039485cf078cafba4c18cf504023f65))
+
+## [1.28.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.0...v1.28.1) (2022-09-29)
+
+# [1.28.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.5...v1.28.0) (2022-09-29)
+
+
+### Features
+
+* **Netlify:** update reference from trial domain to dev domain ([1db821d](https://github.com/oaknational/Oak-Web-Application/commit/1db821d83af7bb9fe97ccb8843267498661111d0))
+
 ## [1.27.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.4...v1.27.5) (2022-09-29)
 
 ## [1.27.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.3...v1.27.4) (2022-09-29)
