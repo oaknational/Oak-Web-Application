@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
+import config from "../../config";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";

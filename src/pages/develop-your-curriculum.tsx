@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
+import config from "../config";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -21,7 +22,6 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import OakImage from "../components/OakImage";
-import config from "../config";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;

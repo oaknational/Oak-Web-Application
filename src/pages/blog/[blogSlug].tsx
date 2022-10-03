@@ -10,6 +10,7 @@ import { useNextSanityImage } from "next-sanity-image";
 import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -39,7 +40,6 @@ import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
-import config from "../../config";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -392,9 +392,6 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
       blog,
       isPreviewMode,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - On time set in next config
     revalidate: config.get("sanityRevalidateSeconds"),
   };
 };

@@ -2,6 +2,7 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import CMSClient, { AboutWhoWeArePage, TextBlock } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";

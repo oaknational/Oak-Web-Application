@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 
+import config from "../../config";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
