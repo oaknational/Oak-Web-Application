@@ -17,7 +17,7 @@ export const blogPostSchema = z
     slug: slugSchema,
     date: dateSchema,
     author: teamMemberPreviewSchema,
-    summary: z.string().nonempty(),
+    summary: z.string().min(1),
     contentPortableText: portableTextSchema,
     category: blogWebinarCategorySchema,
     mainImage: imageSchema,
