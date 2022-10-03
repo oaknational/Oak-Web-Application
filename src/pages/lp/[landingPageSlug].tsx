@@ -5,7 +5,6 @@ import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import CMSClient, { LandingPage } from "../../node-lib/cms";
-import { extractNumberEnvVar } from "../../utils/configHelper";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -63,7 +62,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       pageData: landingPageResult,
     },
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

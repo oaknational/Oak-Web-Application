@@ -17,7 +17,6 @@ import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import Box from "../../components/Box";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import { extractNumberEnvVar } from "../../utils/configHelper";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -156,7 +155,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutBoardPage,
     },
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

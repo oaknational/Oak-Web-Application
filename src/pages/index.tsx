@@ -26,7 +26,6 @@ import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import { BlogListItemProps } from "../components/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
-import { extractNumberEnvVar } from "../utils/configHelper";
 import {
   blogToBlogListItem,
   SerializedBlogPostPreview,
@@ -406,7 +405,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
       pageData: homepageData,
       posts,
     },
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

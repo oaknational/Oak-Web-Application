@@ -20,7 +20,6 @@ import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
-import { extractNumberEnvVar } from "../../utils/configHelper";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -192,7 +191,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutWhoWeArePage,
     },
-    revalidate: extractNumberEnvVar("SANITY_REVALIDATE_SECONDS"),
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 
