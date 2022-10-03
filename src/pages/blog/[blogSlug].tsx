@@ -16,7 +16,7 @@ import CMSClient, {
   CTA,
   PortableTextJSON,
   Quote,
-  SanityImage,
+  Image,
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
@@ -86,7 +86,7 @@ const blogPortableTextComponents: PortableTextComponents = {
   },
   types: {
     imageWithAltText: (
-      props: PortableTextComponentProps<{ asset: SanityImage["asset"] }>
+      props: PortableTextComponentProps<{ asset: Image["asset"] }>
     ) => {
       if (!props.value) {
         return null;

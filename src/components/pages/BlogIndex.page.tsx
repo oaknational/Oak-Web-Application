@@ -89,12 +89,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           {/* @todo is there a nicer way to make this 1 column spacer? */}
           <GridArea $order={1} $colSpan={[12, 1]} />
           <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
-            <BlogList
-              items={blogListItems}
-              withImage
-              withContainingHrs
-              withPagination
-            />
+            <BlogList items={blogListItems} withContainingHrs withPagination />
           </GridArea>
         </Grid>
       </MaxWidth>

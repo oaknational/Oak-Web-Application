@@ -179,7 +179,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $ph={12}
             >
               <Heading $font="heading-5" $textAlign="center" tag="h2">
-                Choose from our resources to support your planning
+                Learn more about our different resources and how they can
+                support your planning
               </Heading>
             </Flex>
             <Flex
