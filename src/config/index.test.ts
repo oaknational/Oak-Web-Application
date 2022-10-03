@@ -17,6 +17,12 @@ describe("config.get()", () => {
 
     expect(config.get("clientAppBaseUrl")).toEqual("http://localhost:3000");
   });
+  it("should alllow parsing numeric env vars", async () => {
+    process.env.SANITY_REVALIDATE_SECONDS = "123";
+    const { default: config } = await import(".");
+
+    expect(config.get("sanityRevalidateSeconds")).toEqual(123);
+  });
   it("should throw for non-existent name", async () => {
     const { default: config } = await import(".");
 
