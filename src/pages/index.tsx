@@ -177,6 +177,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                         src={"/images/illustrations/magic-carpet.png"}
                         $objectFit="cover"
                         $objectPosition={"right center"}
+                        sizes={"(min-width: 750px) 500px, 100vw"}
                         fill
                         priority
                       />
@@ -240,6 +241,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                           "/images/illustrations/teacher-carrying-stuff-165-200.png"
                         }
                         fill
+                        sizes="(min-width: 750px) 256px, 100vw"
                         $objectFit="contain"
                         priority
                       />

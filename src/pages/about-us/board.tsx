@@ -9,14 +9,19 @@ import SummaryCard from "../../components/Card/SummaryCard";
 import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import Card from "../../components/Card";
 import AboutContactCard from "../../components/AboutContactCard";
-import Typography, { Heading, Hr, P } from "../../components/Typography";
+import Typography, {
+  Heading,
+  Hr,
+  LI,
+  P,
+  UL,
+} from "../../components/Typography";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
-import Box from "../../components/Box";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
@@ -44,6 +49,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             $mt={36}
             buttons={reducedAboutNavLinks}
             selected={"Board"}
+            ariaLabel="about us"
           />
         </SummaryCard>
         <AboutIntroCard
@@ -59,18 +65,17 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           Our interim board
         </Heading>
 
-        <Box $mb={[80, 92]}>
+        <UL $mb={[80, 92]} $reset>
           {pageData.boardMembers?.map((boardMember) => (
-            <Heading
+            <LI
               key={boardMember.id}
               $textAlign="center"
-              tag={"h4"}
               $font={["heading-7", "heading-6"]}
             >
               {boardMember.name}
-            </Heading>
+            </LI>
           ))}
-        </Box>
+        </UL>
 
         <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
           <Heading $font={"heading-5"} tag={"h2"}>
@@ -96,7 +101,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       $height={"100%"}
                       $flexDirection={"column"}
                     >
-                      <Heading $font={"heading-7"} tag={"h4"}>
+                      <Heading $font={"heading-7"} tag={"h3"}>
                         {doc.title}
                       </Heading>
                       <Flex
