@@ -1,3 +1,10 @@
+# [1.31.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.30.0...v1.31.0) (2022-10-03)
+
+
+### Features
+
+* blog pagination in query params ([977e012](https://github.com/oaknational/Oak-Web-Application/commit/977e0129a8dd446fe9dd6d00c33d8d2ed077b243))
+
 # [1.30.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.1...v1.30.0) (2022-10-03)
 
 
