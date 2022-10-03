@@ -1,3 +1,17 @@
+# [1.32.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.31.0...v1.32.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* remove usage of deprecated z.string().nonempty() ([38d9a0a](https://github.com/oaknational/Oak-Web-Application/commit/38d9a0ad34454be9e9e47066b09287f7bf9cf338))
+
+
+### Features
+
+* add ability to trigger pre-defined JS hooks from CMS portable text ([aaadf37](https://github.com/oaknational/Oak-Web-Application/commit/aaadf375a18e142c7bdc0f3c3b95c922da626f11))
+* add contact page CMSClient method ([d573812](https://github.com/oaknational/Oak-Web-Application/commit/d5738127df1b3fe69c1abee8d4cdd1f834ce3fe9))
+* integrate CMS data with contact page ([72771b5](https://github.com/oaknational/Oak-Web-Application/commit/72771b5657cd79c52e68aa4433f1470860820a69))
+
 # [1.31.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.30.0...v1.31.0) (2022-10-03)
 
 
