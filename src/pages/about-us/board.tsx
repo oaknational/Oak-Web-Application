@@ -1,6 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -160,7 +161,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutBoardPage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

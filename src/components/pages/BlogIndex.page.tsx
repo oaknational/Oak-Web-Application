@@ -4,6 +4,7 @@ import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import config from "../../config";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
@@ -148,7 +149,7 @@ export const getStaticProps: GetStaticProps<
       categories: blogCategories,
       categorySlug,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

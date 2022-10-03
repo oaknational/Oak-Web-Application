@@ -2,6 +2,7 @@ import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -477,7 +478,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     props: {
       pageData: planningPage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

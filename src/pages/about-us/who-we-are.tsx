@@ -2,6 +2,7 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import CMSClient, { AboutWhoWeArePage, TextBlock } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -192,7 +193,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutWhoWeArePage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 
