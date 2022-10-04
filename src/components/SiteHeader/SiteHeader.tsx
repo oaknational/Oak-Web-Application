@@ -14,11 +14,14 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
 import Toast from "../Toast";
 import { Span } from "../Typography";
+import Breadcrumbs from "../Breadcrumbs";
+import { useBreadcrumbContext } from "../../context/Breadcrumb";
 
 const SiteHeader: FC = () => {
   const theme = useTheme();
   const { toggleMenu } = useMenuContext();
   const { track } = useAnalytics();
+  const { breadcrumbs } = useBreadcrumbContext();
 
   return (
     <FixedHeader $background={theme.header.background}>
@@ -27,6 +30,7 @@ const SiteHeader: FC = () => {
           <Logo title={"Oak National Academy"} height={48} width={104} />
         </a>
       </Link>
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <Flex
         $alignItems={"center"}
         $display={["none", "flex"]}

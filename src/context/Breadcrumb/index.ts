@@ -1,1 +1,2 @@
-export { default } from "./BreadcrumbProvider";
+export { default as BreadcrumbProvider } from "./BreadcrumbProvider";
+export { default as useBreadcrumbContext } from "./useBreadcrumbContext";

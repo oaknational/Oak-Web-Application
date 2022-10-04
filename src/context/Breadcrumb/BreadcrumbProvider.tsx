@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useCallback, useState } from "react";
 
 import { Breadcrumb } from "../../components/Breadcrumbs";
 
@@ -12,9 +12,12 @@ export const breadcrumbContext = createContext<BreadcrumbContext | null>(null);
 export const BreadcrumbProvider: FC = ({ children }) => {
   const [breadcrumbs, setBreadcrumbs] = useState(new Array<Breadcrumb>());
 
-  const updateBreadcrumbs = (newBreadcrumbs: Array<Breadcrumb>) => {
-    setBreadcrumbs(newBreadcrumbs);
-  };
+  const updateBreadcrumbs = useCallback(
+    (newBreadcrumbs: Array<Breadcrumb>) => {
+      setBreadcrumbs(newBreadcrumbs);
+    },
+    [setBreadcrumbs]
+  );
 
   const breadcrumbValue = {
     breadcrumbs,
