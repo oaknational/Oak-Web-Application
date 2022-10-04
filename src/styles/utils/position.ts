@@ -11,6 +11,7 @@ type PxOrPercent =
   | NegativePixelSpacing
   | PercentSpacing
   | Unset;
+
 export type PositionProps = {
   $position?: ResponsiveValues<CSSProperties["position"]>;
   $top?: ResponsiveValues<PxOrPercent>;

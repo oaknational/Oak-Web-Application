@@ -40,4 +40,5 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
+
 export type TextAndMedia = z.infer<typeof textAndMediaSchema>;
