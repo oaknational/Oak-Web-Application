@@ -6,7 +6,8 @@ import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 import { OakColorName } from "../../styles/theme/types";
 
 const StyledSvg = styled.svg<BoxProps>`
-  ${box}
+  ${box};
+  transition: all 0.3s ease;
 `;
 export type SvgProps = BoxProps & {
   name: SvgName;
@@ -18,6 +19,7 @@ export type SvgProps = BoxProps & {
 const Svg: FC<SvgProps> = (props) => {
   return (
     <StyledSvg
+      aria-hidden={true}
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"

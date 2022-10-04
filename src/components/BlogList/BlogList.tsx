@@ -1,29 +1,34 @@
-import { FC, Fragment, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 
 import Box from "../Box";
 import Flex from "../Flex";
 import { Pagination } from "../Pagination";
-import Typography, { Hr } from "../Typography";
-import { HeadingTag } from "../Typography/Heading";
+import { Hr, LI, UL } from "../Typography";
+import usePagination from "../Pagination/usePagination";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
 const PAGE_SIZE = 4;
 
 export type BlogListProps = {
-  title: string;
-  titleTag: HeadingTag;
   items: BlogListItemProps[];
   withImage?: boolean;
+  withContainingHrs?: boolean;
+  withPagination?: boolean;
 };
 /**
  * Contains a title of set size and a list of BlogListItem,
  * with dividers between them.
- * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogList: FC<BlogListProps> = (props) => {
-  const { items, withImage } = props;
-  const [currentPage, setCurrentPage] = useState(1);
+  const { items, withImage, withContainingHrs, withPagination } = props;
+
+  const paginationProps = usePagination({
+    totalResults: items.length,
+    pageSize: PAGE_SIZE,
+  });
+
+  const { currentPage } = paginationProps;
 
   const currentTableData: Array<BlogListItemProps> = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
@@ -32,23 +37,26 @@ const BlogList: FC<BlogListProps> = (props) => {
   }, [currentPage, items]);
 
   return (
-    <Flex $flexDirection="column" $minHeight={[0, 840]}>
-      {currentTableData.map((item, i) => (
-        <Fragment key={`BlogList-BlogListItem-${i}`}>
-          <BlogListItem {...item} withImage={withImage} />
-          <Typography $display={["block", "none"]}>
-            <Hr thickness={2} $color="black" $mb={32} />
-          </Typography>
-        </Fragment>
-      ))}
-      <Box $mt={[0, "auto"]} $pt={48}>
-        <Pagination
-          currentPage={currentPage}
-          totalCount={items.length}
-          pageSize={PAGE_SIZE}
-          onPageChange={(page) => setCurrentPage(page)}
-        />
-      </Box>
+    <Flex
+      $flexDirection="column"
+      $alignItems="flex-start"
+      $minHeight={[0, 840]}
+    >
+      {withContainingHrs && <Hr thickness={4} $mt={0} $mb={32} />}
+      <UL $reset>
+        {currentTableData.map((item, i) => (
+          <LI key={`BlogList-BlogListItem-${i}`}>
+            {i !== 0 && <Hr thickness={4} $mv={32} />}
+            <BlogListItem {...item} withImage={withImage} />
+          </LI>
+        ))}
+      </UL>
+      {withContainingHrs && <Hr thickness={4} $mt={32} $mb={0} />}
+      {withPagination && (
+        <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
+          <Pagination {...paginationProps} />
+        </Box>
+      )}
     </Flex>
   );
 };

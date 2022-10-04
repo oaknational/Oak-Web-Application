@@ -11,13 +11,13 @@ type ColSpans = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 12;
 type GridAreaProps = {
   $colSpan: Array<ColSpans>;
   $rowSpan?: number;
-  $order?: Array<number>;
+  $order?: Array<number> | number;
   $colStart?: ResponsiveValues<ColSpans>;
 } & SpacingProps;
 
 const combineSpanStart = (
-  start: number | undefined,
-  span: number | undefined
+  start: ColSpans | undefined | null,
+  span: ColSpans | undefined | null
 ) => {
   return start ? `${start}/${span}` : `${span}`;
 };

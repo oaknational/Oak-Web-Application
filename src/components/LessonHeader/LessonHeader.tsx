@@ -22,9 +22,9 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
       $alignItems={["initial", "center"]}
     >
       <Flex>
-        <Heading tag="h1" $fontSize={32}>
+        <Heading tag="h1" $font={"heading-4"}>
           <Box $mb={8}>
-            <Span $fontSize={24}>Lesson</Span>
+            <Span $font={"heading-5"}>Lesson</Span>
           </Box>
           {title}
         </Heading>

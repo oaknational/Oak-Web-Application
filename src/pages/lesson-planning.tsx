@@ -2,6 +2,7 @@ import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -131,7 +132,12 @@ const SectionTitle: FC = (props) => {
       $ph={16}
       $mt={12}
     >
-      <Heading $fontSize={[20, 24]} $textAlign="center" tag="h2" {...props} />
+      <Heading
+        $font={["heading-6", "heading-5"]}
+        $textAlign="center"
+        tag="h2"
+        {...props}
+      />
     </Flex>
   );
 };
@@ -173,8 +179,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $pb={48}
               $ph={12}
             >
-              <Heading $fontSize={24} $textAlign="center" tag="h2">
-                Choose from our resources to support your planning
+              <Heading $font="heading-5" $textAlign="center" tag="h2">
+                Learn more about our different resources and how they can
+                support your planning
               </Heading>
             </Flex>
             <Flex
@@ -205,10 +212,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     >
                       <Icon size={80} name={icon} />
                     </Circle>
-                    <CardTitle fontSize={[24, 32]} tag="h3">
+                    <CardTitle $font={["heading-5", "heading-4"]} tag="h3">
                       {title}
                     </CardTitle>
-                    <Typography $fontSize={18} $lineHeight={"28px"}>
+                    <Typography $font="body-1">
                       <PortableText value={portableText} />
                     </Typography>
                   </LessonElementsCard>
@@ -306,12 +313,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                         <Heading
                           $mb={24}
                           tag={"h3"}
-                          $lineHeight={["40px", "32px"]}
-                          $fontSize={[24, 32]}
+                          $font={["heading-5", "heading-6"]}
                         >
                           {title}
                         </Heading>
-                        <Typography $fontSize={18} $lineHeight={"24px"}>
+                        <Typography $font={"body-1"}>
                           <PortableText value={portableText} />
                         </Typography>
                         {withSearchCTA && (
@@ -350,7 +356,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
               <Box $minWidth={["50%"]}>
                 <Box $display={["block", "block", "none"]}>
-                  <CardTitle fontSize={[24, 32, 32]} tag="h4">
+                  <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
@@ -371,11 +377,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $minWidth={["50%"]}
               >
                 <Box $display={["none", "none", "block"]}>
-                  <CardTitle fontSize={32} tag="h4">
+                  <CardTitle $font={"heading-4"} tag="h4">
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
-                <Typography $fontSize={[16, 18]} $lineHeight={["24px", "28px"]}>
+                <Typography $font={["body-2", "body-1"]}>
                   <PortableText
                     value={pageData.learnMoreBlock1.bodyPortableText}
                   />
@@ -398,10 +404,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $mb={[48, 48, 0]}
               $ph={[16, 0, 0]}
             >
-              <CardTitle fontSize={[24, 32]} tag={"h4"}>
+              <CardTitle $font={["heading-5", "heading-4"]} tag={"h4"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
-              <Typography $fontSize={[16, 18]} $lineHeight={["24px", "28px"]}>
+              <Typography $font={["body-2", "body-1"]}>
                 <PortableText
                   value={pageData.learnMoreBlock2.bodyPortableText}
                 />
@@ -472,7 +478,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     props: {
       pageData: planningPage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

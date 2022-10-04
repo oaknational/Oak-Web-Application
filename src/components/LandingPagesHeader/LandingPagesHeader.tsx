@@ -32,11 +32,7 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
               $justifyContent={"flex-end"}
               $alignItems={"center"}
             >
-              <Typography
-                $textAlign="right"
-                $fontFamily={"heading"}
-                $fontSize={16}
-              >
+              <Typography $textAlign="right" $font={"heading-7"}>
                 {props.headerTitle || "Oak National Academy"}
               </Typography>
               <Icon

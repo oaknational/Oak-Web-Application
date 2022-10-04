@@ -2900,6 +2900,13 @@ export type BlogPreviewFieldsFragment = { __typename?: 'NewsPost', title?: strin
 
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
 
+export type ContactCorePageQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type ContactCorePageQuery = { __typename?: 'RootQuery', allContactCorePage: Array<{ __typename?: 'ContactCorePage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, bodyPortableText?: any | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+
 export type CtaFragment = { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null };
 
 export type CurriculumCorePageQueryVariables = Exact<{
@@ -3531,6 +3538,24 @@ export const BlogPortableTextReferencesDocument = gql`
 }
     ${InternalLinkFieldsFragmentDoc}
 ${VideoFragmentDoc}`;
+export const ContactCorePageDocument = gql`
+    query contactCorePage($isDraftFilter: Sanity_DocumentFilter) {
+  allContactCorePage(
+    where: {_: $isDraftFilter, _id: {matches: "*contactCorePage"}}
+    sort: {_updatedAt: DESC}
+    limit: 1
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+    bodyPortableText: bodyRaw
+    seo {
+      ...Seo
+    }
+  }
+}
+    ${SeoFragmentDoc}`;
 export const CurriculumCorePageDocument = gql`
     query curriculumCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allCurriculumCorePage(
@@ -3802,6 +3827,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     blogPortableTextReferences(variables?: BlogPortableTextReferencesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<BlogPortableTextReferencesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<BlogPortableTextReferencesQuery>(BlogPortableTextReferencesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'blogPortableTextReferences', 'query');
+    },
+    contactCorePage(variables?: ContactCorePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ContactCorePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ContactCorePageQuery>(ContactCorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'contactCorePage', 'query');
     },
     curriculumCorePage(variables?: CurriculumCorePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CurriculumCorePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumCorePageQuery>(CurriculumCorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumCorePage', 'query');

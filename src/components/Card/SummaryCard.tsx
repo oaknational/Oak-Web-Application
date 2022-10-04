@@ -19,7 +19,7 @@ type ImageProps = {
 type SummaryCardProps = {
   title: string;
   heading: string;
-  summary: PortableTextJSON;
+  summary: PortableTextJSON | string;
   background?: OakColorName;
   imageProps?: ImageProps;
   imageContainerProps?: FlexProps;
@@ -61,16 +61,15 @@ const SummaryCard: FC<SummaryCardProps> = ({
         <Heading
           $mb={8}
           tag={"h1"}
-          $fontSize={[20, 24]}
+          $font={["heading-6", "heading-5"]}
           $color={"oakGrey4"}
-          $fontFamily="heading"
         >
           {title}
         </Heading>
-        <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h2"}>
+        <Heading $mb={16} $font={["heading-5", "heading-4"]} tag={"h2"}>
           {heading}
         </Heading>
-        <Typography $color="black" $fontSize={[16, 18]}>
+        <Typography $font={["body-2", "body-1"]}>
           {typeof summary === "string" ? (
             <p>{summary}</p>
           ) : (

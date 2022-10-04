@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { Webinar } from "../../node-lib/cms";
@@ -21,7 +22,7 @@ export type WebinarPageProps = {
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
     <Layout seoProps={getSeoProps(props.webinar.seo)} $background="grey1">
-      <Heading tag="h1" $fontSize={24}>
+      <Heading tag="h1" $font="heading-5">
         {props.webinar.title}
       </Heading>
       {props.webinar.date} <br />
@@ -81,6 +82,7 @@ export const getStaticProps: GetStaticProps<
       webinar,
       isPreviewMode,
     },
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

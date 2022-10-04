@@ -21,7 +21,6 @@ const OL = styled.ol<MarginProps>`
     counter-increment: item;
     margin: 0;
     padding: 0 0 0 16px;
-
     list-style-type: none;
     margin-bottom: 32px;
 

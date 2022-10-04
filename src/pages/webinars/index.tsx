@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
+import config from "../../config";
 import CMSClient, { WebinarPreview } from "../../node-lib/cms";
 import BlogList from "../../components/BlogList";
 import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
@@ -31,11 +32,11 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       })}
       $background="grey1"
     >
-      <Heading tag="h1" $fontSize={32}>
+      <Heading tag="h1" $font="heading-4">
         Webinars
       </Heading>
 
-      <BlogList title={"Stay up to date!"} items={webinars} titleTag={"h2"} />
+      <BlogList items={webinars} />
     </Layout>
   );
 };
@@ -75,7 +76,7 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
     props: {
       webinars,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

@@ -1,4 +1,4 @@
-import { PortableTextJSON, SanityImage, Seo, Video } from "../../node-lib/cms";
+import { PortableTextJSON, Image, Seo, Video } from "../../node-lib/cms";
 
 /**
  * Return a representation of a string as sanity's "portable text"
@@ -21,16 +21,7 @@ export const portableTextFromString = (text: string): PortableTextJSON => [
   },
 ];
 
-export const createPortableListItem = (text: string): PortableTextJSON => {
-  return {
-    listItem: "number",
-    style: "normal",
-    children: [{ text, _type: "span" }],
-    _type: "block",
-  };
-};
-
-export const mockImageAsset = (id = "abcdef"): SanityImage => {
+export const mockImageAsset = (id = "abcdef"): Image => {
   return {
     asset: {
       _id: `image-${id}-300x300-png`,

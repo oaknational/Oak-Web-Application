@@ -4,13 +4,13 @@ import { FC } from "react";
 import { useId } from "react-aria";
 import styled from "styled-components";
 
+import config from "../../config";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Card from "../../components/Card";
 import Flex from "../../components/Flex";
 import NewsletterForm, {
   useNewsletterForm,
 } from "../../components/Forms/NewsletterForm";
-import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../../components/PortableText";
@@ -18,7 +18,7 @@ import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Typography, { Heading, LI, OL } from "../../components/Typography";
 import CMSClient, { PortableTextJSON, TextAndMedia } from "../../node-lib/cms";
 import { LandingPage } from "../../node-lib/cms/sanity-client/schemas/landingPage";
-import { QuoteSchema } from "../../node-lib/cms/sanity-client/schemas/blocks";
+import { Quote as QuoteSchema } from "../../node-lib/cms/sanity-client/schemas/base";
 import AnchorTarget from "../../components/AnchorTarget";
 import { OakColorName } from "../../styles/theme/types";
 import { outlineShadow } from "../../components/OutlineHeading/OutlineHeading";
@@ -27,10 +27,15 @@ import CMSImage from "../../components/CMSImage";
 import CMSVideo from "../../components/CMSVideo";
 import CardTitle from "../../components/Card/CardComponents/CardTitle";
 import Box from "../../components/Box";
+import Grid, { GridArea } from "../../components/Grid";
 
 const OLOutline = styled(OL)<{ $color: OakColorName }>`
   & div:last-child {
     margin-bottom: 0;
+  }
+
+  li {
+    margin-left: 32px;
   }
 
   & li::before {
@@ -39,6 +44,7 @@ const OLOutline = styled(OL)<{ $color: OakColorName }>`
     left: 0;
     font-weight: 600;
     padding-right: 4px;
+    padding-left: 32px;
     text-indent: -32px;
     content: counter(item);
     font-size: 50px;
@@ -69,18 +75,16 @@ const LandingPageTitle: FC<{
     >
       <Heading
         $mb={[8]}
-        $fontSize={[20, 24]}
+        $font={["heading-6", "heading-5"]}
         $color={"grey6"}
-        $fontFamily={"heading"}
         tag="h1"
       >
         {props.title}
       </Heading>
       {props.heading && (
         <Heading
+          $font={["heading-4", "heading-5"]}
           $mv={[0]}
-          $fontSize={[24, 32]}
-          $fontFamily={"heading"}
           tag="h2"
           $textAlign={["left", "center"]}
         >
@@ -106,7 +110,7 @@ const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
     >
       <AnchorTarget id={"newsletter-form"} />
 
-      <CardTitle icon="MagicCarpet" fontSize={[20, 24]} tag="h3">
+      <CardTitle icon="MagicCarpet" $font={["heading-5", "heading-6"]} tag="h3">
         {formTitle}
       </CardTitle>
       <Box $mt={12}>
@@ -138,15 +142,10 @@ const SignupPrompt: FC<{
           $ph={[16, 0]}
           $mb={[56, 0]}
         >
-          <Heading
-            $fontFamily={"heading"}
-            tag={"h4"}
-            $fontSize={[24, 32]}
-            $mb={[32]}
-          >
+          <Heading $font={["heading-4", "heading-5"]} tag={"h4"} $mb={[32]}>
             {title}
           </Heading>
-          <Typography $fontSize={[16, 18]}>
+          <Typography $font={["body-2", "body-1"]}>
             <PortableText value={bodyPortableText} />
           </Typography>
         </GridArea>
@@ -168,18 +167,10 @@ const Quote: FC<QuoteSchema> = ({ text, attribution }) => {
       $ph={[16]}
       $maxWidth={[720]}
     >
-      <Heading
-        $fontFamily={"headingLight"}
-        tag={"h3"}
-        $mb={[16]}
-        $fontSize={[32]}
-        $textAlign={"center"}
-      >
+      <Heading tag={"h3"} $mb={[16]} $font={"heading-4"} $textAlign={"center"}>
         "{text}"
       </Heading>
-      <Typography $fontFamily={"body"} $fontSize={[16]}>
-        {attribution}
-      </Typography>
+      <Typography $font={"body-2"}>{attribution}</Typography>
     </Flex>
   );
 };
@@ -189,7 +180,7 @@ const LandingPageTextBlock: FC<{
 }> = (props) => {
   return (
     <Flex $ph={[16]} $justifyContent={"center"} $mb={[56, 92]}>
-      <Typography $maxWidth={720} $fontSize={[16, 18]}>
+      <Typography $maxWidth={720} $font={["body-2", "body-1"]}>
         <PortableText value={props.bodyPortableText} />
       </Typography>
     </Flex>
@@ -203,13 +194,17 @@ const LandingPageTextAndMedia = (props: TextAndMedia) => {
       $background={"teachersPastelYellow"}
       $width={"100%"}
       $mb={[56, 92]}
-      $maxHeight={600}
       $pb={24}
       $ph={[16, 24]}
     >
       <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
 
-      <Flex $position="relative" $minWidth={["100%", "50%"]} $mb={[40, 0]}>
+      <Flex
+        $minHeight={200}
+        $position="relative"
+        $minWidth={["100%", "50%"]}
+        $mb={[40, 0]}
+      >
         {props.mediaType == "image" && (
           <CMSImage
             $pr={[0, 24, 72]}
@@ -248,13 +243,7 @@ const LandingPageTextAndMedia = (props: TextAndMedia) => {
 
                 return (
                   <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
-                    <LI
-                      $fontFamily={"heading"}
-                      $fontSize={[16, 20]}
-                      $lineHeight={"24px"}
-                    >
-                      {listItemText}
-                    </LI>
+                    <LI $font={["heading-7", "heading-6"]}>{listItemText}</LI>
                   </Flex>
                 );
               },
@@ -338,7 +327,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       pageData: landingPageResult,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

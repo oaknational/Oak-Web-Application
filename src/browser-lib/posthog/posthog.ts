@@ -3,6 +3,7 @@ import posthogJs from "posthog-js";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
+import config from "../../config";
 
 export type PosthogConfig = {
   apiKey: string;
@@ -15,7 +16,7 @@ export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
     new Promise((resolve) => {
       posthogJs.init(apiKey, {
         api_host: apiHost,
-        debug: true,
+        debug: config.get("releaseStage") !== "production",
         loaded: () => resolve(),
       });
     }),

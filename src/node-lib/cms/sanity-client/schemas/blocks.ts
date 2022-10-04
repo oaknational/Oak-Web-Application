@@ -5,20 +5,24 @@ import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 
 export const cardSchema = z.object({
-  title: z.string().nonempty(),
+  title: z.string().min(1),
   bodyPortableText: portableTextSchema,
   image: imageSchema.nullable().optional(),
   cta: CTASchema.nullable().optional(),
 });
 
+export type Card = z.infer<typeof cardSchema>;
+
 export const textBlockSchema = z.object({
-  title: z.string().nonempty(),
+  title: z.string().min(1),
   bodyPortableText: portableTextSchema,
   cta: CTASchema.nullable().optional(),
 });
 
+export type TextBlock = z.infer<typeof textBlockSchema>;
+
 export const textAndMediaSchemaBase = z.object({
-  title: z.string().nonempty(),
+  title: z.string().min(1),
   bodyPortableText: portableTextSchema,
   cta: CTASchema.nullable().optional(),
   alignMedia: z.enum(["left", "right"]),
@@ -36,12 +40,4 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
-
-export const quoteSchema = z.object({
-  text: z.string(),
-  organisation: z.string().nullish().optional(),
-  role: z.string().nullish().optional(),
-  attribution: z.string(),
-});
-
-export type QuoteSchema = z.infer<typeof quoteSchema>;
+export type TextAndMedia = z.infer<typeof textAndMediaSchema>;

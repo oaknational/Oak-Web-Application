@@ -4,11 +4,11 @@ import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
 import config from "../../config";
 import Box from "../Box";
-import { SanityImage } from "../../node-lib/cms";
+import { Image } from "../../node-lib/cms";
 import OakImage, { OakImageProps } from "../OakImage";
 
 type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
-  image: SanityImage;
+  image: Image;
   alt?: string;
 };
 
@@ -63,6 +63,7 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
         alt={finalAltText}
         // $height: auto to keep original aspect ratio of image
         $height="auto"
+        aria-hidden={image.isPresentational ? true : undefined}
       />
     </Box>
   );

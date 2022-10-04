@@ -13,7 +13,7 @@ import {
 import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
 import config from "../../config";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
-import { SerializedBlogPostPreview } from "../../pages/blog/index";
+import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
 
 const courseProvider = {
   name: config.get("appName"),

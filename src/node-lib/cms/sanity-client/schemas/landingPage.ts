@@ -1,7 +1,7 @@
 import * as z from "zod";
 
-import { slugSchema, documentSchema, seoSchema } from "./base";
-import { textAndMediaSchema, quoteSchema } from "./blocks";
+import { slugSchema, documentSchema, seoSchema, quoteSchema } from "./base";
+import { textAndMediaSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
 
 export const landingPageSchema = z

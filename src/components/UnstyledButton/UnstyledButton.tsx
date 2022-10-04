@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import typography from "../../styles/utils/typography";
+
 const UnstyledButton = styled.button`
   background: none;
   color: inherit;
@@ -9,6 +11,7 @@ const UnstyledButton = styled.button`
   cursor: pointer;
   text-align: left;
   font-family: unset;
+  ${typography}
 `;
 
 export default UnstyledButton;

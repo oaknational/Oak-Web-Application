@@ -1,6 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -8,14 +9,19 @@ import SummaryCard from "../../components/Card/SummaryCard";
 import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import Card from "../../components/Card";
 import AboutContactCard from "../../components/AboutContactCard";
-import Typography, { Heading, Hr, P } from "../../components/Typography";
+import Typography, {
+  Heading,
+  Hr,
+  LI,
+  P,
+  UL,
+} from "../../components/Typography";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
 import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
-import Box from "../../components/Box";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
@@ -43,6 +49,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             $mt={36}
             buttons={reducedAboutNavLinks}
             selected={"Board"}
+            ariaLabel="about us"
           />
         </SummaryCard>
         <AboutIntroCard
@@ -54,26 +61,24 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           bodyPortableText={pageData.introPortableText}
         />
 
-        <Heading $mb={[40, 32]} $fontSize={[20, 24]} tag={"h2"}>
+        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
           Our interim board
         </Heading>
 
-        <Box $mb={[80, 92]}>
+        <UL $mb={[80, 92]} $reset>
           {pageData.boardMembers?.map((boardMember) => (
-            <Heading
+            <LI
               key={boardMember.id}
               $textAlign="center"
-              $fontFamily={"headingLight"}
-              tag={"h4"}
-              $fontSize={[16, 20]}
+              $font={["heading-7", "heading-6"]}
             >
               {boardMember.name}
-            </Heading>
+            </LI>
           ))}
-        </Box>
+        </UL>
 
         <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
-          <Heading $fontSize={24} tag={"h2"}>
+          <Heading $font={"heading-5"} tag={"h2"}>
             Documents
           </Heading>
         </Flex>
@@ -83,47 +88,50 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
-            {pageData.documents.map((doc) => (
-              <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
-                <Card $height={220} $pa={16}>
-                  <BoxBorders gapPosition="rightTop" />
-                  <Flex
-                    $justifyContent={"space-between"}
-                    $height={"100%"}
-                    $flexDirection={"column"}
-                  >
-                    <Heading $fontSize={16} $lineHeight={"20px"} tag={"h4"}>
-                      {doc.title}
-                    </Heading>
+            {pageData.documents.map((doc) => {
+              const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
+                1
+              );
+              return (
+                <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
+                  <Card $height={220} $pa={16}>
+                    <BoxBorders gapPosition="rightTop" />
                     <Flex
-                      $alignItems={"center"}
                       $justifyContent={"space-between"}
+                      $height={"100%"}
+                      $flexDirection={"column"}
                     >
-                      <P>{`${(doc.file.asset.size / 1012 / 1012).toFixed(
-                        1
-                      )}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
-                      <IconButtonAsLink
-                        icon={"Download"}
-                        aria-label={`Download ${doc.title} as ${doc.file.asset.size} ${doc.file.asset.extension}`}
-                        href={`${doc.file.asset.url}?dl`}
-                        background={"teachersHighlight"}
-                      />
+                      <Heading $font={"heading-7"} tag={"h3"}>
+                        {doc.title}
+                      </Heading>
+                      <Flex
+                        $alignItems={"center"}
+                        $justifyContent={"space-between"}
+                      >
+                        <P>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
+                        <IconButtonAsLink
+                          icon={"Download"}
+                          aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
+                          href={`${doc.file.asset.url}?dl`}
+                          background={"teachersHighlight"}
+                        />
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </Card>
-              </GridArea>
-            ))}
+                  </Card>
+                </GridArea>
+              );
+            })}
           </Grid>
           <Typography $width={"100%"}>
             <Hr $color={"pastelTurqoise"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
         <Card $pv={0} $mv={[80, 92]} $ph={[16, 80]} $width={["100%", "70%"]}>
-          <Heading $mb={20} $fontSize={24} tag={"h2"}>
+          <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
             Governance
           </Heading>
 
-          <Typography $fontSize={[16, 18]}>
+          <Typography $font={["body-1", "body-2"]}>
             <PortableText value={pageData.governancePortableText} />
           </Typography>
         </Card>
@@ -153,7 +161,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     props: {
       pageData: aboutBoardPage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

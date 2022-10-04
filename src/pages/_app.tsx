@@ -20,6 +20,7 @@ import AnalyticsProvider, {
 import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
 import { SearchProvider } from "../context/Search/SearchContext";
+import { ToastProvider } from "../context/Toast";
 
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
@@ -42,8 +43,10 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                 <DefaultSeo />
                 <SearchProvider>
                   <MenuProvider>
-                    <Component {...pageProps} />
-                    <AppHooks />
+                    <ToastProvider>
+                      <Component {...pageProps} />
+                      <AppHooks />
+                    </ToastProvider>
                   </MenuProvider>
                 </SearchProvider>
               </AnalyticsProvider>

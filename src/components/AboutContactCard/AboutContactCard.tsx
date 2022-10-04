@@ -48,10 +48,10 @@ const AboutContactCard: FC = () => {
           >
             {cardCopy.map((section) => (
               <Fragment key={section.heading}>
-                <Heading $mb={8} $fontSize={[20, 24]} tag={"h4"}>
+                <Heading $mb={8} $font={["heading-6", "heading-5"]} tag={"h2"}>
                   {section.heading}
                 </Heading>
-                <P $mb={32} $fontSize={[16, 18]}>
+                <P $mb={32} $font={["body-2", "body-1"]}>
                   {section.p}
                   <a href={section.href}>{section.linkText}</a>.
                 </P>
