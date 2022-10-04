@@ -56,7 +56,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
   });
 
   describe("LandingPage", () => {
-    it.only("Renders title from props ", async () => {
+    it("Renders title from props ", async () => {
       renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
 
       await waitFor(() => {
