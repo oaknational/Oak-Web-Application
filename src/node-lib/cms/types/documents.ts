@@ -1,4 +1,12 @@
-import { Document, PortableTextJSON, SanityImage, Seo } from "./base";
+import {
+  Document,
+  PortableTextJSON,
+  Quote,
+  SanityImage,
+  Seo,
+  TextAndMedia,
+  TextBlock,
+} from "./base";
 
 export type TeamMember = Document & {
   name: string;
@@ -73,8 +81,16 @@ export type PolicyPage = Document & {
 
 export type PolicyPagePreview = Pick<PolicyPage, "title" | "slug">;
 
+type LandingContentType =
+  | { type: "Quote"; quote: Quote }
+  | { type: "textBlock"; textBlock: TextBlock }
+  | { type: "textAndMedia"; textAndMedia: TextAndMedia };
+
 export type LandingPage = Document & {
   slug: string;
+  title: string;
+  heading?: string;
+  content: LandingContentType[];
   seo?: Seo | null;
 };
 

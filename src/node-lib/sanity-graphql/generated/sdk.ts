@@ -1140,8 +1140,13 @@ export type LandingPage = Document & {
   _type?: Maybe<Scalars['String']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']>;
+  content?: Maybe<Array<Maybe<LandingPageFormBlockOrLandingPageTextAndMediaBlockOrLandingPageTextBlockOrQuote>>>;
+  heading?: Maybe<Scalars['String']>;
+  image?: Maybe<ImageWithAltText>;
+  landingPageHeader?: Maybe<LandingPageHeaderBlock>;
   seo?: Maybe<Seo>;
   slug?: Maybe<Slug>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type LandingPageFilter = {
@@ -1153,8 +1158,59 @@ export type LandingPageFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  landingPageHeader?: InputMaybe<LandingPageHeaderBlockFilter>;
   seo?: InputMaybe<SeoFilter>;
   slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type LandingPageFormBlock = {
+  __typename?: 'LandingPageFormBlock';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  formTitle?: Maybe<Scalars['String']>;
+  textRaw?: Maybe<Scalars['JSON']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type LandingPageFormBlockFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  formTitle?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type LandingPageFormBlockOrLandingPageTextAndMediaBlockOrLandingPageTextBlockOrQuote = LandingPageFormBlock | LandingPageTextAndMediaBlock | LandingPageTextBlock | Quote;
+
+export type LandingPageFormBlockSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  formTitle?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type LandingPageHeaderBlock = {
+  __typename?: 'LandingPageHeaderBlock';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  headerCta?: Maybe<Scalars['String']>;
+  headerTitle?: Maybe<Scalars['String']>;
+};
+
+export type LandingPageHeaderBlockFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  headerCta?: InputMaybe<StringFilter>;
+  headerTitle?: InputMaybe<StringFilter>;
+};
+
+export type LandingPageHeaderBlockSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  headerCta?: InputMaybe<SortOrder>;
+  headerTitle?: InputMaybe<SortOrder>;
 };
 
 export type LandingPageSorting = {
@@ -1164,8 +1220,48 @@ export type LandingPageSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  landingPageHeader?: InputMaybe<LandingPageHeaderBlockSorting>;
   seo?: InputMaybe<SeoSorting>;
   slug?: InputMaybe<SlugSorting>;
+  title?: InputMaybe<SortOrder>;
+};
+
+export type LandingPageTextAndMediaBlock = {
+  __typename?: 'LandingPageTextAndMediaBlock';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  textAndMedia?: Maybe<TextAndMedia>;
+};
+
+export type LandingPageTextAndMediaBlockFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  textAndMedia?: InputMaybe<TextAndMediaFilter>;
+};
+
+export type LandingPageTextAndMediaBlockSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  textAndMedia?: InputMaybe<TextAndMediaSorting>;
+};
+
+export type LandingPageTextBlock = {
+  __typename?: 'LandingPageTextBlock';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  textRaw?: Maybe<Scalars['JSON']>;
+};
+
+export type LandingPageTextBlockFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type LandingPageTextBlockSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
 };
 
 export type Link = {
@@ -2880,7 +2976,7 @@ export type LandingPageBySlugQueryVariables = Exact<{
 }>;
 
 
-export type LandingPageBySlugQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type LandingPageBySlugQuery = { __typename?: 'RootQuery', allLandingPage: Array<{ __typename?: 'LandingPage', title?: string | null, heading?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, landingPageHeader?: { __typename?: 'LandingPageHeaderBlock', headerCta?: string | null, headerTitle?: string | null } | null, content?: Array<{ __typename?: 'LandingPageFormBlock', title?: string | null, formTitle?: string | null, bodyPortableText?: any | null, type: 'LandingPageFormBlock' } | { __typename?: 'LandingPageTextAndMediaBlock', type: 'LandingPageTextAndMediaBlock', textAndMedia?: { __typename?: 'TextAndMedia', title?: string | null, mediaType?: string | null, alignMedia?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | null } | { __typename?: 'LandingPageTextBlock', bodyPortableText?: any | null, type: 'LandingPageTextBlock' } | { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null, type: 'Quote' } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type PlanningCorePageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -3510,12 +3606,41 @@ export const LandingPageBySlugDocument = gql`
     slug {
       current
     }
+    landingPageHeader {
+      headerCta
+      headerTitle
+    }
+    title
+    heading
+    content {
+      type: __typename
+      ... on LandingPageTextBlock {
+        bodyPortableText: textRaw
+      }
+      ... on LandingPageFormBlock {
+        title
+        formTitle
+        bodyPortableText: textRaw
+      }
+      ... on Quote {
+        text
+        role
+        organisation
+        attribution
+      }
+      ... on LandingPageTextAndMediaBlock {
+        textAndMedia {
+          ...TextAndMedia
+        }
+      }
+    }
     seo {
       ...Seo
     }
   }
 }
-    ${SeoFragmentDoc}`;
+    ${TextAndMediaFragmentDoc}
+${SeoFragmentDoc}`;
 export const PlanningCorePageDocument = gql`
     query planningCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allPlanningCorePage(

@@ -8,6 +8,34 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
     slug {
       current
     }
+    landingPageHeader {
+      headerCta
+      headerTitle
+    }
+    title
+    heading
+    content {
+      type: __typename
+      ... on LandingPageTextBlock {
+        bodyPortableText: textRaw
+      }
+      ... on LandingPageFormBlock {
+        title
+        formTitle
+        bodyPortableText: textRaw
+      }
+      ... on Quote {
+        text
+        role
+        organisation
+        attribution
+      }
+      ... on LandingPageTextAndMediaBlock {
+        textAndMedia {
+          ...TextAndMedia
+        }
+      }
+    }
     seo {
       ...Seo
     }

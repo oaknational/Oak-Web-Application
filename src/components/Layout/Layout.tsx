@@ -13,6 +13,8 @@ import SiteHeader from "../SiteHeader";
 import PreviewControls from "../PreviewControls";
 import ClientErrorHeader from "../ClientErrorHeader";
 import ClientErrorFooter from "../ClientErrorFooter";
+import LandingPagesHeader from "../LandingPagesHeader";
+import { LandingPagesHeaderProps } from "../LandingPagesHeader/LandingPagesHeader";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -27,10 +29,11 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
-export type HeaderVariant = "app" | "site" | "client-error";
-const headers: Record<HeaderVariant, FC> = {
+export type HeaderVariant = "app" | "site" | "landingPages" | "client-error";
+const headers: Record<HeaderVariant, FC | FC<LandingPagesHeaderProps>> = {
   app: AppHeader,
   site: SiteHeader,
+  landingPages: LandingPagesHeader,
   "client-error": ClientErrorHeader,
 };
 export type FooterVariant = "default" | "client-error";
@@ -38,12 +41,14 @@ const footers: Record<FooterVariant, FC> = {
   default: SiteFooter,
   "client-error": ClientErrorFooter,
 };
-export interface LayoutProps {
+
+export type LayoutProps = {
   seoProps: SeoProps;
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   $background?: OakColorName;
-}
+  headerProps?: LandingPagesHeaderProps;
+};
 
 const Layout: FC<LayoutProps> = (props) => {
   const {
@@ -51,7 +56,6 @@ const Layout: FC<LayoutProps> = (props) => {
     seoProps,
     $background,
     headerVariant = "site",
-
     footerVariant = "default",
   } = props;
   const Header = headers[headerVariant];
@@ -67,7 +71,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
-        <Header />
+        <Header {...props.headerProps} />
         <StyledLayout>{children}</StyledLayout>
 
         <Footer />

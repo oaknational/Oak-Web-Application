@@ -24,6 +24,8 @@ export const textAndMediaSchemaBase = z.object({
   alignMedia: z.enum(["left", "right"]),
 });
 
+export type TextAndMediaSchemaBase = z.infer<typeof textAndMediaSchemaBase>;
+
 export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
   textAndMediaSchemaBase.extend({
     mediaType: z.literal("image"),
@@ -34,3 +36,12 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
     video: videoSchema,
   }),
 ]);
+
+export const quoteSchema = z.object({
+  text: z.string(),
+  organisation: z.string().nullish().optional(),
+  role: z.string().nullish().optional(),
+  attribution: z.string(),
+});
+
+export type QuoteSchema = z.infer<typeof quoteSchema>;

@@ -5,8 +5,9 @@ import LandingPageTemplate, {
   getStaticProps,
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
-import CMSClient, { LandingPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+import { LandingPage } from "../../../node-lib/cms/sanity-client/schemas/landingPage";
 
 jest.mock("../../../node-lib/cms");
 
@@ -15,8 +16,36 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testLandingPage: LandingPage = {
   id: "5",
   slug: "some-landing-page",
+  title: "some-landing-page",
+  landingPageHeader: {
+    headerCta: "/",
+    headerTitle: "title",
+  },
+  heading: "",
+  content: [
+    {
+      type: "LandingPageTextBlock",
+      bodyPortableText: [],
+    },
+    {
+      type: "Quote",
+      text: "text",
+      attribution: "a quote",
+    },
+    // {
+    //   type: "LandingPageTextAndMediaBlock",
+    //   textAndMedia: {
+    //     title: "title",
+    //     bodyPortableText: [],
+    //     alignMedia: "left",
+    //     mediaType: "image",
+    //     image: mockImageAsset(),
+    //   },
+    // },
+  ],
+  seo: null,
 };
-
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 describe("pages/lp/[landingPageSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -27,7 +56,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
   });
 
   describe("LandingPage", () => {
-    it("Renders title from props ", async () => {
+    it.only("Renders title from props ", async () => {
       renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
 
       await waitFor(() => {

@@ -11,13 +11,13 @@ import {
 import {
   BlogPost,
   BlogPostPreview,
-  LandingPage,
   LandingPagePreview,
   PolicyPage,
   PolicyPagePreview,
   Webinar,
   WebinarPreview,
 } from "./documents";
+import { LandingPage } from "../sanity-client/schemas/landingPage";
 
 export type Params = {
   previewMode?: boolean;
