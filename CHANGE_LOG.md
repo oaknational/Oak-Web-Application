@@ -1,3 +1,13 @@
+## [1.32.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.0...v1.32.1) (2022-10-04)
+
+
+### Bug Fixes
+
+* **cookie-consent:** use cookies for cross domain consent ([f5dab50](https://github.com/oaknational/Oak-Web-Application/commit/f5dab50b921c5d80c74ecbade527447851b14521))
+* filter out defualt consents which aren't compatible with acorn ([4904c4a](https://github.com/oaknational/Oak-Web-Application/commit/4904c4a23e42cf16ab54f8ed6607f65d0ce13181))
+* set cookie if consent has changed ([57d5489](https://github.com/oaknational/Oak-Web-Application/commit/57d5489f2acd718fb5ff77b0198f28148b9039df))
+* update confirmic local storage from cookie ([d0b7a8a](https://github.com/oaknational/Oak-Web-Application/commit/d0b7a8a933f032ece0934f422019d85d04332793))
+
 # [1.32.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.31.0...v1.32.0) (2022-10-03)
 
 
