@@ -32,7 +32,6 @@ export const InputFocusUnderline = styled(Svg)`
   left: -2px;
   right: 0;
   height: 4px;
-  transform: rotate(-0.3deg);
   color: ${getColorByName("teachersYellow")};
   filter: drop-shadow(2px 2px 0 rgb(0 0 0));
   z-index: ${zIndexMap.inFront};

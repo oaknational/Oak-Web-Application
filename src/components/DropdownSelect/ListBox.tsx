@@ -9,6 +9,7 @@ import { OakColorName } from "../../styles/theme";
 import Flex from "../Flex";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
+import { InputFocusUnderline } from "../Input/Input";
 
 export type SelectListBoxConfig = {
   states: {
@@ -53,6 +54,10 @@ const ListItem = styled.li<ListItemProps>`
   cursor: default;
   outline: none;
   width: 100%;
+
+  &:focus-within ${InputFocusUnderline} {
+    display: inline;
+  }
 `;
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
@@ -112,12 +117,17 @@ function Option({ item, state }: OptionProps) {
       isFocused={isFocused}
       isSelected={isSelected}
     >
-      <Flex $alignItems={"center"}>
+      <Flex $position={"relative"} $alignItems={"center"}>
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
-        <BoxBorders hideTop />
+        <InputFocusUnderline
+          // isFocusVisible={isFocused}
+          aria-hidden="true"
+          name={"Underline1"}
+        />
       </Flex>
+      <BoxBorders hideTop />
     </ListItem>
   );
 }
@@ -141,6 +151,8 @@ const StyledDescription = styled.div`
 export function Description({ children }: { children: React.ReactNode }) {
   const { descriptionProps } = useContext(OptionContext);
   return (
-    <StyledDescription {...descriptionProps}>{children}</StyledDescription>
+    <Flex>
+      <StyledDescription {...descriptionProps}>{children}</StyledDescription>
+    </Flex>
   );
 }

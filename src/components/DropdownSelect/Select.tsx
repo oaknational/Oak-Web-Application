@@ -20,13 +20,19 @@ import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { srOnly } from "../ScreenReaderOnly";
 import ellipsis from "../../styles/ellipsis";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { RotatedInputLabel } from "../Input/Input";
+import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 
 import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";
 
 export { Item } from "react-stately";
+
+export const DropdownFocusUnderline = styled(InputFocusUnderline)<{
+  isFocusVisible: boolean;
+}>`
+  display: ${(props) => (props.isFocusVisible ? "inline" : "none")};
+`;
 
 export type SelectItem = {
   value: string;
@@ -153,6 +159,11 @@ export function Select<T extends object>(
       {...containerProps}
     >
       <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
+      <DropdownFocusUnderline
+        isFocusVisible={isFocusVisible}
+        aria-hidden="true"
+        name={"Underline1"}
+      />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
           background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}

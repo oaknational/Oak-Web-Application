@@ -21,7 +21,7 @@ const OL = styled.ol<MarginProps>`
     counter-increment: item;
     margin: 0;
     padding: 0 0 0 16px;
-    text-indent: -16px;
+
     list-style-type: none;
     margin-bottom: 32px;
 
@@ -37,7 +37,7 @@ const OL = styled.ol<MarginProps>`
     font-family: ${getFontFamily("ui")};
     font-weight: 600;
     padding-right: 4px;
-    content: counter(item) ".";
+    content: counter(item);
   }
 
   a {

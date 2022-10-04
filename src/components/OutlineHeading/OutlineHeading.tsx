@@ -10,7 +10,7 @@ import {
   HeadingTagComponent,
 } from "../Typography/Heading";
 
-const shadow =
+export const outlineShadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
 
 type OutlineHeadingProps = Omit<HeadingProps, "$fontSize">;
@@ -35,7 +35,7 @@ const OutlineHeading = styled(HeadingTagComponent).attrs({
   className: "pa11y-ignore",
 })<OutlineHeadingProps & { $fontSize: OutlineSizeResponsive }>`
   color: white;
-  text-shadow: ${shadow};
+  text-shadow: ${outlineShadow};
   ${fontSize}
   ${headingDefaults}
   ${margin}
