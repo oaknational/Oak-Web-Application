@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { Webinar } from "../../node-lib/cms";
@@ -81,6 +82,7 @@ export const getStaticProps: GetStaticProps<
       webinar,
       isPreviewMode,
     },
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

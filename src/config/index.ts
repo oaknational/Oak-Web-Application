@@ -1,18 +1,20 @@
 import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
+type EnvValue = string | number;
+
 type EnvVar = {
-  value: string | undefined;
+  value: EnvValue | undefined;
   required: boolean;
   availableInBrowser: boolean;
   default: string | null;
   // useful for messaging in case if missing vars
   envName: string;
   description?: string;
-  allowedValues?: string[];
+  allowedValues?: EnvValue[];
 };
 
-const parseValue = (value: string | undefined) => {
+const parseValue = <T extends EnvValue>(value: T | undefined) => {
   if (value === "undefined") {
     return undefined;
   }
@@ -304,6 +306,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  sanityRevalidateSeconds: {
+    value: process.env.SANITY_REVALIDATE_SECONDS
+      ? parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
+      : undefined,
+    envName: "SANITY_REVALIDATE_SECONDS",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   sanityAssetCDNHost: {
     /**
      * Domain without 'https://', eg: "cdn.sanity.io"
@@ -376,7 +387,10 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
 - - - ${envName}`);
   }
   if ("allowedValues" in envVarConfig && envValue) {
-    const { allowedValues } = envVarConfig;
+    // Explicitly typing allowedValues are currently the only instance
+    // is of string[], so it infers the type as being too narrow
+    const { allowedValues }: { allowedValues: EnvValue[] } = envVarConfig;
+
     if (!allowedValues.includes(envValue)) {
       throw new Error(`- - - ERROR invalid value found for env var:
 - - - ${envName}
@@ -386,7 +400,13 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
   }
 }
 
-const configGet = (key: ConfigKey) => {
+// We can safely assert it's non-nullable as our
+// guard loop above will throw
+type NonNullEnvValue<K extends ConfigKey> = NonNullable<
+  typeof envVars[K]["value"]
+>;
+
+const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   const { value, default: defaultValue, envName } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"

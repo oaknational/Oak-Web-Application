@@ -44,6 +44,7 @@
     "apiKey": "123abc"
   },
   "sanity": {
+    "revalidateSeconds": "300",
     "projectId": "abc123",
     "dataset": "production",
     "datasetTag": "default",
