@@ -1,4 +1,5 @@
 import { MouseEventHandler, useRef } from "react";
+import { useHover } from "react-aria";
 
 import errorReporter from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
@@ -33,6 +34,7 @@ const useClickableCard = <
   T extends HTMLAnchorElement | HTMLButtonElement
 >() => {
   const ref = useRef<T>(null);
+  const { isHovered, hoverProps } = useHover({});
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target instanceof Element) {
       const interactiveAncestor = getInteractiveAncestor(e.target);
@@ -55,7 +57,8 @@ const useClickableCard = <
 
   return {
     primaryTargetProps: { ref },
-    containerProps: { onClick },
+    containerProps: { onClick, ...hoverProps },
+    isHovered,
   };
 };
 

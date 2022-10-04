@@ -16,7 +16,7 @@ export type FlexCssProps = {
 };
 
 const flex = css<FlexCssProps>`
-  ${responsive("display", (props) => props.$display || "flex")}
+  ${responsive("display", (props) => props.$display)}
   ${responsive("flex-direction", (props) => props.$flexDirection)}
   ${responsive("align-items", (props) => props.$alignItems)}
   ${responsive("justify-content", (props) => props.$justifyContent)}

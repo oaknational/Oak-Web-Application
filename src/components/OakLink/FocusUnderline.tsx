@@ -28,7 +28,7 @@ export const focusUnderlineStyles = css`
     display: block;
     right: 0;
     left: 0;
-    bottom: -1px;
+    bottom: -3px;
     height: 7px;
     filter: drop-shadow(1px 5px 0 rgb(0 0 0));
   }
