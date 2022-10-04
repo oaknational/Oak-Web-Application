@@ -8,6 +8,7 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { LandingPage } from "../../../node-lib/cms/sanity-client/schemas/landingPage";
+import { mockImageAsset } from "../../__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
 
@@ -32,16 +33,27 @@ const testLandingPage: LandingPage = {
       text: "text",
       attribution: "a quote",
     },
-    // {
-    //   type: "LandingPageTextAndMediaBlock",
-    //   textAndMedia: {
-    //     title: "title",
-    //     bodyPortableText: [],
-    //     alignMedia: "left",
-    //     mediaType: "image",
-    //     image: mockImageAsset(),
-    //   },
-    // },
+    {
+      type: "LandingPageTextAndMediaBlock",
+      textAndMedia: {
+        title: "title",
+        bodyPortableText: [],
+        alignMedia: "left",
+        mediaType: "image",
+        image: mockImageAsset(),
+      },
+    },
+    {
+      type: "Quote",
+      text: "text",
+      attribution: "person mcpersonface",
+    },
+    {
+      type: "LandingPageFormBlock",
+      bodyPortableText: [],
+      title: "title",
+      formTitle: "form title",
+    },
   ],
   seo: null,
 };
