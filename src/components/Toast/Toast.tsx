@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
@@ -44,6 +44,7 @@ const ToastCard = styled(Card)<TransitionProps>`
 
 const Toast: FC = () => {
   const { message, shown, hideToast, role } = useToastContext();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (shown) {
@@ -55,9 +56,15 @@ const Toast: FC = () => {
   }, [shown, hideToast]);
 
   return (
-    <Transition timeout={TRANSITION_DURATION} in={shown} unmountOnExit>
+    <Transition
+      nodeRef={ref}
+      timeout={TRANSITION_DURATION}
+      in={shown}
+      unmountOnExit
+    >
       {(state) => (
         <ToastCard
+          ref={ref}
           state={state}
           $background="teachersPastelYellow"
           $width={["100%", "auto"]}

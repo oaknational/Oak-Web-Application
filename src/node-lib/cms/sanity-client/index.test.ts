@@ -112,6 +112,7 @@ describe("cms/sanity-client", () => {
       ["aboutPartnersPage", "aboutPartnersPage"],
       ["aboutWorkWithUsPage", "aboutWorkWithUsPage"],
       ["curriculumPage", "curriculumCorePage"],
+      ["contactPage", "contactCorePage"],
     ] as const;
 
     const listMethods = [

@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
@@ -176,6 +177,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                         src={"/images/illustrations/magic-carpet.png"}
                         $objectFit="cover"
                         $objectPosition={"right center"}
+                        sizes={"(min-width: 750px) 500px, 100vw"}
                         fill
                         priority
                       />
@@ -239,6 +241,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                           "/images/illustrations/teacher-carrying-stuff-165-200.png"
                         }
                         fill
+                        sizes="(min-width: 750px) 256px, 100vw"
                         $objectFit="contain"
                         priority
                       />
@@ -405,7 +408,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
       pageData: homepageData,
       posts,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

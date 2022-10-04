@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
@@ -64,11 +64,12 @@ type ConfirmButtonProps = {
 
 const ConfirmButton: FC<IconButtonProps & ConfirmButtonProps> = (props) => {
   const { icon, animate } = props;
+  const ref = useRef<HTMLButtonElement>(null);
 
   return (
     <Transition timeout={TRANSITION_DURATION} in={animate}>
       {(state) => (
-        <AnimatedButton {...props} icon={icon} state={state}>
+        <AnimatedButton ref={ref} {...props} icon={icon} state={state}>
           <AnimatedTick state={state}>
             <IconButtonInner
               icon={"Tick"}

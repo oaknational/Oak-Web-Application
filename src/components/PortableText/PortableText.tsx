@@ -12,6 +12,8 @@ import { resolveInternalHref } from "../../utils/portableText/resolveInternalHre
 import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
 import { LI, OL, P, Span } from "../Typography";
 
+import { PTActionTrigger } from "./PTActionTrigger";
+
 const reportError = errorReporter("PortableText");
 
 export const PTInternalLink: PortableTextMarkComponent<{
@@ -99,6 +101,7 @@ export const basePortableTextComponents: PortableTextComponents = {
     },
     internalLink: PTInternalLink,
     link: PTExternalLink,
+    action: PTActionTrigger,
   },
 };
 
