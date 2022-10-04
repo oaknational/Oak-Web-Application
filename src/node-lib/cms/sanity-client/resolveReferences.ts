@@ -3,20 +3,22 @@ import { z } from "zod";
 
 import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
-import { PortableTextJSON } from "../types/base";
 
 import { portableTextReferencedEntrySchema } from "./schemas";
 
 type ObjectPath = string[];
 
 const referencedDocumentsSchema = z.array(portableTextReferencedEntrySchema);
+
 /**
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
  */
-export const resolveReferences = async (
-  portableText: PortableTextJSON
-): Promise<PortableTextJSON> => {
+export const resolveReferences = async <
+  T extends Record<string, unknown> | Record<string, unknown>[]
+>(
+  portableText: T
+): Promise<T> => {
   /**
    * Find all paths to embedded references within the portable text, e.g.
    * [[0, 'image', 'asset'], [5, 'video']]

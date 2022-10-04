@@ -123,6 +123,7 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
       label: "Blog about plans",
       linkType: "internal",
       internal: {
+        id: "0001",
         contentType: "newsPost",
         slug: "some-blog-post",
       },
@@ -135,6 +136,7 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
         asset: {
           assetId: "ByqZ4KA9mLdyrtWnAvRMHbcQnNk2uUnf3NNdahrey5o",
           playbackId: "5VfBnOXD87KnXMJrYNG6HtCIizY6q6thP5EjjqkU1kI",
+          thumbTime: null,
         },
       },
     },
@@ -147,6 +149,7 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
         label: "Blog about plans",
         linkType: "internal",
         internal: {
+          id: "0002",
           contentType: "newsPost",
           slug: "some-blog-post",
         },
@@ -164,6 +167,7 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
         label: "blog about plans",
         linkType: "internal",
         internal: {
+          id: "0003",
           contentType: "newsPost",
           slug: "some-blog-post",
         },
@@ -173,6 +177,7 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
       label: "Blog about plans",
       linkType: "internal",
       internal: {
+        id: "0004",
         contentType: "newsPost",
         slug: "some-blog-post",
       },

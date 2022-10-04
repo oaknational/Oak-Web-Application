@@ -71,7 +71,7 @@ describe("resolveReferences", () => {
         _key: "001",
       });
 
-      expect(resolved.baz[0].image).toMatchObject({
+      expect(resolved?.baz?.[0]?.image).toMatchObject({
         contentType: "newsPost",
         id: "ref2",
         slug: "some-blog-post",

@@ -12,6 +12,7 @@ import IconButton from "../Button/IconButton";
 import OakLink from "../OakLink";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
+import Toast from "../Toast";
 import { Span } from "../Typography";
 
 const SiteHeader: FC = () => {
@@ -64,6 +65,7 @@ const SiteHeader: FC = () => {
       <Menu>
         <MenuLinks menuSections={menuSections} />
       </Menu>
+      <Toast />
     </FixedHeader>
   );
 };

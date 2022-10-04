@@ -11,7 +11,7 @@ import Flex from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
 
 type MobileBlogFiltersProps = {
-  categoryListProps: BlogCategoryListProps;
+  categoryListProps: Omit<BlogCategoryListProps, "labelledBy">;
   withBackButton?: boolean;
 };
 const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
@@ -91,7 +91,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
                 icon="ArrowLeft"
                 iconBackground="teachersHighlight"
                 size="large"
-                label="Back"
+                label="All blogs"
                 href="/blog"
               />
               <Cover
@@ -130,7 +130,12 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           aria-labelledby={triggerId}
           $visibility={isOpen ? "visible" : "hidden"}
         >
-          <BlogCategoryList $pv={32} $ph={16} {...categoryListProps} />
+          <BlogCategoryList
+            labelledBy={triggerId}
+            $pv={32}
+            $ph={16}
+            {...categoryListProps}
+          />
         </Box>
       </Box>
     </>

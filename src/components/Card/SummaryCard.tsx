@@ -19,7 +19,7 @@ type ImageProps = {
 type SummaryCardProps = {
   title: string;
   heading: string;
-  summary: PortableTextJSON;
+  summary: PortableTextJSON | string;
   background?: OakColorName;
   imageProps?: ImageProps;
   imageContainerProps?: FlexProps;

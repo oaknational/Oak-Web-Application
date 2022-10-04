@@ -15,11 +15,17 @@ import {
   getButtonHeight,
 } from "./common";
 
+const disabledStyles = css`
+  opacity: 0.5;
+  cursor: not-allowed;
+`;
+
 export type IconButtonStylesProps = MarginProps & {
   size: ButtonSize;
   variant: ButtonVariant;
   background: ButtonBackground;
   rotate?: number;
+  disabled?: boolean;
 };
 export const getIconButtonStylesProps = (
   props: CommonIconButtonProps
@@ -45,9 +51,10 @@ const iconButtonStyles = css<IconButtonStylesProps>`
   `}
 
   :disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    ${disabledStyles}
   }
+
+  ${(props) => props.disabled && disabledStyles}
 
   & ${BackgroundIcon} {
     transition: filter 0.3s ease-in-out;

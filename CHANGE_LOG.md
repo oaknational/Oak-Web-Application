@@ -1,3 +1,130 @@
+# [1.32.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.31.0...v1.32.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* remove usage of deprecated z.string().nonempty() ([38d9a0a](https://github.com/oaknational/Oak-Web-Application/commit/38d9a0ad34454be9e9e47066b09287f7bf9cf338))
+
+
+### Features
+
+* add ability to trigger pre-defined JS hooks from CMS portable text ([aaadf37](https://github.com/oaknational/Oak-Web-Application/commit/aaadf375a18e142c7bdc0f3c3b95c922da626f11))
+* add contact page CMSClient method ([d573812](https://github.com/oaknational/Oak-Web-Application/commit/d5738127df1b3fe69c1abee8d4cdd1f834ce3fe9))
+* integrate CMS data with contact page ([72771b5](https://github.com/oaknational/Oak-Web-Application/commit/72771b5657cd79c52e68aa4433f1470860820a69))
+
+# [1.31.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.30.0...v1.31.0) (2022-10-03)
+
+
+### Features
+
+* blog pagination in query params ([977e012](https://github.com/oaknational/Oak-Web-Application/commit/977e0129a8dd446fe9dd6d00c33d8d2ed077b243))
+
+# [1.30.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.1...v1.30.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* correctly infer config.get return types, add test ([79a9ebe](https://github.com/oaknational/Oak-Web-Application/commit/79a9ebea733bb3e8d16baa4a10e65d9debb197db))
+
+
+### Features
+
+* add to config - use config instead of config helper ([1378912](https://github.com/oaknational/Oak-Web-Application/commit/1378912266801cb4f27f7190fcc40594efc8b15a))
+* replace magic number revalidate with single config value ([93edaca](https://github.com/oaknational/Oak-Web-Application/commit/93edaca4e97fffb696114de7435647fe3c8c4ac2))
+
+## [1.29.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.29.0...v1.29.1) (2022-10-03)
+
+# [1.29.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.3...v1.29.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* max width uses 'none' and not 'auto' ([b4363ef](https://github.com/oaknational/Oak-Web-Application/commit/b4363ef1beb662aa26cb365f47923063cb21d4c0))
+
+
+### Features
+
+* add margin to top of date in mobile view ([5470516](https://github.com/oaknational/Oak-Web-Application/commit/5470516d3c13b65547987d73ee449c8d39bf1358))
+* make blog list item fill available horizontal space ([b3daeb3](https://github.com/oaknational/Oak-Web-Application/commit/b3daeb3c17400d81b4fbbe5f35f146b765c88596))
+* make images smaller on mobile ([7204f1c](https://github.com/oaknational/Oak-Web-Application/commit/7204f1cccb22fa3ce6a6194844058d3798e6f084))
+* remove images on blog listing page ([6782fdb](https://github.com/oaknational/Oak-Web-Application/commit/6782fdbab4407ac1e703aaedae0df1c804474cf7))
+
+## [1.28.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.2...v1.28.3) (2022-09-30)
+
+
+### Bug Fixes
+
+* loosen resolveReferences types to more accurately reflect usage ([1015dd4](https://github.com/oaknational/Oak-Web-Application/commit/1015dd4f19383d89de8350f43ccc3435b030caef))
+
+## [1.28.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.1...v1.28.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* copy change on planning page ([1acfa11](https://github.com/oaknational/Oak-Web-Application/commit/1acfa112a039485cf078cafba4c18cf504023f65))
+
+## [1.28.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.28.0...v1.28.1) (2022-09-29)
+
+# [1.28.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.5...v1.28.0) (2022-09-29)
+
+
+### Features
+
+* **Netlify:** update reference from trial domain to dev domain ([1db821d](https://github.com/oaknational/Oak-Web-Application/commit/1db821d83af7bb9fe97ccb8843267498661111d0))
+
+## [1.27.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.4...v1.27.5) (2022-09-29)
+
+## [1.27.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.3...v1.27.4) (2022-09-29)
+
+
+### Bug Fixes
+
+* **a11y:** aria hide icons and svgs, fixes [#785](https://github.com/oaknational/Oak-Web-Application/issues/785) ([4264f18](https://github.com/oaknational/Oak-Web-Application/commit/4264f181785832cda274b0c7809cd1e9c357f8c8))
+
+## [1.27.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.2...v1.27.3) (2022-09-29)
+
+
+### Bug Fixes
+
+* axe env var ([0a03640](https://github.com/oaknational/Oak-Web-Application/commit/0a0364072b87aee89c45126bc089b5d35d99ee18))
+
+## [1.27.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.1...v1.27.2) (2022-09-29)
+
+
+### Bug Fixes
+
+* Downloads clickable ([c4aaf0e](https://github.com/oaknational/Oak-Web-Application/commit/c4aaf0e4392fb8e9c7fa6f3335b4454781d1fa86))
+
+## [1.27.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.27.0...v1.27.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* arialabel to have size in mb rather than bytes ([056ae3b](https://github.com/oaknational/Oak-Web-Application/commit/056ae3ba5a83c98e6bfc17d2a7ad8ea4d5b3368e))
+
+# [1.27.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.26.0...v1.27.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* animate copylink button on internal state change not general context change ([50585b0](https://github.com/oaknational/Oak-Web-Application/commit/50585b0a5c963a4d7c576723708e89af70abb324))
+* mobile position of copy button on mobile ([1211960](https://github.com/oaknational/Oak-Web-Application/commit/1211960f39d5ebc29f1001f872f578c375697deb))
+* put role into context ([e081a10](https://github.com/oaknational/Oak-Web-Application/commit/e081a107c221aa9ec4f7ce6411363d6d4aaa5824))
+* spacing in heading ([9007035](https://github.com/oaknational/Oak-Web-Application/commit/9007035be31b6ebdf2d8277902a08ae8f467f2a2))
+* wrap copy link button in context ([612fc34](https://github.com/oaknational/Oak-Web-Application/commit/612fc34a9065cbccf195771b293382a96137ca9d))
+
+
+### Features
+
+* add confirm button ([560a52d](https://github.com/oaknational/Oak-Web-Application/commit/560a52db23b239cc191ca9b415b10715a474cb22))
+* add story for toast ([df36f04](https://github.com/oaknational/Oak-Web-Application/commit/df36f044ffa6ee6b1dbdf4e8544062d0cf3d9e8b))
+* correctly animate confirm button ([acb8e6d](https://github.com/oaknational/Oak-Web-Application/commit/acb8e6d482ab60cd9afaf38fa8450271d6ad9454))
+* create toast context and show and hide toast ([93aee0f](https://github.com/oaknational/Oak-Web-Application/commit/93aee0f0f0416986e37cf2ef78bc6103b90aaa9b))
+* make role a prop ([25e2ca7](https://github.com/oaknational/Oak-Web-Application/commit/25e2ca7bce72b16cbf9bf1bcf9698a7274382e59))
+* put timeout in toast ([2cf08de](https://github.com/oaknational/Oak-Web-Application/commit/2cf08de0c683a85bc370be938795a66ba3d81320))
+* set role when opening toast ([8b7fd1d](https://github.com/oaknational/Oak-Web-Application/commit/8b7fd1d464dc7381bb981e4a13ecde0ed29f4dea))
+* style toast and set timings ([c8fa8de](https://github.com/oaknational/Oak-Web-Application/commit/c8fa8deb17f67e8c8e80724ffbf94f5a5b0cd207))
+
 # [1.26.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.25.4...v1.26.0) (2022-09-28)
 
 

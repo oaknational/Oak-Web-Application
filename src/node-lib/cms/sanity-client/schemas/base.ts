@@ -8,7 +8,7 @@ export const documentSchema = z.object({
 
 export const slugSchema = z
   .object({
-    current: z.string().nonempty(),
+    current: z.string().min(1),
   })
   .transform((slug) => slug.current);
 
@@ -18,16 +18,27 @@ export const dateSchema = z.preprocess((arg) => {
   if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
 }, z.date());
 
+export const quoteSchema = z.object({
+  text: z.string(),
+  attribution: z.string().nullish(),
+  role: z.string().nullish(),
+  organisation: z.string().nullish(),
+});
+
+export type Quote = z.infer<typeof quoteSchema>;
+
 export const imageAssetSchema = z.object({
   _id: z.string(),
   url: z.string(),
 });
 
 export const imageSchema = z.object({
-  altText: z.string().nonempty().nullish(),
+  altText: z.string().min(1).nullish(),
   isPresentational: z.boolean().nullish(),
   asset: imageAssetSchema.optional(),
 });
+
+export type Image = z.infer<typeof imageSchema>;
 
 export const videoSchema = z.object({
   title: z.string(),
@@ -45,10 +56,14 @@ export const videoSchema = z.object({
   }),
 });
 
+export type Video = z.infer<typeof videoSchema>;
+
 export const blogWebinarCategorySchema = z.object({
   title: z.string(),
   slug: slugSchema,
 });
+
+export type BlogWebinarCategory = z.infer<typeof blogWebinarCategorySchema>;
 
 export const attachmentSchema = z.object({
   title: z.string(),
@@ -171,3 +186,5 @@ export const seoSchema = z.object({
   description: z.string().nullish(),
   canonicalURL: z.string().nullish(),
 });
+
+export type Seo = z.infer<typeof seoSchema>;

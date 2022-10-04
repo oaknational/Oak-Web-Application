@@ -118,6 +118,7 @@ const Icon: FC<IconProps> = (props) => {
 
   return (
     <IconOuterWrapper
+      aria-hidden={true}
       variant={variant}
       $height={outerHeight}
       $minHeight={outerHeight}

@@ -2,6 +2,7 @@ import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -179,7 +180,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $ph={12}
             >
               <Heading $font="heading-5" $textAlign="center" tag="h2">
-                Choose from our resources to support your planning
+                Learn more about our different resources and how they can
+                support your planning
               </Heading>
             </Flex>
             <Flex
@@ -476,7 +478,7 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     props: {
       pageData: planningPage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

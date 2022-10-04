@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
+import config from "../config";
 import CMSClient, { CurriculumPage } from "../node-lib/cms";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -231,7 +232,7 @@ export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
     props: {
       pageData: curriculumPage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 
