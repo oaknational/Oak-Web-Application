@@ -4,8 +4,6 @@ import ButtonLinkNav from "../../ButtonLinkNav/ButtonLinkNav";
 import SummaryCard from "../../Card/SummaryCard";
 
 /**
- * # AboutUsSummaryCard
- *
  * Extension of SummaryCard which includes navigation for "About Us" subpages
  *
  * ## Usage
