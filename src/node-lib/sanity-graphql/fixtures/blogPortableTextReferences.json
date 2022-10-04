@@ -23,6 +23,14 @@
       "id": "planningCorePage",
       "_type": "planningCorePage",
       "contentType": "planningCorePage"
+    },
+    {
+      "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+      "_type": "policyPage",
+      "contentType": "policyPage",
+      "slug": {
+        "current": "privacy-policy"
+      }
     }
   ]
 }

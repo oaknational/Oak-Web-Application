@@ -10,6 +10,7 @@ import {
   aboutWorkWithUsPageSchema,
   homePageSchema,
   curriculumPageSchema,
+  contactPageSchema,
   blogPostPreviewSchema,
   blogPostSchema,
   planningPageSchema,
@@ -237,6 +238,27 @@ const getSanityClient = () => ({
     }
 
     return parseResults(curriculumPageSchema, curriculumPageData, previewMode);
+  },
+  contactPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.contactCorePage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const contactPageData = result?.allContactCorePage?.[0];
+
+    if (!contactPageData) {
+      return null;
+    }
+
+    const contactPageDataWithReferences = await resolveReferences(
+      contactPageData
+    );
+
+    return parseResults(
+      contactPageSchema,
+      contactPageDataWithReferences,
+      previewMode
+    );
   },
   policyPages: async ({ previewMode, ...params }: ListParams = {}) => {
     const policyPageListSchema = z.array(policyPagePreviewSchema);

@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
@@ -407,7 +408,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
       pageData: homepageData,
       posts,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 
