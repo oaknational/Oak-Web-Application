@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from ".";
+import Component from "./BlogListItem";
 
 export default {
   title: "Lists/BlogListItem",
@@ -18,5 +18,8 @@ BlogListItem.args = {
   snippet:
     "The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way",
   href: "/",
+  category: { title: "Oak updates", slug: "oak-updates" },
+  date: "2022-10-04",
+  withImage: true,
   contentType: "blog-post",
 };

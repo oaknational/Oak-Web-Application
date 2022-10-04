@@ -12,12 +12,21 @@ import flex from "../../styles/utils/flex";
 import { HTMLAnchorProps } from "../Button/common";
 import { FlexProps } from "../Flex";
 
-const OakLinkA = styled.a`
+import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
+
+type FocusStyle = "underline";
+type FocusStylesProps = {
+  focusStyles?: FocusStyle[];
+};
+
+const OakLinkA = styled.a<FlexProps & FocusStylesProps>`
   ${flex}
+  ${(props) => props.focusStyles?.includes("underline") && focusUnderlineStyles}
 `;
 
 export type OakLinkProps = Omit<LinkProps, "href" | "passHref"> &
-  FlexProps & {
+  FlexProps &
+  FocusStylesProps & {
     children: ReactNode;
     className?: string;
     htmlAnchorProps?: HTMLAnchorProps;
@@ -89,7 +98,12 @@ export const getOakLinkAnchorProps = (
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   return (
     <Link {...getOakLinkLinkProps(props)} passHref>
-      <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)} />
+      <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)}>
+        {props.children}
+        {props.focusStyles?.includes("underline") && (
+          <FocusUnderline $color={"teachersYellow"} />
+        )}
+      </OakLinkA>
     </Link>
   );
 });

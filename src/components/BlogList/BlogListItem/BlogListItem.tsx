@@ -93,7 +93,11 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $justifyContent="space-between"
           $flexDirection={["column", "row"]}
         >
-          <OakLink page="blog-index" category={category.slug}>
+          <OakLink
+            page="blog-index"
+            category={category.slug}
+            focusStyles={["underline"]}
+          >
             <Span $font="heading-7" $color="hyperlink">
               {category.title}
             </Span>
@@ -108,6 +112,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
             page={null}
             href={href}
             htmlAnchorProps={{ title }}
+            focusStyles={["underline"]}
           >
             {title}
           </OakLink>
