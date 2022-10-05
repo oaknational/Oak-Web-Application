@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import {
   MissingComponentHandler,
@@ -39,6 +39,8 @@ import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
+import { Breadcrumb } from "../../components/Breadcrumbs";
+import { useBreadcrumbContext } from "../../context/Breadcrumb";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -227,6 +229,22 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
+  const { updateBreadcrumbs } = useBreadcrumbContext();
+
+  useEffect(() => {
+    const categorySlug = blog.category.slug;
+    const catCrumb: Breadcrumb = {
+      label:
+        categories.find((cat) => cat.slug === categorySlug)?.title || "All",
+      href: `/blog/categories/${categorySlug}`,
+    };
+    const postCrumb: Breadcrumb = {
+      label: blog.title,
+      href: blog.slug,
+      disabled: true,
+    };
+    updateBreadcrumbs([{ label: "Blog", href: "/blog" }, catCrumb, postCrumb]);
+  }, [categories, blog, updateBreadcrumbs]);
 
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",

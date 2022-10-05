@@ -49,7 +49,13 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
             const { href, label, disabled } = breadcrumb;
             return (
               <BreadcrumbsLi key={`${i}-${href}`}>
-                {i !== 0 && <Icon name="ChevronRight" size={20} />}
+                {i !== 0 && (
+                  <Icon
+                    name="ChevronRight"
+                    size={20}
+                    $color={"teachersHighlight"}
+                  />
+                )}
                 <Typography $font={"body-3"}>
                   {disabled ? (
                     <span>{label}</span>
