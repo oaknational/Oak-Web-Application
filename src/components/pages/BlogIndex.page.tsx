@@ -5,11 +5,13 @@ import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import config from "../../config";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../node-lib/cms";
 import BlogCategoryList from "../BlogCategoryList/BlogCategoryList";
+import useBlogCategoryList from "../BlogCategoryList/useBlogCategoryList";
 import BlogList from "../BlogList";
 import { BlogListItemProps } from "../BlogList/BlogListItem";
 import Box from "../Box";
@@ -35,6 +37,7 @@ export type BlogListingPageProps = {
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const { blogs, categories, categorySlug } = props;
   const { updateBreadcrumbs } = useBreadcrumbContext();
+  const blogCategoriesListProps = useBlogCategoryList();
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
@@ -89,10 +92,15 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
               $mt={[0, 24]}
               $pt={[48]}
             >
-              <Heading tag="h3" $font="body-3">
+              <Heading
+                tag="h3"
+                $font="body-3"
+                id={blogCategoriesListProps.labelId}
+              >
                 Categories
               </Heading>
               <BlogCategoryList
+                labelledBy={blogCategoriesListProps.labelId}
                 $mt={24}
                 categories={categories}
                 selectedCategorySlug={categorySlug}
@@ -162,7 +170,7 @@ export const getStaticProps: GetStaticProps<
       categories: blogCategories,
       categorySlug,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

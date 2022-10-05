@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
@@ -46,15 +46,21 @@ const Menu: FC = ({ children }) => {
   const theme = useTheme();
   const { menu: menuConfig } = theme;
   const { pathname } = useRouter();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     closeMenu();
   }, [pathname, closeMenu]);
 
   return (
-    <Transition timeout={transitionDuration} in={open} unmountOnExit>
+    <Transition
+      nodeRef={ref}
+      timeout={transitionDuration}
+      in={open}
+      unmountOnExit
+    >
       {(state) => (
-        <>
+        <Box $position="absolute" ref={ref}>
           <MenuBackdrop state={state} />
           <FocusScope contain restoreFocus autoFocus>
             <SideMenu
@@ -131,7 +137,7 @@ const Menu: FC = ({ children }) => {
               </Flex>
             </SideMenu>
           </FocusScope>
-        </>
+        </Box>
       )}
     </Transition>
   );

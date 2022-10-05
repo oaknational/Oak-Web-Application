@@ -10,6 +10,7 @@ import { useNextSanityImage } from "next-sanity-image";
 import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -41,6 +42,7 @@ import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
 import { Breadcrumb } from "../../components/Breadcrumbs";
 import { useBreadcrumbContext } from "../../context/Breadcrumb";
+import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -246,6 +248,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
     updateBreadcrumbs([{ label: "Blog", href: "/blog" }, catCrumb, postCrumb]);
   }, [categories, blog, updateBreadcrumbs]);
 
+  const blogCategoriesListProps = useBlogCategoryList();
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -288,10 +291,18 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $top={[null, HEADER_HEIGHT]}
               $pt={[48, 72]}
             >
-              <Heading tag="h3" $font="body-3">
+              <Heading
+                tag="h3"
+                $font="body-3"
+                id={blogCategoriesListProps.labelId}
+              >
                 Categories
               </Heading>
-              <BlogCategoryList $mt={24} categories={categories} />
+              <BlogCategoryList
+                labelledBy={blogCategoriesListProps.labelId}
+                $mt={24}
+                categories={categories}
+              />
             </Box>
           </GridArea>
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
@@ -409,10 +420,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
       blog,
       isPreviewMode,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 10, // In seconds
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

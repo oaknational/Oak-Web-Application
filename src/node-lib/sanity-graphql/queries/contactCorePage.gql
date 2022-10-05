@@ -1,0 +1,16 @@
+query contactCorePage($isDraftFilter: Sanity_DocumentFilter) {
+  allContactCorePage(
+    where: { _: $isDraftFilter, _id: { matches: "*contactCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+    bodyPortableText: bodyRaw
+    seo {
+      ...Seo
+    }
+  }
+}

@@ -1,17 +1,23 @@
 import { PortableText } from "@portabletext/react";
+import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import noop from "../../__tests__/__helpers__/noop";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
 import {
   BasePortableTextProvider,
   PTExternalLink,
   PTInternalLink,
 } from "./PortableText";
+import { PTActionTrigger } from "./PTActionTrigger";
 import portableTextFixture from "./portableTextFixture.json";
 
 const consoleWarnSpy = jest.spyOn(console, "warn");
 consoleWarnSpy.mockImplementation(noop);
+
+jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider");
 
 const reportError = jest.fn();
 jest.mock("../../common-lib/error-reporter", () => ({
@@ -24,11 +30,13 @@ jest.mock("../../common-lib/error-reporter", () => ({
 
 describe("PortableText", () => {
   beforeEach(() => {
+    jest.resetAllMocks();
     jest.clearAllMocks();
   });
+
   describe("PTExternalLink", () => {
     it("renders a link to the provided external href", () => {
-      const { getByRole } = renderWithProviders(
+      const { getByRole } = renderWithTheme(
         <PTExternalLink
           children={["Some link"]}
           text="Some link"
@@ -46,7 +54,7 @@ describe("PortableText", () => {
 
   describe("PTInternalLink", () => {
     it("renders a link to the provided internal page", () => {
-      const { getByRole } = renderWithProviders(
+      const { getByRole } = renderWithTheme(
         <PTInternalLink
           children={["Some internal link"]}
           text="Some internal link"
@@ -65,7 +73,7 @@ describe("PortableText", () => {
     });
 
     it("renders nothing and warns when it can't resolve a href", () => {
-      const { queryByRole } = renderWithProviders(
+      const { queryByRole } = renderWithTheme(
         <PTInternalLink
           children={["Some internal link"]}
           text="Some internal link"
@@ -86,9 +94,41 @@ describe("PortableText", () => {
     });
   });
 
+  describe("PTActionTrigger", () => {
+    it("renders a button that triggers cookie consent manager ", async () => {
+      const showConsentManager = jest.fn();
+      (useCookieConsent as jest.Mock).mockImplementation(() => ({
+        showConsentManager,
+      }));
+      const user = userEvent.setup();
+
+      const { getByRole } = renderWithTheme(
+        <PTActionTrigger
+          children={["Manage cookies"]}
+          text="Manage cookies"
+          markType="action"
+          value={{
+            _type: "action",
+            actionType: "OPEN_COOKIE_SETTINGS" as never,
+          }}
+          renderNode={() => undefined}
+        />
+      );
+
+      const button = getByRole("button");
+      expect(button).toHaveAccessibleName("Manage cookies");
+
+      await user.click(button);
+
+      await waitFor(() => {
+        expect(showConsentManager).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe("BasePortableTextProvider", () => {
     it("renders basic html", () => {
-      const { getAllByRole, container } = renderWithProviders(
+      const { getAllByRole, container } = renderWithTheme(
         <BasePortableTextProvider>
           <PortableText value={portableTextFixture} />
         </BasePortableTextProvider>
