@@ -4,12 +4,14 @@ import styled from "styled-components";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 
 // Constraining ratio for 1 consistency and 2 option to move to static css
-export type Ratio = "1:1" | "3:2" | "16:9";
+export type Ratio = "7:8" | "2:3" | "1:1" | "3:2" | "16:9";
 export type AspectRatios = ResponsiveValues<Ratio>;
 const ratioPercentageMap: Record<Ratio, number> = {
   "16:9": 56.25,
   "3:2": 66.66,
   "1:1": 100,
+  "2:3": 150,
+  "7:8": 114,
 };
 const ratioToPercentage = (ratio?: Ratio | null) =>
   ratio ? `${ratioPercentageMap[ratio]}%` : undefined;

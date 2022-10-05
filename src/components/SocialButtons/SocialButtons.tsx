@@ -4,7 +4,7 @@ import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { ButtonSize } from "../Button/common";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import { IconName } from "../Icon";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
@@ -58,12 +58,13 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
 } as const;
 
 type SocialUrls = Partial<Record<SocialNetwork, string | null | undefined>>;
-type SocialButtonsProps = SocialUrls & {
-  size?: ButtonSize;
-  spaceBetween?: ResponsiveValues<PixelSpacing>;
-};
+type SocialButtonsProps = FlexProps &
+  SocialUrls & {
+    size?: ButtonSize;
+    spaceBetween?: ResponsiveValues<PixelSpacing>;
+  };
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
-  const { size, spaceBetween } = props;
+  const { size, spaceBetween, ...flexProps } = props;
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
 
   if (socialsToShow.length === 0) {
@@ -71,7 +72,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
   }
 
   return (
-    <Flex $alignItems={"center"} $justifyContent={"center"}>
+    <Flex $alignItems={"center"} $justifyContent={"center"} {...flexProps}>
       {socialsToShow.map((network) => {
         const { label, icon } = SOCIAL_BUTTON_CONFIGS[network];
         const profile = props[network];

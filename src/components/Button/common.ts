@@ -102,6 +102,7 @@ export type CommonButtonProps = MarginProps & {
   icon?: IconName;
   iconPosition?: IconPosition;
   iconBackground?: OakColorName;
+  iconOnlyOnMobile?: boolean;
   size?: ButtonSize;
   "aria-label"?: string;
   fullWidth?: boolean;

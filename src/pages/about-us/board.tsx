@@ -17,7 +17,7 @@ import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-// import BioCardList from "../../components/BioCardList";
+import BioCardList from "../../components/BioCardList";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -65,7 +65,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           }}
           bodyPortableText={introPortableText}
         />
-        {/* {boardMembers && (
+        {boardMembers && (
           <>
             <Heading
               $mb={[40, 32]}
@@ -76,22 +76,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             </Heading>
             <BioCardList $mb={[80, 92]} $ph={[16, 0]} people={boardMembers} />
           </>
-        )} */}
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
-          Our interim board
-        </Heading>
-
-        <UL $mb={[80, 92]} $reset>
-          {boardMembers?.map((boardMember) => (
-            <LI
-              key={boardMember.id}
-              $textAlign="center"
-              $font={["heading-7", "heading-6"]}
-            >
-              {boardMember.name}
-            </LI>
-          ))}
-        </UL>
+        )}
         <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
           <Heading $font={"heading-5"} tag={"h2"}>
             Documents

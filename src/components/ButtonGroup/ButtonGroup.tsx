@@ -14,9 +14,9 @@ const ButtonGroup: FC<ButtonGroupProps> = (props) => {
   /**
    * @todo run time check that all children are Button or IconButton components
    */
-  const { children } = props;
+  const { children, ...flexProps } = props;
 
-  return <Group>{children}</Group>;
+  return <Group {...flexProps}>{children}</Group>;
 };
 
 export default ButtonGroup;

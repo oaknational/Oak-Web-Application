@@ -2,6 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { SSRProvider } from "@react-aria/ssr";
+import { ModalProvider } from "react-aria";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -44,7 +45,9 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                 <SearchProvider>
                   <MenuProvider>
                     <ToastProvider>
-                      <Component {...pageProps} />
+                      <ModalProvider>
+                        <Component {...pageProps} />
+                      </ModalProvider>
                       <AppHooks />
                     </ToastProvider>
                   </MenuProvider>

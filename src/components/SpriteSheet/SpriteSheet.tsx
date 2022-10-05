@@ -14,6 +14,7 @@ import lessonElementSvgSymbols, {
 } from "./LessonElementSvgs";
 import brushSvgSymbols, { BRUSH_NAMES } from "./BrushSvgs";
 import loopingLineSvgSymbols, { LOOPING_LINES } from "./LoopingLineSvgs";
+import LoopingArrow1 from "./LoopingArrow1.graphic";
 
 const SpriteSheet: FC = () => {
   return (
@@ -64,6 +65,10 @@ const SpriteSheet: FC = () => {
           <BrushSymbol key={`spritesheet-${name}`} id={getSvgId({ name })} />
         );
       })}
+      <LoopingArrow1
+        key={`spritesheet-looping-arrow-1`}
+        id={getSvgId({ name: "looping-arrow-1" })}
+      />
     </svg>
   );
 };
