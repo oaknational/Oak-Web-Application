@@ -165,10 +165,12 @@ const blogPortableTextComponents: PortableTextComponents = {
           <P $font={["heading-light-5", "heading-light-4"]}>
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $font={"body-1"} $mt={[16]} $textAlign="center">
-            <cite>{props.value?.attribution}</cite>
-            {props.value.role && `, ${props.value.role}`}
-          </P>
+          <div>
+            <P $font={"body-1"} $mt={[16]} $textAlign="center">
+              <cite>{props.value?.attribution}</cite>
+              {props.value.role && `, ${props.value.role}`}
+            </P>
+          </div>
         </Flex>
       );
     },
