@@ -17,21 +17,29 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testLandingPage: LandingPage = {
   id: "5",
   slug: "some-landing-page",
-  title: "some-landing-page",
-  landingPageHeader: {
-    headerCta: "/",
-    headerTitle: "title",
+  hero: {
+    title: "some-landing-page",
+    heading: "heading",
+    image: mockImageAsset(),
+    cta: {
+      label: "blog about plans",
+      linkType: "internal",
+      internal: {
+        id: "0003",
+        contentType: "newsPost",
+        slug: "some-blog-post",
+      },
+    },
   },
-  heading: "",
+  headerButton: {
+    label: "/",
+    anchor: "formBlock",
+  },
+
   content: [
     {
       type: "LandingPageTextBlock",
       bodyPortableText: [],
-    },
-    {
-      type: "Quote",
-      text: "text",
-      attribution: "a quote",
     },
     {
       type: "LandingPageTextAndMediaBlock",
@@ -44,9 +52,11 @@ const testLandingPage: LandingPage = {
       },
     },
     {
-      type: "Quote",
-      text: "text",
-      attribution: "person mcpersonface",
+      type: "LandingPageQuoteBlock",
+      quote: {
+        text: "text",
+        attribution: "person mcpersonface",
+      },
     },
     {
       type: "LandingPageFormBlock",

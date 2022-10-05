@@ -8,12 +8,20 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
     slug {
       current
     }
-    landingPageHeader {
-      headerCta
-      headerTitle
+    headerButton {
+      label
+      anchor
     }
-    title
-    heading
+    hero {
+      title
+      heading
+      image {
+        ...ImageWithAltText
+      }
+      cta {
+        ...CTA
+      }
+    }
     content {
       type: __typename
       ... on LandingPageTextBlock {
@@ -24,11 +32,13 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         formTitle
         bodyPortableText: textRaw
       }
-      ... on Quote {
-        text
-        role
-        organisation
-        attribution
+      ... on LandingPageQuoteBlock {
+        quote {
+          text
+          role
+          organisation
+          attribution
+        }
       }
       ... on LandingPageTextAndMediaBlock {
         textAndMedia {

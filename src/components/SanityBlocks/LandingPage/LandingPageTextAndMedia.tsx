@@ -1,0 +1,82 @@
+import { PortableText } from "@portabletext/react";
+import { FC } from "react";
+
+import { TextAndMedia } from "../../../node-lib/cms";
+import Card from "../../Card";
+import CMSImage from "../../CMSImage";
+import CMSVideo from "../../CMSVideo";
+import Flex from "../../Flex";
+import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
+import { LI } from "../../Typography";
+
+import { OLOutline } from "./OLOutline";
+
+export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
+  console.log(props);
+  return (
+    <Card
+      $flexDirection={["column", "row"]}
+      $background={"teachersPastelYellow"}
+      $width={"100%"}
+      $mb={[56, 92]}
+      $pb={24}
+      $ph={[16, 56]}
+    >
+      <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+
+      <Flex
+        $minHeight={200}
+        $position="relative"
+        $minWidth={["100%", "50%"]}
+        $mb={[40, 0]}
+      >
+        {props.mediaType == "image" && (
+          <CMSImage
+            $pr={[0, 24, 72]}
+            alt={props.image.altText || ""}
+            $objectFit="contain"
+            $objectPosition={"center"}
+            fill
+            priority
+            image={props.image}
+          />
+        )}
+        {props.mediaType == "video" && (
+          <Flex $alignItems={"center"} $ph={20}>
+            <CMSVideo video={props.video} />
+          </Flex>
+        )}
+      </Flex>
+      <Flex
+        $minWidth={["100%", "50%"]}
+        $justifyContent={"center"}
+        $flexDirection={"column"}
+      >
+        <PortableText
+          components={{
+            list: {
+              number: (props) => (
+                <OLOutline $color={"teachersPastelYellow"} $mh={0}>
+                  {props.children}
+                </OLOutline>
+              ),
+            },
+
+            listItem: {
+              number: (props) => {
+                const listItemText = props?.value?.children[0]?.text;
+
+                return (
+                  <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
+                    <LI $font={["heading-7", "heading-6"]}>{listItemText}</LI>
+                  </Flex>
+                );
+              },
+            },
+          }}
+          value={props.bodyPortableText}
+        />
+      </Flex>
+    </Card>
+  );
+};

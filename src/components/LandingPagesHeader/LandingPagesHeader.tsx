@@ -7,12 +7,19 @@ import Logo from "../Logo";
 import Typography from "../Typography";
 import Icon from "../Icon";
 
+export const anchorMap = {
+  formBlock: "form-block",
+} as const;
+
+export type AnchorMap = keyof typeof anchorMap | null;
+
 export type LandingPagesHeaderProps = {
-  headerTitle?: string;
-  headerCta?: string;
+  label?: string;
+  anchor?: AnchorMap;
 };
 
-const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
+const LandingPagesHeader: FC<LandingPagesHeaderProps> = ({ label, anchor }) => {
+  const buttonAnchor = anchor ? anchorMap[anchor] : null;
   return (
     <FixedHeader $background={"white"}>
       <Flex
@@ -25,28 +32,30 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
             <Logo title={"Oak National Academy"} height={48} width={104} />
           </a>
         </Link>
-        <Link href={props.headerCta || "/"}>
-          <a>
-            <Flex
-              $width={[200, "100%"]}
-              $justifyContent={"flex-end"}
-              $alignItems={"center"}
-            >
-              <Typography $textAlign="right" $font={"heading-7"}>
-                {props.headerTitle || "Oak National Academy"}
-              </Typography>
-              <Icon
-                $ml={12}
-                aria-label={"arrow-right"}
-                name={"ArrowRight"}
-                $background={"teachersHighlight"}
-                $color={"white"}
-                variant={"brush"}
-                size={28}
-              />
-            </Flex>
-          </a>
-        </Link>
+        {buttonAnchor && label && (
+          <Link href={buttonAnchor}>
+            <a>
+              <Flex
+                $width={[200, "100%"]}
+                $justifyContent={"flex-end"}
+                $alignItems={"center"}
+              >
+                <Typography $textAlign="right" $font={"heading-7"}>
+                  {label}
+                </Typography>
+                <Icon
+                  $ml={12}
+                  aria-label={"arrow-right"}
+                  name={"ArrowRight"}
+                  $background={"teachersHighlight"}
+                  $color={"white"}
+                  variant={"brush"}
+                  size={28}
+                />
+              </Flex>
+            </a>
+          </Link>
+        )}
       </Flex>
     </FixedHeader>
   );
