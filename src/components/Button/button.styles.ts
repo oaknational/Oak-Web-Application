@@ -61,7 +61,7 @@ const buttonStyles = css<ButtonStylesProps>`
   ${(props) => css`
     width: ${props.fullWidth && "100%"};
     flex-direction: ${getButtonFlexDirection(props.iconPosition)};
-    height: ${getButtonHeight(props.size)}px;
+    height: ${getButtonHeight(props.size, props.variant)}px;
     padding: 0 ${getButtonPadding(props.size)}px;
     background-color: ${getButtonBackground(props.background, props.variant)};
     color: ${getButtonColor(props.background, props.variant)};

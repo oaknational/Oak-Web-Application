@@ -1,45 +1,103 @@
 import { FC } from "react";
 
+import { PixelSpacing } from "../../styles/theme";
+import { ResponsiveValues } from "../../styles/utils/responsive";
+import { ButtonSize } from "../Button/common";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
 import Flex from "../Flex";
+import { IconName } from "../Icon";
 
-const SocialButtons: FC = () => {
+export const OAK_SOCIALS: Record<SocialNetwork, string> = {
+  instagram: "oaknational",
+  facebook: "oaknationalacademy",
+  twitter: "oaknational",
+  linkedIn: "oak-national-academy",
+};
+
+const getSocialUrl = (network: SocialNetwork, usernameOrUrl: string) => {
+  switch (network) {
+    case "instagram":
+      return `https://instagram.com/${usernameOrUrl}`;
+    case "facebook":
+      return `https://facebook.com/${usernameOrUrl}`;
+    case "twitter":
+      return `https://twitter.com/${usernameOrUrl}}`;
+    case "linkedIn":
+      return usernameOrUrl;
+  }
+};
+
+const SOCIAL_NETWORKS = [
+  "instagram",
+  "facebook",
+  "twitter",
+  "linkedIn",
+] as const;
+type SocialNetwork = typeof SOCIAL_NETWORKS[number];
+type SocialButtonConfig = {
+  label: string;
+  icon: IconName;
+};
+const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
+  instagram: {
+    label: "instagram",
+    icon: "Instagram",
+  },
+  facebook: {
+    label: "facebook",
+    icon: "Facebook",
+  },
+  twitter: {
+    label: "twitter",
+    icon: "Twitter",
+  },
+  linkedIn: {
+    label: "linked in",
+    icon: "LinkedIn",
+  },
+} as const;
+
+type SocialUrls = Partial<Record<SocialNetwork, string | null | undefined>>;
+type SocialButtonsProps = SocialUrls & {
+  size?: ButtonSize;
+  spaceBetween?: ResponsiveValues<PixelSpacing>;
+};
+const SocialButtons: FC<SocialButtonsProps> = (props) => {
+  const { size, spaceBetween } = props;
+  const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
+
+  if (socialsToShow.length === 0) {
+    return null;
+  }
+
   return (
     <Flex $alignItems={"center"} $justifyContent={"center"}>
-      <IconButtonAsLink
-        aria-label={"instagram"}
-        icon={"Instagram"}
-        href={"https://instagram.com/oaknational"}
-        variant={"minimal"}
-        $mr={16}
-        size={"small"}
-      />
-      <IconButtonAsLink
-        aria-label={"facebook"}
-        icon={"Facebook"}
-        href={"https://facebook.com/oaknationalacademy"}
-        variant={"minimal"}
-        $mr={16}
-        size={"small"}
-      />
-      <IconButtonAsLink
-        aria-label={"twitter"}
-        icon={"Twitter"}
-        href={"https://twitter.com/oaknational"}
-        variant={"minimal"}
-        $mr={16}
-        size={"small"}
-      />
-      <IconButtonAsLink
-        aria-label={"LinkedIn"}
-        icon={"LinkedIn"}
-        href={"https://www.linkedin.com/company/oak-national-academy/"}
-        variant={"minimal"}
-        $mr={[12, 32]}
-        size={"small"}
-      />
+      {socialsToShow.map((network) => {
+        const { label, icon } = SOCIAL_BUTTON_CONFIGS[network];
+        const profile = props[network];
+        if (!profile) {
+          return null;
+        }
+        const href = getSocialUrl(network, profile);
+        if (href)
+          return (
+            <IconButtonAsLink
+              aria-label={label}
+              icon={icon}
+              href={href}
+              variant={"minimal"}
+              $mr={spaceBetween}
+              size={size}
+            />
+          );
+      })}
     </Flex>
   );
+};
+
+SocialButtons.defaultProps = {
+  size: "small",
+  spaceBetween: 16,
 };
 
 export default SocialButtons;

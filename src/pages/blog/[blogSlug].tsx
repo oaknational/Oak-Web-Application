@@ -39,8 +39,8 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
-import Circle from "../../components/Circle";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
+import AvatarImage from "../../components/AvatarImage";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -313,17 +313,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $justifyContent={["space-between", "left"]}
             >
               <Flex $alignItems={"center"}>
-                {blog.author.image && (
-                  <Circle $mr={12} $overflow={"hidden"} size={56}>
-                    <CMSImage
-                      image={{
-                        altText: blog.author.image.altText,
-                        isPresentational: blog.author.image.isPresentational,
-                        asset: blog.author.image.asset,
-                      }}
-                    />
-                  </Circle>
-                )}
+                {blog.author.image && <AvatarImage image={blog.author.image} />}
                 <Box $mr={[0, 40]}>
                   <Heading tag="h2" $font={"heading-7"}>
                     {blog.author.name}

@@ -26,8 +26,8 @@ const LARGE_BUTTON_ICON_SIZE = 36;
 const LARGE_BUTTON_HEIGHT = 48;
 const LARGE_BUTTON_PADDING_X = 8;
 
-const TINY_BUTTON_ICON_SIZE = 16;
-const TINY_BUTTON_HEIGHT = 16;
+const TINY_BUTTON_ICON_SIZE = 20;
+const TINY_BUTTON_HEIGHT = 20;
 const TINY_BUTTON_PADDING_X = 12;
 
 // we're gonna need a lot more variants so starting semantic naming
@@ -50,7 +50,15 @@ export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
   large: LARGE_BUTTON_HEIGHT,
   header: HEADER_BUTTON_HEIGHT,
 };
-export const getButtonHeight = (size: ButtonSize) => buttonSizeHeightMap[size];
+export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
+  switch (variant) {
+    case "brush":
+      return buttonSizeHeightMap[size];
+    case "minimal":
+      // 'minimal' only take up the height of their icon
+      return buttonIconSizeMap[size];
+  }
+};
 export const getButtonBackground = (
   background: ButtonBackground,
   variant: ButtonVariant
