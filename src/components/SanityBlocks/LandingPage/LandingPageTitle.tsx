@@ -15,7 +15,7 @@ export const LandingPageTitle: FC<{
   return (
     <Flex
       $maxWidth={840}
-      $mv={[92]}
+      $mb={[92]}
       $flexDirection={"column"}
       $alignItems={["flex-start", image ? "flex-start" : "center"]}
       $ph={16}
