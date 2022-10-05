@@ -53,7 +53,6 @@ const NavLink = ({ label, href }: LinkProps) => {
           label={label}
           href={href}
           $mr={[0, 36]}
-          disabled={isCurrent}
         />
       </Flex>
     </>

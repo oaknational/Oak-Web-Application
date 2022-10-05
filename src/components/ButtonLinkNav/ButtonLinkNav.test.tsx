@@ -16,7 +16,7 @@ describe("ButtonLinkNav", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/first-one");
   });
-  test("renders links with corrent hrefs and labels", () => {
+  test("renders links with correct hrefs and labels", () => {
     const { getAllByRole } = renderWithTheme(
       <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />
     );
