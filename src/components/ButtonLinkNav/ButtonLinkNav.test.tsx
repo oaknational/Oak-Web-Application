@@ -21,7 +21,7 @@ describe("ButtonLinkNav", () => {
       <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />
     );
 
-    const links = getAllByRole("button");
+    const links = getAllByRole("link");
     buttons.forEach((button) => {
       const matchingLink = links.find(
         (link) => link.getAttribute("href") === button.href
@@ -44,9 +44,9 @@ describe("ButtonLinkNav", () => {
     const { getByRole } = renderWithTheme(
       <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />
     );
-    const currentLink = getByRole("button", { name: "Second one" });
+    const currentLink = getByRole("link", { name: "Second one" });
     expect(currentLink).toHaveAttribute("aria-current", "page");
-    const otherLink = getByRole("button", { name: "Third one" });
+    const otherLink = getByRole("link", { name: "Third one" });
     expect(otherLink).not.toHaveAttribute("aria-current");
   });
 });
