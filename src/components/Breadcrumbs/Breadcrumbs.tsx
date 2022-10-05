@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { BreadcrumbJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Icon from "../Icon";
+import Typography from "../Typography";
 
 const BreadcrumbsNav = styled.nav`
   display: flex;
@@ -33,6 +34,7 @@ const BreadcrumbsLi = styled.li`
 export type Breadcrumb = {
   href: string;
   label: string;
+  disabled?: boolean;
 };
 export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[];
@@ -44,11 +46,17 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
       <BreadcrumbsNav aria-label="Breadcrumb">
         <BreadcrumbsOl>
           {breadcrumbs.map((breadcrumb, i) => {
-            const { href, label } = breadcrumb;
+            const { href, label, disabled } = breadcrumb;
             return (
-              <BreadcrumbsLi key={`${i}-${breadcrumb.href}`}>
+              <BreadcrumbsLi key={`${i}-${href}`}>
                 {i !== 0 && <Icon name="ChevronRight" size={20} />}
-                <Link href={href}>{label}</Link>
+                <Typography $font={"body-3"}>
+                  {disabled ? (
+                    <span>{label}</span>
+                  ) : (
+                    <Link href={href}>{label}</Link>
+                  )}
+                </Typography>
               </BreadcrumbsLi>
             );
           })}

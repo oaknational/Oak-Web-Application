@@ -44,8 +44,9 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   useEffect(() => {
     const catCrumb: Breadcrumb = {
       label:
-        categories.find((cat) => cat.slug === categorySlug)?.title || "all",
+        categories.find((cat) => cat.slug === categorySlug)?.title || "All",
       href: categorySlug || "/blog",
+      disabled: true,
     };
     updateBreadcrumbs([{ label: "Blog", href: "/blog" }, catCrumb]);
   }, [categories, categorySlug, updateBreadcrumbs]);
