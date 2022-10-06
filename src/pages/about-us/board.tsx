@@ -5,8 +5,6 @@ import config from "../../config";
 import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import SummaryCard from "../../components/Card/SummaryCard";
-import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import Card from "../../components/Card";
 import AboutContactCard from "../../components/AboutContactCard";
 import Typography, {
@@ -19,10 +17,10 @@ import Typography, {
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
-import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -32,26 +30,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/oak-logo.svg",
-            alt: "who we are illustration",
-          }}
-          imageContainerProps={{
-            $minHeight: 220,
-            $mr: 32,
-          }}
-        >
-          <ButtonLinkNav
-            $mt={36}
-            buttons={reducedAboutNavLinks}
-            selected={"Board"}
-            ariaLabel="about us"
-          />
-        </SummaryCard>
+        <AboutUsSummaryCard {...pageData} />
         <AboutIntroCard
           image={{
             imageSrc: "/images/illustrations/work-with-us-500.png",

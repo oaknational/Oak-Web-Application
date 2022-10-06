@@ -1,3 +1,8 @@
+/**
+ * The underline svgs are used in various places, some of which aren't
+ * accounted for by Percy diffs, for instance in button focus states.
+ * For this reason, please practise caution if changing them.
+ */
 import { FC } from "react";
 
 import { SvgProps } from "../../getSvgId";
