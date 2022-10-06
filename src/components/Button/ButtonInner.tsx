@@ -18,6 +18,7 @@ import {
   getButtonIconBackground,
   IconPosition,
 } from "./common";
+import { IconFocusUnderline } from "./IconFocusUnderline";
 
 export const ButtonFocusUnderline = styled(Svg)<{
   $color: OakColorName;
@@ -31,12 +32,7 @@ export const ButtonMinimalFocusUnderline = styled(Svg)<{
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-export const ButtonMinimalFocusIconUnderline = styled(Svg)<{
-  $color: OakColorName;
-}>`
-  color: ${(props) => getColorByName(props.$color)};
-  position: absolute;
-`;
+
 export type ButtonInnerProps = {
   label: string;
   icon?: IconName;
@@ -78,17 +74,15 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             size={iconSize}
             $background={iconBackground || defaultIconBackground}
           />
-          <ButtonMinimalFocusIconUnderline
-            $color={underlineColor}
-            name="Underline1"
-          />
+          {variant === "minimal" && (
+            <IconFocusUnderline $color={underlineColor} />
+          )}
         </ButtonIconWrapper>
       )}
       <Box $position={"relative"}>
         <ButtonLabel>{label}</ButtonLabel>
         <ButtonMinimalFocusUnderline
-          // $color={underlineColor}
-          $color="teachersYellow"
+          $color={underlineColor}
           name="Underline1"
         />
       </Box>
