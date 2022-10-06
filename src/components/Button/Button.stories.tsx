@@ -33,10 +33,19 @@ ButtonWithIcon.args = {
   size: "large",
 };
 
-export const MinimalButtonWithIcon = Template.bind({});
+const MinimalButtonWithIconTemplate: ComponentStory<typeof Component> = (
+  args
+) => (
+  <>
+    <Component iconBackground="black" $mr={24} {...args} />
+    <Component iconBackground="teachersHighlight" $mr={24} {...args} />
+    <Component iconBackground="pupilsHighlight" $mr={24} {...args} />
+  </>
+);
+
+export const MinimalButtonWithIcon = MinimalButtonWithIconTemplate.bind({});
 MinimalButtonWithIcon.args = {
   variant: "minimal",
   icon: "Save",
-  iconBackground: "teachersHighlight",
   size: "large",
 };

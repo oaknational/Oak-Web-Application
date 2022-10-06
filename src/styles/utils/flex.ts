@@ -4,7 +4,6 @@ import { css } from "styled-components";
 import responsive, { ResponsiveValues } from "./responsive";
 
 export type FlexCssProps = {
-  $display?: ResponsiveValues<CSSProperties["display"]>;
   $flexDirection?: ResponsiveValues<CSSProperties["flexDirection"]>;
   $alignItems?: ResponsiveValues<CSSProperties["alignItems"]>;
   $justifyContent?: ResponsiveValues<CSSProperties["justifyContent"]>;
@@ -16,7 +15,6 @@ export type FlexCssProps = {
 };
 
 const flex = css<FlexCssProps>`
-  ${responsive("display", (props) => props.$display || "flex")}
   ${responsive("flex-direction", (props) => props.$flexDirection)}
   ${responsive("align-items", (props) => props.$alignItems)}
   ${responsive("justify-content", (props) => props.$justifyContent)}
