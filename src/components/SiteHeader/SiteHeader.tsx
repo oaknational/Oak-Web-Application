@@ -30,7 +30,12 @@ const SiteHeader: FC = () => {
           <Logo title={"Oak National Academy"} height={48} width={104} />
         </a>
       </Link>
-      <Flex $ml={48} $mr={12} $display={["none", "flex"]} $minWidth={0}>
+      <Flex
+        $ml={[0, 20, 48]}
+        $mr={20}
+        $display={["none", "flex"]}
+        $minWidth={0}
+      >
         <Breadcrumbs breadcrumbs={breadcrumbs} />
       </Flex>
       <Flex
