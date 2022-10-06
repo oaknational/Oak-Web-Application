@@ -11,7 +11,7 @@ if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
 // Switch to disable SEO per environment.
 const disableSeo = process.env.NEXT_PUBLIC_DISABLE_SEO;
 if (disableSeo) {
-  console.warning(
+  console.warn(
     "SEO disabled in this environment, creating restrictive robots.txt"
   );
 }
