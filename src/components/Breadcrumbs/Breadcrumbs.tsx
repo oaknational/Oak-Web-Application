@@ -4,31 +4,32 @@ import styled from "styled-components";
 
 import { BreadcrumbJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Icon from "../Icon";
-import Typography from "../Typography";
+import UL from "../Typography/UL";
+import ellipsis from "../../styles/ellipsis";
+import flex from "../../styles/utils/flex";
 
 const BreadcrumbsNav = styled.nav`
   display: flex;
-  flex-wrap: wrap;
+  min-width: 0;
 `;
 
-const BreadcrumbsOl = styled.ol`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+const BreadcrumbUL = styled(UL)`
+  ${flex};
 `;
 
 const BreadcrumbsLi = styled.li`
   display: flex;
   align-items: center;
-  font-weight: bold;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  white-space: nowrap;
-  max-width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+
+  &:last-of-type {
+    flex-shrink: 2;
+  }
+`;
+
+const BreadcrumbConstrainer = styled.div`
+  ${ellipsis}
 `;
 
 export type Breadcrumb = {
@@ -44,7 +45,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
     <>
       <BreadcrumbJsonLd itemListElements={breadcrumbs} />
       <BreadcrumbsNav aria-label="Breadcrumb">
-        <BreadcrumbsOl>
+        <BreadcrumbUL $reset $minWidth={0} $flexWrap={"nowrap"}>
           {breadcrumbs.map((breadcrumb, i) => {
             const { href, label, disabled } = breadcrumb;
             return (
@@ -56,17 +57,13 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     $color={"teachersHighlight"}
                   />
                 )}
-                <Typography $font={"body-3"}>
-                  {disabled ? (
-                    <span>{label}</span>
-                  ) : (
-                    <Link href={href}>{label}</Link>
-                  )}
-                </Typography>
+                <BreadcrumbConstrainer>
+                  {disabled ? <>{label}</> : <Link href={href}>{label}</Link>}
+                </BreadcrumbConstrainer>
               </BreadcrumbsLi>
             );
           })}
-        </BreadcrumbsOl>
+        </BreadcrumbUL>
       </BreadcrumbsNav>
     </>
   );
