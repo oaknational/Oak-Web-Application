@@ -1,4 +1,4 @@
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
 import { TextAndMedia } from "../../../node-lib/cms";
@@ -11,8 +11,29 @@ import { LI } from "../../Typography";
 
 import { OLOutline } from "./OLOutline";
 
+const landingPortableTextComponent: PortableTextComponents = {
+  list: {
+    number: ({ children }) => (
+      <OLOutline $color={"teachersPastelYellow"} $mh={0}>
+        {children}
+      </OLOutline>
+    ),
+  },
+
+  listItem: {
+    number: (props) => {
+      const listItemText = props?.value?.children[0]?.text;
+
+      return (
+        <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
+          <LI $font={["heading-7", "heading-6"]}>{listItemText}</LI>
+        </Flex>
+      );
+    },
+  },
+};
+
 export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
-  console.log(props);
   return (
     <Card
       $flexDirection={["column", "row"]}
@@ -53,27 +74,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
         $flexDirection={"column"}
       >
         <PortableText
-          components={{
-            list: {
-              number: (props) => (
-                <OLOutline $color={"teachersPastelYellow"} $mh={0}>
-                  {props.children}
-                </OLOutline>
-              ),
-            },
-
-            listItem: {
-              number: (props) => {
-                const listItemText = props?.value?.children[0]?.text;
-
-                return (
-                  <Flex $position={"relative"} $mb={48} $alignItems={"center"}>
-                    <LI $font={["heading-7", "heading-6"]}>{listItemText}</LI>
-                  </Flex>
-                );
-              },
-            },
-          }}
+          components={landingPortableTextComponent}
           value={props.bodyPortableText}
         />
       </Flex>
