@@ -52,7 +52,7 @@ const SiteHeader: FC = () => {
         >
           Classroom
         </OakLink>
-        <Span $ml={24} $mr={32}>
+        <Span $ml={24} $mr={32} $whiteSpace={"nowrap"}>
           <OakLink
             page="teachers-home"
             htmlAnchorProps={{
