@@ -6,7 +6,6 @@ import { BreadcrumbJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Icon from "../Icon";
 import UL from "../Typography/UL";
 import ellipsis from "../../styles/ellipsis";
-import flex from "../../styles/utils/flex";
 
 const BreadcrumbsNav = styled.nav`
   display: flex;
@@ -14,7 +13,8 @@ const BreadcrumbsNav = styled.nav`
 `;
 
 const BreadcrumbUL = styled(UL)`
-  ${flex};
+  display: flex;
+  flex-wrap: nowrap;
 `;
 
 const BreadcrumbsLi = styled.li`
@@ -45,7 +45,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
     <>
       <BreadcrumbJsonLd itemListElements={breadcrumbs} />
       <BreadcrumbsNav aria-label="Breadcrumb">
-        <BreadcrumbUL $reset $minWidth={0} $flexWrap={"nowrap"}>
+        <BreadcrumbUL $reset $minWidth={0}>
           {breadcrumbs.map((breadcrumb, i) => {
             const { href, label, disabled } = breadcrumb;
             return (
