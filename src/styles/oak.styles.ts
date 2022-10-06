@@ -31,6 +31,11 @@ const oakStyles = css`
     color: inherit;
     text-decoration: none;
     font-family: inherit;
+
+    /*
+     * Remove grey background on tap on ios
+     */
+    -webkit-tap-highlight-color: transparent;
   }
 
   button {
@@ -39,6 +44,11 @@ const oakStyles = css`
      * @see https://github.com/oaknational/Oak-Web-Application/issues/709
      */
     margin: 0;
+
+    /*
+     * Remove grey background on tap on ios
+     */
+    -webkit-tap-highlight-color: transparent;
   }
 `;
 

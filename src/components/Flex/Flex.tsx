@@ -16,4 +16,8 @@ const Flex = styled(Box)<FlexProps>`
   ${flex}
 `;
 
+Flex.defaultProps = {
+  $display: "flex",
+};
+
 export default Flex;

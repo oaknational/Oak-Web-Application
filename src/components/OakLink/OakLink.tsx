@@ -1,6 +1,6 @@
 import Link, { LinkProps } from "next/link";
 import { forwardRef, ReactNode } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import {
   isExternalHref,
@@ -9,15 +9,42 @@ import {
   ResolveOakHrefProps,
 } from "../../common-lib/urls";
 import flex from "../../styles/utils/flex";
+import { box } from "../Box";
 import { HTMLAnchorProps } from "../Button/common";
 import { FlexProps } from "../Flex";
 
-const OakLinkA = styled.a`
+import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
+
+type FocusStyle = "underline";
+type FocusStylesProps = {
+  focusStyles?: FocusStyle[];
+};
+type StyleProps = FlexProps &
+  FocusStylesProps & {
+    /**
+     * isHovered is used to show hover styles (for example if a clickable card
+     * is hovered), and this link is the click target for it.
+     */
+    isHovered?: boolean;
+  };
+
+const hoverStyles = css`
+  text-decoration: underline;
+`;
+
+const OakLinkA = styled.a<StyleProps>`
+  ${box}
   ${flex}
+  ${(props) => props.focusStyles?.includes("underline") && focusUnderlineStyles}
+
+  ${(props) => props.isHovered && hoverStyles}
+  :hover {
+    ${hoverStyles}
+  }
 `;
 
 export type OakLinkProps = Omit<LinkProps, "href" | "passHref"> &
-  FlexProps & {
+  StyleProps & {
     children: ReactNode;
     className?: string;
     htmlAnchorProps?: HTMLAnchorProps;
@@ -89,7 +116,12 @@ export const getOakLinkAnchorProps = (
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   return (
     <Link {...getOakLinkLinkProps(props)} passHref>
-      <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)} />
+      <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)}>
+        {props.children}
+        {props.focusStyles?.includes("underline") && (
+          <FocusUnderline $color={"teachersYellow"} />
+        )}
+      </OakLinkA>
     </Link>
   );
 });
