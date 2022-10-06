@@ -9,7 +9,6 @@ import { BackgroundIcon } from "../Icon/Icon";
 import {
   ButtonFocusUnderline,
   ButtonMinimalFocusUnderline,
-  ButtonMinimalFocusIconUnderline,
 } from "./ButtonInner";
 import ButtonLabel from "./ButtonLabel";
 import {
@@ -29,6 +28,7 @@ import {
   getButtonBackground,
   getButtonDropShadowColor,
 } from "./common";
+import { iconFocusUnderline } from "./IconFocusUnderline";
 
 export type ButtonStylesProps = OpacityProps &
   MarginProps & {
@@ -84,10 +84,6 @@ const buttonStyles = css<ButtonStylesProps>`
     display: none;
   }
 
-  ${ButtonMinimalFocusIconUnderline} {
-    display: none;
-  }
-
   ${(props) =>
     props.variant === "brush" &&
     css`
@@ -139,15 +135,7 @@ const buttonStyles = css<ButtonStylesProps>`
         filter: drop-shadow(1px 4px 0px rgb(0 0 0));
       }
 
-      :focus ${ButtonMinimalFocusIconUnderline} {
-        display: block;
-        bottom: 0px;
-        left: 0;
-        width: 100%;
-        height: 8px;
-        transform: rotate(-2deg);
-        filter: drop-shadow(1px 2px 0px rgb(0 0 0));
-      }
+      ${iconFocusUnderline}
     `}
 
   ${margin}
