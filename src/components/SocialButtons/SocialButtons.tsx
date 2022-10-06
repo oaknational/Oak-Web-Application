@@ -79,17 +79,19 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
           return null;
         }
         const href = getSocialUrl(network, profile);
-        if (href)
-          return (
-            <IconButtonAsLink
-              aria-label={label}
-              icon={icon}
-              href={href}
-              variant={"minimal"}
-              $mr={spaceBetween}
-              size={size}
-            />
-          );
+        if (!href) {
+          return null;
+        }
+        return (
+          <IconButtonAsLink
+            aria-label={label}
+            icon={icon}
+            href={href}
+            variant={"minimal"}
+            $mr={spaceBetween}
+            size={size}
+          />
+        );
       })}
     </Flex>
   );

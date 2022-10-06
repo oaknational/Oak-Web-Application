@@ -315,7 +315,9 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $justifyContent={["space-between", "left"]}
             >
               <Flex $alignItems={"center"}>
-                {blog.author.image && <AvatarImage image={blog.author.image} />}
+                {blog.author.image && (
+                  <AvatarImage image={blog.author.image} $mr={12} />
+                )}
                 <Box $mr={[0, 40]}>
                   <Heading tag="h2" $font={"heading-7"}>
                     {blog.author.name}
