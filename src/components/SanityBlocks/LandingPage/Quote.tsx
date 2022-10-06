@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import Flex from "../../Flex";
-import Typography, { Heading } from "../../Typography";
+import Typography from "../../Typography";
 import { Quote as QuoteSchema } from "../../../node-lib/cms/sanity-client/schemas/";
+import Blockquote from "../../Typography/Blockquote";
 
 export const Quote: FC<QuoteSchema> = ({ text, attribution }) => {
   return (
@@ -14,9 +15,10 @@ export const Quote: FC<QuoteSchema> = ({ text, attribution }) => {
       $ph={[16]}
       $maxWidth={[720]}
     >
-      <Heading tag={"h3"} $mb={[16]} $font={"heading-4"} $textAlign={"center"}>
-        "{text}"
-      </Heading>
+      <Blockquote $mb={[16]} $font={"heading-4"} $textAlign={"center"}>
+        &ldquo;{text}&rdquo;
+      </Blockquote>
+
       <Typography $font={"body-2"}>{attribution}</Typography>
     </Flex>
   );
