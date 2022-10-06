@@ -17,11 +17,26 @@ const testPlanningPageData: PlanningPage = {
   heading: "Planning heading",
   summaryPortableText: portableTextFromString("Planning summary"),
   lessonElements: {
-    introQuiz: { title: "Intro quiz title" },
-    video: { title: "Video title" },
-    slides: { title: "Slides title" },
-    worksheet: { title: "Worksheet title" },
-    exitQuiz: { title: "Exit quiz title" },
+    introQuiz: {
+      title: "Intro quiz title",
+      bodyPortableText: portableTextFromString("Intro quiz body"),
+    },
+    video: {
+      title: "Video title",
+      bodyPortableText: portableTextFromString("Video body"),
+    },
+    slides: {
+      title: "Slides title",
+      bodyPortableText: portableTextFromString("Slides body"),
+    },
+    worksheet: {
+      title: "Worksheet title",
+      bodyPortableText: portableTextFromString("Worksheet body"),
+    },
+    exitQuiz: {
+      title: "Exit quiz title",
+      bodyPortableText: portableTextFromString("Exit quiz body"),
+    },
   },
   lessonElementsCTA: {
     label: "elements label",
@@ -35,6 +50,14 @@ const testPlanningPageData: PlanningPage = {
       bodyPortableText: portableTextFromString("step one body"),
     },
   ],
+  stepsCTA: {
+    label: "Steps CTA",
+    linkType: "internal",
+    internal: {
+      id: "homepage",
+      contentType: "homepage",
+    },
+  },
   learnMoreHeading: "learn more heading",
   learnMoreBlock1: {
     title: "learn more block 1",
@@ -68,9 +91,7 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
-    );
+    renderWithProviders(<PlanALesson pageData={testPlanningPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -82,7 +103,7 @@ describe("pages/lesson-planning.tsx", () => {
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <PlanALesson pageData={testPlanningPageData} isPreviewMode={false} />
+        <PlanALesson pageData={testPlanningPageData} />
       );
 
       expect(seo).toEqual({});

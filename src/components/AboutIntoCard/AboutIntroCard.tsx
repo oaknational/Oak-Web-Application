@@ -4,7 +4,7 @@ import { PortableText, PortableTextProps } from "@portabletext/react";
 import Card from "../Card";
 import Flex from "../Flex";
 import CardImage, { CardImageProps } from "../Card/CardComponents/CardImage";
-import Typography from "../Typography";
+import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 
 type AboutIntroCardProps = {
   image: CardImageProps;
@@ -26,11 +26,10 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
       <Flex $minWidth={240} $alignItems="center" $mr={[0, 72]}>
         <CardImage imageSrc={image.imageSrc} alt={image.alt} />
       </Flex>
-      <Flex $alignItems="center">
-        <Typography $fontSize={[16, 18]}>
-          <PortableText value={bodyPortableText} />
-        </Typography>
+      <Flex $alignItems="center" $font={["body-2", "body-1"]}>
+        <PortableText value={bodyPortableText} />
       </Flex>
+      <BrushBorders color={"twilight"} />
     </Card>
   );
 };

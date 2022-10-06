@@ -11,7 +11,12 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => {
   const [, setSelected] = useState<string>();
-  return <Component {...args} onChange={(e) => setSelected(e.target.value)} />;
+  return (
+    <Component
+      {...args}
+      onChange={(e) => setSelected("value" in e.target ? e.target.value : "")}
+    />
+  );
 };
 
 export const DropdownSelect = Template.bind({});

@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 
+import config from "../../config";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
@@ -16,35 +17,49 @@ type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
 
 export type PolicyPageProps = {
   policy: SerializedPolicyPage;
-  isPreviewMode: boolean;
 };
 
 const customPolicyComponent: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <Heading $mb={[32, 48]} $mt={[64, 80]} tag={"h2"} $fontSize={[24, 32]}>
+      <Heading
+        $mb={[32, 48]}
+        $mt={[64, 80]}
+        tag={"h2"}
+        $font={["heading-5", "heading-4"]}
+      >
         {children}
       </Heading>
     ),
     h3: ({ children }) => (
-      <Heading $mb={[24, 32]} $mt={[32, 64]} tag={"h3"} $fontSize={[20, 24]}>
+      <Heading
+        $mb={[24, 32]}
+        $mt={[32, 64]}
+        tag={"h3"}
+        $font={["heading-6", "heading-5"]}
+      >
         {children}
       </Heading>
     ),
     h4: ({ children }) => (
-      <Heading $mb={[24, 32]} $mt={[32, 48]} tag={"h4"} $fontSize={[16, 20]}>
+      <Heading
+        $mb={[24, 32]}
+        $mt={[32, 48]}
+        tag={"h4"}
+        $font={["heading-7", "heading-6"]}
+      >
         {children}
       </Heading>
     ),
     normal: ({ children }) => (
-      <P $fontSize={[16, 18]} $mb={[24]}>
+      <P $font={["body-2", "body-1"]} $mb={[24]}>
         {children}
       </P>
     ),
   },
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
   return (
     <Layout
       seoProps={getSeoProps({
@@ -52,18 +67,17 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, isPreviewMode }) => {
         title: policy.seo?.title || policy.title,
       })}
       $background={"white"}
-      isPreviewMode={isPreviewMode}
     >
-      <MaxWidth $ph={[36, 12]} $maxWidth={[720]}>
+      <MaxWidth $ph={[16, 24]} $maxWidth={[720]}>
         <Grid>
           <GridArea $colSpan={[12, 12, 12]}>
             {/* change flex justify center to textAlign when PR fix is in */}
             <Flex $alignItems={"center"}>
-              <Heading $mt={80} $mb={32} $fontSize={40} tag={"h1"}>
+              <Heading $mt={80} $mb={32} $font={"heading-3"} tag={"h1"}>
                 {policy.title}
               </Heading>
             </Flex>
-            <P $mb={16} $fontSize={14}>
+            <P $mb={16} $font={"body-3"}>
               Updated{" "}
               <time dateTime={policy.lastUpdatedAt}>
                 {new Date(policy.lastUpdatedAt).toLocaleDateString("en-GB", {
@@ -130,9 +144,8 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       policy,
-      isPreviewMode,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

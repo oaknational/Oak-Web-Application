@@ -1,21 +1,23 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { OakColorName } from "../../styles/theme";
-import color from "../../styles/utils/color";
+import { box, BoxProps } from "../Box";
 import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
 
-const StyledSvg = styled.svg`
-  ${color}
+const StyledSvg = styled.svg<BoxProps>`
+  ${box};
+  transition: all 0.3s ease;
 `;
-type SvgProps = {
+export type SvgProps = BoxProps & {
   name: SvgName;
   className?: string;
-  $color?: OakColorName;
+  hideOnMobileH?: boolean;
+  hideOnMobileV?: boolean;
 };
 const Svg: FC<SvgProps> = (props) => {
   return (
     <StyledSvg
+      aria-hidden={true}
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"

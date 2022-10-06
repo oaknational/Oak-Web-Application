@@ -87,6 +87,7 @@ export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
 export type CommonButtonProps = MarginProps & {
+  id?: string;
   label: string;
   variant?: ButtonVariant;
   background?: ButtonBackground;
@@ -96,6 +97,7 @@ export type CommonButtonProps = MarginProps & {
   size?: ButtonSize;
   "aria-label"?: string;
   fullWidth?: boolean;
+  focusStyles?: [];
 };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,

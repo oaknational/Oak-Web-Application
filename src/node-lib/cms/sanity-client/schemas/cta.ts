@@ -16,3 +16,5 @@ export const CTASchema = z.discriminatedUnion("linkType", [
     external: z.string().url(),
   }),
 ]);
+
+export type CTA = z.infer<typeof CTASchema>;

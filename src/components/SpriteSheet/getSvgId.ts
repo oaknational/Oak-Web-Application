@@ -2,6 +2,7 @@ import { BrushSvgName } from "./BrushSvgs";
 import { GraphicSvgName } from "./GraphicSvgs";
 import { IconSvgName } from "./IconSvgs";
 import { LessonElementSvgName } from "./LessonElementSvgs";
+import { LoopingLineSvgName } from "./LoopingLineSvgs";
 
 export type SvgProps = {
   id: string; // @todo type this
@@ -12,16 +13,22 @@ export type SvgName =
   | GraphicSvgName
   | LessonElementSvgName
   | BrushSvgName
+  | LoopingLineSvgName
   // @todo name the below types
   | "icon-brush-background"
   | "box-border-top"
   | "box-border-right"
   | "box-border-bottom"
   | "box-border-left"
+  | "brush-border-top"
+  | "brush-border-right"
+  | "brush-border-bottom"
+  | "brush-border-left"
   | "button-border-top"
   | "button-border-right"
   | "button-border-bottom"
-  | "button-border-left";
+  | "button-border-left"
+  | "hr";
 
 type GetSvgIdProps = {
   name: SvgName;

@@ -1,55 +1,51 @@
+import { UrlObject } from "url";
+
 import React, { FC } from "react";
 
 import Flex from "../Flex";
-import IconButton from "../Button/IconButton";
-import { P } from "../Typography";
+import { Span } from "../Typography";
+import IconButtonAsLink from "../Button/IconButtonAsLink";
 
-type PaginationProps = {
-  onPageChange: (pageNumber: number) => void | PaginationProps;
-  totalCount: number;
-  pageSize: number;
+export type PaginationProps = {
   currentPage: number;
+  totalPages: number;
+  nextPageHref?: UrlObject | string;
+  prevPageHref?: UrlObject | string;
 };
 
 const Pagination: FC<PaginationProps> = ({
-  totalCount,
+  totalPages,
   currentPage,
-  pageSize,
-  onPageChange,
+  nextPageHref = "",
+  prevPageHref = "",
 }) => {
-  const totalPageCount = Math.ceil(totalCount / pageSize);
-
-  const onNext = () => {
-    onPageChange(currentPage + 1);
-  };
-
-  const onPrevious = () => {
-    onPageChange(currentPage - 1);
-  };
-
-  if (currentPage === 0 || totalPageCount < 2) {
+  if (currentPage === 0 || totalPages < 2) {
     return null;
   }
 
   return (
     <nav aria-label="pagination">
-      <Flex $alignItems={"center"} $justifyContent={"right"}>
-        <IconButton
+      <Flex $alignItems={"center"} $justifyContent={"center"}>
+        <IconButtonAsLink
+          size="small"
           aria-label="previous page"
-          onClick={onPrevious}
+          href={prevPageHref}
           icon={"ChevronLeft"}
           background={"teachersHighlight"}
+          nextLinkProps={{ scroll: false }}
           disabled={currentPage === 1}
         />
-        <P $mh={24} $fontSize={16} $lineHeight={"24px"}>
-          page {currentPage}/{totalPageCount}
-        </P>
-        <IconButton
+        <Span $mh={24} $font={"body-2"}>
+          page {currentPage} / {totalPages}
+        </Span>
+        <IconButtonAsLink
+          size="small"
           aria-label="next page"
-          onClick={onNext}
+          href={nextPageHref}
           icon={"ChevronRight"}
           background={"teachersHighlight"}
-          disabled={currentPage >= totalPageCount}
+          nextLinkProps={{ scroll: false }}
+          disabled={currentPage >= totalPages}
         />
       </Flex>
     </nav>

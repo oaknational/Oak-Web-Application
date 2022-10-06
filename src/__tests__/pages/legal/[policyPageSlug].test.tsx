@@ -46,9 +46,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
 
   describe("PolicyPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
-        <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />
-      );
+      renderWithProviders(<Policies policy={testSerializedPolicyPage} />);
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -58,9 +56,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
     });
 
     it("Formats the last updated at date", async () => {
-      renderWithProviders(
-        <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />
-      );
+      renderWithProviders(<Policies policy={testSerializedPolicyPage} />);
 
       await waitFor(() => {
         const dateElem = screen.getByText(/1 December 2022/);
@@ -71,7 +67,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <Policies policy={testSerializedPolicyPage} isPreviewMode={false} />
+          <Policies policy={testSerializedPolicyPage} />
         );
 
         expect(seo).toEqual({});

@@ -1,33 +1,42 @@
 import { z } from "zod";
 
-import { CMSClient } from "../types/client";
 import sanityGraphqlApi from "../../sanity-graphql";
 
 import {
-  aboutPageSchema,
-  planningPageSchema,
-  curriculumPageSchema,
+  aboutBoardPageSchema,
+  aboutLeadershipPageSchema,
+  aboutPartnersPageSchema,
+  aboutWhoWeArePageSchema,
+  aboutWorkWithUsPageSchema,
   homePageSchema,
-} from "./schemas/pages";
-import {
+  curriculumPageSchema,
+  contactPageSchema,
   blogPostPreviewSchema,
   blogPostSchema,
+  planningPageSchema,
   policyPagePreviewSchema,
   policyPageSchema,
   webinarPreviewSchema,
   webinarSchema,
-} from "./schemas";
-import { resolveReferences } from "./resolveReferences";
-import {
   landingPagePreviewSchema,
   landingPageSchema,
-} from "./schemas/landingPage";
+} from "./schemas";
+import { resolveReferences } from "./resolveReferences";
+import { parseResults } from "./parseResults";
 
-const getSanityClient: CMSClient = () => ({
-  webinars: async ({ previewMode, ...params } = {}) => {
+export type Params = {
+  previewMode?: boolean;
+};
+
+export type ListParams = Params & {
+  limit?: number;
+};
+
+const getSanityClient = () => ({
+  webinars: async ({ previewMode, ...params }: ListParams = {}) => {
     const webinarListSchema = z.array(webinarPreviewSchema);
     const webinarResults = await sanityGraphqlApi.allWebinars({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
 
@@ -35,12 +44,19 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return webinarListSchema.parse(webinarResults.allWebinar);
+    return parseResults(
+      webinarListSchema,
+      webinarResults.allWebinar,
+      previewMode
+    );
   },
-  webinarBySlug: async (slug, { previewMode, ...params } = {}) => {
+  webinarBySlug: async (
+    slug: string,
+    { previewMode, ...params }: Params = {}
+  ) => {
     const webinarResult = await sanityGraphqlApi.webinarBySlug({
       ...params,
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       slug,
     });
     const webinar = webinarResult?.allWebinar?.[0];
@@ -49,12 +65,12 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return webinarSchema.parse(webinar);
+    return parseResults(webinarSchema, webinar, previewMode);
   },
-  blogPosts: async ({ previewMode, ...params } = {}) => {
+  blogPosts: async ({ previewMode, ...params }: ListParams = {}) => {
     const blogPostListSchema = z.array(blogPostPreviewSchema);
     const blogPostsResult = await sanityGraphqlApi.allBlogPosts({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
 
@@ -62,12 +78,19 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return blogPostListSchema.parse(blogPostsResult.allNewsPost);
+    return parseResults(
+      blogPostListSchema,
+      blogPostsResult.allNewsPost,
+      previewMode
+    );
   },
-  blogPostBySlug: async (slug, { previewMode, ...params } = {}) => {
+  blogPostBySlug: async (
+    slug: string,
+    { previewMode, ...params }: Params = {}
+  ) => {
     const blogPostResult = await sanityGraphqlApi.blogPostBySlug({
       ...params,
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       slug,
     });
     const blogPost = blogPostResult?.allNewsPost?.[0];
@@ -85,11 +108,11 @@ const getSanityClient: CMSClient = () => ({
       contentPortableText: contentWithReferences,
     };
 
-    return blogPostSchema.parse(blogWithResolvedRefs);
+    return parseResults(blogPostSchema, blogWithResolvedRefs, previewMode);
   },
-  homepage: async ({ previewMode, ...params } = {}) => {
+  homepage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.homepage({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
     const homepageData = result?.allHomepage?.[0];
@@ -98,11 +121,11 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return homePageSchema.parse(homepageData);
+    return parseResults(homePageSchema, homepageData, previewMode);
   },
-  planningPage: async ({ previewMode, ...params } = {}) => {
+  planningPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
     const planningPageData = result?.allPlanningCorePage?.[0];
@@ -111,24 +134,101 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return planningPageSchema.parse(planningPageData);
+    return parseResults(planningPageSchema, planningPageData, previewMode);
   },
-  aboutPage: async ({ previewMode, ...params } = {}) => {
-    const result = await sanityGraphqlApi.aboutCorePage({
-      isDraft: previewMode === true,
+  aboutWhoWeArePage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.aboutWhoWeArePage({
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
-    const planningPageData = result?.allAboutCorePage?.[0];
+    const whoWeArePageData = result?.allAboutCorePageWhoWeAre?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!planningPageData) {
+    if (!whoWeArePageData) {
       return null;
     }
 
-    return aboutPageSchema.parse(planningPageData);
+    const pageData = {
+      ...parentPageData,
+      ...whoWeArePageData,
+    };
+    return parseResults(aboutWhoWeArePageSchema, pageData, previewMode);
   },
-  curriculumPage: async ({ previewMode, ...params } = {}) => {
+  aboutLeadershipPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.aboutLeadershipPage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const leadershipPageData = result?.allAboutCorePageLeadership?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
+
+    if (!leadershipPageData) {
+      return null;
+    }
+
+    const pageData = {
+      ...parentPageData,
+      ...leadershipPageData,
+    };
+    return parseResults(aboutLeadershipPageSchema, pageData, previewMode);
+  },
+  aboutBoardPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.aboutBoardPage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const boardPageData = result?.allAboutCorePageBoard?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
+
+    if (!boardPageData) {
+      return null;
+    }
+
+    const pageData = {
+      ...parentPageData,
+      ...boardPageData,
+    };
+    return parseResults(aboutBoardPageSchema, pageData, previewMode);
+  },
+  aboutPartnersPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.aboutPartnersPage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const partnersPageData = result?.allAboutCorePagePartners?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
+
+    if (!partnersPageData) {
+      return null;
+    }
+
+    const pageData = {
+      ...parentPageData,
+      ...partnersPageData,
+    };
+    return parseResults(aboutPartnersPageSchema, pageData, previewMode);
+  },
+  aboutWorkWithUsPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.aboutWorkWithUsPage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const workWithUsPage = result?.allAboutCorePageWorkWithUs?.[0];
+    const parentPageData = result?.aboutCorePage?.[0];
+
+    if (!workWithUsPage) {
+      return null;
+    }
+
+    const pageData = {
+      ...parentPageData,
+      ...workWithUsPage,
+    };
+    return parseResults(aboutWorkWithUsPageSchema, pageData, previewMode);
+  },
+  curriculumPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.curriculumCorePage({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
     const curriculumPageData = result?.allCurriculumCorePage?.[0];
@@ -137,12 +237,33 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return curriculumPageSchema.parse(curriculumPageData);
+    return parseResults(curriculumPageSchema, curriculumPageData, previewMode);
   },
-  policyPages: async ({ previewMode, ...params } = {}) => {
+  contactPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.contactCorePage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const contactPageData = result?.allContactCorePage?.[0];
+
+    if (!contactPageData) {
+      return null;
+    }
+
+    const contactPageDataWithReferences = await resolveReferences(
+      contactPageData
+    );
+
+    return parseResults(
+      contactPageSchema,
+      contactPageDataWithReferences,
+      previewMode
+    );
+  },
+  policyPages: async ({ previewMode, ...params }: ListParams = {}) => {
     const policyPageListSchema = z.array(policyPagePreviewSchema);
     const policyPageResults = await sanityGraphqlApi.allPolicyPages({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
 
@@ -150,11 +271,18 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return policyPageListSchema.parse(policyPageResults.allPolicyPage);
+    return parseResults(
+      policyPageListSchema,
+      policyPageResults.allPolicyPage,
+      previewMode
+    );
   },
-  policyPageBySlug: async (slug, { previewMode, ...params } = {}) => {
+  policyPageBySlug: async (
+    slug: string,
+    { previewMode, ...params }: Params = {}
+  ) => {
     const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
       slug,
     });
@@ -167,12 +295,12 @@ const getSanityClient: CMSClient = () => ({
       policyPageResult.allPolicyPage[0]
     );
 
-    return policyPageSchema.parse(policyPage);
+    return parseResults(policyPageSchema, policyPage, previewMode);
   },
-  landingPages: async ({ previewMode, ...params } = {}) => {
+  landingPages: async ({ previewMode, ...params }: ListParams = {}) => {
     const landingPageListSchema = z.array(landingPagePreviewSchema);
     const landingPageResults = await sanityGraphqlApi.allLandingPages({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
 
@@ -180,11 +308,18 @@ const getSanityClient: CMSClient = () => ({
       return [];
     }
 
-    return landingPageListSchema.parse(landingPageResults.allLandingPage);
+    return parseResults(
+      landingPageListSchema,
+      landingPageResults.allLandingPage,
+      previewMode
+    );
   },
-  landingPageBySlug: async (slug, { previewMode, ...params } = {}) => {
+  landingPageBySlug: async (
+    slug: string,
+    { previewMode, ...params }: Params = {}
+  ) => {
     const landingPageResult = await sanityGraphqlApi.landingPageBySlug({
-      isDraft: previewMode === true,
+      isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
       slug,
     });
@@ -194,8 +329,18 @@ const getSanityClient: CMSClient = () => ({
       return null;
     }
 
-    return landingPageSchema.parse(landingPage);
+    return parseResults(landingPageSchema, landingPage, previewMode);
   },
 });
+
+/**
+ * When in preview mode we want to fetch draft and non-draft
+ * content and filter client side, but for production we
+ * never want draft content
+ */
+const getDraftFilterParam = (
+  isPreviewMode: boolean | undefined
+): { is_draft: boolean | undefined } =>
+  isPreviewMode ? { is_draft: undefined } : { is_draft: false };
 
 export default getSanityClient;

@@ -1,25 +1,16 @@
 import { FC } from "react";
-import styled from "styled-components";
+import { useHover } from "react-aria";
 
-import { BlogWebinarCategory, SanityImage } from "../../../node-lib/cms";
+import { BlogWebinarCategory, Image } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
 import Box from "../../Box";
+import useClickableCard from "../../../hooks/useClickableCard";
 import CMSImage from "../../CMSImage";
 import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
+import OakLink from "../../OakLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../Typography";
-
-const ActionLink = styled.a`
-  ::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-`;
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -31,7 +22,7 @@ export type BlogListItemProps = {
   contentType: BlogListItemContentType;
   category: BlogWebinarCategory;
   date: string;
-  mainImage?: SanityImage | null;
+  mainImage?: Image | null;
   withImage?: boolean;
 };
 
@@ -53,6 +44,14 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
+  const {
+    containerProps,
+    primaryTargetProps,
+    isHovered: cardIsHovered,
+  } = useClickableCard<HTMLAnchorElement>();
+  const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
+    useHover({});
+
   const blogDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -61,20 +60,28 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
 
   return (
     <Flex
+      {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
-      $alignItems={["initial", "center"]}
-      $minHeight={200}
+      $alignItems={"center"}
+      $pa={0}
     >
       {withImage && mainImage && (
-        <Box $position={"relative"} $minWidth={240} $mr={[0, 32]} $mb={[32, 0]}>
-          <BoxBorders />
+        <Box
+          $display={["block", "none", "block"]}
+          $position={"relative"}
+          $minWidth={240}
+          $maxWidth={[160, "none"]}
+          $mr={[0, 32]}
+          $mb={[32, 0]}
+        >
+          <BoxBorders $zIndex={"inFront"} gapPosition="bottomRight" />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
               <CMSImage
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center center"
+                fill
+                $objectFit="cover"
+                $objectPosition="center center"
                 image={mainImage}
                 sizes="(min-width: 750px) 256px, 100vw"
                 // Explicitly set an empty string for missing alt text in thumbnails
@@ -85,26 +92,40 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           </Box>
         </Box>
       )}
-
-      <Flex $flexDirection="column" $alignItems="flex-start">
-        <P
-          $fontSize={16}
-          $lineHeight={"20px"}
-          // Not blue until link to category filter is added
-          // $color="teachersHighlight"
-          $fontFamily="ui"
+      <Flex $flexDirection="column" $alignItems="flex-start" $width="100%">
+        <Flex
+          $width="100%"
+          $alignItems={["flex-start", "flex-end"]}
+          $justifyContent="space-between"
+          $flexDirection={["column", "row"]}
         >
-          {category.title}
-        </P>
-        <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-          {blogDate}
-        </P>
-        <Heading tag={titleTag} $fontSize={24} $lineHeight={"32px"} $mt={8}>
-          <ActionLink href={href} title={title}>
+          <OakLink
+            {...categoryHoverProps}
+            page="blog-index"
+            category={category.slug}
+            focusStyles={["underline"]}
+            $font="heading-7"
+            $color="hyperlink"
+          >
+            {category.title}
+          </OakLink>
+          <P $font={"body-3"} $mt={[8, 0]}>
+            {blogDate}
+          </P>
+        </Flex>
+        <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
+          <OakLink
+            {...primaryTargetProps}
+            page={null}
+            href={href}
+            htmlAnchorProps={{ title }}
+            focusStyles={["underline"]}
+            isHovered={cardIsHovered && !categoryIsHovered}
+          >
             {title}
-          </ActionLink>
+          </OakLink>
         </Heading>
-        <P $fontSize={14} $mt={8} $mb={[16, 0]}>
+        <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
           <LineClamp lines={2}>{snippet}</LineClamp>
         </P>
       </Flex>

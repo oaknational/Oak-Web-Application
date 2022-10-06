@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { GetStaticProps, NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import Typography, { Heading, Hr, P, Span } from "../components/Typography";
+import Typography, { Heading, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import CardLinkIcon from "../components/Card/CardLinkIcon";
@@ -25,16 +25,15 @@ import NewsletterForm, {
 } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { getPupilsUrl, getTeachersUrl } from "../common-lib/urls";
-import BlogListItem, {
-  BlogListItemProps,
-} from "../components/BlogList/BlogListItem";
-
+import { BlogListItemProps } from "../components/BlogList/BlogListItem";
+import OakImage from "../components/OakImage";
 import {
   blogToBlogListItem,
-  serializeDate,
   SerializedBlogPostPreview,
-} from "./blog";
+  serializeDate,
+} from "../components/pages/BlogIndex.page";
+import BlogList from "../components/BlogList";
+
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
 const Notification: FC = () => {
@@ -50,7 +49,7 @@ const Notification: FC = () => {
       $pr={[0, 48]}
       $dropShadow="notificationCard"
     >
-      <BoxBorders />
+      <BoxBorders gapPosition="rightTop" />
       <Box
         $position="absolute"
         $top={0}
@@ -64,18 +63,21 @@ const Notification: FC = () => {
           size={30}
         />
       </Box>
-      <Span $fontSize={14} $color="oakGrey4">
+      <Span $font={"body-3"} $color="oakGrey4">
         Blog
       </Span>
-      <Heading $fontSize={20} tag="h2" $mt={4}>
+      <Heading $font={"heading-6"} tag="h2" $mt={4}>
         <CardLink
+          page={null}
           href={href}
-          onClick={() =>
-            track.notificationSelected({
-              linkUrl: href,
-              notificationHeadline: heading,
-            })
-          }
+          hoverStyles={["underline-link-text"]}
+          htmlAnchorProps={{
+            onClick: () =>
+              track.notificationSelected({
+                linkUrl: href,
+                notificationHeadline: heading,
+              }),
+          }}
         >
           {heading}
         </CardLink>
@@ -92,7 +94,6 @@ export type SerializedPost =
 export type HomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
-  isPreviewMode: boolean;
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
@@ -105,7 +106,6 @@ const Home: NextPage<HomePageProps> = (props) => {
   return (
     <Layout
       seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
-      isPreviewMode={props.isPreviewMode}
     >
       <Flex $flexDirection={"column"} $position="relative">
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
@@ -125,7 +125,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $justifyContent="flex-end"
               >
                 <Heading
-                  $fontSize={[32]}
+                  $font={["heading-4"]}
                   tag={"h1"}
                   $mb={[20, 16]}
                   data-testid="home-page-title"
@@ -133,7 +133,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                 >
                   {props.pageData.heading}
                 </Heading>
-                <Heading tag={"h2"} $fontSize={[20]}>
+                <Heading tag={"h2"} $font={["heading-6"]}>
                   {/* @TODO: The portable text in the CMS allows more features
                              than just plain text. We should decide if we want
                              to lock that down, or handle more cases here */}
@@ -172,24 +172,24 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(0,0)",
                       ]}
                     >
-                      <Image
+                      <OakImage
                         alt={""}
                         src={"/images/illustrations/magic-carpet.png"}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition={"right center"}
+                        $objectFit="cover"
+                        $objectPosition={"right center"}
+                        sizes={"(min-width: 750px) 500px, 100vw"}
+                        fill
                         priority
                       />
                     </Box>
                   </Box>
                   <Heading
                     $ml={[0, "auto"]}
-                    $fontSize={[20, 32]}
+                    $font={["heading-6", "heading-4"]}
                     tag={"h3"}
-                    $color={"black"}
                   >
                     <CardLink
-                      href={getPupilsUrl()}
+                      page="pupils-home"
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
@@ -235,28 +235,29 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(-10%,30%)",
                       ]}
                     >
-                      <Image
+                      <OakImage
                         alt=""
                         src={
                           "/images/illustrations/teacher-carrying-stuff-165-200.png"
                         }
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        sizes="(min-width: 750px) 256px, 100vw"
+                        $objectFit="contain"
                         priority
                       />
                     </Box>
                   </Box>
                   <Heading
                     $ml={[0, "auto"]}
-                    $fontSize={[20, 32]}
+                    $font={["heading-6", "heading-4"]}
                     tag={"h3"}
-                    $color={"black"}
                   >
                     <CardLink
-                      href={getTeachersUrl()}
-                      onClick={() =>
-                        track.teacherHubSelected({ navigatedFrom: "card" })
-                      }
+                      page="teachers-home"
+                      htmlAnchorProps={{
+                        onClick: () =>
+                          track.teacherHubSelected({ navigatedFrom: "card" }),
+                      }}
                     >
                       Teacher Hub
                     </CardLink>
@@ -276,20 +277,20 @@ const Home: NextPage<HomePageProps> = (props) => {
             <Grid $cg={[8, 16]} $ph={[12, 0]}>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
+                  page="lesson-planning"
                   title={"Plan a lesson"}
                   titleTag={"h4"}
                   background="pupilsLimeGreen"
-                  href={"/lesson-planning"}
-                  cardLinkProps={{ onClick: track.planALessonSelected }}
+                  htmlAnchorProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
               <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
                 <CardLinkIcon
+                  page="develop-your-curriculum"
                   title={"Develop your curriculum"}
                   titleTag={"h4"}
                   background={"teachersYellow"}
-                  href={"/develop-your-curriculum"}
-                  cardLinkProps={{
+                  htmlAnchorProps={{
                     onClick: track.developYourCurriculumSelected,
                   }}
                 />
@@ -310,38 +311,27 @@ const Home: NextPage<HomePageProps> = (props) => {
               $rowSpan={3}
               $order={[3, 0]}
             >
-              <Box $background={"white"} $pa={24} $height={"100%"}>
+              <Box
+                $background={"white"}
+                $ph={[16, 24]}
+                $pv={24}
+                $height={"100%"}
+              >
                 <Flex
                   $alignItems="center"
                   $justifyContent="space-between"
                   $mb={48}
                 >
-                  <Heading tag={"h3"} $fontSize={24} $fontFamily="heading">
+                  <Heading tag={"h3"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
 
-                  <Typography $fontFamily="ui">
+                  <Typography $font="heading-7">
                     {/* <Link href={"/webinars"}>All webinars</Link> */}
                     <Link href={"/blog"}>All blogs</Link>
                   </Typography>
                 </Flex>
-
-                <Flex
-                  $flexDirection="column"
-                  as="ul"
-                  role="list" /* role=list to strip default ul styling */
-                  id="homepage-blog-list"
-                >
-                  {posts.map((item, i) => (
-                    <li key={`BlogList-BlogListItem-${i}`}>
-                      {/* Blog List Item is failing Pa11y tests and is to be excluded */}
-                      <BlogListItem {...item} withImage={true} />
-                      {i < posts.length - 1 && (
-                        <Hr $color="black" $mt={[0, 16]} $mb={16} />
-                      )}
-                    </li>
-                  ))}
-                </Flex>
+                <BlogList items={posts} withImage />
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
@@ -417,9 +407,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     props: {
       pageData: homepageData,
       posts,
-      isPreviewMode,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

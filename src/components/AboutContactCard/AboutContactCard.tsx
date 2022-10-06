@@ -1,11 +1,11 @@
 import { FC, Fragment } from "react";
 
-import { getHelpUrl } from "../../common-lib/urls";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
 import Flex from "../Flex";
 import NewsletterForm, { useNewsletterForm } from "../Forms/NewsletterForm";
 import Grid, { GridArea } from "../Grid";
+import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading, P } from "../Typography";
 
 const cardCopy = [
@@ -27,7 +27,7 @@ const cardCopy = [
     heading: "Find help",
     p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
     linkText: "help centre",
-    href: getHelpUrl(),
+    href: "https://support.thenational.academy",
     linkType: "link",
   },
 ];
@@ -35,36 +35,39 @@ const cardCopy = [
 const AboutContactCard: FC = () => {
   const { onSubmit } = useNewsletterForm();
   return (
-    <Grid>
-      <GridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
-        <Card
-          $pa={[16, 24]}
-          $justifyContent={["center"]}
-          $background={"pupilsLightGreen"}
-          $pt={[32, 0]}
-        >
-          {cardCopy.map((section) => (
-            <Fragment key={section.heading}>
-              <Heading $mb={8} $fontSize={[20, 24]} tag={"h4"}>
-                {section.heading}
-              </Heading>
-              <P $mb={32} $fontSize={[16, 18]}>
-                {section.p}
-                <a href={section.href}>{section.linkText}</a>.
-              </P>
-            </Fragment>
-          ))}
-          <Flex $mb={[32, 0]}>
-            <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
+    <Flex $position={"relative"} $width={"100%"}>
+      <BrushBorders hideOnMobileH hideOnMobileV color={"pupilsLightGreen"} />
+      <Grid>
+        <GridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
+          <Card
+            $pa={[16, 24]}
+            $justifyContent={["center"]}
+            $background={"pupilsLightGreen"}
+            $pt={[32, 0]}
+          >
+            {cardCopy.map((section) => (
+              <Fragment key={section.heading}>
+                <Heading $mb={8} $font={["heading-6", "heading-5"]} tag={"h2"}>
+                  {section.heading}
+                </Heading>
+                <P $mb={32} $font={["body-2", "body-1"]}>
+                  {section.p}
+                  <a href={section.href}>{section.linkText}</a>.
+                </P>
+              </Fragment>
+            ))}
+            <Flex $mb={[32, 0]}>
+              <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
+            </Flex>
+          </Card>
+        </GridArea>
+        <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 6, 4]}>
+          <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
+            <NewsletterForm onSubmit={onSubmit} />
           </Flex>
-        </Card>
-      </GridArea>
-      <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 6, 4]}>
-        <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
-          <NewsletterForm onSubmit={onSubmit} />
-        </Flex>
-      </GridArea>
-    </Grid>
+        </GridArea>
+      </Grid>
+    </Flex>
   );
 };
 

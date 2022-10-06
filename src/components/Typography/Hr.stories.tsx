@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Typography $fontSize={18}>
+  <Typography $font={"body-1"}>
     <p>See below</p>
     <Component {...args} />
     <p>For a horizontal rule</p>

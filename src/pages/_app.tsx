@@ -14,12 +14,22 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
 import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
-import AnalyticsProvider from "../context/Analytics/AnalyticsProvider";
+import AnalyticsProvider, {
+  AnalyticsProviderProps,
+} from "../context/Analytics/AnalyticsProvider";
 import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
 import { SearchProvider } from "../context/Search/SearchContext";
+import { ToastProvider } from "../context/Toast";
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+type OakWebApplicationProps = AppProps & {
+  analyticsOptions: AnalyticsProviderProps;
+};
+const OakWebApplication: FC<OakWebApplicationProps> = ({
+  Component,
+  pageProps,
+  analyticsOptions,
+}) => {
   const { theme } = useOakTheme();
 
   return (
@@ -29,12 +39,14 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <ThemeProvider theme={theme}>
           <ErrorBoundary>
             <SSRProvider>
-              <AnalyticsProvider>
+              <AnalyticsProvider {...analyticsOptions}>
                 <DefaultSeo />
                 <SearchProvider>
                   <MenuProvider>
-                    <Component {...pageProps} />
-                    <AppHooks />
+                    <ToastProvider>
+                      <Component {...pageProps} />
+                      <AppHooks />
+                    </ToastProvider>
                   </MenuProvider>
                 </SearchProvider>
               </AnalyticsProvider>
@@ -47,4 +59,4 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   );
 };
 
-export default MyApp;
+export default OakWebApplication;

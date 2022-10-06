@@ -11,52 +11,51 @@ import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
 
 import "../../browser-lib/oak-globals/oakGlobals";
-import { BookmarksProvider } from "../../context/Bookmarks";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import ErrorBoundary from "../../components/ErrorBoundary";
-import AnalyticsProvider from "../../context/Analytics/AnalyticsProvider";
 import { MenuProvider } from "../../context/Menu";
+import { ToastProvider } from "../../context/Toast";
 
 import MockedAuthProvider, {
   MockedAuthProviderProps,
 } from "./MockedAuthProvider";
 import MockedApolloProvider from "./MockedApolloProvider";
+import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
+import MockedBookmarksProvider, {
+  MockedBookmarksProviderProps,
+} from "./MockedBookmarksProvider";
 
 export type ProviderProps = {
   authProviderProps?: MockedAuthProviderProps;
-};
-
-const noopAvoLogger = {
-  logDebug: () => true,
-  logWarn: () => true,
-  // returning false will make avo use console errors, which
-  // we may prefer for actual errors
-  logError: () => false,
+  bookmarksProviderProps?: MockedBookmarksProviderProps;
 };
 
 export const AllTheProviders: FC<ProviderProps> = ({
   children,
   authProviderProps,
+  bookmarksProviderProps,
 }) => {
   return (
     <CookieConsentProvider>
       <ThemeProvider theme={theme}>
         <ErrorBoundary>
-          <AnalyticsProvider avoOptions={{ avoLogger: noopAvoLogger }}>
+          <MockedAnalyticsProvider>
             <MockedAuthProvider {...authProviderProps}>
               <MockedApolloProvider>
                 <MemoryRouterProvider>
-                  <BookmarksProvider>
+                  <MockedBookmarksProvider {...bookmarksProviderProps}>
                     <SearchProvider>
-                      <MenuProvider>{children}</MenuProvider>
+                      <ToastProvider>
+                        <MenuProvider>{children}</MenuProvider>
+                      </ToastProvider>
                     </SearchProvider>
-                  </BookmarksProvider>
+                  </MockedBookmarksProvider>
                 </MemoryRouterProvider>
               </MockedApolloProvider>
             </MockedAuthProvider>
-          </AnalyticsProvider>
+          </MockedAnalyticsProvider>
         </ErrorBoundary>
       </ThemeProvider>
     </CookieConsentProvider>

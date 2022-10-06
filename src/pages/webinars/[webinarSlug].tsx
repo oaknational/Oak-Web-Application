@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PortableText } from "@portabletext/react";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import CMSClient, { Webinar } from "../../node-lib/cms";
@@ -12,17 +13,16 @@ export type SerializedWebinar = Omit<Webinar, "date"> & {
 
 export type WebinarPageProps = {
   webinar: SerializedWebinar;
-  isPreviewMode: boolean;
 };
+
+/**
+ * @TODO: Remove /webinars/* from next-sitemap.config.js when built
+ */
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   return (
-    <Layout
-      seoProps={getSeoProps(props.webinar.seo)}
-      $background="grey1"
-      isPreviewMode={props.isPreviewMode}
-    >
-      <Heading tag="h1" $fontSize={24}>
+    <Layout seoProps={getSeoProps(props.webinar.seo)} $background="grey1">
+      <Heading tag="h1" $font="heading-5">
         {props.webinar.title}
       </Heading>
       {props.webinar.date} <br />
@@ -82,6 +82,7 @@ export const getStaticProps: GetStaticProps<
       webinar,
       isPreviewMode,
     },
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

@@ -6,16 +6,18 @@ import {
   PortableTextComponents,
   PortableTextComponentProps,
 } from "@portabletext/react";
-import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
+import { useTheme } from "styled-components";
+import { uniqBy } from "lodash/fp";
 
+import config from "../../config";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
   CTA,
   PortableTextJSON,
   Quote,
-  SanityImage,
+  Image,
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
@@ -25,10 +27,8 @@ import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
-import Card from "../../components/Card";
-import Cover from "../../components/Cover";
-import { Heading, P } from "../../components/Typography";
-// import CopyLinkButton from "../../components/Button/CopyLinkButton";
+import { Heading, P, Span } from "../../components/Typography";
+import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
@@ -36,6 +36,11 @@ import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import CMSVideo from "../../components/CMSVideo";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import MobileBlogFilters from "../../components/MobileBlogFilters";
+import OakLink from "../../components/OakLink";
+import BlogCategoryList from "../../components/BlogCategoryList";
+import Circle from "../../components/Circle";
+import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -43,7 +48,7 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 
 export type BlogPageProps = {
   blog: SerializedBlog;
-  isPreviewMode: boolean;
+  categories: { title: string; slug: string }[];
 };
 
 // When we get the JSON portable text it doesn't have the same field names as
@@ -60,7 +65,12 @@ const blogPortableTextComponents: PortableTextComponents = {
     sectionHeading: (props) => {
       // @TODO: Choose an appropriate section heading level
       return (
-        <Heading $fontSize={32} $lineHeight={"40px"} tag="h2" $mt={56} $mb={32}>
+        <Heading
+          $font={["heading-6", "heading-4"]}
+          tag="h2"
+          $mt={[48, 56]}
+          $mb={[24, 32]}
+        >
           {props.children}
         </Heading>
       );
@@ -68,7 +78,7 @@ const blogPortableTextComponents: PortableTextComponents = {
     callout: (props) => {
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P $fontSize={32} $lineHeight={"40px"} $fontFamily={"headingLight"}>
+          <P $font={"heading-light-4"}>
             <blockquote>{props.children}</blockquote>
           </P>
         </Flex>
@@ -77,17 +87,13 @@ const blogPortableTextComponents: PortableTextComponents = {
   },
   types: {
     imageWithAltText: (
-      props: PortableTextComponentProps<{ asset: SanityImage["asset"] }>
+      props: PortableTextComponentProps<{ asset: Image["asset"] }>
     ) => {
       if (!props.value) {
         return null;
       }
 
-      return (
-        <Box $width={"100%"} $mt={80} $mb={[64]}>
-          <CMSImage image={props.value} />
-        </Box>
-      );
+      return <CMSImage image={props.value} $mt={80} $mb={64} />;
     },
     video: (props: PortableTextComponentProps<Video>) => {
       if (!props.value) {
@@ -118,7 +124,7 @@ const blogPortableTextComponents: PortableTextComponents = {
       return (
         <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
           <div>
-            <Heading $fontSize={[24, 32]} $lineHeight={"40px"} tag="h2">
+            <Heading $font={["heading-5", "heading-4"]} tag="h2">
               {params.title}
             </Heading>
             <Box $mt={32}>
@@ -156,17 +162,15 @@ const blogPortableTextComponents: PortableTextComponents = {
 
       return (
         <Flex $flexDirection={"column"} $mt={56}>
-          <P
-            $fontSize={[24, 32]}
-            $lineHeight={"40px"}
-            $fontFamily={"headingLight"}
-          >
+          <P $font={["heading-light-5", "heading-light-4"]}>
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $fontSize={[16, 18]} $lineHeight={"20px"} $mt={[16]}>
-            <cite>{props.value?.attribution}</cite>
-            {props.value.role && `, ${props.value.role}`}
-          </P>
+          <div>
+            <P $font={"body-1"} $mt={[16]} $textAlign="center">
+              <cite>{props.value?.attribution}</cite>
+              {props.value.role && `, ${props.value.role}`}
+            </P>
+          </div>
         </Flex>
       );
     },
@@ -190,7 +194,7 @@ const blogPortableTextComponents: PortableTextComponents = {
             components={{
               block: {
                 sectionHeading: (props) => {
-                  return <P $fontSize={24}>{props.children}</P>;
+                  return <P $font={"heading-light-5"}>{props.children}</P>;
                 },
               },
             }}
@@ -226,13 +230,9 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 };
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
-  const { blog } = props;
+  const { blog, categories } = props;
 
-  const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
-    alt: "",
-  };
-
+  const blogCategoriesListProps = useBlogCategoryList();
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -252,6 +252,8 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
     }
   );
+  const theme = useTheme();
+  const HEADER_HEIGHT = theme.header.height;
 
   return (
     <Layout
@@ -262,84 +264,82 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      isPreviewMode={props.isPreviewMode}
     >
-      <MaxWidth $pt={56}>
-        <Card
-          $pa={0}
-          $background={"teachersPastelYellow"}
-          $flexDirection={"row"}
-          $justifyContent={"space-between"}
-          $width={"100%"}
-          $pv={[24]}
-          $ph={[16, 24]}
-        >
-          <Flex
-            $justifyContent={"center"}
-            $flexDirection={"column"}
-            $maxWidth={812}
-            $mr={48}
-          >
-            <Heading
-              $mb={8}
-              tag={"h2"}
-              $fontSize={[20, 24]}
-              $color={"oakGrey4"}
-              $fontFamily="heading"
+      <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
+      <MaxWidth>
+        <Grid $ph={[12, 0]}>
+          <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
+            <Box
+              $display={["none", "block"]}
+              $position={[null, "sticky"]}
+              $top={[null, HEADER_HEIGHT]}
+              $pt={[48, 72]}
             >
-              Blog page
-            </Heading>
-            <Heading
-              $mb={16}
-              $color={"black"}
-              $fontSize={[24, 32, 32]}
-              tag={"h1"}
+              <Heading
+                tag="h3"
+                $font="body-3"
+                id={blogCategoriesListProps.labelId}
+              >
+                Categories
+              </Heading>
+              <BlogCategoryList
+                labelledBy={blogCategoriesListProps.labelId}
+                $mt={24}
+                categories={categories}
+              />
+            </Box>
+          </GridArea>
+          <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
+          <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
+            <Flex
+              $mt={[40, 72]}
+              $justifyContent="space-between"
+              $flexDirection={["column", "row"]}
             >
+              <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
+                <OakLink page="blog-index" category={blog.category.slug}>
+                  {blog.category.title}
+                </OakLink>
+              </Heading>
+              <Span $font={"body-3"} $mt={[8, 0]}>
+                {formattedDate}
+              </Span>
+            </Flex>
+            <Heading $mt={12} $font={["heading-5", "heading-4"]} tag={"h1"}>
               {blog.title}
             </Heading>
-            <P $color="black" $fontSize={[16, 18]}>
-              {blog.summary}
-            </P>
-          </Flex>
-          <Flex
-            $display={["none", "flex"]}
-            $position="relative"
-            $minWidth={"30%"}
-            $justifyContent={["center", "flex-end"]}
-            $alignItems={["flex-end"]}
-            $pr={[0, 24]}
-            $pb={24}
-          >
-            <Cover>
-              <Image
-                aria-hidden={true}
-                layout="fill"
-                objectFit="contain"
-                objectPosition={"right"}
-                alt={cardImage.alt}
-                src={cardImage.src}
-                priority
-              />
-            </Cover>
-          </Flex>
-        </Card>
-
-        <Grid $mt={[48, 64]} $ph={[12, 0]}>
-          <GridArea $colSpan={[12, 7]}>
-            <P $fontSize={14} $lineHeight={"20px"} $mt={16} $fontFamily={"ui"}>
-              {blog.category.title}
-            </P>
-            <P $fontSize={14} $lineHeight={"20px"} $mt={16}>
-              {formattedDate}
-            </P>
-            <Flex $alignItems={"center"} $mt={16}>
-              <Heading tag="h2" $fontSize={16} $lineHeight={"20px"} $mr={40}>
-                {blog.author.name}
-              </Heading>
-              {/* TODO: add more UI for copy link button */}
-              {/* <CopyLinkButton /> */}
+            <Flex
+              $alignItems={"center"}
+              $mt={16}
+              $mr={[20, 0]}
+              $justifyContent={["space-between", "left"]}
+            >
+              <Flex $alignItems={"center"}>
+                {blog.author.image && (
+                  <Circle $mr={12} $overflow={"hidden"} size={56}>
+                    <CMSImage
+                      image={{
+                        altText: blog.author.image.altText,
+                        isPresentational: blog.author.image.isPresentational,
+                        asset: blog.author.image.asset,
+                      }}
+                    />
+                  </Circle>
+                )}
+                <Box $mr={[0, 40]}>
+                  <Heading tag="h2" $font={"heading-7"}>
+                    {blog.author.name}
+                  </Heading>
+                  {blog.author.role && (
+                    <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
+                      {blog.author.role}
+                    </P>
+                  )}
+                </Box>
+              </Flex>
+              <CopyLinkButton />
             </Flex>
-            <Box $mt={[56, 64]}>
+            <Box $mt={[48]}>
               <BasePortableTextProvider>
                 <PortableText
                   components={blogPortableTextComponents}
@@ -381,6 +381,12 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     previewMode: isPreviewMode,
   });
 
+  const blogResults = await CMSClient.blogPosts();
+  const categories = uniqBy(
+    "title",
+    blogResults.map((blogResult) => blogResult.category)
+  ).sort((a, b) => (a.title < b.title ? -1 : 1));
+
   if (!blogResult) {
     return {
       notFound: true,
@@ -394,13 +400,11 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
 
   return {
     props: {
+      categories,
       blog,
       isPreviewMode,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 10, // In seconds
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

@@ -1,6 +1,10 @@
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 
-const { PHASE_TEST } = require("next/constants");
+const {
+  BugsnagBuildReporterPlugin,
+  BugsnagSourceMapUploaderPlugin,
+} = require("webpack-bugsnag-plugins");
+const { PHASE_TEST, PHASE_PRODUCTION_BUILD } = require("next/constants");
 
 const {
   getAppVersion,
@@ -18,6 +22,8 @@ module.exports = async (phase) => {
 
   let releaseStage;
   let appVersion;
+  let isProductionBuild = false;
+  const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
@@ -39,9 +45,12 @@ module.exports = async (phase) => {
     // When we come to sort out a failover we may need to tweak this functionality.
     // Defaults to "development".
     releaseStage = getReleaseStage(
-      process.env.OVERRIDE_RELEASE_STAGE || process.env.VERCEL_ENV
+      process.env.OVERRIDE_RELEASE_STAGE ||
+        process.env.VERCEL_ENV ||
+        // Netlify
+        process.env.CONTEXT
     );
-    const isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
+    isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
   }
@@ -69,6 +78,38 @@ module.exports = async (phase) => {
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
+    webpack: (config, { dev }) => {
+      // Production builds only.
+      if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
+        // Add source maps to production builds.
+        config.devtool = "source-map";
+
+        // Tell Bugsnag about the build.
+        const bugsnagBuildInfo = {
+          apiKey: oakConfig.bugsnag.apiKey,
+          appVersion,
+          releaseStage,
+        };
+        config.plugins.push(
+          new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
+            logLevel: "error",
+          })
+        );
+
+        // Upload production sourcemaps
+        const bugsnagSourcemapInfo = {
+          apiKey: oakConfig.bugsnag.apiKey,
+          appVersion,
+          publicPath: "https://*/_next/",
+          overwrite: true,
+        };
+        config.plugins.push(
+          new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo)
+        );
+      }
+
+      return config;
+    },
     /**
      * Disable font optimization as we're using Cloudflare's fast-google-fonts
      * worker which not only includes this optimization but also rewrites all
@@ -82,14 +123,7 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
-    experimental: {
-      // Allow static builds with the default image loader.
-      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
-      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
-      images: {
-        unoptimized: isStaticBuild,
-      },
-    },
+
     // Allow static builds with deleted beta pages to build.
     eslint: {
       ignoreDuringBuilds: isStaticWWWBuild,
@@ -175,6 +209,9 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
 
       // Sanity
+      SANITY_REVALIDATE_SECONDS:
+        process.env.SANITY_REVALIDATE_SECONDS ||
+        oakConfig.sanity?.revalidateSeconds,
       SANITY_PROJECT_ID:
         process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
       SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,
@@ -189,6 +226,11 @@ module.exports = async (phase) => {
       SANITY_ASSET_CDN_HOST,
     },
     images: {
+      // Allow static builds with the default image loader.
+      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
+      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
+      unoptimized: isStaticBuild,
+
       domains: imageDomains,
       /**
        * deviceSizes

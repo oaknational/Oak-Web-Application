@@ -12,7 +12,18 @@ const testWebinar: Webinar = {
   id: "5",
   date: new Date("2025-01-01"),
   slug: "an-upcoming-webinar",
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  hosts: [
+    {
+      id: "000",
+      name: "Hosty McHostFace",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
@@ -22,7 +33,18 @@ const testWebinar2: Webinar = {
   id: "6",
   date: new Date("2022-01-01"),
   slug: "a-past-webinar",
-  hosts: [{ id: "000", name: "Hosty McHostFace" }],
+  hosts: [
+    {
+      id: "000",
+      name: "Hosty McHostFace",
+      image: {
+        asset: {
+          _id: "",
+          url: "",
+        },
+      },
+    },
+  ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
 };
@@ -51,10 +73,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage
-          webinar={testSerializedWebinar}
-          isPreviewMode={false}
-        />
+        <WebinarDetailPage webinar={testSerializedWebinar} />
       );
 
       await waitFor(() => {
@@ -67,10 +86,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <WebinarDetailPage
-            webinar={testSerializedWebinar}
-            isPreviewMode={false}
-          />
+          <WebinarDetailPage webinar={testSerializedWebinar} />
         );
 
         expect(seo).toEqual({});

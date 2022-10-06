@@ -21,7 +21,7 @@ import {
 test.describe("Search", () => {
   // Unit tests should have exactly one assertion, but sometimes it makes
   // sense for a user journey test to have two or three.
-  test("can be used to navigate to lessons", async ({ page }) => {
+  test.skip("can be used to navigate to lessons", async ({ page }) => {
     // Start the journey on the front page
     await page.goto(frontPageUrl);
 

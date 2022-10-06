@@ -1,4 +1,3 @@
-import { getCareersUrl, getHelpUrl } from "../../common-lib/urls";
 import { FooterSections } from "../../components/SiteFooter/SiteFooter";
 
 const footerSections: FooterSections = {
@@ -21,10 +20,10 @@ const footerSections: FooterSections = {
       { text: "About us", href: "/about-us/who-we-are" },
       {
         text: "Careers",
-        href: getCareersUrl(),
+        href: "https://app.beapplied.com/org/1574/oak-national-academy",
       },
       { text: "Contact us", href: "/contact-us" },
-      { text: "Help", href: getHelpUrl() },
+      { text: "Help", href: "https://support.thenational.academy" },
       { text: "Blog", href: "/blog" },
     ],
   },
@@ -38,7 +37,7 @@ const footerSections: FooterSections = {
       { text: "Copyright notice", href: "/legal/copyright-notice" },
       { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
       {
-        text: "Accessibilty statement",
+        text: "Accessibility statement",
         href: "/legal/accessibility-statement",
       },
       { text: "Safeguarding statement", href: "/legal/safeguarding-statement" },

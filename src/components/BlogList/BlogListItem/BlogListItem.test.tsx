@@ -1,4 +1,4 @@
-import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
 
 import BlogListItem, { BlogListItemProps } from ".";
@@ -16,7 +16,7 @@ const testProps: BlogListItemProps = {
 
 describe("components/BlogListItem", () => {
   test("renders the correct heading tag", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <BlogListItem {...testProps} titleTag="h6" />
     );
     const listHeading = getByRole("heading", { level: 6 });
@@ -25,15 +25,26 @@ describe("components/BlogListItem", () => {
   });
 
   test("button should have the correct href", async () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <BlogListItem {...testProps} contentType="webinar" />
     );
-    const button = getByRole("link");
+    const button = getByRole("link", { name: testProps.title });
     expect(button).toHaveAttribute("href", "https://www.test.com/");
   });
 
+  test("should contain link to category", async () => {
+    const { getByRole } = renderWithTheme(
+      <BlogListItem {...testProps} contentType="webinar" />
+    );
+    const button = getByRole("link", { name: testProps.category.title });
+    expect(button).toHaveAttribute(
+      "href",
+      `/blog/categories/${testProps.category.slug}`
+    );
+  });
+
   test("renders the provided image", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <BlogListItem {...testProps} withImage />
     );
 
@@ -47,7 +58,7 @@ describe("components/BlogListItem", () => {
   });
 
   test("doesn't render an image without withImage=true", () => {
-    const { queryByRole } = renderWithProviders(
+    const { queryByRole } = renderWithTheme(
       <BlogListItem {...testProps} withImage={false} />
     );
 
@@ -56,7 +67,7 @@ describe("components/BlogListItem", () => {
   });
 
   test("sets the image alt text to be empty when not provided", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = renderWithTheme(
       <BlogListItem {...testProps} withImage />
     );
 

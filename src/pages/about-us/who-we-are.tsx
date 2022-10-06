@@ -2,7 +2,8 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { AboutPage, TextBlock } from "../../node-lib/cms";
+import config from "../../config";
+import CMSClient, { AboutWhoWeArePage, TextBlock } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import SummaryCard from "../../components/Card/SummaryCard";
@@ -19,10 +20,10 @@ import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
+import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type AboutPageProps = {
-  pageData: AboutPage;
-  isPreviewMode: boolean;
+  pageData: AboutWhoWeArePage;
 };
 
 type TimeLineProps = TextBlock & FlexProps;
@@ -47,7 +48,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
         <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
           {title}
         </OutlineHeading>
-        <Typography $fontSize={[16, 18]}>
+        <Typography $font={["body-2", "body-1"]}>
           <PortableText value={bodyPortableText} />
         </Typography>
         {cta && (
@@ -66,24 +67,14 @@ const TimeLineCard: FC<TimeLineProps> = ({
   );
 };
 
-const AboutWhoWeAre: NextPage<AboutPageProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
-          title={"About us"}
-          heading={pageData.whoWeAre.sectionHeading}
-          summary={
-            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
-          }
-          background={"teachersPastelYellow"}
+          title={pageData.title}
+          heading={pageData.heading}
+          summary={pageData.summaryPortableText}
           imageProps={{
             src: "/images/oak-logo.svg",
             alt: "who we are illustration",
@@ -97,6 +88,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             $mt={36}
             buttons={reducedAboutNavLinks}
             selected={"Who we are"}
+            ariaLabel="about us"
           />
         </SummaryCard>
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
@@ -106,6 +98,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
             $flexDirection={["column", "column", "row"]}
             $maxWidth={["100%", 812, "100%"]}
           >
+            <BrushBorders hideOnMobileH color={"twilight"} />
             <Flex
               $justifyContent={"center"}
               $alignItems={"center"}
@@ -113,27 +106,21 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
               $pr={[0, 0, 72]}
               $minWidth={["50%"]}
             >
-              {pageData.whoWeAre.intro.mediaType == "video" && (
-                <CMSVideo video={pageData.whoWeAre.intro.video} />
+              {pageData.intro.mediaType == "video" && (
+                <CMSVideo video={pageData.intro.video} />
               )}
             </Flex>
             <Box $minWidth={["50%"]}>
-              <Typography
-                $mb={36}
-                $fontSize={[16, 18]}
-                $lineHeight={["24px", "28px"]}
-              >
-                <PortableText
-                  value={pageData.whoWeAre.intro.bodyPortableText}
-                />
+              <Typography $mb={36} $font={["body-2", "body-1"]}>
+                <PortableText value={pageData.intro.bodyPortableText} />
               </Typography>
               <Flex $justifyContent={"flex-start"}>
-                {pageData.whoWeAre.intro.cta && (
+                {pageData.intro.cta && (
                   <ButtonAsLink
                     icon={"ArrowRight"}
                     iconPosition="trailing"
-                    label={pageData.whoWeAre.intro.cta.label}
-                    href={getCTAHref(pageData.whoWeAre.intro.cta)}
+                    label={pageData.intro.cta.label}
+                    href={getCTAHref(pageData.intro.cta)}
                   />
                 )}
               </Flex>
@@ -141,38 +128,39 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({
           </Card>
         </Flex>
         <TimeLineCard
-          bodyPortableText={pageData.whoWeAre.timeline.from.bodyPortableText}
-          title={pageData.whoWeAre.timeline.from.title}
+          bodyPortableText={pageData.timeline.from.bodyPortableText}
+          title={pageData.timeline.from.title}
           $alignItems={"flex-start"}
         />
         <TimeLineCard
-          bodyPortableText={pageData.whoWeAre.timeline.to.bodyPortableText}
-          title={pageData.whoWeAre.timeline.to.title}
+          bodyPortableText={pageData.timeline.to.bodyPortableText}
+          title={pageData.timeline.to.title}
           $alignItems={["flex-start", "center"]}
         />
         <TimeLineCard
-          bodyPortableText={pageData.whoWeAre.timeline.beyond.bodyPortableText}
-          title={pageData.whoWeAre.timeline.beyond.title}
-          cta={pageData.whoWeAre.timeline.beyond.cta}
+          bodyPortableText={pageData.timeline.beyond.bodyPortableText}
+          title={pageData.timeline.beyond.title}
+          cta={pageData.timeline.beyond.cta}
           $alignItems={["flex-start", "flex-end"]}
         />
         <Grid $mb={80} $cg={28} $rg={32}>
-          {pageData.whoWeAre.principles.map((principle) => (
+          {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $background={"videoBlue"}>
+                  <BrushBorders
+                    hideOnMobileH
+                    hideOnMobileV
+                    color={"videoBlue"}
+                  />
                   <Heading
-                    $fontSize={[24, 32]}
-                    $lineHeight={["32px", "40px"]}
+                    $font={["heading-5", "heading-4"]}
                     tag={"h2"}
                     $mb={[24]}
                   >
                     {principle.title}
                   </Heading>
-                  <Typography
-                    $lineHeight={["24px", "28px"]}
-                    $fontSize={[16, 18]}
-                  >
+                  <Typography $font={["body-2", "body-1"]}>
                     <PortableText value={principle.bodyPortableText} />
                   </Typography>
                 </Card>
@@ -191,11 +179,11 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
-  const aboutPage = await CMSClient.aboutPage({
+  const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
     previewMode: isPreviewMode,
   });
 
-  if (!aboutPage) {
+  if (!aboutWhoWeArePage) {
     return {
       notFound: true,
     };
@@ -203,10 +191,9 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 
   return {
     props: {
-      pageData: aboutPage,
-      isPreviewMode,
+      pageData: aboutWhoWeArePage,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

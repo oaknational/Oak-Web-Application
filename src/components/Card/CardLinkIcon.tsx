@@ -6,45 +6,46 @@ import { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 
 import Card from "./Card";
-import CardLink, { CardLinkProps } from "./CardLink";
+import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
-type CardLinkIconProps = {
+type RemoveField<Type, Key extends keyof Type> = {
+  [Property in keyof Type as Exclude<Property, Key>]: Type[Property];
+};
+
+type CardLinkIconProps = RemoveField<CardLinkProps, "children"> & {
   title: string;
   titleTag: HeadingTag;
   icon?: IconName;
   background?: OakColorName;
-  href: string;
-  cardLinkProps?: Omit<CardLinkProps, "href" | "children">;
 };
 const CardLinkIcon: FC<CardLinkIconProps> = ({
   title,
   titleTag,
   icon = "ArrowRight",
   background,
-  href,
-  cardLinkProps,
+  ...cardLinkProps
 }) => {
   return (
     <Card
       $flexDirection={"row"}
       $alignItems="center"
       $background={background}
-      $ph={16}
+      $ph={[16, 24]}
       $pv={[24, 32]}
       $mb={[16, 0]}
       $borderRadius={0}
     >
-      <BoxBorders />
-      <Heading $fontSize={[20, 24]} tag={titleTag} $color={"black"}>
+      <BoxBorders gapPosition="rightTop" />
+      <Heading $font={["heading-6", "heading-5"]} tag={titleTag}>
         <CardLink
-          href={href}
-          hoverStyles={["underline-link-text", "drop-shadow"]}
           {...cardLinkProps}
+          hoverStyles={["underline-link-text", "drop-shadow"]}
+          hideDefaultFocus
         >
           {title}
         </CardLink>
+        <CardLinkFocusUnderline />
       </Heading>
-
       <Icon name={icon} size={[32, 48]} $ml="auto" />
     </Card>
   );

@@ -25,7 +25,7 @@ const OnBoarding: FC = () => {
     >
       <OnBoardingGrid $rg={[16, 0, 0]} $cg={16}>
         <GridArea $colSpan={[12, 12, 12]}>
-          <Heading $textAlign={"center"} $mb={32} tag="h1" $fontSize={32}>
+          <Heading $textAlign={"center"} $mb={32} tag="h1" $font={"heading-4"}>
             Use Oak as a:
           </Heading>
         </GridArea>
@@ -37,7 +37,9 @@ const OnBoarding: FC = () => {
             $background={"white"}
           >
             <CardTitle textCenter tag={"h2"}>
-              <CardLink href={"/beta/teacher"}>Teacher</CardLink>
+              <CardLink page={null} href={"/beta/teacher"}>
+                Teacher
+              </CardLink>
             </CardTitle>
 
             <P $textAlign={"center"}>
@@ -52,7 +54,9 @@ const OnBoarding: FC = () => {
             $background={"white"}
           >
             <CardTitle textCenter tag={"h2"}>
-              <CardLink href={"/beta/pupil"}>Pupil</CardLink>
+              <CardLink page={null} href={"/beta/pupil"}>
+                Pupil
+              </CardLink>
             </CardTitle>
             <P $textAlign="center">
               Short snappy description of what this card is about.

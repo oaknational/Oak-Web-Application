@@ -4,11 +4,21 @@
  * Note, this config is also used as the source of URLs to test for Lighthouse CI.
  */
 
+// Cloudflare Access token
+const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID;
+const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET;
+if (!CfAccessClientId || !CfAccessClientSecret) {
+  throw new TypeError(
+    "Please specify Cloudflare Access token headers in envs\nfor background info see https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/"
+  );
+}
+
+// https://github.com/pa11y/pa11y-ci#configuration
 const config = {
   defaults: {
     runners: ["axe"],
     hideElements:
-      "#mtm-root-container, #mtm-frame-container, #avo-debugger, #homepage-blog-list, .pa11y-ignore",
+      "#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore",
     ignore: [
       // Pa11y using Axe is looking for videos with track elements of type=captions, but the
       // Mux player is rendering type=subtitles, so Pa11y is complaining, not sure who is wrong
@@ -18,6 +28,10 @@ const config = {
       // but Pa11y isn't picking that up.
       "color-contrast",
     ],
+    headers: {
+      "CF-Access-Client-Id": CfAccessClientId,
+      "CF-Access-Client-Secret": CfAccessClientSecret,
+    },
   },
   urls: [],
   // log: {

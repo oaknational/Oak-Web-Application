@@ -1,36 +1,47 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import CardLinkIcon from "./CardLinkIcon";
 
 describe("CardLinkIcon", () => {
-  it("is a link", async () => {
-    renderWithProviders(
+  it("is a link, passes href", () => {
+    renderWithTheme(
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
         background="pupilsLimeGreen"
+        page={null}
         href={"/planning"}
       />
     );
 
     expect(screen.getByRole("link")).toHaveAttribute("href", "/planning");
   });
-  it("Renders correct title ", async () => {
-    renderWithProviders(
+  it("is a link, resolves page -> href", () => {
+    renderWithTheme(
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
         background="pupilsLimeGreen"
-        href={"/planning"}
+        page="about-board"
       />
     );
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 4 }).textContent).toBe(
-        "Plan a lesson"
-      );
-    });
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/about-us/board");
+  });
+  it("Renders correct title ", () => {
+    renderWithTheme(
+      <CardLinkIcon
+        title={"Plan a lesson"}
+        titleTag={"h4"}
+        background="pupilsLimeGreen"
+        page={"contact"}
+      />
+    );
+
+    expect(screen.getByRole("heading", { level: 4 }).textContent).toBe(
+      "Plan a lesson"
+    );
   });
 });

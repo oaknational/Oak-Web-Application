@@ -17,12 +17,29 @@ describe("config.get()", () => {
 
     expect(config.get("clientAppBaseUrl")).toEqual("http://localhost:3000");
   });
+  it("should alllow parsing numeric env vars", async () => {
+    process.env.SANITY_REVALIDATE_SECONDS = "123";
+    const { default: config } = await import(".");
+
+    expect(config.get("sanityRevalidateSeconds")).toEqual(123);
+  });
   it("should throw for non-existent name", async () => {
     const { default: config } = await import(".");
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     expect(() => config.get("nonExistentVarName")).toThrowError();
+  });
+  it("should throw on import if value not allowed", async () => {
+    process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING =
+      "flagrant disregard for the constitution";
+    try {
+      await import(".");
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(error.message).toContain("Allowed values: on, off");
+    }
   });
 });
 

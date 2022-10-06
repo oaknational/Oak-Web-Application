@@ -1,10 +1,14 @@
 import { css } from "styled-components";
 
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import margin, { MarginProps } from "../../styles/utils/spacing";
 import { BackgroundIcon } from "../Icon/Icon";
 
-import { ButtonFocusUnderline } from "./ButtonInner";
+import {
+  ButtonFocusUnderline,
+  ButtonMinimalFocusUnderline,
+} from "./ButtonInner";
 import ButtonLabel from "./ButtonLabel";
 import {
   ButtonSize,
@@ -23,6 +27,7 @@ import {
   getButtonBackground,
   getButtonDropShadowColor,
 } from "./common";
+import { iconFocusUnderline } from "./IconFocusUnderline";
 
 export type ButtonStylesProps = MarginProps & {
   size: ButtonSize;
@@ -31,6 +36,7 @@ export type ButtonStylesProps = MarginProps & {
   background: ButtonBackground;
   fullWidth?: boolean;
   disabled?: boolean;
+  focusStyles?: [];
 };
 export const getButtonStylesProps = (
   props: CommonButtonProps
@@ -41,15 +47,15 @@ export const getButtonStylesProps = (
     size = DEFAULT_BUTTON_SIZE,
     background = DEFAULT_BUTTON_BACKGROUND,
     fullWidth,
+    focusStyles,
   } = props;
 
-  return { size, iconPosition, variant, fullWidth, background };
+  return { size, iconPosition, variant, fullWidth, background, focusStyles };
 };
 const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
   max-width: 100%;
   position: relative;
   ${(props) => css`
@@ -61,7 +67,7 @@ const buttonStyles = css<ButtonStylesProps>`
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
-  transition: box-shadow 0.3s ease-in-out;
+  transition: ${HOVER_SHADOW_TRANSITION};
 
   :focus {
     outline: none;
@@ -71,8 +77,8 @@ const buttonStyles = css<ButtonStylesProps>`
     display: none;
   }
 
-  :focus ${ButtonFocusUnderline} {
-    display: block;
+  ${ButtonMinimalFocusUnderline} {
+    display: none;
   }
 
   ${(props) =>
@@ -80,6 +86,15 @@ const buttonStyles = css<ButtonStylesProps>`
     css`
       :hover {
         box-shadow: ${getButtonDropShadowColor(props.background)};
+      }
+
+      :focus ${ButtonFocusUnderline} {
+        display: block;
+        bottom: -4px;
+        left: -4px;
+        width: calc(100% + 8px);
+        height: 10px;
+        transform: rotate(-1deg);
       }
 
       :disabled {
@@ -105,9 +120,19 @@ const buttonStyles = css<ButtonStylesProps>`
         filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
       }
 
-      ${ButtonFocusUnderline} {
-        filter: drop-shadow(2px 6px 0px rgb(0 0 0));
+      :focus ${ButtonMinimalFocusUnderline} {
+        display: block;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 7px;
       }
+
+      ${ButtonMinimalFocusUnderline} {
+        filter: drop-shadow(1px 4px 0px rgb(0 0 0));
+      }
+
+      ${iconFocusUnderline}
     `}
 
   ${margin}

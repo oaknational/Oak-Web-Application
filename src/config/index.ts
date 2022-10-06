@@ -1,17 +1,20 @@
 import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
+type EnvValue = string | number;
+
 type EnvVar = {
-  value: string | undefined;
+  value: EnvValue | undefined;
   required: boolean;
   availableInBrowser: boolean;
   default: string | null;
   // useful for messaging in case if missing vars
   envName: string;
   description?: string;
+  allowedValues?: EnvValue[];
 };
 
-const parseValue = (value: string | undefined) => {
+const parseValue = <T extends EnvValue>(value: T | undefined) => {
   if (value === "undefined") {
     return undefined;
   }
@@ -303,6 +306,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  sanityRevalidateSeconds: {
+    value: process.env.SANITY_REVALIDATE_SECONDS
+      ? parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
+      : undefined,
+    envName: "SANITY_REVALIDATE_SECONDS",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   sanityAssetCDNHost: {
     /**
      * Domain without 'https://', eg: "cdn.sanity.io"
@@ -343,18 +355,27 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default:
       "d6-7d-b6-4b-74-15-da-2e-2c-3c-00-34-3b-5f-f5-44-03-0f-fc-9f-c9-ce-16-7c-97-42-16-ab-1a-2e-82-5d",
   },
+  axeA11yLogging: {
+    value: process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING,
+    envName: "NEXT_PUBLIC_AXE_A11Y_LOGGING",
+    required: false,
+    availableInBrowser: true,
+    allowedValues: ["on", "off"],
+    default: "off",
+    description:
+      "Logs accessibility concerns to the console. Should be disabled in production",
+  },
 });
 
-for (const [
-  ,
-  {
+for (const [, envVarConfig] of Object.entries(envVars)) {
+  const {
     value: envValue,
     required,
     availableInBrowser,
     default: defaultValue,
     envName,
-  },
-] of Object.entries(envVars)) {
+  } = envVarConfig;
+
   const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
   const isPresent = Boolean(envValue || defaultValue);
 
@@ -365,9 +386,27 @@ for (const [
     console.error(`- - - WARNING no config value found for required env var:
 - - - ${envName}`);
   }
+  if ("allowedValues" in envVarConfig && envValue) {
+    // Explicitly typing allowedValues are currently the only instance
+    // is of string[], so it infers the type as being too narrow
+    const { allowedValues }: { allowedValues: EnvValue[] } = envVarConfig;
+
+    if (!allowedValues.includes(envValue)) {
+      throw new Error(`- - - ERROR invalid value found for env var:
+- - - ${envName}
+- - - Found value: ${envValue}
+- - - Allowed values: ${allowedValues.join(", ")}`);
+    }
+  }
 }
 
-const configGet = (key: ConfigKey) => {
+// We can safely assert it's non-nullable as our
+// guard loop above will throw
+type NonNullEnvValue<K extends ConfigKey> = NonNullable<
+  typeof envVars[K]["value"]
+>;
+
+const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   const { value, default: defaultValue, envName } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"

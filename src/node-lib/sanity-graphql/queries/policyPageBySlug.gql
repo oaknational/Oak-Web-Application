@@ -1,6 +1,8 @@
-query policyPageBySlug($slug: String, $isDraft: Boolean = false) {
+query policyPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allPolicyPage(
-    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
   ) {
     id: _id
     title

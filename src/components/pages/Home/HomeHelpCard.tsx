@@ -12,12 +12,12 @@ type HomeSidebarTextCard = CardShape;
 
 const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
   return (
-    <Card $borderRadius={0} $background="white">
+    <Card $ph={[16, 24]} $borderRadius={0} $background="white">
       <CardTitle icon="Search" iconPosition="leading" iconSize={32} tag="h2">
         {props.title}
       </CardTitle>
 
-      <Typography color={"black"} $fontSize={16} $mb={24}>
+      <Typography $font={"body-2"} $mb={24}>
         <PortableText value={props.bodyPortableText} />
       </Typography>
 

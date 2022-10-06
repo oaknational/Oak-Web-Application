@@ -1,10 +1,11 @@
 import * as z from "zod";
 
-import { slugSchema, documentSchema } from "./base";
+import { slugSchema, documentSchema, seoSchema } from "./base";
 
 export const landingPageSchema = z
   .object({
     slug: slugSchema,
+    seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
 

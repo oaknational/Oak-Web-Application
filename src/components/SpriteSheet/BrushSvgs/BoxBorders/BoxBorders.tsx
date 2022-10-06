@@ -1,10 +1,20 @@
 import { FC } from "react";
-import styled, { css } from "styled-components";
 
+import { ZIndex } from "../../../../styles/utils/zIndex";
+import Box from "../../../Box";
 import Svg from "../../../Svg";
 
-const BORDER_THICKNESS_PX = 3;
-const BORDER_OFFSET_PX = -Math.floor(BORDER_THICKNESS_PX / 2);
+export const gapPositionMap = {
+  rightTop: "90%",
+  bottomRight: "85%",
+} as const;
+
+export type GapPosition = keyof typeof gapPositionMap;
+
+export type BoxBordersProps = {
+  gapPosition?: GapPosition;
+  $zIndex?: ZIndex;
+};
 
 const Top: FC = (props) => {
   return (
@@ -85,51 +95,6 @@ export const svgSymbols = {
   Left,
 };
 
-const boxBorderTop = css`
-  position: absolute;
-  height: ${BORDER_THICKNESS_PX}px;
-  top: ${BORDER_OFFSET_PX}px;
-  right: ${BORDER_OFFSET_PX}px;
-  left: ${BORDER_OFFSET_PX}px;
-`;
-
-const boxBorderRight = css`
-  position: absolute;
-  width: ${BORDER_THICKNESS_PX}px;
-  height: 80%;
-  right: ${BORDER_OFFSET_PX}px;
-  bottom: ${BORDER_OFFSET_PX}px;
-`;
-
-const boxBorderBottom = css`
-  position: absolute;
-  height: ${BORDER_THICKNESS_PX}px;
-  bottom: ${BORDER_OFFSET_PX}px;
-  right: ${BORDER_OFFSET_PX}px;
-  left: ${BORDER_OFFSET_PX}px;
-`;
-
-const boxBorderLeft = css`
-  position: absolute;
-  width: ${BORDER_THICKNESS_PX}px;
-  top: ${BORDER_OFFSET_PX}px;
-  left: ${BORDER_OFFSET_PX}px;
-  bottom: ${BORDER_OFFSET_PX}px;
-`;
-
-const BoxBorderTop = styled(Svg)`
-  ${boxBorderTop}
-`;
-const BoxBorderRight = styled(Svg)`
-  ${boxBorderRight}
-`;
-const BoxBorderBottom = styled(Svg)`
-  ${boxBorderBottom}
-`;
-const BoxBorderLeft = styled(Svg)`
-  ${boxBorderLeft}
-`;
-
 /**
  * Presentational component just for the brush-stroke borders. This is a single
  * component which renders four spans, one for each side of the border.
@@ -143,14 +108,44 @@ const BoxBorderLeft = styled(Svg)`
  * which allows them to be stretched whilst still preserving the effect of being
  * a painted or drawn line.
  */
-const BoxBorders: FC = () => {
+const BoxBorders: FC<BoxBordersProps> = (props) => {
+  const { gapPosition } = props;
   return (
-    <div aria-hidden="true" data-testid="brush-borders">
-      <BoxBorderTop name="box-border-top" />
-      <BoxBorderRight name="box-border-right" />
-      <BoxBorderBottom name="box-border-bottom" />
-      <BoxBorderLeft name="box-border-left" />
-    </div>
+    <Box aria-hidden="true" data-testid="brush-borders">
+      <Svg
+        name="box-border-top"
+        {...props}
+        $cover
+        $height={3}
+        $bottom={"unset"}
+      />
+      <Svg
+        name="box-border-right"
+        {...props}
+        $cover
+        $width={3}
+        $top={"unset"}
+        $left={"unset"}
+        $height={gapPosition === "rightTop" ? gapPositionMap.rightTop : "100%"}
+      />
+      <Svg
+        name="box-border-bottom"
+        {...props}
+        $cover
+        $height={3}
+        $top={"unset"}
+        $width={
+          gapPosition === "bottomRight" ? gapPositionMap.bottomRight : "100%"
+        }
+      />
+      <Svg
+        name="box-border-left"
+        {...props}
+        $cover
+        $width={3}
+        $right={"unset"}
+      />
+    </Box>
   );
 };
 

@@ -1,22 +1,18 @@
 import styled from "styled-components";
 
-import flex from "../../styles/utils/flex";
-import responsive from "../../styles/utils/responsive";
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
-import Box, { BoxProps } from "../Box";
-import { FlexProps } from "../Flex";
+import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
+import { SpacingProps } from "../../styles/utils/spacing";
+import Flex, { FlexProps } from "../Flex";
 
-type ColSpans = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 12;
+type ColSpans = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 12;
 
 type GridAreaProps = {
   $colSpan: Array<ColSpans>;
   $rowSpan?: number;
-  $order?: Array<number>;
+  $order?: ResponsiveValues<number>;
 } & SpacingProps;
 
-const GridArea = styled(Box)<GridAreaProps & BoxProps & FlexProps>`
-  ${spacing}
-  ${flex}
+const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
   flex-direction: column;
   ${responsive(
     "grid-column",

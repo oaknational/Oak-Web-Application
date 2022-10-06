@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 import { PortableTextJSON } from "../../node-lib/cms";
@@ -7,6 +6,8 @@ import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
+import OakImage from "../OakImage/OakImage";
+import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 
 import Card from "./Card";
 
@@ -18,7 +19,7 @@ type ImageProps = {
 type SummaryCardProps = {
   title: string;
   heading: string;
-  summary: PortableTextJSON;
+  summary: PortableTextJSON | string;
   background?: OakColorName;
   imageProps?: ImageProps;
   imageContainerProps?: FlexProps;
@@ -60,16 +61,15 @@ const SummaryCard: FC<SummaryCardProps> = ({
         <Heading
           $mb={8}
           tag={"h1"}
-          $fontSize={[20, 24]}
+          $font={["heading-6", "heading-5"]}
           $color={"oakGrey4"}
-          $fontFamily="heading"
         >
           {title}
         </Heading>
-        <Heading $mb={16} $color={"black"} $fontSize={[24, 32, 32]} tag={"h2"}>
+        <Heading $mb={16} $font={["heading-5", "heading-4"]} tag={"h2"}>
           {heading}
         </Heading>
-        <Typography $color="black" $fontSize={[16, 18]}>
+        <Typography $font={["body-2", "body-1"]}>
           {typeof summary === "string" ? (
             <p>{summary}</p>
           ) : (
@@ -90,18 +90,19 @@ const SummaryCard: FC<SummaryCardProps> = ({
           {...imageContainerProps}
         >
           <Cover>
-            <Image
+            <OakImage
               aria-hidden={true}
-              layout="fill"
-              objectFit="contain"
-              objectPosition={"right"}
+              $objectFit="contain"
+              $objectPosition={"right"}
               alt={imageProps.alt}
               src={imageProps.src}
+              fill
               priority
             />
           </Cover>
         </Flex>
       )}
+      <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );
 };

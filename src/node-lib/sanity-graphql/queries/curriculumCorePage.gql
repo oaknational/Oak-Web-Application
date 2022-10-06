@@ -1,9 +1,8 @@
-query curriculumCorePage($isDraft: Boolean = false) {
+query curriculumCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allCurriculumCorePage(
-    where: {
-      _: { is_draft: $isDraft }
-      _id: { matches: "*curriculumCorePage" }
-    }
+    where: { _: $isDraftFilter, _id: { matches: "*curriculumCorePage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
   ) {
     id: _id
     title

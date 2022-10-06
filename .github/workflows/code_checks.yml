@@ -1,6 +1,7 @@
 name: Code checks
 
-on: push
+on:
+  push:
 
 jobs:
   lint_test_sonar:

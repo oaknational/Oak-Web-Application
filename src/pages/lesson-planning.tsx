@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps } from "next";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
+import config from "../config";
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
@@ -20,13 +20,13 @@ import Box from "../components/Box";
 import CardTitle from "../components/Card/CardComponents/CardTitle";
 import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
-import { getTeachersUrl } from "../common-lib/urls";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
+import OakImage from "../components/OakImage";
+import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
-  isPreviewMode: boolean;
 };
 
 const lessonElementIds = {
@@ -129,10 +129,15 @@ const SectionTitle: FC = (props) => {
       $mh="auto"
       $pt={[56, 80]}
       $pb={48}
-      $ph={12}
+      $ph={16}
       $mt={12}
     >
-      <Heading $fontSize={[20, 24]} $textAlign="center" tag="h2" {...props} />
+      <Heading
+        $font={["heading-6", "heading-5"]}
+        $textAlign="center"
+        tag="h2"
+        {...props}
+      />
     </Flex>
   );
 };
@@ -147,16 +152,9 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({
-  pageData,
-  isPreviewMode,
-}) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
-    <Layout
-      seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
-      isPreviewMode={isPreviewMode}
-    >
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -181,8 +179,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
               $pb={48}
               $ph={12}
             >
-              <Heading $fontSize={24} $textAlign="center" tag="h2">
-                Choose from our resources to support your planning
+              <Heading $font="heading-5" $textAlign="center" tag="h2">
+                Learn more about our different resources and how they can
+                support your planning
               </Heading>
             </Flex>
             <Flex
@@ -195,7 +194,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
               <LessonElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
-          <Grid $cg={16} $rg={[32]}>
+          <Grid $cg={[0, 40]} $rg={[56]}>
             {getLessonElementCards(pageData).map(
               ({ title, portableText, icon, id }) => (
                 <GridArea
@@ -203,6 +202,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   $colSpan={[12, 6]}
                 >
                   <LessonElementsCard $background={"twilight"}>
+                    <BrushBorders hideOnMobileH color={"twilight"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
@@ -212,10 +212,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                     >
                       <Icon size={80} name={icon} />
                     </Circle>
-                    <CardTitle fontSize={[24, 32]} tag="h3">
+                    <CardTitle $font={["heading-5", "heading-4"]} tag="h3">
                       {title}
                     </CardTitle>
-                    <Typography $fontSize={18} $lineHeight={"28px"}>
+                    <Typography $font="body-1">
                       <PortableText value={portableText} />
                     </Typography>
                   </LessonElementsCard>
@@ -235,16 +235,17 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 $pb={24}
                 $pa={0}
               >
+                <BrushBorders hideOnMobileH color={"pastelTurqoise"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
                   $top={48}
                   $bottom={[92, 92, 20]}
                 >
-                  <Image
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="center bottom"
+                  <OakImage
+                    fill
+                    $objectFit="contain"
+                    $objectPosition="center bottom"
                     alt=""
                     src={
                       "/images/illustrations/teacher-carrying-stuff-237-286.png"
@@ -255,7 +256,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                   icon="Search"
                   iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={getTeachersUrl()}
+                  href={"https://teachers.thenational.academy"}
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -299,12 +300,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                         $mb={24}
                         $mh={["auto", null]}
                       >
-                        <Image
+                        <OakImage
                           alt=""
-                          layout="fill"
-                          objectFit="contain"
-                          objectPosition="left bottom"
+                          $objectFit="contain"
+                          $objectPosition="left bottom"
                           src={imageSrc}
+                          fill
                         />
                       </Box>
 
@@ -312,12 +313,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                         <Heading
                           $mb={24}
                           tag={"h3"}
-                          $lineHeight={["40px", "32px"]}
-                          $fontSize={[24, 32]}
+                          $font={["heading-5", "heading-6"]}
                         >
                           {title}
                         </Heading>
-                        <Typography $fontSize={18} $lineHeight={"24px"}>
+                        <Typography $font={"body-1"}>
                           <PortableText value={portableText} />
                         </Typography>
                         {withSearchCTA && (
@@ -327,7 +327,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                               iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={getTeachersUrl()}
+                              href={"https://teachers.thenational.academy"}
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -353,9 +353,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
               $ph={[16, 24]}
               $flexDirection={["column", "column", "row"]}
             >
+              <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
               <Box $minWidth={["50%"]}>
                 <Box $display={["block", "block", "none"]}>
-                  <CardTitle fontSize={[24, 32, 32]} tag="h4">
+                  <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
@@ -376,11 +377,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 $minWidth={["50%"]}
               >
                 <Box $display={["none", "none", "block"]}>
-                  <CardTitle fontSize={32} tag="h4">
+                  <CardTitle $font={"heading-4"} tag="h4">
                     {pageData.learnMoreBlock1.title}
                   </CardTitle>
                 </Box>
-                <Typography $fontSize={[16, 18]} $lineHeight={["24px", "28px"]}>
+                <Typography $font={["body-2", "body-1"]}>
                   <PortableText
                     value={pageData.learnMoreBlock1.bodyPortableText}
                   />
@@ -396,16 +397,17 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
             $alignItems="center"
             $maxWidth={["100%", 812, "100%"]}
           >
+            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box
               $minWidth={"50%"}
               $pr={[null, null, 72]}
               $mb={[48, 48, 0]}
               $ph={[16, 0, 0]}
             >
-              <CardTitle fontSize={[24, 32]} tag={"h4"}>
+              <CardTitle $font={["heading-5", "heading-4"]} tag={"h4"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
-              <Typography $fontSize={[16, 18]} $lineHeight={["24px", "28px"]}>
+              <Typography $font={["body-2", "body-1"]}>
                 <PortableText
                   value={pageData.learnMoreBlock2.bodyPortableText}
                 />
@@ -429,10 +431,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 $top={16}
                 $bottom={[92, 92, 20]}
               >
-                <Image
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="center bottom"
+                <OakImage
+                  fill
+                  $objectFit="contain"
+                  $objectPosition="center bottom"
                   alt=""
                   src={
                     "/images/illustrations/teacher-carrying-stuff-237-286.png"
@@ -444,7 +446,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({
                 icon="Search"
                 iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={getTeachersUrl()}
+                href={"https://teachers.thenational.academy"}
                 htmlAnchorProps={{
                   target: "_blank",
                 }}
@@ -475,9 +477,8 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   return {
     props: {
       pageData: planningPage,
-      isPreviewMode,
     },
-    revalidate: 10,
+    revalidate: config.get("sanityRevalidateSeconds"),
   };
 };
 

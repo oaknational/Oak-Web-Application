@@ -7,7 +7,6 @@ import Circle from "../Circle";
 import { OakColorName } from "../../styles/theme";
 import Typography from "../Typography";
 import CardLink from "../Card/CardLink";
-import { headingDefaults } from "../Typography/Heading";
 import { zIndexMap } from "../../styles/utils/zIndex";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
@@ -42,10 +41,9 @@ const AnchorLink = styled(CardLink)`
 `;
 const LinkText: FC = (props) => (
   <Typography
-    {...headingDefaults}
     $position="absolute"
     $top={"100%"}
-    $fontSize={16}
+    $font={"heading-7"}
     $textAlign="center"
     $mt={16}
     {...props}
@@ -92,7 +90,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer>
           <GraphicCircle icon="Quiz" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.introQuiz}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.introQuiz}`}>
               Intro quiz
             </AnchorLink>
           </LinkText>
@@ -109,7 +107,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
             </OverlapBehind>
           </Flex>
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.video}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
               Lesson slides or video
             </AnchorLink>
           </LinkText>
@@ -122,7 +120,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer>
           <GraphicCircle icon="Worksheet" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.worksheet}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.worksheet}`}>
               Worksheet
             </AnchorLink>
           </LinkText>
@@ -131,7 +129,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer $mr={0}>
           <GraphicCircle icon="Quiz" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.exitQuiz}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.exitQuiz}`}>
               Exit quiz
             </AnchorLink>
           </LinkText>
