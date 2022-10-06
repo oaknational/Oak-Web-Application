@@ -53,12 +53,7 @@ const Menu: FC = ({ children }) => {
   }, [pathname, closeMenu]);
 
   return (
-    <Transition
-      nodeRef={ref}
-      timeout={transitionDuration}
-      in={open}
-      unmountOnExit
-    >
+    <Transition nodeRef={ref} timeout={transitionDuration} in={open}>
       {(state) => (
         <Box $position="absolute" ref={ref}>
           <MenuBackdrop state={state} />
