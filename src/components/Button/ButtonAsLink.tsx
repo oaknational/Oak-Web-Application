@@ -59,7 +59,6 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         disabled={disabled}
         // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
         aria-disabled={disabled}
-        role="link"
         {...styleProps}
       >
         <ButtonInner

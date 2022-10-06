@@ -6,7 +6,6 @@ import config from "../../config";
 import CMSClient, { AboutWhoWeArePage, TextBlock } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import SummaryCard from "../../components/Card/SummaryCard";
 import Flex, { FlexProps } from "../../components/Flex";
 import Card from "../../components/Card";
 import Box from "../../components/Box";
@@ -15,12 +14,11 @@ import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import OutlineHeading from "../../components/OutlineHeading";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
-import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
-import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -71,26 +69,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/oak-logo.svg",
-            alt: "who we are illustration",
-          }}
-          imageContainerProps={{
-            $minHeight: 220,
-            $mr: 32,
-          }}
-        >
-          <ButtonLinkNav
-            $mt={36}
-            buttons={reducedAboutNavLinks}
-            selected={"Who we are"}
-            ariaLabel="about us"
-          />
-        </SummaryCard>
+        <AboutUsSummaryCard {...pageData} />
         <Flex $mt={92} $mb={[80, 92]} $background="twilight">
           <Card
             $pv={32}

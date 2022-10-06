@@ -1,3 +1,14 @@
+## [1.32.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.3...v1.32.4) (2022-10-06)
+
+## [1.32.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.2...v1.32.3) (2022-10-05)
+
+## [1.32.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.1...v1.32.2) (2022-10-05)
+
+
+### Bug Fixes
+
+* hack fix for blog post quote style ([f8af6ca](https://github.com/oaknational/Oak-Web-Application/commit/f8af6ca3084c644f9df31f14509ef8200d6a11ce))
+
 ## [1.32.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.0...v1.32.1) (2022-10-04)
 
 

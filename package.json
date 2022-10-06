@@ -159,6 +159,7 @@
     "puppeteer": "^17.1.2",
     "semantic-release": "^19.0.5",
     "start-server-and-test": "^1.14.0",
+    "storybook-addon-next-router": "^4.0.0",
     "storybook-addon-themes": "^6.1.0",
     "storybook-css-modules-preset": "^1.1.1",
     "stylelint": "^14.11.0",
