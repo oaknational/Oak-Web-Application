@@ -14,14 +14,13 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
 import Toast from "../Toast";
 import { Span } from "../Typography";
+import { HeaderProps } from "../Layout/Layout";
 import Breadcrumbs from "../Breadcrumbs";
-import { useBreadcrumbContext } from "../../context/Breadcrumb";
 
-const SiteHeader: FC = () => {
+const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
   const { toggleMenu } = useMenuContext();
   const { track } = useAnalytics();
-  const { breadcrumbs } = useBreadcrumbContext();
 
   return (
     <FixedHeader $background={theme.header.background}>
@@ -36,7 +35,7 @@ const SiteHeader: FC = () => {
         $display={["none", "flex"]}
         $minWidth={0}
       >
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
+        {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
       </Flex>
       <Flex
         $alignItems={"center"}

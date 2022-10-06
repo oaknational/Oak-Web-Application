@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import {
   MissingComponentHandler,
@@ -40,8 +40,6 @@ import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
-import { Breadcrumb } from "../../components/Breadcrumbs";
-import { useBreadcrumbContext } from "../../context/Breadcrumb";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
@@ -231,22 +229,22 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
-  const { updateBreadcrumbs } = useBreadcrumbContext();
 
-  useEffect(() => {
-    const categorySlug = blog.category.slug;
-    const catCrumb: Breadcrumb = {
+  const categorySlug = blog.category.slug;
+
+  const crumbs = [
+    { label: "Blog", href: "/blog" },
+    {
       label:
         categories.find((cat) => cat.slug === categorySlug)?.title || "All",
       href: `/blog/categories/${categorySlug}`,
-    };
-    const postCrumb: Breadcrumb = {
+    },
+    {
       label: blog.title,
       href: blog.slug,
       disabled: true,
-    };
-    updateBreadcrumbs([{ label: "Blog", href: "/blog" }, catCrumb, postCrumb]);
-  }, [categories, blog, updateBreadcrumbs]);
+    },
+  ];
 
   const blogCategoriesListProps = useBlogCategoryList();
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
@@ -280,6 +278,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
+      breadcrumbs={crumbs}
     >
       <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>

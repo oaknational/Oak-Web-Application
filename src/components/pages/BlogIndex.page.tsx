@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useTheme } from "styled-components";
@@ -21,8 +20,6 @@ import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import { Heading } from "../Typography";
-import { useBreadcrumbContext } from "../../context/Breadcrumb";
-import { Breadcrumb } from "../Breadcrumbs/Breadcrumbs";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -36,7 +33,6 @@ export type BlogListingPageProps = {
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const { blogs, categories, categorySlug } = props;
-  const { updateBreadcrumbs } = useBreadcrumbContext();
   const blogCategoriesListProps = useBlogCategoryList();
 
   const cardImage = {
@@ -44,15 +40,15 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
     alt: "",
   };
 
-  useEffect(() => {
-    const catCrumb: Breadcrumb = {
+  const crumbs = [
+    { label: "Blog", href: "/blog" },
+    {
       label:
         categories.find((cat) => cat.slug === categorySlug)?.title || "All",
       href: categorySlug || "/blog",
       disabled: true,
-    };
-    updateBreadcrumbs([{ label: "Blog", href: "/blog" }, catCrumb]);
-  }, [categories, categorySlug, updateBreadcrumbs]);
+    },
+  ];
 
   const blogListItems = blogs.map(blogToBlogListItem);
   const theme = useTheme();
@@ -66,6 +62,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
       })}
       $background="white"
+      breadcrumbs={crumbs}
     >
       <MobileBlogFilters
         categoryListProps={{
