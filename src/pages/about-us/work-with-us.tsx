@@ -44,7 +44,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $pv={[32, 24]} $background={"videoBlue"}>
                   <Heading
                     $font={["heading-6", "heading-5"]}
                     tag={"h3"}
@@ -62,6 +62,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                         label={card.cta.label}
                         href={card.cta.external}
                         icon={"External"}
+                        iconPosition={"trailing"}
                       >
                         {card.cta.label}
                       </ButtonAsLink>
