@@ -1,20 +1,20 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Breadcrumbs from "./Breadcrumbs";
+import Component from "./Breadcrumbs";
 
 export default {
   title: "Navigation/Breadcrumbs",
-  component: Breadcrumbs,
+  component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Breadcrumbs>;
+} as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof Breadcrumbs> = (args) => (
-  <Breadcrumbs {...args} />
+const Template: ComponentStory<typeof Component> = (args) => (
+  <Component {...args} />
 );
 
-export const BreadcrumbExample = Template.bind({});
-BreadcrumbExample.args = {
+export const Breadcrumbs = Template.bind({});
+Breadcrumbs.args = {
   breadcrumbs: [
     { href: "/", label: "Unit Quiz" },
     { href: "/", label: "View In Classroom" },

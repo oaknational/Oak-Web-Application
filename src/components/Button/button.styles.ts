@@ -2,6 +2,7 @@ import { css } from "styled-components";
 
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
+import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
 import { BackgroundIcon } from "../Icon/Icon";
 
@@ -29,15 +30,16 @@ import {
 } from "./common";
 import { iconFocusUnderline } from "./IconFocusUnderline";
 
-export type ButtonStylesProps = MarginProps & {
-  size: ButtonSize;
-  iconPosition: IconPosition;
-  variant: ButtonVariant;
-  background: ButtonBackground;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  focusStyles?: [];
-};
+export type ButtonStylesProps = OpacityProps &
+  MarginProps & {
+    size: ButtonSize;
+    iconPosition: IconPosition;
+    variant: ButtonVariant;
+    background: ButtonBackground;
+    fullWidth?: boolean;
+    disabled?: boolean;
+    focusStyles?: [];
+  };
 export const getButtonStylesProps = (
   props: CommonButtonProps
 ): ButtonStylesProps => {
@@ -58,6 +60,7 @@ const buttonStyles = css<ButtonStylesProps>`
   align-items: center;
   max-width: 100%;
   position: relative;
+  ${opacity}
   ${(props) => css`
     width: ${props.fullWidth && "100%"};
     flex-direction: ${getButtonFlexDirection(props.iconPosition)};
