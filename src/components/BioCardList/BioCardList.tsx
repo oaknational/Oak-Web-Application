@@ -8,13 +8,11 @@ type BioCardListProps = GridProps & {
   people: BioCardListItemProps[];
 };
 const BioCardList: FC<BioCardListProps> = (props) => {
-  console.log(props);
-
   const { people, ...gridProps } = props;
   return (
     <Grid $cg={16} $rg={32} $gridAutoRows="1fr" {...gridProps}>
       {people.map((person) => (
-        <GridArea $colSpan={[12, 4, 3]}>
+        <GridArea $colSpan={[12, 4, 3]} key={`${person.name}`}>
           <BioCardListItem {...person} />
         </GridArea>
       ))}

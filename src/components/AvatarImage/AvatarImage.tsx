@@ -27,7 +27,7 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
       $position={"relative"}
       {...flexProps}
     >
-      {image && fetchImageSize && (
+      {image && fetchImageSize ? (
         <CMSImage
           image={image}
           $objectFit={"cover"}
@@ -40,7 +40,7 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
               .crop("center")
           }
         />
-      )}
+      ) : null}
     </Circle>
   );
 };
