@@ -14,6 +14,7 @@ type IconButtonWrapperProps = {
   background: ButtonBackground;
 };
 const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
