@@ -186,6 +186,9 @@ module.exports = async (phase) => {
         process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
         oakConfig.hubspot.scriptDomain,
 
+      // SEO override
+      NEXT_PUBLIC_DISABLE_SEO: process.env.NEXT_PUBLIC_DISABLE_SEO,
+
       // Oak
       // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
       NEXT_PUBLIC_CLIENT_APP_BASE_URL:

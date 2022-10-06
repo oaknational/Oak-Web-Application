@@ -1,13 +1,13 @@
 import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
-type EnvValue = string | number;
+type EnvValue = string | number | boolean;
 
 type EnvVar = {
   value: EnvValue | undefined;
   required: boolean;
   availableInBrowser: boolean;
-  default: string | null;
+  default: string | boolean | null;
   // useful for messaging in case if missing vars
   envName: string;
   description?: string;
@@ -365,6 +365,16 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "Logs accessibility concerns to the console. Should be disabled in production",
   },
+  disableSeo: {
+    value: process.env.NEXT_PUBLIC_DISABLE_SEO === "on",
+    envName: "NEXT_PUBLIC_DISABLE_SEO",
+    required: false,
+    availableInBrowser: true,
+    allowedValues: [true, false],
+    default: false,
+    description:
+      "Switch to disable SEO per environment, env value of 'on' sets config value to 'true'",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
@@ -416,7 +426,7 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
     return parsedValue;
   }
 
-  if (defaultValue) {
+  if (defaultValue !== null && defaultValue !== undefined) {
     return defaultValue;
   }
 

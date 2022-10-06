@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 
 import config from "../../config";
 
+// Default value of false.
+const disableSeo = config.get("disableSeo");
+
 export const DEFAULT_SEO_PROPS = {
   title: config.get("appName"),
   description: config.get("appDescription"),
@@ -58,8 +61,8 @@ const Seo: FC<SeoProps> = ({
         site: config.get("appTwitterHandle"),
         cardType: "summary_large_image",
       }}
-      noindex={noIndex}
-      nofollow={noFollow}
+      noindex={disableSeo ? true : noIndex}
+      nofollow={disableSeo ? true : noFollow}
     />
   );
 };

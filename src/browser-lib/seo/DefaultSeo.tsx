@@ -3,9 +3,14 @@ import { DefaultSeo as NextDefaultSeo } from "next-seo";
 
 import config from "../../config";
 
+// Default value of false.
+const disableSeo = config.get("disableSeo");
+
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
+      dangerouslySetAllPagesToNoFollow={disableSeo}
+      dangerouslySetAllPagesToNoIndex={disableSeo}
       title={config.get("appName")}
       description={config.get("appDescription")}
       openGraph={{

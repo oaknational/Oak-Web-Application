@@ -8,19 +8,33 @@ if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
   );
 }
 
+// Switch to disable SEO per environment.
+const disableSeo = process.env.NEXT_PUBLIC_DISABLE_SEO;
+if (disableSeo) {
+  console.warning(
+    "SEO disabled in this environment, creating restrictive robots.txt"
+  );
+}
+
+const basePolicy = disableSeo
+  ? {
+      userAgent: "*",
+      // Disallow all paths.
+      disallow: ["/"],
+    }
+  : {
+      userAgent: "*",
+      // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
+      allow: ["/"],
+    };
+
 // https://github.com/iamvishnusankar/next-sitemap#readme
 module.exports = {
   siteUrl: sitemapBaseUrl,
   // Generate a robots.txt that instructs no crawling (individual pages also have no index set).
   generateRobotsTxt: true,
   robotsTxtOptions: {
-    policies: [
-      {
-        userAgent: "*",
-        // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
-        allow: ["/"],
-      },
-    ],
+    policies: [basePolicy],
   },
   exclude: [
     // Don't add beta pages to the sitemap for now.
