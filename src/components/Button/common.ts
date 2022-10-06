@@ -8,6 +8,7 @@ import { OakColorName } from "../../styles/theme";
 import { PixelSpacing, PropsWithTheme } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import getTextColorForBackground from "../../styles/themeHelpers/getTextColorForBackground";
+import { OpacityProps } from "../../styles/utils/opacity";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
@@ -94,19 +95,20 @@ export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "brush";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
-export type CommonButtonProps = MarginProps & {
-  id?: string;
-  label: string;
-  variant?: ButtonVariant;
-  background?: ButtonBackground;
-  icon?: IconName;
-  iconPosition?: IconPosition;
-  iconBackground?: OakColorName;
-  size?: ButtonSize;
-  "aria-label"?: string;
-  fullWidth?: boolean;
-  focusStyles?: [];
-};
+export type CommonButtonProps = OpacityProps &
+  MarginProps & {
+    id?: string;
+    label: string;
+    variant?: ButtonVariant;
+    background?: ButtonBackground;
+    icon?: IconName;
+    iconPosition?: IconPosition;
+    iconBackground?: OakColorName;
+    size?: ButtonSize;
+    "aria-label"?: string;
+    fullWidth?: boolean;
+    focusStyles?: [];
+  };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,
   iconPosition: DEFAULT_ICON_POSITION,

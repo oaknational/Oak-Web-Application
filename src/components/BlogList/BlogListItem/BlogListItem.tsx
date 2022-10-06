@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useHover } from "react-aria";
 
 import { BlogWebinarCategory, Image } from "../../../node-lib/cms";
 import AspectRatio from "../../AspectRatio";
@@ -9,7 +10,7 @@ import Flex from "../../Flex";
 import LineClamp from "../../LineClamp";
 import OakLink from "../../OakLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { P, Heading, HeadingTag, Span } from "../../Typography";
+import { P, Heading, HeadingTag } from "../../Typography";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -43,8 +44,13 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     mainImage,
   } = props;
 
-  const { containerProps, primaryTargetProps } =
-    useClickableCard<HTMLAnchorElement>();
+  const {
+    containerProps,
+    primaryTargetProps,
+    isHovered: cardIsHovered,
+  } = useClickableCard<HTMLAnchorElement>();
+  const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
+    useHover({});
 
   const blogDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -93,10 +99,15 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $justifyContent="space-between"
           $flexDirection={["column", "row"]}
         >
-          <OakLink page="blog-index" category={category.slug}>
-            <Span $font="heading-7" $color="hyperlink">
-              {category.title}
-            </Span>
+          <OakLink
+            {...categoryHoverProps}
+            page="blog-index"
+            category={category.slug}
+            focusStyles={["underline"]}
+            $font="heading-7"
+            $color="hyperlink"
+          >
+            {category.title}
           </OakLink>
           <P $font={"body-3"} $mt={[8, 0]}>
             {blogDate}
@@ -108,6 +119,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
             page={null}
             href={href}
             htmlAnchorProps={{ title }}
+            focusStyles={["underline"]}
+            isHovered={cardIsHovered && !categoryIsHovered}
           >
             {title}
           </OakLink>
