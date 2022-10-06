@@ -26,7 +26,7 @@ export const reducedAboutNavLinks = [
 
   { label: "Board", href: "/about-us/board" },
   {
-    label: "work with us",
+    label: "Work with us",
     href: "/about-us/work-with-us",
   },
 ];

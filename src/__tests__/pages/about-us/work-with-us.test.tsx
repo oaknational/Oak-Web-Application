@@ -124,7 +124,7 @@ describe("pages/about-us/work-with-us.tsx", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "about us"
+        "About us"
       );
     });
   });

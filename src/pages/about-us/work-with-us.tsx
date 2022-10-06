@@ -21,6 +21,7 @@ import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
+import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
@@ -62,17 +63,23 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <SummaryCard
-          title={"about us"}
+          title={pageData.title}
           heading={pageData.heading}
-          summary={
-            "We’re here to support great teaching. We’re an independent public body. We work in partnership to improve pupil outcomes and close the disadvantage gap by supporting teachers to teach, and enabling pupils to access a high-quality curriculum."
-          }
+          summary={pageData.summaryPortableText}
+          imageProps={{
+            src: "/images/oak-logo.svg",
+            alt: "who we are illustration",
+          }}
+          imageContainerProps={{
+            $minHeight: 220,
+            $mr: 32,
+          }}
           background={"teachersPastelYellow"}
         >
           <ButtonLinkNav
             $mt={36}
             buttons={reducedAboutNavLinks}
-            selected={"work with us"}
+            selected={"Work with us"}
             ariaLabel={"work with us"}
           />
         </SummaryCard>
@@ -110,6 +117,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       </ButtonAsLink>
                     </Flex>
                   )}
+                  <BrushBorders hideOnMobileH color={"videoBlue"} />
                 </Card>
               </GridArea>
             </Fragment>
