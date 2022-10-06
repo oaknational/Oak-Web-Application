@@ -3,18 +3,12 @@ import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
 import config from "../../config";
-import CMSClient, {
-  AboutWorkWithUsPage,
-  Card as CardType,
-} from "../../node-lib/cms";
+import CMSClient, { AboutWorkWithUsPage } from "../../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import SummaryCard from "../../components/Card/SummaryCard";
-import ButtonLinkNav from "../../components/ButtonLinkNav/ButtonLinkNav";
 import Card from "../../components/Card";
 import AboutContactCard from "../../components/AboutContactCard";
-import { reducedAboutNavLinks } from "../../browser-lib/fixtures/aboutNav";
 import { Heading } from "../../components/Typography";
 import Typography from "../../components/Typography/Typography";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
@@ -22,67 +16,23 @@ import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
 };
 
 const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
-  const workWithUsCards: CardType[] = [
-    {
-      title: aboutPage.cards.advisory.title,
-      image: aboutPage.cards.advisory.image,
-      bodyPortableText: aboutPage.cards.advisory.bodyPortableText,
-      cta: aboutPage.cards.advisory.cta,
-    },
-    {
-      title: aboutPage.cards.curriculumPartner.title,
-      image: aboutPage.cards.curriculumPartner.image,
-      bodyPortableText: aboutPage.cards.curriculumPartner.bodyPortableText,
-      cta: aboutPage.cards.curriculumPartner.cta,
-    },
-    {
-      title: aboutPage.cards.joinTheTeam.title,
-      image: aboutPage.cards.joinTheTeam.image,
-      bodyPortableText: aboutPage.cards.joinTheTeam.bodyPortableText,
-      cta: aboutPage.cards.joinTheTeam.cta,
-    },
-    {
-      title: aboutPage.cards.teacherResearch.title,
-      image: aboutPage.cards.teacherResearch.image,
-      bodyPortableText: aboutPage.cards.teacherResearch.bodyPortableText,
-      cta: aboutPage.cards.teacherResearch.cta,
-    },
-  ];
-
-  return workWithUsCards;
+  const { advisory, curriculumPartner, joinTheTeam, teacherResearch } =
+    aboutPage.cards;
+  return [advisory, curriculumPartner, joinTheTeam, teacherResearch];
 };
 
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/oak-logo.svg",
-            alt: "who we are illustration",
-          }}
-          imageContainerProps={{
-            $minHeight: 220,
-            $mr: 32,
-          }}
-          background={"teachersPastelYellow"}
-        >
-          <ButtonLinkNav
-            $mt={36}
-            buttons={reducedAboutNavLinks}
-            selected={"Work with us"}
-            ariaLabel={"work with us"}
-          />
-        </SummaryCard>
+        <AboutUsSummaryCard {...pageData} />
         <AboutIntroCard
           image={{
             imageSrc: "/images/illustrations/work-with-us-500.png",
