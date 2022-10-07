@@ -41,6 +41,7 @@ import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
+import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -264,6 +265,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
+      breadcrumbs={getBlogPostBreadcrumbs(categories, blog)}
     >
       <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>
