@@ -41,6 +41,7 @@ import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import Circle from "../../components/Circle";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
+import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -232,22 +233,6 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
 
-  const categorySlug = blog.category.slug;
-
-  const crumbs = [
-    { label: "Blog", href: "/blog" },
-    {
-      label:
-        categories.find((cat) => cat.slug === categorySlug)?.title || "All",
-      href: `/blog/categories/${categorySlug}`,
-    },
-    {
-      label: blog.title,
-      href: blog.slug,
-      disabled: true,
-    },
-  ];
-
   const blogCategoriesListProps = useBlogCategoryList();
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -280,7 +265,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      breadcrumbs={crumbs}
+      breadcrumbs={getBlogPostBreadcrumbs(categories, blog)}
     >
       <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>

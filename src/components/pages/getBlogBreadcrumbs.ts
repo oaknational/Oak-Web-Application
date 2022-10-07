@@ -1,4 +1,5 @@
 import { BlogWebinarCategory } from "../../node-lib/cms";
+import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { Breadcrumb } from "../Breadcrumbs";
 
 /*
@@ -21,3 +22,23 @@ export const getBlogBreadcrumbs = (
     disabled: true,
   },
 ];
+
+export const getBlogPostBreadcrumbs = (
+  categories: BlogWebinarCategory[],
+  blog: SerializedBlog
+): Breadcrumb[] => {
+  const { title, slug, category } = blog;
+  return [
+    { label: "Blog", href: "/blog" },
+    {
+      label:
+        categories.find((cat) => cat.slug === category.slug)?.title || "All",
+      href: `/blog/categories/${category.slug}`,
+    },
+    {
+      label: title,
+      href: slug,
+      disabled: true,
+    },
+  ];
+};
