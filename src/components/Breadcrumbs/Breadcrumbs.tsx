@@ -55,6 +55,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     name="ChevronRight"
                     size={20}
                     $color={"teachersHighlight"}
+                    $mh={12}
                   />
                 )}
                 <BreadcrumbConstrainer>
