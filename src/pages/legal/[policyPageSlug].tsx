@@ -125,6 +125,8 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  console.log("[policyPageSlug] gsp", { isPreviewMode, time: Date.now() })
+
   const policyPageSlug = context?.params?.policyPageSlug as string;
   const policyResult = await CMSClient.policyPageBySlug(policyPageSlug, {
     previewMode: isPreviewMode,

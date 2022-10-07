@@ -48,6 +48,8 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  console.log("[landingPageSlug] gsp", { isPreviewMode, time: Date.now() })
+
   const landingPageSlug = context?.params?.landingPageSlug as string;
   const landingPageResult = await CMSClient.landingPageBySlug(landingPageSlug, {
     previewMode: isPreviewMode,
