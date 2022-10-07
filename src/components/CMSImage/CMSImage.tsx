@@ -7,7 +7,7 @@ import Box from "../Box";
 import { Image } from "../../node-lib/cms";
 import OakImage, { OakImageProps } from "../OakImage";
 
-type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
+export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
   image: Image;
   alt?: string;
 };
