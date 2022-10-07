@@ -13,12 +13,14 @@ import { Breadcrumb } from "../Breadcrumbs";
 
 export const getBlogBreadcrumbs = (
   categories: BlogWebinarCategory[],
-  categorySlug: string | null
+  currentCategorySlug: string | null
 ): Breadcrumb[] => [
   { label: "Blog", href: "/blog" },
   {
-    label: categories.find((cat) => cat.slug === categorySlug)?.title || "All",
-    href: categorySlug || "/blog",
+    label:
+      categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
+      "All",
+    href: currentCategorySlug || "/blog",
     disabled: true,
   },
 ];
