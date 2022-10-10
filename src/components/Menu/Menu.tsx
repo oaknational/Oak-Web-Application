@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
-import { FocusScope } from "react-aria";
+import { FocusScope, useKeyboard } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
 
@@ -52,6 +52,14 @@ const Menu: FC = ({ children }) => {
     closeMenu();
   }, [pathname, closeMenu]);
 
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    },
+  });
+
   return (
     <Transition nodeRef={ref} timeout={transitionDuration} in={open}>
       {(state) => (
@@ -69,6 +77,7 @@ const Menu: FC = ({ children }) => {
               $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
+              {...keyboardProps}
             >
               <Svg
                 name="LoopingLine"

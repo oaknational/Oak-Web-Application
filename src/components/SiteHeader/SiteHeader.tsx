@@ -45,6 +45,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
       >
         <OakLink
           page="pupils-home"
+          data-testid="SiteHeaderClassroomLink"
           htmlAnchorProps={{
             onClick: () => track.classroomSelected({ navigatedFrom: "header" }),
           }}

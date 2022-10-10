@@ -12,9 +12,9 @@ describe("components/SiteHeader", () => {
   });
 
   test("it should contain a link to classroom", () => {
-    const { getByText } = renderWithProviders(<SiteHeader />);
+    const { getByTestId } = renderWithProviders(<SiteHeader />);
 
-    expect(getByText("Classroom").closest("a")).toHaveAttribute(
+    expect(getByTestId("SiteHeaderClassroomLink").closest("a")).toHaveAttribute(
       "href",
       "https://classroom.thenational.academy"
     );
