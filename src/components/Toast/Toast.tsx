@@ -3,12 +3,12 @@ import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
 import { useToastContext, SHOW_DURATION } from "../../context/Toast";
-import IconButtonInner from "../Button/IconButtonInner";
 import Card from "../Card";
 import Flex from "../Flex";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import Typography from "../Typography";
 import theme from "../../styles/theme";
+import Icon from "../Icon";
 
 const TRANSITION_DURATION = 500;
 
@@ -73,11 +73,12 @@ const Toast: FC = () => {
         >
           <BrushBorders color="teachersPastelYellow" />
           <Flex $alignItems={"center"}>
-            <IconButtonInner
-              icon={"Tick"}
-              size={"small"}
+            <Icon
+              name="Tick"
+              size={32}
               variant={"brush"}
-              background={"white"}
+              $background={"teachersHighlight"}
+              $color={"white"}
             />
             <Typography $color={"black"} $font={"heading-7"} $ml={16}>
               {message}
