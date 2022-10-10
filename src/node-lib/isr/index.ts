@@ -3,9 +3,13 @@ import { GetStaticPropsResult } from "next";
 import config from "../../config";
 
 const disableIsr = config.get("disableIsr");
+if (disableIsr) {
+  console.info("ISR disabled in env");
+}
 
 /**
- * Conditionally add incremental static regeneration config to the getStaticProps result.
+ * Default add incremental static regeneration config to the getStaticProps result.
+ * Can be disabled by setting the env `DISABLE_ISR="on"`.
  *
  * Modifies the original object, lazy but simple.
  *
@@ -17,10 +21,6 @@ function decorateWithIsr<P>(
 ): GetStaticPropsResult<P> {
   if (!disableIsr) {
     const revalidateTimeInSeconds = config.get("sanityRevalidateSeconds");
-
-    // DEBUG
-    console.log("revalidateTimeInSeconds", revalidateTimeInSeconds);
-
     results.revalidate = revalidateTimeInSeconds;
   }
 
