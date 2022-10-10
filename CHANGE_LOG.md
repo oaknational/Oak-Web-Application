@@ -1,3 +1,11 @@
+## [1.34.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.1...v1.34.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* style icon correctly ([fc6a1f5](https://github.com/oaknational/Oak-Web-Application/commit/fc6a1f557204ad665a5c2059c873f0035d3d26b5))
+* use icon and not icon button inner in toast ([9124cda](https://github.com/oaknational/Oak-Web-Application/commit/9124cda648a6bf985018c6bf89261264bc80ada2))
+
 # [1.34.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.33.0...v1.34.0) (2022-10-07)
 
 
