@@ -2,6 +2,8 @@ import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
+// Config values can be the result of a logic test on an env value,
+// e.g. `process.env.MY_ENV_SWITCH === "on"`
 type ConfigValue = EnvValue | boolean;
 type DefaultValue = string | number | boolean | null;
 
