@@ -26,11 +26,7 @@ module.exports = {
   },
   discovery: {
     networkIdleTimeout: 750,
-    allowedHostnames: [
-      "fonts.googleapis.com",
-      "fonts.gstatic.com",
-      "sanity-asset-cdn.thenational.academy",
-    ],
+    allowedHostnames: [],
     userAgent: "Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
