@@ -75,10 +75,10 @@ const Toast: FC = () => {
           <Flex $alignItems={"center"}>
             <Icon
               name="Tick"
-              size={32}
+              size={36}
               variant={"brush"}
-              $background={"teachersHighlight"}
-              $color={"white"}
+              $background={"white"}
+              $color={"pupilsHighlight"}
             />
             <Typography $color={"black"} $font={"heading-7"} $ml={16}>
               {message}
