@@ -26,6 +26,7 @@ module.exports = function githubDeploymentPlugin() {
       // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const originalDeploymentUrl = process.env.DEPLOY_PRIME_URL;
+      const defaultProductionUrl = process.env.URL;
       const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
       const repoUrlString = process.env.REPOSITORY_URL;
@@ -36,14 +37,32 @@ module.exports = function githubDeploymentPlugin() {
       // An optional string to distinguish this deployment environment.
       const deploymentIdentifier = process.env.DEPLOYMENT_IDENTIFIER;
 
+      // Get the environment type from the build context,
+      // override naming of preview deployments.
+      const isProduction = buildContext === DEPLOY_CONTEXTS.production;
+      let environmentType = buildContext;
+      if (environmentType === DEPLOY_CONTEXTS.deployPreview) {
+        environmentType = "deploy-preview";
+      }
+
       // Modify the deployment URL so that CI tools using it can go straight
-      // to the canonical URL without hitting the edge function redirect.
+      // to the URL on our TLD without hitting the edge function redirect.
       // It's a bit fragile, but otherwise access token headers can get lost
       // in the redirect.
-      const deploymentUrl = originalDeploymentUrl.replace(
-        "netlify.app",
-        "netlify.thenational.academy"
-      );
+      let deploymentUrl;
+      if (isProduction) {
+        // If it's production, use the default website URL as the URL.
+        deploymentUrl = defaultProductionUrl;
+      } else {
+        // Else use the branch or preview URL.
+        deploymentUrl = originalDeploymentUrl.replace(
+          "netlify.app",
+          "netlify.thenational.academy"
+        );
+      }
+      if (!deploymentUrl) {
+        throw new Error("Could not determine deployment URL for this build.");
+      }
 
       // For now use a personal access token, but really this should be done with a GitHub App.
       // This is the only user input, but it needs to be secure.
@@ -78,13 +97,6 @@ module.exports = function githubDeploymentPlugin() {
       // Get PR number (only used in creating comments).
       // const prNumber = prMergeHead.split("/")[1];
 
-      // Get the environment type from the build context,
-      // override naming of preview deployments.
-      const isProduction = buildContext === DEPLOY_CONTEXTS.production;
-      let environmentType = buildContext;
-      if (environmentType === DEPLOY_CONTEXTS.deployPreview) {
-        environmentType = "deploy-preview";
-      }
       // Add the branch to non-production environments to enable the
       // transient_environment property to correctly distinguish
       // transient preview and branch deployments.
@@ -104,7 +116,7 @@ module.exports = function githubDeploymentPlugin() {
         repo,
         branchName: headBranchRef,
         // Pass the branch as the ref,
-        // assume we will always reference branch/pr rather than commit deployments.
+        // assume we will always reference branch or preview deployments rather than commit deployments.
         ref: headBranchRef,
         environment,
         description: deploymentDescription,
