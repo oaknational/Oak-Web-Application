@@ -21,6 +21,8 @@ import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import { Heading } from "../Typography";
 
+import { getBlogBreadcrumbs } from "./getBlogBreadcrumbs";
+
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
 };
@@ -52,6 +54,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
       })}
       $background="white"
+      breadcrumbs={getBlogBreadcrumbs(categories, categorySlug)}
     >
       <MobileBlogFilters
         categoryListProps={{
@@ -142,7 +145,6 @@ export const getStaticProps: GetStaticProps<
   ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
   const categorySlug = context.params?.categorySlug || null;
-
   const blogs = blogResults.map(serializeDate).filter((blog) => {
     if (categorySlug) {
       return blog.category.slug === categorySlug;

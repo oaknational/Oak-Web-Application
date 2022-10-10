@@ -14,8 +14,10 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
 import Toast from "../Toast";
 import { Span } from "../Typography";
+import { HeaderProps } from "../Layout/Layout";
+import Breadcrumbs from "../Breadcrumbs";
 
-const SiteHeader: FC = () => {
+const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
   const { toggleMenu } = useMenuContext();
   const { track } = useAnalytics();
@@ -27,6 +29,14 @@ const SiteHeader: FC = () => {
           <Logo title={"Oak National Academy"} height={48} width={104} />
         </a>
       </Link>
+      <Flex
+        $ml={[0, 20, 48]}
+        $mr={20}
+        $display={["none", "flex"]}
+        $minWidth={0}
+      >
+        {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+      </Flex>
       <Flex
         $alignItems={"center"}
         $display={["none", "flex"]}
@@ -41,7 +51,7 @@ const SiteHeader: FC = () => {
         >
           Classroom
         </OakLink>
-        <Span $ml={24} $mr={32}>
+        <Span $ml={24} $mr={32} $whiteSpace={"nowrap"}>
           <OakLink
             page="teachers-home"
             htmlAnchorProps={{
