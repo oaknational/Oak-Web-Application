@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
-import config from "../config";
 import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import { decorateWithIsr } from "../node-lib/isr";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
@@ -403,13 +403,14 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     .slice(0, 4)
     .map(serializeDate);
 
-  return {
+  const results: GetStaticPropsResult<HomePageProps> = {
     props: {
       pageData: homepageData,
       posts,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default Home;

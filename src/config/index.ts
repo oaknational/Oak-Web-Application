@@ -2,19 +2,20 @@ import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
+type ConfigValue = EnvValue | boolean;
 
 type EnvVar = {
-  value: EnvValue | undefined;
+  value: ConfigValue | undefined;
   required: boolean;
   availableInBrowser: boolean;
-  default: string | null;
+  default: string | boolean | null;
   // useful for messaging in case if missing vars
   envName: string;
   description?: string;
-  allowedValues?: EnvValue[];
+  allowedValues?: EnvValue[] | boolean[];
 };
 
-const parseValue = <T extends EnvValue>(value: T | undefined) => {
+const parseValue = <T extends ConfigValue>(value: T | undefined) => {
   if (value === "undefined") {
     return undefined;
   }
@@ -365,6 +366,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "Logs accessibility concerns to the console. Should be disabled in production",
   },
+  disableIsr: {
+    value: process.env.DISABLE_ISR === "on",
+    envName: "DISABLE_ISR",
+    required: false,
+    availableInBrowser: false,
+    allowedValues: [true, false],
+    default: false,
+    description: "Disables incremental static regeneration (ISR).",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
@@ -389,7 +399,7 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
   if ("allowedValues" in envVarConfig && envValue) {
     // Explicitly typing allowedValues are currently the only instance
     // is of string[], so it infers the type as being too narrow
-    const { allowedValues }: { allowedValues: EnvValue[] } = envVarConfig;
+    const { allowedValues }: { allowedValues: ConfigValue[] } = envVarConfig;
 
     if (!allowedValues.includes(envValue)) {
       throw new Error(`- - - ERROR invalid value found for env var:
@@ -416,7 +426,7 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
     return parsedValue;
   }
 
-  if (defaultValue) {
+  if (defaultValue !== null) {
     return defaultValue;
   }
 
