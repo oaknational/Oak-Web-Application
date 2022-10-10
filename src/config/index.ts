@@ -3,12 +3,13 @@ import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
 type ConfigValue = EnvValue | boolean;
+type DefaultValue = string | number | boolean | null;
 
 type EnvVar = {
   value: ConfigValue | undefined;
   required: boolean;
   availableInBrowser: boolean;
-  default: string | boolean | null;
+  default: DefaultValue;
   // useful for messaging in case if missing vars
   envName: string;
   description?: string;
@@ -314,7 +315,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     envName: "SANITY_REVALIDATE_SECONDS",
     required: true,
     availableInBrowser: false,
-    default: null,
+    default: 60,
   },
   sanityAssetCDNHost: {
     /**
@@ -372,7 +373,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     required: false,
     availableInBrowser: false,
     allowedValues: [true, false],
-    default: false,
+    default: null,
     description: "Disables incremental static regeneration (ISR).",
   },
 });
@@ -422,10 +423,12 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(value);
 
-  if (parsedValue) {
+  // Allow falsy values to be passed, but not `undefined`
+  if (parsedValue !== undefined) {
     return parsedValue;
   }
 
+  // Allow falsy values to be set, but not `undefined` or `null` (which indicates a deliberate lack of default)
   if (defaultValue !== undefined && defaultValue !== null) {
     return defaultValue;
   }
