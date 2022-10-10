@@ -426,7 +426,7 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
     return parsedValue;
   }
 
-  if (defaultValue !== null) {
+  if (defaultValue !== undefined && defaultValue !== null) {
     return defaultValue;
   }
 
