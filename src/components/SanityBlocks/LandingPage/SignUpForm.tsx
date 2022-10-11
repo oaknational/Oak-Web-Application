@@ -6,7 +6,7 @@ import Box from "../../Box";
 import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
 import AnchorTarget from "../../AnchorTarget";
 import CardTitle from "../../Card/CardComponents/CardTitle";
-import { anchorMap } from "../../LandingPagesHeader/LandingPagesHeader";
+import { anchorMap } from "../../../utils/portableText/resolveInternalHref";
 
 export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
   const { onSubmit } = useNewsletterForm();

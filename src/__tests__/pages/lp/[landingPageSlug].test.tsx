@@ -8,7 +8,7 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { LandingPage } from "../../../node-lib/cms/sanity-client/schemas/landingPage";
-import { mockImageAsset } from "../../__helpers__/cms";
+import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
 
@@ -19,27 +19,12 @@ const testLandingPage: LandingPage = {
   slug: "some-landing-page",
   hero: {
     title: "some-landing-page",
-    heading: "heading",
-    image: mockImageAsset(),
-    cta: {
-      label: "blog about plans",
-      linkType: "internal",
-      internal: {
-        id: "0003",
-        contentType: "newsPost",
-        slug: "some-blog-post",
-      },
-    },
+    heading: "some-landing",
   },
-  headerButton: {
-    label: "/",
-    anchor: "formBlock",
-  },
-
   content: [
     {
       type: "LandingPageTextBlock",
-      bodyPortableText: [],
+      bodyPortableText: portableTextFromString("Contact summary"),
     },
     {
       type: "LandingPageTextAndMediaBlock",
@@ -62,7 +47,9 @@ const testLandingPage: LandingPage = {
       type: "LandingPageFormBlock",
       bodyPortableText: [],
       title: "title",
-      formTitle: "form title",
+      form: {
+        title: "title of the form",
+      },
     },
   ],
   seo: null,
@@ -80,7 +67,6 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
   describe("LandingPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
-
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
       });

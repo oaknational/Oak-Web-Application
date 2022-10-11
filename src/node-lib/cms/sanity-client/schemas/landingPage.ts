@@ -6,6 +6,7 @@ import {
   seoSchema,
   quoteSchema,
   imageSchema,
+  formSchema,
 } from "./base";
 import { textAndMediaSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
@@ -14,10 +15,7 @@ import { CTASchema } from "./cta";
 export const landingPageSchema = z
   .object({
     slug: slugSchema,
-    headerButton: z.object({
-      label: z.string(),
-      anchor: z.literal("formBlock"), // change to union of literals when there are more achors in cms
-    }),
+    headerCta: CTASchema.nullish(),
     hero: z.object({
       title: z.string(),
       heading: z.string(),
@@ -32,9 +30,9 @@ export const landingPageSchema = z
         }),
         z.object({
           type: z.literal("LandingPageFormBlock"),
-          formTitle: z.string(),
           title: z.string(),
           bodyPortableText: portableTextSchema,
+          form: formSchema,
         }),
         z.object({
           type: z.literal("LandingPageTextAndMediaBlock"),

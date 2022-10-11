@@ -6,20 +6,14 @@ import FixedHeader from "../FixedHeader";
 import Logo from "../Logo";
 import Typography from "../Typography";
 import Icon from "../Icon";
-
-export const anchorMap = {
-  formBlock: "form-block",
-} as const;
-
-export type AnchorMap = keyof typeof anchorMap | null;
+import { CTA } from "../../node-lib/cms";
+import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 
 export type LandingPagesHeaderProps = {
-  label?: string;
-  anchor?: AnchorMap;
+  headerCta?: CTA | null;
 };
 
-const LandingPagesHeader: FC<LandingPagesHeaderProps> = ({ label, anchor }) => {
-  const buttonAnchor = anchor ? anchorMap[anchor] : null;
+const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
   return (
     <FixedHeader $background={"white"}>
       <Flex
@@ -32,8 +26,8 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = ({ label, anchor }) => {
             <Logo title={"Oak National Academy"} height={48} width={104} />
           </a>
         </Link>
-        {buttonAnchor && label && (
-          <Link href={buttonAnchor}>
+        {props.headerCta?.linkType && (
+          <Link href={getCTAHref(props.headerCta)}>
             <a>
               <Flex
                 $width={[200, "100%"]}
@@ -41,7 +35,7 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = ({ label, anchor }) => {
                 $alignItems={"center"}
               >
                 <Typography $textAlign="right" $font={"heading-7"}>
-                  {label}
+                  {props.headerCta.label}
                 </Typography>
                 <Icon
                   $ml={12}

@@ -14,6 +14,7 @@ import PreviewControls from "../PreviewControls";
 import ClientErrorHeader from "../ClientErrorHeader";
 import ClientErrorFooter from "../ClientErrorFooter";
 import LandingPagesHeader from "../LandingPagesHeader";
+import { CTA } from "../../node-lib/cms";
 import { LandingPagesHeaderProps } from "../LandingPagesHeader/LandingPagesHeader";
 
 const Container = styled.div<BackgroundProps>`
@@ -47,7 +48,7 @@ export type LayoutProps = {
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   $background?: OakColorName;
-  headerProps?: LandingPagesHeaderProps;
+  headerCta?: CTA | null;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -71,7 +72,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
-        <Header {...props.headerProps} />
+        <Header headerCta={props.headerCta} />
         <StyledLayout>{children}</StyledLayout>
 
         <Footer />

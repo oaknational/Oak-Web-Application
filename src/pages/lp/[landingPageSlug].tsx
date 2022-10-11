@@ -21,7 +21,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
   return (
     <Layout
       headerVariant="landingPages"
-      headerProps={pageData.headerButton}
+      headerCta={pageData.headerCta}
       seoProps={getSeoProps(pageData.seo)}
     >
       <>
@@ -29,18 +29,38 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
           <LandingPageHero hero={pageData.hero} />
 
           <BasePortableTextProvider>
-            {pageData.content.map((content) => {
+            {pageData.content.map((content, index) => {
               if (content.type == "LandingPageTextAndMediaBlock") {
-                return <LandingPageTextAndMedia {...content.textAndMedia} />;
+                return (
+                  <LandingPageTextAndMedia
+                    key={`${index}:${content.textAndMedia.title}`}
+                    {...content.textAndMedia}
+                  />
+                );
               }
               if (content.type == "LandingPageQuoteBlock") {
-                return <Quote {...content.quote} />;
+                return (
+                  <Quote
+                    key={`${index}:${content.quote.text}`}
+                    {...content.quote}
+                  />
+                );
               }
               if (content.type == "LandingPageFormBlock") {
-                return <SignupPrompt {...content} />;
+                return (
+                  <SignupPrompt
+                    key={`${index}:${content.title}`}
+                    {...content}
+                  />
+                );
               }
               if (content.type == "LandingPageTextBlock") {
-                return <LandingPageTextBlock {...content} />;
+                return (
+                  <LandingPageTextBlock
+                    key={`${index}:${content.bodyPortableText[0]._key}`}
+                    {...content}
+                  />
+                );
               }
             })}
           </BasePortableTextProvider>

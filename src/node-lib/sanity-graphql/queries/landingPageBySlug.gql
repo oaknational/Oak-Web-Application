@@ -8,9 +8,8 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
     slug {
       current
     }
-    headerButton {
-      label
-      anchor
+    headerCta {
+      ...CTA
     }
     hero {
       title
@@ -29,8 +28,10 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
       }
       ... on LandingPageFormBlock {
         title
-        formTitle
         bodyPortableText: textRaw
+        form {
+          title
+        }
       }
       ... on LandingPageQuoteBlock {
         quote {

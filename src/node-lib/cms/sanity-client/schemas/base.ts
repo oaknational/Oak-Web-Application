@@ -76,6 +76,10 @@ export const attachmentSchema = z.object({
   }),
 });
 
+export const formSchema = z.object({
+  title: z.string(),
+});
+
 /**
  * All content types that can be linked to from within sanity
  *

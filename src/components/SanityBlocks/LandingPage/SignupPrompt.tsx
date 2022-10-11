@@ -9,9 +9,9 @@ import { SignUpForm } from "./SignUpForm";
 
 export const SignupPrompt: FC<{
   title: string;
-  formTitle: string;
+  form: { title: string };
   bodyPortableText: PortableTextJSON;
-}> = ({ title, bodyPortableText, formTitle }) => {
+}> = ({ title, bodyPortableText, form }) => {
   return (
     <>
       <Grid $mb={[120, 92]} $cg={[8]}>
@@ -33,7 +33,7 @@ export const SignupPrompt: FC<{
           </Typography>
         </GridArea>
         <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
-          <SignUpForm formTitle={formTitle} />
+          <SignUpForm formTitle={form.title} />
         </GridArea>
       </Grid>
     </>
