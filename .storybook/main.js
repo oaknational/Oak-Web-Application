@@ -1,4 +1,10 @@
 module.exports = {
+  env: (config) => ({
+    ...config,
+    SANITY_ASSET_CDN_HOST: "SANITY_ASSET_CDN_HOST",
+    SANITY_PROJECT_ID: "SANITY_PROJECT_ID",
+    SANITY_DATASET: "SANITY_DATASET",
+  }),
   stories: [
     "../src/components/Intro.stories.mdx",
     "../src/**/*.stories.@(mdx|js|jsx|ts|tsx)",
@@ -27,6 +33,7 @@ module.exports = {
       include: /node_modules/,
       type: "javascript/auto",
     });
+
     return config;
   },
 };
