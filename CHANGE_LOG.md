@@ -1,3 +1,18 @@
+# [1.37.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.36.0...v1.37.0) (2022-10-11)
+
+
+### Bug Fixes
+
+* **config:** allow returning boolean false values ([c67cb36](https://github.com/oaknational/Oak-Web-Application/commit/c67cb36e4321ce2000e55cf54dcc035d428f022c))
+* **config:** tweak default value error gate to properly support boolean false ([a42fc52](https://github.com/oaknational/Oak-Web-Application/commit/a42fc52b533ee98940f8b5e4a9ab0250dcbca848))
+* **ISR:** don't mutate GetStaticProps results ([f134920](https://github.com/oaknational/Oak-Web-Application/commit/f1349202f31e44cd2df4abee5094254037620e11))
+
+
+### Features
+
+* **ISR:** actually add the ISR disabling function ([0150115](https://github.com/oaknational/Oak-Web-Application/commit/0150115c0c65cb85ae357d621791c6bae33bad93))
+* **ISR:** allow disabling ISR per environment ([b73ac15](https://github.com/oaknational/Oak-Web-Application/commit/b73ac15f9f6d2630cc47f3e447ff49015d87b39a))
+
 # [1.36.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.35.1...v1.36.0) (2022-10-11)
 
 
