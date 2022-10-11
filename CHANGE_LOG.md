@@ -1,3 +1,16 @@
+# [1.35.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.2...v1.35.0) (2022-10-11)
+
+
+### Bug Fixes
+
+* little visual bugs introduced in previous commit ([a9e86b5](https://github.com/oaknational/Oak-Web-Application/commit/a9e86b58914442dfdda01400a9f888563020d7f6))
+
+
+### Features
+
+* **bio-cards:** add bio card and bio card list components ([9afc088](https://github.com/oaknational/Oak-Web-Application/commit/9afc0888395c77ce473fafd930ea272c0a1e41af))
+* pull image hotspot coords from CMS ([121dd42](https://github.com/oaknational/Oak-Web-Application/commit/121dd42679182630279fd2c3363ed8919e13afa2))
+
 ## [1.34.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.1...v1.34.2) (2022-10-10)
 
 
