@@ -93,6 +93,14 @@ jobs:
           echo "${{ steps.ref_from_sha.outputs.branch_name }}"
           echo "${{ steps.ref_from_sha.outputs.pr_number }}"
 
+      - name: Warm the Cache
+        id: warm_cache_for_percy
+        run: node ./scripts/build/warm_cache.js
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+
       - uses: ./.github/actions/percy_snapshots
         name: run percy
         id: run_percy
