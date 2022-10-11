@@ -14,6 +14,7 @@ import {
   getButtonColor,
   getButtonHeight,
 } from "./common";
+import { iconFocusUnderline } from "./IconFocusUnderline";
 
 const disabledStyles = css`
   opacity: 0.5;
@@ -64,6 +65,11 @@ const iconButtonStyles = css<IconButtonStylesProps>`
     filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
   }
 
+  :focus {
+    outline: none;
+  }
+
+  ${iconFocusUnderline}
   ${margin}
 `;
 

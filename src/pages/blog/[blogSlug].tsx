@@ -41,6 +41,7 @@ import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
 import AvatarImage from "../../components/AvatarImage";
+import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -165,10 +166,12 @@ const blogPortableTextComponents: PortableTextComponents = {
           <P $font={["heading-light-5", "heading-light-4"]}>
             <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
           </P>
-          <P $font={"body-1"} $mt={[16]} $textAlign="center">
-            <cite>{props.value?.attribution}</cite>
-            {props.value.role && `, ${props.value.role}`}
-          </P>
+          <div>
+            <P $font={"body-1"} $mt={[16]} $textAlign="center">
+              <cite>{props.value?.attribution}</cite>
+              {props.value.role && `, ${props.value.role}`}
+            </P>
+          </div>
         </Flex>
       );
     },
@@ -262,6 +265,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
+      breadcrumbs={getBlogPostBreadcrumbs(categories, blog)}
     >
       <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>
@@ -313,7 +317,9 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               $justifyContent={["space-between", "left"]}
             >
               <Flex $alignItems={"center"}>
-                {blog.author.image && <AvatarImage image={blog.author.image} />}
+                {blog.author.image && (
+                  <AvatarImage image={blog.author.image} $mr={12} />
+                )}
                 <Box $mr={[0, 40]}>
                   <Heading tag="h2" $font={"heading-7"}>
                     {blog.author.name}

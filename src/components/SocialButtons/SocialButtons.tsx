@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useId } from "react-aria";
 
 import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
@@ -11,7 +12,7 @@ export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",
   facebook: "oaknationalacademy",
   twitter: "oaknational",
-  linkedIn: "oak-national-academy",
+  linkedIn: "https://www.linkedin.com/company/oak-national-academy",
 };
 
 const getSocialUrl = (network: SocialNetwork, usernameOrUrl: string) => {
@@ -21,7 +22,7 @@ const getSocialUrl = (network: SocialNetwork, usernameOrUrl: string) => {
     case "facebook":
       return `https://facebook.com/${usernameOrUrl}`;
     case "twitter":
-      return `https://twitter.com/${usernameOrUrl}}`;
+      return `https://twitter.com/${usernameOrUrl}`;
     case "linkedIn":
       return usernameOrUrl;
   }
@@ -52,7 +53,7 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
     icon: "Twitter",
   },
   linkedIn: {
-    label: "linked in",
+    label: "linkedIn",
     icon: "LinkedIn",
   },
 } as const;
@@ -65,6 +66,7 @@ type SocialButtonsProps = FlexProps &
   };
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
   const { size, spaceBetween, ...flexProps } = props;
+  const id = useId();
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
 
   if (socialsToShow.length === 0) {
@@ -80,17 +82,20 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
           return null;
         }
         const href = getSocialUrl(network, profile);
-        if (href)
-          return (
-            <IconButtonAsLink
-              aria-label={label}
-              icon={icon}
-              href={href}
-              variant={"minimal"}
-              $mr={spaceBetween}
-              size={size}
-            />
-          );
+        if (!href) {
+          return null;
+        }
+        return (
+          <IconButtonAsLink
+            key={`SocialButtons-${id}-${network}`}
+            aria-label={label}
+            icon={icon}
+            href={href}
+            variant={"minimal"}
+            $mr={spaceBetween}
+            size={size}
+          />
+        );
       })}
     </Flex>
   );

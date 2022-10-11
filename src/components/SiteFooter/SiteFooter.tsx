@@ -141,7 +141,7 @@ const SiteFooter: FC = () => {
           </Grid>
           <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
             <SocialButtons {...OAK_SOCIALS} />
-            <Flex $alignItems={"center"}>
+            <Flex $alignItems={"center"} $ml={[16]}>
               <P $textAlign="center" $font={["body-4", "body-2"]}>
                 © Oak National Academy
               </P>

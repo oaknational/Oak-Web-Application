@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useTheme } from "styled-components";
 
 import { OakColorName } from "../../styles/theme";
 import Icon, { IconName } from "../Icon";
@@ -10,6 +11,7 @@ import {
   getButtonHeight,
 } from "./common";
 import IconButtonWrapper from "./IconButtonWrapper";
+import { IconFocusUnderline } from "./IconFocusUnderline";
 
 export type IconButtonInnerProps = {
   variant: ButtonVariant;
@@ -20,6 +22,9 @@ export type IconButtonInnerProps = {
 };
 const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
   const { variant, size, background, icon, iconColorOverride } = props;
+  const theme = useTheme();
+  const underlineColor =
+    theme.buttonFocusUnderlineColors[background] || "black";
 
   return (
     <IconButtonWrapper size={size} variant={variant} background={background}>
@@ -30,6 +35,7 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
         $color={iconColorOverride}
         $background={variant === "minimal" ? "transparent" : background}
       />
+      <IconFocusUnderline $color={underlineColor} />
     </IconButtonWrapper>
   );
 };

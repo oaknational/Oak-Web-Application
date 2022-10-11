@@ -17,6 +17,7 @@ module.exports = {
     "storybook-addon-themes",
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
+    "storybook-addon-next-router",
   ],
   framework: "@storybook/react",
   staticDirs: ["../public"],

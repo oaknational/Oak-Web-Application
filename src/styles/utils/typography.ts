@@ -95,12 +95,16 @@ export type TypographyProps = FontProps & {
     "underline" | "overline" | "line-through" | "none"
   >;
   $textAlign?: ResponsiveValues<CSSProperties["textAlign"]>;
+  $whiteSpace?: ResponsiveValues<
+    "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line" | "break-space"
+  >;
 };
 
 const typography = css<TypographyProps>`
   ${fontVariant}
   ${responsive("text-align", (props) => props.$textAlign)}
   ${responsive("text-decoration", (props) => props.$textDecoration)}
+  ${responsive("white-space", (props) => props.$whiteSpace)}
 `;
 
 export default typography;

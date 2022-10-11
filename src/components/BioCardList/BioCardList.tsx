@@ -10,7 +10,6 @@ type BioCardListProps = GridProps & {
   people: BioData[];
 };
 const BioCardList: FC<BioCardListProps> = (props) => {
-  console.log(props);
   const { people, ...gridProps } = props;
   const modal = useModalState({ bios: people });
   return (

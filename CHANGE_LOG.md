@@ -1,3 +1,63 @@
+## [1.34.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.1...v1.34.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* style icon correctly ([fc6a1f5](https://github.com/oaknational/Oak-Web-Application/commit/fc6a1f557204ad665a5c2059c873f0035d3d26b5))
+* use icon and not icon button inner in toast ([9124cda](https://github.com/oaknational/Oak-Web-Application/commit/9124cda648a6bf985018c6bf89261264bc80ada2))
+
+# [1.34.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.33.0...v1.34.0) (2022-10-07)
+
+
+### Bug Fixes
+
+* adjust margins on mobile ([a3c3d27](https://github.com/oaknational/Oak-Web-Application/commit/a3c3d27e57eddc052c40c5a48389d2e9164b5c1f))
+* make category name more explicit ([a85aad7](https://github.com/oaknational/Oak-Web-Application/commit/a85aad79b2e93f341a1f33abd8024e389908d346))
+* preven teacher hub from wrapping ([3309c6c](https://github.com/oaknational/Oak-Web-Application/commit/3309c6cb06d69a439b9d131126b3fbeddfad0806))
+* use flex directly not flex css ([f72a11e](https://github.com/oaknational/Oak-Web-Application/commit/f72a11ef6a53468e30bfc31539940ff56b94f5c3))
+
+
+### Features
+
+* add breadcrumb provider ([c7f461f](https://github.com/oaknational/Oak-Web-Application/commit/c7f461fd9efe9ec6eaad051913a889f344374fdb))
+* add disabled flag to breadcrumb ([3c52933](https://github.com/oaknational/Oak-Web-Application/commit/3c52933102f761a6e589ec9fbd4b6d39c3fe01c4))
+* change spacing on chevrons ([b452d7c](https://github.com/oaknational/Oak-Web-Application/commit/b452d7c1f969c596b58c7b06f97817698d5fe747))
+* move blog breadcrumbs function out of blog index page ([efe8f49](https://github.com/oaknational/Oak-Web-Application/commit/efe8f499b0524c6e2bc66f1befa045a399cbc512))
+* move breadcrumbs into layout and header props ([f41b314](https://github.com/oaknational/Oak-Web-Application/commit/f41b314ccf48d531a459d8b3775d59c660232387))
+* move logic for breadcrumbs out of blog slug page ([98ac43c](https://github.com/oaknational/Oak-Web-Application/commit/98ac43cf00ee2f4d433d7d5e913364512d030c1d))
+* title and styling ([dab2c69](https://github.com/oaknational/Oak-Web-Application/commit/dab2c69754600d8b4801b18b0be5361896c48000))
+* trim last breadcrumb with ellipsis ([fdc1fd5](https://github.com/oaknational/Oak-Web-Application/commit/fdc1fd53e6dc6a07c4c74b2c8b40c5e80fbbdfd9))
+* update breadcrumbs on change ([cad8d0d](https://github.com/oaknational/Oak-Web-Application/commit/cad8d0daa9191296646bbdf795c20b91d0c46337))
+* update slug from blog post page ([0bd54a2](https://github.com/oaknational/Oak-Web-Application/commit/0bd54a270de60b191f12e8b5dc8190587f53c998))
+
+# [1.33.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.4...v1.33.0) (2022-10-06)
+
+
+### Features
+
+* **Netlify:** temporarily disable the default domain redirect ([3bbfc4c](https://github.com/oaknational/Oak-Web-Application/commit/3bbfc4cf1ab8d5ebe50234823f06fcd72522e80a))
+
+## [1.32.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.3...v1.32.4) (2022-10-06)
+
+## [1.32.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.2...v1.32.3) (2022-10-05)
+
+## [1.32.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.1...v1.32.2) (2022-10-05)
+
+
+### Bug Fixes
+
+* hack fix for blog post quote style ([f8af6ca](https://github.com/oaknational/Oak-Web-Application/commit/f8af6ca3084c644f9df31f14509ef8200d6a11ce))
+
+## [1.32.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.0...v1.32.1) (2022-10-04)
+
+
+### Bug Fixes
+
+* **cookie-consent:** use cookies for cross domain consent ([f5dab50](https://github.com/oaknational/Oak-Web-Application/commit/f5dab50b921c5d80c74ecbade527447851b14521))
+* filter out defualt consents which aren't compatible with acorn ([4904c4a](https://github.com/oaknational/Oak-Web-Application/commit/4904c4a23e42cf16ab54f8ed6607f65d0ce13181))
+* set cookie if consent has changed ([57d5489](https://github.com/oaknational/Oak-Web-Application/commit/57d5489f2acd718fb5ff77b0198f28148b9039df))
+* update confirmic local storage from cookie ([d0b7a8a](https://github.com/oaknational/Oak-Web-Application/commit/d0b7a8a933f032ece0934f422019d85d04332793))
+
 # [1.32.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.31.0...v1.32.0) (2022-10-03)
 
 

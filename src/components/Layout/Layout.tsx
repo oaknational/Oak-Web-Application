@@ -13,6 +13,7 @@ import SiteHeader from "../SiteHeader";
 import PreviewControls from "../PreviewControls";
 import ClientErrorHeader from "../ClientErrorHeader";
 import ClientErrorFooter from "../ClientErrorFooter";
+import { Breadcrumb } from "../Breadcrumbs";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -27,12 +28,17 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
+export type HeaderProps = {
+  breadcrumbs?: Breadcrumb[];
+};
+
 export type HeaderVariant = "app" | "site" | "client-error";
-const headers: Record<HeaderVariant, FC> = {
+const headers: Record<HeaderVariant, FC<HeaderProps>> = {
   app: AppHeader,
   site: SiteHeader,
   "client-error": ClientErrorHeader,
 };
+
 export type FooterVariant = "default" | "client-error";
 const footers: Record<FooterVariant, FC> = {
   default: SiteFooter,
@@ -42,6 +48,7 @@ export interface LayoutProps {
   seoProps: SeoProps;
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
+  breadcrumbs?: Breadcrumb[];
   $background?: OakColorName;
 }
 
@@ -50,8 +57,8 @@ const Layout: FC<LayoutProps> = (props) => {
     children,
     seoProps,
     $background,
+    breadcrumbs,
     headerVariant = "site",
-
     footerVariant = "default",
   } = props;
   const Header = headers[headerVariant];
@@ -67,9 +74,8 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
-        <Header />
+        <Header breadcrumbs={breadcrumbs} />
         <StyledLayout>{children}</StyledLayout>
-
         <Footer />
         {isPreview && <PreviewControls />}
       </Container>
