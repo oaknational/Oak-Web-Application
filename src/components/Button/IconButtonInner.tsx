@@ -31,7 +31,7 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
       <Icon
         variant={variant}
         name={icon}
-        size={getButtonHeight(size)}
+        size={getButtonHeight(size, variant)}
         $color={iconColorOverride}
         $background={variant === "minimal" ? "transparent" : background}
       />

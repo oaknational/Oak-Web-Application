@@ -1,14 +1,19 @@
 import { uniqBy } from "lodash/fp";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import config from "../../config";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import BlogCategoryList from "../BlogCategoryList/BlogCategoryList";
 import useBlogCategoryList from "../BlogCategoryList/useBlogCategoryList";
 import BlogList from "../BlogList";
@@ -152,14 +157,16 @@ export const getStaticProps: GetStaticProps<
     return true;
   });
 
-  return {
+  const results: GetStaticPropsResult<BlogListingPageProps> = {
     props: {
       blogs,
       categories: blogCategories,
       categorySlug,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+
+  return resultsWithIsr;
 };
 
 type URLParams = { categorySlug: string };
