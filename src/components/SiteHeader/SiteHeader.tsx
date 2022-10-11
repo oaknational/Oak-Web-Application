@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import Link from "next/link";
 import { useTheme } from "styled-components";
 
@@ -19,6 +19,7 @@ import Breadcrumbs from "../Breadcrumbs";
 
 const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { toggleMenu } = useMenuContext();
   const { track } = useAnalytics();
 
@@ -69,11 +70,12 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         icon={"Hamburger"}
         variant={"minimal"}
         size={"header"}
+        ref={menuButtonRef}
         onClick={() => {
           toggleMenu();
         }}
       />
-      <Menu>
+      <Menu ref={menuButtonRef}>
         <MenuLinks menuSections={menuSections} />
       </Menu>
       <Toast />
