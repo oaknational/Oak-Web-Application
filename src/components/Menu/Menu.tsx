@@ -12,6 +12,7 @@ import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Svg from "../Svg";
 import Box from "../Box";
+import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -129,7 +130,7 @@ const Menu: FC = ({ children }) => {
                   $justifyContent={"space-between"}
                   $alignItems={"flex-end"}
                 >
-                  <SocialButtons />
+                  <SocialButtons {...OAK_SOCIALS} />
                   <Flex $display={["none", "flex"]} $mb={6}>
                     <Logo
                       title={"Oak National Academy"}

@@ -4,11 +4,6 @@ import { NullablePixelSpacing, PixelSpacing } from "../../styles/theme";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import Box, { BoxProps } from "../Box";
 
-type GridGapProps = {
-  $rg?: ResponsiveValues<PixelSpacing>;
-  $cg?: ResponsiveValues<PixelSpacing>;
-};
-
 const parse = (value?: NullablePixelSpacing) => {
   switch (typeof value) {
     case "string":
@@ -18,16 +13,23 @@ const parse = (value?: NullablePixelSpacing) => {
   }
 };
 
-const gridGap = css<GridGapProps>`
+const grid = css<GridProps>`
   ${responsive("grid-row-gap", (props) => props.$rg, parse)}
   ${responsive("grid-column-gap", (props) => props.$cg, parse)}
+  ${responsive("grid-auto-rows", (props) => props.$gridAutoRows)}
 `;
 
-const Grid = styled(Box)<GridGapProps & BoxProps>`
+export type GridProps = BoxProps & {
+  $rg?: ResponsiveValues<PixelSpacing>;
+  $cg?: ResponsiveValues<PixelSpacing>;
+  // grid-auto-rows: 1fr; ensures all rows are the same height
+  $gridAutoRows?: ResponsiveValues<"1fr">;
+};
+const Grid = styled(Box)<GridProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
-  ${gridGap}
+  ${grid}
 `;
 
 export default Grid;
