@@ -1,8 +1,8 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 
-import config from "../../config";
 import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Card from "../../components/Card";
@@ -154,12 +154,13 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     };
   }
 
-  return {
+  const results: GetStaticPropsResult<AboutPageProps> = {
     props: {
       pageData: aboutBoardPage,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default AboutUsBoard;

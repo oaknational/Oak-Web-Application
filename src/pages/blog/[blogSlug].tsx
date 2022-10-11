@@ -1,5 +1,10 @@
 import React from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import {
   MissingComponentHandler,
   PortableText,
@@ -10,7 +15,6 @@ import { useNextSanityImage } from "next-sanity-image";
 import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
-import config from "../../config";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -21,6 +25,7 @@ import CMSClient, {
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import CMSImage, { sanityClientLike } from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
@@ -392,14 +397,14 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     date: blogResult.date.toISOString(),
   };
 
-  return {
+  const results: GetStaticPropsResult<BlogPageProps> = {
     props: {
       categories,
       blog,
-      isPreviewMode,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default BlogDetailPage;
