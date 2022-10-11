@@ -22,12 +22,15 @@ export type AboutPageProps = {
   pageData: AboutPartnersPage;
 };
 
-const ImageContainer: FC<CMSImageProps & SpacingProps> = (props) => {
+const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
+  props
+) => {
   return (
     <Flex $mb={32} $minWidth={"20%"}>
       <AspectRatio ratio={["3:2", "16:9"]}>
         <CMSImage
           {...props}
+          alt={props.name}
           $objectFit="contain"
           $objectPosition={"center center"}
           fill
@@ -58,13 +61,12 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $alignItems={"center"}
           $justifyContent={"center"}
           $minWidth={"50%"}
-          $pb={[48, 0]}
-          $mb={[48]}
+          // $pb={[48, 0]}
+          $mb={48}
         >
           <CardImage
             alt={"curriculum design illustration"}
             imageSrc={"/images/illustrations/teacher-carrying-more-stuff.png"}
-            position={"center center"}
           />
         </Flex>
         <ButtonAsLink
@@ -80,7 +82,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <Flex $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.curriculumPartners.map((partner) => (
-            <ImageContainer $pa={[4, 16]} image={partner} />
+            <ImageContainer $pa={[4, 16]} name={partner.name} image={partner} />
           ))}
         </Flex>
         <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
@@ -88,7 +90,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <Flex $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.techPartners.map((partner) => (
-            <ImageContainer $pa={[8, 32]} image={partner} />
+            <ImageContainer $pa={[8, 32]} name={partner.name} image={partner} />
           ))}
         </Flex>
         <AboutContactCard />
