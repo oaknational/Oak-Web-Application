@@ -11,12 +11,12 @@ import Flex from "../../components/Flex";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import CardImage from "../../components/Card/CardComponents/CardImage";
 import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import AspectRatio from "../../components/AspectRatio";
 import CMSImage from "../../components/CMSImage";
 import { CMSImageProps } from "../../components/CMSImage/CMSImage";
 import { SpacingProps } from "../../styles/utils/spacing";
+import OakImage from "../../components/OakImage";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -60,13 +60,17 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         <Flex
           $alignItems={"center"}
           $justifyContent={"center"}
-          $minWidth={"50%"}
-          // $pb={[48, 0]}
+          $minWidth={"100%"}
+          $minHeight={[160, 300]}
           $mb={48}
+          $position={"relative"}
         >
-          <CardImage
+          <OakImage
             alt={"curriculum design illustration"}
-            imageSrc={"/images/illustrations/teacher-carrying-more-stuff.png"}
+            $objectPosition={"center center"}
+            src={"/images/illustrations/teacher-carrying-more-stuff.png"}
+            fill
+            $objectFit="contain"
           />
         </Flex>
         <ButtonAsLink
