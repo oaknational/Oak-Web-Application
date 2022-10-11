@@ -39,6 +39,18 @@ const SideMenu = styled(Flex)<TransitionProps>`
         return "translate3D(100%, 0, 0)";
     }
   }};
+  visibility: ${(props) => {
+    switch (props.state) {
+      case "entering":
+        return "visible";
+      case "entered":
+        return "visible";
+      case "exiting":
+        return "visible";
+      case "exited":
+        return "hidden";
+    }
+  }};
 `;
 
 const Menu: FC = ({ children }) => {
