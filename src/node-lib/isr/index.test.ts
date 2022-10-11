@@ -7,6 +7,18 @@ describe("isr.decorateWithIsr()", () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
+  it("Does not mutate the original results", async () => {
+    process.env.DISABLE_ISR = "anything_but_on";
+    const { decorateWithIsr } = await import(".");
+    const initialResult = {
+      props: {
+        someProp: true,
+      },
+    };
+    const decoratedResults = decorateWithIsr(initialResult);
+
+    expect(decoratedResults).not.toBe(initialResult);
+  });
   it("if DISABLE_ISR is undefined, adds revalidate prop to GetStaticProps results", async () => {
     const { decorateWithIsr } = await import(".");
     const initialResult = {
@@ -37,7 +49,7 @@ describe("isr.decorateWithIsr()", () => {
       },
     };
 
-    expect(decorateWithIsr(initialResult)).toBe(initialResult);
+    expect(decorateWithIsr(initialResult)).toEqual(initialResult);
   });
 });
 

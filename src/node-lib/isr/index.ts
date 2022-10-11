@@ -19,12 +19,13 @@ if (disableIsr) {
 function decorateWithIsr<P>(
   results: GetStaticPropsResult<P>
 ): GetStaticPropsResult<P> {
+  const decoratedResults = { ...results };
   if (!disableIsr) {
     const revalidateTimeInSeconds = config.get("sanityRevalidateSeconds");
-    results.revalidate = revalidateTimeInSeconds;
+    decoratedResults.revalidate = revalidateTimeInSeconds;
   }
 
-  return results;
+  return decoratedResults;
 }
 
 export { decorateWithIsr };
