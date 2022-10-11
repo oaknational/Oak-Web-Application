@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.35.1...v1.36.0) (2022-10-11)
+
+
+### Features
+
+* **security:** rerun CI after updating access rules ([112a4d1](https://github.com/oaknational/Oak-Web-Application/commit/112a4d1066793a089257984fc13626d69498f0b6))
+
 ## [1.35.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.35.0...v1.35.1) (2022-10-11)
 
 
