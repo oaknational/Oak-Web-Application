@@ -1,3 +1,14 @@
+## [1.35.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.35.0...v1.35.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* **Percy:** cache fonts ([a7e0aa5](https://github.com/oaknational/Oak-Web-Application/commit/a7e0aa525f4e96356cb8d955a55b1b44c5a8b4e3))
+* **Percy:** don't cache fonts ([e4af143](https://github.com/oaknational/Oak-Web-Application/commit/e4af143db43994e89693d6f36880f3244e4cc46c))
+* **Percy:** try to stabilise Percy against slow image loading on cold caches ([c9ca2c0](https://github.com/oaknational/Oak-Web-Application/commit/c9ca2c0edfa2cf1579b4c163c29d3d29ef0031d7))
+* **Percy:** try to warm the cache for Percy ([a3d1c7b](https://github.com/oaknational/Oak-Web-Application/commit/a3d1c7b770796466ee00efc17d7427ac76c9c32c))
+* **Percy:** wait longer before taking snapshots ([6cfd20f](https://github.com/oaknational/Oak-Web-Application/commit/6cfd20fa95dc2778925a8b5324c74fd0fe314d10))
+
 # [1.35.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.2...v1.35.0) (2022-10-11)
 
 
