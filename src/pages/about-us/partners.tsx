@@ -71,6 +71,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             src={"/images/illustrations/teacher-carrying-more-stuff.png"}
             fill
             $objectFit="contain"
+            aria-hidden={true}
           />
         </Flex>
         <ButtonAsLink
