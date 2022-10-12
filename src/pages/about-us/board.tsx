@@ -29,6 +29,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     documents,
     governancePortableText,
   } = pageData;
+
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
@@ -47,17 +48,16 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               $mb={[40, 32]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
+              $textAlign={["center", "left"]}
             >
               Our interim board
             </Heading>
             <BioCardList $mb={[80, 92]} $ph={[16, 0]} people={boardMembers} />
           </>
         )}
-        <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
-          <Heading $font={"heading-5"} tag={"h2"}>
-            Documents
-          </Heading>
-        </Flex>
+        <Heading $font={"heading-5"} tag={"h2"} $textAlign={["center", "left"]}>
+          Documents
+        </Heading>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
             <Hr $color={"pastelTurqoise"} $mv={32} />

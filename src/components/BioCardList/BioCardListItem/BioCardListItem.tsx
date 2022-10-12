@@ -48,12 +48,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           )}
         </Flex>
       </Flex>
-      <Flex
-        $justifyContent="space-between"
-        $alignItems={"center"}
-        $mt={[0, 24]}
-        $ml={["auto", 0]}
-      >
+      <Flex $alignItems={"center"} $mt={[0, 24]} $ml={["auto", 0]}>
         <SocialButtons
           size="tiny"
           linkedIn={socials?.linkedinUrl}
@@ -67,6 +62,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           icon="ArrowRight"
           iconPosition="trailing"
           iconBackground="teachersHighlight"
+          $ml="auto"
           onClick={() => onClick(props)}
           iconOnlyOnMobile
         />

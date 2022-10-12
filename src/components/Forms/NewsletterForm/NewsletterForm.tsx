@@ -145,6 +145,9 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
           error={errors.userRole?.message}
         />
         <Button
+          onClick={() => {
+            // noop: button acts as submit handler
+          }}
           $mt={24}
           label="Sign up"
           fullWidth

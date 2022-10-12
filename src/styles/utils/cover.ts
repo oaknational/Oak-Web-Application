@@ -10,6 +10,7 @@ const cover = css<CoverProps>`
   ${responsive("bottom", (props) => (props.$cover ? 0 : undefined))}
   ${responsive("left", (props) => (props.$cover ? 0 : undefined))}
   ${responsive("height", (props) => (props.$cover ? "100%" : undefined))}
+  ${responsive("width", (props) => (props.$cover ? "100%" : undefined))}
 `;
 
 export default cover;

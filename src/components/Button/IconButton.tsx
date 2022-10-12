@@ -22,7 +22,7 @@ const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
 `;
 
 export type IconButtonProps = CommonIconButtonProps & {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   "aria-label": string;
   disabled?: boolean;
   rotate?: number;

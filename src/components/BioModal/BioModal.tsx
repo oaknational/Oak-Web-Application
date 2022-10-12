@@ -1,5 +1,7 @@
+import { PortableText } from "@portabletext/react";
 import { FC, useCallback, useState } from "react";
 
+import { PortableTextJSON } from "../../node-lib/cms";
 import {
   SanityImageAsset,
   TeamMemberSocialsFragment,
@@ -8,6 +10,7 @@ import AspectRatio from "../AspectRatio";
 import Box from "../Box";
 import IconButton from "../Button/IconButton";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
+import CMSImage from "../CMSImage";
 import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";
@@ -23,12 +26,13 @@ export type BioData = {
   role?: string | null;
   image?: SanityImageAsset | null;
   socials?: TeamMemberSocialsFragment | null;
+  bioPortableText?: PortableTextJSON;
 };
 
 type UseBioModalProps = {
   bios: BioData[];
 };
-export const useModalState = (props: UseBioModalProps): BioModalProps => {
+export const useBioModal = (props: UseBioModalProps): BioModalProps => {
   const { bios } = props;
   const [bio, setBio] = useState<BioData>();
   const [isOpen, setIsOpen] = useState(false);
@@ -43,25 +47,32 @@ export const useModalState = (props: UseBioModalProps): BioModalProps => {
 
   const currentIndex = bios.findIndex((_bio) => _bio.id === bio?.id);
 
-  const nextBio = () => {
-    const nextIndex = (currentIndex + 1) % bios.length;
-    const _bio = bios.at(nextIndex);
-    if (!_bio) {
-      // @todo error
-      return;
-    }
-    setBio(_bio);
-  };
+  const canGoNext = currentIndex < bios.length - 1;
+  const canGoPrev = currentIndex > 0;
 
-  const prevBio = () => {
-    const prevIndex = (currentIndex - 1) % bios.length;
-    const _bio = bios.at(prevIndex);
-    if (!_bio) {
-      // @todo error
-      return;
-    }
-    setBio(_bio);
-  };
+  const nextBio = canGoNext
+    ? () => {
+        const nextIndex = (currentIndex + 1) % bios.length;
+        const _bio = bios.at(nextIndex);
+        if (!_bio) {
+          // @todo error
+          return;
+        }
+        setBio(_bio);
+      }
+    : undefined;
+
+  const prevBio = canGoPrev
+    ? () => {
+        const prevIndex = (currentIndex - 1) % bios.length;
+        const _bio = bios.at(prevIndex);
+        if (!_bio) {
+          // @todo error
+          return;
+        }
+        setBio(_bio);
+      }
+    : undefined;
 
   return {
     isOpen,
@@ -70,7 +81,6 @@ export const useModalState = (props: UseBioModalProps): BioModalProps => {
     nextBio,
     prevBio,
     bio,
-    bios,
   };
 };
 
@@ -79,12 +89,11 @@ type BioModalProps = {
   openModal: (initialBio: BioData) => void;
   closeModal: () => void;
   bio?: BioData;
-  setBio: (bio: BioData) => void;
+  nextBio?: () => void;
+  prevBio?: () => void;
 };
 const BioModal: FC<BioModalProps> = (props) => {
-  const { bio, setBio, isOpen, closeModal, nextBio, prevBio } = props;
-  // const [isOpen, setIsOpen] = useState(true);
-  //   const bio = allBios[0];
+  const { bio, isOpen, closeModal, nextBio, prevBio } = props;
 
   if (!isOpen) {
     return null;
@@ -95,15 +104,18 @@ const BioModal: FC<BioModalProps> = (props) => {
     return null;
   }
 
-  const { name, role, socials } = bio;
-
-  console.log(socials);
+  const { name, role, socials, image, bioPortableText } = bio;
 
   return (
-    <ModalDialog size="fullscreen" title="Matt Hood">
+    <ModalDialog
+      size="fullscreen"
+      title="Matt Hood"
+      isDismissable
+      isKeyboardDismissDisabled={false}
+    >
       <Box
         $position={"absolute"}
-        $top={[24, 32]}
+        $top={[16, 32]}
         $right={[16, 32]}
         $zIndex={"modalCloseButton"}
       >
@@ -115,75 +127,121 @@ const BioModal: FC<BioModalProps> = (props) => {
           size="small"
         />
       </Box>
-      <MaxWidth>
-        <Grid $position="relative" $maxHeight={"100%"}>
-          <GridArea $colSpan={[12, 3]}>
-            <Box $zIndex={"inFront"}>
+      <MaxWidth
+        $position="relative"
+        $maxWidth={[480, 720, 1280]}
+        /**
+         * Use margin for centering to avoid overflow issue
+         * @see https://stackoverflow.com/a/33455342/4031364
+         */
+        $ma="auto"
+        $justifyContent={"unset"}
+        $alignItems={"unset"}
+      >
+        <Grid $position="relative" $mt={[0, 72, 0]}>
+          <GridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
+            <Box $position={"relative"} $zIndex={"inFront"}>
               <Heading
                 tag="h2"
                 $font={["heading-5", "heading-4"]}
-                $mr={[48, 0]}
-                $mb={[12, 0]}
+                $mr={[0, 16]}
+                $mb={[0, 8]}
+                $textAlign={["center", "left"]}
               >
-                Lonng n {name}
+                {name}
               </Heading>
-              <P $font={["heading-light-6"]} $color="oakGrey4" $mb={[16, 0]}>
+              <P
+                $font={["heading-light-7", "heading-light-6"]}
+                $color="oakGrey4"
+                $mb={[32, 0]}
+                $textAlign={["center", "left"]}
+              >
                 {role}
               </P>
             </Box>
           </GridArea>
-          <GridArea $colSpan={[12, 4]} $pt={[0, 40]}>
-            <Box $position="relative" $mb={[20, 0]}>
+          <GridArea $colSpan={[12, 7, 4]} $order={[0, 1]} $pt={[48, 0]}>
+            <Box
+              $position="relative"
+              $mb={[20, 0]}
+              $width={[240, "100%"]}
+              $ma={["auto"]}
+              $zIndex={"inFront"}
+            >
               <BoxBorders gapPosition="rightTop" $zIndex={"inFront"} />
               <Svg
                 $display={["none", "block"]}
                 name="looping-arrow-1"
                 $position={"absolute"}
-                $transform={"translate(-37%, -28%)"}
+                $width={320}
+                $transform={[
+                  null,
+                  "translate(-57%, 0)",
+                  "translate(-57%, -10%)",
+                ]}
                 $color="pupilsHighlight"
               />
-
-              <AspectRatio ratio={["7:8", "2:3"]}>
+              <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
                 <Box $background="white" $cover />
+                {image && (
+                  <CMSImage
+                    image={image}
+                    $objectPosition={"center"}
+                    $objectFit={"cover"}
+                    width={419}
+                    height={628}
+                    $cover
+                  />
+                )}
               </AspectRatio>
             </Box>
           </GridArea>
-          <GridArea $colSpan={[12, 5]} $pt={[0, 40]}>
-            <P $ml={[0, 72]} $mb={[92, 72]} $font={["body-1", "body-2"]}>
-              Matt is the Principal at Oak National Academy. He is an economics
-              teacher by training and was a founder at Ambition Institute. He is
-              Chair of Governors at Bay Leadership Academy in Morecambe, a
-              Trustee at The Brilliant Club, and an independent government
-              adviser on professional development.
+          <GridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
+            <P
+              $ml={[0, 0, 72]}
+              $mb={[72]}
+              $mt={[0, 72, 0]}
+              $font={["body-1", "body-2"]}
+            >
+              <PortableText value={bioPortableText} />
             </P>
           </GridArea>
-          <Flex
-            $position={["fixed", "absolute"]}
-            $bottom={[24, 0]}
-            $right={[16, 0]}
-            $left={[16, 0]}
-          >
-            <SocialButtons
-              twitter={socials?.twitterUsername}
-              linkedIn={socials?.linkedinUrl}
-              $alignItems="flex-end"
-            />
-            <ButtonGroup $ml="auto">
-              <IconButton
-                icon="ArrowLeft"
-                aria-label="previous board member"
-                onClick={nextBio}
-                size="small"
-              />
-              <IconButton
-                icon="ArrowRight"
-                aria-label="previous board member"
-                onClick={prevBio}
-                size="small"
-              />
-            </ButtonGroup>
-          </Flex>
         </Grid>
+        <Flex
+          $position={["fixed", "absolute"]}
+          $bottom={[0]}
+          $left={[0]}
+          $pb={[16, 0]}
+          $pl={[16, 0]}
+          $pt={[16, 0]}
+          $alignItems="center"
+          $width={"100%"}
+          $background="white"
+        >
+          <SocialButtons
+            $position={["absolute", "relative"]}
+            $left={[16]}
+            twitter={socials?.twitterUsername}
+            linkedIn={socials?.linkedinUrl}
+            $alignItems="flex-end"
+          />
+          <ButtonGroup $ml="auto" $mr={["auto", 0]}>
+            <IconButton
+              icon="ArrowLeft"
+              aria-label="previous board member"
+              onClick={prevBio}
+              size="small"
+              disabled={!prevBio}
+            />
+            <IconButton
+              icon="ArrowRight"
+              aria-label="next board member"
+              onClick={nextBio}
+              size="small"
+              disabled={!nextBio}
+            />
+          </ButtonGroup>
+        </Flex>
       </MaxWidth>
     </ModalDialog>
   );

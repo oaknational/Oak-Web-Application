@@ -8,10 +8,12 @@ describe("BioCardList", () => {
       <BioCardList
         people={[
           {
+            id: "1",
             name: "Crayon Person",
             role: "Underling",
           },
           {
+            id: "2",
             name: "Leaf Breaker",
             role: "Underling",
           },

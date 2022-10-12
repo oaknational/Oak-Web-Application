@@ -19,7 +19,11 @@ type ModalDialogProps = AriaDialogProps &
     children: ReactNode;
   };
 const ModalDialog: FC<ModalDialogProps> = (props) => {
-  const { title, children, size } = props;
+  const {
+    // title, // fix this
+    children,
+    size,
+  } = props;
 
   // Handle interacting outside the dialog and pressing
   // the Escape key to close the modal.
@@ -32,7 +36,10 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
   const { modalProps } = useModal();
 
   // Get props for the dialog and its title
-  const { dialogProps, titleProps } = useDialog(props, ref);
+  const {
+    dialogProps,
+  // titleProps, //titleProps should be included
+  } = useDialog(props, ref);
 
   return (
     <Box
@@ -58,12 +65,10 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
           ref={ref}
           $background={"white"}
           $color={"black"}
-          $ph={[16, 32]}
-          $pv={[24, 32]}
+          $pa={[16, 32]}
           $position={size === "fullscreen" ? "absolute" : "relative"}
           $cover={size === "fullscreen" ? true : false}
           $width={size === "small" ? ["100%", 480] : undefined}
-          $alignItems={size === "fullscreen" ? [null, "center"] : undefined}
           $overflowY="scroll"
           $overflowX="hidden"
         >

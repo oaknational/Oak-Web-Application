@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import BioModal from "../BioModal";
-import { BioData, useModalState } from "../BioModal/BioModal";
+import { BioData, useBioModal } from "../BioModal/BioModal";
 import Grid, { GridArea, GridProps } from "../Grid";
 
 import BioCardListItem from "./BioCardListItem";
@@ -11,7 +11,7 @@ type BioCardListProps = GridProps & {
 };
 const BioCardList: FC<BioCardListProps> = (props) => {
   const { people, ...gridProps } = props;
-  const modal = useModalState({ bios: people });
+  const modal = useBioModal({ bios: people });
   return (
     <>
       <Grid $cg={16} $rg={32} $gridAutoRows="1fr" {...gridProps}>

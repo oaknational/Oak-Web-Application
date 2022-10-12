@@ -4,6 +4,7 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient, { AboutBoardPage } from "../../../node-lib/cms";
 import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
+import { portableTextFromString } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
@@ -24,6 +25,9 @@ const testAboutBoardPageData: AboutBoardPage = {
           url: "",
         },
       },
+      bioPortableText: portableTextFromString(
+        "This person started out here, ended up there."
+      ),
     },
   ],
   introPortableText: [

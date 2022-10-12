@@ -17,8 +17,8 @@ MaxWidth.defaultProps = {
   $flexDirection: "column",
   $flexGrow: 1,
   $width: "100%",
-  $justifyContent: "center",
-  $alignItems: "center",
+  // $justifyContent: "center",
+  // $alignItems: "center",
   $mh: "auto",
 };
 

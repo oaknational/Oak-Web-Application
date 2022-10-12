@@ -15,44 +15,54 @@ export const BioCardList = Template.bind({});
 BioCardList.args = {
   people: [
     {
-      name: "Jack S",
-      role: "Underling",
+      id: "123",
+      name: "Jack",
+      role: "Worker",
     },
     {
-      name: "Joe B",
-      role: "Underling",
+      id: "123",
+      name: "Joe",
+      role: "Worker",
     },
     {
-      name: "Craig M",
-      role: "Underling",
+      id: "123",
+      name: "Craig",
+      role: "Worker",
     },
     {
-      name: "Verity R",
-      role: "Underling",
+      id: "123",
+      name: "Verity",
+      role: "Worker",
     },
     {
-      name: "Mitch L",
-      role: "Underling",
+      id: "123",
+      name: "Mitch",
+      role: "Worker",
     },
     {
-      name: "Tomas L",
-      role: "Underling",
+      id: "123",
+      name: "Tomas",
+      role: "Worker",
     },
     {
-      name: "Jim C",
-      role: "Underling",
+      id: "123",
+      name: "Jim",
+      role: "Worker",
     },
     {
-      name: "Ross M",
-      role: "Underling",
+      id: "123",
+      name: "Ross",
+      role: "Worker",
     },
     {
+      id: "123",
       name: "Ian",
-      role: "Underling",
+      role: "Worker",
     },
     {
-      name: "Matt G",
-      role: "Underling",
+      id: "123",
+      name: "Matt",
+      role: "Worker",
     },
   ],
 };
