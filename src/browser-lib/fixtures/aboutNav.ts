@@ -29,6 +29,10 @@ export const reducedAboutNavLinks = [
     label: "Partners",
     href: "/about-us/partners",
   },
+  {
+    label: "Work with us",
+    href: "/about-us/work-with-us",
+  },
 ];
 
 export default aboutNavLinks;
