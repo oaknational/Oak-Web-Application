@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 
-import config from "../config";
 import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
+import { decorateWithIsr } from "../node-lib/isr";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
@@ -474,12 +474,13 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
     };
   }
 
-  return {
+  const results: GetStaticPropsResult<PlanALessonProps> = {
     props: {
       pageData: planningPage,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default PlanALesson;

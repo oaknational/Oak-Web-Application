@@ -16,6 +16,7 @@ import ClientErrorFooter from "../ClientErrorFooter";
 import LandingPagesHeader from "../LandingPagesHeader";
 import { CTA } from "../../node-lib/cms";
 import { LandingPagesHeaderProps } from "../LandingPagesHeader/LandingPagesHeader";
+import { Breadcrumb } from "../Breadcrumbs";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -30,13 +31,21 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
+export type HeaderProps = {
+  breadcrumbs?: Breadcrumb[];
+};
+
 export type HeaderVariant = "app" | "site" | "landingPages" | "client-error";
-const headers: Record<HeaderVariant, FC | FC<LandingPagesHeaderProps>> = {
+const headers: Record<
+  HeaderVariant,
+  FC | FC<LandingPagesHeaderProps> | FC<HeaderProps>
+> = {
   app: AppHeader,
   site: SiteHeader,
   landingPages: LandingPagesHeader,
   "client-error": ClientErrorHeader,
 };
+
 export type FooterVariant = "default" | "client-error";
 const footers: Record<FooterVariant, FC> = {
   default: SiteFooter,
@@ -47,6 +56,7 @@ export type LayoutProps = {
   seoProps: SeoProps;
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
+  breadcrumbs?: Breadcrumb[];
   $background?: OakColorName;
   headerCta?: CTA | null;
 };
@@ -56,6 +66,7 @@ const Layout: FC<LayoutProps> = (props) => {
     children,
     seoProps,
     $background,
+    breadcrumbs,
     headerVariant = "site",
     footerVariant = "default",
   } = props;
@@ -72,9 +83,9 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
-        <Header headerCta={props.headerCta} />
-        <StyledLayout>{children}</StyledLayout>
+        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
 
+        <StyledLayout>{children}</StyledLayout>
         <Footer />
         {isPreview && <PreviewControls />}
       </Container>

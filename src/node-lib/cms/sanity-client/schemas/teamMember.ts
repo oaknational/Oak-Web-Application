@@ -9,6 +9,12 @@ export const teamMemberSchema = z
     image: imageSchema.nullish(),
     id: z.string(),
     role: z.string().nullish(),
+    socials: z
+      .object({
+        twitterUsername: z.string().nullish(),
+        linkedinUrl: z.string().nullish(),
+      })
+      .nullish(),
   })
   .merge(documentSchema);
 

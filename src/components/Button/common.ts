@@ -8,6 +8,7 @@ import { OakColorName } from "../../styles/theme";
 import { PixelSpacing, PropsWithTheme } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import getTextColorForBackground from "../../styles/themeHelpers/getTextColorForBackground";
+import { OpacityProps } from "../../styles/utils/opacity";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
@@ -26,8 +27,8 @@ const LARGE_BUTTON_ICON_SIZE = 36;
 const LARGE_BUTTON_HEIGHT = 48;
 const LARGE_BUTTON_PADDING_X = 8;
 
-const TINY_BUTTON_ICON_SIZE = 16;
-const TINY_BUTTON_HEIGHT = 16;
+const TINY_BUTTON_ICON_SIZE = 20;
+const TINY_BUTTON_HEIGHT = 20;
 const TINY_BUTTON_PADDING_X = 12;
 
 // we're gonna need a lot more variants so starting semantic naming
@@ -50,7 +51,15 @@ export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
   large: LARGE_BUTTON_HEIGHT,
   header: HEADER_BUTTON_HEIGHT,
 };
-export const getButtonHeight = (size: ButtonSize) => buttonSizeHeightMap[size];
+export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
+  switch (variant) {
+    case "brush":
+      return buttonSizeHeightMap[size];
+    case "minimal":
+      // 'minimal' only take up the height of their icon
+      return buttonIconSizeMap[size];
+  }
+};
 export const getButtonBackground = (
   background: ButtonBackground,
   variant: ButtonVariant
@@ -86,19 +95,20 @@ export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "brush";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
-export type CommonButtonProps = MarginProps & {
-  id?: string;
-  label: string;
-  variant?: ButtonVariant;
-  background?: ButtonBackground;
-  icon?: IconName;
-  iconPosition?: IconPosition;
-  iconBackground?: OakColorName;
-  size?: ButtonSize;
-  "aria-label"?: string;
-  fullWidth?: boolean;
-  focusStyles?: [];
-};
+export type CommonButtonProps = OpacityProps &
+  MarginProps & {
+    id?: string;
+    label: string;
+    variant?: ButtonVariant;
+    background?: ButtonBackground;
+    icon?: IconName;
+    iconPosition?: IconPosition;
+    iconBackground?: OakColorName;
+    size?: ButtonSize;
+    "aria-label"?: string;
+    fullWidth?: boolean;
+    focusStyles?: [];
+  };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,
   iconPosition: DEFAULT_ICON_POSITION,

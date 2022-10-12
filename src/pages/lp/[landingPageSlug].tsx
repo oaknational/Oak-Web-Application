@@ -1,6 +1,10 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 
-import config from "../../config";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -12,6 +16,7 @@ import { LandingPageTextBlock } from "../../components/SanityBlocks/LandingPage/
 import { SignupPrompt } from "../../components/SanityBlocks/LandingPage/SignupPrompt";
 import { LandingPageTextAndMedia } from "../../components/SanityBlocks/LandingPage/LandingPageTextAndMedia";
 import LandingPageHero from "../../components/SanityBlocks/LandingPage/LandingPageHero";
+import { decorateWithIsr } from "../../node-lib/isr";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -104,12 +109,13 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  return {
+  const results: GetStaticPropsResult<LandingPageProps> = {
     props: {
       pageData: landingPageResult,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default Landing;

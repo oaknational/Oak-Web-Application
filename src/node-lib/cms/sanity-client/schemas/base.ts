@@ -36,6 +36,14 @@ export const imageSchema = z.object({
   altText: z.string().min(1).nullish(),
   isPresentational: z.boolean().nullish(),
   asset: imageAssetSchema.optional(),
+  hotspot: z
+    .object({
+      x: z.number(),
+      y: z.number(),
+      width: z.number(),
+      height: z.number(),
+    })
+    .nullish(),
 });
 
 export type Image = z.infer<typeof imageSchema>;

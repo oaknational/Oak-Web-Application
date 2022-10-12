@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import styled from "styled-components";
 import {
   MissingComponentHandler,
@@ -8,6 +8,7 @@ import {
 } from "@portabletext/react";
 
 import CMSClient, { ContactPage } from "../node-lib/cms";
+import { decorateWithIsr } from "../node-lib/isr";
 import { Heading, P } from "../components/Typography";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -129,12 +130,13 @@ export const getStaticProps: GetStaticProps<ContactPageProps> = async (
     };
   }
 
-  return {
+  const results: GetStaticPropsResult<ContactPageProps> = {
     props: {
       pageData,
     },
-    revalidate: 10,
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default ContactUs;
