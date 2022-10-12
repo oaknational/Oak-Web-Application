@@ -733,6 +733,7 @@ export type Cta = {
   __typename?: 'Cta';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
+  anchor?: Maybe<Scalars['String']>;
   external?: Maybe<Scalars['String']>;
   internal?: Maybe<AboutCorePageOrAboutCorePageBoardOrAboutCorePageLeadershipOrAboutCorePagePartnersOrAboutCorePageWhoWeAreOrAboutCorePageWorkWithUsOrAttachmentOrContactCorePageOrCurriculumCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage>;
   label?: Maybe<Scalars['String']>;
@@ -742,6 +743,7 @@ export type Cta = {
 export type CtaFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  anchor?: InputMaybe<StringFilter>;
   external?: InputMaybe<StringFilter>;
   label?: InputMaybe<StringFilter>;
   linkType?: InputMaybe<StringFilter>;
@@ -750,6 +752,7 @@ export type CtaFilter = {
 export type CtaSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  anchor?: InputMaybe<SortOrder>;
   external?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
   linkType?: InputMaybe<SortOrder>;
@@ -950,6 +953,25 @@ export type FloatFilter = {
   neq?: InputMaybe<Scalars['Float']>;
 };
 
+export type Form = {
+  __typename?: 'Form';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type FormFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type FormSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
 export type Geopoint = {
   __typename?: 'Geopoint';
   _key?: Maybe<Scalars['String']>;
@@ -1141,7 +1163,7 @@ export type LandingPage = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']>;
   content?: Maybe<Array<Maybe<LandingPageFormBlockOrLandingPageQuoteBlockOrLandingPageTextAndMediaBlockOrLandingPageTextBlock>>>;
-  headerButton?: Maybe<LandingPageHeaderButton>;
+  headerCta?: Maybe<Cta>;
   hero?: Maybe<LandingPageHero>;
   seo?: Maybe<Seo>;
   slug?: Maybe<Slug>;
@@ -1156,7 +1178,7 @@ export type LandingPageFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  headerButton?: InputMaybe<LandingPageHeaderButtonFilter>;
+  headerCta?: InputMaybe<CtaFilter>;
   hero?: InputMaybe<LandingPageHeroFilter>;
   seo?: InputMaybe<SeoFilter>;
   slug?: InputMaybe<SlugFilter>;
@@ -1166,7 +1188,7 @@ export type LandingPageFormBlock = {
   __typename?: 'LandingPageFormBlock';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
-  formTitle?: Maybe<Scalars['String']>;
+  form?: Maybe<Form>;
   textRaw?: Maybe<Scalars['JSON']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -1174,7 +1196,7 @@ export type LandingPageFormBlock = {
 export type LandingPageFormBlockFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
-  formTitle?: InputMaybe<StringFilter>;
+  form?: InputMaybe<FormFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -1183,30 +1205,8 @@ export type LandingPageFormBlockOrLandingPageQuoteBlockOrLandingPageTextAndMedia
 export type LandingPageFormBlockSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
-  formTitle?: InputMaybe<SortOrder>;
+  form?: InputMaybe<FormSorting>;
   title?: InputMaybe<SortOrder>;
-};
-
-export type LandingPageHeaderButton = {
-  __typename?: 'LandingPageHeaderButton';
-  _key?: Maybe<Scalars['String']>;
-  _type?: Maybe<Scalars['String']>;
-  anchor?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
-};
-
-export type LandingPageHeaderButtonFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  anchor?: InputMaybe<StringFilter>;
-  label?: InputMaybe<StringFilter>;
-};
-
-export type LandingPageHeaderButtonSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  anchor?: InputMaybe<SortOrder>;
-  label?: InputMaybe<SortOrder>;
 };
 
 export type LandingPageHero = {
@@ -1263,7 +1263,7 @@ export type LandingPageSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  headerButton?: InputMaybe<LandingPageHeaderButtonSorting>;
+  headerCta?: InputMaybe<CtaSorting>;
   hero?: InputMaybe<LandingPageHeroSorting>;
   seo?: InputMaybe<SeoSorting>;
   slug?: InputMaybe<SlugSorting>;
@@ -1309,6 +1309,7 @@ export type Link = {
   __typename?: 'Link';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
+  anchor?: Maybe<Scalars['String']>;
   external?: Maybe<Scalars['String']>;
   internal?: Maybe<AboutCorePageOrAboutCorePageBoardOrAboutCorePageLeadershipOrAboutCorePagePartnersOrAboutCorePageWhoWeAreOrAboutCorePageWorkWithUsOrAttachmentOrContactCorePageOrCurriculumCorePageOrHomepageOrLandingPageOrNewsListingPageOrNewsPostOrPlanningCorePageOrPolicyPageOrSupportCorePageOrWebinarOrWebinarListingPage>;
   linkType?: Maybe<Scalars['String']>;
@@ -1317,6 +1318,7 @@ export type Link = {
 export type LinkFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  anchor?: InputMaybe<StringFilter>;
   external?: InputMaybe<StringFilter>;
   linkType?: InputMaybe<StringFilter>;
 };
@@ -1324,6 +1326,7 @@ export type LinkFilter = {
 export type LinkSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  anchor?: InputMaybe<SortOrder>;
   external?: InputMaybe<SortOrder>;
   linkType?: InputMaybe<SortOrder>;
 };
