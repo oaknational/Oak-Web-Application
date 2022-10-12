@@ -224,6 +224,8 @@ module.exports = async (phase) => {
         process.env.SANITY_PREVIEW_SECRET ||
         secretsFromNetwork.SANITY_PREVIEW_SECRET,
       SANITY_ASSET_CDN_HOST,
+      // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
+      DISABLE_ISR: process.env.DISABLE_ISR,
     },
     images: {
       // Allow static builds with the default image loader.

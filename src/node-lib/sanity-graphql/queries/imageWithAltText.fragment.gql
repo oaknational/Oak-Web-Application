@@ -4,4 +4,10 @@ fragment ImageWithAltText on ImageWithAltText {
   asset {
     ...ImageAsset
   }
+  hotspot {
+    x
+    y
+    width
+    height
+  }
 }

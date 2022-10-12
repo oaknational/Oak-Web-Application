@@ -3,4 +3,10 @@ fragment Image on Image {
     _id
     url
   }
+  hotspot {
+    x
+    y
+    width
+    height
+  }
 }

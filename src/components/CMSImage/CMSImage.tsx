@@ -1,5 +1,8 @@
 import { FC, useState } from "react";
-import { useNextSanityImage } from "next-sanity-image";
+import {
+  useNextSanityImage,
+  UseNextSanityImageBuilder,
+} from "next-sanity-image";
 import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
 import config from "../../config";
@@ -10,6 +13,7 @@ import OakImage, { OakImageProps } from "../OakImage";
 export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
   image: Image;
   alt?: string;
+  imageBuilder?: UseNextSanityImageBuilder;
 };
 
 /**
@@ -24,7 +28,7 @@ export const sanityClientLike: SanityClientLike = {
   },
 };
 
-const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
+const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
 
   const { width, height, ...imageProps } = useNextSanityImage(
@@ -32,6 +36,7 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
     image,
     {
       enableBlurUp: false,
+      imageBuilder,
     }
   );
 

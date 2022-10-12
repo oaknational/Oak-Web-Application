@@ -18,7 +18,15 @@ export type CircleProps = FlexProps & {
 const Circle: FC<CircleProps> = (props) => {
   const { size, ...flexProps } = props;
 
-  return <Flex {...flexProps} $width={size} $height={size} />;
+  return (
+    <Flex
+      {...flexProps}
+      $width={size}
+      $minWidth={size}
+      $height={size}
+      $minHeight={size}
+    />
+  );
 };
 
 Circle.defaultProps = {

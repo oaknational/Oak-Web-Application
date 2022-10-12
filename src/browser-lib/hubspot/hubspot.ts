@@ -1,5 +1,6 @@
 /**
  * @todo use hubspot "doNotTrack" option:
+ *
  * https://developers.hubspot.com/docs/api/events/cookie-banner
  */
 
