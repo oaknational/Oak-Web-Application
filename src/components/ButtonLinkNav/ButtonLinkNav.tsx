@@ -76,7 +76,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
     <nav aria-label={ariaLabel}>
       <Flex
         $flexWrap={"wrap"}
-        $alignItems={["flex-start"]}
+        $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
         {...props}
       >
