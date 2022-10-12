@@ -1,3 +1,15 @@
+# [1.39.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.38.0...v1.39.0) (2022-10-12)
+
+
+### Bug Fixes
+
+* image position mobile ([8a7d64c](https://github.com/oaknational/Oak-Web-Application/commit/8a7d64c18737fb9b4f65fd5b83aad29180bfaa7a))
+
+
+### Features
+
+* about partners page ([fa3d744](https://github.com/oaknational/Oak-Web-Application/commit/fa3d744cec99a7d73831bf608fae0501c9c6bfa9))
+
 # [1.38.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.37.0...v1.38.0) (2022-10-12)
 
 
