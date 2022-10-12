@@ -101,6 +101,7 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>(
             <MenuBackdrop state={state} />
             <FocusScope contain autoFocus restoreFocus>
               <SideMenu
+                data-testid={"menu"}
                 $position="fixed"
                 $top={0}
                 $right={0}
