@@ -19,11 +19,20 @@ import UnstyledButton from "../UnstyledButton";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { srOnly } from "../ScreenReaderOnly";
 import ellipsis from "../../styles/ellipsis";
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
+import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 
-import { Popover } from "./Popover";
 import { ListBox } from "./ListBox";
+import { Popover } from "./Popover";
 
 export { Item } from "react-stately";
+
+export const DropdownFocusUnderline = styled(InputFocusUnderline)<{
+  isFocusVisible: boolean;
+}>`
+  display: ${(props) => (props.isFocusVisible ? "inline" : "none")};
+`;
 
 export type SelectItem = {
   value: string;
@@ -44,32 +53,26 @@ type SelectProps = {
   "aria-invalid"?: boolean;
 };
 
-export const SelectContainer = (props: FlexProps) => (
-  <Flex {...props} $flexDirection={"column"} $position={"relative"} />
-);
+// export const SelectContainer = (props: FlexProps) => (
+//   <Flex {...props} $flexDirection={"column"} $position={"relative"} />
+// );
+
+const SelectContainer = styled(Flex)`
+  &:focus-within ${RotatedInputLabel} {
+    background: ${getColorByName("teachersHighlight")};
+    color: ${getColorByName("white")};
+  }
+`;
 
 interface SelectButtonProps {
   isOpen?: boolean;
   isFocusVisible?: boolean;
   isPlaceholder?: boolean;
 }
+
 const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
-  border-radius: ${(props) => props.theme.input.borderRadius};
-  border: solid;
-  border-width: ${(props) =>
-    props.isFocusVisible || props.isOpen ? "2px" : "1px"};
-  border-color: ${(props) =>
-    props.isFocusVisible
-      ? getColorByLocation(({ theme }) => theme.input.states.active.border)
-      : getColorByLocation(({ theme }) => theme.input.states.default.border)};
-  background: ${(props) =>
-    props.isOpen
-      ? getColorByLocation(({ theme }) => theme.input.states.active.background)
-      : getColorByLocation(
-          ({ theme }) => theme.input.states.default.background
-        )};
 
   /** padding-left hack to account for border-width change to avoid content shift on select-span */
   padding-left: ${(props) =>
@@ -81,6 +84,8 @@ const selectButtonStyles = css<SelectButtonProps>`
   width: 100%;
   text-align: left;
   font-size: 16px;
+  margin-top: 20px;
+  outline: none;
   ${(props) =>
     props.isPlaceholder &&
     css`
@@ -148,7 +153,25 @@ export function Select<T extends object>(
   const id = useId();
 
   return (
-    <SelectContainer {...containerProps}>
+    <SelectContainer
+      $flexDirection={"column"}
+      $position={"relative"}
+      {...containerProps}
+    >
+      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
+      <DropdownFocusUnderline
+        isFocusVisible={isFocusVisible}
+        aria-hidden="true"
+        name={"Underline1"}
+      />
+      <Flex $position={"absolute"}>
+        <RotatedInputLabel
+          background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}
+          color={"black"}
+        >
+          {props.label}
+        </RotatedInputLabel>
+      </Flex>
       <Label {...labelProps} visuallyHidden={!showLabel}>
         {props.label}
       </Label>
@@ -200,7 +223,7 @@ export function Select<T extends object>(
                   : props.placeholder}
               </SelectSpan>
             </SelectInner>
-            <Icon name={"ChevronDown"} />
+            <Icon $color="black" name={"ChevronDown"} />
           </SelectButton>
           {state.isOpen && (
             <Popover isOpen={state.isOpen} onClose={state.close}>
