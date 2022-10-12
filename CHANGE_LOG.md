@@ -1,3 +1,81 @@
+# [1.37.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.36.0...v1.37.0) (2022-10-11)
+
+
+### Bug Fixes
+
+* **config:** allow returning boolean false values ([c67cb36](https://github.com/oaknational/Oak-Web-Application/commit/c67cb36e4321ce2000e55cf54dcc035d428f022c))
+* **config:** tweak default value error gate to properly support boolean false ([a42fc52](https://github.com/oaknational/Oak-Web-Application/commit/a42fc52b533ee98940f8b5e4a9ab0250dcbca848))
+* **ISR:** don't mutate GetStaticProps results ([f134920](https://github.com/oaknational/Oak-Web-Application/commit/f1349202f31e44cd2df4abee5094254037620e11))
+
+
+### Features
+
+* **ISR:** actually add the ISR disabling function ([0150115](https://github.com/oaknational/Oak-Web-Application/commit/0150115c0c65cb85ae357d621791c6bae33bad93))
+* **ISR:** allow disabling ISR per environment ([b73ac15](https://github.com/oaknational/Oak-Web-Application/commit/b73ac15f9f6d2630cc47f3e447ff49015d87b39a))
+
+# [1.36.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.35.1...v1.36.0) (2022-10-11)
+
+
+### Features
+
+* **security:** rerun CI after updating access rules ([112a4d1](https://github.com/oaknational/Oak-Web-Application/commit/112a4d1066793a089257984fc13626d69498f0b6))
+
+## [1.35.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.35.0...v1.35.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* **Percy:** cache fonts ([a7e0aa5](https://github.com/oaknational/Oak-Web-Application/commit/a7e0aa525f4e96356cb8d955a55b1b44c5a8b4e3))
+* **Percy:** don't cache fonts ([e4af143](https://github.com/oaknational/Oak-Web-Application/commit/e4af143db43994e89693d6f36880f3244e4cc46c))
+* **Percy:** try to stabilise Percy against slow image loading on cold caches ([c9ca2c0](https://github.com/oaknational/Oak-Web-Application/commit/c9ca2c0edfa2cf1579b4c163c29d3d29ef0031d7))
+* **Percy:** try to warm the cache for Percy ([a3d1c7b](https://github.com/oaknational/Oak-Web-Application/commit/a3d1c7b770796466ee00efc17d7427ac76c9c32c))
+* **Percy:** wait longer before taking snapshots ([6cfd20f](https://github.com/oaknational/Oak-Web-Application/commit/6cfd20fa95dc2778925a8b5324c74fd0fe314d10))
+
+# [1.35.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.2...v1.35.0) (2022-10-11)
+
+
+### Bug Fixes
+
+* little visual bugs introduced in previous commit ([a9e86b5](https://github.com/oaknational/Oak-Web-Application/commit/a9e86b58914442dfdda01400a9f888563020d7f6))
+
+
+### Features
+
+* **bio-cards:** add bio card and bio card list components ([9afc088](https://github.com/oaknational/Oak-Web-Application/commit/9afc0888395c77ce473fafd930ea272c0a1e41af))
+* pull image hotspot coords from CMS ([121dd42](https://github.com/oaknational/Oak-Web-Application/commit/121dd42679182630279fd2c3363ed8919e13afa2))
+
+## [1.34.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.34.1...v1.34.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* style icon correctly ([fc6a1f5](https://github.com/oaknational/Oak-Web-Application/commit/fc6a1f557204ad665a5c2059c873f0035d3d26b5))
+* use icon and not icon button inner in toast ([9124cda](https://github.com/oaknational/Oak-Web-Application/commit/9124cda648a6bf985018c6bf89261264bc80ada2))
+
+# [1.34.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.33.0...v1.34.0) (2022-10-07)
+
+
+### Bug Fixes
+
+* adjust margins on mobile ([a3c3d27](https://github.com/oaknational/Oak-Web-Application/commit/a3c3d27e57eddc052c40c5a48389d2e9164b5c1f))
+* make category name more explicit ([a85aad7](https://github.com/oaknational/Oak-Web-Application/commit/a85aad79b2e93f341a1f33abd8024e389908d346))
+* preven teacher hub from wrapping ([3309c6c](https://github.com/oaknational/Oak-Web-Application/commit/3309c6cb06d69a439b9d131126b3fbeddfad0806))
+* use flex directly not flex css ([f72a11e](https://github.com/oaknational/Oak-Web-Application/commit/f72a11ef6a53468e30bfc31539940ff56b94f5c3))
+
+
+### Features
+
+* add breadcrumb provider ([c7f461f](https://github.com/oaknational/Oak-Web-Application/commit/c7f461fd9efe9ec6eaad051913a889f344374fdb))
+* add disabled flag to breadcrumb ([3c52933](https://github.com/oaknational/Oak-Web-Application/commit/3c52933102f761a6e589ec9fbd4b6d39c3fe01c4))
+* change spacing on chevrons ([b452d7c](https://github.com/oaknational/Oak-Web-Application/commit/b452d7c1f969c596b58c7b06f97817698d5fe747))
+* move blog breadcrumbs function out of blog index page ([efe8f49](https://github.com/oaknational/Oak-Web-Application/commit/efe8f499b0524c6e2bc66f1befa045a399cbc512))
+* move breadcrumbs into layout and header props ([f41b314](https://github.com/oaknational/Oak-Web-Application/commit/f41b314ccf48d531a459d8b3775d59c660232387))
+* move logic for breadcrumbs out of blog slug page ([98ac43c](https://github.com/oaknational/Oak-Web-Application/commit/98ac43cf00ee2f4d433d7d5e913364512d030c1d))
+* title and styling ([dab2c69](https://github.com/oaknational/Oak-Web-Application/commit/dab2c69754600d8b4801b18b0be5361896c48000))
+* trim last breadcrumb with ellipsis ([fdc1fd5](https://github.com/oaknational/Oak-Web-Application/commit/fdc1fd53e6dc6a07c4c74b2c8b40c5e80fbbdfd9))
+* update breadcrumbs on change ([cad8d0d](https://github.com/oaknational/Oak-Web-Application/commit/cad8d0daa9191296646bbdf795c20b91d0c46337))
+* update slug from blog post page ([0bd54a2](https://github.com/oaknational/Oak-Web-Application/commit/0bd54a270de60b191f12e8b5dc8190587f53c998))
+
 # [1.33.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.32.4...v1.33.0) (2022-10-06)
 
 

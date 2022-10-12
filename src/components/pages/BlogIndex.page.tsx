@@ -1,14 +1,19 @@
 import { uniqBy } from "lodash/fp";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import config from "../../config";
 import CMSClient, {
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import BlogCategoryList from "../BlogCategoryList/BlogCategoryList";
 import useBlogCategoryList from "../BlogCategoryList/useBlogCategoryList";
 import BlogList from "../BlogList";
@@ -20,6 +25,8 @@ import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import { Heading } from "../Typography";
+
+import { getBlogBreadcrumbs } from "./getBlogBreadcrumbs";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -52,6 +59,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
       })}
       $background="white"
+      breadcrumbs={getBlogBreadcrumbs(categories, categorySlug)}
     >
       <MobileBlogFilters
         categoryListProps={{
@@ -142,7 +150,6 @@ export const getStaticProps: GetStaticProps<
   ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
   const categorySlug = context.params?.categorySlug || null;
-
   const blogs = blogResults.map(serializeDate).filter((blog) => {
     if (categorySlug) {
       return blog.category.slug === categorySlug;
@@ -150,14 +157,16 @@ export const getStaticProps: GetStaticProps<
     return true;
   });
 
-  return {
+  const results: GetStaticPropsResult<BlogListingPageProps> = {
     props: {
       blogs,
       categories: blogCategories,
       categorySlug,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+
+  return resultsWithIsr;
 };
 
 type URLParams = { categorySlug: string };

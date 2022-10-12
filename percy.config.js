@@ -14,6 +14,7 @@ if (!CfAccessClientId || !CfAccessClientSecret) {
   );
 }
 
+/** @type {import('./node_modules/@percy/core/types').PercyConfigOptions} */
 module.exports = {
   version: 2,
   snapshot: {
@@ -24,6 +25,7 @@ module.exports = {
     `,
   },
   discovery: {
+    networkIdleTimeout: 750,
     allowedHostnames: [],
     userAgent: "Percy",
     requestHeaders: {

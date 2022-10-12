@@ -17,11 +17,23 @@ describe("config.get()", () => {
 
     expect(config.get("clientAppBaseUrl")).toEqual("http://localhost:3000");
   });
-  it("should alllow parsing numeric env vars", async () => {
+  it("should allow parsing numeric env vars", async () => {
     process.env.SANITY_REVALIDATE_SECONDS = "123";
     const { default: config } = await import(".");
 
     expect(config.get("sanityRevalidateSeconds")).toEqual(123);
+  });
+  it("should allow parsing of 'on' switches to boolean true", async () => {
+    process.env.DISABLE_ISR = "on";
+    const { default: config } = await import(".");
+
+    expect(config.get("disableIsr")).toEqual(true);
+  });
+  it("should allow parsing of 'on' switches with non-'on' to boolean false", async () => {
+    process.env.DISABLE_ISR = "anything_but_on";
+    const { default: config } = await import(".");
+
+    expect(config.get("disableIsr")).toEqual(false);
   });
   it("should throw for non-existent name", async () => {
     const { default: config } = await import(".");

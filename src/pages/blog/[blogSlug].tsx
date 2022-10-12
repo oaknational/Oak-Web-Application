@@ -1,5 +1,10 @@
 import React from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import {
   MissingComponentHandler,
   PortableText,
@@ -10,7 +15,6 @@ import { useNextSanityImage } from "next-sanity-image";
 import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
-import config from "../../config";
 import Layout from "../../components/Layout";
 import CMSClient, {
   BlogPost,
@@ -21,6 +25,7 @@ import CMSClient, {
   TextAndMedia,
   Video,
 } from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import CMSImage, { sanityClientLike } from "../../components/CMSImage";
 import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
@@ -39,8 +44,9 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import MobileBlogFilters from "../../components/MobileBlogFilters";
 import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
-import Circle from "../../components/Circle";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
+import AvatarImage from "../../components/AvatarImage";
+import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -264,6 +270,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
+      breadcrumbs={getBlogPostBreadcrumbs(categories, blog)}
     >
       <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
       <MaxWidth>
@@ -316,15 +323,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
             >
               <Flex $alignItems={"center"}>
                 {blog.author.image && (
-                  <Circle $mr={12} $overflow={"hidden"} size={56}>
-                    <CMSImage
-                      image={{
-                        altText: blog.author.image.altText,
-                        isPresentational: blog.author.image.isPresentational,
-                        asset: blog.author.image.asset,
-                      }}
-                    />
-                  </Circle>
+                  <AvatarImage image={blog.author.image} $mr={12} />
                 )}
                 <Box $mr={[0, 40]}>
                   <Heading tag="h2" $font={"heading-7"}>
@@ -398,14 +397,14 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     date: blogResult.date.toISOString(),
   };
 
-  return {
+  const results: GetStaticPropsResult<BlogPageProps> = {
     props: {
       categories,
       blog,
-      isPreviewMode,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default BlogDetailPage;
