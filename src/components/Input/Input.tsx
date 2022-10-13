@@ -74,7 +74,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   font-family: ${getFontFamily("ui")};
   font-weight: 300;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
   outline: none;
 
   @media (max-width: ${getBreakpoint("small")}px) {
@@ -96,6 +96,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
     )};
 
     ::placeholder {
+      font-size: 14px;
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.valid.placeholder
       )};

@@ -85,11 +85,13 @@ const selectButtonStyles = css<SelectButtonProps>`
   text-align: left;
   font-size: 16px;
   background: transparent;
-  margin-top: 20px;
+  padding-top: 3px;
+  margin-top: 10px;
   outline: none;
   ${(props) =>
     props.isPlaceholder &&
     css`
+      font-size: 14px;
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.default.placeholder
       )};
@@ -171,6 +173,7 @@ export function Select<T extends object>(
           aria-hidden="true"
           background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}
           color={"black"}
+          $font={"body-3"}
         >
           {props.label}
         </RotatedInputLabel>
