@@ -84,6 +84,7 @@ const selectButtonStyles = css<SelectButtonProps>`
   width: 100%;
   text-align: left;
   font-size: 16px;
+  background: transparent;
   margin-top: 20px;
   outline: none;
   ${(props) =>
@@ -158,15 +159,12 @@ export function Select<T extends object>(
       $position={"relative"}
       {...containerProps}
     >
-      <BoxBorders
-        color="black"
-        gapPosition="rightTop"
-        hideBottom={state.isOpen}
-      />
+      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
       <DropdownFocusUnderline
         isFocusVisible={isFocusVisible}
         aria-hidden="true"
         name={"Underline1"}
+        $font={"body-3"}
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel

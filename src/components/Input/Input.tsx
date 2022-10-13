@@ -42,8 +42,8 @@ export const RotatedInputLabel = styled(Label)<{
   color: OakColorName;
 }>`
   position: relative;
-  padding: 4px;
-  transform: rotate(-2deg) translateY(-10px) translateX(5px);
+  padding: 2px 10px;
+  transform: rotate(-2deg) translateY(-8px) translateX(6px);
   display: block;
   background: ${(props) => getColorByName(props.background)};
   color: ${(props) => getColorByName(props.color)};
@@ -147,6 +147,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 background={error ? "teachersRed" : "pastelTurqoise"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
+                $font={"body-3"}
               >
                 {label}
               </RotatedInputLabel>
