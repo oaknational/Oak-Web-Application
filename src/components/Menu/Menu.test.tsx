@@ -14,7 +14,7 @@ describe("Menu", () => {
     mockRouter.setCurrentUrl("/lesson-planning");
   });
 
-  test("it has a close button", () => {
+  test("it renders with a close button", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
         <Menu />
@@ -22,6 +22,32 @@ describe("Menu", () => {
     );
 
     expect(getByLabelText("Close Menu")).toBeInTheDocument();
+  });
+
+  test("it is hidden by default", () => {
+    const { getByLabelText } = renderWithTheme(
+      <MenuProvider>
+        <Menu />
+      </MenuProvider>
+    );
+
+    expect(getByLabelText("Close Menu")).not.toBeVisible();
+  });
+
+  test("if menu context open is true it is visible", () => {
+    const menuValue = {
+      open: true,
+      toggleMenu: jest.fn(),
+      closeMenu: jest.fn(),
+    };
+
+    const { getByLabelText } = renderWithTheme(
+      <menuContext.Provider value={menuValue}>
+        <Menu />
+      </menuContext.Provider>
+    );
+
+    expect(getByLabelText("Close Menu")).toBeVisible();
   });
 
   test("clicking the close button runs the closeMenu callback", async () => {
