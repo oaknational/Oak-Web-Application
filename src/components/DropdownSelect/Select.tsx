@@ -85,6 +85,7 @@ const selectButtonStyles = css<SelectButtonProps>`
   text-align: left;
   font-size: 16px;
   background: transparent;
+  border: none;
   padding-top: 3px;
   margin-top: 10px;
   outline: none;
