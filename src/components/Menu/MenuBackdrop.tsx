@@ -54,15 +54,16 @@ const Backdrop = styled.div<BackdropProps & TransitionProps>`
 `;
 
 const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
-  const { toggleMenu } = useMenuContext();
+  const { closeMenu } = useMenuContext();
   usePreventScroll({ isDisabled: state === "exited" });
   return (
     <Backdrop
       onClick={() => {
-        toggleMenu();
+        closeMenu();
       }}
       background="black"
       state={state}
+      data-testid={"menu-backdrop"}
     />
   );
 };
