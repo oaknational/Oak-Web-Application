@@ -1,7 +1,6 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled from "styled-components";
 
-import useMediaQuery from "../../hooks/useMediaQuery";
 import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
 
 import button, {
@@ -14,7 +13,6 @@ import {
   defaultButtonProps,
   HTMLButtonProps,
 } from "./common";
-import IconButton from "./IconButton";
 
 const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
@@ -31,26 +29,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     onClick,
     label,
+    labelSuffixA11y,
+    shouldHideLabel,
     icon,
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     iconBackground,
-    iconOnlyOnMobile,
     ...spacingProps
   } = props;
-
-  const isMobile = useMediaQuery("mobile");
-  if (icon && iconOnlyOnMobile && isMobile) {
-    return (
-      <IconButton
-        ref={ref}
-        icon={icon}
-        aria-label={ariaLabel || label}
-        {...props}
-        background={iconBackground}
-      />
-    );
-  }
 
   const { size, variant, iconPosition, background } =
     getButtonStylesProps(props);
@@ -60,7 +46,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       ref={ref}
       {...htmlButtonProps}
       title={htmlButtonProps.title || ariaLabel || label}
-      aria-label={ariaLabel || label}
+      aria-label={ariaLabel}
       onClick={onClick}
       size={size}
       variant={variant}
@@ -70,9 +56,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     >
       <ButtonInner
         label={label}
+        labelSuffixA11y={labelSuffixA11y}
         icon={icon}
         iconPosition={iconPosition}
         iconBackground={iconBackground}
+        shouldHideLabel={shouldHideLabel}
         size={size}
         variant={variant}
         background={background}

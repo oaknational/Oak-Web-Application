@@ -110,139 +110,141 @@ const BioModal: FC<BioModalProps> = (props) => {
     <ModalDialog
       size="fullscreen"
       title="Matt Hood"
+      closeModal={closeModal}
       isDismissable
-      isKeyboardDismissDisabled={false}
     >
-      <Box
-        $position={"absolute"}
-        $top={[16, 32]}
-        $right={[16, 32]}
-        $zIndex={"modalCloseButton"}
-      >
-        <IconButton
-          icon="Cross"
-          onClick={closeModal}
-          aria-label="close modal"
-          background="teachersHighlight"
-          size="small"
-        />
-      </Box>
-      <MaxWidth
-        $position="relative"
-        $maxWidth={[480, 720, 1280]}
-        /**
-         * Use margin for centering to avoid overflow issue
-         * @see https://stackoverflow.com/a/33455342/4031364
-         */
-        $ma="auto"
-        $justifyContent={"unset"}
-        $alignItems={"unset"}
-      >
-        <Grid $position="relative" $mt={[0, 72, 0]}>
-          <GridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
-            <Box $position={"relative"} $zIndex={"inFront"}>
-              <Heading
-                tag="h2"
-                $font={["heading-5", "heading-4"]}
-                $mr={[0, 16]}
-                $mb={[0, 8]}
-                $textAlign={["center", "left"]}
-              >
-                {name}
-              </Heading>
-              <P
-                $font={["heading-light-7", "heading-light-6"]}
-                $color="oakGrey4"
-                $mb={[32, 0]}
-                $textAlign={["center", "left"]}
-              >
-                {role}
-              </P>
-            </Box>
-          </GridArea>
-          <GridArea $colSpan={[12, 7, 4]} $order={[0, 1]} $pt={[48, 0]}>
-            <Box
-              $position="relative"
-              $mb={[20, 0]}
-              $width={[240, "100%"]}
-              $ma={["auto"]}
-              $zIndex={"inFront"}
-            >
-              <BoxBorders gapPosition="rightTop" $zIndex={"inFront"} />
-              <Svg
-                $display={["none", "block"]}
-                name="looping-arrow-1"
-                $position={"absolute"}
-                $width={320}
-                $transform={[
-                  null,
-                  "translate(-57%, 0)",
-                  "translate(-57%, -10%)",
-                ]}
-                $color="pupilsHighlight"
-              />
-              <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
-                <Box $background="white" $cover />
-                {image && (
-                  <CMSImage
-                    image={image}
-                    $objectPosition={"center"}
-                    $objectFit={"cover"}
-                    width={419}
-                    height={628}
-                    $cover
-                  />
-                )}
-              </AspectRatio>
-            </Box>
-          </GridArea>
-          <GridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
-            <P
-              $ml={[0, 0, 72]}
-              $mb={[72]}
-              $mt={[0, 72, 0]}
-              $font={["body-1", "body-2"]}
-            >
-              <PortableText value={bioPortableText} />
-            </P>
-          </GridArea>
-        </Grid>
-        <Flex
-          $position={["fixed", "absolute"]}
-          $bottom={[0]}
-          $left={[0]}
-          $pb={[16, 0]}
-          $pl={[16, 0]}
-          $pt={[16, 0]}
-          $alignItems="center"
-          $width={"100%"}
-          $background="white"
+      <Flex $width={"100%"} $ph={[0, 72]} $pt={[0, 92]}>
+        <Box
+          $position={"absolute"}
+          $top={[16, 32]}
+          $right={[16, 32]}
+          $zIndex={"modalCloseButton"}
         >
-          <SocialButtons
-            $position={["absolute", "relative"]}
-            $left={[16]}
-            twitter={socials?.twitterUsername}
-            linkedIn={socials?.linkedinUrl}
-            $alignItems="flex-end"
+          <IconButton
+            icon="Cross"
+            onClick={closeModal}
+            aria-label="close modal"
+            background="teachersHighlight"
+            size="small"
           />
-          <ButtonGroup $ml="auto" $mr={["auto", 0]}>
-            <IconButton
-              icon="ArrowLeft"
-              aria-label="previous board member"
-              onClick={prevBio}
-              size="small"
-              disabled={!prevBio}
+        </Box>
+        <MaxWidth
+          $position="relative"
+          $maxWidth={[480, 720, 1280]}
+          /**
+           * Use margin for centering to avoid overflow issue
+           * @see https://stackoverflow.com/a/33455342/4031364
+           */
+          $ma="auto"
+          $justifyContent={"unset"}
+          $alignItems={"unset"}
+        >
+          <Grid $position="relative" $mt={[0, 72, 0]}>
+            <GridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
+              <Box $position={"relative"} $zIndex={"inFront"}>
+                <Heading
+                  tag="h2"
+                  $font={["heading-5", "heading-4"]}
+                  $mr={[0, 16]}
+                  $mb={[0, 8]}
+                  $textAlign={["center", "left"]}
+                >
+                  {name}
+                </Heading>
+                <P
+                  $font={["heading-light-7", "heading-light-6"]}
+                  $color="oakGrey4"
+                  $mb={[32, 0]}
+                  $textAlign={["center", "left"]}
+                >
+                  {role}
+                </P>
+              </Box>
+            </GridArea>
+            <GridArea $colSpan={[12, 7, 4]} $order={[0, 1]} $pt={[48, 0]}>
+              <Box
+                $position="relative"
+                $mb={[20, 0]}
+                $width={[240, "100%"]}
+                $mh={["auto"]}
+              >
+                <BoxBorders gapPosition="rightTop" $zIndex={"inFront"} />
+                <Svg
+                  $display={["none", "block"]}
+                  name="looping-arrow-1"
+                  $position={"absolute"}
+                  $width={[320]}
+                  $transform={[
+                    null,
+                    "translate(-57%, 5%)",
+                    "translate(-57%, -10%)",
+                  ]}
+                  $color="pupilsHighlight"
+                />
+                <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
+                  <Box $background="white" $cover />
+                  {image && (
+                    <CMSImage
+                      image={image}
+                      $objectPosition={"center"}
+                      $objectFit={"cover"}
+                      width={419}
+                      height={628}
+                      $cover
+                    />
+                  )}
+                </AspectRatio>
+              </Box>
+            </GridArea>
+            <GridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
+              <Box
+                $ml={[0, 0, 72]}
+                $mb={[72]}
+                $mt={[0, 72, 0]}
+                $font={["body-1", "body-2"]}
+              >
+                <PortableText value={bioPortableText} />
+              </Box>
+            </GridArea>
+          </Grid>
+          <Flex
+            $position={["fixed", "absolute"]}
+            $bottom={[0, 92]}
+            $left={[16]}
+            $right={[16]}
+            $pb={[16, 0]}
+            $pt={[16, 0]}
+            $alignItems="center"
+            $background={["white", "transparent"]}
+          >
+            <SocialButtons
+              for={name}
+              twitter={socials?.twitterUsername}
+              linkedIn={socials?.linkedinUrl}
+              $position={["absolute", "relative"]}
+              $left={[0]}
+              $alignItems="flex-end"
             />
-            <IconButton
-              icon="ArrowRight"
-              aria-label="next board member"
-              onClick={nextBio}
-              size="small"
-              disabled={!nextBio}
-            />
-          </ButtonGroup>
-        </Flex>
-      </MaxWidth>
+            <ButtonGroup $ml="auto" $mr={["auto", 0]}>
+              <IconButton
+                icon="ArrowLeft"
+                aria-label="previous board member"
+                onClick={prevBio}
+                size="small"
+                disabled={!prevBio}
+              />
+              <IconButton
+                icon="ArrowRight"
+                aria-label="next board member"
+                onClick={nextBio}
+                size="small"
+                disabled={!nextBio}
+              />
+            </ButtonGroup>
+          </Flex>
+          <Box $width={"100%"} $height={92} />
+        </MaxWidth>
+      </Flex>
     </ModalDialog>
   );
 };

@@ -5,7 +5,7 @@ import {
   ButtonSize,
   ButtonVariant,
   getButtonColor,
-  getButtonHeight,
+  getIconButtonHeight,
 } from "./common";
 
 type IconButtonWrapperProps = {
@@ -20,9 +20,9 @@ const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
   justify-content: center;
 
   ${(props) => css`
-    height: ${getButtonHeight(props.size, props.variant)}px;
-    width: ${getButtonHeight(props.size, props.variant)}px;
-    min-width: ${getButtonHeight(props.size, props.variant)}px;
+    height: ${getIconButtonHeight(props.size, props.variant)}px;
+    width: ${getIconButtonHeight(props.size, props.variant)}px;
+    min-width: ${getIconButtonHeight(props.size, props.variant)}px;
     color: ${getButtonColor(props.background, props.variant)};
   `}
 

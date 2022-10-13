@@ -50,7 +50,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
       </Flex>
       <Flex $alignItems={"center"} $mt={[0, 24]} $ml={["auto", 0]}>
         <SocialButtons
-          size="tiny"
+          for={name}
           linkedIn={socials?.linkedinUrl}
           twitter={socials?.twitterUsername}
           $display={["none", "flex"]}
@@ -58,13 +58,14 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
         <Button
           {...primaryTargetProps}
           label="See bio"
+          labelSuffixA11y={`for ${name}`}
           variant="minimal"
           icon="ArrowRight"
           iconPosition="trailing"
           iconBackground="teachersHighlight"
           $ml="auto"
           onClick={() => onClick(props)}
-          iconOnlyOnMobile
+          shouldHideLabel={[true, false]}
         />
       </Flex>
     </Flex>

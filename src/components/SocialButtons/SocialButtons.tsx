@@ -59,13 +59,20 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
 } as const;
 
 type SocialUrls = Partial<Record<SocialNetwork, string | null | undefined>>;
+
 type SocialButtonsProps = FlexProps &
   SocialUrls & {
+    /**
+     * for: who's social media accounts are being linekd
+     * @example Oak National Academy
+     * @example Joan Baez
+     */
+    for: string;
     size?: ButtonSize;
     spaceBetween?: ResponsiveValues<PixelSpacing>;
   };
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
-  const { size, spaceBetween, ...flexProps } = props;
+  const { size, spaceBetween, for: accountHolder, ...flexProps } = props;
   const id = useId();
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
 
@@ -88,7 +95,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
         return (
           <IconButtonAsLink
             key={`SocialButtons-${id}-${network}`}
-            aria-label={label}
+            aria-label={`${label} for ${accountHolder}`}
             icon={icon}
             href={href}
             variant={"minimal"}
@@ -102,7 +109,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
 };
 
 SocialButtons.defaultProps = {
-  size: "small",
+  size: "large",
   spaceBetween: 16,
 };
 

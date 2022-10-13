@@ -8,6 +8,7 @@ import {
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
 import { AriaDialogProps } from "@react-types/dialog";
+import { useKeyboard } from "react-aria";
 
 import Box from "../Box";
 import Flex from "../Flex";
@@ -17,12 +18,15 @@ type ModalDialogProps = AriaDialogProps &
     title: string;
     size: "fullscreen" | "small";
     children: ReactNode;
+    closeModal?: () => void;
   };
 const ModalDialog: FC<ModalDialogProps> = (props) => {
   const {
     // title, // fix this
     children,
     size,
+    closeModal,
+    isDismissable,
   } = props;
 
   // Handle interacting outside the dialog and pressing
@@ -38,8 +42,19 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
   // Get props for the dialog and its title
   const {
     dialogProps,
-  // titleProps, //titleProps should be included
+    // titleProps, //titleProps should be included
   } = useDialog(props, ref);
+
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === "Escape") {
+        if (isDismissable && closeModal) {
+          closeModal();
+        }
+      }
+      e.continuePropagation();
+    },
+  });
 
   return (
     <Box
@@ -62,6 +77,7 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
           {...overlayProps}
           {...dialogProps}
           {...modalProps}
+          {...keyboardProps}
           ref={ref}
           $background={"white"}
           $color={"black"}

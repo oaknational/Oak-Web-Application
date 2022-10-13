@@ -17,7 +17,7 @@ import Icon, { IconName } from "../Icon";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { srOnly } from "../ScreenReaderOnly";
+import { srOnlyCss } from "../ScreenReaderOnly";
 import ellipsis from "../../styles/ellipsis";
 
 import { Popover } from "./Popover";
@@ -101,7 +101,7 @@ const Label = styled.label<{ visuallyHidden: boolean }>`
   text-align: left;
   font-family: ${getFontFamily("body")};
   font-size: ${(props) => props.theme.input.fontSize};
-  ${(props) => props.visuallyHidden && srOnly}
+  ${(props) => props.visuallyHidden && srOnlyCss}
 `;
 
 const SelectInner = styled(Flex)`

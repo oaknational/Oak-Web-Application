@@ -95,7 +95,7 @@ const Menu: FC = ({ children }) => {
                   aria-label="Close Menu"
                   icon={"Cross"}
                   variant={"minimal"}
-                  size={"header"}
+                  size={"large"}
                   onClick={toggleMenu}
                 />
               </Box>
@@ -126,7 +126,7 @@ const Menu: FC = ({ children }) => {
                   $justifyContent={"space-between"}
                   $alignItems={"flex-end"}
                 >
-                  <SocialButtons {...OAK_SOCIALS} />
+                  <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
                   <Flex $display={["none", "flex"]} $mb={6}>
                     <Logo
                       title={"Oak National Academy"}

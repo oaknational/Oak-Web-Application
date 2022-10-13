@@ -67,10 +67,8 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         aria-label="Menu"
         icon={"Hamburger"}
         variant={"minimal"}
-        size={"header"}
-        onClick={() => {
-          toggleMenu();
-        }}
+        size={"large"}
+        onClick={toggleMenu}
       />
       <Menu>
         <MenuLinks menuSections={menuSections} />

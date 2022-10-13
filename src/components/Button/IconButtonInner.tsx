@@ -8,7 +8,7 @@ import {
   ButtonBackground,
   ButtonSize,
   ButtonVariant,
-  getButtonHeight,
+  getIconButtonHeight,
 } from "./common";
 import IconButtonWrapper from "./IconButtonWrapper";
 import { IconFocusUnderline } from "./IconFocusUnderline";
@@ -31,7 +31,7 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
       <Icon
         variant={variant}
         name={icon}
-        size={getButtonHeight(size, variant)}
+        size={getIconButtonHeight(size, variant)}
         $color={iconColorOverride}
         $background={variant === "minimal" ? "transparent" : background}
       />
