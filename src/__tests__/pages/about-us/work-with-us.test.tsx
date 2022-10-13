@@ -3,7 +3,9 @@ import { screen, waitFor } from "@testing-library/react";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient, { AboutWorkWithUsPage } from "../../../node-lib/cms";
-// import AboutWorkWithUs, { getStaticProps } from "../../../pages/about-us/work-with-us";
+import AboutWorkWithUs, {
+  getStaticProps,
+} from "../../../pages/about-us/work-with-us";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
@@ -114,13 +116,7 @@ export const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
   },
 };
 
-// Mock implementations  for stubbed tests - replace with real imports
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AboutWorkWithUs = (_props: { pageData: unknown }) => <></>;
-// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-const getStaticProps = (params: unknown) => {};
-
-describe.skip("pages/about-us/work-with-us.tsx", () => {
+describe("pages/about-us/work-with-us.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
       <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />
