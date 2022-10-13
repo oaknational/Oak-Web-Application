@@ -1,9 +1,12 @@
+import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
+import { createRef } from "react";
 
 import { MenuProvider } from "../../context/Menu";
 import { menuContext } from "../../context/Menu/MenuProvider";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import IconButton from "../Button/IconButton";
 
 import Menu from "./Menu";
 
@@ -50,7 +53,7 @@ describe("Menu", () => {
     expect(getByLabelText("Close Menu")).toBeVisible();
   });
 
-  test("clicking the close button runs the closeMenu callback", async () => {
+  test("clicking the close button invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
       toggleMenu: jest.fn(),
@@ -70,7 +73,7 @@ describe("Menu", () => {
     expect(menuValue.closeMenu).toHaveBeenCalled();
   });
 
-  test("pressing the escape key runs the closeMenu callback", async () => {
+  test("pressing the escape key invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
       toggleMenu: jest.fn(),
@@ -86,5 +89,52 @@ describe("Menu", () => {
     await user.keyboard("{Escape}");
 
     expect(menuValue.closeMenu).toHaveBeenCalled();
+  });
+
+  test("it returns focus to the button it was passed as a ref when closed", async () => {
+    const menuButtonRef = createRef<HTMLButtonElement>();
+
+    const menuValue = {
+      open: true,
+      toggleMenu: jest.fn(),
+      closeMenu: jest.fn(),
+    };
+
+    const { rerender, getByLabelText } = renderWithTheme(
+      <menuContext.Provider value={menuValue}>
+        <IconButton
+          aria-label="Open Menu"
+          icon={"Hamburger"}
+          variant={"minimal"}
+          size={"header"}
+          ref={menuButtonRef}
+          onClick={jest.fn}
+        />
+        <Menu ref={menuButtonRef} />
+      </menuContext.Provider>
+    );
+
+    menuValue.open = false;
+
+    rerender(
+      <menuContext.Provider value={menuValue}>
+        <IconButton
+          aria-label="Open Menu"
+          icon={"Hamburger"}
+          variant={"minimal"}
+          size={"header"}
+          ref={menuButtonRef}
+          onClick={jest.fn}
+        />
+        <Menu ref={menuButtonRef} />
+      </menuContext.Provider>
+    );
+
+    const menuButton = getByLabelText("Open Menu");
+
+    // wait for animation to complete
+    waitFor(() => {
+      expect(menuButton).toHaveFocus();
+    });
   });
 });
