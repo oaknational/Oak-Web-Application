@@ -168,6 +168,7 @@ export function Select<T extends object>(
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
+          aria-hidden="true"
           background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}
           color={"black"}
         >
