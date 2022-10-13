@@ -127,7 +127,7 @@ function Option({ item, state }: OptionProps) {
           name={"Underline1"}
         />
       </Flex>
-      <BoxBorders hideTop />
+      <BoxBorders color="black" hideTop />
     </ListItem>
   );
 }

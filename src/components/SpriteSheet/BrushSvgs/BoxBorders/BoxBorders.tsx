@@ -3,6 +3,7 @@ import { FC } from "react";
 import { ZIndex } from "../../../../styles/utils/zIndex";
 import Box from "../../../Box";
 import Svg from "../../../Svg";
+import { OakColorName } from "../../../../styles/theme/types";
 
 export const gapPositionMap = {
   rightTop: "90%",
@@ -16,6 +17,7 @@ export type BoxBordersProps = {
   $zIndex?: ZIndex;
   hideTop?: boolean;
   hideBottom?: boolean;
+  color?: OakColorName;
 };
 
 const Top: FC = (props) => {

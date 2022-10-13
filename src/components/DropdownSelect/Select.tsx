@@ -158,7 +158,11 @@ export function Select<T extends object>(
       $position={"relative"}
       {...containerProps}
     >
-      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
+      <BoxBorders
+        color="black"
+        gapPosition="rightTop"
+        hideBottom={state.isOpen}
+      />
       <DropdownFocusUnderline
         isFocusVisible={isFocusVisible}
         aria-hidden="true"
