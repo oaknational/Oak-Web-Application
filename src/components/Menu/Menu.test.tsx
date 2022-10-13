@@ -69,4 +69,22 @@ describe("Menu", () => {
 
     expect(menuValue.closeMenu).toHaveBeenCalled();
   });
+
+  test("pressing the escape key runs the closeMenu callback", async () => {
+    const menuValue = {
+      open: true,
+      toggleMenu: jest.fn(),
+      closeMenu: jest.fn(),
+    };
+
+    renderWithTheme(
+      <menuContext.Provider value={menuValue}>
+        <Menu />
+      </menuContext.Provider>
+    );
+    const user = userEvent.setup();
+    await user.keyboard("{Escape}");
+
+    expect(menuValue.closeMenu).toHaveBeenCalled();
+  });
 });
