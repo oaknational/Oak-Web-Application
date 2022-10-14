@@ -74,6 +74,7 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>(
         if (e.key === "Escape") {
           closeMenu();
         }
+        e.continuePropagation();
       },
     });
 
