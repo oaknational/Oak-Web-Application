@@ -9,7 +9,7 @@ const Group = styled(Flex)`
   }
 `;
 
-type ButtonGroupProps = FlexProps;
+export type ButtonGroupProps = FlexProps;
 const ButtonGroup: FC<ButtonGroupProps> = (props) => {
   /**
    * @todo run time check that all children are Button or IconButton components

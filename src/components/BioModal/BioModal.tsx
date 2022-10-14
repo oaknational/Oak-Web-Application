@@ -9,16 +9,18 @@ import {
 import AspectRatio from "../AspectRatio";
 import Box from "../Box";
 import IconButton from "../Button/IconButton";
-import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import CMSImage from "../CMSImage";
 import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import ModalDialog from "../ModalDialog";
+import useModalDialog from "../ModalDialog/useModalDialog";
 import SocialButtons from "../SocialButtons";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import Svg from "../Svg";
 import { Heading, P } from "../Typography";
+
+import NavigationButtons from "./NavigationButtons";
 
 export type BioData = {
   id: string;
@@ -95,6 +97,16 @@ type BioModalProps = {
 const BioModal: FC<BioModalProps> = (props) => {
   const { bio, isOpen, closeModal, nextBio, prevBio } = props;
 
+  const modalDialogProps = useModalDialog({
+    size: "fullscreen",
+    closeModal,
+    isDismissable: true,
+    isKeyboardDismissDisabled: true,
+    isOpen,
+  });
+
+  const { titleProps } = modalDialogProps;
+
   if (!isOpen) {
     return null;
   }
@@ -107,12 +119,7 @@ const BioModal: FC<BioModalProps> = (props) => {
   const { name, role, socials, image, bioPortableText } = bio;
 
   return (
-    <ModalDialog
-      size="fullscreen"
-      title="Matt Hood"
-      closeModal={closeModal}
-      isDismissable
-    >
+    <ModalDialog {...modalDialogProps}>
       <Flex $width={"100%"} $ph={[0, 72]} $pt={[0, 92]}>
         <Box
           $position={"absolute"}
@@ -143,6 +150,7 @@ const BioModal: FC<BioModalProps> = (props) => {
             <GridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
               <Box $position={"relative"} $zIndex={"inFront"}>
                 <Heading
+                  {...titleProps}
                   tag="h2"
                   $font={["heading-5", "heading-4"]}
                   $mr={[0, 16]}
@@ -173,7 +181,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                   $display={["none", "block"]}
                   name="looping-arrow-1"
                   $position={"absolute"}
-                  $width={[320]}
+                  $width={[null, "28vw", 320]}
                   $transform={[
                     null,
                     "translate(-57%, 5%)",
@@ -225,22 +233,12 @@ const BioModal: FC<BioModalProps> = (props) => {
               $left={[0]}
               $alignItems="flex-end"
             />
-            <ButtonGroup $ml="auto" $mr={["auto", 0]}>
-              <IconButton
-                icon="ArrowLeft"
-                aria-label="previous board member"
-                onClick={prevBio}
-                size="small"
-                disabled={!prevBio}
-              />
-              <IconButton
-                icon="ArrowRight"
-                aria-label="next board member"
-                onClick={nextBio}
-                size="small"
-                disabled={!nextBio}
-              />
-            </ButtonGroup>
+            <NavigationButtons
+              $ml="auto"
+              $mr={["auto", 0]}
+              prevBio={prevBio}
+              nextBio={nextBio}
+            />
           </Flex>
           <Box $width={"100%"} $height={92} />
         </MaxWidth>

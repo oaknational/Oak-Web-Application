@@ -9,7 +9,7 @@ import Box from "../Box";
 import Component from ".";
 
 export default {
-  title: "A/ModalDialog",
+  title: "Interactive/ModalDialog",
   component: Component,
 } as ComponentMeta<typeof Component>;
 
@@ -43,8 +43,5 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const ModalDialog = Template.bind({});
 ModalDialog.args = {
-  title: "Just another modal...",
-  isDismissable: true,
-  isKeyboardDismissDisabled: true,
   size: "small",
 };
