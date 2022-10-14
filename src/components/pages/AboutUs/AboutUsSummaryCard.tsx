@@ -1,4 +1,4 @@
-import { reducedAboutNavLinks } from "../../../browser-lib/fixtures/aboutNav";
+import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
 import { AboutBoardPage, AboutWhoWeArePage } from "../../../node-lib/cms";
 import ButtonLinkNav from "../../ButtonLinkNav/ButtonLinkNav";
 import SummaryCard from "../../Card/SummaryCard";
@@ -32,11 +32,7 @@ const AboutUsSummaryCard = ({
         $mr: 32,
       }}
     >
-      <ButtonLinkNav
-        $mt={36}
-        buttons={reducedAboutNavLinks}
-        ariaLabel="about us"
-      />
+      <ButtonLinkNav $mt={36} buttons={aboutNavLinks} ariaLabel="about us" />
     </SummaryCard>
   );
 };
