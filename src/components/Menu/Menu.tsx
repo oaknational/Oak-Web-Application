@@ -100,7 +100,7 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>(
         {(state) => (
           <Box $position="absolute" ref={ref}>
             <MenuBackdrop state={state} />
-            <FocusScope contain autoFocus restoreFocus>
+            <FocusScope contain={open}>
               <SideMenu
                 data-testid={"menu"}
                 $position="fixed"
