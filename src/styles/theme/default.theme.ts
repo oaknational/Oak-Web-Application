@@ -271,16 +271,18 @@ const theme: OakTheme = {
     states: {
       default: {
         background: "white",
+        color: "oakGrey4",
       },
       isFocused: {
-        background: "grey8",
-        color: "white",
+        background: "white",
+        color: "grey4",
+        weight: 700,
       },
       isFocusedSelected: {
-        color: "grey10",
+        color: "grey4",
       },
       isFocusedNotSelected: {
-        color: "black",
+        color: "grey4",
       },
     },
   },
