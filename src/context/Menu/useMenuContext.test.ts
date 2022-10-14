@@ -24,4 +24,16 @@ describe("useMenuContext()", () => {
 
     expect(result.current.open).toBe(true);
   });
+
+  test("closeMenu should close menu", () => {
+    const { result } = renderHook(() => useMenuContext(), {
+      wrapper: MenuProvider,
+    });
+    const { closeMenu } = result.current;
+    act(() => {
+      closeMenu();
+    });
+
+    expect(result.current.open).toBe(false);
+  });
 });
