@@ -1,3 +1,10 @@
+## [1.39.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.39.0...v1.39.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* duplicate dropdown label for voice over ([b148d1c](https://github.com/oaknational/Oak-Web-Application/commit/b148d1cc9f60a4163c5188d5fe72e9888b657179))
+
 # [1.39.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.38.0...v1.39.0) (2022-10-12)
 
 
