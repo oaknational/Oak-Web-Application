@@ -10,7 +10,7 @@ export type LandingPageHeroProps = Pick<LandingPage, "hero">;
 
 const LandingPageHero: FC<LandingPageHeroProps> = (props) => {
   return (
-    <Flex $flexDirection={["column", "row"]} $mv={[92]}>
+    <Flex $flexDirection={["column", "row"]} $mt={[92]}>
       <Flex $width={"100%"}>
         <LandingPageTitle
           image={props.hero.image ? true : false}
