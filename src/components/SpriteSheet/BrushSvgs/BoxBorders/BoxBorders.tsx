@@ -3,6 +3,7 @@ import { FC } from "react";
 import { ZIndex } from "../../../../styles/utils/zIndex";
 import Box from "../../../Box";
 import Svg from "../../../Svg";
+import { OakColorName } from "../../../../styles/theme/types";
 
 export const gapPositionMap = {
   rightTop: "90%",
@@ -14,6 +15,9 @@ export type GapPosition = keyof typeof gapPositionMap;
 export type BoxBordersProps = {
   gapPosition?: GapPosition;
   $zIndex?: ZIndex;
+  hideTop?: boolean;
+  hideBottom?: boolean;
+  color?: OakColorName;
 };
 
 const Top: FC = (props) => {
@@ -112,13 +116,15 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
   const { gapPosition } = props;
   return (
     <Box aria-hidden="true" data-testid="brush-borders">
-      <Svg
-        name="box-border-top"
-        {...props}
-        $cover
-        $height={3}
-        $bottom={"unset"}
-      />
+      {!props.hideTop && (
+        <Svg
+          name="box-border-top"
+          {...props}
+          $cover
+          $height={3}
+          $bottom={"unset"}
+        />
+      )}
       <Svg
         name="box-border-right"
         {...props}
@@ -128,16 +134,18 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
         $left={"unset"}
         $height={gapPosition === "rightTop" ? gapPositionMap.rightTop : "100%"}
       />
-      <Svg
-        name="box-border-bottom"
-        {...props}
-        $cover
-        $height={3}
-        $top={"unset"}
-        $width={
-          gapPosition === "bottomRight" ? gapPositionMap.bottomRight : "100%"
-        }
-      />
+      {!props.hideBottom && (
+        <Svg
+          name="box-border-bottom"
+          {...props}
+          $cover
+          $height={3}
+          $top={"unset"}
+          $width={
+            gapPosition === "bottomRight" ? gapPositionMap.bottomRight : "100%"
+          }
+        />
+      )}
       <Svg
         name="box-border-left"
         {...props}

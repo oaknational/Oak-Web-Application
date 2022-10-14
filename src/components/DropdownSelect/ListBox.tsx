@@ -5,19 +5,22 @@ import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
 
-import Icon from "../Icon";
 import { OakColorName } from "../../styles/theme";
 import Flex from "../Flex";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
+import { InputFocusUnderline } from "../Input/Input";
 
 export type SelectListBoxConfig = {
   states: {
     default: {
       background: OakColorName;
+      color: OakColorName;
     };
     isFocused: {
       background: OakColorName;
       color: OakColorName;
+      weight: number;
     };
     isFocusedSelected: {
       color: OakColorName;
@@ -38,28 +41,12 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li<ListItemProps>`
-  background: ${(props) =>
-    props.isFocused
-      ? getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocused.background
-        )
-      : getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.default.background
-        )};
-  color: ${(props) =>
-    props.isFocused
-      ? getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocused.color
-        )
-      : props.isSelected
-      ? getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocusedSelected.color
-        )
-      : getColorByLocation(
-          ({ theme }) => theme.selectListBox.states.isFocusedNotSelected.color
-        )};
+  color: ${getColorByLocation(
+    ({ theme }) => theme.selectListBox.states.default.color
+  )};
   font-size: 14px;
-  font-weight: ${(props) => (props.isSelected ? "600" : "normal")};
+  font-weight: ${(props) =>
+    props.isFocused ? 700 : props.isSelected ? 700 : 300};
   padding: 8px;
   display: flex;
   align-items: center;
@@ -67,6 +54,10 @@ const ListItem = styled.li<ListItemProps>`
   cursor: default;
   outline: none;
   width: 100%;
+
+  &:focus-within ${InputFocusUnderline} {
+    display: inline;
+  }
 `;
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
@@ -126,12 +117,13 @@ function Option({ item, state }: OptionProps) {
       isFocused={isFocused}
       isSelected={isSelected}
     >
-      <Flex $alignItems={"center"}>
+      <Flex $position={"relative"} $alignItems={"center"}>
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
+        <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
       </Flex>
-      {isSelected && <Icon aria-hidden="true" name={"Tick"} />}
+      <BoxBorders color="black" hideTop />
     </ListItem>
   );
 }
@@ -155,6 +147,8 @@ const StyledDescription = styled.div`
 export function Description({ children }: { children: React.ReactNode }) {
   const { descriptionProps } = useContext(OptionContext);
   return (
-    <StyledDescription {...descriptionProps}>{children}</StyledDescription>
+    <Flex>
+      <StyledDescription {...descriptionProps}>{children}</StyledDescription>
+    </Flex>
   );
 }
