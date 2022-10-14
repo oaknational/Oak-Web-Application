@@ -3,7 +3,8 @@ import { FC, Fragment } from "react";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
 import Flex from "../Flex";
-import NewsletterForm, { useNewsletterForm } from "../Forms/NewsletterForm";
+import { useNewsletterForm } from "../Forms/NewsletterForm";
+import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading, P } from "../Typography";
@@ -63,7 +64,7 @@ const AboutContactCard: FC = () => {
         </GridArea>
         <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 6, 4]}>
           <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
-            <NewsletterForm onSubmit={onSubmit} />
+            <NewsletterFormWrap onSubmit={onSubmit} />
           </Flex>
         </GridArea>
       </Grid>
