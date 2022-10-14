@@ -17,7 +17,7 @@ const Beta: FC = () => {
             $mt={64}
             data-testid="home-page-title"
           >
-            Oak National Academy BETA
+            Oak National Academy BETA 
           </Heading>
         </GridArea>
       </Grid>
