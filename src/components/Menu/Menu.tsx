@@ -73,8 +73,9 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>(
       onKeyDown: (e) => {
         if (e.key === "Escape") {
           closeMenu();
+        } else {
+          e.continuePropagation();
         }
-        e.continuePropagation();
       },
     });
 
