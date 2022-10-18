@@ -32,7 +32,6 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
       <>
         <MaxWidth $justifyContent={"flex-start"}>
           <LandingPageHero hero={pageData.hero} />
-
           <BasePortableTextProvider>
             {pageData.content.map((content, index) => {
               if (content.type == "LandingPageTextAndMediaBlock") {
