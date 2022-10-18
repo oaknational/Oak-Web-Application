@@ -14,55 +14,15 @@ const Template: ComponentStory<typeof Component> = (args) => {
 export const BioCardList = Template.bind({});
 BioCardList.args = {
   people: [
-    {
-      id: "123",
-      name: "Jack",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Joe",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Craig",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Verity",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Mitch",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Tomas",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Jim",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Ross",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Ian",
-      role: "Worker",
-    },
-    {
-      id: "123",
-      name: "Matt",
-      role: "Worker",
-    },
-  ],
+    "Jack",
+    "Joe",
+    "Craig",
+    "Verity",
+    "Mitch",
+    "Tomas",
+    "Jim",
+    "Ross",
+    "Ian",
+    "Matt",
+  ].map((name, i) => ({ name, id: String(i), role: "Worker" })),
 };

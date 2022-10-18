@@ -9,7 +9,7 @@ import Box from "../Box";
 import Component from ".";
 
 export default {
-  title: "Interactive/ModalDialog",
+  title: "Modals/ModalDialog",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

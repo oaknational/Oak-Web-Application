@@ -5,7 +5,7 @@ import { OverlayProvider } from "react-aria";
 import Component from ".";
 
 export default {
-  title: "A/BioModal",
+  title: "Modals/BioModal",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

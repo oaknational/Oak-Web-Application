@@ -1,11 +1,8 @@
 import { PortableText } from "@portabletext/react";
-import { FC, useCallback, useState } from "react";
+import { FC } from "react";
 
-import { PortableTextJSON } from "../../node-lib/cms";
-import {
-  SanityImageAsset,
-  TeamMemberSocialsFragment,
-} from "../../node-lib/sanity-graphql/generated/sdk";
+import { Image, PortableTextJSON } from "../../node-lib/cms";
+import { TeamMemberSocialsFragment } from "../../node-lib/sanity-graphql/generated/sdk";
 import AspectRatio from "../AspectRatio";
 import Box from "../Box";
 import IconButton from "../Button/IconButton";
@@ -26,67 +23,12 @@ export type BioData = {
   id: string;
   name: string;
   role?: string | null;
-  image?: SanityImageAsset | null;
+  image?: Image | null;
   socials?: TeamMemberSocialsFragment | null;
   bioPortableText?: PortableTextJSON;
 };
 
-type UseBioModalProps = {
-  bios: BioData[];
-};
-export const useBioModal = (props: UseBioModalProps): BioModalProps => {
-  const { bios } = props;
-  const [bio, setBio] = useState<BioData>();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = useCallback((initialBio: BioData) => {
-    setIsOpen(true);
-    setBio(initialBio);
-  }, []);
-  const closeModal = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
-  const currentIndex = bios.findIndex((_bio) => _bio.id === bio?.id);
-
-  const canGoNext = currentIndex < bios.length - 1;
-  const canGoPrev = currentIndex > 0;
-
-  const nextBio = canGoNext
-    ? () => {
-        const nextIndex = (currentIndex + 1) % bios.length;
-        const _bio = bios.at(nextIndex);
-        if (!_bio) {
-          // @todo error
-          return;
-        }
-        setBio(_bio);
-      }
-    : undefined;
-
-  const prevBio = canGoPrev
-    ? () => {
-        const prevIndex = (currentIndex - 1) % bios.length;
-        const _bio = bios.at(prevIndex);
-        if (!_bio) {
-          // @todo error
-          return;
-        }
-        setBio(_bio);
-      }
-    : undefined;
-
-  return {
-    isOpen,
-    openModal,
-    closeModal,
-    nextBio,
-    prevBio,
-    bio,
-  };
-};
-
-type BioModalProps = {
+export type BioModalProps = {
   isOpen: boolean;
   openModal: (initialBio: BioData) => void;
   closeModal: () => void;
