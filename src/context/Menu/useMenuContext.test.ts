@@ -19,7 +19,7 @@ describe("useMenuContext()", () => {
     });
     const { toggleMenu } = result.current;
     act(() => {
-      toggleMenu();
+      toggleMenu("test");
     });
 
     expect(result.current.open).toBe(true);
