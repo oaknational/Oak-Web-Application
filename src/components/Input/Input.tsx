@@ -42,8 +42,8 @@ export const RotatedInputLabel = styled(Label)<{
   color: OakColorName;
 }>`
   position: relative;
-  padding: 4px;
-  transform: rotate(-2deg) translateY(-10px) translateX(5px);
+  padding: 2px 10px;
+  transform: rotate(-2deg) translateY(-8px) translateX(6px);
   display: block;
   background: ${(props) => getColorByName(props.background)};
   color: ${(props) => getColorByName(props.color)};
@@ -74,7 +74,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   font-family: ${getFontFamily("ui")};
   font-weight: 300;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
   outline: none;
 
   @media (max-width: ${getBreakpoint("small")}px) {
@@ -96,6 +96,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
     )};
 
     ::placeholder {
+      font-size: 14px;
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.valid.placeholder
       )};
@@ -147,6 +148,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 background={error ? "teachersRed" : "pastelTurqoise"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
+                $font={"body-3"}
               >
                 {label}
               </RotatedInputLabel>

@@ -84,11 +84,15 @@ const selectButtonStyles = css<SelectButtonProps>`
   width: 100%;
   text-align: left;
   font-size: 16px;
-  margin-top: 20px;
+  background: transparent;
+  border: none;
+  padding-top: 3px;
+  margin-top: 10px;
   outline: none;
   ${(props) =>
     props.isPlaceholder &&
     css`
+      font-size: 14px;
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.default.placeholder
       )};
@@ -163,11 +167,14 @@ export function Select<T extends object>(
         isFocusVisible={isFocusVisible}
         aria-hidden="true"
         name={"Underline1"}
+        $font={"body-3"}
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
+          aria-hidden="true"
           background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}
           color={"black"}
+          $font={"body-3"}
         >
           {props.label}
         </RotatedInputLabel>

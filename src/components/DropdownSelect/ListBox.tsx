@@ -121,13 +121,9 @@ function Option({ item, state }: OptionProps) {
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
-        <InputFocusUnderline
-          // isFocusVisible={isFocused}
-          aria-hidden="true"
-          name={"Underline1"}
-        />
+        <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
       </Flex>
-      <BoxBorders hideTop />
+      <BoxBorders color="black" hideTop />
     </ListItem>
   );
 }

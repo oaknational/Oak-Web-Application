@@ -29,7 +29,7 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
       <Flex $alignItems="center" $font={["body-2", "body-1"]}>
         <PortableText value={bodyPortableText} />
       </Flex>
-      <BrushBorders color={"twilight"} />
+      <BrushBorders hideOnMobileH color={"twilight"} />
     </Card>
   );
 };
