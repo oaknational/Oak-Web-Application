@@ -1,6 +1,11 @@
 import { useState, useCallback } from "react";
 
+import errorReporter from "../../common-lib/error-reporter";
+import OakError from "../../errors/OakError";
+
 import { BioData, BioModalProps } from "./BioModal";
+
+const reportError = errorReporter("useBioModal");
 
 type UseBioModalProps = {
   bios: BioData[];
@@ -26,10 +31,17 @@ export const useBioModal = (props: UseBioModalProps): BioModalProps => {
   const nextBio = canGoNext
     ? () => {
         const nextIndex = (currentIndex + 1) % bios.length;
-        const _bio = bios.at(nextIndex);
+        const _bio = bios[nextIndex];
         if (!_bio) {
-          // @todo error
-          return;
+          const error = new OakError({
+            code: "misc/unexpected-type",
+            meta: {
+              ...props,
+              impact:
+                "User clicked 'next bio' button, but there was no next bio",
+            },
+          });
+          return reportError(error, props);
         }
         setBio(_bio);
       }
@@ -38,10 +50,17 @@ export const useBioModal = (props: UseBioModalProps): BioModalProps => {
   const prevBio = canGoPrev
     ? () => {
         const prevIndex = (currentIndex - 1) % bios.length;
-        const _bio = bios.at(prevIndex);
+        const _bio = bios[prevIndex];
         if (!_bio) {
-          // @todo error
-          return;
+          const error = new OakError({
+            code: "misc/unexpected-type",
+            meta: {
+              ...props,
+              impact:
+                "User clicked 'next bio' button, but there was no next bio",
+            },
+          });
+          return reportError(error);
         }
         setBio(_bio);
       }

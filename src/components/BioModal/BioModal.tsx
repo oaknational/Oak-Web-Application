@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import { FC } from "react";
+import { FC, useRef } from "react";
 
 import { Image, PortableTextJSON } from "../../node-lib/cms";
 import { TeamMemberSocialsFragment } from "../../node-lib/sanity-graphql/generated/sdk";
@@ -39,6 +39,8 @@ export type BioModalProps = {
 const BioModal: FC<BioModalProps> = (props) => {
   const { bio, isOpen, closeModal, nextBio, prevBio } = props;
 
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
   const modalDialogProps = useModalDialog({
     size: "fullscreen",
     closeModal,
@@ -75,6 +77,7 @@ const BioModal: FC<BioModalProps> = (props) => {
             aria-label="close modal"
             background="teachersHighlight"
             size="small"
+            ref={closeButtonRef}
           />
         </Box>
         <MaxWidth
@@ -180,6 +183,7 @@ const BioModal: FC<BioModalProps> = (props) => {
               $mr={["auto", 0]}
               prevBio={prevBio}
               nextBio={nextBio}
+              defaultFocusRef={closeButtonRef}
             />
           </Flex>
           <Box $width={"100%"} $height={92} />

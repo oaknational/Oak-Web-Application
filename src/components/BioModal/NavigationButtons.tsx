@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useFocusManager } from "react-aria";
+import { RefObject, useEffect } from "react";
 
 import IconButton from "../Button/IconButton";
 import ButtonGroup, { ButtonGroupProps } from "../ButtonGroup/ButtonGroup";
@@ -7,20 +6,20 @@ import ButtonGroup, { ButtonGroupProps } from "../ButtonGroup/ButtonGroup";
 type NavigationButtonsProps = ButtonGroupProps & {
   nextBio?: () => void;
   prevBio?: () => void;
+  defaultFocusRef: RefObject<HTMLButtonElement>;
 };
 const NavigationButtons = (props: NavigationButtonsProps) => {
-  const { nextBio, prevBio, ...buttonGroupProps } = props;
+  const { nextBio, prevBio, defaultFocusRef, ...buttonGroupProps } = props;
 
-  const { focusFirst } = useFocusManager();
   useEffect(() => {
-    if ((!nextBio || !prevBio) && focusFirst) {
+    if ((!nextBio || !prevBio) && defaultFocusRef?.current) {
       /**
        * move focus back within the modal when user hits the end or the
        * beginning of the list of people
        **/
-      focusFirst();
+      defaultFocusRef.current.focus();
     }
-  }, [nextBio, prevBio, focusFirst]);
+  }, [nextBio, prevBio, defaultFocusRef]);
 
   return (
     <ButtonGroup {...buttonGroupProps}>
