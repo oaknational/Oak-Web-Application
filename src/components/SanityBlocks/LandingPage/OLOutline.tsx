@@ -13,6 +13,7 @@ export const OLOutline = styled(OL)<{ $color: OakColorName }>`
   li {
     margin-left: 32px;
     margin-bottom: 0;
+    text-indent: 0;
   }
 
   & li::before {
