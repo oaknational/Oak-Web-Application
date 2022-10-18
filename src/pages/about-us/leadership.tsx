@@ -23,10 +23,10 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo, introPortableText, leadershipTeam } = pageData;
 
   const chiefExecutive: BioCardListItemProps[] = leadershipTeam.filter(
-    (person) => person.role === "Chief Executive"
+    (person) => person.role?.toLowerCase() === "chief executive"
   );
   const leaders: BioCardListItemProps[] = leadershipTeam.filter(
-    (person) => person.role !== "Chief Executive"
+    (person) => person.role?.toLowerCase() !== "chief executive"
   );
 
   return (
