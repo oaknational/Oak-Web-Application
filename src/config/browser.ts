@@ -167,6 +167,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotFormsAccessToken: {
+    value: process.env.HUBSPOT_FORMS_ACCESS_TOKEN,
+    envName: "HUBSPOT_FORMS_ACCESS_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
     envName: "NEXT_PUBLIC_POSTHOG_API_KEY",

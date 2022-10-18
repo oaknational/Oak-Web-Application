@@ -60,6 +60,7 @@
     "change-case": "^4.1.2",
     "date-fns": "^2.29.3",
     "gleap": "6.7.5",
+    "hubspot": "^2.3.14",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "next": "^13.0.4",
