@@ -38,6 +38,7 @@ export const posthogWithoutQueue: AnalyticsService<PosthogConfig> = {
     posthogJs.opt_out_capturing();
   },
   state: () => getHasConsentedTo("posthog"),
+  isFeatureEnabled: posthogJs.isFeatureEnabled,
 };
 
 export default withQueue(posthogWithoutQueue);

@@ -15,6 +15,7 @@ import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedT
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
+import { PostHogProvider } from "posthog-js/react/dist/types";
 
 export type UserId = string;
 export type EventName = string;
@@ -92,6 +93,8 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     consentState: posthogConsent,
   });
 
+  const { isFeatureEnabled } = posthog;
+
   /**
    * Hubspot
    */
@@ -168,12 +171,13 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
+      isFeatureEnabled,
     };
-  }, [track, identify]);
+  }, [track, identify, isFeatureEnabled]);
 
   return (
     <analyticsContext.Provider value={analytics}>
-      {children}
+      <PostHogProvider client={posthog}>{children}</PostHogProvider>
     </analyticsContext.Provider>
   );
 };
