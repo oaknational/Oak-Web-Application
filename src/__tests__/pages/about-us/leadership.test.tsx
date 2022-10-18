@@ -3,8 +3,9 @@ import { screen, waitFor } from "@testing-library/react";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient, { AboutLeadershipPage } from "../../../node-lib/cms";
-// import AboutLeadership, { getStaticProps } from "../../../pages/about-us/leadership";
-import { portableTextFromString } from "../../__helpers__/cms";
+import AboutUsLeadership, {
+  getStaticProps,
+} from "../../../pages/about-us/leadership";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
@@ -15,19 +16,31 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testAboutLeadershipPageData: AboutLeadershipPage = {
   ...testAboutPageBaseData,
   heading: "Leadership",
-  introPortableText: portableTextFromString("text"),
+  introPortableText: [],
+  leadershipTeam: [
+    // {
+    //   name: "name",
+    //   id: "1",
+    //   image: {
+    //     asset: {
+    //       _id: "",
+    //       url: "/",
+    //     },
+    //   },
+    // },
+  ],
 };
 
-// Mock implementations  for stubbed tests - replace with real imports
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AboutLeadership = (_props: { pageData: unknown }) => <></>;
-// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-const getStaticProps = (params: unknown) => {};
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+describe("pages/about/leadership.tsx", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
 
-describe.skip("pages/about-us/leadership.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
-      <AboutLeadership pageData={testAboutLeadershipPageData} />
+      <AboutUsLeadership pageData={testAboutLeadershipPageData} />
     );
 
     await waitFor(() => {
@@ -40,7 +53,7 @@ describe.skip("pages/about-us/leadership.tsx", () => {
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <AboutLeadership pageData={testAboutLeadershipPageData} />
+        <AboutUsLeadership pageData={testAboutLeadershipPageData} />
       );
 
       expect(seo).toEqual({});

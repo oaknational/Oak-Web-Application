@@ -21,6 +21,7 @@ export type AboutPageProps = {
 
 const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo, introPortableText, leadershipTeam } = pageData;
+
   const chiefExecutive: BioCardListItemProps[] = leadershipTeam.filter(
     (person) => person.role === "Chief Executive"
   );
@@ -28,7 +29,6 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
     (person) => person.role !== "Chief Executive"
   );
 
-  console.log(...chiefExecutive);
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
