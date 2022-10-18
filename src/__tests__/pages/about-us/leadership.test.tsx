@@ -6,6 +6,7 @@ import CMSClient, { AboutLeadershipPage } from "../../../node-lib/cms";
 import AboutUsLeadership, {
   getStaticProps,
 } from "../../../pages/about-us/leadership";
+import { mockImageAsset } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
@@ -18,16 +19,11 @@ const testAboutLeadershipPageData: AboutLeadershipPage = {
   heading: "Leadership",
   introPortableText: [],
   leadershipTeam: [
-    // {
-    //   name: "name",
-    //   id: "1",
-    //   image: {
-    //     asset: {
-    //       _id: "",
-    //       url: "/",
-    //     },
-    //   },
-    // },
+    {
+      name: "name",
+      id: "1",
+      image: mockImageAsset(),
+    },
   ],
 };
 
