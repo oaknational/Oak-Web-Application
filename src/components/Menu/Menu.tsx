@@ -66,13 +66,13 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>(
     const closeButtonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
-      closeMenu();
+      closeMenu("useEffect");
     }, [pathname, closeMenu]);
 
     const { keyboardProps } = useKeyboard({
       onKeyDown: (e) => {
         if (e.key === "Escape") {
-          closeMenu();
+          closeMenu("keyboard");
         } else {
           e.continuePropagation();
         }
@@ -136,7 +136,7 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>(
                     icon={"Cross"}
                     variant={"minimal"}
                     size={"header"}
-                    onClick={toggleMenu}
+                    onClick={() => toggleMenu("close button")}
                     ref={closeButtonRef}
                   />
                 </Box>
