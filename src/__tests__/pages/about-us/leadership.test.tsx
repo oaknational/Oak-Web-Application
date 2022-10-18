@@ -24,6 +24,12 @@ const testAboutLeadershipPageData: AboutLeadershipPage = {
       id: "1",
       image: mockImageAsset(),
     },
+    {
+      name: "name",
+      role: "chief executive",
+      id: "1",
+      image: mockImageAsset(),
+    },
   ],
 };
 
