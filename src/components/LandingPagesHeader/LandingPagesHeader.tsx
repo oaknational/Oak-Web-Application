@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Link from "next/link";
 
 import Flex from "../Flex";
 import FixedHeader from "../FixedHeader";
@@ -8,6 +7,7 @@ import Typography from "../Typography";
 import Icon from "../Icon";
 import { CTA } from "../../node-lib/cms";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
+import OakLink from "../OakLink";
 
 export type LandingPagesHeaderProps = {
   headerCta?: CTA | null;
@@ -21,13 +21,11 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
         $width={"100%"}
         $justifyContent={"space-between"}
       >
-        <Link href={"/"}>
-          <a>
-            <Logo title={"Oak National Academy"} height={48} width={104} />
-          </a>
-        </Link>
+        <OakLink page={"home"}>
+          <Logo title={"Oak National Academy"} height={48} width={104} />
+        </OakLink>
         {props.headerCta?.linkType && (
-          <Link href={getCTAHref(props.headerCta)}>
+          <OakLink page={null} href={getCTAHref(props.headerCta)}>
             <a>
               <Flex
                 $width={[200, "100%"]}
@@ -48,7 +46,7 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
                 />
               </Flex>
             </a>
-          </Link>
+          </OakLink>
         )}
       </Flex>
     </FixedHeader>

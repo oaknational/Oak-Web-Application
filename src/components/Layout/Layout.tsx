@@ -35,14 +35,14 @@ export type HeaderProps = {
   breadcrumbs?: Breadcrumb[];
 };
 
-export type HeaderVariant = "app" | "site" | "landingPages" | "client-error";
+export type HeaderVariant = "app" | "site" | "landing-pages" | "client-error";
 const headers: Record<
   HeaderVariant,
   FC | FC<LandingPagesHeaderProps> | FC<HeaderProps>
 > = {
   app: AppHeader,
   site: SiteHeader,
-  landingPages: LandingPagesHeader,
+  "landing-pages": LandingPagesHeader,
   "client-error": ClientErrorHeader,
 };
 
