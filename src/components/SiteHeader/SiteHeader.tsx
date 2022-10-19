@@ -1,5 +1,4 @@
 import { FC, useRef } from "react";
-import Link from "next/link";
 import { useTheme } from "styled-components";
 
 import Flex from "../Flex";
@@ -25,11 +24,9 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <Link href={"/"}>
-        <a>
-          <Logo title={"Oak National Academy"} height={48} width={104} />
-        </a>
-      </Link>
+      <OakLink page="home">
+        <Logo title={"Oak National Academy"} height={48} width={104} />
+      </OakLink>
       <Flex
         $ml={[0, 20, 48]}
         $mr={20}
