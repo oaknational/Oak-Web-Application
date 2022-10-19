@@ -1,3 +1,22 @@
+# [1.40.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.39.1...v1.40.0) (2022-10-19)
+
+
+### Bug Fixes
+
+* allowing tabbing to loop round ([43948ee](https://github.com/oaknational/Oak-Web-Application/commit/43948eec9c94a738bec3cd880dc213c449bf266a))
+* don't unmount menu ([72882a9](https://github.com/oaknational/Oak-Web-Application/commit/72882a9ebba2ce0cc4aeb5e9ad11249aaed90bf1))
+* give close button focus on menu open and menu button focus on close ([aec7b5b](https://github.com/oaknational/Oak-Web-Application/commit/aec7b5bfec1b8f4646fc752d0d27113f05d91cb8))
+* hide menu on exited ([f8fabc8](https://github.com/oaknational/Oak-Web-Application/commit/f8fabc8dce036a9c02e5bbf738f6b2ec393ba331))
+* **menu tests:** test the right callbacks ([3f9cb5d](https://github.com/oaknational/Oak-Web-Application/commit/3f9cb5d38ed611f559aa13836e21af528381f0d0))
+* **menu tests:** tweak coverage ([6546dec](https://github.com/oaknational/Oak-Web-Application/commit/6546dec3be27db34049bb4409f2d2e0ce103b849))
+* only continue propagation on if not escape ([61e03a4](https://github.com/oaknational/Oak-Web-Application/commit/61e03a487e696a49ee46e8d9b79e19fad05a9354))
+* remove redundant focus scope attributes ([68abb50](https://github.com/oaknational/Oak-Web-Application/commit/68abb50fe443cd92aa3a570d4d947f41ba8bc47a))
+
+
+### Features
+
+* close menu on escape, update test for site header ([13d910c](https://github.com/oaknational/Oak-Web-Application/commit/13d910cf4fb955cc3f83fcb33ac472f110ee982b))
+
 ## [1.39.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.39.0...v1.39.1) (2022-10-14)
 
 
