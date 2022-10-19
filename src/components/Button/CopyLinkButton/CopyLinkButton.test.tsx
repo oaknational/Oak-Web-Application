@@ -5,6 +5,10 @@ import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import CopyLinkButton from "./CopyLinkButton";
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlags: () => ({ enabled: {} }),
+}));
+
 describe("Copy link button", () => {
   it("renders", () => {
     const { getByRole } = renderWithTheme(

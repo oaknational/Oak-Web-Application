@@ -1,12 +1,20 @@
-import { createContext, FC, useCallback, useEffect, useMemo } from "react";
+import {
+  createContext,
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import router from "next/router";
+import { usePostHogContext } from "posthog-js/react";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
 import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
 import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
-import posthogWithQueue, {
+import posthogToAnalyticsService, {
   PosthogConfig,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
@@ -15,7 +23,6 @@ import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedT
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
-import { PostHogProvider } from "posthog-js/react/dist/types";
 
 export type UserId = string;
 export type EventName = string;
@@ -83,17 +90,25 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Posthog
    */
+  const { client: posthogClient } = usePostHogContext();
+  if (!posthogClient) {
+    throw new Error(
+      "AnalyticsProvider should be contained within PostHogProvider"
+    );
+  }
+
+  const posthogService = useRef(
+    posthogToAnalyticsService(posthogClient)
+  ).current;
   const posthogConsent = useHasConsentedTo("posthog");
   const posthog = useAnalyticsService({
-    service: posthogWithQueue,
+    service: posthogService,
     config: {
       apiHost: config.get("posthogApiHost"),
       apiKey: config.get("posthogApiKey"),
     },
     consentState: posthogConsent,
   });
-
-  const { isFeatureEnabled } = posthog;
 
   /**
    * Hubspot
@@ -171,13 +186,12 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
-      isFeatureEnabled,
     };
-  }, [track, identify, isFeatureEnabled]);
+  }, [track, identify]);
 
   return (
     <analyticsContext.Provider value={analytics}>
-      <PostHogProvider client={posthog}>{children}</PostHogProvider>
+      {children}
     </analyticsContext.Provider>
   );
 };

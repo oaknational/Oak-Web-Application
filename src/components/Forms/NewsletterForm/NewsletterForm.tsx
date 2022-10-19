@@ -1,8 +1,7 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useFeatureFlags } from "posthog-js/react";
 
 import Input from "../../Input";
 import { P } from "../../Typography";
@@ -14,7 +13,6 @@ import {
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import errorReporter from "../../../common-lib/error-reporter";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -75,9 +73,6 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   });
 
   const { errors } = formState;
-  const flags = useFeatureFlags();
-
-  console.log(flags);
 
   return (
     <form
