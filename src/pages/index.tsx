@@ -25,13 +25,13 @@ import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import { BlogListItemProps } from "../components/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
+import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import {
   blogToBlogListItem,
   SerializedBlogPostPreview,
   serializeDate,
 } from "../components/pages/BlogIndex.page";
 import BlogList from "../components/BlogList";
-import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
