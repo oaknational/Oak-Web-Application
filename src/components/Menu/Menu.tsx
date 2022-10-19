@@ -1,4 +1,4 @@
-import { forwardRef, HTMLProps, useEffect, useRef } from "react";
+import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { FocusScope, useKeyboard } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
@@ -54,136 +54,133 @@ const SideMenu = styled(Flex)<TransitionProps>`
   }};
 `;
 
-type MenuProps = HTMLProps<HTMLButtonElement>;
+type MenuProps = HTMLProps<HTMLButtonElement> & {
+  menuButtonRef: RefObject<HTMLButtonElement> | null;
+};
 
-const Menu = forwardRef<HTMLButtonElement, MenuProps>(
-  ({ children }, menuButtonRef) => {
-    const { open, toggleMenu, closeMenu } = useMenuContext();
-    const theme = useTheme();
-    const { menu: menuConfig } = theme;
-    const { pathname } = useRouter();
-    const ref = useRef<HTMLDivElement>(null);
-    const closeButtonRef = useRef<HTMLButtonElement>(null);
+const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
+  const { open, closeMenu } = useMenuContext();
+  const theme = useTheme();
+  const { menu: menuConfig } = theme;
+  const { pathname } = useRouter();
+  const ref = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-    useEffect(() => {
-      closeMenu("useEffect");
-    }, [pathname, closeMenu]);
+  useEffect(() => {
+    closeMenu();
+  }, [pathname, closeMenu]);
 
-    const { keyboardProps } = useKeyboard({
-      onKeyDown: (e) => {
-        if (e.key === "Escape") {
-          closeMenu("keyboard");
-        } else {
-          e.continuePropagation();
-        }
-      },
-    });
-
-    const giveFocus = () => {
-      closeButtonRef.current?.focus();
-    };
-
-    const removeFocus = () => {
-      if (!menuButtonRef) return;
-      if (typeof menuButtonRef !== "function") {
-        menuButtonRef.current?.focus();
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      } else {
+        e.continuePropagation();
       }
-    };
+    },
+  });
 
-    return (
-      <Transition
-        nodeRef={ref}
-        timeout={transitionDuration}
-        in={open}
-        onEntering={giveFocus}
-        onExited={removeFocus}
-      >
-        {(state) => (
-          <Box $position="absolute" ref={ref}>
-            <MenuBackdrop state={state} />
-            <FocusScope contain={open}>
-              <SideMenu
-                data-testid={"menu"}
-                $position="fixed"
-                $top={0}
-                $right={0}
-                $height="100%"
-                $maxWidth="100%"
-                $width={menuConfig.width}
+  const giveFocus = () => {
+    closeButtonRef.current?.focus();
+  };
+
+  const removeFocus = () => {
+    menuButtonRef?.current?.focus();
+  };
+
+  return (
+    <Transition
+      nodeRef={ref}
+      timeout={transitionDuration}
+      in={open}
+      onEntering={giveFocus}
+      onExited={removeFocus}
+    >
+      {(state) => (
+        <Box $position="absolute" ref={ref}>
+          <MenuBackdrop state={state} />
+          <FocusScope contain={open}>
+            <SideMenu
+              data-testid={"menu"}
+              $position="fixed"
+              $top={0}
+              $right={0}
+              $height="100%"
+              $maxWidth="100%"
+              $width={menuConfig.width}
+              $flexDirection={"column"}
+              $background={menuConfig.background}
+              state={state}
+              $zIndex={"neutral"}
+              {...keyboardProps}
+            >
+              <Svg
+                name="LoopingLine"
+                $display={["none", "block"]}
+                $color={"pupilsPink"}
+                $zIndex={"behind"}
+                $cover
+              />
+              <Svg
+                name="LoopingLine2"
+                $display={["block", "none"]}
+                $color={"pupilsPink"}
+                $zIndex={"behind"}
+                $cover
+              />
+              <Box $position={"fixed"} $top={20} $right={16}>
+                <IconButton
+                  aria-label="Close Menu"
+                  icon={"Cross"}
+                  variant={"minimal"}
+                  size={"header"}
+                  onClick={closeMenu}
+                  ref={closeButtonRef}
+                />
+              </Box>
+              <Flex
                 $flexDirection={"column"}
-                $background={menuConfig.background}
-                state={state}
-                $zIndex={"neutral"}
-                {...keyboardProps}
+                $overflowY={"auto"}
+                $flexGrow={1}
+                $pv={[12, 72]}
+                $ph={[16, 72]}
               >
-                <Svg
-                  name="LoopingLine"
-                  $display={["none", "block"]}
-                  $color={"pupilsPink"}
-                  $zIndex={"behind"}
-                  $cover
-                />
-                <Svg
-                  name="LoopingLine2"
-                  $display={["block", "none"]}
-                  $color={"pupilsPink"}
-                  $zIndex={"behind"}
-                  $cover
-                />
-                <Box $position={"fixed"} $top={20} $right={16}>
-                  <IconButton
-                    aria-label="Close Menu"
-                    icon={"Cross"}
-                    variant={"minimal"}
-                    size={"header"}
-                    onClick={() => toggleMenu("close button")}
-                    ref={closeButtonRef}
-                  />
-                </Box>
+                {/* Mobile logo */}
                 <Flex
-                  $flexDirection={"column"}
-                  $overflowY={"auto"}
-                  $flexGrow={1}
-                  $pv={[12, 72]}
-                  $ph={[16, 72]}
+                  $justifyContent={"left"}
+                  $display={["flex", "none"]}
+                  $mb={[36, 0]}
                 >
-                  {/* Mobile logo */}
-                  <Flex
-                    $justifyContent={"left"}
-                    $display={["flex", "none"]}
-                    $mb={[36, 0]}
-                  >
+                  <Logo
+                    title={"Oak National Academy"}
+                    height={48}
+                    width={104}
+                  />
+                </Flex>
+                {children}
+                {/* Desktop logo */}
+                <Flex
+                  $mt={"auto"}
+                  $pt={48}
+                  $justifyContent={"space-between"}
+                  $alignItems={"flex-end"}
+                >
+                  <SocialButtons {...OAK_SOCIALS} />
+                  <Flex $display={["none", "flex"]} $mb={6}>
                     <Logo
                       title={"Oak National Academy"}
-                      height={48}
-                      width={104}
+                      width={150}
+                      height={63}
                     />
                   </Flex>
-                  {children}
-                  {/* Desktop logo */}
-                  <Flex
-                    $mt={"auto"}
-                    $pt={48}
-                    $justifyContent={"space-between"}
-                    $alignItems={"flex-end"}
-                  >
-                    <SocialButtons {...OAK_SOCIALS} />
-                    <Flex $display={["none", "flex"]} $mb={6}>
-                      <Logo
-                        title={"Oak National Academy"}
-                        width={150}
-                        height={63}
-                      />
-                    </Flex>
-                  </Flex>
                 </Flex>
-              </SideMenu>
-            </FocusScope>
-          </Box>
-        )}
-      </Transition>
-    );
-  }
-);
+              </Flex>
+            </SideMenu>
+          </FocusScope>
+        </Box>
+      )}
+    </Transition>
+  );
+};
 
 export default Menu;

@@ -17,9 +17,9 @@ describe("useMenuContext()", () => {
     const { result } = renderHook(() => useMenuContext(), {
       wrapper: MenuProvider,
     });
-    const { toggleMenu } = result.current;
+    const { openMenu } = result.current;
     act(() => {
-      toggleMenu("test");
+      openMenu();
     });
 
     expect(result.current.open).toBe(true);

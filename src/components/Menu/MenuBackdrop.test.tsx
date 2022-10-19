@@ -30,7 +30,7 @@ describe("menu backdrop", () => {
   test("clicking the backdrop anywhere runs the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      toggleMenu: jest.fn(),
+      openMenu: jest.fn(),
       closeMenu: jest.fn(),
     };
 

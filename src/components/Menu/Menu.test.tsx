@@ -20,7 +20,7 @@ describe("Menu", () => {
   test("it renders with a close button", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
-        <Menu />
+        <Menu menuButtonRef={null} />
       </MenuProvider>
     );
 
@@ -30,7 +30,7 @@ describe("Menu", () => {
   test("it is hidden by default", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
-        <Menu />
+        <Menu menuButtonRef={null} />
       </MenuProvider>
     );
 
@@ -40,13 +40,13 @@ describe("Menu", () => {
   test("if menu context open is true it is visible", () => {
     const menuValue = {
       open: true,
-      toggleMenu: jest.fn(),
+      openMenu: jest.fn(),
       closeMenu: jest.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu />
+        <Menu menuButtonRef={null} />
       </menuContext.Provider>
     );
 
@@ -56,13 +56,13 @@ describe("Menu", () => {
   test("clicking the close button invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      toggleMenu: jest.fn(),
+      openMenu: jest.fn(),
       closeMenu: jest.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu />
+        <Menu menuButtonRef={null} />
       </menuContext.Provider>
     );
     const user = userEvent.setup();
@@ -70,7 +70,7 @@ describe("Menu", () => {
 
     await user.click(closeButton);
 
-    expect(menuValue.toggleMenu).toHaveBeenCalledWith("close button");
+    expect(menuValue.closeMenu).toHaveBeenCalledTimes(2);
   });
 
   // This isn't working because the Escape event isn't triggering the
@@ -80,19 +80,23 @@ describe("Menu", () => {
   test.skip("pressing the escape key invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      toggleMenu: jest.fn(),
+      openMenu: jest.fn(),
       closeMenu: jest.fn(),
     };
 
     renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu />
+        <Menu menuButtonRef={null} />
       </menuContext.Provider>
     );
     const user = userEvent.setup();
     await user.keyboard("{Escape}");
 
-    expect(menuValue.closeMenu).toHaveBeenCalledWith("keyboard");
+    /**
+     * closeMenu() gets called once initially in a useEffect, so this test asserts
+     * that it gets called a second time
+     */
+    expect(menuValue.closeMenu).toHaveBeenCalledTimes(2);
   });
 
   test("it returns focus to the button it was passed as a ref when closed", async () => {
@@ -100,7 +104,7 @@ describe("Menu", () => {
 
     const menuValue = {
       open: true,
-      toggleMenu: jest.fn(),
+      openMenu: jest.fn(),
       closeMenu: jest.fn(),
     };
 
@@ -114,7 +118,7 @@ describe("Menu", () => {
           ref={menuButtonRef}
           onClick={jest.fn}
         />
-        <Menu ref={menuButtonRef} />
+        <Menu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>
     );
 
@@ -130,7 +134,7 @@ describe("Menu", () => {
           ref={menuButtonRef}
           onClick={jest.fn}
         />
-        <Menu ref={menuButtonRef} />
+        <Menu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>
     );
 

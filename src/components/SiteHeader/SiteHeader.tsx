@@ -20,7 +20,7 @@ import Breadcrumbs from "../Breadcrumbs";
 const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const { toggleMenu } = useMenuContext();
+  const { openMenu } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
@@ -71,11 +71,9 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         variant={"minimal"}
         size={"header"}
         ref={menuButtonRef}
-        onClick={() => {
-          toggleMenu();
-        }}
+        onClick={openMenu}
       />
-      <Menu ref={menuButtonRef}>
+      <Menu menuButtonRef={menuButtonRef}>
         <MenuLinks menuSections={menuSections} />
       </Menu>
       <Toast />
