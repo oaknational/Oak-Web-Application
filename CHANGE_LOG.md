@@ -1,3 +1,31 @@
+# [1.41.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.40.0...v1.41.0) (2022-10-19)
+
+
+### Bug Fixes
+
+* allow grid col start and span to be specified ([5a2993d](https://github.com/oaknational/Oak-Web-Application/commit/5a2993d6095fcd55dff783fd9df60de425c67561))
+* input order ([ab9ec08](https://github.com/oaknational/Oak-Web-Application/commit/ab9ec08adda46163e5da83b597a514d26bfd5b36))
+* ol text indent in blog ([31fe342](https://github.com/oaknational/Oak-Web-Application/commit/31fe3425f071b057d6e7330502301712a8282ea7))
+* on submit ([28fb503](https://github.com/oaknational/Oak-Web-Application/commit/28fb503da13b3dddd880b750a24deefb58ad973d))
+
+
+### Features
+
+* add basic template for landing page ([18e0d4e](https://github.com/oaknational/Oak-Web-Application/commit/18e0d4eab74c9a469ca03245e287d432d61ef26d))
+* add cta in fixed header ([a67a598](https://github.com/oaknational/Oak-Web-Application/commit/a67a5983a4a452f16b4396c71d0016b4776d59be))
+* add fixed header ([30c099c](https://github.com/oaknational/Oak-Web-Application/commit/30c099c81387f262625ae29499f93d0fe8532675))
+* add site footer ([06a0883](https://github.com/oaknational/Oak-Web-Application/commit/06a0883ead90eaa6863f6d42302c9ca73194ed74))
+* anchor option in cta ([a3fc28e](https://github.com/oaknational/Oak-Web-Application/commit/a3fc28e5768ea85fdf8f9806bd7de83d00ad86a0))
+* block quote component ([320b7e6](https://github.com/oaknational/Oak-Web-Application/commit/320b7e62832c4e4d7eb7f59f95b03568c4698e81))
+* correct text layout in the middle of the page ([d7eacf3](https://github.com/oaknational/Oak-Web-Application/commit/d7eacf32e7b39459f400a931ae82e73fe53df6d8))
+* fix cta styling ([b7c332a](https://github.com/oaknational/Oak-Web-Application/commit/b7c332a061157be9d40cb9a604a5e4e9b644cc0a))
+* fix styling for numbered list items ([ee0a6af](https://github.com/oaknational/Oak-Web-Application/commit/ee0a6af2e7a0f71ce17eeaa0fc4007ffe32d229a))
+* fix styling for the summary card in the centre of page ([195cbcb](https://github.com/oaknational/Oak-Web-Application/commit/195cbcb0b2c17640921110370d6ff43b47ac476d))
+* landing page schema ([d518ad1](https://github.com/oaknational/Oak-Web-Application/commit/d518ad12871f5aec2fa62009e3687fc8f64c11e1))
+* more styling fixes ([a7988e5](https://github.com/oaknational/Oak-Web-Application/commit/a7988e53bf6ecca7cd77bfcd755f51df50a8073a))
+* remove old implementation of page structure ([fa2f53d](https://github.com/oaknational/Oak-Web-Application/commit/fa2f53d7036c9ea48438c1ce15cb95e8d9a66756))
+* update yellow card text style ([71cdf4b](https://github.com/oaknational/Oak-Web-Application/commit/71cdf4be87c19d5bebd752befba7b9a8f8e0a951))
+
 # [1.40.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.39.1...v1.40.0) (2022-10-19)
 
 
