@@ -26,6 +26,8 @@ const CopyLinkButton: FC = () => {
       setLabel(copyMessage);
       showToast(copyMessage, "alert");
       setActive(true);
+    } else {
+      alert("Please update your browser to support this feature");
     }
   };
 
