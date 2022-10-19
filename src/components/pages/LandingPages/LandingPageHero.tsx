@@ -8,6 +8,10 @@ import LandingPageTitle from "./LandingPageTitle";
 
 export type LandingPageHeroProps = Pick<LandingPage, "hero">;
 
+/**
+ * Hero for landing pages, takes optional cta and image-
+ *
+ */
 const LandingPageHero: FC<LandingPageHeroProps> = (props) => {
   return (
     <Flex $flexDirection={["column", "row"]} $mt={[92]}>

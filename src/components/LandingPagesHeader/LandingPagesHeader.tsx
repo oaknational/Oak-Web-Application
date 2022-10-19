@@ -12,7 +12,11 @@ import OakLink from "../OakLink";
 export type LandingPagesHeaderProps = {
   headerCta?: CTA | null;
 };
-
+/**
+ * Header for CMS landing pages
+ * Optional headerCta prop
+ *
+ */
 const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
   return (
     <FixedHeader $background={"white"}>

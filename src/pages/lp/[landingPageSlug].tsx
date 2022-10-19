@@ -11,12 +11,12 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../node-lib/cms/sanity-client/schemas/landingPage";
-import { Quote } from "../../components/SanityBlocks/LandingPage/Quote";
-import { LandingPageTextBlock } from "../../components/SanityBlocks/LandingPage/LandingPageTextBlock";
-import { SignupPrompt } from "../../components/SanityBlocks/LandingPage/SignupPrompt";
-import { LandingPageTextAndMedia } from "../../components/SanityBlocks/LandingPage/LandingPageTextAndMedia";
-import LandingPageHero from "../../components/SanityBlocks/LandingPage/LandingPageHero";
 import { decorateWithIsr } from "../../node-lib/isr";
+import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
+import { Quote } from "../../components/pages/LandingPages/Quote";
+import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
+import { LandingPageTextBlock } from "../../components/pages/LandingPages/LandingPageTextBlock";
+import LandingPageHero from "../../components/pages/LandingPages/LandingPageHero";
 
 export type LandingPageProps = {
   pageData: LandingPage;
