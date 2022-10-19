@@ -2,7 +2,7 @@ import { createContext, FC, useCallback, useState } from "react";
 
 type MenuContext = {
   open: boolean;
-  toggleMenu: () => void;
+  openMenu: () => void;
   closeMenu: () => void;
 };
 
@@ -11,8 +11,8 @@ export const menuContext = createContext<MenuContext | null>(null);
 export const MenuProvider: FC = ({ children }) => {
   const [open, setOpen] = useState(false);
 
-  const toggleMenu = useCallback(() => {
-    setOpen((_open) => !_open);
+  const openMenu = useCallback(() => {
+    setOpen(true);
   }, [setOpen]);
 
   const closeMenu = useCallback(() => {
@@ -21,7 +21,7 @@ export const MenuProvider: FC = ({ children }) => {
 
   const menuValue: MenuContext = {
     open,
-    toggleMenu,
+    openMenu,
     closeMenu,
   };
 

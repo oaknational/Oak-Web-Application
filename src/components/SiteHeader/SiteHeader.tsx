@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import Link from "next/link";
 import { useTheme } from "styled-components";
 
@@ -19,7 +19,8 @@ import Breadcrumbs from "../Breadcrumbs";
 
 const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
-  const { toggleMenu } = useMenuContext();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const { openMenu } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
@@ -45,6 +46,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
       >
         <OakLink
           page="pupils-home"
+          data-testid="SiteHeaderClassroomLink"
           htmlAnchorProps={{
             onClick: () => track.classroomSelected({ navigatedFrom: "header" }),
           }}
@@ -68,11 +70,10 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         icon={"Hamburger"}
         variant={"minimal"}
         size={"header"}
-        onClick={() => {
-          toggleMenu();
-        }}
+        ref={menuButtonRef}
+        onClick={openMenu}
       />
-      <Menu>
+      <Menu menuButtonRef={menuButtonRef}>
         <MenuLinks menuSections={menuSections} />
       </Menu>
       <Toast />

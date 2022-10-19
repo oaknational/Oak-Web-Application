@@ -26,6 +26,7 @@ const OL = styled.ol<MarginProps>`
     margin-bottom: 32px;
 
     // Portable text generates linebreaks within list items
+
     br {
       content: "";
       display: block;
