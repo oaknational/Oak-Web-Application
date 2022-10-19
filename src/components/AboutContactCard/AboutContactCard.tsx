@@ -1,4 +1,5 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
@@ -7,34 +8,35 @@ import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import { Heading, P } from "../Typography";
+import { Heading } from "../Typography";
+import { BasePortableTextProvider } from "../PortableText/PortableText";
+import { PortableTextJSON } from "../../node-lib/cms/sanity-client/schemas/portableText";
+import Typography from "../Typography/Typography";
 
-const cardCopy = [
-  {
-    heading: "General enquiries",
-    p: "For general enquiries and help please email ",
-    linkText: "help@thenational.academy",
-    href: "mailto: help@thenational.academy",
-    linkType: "email",
+const aboutContactCardPortableTextComponents: PortableTextComponents = {
+  block: {
+    sectionHeading: (props) => {
+      return (
+        <Heading $mb={8} $font={["heading-6", "heading-5"]} tag="h2">
+          {props.children}
+        </Heading>
+      );
+    },
+    normal: (props) => {
+      return (
+        <Typography $font={["body-2", "body-1"]}>{props.children}</Typography>
+      );
+    },
   },
-  {
-    heading: "Media enquiries",
-    p: "For media enquiries, please contact ",
-    linkText: "media@thenational.academy",
-    href: "mailto: media@thenational.academy",
-    linkType: "email",
-  },
-  {
-    heading: "Find help",
-    p: "Search our FAQs and find useful information for teachers, schools, pupils and parents in our ",
-    linkText: "help centre",
-    href: "https://support.thenational.academy",
-    linkType: "link",
-  },
-];
+};
 
-const AboutContactCard: FC = () => {
+type AboutContactCardProps = {
+  infoPortableText: PortableTextJSON;
+};
+
+const AboutContactCard: FC<AboutContactCardProps> = (props) => {
   const { onSubmit } = useNewsletterForm();
+  console.log(props);
   return (
     <Flex $position={"relative"} $width={"100%"}>
       <BrushBorders hideOnMobileH hideOnMobileV color={"pupilsLightGreen"} />
@@ -46,18 +48,13 @@ const AboutContactCard: FC = () => {
             $background={"pupilsLightGreen"}
             $pt={[32, 0]}
           >
-            {cardCopy.map((section) => (
-              <Fragment key={section.heading}>
-                <Heading $mb={8} $font={["heading-6", "heading-5"]} tag={"h2"}>
-                  {section.heading}
-                </Heading>
-                <P $mb={32} $font={["body-2", "body-1"]}>
-                  {section.p}
-                  <a href={section.href}>{section.linkText}</a>.
-                </P>
-              </Fragment>
-            ))}
-            <Flex $mb={[32, 0]}>
+            <BasePortableTextProvider>
+              <PortableText
+                components={aboutContactCardPortableTextComponents}
+                value={props.infoPortableText}
+              />
+            </BasePortableTextProvider>
+            <Flex $mt={32} $mb={[32, 0]}>
               <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
             </Flex>
           </Card>

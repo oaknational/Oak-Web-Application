@@ -147,7 +147,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             </Fragment>
           ))}
         </Grid>
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

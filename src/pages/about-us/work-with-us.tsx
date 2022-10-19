@@ -75,7 +75,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           ))}
         </Grid>
 
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );
