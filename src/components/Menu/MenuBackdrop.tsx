@@ -39,18 +39,31 @@ const Backdrop = styled.div<BackdropProps & TransitionProps>`
         return "0";
     }
   }};
+  visibility: ${(props) => {
+    switch (props.state) {
+      case "entering":
+        return "visible";
+      case "entered":
+        return "visible";
+      case "exiting":
+        return "visible";
+      case "exited":
+        return "hidden";
+    }
+  }};
 `;
 
 const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
-  const { toggleMenu } = useMenuContext();
-  usePreventScroll();
+  const { closeMenu } = useMenuContext();
+  usePreventScroll({ isDisabled: state === "exited" });
   return (
     <Backdrop
       onClick={() => {
-        toggleMenu();
+        closeMenu();
       }}
       background="black"
       state={state}
+      data-testid={"menu-backdrop"}
     />
   );
 };
