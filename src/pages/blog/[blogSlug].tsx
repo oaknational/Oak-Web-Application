@@ -5,48 +5,29 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import {
-  MissingComponentHandler,
-  PortableText,
-  PortableTextComponents,
-  PortableTextComponentProps,
-} from "@portabletext/react";
 import { useNextSanityImage } from "next-sanity-image";
 import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
 import Layout from "../../components/Layout";
-import CMSClient, {
-  BlogPost,
-  CTA,
-  PortableTextJSON,
-  Quote,
-  Image,
-  TextAndMedia,
-  Video,
-} from "../../node-lib/cms";
+import CMSClient, { BlogPost } from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
-import CMSImage, { sanityClientLike } from "../../components/CMSImage";
-import VideoPlayer from "../../components/VideoPlayer";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
-import { Heading, P, Span } from "../../components/Typography";
 import CopyLinkButton from "../../components/Button/CopyLinkButton";
-import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
-import { OmitKeepDiscriminated } from "../../utils/generics";
-import ButtonAsLink from "../../components/Button/ButtonAsLink";
-import { BasePortableTextProvider } from "../../components/PortableText";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
-import CMSVideo from "../../components/CMSVideo";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import MobileBlogFilters from "../../components/MobileBlogFilters";
-import OakLink from "../../components/OakLink";
 import BlogCategoryList from "../../components/BlogCategoryList";
 import useBlogCategoryList from "../../components/BlogCategoryList/useBlogCategoryList";
 import AvatarImage from "../../components/AvatarImage";
 import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
+import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import MobileBlogFilters from "../../components/MobileBlogFilters";
+import { Heading, Span, P } from "../../components/Typography";
+import OakLink from "../../components/OakLink";
+import { sanityClientLike } from "../../components/CMSImage";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -55,184 +36,6 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 export type BlogPageProps = {
   blog: SerializedBlog;
   categories: { title: string; slug: string }[];
-};
-
-// When we get the JSON portable text it doesn't have the same field names as
-// our generic types / what comes from our graphql queries
-type TextAndMediaBlock = OmitKeepDiscriminated<
-  TextAndMedia,
-  "bodyPortableText"
-> & {
-  body: PortableTextJSON;
-};
-
-const blogPortableTextComponents: PortableTextComponents = {
-  block: {
-    sectionHeading: (props) => {
-      // @TODO: Choose an appropriate section heading level
-      return (
-        <Heading
-          $font={["heading-6", "heading-4"]}
-          tag="h2"
-          $mt={[48, 56]}
-          $mb={[24, 32]}
-        >
-          {props.children}
-        </Heading>
-      );
-    },
-    callout: (props) => {
-      return (
-        <Flex $flexDirection={"column"} $mt={56}>
-          <P $font={"heading-light-4"}>
-            <blockquote>{props.children}</blockquote>
-          </P>
-        </Flex>
-      );
-    },
-  },
-  types: {
-    imageWithAltText: (
-      props: PortableTextComponentProps<{ asset: Image["asset"] }>
-    ) => {
-      if (!props.value) {
-        return null;
-      }
-
-      return <CMSImage image={props.value} $mt={80} $mb={64} />;
-    },
-    video: (props: PortableTextComponentProps<Video>) => {
-      if (!props.value) {
-        return null;
-      }
-
-      return (
-        <Box>
-          {props.value && (
-            <Flex $position={"relative"} $mt={56}>
-              <CMSVideo video={props.value} />
-            </Flex>
-          )}
-        </Box>
-      );
-    },
-    textAndMedia: (props: PortableTextComponentProps<TextAndMediaBlock>) => {
-      if (!props.value) {
-        return null;
-      }
-
-      const params = props.value;
-
-      // @TODO: Responsive handling - likely don't want it reversed
-      const flexDirection =
-        params.alignMedia === "left" ? "row-reverse" : "row";
-
-      return (
-        <Flex $flexDirection={flexDirection} $alignItems={"center"} $mt={56}>
-          <div>
-            <Heading $font={["heading-5", "heading-4"]} tag="h2">
-              {params.title}
-            </Heading>
-            <Box $mt={32}>
-              <PortableText value={params.body} />
-            </Box>
-            {params.cta && (
-              <ButtonAsLink
-                $mt={24}
-                label={params.cta.label}
-                href={getCTAHref(params.cta)}
-                background={"teachersHighlight"}
-              />
-            )}
-          </div>
-          {params.mediaType === "image" && params.image && (
-            <Box $mr={24}>
-              <CMSImage image={params.image} />
-            </Box>
-          )}
-          {params.mediaType === "video" && params.video && (
-            <Box $mr={24}>
-              <VideoPlayer
-                title={params.video.title}
-                playbackId={params.video.video.asset.playbackId}
-              />
-            </Box>
-          )}
-        </Flex>
-      );
-    },
-    quote: (props: PortableTextComponentProps<Quote>) => {
-      if (!props.value?.text) {
-        return null;
-      }
-
-      return (
-        <Flex $flexDirection={"column"} $mt={56}>
-          <P $font={["heading-light-5", "heading-light-4"]}>
-            <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
-          </P>
-          <div>
-            <P $font={"body-1"} $mt={[16]} $textAlign="center">
-              <cite>{props.value?.attribution}</cite>
-              {props.value.role && `, ${props.value.role}`}
-            </P>
-          </div>
-        </Flex>
-      );
-    },
-    callout: (
-      props: PortableTextComponentProps<{ body: PortableTextJSON }>
-    ) => {
-      if (!props.value?.body) {
-        return null;
-      }
-
-      return (
-        <Flex
-          $flexDirection={"column"}
-          $mt={56}
-          $pv={24}
-          $ph={16}
-          $background="teachersPastelYellow"
-        >
-          <PortableText
-            value={props.value.body}
-            components={{
-              block: {
-                sectionHeading: (props) => {
-                  return <P $font={"heading-light-5"}>{props.children}</P>;
-                },
-              },
-            }}
-          />
-        </Flex>
-      );
-    },
-    cta: (props: PortableTextComponentProps<CTA>) => {
-      if (!props.value) {
-        return null;
-      }
-      const cta = props.value;
-
-      return (
-        <ButtonAsLink
-          label={cta.label}
-          href={getCTAHref(cta)}
-          background={"teachersHighlight"}
-        />
-      );
-    },
-  },
-};
-
-const logMissingPortableTextComponents: MissingComponentHandler = (
-  message,
-  options
-) => {
-  console.log(message, {
-    type: options.type,
-    nodeType: options.nodeType,
-  });
 };
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
@@ -339,13 +142,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
               <CopyLinkButton />
             </Flex>
             <Box $mt={[48]}>
-              <BasePortableTextProvider>
-                <PortableText
-                  components={blogPortableTextComponents}
-                  value={props.blog.contentPortableText}
-                  onMissingComponent={logMissingPortableTextComponents}
-                />
-              </BasePortableTextProvider>
+              <BlogPortableText portableText={props.blog.contentPortableText} />
             </Box>
           </GridArea>
         </Grid>
