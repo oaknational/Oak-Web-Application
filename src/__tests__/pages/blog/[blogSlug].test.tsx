@@ -5,6 +5,9 @@ import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlags: () => ({ enabled: {} }),
+}));
 jest.mock("next/router", () => ({
   __esModule: true,
   ...jest.requireActual("next/router"),

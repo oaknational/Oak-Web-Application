@@ -2,6 +2,8 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { SSRProvider } from "@react-aria/ssr";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -39,17 +41,19 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
         <ThemeProvider theme={theme}>
           <ErrorBoundary>
             <SSRProvider>
-              <AnalyticsProvider {...analyticsOptions}>
-                <DefaultSeo />
-                <SearchProvider>
-                  <MenuProvider>
-                    <ToastProvider>
-                      <Component {...pageProps} />
-                      <AppHooks />
-                    </ToastProvider>
-                  </MenuProvider>
-                </SearchProvider>
-              </AnalyticsProvider>
+              <PostHogProvider client={posthog}>
+                <AnalyticsProvider {...analyticsOptions}>
+                  <DefaultSeo />
+                  <SearchProvider>
+                    <MenuProvider>
+                      <ToastProvider>
+                        <Component {...pageProps} />
+                        <AppHooks />
+                      </ToastProvider>
+                    </MenuProvider>
+                  </SearchProvider>
+                </AnalyticsProvider>
+              </PostHogProvider>
             </SSRProvider>
           </ErrorBoundary>
           <SpriteSheet />
