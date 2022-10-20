@@ -6,11 +6,11 @@ import { margin } from "../../styles/utils/spacing";
 import typography from "../../styles/utils/typography";
 import { HeadingProps, HeadingTagComponent } from "../Typography/Heading";
 
-const shadow =
+export const outlineShadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
 
 type OutlineHeadingProps = Omit<HeadingProps, "$fontSize">;
-type OutlineSize = 50 | 100 | 120;
+type OutlineSize = 40 | 50 | 100 | 120;
 type OutlineSizeResponsive = ResponsiveValues<OutlineSize>;
 
 const parse = (value?: unknown) => {
@@ -31,7 +31,7 @@ const OutlineHeading = styled(HeadingTagComponent).attrs({
   className: "pa11y-ignore",
 })<OutlineHeadingProps & { $fontSize: OutlineSizeResponsive }>`
   color: white;
-  text-shadow: ${shadow};
+  text-shadow: ${outlineShadow};
   ${fontSize}
   ${margin}
   ${typography}
