@@ -8,12 +8,14 @@ import { DialogModalSize, OverlayProps, UnderlayProps } from "./useModalDialog";
 type ModalDialogProps = {
   underlayProps: UnderlayProps;
   overlayProps: OverlayProps;
+  titleProps: { id: string };
   children: ReactNode;
   innerRef: RefObject<HTMLDivElement>;
   size: DialogModalSize;
 };
 const ModalDialog: FC<ModalDialogProps> = (props) => {
-  const { children, size, innerRef, underlayProps, overlayProps } = props;
+  const { children, size, innerRef, underlayProps, overlayProps, titleProps } =
+    props;
 
   return (
     <Flex
@@ -28,6 +30,7 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
       <FocusScope contain restoreFocus autoFocus>
         <Flex
           {...overlayProps}
+          aria-labelledby={titleProps.id}
           ref={innerRef}
           $background={"white"}
           $color={"black"}

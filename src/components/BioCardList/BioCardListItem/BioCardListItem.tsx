@@ -48,14 +48,14 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           )}
         </Flex>
       </Flex>
-      {onClick && (
-        <Flex $alignItems={"center"} $mt={[0, 24]} $ml={["auto", 0]}>
-          <SocialButtons
-            for={name}
-            linkedIn={socials?.linkedinUrl}
-            twitter={socials?.twitterUsername}
-            $display={["none", "flex"]}
-          />
+      <Flex $alignItems={"center"} $mt={[0, 24]} $ml={["auto", 0]}>
+        <SocialButtons
+          for={name}
+          linkedIn={socials?.linkedinUrl}
+          twitter={socials?.twitterUsername}
+          $display={["none", "flex"]}
+        />
+        {onClick && (
           <Button
             {...primaryTargetProps}
             label="See bio"
@@ -68,8 +68,8 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             onClick={() => onClick(props)}
             shouldHideLabel={[true, false]}
           />
-        </Flex>
-      )}
+        )}
+      </Flex>
     </Flex>
   );
 };

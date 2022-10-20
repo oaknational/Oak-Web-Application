@@ -101,6 +101,8 @@ const BioModal: FC<BioModalProps> = (props) => {
                   $mr={[0, 16]}
                   $mb={[0, 8]}
                   $textAlign={["center", "left"]}
+                  // If 'next' or 'prev' buttons are clicked, read out the new name
+                  aria-live="polite"
                 >
                   {name}
                 </Heading>

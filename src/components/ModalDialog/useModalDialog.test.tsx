@@ -23,8 +23,7 @@ describe("useModalDialog", () => {
     renderWithTheme(<ModalDialog {...result.current}>Contents</ModalDialog>);
 
     expect(result.current.titleProps).toMatchObject({
-      // @todo this id should not be null
-      id: null,
+      id: "react-aria-generated-id",
     });
   });
   test("escape calls closeModal()", async () => {

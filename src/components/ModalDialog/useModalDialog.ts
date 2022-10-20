@@ -11,6 +11,7 @@ import {
   DialogAria,
   KeyboardResult,
   ModalAria,
+  useId,
 } from "react-aria";
 
 export type DialogModalSize = "fullscreen" | "small";
@@ -34,7 +35,13 @@ const useModalDialog = (props: UseModalDialogProps) => {
 
   const { overlayProps, underlayProps } = useOverlay(props, innerRef);
   const { modalProps } = useModal();
-  const { dialogProps, titleProps } = useDialog(props, innerRef);
+  const { dialogProps } = useDialog(props, innerRef);
+  /**
+   * useDialog().titleProps wasn't working correctly, so generating our own
+   * titleId
+   */
+  const titleId = useId();
+
   const { keyboardProps } = useKeyboard({
     onKeyDown: (e) => {
       switch (e.key) {
@@ -61,7 +68,9 @@ const useModalDialog = (props: UseModalDialogProps) => {
       ...modalProps,
       ...keyboardProps,
     },
-    titleProps,
+    titleProps: {
+      id: titleId,
+    },
     innerRef,
   };
 };
