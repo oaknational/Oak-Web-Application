@@ -6,11 +6,17 @@ import {
 } from "next";
 
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import CMSClient, { LandingPage } from "../../node-lib/cms";
+import { BasePortableTextProvider } from "../../components/PortableText";
+import CMSClient from "../../node-lib/cms";
+import { LandingPage } from "../../node-lib/cms/sanity-client/schemas/landingPage";
 import { decorateWithIsr } from "../../node-lib/isr";
+import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
+import { Quote } from "../../components/pages/LandingPages/Quote";
+import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
+import { LandingPageTextBlock } from "../../components/pages/LandingPages/LandingPageTextBlock";
+import LandingPageHero from "../../components/pages/LandingPages/LandingPageHero";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -18,14 +24,52 @@ export type LandingPageProps = {
 
 const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)}>
-      <MaxWidth>
-        <Grid>
-          <GridArea $colSpan={[12, 12, 12]}>
-            Landing page: <pre>{pageData.slug}</pre>
-          </GridArea>
-        </Grid>
-      </MaxWidth>
+    <Layout
+      headerVariant="landing-pages"
+      headerCta={pageData.headerCta}
+      seoProps={getSeoProps(pageData.seo)}
+    >
+      <>
+        <MaxWidth $justifyContent={"flex-start"}>
+          <LandingPageHero hero={pageData.hero} />
+          <BasePortableTextProvider>
+            {pageData.content.map((content, index) => {
+              if (content.type == "LandingPageTextAndMediaBlock") {
+                return (
+                  <LandingPageTextAndMedia
+                    key={`${index}:${content.textAndMedia.title}`}
+                    {...content.textAndMedia}
+                  />
+                );
+              }
+              if (content.type == "LandingPageQuoteBlock") {
+                return (
+                  <Quote
+                    key={`${index}:${content.quote.text}`}
+                    {...content.quote}
+                  />
+                );
+              }
+              if (content.type == "LandingPageFormBlock") {
+                return (
+                  <SignupPrompt
+                    key={`${index}:${content.title}`}
+                    {...content}
+                  />
+                );
+              }
+              if (content.type == "LandingPageTextBlock") {
+                return (
+                  <LandingPageTextBlock
+                    key={`${index}:${content.bodyPortableText[0]._key}`}
+                    {...content}
+                  />
+                );
+              }
+            })}
+          </BasePortableTextProvider>
+        </MaxWidth>
+      </>
     </Layout>
   );
 };
