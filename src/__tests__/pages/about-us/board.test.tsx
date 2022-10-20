@@ -8,6 +8,9 @@ import { portableTextFromString } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlags: () => ({ enabled: {} }),
+}));
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;

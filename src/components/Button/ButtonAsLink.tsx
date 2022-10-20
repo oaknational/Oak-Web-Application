@@ -46,13 +46,16 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const { size, variant, iconPosition, background } =
     getButtonStylesProps(props);
 
+  const defaultTitle =
+    ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
+
   return (
     <Link {...nextLinkProps} href={href} passHref={!disabled}>
       <StyledA
         {...htmlAnchorProps}
         onClick={disabled ? (e) => e.preventDefault() : htmlAnchorProps.onClick}
         {...useButtonAsLinkProps()}
-        title={htmlAnchorProps.title || ariaLabel || label}
+        title={htmlAnchorProps.title || defaultTitle}
         aria-label={ariaLabel}
         size={size}
         variant={variant}

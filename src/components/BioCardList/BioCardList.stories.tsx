@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const BioCardList = Template.bind({});
 BioCardList.args = {
-  people: [
+  bios: [
     "Jack",
     "Joe",
     "Craig",

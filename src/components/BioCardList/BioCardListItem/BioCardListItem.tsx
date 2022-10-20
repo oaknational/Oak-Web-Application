@@ -10,7 +10,7 @@ import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading, P } from "../../Typography";
 
 export type BioCardListItemProps = BioData & {
-  onClick: (bio: BioData) => void;
+  onClick?: (bio: BioData) => void;
 };
 const BioCardListItem: FC<BioCardListItemProps> = (props) => {
   const { name, role, image, socials, onClick } = props;
@@ -19,7 +19,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
 
   return (
     <Flex
-      {...containerProps}
+      {...(onClick ? containerProps : {})}
       $position="relative"
       $background="white"
       $pa={16}
@@ -48,26 +48,28 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           )}
         </Flex>
       </Flex>
-      <Flex $alignItems={"center"} $mt={[0, 24]} $ml={["auto", 0]}>
-        <SocialButtons
-          for={name}
-          linkedIn={socials?.linkedinUrl}
-          twitter={socials?.twitterUsername}
-          $display={["none", "flex"]}
-        />
-        <Button
-          {...primaryTargetProps}
-          label="See bio"
-          labelSuffixA11y={`for ${name}`}
-          variant="minimal"
-          icon="ArrowRight"
-          iconPosition="trailing"
-          iconBackground="teachersHighlight"
-          $ml="auto"
-          onClick={() => onClick(props)}
-          shouldHideLabel={[true, false]}
-        />
-      </Flex>
+      {onClick && (
+        <Flex $alignItems={"center"} $mt={[0, 24]} $ml={["auto", 0]}>
+          <SocialButtons
+            for={name}
+            linkedIn={socials?.linkedinUrl}
+            twitter={socials?.twitterUsername}
+            $display={["none", "flex"]}
+          />
+          <Button
+            {...primaryTargetProps}
+            label="See bio"
+            labelSuffixA11y={`for ${name}`}
+            variant="minimal"
+            icon="ArrowRight"
+            iconPosition="trailing"
+            iconBackground="teachersHighlight"
+            $ml="auto"
+            onClick={() => onClick(props)}
+            shouldHideLabel={[true, false]}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 };

@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
+import { useFeatureFlags } from "posthog-js/react";
 
 import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
@@ -30,6 +31,11 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     governancePortableText,
   } = pageData;
 
+  const featureFlags = useFeatureFlags();
+  const bioModalsEnabled = Boolean(
+    featureFlags.enabled["about-us--board--bio-modals"]
+  );
+
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
@@ -52,7 +58,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             >
               Our interim board
             </Heading>
-            <BioCardList $mb={[80, 92]} $ph={[16, 0]} people={boardMembers} />
+            <BioCardList
+              $mb={[80, 92]}
+              $ph={[16, 0]}
+              bios={boardMembers}
+              withModals={bioModalsEnabled}
+            />
           </>
         )}
         <Heading $font={"heading-5"} tag={"h2"} $textAlign={["center", "left"]}>
