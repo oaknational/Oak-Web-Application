@@ -23,7 +23,7 @@ import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
 import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { BlogListItemProps } from "../components/BlogList/BlogListItem";
+import { BlogListItemProps } from "../components/Blog/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
 import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import {
@@ -31,7 +31,7 @@ import {
   SerializedBlogPostPreview,
   serializeDate,
 } from "../components/pages/BlogIndex.page";
-import BlogList from "../components/BlogList";
+import BlogList from "../components/Blog/BlogList";
 
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 
