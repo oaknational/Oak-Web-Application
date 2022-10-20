@@ -47,6 +47,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       onClick,
       children,
       htmlButtonProps = {},
+      iconAnimateTo,
       ...styleProps
     } = props;
 
@@ -72,6 +73,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           variant={variant}
           background={background}
           iconColorOverride={iconColorOverride}
+          iconAnimateTo={iconAnimateTo}
         />
         {children}
       </StyledButton>

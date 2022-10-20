@@ -205,4 +205,5 @@ export type CommonIconButtonProps = Omit<
   icon: IconName;
   "aria-label": string;
   iconColorOverride?: OakColorName;
+  iconAnimateTo?: IconName;
 };

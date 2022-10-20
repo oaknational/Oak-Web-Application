@@ -19,9 +19,17 @@ export type IconButtonInnerProps = {
   icon: IconName;
   size: ButtonSize;
   iconColorOverride?: OakColorName;
+  iconAnimateTo?: IconName;
 };
+/**
+ * ## Usage
+ * This is not a general purpose component, it should only be used inside the
+ * IconButton and IconButtonAsLink components.
+ * If you just want an icon, use the Icon component.
+ */
 const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
-  const { variant, size, background, icon, iconColorOverride } = props;
+  const { variant, size, background, icon, iconColorOverride, iconAnimateTo } =
+    props;
   const theme = useTheme();
   const underlineColor =
     theme.buttonFocusUnderlineColors[background] || "black";
@@ -34,6 +42,7 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
         size={getIconButtonHeight(size, variant)}
         $color={iconColorOverride}
         $background={variant === "minimal" ? "transparent" : background}
+        animateTo={iconAnimateTo}
       />
       <IconFocusUnderline $color={underlineColor} />
     </IconButtonWrapper>

@@ -37,6 +37,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     nextLinkProps,
     anchorProps = {},
     disabled,
+    iconAnimateTo,
     ...styleProps
   } = props;
 
@@ -64,6 +65,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
           variant={variant}
           background={background}
           iconColorOverride={iconColorOverride}
+          iconAnimateTo={iconAnimateTo}
         />
       </StyledA>
     </Link>
