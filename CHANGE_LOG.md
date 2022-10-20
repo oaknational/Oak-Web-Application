@@ -1,3 +1,16 @@
+# [1.42.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.41.1...v1.42.0) (2022-10-20)
+
+
+### Bug Fixes
+
+* alert if copy link feature not supported by browser ([177b74c](https://github.com/oaknational/Oak-Web-Application/commit/177b74cc7a7d5669303c878cb11acdf2fe8d8f1e))
+* blog 'copy link' button ([69cc5e9](https://github.com/oaknational/Oak-Web-Application/commit/69cc5e9eca3fb0efc237dba6c68fb983921927c8))
+
+
+### Features
+
+* posthog feature flags ([f50875c](https://github.com/oaknational/Oak-Web-Application/commit/f50875cd3c17f195d756e167450d02e32a451574))
+
 # [1.41.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.40.0...v1.41.0) (2022-10-19)
 
 
