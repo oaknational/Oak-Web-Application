@@ -20,29 +20,41 @@ const ANIMATION_TRANSFORM_ROTATE: Record<AnimationStage, string> = {
 
 type UseAnimateToProps = {
   shouldAnimate: boolean;
+  /**
+   * timeIn: time in ms for which the icon is scaling down in size (first icon displayed)
+   */
+  timeIn?: number;
+  /**
+   * timeOut: time in ms for which the icon is scaling up in size (second icon displayed)
+   */
+  timeOut?: number;
+  /**
+   * timeBack: time in ms before the icon reverts
+   */
+  timeBack?: number;
 };
 /**
- * useAnimationTo handles animation state for an icon when the 'animateTo' prop
+ * useIconAnimation handles animation state for an icon when the 'animateTo' prop
  * is passed.
  */
-const useAnimationTo = (props: UseAnimateToProps) => {
-  const { shouldAnimate } = props;
+const useIconAnimation = (props: UseAnimateToProps) => {
+  const { shouldAnimate, timeIn = 400, timeOut = 400, timeBack = 3000 } = props;
   const [stage, setStage] = useState<AnimationStage>("pre");
   useEffect(() => {
     if (shouldAnimate) {
       setStage("in");
       const outTimerId = setTimeout(() => {
         setStage("out");
-      }, 400);
+      }, timeIn);
       const backTimerId = setTimeout(() => {
         setStage("pre");
-      }, 3400);
+      }, timeOut + timeBack);
       return () => {
         clearTimeout(outTimerId);
         clearTimeout(backTimerId);
       };
     }
-  }, [shouldAnimate]);
+  }, [shouldAnimate, timeIn, timeOut, timeBack]);
   return {
     rotate: ANIMATION_TRANSFORM_ROTATE[stage],
     scale: ANIMATION_TRANSFORM_SCALE[stage],
@@ -50,4 +62,4 @@ const useAnimationTo = (props: UseAnimateToProps) => {
   };
 };
 
-export default useAnimationTo;
+export default useIconAnimation;

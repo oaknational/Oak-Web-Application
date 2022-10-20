@@ -11,15 +11,15 @@ import { GraphicSvgName } from "../SpriteSheet/GraphicSvgs";
 import { LessonElementSvgName } from "../SpriteSheet/LessonElementSvgs";
 import { box, BoxProps } from "../Box";
 
-import useAnimationTo from "./useAnimationTo";
+import useIconAnimation from "./useIconAnimation";
 
 export type IconName = IconSvgName | GraphicSvgName | LessonElementSvgName;
 type IconVariant = "minimal" | "brush";
 
 type RotateValue = 0 | 180;
-type FlipRotateProps = { rotate?: RotateValue; flip?: boolean };
+type RotateProps = { rotate?: RotateValue };
 type IconOuterWrapperProps = { variant: IconVariant } & SizeProps &
-  FlipRotateProps &
+  RotateProps &
   BoxProps;
 const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
   position: relative;
@@ -29,11 +29,7 @@ const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
     css`
       transform: rotate(${props.rotate}deg);
     `}
-  ${(props) =>
-    typeof props.flip === "number" &&
-    css`
-      transform: scaleY(${props.flip ? -1 : 1});
-    `}
+
   ${size}
   ${box}
 `;
@@ -118,7 +114,7 @@ const Icon: FC<IconProps> = (props) => {
 
   const svgProps = SPECIAL_ICON_SVG_PROPS[name] ?? { name };
 
-  const { stage, rotate, scale } = useAnimationTo({
+  const { stage, rotate, scale } = useIconAnimation({
     shouldAnimate: Boolean(animateTo),
   });
 

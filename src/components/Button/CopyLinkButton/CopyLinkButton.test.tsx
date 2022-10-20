@@ -5,8 +5,9 @@ import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import CopyLinkButton from "./CopyLinkButton";
 
+const useFeatureFlags = jest.fn(() => ({ enabled: {} }));
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlags: () => ({ enabled: {} }),
+  useFeatureFlags: () => useFeatureFlags(),
 }));
 
 describe("Copy link button", () => {
@@ -42,5 +43,19 @@ describe("Copy link button", () => {
 
     const clickedButton = getByLabelText("Copied to clipboard");
     expect(clickedButton).toBeInTheDocument();
+  });
+
+  it("renders IconButton if feature flag 'test-feature-flag' enabled", () => {
+    useFeatureFlags.mockImplementationOnce(() => ({
+      enabled: { "test-feature-flag": true },
+    }));
+
+    const { getByRole } = renderWithTheme(
+      <ToastProvider>
+        <CopyLinkButton />
+      </ToastProvider>
+    );
+
+    expect(getByRole("button")).toBeInTheDocument();
   });
 });
