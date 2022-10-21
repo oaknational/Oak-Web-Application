@@ -49,7 +49,7 @@ const transformField = (field: HubspotFormField): FormField[] => {
     hidden: field.hidden || false,
     default: field.defaultValue || null,
     placeholder: field.placeholder || null,
-    required: field.required || true,
+    required: field.required ?? true,
   };
 
   if (field.dependentFieldFilters?.length > 0) {
