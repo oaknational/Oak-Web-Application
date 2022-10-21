@@ -27,6 +27,7 @@ export type PixelSpacing =
   | 4
   | 6
   | 8
+  | 10
   | 12
   | 16
   | 20
@@ -36,7 +37,9 @@ export type PixelSpacing =
   | 32
   | 36
   | 40
+  | 44
   | 48
+  | 50
   | 56
   | 64
   | 72
@@ -51,6 +54,7 @@ export type PixelSpacing =
   | 220
   | 240
   | 300
+  | 320
   | 360
   | 480
   | 600
@@ -77,7 +81,9 @@ export type PercentSpacing =
   | "25%"
   | "20%"
   | "15%"
-  | "10%";
+  | "10%"
+  // vw units sometimes needed to fix edge cages
+  | "28vw";
 export type Unset = "unset";
 
 /**

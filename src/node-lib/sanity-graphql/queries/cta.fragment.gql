@@ -2,6 +2,7 @@ fragment CTA on Cta {
   label
   linkType
   external
+  anchor
   internal {
     ...InternalLinkFields
   }

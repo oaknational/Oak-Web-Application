@@ -14,6 +14,8 @@ export type SvgName =
   | LessonElementSvgName
   | BrushSvgName
   | LoopingLineSvgName
+  | "looping-arrow-1"
+
   // @todo name the below types
   | "icon-brush-background"
   | "box-border-top"

@@ -1,10 +1,214 @@
 {
-  "allLandingPage": [
-    {
-      "id": "46955c76-7d08-4211-9fda-2e38d72155c6",
-      "slug": {
-        "current": "your-calendar-of-lesson-events-for-2022-and-beyond"
-      }
+  "slug": "download-our-lesson-and-resource-directory",
+  "landingPageHeader": {
+    "headerCta": "#newsletter-form",
+    "headerTitle": "Lesson & Resource Directory CTA"
+  },
+  "title": "Download our Lesson & Resource Directory",
+  "heading": "Get a complete list of every one of our resources and save time searching",
+  "cta": {
+    "label": "cta label",
+    "linkType": "internal",
+    "internal": {
+      "contentType": "newsPost",
+      "slug": "our-specialist-curriculum",
+      "id": "17dcad99-c819-4019-b59d-17a35081a1de"
     }
-  ]
+  },
+  "content": [
+    {
+      "type": "LandingPageTextBlock",
+      "bodyPortableText": [
+        {
+          "_key": "c53f874ded13",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a9e2b27385ef0",
+              "_type": "span",
+              "marks": [],
+              "text": "Instantly see all subjects, units and lessons available for each key stage with our "
+            },
+            {
+              "_key": "5b48e89d960d",
+              "_type": "span",
+              "marks": ["b631924ecefb"],
+              "text": "Lesson & Resource Directory"
+            },
+            {
+              "_key": "2fc4e307a114",
+              "_type": "span",
+              "marks": [],
+              "text": ": a downloadable document detailing every single one of the 40,000 resources we have available in our Teacher Hub.\n"
+            },
+            {
+              "_key": "f55eac633bb4",
+              "_type": "span",
+              "marks": ["68f52ff20dc2"],
+              "text": "another link "
+            },
+            {
+              "_key": "e18b52a4ff24",
+              "_type": "span",
+              "marks": [],
+              "text": "  "
+            },
+            {
+              "_key": "2fdcbb63ea04",
+              "_type": "span",
+              "marks": ["b481991d7e65"],
+              "text": "homepage internal"
+            },
+            {
+              "_key": "ccd5abed0330",
+              "_type": "span",
+              "marks": [],
+              "text": " test"
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "b631924ecefb",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "aboutCorePage",
+                "_type": "reference",
+                "contentType": "aboutCorePage",
+                "id": "aboutCorePage"
+              }
+            },
+            {
+              "_key": "68f52ff20dc2",
+              "_type": "link",
+              "href": "https://www.thenational.academy/"
+            },
+            {
+              "_key": "b481991d7e65",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+                "_type": "reference",
+                "contentType": "policyPage",
+                "slug": "privacy-policy",
+                "id": "4fde9be2-3d02-4c2d-8646-63b86469500b"
+              }
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "1787a3d5bbff",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "18436aaaf0b1",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "type": "LandingPageTextAndMediaBlock",
+      "textAndMedia": {
+        "title": "lesson and resource text block",
+        "bodyPortableText": [
+          {
+            "_key": "707579826fbe",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "c3c428776ace0",
+                "_type": "span",
+                "marks": [],
+                "text": "Instantly see all subjects, units and lessons available for each key stage"
+              }
+            ],
+            "level": 1,
+            "listItem": "number",
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "af8774aedd3d",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "16bea45a7093",
+                "_type": "span",
+                "marks": [],
+                "text": "Quickly search and filter for lessons with downloadable resources"
+              }
+            ],
+            "level": 1,
+            "listItem": "number",
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "ddb5b2e47586",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "7e04900a835e",
+                "_type": "span",
+                "marks": [],
+                "text": "Ideal for setting last-minute cover or saving time when planning"
+              }
+            ],
+            "level": 1,
+            "listItem": "number",
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "cta": null,
+        "alignMedia": "left",
+        "mediaType": "video",
+        "video": {
+          "title": "Using Oak for catch-up, revision and homework",
+          "video": {
+            "asset": {
+              "assetId": "G01KeXa64IBiCosX3GpeTaW7kSS00azLw01s1PbQ9XL00rg",
+              "playbackId": "2k011l2CK007Qe8hORISAv004y4uEDuckfCvtDy2XDx5sQ",
+              "thumbTime": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "LandingPageFormBlock",
+      "title": "Get your copy of the directory",
+      "bodyPortableText": [
+        {
+          "_key": "938cf58814d4",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f5d34de609260",
+              "_type": "span",
+              "marks": [],
+              "text": "Add your email below and we'll send you the Oak Lesson & Resource Directory and other helpful updates and resources. Unsubscribe at any time. Read our privacy policy."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "type": "Quote",
+      "text": "If you have always done it that way, it is probably wrong.",
+      "organisation": null,
+      "role": null,
+      "attribution": "Charles F. Kettering"
+    }
+  ],
+  "seo": null,
+  "id": "46955c76-7d08-4211-9fda-2e38d72155c6"
 }

@@ -15,6 +15,10 @@ export const CTASchema = z.discriminatedUnion("linkType", [
     linkType: z.literal("external"),
     external: z.string().url(),
   }),
+  CTASchemaBase.extend({
+    linkType: z.literal("anchor"),
+    anchor: z.literal("formBlock"), // change to union of literals when there are more achors in cms
+  }),
 ]);
 
 export type CTA = z.infer<typeof CTASchema>;

@@ -34,7 +34,6 @@ export type BoxProps = CoverProps &
   TransitionProps &
   TypographyProps &
   OpacityProps &
-  // without the below conditional, Svg complains when using BoxProps
   HTMLProps;
 
 export const box = css<BoxProps>`
