@@ -29,11 +29,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
       <BoxBorders gapPosition="rightTop" />
       <Flex $alignItems={"flex-start"} $mb={"auto"}>
         <AvatarImage image={image} $mr={12} size={[56, 72]} />
-        <Flex
-          $mr={[0, 40]}
-          $flexDirection="column"
-          $alignSelf={["center", "flex-start"]}
-        >
+        <Flex $flexDirection="column" $alignSelf={["center", "flex-start"]}>
           <Heading tag="h3" $font={["heading-7", "heading-6"]}>
             {name}
           </Heading>

@@ -33,10 +33,8 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
           image={image}
           $objectFit={"cover"}
           fill
-          imageBuilder={
-            (builder) => builder.width(fetchImageSize).height(fetchImageSize)
-            // .fit("crop")
-            // .crop("center")
+          imageBuilder={(builder) =>
+            builder.width(fetchImageSize).height(fetchImageSize)
           }
         />
       ) : null}
