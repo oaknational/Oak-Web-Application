@@ -20,7 +20,7 @@ const PreviewControls: FC = () => {
       <ButtonAsLink
         label="Exit preview"
         href={`/api/exit-preview${router.asPath}`}
-        size="tiny"
+        variant="minimal"
         $ml={24}
       />
     </PreviewWrapper>

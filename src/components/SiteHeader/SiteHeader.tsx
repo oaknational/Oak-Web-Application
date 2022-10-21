@@ -66,7 +66,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         aria-label="Menu"
         icon={"Hamburger"}
         variant={"minimal"}
-        size={"header"}
+        size={"large"}
         ref={menuButtonRef}
         onClick={openMenu}
       />

@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
+import { useFeatureFlags } from "posthog-js/react";
 
 import CMSClient, { AboutBoardPage } from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
@@ -7,20 +8,14 @@ import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Card from "../../components/Card";
 import AboutContactCard from "../../components/AboutContactCard";
-import Typography, {
-  Heading,
-  Hr,
-  LI,
-  P,
-  UL,
-} from "../../components/Typography";
+import Typography, { Heading, Hr, P } from "../../components/Typography";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-// import BioCardList from "../../components/BioCardList";
+import BioCardList from "../../components/BioCardList";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 
 export type AboutPageProps = {
@@ -35,6 +30,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     documents,
     governancePortableText,
   } = pageData;
+
+  const featureFlags = useFeatureFlags();
+  const bioModalsEnabled = Boolean(
+    featureFlags.enabled["about-us--board--bio-modals"]
+  );
+
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
@@ -47,38 +48,27 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           }}
           bodyPortableText={introPortableText}
         />
-        {/* {boardMembers && (
+        {boardMembers && (
           <>
             <Heading
               $mb={[40, 32]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
+              $textAlign={["center", "left"]}
             >
               Our interim board
             </Heading>
-            <BioCardList $mb={[80, 92]} $ph={[16, 0]} people={boardMembers} />
+            <BioCardList
+              $mb={[80, 92]}
+              $ph={[16, 0]}
+              bios={boardMembers}
+              withModals={bioModalsEnabled}
+            />
           </>
-        )} */}
-        <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
-          Our interim board
+        )}
+        <Heading $font={"heading-5"} tag={"h2"} $textAlign={["center", "left"]}>
+          Documents
         </Heading>
-
-        <UL $mb={[80, 92]} $reset>
-          {boardMembers?.map((boardMember) => (
-            <LI
-              key={boardMember.id}
-              $textAlign="center"
-              $font={["heading-7", "heading-6"]}
-            >
-              {boardMember.name}
-            </LI>
-          ))}
-        </UL>
-        <Flex $width={"100%"} $justifyContent={["center", "flex-start"]}>
-          <Heading $font={"heading-5"} tag={"h2"}>
-            Documents
-          </Heading>
-        </Flex>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
             <Hr $color={"pastelTurqoise"} $mv={32} />

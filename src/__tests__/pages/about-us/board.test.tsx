@@ -4,12 +4,26 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient, { AboutBoardPage } from "../../../node-lib/cms";
 import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
+import { portableTextFromString } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlags: () => ({ enabled: {} }),
+}));
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock("next-sanity-image", () => ({
+  ...jest.requireActual("next-sanity-image"),
+  useNextSanityImage: () => ({
+    src: "/test/img/src.png",
+    width: 400,
+    height: 400,
+  }),
+}));
 
 const testAboutBoardPageData: AboutBoardPage = {
   ...testAboutPageBaseData,
@@ -24,6 +38,9 @@ const testAboutBoardPageData: AboutBoardPage = {
           url: "",
         },
       },
+      bioPortableText: portableTextFromString(
+        "This person started out here, ended up there."
+      ),
     },
   ],
   introPortableText: [
