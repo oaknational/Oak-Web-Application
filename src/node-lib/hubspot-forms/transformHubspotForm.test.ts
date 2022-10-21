@@ -1,5 +1,8 @@
 import { HubspotFormDefinition } from "./HubspotFormDefinition";
-import { transformHubspotForm } from "./transformHubspotForm";
+import {
+  transformHubspotFilter,
+  transformHubspotForm,
+} from "./transformHubspotForm";
 
 describe("transformHubspotForm", () => {
   const formBase = {
@@ -11,7 +14,7 @@ describe("transformHubspotForm", () => {
     formFieldGroups: [{ fields: [] }],
   };
 
-  it("extracts the form metadata", () => {
+  it("extracts the form details", () => {
     const mockForm = {
       ...formBase,
     } as unknown as HubspotFormDefinition;
@@ -156,10 +159,10 @@ describe("transformHubspotForm", () => {
         {
           fields: [
             {
-              "name": "email",
-              "label": "Email",
-              "type": "string",
-              "fieldType": "text",
+              name: "email",
+              label: "Email",
+              type: "string",
+              fieldType: "text",
             },
           ],
         },
@@ -177,5 +180,90 @@ describe("transformHubspotForm", () => {
         },
       ],
     });
-  })
+  });
+
+  it("handles dependent fields", () => {
+    const mockForm = {
+      ...formBase,
+      formFieldGroups: [
+        {
+          fields: [
+            {
+              name: "user_type",
+              label: "User Type",
+              type: "enumeration",
+              fieldType: "select",
+              options: [
+                { label: "Teacher", value: "Teacher" },
+                { label: "Parent", value: "Parent" },
+              ],
+              dependentFieldFilters: [
+                {
+                  filters: [
+                    {
+                      operator: "SET_ANY",
+                      strValue: "",
+                      boolValue: false,
+                      numberValue: 0,
+                      strValues: ["Teacher"],
+                      numberValues: [],
+                    },
+                  ],
+                  dependentFormField: {
+                    name: "school",
+                    label: "School",
+                    type: "string",
+                    fieldType: "text",
+                    required: false,
+                  },
+                  formFieldAction: "DISPLAY",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    expect(transformHubspotForm(mockForm)).toMatchObject({
+      fields: [
+        {
+          name: "user_type",
+          label: "User Type",
+          type: "select",
+          required: true,
+        },
+        {
+          name: "school",
+          label: "School",
+          type: "string",
+          required: false,
+          renderWhen: [
+            {
+              field: "user_type",
+              operator: "in",
+              value: ["Teacher"],
+            },
+          ],
+        },
+      ],
+    });
+  });
+
+  describe("addConditions", () => {
+    const hubspotFilter = {
+      operator: "SET_ANY",
+      strValue: "",
+      boolValue: false,
+      numberValue: 0,
+      strValues: ["Teacher"],
+      numberValues: [],
+    };
+
+    expect(transformHubspotFilter(hubspotFilter, "user_type")).toEqual({
+      field: "user_type",
+      operator: "in",
+      value: ["Teacher"],
+    });
+  });
 });

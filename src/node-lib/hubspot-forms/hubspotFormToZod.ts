@@ -2,6 +2,21 @@ import { z } from "zod";
 
 import { assertUnreachable } from "../../utils/assertUnreachable";
 
+type FieldValue = string | number | boolean;
+
+export type FieldRenderCondition = {
+  field: string;
+} & (
+  | {
+      operator: "in";
+      value: FieldValue[];
+    }
+  | {
+      operator: "eq";
+      value: FieldValue;
+    }
+);
+
 export type FormFieldBase = {
   name: string;
   label: string | null;
@@ -10,6 +25,7 @@ export type FormFieldBase = {
   placeholder: string | null;
   description: string | null;
   hidden: boolean | null;
+  renderWhen?: FieldRenderCondition[];
 };
 
 export type FormField = FormFieldBase &
