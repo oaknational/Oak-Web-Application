@@ -1,3 +1,20 @@
+# [1.43.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.42.0...v1.43.0) (2022-10-21)
+
+
+### Bug Fixes
+
+* **bio-modal:** fix ios bug Array.at() ([47aaa0d](https://github.com/oaknational/Oak-Web-Application/commit/47aaa0df0d0343ed569b97241819480652f9759e))
+* **bio-modals:** fix a11y on biomodals ([98d514f](https://github.com/oaknational/Oak-Web-Application/commit/98d514fa2258f76372d7d8a604f0a3d5ba9f5806))
+* **bio-modal:** stylefixes, add close on escape key ([5e03f01](https://github.com/oaknational/Oak-Web-Application/commit/5e03f01937bbf41c37e2f207e6199a7d7393b993))
+* **modal-dialog:** screen reader should not read content outside modal ([b938ee9](https://github.com/oaknational/Oak-Web-Application/commit/b938ee99c94cdb5b7d7ffe5955b5a72658beec62))
+
+
+### Features
+
+* bio modals ([1b2543b](https://github.com/oaknational/Oak-Web-Application/commit/1b2543b811acfdd013b55610b53387126cf4f900))
+* **bio-modals-feature-flags:** put bio modals behind a feature flag ([91e03eb](https://github.com/oaknational/Oak-Web-Application/commit/91e03eb11f3d2beb6beeafabadb1eb8ff33f043a))
+* **bios:** bio modal dialogs ([23dab09](https://github.com/oaknational/Oak-Web-Application/commit/23dab095f8ad49b472629fe6ca1763e822c52960))
+
 # [1.42.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.41.1...v1.42.0) (2022-10-20)
 
 
