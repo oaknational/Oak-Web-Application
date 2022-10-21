@@ -7,6 +7,8 @@ export const zIndexMap = {
   neutral: 0,
   inFront: 1,
   fixedHeader: 100,
+  modalCloseButton: 150,
+  modalDialog: 300,
 } as const;
 
 export type ZIndex = keyof typeof zIndexMap | null;

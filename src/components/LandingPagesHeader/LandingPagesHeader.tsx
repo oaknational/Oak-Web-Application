@@ -30,26 +30,24 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
         </OakLink>
         {props.headerCta?.linkType && (
           <OakLink page={null} href={getCTAHref(props.headerCta)}>
-            <a>
-              <Flex
-                $width={[200, "100%"]}
-                $justifyContent={"flex-end"}
-                $alignItems={"center"}
-              >
-                <Typography $textAlign="right" $font={"heading-7"}>
-                  {props.headerCta.label}
-                </Typography>
-                <Icon
-                  $ml={12}
-                  aria-label={"arrow-right"}
-                  name={"ArrowRight"}
-                  $background={"teachersHighlight"}
-                  $color={"white"}
-                  variant={"brush"}
-                  size={28}
-                />
-              </Flex>
-            </a>
+            <Flex
+              $width={[200, "100%"]}
+              $justifyContent={"flex-end"}
+              $alignItems={"center"}
+            >
+              <Typography $textAlign="right" $font={"heading-7"}>
+                {props.headerCta.label}
+              </Typography>
+              <Icon
+                $ml={12}
+                aria-label={"arrow-right"}
+                name={"ArrowRight"}
+                $background={"teachersHighlight"}
+                $color={"white"}
+                variant={"brush"}
+                size={28}
+              />
+            </Flex>
           </OakLink>
         )}
       </Flex>

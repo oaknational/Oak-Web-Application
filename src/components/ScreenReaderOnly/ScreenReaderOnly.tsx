@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const srOnly = css`
+export const srOnlyCss = css`
   position: absolute;
   width: 1px;
   height: 1px;
@@ -20,7 +20,7 @@ export const srOnly = css`
  * be accessible to assistive technology.
  */
 const ScreenReaderOnly = styled.span`
-  ${srOnly}
+  ${srOnlyCss}
 `;
 
 export default ScreenReaderOnly;

@@ -1,3 +1,40 @@
+## [1.43.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.0...v1.43.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* blocks not centred on landing page ([120b0a0](https://github.com/oaknational/Oak-Web-Application/commit/120b0a04b4bf3bc6b237675e41a02d13dcd0a68d))
+
+# [1.43.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.42.0...v1.43.0) (2022-10-21)
+
+
+### Bug Fixes
+
+* **bio-modal:** fix ios bug Array.at() ([47aaa0d](https://github.com/oaknational/Oak-Web-Application/commit/47aaa0df0d0343ed569b97241819480652f9759e))
+* **bio-modals:** fix a11y on biomodals ([98d514f](https://github.com/oaknational/Oak-Web-Application/commit/98d514fa2258f76372d7d8a604f0a3d5ba9f5806))
+* **bio-modal:** stylefixes, add close on escape key ([5e03f01](https://github.com/oaknational/Oak-Web-Application/commit/5e03f01937bbf41c37e2f207e6199a7d7393b993))
+* **modal-dialog:** screen reader should not read content outside modal ([b938ee9](https://github.com/oaknational/Oak-Web-Application/commit/b938ee99c94cdb5b7d7ffe5955b5a72658beec62))
+
+
+### Features
+
+* bio modals ([1b2543b](https://github.com/oaknational/Oak-Web-Application/commit/1b2543b811acfdd013b55610b53387126cf4f900))
+* **bio-modals-feature-flags:** put bio modals behind a feature flag ([91e03eb](https://github.com/oaknational/Oak-Web-Application/commit/91e03eb11f3d2beb6beeafabadb1eb8ff33f043a))
+* **bios:** bio modal dialogs ([23dab09](https://github.com/oaknational/Oak-Web-Application/commit/23dab095f8ad49b472629fe6ca1763e822c52960))
+
+# [1.42.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.41.1...v1.42.0) (2022-10-20)
+
+
+### Bug Fixes
+
+* alert if copy link feature not supported by browser ([177b74c](https://github.com/oaknational/Oak-Web-Application/commit/177b74cc7a7d5669303c878cb11acdf2fe8d8f1e))
+* blog 'copy link' button ([69cc5e9](https://github.com/oaknational/Oak-Web-Application/commit/69cc5e9eca3fb0efc237dba6c68fb983921927c8))
+
+
+### Features
+
+* posthog feature flags ([f50875c](https://github.com/oaknational/Oak-Web-Application/commit/f50875cd3c17f195d756e167450d02e32a451574))
+
 # [1.41.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.40.0...v1.41.0) (2022-10-19)
 
 
