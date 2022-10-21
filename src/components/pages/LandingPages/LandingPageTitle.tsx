@@ -10,14 +10,14 @@ export const LandingPageTitle: FC<{
   title: string;
   heading?: string | null;
   cta?: CTA | null;
-  image?: boolean;
-}> = ({ cta, heading, title, image }) => {
+  leftAlign?: boolean;
+}> = ({ cta, heading, title, leftAlign }) => {
   return (
     <Flex
       $maxWidth={840}
       $mb={[92]}
       $flexDirection={"column"}
-      $alignItems={["flex-start", image ? "flex-start" : "center"]}
+      $alignItems={["flex-start", leftAlign ? "flex-start" : "center"]}
       $ph={16}
     >
       <Heading
@@ -33,7 +33,7 @@ export const LandingPageTitle: FC<{
           $font={["heading-4", "heading-5"]}
           $mv={[0]}
           tag="h2"
-          $textAlign={["left", image ? "start" : "center"]}
+          $textAlign={["left", leftAlign ? "start" : "center"]}
         >
           {heading}
         </Heading>

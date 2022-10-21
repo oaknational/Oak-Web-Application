@@ -14,6 +14,7 @@ export const Quote: FC<QuoteSchema> = ({ text, attribution }) => {
       $mb={[56, 92]}
       $ph={[16]}
       $maxWidth={[720]}
+      $ma={"auto"}
     >
       <Blockquote $mb={[16]} $font={"heading-4"} $textAlign={"center"}>
         &ldquo;{text}&rdquo;
