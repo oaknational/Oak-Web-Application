@@ -1,3 +1,10 @@
+## [1.43.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.2...v1.43.3) (2022-10-21)
+
+
+### Bug Fixes
+
+* **about-us:** centering issues ([49d7a38](https://github.com/oaknational/Oak-Web-Application/commit/49d7a387ae74919f7fed507f36c3a8631dd6fe09))
+
 ## [1.43.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.1...v1.43.2) (2022-10-21)
 
 
