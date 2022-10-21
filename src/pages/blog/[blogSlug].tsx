@@ -12,22 +12,19 @@ import { uniqBy } from "lodash/fp";
 import Layout from "../../components/Layout";
 import CMSClient, { BlogPost } from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
-import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
-import CopyLinkButton from "../../components/Button/CopyLinkButton";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import BlogCategoryList from "../../components/Blog/BlogCategoryList";
 import useBlogCategoryList from "../../components/Blog/BlogCategoryList/useBlogCategoryList";
-import AvatarImage from "../../components/AvatarImage";
 import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
 import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import MobileBlogFilters from "../../components/MobileBlogFilters";
-import { Heading, Span, P } from "../../components/Typography";
-import OakLink from "../../components/OakLink";
+import { Heading } from "../../components/Typography";
 import { sanityClientLike } from "../../components/CMSImage";
+import BlogHeader from "../../components/Blog/BlogHeader/BlogHeader";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -42,11 +39,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
 
   const blogCategoriesListProps = useBlogCategoryList();
-  const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  console.log(blog);
 
   /**
    * @todo add various sizes for sharing on different platforms
@@ -101,46 +94,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           </GridArea>
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
           <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
-            <Flex
-              $mt={[40, 72]}
-              $justifyContent="space-between"
-              $flexDirection={["column", "row"]}
-            >
-              <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
-                <OakLink page="blog-index" category={blog.category.slug}>
-                  {blog.category.title}
-                </OakLink>
-              </Heading>
-              <Span $font={"body-3"} $mt={[8, 0]}>
-                {formattedDate}
-              </Span>
-            </Flex>
-            <Heading $mt={12} $font={["heading-5", "heading-4"]} tag={"h1"}>
-              {blog.title}
-            </Heading>
-            <Flex
-              $alignItems={"center"}
-              $mt={16}
-              $mr={[20, 0]}
-              $justifyContent={["space-between", "left"]}
-            >
-              <Flex $alignItems={"center"}>
-                {blog.author.image && (
-                  <AvatarImage image={blog.author.image} $mr={12} />
-                )}
-                <Box $mr={[0, 40]}>
-                  <Heading tag="h2" $font={"heading-7"}>
-                    {blog.author.name}
-                  </Heading>
-                  {blog.author.role && (
-                    <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
-                      {blog.author.role}
-                    </P>
-                  )}
-                </Box>
-              </Flex>
-              <CopyLinkButton />
-            </Flex>
+            <BlogHeader blog={props.blog} />
             <Box $mt={[48]}>
               <BlogPortableText portableText={props.blog.contentPortableText} />
             </Box>
