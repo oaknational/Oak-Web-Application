@@ -1,3 +1,11 @@
+## [1.43.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.1...v1.43.2) (2022-10-21)
+
+
+### Bug Fixes
+
+* remove nested a tag from oak link ([60e4d01](https://github.com/oaknational/Oak-Web-Application/commit/60e4d01c197d222a248a633cc9690031fb4b6c0b))
+* unwanted a tag in oak link ([5daf40e](https://github.com/oaknational/Oak-Web-Application/commit/5daf40e2ffbe7bce2e6ad34329062913a2297187))
+
 ## [1.43.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.0...v1.43.1) (2022-10-21)
 
 
