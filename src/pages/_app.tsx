@@ -2,6 +2,7 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { SSRProvider } from "@react-aria/ssr";
+import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 
@@ -44,14 +45,16 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
               <PostHogProvider client={posthog}>
                 <AnalyticsProvider {...analyticsOptions}>
                   <DefaultSeo />
-                  <SearchProvider>
-                    <MenuProvider>
-                      <ToastProvider>
-                        <Component {...pageProps} />
-                        <AppHooks />
-                      </ToastProvider>
-                    </MenuProvider>
-                  </SearchProvider>
+                  <OverlayProvider>
+                    <SearchProvider>
+                      <MenuProvider>
+                        <ToastProvider>
+                          <Component {...pageProps} />
+                          <AppHooks />
+                        </ToastProvider>
+                      </MenuProvider>
+                    </SearchProvider>
+                  </OverlayProvider>
                 </AnalyticsProvider>
               </PostHogProvider>
             </SSRProvider>
