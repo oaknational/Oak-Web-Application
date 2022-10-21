@@ -1,3 +1,10 @@
+## [1.43.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.0...v1.43.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* blocks not centred on landing page ([120b0a0](https://github.com/oaknational/Oak-Web-Application/commit/120b0a04b4bf3bc6b237675e41a02d13dcd0a68d))
+
 # [1.43.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.42.0...v1.43.0) (2022-10-21)
 
 
