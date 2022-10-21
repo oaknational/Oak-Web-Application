@@ -5,7 +5,7 @@ import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { ButtonSize } from "../Button/common";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import { IconName } from "../Icon";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
@@ -59,12 +59,20 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
 } as const;
 
 type SocialUrls = Partial<Record<SocialNetwork, string | null | undefined>>;
-type SocialButtonsProps = SocialUrls & {
-  size?: ButtonSize;
-  spaceBetween?: ResponsiveValues<PixelSpacing>;
-};
+
+type SocialButtonsProps = FlexProps &
+  SocialUrls & {
+    /**
+     * for: who's social media accounts are being linekd
+     * @example Oak National Academy
+     * @example Joan Baez
+     */
+    for: string;
+    size?: ButtonSize;
+    spaceBetween?: ResponsiveValues<PixelSpacing>;
+  };
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
-  const { size, spaceBetween } = props;
+  const { size, spaceBetween, for: accountHolder, ...flexProps } = props;
   const id = useId();
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
 
@@ -73,7 +81,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
   }
 
   return (
-    <Flex $alignItems={"center"} $justifyContent={"center"}>
+    <Flex $alignItems={"center"} $justifyContent={"center"} {...flexProps}>
       {socialsToShow.map((network) => {
         const { label, icon } = SOCIAL_BUTTON_CONFIGS[network];
         const profile = props[network];
@@ -87,7 +95,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
         return (
           <IconButtonAsLink
             key={`SocialButtons-${id}-${network}`}
-            aria-label={label}
+            aria-label={`${label} for ${accountHolder}`}
             icon={icon}
             href={href}
             variant={"minimal"}
@@ -101,7 +109,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
 };
 
 SocialButtons.defaultProps = {
-  size: "small",
+  size: "large",
   spaceBetween: 16,
 };
 

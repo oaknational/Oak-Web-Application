@@ -5,8 +5,10 @@ import LandingPageTemplate, {
   getStaticProps,
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
-import CMSClient, { LandingPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+import { LandingPage } from "../../../node-lib/cms/sanity-client/schemas/landingPage";
+import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
 
@@ -15,8 +17,44 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testLandingPage: LandingPage = {
   id: "5",
   slug: "some-landing-page",
+  hero: {
+    title: "some-landing-page",
+    heading: "some-landing",
+  },
+  content: [
+    {
+      type: "LandingPageTextBlock",
+      bodyPortableText: portableTextFromString("Contact summary"),
+    },
+    {
+      type: "LandingPageTextAndMediaBlock",
+      textAndMedia: {
+        title: "title",
+        bodyPortableText: [],
+        alignMedia: "left",
+        mediaType: "image",
+        image: mockImageAsset(),
+      },
+    },
+    {
+      type: "LandingPageQuoteBlock",
+      quote: {
+        text: "text",
+        attribution: "person mcpersonface",
+      },
+    },
+    {
+      type: "LandingPageFormBlock",
+      bodyPortableText: [],
+      title: "title",
+      form: {
+        title: "title of the form",
+      },
+    },
+  ],
+  seo: null,
 };
-
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 describe("pages/lp/[landingPageSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -29,7 +67,6 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
   describe("LandingPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
-
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
       });

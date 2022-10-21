@@ -28,6 +28,8 @@ export const textAndMediaSchemaBase = z.object({
   alignMedia: z.enum(["left", "right"]),
 });
 
+export type TextAndMediaSchemaBase = z.infer<typeof textAndMediaSchemaBase>;
+
 export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
   textAndMediaSchemaBase.extend({
     mediaType: z.literal("image"),

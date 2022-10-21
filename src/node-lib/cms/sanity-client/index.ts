@@ -329,7 +329,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    return parseResults(landingPageSchema, landingPage, previewMode);
+    const landingPageResolvedRef = await resolveReferences(landingPage);
+
+    return parseResults(landingPageSchema, landingPageResolvedRef, previewMode);
   },
 });
 

@@ -1,14 +1,23 @@
 import * as z from "zod";
 
 import { documentSchema, imageSchema } from "./base";
+import { portableTextSchema } from "./portableText";
 
 export const teamMemberSchema = z
   .object({
     name: z.string(),
-    bio: z.string().optional(),
+    bioPortableText: portableTextSchema,
     image: imageSchema.nullish(),
     id: z.string(),
     role: z.string().nullish(),
+    hotspot: z
+      .object({
+        height: z.number(),
+        width: z.number(),
+        x: z.number(),
+        y: z.number(),
+      })
+      .nullish(),
     socials: z
       .object({
         twitterUsername: z.string().nullish(),
