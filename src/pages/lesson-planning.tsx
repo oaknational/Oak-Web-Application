@@ -345,7 +345,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
       </section>
       <section>
         {/* `Plan for section` */}
-        <MaxWidth $mb={120}>
+        <MaxWidth $mb={120} $alignItems={"center"}>
           <Card
             $maxWidth={["100%", 812, "100%"]}
             $pv={24}
