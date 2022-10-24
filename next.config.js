@@ -4,7 +4,11 @@ const {
   BugsnagBuildReporterPlugin,
   BugsnagSourceMapUploaderPlugin,
 } = require("webpack-bugsnag-plugins");
-const { PHASE_TEST, PHASE_PRODUCTION_BUILD } = require("next/constants");
+const {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_BUILD,
+  PHASE_TEST,
+} = require("next/constants");
 
 const {
   getAppVersion,
@@ -14,6 +18,7 @@ const {
 } = require("./scripts/build/build_config_helpers");
 const fetchConfig = require("./scripts/build/fetch_config");
 const fetchSecrets = require("./scripts/build/fetch_secrets");
+const { getSecurityHeaders } = require("./scripts/build/policies");
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = async (phase) => {
@@ -24,6 +29,7 @@ module.exports = async (phase) => {
   let appVersion;
   let isProductionBuild = false;
   const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
+  const isNextjsDevelopmentServer = phase === PHASE_DEVELOPMENT_SERVER;
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
@@ -122,6 +128,15 @@ module.exports = async (phase) => {
     reactStrictMode: true,
     compiler: {
       styledComponents: true,
+    },
+    async headers() {
+      return [
+        {
+          // Apply these headers to all routes in your application.
+          source: "/:path*",
+          headers: getSecurityHeaders(isNextjsDevelopmentServer),
+        },
+      ];
     },
 
     // Allow static builds with deleted beta pages to build.
