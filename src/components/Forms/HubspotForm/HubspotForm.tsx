@@ -15,8 +15,8 @@ import {
 import errorReporter from "../../../common-lib/error-reporter";
 import {
   FormDefinition,
-  FormField,
-} from "../../../node-lib/hubspot-forms/hubspotFormToZod";
+  FormField
+} from "../../../node-lib/hubspot-forms/FormDefinition";
 
 const reportError = errorReporter("HubspotForm.tsx");
 

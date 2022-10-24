@@ -1,6 +1,7 @@
-import hubspotFormToZod, { FormDefinition } from "./hubspotFormToZod";
+import formToZod from "./formToZod";
+import { FormDefinition } from "./FormDefinition";
 
-describe("hubspotFormToZod", () => {
+describe("formToZod", () => {
   it("creates a zod schema from the form fields", () => {
     const form = {
       fields: [
@@ -11,7 +12,7 @@ describe("hubspotFormToZod", () => {
       ],
     } as FormDefinition;
 
-    const schema = hubspotFormToZod(form);
+    const schema = formToZod(form);
 
     expect(schema.parse({ name: "ross" })).toEqual({ name: "ross" });
 
@@ -35,7 +36,7 @@ describe("hubspotFormToZod", () => {
       ],
     } as FormDefinition;
 
-    const schema = hubspotFormToZod(form);
+    const schema = formToZod(form);
 
     expect(schema.parse({ name: "ross" })).toEqual({ name: "ross" });
     expect(schema.parse({ name: "ross", school: "oak" })).toEqual({
@@ -58,7 +59,7 @@ describe("hubspotFormToZod", () => {
       ],
     } as FormDefinition;
 
-    const schema = hubspotFormToZod(form);
+    const schema = formToZod(form);
 
     expect(schema.parse({ user_type: "teacher" })).toEqual({
       user_type: "teacher",
@@ -79,7 +80,7 @@ describe("hubspotFormToZod", () => {
       ],
     } as FormDefinition;
 
-    const schema = hubspotFormToZod(form);
+    const schema = formToZod(form);
 
     expect(schema.parse({ email: "hi@example.com" })).toEqual({
       email: "hi@example.com",

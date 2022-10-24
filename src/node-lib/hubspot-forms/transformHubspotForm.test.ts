@@ -1,4 +1,4 @@
-import { HubspotFormDefinition } from "./HubspotFormDefinition";
+import { HubspotFormDefinition } from "./formFieldSchemas";
 import {
   transformHubspotFilter,
   transformHubspotForm,
@@ -66,63 +66,178 @@ describe("transformHubspotForm", () => {
     });
   });
 
-  it("handles the `enumeration` type", () => {
-    const mockForm = {
-      ...formBase,
-      formFieldGroups: [
-        {
-          fields: [
-            {
-              name: "user_type",
-              label: "User Type",
-              type: "enumeration",
-              fieldType: "select",
-              options: [
-                {
-                  label: "Teacher",
-                  value: "Teacher",
-                  displayOrder: -1,
-                  doubleData: 0,
-                  hidden: false,
-                  description: "",
-                  readOnly: false,
-                },
-                {
-                  label: "Parent",
-                  value: "Parent",
-                  displayOrder: -1,
-                  doubleData: 0,
-                  hidden: false,
-                  description: "",
-                  readOnly: false,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
+  describe("enumeration fields", () => {
+    it("handles the enumeration+select type", () => {
+      const mockForm = {
+        ...formBase,
+        formFieldGroups: [
+          {
+            fields: [
+              {
+                name: "user_type",
+                label: "User Type",
+                type: "enumeration",
+                fieldType: "select",
+                options: [
+                  {
+                    label: "Teacher",
+                    value: "Teacher",
+                    displayOrder: -1,
+                    doubleData: 0,
+                    hidden: false,
+                    description: "",
+                    readOnly: false,
+                  },
+                  {
+                    label: "Parent",
+                    value: "Parent",
+                    displayOrder: -1,
+                    doubleData: 0,
+                    hidden: false,
+                    description: "",
+                    readOnly: false,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
 
-    expect(transformHubspotForm(mockForm)).toMatchObject({
-      fields: [
-        {
-          name: "user_type",
-          label: "User Type",
-          type: "select",
-          options: [
-            {
-              label: "Teacher",
-              value: "Teacher",
-            },
-            {
-              label: "Parent",
-              value: "Parent",
-            },
-          ],
-          hidden: false,
-          required: true,
-        },
-      ],
+      expect(transformHubspotForm(mockForm)).toMatchObject({
+        fields: [
+          {
+            name: "user_type",
+            label: "User Type",
+            type: "select",
+            options: [
+              { label: "Teacher", value: "Teacher" },
+              { label: "Parent", value: "Parent" },
+            ],
+            hidden: false,
+            required: true,
+          },
+        ],
+      });
+    });
+
+    it("enum+checkbox", () => {
+      const mockForm = {
+        ...formBase,
+        formFieldGroups: [
+          {
+            fields: [
+              {
+                name: "subject_produced_content",
+                label: "Subject Produced Content",
+                type: "enumeration",
+                fieldType: "checkbox",
+                options: [
+                  { label: "English", value: "english" },
+                  { label: "Maths", value: "maths" },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      expect(transformHubspotForm(mockForm)).toMatchObject({
+        fields: [
+          {
+            name: "subject_produced_content",
+            label: "Subject Produced Content",
+            type: "checkbox",
+            options: [
+              { label: "English", value: "english" },
+              { label: "Maths", value: "maths" },
+            ],
+            hidden: false,
+            required: true,
+          },
+        ],
+      });
+    });
+
+    it("enum+radio", () => {
+      const mockForm = {
+        ...formBase,
+        formFieldGroups: [
+          {
+            fields: [
+              {
+                name: "stage",
+                label: "Stage",
+                type: "enumeration",
+                fieldType: "radio",
+                options: [
+                  { label: "Awareness", value: "Awareness" },
+                  { label: "Engaged", value: "Engaged" },
+                  { label: "Adopted", value: "Adopted" },
+                  { label: "Advocate", value: "Advocate" },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      expect(transformHubspotForm(mockForm)).toMatchObject({
+        fields: [
+          {
+            name: "stage",
+            label: "Stage",
+            type: "radio",
+            options: [
+              { label: "Awareness", value: "Awareness" },
+              { label: "Engaged", value: "Engaged" },
+              { label: "Adopted", value: "Adopted" },
+              { label: "Advocate", value: "Advocate" },
+            ],
+            hidden: false,
+            required: true,
+          },
+        ],
+      });
+    });
+
+    // This is skipped until a shape for boolean fields is defined
+    it.skip("handles boolean fields", () => {
+      const mockForm = {
+        ...formBase,
+        formFieldGroups: [
+          {
+            fields: [
+              {
+                name: "boolean_field",
+                label: "Boolean field",
+                type: "enumeration",
+                fieldType: "booleancheckbox",
+                options: [
+                  { label: "Yes", value: "true" },
+                  { label: "No", value: "false" },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      expect(transformHubspotForm(mockForm)).toMatchObject({
+        fields: [
+          {
+            name: "boolean_field",
+            label: "Boolean field",
+            type: "boolean",
+            options: [
+              { label: "Yes", value: true },
+              { label: "No", value: false },
+            ],
+            hidden: false,
+            required: true,
+          },
+        ],
+      });
     });
   });
 

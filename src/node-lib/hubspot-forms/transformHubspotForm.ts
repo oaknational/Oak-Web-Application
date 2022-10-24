@@ -1,18 +1,25 @@
 import { assertUnreachable } from "../../utils/assertUnreachable";
 
 import {
-  HubspotFormDefinition,
   HubspotFormField,
-  HubspotFormFilter,
-} from "./HubspotFormDefinition";
+  hubspotFormDefinitionSchema,
+  HubspotDependencyFilter,
+} from "./formFieldSchemas";
 import {
   FieldRenderCondition,
   FormDefinition,
   FormField,
-} from "./hubspotFormToZod";
+} from "./FormDefinition";
+
+/**
+ * Transformations to parse and convert from a hubspot
+ * form schema to our internal representation
+ *
+ * See hubspot-forms.md for more context
+ */
 
 export const transformHubspotFilter = (
-  filter: HubspotFormFilter,
+  filter: HubspotDependencyFilter,
   dependentFieldName: string
 ): FieldRenderCondition => {
   if (Array.isArray(filter.strValues) && filter.strValues.length > 0) {
@@ -23,15 +30,12 @@ export const transformHubspotFilter = (
     };
   }
 
-  assertUnreachable(
-    filter,
-    new Error("Encountered unknown form field filters")
-  );
+  throw new Error("Encountered unknown form field filters");
 };
 
 const addConditions = (
   field: FormField,
-  filters: HubspotFormFilter[],
+  filters: HubspotDependencyFilter[],
   dependentFieldName: string
 ): FormField => {
   const conditions = filters.map((filter) =>
@@ -67,7 +71,7 @@ const transformField = (field: HubspotFormField): FormField => {
     case "enumeration":
       return {
         ...baseFields,
-        type: "select",
+        type: field.fieldType,
         options: field.options.map((opt) => ({
           label: opt.label,
           value: opt.value,
@@ -76,13 +80,23 @@ const transformField = (field: HubspotFormField): FormField => {
     default:
       assertUnreachable(
         field,
-        new Error("Encountered unknown form field type")
+        new Error(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          `Encountered unknown form field type: ${(field as any)?.type}`
+        )
       );
   }
 };
 
-const transformFieldAndDependents = (field: HubspotFormField): FormField[] => {
-  if (field.dependentFieldFilters?.length > 0) {
+const transformFieldAndDependents = (
+  field: HubspotFormField
+): FormField | FormField[] => {
+  if (field.dependentFieldFilters && field.dependentFieldFilters?.length > 0) {
+    /**
+     * If our field has dependent fields, transform each of those as well,
+     * returning them all at the top level in our array, as the filtering logic
+     * in addConditions will encode the dependency field name
+     */
     const { dependentFieldFilters, ...restOfField } = field;
 
     const mainField = transformField({
@@ -101,12 +115,12 @@ const transformFieldAndDependents = (field: HubspotFormField): FormField[] => {
     return [mainField, ...dependentFields];
   }
 
-  return [transformField(field)];
+  return transformField(field);
 };
 
-export const transformHubspotForm = (
-  form: HubspotFormDefinition
-): FormDefinition => {
+export const transformHubspotForm = (formRaw: unknown): FormDefinition => {
+  const form = hubspotFormDefinitionSchema.parse(formRaw);
+
   const flattenedFields = form.formFieldGroups.flatMap((fieldGroup) =>
     fieldGroup.fields.flatMap(transformFieldAndDependents)
   );
@@ -114,8 +128,8 @@ export const transformHubspotForm = (
   return {
     formId: form.guid,
     portalId: form.portalId,
-    submitButtonLabel: form.submitText || null,
-    successMessage: form.inlineMessage || null,
+    submitButtonLabel: form.submitText,
+    successMessage: form.inlineMessage,
     fields: flattenedFields,
   };
 };

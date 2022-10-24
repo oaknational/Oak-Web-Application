@@ -2,52 +2,7 @@ import { z } from "zod";
 
 import { assertUnreachable } from "../../utils/assertUnreachable";
 
-type FieldValue = string | number | boolean;
-
-export type FieldRenderCondition = {
-  field: string;
-} & (
-  | {
-      operator: "in";
-      value: FieldValue[];
-    }
-  | {
-      operator: "eq";
-      value: FieldValue;
-    }
-);
-
-export type FormFieldBase = {
-  name: string;
-  label: string | null;
-  required: boolean;
-  default: string | null;
-  placeholder: string | null;
-  description: string | null;
-  hidden: boolean | null;
-  renderWhen?: FieldRenderCondition[];
-};
-
-export type FormField = FormFieldBase &
-  (
-    | {
-        type: "string" | "email";
-      }
-    | {
-        type: "select";
-        options: Array<{ label: string; value: string }>;
-      }
-  );
-
-export type FormFieldType = FormField["type"];
-
-export type FormDefinition = {
-  formId: string;
-  portalId: number;
-  submitButtonLabel: string | null;
-  successMessage: string | null;
-  fields: FormField[];
-};
+import { FormField, FormDefinition } from "./FormDefinition";
 
 const fieldToZod = (formField: FormField) => {
   let schema;
@@ -60,6 +15,9 @@ const fieldToZod = (formField: FormField) => {
       schema = z.string().email();
       break;
     case "select":
+    case "radio":
+    case "checkbox":
+    case "booleancheckbox":
       // Casting required because zod can't infer values coming through at runtime
       schema = z.enum(
         formField.options.map((s) => s.value) as [string, ...string[]]
@@ -79,7 +37,7 @@ const fieldToZod = (formField: FormField) => {
   }
 };
 
-const hubspotFormToZod = (form: FormDefinition) => {
+const formToZod = (form: FormDefinition) => {
   const fieldSchema = form.fields.reduce((acc, field) => {
     return {
       [field.name]: fieldToZod(field),
@@ -90,4 +48,4 @@ const hubspotFormToZod = (form: FormDefinition) => {
   return z.object(fieldSchema);
 };
 
-export default hubspotFormToZod;
+export default formToZod;
