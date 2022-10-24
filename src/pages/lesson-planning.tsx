@@ -346,49 +346,50 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
       <section>
         {/* `Plan for section` */}
         <MaxWidth $mb={120}>
-          <Flex $mt={[56, 80]} $mb={32} $background="teachersPastelYellow">
-            <Card
-              $maxWidth={["100%", 812, "100%"]}
-              $pv={24}
-              $ph={[16, 24]}
-              $flexDirection={["column", "column", "row"]}
-            >
-              <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
-              <Box $minWidth={["50%"]}>
-                <Box $display={["block", "block", "none"]}>
-                  <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
-                    {pageData.learnMoreBlock1.title}
-                  </CardTitle>
-                </Box>
-                <Flex
-                  $justifyContent={"center"}
-                  $pb={[24, 24, 0]}
-                  $pr={[0, 0, 72]}
-                  $minWidth={["50%"]}
-                >
-                  {pageData.learnMoreBlock1.mediaType == "video" && (
-                    <CMSVideo video={pageData.learnMoreBlock1.video} />
-                  )}
-                </Flex>
+          <Card
+            $maxWidth={["100%", 812, "100%"]}
+            $pv={24}
+            $ph={[16, 24]}
+            $flexDirection={["column", "column", "row"]}
+            $mt={[56, 80]}
+            $mb={32}
+            $background="teachersPastelYellow"
+          >
+            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+            <Box $minWidth={["50%"]}>
+              <Box $display={["block", "block", "none"]}>
+                <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
+                  {pageData.learnMoreBlock1.title}
+                </CardTitle>
               </Box>
               <Flex
                 $justifyContent={"center"}
-                $flexDirection={"column"}
+                $pb={[24, 24, 0]}
+                $pr={[0, 0, 72]}
                 $minWidth={["50%"]}
               >
-                <Box $display={["none", "none", "block"]}>
-                  <CardTitle $font={"heading-4"} tag="h4">
-                    {pageData.learnMoreBlock1.title}
-                  </CardTitle>
-                </Box>
-                <Typography $font={["body-2", "body-1"]}>
-                  <PortableText
-                    value={pageData.learnMoreBlock1.bodyPortableText}
-                  />
-                </Typography>
+                {pageData.learnMoreBlock1.mediaType == "video" && (
+                  <CMSVideo video={pageData.learnMoreBlock1.video} />
+                )}
               </Flex>
-            </Card>
-          </Flex>
+            </Box>
+            <Flex
+              $justifyContent={"center"}
+              $flexDirection={"column"}
+              $minWidth={["50%"]}
+            >
+              <Box $display={["none", "none", "block"]}>
+                <CardTitle $font={"heading-4"} tag="h4">
+                  {pageData.learnMoreBlock1.title}
+                </CardTitle>
+              </Box>
+              <Typography $font={["body-2", "body-1"]}>
+                <PortableText
+                  value={pageData.learnMoreBlock1.bodyPortableText}
+                />
+              </Typography>
+            </Flex>
+          </Card>
           <Card
             $pv={[24, 24]}
             $ph={[0, 24, 24]}
