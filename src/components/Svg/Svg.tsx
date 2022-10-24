@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { box, BoxProps } from "../Box";
 import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
+import { OakColorName } from "../../styles/theme/types";
 
 const StyledSvg = styled.svg<BoxProps>`
   ${box};
@@ -13,6 +14,7 @@ export type SvgProps = BoxProps & {
   className?: string;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
+  color?: OakColorName;
 };
 const Svg: FC<SvgProps> = (props) => {
   return (

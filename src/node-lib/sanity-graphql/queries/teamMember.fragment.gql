@@ -7,8 +7,14 @@ fragment TeamMember on TeamMember {
   }
   image {
     ...Image
+    hotspot {
+      height
+      width
+      x
+      y
+    }
   }
-  contentPortableText: bioRaw
+  bioPortableText: bioRaw
   socials {
     ...TeamMemberSocials
   }

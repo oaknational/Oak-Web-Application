@@ -6,6 +6,10 @@ import CopyLinkButton from "../Button/CopyLinkButton";
 
 import Toast from "./Toast";
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlags: () => ({ enabled: {} }),
+}));
+
 describe("toast notification", () => {
   const ROLE = "alert";
   test("shows feedback", async () => {
