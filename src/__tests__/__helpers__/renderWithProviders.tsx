@@ -9,6 +9,7 @@ import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
+import { OverlayProvider } from "react-aria";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import { SearchProvider } from "../../context/Search/SearchContext";
@@ -46,11 +47,13 @@ export const AllTheProviders: FC<ProviderProps> = ({
               <MockedApolloProvider>
                 <MemoryRouterProvider>
                   <MockedBookmarksProvider {...bookmarksProviderProps}>
-                    <SearchProvider>
-                      <ToastProvider>
-                        <MenuProvider>{children}</MenuProvider>
-                      </ToastProvider>
-                    </SearchProvider>
+                    <OverlayProvider>
+                      <SearchProvider>
+                        <ToastProvider>
+                          <MenuProvider>{children}</MenuProvider>
+                        </ToastProvider>
+                      </SearchProvider>
+                    </OverlayProvider>
                   </MockedBookmarksProvider>
                 </MemoryRouterProvider>
               </MockedApolloProvider>

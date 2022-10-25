@@ -19,6 +19,7 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
   const largestSize = (Array.isArray(size) ? max(size) : size) || 0;
   // for 'retina' screens
   const fetchImageSize = largestSize * 2;
+
   return (
     <Circle
       $overflow={"hidden"}
@@ -33,11 +34,7 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
           $objectFit={"cover"}
           fill
           imageBuilder={(builder) =>
-            builder
-              .width(fetchImageSize)
-              .height(fetchImageSize)
-              .fit("crop")
-              .crop("center")
+            builder.width(fetchImageSize).height(fetchImageSize)
           }
         />
       ) : null}

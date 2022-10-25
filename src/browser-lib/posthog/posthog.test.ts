@@ -1,4 +1,6 @@
-import { posthogWithoutQueue as posthog } from "./posthog";
+import posthogJs from "posthog-js";
+
+import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";
 
 const init = jest.fn((key, config) => config.loaded());
 const identify = jest.fn();
@@ -6,6 +8,8 @@ const capture = jest.fn();
 const optInCapturing = jest.fn();
 const optOutCapturing = jest.fn();
 const getHasConsentedTo = jest.fn(() => "pending");
+
+const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
 
 jest.mock("../cookie-consent/getHasConsentedTo", () => ({
   __esModule: true,

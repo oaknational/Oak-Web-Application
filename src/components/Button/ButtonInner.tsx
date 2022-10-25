@@ -7,6 +7,7 @@ import Icon, { IconName } from "../Icon";
 import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "../Svg";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
+import ScreenReaderOnly from "../ScreenReaderOnly";
 
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
@@ -35,9 +36,11 @@ export const ButtonMinimalFocusUnderline = styled(Svg)<{
 
 export type ButtonInnerProps = {
   label: string;
+  labelSuffixA11y?: string;
   icon?: IconName;
   iconBackground?: OakColorName;
   iconPosition: IconPosition;
+  shouldHideLabel?: boolean[];
   size: ButtonSize;
   background: ButtonBackground;
   variant: ButtonVariant;
@@ -50,6 +53,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     size: buttonSize,
     icon,
     label,
+    labelSuffixA11y,
+    shouldHideLabel,
     background,
     variant,
   } = props;
@@ -79,8 +84,18 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           )}
         </ButtonIconWrapper>
       )}
+
       <Box $position={"relative"}>
-        <ButtonLabel>{label}</ButtonLabel>
+        <Box
+          $display={shouldHideLabel?.map((hide) => (hide ? "none" : "block"))}
+        >
+          <ButtonLabel>
+            {label}
+            {labelSuffixA11y && (
+              <ScreenReaderOnly> {labelSuffixA11y}</ScreenReaderOnly>
+            )}
+          </ButtonLabel>
+        </Box>
         <ButtonMinimalFocusUnderline
           $color={underlineColor}
           name="Underline1"
