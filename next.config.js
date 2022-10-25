@@ -24,10 +24,11 @@ module.exports = async (phase) => {
   let appVersion;
   let isProductionBuild = false;
   const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
+  const isTestBuild = phase === PHASE_TEST || process.env.NODE_ENV === "test";
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
-  if (phase === PHASE_TEST || process.env.NODE_ENV === "test") {
+  if (isTestBuild) {
     oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
@@ -50,6 +51,7 @@ module.exports = async (phase) => {
         // Netlify
         process.env.CONTEXT
     );
+
     isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
@@ -79,11 +81,13 @@ module.exports = async (phase) => {
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     webpack: (config, { dev }) => {
+      // Production and preview builds
+      if (!dev && !isTestBuild) {
+        // Add source maps.
+        config.devtool = "source-map";
+      }
       // Production builds only.
       if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
-        // Add source maps to production builds.
-        config.devtool = "source-map";
-
         // Tell Bugsnag about the build.
         const bugsnagBuildInfo = {
           apiKey: oakConfig.bugsnag.apiKey,
