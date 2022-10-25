@@ -1,3 +1,10 @@
+# [1.44.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.4...v1.44.0) (2022-10-25)
+
+
+### Features
+
+* **zero-rating:** use proxied google fonts service ([72b5950](https://github.com/oaknational/Oak-Web-Application/commit/72b5950dc15560e5469e591c365f22ad927d1d00))
+
 ## [1.43.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.3...v1.43.4) (2022-10-24)
 
 
