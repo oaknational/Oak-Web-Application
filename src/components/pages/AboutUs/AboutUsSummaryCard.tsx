@@ -1,5 +1,5 @@
 import { reducedAboutNavLinks } from "../../../browser-lib/fixtures/aboutNav";
-import { AboutBoardPage, AboutWhoWeArePage } from "../../../node-lib/cms";
+import { AboutBoardPage, AboutWhoWeArePage } from "../../../common-lib/cms-types";
 import ButtonLinkNav from "../../ButtonLinkNav/ButtonLinkNav";
 import SummaryCard from "../../Card/SummaryCard";
 

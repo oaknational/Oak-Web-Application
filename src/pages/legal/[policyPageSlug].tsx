@@ -6,7 +6,8 @@ import {
 } from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 
-import CMSClient, { PolicyPage } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { PolicyPage } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";

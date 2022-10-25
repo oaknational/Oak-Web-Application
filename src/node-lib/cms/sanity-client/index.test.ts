@@ -4,8 +4,8 @@ import sanityGraphqlApi from "../../sanity-graphql";
 import allWebinarsFixture from "../../sanity-graphql/fixtures/allWebinars.json";
 import webinarBySlugFixture from "../../sanity-graphql/fixtures/webinarBySlug.json";
 import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageBySlug.json";
+import { videoSchema } from "../../../common-lib/cms-types/base";
 
-import { videoSchema } from "./schemas/base";
 import { parseResults } from "./parseResults";
 
 import getSanityClient from "./";

@@ -1,7 +1,7 @@
 import { PortableText } from "@portabletext/react";
 import { FC, useRef } from "react";
 
-import { Image, PortableTextJSON } from "../../node-lib/cms";
+import { Image, PortableTextJSON } from "../../common-lib/cms-types";
 import { TeamMemberSocialsFragment } from "../../node-lib/sanity-graphql/generated/sdk";
 import AspectRatio from "../AspectRatio";
 import Box from "../Box";

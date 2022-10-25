@@ -3,7 +3,8 @@ import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
 import config from "../../config/browser";
-import CMSClient, { AboutWorkWithUsPage } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { AboutWorkWithUsPage } from "../../common-lib/cms-types";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";

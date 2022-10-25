@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { OmitKeepDiscriminated } from "../../../../utils/generics";
+import { OmitKeepDiscriminated } from "../../utils/generics";
 
 export const documentSchema = z.object({
   id: z.string(),

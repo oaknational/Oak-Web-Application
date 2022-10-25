@@ -5,7 +5,8 @@ import Home, {
   HomePageProps,
   SerializedPost,
 } from "../../pages";
-import CMSClient, { BlogPostPreview, HomePage } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { BlogPostPreview, HomePage } from "../../common-lib/cms-types";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";

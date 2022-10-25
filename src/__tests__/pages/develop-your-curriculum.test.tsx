@@ -1,6 +1,6 @@
 import { screen, within } from "@testing-library/react";
 
-import { BlogPostPreview, CurriculumPage } from "../../node-lib/cms";
+import { BlogPostPreview, CurriculumPage } from "../../common-lib/cms-types";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 import Curriculum from "../../pages/develop-your-curriculum";

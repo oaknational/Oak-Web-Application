@@ -1,7 +1,8 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import CMSClient, { WebinarPreview } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { WebinarPreview } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
 import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
 import Layout from "../../components/Layout";

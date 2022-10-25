@@ -3,7 +3,8 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
-import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import CMSClient from "../node-lib/cms";
+import { HomePage, WebinarPreview } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
