@@ -1,6 +1,5 @@
 // https://nextjs.org/docs/advanced-features/security-headers
 
-// https://js-na1.hs-scripts.com
 const getContentSecurityPolicy = (isDevServer) =>
   `
 frame-ancestors
@@ -98,6 +97,7 @@ upgrade-insecure-requests;
     .replace(/\s+/g, " ")
     .trim();
 
+// https://www.permissionspolicy.com/
 const getPermissionPolicy = () =>
   `
 accelerometer=(),
