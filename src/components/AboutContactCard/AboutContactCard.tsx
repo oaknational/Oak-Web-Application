@@ -24,7 +24,9 @@ const aboutContactCardPortableTextComponents: PortableTextComponents = {
     },
     normal: (props) => {
       return (
-        <Typography $font={["body-2", "body-1"]}>{props.children}</Typography>
+        <Typography $mb={32} $font={["body-2", "body-1"]}>
+          {props.children}
+        </Typography>
       );
     },
   },
@@ -36,7 +38,6 @@ type AboutContactCardProps = {
 
 const AboutContactCard: FC<AboutContactCardProps> = (props) => {
   const { onSubmit } = useNewsletterForm();
-  console.log(props);
   return (
     <Flex $position={"relative"} $width={"100%"}>
       <BrushBorders hideOnMobileH hideOnMobileV color={"pupilsLightGreen"} />
@@ -54,7 +55,7 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
                 value={props.infoPortableText}
               />
             </BasePortableTextProvider>
-            <Flex $mt={32} $mb={[32, 0]}>
+            <Flex $mb={[32, 0]}>
               <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
             </Flex>
           </Card>
