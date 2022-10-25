@@ -190,9 +190,12 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
     return defaultValue;
   }
 
-  throw new Error(
-    `configGet('${key}') failed because there is no env value ${envName}`
-  );
+  if (!isBrowser) {
+    throw new Error(
+      `configGet('${key}') failed because there is no env value ${envName}`
+    );
+  }
+  return ''
 };
 
 const config = {
