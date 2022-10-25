@@ -42,6 +42,37 @@ const textAndMedia = [
   },
 ];
 
+const quote = [
+  {
+    _key: "b9955be0a1c7",
+    _type: "quote",
+    attribution: "Professor Dylan Wiliam",
+    role: "Emeritus Professor of Educational Assessment, UCL",
+    text: "The best curricula generate at least 25% more learning than the worst, irrespective of teacher quality.",
+  },
+];
+
+const callout = {
+  _key: "1de5bdd05892",
+  _type: "callout",
+  body: [
+    {
+      _type: "block",
+      _key: "889bbab67157",
+      style: "normal",
+      markDefs: [],
+      children: [
+        {
+          _type: "span",
+          _key: "9dd2c19278b1",
+          text: "I'm a callout out!",
+          marks: [],
+        },
+      ],
+    },
+  ],
+};
+
 describe("components/BlogPortableText", () => {
   test("text and media renders an image", () => {
     const { getByAltText } = renderWithProviders(
@@ -51,5 +82,43 @@ describe("components/BlogPortableText", () => {
     const imageAltText = getByAltText("image alt text");
 
     expect(imageAltText).toBeInTheDocument();
+  });
+  test("image with alt text has alt text", () => {
+    const { getByAltText } = renderWithProviders(
+      <BlogPortableText portableText={[textAndMedia[0]?.image]} />
+    );
+
+    const imageAltText = getByAltText("image alt text");
+
+    expect(imageAltText).toBeInTheDocument();
+  });
+  test("quote renders a quote", () => {
+    const { getByText } = renderWithProviders(
+      <BlogPortableText portableText={quote} />
+    );
+
+    const quoteText = getByText(
+      "“The best curricula generate at least 25% more learning than the worst, irrespective of teacher quality.”"
+    );
+
+    expect(quoteText).toBeInTheDocument();
+  });
+  test("cta renders a button with a label", () => {
+    const { getByText } = renderWithProviders(
+      <BlogPortableText portableText={[textAndMedia[0]?.cta]} />
+    );
+
+    const ctaLabel = getByText("CTA");
+
+    expect(ctaLabel).toBeInTheDocument();
+  });
+  test("callout has styled background", () => {
+    const { getByText } = renderWithProviders(
+      <BlogPortableText portableText={[callout]} />
+    );
+
+    const calloutText = getByText("I'm a callout out!").closest("div");
+
+    expect(calloutText).toHaveStyle("background-color: #f6e8a0");
   });
 });
