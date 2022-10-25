@@ -113,7 +113,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             <Hr $color={"pastelTurqoise"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
-        <Card $pv={0} $mv={[80, 92]} $ph={[16, 80]} $width={["100%", "70%"]}>
+        <Card
+          $mh="auto"
+          $mv={[80, 92]}
+          $ph={[16, 80]}
+          $pv={0}
+          $width={["100%", "70%"]}
+        >
           <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
             Governance
           </Heading>

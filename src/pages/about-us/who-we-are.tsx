@@ -68,44 +68,45 @@ const TimeLineCard: FC<TimeLineProps> = ({
 const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $pt={[64, 80]}>
+      <MaxWidth $pt={[64, 80]} $alignItems={"center"}>
         <AboutUsSummaryCard {...pageData} />
-        <Flex $mt={92} $mb={[80, 92]} $background="twilight">
-          <Card
-            $pv={32}
-            $ph={[16, 24]}
-            $flexDirection={["column", "column", "row"]}
-            $maxWidth={["100%", 812, "100%"]}
+        <Card
+          $pv={32}
+          $ph={[16, 24]}
+          $flexDirection={["column", "column", "row"]}
+          $mb={[80, 92]}
+          $background="twilight"
+          $maxWidth={["100%", 812, "100%"]}
+          $mt={92}
+        >
+          <BrushBorders hideOnMobileH color={"twilight"} />
+          <Flex
+            $justifyContent={"center"}
+            $alignItems={"center"}
+            $pb={[24, 24, 0]}
+            $pr={[0, 0, 72]}
+            $minWidth={["50%"]}
           >
-            <BrushBorders hideOnMobileH color={"twilight"} />
-            <Flex
-              $justifyContent={"center"}
-              $alignItems={"center"}
-              $pb={[24, 24, 0]}
-              $pr={[0, 0, 72]}
-              $minWidth={["50%"]}
-            >
-              {pageData.intro.mediaType == "video" && (
-                <CMSVideo video={pageData.intro.video} />
+            {pageData.intro.mediaType == "video" && (
+              <CMSVideo video={pageData.intro.video} />
+            )}
+          </Flex>
+          <Box $minWidth={["50%"]}>
+            <Typography $mb={36} $font={["body-2", "body-1"]}>
+              <PortableText value={pageData.intro.bodyPortableText} />
+            </Typography>
+            <Flex $justifyContent={"flex-start"}>
+              {pageData.intro.cta && (
+                <ButtonAsLink
+                  icon={"ArrowRight"}
+                  iconPosition="trailing"
+                  label={pageData.intro.cta.label}
+                  href={getCTAHref(pageData.intro.cta)}
+                />
               )}
             </Flex>
-            <Box $minWidth={["50%"]}>
-              <Typography $mb={36} $font={["body-2", "body-1"]}>
-                <PortableText value={pageData.intro.bodyPortableText} />
-              </Typography>
-              <Flex $justifyContent={"flex-start"}>
-                {pageData.intro.cta && (
-                  <ButtonAsLink
-                    icon={"ArrowRight"}
-                    iconPosition="trailing"
-                    label={pageData.intro.cta.label}
-                    href={getCTAHref(pageData.intro.cta)}
-                  />
-                )}
-              </Flex>
-            </Box>
-          </Card>
-        </Flex>
+          </Box>
+        </Card>
         <TimeLineCard
           bodyPortableText={pageData.timeline.from.bodyPortableText}
           title={pageData.timeline.from.title}
