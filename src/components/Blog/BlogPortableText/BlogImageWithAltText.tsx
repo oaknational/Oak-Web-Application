@@ -1,6 +1,6 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
-import { Image } from "../../../node-lib/cms";
+import { Image } from "../../../common-lib/cms-types";
 import CMSImage from "../../CMSImage";
 
 const BlogImageWithAltText = (

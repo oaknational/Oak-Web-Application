@@ -2,7 +2,8 @@ import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { PlanningPage, PortableTextJSON } from "../node-lib/cms";
+import CMSClient from "../node-lib/cms";
+import { PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";

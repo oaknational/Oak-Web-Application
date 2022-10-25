@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { CTA } from "../../../node-lib/cms";
+import { CTA } from "../../../common-lib/cms-types";
 import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Flex from "../../Flex";

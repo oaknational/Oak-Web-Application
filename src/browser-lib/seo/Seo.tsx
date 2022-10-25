@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
-import config from "../../config";
+import config from "../../config/browser";
 
 export const DEFAULT_SEO_PROPS = {
   title: config.get("appName"),

@@ -1,6 +1,6 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
-import { Quote } from "../../../node-lib/cms";
+import { Quote } from "../../../common-lib/cms-types";
 import Flex from "../../Flex";
 import { P } from "../../Typography";
 

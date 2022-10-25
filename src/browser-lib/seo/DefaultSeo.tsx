@@ -1,7 +1,7 @@
 import React from "react";
 import { DefaultSeo as NextDefaultSeo } from "next-seo";
 
-import config from "../../config";
+import config from "../../config/browser";
 
 const DefaultSeo = () => {
   return (

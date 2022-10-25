@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useHover } from "react-aria";
 
-import { BlogWebinarCategory, Image } from "../../../../node-lib/cms";
+import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
 import Box from "../../../Box";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import CMSImage from "../../../CMSImage";
