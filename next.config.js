@@ -18,7 +18,7 @@ const fetchSecrets = require("./scripts/build/fetch_secrets");
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = async (phase) => {
   /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
-  let oakConfig;
+  let initialOakConfig;
 
   let releaseStage;
   let appVersion;
@@ -28,13 +28,13 @@ module.exports = async (phase) => {
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
   if (phase === PHASE_TEST || process.env.NODE_ENV === "test") {
-    oakConfig = await fetchConfig("oak-config/oak.config.test.json");
+    initialOakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
     appVersion = RELEASE_STAGE_TESTING;
   } else {
     const configLocation = process.env.OAK_CONFIG_LOCATION;
-    oakConfig = await fetchConfig(configLocation);
+    initialOakConfig = await fetchConfig(configLocation);
 
     // DEBUG
     // console.log("Next Oak Config", oakConfig);
@@ -57,7 +57,7 @@ module.exports = async (phase) => {
 
   const secretsFromNetwork = process.env.USE_ONLY_LOCAL_SECRETS
     ? {}
-    : await fetchSecrets(oakConfig);
+    : await fetchSecrets(initialOakConfig);
 
   // Flags to change behaviour for static builds.
   // Remove when we start using dynamic hosting for production.
@@ -72,7 +72,7 @@ module.exports = async (phase) => {
     isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
 
   const SANITY_ASSET_CDN_HOST =
-    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
+    process.env.SANITY_ASSET_CDN_HOST || initialOakConfig.sanity.assetCDNHost;
 
   const imageDomains = [SANITY_ASSET_CDN_HOST].filter(Boolean);
 
@@ -86,7 +86,7 @@ module.exports = async (phase) => {
 
         // Tell Bugsnag about the build.
         const bugsnagBuildInfo = {
-          apiKey: oakConfig.bugsnag.apiKey,
+          apiKey: initialOakConfig.bugsnag.apiKey,
           appVersion,
           releaseStage,
         };
@@ -98,7 +98,7 @@ module.exports = async (phase) => {
 
         // Upload production sourcemaps
         const bugsnagSourcemapInfo = {
-          apiKey: oakConfig.bugsnag.apiKey,
+          apiKey: initialOakConfig.bugsnag.apiKey,
           appVersion,
           publicPath: "https://*/_next/",
           overwrite: true,
@@ -144,18 +144,19 @@ module.exports = async (phase) => {
       // Values read from the config file.
 
       // Bugsnag
-      NEXT_PUBLIC_BUGSNAG_API_KEY: oakConfig.bugsnag.apiKey,
+      NEXT_PUBLIC_BUGSNAG_API_KEY: initialOakConfig.bugsnag.apiKey,
 
       // Firebase
-      NEXT_PUBLIC_FIREBASE_API_HOST: oakConfig.firebase.apiHost,
-      NEXT_PUBLIC_FIREBASE_API_KEY: oakConfig.firebase.apiKey,
-      NEXT_PUBLIC_FIREBASE_APP_ID: oakConfig.firebase.appId,
-      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: oakConfig.firebase.authDomain,
+      NEXT_PUBLIC_FIREBASE_API_HOST: initialOakConfig.firebase.apiHost,
+      NEXT_PUBLIC_FIREBASE_API_KEY: initialOakConfig.firebase.apiKey,
+      NEXT_PUBLIC_FIREBASE_APP_ID: initialOakConfig.firebase.appId,
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: initialOakConfig.firebase.authDomain,
       NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID:
-        oakConfig.firebase.messagingSenderId,
-      NEXT_PUBLIC_FIREBASE_PROJECT_ID: oakConfig.firebase.projectId,
-      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: oakConfig.firebase.storageBucket,
-      NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: oakConfig.firebase.tokenHost,
+        initialOakConfig.firebase.messagingSenderId,
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: initialOakConfig.firebase.projectId,
+      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET:
+        initialOakConfig.firebase.storageBucket,
+      NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: initialOakConfig.firebase.tokenHost,
       FIREBASE_SERVICE_ACCOUNT:
         process.env.FIREBASE_SERVICE_ACCOUNT ||
         secretsFromNetwork.FIREBASE_SERVICE_ACCOUNT,
@@ -165,26 +166,28 @@ module.exports = async (phase) => {
 
       // Gleap
       NEXT_PUBLIC_GLEAP_API_KEY:
-        process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
+        process.env.NEXT_PUBLIC_GLEAP_API_KEY || initialOakConfig.gleap.apiKey,
       NEXT_PUBLIC_GLEAP_API_URL:
-        process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+        process.env.NEXT_PUBLIC_GLEAP_API_URL || initialOakConfig.gleap.apiUrl,
       NEXT_PUBLIC_GLEAP_WIDGET_URL:
-        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
+        process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL ||
+        initialOakConfig.gleap.widgetUrl,
 
       // Hasura
-      NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
+      NEXT_PUBLIC_GRAPHQL_API_URL: initialOakConfig.hasura.graphqlApiUrl,
       HASURA_ADMIN_SECRET:
         process.env.HASURA_ADMIN_SECRET ||
         secretsFromNetwork.HASURA_ADMIN_SECRET,
 
       // Hubspot
-      NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
+      NEXT_PUBLIC_HUBSPOT_PORTAL_ID: initialOakConfig.hubspot.portalId,
       NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID:
-        oakConfig.hubspot.newsletterFormId,
-      NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
+        initialOakConfig.hubspot.newsletterFormId,
+      NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID:
+        initialOakConfig.hubspot.fallbackFormId,
       NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN:
         process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
-        oakConfig.hubspot.scriptDomain,
+        initialOakConfig.hubspot.scriptDomain,
 
       // Oak
       // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
@@ -199,25 +202,29 @@ module.exports = async (phase) => {
         // Should default to custom domain if one is set.
         process.env.URL ||
         // Default to value in config, currently localhost:3000
-        oakConfig.oak.appBaseUrl,
-      NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
+        initialOakConfig.oak.appBaseUrl,
+      NEXT_PUBLIC_SEARCH_API_URL: initialOakConfig.oak.searchApiUrl,
 
       // Posthog
       NEXT_PUBLIC_POSTHOG_API_HOST:
-        process.env.NEXT_PUBLIC_POSTHOG_API_HOST || oakConfig.posthog?.apiHost,
+        process.env.NEXT_PUBLIC_POSTHOG_API_HOST ||
+        initialOakConfig.posthog?.apiHost,
       NEXT_PUBLIC_POSTHOG_API_KEY:
-        process.env.NEXT_PUBLIC_POSTHOG_API_KEY || oakConfig.posthog?.apiKey,
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY ||
+        initialOakConfig.posthog?.apiKey,
 
       // Sanity
       SANITY_REVALIDATE_SECONDS:
         process.env.SANITY_REVALIDATE_SECONDS ||
-        oakConfig.sanity?.revalidateSeconds,
+        initialOakConfig.sanity?.revalidateSeconds,
       SANITY_PROJECT_ID:
-        process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
-      SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,
+        process.env.SANITY_PROJECT_ID || initialOakConfig.sanity?.projectId,
+      SANITY_DATASET:
+        process.env.SANITY_DATASET || initialOakConfig.sanity?.dataset,
       SANITY_DATASET_TAG:
-        process.env.SANITY_DATASET_TAG || oakConfig.sanity?.datasetTag,
-      SANITY_USE_CDN: process.env.SANITY_USE_CDN || oakConfig.sanity?.useCDN,
+        process.env.SANITY_DATASET_TAG || initialOakConfig.sanity?.datasetTag,
+      SANITY_USE_CDN:
+        process.env.SANITY_USE_CDN || initialOakConfig.sanity?.useCDN,
       SANITY_AUTH_SECRET:
         process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
       SANITY_PREVIEW_SECRET:

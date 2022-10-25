@@ -399,6 +399,12 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
     console.error(`- - - WARNING no config value found for required env var:
 - - - ${envName}`);
   }
+
+  // // Throw if something leaked to the browser
+  // if (!shouldBePresent && isPresent) {
+  //   throw new Error(`Wrong environment for config: ${envName}`);
+  // }
+
   if ("allowedValues" in envVarConfig && envValue) {
     // Explicitly typing allowedValues are currently the only instance
     // is of string[], so it infers the type as being too narrow
@@ -440,6 +446,11 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   );
 };
 
+/**
+ * An interface to access config that has been constructed
+ * from env vars created either in next.config.js, or
+ * directly in the environment.
+ */
 const config = {
   get: configGet,
 };
