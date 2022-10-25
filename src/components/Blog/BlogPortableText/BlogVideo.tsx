@@ -1,6 +1,6 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
-import { Video } from "../../../node-lib/cms";
+import { Video } from "../../../common-lib/cms-types";
 import Box from "../../Box";
 import CMSVideo from "../../CMSVideo";
 import Flex from "../../Flex";

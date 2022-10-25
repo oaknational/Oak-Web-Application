@@ -1,6 +1,6 @@
 import { PortableText, PortableTextComponentProps } from "@portabletext/react";
 
-import { PortableTextJSON, TextAndMedia } from "../../../node-lib/cms";
+import { PortableTextJSON, TextAndMedia } from "../../../common-lib/cms-types";
 import { OmitKeepDiscriminated } from "../../../utils/generics";
 import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
 import Box from "../../Box";
