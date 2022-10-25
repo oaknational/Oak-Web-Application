@@ -85,6 +85,7 @@ module.exports = async (phase) => {
       if (!dev && !isTestBuild) {
         // Add source maps.
         config.devtool = "source-map";
+        console.log("Building source-maps");
       }
       // Production builds only.
       if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
