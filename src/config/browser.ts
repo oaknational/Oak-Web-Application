@@ -267,15 +267,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     /**
      * Domain without 'https://', eg: "cdn.sanity.io"
      */
-    value: process.env.SANITY_ASSET_CDN_HOST,
-    envName: "SANITY_API_HOST",
+    value: process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST,
+    envName: "NEXT_PUBLIC_SANITY_ASSET_CDN_HOST",
     required: true,
     availableInBrowser: true,
     default: null,
   },
   pingdomUptimeId: {
-    value: process.env.PINGDOM_UPTIME_ID,
-    envName: "PINGDOM_UPTIME_ID",
+    value: process.env.NEXT_PUBLIC_PINGDOM_UPTIME_ID,
+    envName: "NEXT_PUBLIC_PINGDOM_UPTIME_ID",
     required: true,
     availableInBrowser: true,
     // The old ID, already configured for all sites in Pingdom.
