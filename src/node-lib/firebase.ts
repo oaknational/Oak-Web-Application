@@ -9,13 +9,13 @@ import {
 import { getAuth } from "firebase-admin/auth";
 import { getDatabase } from "firebase-admin/database";
 
-import config from "../config/secrets";
+import serverConfig from "../config/server";
 
-const serviceAccount = JSON.parse(config.get("firebaseServiceAccount"));
+const serviceAccount = JSON.parse(serverConfig.get("firebaseServiceAccount"));
 
 const options: AppOptions = {
   credential: cert(serviceAccount),
-  databaseURL: config.get("firebaseAdminDatabaseUrl"),
+  databaseURL: serverConfig.get("firebaseAdminDatabaseUrl"),
 };
 
 const createFirebaseAdminApp = (config: AppOptions) => {

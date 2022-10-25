@@ -195,7 +195,7 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
       `configGet('${key}') failed because there is no env value ${envName}`
     );
   }
-  return ''
+  return "";
 };
 
 const config = {

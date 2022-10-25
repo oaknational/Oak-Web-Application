@@ -1,7 +1,7 @@
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
-import config from "../../../config/secrets";
+import serverConfig from "../../../config/server";
 import errorReporter from "../../../common-lib/error-reporter";
 import OakError from "../../../errors/OakError";
 
@@ -22,7 +22,7 @@ const preview: NextApiHandler = async (req, res) => {
    * [1]: https://github.com/vercel/next.js/blob/canary/examples/cms-sanity/pages/api/preview.js
    */
   try {
-    if (req.query.secret !== config.get("sanityPreviewSecret")) {
+    if (req.query.secret !== serverConfig.get("sanityPreviewSecret")) {
       throw new OakError({
         code: "preview/invalid-token",
       });
