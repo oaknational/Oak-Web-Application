@@ -9,15 +9,16 @@ import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import CMSClient, {
+import CMSClient from "../../node-lib/cms";
+import {
   BlogPostPreview,
   BlogWebinarCategory,
-} from "../../node-lib/cms";
+} from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
-import BlogCategoryList from "../BlogCategoryList/BlogCategoryList";
-import useBlogCategoryList from "../BlogCategoryList/useBlogCategoryList";
-import BlogList from "../BlogList";
-import { BlogListItemProps } from "../BlogList/BlogListItem";
+import BlogCategoryList from "../Blog/BlogCategoryList";
+import useBlogCategoryList from "../Blog/BlogCategoryList/useBlogCategoryList";
+import BlogList from "../Blog/BlogList";
+import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
 import Box from "../Box";
 import SummaryCard from "../Card/SummaryCard";
 import Grid, { GridArea } from "../Grid";

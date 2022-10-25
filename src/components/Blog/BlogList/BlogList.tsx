@@ -1,10 +1,10 @@
 import { FC, useMemo } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import { Pagination } from "../Pagination";
-import { Hr, LI, UL } from "../Typography";
-import usePagination from "../Pagination/usePagination";
+import Flex from "../../Flex";
+import { Pagination } from "../../Pagination";
+import { Hr, LI, UL } from "../../Typography";
+import usePagination from "../../Pagination/usePagination";
+import Box from "../../Box";
 
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 

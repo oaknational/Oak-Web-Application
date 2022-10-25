@@ -5,7 +5,7 @@ import Policies, {
 } from "../../../pages/legal/[policyPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import { PolicyPage } from "../../../node-lib/cms";
+import { PolicyPage } from "../../../common-lib/cms-types";
 
 const testPolicyPage: PolicyPage = {
   title: "Privacy Policy",

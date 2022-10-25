@@ -2,7 +2,7 @@ import { FC } from "react";
 import { PortableText } from "@portabletext/react";
 
 import ButtonAsLink from "../../Button/ButtonAsLink";
-import type { Card as CardShape } from "../../../node-lib/cms";
+import type { Card as CardShape } from "../../../common-lib/cms-types";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import Typography from "../../Typography";

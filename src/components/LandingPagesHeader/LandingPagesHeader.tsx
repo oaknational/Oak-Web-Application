@@ -5,7 +5,7 @@ import FixedHeader from "../FixedHeader";
 import Logo from "../Logo";
 import Typography from "../Typography";
 import Icon from "../Icon";
-import { CTA } from "../../node-lib/cms";
+import { CTA } from "../../common-lib/cms-types";
 import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
 import OakLink from "../OakLink";
 

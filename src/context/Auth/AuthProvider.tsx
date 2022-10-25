@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 
 import useLocalStorage from "../../hooks/useLocalStorage";
-import config from "../../config";
+import config from "../../config/browser";
 import {
   LS_KEY_EMAIL_FOR_SIGN_IN,
   LS_KEY_USER,

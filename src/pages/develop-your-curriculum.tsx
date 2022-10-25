@@ -2,7 +2,8 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import CMSClient, { CurriculumPage } from "../node-lib/cms";
+import CMSClient from "../node-lib/cms";
+import { CurriculumPage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
