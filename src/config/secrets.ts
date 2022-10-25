@@ -1,4 +1,4 @@
-const isBrowser = false;
+import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
 // Config values can be the result of a logic test on an env value,
@@ -63,15 +63,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   sanityProjectId: {
-    value: process.env.SANITY_PROJECT_ID,
-    envName: "SANITY_PROJECT_ID",
+    value: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    envName: "NEXT_PUBLIC_SANITY_PROJECT_ID",
     required: true,
     availableInBrowser: true,
     default: null,
   },
   sanityDataset: {
-    value: process.env.SANITY_DATASET,
-    envName: "SANITY_DATASET",
+    value: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    envName: "NEXT_PUBLIC_SANITY_DATASET",
     required: true,
     availableInBrowser: true,
     default: null,

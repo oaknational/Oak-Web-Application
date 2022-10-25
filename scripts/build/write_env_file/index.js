@@ -131,9 +131,10 @@ async function main() {
     SANITY_REVALIDATE_SECONDS:
       process.env.SANITY_REVALIDATE_SECONDS ||
       oakConfig.sanity?.revalidateSeconds,
-    SANITY_PROJECT_ID:
-      process.env.SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
-    SANITY_DATASET: process.env.SANITY_DATASET || oakConfig.sanity?.dataset,
+    NEXT_PUBLIC_SANITY_PROJECT_ID:
+      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
+    NEXT_PUBLIC_SANITY_DATASET:
+      process.env.NEXT_PUBLIC_SANITY_DATASET || oakConfig.sanity?.dataset,
     SANITY_DATASET_TAG:
       process.env.SANITY_DATASET_TAG || oakConfig.sanity?.datasetTag,
     SANITY_USE_CDN: process.env.SANITY_USE_CDN || oakConfig.sanity?.useCDN,
@@ -142,7 +143,7 @@ async function main() {
     SANITY_PREVIEW_SECRET:
       process.env.SANITY_PREVIEW_SECRET ||
       secretsFromNetwork.SANITY_PREVIEW_SECRET,
-    SANITY_ASSET_CDN_HOST,
+    NEXT_PUBLIC_SANITY_ASSET_CDN_HOST: SANITY_ASSET_CDN_HOST,
     // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
     DISABLE_ISR: process.env.DISABLE_ISR,
   };
