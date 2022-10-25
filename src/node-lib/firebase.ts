@@ -9,7 +9,7 @@ import {
 import { getAuth } from "firebase-admin/auth";
 import { getDatabase } from "firebase-admin/database";
 
-import config from "../config";
+import config from "../config/server";
 
 const serviceAccount = JSON.parse(config.get("firebaseServiceAccount"));
 

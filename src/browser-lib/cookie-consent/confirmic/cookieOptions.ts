@@ -3,7 +3,7 @@
  */
 import { CookieSetOptions } from "universal-cookie";
 
-import config from "../../../config";
+import config from "../../../config/browser";
 
 const releaseStage = config.get("releaseStage");
 

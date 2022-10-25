@@ -1,7 +1,7 @@
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
-import config from "../../../config";
+import config from "../../../config/server";
 import errorReporter from "../../../common-lib/error-reporter";
 import OakError from "../../../errors/OakError";
 

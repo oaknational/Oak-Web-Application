@@ -100,40 +100,12 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  firebaseAdminDatabaseUrl: {
-    value: process.env.FIREBASE_ADMIN_DATABASE_URL,
-    envName: "FIREBASE_ADMIN_DATABASE_URL",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
   clientAppBaseUrl: {
     value: process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL,
     envName: "NEXT_PUBLIC_CLIENT_APP_BASE_URL",
     required: true,
     availableInBrowser: true,
     default: "http://localhost:3000",
-  },
-  graphqlApiUrl: {
-    value: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
-    envName: "NEXT_PUBLIC_GRAPHQL_API_URL",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  hasuraAdminSecret: {
-    value: process.env.HASURA_ADMIN_SECRET,
-    envName: "HASURA_ADMIN_SECRET",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  firebaseServiceAccount: {
-    value: process.env.FIREBASE_SERVICE_ACCOUNT,
-    envName: "FIREBASE_SERVICE_ACCOUNT",
-    required: true,
-    availableInBrowser: false,
-    default: null,
   },
   releaseStage: {
     value: process.env.NEXT_PUBLIC_RELEASE_STAGE,
@@ -272,42 +244,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     value: process.env.SANITY_PROJECT_ID,
     envName: "SANITY_PROJECT_ID",
     required: true,
-    availableInBrowser: false,
+    availableInBrowser: true,
     default: null,
   },
   sanityDataset: {
     value: process.env.SANITY_DATASET,
     envName: "SANITY_DATASET",
     required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  sanityDatasetTag: {
-    value: process.env.SANITY_DATASET_TAG,
-    envName: "SANITY_DATASET_TAG",
-    required: false,
-    availableInBrowser: false,
-    default: "default", // Literally 'default', not a typo
-  },
-  sanityUseCDN: {
-    value: process.env.SANITY_USE_CDN,
-    envName: "SANITY_USE_CDN",
-    required: false,
-    availableInBrowser: false,
-    default: "true",
-  },
-  sanityGraphqlApiSecret: {
-    value: process.env.SANITY_AUTH_SECRET,
-    envName: "SANITY_AUTH_SECRET",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  sanityPreviewSecret: {
-    value: process.env.SANITY_PREVIEW_SECRET,
-    envName: "SANITY_PREVIEW_SECRET",
-    required: true,
-    availableInBrowser: false,
+    availableInBrowser: true,
     default: null,
   },
   sanityRevalidateSeconds: {
@@ -316,7 +260,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
       : undefined,
     envName: "SANITY_REVALIDATE_SECONDS",
     required: true,
-    availableInBrowser: false,
+    availableInBrowser: true,
     default: 60,
   },
   sanityAssetCDNHost: {
@@ -326,8 +270,17 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     value: process.env.SANITY_ASSET_CDN_HOST,
     envName: "SANITY_API_HOST",
     required: true,
-    availableInBrowser: false,
+    availableInBrowser: true,
     default: null,
+  },
+  pingdomUptimeId: {
+    value: process.env.PINGDOM_UPTIME_ID,
+    envName: "PINGDOM_UPTIME_ID",
+    required: true,
+    availableInBrowser: true,
+    // The old ID, already configured for all sites in Pingdom.
+    default:
+      "d6-7d-b6-4b-74-15-da-2e-2c-3c-00-34-3b-5f-f5-44-03-0f-fc-9f-c9-ce-16-7c-97-42-16-ab-1a-2e-82-5d",
   },
   gleapApiKey: {
     value: process.env.NEXT_PUBLIC_GLEAP_API_KEY,
@@ -350,15 +303,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  pingdomUptimeId: {
-    value: process.env.PINGDOM_UPTIME_ID,
-    envName: "PINGDOM_UPTIME_ID",
-    required: true,
-    availableInBrowser: false,
-    // The old ID, already configured for all sites in Pingdom.
-    default:
-      "d6-7d-b6-4b-74-15-da-2e-2c-3c-00-34-3b-5f-f5-44-03-0f-fc-9f-c9-ce-16-7c-97-42-16-ab-1a-2e-82-5d",
-  },
   axeA11yLogging: {
     value: process.env.NEXT_PUBLIC_AXE_A11Y_LOGGING,
     envName: "NEXT_PUBLIC_AXE_A11Y_LOGGING",
@@ -368,15 +312,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: "off",
     description:
       "Logs accessibility concerns to the console. Should be disabled in production",
-  },
-  disableIsr: {
-    value: process.env.DISABLE_ISR === "on",
-    envName: "DISABLE_ISR",
-    required: false,
-    availableInBrowser: false,
-    allowedValues: [true, false],
-    default: null,
-    description: "Disables incremental static regeneration (ISR).",
   },
 });
 

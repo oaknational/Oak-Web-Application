@@ -2,7 +2,7 @@ import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import config from "../../config";
+import config from "../../config/browser";
 import CMSClient, { AboutWorkWithUsPage } from "../../node-lib/cms";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";

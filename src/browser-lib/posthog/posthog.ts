@@ -3,7 +3,7 @@ import { PostHog } from "posthog-js";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
-import config from "../../config";
+import config from "../../config/browser";
 
 export type PosthogConfig = {
   apiKey: string;

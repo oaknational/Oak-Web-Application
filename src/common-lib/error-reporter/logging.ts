@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config/browser";
 
 /**
  * In order to stop logs cluttering the console during tests, by default

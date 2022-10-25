@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 
-import config from "../../config";
+import config from "../../config/server";
 
 import { getSdk } from "./generated/sdk";
 

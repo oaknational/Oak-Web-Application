@@ -1,7 +1,7 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 
-import config from "../../config";
+import config from "../../config/browser";
 import CMSClient, { AboutPartnersPage } from "../../node-lib/cms";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
