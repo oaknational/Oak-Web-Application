@@ -17,7 +17,7 @@ describe("node-lib/graphql/index.ts", () => {
   beforeEach(() => {
     jest.resetModules();
     jest.restoreAllMocks();
-    jest.mock("../../config/secrets", () => ({
+    jest.mock("../../config/server", () => ({
       get: configGetSpy,
     }));
     jest.mock("graphql-request", () => ({

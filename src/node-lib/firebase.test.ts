@@ -6,7 +6,7 @@ describe("node-lib/firebase.ts", () => {
   beforeEach(() => {
     jest.resetModules();
     jest.restoreAllMocks();
-    jest.mock("../config/secrets", () => ({
+    jest.mock("../config/server", () => ({
       get: configGetSpy,
     }));
     jest.mock("firebase-admin/app", () => ({
