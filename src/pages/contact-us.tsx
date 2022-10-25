@@ -7,7 +7,8 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 
-import CMSClient, { ContactPage } from "../node-lib/cms";
+import CMSClient from "../node-lib/cms";
+import { ContactPage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import { Heading, P } from "../components/Typography";
 import Layout from "../components/Layout";

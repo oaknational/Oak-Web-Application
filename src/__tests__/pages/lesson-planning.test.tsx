@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import PlanALesson from "../../pages/lesson-planning";
-import { PlanningPage } from "../../node-lib/cms";
+import { PlanningPage } from "../../common-lib/cms-types";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import {
   mockImageAsset,

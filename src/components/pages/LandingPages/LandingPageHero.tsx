@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LandingPage } from "../../../node-lib/cms";
+import { LandingPage } from "../../../common-lib/cms-types";
 import Flex from "../../Flex";
 import CMSImage from "../../CMSImage";
 

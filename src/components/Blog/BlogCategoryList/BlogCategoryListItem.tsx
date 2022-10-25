@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import { PixelSpacing } from "../../styles/theme";
-import Flex from "../Flex";
-import Icon from "../Icon";
-import OakLink from "../OakLink";
-import { LI } from "../Typography";
+import { PixelSpacing } from "../../../styles/theme";
+import Icon from "../../Icon";
+import OakLink from "../../OakLink";
+import { LI } from "../../Typography";
+import Flex from "../../Flex";
 
 type BlogCategoryListItemProps = {
   isSelected: boolean;

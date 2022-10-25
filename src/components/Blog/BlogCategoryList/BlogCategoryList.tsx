@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
-import { BoxProps } from "../Box";
-import { UL } from "../Typography";
+import { BoxProps } from "../../Box";
+import { UL } from "../../Typography";
 
 import BlogCategoryListItem from "./BlogCategoryListItem";
 

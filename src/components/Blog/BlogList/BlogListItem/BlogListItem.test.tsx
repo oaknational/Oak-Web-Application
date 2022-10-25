@@ -1,5 +1,5 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
+import { mockImageAsset } from "../../../../__tests__/__helpers__/cms";
+import renderWithTheme from "../../../../__tests__/__helpers__/renderWithTheme";
 
 import BlogListItem, { BlogListItemProps } from ".";
 

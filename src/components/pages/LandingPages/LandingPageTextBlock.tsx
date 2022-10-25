@@ -1,7 +1,7 @@
 import { PortableText } from "@portabletext/react";
 import { FC } from "react";
 
-import { PortableTextJSON } from "../../../node-lib/cms";
+import { PortableTextJSON } from "../../../common-lib/cms-types";
 import Flex from "../../Flex";
 import Typography from "../../Typography";
 

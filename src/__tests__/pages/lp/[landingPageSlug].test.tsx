@@ -7,7 +7,7 @@ import LandingPageTemplate, {
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import { LandingPage } from "../../../node-lib/cms/sanity-client/schemas/landingPage";
+import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
