@@ -1,4 +1,4 @@
-import { BlogListProps } from "../../components/BlogList/BlogList";
+import { BlogListProps } from "../../components/Blog/BlogList/BlogList";
 
 const blogListItems: BlogListProps["items"] = [];
 
