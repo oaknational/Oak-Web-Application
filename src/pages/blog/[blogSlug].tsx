@@ -39,7 +39,6 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
 
   const blogCategoriesListProps = useBlogCategoryList();
-  console.log(blog);
 
   /**
    * @todo add various sizes for sharing on different platforms
