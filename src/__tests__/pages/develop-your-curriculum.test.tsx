@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 
 import { BlogPostPreview, CurriculumPage } from "../../node-lib/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
@@ -74,29 +74,25 @@ describe("pages/develop-your-curriculum.tsx", () => {
     }));
   });
 
-  it("Renders correct title ", async () => {
+  it("Renders correct title ", () => {
     renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Curriculum title"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "Curriculum title"
+    );
   });
 
   it("renders the blog posts", async () => {
     renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
     const { posts } = testCurriculumPageData.elements;
 
-    await waitFor(() => {
-      const container = screen.getByTestId("elements-of-curriculum");
-      const links = within(container).getAllByRole("link");
+    const container = screen.getByTestId("elements-of-curriculum");
+    const links = within(container).getAllByRole("link");
 
-      expect(links).toHaveLength(posts.length);
+    expect(links).toHaveLength(posts.length);
 
-      expect(links[0]).toHaveAttribute("href", "/blog/some-post");
-      expect(links[1]).toHaveAttribute("href", "/blog/some-other-post");
-    });
+    expect(links[0]).toHaveAttribute("href", "/blog/some-post");
+    expect(links[1]).toHaveAttribute("href", "/blog/some-other-post");
   });
 
   describe.skip("SEO", () => {
