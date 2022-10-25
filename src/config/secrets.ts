@@ -140,26 +140,30 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
     envName,
   } = envVarConfig;
 
-  const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
-  const isPresent = Boolean(envValue || defaultValue);
+  // These secrets shouldn't be making it to the browser, so existence
+  // checks will fail.
+  if (!isBrowser) {
+    const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
+    const isPresent = Boolean(envValue || defaultValue);
 
-  /**
-   * @TODO we decide which var is required, etc, and set defaults and validations
-   */
-  if (shouldBePresent && !isPresent) {
-    console.error(`- - - WARNING no config value found for required env var:
+    /**
+     * @TODO we decide which var is required, etc, and set defaults and validations
+     */
+    if (shouldBePresent && !isPresent) {
+      console.error(`- - - WARNING no config value found for required env var:
 - - - ${envName}`);
-  }
-  if ("allowedValues" in envVarConfig && envValue) {
-    // Explicitly typing allowedValues are currently the only instance
-    // is of string[], so it infers the type as being too narrow
-    const { allowedValues }: { allowedValues: ConfigValue[] } = envVarConfig;
+    }
+    if ("allowedValues" in envVarConfig && envValue) {
+      // Explicitly typing allowedValues are currently the only instance
+      // is of string[], so it infers the type as being too narrow
+      const { allowedValues }: { allowedValues: ConfigValue[] } = envVarConfig;
 
-    if (!allowedValues.includes(envValue)) {
-      throw new Error(`- - - ERROR invalid value found for env var:
+      if (!allowedValues.includes(envValue)) {
+        throw new Error(`- - - ERROR invalid value found for env var:
 - - - ${envName}
 - - - Found value: ${envValue}
 - - - Allowed values: ${allowedValues.join(", ")}`);
+      }
     }
   }
 }
