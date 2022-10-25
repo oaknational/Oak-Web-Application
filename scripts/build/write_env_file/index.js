@@ -1,4 +1,11 @@
-// @TODO: document reasons
+/**
+ * This script reads out config and secrets and saves them to
+ * a `.env.${env}.local` file with the appropriate NEXT_PUBLIC_* prefixes
+ *
+ * This step lives outside of the nextjs build process, as for non-public
+ * env vars to be stripped from the client side bundle they need to be
+ * appropriately prefixed before the build process starts
+ */
 
 require("dotenv").config();
 const { writeFileSync } = require("node:fs");
@@ -13,6 +20,10 @@ const fetchConfig = require("../fetch_config");
 const fetchSecrets = require("../fetch_secrets");
 
 async function main() {
+  console.log("Writing config and secrets to temporary env file");
+
+  const NODE_ENV = process.env.NODE_ENV || "development";
+
   /** @type {import('../fetch_config/config_types').OakConfig} */
   let oakConfig;
 
@@ -22,7 +33,7 @@ async function main() {
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
-  if (process.env.NODE_ENV === "test") {
+  if (NODE_ENV === "test") {
     oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
@@ -154,7 +165,14 @@ async function main() {
     return `${acc}\n${key}=${value}`;
   }, "");
 
-  writeFileSync(".env.production", serializedEnv);
+  const envFileName =
+    NODE_ENV === "development"
+      ? `.env.development.local`
+      : `.env.production.local`;
+
+  console.log(`Writing env to ${envFileName}`);
+
+  writeFileSync(envFileName, serializedEnv);
 }
 
 main();
