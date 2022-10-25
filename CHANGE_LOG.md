@@ -1,3 +1,40 @@
+# [1.45.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.44.1...v1.45.0) (2022-10-25)
+
+
+### Bug Fixes
+
+* add next_public prefixes to env vars ([640a625](https://github.com/oaknational/Oak-Web-Application/commit/640a625afea5635fdaff139d3dfab68f03b1c84e))
+* don't check for existence of secrets in browser context ([629588b](https://github.com/oaknational/Oak-Web-Application/commit/629588b7d77efa0c3e0b008314c218e57bb9c709))
+* don't throw on undefined secret access in browser context ([8fe7038](https://github.com/oaknational/Oak-Web-Application/commit/8fe7038922b2ad6242995d65aa80107d679564d5))
+* remove lingering type import from generated cms sdk ([a175396](https://github.com/oaknational/Oak-Web-Application/commit/a17539696465d9b31ff44edfe6cbe0d7b5ed29f1))
+* scope more env vars with next_public ([724a646](https://github.com/oaknational/Oak-Web-Application/commit/724a6465b85e041549c25171479a20e32ba40f7c))
+* split config files into browser and server ([f92fbe0](https://github.com/oaknational/Oak-Web-Application/commit/f92fbe083c0851e62b4f97e8ea406f815cc6bfcc))
+* update outdated config/secrets references in tests ([d45ce4f](https://github.com/oaknational/Oak-Web-Application/commit/d45ce4f61e8aaf0a7a7905547d420665ee008778))
+* update outdated references to common-lib/cms-types ([ecce233](https://github.com/oaknational/Oak-Web-Application/commit/ecce233adb0856586263f1665ce2d0efea7cac0f))
+* use cms-types for AvatarImage prop types ([1c1f0e8](https://github.com/oaknational/Oak-Web-Application/commit/1c1f0e8fa9ada106e10bb2e27d9444779e4354b9))
+
+
+### Features
+
+* handle development secrets in write_env_file, add docs ([4491765](https://github.com/oaknational/Oak-Web-Application/commit/44917655e362c942225e33c6d35799cadbcd1463))
+
+## [1.44.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.44.0...v1.44.1) (2022-10-25)
+
+# [1.44.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.4...v1.44.0) (2022-10-25)
+
+
+### Features
+
+* **zero-rating:** use proxied google fonts service ([72b5950](https://github.com/oaknational/Oak-Web-Application/commit/72b5950dc15560e5469e591c365f22ad927d1d00))
+
+## [1.43.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.3...v1.43.4) (2022-10-24)
+
+
+### Bug Fixes
+
+* align cards center when not full width ([5313bf3](https://github.com/oaknational/Oak-Web-Application/commit/5313bf35c60a71c0c452538a9f285474e4593c63))
+* do not wrap card in redundant flex box ([a9e5d20](https://github.com/oaknational/Oak-Web-Application/commit/a9e5d204a6844589444e738d681a28f8b1d01f1a))
+
 ## [1.43.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.2...v1.43.3) (2022-10-21)
 
 

@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 
 import LessonPage from "../../pages/beta/lessons/[lessonSlug]";
@@ -35,11 +35,9 @@ describe("pages/beta/lessons/[lessonSlug].tsx", () => {
     it("Renders lesson title ", async () => {
       renderWithProviders(<LessonPage lesson={testLesson} />);
 
-      await waitFor(() => {
-        expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-          testLesson.title
-        );
-      });
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+        testLesson.title
+      );
     });
   });
 

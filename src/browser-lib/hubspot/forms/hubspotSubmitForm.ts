@@ -5,7 +5,7 @@
 import { z } from "zod";
 
 import errorReporter from "../../../common-lib/error-reporter";
-import config from "../../../config";
+import config from "../../../config/browser";
 import OakError, { ErrorMeta } from "../../../errors/OakError";
 import { UtmParams } from "../../../hooks/useUtmParams";
 

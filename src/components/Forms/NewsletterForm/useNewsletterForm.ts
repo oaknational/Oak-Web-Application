@@ -1,6 +1,6 @@
 import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
 import { HubspotFormData } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
-import config from "../../../config";
+import config from "../../../config/browser";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useAnonymousId from "../../../browser-lib/analytics/useAnonymousId";
 import useUtmParams from "../../../hooks/useUtmParams";
