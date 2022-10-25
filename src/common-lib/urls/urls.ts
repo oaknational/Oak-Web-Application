@@ -5,6 +5,7 @@ const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
   "blog-index": "/blog",
+  "webinar-index": "/beta/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
   contact: "/contact-us",
   "develop-your-curriculum": "/develop-your-curriculum",
