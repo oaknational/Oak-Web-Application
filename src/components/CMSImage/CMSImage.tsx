@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import {
+  ImageUrlBuilder,
   useNextSanityImage,
   UseNextSanityImageBuilder,
 } from "next-sanity-image";
@@ -28,8 +29,17 @@ export const sanityClientLike: SanityClientLike = {
   },
 };
 
+const defaultImageBuilder =
+  ({ width, height }: { width?: number | string; height?: number | string }) =>
+  (builder: ImageUrlBuilder) =>
+    typeof width === "number" && typeof height === "number"
+      ? builder.width(width).height(height)
+      : builder;
+
 const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
+
+  imageBuilder = imageBuilder || defaultImageBuilder(rest);
 
   const { width, height, ...imageProps } = useNextSanityImage(
     sanityClientLike,
@@ -67,7 +77,7 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
         {...rest}
         alt={finalAltText}
         // $height: auto to keep original aspect ratio of image
-        $height="auto"
+        $height={rest.$height || rest.$cover ? undefined : "auto"}
         aria-hidden={image.isPresentational ? true : undefined}
       />
     </Box>

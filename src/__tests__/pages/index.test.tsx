@@ -1,4 +1,4 @@
-import { getByRole, screen, waitFor, within } from "@testing-library/react";
+import { getByRole, screen, within } from "@testing-library/react";
 
 import Home, {
   getStaticProps,
@@ -23,26 +23,22 @@ const pageData = {
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/index.tsx", () => {
-  it("Renders correct title and summary", async () => {
+  it("Renders correct title and summary", () => {
     renderWithProviders(<Home pageData={pageData} posts={[]} />);
 
-    await waitFor(() => {
-      const h1 = screen.getByRole("heading", { level: 1 });
-      expect(h1).toHaveTextContent("Oak");
+    const h1 = screen.getByRole("heading", { level: 1 });
+    expect(h1).toHaveTextContent("Oak");
 
-      const firstH2 = screen.getAllByRole("heading", { level: 2 })[0];
-      expect(firstH2).toHaveTextContent("Here's the page summary");
-    });
+    const firstH2 = screen.getAllByRole("heading", { level: 2 })[0];
+    expect(firstH2).toHaveTextContent("Here's the page summary");
   });
 
-  it("Renders a link to the blog list", async () => {
+  it("Renders a link to the blog list", () => {
     renderWithProviders(<Home pageData={pageData} posts={[]} />);
 
-    await waitFor(() => {
-      const blogLink = screen.getByText("All blogs");
-      expect(blogLink).toBeInTheDocument();
-      expect(blogLink).toHaveAttribute("href", "/blog");
-    });
+    const blogLink = screen.getByText("All blogs");
+    expect(blogLink).toBeInTheDocument();
+    expect(blogLink).toHaveAttribute("href", "/blog");
   });
 
   it("Renders the provided blog posts", async () => {
@@ -67,28 +63,26 @@ describe("pages/index.tsx", () => {
 
     renderWithProviders(<Home pageData={pageData} posts={mockPosts} />);
 
-    await waitFor(() => {
-      const list = screen
-        .getAllByRole("list")
-        .find((list) => list.textContent?.includes("Some blog post"));
+    const list = screen
+      .getAllByRole("list")
+      .find((list) => list.textContent?.includes("Some blog post"));
 
-      expect(list).toBeInTheDocument();
+    expect(list).toBeInTheDocument();
 
-      const { getAllByRole } = within(list as HTMLElement);
-      const items = getAllByRole("listitem");
+    const { getAllByRole } = within(list as HTMLElement);
+    const items = getAllByRole("listitem");
 
-      expect(items).toHaveLength(2);
+    expect(items).toHaveLength(2);
 
-      expect(
-        getByRole(items[0] as HTMLElement, "link", {
-          name: "Some blog post",
-        })
-      ).toHaveAttribute("href", "/blog/some-blog-post");
-    });
+    expect(
+      getByRole(items[0] as HTMLElement, "link", {
+        name: "Some blog post",
+      })
+    ).toHaveAttribute("href", "/blog/some-blog-post");
   });
 
   describe.skip("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo(
         <Home pageData={{ ...pageData, seo: undefined }} posts={[]} />
       );
@@ -96,7 +90,7 @@ describe("pages/index.tsx", () => {
       expect(seo).toEqual({});
     });
 
-    it("renders the correct SEO details from the CMS", async () => {
+    it("renders the correct SEO details from the CMS", () => {
       const { seo } = renderWithSeo(
         <Home pageData={{ ...pageData, seo: mockSeo() }} posts={[]} />
       );

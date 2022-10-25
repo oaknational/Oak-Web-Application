@@ -114,7 +114,7 @@ describe("Menu", () => {
           aria-label="Open Menu"
           icon={"Hamburger"}
           variant={"minimal"}
-          size={"header"}
+          size={"large"}
           ref={menuButtonRef}
           onClick={jest.fn}
         />
@@ -130,7 +130,7 @@ describe("Menu", () => {
           aria-label="Open Menu"
           icon={"Hamburger"}
           variant={"minimal"}
-          size={"header"}
+          size={"large"}
           ref={menuButtonRef}
           onClick={jest.fn}
         />

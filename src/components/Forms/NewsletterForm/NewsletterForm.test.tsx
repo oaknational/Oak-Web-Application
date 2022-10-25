@@ -103,25 +103,25 @@ describe("NewsletterForm", () => {
     expect(description).toBe("Email not valid");
   });
   test("should display all error hints on submit", async () => {
-    const { getByLabelText, getByPlaceholderText } = renderWithProviders(
+    const { getByRole, getByPlaceholderText } = renderWithProviders(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
     const input = getByPlaceholderText("Anna Smith");
     // initially error is not shown
     expect(computeAccessibleDescription(input)).toBe("");
-    const submit = getByLabelText("Sign up");
+    const submit = getByRole("button", { name: "Sign up" });
     const user = userEvent.setup();
     await user.click(submit);
     // error is shown after form is submitted
     expect(computeAccessibleDescription(input)).toBe("Name can't be empty");
   });
   test("onSubmit() should not be called if form invalid", async () => {
-    const { getByLabelText } = renderWithProviders(
+    const { getByRole } = renderWithProviders(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
-    const submit = getByLabelText("Sign up");
+    const submit = getByRole("button", { name: "Sign up" });
     const user = userEvent.setup();
     await user.click(submit);
 
@@ -130,17 +130,16 @@ describe("NewsletterForm", () => {
   test("should display correct message if OakError thrown from onSubmit()", async () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
-    const { getByLabelText, getByPlaceholderText, getByRole } =
-      renderWithProviders(
-        <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
-      );
+    const { getByRole, getByPlaceholderText } = renderWithProviders(
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+    );
 
     const user = userEvent.setup();
     const name = getByPlaceholderText("Anna Smith");
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByLabelText("Sign up");
+    const submit = getByRole("button", { name: "Sign up" });
     await user.click(submit);
 
     const error = getByRole("alert");
@@ -150,17 +149,16 @@ describe("NewsletterForm", () => {
   });
   test("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
-    const { getByLabelText, getByPlaceholderText, getByRole } =
-      renderWithProviders(
-        <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
-      );
+    const { getByRole, getByPlaceholderText } = renderWithProviders(
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+    );
 
     const user = userEvent.setup();
     const name = getByPlaceholderText("Anna Smith");
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByLabelText("Sign up");
+    const submit = getByRole("button", { name: "Sign up" });
     await user.click(submit);
 
     const error = getByRole("alert");

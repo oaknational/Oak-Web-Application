@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-import typography from "../../styles/utils/typography";
+import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import typography, { TypographyProps } from "../../styles/utils/typography";
 
-const UnstyledButton = styled.button`
+export type UnstyledButtonProps = TypographyProps & SpacingProps;
+const UnstyledButton = styled.button<UnstyledButtonProps>`
   background: none;
   color: inherit;
   border: none;
@@ -12,6 +14,7 @@ const UnstyledButton = styled.button`
   text-align: left;
   font-family: unset;
   ${typography}
+  ${spacing}
 `;
 
 export default UnstyledButton;
