@@ -6,9 +6,9 @@ import {
 } from "next-sanity-image";
 import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
-import config from "../../config";
+import config from "../../config/browser";
 import Box from "../Box";
-import { Image } from "../../node-lib/cms";
+import { Image } from "../../common-lib/cms-types";
 import OakImage, { OakImageProps } from "../OakImage";
 
 export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {

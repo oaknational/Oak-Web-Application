@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Flex from "../../Flex";
 import Typography from "../../Typography";
-import { Quote as QuoteSchema } from "../../../node-lib/cms/sanity-client/schemas/";
+import { Quote as QuoteSchema } from "../../../common-lib/cms-types";
 import Blockquote from "../../Typography/Blockquote";
 
 export const Quote: FC<QuoteSchema> = ({ text, attribution }) => {

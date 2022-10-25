@@ -3,7 +3,8 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
-import CMSClient, { HomePage, WebinarPreview } from "../node-lib/cms";
+import CMSClient from "../node-lib/cms";
+import { HomePage, WebinarPreview } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
@@ -23,7 +24,7 @@ import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
 import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { BlogListItemProps } from "../components/BlogList/BlogListItem";
+import { BlogListItemProps } from "../components/Blog/BlogList/BlogListItem";
 import OakImage from "../components/OakImage";
 import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import {
@@ -31,7 +32,7 @@ import {
   SerializedBlogPostPreview,
   serializeDate,
 } from "../components/pages/BlogIndex.page";
-import BlogList from "../components/BlogList";
+import BlogList from "../components/Blog/BlogList";
 
 import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
 

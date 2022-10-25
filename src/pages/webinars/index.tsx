@@ -1,13 +1,14 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import CMSClient, { WebinarPreview } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { WebinarPreview } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
-import BlogList from "../../components/BlogList";
-import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
+import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import BlogList from "../../components/Blog/BlogList";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;

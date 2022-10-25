@@ -13,7 +13,7 @@ import {
   resolveInternalHref,
   anchorKeys,
 } from "../../utils/portableText/resolveInternalHref";
-import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
+import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 
 import { PTActionTrigger } from "./PTActionTrigger";

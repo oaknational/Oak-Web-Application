@@ -1,14 +1,15 @@
 import { useId, usePreventScroll } from "react-aria";
 import { FC, useState, useRef, useEffect } from "react";
 
-import BlogCategoryList from "../BlogCategoryList";
-import { BlogCategoryListProps } from "../BlogCategoryList/BlogCategoryList";
 import Box from "../Box";
 import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Cover from "../Cover";
 import Flex from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
+import BlogCategoryList, {
+  BlogCategoryListProps,
+} from "../Blog/BlogCategoryList/BlogCategoryList";
 
 type MobileBlogFiltersProps = {
   categoryListProps: Omit<BlogCategoryListProps, "labelledBy">;

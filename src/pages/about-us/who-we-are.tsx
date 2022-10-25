@@ -2,7 +2,8 @@ import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 
-import CMSClient, { AboutWhoWeArePage, TextBlock } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { AboutWhoWeArePage, TextBlock } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";

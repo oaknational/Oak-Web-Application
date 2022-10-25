@@ -2,7 +2,8 @@ import { screen, waitFor } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient, { AboutWorkWithUsPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
+import { AboutWorkWithUsPage } from "../../../common-lib/cms-types";
 import AboutWorkWithUs, {
   getStaticProps,
 } from "../../../pages/about-us/work-with-us";

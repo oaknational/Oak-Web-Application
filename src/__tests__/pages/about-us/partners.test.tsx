@@ -2,7 +2,8 @@ import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient, { AboutPartnersPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
+import { AboutPartnersPage } from "../../../common-lib/cms-types";
 import AboutPartners, {
   getStaticProps,
 } from "../../../pages/about-us/partners";

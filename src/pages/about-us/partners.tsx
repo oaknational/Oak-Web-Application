@@ -1,8 +1,9 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 
-import config from "../../config";
-import CMSClient, { AboutPartnersPage } from "../../node-lib/cms";
+import config from "../../config/browser";
+import CMSClient from "../../node-lib/cms";
+import { AboutPartnersPage } from "../../common-lib/cms-types";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";

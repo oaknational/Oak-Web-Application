@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Video } from "../../node-lib/cms";
+import { Video } from "../../common-lib/cms-types";
 import VideoPlayer from "../VideoPlayer";
 import { VideoPlayerProps } from "../VideoPlayer/VideoPlayer";
 

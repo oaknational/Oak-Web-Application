@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import config from "../../config";
+import config from "../../config/browser";
 
 import startGleap, { hasLoaded } from "./startGleap";
 

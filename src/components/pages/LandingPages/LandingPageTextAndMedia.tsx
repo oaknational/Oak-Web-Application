@@ -1,7 +1,7 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
-import { TextAndMedia } from "../../../node-lib/cms";
+import { TextAndMedia } from "../../../common-lib/cms-types";
 import Card from "../../Card";
 import CMSImage from "../../CMSImage";
 import CMSVideo from "../../CMSVideo";
