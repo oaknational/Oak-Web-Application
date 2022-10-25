@@ -1,6 +1,6 @@
 import { GetStaticPropsResult } from "next";
 
-import config from "../../config/server";
+import config from "../../config/secrets";
 
 const disableIsr = config.get("disableIsr");
 if (disableIsr) {

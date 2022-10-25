@@ -1,4 +1,9 @@
-import { PortableTextJSON, Image, Seo, Video } from "../../common-lib/cms-types";
+import {
+  PortableTextJSON,
+  Image,
+  Seo,
+  Video,
+} from "../../common-lib/cms-types";
 
 /**
  * Return a representation of a string as sanity's "portable text"

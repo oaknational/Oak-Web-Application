@@ -18,7 +18,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
   beforeEach(() => {
     jest.resetModules();
     jest.restoreAllMocks();
-    jest.mock("../../config/browser", () => ({
+    jest.mock("../../config/secrets", () => ({
       get: configGetSpy,
     }));
     jest.mock("graphql-request", () => ({

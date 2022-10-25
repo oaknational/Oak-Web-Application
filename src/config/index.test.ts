@@ -25,13 +25,13 @@ describe("config.get()", () => {
   });
   it("should allow parsing of 'on' switches to boolean true", async () => {
     process.env.DISABLE_ISR = "on";
-    const { default: config } = await import("./server");
+    const { default: config } = await import("./secrets");
 
     expect(config.get("disableIsr")).toEqual(true);
   });
   it("should allow parsing of 'on' switches with non-'on' to boolean false", async () => {
     process.env.DISABLE_ISR = "anything_but_on";
-    const { default: config } = await import("./server");
+    const { default: config } = await import("./secrets");
 
     expect(config.get("disableIsr")).toEqual(false);
   });
