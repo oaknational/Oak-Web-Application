@@ -1,3 +1,33 @@
+# [1.44.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.4...v1.44.0) (2022-10-25)
+
+
+### Features
+
+* **zero-rating:** use proxied google fonts service ([72b5950](https://github.com/oaknational/Oak-Web-Application/commit/72b5950dc15560e5469e591c365f22ad927d1d00))
+
+## [1.43.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.3...v1.43.4) (2022-10-24)
+
+
+### Bug Fixes
+
+* align cards center when not full width ([5313bf3](https://github.com/oaknational/Oak-Web-Application/commit/5313bf35c60a71c0c452538a9f285474e4593c63))
+* do not wrap card in redundant flex box ([a9e5d20](https://github.com/oaknational/Oak-Web-Application/commit/a9e5d204a6844589444e738d681a28f8b1d01f1a))
+
+## [1.43.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.2...v1.43.3) (2022-10-21)
+
+
+### Bug Fixes
+
+* **about-us:** centering issues ([49d7a38](https://github.com/oaknational/Oak-Web-Application/commit/49d7a387ae74919f7fed507f36c3a8631dd6fe09))
+
+## [1.43.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.1...v1.43.2) (2022-10-21)
+
+
+### Bug Fixes
+
+* remove nested a tag from oak link ([60e4d01](https://github.com/oaknational/Oak-Web-Application/commit/60e4d01c197d222a248a633cc9690031fb4b6c0b))
+* unwanted a tag in oak link ([5daf40e](https://github.com/oaknational/Oak-Web-Application/commit/5daf40e2ffbe7bce2e6ad34329062913a2297187))
+
 ## [1.43.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.0...v1.43.1) (2022-10-21)
 
 
