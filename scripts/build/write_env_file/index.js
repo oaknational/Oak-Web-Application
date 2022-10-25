@@ -55,7 +55,8 @@ async function main() {
     : await fetchSecrets(oakConfig);
 
   const NEXT_PUBLIC_SANITY_ASSET_CDN_HOST =
-    process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
+    process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST ||
+    oakConfig.sanity.assetCDNHost;
 
   const env = {
     // Values calculated in this file.
@@ -143,7 +144,8 @@ async function main() {
     SANITY_PREVIEW_SECRET:
       process.env.SANITY_PREVIEW_SECRET ||
       secretsFromNetwork.SANITY_PREVIEW_SECRET,
-    NEXT_PUBLIC_SANITY_ASSET_CDN_HOST: NEXT_PUBLIC_SANITY_ASSET_CDN_HOST,
+    NEXT_PUBLIC_SANITY_ASSET_CDN_HOST:
+      NEXT_PUBLIC_SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost,
     // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
     DISABLE_ISR: process.env.DISABLE_ISR,
   };
