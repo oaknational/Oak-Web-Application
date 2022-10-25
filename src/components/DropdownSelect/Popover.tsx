@@ -16,10 +16,6 @@ const Wrapper = styled.div`
   top: 100%;
   z-index: ${zIndexMap.inFront};
   width: 100%;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  margin-top: 6px;
-  box-shadow: 0 4px 8px #eee;
   background: white;
 `;
 

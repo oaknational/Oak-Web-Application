@@ -13,12 +13,23 @@ const breakpointsByName = {
   large: 1280,
 };
 const breakpoints = Object.values(breakpointsByName);
+export type BreakpointName = keyof typeof breakpointsByName;
 export const getBreakpoint = (
   breakpointName: keyof typeof breakpointsByName
 ) => {
   return breakpointsByName[breakpointName];
 };
-
+export type Device = "mobile" | "tablet" | "desktop";
+const mediaQueries: Record<Device, string> = {
+  mobile: `(max-width: ${getBreakpoint("small") - 1}px)`,
+  tablet: `(min-width: ${getBreakpoint("small")}px and max-width: ${
+    getBreakpoint("large") - 1
+  }px)`,
+  desktop: `(min-width: ${getBreakpoint("large")}px)`,
+};
+export const getMediaQuery = (device: Device) => {
+  return mediaQueries[device];
+};
 export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 
 const responsive =

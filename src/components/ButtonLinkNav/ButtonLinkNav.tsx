@@ -1,29 +1,74 @@
-import { FC, Fragment } from "react";
-import styled from "styled-components";
+import { FC } from "react";
 
 import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
+import { HTMLAnchorProps } from "../Button/common";
 import Flex, { FlexProps } from "../Flex";
 import Icon from "../Icon";
+import useIsCurrent from "../MenuLinks/useIsCurrent";
+
+type LinkProps = { label: string; href: string };
 
 type ButtonLinkNavProps = {
   ariaLabel: string;
-  buttons: { label: string; href: string }[];
-  selected: string;
+  buttons: LinkProps[];
 } & FlexProps;
 
-const ButtonAsLinkOpacity = styled(ButtonAsLink)<{ opacity: string }>`
-  opacity: ${(props) => props.opacity};
-`;
+const NavLink = ({ label, href }: LinkProps) => {
+  const isCurrent = useIsCurrent({ href });
 
-const IconOpacity = styled(Icon)<{ opacity: string }>`
-  opacity: ${(props) => props.opacity};
-  margin-left: ${(props) => props.$ml}px;
-`;
+  const htmlAnchorProps: HTMLAnchorProps = {
+    "aria-current": isCurrent ? "page" : undefined,
+  };
 
+  return (
+    <>
+      {/* Desktop */}
+      <Box $display={["none", "block"]}>
+        <ButtonAsLink
+          htmlAnchorProps={htmlAnchorProps}
+          variant={isCurrent ? "minimal" : "brush"}
+          label={label}
+          href={href}
+          $mr={[0, 36]}
+          disabled={isCurrent}
+        />
+      </Box>
+      {/* Mobile */}
+      <Flex $flexDirection={"row"} $display={["flex", "none"]}>
+        {isCurrent && (
+          <Flex $alignItems={"center"}>
+            <Icon
+              $opacity={isCurrent ? 0.6 : 1}
+              $ml={12}
+              variant={"minimal"}
+              name={"ArrowRight"}
+            />
+          </Flex>
+        )}
+        <ButtonAsLink
+          htmlAnchorProps={htmlAnchorProps}
+          $opacity={isCurrent ? 0.6 : 1}
+          variant={"minimal"}
+          label={label}
+          href={href}
+          $mr={[0, 36]}
+        />
+      </Flex>
+    </>
+  );
+};
+
+/**
+ * Renders a 'nav' element containing a list of links styled as buttons.
+ * Stacks vertically and styled differently at mobile.
+ *
+ * ## Usage
+ *
+ * Used in the 'About Us' summary card
+ */
 const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
-  selected,
   ariaLabel,
   ...props
 }) => {
@@ -31,43 +76,12 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
     <nav aria-label={ariaLabel}>
       <Flex
         $flexWrap={"wrap"}
-        $alignItems={["flex-start"]}
+        $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
         {...props}
       >
         {buttons.map((button) => (
-          <Fragment key={button.label}>
-            {/* @todo Add responsive button icon and variant */}
-            <Box $display={["none", "block"]}>
-              <ButtonAsLink
-                variant={selected === button.label ? "minimal" : "brush"}
-                label={button.label}
-                href={button.href}
-                $mr={[0, 36]}
-                disabled={selected === button.label}
-              />
-            </Box>
-            <Flex $flexDirection={"row"} $display={["flex", "none"]}>
-              {selected === button.label && (
-                <Flex $alignItems={"center"}>
-                  <IconOpacity
-                    opacity={selected === button.label ? "60%" : "100%"}
-                    $ml={12}
-                    variant={"minimal"}
-                    name={"ArrowRight"}
-                  />
-                </Flex>
-              )}
-              <ButtonAsLinkOpacity
-                opacity={selected === button.label ? "60%" : "100%"}
-                variant={"minimal"}
-                label={button.label}
-                href={button.href}
-                $mr={[0, 36]}
-                disabled={selected === button.label}
-              />
-            </Flex>
-          </Fragment>
+          <NavLink key={button.href} {...button} />
         ))}
       </Flex>
     </nav>

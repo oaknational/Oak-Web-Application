@@ -1,5 +1,5 @@
 import { DEFAULT_SEO_PROPS, SeoProps } from "../../browser-lib/seo/Seo";
-import { Seo } from "../../node-lib/cms";
+import { Seo } from "../../common-lib/cms-types";
 
 type GetSeoProps = Pick<SeoProps, "imageUrl">;
 

@@ -1,5 +1,4 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC, useRef } from "react";
 import { useTheme } from "styled-components";
 
 import Flex from "../Flex";
@@ -14,19 +13,28 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
 import Toast from "../Toast";
 import { Span } from "../Typography";
+import { HeaderProps } from "../Layout/Layout";
+import Breadcrumbs from "../Breadcrumbs";
 
-const SiteHeader: FC = () => {
+const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
-  const { toggleMenu } = useMenuContext();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const { openMenu } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <Link href={"/"}>
-        <a>
-          <Logo title={"Oak National Academy"} height={48} width={104} />
-        </a>
-      </Link>
+      <OakLink page="home">
+        <Logo title={"Oak National Academy"} height={48} width={104} />
+      </OakLink>
+      <Flex
+        $ml={[0, 20, 48]}
+        $mr={20}
+        $display={["none", "flex"]}
+        $minWidth={0}
+      >
+        {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+      </Flex>
       <Flex
         $alignItems={"center"}
         $display={["none", "flex"]}
@@ -35,13 +43,14 @@ const SiteHeader: FC = () => {
       >
         <OakLink
           page="pupils-home"
+          data-testid="SiteHeaderClassroomLink"
           htmlAnchorProps={{
             onClick: () => track.classroomSelected({ navigatedFrom: "header" }),
           }}
         >
           Classroom
         </OakLink>
-        <Span $ml={24} $mr={32}>
+        <Span $ml={24} $mr={32} $whiteSpace={"nowrap"}>
           <OakLink
             page="teachers-home"
             htmlAnchorProps={{
@@ -57,12 +66,11 @@ const SiteHeader: FC = () => {
         aria-label="Menu"
         icon={"Hamburger"}
         variant={"minimal"}
-        size={"header"}
-        onClick={() => {
-          toggleMenu();
-        }}
+        size={"large"}
+        ref={menuButtonRef}
+        onClick={openMenu}
       />
-      <Menu>
+      <Menu menuButtonRef={menuButtonRef}>
         <MenuLinks menuSections={menuSections} />
       </Menu>
       <Toast />

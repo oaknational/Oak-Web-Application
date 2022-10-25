@@ -14,6 +14,7 @@ import footerSections from "../../browser-lib/fixtures/footerSections";
 import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
+import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 
 type FooterLinkProps = {
   text: string;
@@ -139,8 +140,8 @@ const SiteFooter: FC = () => {
             </GridArea>
           </Grid>
           <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
-            <SocialButtons />
-            <Flex $alignItems={"center"}>
+            <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
+            <Flex $alignItems={"center"} $ml={[16]}>
               <P $textAlign="center" $font={["body-4", "body-2"]}>
                 © Oak National Academy
               </P>

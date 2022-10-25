@@ -1,5 +1,4 @@
-import { CTA } from "../../node-lib/cms";
-import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
+import { CTA, CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { assertUnreachable } from "../assertUnreachable";
 
 export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
@@ -44,10 +43,17 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
   }
 };
 
+export const anchorMap = {
+  formBlock: "form-block",
+} as const;
+
+export type anchorKeys = keyof typeof anchorMap;
+
 export const getCTAHref = (cta: CTA): string => {
   if (cta.linkType === "internal") {
     return resolveInternalHref(cta.internal);
-  } else {
+  } else if (cta.linkType === "external") {
     return cta.external;
   }
+  return `#${anchorMap[cta.anchor]}`;
 };

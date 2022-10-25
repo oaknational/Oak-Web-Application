@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import styled from "styled-components";
 import {
   MissingComponentHandler,
@@ -7,20 +7,21 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 
-import CMSClient, { ContactPage } from "../node-lib/cms";
+import CMSClient from "../node-lib/cms";
+import { ContactPage } from "../common-lib/cms-types";
+import { decorateWithIsr } from "../node-lib/isr";
 import { Heading, P } from "../components/Typography";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import Card from "../components/Card";
 import Flex from "../components/Flex";
-import NewsletterForm, {
-  useNewsletterForm,
-} from "../components/Forms/NewsletterForm";
+import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
 // import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import { BasePortableTextProvider } from "../components/PortableText";
 
 export type ContactPageProps = {
@@ -96,8 +97,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
                 />
               </BasePortableTextProvider>
             </Box>
-
-            <NewsletterForm
+            <NewsletterFormWrap
               {...newsletterFormProps}
               containerProps={{
                 $display: ["none", "flex"],
@@ -107,8 +107,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
             />
           </Flex>
         </Card>
-
-        <NewsletterForm
+        <NewsletterFormWrap
           {...newsletterFormProps}
           containerProps={{ $display: ["flex", "none"], $mt: 32 }}
         />
@@ -132,12 +131,13 @@ export const getStaticProps: GetStaticProps<ContactPageProps> = async (
     };
   }
 
-  return {
+  const results: GetStaticPropsResult<ContactPageProps> = {
     props: {
       pageData,
     },
-    revalidate: 10,
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default ContactUs;

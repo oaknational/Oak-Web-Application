@@ -1,13 +1,19 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 
-import config from "../../config";
+import CMSClient from "../../node-lib/cms";
+import { PolicyPage } from "../../common-lib/cms-types";
+import { decorateWithIsr } from "../../node-lib/isr";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Typography, { Heading, P } from "../../components/Typography";
-import CMSClient, { PolicyPage } from "../../node-lib/cms";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
@@ -141,12 +147,13 @@ export const getStaticProps: GetStaticProps<
     lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),
   };
 
-  return {
+  const results: GetStaticPropsResult<PolicyPageProps> = {
     props: {
       policy,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default Policies;

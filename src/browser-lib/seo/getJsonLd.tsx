@@ -11,7 +11,7 @@ import {
 } from "next-seo";
 
 import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
-import config from "../../config";
+import config from "../../config/browser";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
 

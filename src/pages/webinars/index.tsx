@@ -1,13 +1,14 @@
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import config from "../../config";
-import CMSClient, { WebinarPreview } from "../../node-lib/cms";
-import BlogList from "../../components/BlogList";
-import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
+import CMSClient from "../../node-lib/cms";
+import { WebinarPreview } from "../../common-lib/cms-types";
+import { decorateWithIsr } from "../../node-lib/isr";
+import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { Heading } from "../../components/Typography";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import BlogList from "../../components/Blog/BlogList";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -72,12 +73,13 @@ export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
 
   const webinars = webinarResults.map(serializeDate);
 
-  return {
+  const results: GetStaticPropsResult<WebinarListingPageProps> = {
     props: {
       webinars,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default WebinarListingPage;

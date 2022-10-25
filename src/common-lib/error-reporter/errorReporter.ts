@@ -1,7 +1,7 @@
 import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
-import config from "../../config";
+import config from "../../config/browser";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 

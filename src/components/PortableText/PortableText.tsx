@@ -8,8 +8,12 @@ import {
 import styled from "styled-components";
 
 import errorReporter from "../../common-lib/error-reporter";
-import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
-import { CTAInternalLinkEntry } from "../../node-lib/cms/sanity-client/schemas";
+import {
+  anchorMap,
+  resolveInternalHref,
+  anchorKeys,
+} from "../../utils/portableText/resolveInternalHref";
+import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 
 import { PTActionTrigger } from "./PTActionTrigger";
@@ -64,6 +68,23 @@ export const PTExternalLink: PortableTextMarkComponent<{
   );
 };
 
+export const PTAnchorLink: PortableTextMarkComponent<{
+  _type: "anchor";
+  anchor: anchorKeys;
+}> = (props) => {
+  if (!props.value) {
+    return null;
+  }
+
+  return (
+    <Span $color={"hyperlink"}>
+      <Link href={`#${anchorMap[props.value.anchor]}`}>
+        <a>{props.children}</a>
+      </Link>
+    </Span>
+  );
+};
+
 const BodyP = styled(P)`
   &:first-child {
     margin-top: 0;
@@ -101,6 +122,7 @@ export const basePortableTextComponents: PortableTextComponents = {
     },
     internalLink: PTInternalLink,
     link: PTExternalLink,
+    anchorLink: PTAnchorLink,
     action: PTActionTrigger,
   },
 };

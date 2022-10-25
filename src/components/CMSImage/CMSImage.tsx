@@ -1,15 +1,20 @@
 import { FC, useState } from "react";
-import { useNextSanityImage } from "next-sanity-image";
+import {
+  ImageUrlBuilder,
+  useNextSanityImage,
+  UseNextSanityImageBuilder,
+} from "next-sanity-image";
 import { SanityClientLike } from "@sanity/image-url/lib/types/types";
 
-import config from "../../config";
+import config from "../../config/browser";
 import Box from "../Box";
-import { Image } from "../../node-lib/cms";
+import { Image } from "../../common-lib/cms-types";
 import OakImage, { OakImageProps } from "../OakImage";
 
-type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
+export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
   image: Image;
   alt?: string;
+  imageBuilder?: UseNextSanityImageBuilder;
 };
 
 /**
@@ -24,14 +29,24 @@ export const sanityClientLike: SanityClientLike = {
   },
 };
 
-const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
+const defaultImageBuilder =
+  ({ width, height }: { width?: number | string; height?: number | string }) =>
+  (builder: ImageUrlBuilder) =>
+    typeof width === "number" && typeof height === "number"
+      ? builder.width(width).height(height)
+      : builder;
+
+const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
+
+  imageBuilder = imageBuilder || defaultImageBuilder(rest);
 
   const { width, height, ...imageProps } = useNextSanityImage(
     sanityClientLike,
     image,
     {
       enableBlurUp: false,
+      imageBuilder,
     }
   );
 
@@ -62,7 +77,7 @@ const CMSImage: FC<CMSImageProps> = ({ image, ...rest }) => {
         {...rest}
         alt={finalAltText}
         // $height: auto to keep original aspect ratio of image
-        $height="auto"
+        $height={rest.$height || rest.$cover ? undefined : "auto"}
         aria-hidden={image.isPresentational ? true : undefined}
       />
     </Box>

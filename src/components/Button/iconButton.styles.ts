@@ -12,7 +12,7 @@ import {
   DEFAULT_BUTTON_VARIANT,
   DEFAULT_BUTTON_BACKGROUND,
   getButtonColor,
-  getButtonHeight,
+  getIconButtonHeight,
 } from "./common";
 import { iconFocusUnderline } from "./IconFocusUnderline";
 
@@ -45,9 +45,9 @@ const iconButtonStyles = css<IconButtonStylesProps>`
   justify-content: center;
 
   ${(props) => css`
-    height: ${getButtonHeight(props.size)}px;
-    width: ${getButtonHeight(props.size)}px;
-    min-width: ${getButtonHeight(props.size)}px;
+    height: ${getIconButtonHeight(props.size, props.variant)}px;
+    width: ${getIconButtonHeight(props.size, props.variant)}px;
+    min-width: ${getIconButtonHeight(props.size, props.variant)}px;
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
