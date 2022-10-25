@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
@@ -94,11 +94,9 @@ describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(<AboutBoard pageData={testAboutBoardPageData} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "About us"
+    );
   });
 
   describe.skip("SEO", () => {
