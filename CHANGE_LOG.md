@@ -1,3 +1,10 @@
+# [1.46.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.1...v1.46.0) (2022-10-26)
+
+
+### Features
+
+* **Netlify:** turn default domain redirect back on ([0a274b3](https://github.com/oaknational/Oak-Web-Application/commit/0a274b3b6a021c26ae552a02c460568c84cc38f1))
+
 ## [1.45.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.0...v1.45.1) (2022-10-26)
 
 
