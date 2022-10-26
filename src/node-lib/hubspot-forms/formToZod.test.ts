@@ -45,6 +45,23 @@ describe("formToZod", () => {
     });
   });
 
+  it("marks `string` type fields as non-empty", () => {
+    const form = {
+      fields: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    } as FormDefinition;
+
+    const schema = formToZod(form);
+
+    expect(() => {
+      schema.parse({ name: "" });
+    }).toThrow();
+  });
+
   it("handles `select` type fields", () => {
     const form = {
       fields: [

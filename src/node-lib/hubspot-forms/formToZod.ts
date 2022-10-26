@@ -9,7 +9,7 @@ const fieldToZod = (formField: FormField) => {
 
   switch (formField.type) {
     case "string":
-      schema = z.string();
+      schema = z.string().min(1);
       break;
     case "email":
       schema = z.string().email();
