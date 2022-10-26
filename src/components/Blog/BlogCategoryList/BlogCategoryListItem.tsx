@@ -10,12 +10,14 @@ type BlogCategoryListItemProps = {
   isSelected: boolean;
   category: { title: string; slug: string } | { title: "All"; slug: null };
   setSelected: (slug: string | null) => void;
+  page: "blog-index" | "webinars-index";
 };
 const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
   const {
     category: { slug, title },
     isSelected,
     setSelected,
+    page,
   } = props;
   const arrowHidden = !isSelected;
 
@@ -31,6 +33,8 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
     ICON_SIZE[1] + ICON_MARGIN_RIGHT[1],
   ];
 
+  console.log("type", page);
+
   return (
     <LI
       $display="flex"
@@ -45,7 +49,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         $display="flex"
         $height="100%"
         $alignItems="center"
-        page="blog-index"
+        page={page}
         category={slug}
         htmlAnchorProps={{
           onClick,

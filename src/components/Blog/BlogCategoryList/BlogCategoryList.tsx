@@ -9,9 +9,11 @@ export type BlogCategoryListProps = BoxProps & {
   labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
+  page: "blog-index" | "webinars-index";
 };
 const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
-  const { categories, selectedCategorySlug, labelledBy, ...boxProps } = props;
+  const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
+    props;
   const [visiblySelected, setVisiblySelected] = useState(selectedCategorySlug);
   useEffect(() => {
     setVisiblySelected(selectedCategorySlug);
@@ -24,6 +26,7 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
           isSelected={visiblySelected === null}
           category={{ slug: null, title: "All" }}
           setSelected={setVisiblySelected}
+          page={page}
         />
         {categories.map((category) => {
           return (
@@ -32,6 +35,7 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
               isSelected={visiblySelected === category.slug}
               category={category}
               setSelected={setVisiblySelected}
+              page={page}
             />
           );
         })}

@@ -11,31 +11,33 @@ import { Breadcrumb } from "../Breadcrumbs";
  *
  */
 
-export const getBlogBreadcrumbs = (
+export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
-  currentCategorySlug: string | null
+  currentCategorySlug: string | null,
+  page: "blog" | "webinars"
 ): Breadcrumb[] => [
-  { label: "Blog", href: "/blog" },
+  { label: page.charAt(0).toUpperCase() + page.slice(1), href: `/${page}` },
   {
     label:
       categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
       "All",
-    href: currentCategorySlug || "/blog",
+    href: currentCategorySlug || `/${page}`,
     disabled: true,
   },
 ];
 
-export const getBlogPostBreadcrumbs = (
+export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
-  blog: SerializedBlog
+  blog: SerializedBlog,
+  page: "blog" | "webinars"
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
   return [
-    { label: "Blog", href: "/blog" },
+    { label: page.charAt(0).toUpperCase() + page.slice(1), href: `/${page}` },
     {
       label:
         categories.find((cat) => cat.slug === category.slug)?.title || "All",
-      href: `/blog/categories/${category.slug}`,
+      href: `/${page}/categories/${category.slug}`,
     },
     {
       label: title,

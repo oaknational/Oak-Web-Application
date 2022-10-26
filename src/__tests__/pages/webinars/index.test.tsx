@@ -4,7 +4,7 @@ import { WebinarPreview } from "../../../node-lib/cms";
 import WebinarListingPage, {
   SerializedWebinarPreview,
   WebinarListingPageProps,
-} from "../../../pages/webinars";
+} from "../../../components/pages/WebinarsIndex.page";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -58,6 +58,8 @@ describe("pages/webinar/index.tsx", () => {
             testSerializedWebinarPreview,
             testSerializedWebinarPreview2,
           ]}
+          categories={[]}
+          categorySlug={null}
         />
       );
 
@@ -81,6 +83,8 @@ describe("pages/webinar/index.tsx", () => {
               testSerializedWebinarPreview,
               testSerializedWebinarPreview2,
             ]}
+            categories={[]}
+            categorySlug={null}
           />
         );
 

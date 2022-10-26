@@ -1,72 +1,73 @@
-import { uniqBy } from "lodash/fp";
 import {
   GetStaticPaths,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { toPlainText } from "@portabletext/react";
 import { useTheme } from "styled-components";
 
-import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSClient, {
-  BlogPostPreview,
   BlogWebinarCategory,
+  WebinarPreview,
 } from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
-import BlogCategoryList from "../Blog/BlogCategoryList";
-import useBlogCategoryList from "../Blog/BlogCategoryList/useBlogCategoryList";
-import BlogList from "../Blog/BlogList";
-import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
-import Box from "../Box";
-import { getBlogWebinarListBreadcrumbs } from "../Breadcrumbs/getBreadcrumbs";
-import SummaryCard from "../Card/SummaryCard";
-import Grid, { GridArea } from "../Grid";
-import Layout from "../Layout";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileBlogFilters from "../MobileBlogFilters";
-import { Heading } from "../Typography";
+import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
+import Layout from "../../components/Layout";
+import { Heading } from "../../components/Typography";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import BlogList from "../../components/Blog/BlogList";
+import { getBlogWebinarListBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
+import MobileBlogFilters from "../../components/MobileBlogFilters";
+import SummaryCard from "../../components/Card/SummaryCard";
+import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import Grid, { GridArea } from "../../components/Grid";
+import Box from "../../components/Box";
+import useBlogCategoryList from "../../components/Blog/BlogCategoryList/useBlogCategoryList";
+import BlogCategoryList from "../../components/Blog/BlogCategoryList";
 
-export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
+export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
 };
 
-export type BlogListingPageProps = {
-  blogs: SerializedBlogPostPreview[];
+export type WebinarListingPageProps = {
+  webinars: SerializedWebinarPreview[];
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
 };
 
-const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
-  const { blogs, categories, categorySlug } = props;
+/**
+ * @TODO: Remove /webinars/* from next-sitemap.config.js when built
+ */
+
+const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
+  const webinars = props.webinars.map(webinarToBlogListItem);
+  const { categories, categorySlug } = props;
   const blogCategoriesListProps = useBlogCategoryList();
-  console.log(props);
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
     alt: "",
   };
 
-  const blogListItems = blogs.map(blogToBlogListItem);
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
 
   return (
     <Layout
       seoProps={getSeoProps({
-        title: "Latest Blogs & Insights",
-        description:
-          "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
+        title: "Webinars",
+        description: "Webinars",
       })}
       $background="white"
       breadcrumbs={getBlogWebinarListBreadcrumbs(
         categories,
         categorySlug,
-        "blog"
+        "webinars"
       )}
     >
       <MobileBlogFilters
-        page={"blog-index"}
+        page={"webinars-index"}
         categoryListProps={{
           categories,
           selectedCategorySlug: categorySlug,
@@ -74,12 +75,10 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
-          title={"Blog Listing"}
+          title={"Webinar Listing"}
           heading={"Inspiration for inside and outside the classroom"}
           // TODO: Replace line summary with new field from CMS
-          summary={
-            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
-          }
+          summary={"This card needs to come from Sanity"}
           imageProps={cardImage}
         />
         <Grid $ph={[12, 0]}>
@@ -103,33 +102,34 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
                 $mt={24}
                 categories={categories}
                 selectedCategorySlug={categorySlug}
-                page={"blog-index"}
+                page={"webinars-index"}
               />
             </Box>
           </GridArea>
           {/* @todo is there a nicer way to make this 1 column spacer? */}
           <GridArea $order={1} $colSpan={[12, 1]} />
           <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
-            <BlogList items={blogListItems} withContainingHrs withPagination />
+            <BlogList items={webinars} withContainingHrs withPagination />
           </GridArea>
         </Grid>
       </MaxWidth>
-      <BlogListJsonLd blogs={props.blogs} />
+      {/* <BlogListJsonLd blogs={props.webinars} /> @todo // needs more data from
+        sanity */}
     </Layout>
   );
 };
 
-export const blogToBlogListItem = (
-  blog: SerializedBlogPostPreview
+export const webinarToBlogListItem = (
+  webinar: SerializedWebinarPreview
 ): BlogListItemProps => ({
-  contentType: "blog-post",
-  title: blog.title,
-  href: `/blog/${blog.slug}`,
-  snippet: blog.summary,
+  contentType: "webinar",
+  title: webinar.title,
+  href: `/webinars/${webinar.slug}`,
+  snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
-  category: blog.category,
-  date: blog.date,
-  mainImage: blog?.mainImage,
+  category: webinar.category,
+  date: webinar.date,
+  mainImage: null,
 });
 
 export const serializeDate = <T extends { date: Date }>(
@@ -140,44 +140,41 @@ export const serializeDate = <T extends { date: Date }>(
 });
 
 export const getStaticProps: GetStaticProps<
-  BlogListingPageProps,
-  // @todo is below typesafe?
+  WebinarListingPageProps,
   { categorySlug?: string }
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
-  const blogResults = await CMSClient.blogPosts({
+  const webinarResults = await CMSClient.webinars({
     previewMode: isPreviewMode,
   });
 
-  const blogCategories = uniqBy(
-    "title",
-    blogResults.map((blogResult) => blogResult.category)
-  ).sort((a, b) => (a.title < b.title ? -1 : 1));
-
   const categorySlug = context.params?.categorySlug || null;
-  const blogs = blogResults.map(serializeDate).filter((blog) => {
+  const webinars = webinarResults.map(serializeDate).filter((webinar) => {
     if (categorySlug) {
-      return blog.category.slug === categorySlug;
+      return webinar.category.slug === categorySlug;
     }
     return true;
   });
 
-  const results: GetStaticPropsResult<BlogListingPageProps> = {
+  const webinarCategories = [
+    ...new Set(webinars.map((item) => item.category)),
+  ].sort((a, b) => (a.title < b.title ? -1 : 1));
+
+  const results: GetStaticPropsResult<WebinarListingPageProps> = {
     props: {
-      blogs,
-      categories: blogCategories,
-      categorySlug,
+      webinars,
+      categories: webinarCategories,
+      categorySlug: categorySlug,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);
-
   return resultsWithIsr;
 };
 
 type URLParams = { categorySlug: string };
 export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const blogResults = await CMSClient.blogPosts();
+  const blogResults = await CMSClient.webinars();
 
   const paths = blogResults.map((blogResult) => ({
     params: {
@@ -191,4 +188,4 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   };
 };
 
-export default BlogListingPage;
+export default WebinarListingPage;

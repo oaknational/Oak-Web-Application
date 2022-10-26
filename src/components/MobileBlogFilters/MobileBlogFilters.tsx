@@ -12,8 +12,9 @@ import BlogCategoryList, {
 } from "../Blog/BlogCategoryList/BlogCategoryList";
 
 type MobileBlogFiltersProps = {
-  categoryListProps: Omit<BlogCategoryListProps, "labelledBy">;
+  categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
   withBackButton?: boolean;
+  page: "blog-index" | "webinars-index";
 };
 const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
     checkAndSetHeight();
   }, [categoryListRef]);
 
-  const { categoryListProps, withBackButton } = props;
+  const { categoryListProps, withBackButton, page } = props;
 
   const BUTTON_ROW_HEIGHT = 80;
 
@@ -136,6 +137,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             $pv={32}
             $ph={16}
             {...categoryListProps}
+            page={page}
           />
         </Box>
       </Box>

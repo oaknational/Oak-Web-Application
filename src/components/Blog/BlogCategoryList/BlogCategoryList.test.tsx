@@ -8,6 +8,7 @@ describe("BlogCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
         labelledBy={labelId}
+        page={"blog-index"}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
@@ -26,6 +27,7 @@ describe("BlogCategoryList", () => {
   test("current link should be signposted with aria-current='page'", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
+        page={"blog-index"}
         labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
@@ -40,6 +42,7 @@ describe("BlogCategoryList", () => {
   test("non current links should not be signposted with aria-current", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
+        page={"blog-index"}
         labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
@@ -56,6 +59,7 @@ describe("BlogCategoryList", () => {
       <>
         <span id={labelId}>Test Categories</span>
         <BlogCategoryList
+          page={"blog-index"}
           labelledBy={labelId}
           categories={[
             { title: "Oak Updates", slug: "oak-updates" },
