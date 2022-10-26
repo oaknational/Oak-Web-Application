@@ -40,7 +40,6 @@ export type BlogListingPageProps = {
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const { blogs, categories, categorySlug } = props;
   const blogCategoriesListProps = useBlogCategoryList();
-  console.log(props);
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",

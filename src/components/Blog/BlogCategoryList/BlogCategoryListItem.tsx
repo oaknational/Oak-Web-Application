@@ -33,8 +33,6 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
     ICON_SIZE[1] + ICON_MARGIN_RIGHT[1],
   ];
 
-  console.log("type", page);
-
   return (
     <LI
       $display="flex"
