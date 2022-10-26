@@ -7,10 +7,6 @@ import {
 import { toPlainText } from "@portabletext/react";
 import { useTheme } from "styled-components";
 
-import CMSClient, {
-  BlogWebinarCategory,
-  WebinarPreview,
-} from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
 import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
@@ -25,6 +21,11 @@ import Grid, { GridArea } from "../../components/Grid";
 import Box from "../../components/Box";
 import useBlogCategoryList from "../../components/Blog/BlogCategoryList/useBlogCategoryList";
 import BlogCategoryList from "../../components/Blog/BlogCategoryList";
+import CMSClient from "../../node-lib/cms";
+import {
+  BlogWebinarCategory,
+  WebinarPreview,
+} from "../../common-lib/cms-types";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
