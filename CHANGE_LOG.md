@@ -1,3 +1,10 @@
+## [1.45.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.0...v1.45.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* rotate chevron in select on state change ([3e80d34](https://github.com/oaknational/Oak-Web-Application/commit/3e80d34b078743da8c36ede4b4b1500a09062e4e))
+
 # [1.45.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.44.1...v1.45.0) (2022-10-25)
 
 
