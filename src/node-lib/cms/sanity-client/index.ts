@@ -33,6 +33,13 @@ export type ListParams = Params & {
   limit?: number;
 };
 
+const addReferences = async <T extends Record<string, unknown>>(
+  document: T
+): Promise<T> => {
+  const withPortableTextReferences = await resolveReferences(document);
+  return withPortableTextReferences;
+};
+
 const getSanityClient = () => ({
   webinarsListingPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.webinarsListingPage({
@@ -140,7 +147,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    return parseResults(homePageSchema, homepageData, previewMode);
+    const withResolvedReferences = await addReferences(homepageData);
+
+    return parseResults(homePageSchema, withResolvedReferences, previewMode);
   },
   planningPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.planningCorePage({
@@ -153,7 +162,13 @@ const getSanityClient = () => ({
       return null;
     }
 
-    return parseResults(planningPageSchema, planningPageData, previewMode);
+    const withResolvedReferences = await addReferences(planningPageData);
+
+    return parseResults(
+      planningPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   aboutWhoWeArePage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.aboutWhoWeArePage({
@@ -171,7 +186,13 @@ const getSanityClient = () => ({
       ...parentPageData,
       ...whoWeArePageData,
     };
-    return parseResults(aboutWhoWeArePageSchema, pageData, previewMode);
+
+    const withResolvedReferences = await addReferences(pageData);
+    return parseResults(
+      aboutWhoWeArePageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   aboutLeadershipPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.aboutLeadershipPage({
@@ -189,7 +210,13 @@ const getSanityClient = () => ({
       ...parentPageData,
       ...leadershipPageData,
     };
-    return parseResults(aboutLeadershipPageSchema, pageData, previewMode);
+
+    const withResolvedReferences = await addReferences(pageData);
+    return parseResults(
+      aboutLeadershipPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   aboutBoardPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.aboutBoardPage({
@@ -207,7 +234,13 @@ const getSanityClient = () => ({
       ...parentPageData,
       ...boardPageData,
     };
-    return parseResults(aboutBoardPageSchema, pageData, previewMode);
+
+    const withResolvedReferences = await addReferences(pageData);
+    return parseResults(
+      aboutBoardPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   aboutPartnersPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.aboutPartnersPage({
@@ -225,7 +258,13 @@ const getSanityClient = () => ({
       ...parentPageData,
       ...partnersPageData,
     };
-    return parseResults(aboutPartnersPageSchema, pageData, previewMode);
+
+    const withResolvedReferences = await addReferences(pageData);
+    return parseResults(
+      aboutPartnersPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   aboutWorkWithUsPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.aboutWorkWithUsPage({
@@ -243,7 +282,13 @@ const getSanityClient = () => ({
       ...parentPageData,
       ...workWithUsPage,
     };
-    return parseResults(aboutWorkWithUsPageSchema, pageData, previewMode);
+
+    const withResolvedReferences = await addReferences(pageData);
+    return parseResults(
+      aboutWorkWithUsPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   curriculumPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.curriculumCorePage({
@@ -256,7 +301,12 @@ const getSanityClient = () => ({
       return null;
     }
 
-    return parseResults(curriculumPageSchema, curriculumPageData, previewMode);
+    const withResolvedReferences = await addReferences(curriculumPageData);
+    return parseResults(
+      curriculumPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
   },
   contactPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.contactCorePage({
@@ -269,15 +319,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const contactPageDataWithReferences = await resolveReferences(
-      contactPageData
-    );
+    const withResolvedReferences = await addReferences(contactPageData);
 
-    return parseResults(
-      contactPageSchema,
-      contactPageDataWithReferences,
-      previewMode
-    );
+    return parseResults(contactPageSchema, withResolvedReferences, previewMode);
   },
   policyPages: async ({ previewMode, ...params }: ListParams = {}) => {
     const policyPageListSchema = z.array(policyPagePreviewSchema);
@@ -306,15 +350,14 @@ const getSanityClient = () => ({
       slug,
     });
 
-    if (!policyPageResult?.allPolicyPage?.[0]) {
+    const policyPage = policyPageResult?.allPolicyPage?.[0];
+    if (!policyPage) {
       return null;
     }
 
-    const policyPage = await resolveReferences(
-      policyPageResult.allPolicyPage[0]
-    );
+    const withResolvedReferences = await addReferences(policyPage);
 
-    return parseResults(policyPageSchema, policyPage, previewMode);
+    return parseResults(policyPageSchema, withResolvedReferences, previewMode);
   },
   landingPages: async ({ previewMode, ...params }: ListParams = {}) => {
     const landingPageListSchema = z.array(landingPagePreviewSchema);
@@ -348,9 +391,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const landingPageResolvedRef = await resolveReferences(landingPage);
+    const withResolvedReferences = await addReferences(landingPage);
 
-    return parseResults(landingPageSchema, landingPageResolvedRef, previewMode);
+    return parseResults(landingPageSchema, withResolvedReferences, previewMode);
   },
 });
 
