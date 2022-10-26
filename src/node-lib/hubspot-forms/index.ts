@@ -1,14 +1,23 @@
-import Hubspot from "hubspot";
+import { Client as HubspotClient } from "@hubspot/api-client";
 
 import config from "../../config";
 
-const hubspot = new Hubspot({
+import { FormDefinition } from "./FormDefinition";
+import { transformHubspotForm } from "./transformHubspotForm";
+
+const hubspot = new HubspotClient({
   accessToken: config.get("hubspotFormsAccessToken"),
 });
 
 export const getHubspotFormById = async (
   formId: string
-): Promise<unknown> => {
-  const formResponse = await hubspot.forms.getById(formId);
-  return formResponse;
+): Promise<FormDefinition> => {
+  const formResponse = await hubspot.apiRequest({
+    method: "get",
+    path: `/forms/v2/forms/${formId}`,
+  });
+
+  const form = await formResponse.json();
+
+  return transformHubspotForm(form);
 };
