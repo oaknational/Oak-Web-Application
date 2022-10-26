@@ -1,8 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import { FC, useRef } from "react";
 
-import { Image, PortableTextJSON } from "../../node-lib/cms";
-import { TeamMemberSocialsFragment } from "../../node-lib/sanity-graphql/generated/sdk";
+import {
+  Image,
+  PortableTextJSON,
+  TeamMemberSocials,
+} from "../../common-lib/cms-types";
 import AspectRatio from "../AspectRatio";
 import Box from "../Box";
 import IconButton from "../Button/IconButton";
@@ -24,7 +27,7 @@ export type BioData = {
   name: string;
   role?: string | null;
   image?: Image | null;
-  socials?: TeamMemberSocialsFragment | null;
+  socials?: TeamMemberSocials | null;
   bioPortableText?: PortableTextJSON;
 };
 

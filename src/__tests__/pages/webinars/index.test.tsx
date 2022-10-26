@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import { WebinarPreview } from "../../../node-lib/cms";
+import { WebinarPreview } from "../../../common-lib/cms-types";
 import WebinarListingPage, {
   SerializedWebinarPreview,
   WebinarListingPageProps,

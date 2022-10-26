@@ -14,7 +14,7 @@ import PreviewControls from "../PreviewControls";
 import ClientErrorHeader from "../ClientErrorHeader";
 import ClientErrorFooter from "../ClientErrorFooter";
 import LandingPagesHeader from "../LandingPagesHeader";
-import { CTA } from "../../node-lib/cms";
+import { CTA } from "../../common-lib/cms-types";
 import { LandingPagesHeaderProps } from "../LandingPagesHeader/LandingPagesHeader";
 import { Breadcrumb } from "../Breadcrumbs";
 

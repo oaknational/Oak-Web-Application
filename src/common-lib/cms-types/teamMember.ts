@@ -3,6 +3,15 @@ import * as z from "zod";
 import { documentSchema, imageSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
+const teamMemberSocialsSchema = z
+  .object({
+    twitterUsername: z.string().nullish(),
+    linkedinUrl: z.string().nullish(),
+  })
+  .nullish();
+
+export type TeamMemberSocials = z.infer<typeof teamMemberSocialsSchema>;
+
 export const teamMemberSchema = z
   .object({
     name: z.string(),
@@ -18,12 +27,7 @@ export const teamMemberSchema = z
         y: z.number(),
       })
       .nullish(),
-    socials: z
-      .object({
-        twitterUsername: z.string().nullish(),
-        linkedinUrl: z.string().nullish(),
-      })
-      .nullish(),
+    socials: teamMemberSocialsSchema,
   })
   .merge(documentSchema);
 

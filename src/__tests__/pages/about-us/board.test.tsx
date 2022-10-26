@@ -2,7 +2,8 @@ import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient, { AboutBoardPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
+import { AboutBoardPage } from "../../../common-lib/cms-types";
 import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
 import { portableTextFromString } from "../../__helpers__/cms";
 

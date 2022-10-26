@@ -1,4 +1,4 @@
-import { BlogWebinarCategory } from "../../node-lib/cms";
+import { BlogWebinarCategory } from "../../common-lib/cms-types";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { Breadcrumb } from "../Breadcrumbs";
 

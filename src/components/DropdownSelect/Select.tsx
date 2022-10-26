@@ -230,7 +230,11 @@ export function Select<T extends object>(
                   : props.placeholder}
               </SelectSpan>
             </SelectInner>
-            <Icon $color="black" name={"ChevronDown"} />
+            <Icon
+              $color="black"
+              name={"ChevronDown"}
+              rotate={state.isOpen ? 0 : 180}
+            />
           </SelectButton>
           {state.isOpen && (
             <Popover isOpen={state.isOpen} onClose={state.close}>

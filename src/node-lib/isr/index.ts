@@ -1,8 +1,8 @@
 import { GetStaticPropsResult } from "next";
 
-import config from "../../config";
+import serverConfig from "../../config/server";
 
-const disableIsr = config.get("disableIsr");
+const disableIsr = serverConfig.get("disableIsr");
 if (disableIsr) {
   console.info("ISR disabled in env");
 }
@@ -21,7 +21,7 @@ function decorateWithIsr<P>(
 ): GetStaticPropsResult<P> {
   const decoratedResults = { ...results };
   if (!disableIsr) {
-    const revalidateTimeInSeconds = config.get("sanityRevalidateSeconds");
+    const revalidateTimeInSeconds = serverConfig.get("sanityRevalidateSeconds");
     decoratedResults.revalidate = revalidateTimeInSeconds;
   }
 

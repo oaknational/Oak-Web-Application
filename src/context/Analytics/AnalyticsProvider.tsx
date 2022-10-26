@@ -18,7 +18,7 @@ import posthogToAnalyticsService, {
   PosthogConfig,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
-import config from "../../config";
+import config from "../../config/browser";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";

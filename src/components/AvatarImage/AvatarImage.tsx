@@ -1,7 +1,7 @@
 import { max } from "lodash";
 import { FC } from "react";
 
-import { SanityImageAsset } from "../../node-lib/sanity-graphql/generated/sdk";
+import { Image } from "../../common-lib/cms-types";
 import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import Circle from "../Circle";
@@ -11,7 +11,7 @@ import { FlexProps } from "../Flex";
 const DEFAULT_AVATAR_SIZE = 56;
 
 type AvatarImageProps = FlexProps & {
-  image?: SanityImageAsset | null;
+  image?: Image | null;
   size?: ResponsiveValues<PixelSpacing>;
 };
 const AvatarImage: FC<AvatarImageProps> = (props) => {

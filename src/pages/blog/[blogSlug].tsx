@@ -10,7 +10,8 @@ import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
 import Layout from "../../components/Layout";
-import CMSClient, { BlogPost } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
+import { BlogPost } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Grid, { GridArea } from "../../components/Grid";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";

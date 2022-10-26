@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 
 const OAK_PAGES = {

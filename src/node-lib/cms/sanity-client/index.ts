@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import sanityGraphqlApi from "../../sanity-graphql";
-
 import {
   aboutBoardPageSchema,
   aboutLeadershipPageSchema,
@@ -20,7 +19,8 @@ import {
   webinarSchema,
   landingPagePreviewSchema,
   landingPageSchema,
-} from "./schemas";
+} from "../../../common-lib/cms-types";
+
 import { resolveReferences } from "./resolveReferences";
 import { parseResults } from "./parseResults";
 

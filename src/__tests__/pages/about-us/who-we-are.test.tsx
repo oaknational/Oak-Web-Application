@@ -4,7 +4,8 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
   getStaticProps,
 } from "../../../pages/about-us/who-we-are";
-import CMSClient, { AboutWhoWeArePage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
+import { AboutWhoWeArePage } from "../../../common-lib/cms-types";
 import { mockSeo, portableTextFromString } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
