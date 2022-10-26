@@ -16,10 +16,10 @@ export type FormFieldBase = {
   name: string;
   label: string | null;
   required: boolean;
-  default: string | null;
-  placeholder: string | null;
-  description: string | null;
-  hidden: boolean | null;
+  default?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  hidden?: boolean | null;
   renderWhen?: FieldRenderCondition[];
 };
 

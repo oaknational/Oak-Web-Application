@@ -10,10 +10,13 @@ export const homePageSchema = z
     summaryPortableText: portableTextSchema,
     sidebarCard1: cardSchema,
     sidebarCard2: cardSchema,
-    sidebarForm: z.object({
-      title: z.string(),
-      bodyPortableText: portableTextSchema,
-    }),
+    sidebarForm: z
+      .object({
+        title: z.string(),
+        bodyPortableText: portableTextSchema,
+        hubspotForm: z.any(),
+      })
+      .passthrough(),
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);

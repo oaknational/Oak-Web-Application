@@ -26,13 +26,27 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const HubspotForm = Template.bind({});
 HubspotForm.args = {
   form: {
-    id: " 000",
+    formId: "abc-def",
+    portalId: 12345,
+    submitButtonLabel: "Submit label",
+    successMessage: "Success message",
     fields: [
+      {
+        name: "name",
+        label: "Name",
+        type: "string",
+        required: true,
+      },
       {
         name: "user_type",
         label: "User Type",
         type: "select",
         required: true,
+        options: [
+          { label: "Teacher", value: "Teacher" },
+          { label: "Pupil", value: "Pupil" },
+          { label: "Parent", value: "Parent" },
+        ],
       },
       {
         name: "school",
