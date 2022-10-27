@@ -1,7 +1,7 @@
 import OakError from "../../../errors/OakError";
 import { getHubspotFormById } from "../../hubspot-forms";
 
-import { addHubspotForms } from "./addHubspotForms";
+import { resolveHubspotFromReferences } from "./resolveHubspotFromReferences";
 
 jest.mock("../../hubspot-forms");
 
@@ -41,7 +41,7 @@ describe("addHubspotForms", () => {
   };
 
   it("replaces each hubspotForm object with the result of the api call", async () => {
-    const resolved = await addHubspotForms(mockObjWithReferences);
+    const resolved = await resolveHubspotFromReferences(mockObjWithReferences);
 
     expect(resolved.foo.bar.hubspotForm).toMatchObject({
       portalId: 12345,
@@ -69,7 +69,7 @@ describe("addHubspotForms", () => {
         fields: [],
       });
 
-    await addHubspotForms(mockObjWithReferences);
+    await resolveHubspotFromReferences(mockObjWithReferences);
 
     expect(getHubspotFormById).toHaveBeenNthCalledWith(1, "abcd-efgh-ijkl");
     expect(getHubspotFormById).toHaveBeenNthCalledWith(2, "mnop-qrst-uvwx");
@@ -87,12 +87,12 @@ describe("addHubspotForms", () => {
 
     mockedGetHubspotFormById.mockResolvedValue(mockErrorCausingResponse);
 
-    const capturedError = await addHubspotForms(mockObjWithReferences).catch(
+    const capturedError = await resolveHubspotFromReferences(mockObjWithReferences).catch(
       (err) => err
     );
 
     await expect(
-      async () => await addHubspotForms(mockObjWithReferences)
+      async () => await resolveHubspotFromReferences(mockObjWithReferences)
     ).rejects.toThrowError(
       new OakError({ code: "cms/invalid-reference-data" })
     );

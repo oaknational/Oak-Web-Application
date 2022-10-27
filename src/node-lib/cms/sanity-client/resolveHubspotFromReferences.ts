@@ -9,7 +9,7 @@ type ObjectPath = string[];
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
  */
-export const addHubspotForms = async <
+export const resolveHubspotFromReferences = async <
   T extends Record<string, unknown> | Record<string, unknown>[]
 >(
   document: T
