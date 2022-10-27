@@ -9,6 +9,15 @@ const mockedGetHubspotFormById = getHubspotFormById as jest.MockedFn<
   typeof getHubspotFormById
 >;
 
+const reportError = jest.fn();
+jest.mock("../../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
+
 describe("addHubspotForms", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -18,12 +27,16 @@ describe("addHubspotForms", () => {
       .mockResolvedValueOnce({
         portalId: 12345,
         formId: "abcd-efgh-ijkl",
-        fields: [{ name: "name", label: "Name", type: "string" }],
+        fields: [
+          { name: "name", label: "Name", type: "string", required: true },
+        ],
       })
       .mockResolvedValueOnce({
         portalId: 6789,
         formId: "mnop-qrst-uvwx",
-        fields: [{ name: "email", label: "Email", type: "email" }],
+        fields: [
+          { name: "email", label: "Email", type: "email", required: true },
+        ],
       });
   });
 
@@ -75,32 +88,52 @@ describe("addHubspotForms", () => {
     expect(getHubspotFormById).toHaveBeenNthCalledWith(2, "mnop-qrst-uvwx");
   });
 
-  it.skip("throws an OakError with metadata when it can't match refs to responses", async () => {
-    // @TODO: getById fail response
-    const mockErrorCausingResponse = [
-      {
-        contentType: "aboutCorePage",
-        _type: "aboutCorePage",
-        id: "wont-be-found",
-      },
-    ];
+  it("resolves to null for forms that throw an error", async () => {
+    // Clear, then fail the first time and succeed the second
+    mockedGetHubspotFormById
+      .mockReset()
+      .mockRejectedValueOnce(new Error("Oops"))
+      .mockResolvedValueOnce({
+        portalId: 6789,
+        formId: "mnop-qrst-uvwx",
+        fields: [
+          { name: "email", label: "Email", type: "email", required: true },
+        ],
+      });
 
-    mockedGetHubspotFormById.mockResolvedValue(mockErrorCausingResponse);
+    const resolved = await resolveHubspotFromReferences(mockObjWithReferences);
 
-    const capturedError = await resolveHubspotFromReferences(mockObjWithReferences).catch(
-      (err) => err
+    expect(resolved.foo.bar.hubspotForm).toBeNull();
+
+    expect(resolved?.baz?.[0]?.hubspotForm).toMatchObject({
+      portalId: 6789,
+      formId: "mnop-qrst-uvwx",
+      fields: [{ name: "email", label: "Email", type: "email" }],
+    });
+  });
+
+  it("logs errors encountered", async () => {
+    const sourceError = new Error("Oops");
+
+    mockedGetHubspotFormById.mockReset().mockRejectedValue(sourceError);
+
+    await resolveHubspotFromReferences({
+      id: "doc-id",
+      ...mockObjWithReferences,
+    });
+
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "cms/invalid-hubspot-form",
+      })
     );
 
-    await expect(
-      async () => await resolveHubspotFromReferences(mockObjWithReferences)
-    ).rejects.toThrowError(
-      new OakError({ code: "cms/invalid-reference-data" })
-    );
-
-    expect(capturedError.meta).toEqual({
-      portableTextPath: ["foo", "bar", "post"],
-      portableTextRefId: "ref1",
-      queryResults: JSON.stringify(mockErrorCausingResponse),
+    // toHaveBeenCalledWith doesn't match properly on a new OakError
+    // with meta, so explicitly check the meta object
+    const reportedError = reportError.mock.lastCall[0];
+    expect(reportedError.meta).toEqual({
+      hubspotFormId: "mnop-qrst-uvwx",
+      sanityDocumentId: "doc-id",
     });
   });
 });

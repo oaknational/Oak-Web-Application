@@ -1,9 +1,13 @@
 import { get, update } from "lodash/fp";
 
 import OakError from "../../../errors/OakError";
+import errorReporter from "../../../common-lib/error-reporter";
 import { getHubspotFormById } from "../../hubspot-forms";
+import { FormDefinition } from "../../hubspot-forms/FormDefinition";
 
 type ObjectPath = string[];
+
+const reportError = errorReporter("resolveHubspotFormReferences.ts");
 
 /**
  * Given a portable text JSON blob, search for all objects that have
@@ -19,60 +23,75 @@ export const resolveHubspotFromReferences = async <
    * [[0, 'sidebar', 'sidebarForm'], [5, 'formBlock']]
    * We hold onto this paths array so we can update them later
    */
-  const pathsToUpdate = getAllPaths(document, isHubspotFormObject);
+  const pathsToUpdate = getAllPaths(document, hasHubspotFormKey);
 
   /**
-   * Grab the actual _ref for each of the paths and store in a tuple with the path
+   * Grab the actual hubspotForm object for each of the paths
+   * and store in a tuple with the path
    */
   const pathsAndRefs: [ObjectPath, { id: string }][] = pathsToUpdate.map(
     (path) => [path, get([...path, "hubspotForm"], document)]
   );
 
-  // doc is tuple of [id, resolved form]
-  const queryResults = (
-    await Promise.allSettled(
-      pathsAndRefs.map(async ([, formRef]) => {
-        const actualForm = await getHubspotFormById(formRef.id);
-        // TODO: loudly log error
-        return [formRef.id, actualForm];
-      })
+  /**
+   * Fetch the matching form for each referenced ID, returning
+   * an array of tuples with the shape [id, resolved form]
+   *
+   * Making use of Promise.allSettled instead of Promise.all
+   * as we'd rather provide a slightly degraded experience without
+   * forms (but loudly warn)
+   *
+   * For now this ignores any errors, but we may want to differentiate
+   * between 404s and actual bugs
+   */
+  const formResults = await Promise.all(
+    pathsAndRefs.map(
+      async ([, formRef]): Promise<[string, FormDefinition | null]> => {
+        try {
+          const actualForm = await getHubspotFormById(formRef.id);
+
+          return [formRef.id, actualForm];
+        } catch (err) {
+          const error = new OakError({
+            code: "cms/invalid-hubspot-form",
+            originalError: err,
+            meta: {
+              hubspotFormId: formRef.id,
+              // We might not always be looking at a sanity document,
+              // but if we are try to provide the additional context
+              // for debugging
+              sanityDocumentId: "id" in document ? document.id : undefined,
+            },
+          });
+          reportError(error);
+
+          return [formRef.id, null];
+        }
+      }
     )
-  ).map((result) => (result.status === "fulfilled" ? result.value : null));
+  );
 
   /**
    * For each of the paths we found earlier, replace the _ref object at that
    * location with the result of the graphql query for it's data
    */
   const updated = pathsAndRefs.reduce((acc, [path, formRef]) => {
-    const queryPart = queryResults.find(([foundId]) => {
+    const matchingForm = formResults.find(([foundId]) => {
       return foundId === formRef.id;
     })?.[1];
 
-    if (!queryPart) {
-      /**
-       * If you're getting errors here make sure:
-       * - You've checked you're fetching the correct data in blogPortableTextReferences.gql
-       * - You've ran gql-codegen:sanity
-       * - Checked they're covered in portableTextReferencedEntrySchema
-       */
-      throw new OakError({
-        code: "cms/invalid-form-reference",
-        meta: {
-          portableTextPath: path,
-          portableTextRefId: formRef,
-          queryResults: JSON.stringify(queryResults.allDocument),
-        },
-      });
-    }
-
-    return update(path, (data) => ({ ...data, hubspotForm: queryPart }), acc);
+    return update(
+      path,
+      (data) => ({ ...data, hubspotForm: matchingForm }),
+      acc
+    );
   }, document);
 
   return updated;
 };
 
-const isHubspotFormObject = (entry: unknown): boolean => {
-  if (entry?.hubspotForm) {
+const hasHubspotFormKey = (entry: unknown): boolean => {
+  if (isRecord(entry) && entry.hubspotForm) {
     return true;
   }
   return false;
