@@ -75,7 +75,7 @@ We use [Husky to run pre-commit and commit message validating hooks](.husky), in
 Currently this hook
 
 - Formats the code using Prettier
-- Runs the linting
+- Runs style and code linting
 - Runs the unit tests
 
 #### Commit Message Validation

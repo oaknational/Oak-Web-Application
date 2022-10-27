@@ -35,9 +35,6 @@ module.exports = async (phase) => {
     const configLocation = process.env.OAK_CONFIG_LOCATION;
     oakConfig = await fetchConfig(configLocation);
 
-    // DEBUG
-    // console.log("Next Oak Config", oakConfig);
-
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
     // depend on a Vercel specific env variable.
