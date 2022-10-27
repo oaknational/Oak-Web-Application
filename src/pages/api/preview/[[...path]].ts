@@ -15,7 +15,7 @@ const preview: NextApiHandler = async (req, res) => {
    * the related blog post and then doing an explicit redirect to a
    * known URL to avoid an open redirect vulnerability
    *
-   * Using the [[...path]] naming and some validation we can skip
+   * Using the [[...path]] naming and some validation means we can skip
    * the lookup and having to be aware of every possible previewable
    * path within the app
    *
