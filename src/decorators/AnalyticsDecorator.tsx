@@ -1,5 +1,5 @@
 import { Story } from "@storybook/react";
-import { useState } from "react";
+import { FC, useState } from "react";
 
 import { NavigatedFrom } from "../browser-lib/avo/Avo";
 import {
@@ -8,7 +8,7 @@ import {
   UserId,
 } from "../context/Analytics/AnalyticsProvider";
 
-export default function AnalyticsDecorator(Story: Story) {
+export default function AnalyticsDecorator(Story: Story | FC) {
   const [state] = useState({
     /* eslint-disable @typescript-eslint/no-empty-function */
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -29,8 +29,6 @@ export default function AnalyticsDecorator(Story: Story) {
       NavigatedFrom,
     },
   });
-
-  console.log(typeof Story);
 
   return (
     <div>

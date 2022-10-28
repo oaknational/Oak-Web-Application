@@ -1,9 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import ToastDecorator from "../../../decorators/ToastDecorator";
+
 import Component from "./BlogHeader";
 
 export default {
   title: "Blogs",
+  decorators: [ToastDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 
