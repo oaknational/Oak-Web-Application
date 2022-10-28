@@ -24,6 +24,26 @@ describe("BlogCategoryList", () => {
       "/blog/categories/lesson-planning"
     );
   });
+  test("should work with webinars", () => {
+    const { getByRole } = renderWithTheme(
+      <BlogCategoryList
+        labelledBy={labelId}
+        page={"webinars-index"}
+        categories={[
+          { title: "Oak Updates", slug: "oak-updates" },
+          { title: "Lesson Planning", slug: "lesson-planning" },
+        ]}
+      />
+    );
+    expect(getByRole("link", { name: "Oak Updates" })).toHaveAttribute(
+      "href",
+      "/webinars/categories/oak-updates"
+    );
+    expect(getByRole("link", { name: "Lesson Planning" })).toHaveAttribute(
+      "href",
+      "/webinars/categories/lesson-planning"
+    );
+  });
   test("current link should be signposted with aria-current='page'", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
