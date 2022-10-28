@@ -5,7 +5,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { useTheme } from "styled-components";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
@@ -15,18 +14,13 @@ import {
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
-import BlogCategoryList from "../Blog/BlogCategoryList";
-import useBlogCategoryList from "../Blog/BlogCategoryList/useBlogCategoryList";
-import BlogList from "../Blog/BlogList";
 import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
-import Box from "../Box";
 import { getBlogWebinarListBreadcrumbs } from "../Breadcrumbs/getBreadcrumbs";
 import SummaryCard from "../Card/SummaryCard";
-import Grid, { GridArea } from "../Grid";
 import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
-import { Heading } from "../Typography";
+import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -40,7 +34,6 @@ export type BlogListingPageProps = {
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const { blogs, categories, categorySlug } = props;
-  const blogCategoriesListProps = useBlogCategoryList();
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
@@ -48,8 +41,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   };
 
   const blogListItems = blogs.map(blogToBlogListItem);
-  const theme = useTheme();
-  const HEADER_HEIGHT = theme.header.height;
 
   return (
     <Layout
@@ -82,37 +73,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           }
           imageProps={cardImage}
         />
-        <Grid $ph={[12, 0]}>
-          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]}>
-            <Box
-              $display={["none", "block"]}
-              $position={[null, "sticky"]}
-              $top={[null, HEADER_HEIGHT]}
-              $mt={[0, 24]}
-              $pt={[48]}
-            >
-              <Heading
-                tag="h3"
-                $font="body-3"
-                id={blogCategoriesListProps.labelId}
-              >
-                Categories
-              </Heading>
-              <BlogCategoryList
-                labelledBy={blogCategoriesListProps.labelId}
-                $mt={24}
-                categories={categories}
-                selectedCategorySlug={categorySlug}
-                page={"blog-index"}
-              />
-            </Box>
-          </GridArea>
-          {/* @todo is there a nicer way to make this 1 column spacer? */}
-          <GridArea $order={1} $colSpan={[12, 1]} />
-          <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
-            <BlogList items={blogListItems} withContainingHrs withPagination />
-          </GridArea>
-        </Grid>
+        <BlogWebinarsListAndCategories {...props} blogs={blogListItems} />
       </MaxWidth>
       <BlogListJsonLd blogs={props.blogs} />
     </Layout>
