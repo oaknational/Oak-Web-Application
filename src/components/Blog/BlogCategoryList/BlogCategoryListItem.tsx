@@ -6,11 +6,13 @@ import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
 import Flex from "../../Flex";
 
+import { BlogCategoryPage } from "./BlogCategoryList";
+
 type BlogCategoryListItemProps = {
   isSelected: boolean;
   category: { title: string; slug: string } | { title: "All"; slug: null };
   setSelected: (slug: string | null) => void;
-  page: "blog-index" | "webinars-index";
+  page: BlogCategoryPage;
 };
 const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
   const {

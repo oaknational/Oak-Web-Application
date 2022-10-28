@@ -9,12 +9,13 @@ import Flex from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
 import BlogCategoryList, {
   BlogCategoryListProps,
+  BlogCategoryPage,
 } from "../Blog/BlogCategoryList/BlogCategoryList";
 
 type MobileBlogFiltersProps = {
   categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
   withBackButton?: boolean;
-  page: "blog-index" | "webinars-index";
+  page: BlogCategoryPage;
 };
 const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);

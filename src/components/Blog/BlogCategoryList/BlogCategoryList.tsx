@@ -5,11 +5,13 @@ import { UL } from "../../Typography";
 
 import BlogCategoryListItem from "./BlogCategoryListItem";
 
+export type BlogCategoryPage = "blog-index" | "webinars-index";
+
 export type BlogCategoryListProps = BoxProps & {
   labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
-  page: "blog-index" | "webinars-index";
+  page: BlogCategoryPage;
 };
 const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
   const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
