@@ -1,3 +1,10 @@
+# [1.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.46.0...v1.47.0) (2022-10-27)
+
+
+### Features
+
+* **docs:** update some docs ([6ab7852](https://github.com/oaknational/Oak-Web-Application/commit/6ab7852d6f63548f88e317c810e3bf48e649b21f))
+
 # [1.46.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.1...v1.46.0) (2022-10-26)
 
 
