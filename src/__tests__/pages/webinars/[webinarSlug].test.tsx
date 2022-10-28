@@ -4,6 +4,7 @@ import { Webinar } from "../../../common-lib/cms-types";
 import WebinarDetailPage, {
   WebinarPageProps,
 } from "../../../pages/webinars/[webinarSlug]";
+import { mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -26,6 +27,7 @@ const testWebinar: Webinar = {
   ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+  video: mockVideoAsset(),
 };
 
 const testWebinar2: Webinar = {
@@ -47,6 +49,7 @@ const testWebinar2: Webinar = {
   ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+  video: mockVideoAsset(),
 };
 
 const testSerializedWebinar = {

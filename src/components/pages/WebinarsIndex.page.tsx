@@ -20,6 +20,7 @@ import {
   WebinarPreview,
 } from "../../common-lib/cms-types";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
+import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -29,6 +30,7 @@ export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
+  pageData: WebinarsListingPage;
 };
 
 /**
@@ -37,7 +39,7 @@ export type WebinarListingPageProps = {
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
-  const { categories, categorySlug } = props;
+  const { categories, categorySlug, pageData } = props;
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
@@ -66,10 +68,10 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
-          title={"Webinar Listing"}
-          heading={"Inspiration for inside and outside the classroom"}
+          title={pageData.title}
+          heading={pageData.heading}
           // TODO: Replace line summary with new field from CMS
-          summary={"This card needs to come from Sanity"}
+          summary={pageData.summary}
           imageProps={cardImage}
         />
         <BlogWebinarsListAndCategories
@@ -110,6 +112,15 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const pageData = await CMSClient.webinarsListingPage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
   const webinarResults = await CMSClient.webinars({
     previewMode: isPreviewMode,
   });
@@ -131,6 +142,7 @@ export const getStaticProps: GetStaticProps<
       webinars,
       categories: webinarCategories,
       categorySlug: categorySlug,
+      pageData,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);

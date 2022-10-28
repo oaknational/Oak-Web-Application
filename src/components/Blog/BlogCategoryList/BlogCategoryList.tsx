@@ -33,7 +33,7 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
         {categories.map((category) => {
           return (
             <BlogCategoryListItem
-              key={`BlogCategoryList-${category.slug}`}
+              key={`${page}-CategoryList-${category.slug}`}
               isSelected={visiblySelected === category.slug}
               category={category}
               setSelected={setVisiblySelected}
