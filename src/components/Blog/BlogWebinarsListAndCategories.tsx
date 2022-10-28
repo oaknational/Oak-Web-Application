@@ -7,6 +7,7 @@ import { BlogListingPageProps } from "../pages/BlogIndex.page";
 import { Heading } from "../Typography";
 
 import BlogCategoryList from "./BlogCategoryList";
+import { BlogCategoryPage } from "./BlogCategoryList/BlogCategoryList";
 import useBlogCategoryList from "./BlogCategoryList/useBlogCategoryList";
 import BlogList from "./BlogList";
 import { BlogListItemProps } from "./BlogList/BlogListItem";
@@ -14,12 +15,12 @@ import { BlogListItemProps } from "./BlogList/BlogListItem";
 type BlogWebinarsListAndCategoriesProps = Omit<
   BlogListingPageProps,
   "blogs"
-> & { blogs: BlogListItemProps[] };
+> & { blogs: BlogListItemProps[]; page: BlogCategoryPage };
 
 const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
   props
 ) => {
-  const { blogs, categories, categorySlug } = props;
+  const { blogs, categories, categorySlug, page } = props;
   const blogCategoriesListProps = useBlogCategoryList();
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
@@ -42,7 +43,7 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
             $mt={24}
             categories={categories}
             selectedCategorySlug={categorySlug}
-            page={"blog-index"}
+            page={page}
           />
         </Box>
       </GridArea>

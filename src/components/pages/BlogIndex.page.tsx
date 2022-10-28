@@ -73,7 +73,11 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           }
           imageProps={cardImage}
         />
-        <BlogWebinarsListAndCategories {...props} blogs={blogListItems} />
+        <BlogWebinarsListAndCategories
+          {...props}
+          blogs={blogListItems}
+          page={"blog-index"}
+        />
       </MaxWidth>
       <BlogListJsonLd blogs={props.blogs} />
     </Layout>

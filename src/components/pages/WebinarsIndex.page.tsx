@@ -72,7 +72,11 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           summary={"This card needs to come from Sanity"}
           imageProps={cardImage}
         />
-        <BlogWebinarsListAndCategories {...props} blogs={webinars} />
+        <BlogWebinarsListAndCategories
+          {...props}
+          blogs={webinars}
+          page={"webinars-index"}
+        />
       </MaxWidth>
       {/* <BlogListJsonLd blogs={props.webinars} /> @todo // needs more data from
         sanity */}
