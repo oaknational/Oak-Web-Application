@@ -17,7 +17,6 @@ type DropdownSelectProps = FlexProps & {
   name: string;
   label: string;
   error?: string;
-  showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
   onChange: SelectChangeHandler;
@@ -36,7 +35,6 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
     label,
     onChange,
     icon,
-    showLabel,
     ...containerProps
   } = props;
 
@@ -49,7 +47,6 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
         data-testid={"select"}
         placeholder={placeholder}
         label={label}
-        showLabel={showLabel}
         name={name}
         items={listItems}
         icon={icon}
