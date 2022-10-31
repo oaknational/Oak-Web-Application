@@ -1,11 +1,11 @@
 import { GraphQLClient } from "graphql-request";
 
-import config from "../../config";
+import serverConfig from "../../config/server";
 
 import { getSdk } from "./generated/sdk";
 
-const client = new GraphQLClient(config.get("graphqlApiUrl"), {
-  headers: { "x-hasura-admin-secret": config.get("hasuraAdminSecret") },
+const client = new GraphQLClient(serverConfig.get("graphqlApiUrl"), {
+  headers: { "x-hasura-admin-secret": serverConfig.get("hasuraAdminSecret") },
 });
 
 const graphqlApi = getSdk(client);

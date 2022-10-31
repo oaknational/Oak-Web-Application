@@ -1,16 +1,16 @@
 import { FC } from "react";
 import { useHover } from "react-aria";
 
-import { BlogWebinarCategory, Image } from "../../../node-lib/cms";
-import AspectRatio from "../../AspectRatio";
-import Box from "../../Box";
-import useClickableCard from "../../../hooks/useClickableCard";
-import CMSImage from "../../CMSImage";
-import Flex from "../../Flex";
-import LineClamp from "../../LineClamp";
-import OakLink from "../../OakLink";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { P, Heading, HeadingTag } from "../../Typography";
+import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
+import Box from "../../../Box";
+import useClickableCard from "../../../../hooks/useClickableCard";
+import CMSImage from "../../../CMSImage";
+import Flex from "../../../Flex";
+import LineClamp from "../../../LineClamp";
+import OakLink from "../../../OakLink";
+import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
+import { P, Heading, HeadingTag } from "../../../Typography";
+import AspectRatio from "../../../AspectRatio";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 

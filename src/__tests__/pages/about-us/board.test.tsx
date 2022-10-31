@@ -1,8 +1,9 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient, { AboutBoardPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
+import { AboutBoardPage } from "../../../common-lib/cms-types";
 import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
 import { portableTextFromString } from "../../__helpers__/cms";
 
@@ -94,11 +95,9 @@ describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(<AboutBoard pageData={testAboutBoardPageData} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "About us"
+    );
   });
 
   describe.skip("SEO", () => {

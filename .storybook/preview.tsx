@@ -57,7 +57,7 @@ const withThemeProvider = (Story, context) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
+          href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
           rel="stylesheet"
         />
 

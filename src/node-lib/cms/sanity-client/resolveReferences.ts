@@ -3,8 +3,7 @@ import { z } from "zod";
 
 import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
-
-import { portableTextReferencedEntrySchema } from "./schemas";
+import { portableTextReferencedEntrySchema } from "../../../common-lib/cms-types";
 
 type ObjectPath = string[];
 

@@ -1,8 +1,9 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient, { AboutPartnersPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
+import { AboutPartnersPage } from "../../../common-lib/cms-types";
 import AboutPartners, {
   getStaticProps,
 } from "../../../pages/about-us/partners";
@@ -42,11 +43,9 @@ describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(<AboutPartners pageData={testPartnersPageData} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "About us"
+    );
   });
 
   describe.skip("SEO", () => {

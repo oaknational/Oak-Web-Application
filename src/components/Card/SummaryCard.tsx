@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PortableText } from "@portabletext/react";
 
-import { PortableTextJSON } from "../../node-lib/cms";
+import { PortableTextJSON } from "../../common-lib/cms-types";
 import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
