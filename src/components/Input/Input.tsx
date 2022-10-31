@@ -5,18 +5,17 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
-import Box from "../Box";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
 import ScreenReaderOnly from "../ScreenReaderOnly";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { Span } from "../Typography";
 import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import Svg from "../Svg";
+import FieldError from "../FormFields/FieldError";
 
 import InputIcon from "./InputIcon";
 
@@ -145,7 +144,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <Flex $position={"absolute"}>
               <RotatedInputLabel
                 aria-hidden="true"
-                background={error ? "teachersRed" : "pastelTurqoise"}
+                background={error ? "failure" : "pastelTurqoise"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
                 $font={"body-3"}
@@ -167,14 +166,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
           </Flex>
         </InputFieldWrap>
-
-        {error && (
-          <Box $mt={4} $mb={error ? 24 : 0}>
-            <Span $color="failure" $font={"body-4"} id={errorId}>
-              {error}
-            </Span>
-          </Box>
-        )}
+        <FieldError id={errorId}>{error}</FieldError>
       </>
     );
   }

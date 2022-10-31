@@ -1,3 +1,11 @@
+## [1.47.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.0...v1.47.1) (2022-10-31)
+
+
+### Bug Fixes
+
+* **a11y:** form colour contrasts ([d314091](https://github.com/oaknational/Oak-Web-Application/commit/d3140914b5a232f21451f254d0bd582ee2c268a5))
+* use new failure colour ([8193293](https://github.com/oaknational/Oak-Web-Application/commit/8193293542388f78cb13d3f311daa78960e349ff))
+
 # [1.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.46.0...v1.47.0) (2022-10-27)
 
 
