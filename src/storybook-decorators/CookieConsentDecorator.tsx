@@ -18,10 +18,8 @@ export default function CookieConsentDecorator(Story: Story) {
   });
 
   return (
-    <div>
-      <cookieConsentContext.Provider value={state}>
-        <Story />
-      </cookieConsentContext.Provider>
-    </div>
+    <cookieConsentContext.Provider value={state}>
+      <Story />
+    </cookieConsentContext.Provider>
   );
 }

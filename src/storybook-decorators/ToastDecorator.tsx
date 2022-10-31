@@ -14,10 +14,8 @@ export default function ToastDecorator(Story: Story) {
   });
 
   return (
-    <div>
-      <toastContext.Provider value={state}>
-        <Story />
-      </toastContext.Provider>
-    </div>
+    <toastContext.Provider value={state}>
+      <Story />
+    </toastContext.Provider>
   );
 }

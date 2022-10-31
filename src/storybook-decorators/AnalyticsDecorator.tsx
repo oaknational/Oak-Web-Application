@@ -25,10 +25,8 @@ export default function AnalyticsDecorator(Story: Story) {
   });
 
   return (
-    <div>
-      <analyticsContext.Provider value={state}>
-        <Story />
-      </analyticsContext.Provider>
-    </div>
+    <analyticsContext.Provider value={state}>
+      <Story />
+    </analyticsContext.Provider>
   );
 }

@@ -26,6 +26,7 @@ const customJestConfig = {
     "browser-lib/graphql/generated/*",
     "node-lib/graphql/generated/*",
     "node-lib/sanity-graphql/generated/*",
+    "src/storybook-decorators/*",
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
@@ -35,7 +36,6 @@ const customJestConfig = {
   testPathIgnorePatterns: [
     "src/__tests__/__helpers__/*",
     ".storybook/storybook.*.test.js$",
-    "src/storybook-decorators/*",
     "e2e_tests/browser/engineering/*",
   ],
   moduleNameMapper: {
