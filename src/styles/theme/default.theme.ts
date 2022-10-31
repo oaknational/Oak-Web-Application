@@ -25,7 +25,7 @@ const theme: OakTheme = {
     pastelTurqoise: "#b0e2de", // TODO: add tints
     // feedback colors
     warning: "#ff7234",
-    failure: "#a81313",
+    failure: "#e51d4d",
     success: "#a3e420",
     // pupil colours
     pupilsHighlight: "#25AB38",
