@@ -7,7 +7,6 @@ import { getBreakpoint } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
-import ScreenReaderOnly from "../ScreenReaderOnly";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
@@ -120,7 +119,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 type InputProps = UnstyledInputProps &
   StyledInputProps & {
     id: string;
-    label?: string;
+    label: string;
     error?: string;
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
@@ -131,13 +130,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        {label && (
-          <ScreenReaderOnly>
-            <Label $font={"body-4"} htmlFor={id} id={labelId}>
-              {label}
-            </Label>
-          </ScreenReaderOnly>
-        )}
         <InputFieldWrap $mb={error ? 0 : 32} $alignItems="center">
           <Flex $width={"100%"} $position={"relative"}>
             <BoxBorders gapPosition="rightTop" />
@@ -147,6 +139,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 background={error ? "failure" : "pastelTurqoise"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
+                id={labelId}
                 $font={"body-3"}
               >
                 {label}
