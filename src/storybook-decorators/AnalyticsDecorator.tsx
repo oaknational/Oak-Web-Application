@@ -1,12 +1,11 @@
 import { Story } from "@storybook/react";
-import { useState } from "react";
 
 import { NavigatedFrom } from "../browser-lib/avo/Avo";
 import { analyticsContext } from "../context/Analytics/AnalyticsProvider";
 import noop from "../__tests__/__helpers__/noop";
 
 export default function AnalyticsDecorator(Story: Story) {
-  const [state] = useState({
+  const value = {
     identify: noop,
     track: {
       planALessonSelected: noop,
@@ -22,10 +21,10 @@ export default function AnalyticsDecorator(Story: Story) {
       videoFinished: noop,
       NavigatedFrom,
     },
-  });
+  };
 
   return (
-    <analyticsContext.Provider value={state}>
+    <analyticsContext.Provider value={value}>
       <Story />
     </analyticsContext.Provider>
   );
