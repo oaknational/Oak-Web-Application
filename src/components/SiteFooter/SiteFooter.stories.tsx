@@ -1,8 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import AnalyticsDecorator from "../../decorators/AnalyticsDecorator";
-import CookieConsentDecorator from "../../decorators/CookieConsentDecorator";
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
+import CookieConsentDecorator from "../../storybook-decorators/CookieConsentDecorator";
 
 import Component from "./SiteFooter";
 

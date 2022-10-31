@@ -1,18 +1,16 @@
 import { Story } from "@storybook/react";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 import { toastContext, ToastRole } from "../context/Toast/ToastProvider";
+import noop from "../__tests__/__helpers__/noop";
 
-export default function ToastDecorator(Story: Story | FC) {
+export default function ToastDecorator(Story: Story) {
   const [state] = useState({
     message: "Something important but fleeting",
     shown: false,
     role: "status" as ToastRole,
-    /* eslint-disable @typescript-eslint/no-empty-function */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    showToast: (message: string, role: ToastRole) => {},
-    hideToast: () => {},
-    /* eslint-enable @typescript-eslint/no-empty-function */
+    showToast: noop,
+    hideToast: noop,
   });
 
   return (

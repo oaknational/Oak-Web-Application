@@ -35,6 +35,7 @@ const customJestConfig = {
   testPathIgnorePatterns: [
     "src/__tests__/__helpers__/*",
     ".storybook/storybook.*.test.js$",
+    "src/storybook-decorators/*",
     "e2e_tests/browser/engineering/*",
   ],
   moduleNameMapper: {

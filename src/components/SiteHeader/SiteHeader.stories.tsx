@@ -3,8 +3,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { AuthProvider } from "../../context/Auth";
 import { MenuProvider } from "../../context/Menu";
-import AnalyticsDecorator from "../../decorators/AnalyticsDecorator";
-import ToastDecorator from "../../decorators/ToastDecorator";
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
+import ToastDecorator from "../../storybook-decorators/ToastDecorator";
 
 import Component from "./SiteHeader";
 
