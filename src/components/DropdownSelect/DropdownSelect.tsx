@@ -1,9 +1,8 @@
 import { FC, forwardRef } from "react";
 
 import { FlexProps } from "../Flex";
-import Box from "../Box";
-import { Span } from "../Typography";
 import { IconName } from "../Icon";
+import FieldError from "../FormFields/FieldError";
 
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
@@ -66,13 +65,7 @@ const DropdownSelect: FC<DropdownSelectProps> = forwardRef<
           </Item>
         )}
       </Select>
-      {error && (
-        <Box $position="absolute">
-          <Span $color="failure" $font={"body-4"} id={errorId}>
-            {error}
-          </Span>
-        </Box>
-      )}
+      <FieldError id={errorId}>{error}</FieldError>
     </>
   );
 });

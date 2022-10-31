@@ -70,10 +70,7 @@ interface SelectButtonProps {
 const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
-
-  /** padding-left hack to account for border-width change to avoid content shift on select-span */
-  padding-left: ${(props) =>
-    props.isFocusVisible || props.isOpen ? "11px" : "12px"};
+  padding-left: 12px;
   padding-right: 8px;
   display: inline-flex;
   align-items: center;
