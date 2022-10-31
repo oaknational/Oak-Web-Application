@@ -1,3 +1,19 @@
+## [1.47.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.1...v1.47.2) (2022-10-31)
+
+
+### Bug Fixes
+
+* **dropdown-select-a11y:** remove unused prop and add labelProps to actual label ([1342fbc](https://github.com/oaknational/Oak-Web-Application/commit/1342fbc64bc499e626eaf8faf16eae65658aee0f))
+* **input-ally:** remove duped hidden label from input ([a66f167](https://github.com/oaknational/Oak-Web-Application/commit/a66f1671b476b259e162698be22a5f5da608296b))
+
+## [1.47.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.0...v1.47.1) (2022-10-31)
+
+
+### Bug Fixes
+
+* **a11y:** form colour contrasts ([d314091](https://github.com/oaknational/Oak-Web-Application/commit/d3140914b5a232f21451f254d0bd582ee2c268a5))
+* use new failure colour ([8193293](https://github.com/oaknational/Oak-Web-Application/commit/8193293542388f78cb13d3f311daa78960e349ff))
+
 # [1.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.46.0...v1.47.0) (2022-10-27)
 
 

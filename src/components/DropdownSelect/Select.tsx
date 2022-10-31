@@ -16,8 +16,6 @@ import Flex, { FlexProps } from "../Flex";
 import Icon, { IconName } from "../Icon";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { srOnlyCss } from "../ScreenReaderOnly";
 import ellipsis from "../../styles/ellipsis";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
@@ -44,7 +42,6 @@ type SelectProps = {
   label: string;
   items: SelectItem[];
   onSelectionChange: (value: string) => void;
-  showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
   children: ReactNode;
@@ -73,10 +70,7 @@ interface SelectButtonProps {
 const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
-
-  /** padding-left hack to account for border-width change to avoid content shift on select-span */
-  padding-left: ${(props) =>
-    props.isFocusVisible || props.isOpen ? "11px" : "12px"};
+  padding-left: 12px;
   padding-right: 8px;
   display: inline-flex;
   align-items: center;
@@ -105,14 +99,6 @@ const NativeSelect = styled.select`
   ${selectButtonStyles}
 `;
 
-const Label = styled.label<{ visuallyHidden: boolean }>`
-  display: block;
-  text-align: left;
-  font-family: ${getFontFamily("body")};
-  font-size: ${(props) => props.theme.input.fontSize};
-  ${(props) => props.visuallyHidden && srOnlyCss}
-`;
-
 const SelectInner = styled(Flex)`
   max-width: calc(100% - 20px);
 `;
@@ -127,7 +113,7 @@ const SelectSpan = styled.span`
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
-  const { myRef, showLabel, containerProps, items } = props;
+  const { myRef, containerProps, items } = props;
 
   // Create state based on the incoming props
   const state = useSelectState(props);
@@ -171,17 +157,15 @@ export function Select<T extends object>(
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
-          aria-hidden="true"
           background={props.onFocus ? "teachersPastelBlue" : "pastelTurqoise"}
           color={"black"}
           $font={"body-3"}
+          {...labelProps}
         >
           {props.label}
         </RotatedInputLabel>
       </Flex>
-      <Label {...labelProps} visuallyHidden={!showLabel}>
-        {props.label}
-      </Label>
+
       {shouldRenderNativeSelect ? (
         <NativeSelect
           // Having to ignore due to inconsistent ref types
