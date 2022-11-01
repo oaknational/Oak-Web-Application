@@ -55,7 +55,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
                 <BioCardListItem {...chiefExecutive[0]} />
               )}
             </Box>
-            <BioCardList $mb={[80, 92]} $ph={[16, 0]} people={leaders} />
+            <BioCardList $mb={[80, 92]} $ph={[16, 0]} bios={leaders} />
           </>
         )}
 

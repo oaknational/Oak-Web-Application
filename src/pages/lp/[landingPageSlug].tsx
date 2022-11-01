@@ -10,7 +10,7 @@ import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
-import { LandingPage } from "../../node-lib/cms/sanity-client/schemas/landingPage";
+import { LandingPage } from "../../common-lib/cms-types/landingPage";
 import { decorateWithIsr } from "../../node-lib/isr";
 import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
 import { Quote } from "../../components/pages/LandingPages/Quote";

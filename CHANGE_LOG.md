@@ -1,3 +1,105 @@
+## [1.47.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.2...v1.47.3) (2022-11-01)
+
+
+### Bug Fixes
+
+* add cookie consent decorator ([2240d9f](https://github.com/oaknational/Oak-Web-Application/commit/2240d9f3f711d2305d70852d8592f8c20ca9d3ed))
+* add posthog decorator ([b5ccd78](https://github.com/oaknational/Oak-Web-Application/commit/b5ccd78bbc78508ebbd69e6d8c0d3602bf23f0a0))
+* add toast provider to mock toast context ([7197c3b](https://github.com/oaknational/Oak-Web-Application/commit/7197c3be18c4513956b7787ab61fe185bb4133db))
+* mock analytics provider in storybook video with analytics decorator ([c89b88d](https://github.com/oaknational/Oak-Web-Application/commit/c89b88dbfb8b06dc6bbcaceaad91ea23f50a7d3d))
+* remove decorators from sonar coverage ([1d10fb5](https://github.com/oaknational/Oak-Web-Application/commit/1d10fb5d18e6b9a046f7dd4c73b8911942533f63))
+* remove divs and use correct ignore coverage ([9930791](https://github.com/oaknational/Oak-Web-Application/commit/993079136b976f0982d45e56b41d979d0e3200eb))
+* remove state ([432eedf](https://github.com/oaknational/Oak-Web-Application/commit/432eedf4924fb3d8b8459a76f5bc6f1e845614ca))
+
+## [1.47.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.1...v1.47.2) (2022-10-31)
+
+
+### Bug Fixes
+
+* **dropdown-select-a11y:** remove unused prop and add labelProps to actual label ([1342fbc](https://github.com/oaknational/Oak-Web-Application/commit/1342fbc64bc499e626eaf8faf16eae65658aee0f))
+* **input-ally:** remove duped hidden label from input ([a66f167](https://github.com/oaknational/Oak-Web-Application/commit/a66f1671b476b259e162698be22a5f5da608296b))
+
+## [1.47.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.0...v1.47.1) (2022-10-31)
+
+
+### Bug Fixes
+
+* **a11y:** form colour contrasts ([d314091](https://github.com/oaknational/Oak-Web-Application/commit/d3140914b5a232f21451f254d0bd582ee2c268a5))
+* use new failure colour ([8193293](https://github.com/oaknational/Oak-Web-Application/commit/8193293542388f78cb13d3f311daa78960e349ff))
+
+# [1.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.46.0...v1.47.0) (2022-10-27)
+
+
+### Features
+
+* **docs:** update some docs ([6ab7852](https://github.com/oaknational/Oak-Web-Application/commit/6ab7852d6f63548f88e317c810e3bf48e649b21f))
+
+# [1.46.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.1...v1.46.0) (2022-10-26)
+
+
+### Features
+
+* **Netlify:** turn default domain redirect back on ([0a274b3](https://github.com/oaknational/Oak-Web-Application/commit/0a274b3b6a021c26ae552a02c460568c84cc38f1))
+
+## [1.45.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.0...v1.45.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* rotate chevron in select on state change ([3e80d34](https://github.com/oaknational/Oak-Web-Application/commit/3e80d34b078743da8c36ede4b4b1500a09062e4e))
+
+# [1.45.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.44.1...v1.45.0) (2022-10-25)
+
+
+### Bug Fixes
+
+* add next_public prefixes to env vars ([640a625](https://github.com/oaknational/Oak-Web-Application/commit/640a625afea5635fdaff139d3dfab68f03b1c84e))
+* don't check for existence of secrets in browser context ([629588b](https://github.com/oaknational/Oak-Web-Application/commit/629588b7d77efa0c3e0b008314c218e57bb9c709))
+* don't throw on undefined secret access in browser context ([8fe7038](https://github.com/oaknational/Oak-Web-Application/commit/8fe7038922b2ad6242995d65aa80107d679564d5))
+* remove lingering type import from generated cms sdk ([a175396](https://github.com/oaknational/Oak-Web-Application/commit/a17539696465d9b31ff44edfe6cbe0d7b5ed29f1))
+* scope more env vars with next_public ([724a646](https://github.com/oaknational/Oak-Web-Application/commit/724a6465b85e041549c25171479a20e32ba40f7c))
+* split config files into browser and server ([f92fbe0](https://github.com/oaknational/Oak-Web-Application/commit/f92fbe083c0851e62b4f97e8ea406f815cc6bfcc))
+* update outdated config/secrets references in tests ([d45ce4f](https://github.com/oaknational/Oak-Web-Application/commit/d45ce4f61e8aaf0a7a7905547d420665ee008778))
+* update outdated references to common-lib/cms-types ([ecce233](https://github.com/oaknational/Oak-Web-Application/commit/ecce233adb0856586263f1665ce2d0efea7cac0f))
+* use cms-types for AvatarImage prop types ([1c1f0e8](https://github.com/oaknational/Oak-Web-Application/commit/1c1f0e8fa9ada106e10bb2e27d9444779e4354b9))
+
+
+### Features
+
+* handle development secrets in write_env_file, add docs ([4491765](https://github.com/oaknational/Oak-Web-Application/commit/44917655e362c942225e33c6d35799cadbcd1463))
+
+## [1.44.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.44.0...v1.44.1) (2022-10-25)
+
+# [1.44.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.4...v1.44.0) (2022-10-25)
+
+
+### Features
+
+* **zero-rating:** use proxied google fonts service ([72b5950](https://github.com/oaknational/Oak-Web-Application/commit/72b5950dc15560e5469e591c365f22ad927d1d00))
+
+## [1.43.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.3...v1.43.4) (2022-10-24)
+
+
+### Bug Fixes
+
+* align cards center when not full width ([5313bf3](https://github.com/oaknational/Oak-Web-Application/commit/5313bf35c60a71c0c452538a9f285474e4593c63))
+* do not wrap card in redundant flex box ([a9e5d20](https://github.com/oaknational/Oak-Web-Application/commit/a9e5d204a6844589444e738d681a28f8b1d01f1a))
+
+## [1.43.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.2...v1.43.3) (2022-10-21)
+
+
+### Bug Fixes
+
+* **about-us:** centering issues ([49d7a38](https://github.com/oaknational/Oak-Web-Application/commit/49d7a387ae74919f7fed507f36c3a8631dd6fe09))
+
+## [1.43.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.1...v1.43.2) (2022-10-21)
+
+
+### Bug Fixes
+
+* remove nested a tag from oak link ([60e4d01](https://github.com/oaknational/Oak-Web-Application/commit/60e4d01c197d222a248a633cc9690031fb4b6c0b))
+* unwanted a tag in oak link ([5daf40e](https://github.com/oaknational/Oak-Web-Application/commit/5daf40e2ffbe7bce2e6ad34329062913a2297187))
+
 ## [1.43.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.43.0...v1.43.1) (2022-10-21)
 
 

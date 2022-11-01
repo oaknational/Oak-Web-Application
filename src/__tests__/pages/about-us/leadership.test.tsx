@@ -1,12 +1,13 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
-import CMSClient, { AboutLeadershipPage } from "../../../node-lib/cms";
+import CMSClient from "../../../node-lib/cms";
 import AboutUsLeadership, {
   getStaticProps,
 } from "../../../pages/about-us/leadership";
-import { mockImageAsset } from "../../__helpers__/cms";
+import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
+import { AboutLeadershipPage } from "../../../common-lib/cms-types";
 
 import { testAboutPageBaseData } from "./who-we-are.test";
 
@@ -23,12 +24,16 @@ const testAboutLeadershipPageData: AboutLeadershipPage = {
       name: "name",
       id: "1",
       image: mockImageAsset(),
+      bioPortableText: portableTextFromString("Great person"),
     },
     {
       name: "name",
       role: "chief executive",
       id: "1",
       image: mockImageAsset(),
+      bioPortableText: portableTextFromString(
+        "This somethine else before, now does this"
+      ),
     },
   ],
 };
@@ -45,11 +50,9 @@ describe("pages/about/leadership.tsx", () => {
       <AboutUsLeadership pageData={testAboutLeadershipPageData} />
     );
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "About us"
+    );
   });
 
   describe.skip("SEO", () => {
