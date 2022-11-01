@@ -1,3 +1,23 @@
+## [1.47.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.3...v1.47.4) (2022-11-01)
+
+
+### Bug Fixes
+
+* **hyperlinks:** set color and underline for inline hyperlinks ([b0c3663](https://github.com/oaknational/Oak-Web-Application/commit/b0c3663a5607fc47f5b6b7cd9ab29b0d1bdf6053))
+
+## [1.47.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.2...v1.47.3) (2022-11-01)
+
+
+### Bug Fixes
+
+* add cookie consent decorator ([2240d9f](https://github.com/oaknational/Oak-Web-Application/commit/2240d9f3f711d2305d70852d8592f8c20ca9d3ed))
+* add posthog decorator ([b5ccd78](https://github.com/oaknational/Oak-Web-Application/commit/b5ccd78bbc78508ebbd69e6d8c0d3602bf23f0a0))
+* add toast provider to mock toast context ([7197c3b](https://github.com/oaknational/Oak-Web-Application/commit/7197c3be18c4513956b7787ab61fe185bb4133db))
+* mock analytics provider in storybook video with analytics decorator ([c89b88d](https://github.com/oaknational/Oak-Web-Application/commit/c89b88dbfb8b06dc6bbcaceaad91ea23f50a7d3d))
+* remove decorators from sonar coverage ([1d10fb5](https://github.com/oaknational/Oak-Web-Application/commit/1d10fb5d18e6b9a046f7dd4c73b8911942533f63))
+* remove divs and use correct ignore coverage ([9930791](https://github.com/oaknational/Oak-Web-Application/commit/993079136b976f0982d45e56b41d979d0e3200eb))
+* remove state ([432eedf](https://github.com/oaknational/Oak-Web-Application/commit/432eedf4924fb3d8b8459a76f5bc6f1e845614ca))
+
 ## [1.47.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.1...v1.47.2) (2022-10-31)
 
 
