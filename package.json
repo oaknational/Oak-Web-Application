@@ -90,9 +90,9 @@
     "zod": "^3.19.0"
   },
   "devDependencies": {
-    "@actions/core": "^1.9.1",
+    "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
-    "@actions/github": "^5.0.3",
+    "@actions/github": "^5.1.1",
     "@apollo/client": "3.5.10",
     "@axe-core/react": "^4.4.4",
     "@babel/core": "^7.19.0",
@@ -155,7 +155,6 @@
     "next-router-mock": "^0.6.10",
     "next-sitemap": "^3.1.21",
     "node-mocks-http": "^1.11.0",
-    "octokit": "^1.8.1",
     "pa11y-ci": "^3.0.1",
     "postcss-scss": "^4.0.4",
     "prettier": "2.7.1",
