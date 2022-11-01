@@ -10,12 +10,15 @@ console.log("Percy base url:", baseUrl);
 
 // Support single string relative URLs, or objects with a `url` key.
 // https://docs.percy.io/docs/percy-snapshot#configuration
-const snapshotRelativeUrls = [
+export const snapshotRelativeUrls = [
   "/",
   "/lesson-planning",
   "/develop-your-curriculum",
   "/about-us/who-we-are",
+  "/about-us/leadership",
   "/about-us/board",
+  "/about-us/partners",
+  "/about-us/work-with-us",
   "/blog",
   "/blog/how-to-design-a-unit-of-study",
   "/blog/evolution-of-oak",
