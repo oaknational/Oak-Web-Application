@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { OverlayProvider } from "react-aria";
 import userEvent from "@testing-library/user-event";
 

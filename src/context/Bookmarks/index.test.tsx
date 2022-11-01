@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 
 import "../../__tests__/__helpers__/LocalStorageMock";
 import { UserId } from "../Auth";

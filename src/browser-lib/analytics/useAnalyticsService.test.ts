@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
