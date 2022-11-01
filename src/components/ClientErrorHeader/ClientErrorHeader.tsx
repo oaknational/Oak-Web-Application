@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import FixedHeader from "../FixedHeader";
 import Logo from "../Logo";
+import OakLink from "../OakLink";
 
 /**
  * We need a simple client-side error header which doesn't use context so that
@@ -14,11 +14,9 @@ const ClientErrorHeader: FC = () => {
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <Link href={"/"}>
-        <a>
-          <Logo title={"Oak National Academy"} height={48} width={104} />
-        </a>
-      </Link>
+      <OakLink page="home">
+        <Logo title={"Oak National Academy"} height={48} width={104} />
+      </OakLink>
     </FixedHeader>
   );
 };
