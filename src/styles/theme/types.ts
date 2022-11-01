@@ -194,7 +194,6 @@ export type OakTheme = {
   buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
-  bigInput: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
   lessonControl: LessonControlConfig;
