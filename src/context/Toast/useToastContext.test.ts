@@ -13,7 +13,7 @@ describe("useToastContext", () => {
     expect(shown).toBe(false);
   });
 
-  test("showToat should show the toast with message", () => {
+  test("showToast should show the toast with message", () => {
     const message = "Some message";
 
     const { result } = renderHook(() => useToastContext(), {
@@ -26,5 +26,13 @@ describe("useToastContext", () => {
 
     expect(result.current.shown).toBe(true);
     expect(result.current.message).toEqual(message);
+  });
+
+  test("it should throw an error if called outside of toast provider", () => {
+    const { result } = renderHook(() => useToastContext());
+
+    expect(result.error).toEqual(
+      Error("useToastContext called outside of toast provider")
+    );
   });
 });
