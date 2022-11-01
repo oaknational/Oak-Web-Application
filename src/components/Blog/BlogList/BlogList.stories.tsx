@@ -23,6 +23,7 @@ BlogList.args = {
       contentType: "blog-post",
       category: { title: "Curriculum Planning", slug: "curriculum-planning" },
       date: new Date(2022, 7, 22).toISOString(),
+      page: "blog-index",
     },
     {
       titleTag: "h2",
@@ -33,6 +34,7 @@ BlogList.args = {
       contentType: "webinar",
       category: { title: "Curriculum Planning", slug: "curriculum-planning" },
       date: new Date(2022, 7, 17).toISOString(),
+      page: "blog-index",
     },
     {
       titleTag: "h2",
@@ -43,6 +45,7 @@ BlogList.args = {
       contentType: "blog-post",
       category: { title: "Curriculum Planning", slug: "curriculum-planning" },
       date: new Date(2022, 6, 26).toISOString(),
+      page: "blog-index",
     },
   ],
 };

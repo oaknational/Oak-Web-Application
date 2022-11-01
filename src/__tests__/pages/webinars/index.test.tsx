@@ -49,6 +49,8 @@ const testSerializedWebinarPreview2: SerializedWebinarPreview = {
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
 const webinarsListingPage = jest.fn(() => testPageData);
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -79,11 +81,11 @@ describe("pages/webinar/index.tsx", () => {
       await waitFor(() => {
         expect(
           screen.getByText("An upcoming webinar").closest("a")
-        ).toHaveAttribute("href", "/webinars/an-upcoming-webinar");
+        ).toHaveAttribute("href", "/beta/webinars/an-upcoming-webinar");
 
         expect(screen.getByText("A past webinar").closest("a")).toHaveAttribute(
           "href",
-          "/webinars/a-past-webinar"
+          "/beta/webinars/a-past-webinar"
         );
       });
     });

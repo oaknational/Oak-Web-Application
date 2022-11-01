@@ -11,6 +11,7 @@ import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
+import { BlogCategoryPage } from "../../BlogCategoryList/BlogCategoryList";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -24,6 +25,7 @@ export type BlogListItemProps = {
   date: string;
   mainImage?: Image | null;
   withImage?: boolean;
+  page: BlogCategoryPage;
 };
 
 /**
@@ -42,6 +44,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
     date,
     withImage,
     mainImage,
+    page,
   } = props;
 
   const {
@@ -101,7 +104,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         >
           <OakLink
             {...categoryHoverProps}
-            page="blog-index"
+            page={page}
             category={category.slug}
             focusStyles={["underline"]}
             $font="heading-7"

@@ -13,6 +13,7 @@ describe("components/BlogList", () => {
             snippet: "Item snippet",
             href: "/",
             contentType: "blog-post",
+            page: "blog-index",
             category: {
               title: "Curriculum Planning",
               slug: "curriculum-planning",
@@ -38,6 +39,7 @@ describe("components/BlogList", () => {
             snippet: "Item snippet",
             href: "/",
             contentType: "blog-post",
+            page: "blog-index",
             category: {
               title: "Curriculum Planning",
               slug: "curriculum-planning",

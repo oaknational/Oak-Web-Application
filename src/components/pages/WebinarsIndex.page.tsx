@@ -90,12 +90,13 @@ export const webinarToBlogListItem = (
 ): BlogListItemProps => ({
   contentType: "webinar",
   title: webinar.title,
-  href: `/webinars/${webinar.slug}`,
+  href: `/beta/webinars/${webinar.slug}`,
   snippet: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
   category: webinar.category,
   date: webinar.date,
   mainImage: null,
+  page: "webinars-index",
 });
 
 export const serializeDate = <T extends { date: Date }>(
