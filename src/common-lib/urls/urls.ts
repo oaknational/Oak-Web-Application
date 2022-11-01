@@ -5,7 +5,7 @@ const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
   "blog-index": "/blog",
-  "webinars-index": "/webinars",
+  "webinars-index": "/beta/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
   contact: "/contact-us",
   "develop-your-curriculum": "/develop-your-curriculum",
@@ -90,9 +90,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
     case "webinars-index": {
       let path:
         | "/blog"
-        | "/webinars"
+        | "/beta/webinars"
         | `/blog/categories/${string}`
-        | `/webinars/categories/${string}` = OAK_PAGES[props.page];
+        | `/beta/webinars/categories/${string}` = OAK_PAGES[props.page];
       if (props.category) {
         path = `${path}/categories/${props.category}`;
       }

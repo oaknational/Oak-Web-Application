@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import { Webinar } from "../../../common-lib/cms-types";
 import WebinarDetailPage, {
   WebinarPageProps,
-} from "../../../pages/webinars/[webinarSlug]";
+} from "../../../pages/beta/webinars/[webinarSlug]";
 import { mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
@@ -100,7 +100,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all webinars", async () => {
       const { getStaticPaths } = await import(
-        "../../../pages/webinars/[webinarSlug]"
+        "../../../pages/beta/webinars/[webinarSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -115,7 +115,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct webinar", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/webinars/[webinarSlug]"
+        "../../../pages/beta/webinars/[webinarSlug]"
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -129,7 +129,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should not fetch draft content by default", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/webinars/[webinarSlug]"
+        "../../../pages/beta/webinars/[webinarSlug]"
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -142,7 +142,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should fetch draft content in preview mode", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/webinars/[webinarSlug]"
+        "../../../pages/beta/webinars/[webinarSlug]"
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -156,7 +156,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should format the webinar date", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/webinars/[webinarSlug]"
+        "../../../pages/beta/webinars/[webinarSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -171,7 +171,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       webinarBySlug.mockResolvedValueOnce(null as never);
 
       const { getStaticProps } = await import(
-        "../../../pages/webinars/[webinarSlug]"
+        "../../../pages/beta/webinars/[webinarSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },

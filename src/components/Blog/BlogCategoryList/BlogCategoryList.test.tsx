@@ -37,11 +37,11 @@ describe("BlogCategoryList", () => {
     );
     expect(getByRole("link", { name: "Oak Updates" })).toHaveAttribute(
       "href",
-      "/webinars/categories/oak-updates"
+      "/beta/webinars/categories/oak-updates"
     );
     expect(getByRole("link", { name: "Lesson Planning" })).toHaveAttribute(
       "href",
-      "/webinars/categories/lesson-planning"
+      "/beta/webinars/categories/lesson-planning"
     );
   });
   test("current link should be signposted with aria-current='page'", () => {
