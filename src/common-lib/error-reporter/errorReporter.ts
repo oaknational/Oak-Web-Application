@@ -4,6 +4,7 @@ import BugsnagPluginReact from "@bugsnag/plugin-react";
 import config from "../../config/browser";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
+import OakError from "../../errors/OakError";
 
 import { consoleError, consoleLog } from "./logging";
 import bugsnagNotify from "./bugsnagNotify";
@@ -82,7 +83,6 @@ export const initialiseBugsnag = () => {
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
-  originalError?: Error;
   // All errors with the same groupingHash will be grouped together in Bugsnag
   groupingHash?: string;
 };
@@ -103,7 +103,10 @@ const errorify = (maybeError: unknown): Error => {
 };
 
 const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
-  const reportError = async (maybeError: Error | unknown, data?: ErrorData) => {
+  const reportError = async (
+    maybeError: OakError | Error | unknown,
+    data?: ErrorData
+  ) => {
     consoleError(maybeError);
     consoleLog(context, metadata, data);
 
@@ -121,7 +124,11 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
 
       await bugsnagNotify(err, (event: Event) => {
         event.context = context;
-        const { originalError, severity, groupingHash, ...metaFields } = {
+
+        const originalError =
+          maybeError instanceof OakError ? maybeError.originalError : undefined;
+
+        const { severity, groupingHash, ...metaFields } = {
           ...metadata,
           ...data,
         };
