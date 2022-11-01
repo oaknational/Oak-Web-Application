@@ -6,6 +6,7 @@ import Flex from "../Flex";
 import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
+import OakLink from "../OakLink";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading, P } from "../Typography";
 
@@ -53,7 +54,10 @@ const AboutContactCard: FC = () => {
                 </Heading>
                 <P $mb={32} $font={["body-2", "body-1"]}>
                   {section.p}
-                  <a href={section.href}>{section.linkText}</a>.
+                  <OakLink page={null} href={section.href} isInline>
+                    {section.linkText}
+                  </OakLink>
+                  .
                 </P>
               </Fragment>
             ))}
