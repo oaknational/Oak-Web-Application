@@ -134,7 +134,7 @@ export const getStaticProps: GetStaticProps<
 
   const webinarCategories = [
     ...new Map(
-      webinars
+      webinarResults
         .map((webinar) => webinar.category)
         .map((item) => [item["slug"], item])
     ).values(),
