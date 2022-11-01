@@ -1,6 +1,7 @@
 import { FC, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
 
+import Button from "../Button";
 import IconButton from "../Button/IconButton";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
@@ -75,9 +76,12 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
           $background={"white"}
         >
           <SummaryHeading $font={"heading-5"} tag={headingTag}>
-            <a aria-expanded={open} onClick={(e) => handleClick(e)}>
-              {title}
-            </a>
+            <Button
+              variant="minimal"
+              aria-expanded={open}
+              onClick={(e) => handleClick(e)}
+              label={title}
+            />
           </SummaryHeading>
           <Flex>
             {buttons &&
