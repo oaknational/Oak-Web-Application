@@ -19,13 +19,13 @@ import Box from "../../components/Box";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import BlogCategoryList from "../../components/Blog/BlogCategoryList";
 import useBlogCategoryList from "../../components/Blog/BlogCategoryList/useBlogCategoryList";
-import { getBlogPostBreadcrumbs } from "../../components/pages/getBlogBreadcrumbs";
 import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import MobileBlogFilters from "../../components/MobileBlogFilters";
 import { Heading } from "../../components/Typography";
 import { sanityClientLike } from "../../components/CMSImage";
 import BlogHeader from "../../components/Blog/BlogHeader/BlogHeader";
+import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -66,9 +66,13 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      breadcrumbs={getBlogPostBreadcrumbs(categories, blog)}
+      breadcrumbs={getBlogWebinarPostBreadcrumbs(categories, blog, "blog")}
     >
-      <MobileBlogFilters categoryListProps={{ categories }} withBackButton />
+      <MobileBlogFilters
+        page={"blog-index"}
+        categoryListProps={{ categories }}
+        withBackButton
+      />
       <MaxWidth>
         <Grid $ph={[12, 0]}>
           <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
@@ -89,6 +93,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
                 labelledBy={blogCategoriesListProps.labelId}
                 $mt={24}
                 categories={categories}
+                page={"blog-index"}
               />
             </Box>
           </GridArea>

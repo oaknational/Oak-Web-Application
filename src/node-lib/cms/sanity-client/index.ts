@@ -20,6 +20,7 @@ import {
   landingPagePreviewSchema,
   landingPageSchema,
 } from "../../../common-lib/cms-types";
+import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 
 import { resolveReferences } from "./resolveReferences";
 import { parseResults } from "./parseResults";
@@ -33,6 +34,24 @@ export type ListParams = Params & {
 };
 
 const getSanityClient = () => ({
+  webinarsListingPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.webinarsListingPage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const webinarsListingPageData = result?.allWebinarListingPage?.[0];
+
+    if (!webinarsListingPageData) {
+      return null;
+    }
+
+    return parseResults(
+      webinarsListingPageSchema,
+      webinarsListingPageData,
+      previewMode
+    );
+  },
+
   webinars: async ({ previewMode, ...params }: ListParams = {}) => {
     const webinarListSchema = z.array(webinarPreviewSchema);
     const webinarResults = await sanityGraphqlApi.allWebinars({
