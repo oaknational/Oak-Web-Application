@@ -2,7 +2,7 @@ import { createContext, FC, useCallback, useState } from "react";
 
 export type ToastRole = "alert" | "status";
 
-type ToastContext = {
+export type ToastContext = {
   message: string;
   shown: boolean;
   role: ToastRole;
