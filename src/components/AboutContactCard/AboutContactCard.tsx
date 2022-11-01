@@ -10,8 +10,8 @@ import Grid, { GridArea } from "../Grid";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
 import { BasePortableTextProvider } from "../PortableText/PortableText";
-import { PortableTextJSON } from "../../node-lib/cms/sanity-client/schemas/portableText";
 import Typography from "../Typography/Typography";
+import { PortableTextJSON } from "../../common-lib/cms-types";
 
 const aboutContactCardPortableTextComponents: PortableTextComponents = {
   block: {
