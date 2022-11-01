@@ -1,3 +1,10 @@
+## [1.47.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.3...v1.47.4) (2022-11-01)
+
+
+### Bug Fixes
+
+* **hyperlinks:** set color and underline for inline hyperlinks ([b0c3663](https://github.com/oaknational/Oak-Web-Application/commit/b0c3663a5607fc47f5b6b7cd9ab29b0d1bdf6053))
+
 ## [1.47.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.2...v1.47.3) (2022-11-01)
 
 

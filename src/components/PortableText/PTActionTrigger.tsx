@@ -31,7 +31,12 @@ const ConsentManagerTrigger: FC = (props) => {
   const { showConsentManager } = useCookieConsent();
 
   return (
-    <UnstyledButton onClick={showConsentManager}>
+    <UnstyledButton
+      $color="hyperlink"
+      $textDecoration={"underline"}
+      $display="inline"
+      onClick={showConsentManager}
+    >
       <Span $color="hyperlink">{props.children}</Span>
     </UnstyledButton>
   );

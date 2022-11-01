@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { FC } from "react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
+import OakLink from "../OakLink";
 import { P } from "../Typography";
 
 export type KeyStageYear = {
@@ -45,7 +45,9 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
             />
             {keyStage.years.map((year: KeyStageYear, index) => (
               <P key={index} $mb={16}>
-                <Link href={year.url}>{year.name}</Link>
+                <OakLink page={null} href={year.url}>
+                  {year.name}
+                </OakLink>
               </P>
             ))}
           </Flex>

@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-import Link from "next/link";
 
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import Flex from "../../../components/Flex";
 import AppLayout from "../../../components/AppLayout";
+import OakLink from "../../../components/OakLink";
 
 const SignInError: NextPage = () => {
   return (
@@ -16,9 +16,9 @@ const SignInError: NextPage = () => {
       >
         <p data-testid="sign-in-error-message">
           There was an error signing you in.{" "}
-          <Link href="/">
-            <a>Take me home.</a>
-          </Link>
+          <OakLink page="home" isInline>
+            Take me home.
+          </OakLink>
         </p>
       </Flex>
     </AppLayout>
