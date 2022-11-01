@@ -4,18 +4,19 @@ import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import { SpacingProps } from "../../styles/utils/spacing";
 import Flex, { FlexProps } from "../Flex";
 
-type ColSpans = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+type ColSpan = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type GridAreaProps = {
-  $colSpan: Array<ColSpans>;
+  $colSpan: Array<ColSpan>;
   $rowSpan?: number;
   $order?: ResponsiveValues<number>;
-  $colStart?: ResponsiveValues<ColSpans>;
+  $colStart?: ResponsiveValues<ColSpan>;
+  $colEnd?: ResponsiveValues<ColSpan>;
 } & SpacingProps;
 
 const combineSpanStart = (
-  start: ColSpans | undefined | null,
-  span: ColSpans | undefined | null
+  start: ColSpan | undefined | null,
+  span: ColSpan | undefined | null
 ) => {
   return start ? `${start}/${span}` : `${span}`;
 };
@@ -60,6 +61,8 @@ const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
   ${responsive("grid-row", (props) =>
     props.$rowSpan ? `span ${props.$rowSpan}` : "span 1"
   )};
+  ${responsive("grid-column-start", (props) => props.$colStart)}
+  ${responsive("grid-column-end", (props) => props.$colEnd)}
 `;
 
 export default GridArea;

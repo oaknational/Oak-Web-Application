@@ -37,6 +37,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
               $mb={[40, 32]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
+              $textAlign={"center"}
             >
               Our leadership
             </Heading>
