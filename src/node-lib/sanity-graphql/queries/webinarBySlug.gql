@@ -25,6 +25,9 @@ query webinarBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         ...Image
       }
     }
+    video {
+      ...Video
+    }
     seo {
       ...Seo
     }
