@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
-import CMSClient, { AboutLeadershipPage } from "../../node-lib/cms";
+import CMSClient from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -8,12 +8,9 @@ import AboutContactCard from "../../components/AboutContactCard";
 import { Heading } from "../../components/Typography";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import BioCardList from "../../components/BioCardList";
-import BioCardListItem, {
-  BioCardListItemProps,
-} from "../../components/BioCardList/BioCardListItem";
-import Box from "../../components/Box";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import { AboutLeadershipPage } from "../../common-lib/cms-types";
 
 export type AboutPageProps = {
   pageData: AboutLeadershipPage;
@@ -21,13 +18,6 @@ export type AboutPageProps = {
 
 const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo, introPortableText, leadershipTeam } = pageData;
-
-  const chiefExecutive: BioCardListItemProps[] = leadershipTeam.filter(
-    (person) => person.role?.toLowerCase() === "chief executive"
-  );
-  const leaders: BioCardListItemProps[] = leadershipTeam.filter(
-    (person) => person.role?.toLowerCase() !== "chief executive"
-  );
 
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
@@ -50,12 +40,13 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
             >
               Our leadership
             </Heading>
-            <Box $width={["100%", "33%", "25%"]} $ph={[16, 0, 0]} $mb={32}>
-              {chiefExecutive[0]?.name && (
-                <BioCardListItem {...chiefExecutive[0]} />
-              )}
-            </Box>
-            <BioCardList $mb={[80, 92]} $ph={[16, 0]} bios={leaders} />
+            <BioCardList
+              $mb={[80, 92]}
+              $ph={[16, 0]}
+              bios={leadershipTeam}
+              withModals
+              firstBioHasOwnRow
+            />
           </>
         )}
 

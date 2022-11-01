@@ -10,22 +10,32 @@ import BioCardListItem from "./BioCardListItem";
 type BioCardListProps = GridProps & {
   bios: BioData[];
   withModals?: boolean;
+  firstBioHasOwnRow?: boolean;
 };
 const BioCardList: FC<BioCardListProps> = (props) => {
-  const { bios, withModals, ...gridProps } = props;
+  const { bios, withModals, firstBioHasOwnRow, ...gridProps } = props;
   const modal = useBioModal({ bios });
 
   const onCardClick = withModals ? modal.openModal : undefined;
+  const [firstBio, ...otherBios] = bios;
 
   return (
     <>
       <Grid $cg={16} $rg={32} $gridAutoRows="1fr" {...gridProps}>
-        {bios.map((person) => (
+        {firstBio && (
+          <>
+            <GridArea $colSpan={[12, 4, 3]}>
+              <BioCardListItem {...firstBio} onClick={onCardClick} />
+            </GridArea>
+            {firstBioHasOwnRow && <GridArea $colSpan={[0, 8, 9]} />}
+          </>
+        )}
+        {otherBios.map((bio) => (
           <GridArea
             $colSpan={[12, 4, 3]}
-            key={`bio-card-list-gridarea-${person.id}`}
+            key={`bio-card-list-gridarea-${bio.id}`}
           >
-            <BioCardListItem {...person} onClick={onCardClick} />
+            <BioCardListItem {...bio} onClick={onCardClick} />
           </GridArea>
         ))}
       </Grid>
