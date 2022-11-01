@@ -1,3 +1,18 @@
+# [1.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.4...v1.48.0) (2022-11-01)
+
+
+### Bug Fixes
+
+* disappearing webinar categories ([53d2704](https://github.com/oaknational/Oak-Web-Application/commit/53d27044f515e869b1e6c4ff94787b83d63501a0))
+* duplicate categories in webinars ([a462d4e](https://github.com/oaknational/Oak-Web-Application/commit/a462d4e812d483dcce9345f4799093b8c4bf7c20))
+* sort categories ([3d947a1](https://github.com/oaknational/Oak-Web-Application/commit/3d947a135150d2afc9fc07ad094c50600bcdb7f7))
+* webinar category links to webinar not blog ([b437af6](https://github.com/oaknational/Oak-Web-Application/commit/b437af6bbd1bb8b44059881680c52a4a607cbdfa))
+
+
+### Features
+
+* webinar listing page ([7edaed9](https://github.com/oaknational/Oak-Web-Application/commit/7edaed943ef10078204fde6f7982afa3b86f7fd4))
+
 ## [1.47.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.3...v1.47.4) (2022-11-01)
 
 
