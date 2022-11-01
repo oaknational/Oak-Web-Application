@@ -6,16 +6,20 @@ import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
 import Flex from "../../Flex";
 
+import { BlogCategoryPage } from "./BlogCategoryList";
+
 type BlogCategoryListItemProps = {
   isSelected: boolean;
   category: { title: string; slug: string } | { title: "All"; slug: null };
   setSelected: (slug: string | null) => void;
+  page: BlogCategoryPage;
 };
 const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
   const {
     category: { slug, title },
     isSelected,
     setSelected,
+    page,
   } = props;
   const arrowHidden = !isSelected;
 
@@ -45,7 +49,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         $display="flex"
         $height="100%"
         $alignItems="center"
-        page="blog-index"
+        page={page}
         category={slug}
         htmlAnchorProps={{
           onClick,
