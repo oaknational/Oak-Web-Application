@@ -40,7 +40,6 @@ export type WebinarListingPageProps = {
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
   const { categories, categorySlug, pageData } = props;
-
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
     alt: "",
@@ -134,8 +133,12 @@ export const getStaticProps: GetStaticProps<
   });
 
   const webinarCategories = [
-    ...new Set(webinars.map((item) => item.category)),
-  ].sort((a, b) => (a.title < b.title ? -1 : 1));
+    ...new Map(
+      webinars
+        .map((webinar) => webinar.category)
+        .map((item) => [item["slug"], item])
+    ).values(),
+  ];
 
   const results: GetStaticPropsResult<WebinarListingPageProps> = {
     props: {
