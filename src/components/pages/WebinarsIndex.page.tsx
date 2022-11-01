@@ -138,7 +138,7 @@ export const getStaticProps: GetStaticProps<
         .map((webinar) => webinar.category)
         .map((item) => [item["slug"], item])
     ).values(),
-  ];
+  ].sort((a, b) => (a.title < b.title ? -1 : 1));
 
   const results: GetStaticPropsResult<WebinarListingPageProps> = {
     props: {
