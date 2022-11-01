@@ -1,3 +1,13 @@
+## [1.48.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.0...v1.48.1) (2022-11-01)
+
+
+### Bug Fixes
+
+* allow Pa11y to run against localhost ([02917e6](https://github.com/oaknational/Oak-Web-Application/commit/02917e634d866ab2b25b61743510b51cf2827f61))
+* **deps:** downgrade node-fetch so it can be used with 'require' ([4478a68](https://github.com/oaknational/Oak-Web-Application/commit/4478a683c2ef5d3c2bf479c1ac2c32e85a794d07))
+* **deps:** fix critical security warning ([b834164](https://github.com/oaknational/Oak-Web-Application/commit/b834164d68fc83d22f00fe7b5a2a89208104520f))
+* **video:** tell Mux it is rendering in a big slot ([52c5a46](https://github.com/oaknational/Oak-Web-Application/commit/52c5a4612296e8a1771f4e31262ba2efc225835a))
+
 # [1.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.4...v1.48.0) (2022-11-01)
 
 
