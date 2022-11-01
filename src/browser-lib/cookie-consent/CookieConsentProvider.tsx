@@ -33,7 +33,9 @@ type CookieConsentContext = {
   hasConsentedToPolicy: HasConsentedToPolicy;
 };
 
-const cookieConsentContext = createContext<CookieConsentContext | null>(null);
+export const cookieConsentContext = createContext<CookieConsentContext | null>(
+  null
+);
 
 export const useCookieConsent = () => {
   const cookieConsentsContext = useContext(cookieConsentContext);

@@ -26,6 +26,7 @@ const customJestConfig = {
     "browser-lib/graphql/generated/*",
     "node-lib/graphql/generated/*",
     "node-lib/sanity-graphql/generated/*",
+    "src/storybook-decorators/*",
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
