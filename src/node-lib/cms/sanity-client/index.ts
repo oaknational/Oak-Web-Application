@@ -40,7 +40,6 @@ const getSanityClient = () => ({
       ...params,
     });
     const webinarsListingPageData = result?.allWebinarListingPage?.[0];
-    console.log(webinarsListingPageData);
 
     if (!webinarsListingPageData) {
       return null;
