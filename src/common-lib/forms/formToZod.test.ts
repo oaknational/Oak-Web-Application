@@ -45,12 +45,13 @@ describe("formToZod", () => {
     });
   });
 
-  it("marks `string` type fields as non-empty", () => {
+  it("marks required `string` type fields as non-empty", () => {
     const form = {
       fields: [
         {
           name: "name",
           type: "string",
+          required: true,
         },
       ],
     } as FormDefinition;
@@ -60,6 +61,24 @@ describe("formToZod", () => {
     expect(() => {
       schema.parse({ name: "" });
     }).toThrow();
+  });
+
+  it("allows empty strings in optional `string` type fields", () => {
+    const form = {
+      fields: [
+        {
+          name: "name",
+          type: "string",
+          required: false,
+        },
+      ],
+    } as FormDefinition;
+
+    const schema = formToZod(form);
+
+    expect(schema.parse({ name: "" })).toEqual({
+      name: undefined,
+    });
   });
 
   it("handles `select` type fields", () => {
@@ -87,11 +106,7 @@ describe("formToZod", () => {
     }).toThrow();
   });
 
-  it("handles empty strings in optional `select` type fields", () => {
-    /**
-     * React hook form will pass an empty string which triggers an
-     * invalid enum value error
-     */
+  it("allows empty strings in optional `select` type fields", () => {
     const form = {
       fields: [
         {
@@ -109,11 +124,36 @@ describe("formToZod", () => {
     const schema = formToZod(form);
 
     expect(schema.parse({ user_type: "" })).toEqual({
-      user_type: "teacher",
+      user_type: undefined,
     });
 
     expect(() => {
       schema.parse({ user_type: "not-in-allowed" });
+    }).toThrow();
+  });
+
+  it("doesn't allow empty strings in required `select` type fields", () => {
+    /**
+     * Make sure we didn't pass the above test by blindly setting .optional()
+     */
+    const form = {
+      fields: [
+        {
+          name: "user_type",
+          type: "select",
+          required: true,
+          options: [
+            { label: "Teacher", value: "teacher" },
+            { label: "Pupil", value: "pupil" },
+          ],
+        },
+      ],
+    } as FormDefinition;
+
+    const schema = formToZod(form);
+
+    expect(() => {
+      schema.parse({ user_type: "" });
     }).toThrow();
   });
 

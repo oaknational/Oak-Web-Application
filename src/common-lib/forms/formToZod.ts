@@ -4,11 +4,20 @@ import { assertUnreachable } from "../../utils/assertUnreachable";
 
 import { FormField, FormDefinition } from "./FormDefinition";
 
+const emptyStringToUndefined = (maybeString: unknown) =>
+  typeof maybeString === "string" && maybeString === ""
+    ? undefined
+    : maybeString;
+
 const fieldToZod = (formField: FormField) => {
   let schema;
+  const isRequired =
+    formField.required || typeof formField.required === "undefined";
 
   switch (formField.type) {
     case "string":
+      // @TODO: Make better error message than
+      // String must contain at least 1 character(s)
       schema = z.string().min(1);
       break;
     case "email":
@@ -30,10 +39,15 @@ const fieldToZod = (formField: FormField) => {
       );
   }
 
-  if (formField.required || typeof formField.required === "undefined") {
+  if (isRequired) {
     return schema;
   } else {
-    return schema.optional();
+    /**
+     * We want to coerce empty strings into undefined to better handle
+     * form submissions (react-hook-form will pass an empty string
+     * which will in turn fail validation)
+     */
+    return z.preprocess(emptyStringToUndefined, schema.optional());
   }
 };
 
