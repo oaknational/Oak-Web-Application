@@ -592,6 +592,8 @@ export type Block = {
 
 export type BlockOrCalloutOrCtaOrImageWithAltTextOrQuoteOrTextAndMediaOrVideo = Block | Callout | Cta | ImageWithAltText | Quote | TextAndMedia | Video;
 
+export type BlockOrImage = Block | Image;
+
 export type BlogWebinarCategory = Document & {
   __typename?: 'BlogWebinarCategory';
   /** Date the document was created */
@@ -1712,6 +1714,7 @@ export type RootQuery = {
   PlanningCorePage?: Maybe<PlanningCorePage>;
   PolicyPage?: Maybe<PolicyPage>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
+  SanityHelpArticle?: Maybe<SanityHelpArticle>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SupportCorePage?: Maybe<SupportCorePage>;
   TeamMember?: Maybe<TeamMember>;
@@ -1736,6 +1739,7 @@ export type RootQuery = {
   allPlanningCorePage: Array<PlanningCorePage>;
   allPolicyPage: Array<PolicyPage>;
   allSanityFileAsset: Array<SanityFileAsset>;
+  allSanityHelpArticle: Array<SanityHelpArticle>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSupportCorePage: Array<SupportCorePage>;
   allTeamMember: Array<TeamMember>;
@@ -1831,6 +1835,11 @@ export type RootQueryPolicyPageArgs = {
 
 
 export type RootQuerySanityFileAssetArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQuerySanityHelpArticleArgs = {
   id: Scalars['ID'];
 };
 
@@ -2009,6 +2018,14 @@ export type RootQueryAllSanityFileAssetArgs = {
 };
 
 
+export type RootQueryAllSanityHelpArticleArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<SanityHelpArticleSorting>>;
+  where?: InputMaybe<SanityHelpArticleFilter>;
+};
+
+
 export type RootQueryAllSanityImageAssetArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
@@ -2156,6 +2173,45 @@ export type SanityFileAssetSorting = {
   source?: InputMaybe<SanityAssetSourceDataSorting>;
   title?: InputMaybe<SortOrder>;
   url?: InputMaybe<SortOrder>;
+};
+
+export type SanityHelpArticle = Document & {
+  __typename?: 'SanityHelpArticle';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  bodyRaw?: Maybe<Scalars['JSON']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SanityHelpArticleFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type SanityHelpArticleSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type SanityImageAsset = Document & {
@@ -2780,6 +2836,7 @@ export type Webinar = Document & {
   slug?: Maybe<Slug>;
   summaryRaw?: Maybe<Scalars['JSON']>;
   title?: Maybe<Scalars['String']>;
+  video?: Maybe<Video>;
 };
 
 export type WebinarFilter = {
@@ -2796,6 +2853,7 @@ export type WebinarFilter = {
   seo?: InputMaybe<SeoFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
+  video?: InputMaybe<VideoFilter>;
 };
 
 export type WebinarListingPage = Document & {
@@ -2921,7 +2979,7 @@ export type AllWebinarsQueryVariables = Exact<{
 }>;
 
 
-export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
+export type AllWebinarsQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null }> };
 
 export type AttachmentFragment = { __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null };
 
@@ -2938,7 +2996,7 @@ export type BlogPortableTextReferencesQueryVariables = Exact<{
 }>;
 
 
-export type BlogPortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'BlogWebinarCategory', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ContactCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SanityFileAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SupportCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'TeamMember', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Video', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _type?: string | null, id?: string | null, contentType?: string | null }> };
+export type BlogPortableTextReferencesQuery = { __typename?: 'RootQuery', allDocument: Array<{ __typename?: 'AboutCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'BlogWebinarCategory', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'ContactCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SanityFileAsset', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityHelpArticle', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'SupportCorePage', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'TeamMember', _type?: string | null, id?: string | null, contentType?: string | null } | { __typename?: 'Video', _type?: string | null, title?: string | null, id?: string | null, contentType?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | { __typename?: 'Webinar', _type?: string | null, id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', _type?: string | null, id?: string | null, contentType?: string | null }> };
 
 export type BlogPreviewFieldsFragment = { __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, role?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
 
@@ -3007,6 +3065,8 @@ type InternalLinkFields_PolicyPage_Fragment = { __typename?: 'PolicyPage', id?: 
 
 type InternalLinkFields_SanityFileAsset_Fragment = { __typename?: 'SanityFileAsset', id?: string | null, contentType?: string | null };
 
+type InternalLinkFields_SanityHelpArticle_Fragment = { __typename?: 'SanityHelpArticle', id?: string | null, contentType?: string | null };
+
 type InternalLinkFields_SanityImageAsset_Fragment = { __typename?: 'SanityImageAsset', id?: string | null, contentType?: string | null };
 
 type InternalLinkFields_SupportCorePage_Fragment = { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null };
@@ -3019,7 +3079,7 @@ type InternalLinkFields_Webinar_Fragment = { __typename?: 'Webinar', id?: string
 
 type InternalLinkFields_WebinarListingPage_Fragment = { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null };
 
-export type InternalLinkFieldsFragment = InternalLinkFields_AboutCorePage_Fragment | InternalLinkFields_AboutCorePageBoard_Fragment | InternalLinkFields_AboutCorePageLeadership_Fragment | InternalLinkFields_AboutCorePagePartners_Fragment | InternalLinkFields_AboutCorePageWhoWeAre_Fragment | InternalLinkFields_AboutCorePageWorkWithUs_Fragment | InternalLinkFields_Attachment_Fragment | InternalLinkFields_BlogWebinarCategory_Fragment | InternalLinkFields_ContactCorePage_Fragment | InternalLinkFields_CurriculumCorePage_Fragment | InternalLinkFields_Homepage_Fragment | InternalLinkFields_LandingPage_Fragment | InternalLinkFields_NewsListingPage_Fragment | InternalLinkFields_NewsPost_Fragment | InternalLinkFields_PlanningCorePage_Fragment | InternalLinkFields_PolicyPage_Fragment | InternalLinkFields_SanityFileAsset_Fragment | InternalLinkFields_SanityImageAsset_Fragment | InternalLinkFields_SupportCorePage_Fragment | InternalLinkFields_TeamMember_Fragment | InternalLinkFields_Video_Fragment | InternalLinkFields_Webinar_Fragment | InternalLinkFields_WebinarListingPage_Fragment;
+export type InternalLinkFieldsFragment = InternalLinkFields_AboutCorePage_Fragment | InternalLinkFields_AboutCorePageBoard_Fragment | InternalLinkFields_AboutCorePageLeadership_Fragment | InternalLinkFields_AboutCorePagePartners_Fragment | InternalLinkFields_AboutCorePageWhoWeAre_Fragment | InternalLinkFields_AboutCorePageWorkWithUs_Fragment | InternalLinkFields_Attachment_Fragment | InternalLinkFields_BlogWebinarCategory_Fragment | InternalLinkFields_ContactCorePage_Fragment | InternalLinkFields_CurriculumCorePage_Fragment | InternalLinkFields_Homepage_Fragment | InternalLinkFields_LandingPage_Fragment | InternalLinkFields_NewsListingPage_Fragment | InternalLinkFields_NewsPost_Fragment | InternalLinkFields_PlanningCorePage_Fragment | InternalLinkFields_PolicyPage_Fragment | InternalLinkFields_SanityFileAsset_Fragment | InternalLinkFields_SanityHelpArticle_Fragment | InternalLinkFields_SanityImageAsset_Fragment | InternalLinkFields_SupportCorePage_Fragment | InternalLinkFields_TeamMember_Fragment | InternalLinkFields_Video_Fragment | InternalLinkFields_Webinar_Fragment | InternalLinkFields_WebinarListingPage_Fragment;
 
 export type LandingPageBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
@@ -3062,9 +3122,16 @@ export type WebinarBySlugQueryVariables = Exact<{
 }>;
 
 
-export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type WebinarBySlugQuery = { __typename?: 'RootQuery', allWebinar: Array<{ __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, hosts?: Array<{ __typename?: 'TeamMember', _key?: string | null, name?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
+export type WebinarPreviewFieldsFragment = { __typename?: 'Webinar', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
+
+export type WebinarsListingPageQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type WebinarsListingPageQuery = { __typename?: 'RootQuery', allWebinarListingPage: Array<{ __typename?: 'WebinarListingPage', title?: string | null, heading?: string | null, id?: string | null, summary?: any | null }> };
 
 export const ImageFragmentDoc = gql`
     fragment Image on Image {
@@ -3283,6 +3350,9 @@ export const WebinarPreviewFieldsFragmentDoc = gql`
     current
   }
   date
+  video {
+    ...Video
+  }
   category {
     title
     slug {
@@ -3291,7 +3361,7 @@ export const WebinarPreviewFieldsFragmentDoc = gql`
   }
   summaryPortableText: summaryRaw
 }
-    `;
+    ${VideoFragmentDoc}`;
 export const AboutBoardPageDocument = gql`
     query aboutBoardPage($isDraftFilter: Sanity_DocumentFilter) {
   aboutCorePage: allAboutCorePage(
@@ -3860,13 +3930,31 @@ export const WebinarBySlugDocument = gql`
         ...Image
       }
     }
+    video {
+      ...Video
+    }
     seo {
       ...Seo
     }
   }
 }
     ${ImageFragmentDoc}
+${VideoFragmentDoc}
 ${SeoFragmentDoc}`;
+export const WebinarsListingPageDocument = gql`
+    query webinarsListingPage($isDraftFilter: Sanity_DocumentFilter) {
+  allWebinarListingPage(
+    where: {_: $isDraftFilter, _id: {matches: "*webinarListingPage"}}
+    sort: {_updatedAt: DESC}
+    limit: 1
+  ) {
+    id: _id
+    title
+    heading
+    summary: summaryRaw
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -3928,6 +4016,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     webinarBySlug(variables?: WebinarBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WebinarBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WebinarBySlugQuery>(WebinarBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'webinarBySlug', 'query');
+    },
+    webinarsListingPage(variables?: WebinarsListingPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WebinarsListingPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<WebinarsListingPageQuery>(WebinarsListingPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'webinarsListingPage', 'query');
     }
   };
 }

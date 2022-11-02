@@ -93,7 +93,6 @@ const brushBorderRight = css`
 const brushBorderBottom = css`
   ${brushBorder}
   height: ${BOTTOM_THICKNESS}px;
-  height: ${BOTTOM_THICKNESS}px;
   top: calc(100% - 1px);
   left: 0;
 `;

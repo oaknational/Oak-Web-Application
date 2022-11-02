@@ -4,10 +4,13 @@
  * Note, this config is also used as the source of URLs to test for Lighthouse CI.
  */
 
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+const isLocalHost = new URL(baseUrl).host === "localhost:3000";
+
 // Cloudflare Access token
 const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID;
 const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET;
-if (!CfAccessClientId || !CfAccessClientSecret) {
+if (!isLocalHost && (!CfAccessClientId || !CfAccessClientSecret)) {
   throw new TypeError(
     "Please specify Cloudflare Access token headers in envs\nfor background info see https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/"
   );
@@ -40,8 +43,6 @@ const config = {
   //   info: console.info,
   // },
 };
-
-const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
 // URLs should end with a `/` to avoid redirects from
 // e.g. `/unit` to `/unit/index.html` during tests.

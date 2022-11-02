@@ -5,13 +5,17 @@ import { UL } from "../../Typography";
 
 import BlogCategoryListItem from "./BlogCategoryListItem";
 
+export type BlogCategoryPage = "blog-index" | "webinars-index";
+
 export type BlogCategoryListProps = BoxProps & {
   labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
+  page: BlogCategoryPage;
 };
 const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
-  const { categories, selectedCategorySlug, labelledBy, ...boxProps } = props;
+  const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
+    props;
   const [visiblySelected, setVisiblySelected] = useState(selectedCategorySlug);
   useEffect(() => {
     setVisiblySelected(selectedCategorySlug);
@@ -24,14 +28,16 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
           isSelected={visiblySelected === null}
           category={{ slug: null, title: "All" }}
           setSelected={setVisiblySelected}
+          page={page}
         />
         {categories.map((category) => {
           return (
             <BlogCategoryListItem
-              key={`BlogCategoryList-${category.slug}`}
+              key={`${page}-CategoryList-${category.slug}`}
               isSelected={visiblySelected === category.slug}
               category={category}
               setSelected={setVisiblySelected}
+              page={page}
             />
           );
         })}

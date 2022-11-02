@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { FC } from "react";
 
 import Flex from "../Flex";
@@ -69,8 +68,12 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
       </OakLink>
     );
   }
-  // TODO: change data to have "page" so we can use OakLink
-  return <Link href={props.href}>{props.text}</Link>;
+  // TODO: change data to have "page"
+  return (
+    <OakLink page={null} href={props.href}>
+      {props.text}
+    </OakLink>
+  );
 };
 
 export type FooterSection = {

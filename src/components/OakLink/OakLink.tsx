@@ -26,8 +26,18 @@ type StyleProps = FlexProps &
      * is hovered), and this link is the click target for it.
      */
     isHovered?: boolean;
+    /**
+     * Set 'inline=true' if the link is in amongst a block of text. Styles will
+     * be affected: text-decoration: underline;
+     */
+    isInline?: boolean;
   };
 
+const inlineStyles = css`
+  display: inline;
+  text-decoration: underline;
+  color: ${(props) => props.theme.colors.hyperlink};
+`;
 const hoverStyles = css`
   text-decoration: underline;
 `;
@@ -35,6 +45,7 @@ const hoverStyles = css`
 const OakLinkA = styled.a<StyleProps>`
   ${box}
   ${flex}
+  ${(props) => props.isInline && inlineStyles}
   ${(props) => props.focusStyles?.includes("underline") && focusUnderlineStyles}
 
   ${(props) => props.isHovered && hoverStyles}
@@ -125,9 +136,5 @@ const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
     </Link>
   );
 });
-
-OakLink.defaultProps = {
-  $display: "inline",
-};
 
 export default OakLink;

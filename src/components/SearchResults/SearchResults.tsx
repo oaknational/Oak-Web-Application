@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { SearchHit } from "../../pages/beta/search";
+import OakLink from "../OakLink";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
@@ -13,11 +12,9 @@ const SearchResults = (props: SearchResultsProps) => {
     const { title, id, key_stage_title, slug } = _source;
     return (
       <li key={id}>
-        <Link href={`/beta/lessons/${slug}`}>
-          <a>
-            {title} - <i>{key_stage_title}</i>
-          </a>
-        </Link>
+        <OakLink page={null} href={`/beta/lessons/${slug}`}>
+          {title} - <i>{key_stage_title}</i>
+        </OakLink>
       </li>
     );
   });
