@@ -20,12 +20,16 @@ const relativeUrls = [
   "/lesson-planning",
   "/develop-your-curriculum",
   "/about-us/who-we-are",
+  "/about-us/leadership",
   "/about-us/board",
+  "/about-us/partners",
+  "/about-us/work-with-us",
   "/blog",
   "/blog/how-to-design-a-unit-of-study",
   "/blog/evolution-of-oak",
   "/blog/join-the-childrens-mental-health-week-assembly-2022",
   "/legal/accessibility-statement",
+  "/lp/download-our-lesson-and-resource-directory",
 ];
 
 const urls = relativeUrls.map((relUrl) => new URL(relUrl, baseUrl).href);

@@ -35,11 +35,11 @@ export const parameters = {
   options: {
     storySort: {
       method: "alphabetical",
-      order: ["Foundations"],
+      // Leave "Introduction" first so that user lands there
+      order: ["Introduction"],
     },
-    // defaults to "docs" view
-    viewMode: "docs",
   },
+  viewMode: "docs",
   previewTabs: {
     canvas: {
       hidden: true,
