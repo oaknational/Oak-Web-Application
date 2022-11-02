@@ -24,7 +24,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
   return (
     <Flex $flexDirection="column" {...flexProps}>
       {firstBio && firstBioHasOwnRow && (
-        <Grid $mb={32} $cg={16}>
+        <Grid $mb={[16, 32]} $cg={16}>
           <GridArea
             $colSpan={[12, 4, 6]}
             $colStart={[null, 5, 4]}
@@ -36,7 +36,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
           </GridArea>
         </Grid>
       )}
-      <Grid $cg={16} $rg={32} $gridAutoRows="1fr">
+      <Grid $cg={16} $rg={[16, 32]} $gridAutoRows={[null, "1fr"]}>
         {firstBio && !firstBioHasOwnRow && (
           <GridArea $colSpan={[12, 4, 3]}>
             <BioCardListItem {...firstBio} onClick={onCardClick} />
