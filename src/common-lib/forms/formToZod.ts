@@ -16,12 +16,15 @@ export const fieldToZod = (formField: FormField) => {
 
   switch (formField.type) {
     case "string":
-      // @TODO: Make better error message than
-      // String must contain at least 1 character(s)
-      schema = z.string().min(1);
+      schema = z
+        .string()
+        .min(1, { message: `${formField.label} can't be empty` });
       break;
     case "email":
-      schema = z.string().email();
+      schema = z
+        .string()
+        .min(1, { message: `${formField.label} can't be empty` })
+        .email({ message: "Email not valid" });
       break;
     case "select":
     case "radio":

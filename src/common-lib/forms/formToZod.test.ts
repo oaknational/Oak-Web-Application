@@ -1,3 +1,5 @@
+import { SafeParseError } from "zod";
+
 import { FormDefinition, FormField } from "./FormDefinition";
 import formToZod, { fieldToZod } from "./formToZod";
 
@@ -33,6 +35,7 @@ describe("formToZod.ts", () => {
     it("marks required `string` type fields as non-empty", () => {
       const field: FormField = {
         name: "name",
+        label: "The Label",
         type: "string",
         required: true,
       };
@@ -42,6 +45,11 @@ describe("formToZod.ts", () => {
       expect(() => {
         schema.parse("");
       }).toThrow();
+
+      const parseResult = schema.safeParse("") as SafeParseError<unknown>;
+      expect(parseResult.error.issues?.[0]?.message).toBe(
+        `The Label can't be empty`
+      );
     });
 
     it("allows empty strings in optional `string` type fields", () => {
@@ -74,6 +82,10 @@ describe("formToZod.ts", () => {
       expect(() => {
         schema.parse("not-in-allowed");
       }).toThrow();
+
+      // Not sure currently how to set an error message on a z.enum
+      // const parseResult = schema.safeParse("not-in-allowed") as SafeParseError<unknown>;
+      // expect(parseResult.error.issues?.[0]?.message).toBe(``);
     });
 
     it("allows empty strings in optional `select` type fields", () => {
@@ -121,6 +133,7 @@ describe("formToZod.ts", () => {
       const field: FormField = {
         name: "email",
         type: "email",
+        label: "Email Label",
         required: true,
       };
 
@@ -131,6 +144,18 @@ describe("formToZod.ts", () => {
       expect(() => {
         schema.parse("not-an-email");
       }).toThrow();
+
+      const emptyParseResult = schema.safeParse("") as SafeParseError<unknown>;
+      expect(emptyParseResult.error.issues?.[0]?.message).toBe(
+        `Email Label can't be empty`
+      );
+
+      const invalidParseResult = schema.safeParse(
+        "not-an-email"
+      ) as SafeParseError<unknown>;
+      expect(invalidParseResult.error.issues?.[0]?.message).toBe(
+        `Email not valid`
+      );
     });
   });
 
