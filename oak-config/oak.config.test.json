@@ -32,8 +32,7 @@
     "scriptDomain": "script.domain.example.com"
   },
   "oak": {
-    "appBaseUrl": "http://localhost:3000",
-    "appName": "Oak Web Application"
+    "appBaseUrl": "http://localhost:3000"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",

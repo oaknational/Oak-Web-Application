@@ -1,4 +1,3 @@
-import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
@@ -128,68 +127,69 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  appName: {
-    value: seoConfig.NEXT_PUBLIC_APP_NAME,
-    envName: "NEXT_PUBLIC_APP_NAME",
-    required: true,
+  seoAppName: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_NAME,
+    envName: "NEXT_PUBLIC_SEO_APP_NAME",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "Oak National Academy",
   },
-  appDescription: {
-    value: seoConfig.NEXT_PUBLIC_APP_DESCRIPTION,
-    envName: "NEXT_PUBLIC_APP_DESCRIPTION",
-    required: true,
+  seoAppDescription: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_DESCRIPTION,
+    envName: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default:
+      "Explore thousands of high-quality resources for lesson planning and curriculum design. All optional, adaptable and free.",
   },
-  appLocale: {
-    value: seoConfig.NEXT_PUBLIC_APP_LOCALE,
-    envName: "NEXT_PUBLIC_APP_LOCALE",
-    required: true,
+  seoAppLocale: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_LOCALE,
+    envName: "NEXT_PUBLIC_SEO_APP_LOCALE",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "en_GB",
   },
-  appUrl: {
-    value: seoConfig.NEXT_PUBLIC_APP_URL,
-    envName: "NEXT_PUBLIC_APP_URL",
-    required: true,
+  seoAppUrl: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_URL,
+    envName: "NEXT_PUBLIC_SEO_APP_URL",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "https://www.thenational.academy",
   },
-  appLogo: {
-    value: seoConfig.NEXT_PUBLIC_APP_LOGO,
-    envName: "NEXT_PUBLIC_APP_LOGO",
-    required: true,
+  seoAppLogo: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_LOGO,
+    envName: "NEXT_PUBLIC_SEO_APP_LOGO",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "/images/oak-national-academy-logo-512.png",
   },
-  appSocialSharingImg: {
-    value: seoConfig.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
-    envName: "NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG",
-    required: true,
+  seoAppSocialSharingImg: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG,
+    envName: "NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "/images/sharing/default-social-sharing-2022.png",
   },
-  appFacebook: {
-    value: seoConfig.NEXT_PUBLIC_APP_FACEBOOK,
-    envName: "NEXT_PUBLIC_APP_FACEBOOK",
-    required: true,
+  seoAppFacebook: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK,
+    envName: "NEXT_PUBLIC_SEO_APP_FACEBOOK",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "https://www.facebook.com/oaknationalacademy/",
   },
-  appTwitter: {
-    value: seoConfig.NEXT_PUBLIC_APP_TWITTER,
-    envName: "NEXT_PUBLIC_APP_TWITTER",
-    required: true,
+  seoAppTwitter: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_TWITTER,
+    envName: "NEXT_PUBLIC_SEO_APP_TWITTER",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "https://twitter.com/OakNational",
   },
-  appTwitterHandle: {
-    value: seoConfig.NEXT_PUBLIC_APP_TWITTER_HANDLE,
-    envName: "NEXT_PUBLIC_APP_TWITTER_HANDLE",
-    required: true,
+  seoAppTwitterHandle: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE,
+    envName: "NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE",
+    required: false,
     availableInBrowser: true,
-    default: null,
+    default: "@oaknational",
   },
   searchApiUrl: {
     value: process.env.NEXT_PUBLIC_SEARCH_API_URL,

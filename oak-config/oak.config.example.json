@@ -36,7 +36,6 @@
   },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
-    "appName": "Oak Web Application",
     "searchApiUrl": "https://example.com"
   },
   "posthog": {
