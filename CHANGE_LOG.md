@@ -1,3 +1,17 @@
+## [1.48.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.5...v1.48.6) (2022-11-02)
+
+
+### Bug Fixes
+
+* **icon:** chevron down ([810faf1](https://github.com/oaknational/Oak-Web-Application/commit/810faf18112474c09d1698480ec57c458596c2b9))
+
+## [1.48.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.4...v1.48.5) (2022-11-02)
+
+
+### Bug Fixes
+
+* **video-tracking:** allow duration: null in video tracking ([3bb920e](https://github.com/oaknational/Oak-Web-Application/commit/3bb920e6fb45ffa86eacb28793d0b10425de0ba7))
+
 ## [1.48.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.3...v1.48.4) (2022-11-02)
 
 
