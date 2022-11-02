@@ -12,13 +12,21 @@ const PAGE_SIZE = 4;
 
 export type BlogListProps = {
   items: BlogListItemProps[];
+  /**
+   * adds image to each item
+   */
   withImage?: boolean;
+  /**
+   * adds 'hr's above the first and below the last item.
+   */
   withContainingHrs?: boolean;
+  /**
+   * adds pagination controls below the last item
+   */
   withPagination?: boolean;
 };
 /**
- * Contains a title of set size and a list of BlogListItem,
- * with dividers between them.
+ * Contains a list of BlogListItem with dividers between them.
  */
 const BlogList: FC<BlogListProps> = (props) => {
   const { items, withImage, withContainingHrs, withPagination } = props;
