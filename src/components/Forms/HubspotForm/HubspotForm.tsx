@@ -17,6 +17,8 @@ import formToZod from "../../../node-lib/hubspot-forms/formToZod";
 
 // const reportError = errorReporter("HubspotForm.tsx");
 
+type FormValues = Record<string, unknown>;
+
 type HubspotFormFieldProps = {
   field: FormField;
   errorMessage?: string;
@@ -24,7 +26,7 @@ type HubspotFormFieldProps = {
   // We can't provide the FieldValues shape to register
   // as it's dynamic, so pass a record but lose the type checking
   // of the field name
-  register: UseFormRegister<Record<string, unknown>>;
+  register: UseFormRegister<FormValues>;
 };
 
 const HubspotFormField: FC<HubspotFormFieldProps> = ({
@@ -70,19 +72,21 @@ const HubspotFormField: FC<HubspotFormFieldProps> = ({
   }
 };
 
-const evaluateConditionalField =
-  (field: FormField, formContext: Record<string, unknown>) => {
-    if (field.renderWhen && field.renderWhen?.length > 0) {
-      const shouldRender = field.renderWhen?.every((condition) => {
-        // @TODO no node-lib
-        return evaluateCondition(condition, formContext);
-      });
+const evaluateConditionalField = (
+  field: FormField,
+  formContext: FormValues
+) => {
+  if (field.renderWhen && field.renderWhen?.length > 0) {
+    const shouldRender = field.renderWhen?.every((condition) => {
+      // @TODO no node-lib
+      return evaluateCondition(condition, formContext);
+    });
 
-      return shouldRender;
-    }
+    return shouldRender;
+  }
 
-    return true;
-  };
+  return true;
+};
 
 export type HubspotFormProps = {
   form: FormDefinition;
@@ -93,9 +97,7 @@ const HubspotForm: FC<HubspotFormProps> = ({ form }) => {
     return formToZod(form);
   }, [form]);
 
-  const { register, handleSubmit, formState, watch } = useForm<
-    Record<string, unknown>
-  >({
+  const { register, handleSubmit, formState, watch } = useForm<FormValues>({
     // resolver: zodResolver(z.any()),
     resolver: zodResolver(zodSchema),
     mode: "onBlur",
@@ -123,20 +125,15 @@ const HubspotForm: FC<HubspotFormProps> = ({ form }) => {
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
-        console.log("onsubmit", data);
-
-        const x = zodSchema.safeParse(data)
-        console.log('x', x)
+        // @TODO: Handle submit
       })}
       // aria-describedby={descriptionId}
     >
-
-      <pre>{JSON.stringify(errors, null, 2)}</pre>
-
       {form.fields.filter(filterWFields).map((field) => {
         const errorMessage = errors?.[field.name]?.message;
         return (
           <HubspotFormField
+            key={field.name}
             field={field}
             register={register}
             errorMessage={errorMessage}
