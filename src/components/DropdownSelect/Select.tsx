@@ -1,4 +1,4 @@
-import { ReactNode, Ref } from "react";
+import { Ref } from "react";
 import styled, { css } from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
@@ -44,7 +44,6 @@ type SelectProps = {
   onSelectionChange: (value: string) => void;
   placeholder?: string;
   icon?: IconName;
-  children: ReactNode;
   myRef: Ref<HTMLButtonElement>;
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
