@@ -1,3 +1,10 @@
+## [1.48.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.3...v1.48.4) (2022-11-02)
+
+
+### Bug Fixes
+
+* **seo:** get seo props from CMS for work-with-us page ([dffea44](https://github.com/oaknational/Oak-Web-Application/commit/dffea44e2d05629976268fffd01f5a1eaa8c7335))
+
 ## [1.48.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.2...v1.48.3) (2022-11-02)
 
 
