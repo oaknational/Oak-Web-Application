@@ -64,4 +64,3 @@ DynamicForm.args = {
     ],
   },
 };
-

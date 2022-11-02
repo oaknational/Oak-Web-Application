@@ -121,7 +121,11 @@ describe("transformHubspotForm", () => {
       });
     });
 
-    it("enum+checkbox", () => {
+    /**
+     * Skipped until front end supports, transform support only
+     * requires lines being uncommented
+     */
+    it.skip("handles the enumeration+checkbox type", () => {
       const mockForm = {
         ...formBase,
         formFieldGroups: [
@@ -159,7 +163,11 @@ describe("transformHubspotForm", () => {
       });
     });
 
-    it("enum+radio", () => {
+    /**
+     * Skipped until front end supports, transform support only
+     * requires lines being uncommented
+     */
+    it.skip("handles the enumeration+radio type", () => {
       const mockForm = {
         ...formBase,
         formFieldGroups: [

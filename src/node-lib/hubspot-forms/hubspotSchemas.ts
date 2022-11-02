@@ -38,12 +38,27 @@ const fieldBase = z.object({
 
 const stringField = fieldBase.extend({
   type: z.literal("string"),
-  fieldType: z.enum(["text", "phonenumber"]),
+  fieldType: z.enum([
+    "text",
+    // Also supported in transforms but not front end
+    // "phonenumber"
+  ]),
 });
 
 const enumField = fieldBase.extend({
   type: z.literal("enumeration"),
-  fieldType: z.enum(["select", "checkbox", "radio", "booleancheckbox"]),
+  fieldType: z.enum([
+    "select",
+    /**
+     * These additional types are supported by the transformation
+     * layer, but don't exist in the front-end currently, so they're
+     * disabled to avoid bugs
+     *
+     * "checkbox",
+     * "radio",
+     * "booleancheckbox",
+     */
+  ]),
   options: z.array(hubspotFormOptionSchema),
 });
 
@@ -96,8 +111,8 @@ export type HubspotFormField = z.infer<typeof hubspotFormFieldSchema>;
 export const hubspotFormDefinitionSchema = z.object({
   guid: z.string().uuid(),
   portalId: z.number(),
-  submitText: z.string().nullish().default(null),
-  inlineMessage: z.string().nullish().default(null),
+  submitText: z.string(),
+  inlineMessage: z.string(),
   formFieldGroups: z.array(
     z.object({
       fields: z.array(hubspotFormFieldSchema),

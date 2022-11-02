@@ -11,7 +11,6 @@ import {
   HubspotDependencyFilter,
 } from "./hubspotSchemas";
 
-
 /**
  * Transformations to parse and convert from a hubspot
  * form schema to our internal representation
