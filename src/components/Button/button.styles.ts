@@ -60,6 +60,7 @@ const buttonStyles = css<ButtonStylesProps>`
   align-items: center;
   max-width: 100%;
   position: relative;
+  text-decoration: none;
   ${opacity}
   ${(props) => css`
     width: ${props.fullWidth && "100%"};

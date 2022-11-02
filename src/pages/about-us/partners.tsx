@@ -100,7 +100,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             <ImageContainer $pa={[8, 32]} name={partner.name} image={partner} />
           ))}
         </Flex>
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

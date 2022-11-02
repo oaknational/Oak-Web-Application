@@ -1,16 +1,26 @@
-const { Octokit } = require("octokit");
+const github = require("@actions/github");
 
 const prFromSha = require("../pr_from_sha");
 const branchFromSha = require("../branch_from_sha");
 
-if (!process.env.GITHUB_TOKEN) {
+const githubToken = process.env.GITHUB_TOKEN;
+
+if (!githubToken) {
   throw new Error("Need Github token");
 }
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+const octokit = github.getOctokit(githubToken);
+
+const owner = github.context.payload.repository.owner.login;
+const repo = github.context.payload.repository.name;
+if (!owner || !repo) {
+  throw new Error(
+    `Could not determine repo details, got: owner "${owner} and repo "${repo}".`
+  );
+}
 
 const repoInfo = {
-  owner: "oaknational",
-  repo: "samara",
+  owner,
+  repo,
 };
 
 // PR test
