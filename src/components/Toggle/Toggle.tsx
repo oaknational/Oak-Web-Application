@@ -79,9 +79,11 @@ const LabelText = styled(P)<Pick<ToggleProps, "checked" | "disabled">>`
   color: ${(props) =>
     props.checked &&
     getColorByLocation(({ theme }) => theme.toggle.on.labelColor)};
+  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
   color: ${(props) =>
     !props.checked &&
     getColorByLocation(({ theme }) => theme.toggle.off.labelColor)};
+  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
   color: ${(props) =>
     props.disabled &&
     getColorByLocation(({ theme }) => theme.toggle.disabled.labelColor)};
