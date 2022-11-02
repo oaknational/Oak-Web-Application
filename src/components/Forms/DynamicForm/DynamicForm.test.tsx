@@ -5,11 +5,11 @@ import { computeAccessibleDescription } from "dom-accessibility-api";
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 import OakError from "../../../errors/OakError";
 
-import HubspotForm from "./HubspotForm";
+import DynamicForm from "./DynamicForm";
 
 const onSubmit = jest.fn();
 
-describe("HubspotForm", () => {
+describe("DynamicForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

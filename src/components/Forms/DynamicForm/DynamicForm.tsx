@@ -12,14 +12,13 @@ import {
   FormField,
 } from "../../../node-lib/hubspot-forms/FormDefinition";
 import evaluateCondition from "../../../node-lib/hubspot-forms/evaluateCondition";
-import { z } from "zod";
 import formToZod from "../../../node-lib/hubspot-forms/formToZod";
 
-// const reportError = errorReporter("HubspotForm.tsx");
+// const reportError = errorReporter("DynamicForm.tsx");
 
 type FormValues = Record<string, unknown>;
 
-type HubspotFormFieldProps = {
+type DynamicFormFieldProps = {
   field: FormField;
   errorMessage?: string;
 
@@ -29,7 +28,7 @@ type HubspotFormFieldProps = {
   register: UseFormRegister<FormValues>;
 };
 
-const HubspotFormField: FC<HubspotFormFieldProps> = ({
+const DynamicFormField: FC<DynamicFormFieldProps> = ({
   field,
   register,
   errorMessage,
@@ -88,11 +87,12 @@ const evaluateConditionalField = (
   return true;
 };
 
-export type HubspotFormProps = {
+export type DynamicFormProps = {
   form: FormDefinition;
+  onSubmit: (values: FormValues) => Promise<string | void>;
 };
 
-const HubspotForm: FC<HubspotFormProps> = ({ form }) => {
+const DynamicForm: FC<DynamicFormProps> = ({ form, onSubmit }) => {
   const zodSchema = useMemo(() => {
     return formToZod(form);
   }, [form]);
@@ -132,7 +132,7 @@ const HubspotForm: FC<HubspotFormProps> = ({ form }) => {
       {form.fields.filter(filterWFields).map((field) => {
         const errorMessage = errors?.[field.name]?.message;
         return (
-          <HubspotFormField
+          <DynamicFormField
             key={field.name}
             field={field}
             register={register}
@@ -152,4 +152,4 @@ const HubspotForm: FC<HubspotFormProps> = ({ form }) => {
   );
 };
 
-export default HubspotForm;
+export default DynamicForm;

@@ -5,7 +5,7 @@ import Grid, { GridArea } from "../../Grid";
 import Component from ".";
 
 export default {
-  title: "Forms/Hubspot Form",
+  title: "Forms/Dynamic Form",
   component: Component,
   argTypes: {},
   parameters: {
@@ -23,8 +23,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </Grid>
 );
 
-export const HubspotForm = Template.bind({});
-HubspotForm.args = {
+export const DynamicForm = Template.bind({});
+DynamicForm.args = {
   form: {
     formId: "abc-def",
     portalId: 12345,
