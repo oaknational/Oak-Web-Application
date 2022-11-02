@@ -33,8 +33,10 @@ import {
   serializeDate,
 } from "../components/pages/BlogIndex.page";
 import BlogList from "../components/Blog/BlogList";
-
-import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
+import {
+  SerializedWebinarPreview,
+  webinarToBlogListItem,
+} from "../components/pages/WebinarsIndex.page";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();

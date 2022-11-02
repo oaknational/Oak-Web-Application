@@ -6,12 +6,12 @@ import {
 } from "next";
 import { PortableText } from "@portabletext/react";
 
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
-import CMSClient from "../../node-lib/cms";
-import { Webinar } from "../../common-lib/cms-types";
-import { decorateWithIsr } from "../../node-lib/isr";
+import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
+import Layout from "../../../components/Layout";
+import { Heading } from "../../../components/Typography";
+import CMSClient from "../../../node-lib/cms";
+import { Webinar } from "../../../common-lib/cms-types";
+import { decorateWithIsr } from "../../../node-lib/isr";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;

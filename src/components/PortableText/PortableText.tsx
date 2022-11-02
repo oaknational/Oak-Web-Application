@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Link from "next/link";
 import {
   PortableTextComponents,
   PortableTextComponentsProvider,
@@ -15,6 +14,7 @@ import {
 } from "../../utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
+import OakLink from "../OakLink";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
@@ -41,11 +41,9 @@ export const PTInternalLink: PortableTextMarkComponent<{
     return null;
   }
   return (
-    <Span $color={"hyperlink"}>
-      <Link href={href}>
-        <a>{props.children}</a>
-      </Link>
-    </Span>
+    <OakLink href={href} page={null} isInline>
+      {props.children}
+    </OakLink>
   );
 };
 
@@ -60,11 +58,9 @@ export const PTExternalLink: PortableTextMarkComponent<{
   const { href } = props.value;
 
   return (
-    <Span $color={"hyperlink"}>
-      <Link href={href}>
-        <a>{props.children}</a>
-      </Link>
-    </Span>
+    <OakLink href={href} page={null} isInline>
+      {props.children}
+    </OakLink>
   );
 };
 
@@ -77,11 +73,9 @@ export const PTAnchorLink: PortableTextMarkComponent<{
   }
 
   return (
-    <Span $color={"hyperlink"}>
-      <Link href={`#${anchorMap[props.value.anchor]}`}>
-        <a>{props.children}</a>
-      </Link>
-    </Span>
+    <OakLink page={null} href={`#${anchorMap[props.value.anchor]}`} isInline>
+      {props.children}
+    </OakLink>
   );
 };
 

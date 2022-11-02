@@ -5,6 +5,7 @@ const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
   "blog-index": "/blog",
+  "webinars-index": "/beta/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
   contact: "/contact-us",
   "develop-your-curriculum": "/develop-your-curriculum",
@@ -57,14 +58,14 @@ export const isExternalHref = (href: MaybeOakHref) => {
 
 export type ResolveOakHrefProps =
   | {
-      page: Exclude<OakPageName, "blog-index">;
+      page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog";
+      page: "blog" | "webinars";
       slug: string;
     }
   | {
-      page: "blog-index";
+      page: "blog-index" | "webinars-index";
       category?: string | null;
       search?: {
         page?: string;
@@ -81,11 +82,17 @@ export type ResolveOakHrefProps =
 export const resolveOakHref = (props: ResolveOakHrefProps) => {
   switch (props.page) {
     case "blog":
-      return `${OAK_PAGES["blog-index"]}/${props.slug}`;
-
-    case "blog-index": {
-      let path: "/blog" | `/blog/categories/${string}` =
-        OAK_PAGES["blog-index"];
+    case "webinars": {
+      const path: OakPageName = `${props.page}-index`;
+      return `${OAK_PAGES[path]}/${props.slug}`;
+    }
+    case "blog-index":
+    case "webinars-index": {
+      let path:
+        | "/blog"
+        | "/beta/webinars"
+        | `/blog/categories/${string}`
+        | `/beta/webinars/categories/${string}` = OAK_PAGES[props.page];
       if (props.category) {
         path = `${path}/categories/${props.category}`;
       }
