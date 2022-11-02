@@ -9,7 +9,7 @@ const emptyStringToUndefined = (maybeString: unknown) =>
     ? undefined
     : maybeString;
 
-const fieldToZod = (formField: FormField) => {
+export const fieldToZod = (formField: FormField) => {
   let schema;
   const isRequired =
     formField.required || typeof formField.required === "undefined";
