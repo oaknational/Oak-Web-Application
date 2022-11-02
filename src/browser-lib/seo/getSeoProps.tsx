@@ -7,7 +7,7 @@ export const getSeoProps = (
   props: (Seo & GetSeoProps) | undefined | null,
   options: { addTitleSuffix?: boolean } = { addTitleSuffix: true }
 ): SeoProps => {
-  if (props == null) {
+  if (!props) {
     return DEFAULT_SEO_PROPS;
   }
 

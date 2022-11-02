@@ -48,10 +48,23 @@ export const mockVideoAsset = (): Video => {
   };
 };
 
-export const mockSeo = (): Seo => {
+export const mockSeo = (seo?: Partial<Seo>): Seo => {
   return {
     title: "title",
     description: "description",
     canonicalURL: "/",
+    ...seo,
   };
+};
+
+// This will be SEO results based on the app processing the result of mockSeo()
+export const mockSeoResult = {
+  title: "title | Oak National Academy",
+  description: "description",
+  ogTitle: "title | Oak National Academy",
+  ogDescription: "description",
+  ogUrl: "https://www.thenational.academy",
+  ogImage:
+    "https://www.thenational.academy/images/sharing/default-social-sharing-2022.png?2022",
+  ogSiteName: "Oak National Academy",
 };

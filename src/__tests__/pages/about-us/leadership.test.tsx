@@ -4,10 +4,9 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient from "../../../node-lib/cms";
 import { AboutLeadershipPage } from "../../../common-lib/cms-types";
-// import AboutLeadership, { getStaticProps } from "../../../pages/about-us/leadership";
 import { portableTextFromString } from "../../__helpers__/cms";
 
-import { testAboutPageBaseData } from "./who-we-are.test";
+import { testAboutPageBaseData } from "./about-us.fixtures";
 
 jest.mock("../../../node-lib/cms");
 
@@ -36,7 +35,7 @@ describe.skip("pages/about-us/leadership.tsx", () => {
     );
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
         <AboutLeadership pageData={testAboutLeadershipPageData} />

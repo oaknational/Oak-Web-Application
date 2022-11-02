@@ -1,3 +1,17 @@
+## [1.48.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.4...v1.48.5) (2022-11-02)
+
+
+### Bug Fixes
+
+* **video-tracking:** allow duration: null in video tracking ([3bb920e](https://github.com/oaknational/Oak-Web-Application/commit/3bb920e6fb45ffa86eacb28793d0b10425de0ba7))
+
+## [1.48.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.3...v1.48.4) (2022-11-02)
+
+
+### Bug Fixes
+
+* **seo:** get seo props from CMS for work-with-us page ([dffea44](https://github.com/oaknational/Oak-Web-Application/commit/dffea44e2d05629976268fffd01f5a1eaa8c7335))
+
 ## [1.48.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.2...v1.48.3) (2022-11-02)
 
 
