@@ -5,16 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../Input";
 import Button from "../../Button";
 import DropdownSelect from "../../DropdownSelect";
-// import OakError from "../../../errors/OakError";
-// import errorReporter from "../../../common-lib/error-reporter";
 import {
   FormDefinition,
   FormField,
 } from "../../../common-lib/forms/FormDefinition";
 import evaluateCondition from "../../../common-lib/forms/evaluateCondition";
 import formToZod from "../../../common-lib/forms/formToZod";
-
-// const reportError = errorReporter("DynamicForm.tsx");
 
 type FormValues = Record<string, unknown>;
 
@@ -28,7 +24,7 @@ type DynamicFormFieldProps = {
   register: UseFormRegister<FormValues>;
 };
 
-const DynamicFormField: FC<DynamicFormFieldProps> = ({
+export const DynamicFormField: FC<DynamicFormFieldProps> = ({
   field,
   register,
   errorMessage,
@@ -40,11 +36,19 @@ const DynamicFormField: FC<DynamicFormFieldProps> = ({
         <Input
           // @TODO: Add proper `id` prop
           id={field.name}
-          label={field.label || undefined}
+          label={field.label || ""}
           placeholder={field.placeholder || undefined}
           {...register(field.name)}
           type={field.type === "email" ? "email" : "text"}
           error={errorMessage}
+
+          /**
+           * Do we want to set `required`? I'm in favour of using
+           * the native form behaviors, but it stops the error
+           * messages showing on an attempted submission - RM
+           *
+           * required={field.required}
+           */
         />
       );
     case "select":
@@ -60,6 +64,7 @@ const DynamicFormField: FC<DynamicFormFieldProps> = ({
           listItems={field.options}
           {...register(field.name)}
           error={errorMessage}
+          // required={field.required}
         />
       );
     default:
@@ -91,45 +96,51 @@ export type DynamicFormProps = {
   onSubmit: (values: FormValues) => Promise<string | void>;
 };
 
+const isFieldVisible = (field: FormField) => !field.hidden;
+
 const DynamicForm: FC<DynamicFormProps> = ({ form, onSubmit }) => {
   const zodSchema = useMemo(() => {
     return formToZod(form);
   }, [form]);
 
   const { register, handleSubmit, formState, watch } = useForm<FormValues>({
-    // resolver: zodResolver(z.any()),
     resolver: zodResolver(zodSchema),
     mode: "onBlur",
-
-    // defaultValues: {
-    //   email: "foo",
-    // },
+    /**
+     * When we figure out a mechanism for getting the user's
+     * previous submission data, we should pass it in here for progressive
+     * fields (n.b. that should live in the Hubspot wrapper, not here)
+     * defaultValues: {}
+     */
   });
 
   const { errors } = formState;
 
   /**
-   * Note: using watch and recreating filterWFields on every
+   * Note: using watch and recreating isRenderConditionSatisfied on every
    * change probably makes us lose perf benefits from react-hook-form's
    * architecture. There's probably a more performant way of handling
    * dependent fields
    */
   const formValues = watch();
 
-  const filterWFields = useCallback(
-    (field) => evaluateConditionalField(field, formValues),
+  const isRenderConditionSatisfied = useCallback(
+    (field: FormField) => evaluateConditionalField(field, formValues),
     [formValues]
   );
 
+  const fieldsToRender = form.fields
+    .filter(isFieldVisible)
+    .filter(isRenderConditionSatisfied);
+
   return (
     <form
-      onSubmit={handleSubmit(async (data) => {
-        // @TODO: Handle submit
-      })}
+      onSubmit={handleSubmit((data) => onSubmit(data))}
       // aria-describedby={descriptionId}
     >
-      {form.fields.filter(filterWFields).map((field) => {
+      {fieldsToRender.map((field) => {
         const errorMessage = errors?.[field.name]?.message;
+
         return (
           <DynamicFormField
             key={field.name}
@@ -142,7 +153,7 @@ const DynamicForm: FC<DynamicFormProps> = ({ form, onSubmit }) => {
 
       <Button
         $mt={24}
-        label="Sign up"
+        label={form.submitButtonLabel}
         fullWidth
         htmlButtonProps={{ disabled: false /*todo: use `loading` state */ }}
         background="teachersHighlight"

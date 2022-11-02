@@ -61,8 +61,8 @@ export type FormFieldType = FormField["type"];
 export const formDefinitionSchema = z.object({
   formId: z.string(),
   portalId: z.number(),
-  submitButtonLabel: z.string().nullish(),
-  successMessage: z.string().nullish(),
+  submitButtonLabel: z.string(),
+  successMessage: z.string(),
   fields: z.array(formFieldSchema),
 });
 export type FormDefinition = z.infer<typeof formDefinitionSchema>;

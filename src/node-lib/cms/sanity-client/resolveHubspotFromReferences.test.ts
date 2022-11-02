@@ -27,6 +27,8 @@ describe("addHubspotForms", () => {
       .mockResolvedValueOnce({
         portalId: 12345,
         formId: "abcd-efgh-ijkl",
+        submitButtonLabel: "Submit",
+        successMessage: "Thanks",
         fields: [
           { name: "name", label: "Name", type: "string", required: true },
         ],
@@ -34,6 +36,8 @@ describe("addHubspotForms", () => {
       .mockResolvedValueOnce({
         portalId: 6789,
         formId: "mnop-qrst-uvwx",
+        submitButtonLabel: "Submit",
+        successMessage: "Thanks",
         fields: [
           { name: "email", label: "Email", type: "email", required: true },
         ],
@@ -74,11 +78,15 @@ describe("addHubspotForms", () => {
       .mockResolvedValueOnce({
         portalId: 12345,
         formId: "abcd-efgh-ijkl",
+        submitButtonLabel: "Submit",
+        successMessage: "Thanks",
         fields: [],
       })
       .mockResolvedValueOnce({
         portalId: 6789,
         formId: "mnop-qrst-uvwx",
+        submitButtonLabel: "Submit",
+        successMessage: "Thanks",
         fields: [],
       });
 
@@ -96,6 +104,8 @@ describe("addHubspotForms", () => {
       .mockResolvedValueOnce({
         portalId: 6789,
         formId: "mnop-qrst-uvwx",
+        submitButtonLabel: "Submit",
+        successMessage: "Thanks",
         fields: [
           { name: "email", label: "Email", type: "email", required: true },
         ],

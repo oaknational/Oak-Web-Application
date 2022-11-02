@@ -3,7 +3,7 @@ import { get, update } from "lodash/fp";
 import OakError from "../../../errors/OakError";
 import errorReporter from "../../../common-lib/error-reporter";
 import { getHubspotFormById } from "../../hubspot-forms";
-import { FormDefinition } from "../../hubspot-forms/FormDefinition";
+import { FormDefinition } from "../../../common-lib/forms/FormDefinition";
 
 import { getAllPaths, isRecord } from "./getAllPaths";
 
