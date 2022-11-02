@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { FC } from "react";
 
 import { useUser } from "../../context/Auth";
 import { useBookmarks } from "../../context/Bookmarks";
 import LoadingSpinner from "../LoadingSpinner";
+import OakLink from "../OakLink";
 
 const Bookmarks: FC = () => {
   const user = useUser();
@@ -17,7 +17,10 @@ const Bookmarks: FC = () => {
       {!user ? (
         <p data-testid="anonymous-vistor-message">
           Currently bookmarks are only available for logged in users.{" "}
-          <Link href="/beta/sign-in">Sign in</Link> to start adding bookmarks!
+          <OakLink page={null} href="/beta/sign-in" isInline>
+            Sign in
+          </OakLink>{" "}
+          to start adding bookmarks!
         </p>
       ) : (
         <>
@@ -36,9 +39,13 @@ const Bookmarks: FC = () => {
               const { slug } = lesson;
               return (
                 <li key={slug}>
-                  <Link href={`beta/lessons/${slug}`}>
-                    <a data-testid={`bookmark-${i}`}>{lesson.title}</a>
-                  </Link>
+                  <OakLink
+                    data-testid={`bookmark-${i}`}
+                    page={null}
+                    href={`/beta/lessons/${slug}`}
+                  >
+                    {lesson.title}
+                  </OakLink>
                   <button onClick={() => removeBookmark(lesson.id)}>
                     remove
                   </button>
