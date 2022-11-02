@@ -65,7 +65,11 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
         style={{
           height: isOpen ? BUTTON_ROW_HEIGHT + categoryListHeight : 0,
         }}
-        $display={["block", "none"]}
+        $display={[
+          "block",
+          page === "webinars-index" ? "block" : "none",
+          "none",
+        ]}
         $position="absolute"
         $transition="all 0.5s ease"
         $width="100%"
