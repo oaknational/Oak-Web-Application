@@ -3,8 +3,15 @@ import { screen } from "@testing-library/react";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient from "../../../node-lib/cms";
+import AboutUsLeadership, {
+  getStaticProps,
+} from "../../../pages/about-us/leadership";
+import {
+  mockImageAsset,
+  mockSeoResult,
+  portableTextFromString,
+} from "../../__helpers__/cms";
 import { AboutLeadershipPage } from "../../../common-lib/cms-types";
-import { portableTextFromString } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
@@ -15,19 +22,36 @@ const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const testAboutLeadershipPageData: AboutLeadershipPage = {
   ...testAboutPageBaseData,
   heading: "Leadership",
-  introPortableText: portableTextFromString("text"),
+  introPortableText: [],
+  leadershipTeam: [
+    {
+      name: "name",
+      id: "1",
+      image: mockImageAsset(),
+      bioPortableText: portableTextFromString("Great person"),
+    },
+    {
+      name: "name",
+      role: "chief executive",
+      id: "1",
+      image: mockImageAsset(),
+      bioPortableText: portableTextFromString(
+        "This somethine else before, now does this"
+      ),
+    },
+  ],
 };
 
-// Mock implementations  for stubbed tests - replace with real imports
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AboutLeadership = (_props: { pageData: unknown }) => <></>;
-// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-const getStaticProps = (params: unknown) => {};
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+describe("pages/about/leadership.tsx", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
 
-describe.skip("pages/about-us/leadership.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders(
-      <AboutLeadership pageData={testAboutLeadershipPageData} />
+      <AboutUsLeadership pageData={testAboutLeadershipPageData} />
     );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -38,10 +62,18 @@ describe.skip("pages/about-us/leadership.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <AboutLeadership pageData={testAboutLeadershipPageData} />
+        <AboutUsLeadership pageData={testAboutLeadershipPageData} />
       );
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "Oak National Academy",
+        title: "About Us | Oak National Academy",
+        description: "We're doing the things that need to get done.",
+        ogTitle: "About Us | Oak National Academy",
+        ogDescription: "We're doing the things that need to get done.",
+        ogUrl: "https://www.thenational.academy",
+      });
     });
   });
 
