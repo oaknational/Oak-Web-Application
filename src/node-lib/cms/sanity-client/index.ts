@@ -52,9 +52,13 @@ const getSanityClient = () => ({
       return null;
     }
 
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      webinarsListingPageData
+    );
+
     return parseResults(
       webinarsListingPageSchema,
-      webinarsListingPageData,
+      withResolvedReferences,
       previewMode
     );
   },
@@ -91,7 +95,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    return parseResults(webinarSchema, webinar, previewMode);
+    const withResolvedReferences = await resolveEmbeddedReferences(webinar);
+
+    return parseResults(webinarSchema, withResolvedReferences, previewMode);
   },
   blogPosts: async ({ previewMode, ...params }: ListParams = {}) => {
     const blogPostListSchema = z.array(blogPostPreviewSchema);
@@ -125,16 +131,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const contentWithReferences = blogPost?.contentPortableText
-      ? await resolveSanityReferences(blogPost.contentPortableText)
-      : [];
+    const withResolvedReferences = await resolveEmbeddedReferences(blogPost);
 
-    const blogWithResolvedRefs = {
-      ...blogPost,
-      contentPortableText: contentWithReferences,
-    };
-
-    return parseResults(blogPostSchema, blogWithResolvedRefs, previewMode);
+    return parseResults(blogPostSchema, withResolvedReferences, previewMode);
   },
   homepage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.homepage({
@@ -192,6 +191,7 @@ const getSanityClient = () => ({
     };
 
     const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
     return parseResults(
       aboutWhoWeArePageSchema,
       withResolvedReferences,
@@ -216,6 +216,7 @@ const getSanityClient = () => ({
     };
 
     const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
     return parseResults(
       aboutLeadershipPageSchema,
       withResolvedReferences,
@@ -240,6 +241,7 @@ const getSanityClient = () => ({
     };
 
     const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
     return parseResults(
       aboutBoardPageSchema,
       withResolvedReferences,
@@ -264,6 +266,7 @@ const getSanityClient = () => ({
     };
 
     const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
     return parseResults(
       aboutPartnersPageSchema,
       withResolvedReferences,
@@ -288,6 +291,7 @@ const getSanityClient = () => ({
     };
 
     const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
     return parseResults(
       aboutWorkWithUsPageSchema,
       withResolvedReferences,
