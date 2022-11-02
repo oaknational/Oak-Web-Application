@@ -1,3 +1,18 @@
+# [1.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.6...v1.49.0) (2022-11-02)
+
+
+### Bug Fixes
+
+* **about-leadership:** bio modals ([846ed87](https://github.com/oaknational/Oak-Web-Application/commit/846ed8752fd8d8495d6a398dcf8a9868b73458b8))
+* **bio-modal:** tweak styles for laptop screens ([9d17612](https://github.com/oaknational/Oak-Web-Application/commit/9d17612e6abdc17a7ecbc071fd0b927613db6ac7))
+* leadership filter for chief executive ([852fef6](https://github.com/oaknational/Oak-Web-Application/commit/852fef68908d8c59cfff08c4fb7af920bf9ebc5d))
+* **leadership-bios:** align CEO center ([3c07262](https://github.com/oaknational/Oak-Web-Application/commit/3c07262f1287a972ea3eeb37c889639d86a6f1dc))
+
+
+### Features
+
+* about leadership page ([5645111](https://github.com/oaknational/Oak-Web-Application/commit/564511104d03f249f245efce82869cbe0eae5f6f))
+
 ## [1.48.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.5...v1.48.6) (2022-11-02)
 
 
