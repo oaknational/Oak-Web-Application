@@ -1,15 +1,16 @@
 import { assertUnreachable } from "../../utils/assertUnreachable";
+import {
+  FieldRenderCondition,
+  FormDefinition,
+  FormField,
+} from "../../common-lib/forms/FormDefinition";
 
 import {
   HubspotFormField,
   hubspotFormDefinitionSchema,
   HubspotDependencyFilter,
-} from "./formFieldSchemas";
-import {
-  FieldRenderCondition,
-  FormDefinition,
-  FormField,
-} from "./FormDefinition";
+} from "./hubspotSchemas";
+
 
 /**
  * Transformations to parse and convert from a hubspot

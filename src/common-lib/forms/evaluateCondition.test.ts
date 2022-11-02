@@ -1,5 +1,5 @@
-import evaluateCondition from "./evaluateCondition";
 import { FieldRenderCondition } from "./FormDefinition";
+import evaluateCondition from "./evaluateCondition";
 
 describe("evaluateCondition", () => {
   it("evaluateCondition", () => {

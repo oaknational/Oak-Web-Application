@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { formDefinitionSchema } from "../../../hubspot-forms/FormDefinition";
+import { formDefinitionSchema } from "../forms/FormDefinition";
 
 import { documentSchema, seoSchema } from "./base";
 import { cardSchema } from "./blocks";

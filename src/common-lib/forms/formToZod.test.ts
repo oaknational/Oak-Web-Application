@@ -1,5 +1,5 @@
-import formToZod from "./formToZod";
 import { FormDefinition } from "./FormDefinition";
+import formToZod from "./formToZod";
 
 describe("formToZod", () => {
   it("creates a zod schema from the form fields", () => {
@@ -79,6 +79,36 @@ describe("formToZod", () => {
     const schema = formToZod(form);
 
     expect(schema.parse({ user_type: "teacher" })).toEqual({
+      user_type: "teacher",
+    });
+
+    expect(() => {
+      schema.parse({ user_type: "not-in-allowed" });
+    }).toThrow();
+  });
+
+  it("handles empty strings in optional `select` type fields", () => {
+    /**
+     * React hook form will pass an empty string which triggers an
+     * invalid enum value error
+     */
+    const form = {
+      fields: [
+        {
+          name: "user_type",
+          type: "select",
+          required: false,
+          options: [
+            { label: "Teacher", value: "teacher" },
+            { label: "Pupil", value: "pupil" },
+          ],
+        },
+      ],
+    } as FormDefinition;
+
+    const schema = formToZod(form);
+
+    expect(schema.parse({ user_type: "" })).toEqual({
       user_type: "teacher",
     });
 

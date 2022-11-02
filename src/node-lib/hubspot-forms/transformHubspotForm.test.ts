@@ -1,4 +1,4 @@
-import { HubspotFormDefinition } from "./formFieldSchemas";
+import { HubspotFormDefinition } from "./hubspotSchemas";
 import {
   transformHubspotFilter,
   transformHubspotForm,

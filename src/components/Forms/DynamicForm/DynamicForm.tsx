@@ -10,9 +10,9 @@ import DropdownSelect from "../../DropdownSelect";
 import {
   FormDefinition,
   FormField,
-} from "../../../node-lib/hubspot-forms/FormDefinition";
-import evaluateCondition from "../../../node-lib/hubspot-forms/evaluateCondition";
-import formToZod from "../../../node-lib/hubspot-forms/formToZod";
+} from "../../../common-lib/forms/FormDefinition";
+import evaluateCondition from "../../../common-lib/forms/evaluateCondition";
+import formToZod from "../../../common-lib/forms/formToZod";
 
 // const reportError = errorReporter("DynamicForm.tsx");
 
@@ -77,7 +77,6 @@ const evaluateConditionalField = (
 ) => {
   if (field.renderWhen && field.renderWhen?.length > 0) {
     const shouldRender = field.renderWhen?.every((condition) => {
-      // @TODO no node-lib
       return evaluateCondition(condition, formContext);
     });
 

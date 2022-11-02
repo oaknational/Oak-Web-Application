@@ -6,14 +6,14 @@
 - Hubspot forms are selected in sanity and their ID stored in the sanity document
 - In a process similar to how we resolve portable text references, we walk all sanity document trees looking for references to hubspot forms, and insert the form data in place
 - The forms are looked up by ID, and then parsed with zod and transformed.  
-  Only a subset of hubspots full form capabilities are handled in the parse and transform steps, but the rationale is to blow up early and throw an error when an unhandled case is found rather than letting it slip through and creating more subtle bugs. If an error is encountered, the document's form is just set to `null` and no form will be rendered on the front-end.
+  Only a subset of hubspot's full form capabilities are handled in the parse and transform steps, but the rationale is to blow up early and throw an error when an unhandled case is found rather than letting it slip through and creating more subtle bugs. If an error is encountered, the document's form is just set to `null` and no form will be rendered on the front-end.
 - The transform tries to simplify some of the data shape and conditions for dependent (and in future, progressive) fields. The data shape is intended to be not overly hubspot-like, so we can declare forms inline using the same syntax if desired
 
 
 ## Capabilities
 
 ### Zod schemas generated from form shapes
-[`formToZod.ts`](./formToZod.ts) attempts to map our internal form representation onto a zod schema that can be used for form validation. As the schemas are generated at runtime there isn't any type inference.
+[`common-lib/forms/formToZod.ts`](../../common-lib/forms/formToZod.ts) attempts to map our internal form representation onto a zod schema that can be used for form validation. As the schemas are generated at runtime there isn't any type inference.
 
 Note: dependent fields aren't covered by zod validation currently, but a combination of the `required` flag and parsing the `renderWhen` condition should let us add refinements
 
@@ -24,7 +24,7 @@ This is modelled in the Hubspot API response by way of each field having a `depe
 
 Since Hubspot's API returns some questionably formatted data and many redundant fields, the transform pipeline flattens the parent and dependent fields, and adds some simpler JSON-encoded rendering logic. 
 
-See [`evaluateCondition.ts`](./evaluateCondition.ts) and related tests. Only a minimal subset of conditions have been added currently.
+See [`evaluateCondition.ts`](../../common-lib/forms/evaluateCondition.ts) and related tests. Only a minimal subset of conditions have been added currently.
 
 ### Progressive fields
 > Progressive fields allow you to hide fields that a visitor has already been
