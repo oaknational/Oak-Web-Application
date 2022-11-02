@@ -13,7 +13,9 @@ import apolloMocks from "./apolloMocks";
  * see useBookmarks.test.tsx
  *
  * */
-const MockedApolloProvider: FC = (props) => {
+const MockedApolloProvider: FC<{
+  children?: React.ReactNode;
+}> = (props) => {
   return <MockedProvider mocks={apolloMocks} addTypename={false} {...props} />;
 };
 

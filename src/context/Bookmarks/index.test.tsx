@@ -106,7 +106,7 @@ const useBookmarkedLessonsLazyQuery = () => {
   ];
 };
 
-const Providers: FC = ({ children }) => {
+const Providers: FC<{ children?: React.ReactNode }> = ({ children }) => {
   return <BookmarksProvider>{children}</BookmarksProvider>;
 };
 

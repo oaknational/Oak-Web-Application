@@ -48,6 +48,7 @@ export const useCookieConsent = () => {
 };
 
 type CookieConsentProviderProps = {
+  children?: React.ReactNode;
   __testMockValue?: CookieConsentContext;
 };
 const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {

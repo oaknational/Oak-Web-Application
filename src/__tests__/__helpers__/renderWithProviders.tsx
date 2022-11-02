@@ -29,6 +29,7 @@ import MockedBookmarksProvider, {
 } from "./MockedBookmarksProvider";
 
 export type ProviderProps = {
+  children?: React.ReactNode;
   authProviderProps?: MockedAuthProviderProps;
   bookmarksProviderProps?: MockedBookmarksProviderProps;
 };

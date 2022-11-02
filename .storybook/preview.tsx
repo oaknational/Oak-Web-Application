@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import * as NextImage from "next/future/image";
+import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 
 import "../src/browser-lib/oak-globals/oakGlobals";

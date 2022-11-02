@@ -29,9 +29,12 @@ describe("useToastContext", () => {
   });
 
   test("it should throw an error if called outside of toast provider", () => {
-    const { result } = renderHook(() => useToastContext());
+    type RenderHookError = { error: string };
+    const { result }: { result: unknown } = renderHook(() => useToastContext());
 
-    expect(result.error).toEqual(
+    const resultError = result as RenderHookError;
+
+    expect(resultError.error).toEqual(
       Error("useToastContext called outside of toast provider")
     );
   });

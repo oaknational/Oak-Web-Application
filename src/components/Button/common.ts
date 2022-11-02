@@ -150,7 +150,7 @@ export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "brush";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
-export type CommonButtonProps = OpacityProps &
+export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
   MarginProps & {
     id?: string;
     label: string;

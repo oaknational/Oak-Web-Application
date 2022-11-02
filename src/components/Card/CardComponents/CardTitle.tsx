@@ -25,6 +25,7 @@ export const getIconFlexPosition = (
 type IconPosition = "leading" | "trailing" | "aboveTitle";
 
 export type CardTitleProps = {
+  children?: React.ReactNode;
   tag: HeadingTag;
   icon?: IconName;
   iconPosition?: IconPosition;

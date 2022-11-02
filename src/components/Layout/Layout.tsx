@@ -32,6 +32,7 @@ const StyledLayout = styled.main`
 `;
 
 export type HeaderProps = {
+  children?: React.ReactNode;
   breadcrumbs?: Breadcrumb[];
 };
 
@@ -53,6 +54,7 @@ const footers: Record<FooterVariant, FC> = {
 };
 
 export type LayoutProps = {
+  children?: React.ReactNode;
   seoProps: SeoProps;
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;

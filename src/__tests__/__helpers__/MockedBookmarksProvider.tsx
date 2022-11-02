@@ -5,6 +5,7 @@ import { BookmarksContext, bookmarksContext } from "../../context/Bookmarks";
 import { asyncNoop } from "./noop";
 
 export type MockedBookmarksProviderProps = {
+  children?: React.ReactNode;
   value?: Partial<BookmarksContext>;
 };
 const MockedBookmarksProvider: FC<MockedBookmarksProviderProps> = ({

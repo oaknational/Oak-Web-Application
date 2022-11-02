@@ -118,11 +118,11 @@ const getLessonPlanningCards = (planningPage: PlanningPage) => {
   ];
 };
 
-const SectionHeader: FC = (props) => {
+const SectionHeader: FC<{ children?: React.ReactNode }> = (props) => {
   return <Box as="header" $width={"100%"} {...props} />;
 };
 
-const SectionTitle: FC = (props) => {
+const SectionTitle: FC<{ children?: React.ReactNode }> = (props) => {
   return (
     <Flex
       $justifyContent="center"

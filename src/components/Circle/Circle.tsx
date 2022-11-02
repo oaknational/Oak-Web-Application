@@ -5,6 +5,7 @@ import { ResponsiveValues } from "../../styles/utils/responsive";
 import Flex, { FlexProps } from "../Flex";
 
 export type CircleProps = FlexProps & {
+  children?: React.ReactNode;
   size: ResponsiveValues<PixelSpacing>;
 };
 /**

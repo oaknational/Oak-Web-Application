@@ -121,7 +121,9 @@ export const basePortableTextComponents: PortableTextComponents = {
   },
 };
 
-export const BasePortableTextProvider: FC = (props) => {
+export const BasePortableTextProvider: FC<{
+  children?: React.ReactNode;
+}> = (props) => {
   return (
     <PortableTextComponentsProvider components={basePortableTextComponents}>
       {props.children}

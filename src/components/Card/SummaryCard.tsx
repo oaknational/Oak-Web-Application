@@ -17,6 +17,7 @@ type ImageProps = {
 };
 
 type SummaryCardProps = {
+  children?: React.ReactNode;
   title: string;
   heading: string;
   summary: PortableTextJSON | string;

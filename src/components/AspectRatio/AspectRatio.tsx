@@ -33,6 +33,7 @@ const AspectRatioInner = styled.div`
 `;
 
 type AspectRatioProps = {
+  children?: React.ReactNode;
   ratio: AspectRatios;
 };
 /**
