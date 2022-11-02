@@ -21,6 +21,7 @@ import {
 } from "../../common-lib/cms-types";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
+import Flex from "../Flex";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -58,13 +59,6 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         "webinars"
       )}
     >
-      <MobileBlogFilters
-        page={"webinars-index"}
-        categoryListProps={{
-          categories,
-          selectedCategorySlug: categorySlug,
-        }}
-      />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -73,6 +67,15 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           summary={pageData.summary}
           imageProps={cardImage}
         />
+        <Flex $mb={28}>
+          <MobileBlogFilters
+            page={"webinars-index"}
+            categoryListProps={{
+              categories,
+              selectedCategorySlug: categorySlug,
+            }}
+          />
+        </Flex>
         <BlogWebinarsListAndCategories
           {...props}
           blogs={webinars}

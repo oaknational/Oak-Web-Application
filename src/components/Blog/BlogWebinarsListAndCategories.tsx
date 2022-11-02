@@ -29,11 +29,7 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
     <Grid $ph={[12, 0]}>
       <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]}>
         <Box
-          $display={[
-            "none",
-            page === "webinars-index" ? "none" : "block",
-            "block",
-          ]}
+          $display={["none", "block"]}
           $position={[null, "sticky"]}
           $top={[null, HEADER_HEIGHT]}
           $mt={[0, 24]}
@@ -53,11 +49,7 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
       </GridArea>
       {/* @todo is there a nicer way to make this 1 column spacer? */}
       <GridArea $order={1} $colSpan={[12, 1]} />
-      <GridArea
-        $order={[1, 0]}
-        $colSpan={[12, page === "webinars-index" ? 12 : 7, 8]}
-        $mt={[48, 72]}
-      >
+      <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
         <BlogList items={blogs} withContainingHrs withPagination />
       </GridArea>
     </Grid>
