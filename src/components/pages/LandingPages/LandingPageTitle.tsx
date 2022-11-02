@@ -44,6 +44,7 @@ export const LandingPageTitle: FC<{
           iconPosition={"trailing"}
           $mt={[48, 32]}
           label={cta.label}
+          page={null}
           href={getCTAHref(cta)}
         />
       )}

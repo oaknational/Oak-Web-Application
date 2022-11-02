@@ -29,10 +29,11 @@ const Pagination: FC<PaginationProps> = ({
         <IconButtonAsLink
           size="small"
           aria-label="previous page"
-          href={prevPageHref}
+          page={null}
+          href={prevPageHref.toString()}
           icon={"ChevronLeft"}
           background={"teachersHighlight"}
-          nextLinkProps={{ scroll: false }}
+          scroll={false}
           disabled={currentPage === 1}
         />
         <Span $mh={24} $font={"body-2"}>
@@ -41,10 +42,11 @@ const Pagination: FC<PaginationProps> = ({
         <IconButtonAsLink
           size="small"
           aria-label="next page"
-          href={nextPageHref}
+          page={null}
+          href={nextPageHref.toString()}
           icon={"ChevronRight"}
           background={"teachersHighlight"}
-          nextLinkProps={{ scroll: false }}
+          scroll={false}
           disabled={currentPage >= totalPages}
         />
       </Flex>

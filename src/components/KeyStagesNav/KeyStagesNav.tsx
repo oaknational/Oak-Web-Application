@@ -42,6 +42,7 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
               label={keyStage.name}
               href={keyStage.url}
               $mb={16}
+              page={null}
             />
             {keyStage.years.map((year: KeyStageYear, index) => (
               <P key={index} $mb={16}>

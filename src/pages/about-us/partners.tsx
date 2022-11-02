@@ -79,7 +79,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           icon={"ArrowRight"}
           iconPosition={"trailing"}
           label={"Our teachers"}
-          href={"https://classroom.thenational.academy/teachers"}
+          page="our-teachers"
           $mh="auto"
           $mb={[80, 92]}
         />

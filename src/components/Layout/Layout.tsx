@@ -86,7 +86,6 @@ const Layout: FC<LayoutProps> = (props) => {
       <OrganizationJsonLd />
       <Container $background={$background}>
         <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-
         <StyledLayout>{children}</StyledLayout>
         <Footer />
         {isPreview && <PreviewControls />}

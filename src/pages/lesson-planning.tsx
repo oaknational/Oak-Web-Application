@@ -257,7 +257,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   icon="Search"
                   iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={"https://teachers.thenational.academy"}
+                  page="teachers-home"
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -328,7 +328,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={"https://teachers.thenational.academy"}
+                              page="teachers-home"
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -448,7 +448,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 icon="Search"
                 iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={"https://teachers.thenational.academy"}
+                page="teachers-home"
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

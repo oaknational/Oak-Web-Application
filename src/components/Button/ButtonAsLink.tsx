@@ -1,6 +1,8 @@
 import { FC } from "react";
-import Link, { LinkProps } from "next/link";
+import Link from "next/link";
 import styled from "styled-components";
+
+import { OakLinkPropsWithoutChildren, transformOakLinkProps } from "../OakLink";
 
 import ButtonInner from "./ButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
@@ -8,13 +10,9 @@ import buttonStyles, {
   ButtonStylesProps,
   getButtonStylesProps,
 } from "./button.styles";
-import {
-  CommonButtonProps,
-  defaultButtonProps,
-  HTMLAnchorProps,
-} from "./common";
+import { CommonButtonProps, defaultButtonProps } from "./common";
 
-const StyledA = styled.a<ButtonStylesProps>`
+const StyledNextLink = styled(Link)<ButtonStylesProps>`
   ${buttonStyles}
   ${({ disabled }) =>
     disabled === true &&
@@ -22,13 +20,12 @@ const StyledA = styled.a<ButtonStylesProps>`
    pointer-events: none;
   `}
 `;
-export type ButtonAsLinkProps = CommonButtonProps & {
-  href: LinkProps["href"];
-  nextLinkProps?: Omit<LinkProps, "href">;
-  htmlAnchorProps?: HTMLAnchorProps;
-  disabled?: boolean;
-};
+export type ButtonAsLinkProps = CommonButtonProps &
+  OakLinkPropsWithoutChildren & {
+    disabled?: boolean;
+  };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
+  const transformedProps = transformOakLinkProps(props);
   const {
     href,
     label,
@@ -36,50 +33,47 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     shouldHideLabel,
     icon,
     "aria-label": ariaLabel,
-    nextLinkProps,
-    htmlAnchorProps = {},
     iconBackground,
     disabled = false,
-    ...styleProps
-  } = props;
+    ...linkProps
+  } = transformedProps;
 
   const { size, variant, iconPosition, background } =
-    getButtonStylesProps(props);
+    getButtonStylesProps(transformedProps);
 
   const defaultTitle =
     ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
 
   return (
-    <Link {...nextLinkProps} href={href} passHref={!disabled}>
-      <StyledA
-        {...htmlAnchorProps}
-        onClick={disabled ? (e) => e.preventDefault() : htmlAnchorProps.onClick}
-        {...useButtonAsLinkProps()}
-        title={htmlAnchorProps.title || defaultTitle}
-        aria-label={ariaLabel}
-        size={size}
-        variant={variant}
-        background={background}
+    <StyledNextLink
+      {...linkProps}
+      href={href}
+      passHref={!disabled}
+      onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
+      {...useButtonAsLinkProps()}
+      title={linkProps.title || defaultTitle}
+      aria-label={ariaLabel}
+      size={size}
+      variant={variant}
+      background={background}
+      iconPosition={iconPosition}
+      disabled={disabled}
+      // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
+      aria-disabled={disabled}
+    >
+      <ButtonInner
+        label={label}
+        labelSuffixA11y={labelSuffixA11y}
+        shouldHideLabel={shouldHideLabel}
+        icon={icon}
         iconPosition={iconPosition}
+        iconBackground={iconBackground}
+        size={size}
+        background={background}
+        variant={variant}
         disabled={disabled}
-        // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
-        aria-disabled={disabled}
-        {...styleProps}
-      >
-        <ButtonInner
-          label={label}
-          labelSuffixA11y={labelSuffixA11y}
-          shouldHideLabel={shouldHideLabel}
-          icon={icon}
-          iconPosition={iconPosition}
-          iconBackground={iconBackground}
-          size={size}
-          background={background}
-          variant={variant}
-          disabled={disabled}
-        />
-      </StyledA>
-    </Link>
+      />
+    </StyledNextLink>
   );
 };
 

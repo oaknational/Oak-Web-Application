@@ -1,6 +1,8 @@
-import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
-import Link, { LinkProps } from "next/link";
+import { FC } from "react";
+import Link from "next/link";
 import styled from "styled-components";
+
+import { OakLinkPropsWithoutChildren, transformOakLinkProps } from "../OakLink";
 
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
 import IconButtonInner from "./IconButtonInner";
@@ -10,65 +12,55 @@ import iconButtonStyles, {
   IconButtonStylesProps,
 } from "./iconButton.styles";
 
-const StyledA = styled.a<IconButtonStylesProps>`
+const StyledNextLink = styled(Link)<IconButtonStylesProps>`
   ${iconButtonStyles}
 `;
 
-type IconButtonAsLinkProps = CommonIconButtonProps & {
-  "aria-label": string;
-  href: LinkProps["href"];
-  disabled?: boolean;
-  nextLinkProps?: Omit<LinkProps, "href">;
-  anchorProps?: Omit<
-    DetailedHTMLProps<
-      AnchorHTMLAttributes<HTMLAnchorElement>,
-      HTMLAnchorElement
-    >,
-    "ref" | "aria-label"
-  >;
-};
+type IconButtonAsLinkProps = OakLinkPropsWithoutChildren &
+  CommonIconButtonProps & {
+    "aria-label": string;
+    href: string;
+    disabled?: boolean;
+  };
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
+  const transformedProps = transformOakLinkProps(props);
   const {
     icon,
     iconColorOverride,
     "aria-label": ariaLabel,
     href,
-    nextLinkProps,
-    anchorProps = {},
     disabled,
     iconAnimateTo,
-    ...styleProps
-  } = props;
+    ...linkProps
+  } = transformedProps;
 
   const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
-    <Link {...nextLinkProps} href={href} passHref={!disabled}>
-      <StyledA
-        {...anchorProps}
-        {...useButtonAsLinkProps()}
-        title={anchorProps.title || ariaLabel}
-        onClick={disabled ? (e) => e.preventDefault() : anchorProps.onClick}
-        aria-label={ariaLabel}
+    <StyledNextLink
+      {...useButtonAsLinkProps()}
+      title={linkProps.title || ariaLabel}
+      onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
+      aria-label={ariaLabel}
+      size={size}
+      variant={variant}
+      background={background}
+      disabled={disabled}
+      // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
+      aria-disabled={disabled}
+      href={href}
+      {...linkProps}
+    >
+      <IconButtonInner
+        icon={icon}
         size={size}
         variant={variant}
         background={background}
-        disabled={disabled}
-        // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
-        aria-disabled={disabled}
-        {...styleProps}
-      >
-        <IconButtonInner
-          icon={icon}
-          size={size}
-          variant={variant}
-          background={background}
-          iconColorOverride={iconColorOverride}
-          iconAnimateTo={iconAnimateTo}
-        />
-      </StyledA>
-    </Link>
+        iconColorOverride={iconColorOverride}
+        iconAnimateTo={iconAnimateTo}
+      />
+    </StyledNextLink>
   );
 };
 

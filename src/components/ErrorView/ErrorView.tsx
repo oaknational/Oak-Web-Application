@@ -80,7 +80,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               iconBackground={"teachersHighlight"}
               size="large"
               label={"Home"}
-              href={"/"}
+              page={"home"}
             />
           </ButtonGroup>
         </Flex>

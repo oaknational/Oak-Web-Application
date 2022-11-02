@@ -54,7 +54,7 @@ const AboutContactCard: FC = () => {
                 </Heading>
                 <P $mb={32} $font={["body-2", "body-1"]}>
                   {section.p}
-                  <OakLink page={null} href={section.href} isInline>
+                  <OakLink page={null} href={section.href} $isInline>
                     {section.linkText}
                   </OakLink>
                   .
@@ -62,7 +62,7 @@ const AboutContactCard: FC = () => {
               </Fragment>
             ))}
             <Flex $mb={[32, 0]}>
-              <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
+              <ButtonAsLink label={"Contact us"} page="contact" />
             </Flex>
           </Card>
         </GridArea>

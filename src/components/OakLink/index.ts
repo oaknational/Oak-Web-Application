@@ -1,1 +1,2 @@
-export { default } from "./OakLink";
+export { default, transformOakLinkProps } from "./OakLink";
+export type { OakLinkProps, OakLinkPropsWithoutChildren } from "./OakLink";

@@ -18,6 +18,12 @@ describe("urls.ts", () => {
   });
 
   describe("resolveOakHrefProps()", () => {
+    it("returns the correct path for Our Teachers", () => {
+      const props: ResolveOakHrefProps = { page: "our-teachers" };
+      expect(resolveOakHref(props)).toBe(
+        "https://classroom.thenational.academy/teachers"
+      );
+    });
     it("returns the correct path for a blog", () => {
       const props: ResolveOakHrefProps = { page: "blog", slug: "a-blog" };
       expect(resolveOakHref(props)).toBe("/blog/a-blog");

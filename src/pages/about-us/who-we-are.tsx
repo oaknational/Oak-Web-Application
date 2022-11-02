@@ -57,6 +57,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
               icon={"ArrowRight"}
               iconPosition={"trailing"}
               label={cta.label}
+              page={null}
               href={getCTAHref(cta)}
             />
           </Flex>
@@ -102,6 +103,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   icon={"ArrowRight"}
                   iconPosition="trailing"
                   label={pageData.intro.cta.label}
+                  page={null}
                   href={getCTAHref(pageData.intro.cta)}
                 />
               )}

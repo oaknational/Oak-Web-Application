@@ -2,11 +2,7 @@ import { forwardRef, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 
-import {
-  getOakLinkLinkProps,
-  getOakLinkAnchorProps,
-  OakLinkProps,
-} from "../OakLink/OakLink";
+import { OakLinkProps, transformOakLinkProps } from "../OakLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import { DROP_SHADOW } from "../../styles/utils/dropShadow";
 import Svg from "../Svg";
@@ -37,14 +33,16 @@ type HoverStyles = ("underline-link-text" | "drop-shadow")[];
  */
 export type CardLinkProps = {
   children: ReactNode;
-  hideDefaultFocus?: boolean;
+  $hideDefaultFocus?: boolean;
   hoverStyles?: HoverStyles;
 } & OakLinkProps;
 
-const CardLinkA = styled.a<{
+type StyleProps = {
   hoverStyles: HoverStyles;
-  hideDefaultFocus?: boolean;
-}>`
+  $hideDefaultFocus?: boolean;
+};
+
+const StyledNextLink = styled(Link)<StyleProps>`
   ::after {
     content: "";
     position: absolute;
@@ -74,7 +72,7 @@ const CardLinkA = styled.a<{
 
   :focus {
     ${(props) =>
-      props.hideDefaultFocus &&
+      props.$hideDefaultFocus &&
       css`
         outline: none;
       `}
@@ -90,16 +88,16 @@ const CardLinkA = styled.a<{
  * clickable as a link.
  */
 const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
-  ({ hideDefaultFocus, hoverStyles = [], ...props }, ref) => {
+  ({ $hideDefaultFocus, hoverStyles = [], ...props }, ref) => {
+    const transformedProps = transformOakLinkProps(props);
+
     return (
-      <Link {...getOakLinkLinkProps(props)} passHref>
-        <CardLinkA
-          ref={ref}
-          hideDefaultFocus={hideDefaultFocus}
-          hoverStyles={hoverStyles}
-          {...getOakLinkAnchorProps(props)}
-        />
-      </Link>
+      <StyledNextLink
+        ref={ref}
+        $hideDefaultFocus={$hideDefaultFocus}
+        hoverStyles={hoverStyles}
+        {...transformedProps}
+      />
     );
   }
 );

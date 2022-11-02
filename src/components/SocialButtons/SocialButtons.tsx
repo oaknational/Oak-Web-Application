@@ -98,6 +98,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
             aria-label={`${label} for ${accountHolder}`}
             icon={icon}
             href={href}
+            page={null}
             variant={"minimal"}
             $mr={spaceBetween}
             size={size}

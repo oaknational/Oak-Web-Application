@@ -41,7 +41,7 @@ export const PTInternalLink: PortableTextMarkComponent<{
     return null;
   }
   return (
-    <OakLink href={href} page={null} isInline>
+    <OakLink href={href} page={null} $isInline>
       {props.children}
     </OakLink>
   );
@@ -58,7 +58,7 @@ export const PTExternalLink: PortableTextMarkComponent<{
   const { href } = props.value;
 
   return (
-    <OakLink href={href} page={null} isInline>
+    <OakLink href={href} page={null} $isInline>
       {props.children}
     </OakLink>
   );
@@ -73,7 +73,7 @@ export const PTAnchorLink: PortableTextMarkComponent<{
   }
 
   return (
-    <OakLink page={null} href={`#${anchorMap[props.value.anchor]}`} isInline>
+    <OakLink page={null} href={`#${anchorMap[props.value.anchor]}`} $isInline>
       {props.children}
     </OakLink>
   );

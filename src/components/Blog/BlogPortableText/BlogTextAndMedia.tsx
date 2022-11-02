@@ -44,6 +44,7 @@ const BlogTextAndMedia = (
           <ButtonAsLink
             $mt={24}
             label={params.cta.label}
+            page={null}
             href={getCTAHref(params.cta)}
             background={"teachersHighlight"}
           />

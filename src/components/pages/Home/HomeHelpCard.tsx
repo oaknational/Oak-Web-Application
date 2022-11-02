@@ -25,6 +25,7 @@ const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
         <ButtonAsLink
           $mt={"auto"}
           fullWidth
+          page={null}
           href={getCTAHref(props.cta)}
           label={props.cta.label}
           // @TODO: This link is dynamic, not always a support link
