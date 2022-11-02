@@ -1,3 +1,10 @@
+## [1.48.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.2...v1.48.3) (2022-11-02)
+
+
+### Bug Fixes
+
+* path to json portable text ([a2d205e](https://github.com/oaknational/Oak-Web-Application/commit/a2d205e0dffb028d4f12c56df251e8463a854aab))
+
 ## [1.48.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.1...v1.48.2) (2022-11-01)
 
 ## [1.48.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.0...v1.48.1) (2022-11-01)
