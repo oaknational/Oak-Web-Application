@@ -1,3 +1,10 @@
+## [1.48.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.4...v1.48.5) (2022-11-02)
+
+
+### Bug Fixes
+
+* **video-tracking:** allow duration: null in video tracking ([3bb920e](https://github.com/oaknational/Oak-Web-Application/commit/3bb920e6fb45ffa86eacb28793d0b10425de0ba7))
+
 ## [1.48.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.3...v1.48.4) (2022-11-02)
 
 
