@@ -51,7 +51,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
           </>
         )}
 
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

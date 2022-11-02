@@ -6,10 +6,14 @@ import CMSClient from "../../../node-lib/cms";
 import AboutUsLeadership, {
   getStaticProps,
 } from "../../../pages/about-us/leadership";
-import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
+import {
+  mockImageAsset,
+  mockSeoResult,
+  portableTextFromString,
+} from "../../__helpers__/cms";
 import { AboutLeadershipPage } from "../../../common-lib/cms-types";
 
-import { testAboutPageBaseData } from "./who-we-are.test";
+import { testAboutPageBaseData } from "./about-us.fixtures";
 
 jest.mock("../../../node-lib/cms");
 
@@ -55,13 +59,21 @@ describe("pages/about/leadership.tsx", () => {
     );
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
         <AboutUsLeadership pageData={testAboutLeadershipPageData} />
       );
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "Oak National Academy",
+        title: "About Us | Oak National Academy",
+        description: "We're doing the things that need to get done.",
+        ogTitle: "About Us | Oak National Academy",
+        ogDescription: "We're doing the things that need to get done.",
+        ogUrl: "https://www.thenational.academy",
+      });
     });
   });
 
