@@ -55,7 +55,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               $mb={[40, 32]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
-              $textAlign={["center", "left"]}
+              $textAlign={["center"]}
             >
               Our interim board
             </Heading>
@@ -130,7 +130,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Typography>
         </Card>
 
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

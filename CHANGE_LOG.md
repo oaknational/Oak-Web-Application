@@ -1,3 +1,60 @@
+## [1.49.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.49.0...v1.49.1) (2022-11-02)
+
+# [1.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.6...v1.49.0) (2022-11-02)
+
+
+### Bug Fixes
+
+* **about-leadership:** bio modals ([846ed87](https://github.com/oaknational/Oak-Web-Application/commit/846ed8752fd8d8495d6a398dcf8a9868b73458b8))
+* **bio-modal:** tweak styles for laptop screens ([9d17612](https://github.com/oaknational/Oak-Web-Application/commit/9d17612e6abdc17a7ecbc071fd0b927613db6ac7))
+* leadership filter for chief executive ([852fef6](https://github.com/oaknational/Oak-Web-Application/commit/852fef68908d8c59cfff08c4fb7af920bf9ebc5d))
+* **leadership-bios:** align CEO center ([3c07262](https://github.com/oaknational/Oak-Web-Application/commit/3c07262f1287a972ea3eeb37c889639d86a6f1dc))
+
+
+### Features
+
+* about leadership page ([5645111](https://github.com/oaknational/Oak-Web-Application/commit/564511104d03f249f245efce82869cbe0eae5f6f))
+
+## [1.48.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.5...v1.48.6) (2022-11-02)
+
+
+### Bug Fixes
+
+* **icon:** chevron down ([810faf1](https://github.com/oaknational/Oak-Web-Application/commit/810faf18112474c09d1698480ec57c458596c2b9))
+
+## [1.48.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.4...v1.48.5) (2022-11-02)
+
+
+### Bug Fixes
+
+* **video-tracking:** allow duration: null in video tracking ([3bb920e](https://github.com/oaknational/Oak-Web-Application/commit/3bb920e6fb45ffa86eacb28793d0b10425de0ba7))
+
+## [1.48.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.3...v1.48.4) (2022-11-02)
+
+
+### Bug Fixes
+
+* **seo:** get seo props from CMS for work-with-us page ([dffea44](https://github.com/oaknational/Oak-Web-Application/commit/dffea44e2d05629976268fffd01f5a1eaa8c7335))
+
+## [1.48.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.2...v1.48.3) (2022-11-02)
+
+
+### Bug Fixes
+
+* path to json portable text ([a2d205e](https://github.com/oaknational/Oak-Web-Application/commit/a2d205e0dffb028d4f12c56df251e8463a854aab))
+
+## [1.48.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.1...v1.48.2) (2022-11-01)
+
+## [1.48.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.0...v1.48.1) (2022-11-01)
+
+
+### Bug Fixes
+
+* allow Pa11y to run against localhost ([02917e6](https://github.com/oaknational/Oak-Web-Application/commit/02917e634d866ab2b25b61743510b51cf2827f61))
+* **deps:** downgrade node-fetch so it can be used with 'require' ([4478a68](https://github.com/oaknational/Oak-Web-Application/commit/4478a683c2ef5d3c2bf479c1ac2c32e85a794d07))
+* **deps:** fix critical security warning ([b834164](https://github.com/oaknational/Oak-Web-Application/commit/b834164d68fc83d22f00fe7b5a2a89208104520f))
+* **video:** tell Mux it is rendering in a big slot ([52c5a46](https://github.com/oaknational/Oak-Web-Application/commit/52c5a4612296e8a1771f4e31262ba2efc225835a))
+
 # [1.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.4...v1.48.0) (2022-11-01)
 
 
