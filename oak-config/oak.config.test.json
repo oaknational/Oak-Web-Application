@@ -41,5 +41,16 @@
   "sanity": {
     "graphqlUrl": "https://cuvjke51.apicdn.sanity.io/v1/graphql/spike_2/default",
     "requiredSecrets": ["SANITY_AUTH_SECRET", "SANITY_PREVIEW_SECRET"]
+  },
+  "seo": {
+    "appName": "Example Site Title",
+    "appDescription": "Eample description.",
+    "appLocale": "en_GB",
+    "appUrl": "https://www.example.com",
+    "appLogo": "/images/example-logo-512.png",
+    "appSocialSharingImg": "/images/sharing/default-social-sharing-2022.png",
+    "appFacebook": "https://www.facebook.com/example/",
+    "appTwitter": "https://twitter.com/example",
+    "appTwitterHandle": "@example"
   }
 }
