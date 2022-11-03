@@ -57,13 +57,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
         "blog"
       )}
     >
-      <MobileBlogFilters
-        page={"blog-index"}
-        categoryListProps={{
-          categories,
-          selectedCategorySlug: categorySlug,
-        }}
-      />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           title={"Blog Listing"}
@@ -74,7 +67,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           }
           imageProps={cardImage}
         />
-        <Flex $mb={28}>
+        <Flex $mb={24}>
           <MobileBlogFilters
             page={"blog-index"}
             categoryListProps={{

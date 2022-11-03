@@ -67,7 +67,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           summary={pageData.summary}
           imageProps={cardImage}
         />
-        <Flex $mb={28}>
+        <Flex $mb={24}>
           <MobileBlogFilters
             page={"webinars-index"}
             categoryListProps={{

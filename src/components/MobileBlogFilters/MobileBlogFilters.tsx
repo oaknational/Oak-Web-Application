@@ -114,7 +114,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             id={menuId}
             ref={categoryListRef}
             $top="100%"
-            $transform={`translateY(${isOpen ? 0 : "-100%"})`}
+            $transform={`translateY(${isOpen ? 0 : "-20%"})`}
             $transition="all 0.5s ease"
             $width="100%"
             $opacity={isOpen ? 1 : 0}
