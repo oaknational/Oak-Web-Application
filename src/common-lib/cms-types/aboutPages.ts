@@ -41,6 +41,7 @@ export type AboutWhoWeArePage = z.infer<typeof aboutWhoWeArePageSchema>;
 export const aboutLeadershipPageSchema = aboutPageBaseSchema.extend({
   heading: z.string(),
   introPortableText: portableTextSchema,
+  leadershipTeam: z.array(teamMemberSchema),
 });
 
 export type AboutLeadershipPage = z.infer<typeof aboutLeadershipPageSchema>;
