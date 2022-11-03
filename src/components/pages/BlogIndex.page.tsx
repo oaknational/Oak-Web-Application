@@ -21,7 +21,6 @@ import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
-import Flex from "../Flex";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -67,15 +66,15 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           }
           imageProps={cardImage}
         />
-        <Flex $mb={24}>
-          <MobileBlogFilters
-            page={"blog-index"}
-            categoryListProps={{
-              categories,
-              selectedCategorySlug: categorySlug,
-            }}
-          />
-        </Flex>
+
+        <MobileBlogFilters
+          page={"blog-index"}
+          categoryListProps={{
+            categories,
+            selectedCategorySlug: categorySlug,
+          }}
+        />
+
         <BlogWebinarsListAndCategories
           {...props}
           blogs={blogListItems}
