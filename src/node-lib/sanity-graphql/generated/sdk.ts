@@ -2926,7 +2926,7 @@ export type AboutLeadershipPageQueryVariables = Exact<{
 }>;
 
 
-export type AboutLeadershipPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageLeadership: Array<{ __typename?: 'AboutCorePageLeadership', id?: string | null, heading?: string | null, introPortableText?: any | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type AboutLeadershipPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageLeadership: Array<{ __typename?: 'AboutCorePageLeadership', id?: string | null, heading?: string | null, introPortableText?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, contentPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type AboutPartnersPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -3419,12 +3419,16 @@ export const AboutLeadershipPageDocument = gql`
     id: _id
     heading: title
     introPortableText: introRaw
+    leadershipTeam {
+      ...TeamMember
+    }
     seo {
       ...Seo
     }
   }
 }
-    ${SeoFragmentDoc}`;
+    ${TeamMemberFragmentDoc}
+${SeoFragmentDoc}`;
 export const AboutPartnersPageDocument = gql`
     query aboutPartnersPage($isDraftFilter: Sanity_DocumentFilter) {
   aboutCorePage: allAboutCorePage(
