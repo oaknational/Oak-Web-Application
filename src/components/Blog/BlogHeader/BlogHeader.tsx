@@ -1,6 +1,7 @@
 import { FC } from "react";
 
-import { BlogPageProps } from "../../../pages/blog/[blogSlug]";
+import { SerializedWebinar } from "../../../pages/beta/webinars/[webinarSlug]";
+import { SerializedBlog } from "../../../pages/blog/[blogSlug]";
 import AvatarImage from "../../AvatarImage";
 import Box from "../../Box";
 import CopyLinkButton from "../../Button/CopyLinkButton";
@@ -8,7 +9,9 @@ import Flex from "../../Flex";
 import OakLink from "../../OakLink";
 import { Heading, P, Span } from "../../Typography";
 
-type BlogHeaderProps = Pick<BlogPageProps, "blog">;
+type BlogHeaderProps = {
+  blog: SerializedBlog | SerializedWebinar;
+};
 
 const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
   const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
@@ -16,6 +19,16 @@ const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
     month: "long",
     year: "numeric",
   });
+
+  let authorOrHost;
+  if ("author" in blog) {
+    authorOrHost = blog.author;
+  } else if ("hosts" in blog && blog.hosts.length > 0) {
+    authorOrHost = blog.hosts[0];
+  } else {
+    authorOrHost = null;
+  }
+
   return (
     <>
       <Flex
@@ -41,21 +54,23 @@ const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
         $mr={[20, 0]}
         $justifyContent={["space-between", "left"]}
       >
-        <Flex $alignItems={"center"}>
-          {blog.author.image && (
-            <AvatarImage image={blog.author.image} $mr={12} />
-          )}
-          <Box $mr={[0, 40]}>
-            <Heading tag="h2" $font={"heading-7"}>
-              {blog.author.name}
-            </Heading>
-            {blog.author.role && (
-              <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
-                {blog.author.role}
-              </P>
+        {authorOrHost && (
+          <Flex $alignItems={"center"}>
+            {authorOrHost.image && (
+              <AvatarImage image={authorOrHost.image} $mr={12} />
             )}
-          </Box>
-        </Flex>
+            <Box $mr={[0, 40]}>
+              <Heading tag="h2" $font={"heading-7"}>
+                {authorOrHost.name}
+              </Heading>
+              {authorOrHost.role && (
+                <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
+                  {authorOrHost.role}
+                </P>
+              )}
+            </Box>
+          </Flex>
+        )}
         <CopyLinkButton />
       </Flex>
     </>
