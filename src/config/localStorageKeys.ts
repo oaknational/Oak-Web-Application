@@ -5,3 +5,4 @@ export const LS_KEY_ACCESS_TOKEN = "oak-access-token";
 export const LS_KEY_BOOKMARKS = "oak-bookmarks";
 export const LS_KEY_ANONYMOUS_ID = "oak-anonymous-id";
 export const LS_KEY_UTM_PARAMS = "oak-utm-params";
+export const LS_KEY_WEBINAR_WALL_INTERACTED = "oak-webinar-wall-interacted";
