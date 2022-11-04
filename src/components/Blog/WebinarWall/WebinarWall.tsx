@@ -42,6 +42,7 @@ const WebinarWall: FC<WebinarWallProps> = (props) => {
           background="teachersHighlight"
           onClick={onClick}
           label="Register"
+          labelSuffixA11y="for webinars"
           fullWidth
         />
       </Box>

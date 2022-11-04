@@ -14,15 +14,25 @@ describe("WebinarWall", () => {
     const heading = getByRole("heading", { level: 5 });
     expect(heading).toHaveTextContent("Register to view");
   });
-  test("clicking 'Register' button calls onClick()", async () => {
+  test("clicking button calls onClick()", async () => {
     const onClick = jest.fn();
     const { getByRole } = renderWithTheme(
       <WebinarWall headingTag="h5" onClick={onClick} />
     );
 
-    const button = getByRole("button", { name: "Register" });
+    const button = getByRole("button");
     const user = userEvent.setup();
     await user.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+  test("button has a11y name with enough context", async () => {
+    // visible label is just "Register", which on its own lacks context
+    const onClick = jest.fn();
+    const { getByRole } = renderWithTheme(
+      <WebinarWall headingTag="h5" onClick={onClick} />
+    );
+
+    const button = getByRole("button");
+    expect(button).toHaveAccessibleName("Register for webinars");
   });
 });
