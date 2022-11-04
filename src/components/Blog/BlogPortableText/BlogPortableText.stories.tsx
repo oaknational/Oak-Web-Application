@@ -103,7 +103,7 @@ const callout = {
 };
 
 export default {
-  title: "Blogs/Portable Text",
+  title: "Blogs & Webinars/Blog Content",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
