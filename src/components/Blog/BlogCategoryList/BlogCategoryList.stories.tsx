@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Lists/BlogCategoryList",
+  title: "Blogs & Webinars/BlogCategoryList",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

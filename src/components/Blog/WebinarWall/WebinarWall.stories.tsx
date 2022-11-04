@@ -5,7 +5,7 @@ import Box from "../../Box";
 import Component from ".";
 
 export default {
-  title: "Blog/WebinarWall",
+  title: "Blogs & Webinars/WebinarWall",
   component: Component,
   decorators: [
     (Story) => (
