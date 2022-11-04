@@ -4,7 +4,7 @@ import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
-import { HomePage, WebinarPreview } from "../common-lib/cms-types";
+import { HomePage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
@@ -384,11 +384,10 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     limit: 5,
   });
 
-  // const webinarResults = await CMSClient.webinars({
-  //   previewMode: isPreviewMode,
-  //   limit: 5,
-  // });
-  const webinarResults: WebinarPreview[] = [];
+  const webinarResults = await CMSClient.webinars({
+    previewMode: isPreviewMode,
+    limit: 5,
+  });
 
   const blogPosts = blogResults.map((blog) => ({
     ...blog,

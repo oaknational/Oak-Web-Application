@@ -123,6 +123,7 @@ describe("pages/index.tsx", () => {
 
       mockCMSClient.homepage.mockResolvedValue(pageData);
       mockCMSClient.blogPosts.mockResolvedValue([]);
+      mockCMSClient.webinars.mockResolvedValue([]);
     });
 
     it("Should return no more than 4 posts", async () => {
