@@ -7,17 +7,17 @@
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "kTO0yVWTs",
-    "name": "update-video-tracking-events"
+    "id": "master",
+    "name": "main"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "8JZWXk03fTdJzlW7FSsZ",
-      "branchId": "kTO0yVWTs",
-      "updatedAt": "2022-10-31T17:12:39.313Z"
+      "actionId": "2DOoVSHsPaa1jugrHZZt",
+      "branchId": "master",
+      "updatedAt": "2022-11-04T12:28:02.375Z"
     }
   ],
   "force": false
