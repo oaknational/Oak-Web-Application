@@ -14,6 +14,17 @@ const testProps: BlogListItemProps = {
   date: new Date(2022, 7, 22).toISOString(),
 };
 
+const testPropsWebinar: BlogListItemProps = {
+  title: "Item title",
+  titleTag: "h3",
+  snippet: "Item snippet",
+  href: "https://www.test.com/",
+  contentType: "webinar",
+  category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+  mainImage: "stringvideoplaybackid",
+  date: new Date(2022, 7, 22).toISOString(),
+};
+
 describe("components/BlogListItem", () => {
   test("renders the correct heading tag", () => {
     const { getByRole } = renderWithTheme(
@@ -26,7 +37,7 @@ describe("components/BlogListItem", () => {
 
   test("button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
-      <BlogListItem {...testProps} contentType="webinar" />
+      <BlogListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.title });
     expect(button).toHaveAttribute("href", "https://www.test.com/");
@@ -34,7 +45,7 @@ describe("components/BlogListItem", () => {
 
   test("should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
-      <BlogListItem {...testProps} contentType="webinar" />
+      <BlogListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.category.title });
     expect(button).toHaveAttribute(

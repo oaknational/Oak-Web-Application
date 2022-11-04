@@ -95,7 +95,8 @@ export const webinarToBlogListItem = (
   titleTag: "h3",
   category: webinar.category,
   date: webinar.date,
-  mainImage: null,
+  mainImage: webinar.video.video.asset.playbackId,
+  thumbTime: webinar.video.video.asset.thumbTime,
 });
 
 export const serializeDate = <T extends { date: Date }>(
