@@ -21,6 +21,7 @@ import {
 } from "../../common-lib/cms-types";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
+import { serializeDate } from "../../utils/serializeDate";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -88,21 +89,11 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
 export const webinarToBlogListItem = (
   webinar: SerializedWebinarPreview
 ): BlogListItemProps => ({
+  ...webinar,
   contentType: "webinar",
-  title: webinar.title,
-  href: `/webinars/${webinar.slug}`,
-  snippet: toPlainText(webinar.summaryPortableText),
+  summary: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
-  category: webinar.category,
-  date: webinar.date,
   mainImage: null,
-});
-
-export const serializeDate = <T extends { date: Date }>(
-  item: T
-): T & { date: string } => ({
-  ...item,
-  date: item.date.toISOString(),
 });
 
 export const getStaticProps: GetStaticProps<
