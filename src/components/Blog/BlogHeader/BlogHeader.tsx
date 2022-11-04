@@ -49,7 +49,7 @@ const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
       >
         {author && (
           <Flex $alignItems={"center"}>
-            {author.image && <AvatarImage image={null} $mr={12} />}
+            {author.image && <AvatarImage image={author.image} $mr={12} />}
             <Box $mr={[0, 40]}>
               <Heading tag="h2" $font={"heading-7"}>
                 {author.name}
