@@ -11,7 +11,7 @@ import BlogCategoryList, {
   BlogCategoryPage,
 } from "../Blog/BlogCategoryList/BlogCategoryList";
 
-type MobileBlogFiltersProps = {
+export type MobileBlogFiltersProps = {
   categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
   withBackButton?: boolean;
   page: BlogCategoryPage;
@@ -34,7 +34,6 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   }, [categoryListRef]);
 
   const { categoryListProps, withBackButton, page } = props;
-
   const menuId = useId();
   const triggerId = useId();
 
