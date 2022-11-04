@@ -5,6 +5,7 @@ import {
   NextPage,
 } from "next";
 import { useTheme } from "styled-components";
+import { uniqBy } from "lodash/fp";
 
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import Layout from "../../../components/Layout";
@@ -20,11 +21,13 @@ import useBlogCategoryList from "../../../components/Blog/BlogCategoryList/useBl
 import BlogCategoryList from "../../../components/Blog/BlogCategoryList";
 import BlogHeader from "../../../components/Blog/BlogHeader/BlogHeader";
 import { decorateWithIsr } from "../../../node-lib/isr";
+import { TeamMember } from "../../../node-lib/sanity-graphql/generated/sdk";
 // import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
 // import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
 
-export type SerializedWebinar = Omit<Webinar, "date"> & {
+export type SerializedWebinar = Omit<Webinar, "date" | "hosts"> & {
   date: string;
+  author: TeamMember | undefined;
 };
 
 export type WebinarPageProps = {
@@ -130,15 +133,23 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const webinar = {
+  const webinarResults = await CMSClient.webinars();
+
+  const categories = uniqBy(
+    "title",
+    webinarResults.map((w) => w.category)
+  ).sort((a, b) => (a.title < b.title ? -1 : 1));
+
+  const webinar: SerializedWebinar = {
     ...webinarResult,
     date: webinarResult.date.toISOString(),
+    author: webinarResult.hosts.find((host) => host !== undefined), // make the first host equivalent to a blog author
   };
 
   const results: GetStaticPropsResult<WebinarPageProps> = {
     props: {
       webinar,
-      // categories: webinar.category,
+      categories,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);

@@ -20,14 +20,7 @@ const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
     year: "numeric",
   });
 
-  let authorOrHost;
-  if ("author" in blog) {
-    authorOrHost = blog.author;
-  } else if ("hosts" in blog && blog.hosts.length > 0) {
-    authorOrHost = blog.hosts[0];
-  } else {
-    authorOrHost = null;
-  }
+  const { author } = blog;
 
   return (
     <>
@@ -54,18 +47,16 @@ const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
         $mr={[20, 0]}
         $justifyContent={["space-between", "left"]}
       >
-        {authorOrHost && (
+        {author && (
           <Flex $alignItems={"center"}>
-            {authorOrHost.image && (
-              <AvatarImage image={authorOrHost.image} $mr={12} />
-            )}
+            {author.image && <AvatarImage image={null} $mr={12} />}
             <Box $mr={[0, 40]}>
               <Heading tag="h2" $font={"heading-7"}>
-                {authorOrHost.name}
+                {author.name}
               </Heading>
-              {authorOrHost.role && (
+              {author.role && (
                 <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
-                  {authorOrHost.role}
+                  {author.role}
                 </P>
               )}
             </Box>
