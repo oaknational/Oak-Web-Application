@@ -22,12 +22,7 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
   const { content, children } = props;
   const { categories } = content;
 
-  let blog;
-  if ("blog" in content) {
-    blog = content.blog;
-  } else {
-    blog = content.webinar;
-  }
+  const blog = "blog" in content ? content.blog : content.webinar;
 
   const HEADER_HEIGHT = theme.header.height;
 

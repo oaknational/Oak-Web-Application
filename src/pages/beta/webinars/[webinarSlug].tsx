@@ -55,6 +55,7 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
           <BlogPortableText portableText={webinar.summaryPortableText} />
         </Box>
       </BlogWebinarsIndexLayout>
+      {/* TODO: add JsonLd when we have image for video */}
       {/* <BlogJsonLd {...props.webinar} /> */}
     </Layout>
   );
@@ -102,7 +103,7 @@ export const getStaticProps: GetStaticProps<
   const webinar: SerializedWebinar = {
     ...webinarResult,
     date: webinarResult.date.toISOString(),
-    author: webinarResult.hosts.find((host) => host !== undefined), // make the first host equivalent to a blog author
+    author: webinarResult.hosts[0], // make the first host equivalent to a blog author
   };
 
   const results: GetStaticPropsResult<WebinarPageProps> = {
