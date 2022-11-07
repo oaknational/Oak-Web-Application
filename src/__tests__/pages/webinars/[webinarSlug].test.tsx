@@ -79,7 +79,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
     }));
   });
 
-  describe.skip("WebinarDetailPage", () => {
+  describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
         <WebinarDetailPage
