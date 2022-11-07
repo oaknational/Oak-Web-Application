@@ -21,6 +21,7 @@ import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
+import { serializeDate } from "../../utils/serializeDate";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -87,21 +88,9 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
 export const blogToBlogListItem = (
   blog: SerializedBlogPostPreview
 ): BlogListItemProps => ({
+  ...blog,
   contentType: "blog-post",
-  title: blog.title,
-  href: `/blog/${blog.slug}`,
-  snippet: blog.summary,
   titleTag: "h3",
-  category: blog.category,
-  date: blog.date,
-  mainImage: blog?.mainImage,
-});
-
-export const serializeDate = <T extends { date: Date }>(
-  item: T
-): T & { date: string } => ({
-  ...item,
-  date: item.date.toISOString(),
 });
 
 export const getStaticProps: GetStaticProps<
