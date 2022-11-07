@@ -99,6 +99,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         playbackId={playbackId}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
+        beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
