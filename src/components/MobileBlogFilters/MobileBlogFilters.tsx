@@ -10,6 +10,7 @@ import BlogCategoryList, {
   BlogCategoryListProps,
   BlogCategoryPage,
 } from "../Blog/BlogCategoryList/BlogCategoryList";
+import Cover from "../Cover";
 
 export type MobileBlogFiltersProps = {
   categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
@@ -37,6 +38,10 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const menuId = useId();
   const triggerId = useId();
 
+  const close = () => {
+    setIsOpen(false);
+  };
+
   return (
     <Flex
       $mt={24}
@@ -44,6 +49,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
       $flexDirection={"column"}
       $width={"100%"}
     >
+      <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
       <Flex>
         {withBackButton && (
           <Box
