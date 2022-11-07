@@ -10,8 +10,8 @@ describe("components/BlogList", () => {
           {
             title: "Item title",
             titleTag: "h3",
-            snippet: "Item snippet",
-            href: "/",
+            summary: "Item summary",
+            slug: "item-slug",
             contentType: "blog-post",
             category: {
               title: "Curriculum Planning",
@@ -35,8 +35,8 @@ describe("components/BlogList", () => {
           {
             title: "Item title",
             titleTag: "h3",
-            snippet: "Item snippet",
-            href: "/",
+            summary: "Item summary",
+            slug: "item-slug",
             contentType: "blog-post",
             category: {
               title: "Curriculum Planning",

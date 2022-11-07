@@ -6,7 +6,7 @@ import { SearchProvider } from "../../context/Search/SearchContext";
 import Component from "./SearchForm";
 
 export default {
-  title: "Inputs/search",
+  title: "Form/Search",
   component: Component,
 } as ComponentMeta<typeof Component>;
 
@@ -16,4 +16,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </SearchProvider>
 );
 
-export const SearchForm = Template.bind({});
+export const SearchInput = Template.bind({});

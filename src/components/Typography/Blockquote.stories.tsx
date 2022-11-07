@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Blockquote as Component } from "./Blockquote";
 
 export default {
-  title: "Typography/Block Quote",
+  title: "Typography/Blockquote",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

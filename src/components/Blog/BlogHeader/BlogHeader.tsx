@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { SerializedWebinar } from "../../../pages/beta/webinars/[webinarSlug]";
 import { SerializedBlog } from "../../../pages/blog/[blogSlug]";
+import formatDate from "../../../utils/formatDate";
 import AvatarImage from "../../AvatarImage";
 import Box from "../../Box";
 import CopyLinkButton from "../../Button/CopyLinkButton";
@@ -14,14 +15,8 @@ type BlogHeaderProps = {
 };
 
 const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
-  const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
   const { author } = blog;
-
+  const formattedDate = formatDate(blog.date);
   return (
     <>
       <Flex

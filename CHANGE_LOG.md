@@ -1,3 +1,25 @@
+## [1.51.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.51.0...v1.51.1) (2022-11-07)
+
+# [1.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.50.0...v1.51.0) (2022-11-07)
+
+
+### Features
+
+* **webinars:** upcoming-webinar-list-item ([2a5b863](https://github.com/oaknational/Oak-Web-Application/commit/2a5b863b6b4401aa303445c99bce5d807339f280))
+* **webinars:** upcoming-webinar-list-item ([f523a84](https://github.com/oaknational/Oak-Web-Application/commit/f523a841275c909c855a9d6ebac99e33930b442c))
+
+# [1.50.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.49.1...v1.50.0) (2022-11-04)
+
+
+### Bug Fixes
+
+* add a11y suffix to label for context ([3719e9a](https://github.com/oaknational/Oak-Web-Application/commit/3719e9a10ff565418c7e5db24995d0e38dc8425a))
+
+
+### Features
+
+* webinar wall ([891a13a](https://github.com/oaknational/Oak-Web-Application/commit/891a13ae991ef92d2dcf9310c911f5cd4789caa4))
+
 ## [1.49.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.49.0...v1.49.1) (2022-11-02)
 
 # [1.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.6...v1.49.0) (2022-11-02)
