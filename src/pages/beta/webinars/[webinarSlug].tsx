@@ -11,7 +11,7 @@ import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import Layout from "../../../components/Layout";
 import { Heading } from "../../../components/Typography";
 import CMSClient from "../../../node-lib/cms";
-import { Webinar } from "../../../common-lib/cms-types";
+import { TeamMemberPreview, Webinar } from "../../../common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "../../../components/Breadcrumbs/getBreadcrumbs";
 import MobileBlogFilters from "../../../components/MobileBlogFilters";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
@@ -21,13 +21,12 @@ import useBlogCategoryList from "../../../components/Blog/BlogCategoryList/useBl
 import BlogCategoryList from "../../../components/Blog/BlogCategoryList";
 import BlogHeader from "../../../components/Blog/BlogHeader/BlogHeader";
 import { decorateWithIsr } from "../../../node-lib/isr";
-import { TeamMember } from "../../../node-lib/sanity-graphql/generated/sdk";
 // import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
 // import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
 
-export type SerializedWebinar = Omit<Webinar, "date" | "hosts"> & {
+export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
-  author: TeamMember | undefined;
+  author: TeamMemberPreview | undefined;
 };
 
 export type WebinarPageProps = {
