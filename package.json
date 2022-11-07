@@ -54,7 +54,10 @@
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook"
   },
   "overrides": {
-    "puppeteer": "^17.1.2"
+    "puppeteer": "^17.1.2",
+    "storybook-addon-next-router": {
+      "next": "$next"
+    }
   },
   "dependencies": {
     "@bugsnag/js": "^7.18.0",
@@ -72,7 +75,7 @@
     "gleap": "6.7.5",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
-    "next": "^13.0.1",
+    "next": "^13.0.2",
     "next-sanity-image": "^5.0.0",
     "next-seo": "^5.13.0",
     "node-fetch": "^2.6.7",
@@ -104,7 +107,7 @@
     "@graphql-codegen/typescript-graphql-request": "^4.5.8",
     "@graphql-codegen/typescript-operations": "^2.5.6",
     "@graphql-codegen/typescript-react-apollo": "^3.3.6",
-    "@next/eslint-plugin-next": "^13.0.1",
+    "@next/eslint-plugin-next": "^13.0.2",
     "@percy/cli": "^1.11.0",
     "@playwright/test": "1.20.2",
     "@semantic-release/changelog": "^6.0.1",
@@ -127,19 +130,19 @@
     "@types/react": "^18.0.24",
     "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.26",
-    "@typescript-eslint/eslint-plugin": "^5.41.0",
-    "@typescript-eslint/parser": "^5.41.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
     "babel-loader": "^8.2.5",
     "browserstack-local": "^1.5.1",
     "dotenv": "^16.0.2",
-    "eslint": "^8.26.0",
-    "eslint-config-next": "^13.0.1",
+    "eslint": "^8.27.0",
+    "eslint-config-next": "^13.0.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-storybook": "^0.6.6",
+    "eslint-plugin-storybook": "^0.6.7",
     "googleapis": "^107.0.0",
     "graphql": "^16.6.0",
     "hasura-cli": "^2.10.1",
