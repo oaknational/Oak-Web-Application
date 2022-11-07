@@ -131,7 +131,7 @@ jest.mock("../../browser-lib/graphql/generated/apollo", () => ({
   useBookmarkedLessonsLazyQuery: (...args: []) =>
     useBookmarkedLessonsLazyQuery(...args),
 }));
-describe("context/Bookmarks", () => {
+describe.skip("context/Bookmarks", () => {
   beforeEach(() => {
     window.localStorage.clear();
     bookmarksStore.clear();

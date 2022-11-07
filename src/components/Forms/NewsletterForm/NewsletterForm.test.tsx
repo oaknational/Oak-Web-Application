@@ -55,6 +55,8 @@ describe("NewsletterForm", () => {
     const user = userEvent.setup();
     await user.click(input);
     await user.tab();
+    console.log(input);
+
     const description = computeAccessibleDescription(input);
 
     expect(description).toBe("Name can't be empty");

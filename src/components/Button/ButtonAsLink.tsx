@@ -47,8 +47,6 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   return (
     <StyledNextLink
       {...linkProps}
-      href={href}
-      passHref={!disabled}
       onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
       {...useButtonAsLinkProps()}
       title={linkProps.title || defaultTitle}
@@ -60,6 +58,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
       disabled={disabled}
       // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
       aria-disabled={disabled}
+      href={disabled ? "" : href}
     >
       <ButtonInner
         label={label}

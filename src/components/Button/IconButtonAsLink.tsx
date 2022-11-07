@@ -19,7 +19,6 @@ const StyledNextLink = styled(Link)<IconButtonStylesProps>`
 type IconButtonAsLinkProps = OakLinkPropsWithoutChildren &
   CommonIconButtonProps & {
     "aria-label": string;
-    href: string;
     disabled?: boolean;
   };
 
@@ -49,7 +48,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
       disabled={disabled}
       // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
       aria-disabled={disabled}
-      href={href}
+      href={disabled ? "" : href}
       {...linkProps}
     >
       <IconButtonInner

@@ -63,7 +63,7 @@ export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
   } & (
     | {
         /**
-         * To encourage the ues of 'page' prop (which will get resolved to an href)
+         * To encourage the use of 'page' prop (which will get resolved to an href)
          * you must pass page={null} when passing 'href' directly
          */
         page: null;
@@ -94,6 +94,7 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
   return {
     target,
     href,
+    role: "link",
     ...htmlAnchorProps,
     ...linkProps,
   };
