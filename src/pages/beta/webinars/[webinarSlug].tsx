@@ -21,7 +21,7 @@ import useBlogCategoryList from "../../../components/Blog/BlogCategoryList/useBl
 import BlogCategoryList from "../../../components/Blog/BlogCategoryList";
 import BlogHeader from "../../../components/Blog/BlogHeader/BlogHeader";
 import { decorateWithIsr } from "../../../node-lib/isr";
-// import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
+import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
 // import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
@@ -90,7 +90,7 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
           <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
             <BlogHeader blog={webinar} />
             <Box $mt={[48]}>
-              {/* <BlogPortableText portableText={webinar.contentPortableText} /> */}
+              <BlogPortableText portableText={webinar.summaryPortableText} />
             </Box>
           </GridArea>
         </Grid>
