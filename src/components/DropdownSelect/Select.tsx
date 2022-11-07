@@ -191,12 +191,12 @@ export function Select<T extends object>(
             state={state}
             triggerRef={ref}
             label={props.label || props.placeholder}
-            aria-describedby={props["aria-describedby"]}
-            aria-invalid={props["aria-invalid"]}
             name={props.name}
           />
           <SelectButton
             {...mergeProps(buttonProps, focusProps)}
+            aria-describedby={props["aria-describedby"]}
+            aria-invalid={props["aria-invalid"]}
             ref={ref}
             isOpen={state.isOpen}
             isFocusVisible={isFocusVisible}
