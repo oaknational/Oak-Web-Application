@@ -24,7 +24,7 @@ export type HasConsentedToPolicy = (
   policyName: CookiePolicyName
 ) => CookieConsentState;
 
-type CookieConsentContext = {
+export type CookieConsentContext = {
   // makes consent manager modal visible
   showConsentManager: () => void;
   // whether the user has granted consent to the latest version of a partular policy
