@@ -1,5 +1,8 @@
 import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
+import errorReporter from "../error-reporter";
+
+const reportError = errorReporter("urls.ts");
 
 const OAK_PAGES = {
   "about-board": "/about-us/board",
@@ -48,10 +51,15 @@ export const isExternalHref = (href: MaybeOakHref) => {
   if (href.startsWith("/")) {
     return false;
   }
-  const url = new URL(href);
 
-  if (url.hostname === getCurrentHostname()) {
-    return false;
+  try {
+    const url = new URL(href);
+
+    if (url.hostname === getCurrentHostname()) {
+      return false;
+    }
+  } catch (error) {
+    reportError(error, { href });
   }
 
   return true;
