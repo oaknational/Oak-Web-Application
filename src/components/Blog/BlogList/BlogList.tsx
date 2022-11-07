@@ -1,4 +1,5 @@
 import { FC, useMemo } from "react";
+import { isFuture, isPast } from "date-fns";
 
 import Flex from "../../Flex";
 import { Pagination } from "../../Pagination";
@@ -6,6 +7,7 @@ import { Hr, LI, UL } from "../../Typography";
 import usePagination from "../../Pagination/usePagination";
 import Box from "../../Box";
 
+import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
 const PAGE_SIZE = 4;
@@ -24,12 +26,22 @@ export type BlogListProps = {
    * adds pagination controls below the last item
    */
   withPagination?: boolean;
+  /**
+   * whether to show the upcoming item (only relevant to webinars)
+   */
+  withUpcomingItem?: boolean;
 };
 /**
  * Contains a list of BlogListItem with dividers between them.
  */
 const BlogList: FC<BlogListProps> = (props) => {
-  const { items, withImage, withContainingHrs, withPagination } = props;
+  const {
+    items,
+    withImage,
+    withContainingHrs,
+    withPagination,
+    withUpcomingItem,
+  } = props;
 
   const paginationProps = usePagination({
     totalResults: items.length,
@@ -38,11 +50,23 @@ const BlogList: FC<BlogListProps> = (props) => {
 
   const { currentPage } = paginationProps;
 
+  const [upcomingItem] = items.filter((webinar) =>
+    isFuture(new Date(webinar.date))
+  );
+  const pastItems = useMemo(
+    () =>
+      items.filter((webinar) =>
+        // @todo isPast and isFuture can throw
+        isPast(new Date(webinar.date))
+      ),
+    [items]
+  );
+
   const currentTableData: Array<BlogListItemProps> = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return items.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, items]);
+    return pastItems.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, pastItems]);
 
   return (
     <Flex
@@ -51,6 +75,17 @@ const BlogList: FC<BlogListProps> = (props) => {
       $minHeight={[0, 840]}
     >
       {withContainingHrs && <Hr thickness={4} $mt={0} $mb={32} />}
+
+      {withUpcomingItem && upcomingItem && (
+        <>
+          <UpcomingWebinarListItem
+            {...upcomingItem}
+            signUpHref="/"
+            signUpOnClick={() => null}
+          />
+          {withContainingHrs && <Hr thickness={4} $mv={32} />}
+        </>
+      )}
       <UL $reset>
         {currentTableData.map((item, i) => (
           <LI key={`BlogList-BlogListItem-${i}`}>

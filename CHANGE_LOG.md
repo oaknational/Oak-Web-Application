@@ -1,3 +1,11 @@
+# [1.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.50.0...v1.51.0) (2022-11-07)
+
+
+### Features
+
+* **webinars:** upcoming-webinar-list-item ([2a5b863](https://github.com/oaknational/Oak-Web-Application/commit/2a5b863b6b4401aa303445c99bce5d807339f280))
+* **webinars:** upcoming-webinar-list-item ([f523a84](https://github.com/oaknational/Oak-Web-Application/commit/f523a841275c909c855a9d6ebac99e33930b442c))
+
 # [1.50.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.49.1...v1.50.0) (2022-11-04)
 
 

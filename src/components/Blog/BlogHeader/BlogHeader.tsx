@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { BlogPageProps } from "../../../pages/blog/[blogSlug]";
+import formatDate from "../../../utils/formatDate";
 import AvatarImage from "../../AvatarImage";
 import Box from "../../Box";
 import CopyLinkButton from "../../Button/CopyLinkButton";
@@ -11,11 +12,7 @@ import { Heading, P, Span } from "../../Typography";
 type BlogHeaderProps = Pick<BlogPageProps, "blog">;
 
 const BlogHeader: FC<BlogHeaderProps> = ({ blog }) => {
-  const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedDate = formatDate(blog.date);
   return (
     <>
       <Flex

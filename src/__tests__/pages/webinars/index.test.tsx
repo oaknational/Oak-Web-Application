@@ -20,7 +20,7 @@ const testWebinarPreview: WebinarPreview = {
   title: "An upcoming webinar",
   id: "5",
   slug: "an-upcoming-webinar",
-  date: new Date("2022-12-01"),
+  date: new Date("2057-12-01"),
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
   video: mockVideoAsset(),
@@ -28,14 +28,14 @@ const testWebinarPreview: WebinarPreview = {
 
 const testSerializedWebinarPreview: SerializedWebinarPreview = {
   ...testWebinarPreview,
-  date: new Date("2022-12-01").toISOString(),
+  date: testWebinarPreview.date.toISOString(),
 };
 
 const testWebinarPreview2: WebinarPreview = {
   title: "A past webinar",
   id: "6",
   slug: "a-past-webinar",
-  date: new Date("2022-12-31"),
+  date: new Date("2021-12-31"),
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
   video: mockVideoAsset(),
@@ -43,7 +43,7 @@ const testWebinarPreview2: WebinarPreview = {
 
 const testSerializedWebinarPreview2: SerializedWebinarPreview = {
   ...testWebinarPreview2,
-  date: new Date("2022-12-31").toISOString(),
+  date: testWebinarPreview2.date.toISOString(),
 };
 
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);

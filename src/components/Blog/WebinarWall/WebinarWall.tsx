@@ -1,13 +1,19 @@
 import { FC } from "react";
 
 import Flex from "../../Flex";
-import Button from "../../Button";
 import { Heading, HeadingTag, P } from "../../Typography";
 import Box from "../../Box";
+import OakImage from "../../OakImage";
+import ButtonAsLink from "../../Button/ButtonAsLink";
 
-type WebinarWallProps = {
-  onClick: () => void;
+export type WebinarWallProps = {
   headingTag: HeadingTag;
+  headingText: string;
+  text: string;
+  buttonOnClick: () => void;
+  buttonHref: string;
+  buttonText: string;
+  buttonSuffixA11y?: string;
 };
 
 /**
@@ -20,7 +26,15 @@ type WebinarWallProps = {
  *
  */
 const WebinarWall: FC<WebinarWallProps> = (props) => {
-  const { onClick, headingTag } = props;
+  const {
+    headingTag,
+    headingText,
+    text,
+    buttonText,
+    buttonHref,
+    buttonOnClick,
+    buttonSuffixA11y,
+  } = props;
   return (
     <Flex
       $font={["body-3", "body-2"]}
@@ -28,24 +42,38 @@ const WebinarWall: FC<WebinarWallProps> = (props) => {
       $flexDirection="column"
       $justifyContent="center"
       $alignItems="center"
+      $background="white"
+      $overflow="hidden"
       $cover
     >
-      <Box $maxWidth={240}>
+      <Box $maxWidth={240} $zIndex="inFront">
         <Heading tag={headingTag} $font={["heading-6", "heading-5"]}>
-          Register to view
+          {headingText}
         </Heading>
-        <P $mt={8}>
-          You will only need to register once and you’ll be good to go.
-        </P>
-        <Button
+        <P $mt={8}>{text}</P>
+        <ButtonAsLink
           $mt={28}
           background="teachersHighlight"
-          onClick={onClick}
-          label="Register"
-          labelSuffixA11y="for webinars"
-          fullWidth
+          htmlAnchorProps={{ onClick: buttonOnClick, target: "_blank" }}
+          href={buttonHref}
+          label={buttonText}
+          labelSuffixA11y={buttonSuffixA11y}
+          icon="ChevronRight"
+          iconPosition="trailing"
         />
       </Box>
+      <OakImage
+        alt=""
+        src={"/images/illustrations/webinar-wall-bg.png"}
+        $position="absolute"
+        $right={0}
+        $bottom={0}
+        $width={"40%"}
+        $height={"auto"}
+        width={401}
+        height={289}
+        $opacity={0.2}
+      />
     </Flex>
   );
 };

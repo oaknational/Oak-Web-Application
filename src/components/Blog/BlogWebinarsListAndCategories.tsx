@@ -49,8 +49,13 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
       </GridArea>
       {/* @todo is there a nicer way to make this 1 column spacer? */}
       <GridArea $order={1} $colSpan={[12, 1]} />
-      <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[24, 72]}>
-        <BlogList items={blogs} withContainingHrs withPagination />
+      <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[48, 72]}>
+        <BlogList
+          items={blogs}
+          withContainingHrs
+          withPagination
+          withUpcomingItem
+        />
       </GridArea>
     </Grid>
   );
