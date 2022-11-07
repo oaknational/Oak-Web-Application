@@ -6,26 +6,19 @@ import {
   NextPage,
 } from "next";
 import { useNextSanityImage } from "next-sanity-image";
-import { useTheme } from "styled-components";
 import { uniqBy } from "lodash/fp";
 
 import Layout from "../../components/Layout";
 import CMSClient from "../../node-lib/cms";
 import { BlogPost } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
-import Grid, { GridArea } from "../../components/Grid";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Box from "../../components/Box";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
-import BlogCategoryList from "../../components/Blog/BlogCategoryList";
-import useBlogCategoryList from "../../components/Blog/BlogCategoryList/useBlogCategoryList";
 import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import MobileBlogFilters from "../../components/MobileBlogFilters";
-import { Heading } from "../../components/Typography";
 import { sanityClientLike } from "../../components/CMSImage";
-import BlogHeader from "../../components/Blog/BlogHeader/BlogHeader";
 import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
+import BlogWebinarsIndexLayout from "../../components/Blog/BlogWebinarsIndexLayout";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -38,8 +31,6 @@ export type BlogPageProps = {
 
 const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
   const { blog, categories } = props;
-
-  const blogCategoriesListProps = useBlogCategoryList();
 
   /**
    * @todo add various sizes for sharing on different platforms
@@ -54,8 +45,6 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
     }
   );
-  const theme = useTheme();
-  const HEADER_HEIGHT = theme.header.height;
 
   return (
     <Layout
@@ -68,44 +57,11 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
       $background="white"
       breadcrumbs={getBlogWebinarPostBreadcrumbs(categories, blog, "blog")}
     >
-      <MobileBlogFilters
-        page={"blog-index"}
-        categoryListProps={{ categories }}
-        withBackButton
-      />
-      <MaxWidth>
-        <Grid $ph={[12, 0]}>
-          <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
-            <Box
-              $display={["none", "block"]}
-              $position={[null, "sticky"]}
-              $top={[null, HEADER_HEIGHT]}
-              $pt={[48, 72]}
-            >
-              <Heading
-                tag="h3"
-                $font="body-3"
-                id={blogCategoriesListProps.labelId}
-              >
-                Categories
-              </Heading>
-              <BlogCategoryList
-                labelledBy={blogCategoriesListProps.labelId}
-                $mt={24}
-                categories={categories}
-                page={"blog-index"}
-              />
-            </Box>
-          </GridArea>
-          <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
-          <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
-            <BlogHeader blog={props.blog} />
-            <Box $mt={[48]}>
-              <BlogPortableText portableText={props.blog.contentPortableText} />
-            </Box>
-          </GridArea>
-        </Grid>
-      </MaxWidth>
+      <BlogWebinarsIndexLayout content={props}>
+        <Box $mt={[48]}>
+          <BlogPortableText portableText={props.blog.contentPortableText} />
+        </Box>
+      </BlogWebinarsIndexLayout>
       <BlogJsonLd {...props.blog} />
     </Layout>
   );
