@@ -12,7 +12,7 @@ const props: WebinarWallProps = {
   buttonOnClick: noop,
   buttonHref: "https://www.example.com",
   buttonText: "Register",
-  buttonSuffixA11y: "for webinars"
+  buttonSuffixA11y: "for webinars",
 };
 describe("WebinarWall", () => {
   test("renders heading with correct tag and content", () => {
