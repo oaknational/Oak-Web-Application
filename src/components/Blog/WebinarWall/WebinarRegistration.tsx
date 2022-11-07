@@ -16,6 +16,22 @@ export type WebinarRegistrationProps = {
 /**
  * Visual component to cover a webinar if a user is yet to fill out the
  * 'registration' form for webinars.
+ *
+ * ## Usage
+ *
+ * In the parent component call `useWebinarRegistration` which returns:
+ * `webinarsUnlocked` and `onSubmit`.
+ *
+ * ### `webinarsUnlocked`
+ *
+ * This is set to true after the user as submitted the form, and is stored in
+ * local storage. It should determine whether a user sees the recorded webinar
+ * video, or this form.
+ *
+ * ### `onSubmit`
+ *
+ * This should be passed as a prop to this form.
+ *
  */
 const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
   const { headingTag, onSubmit } = props;
