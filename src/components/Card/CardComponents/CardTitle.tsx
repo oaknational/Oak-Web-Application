@@ -51,7 +51,7 @@ const CardTitle: FC<CardTitleProps> = ({
       $alignItems={iconPositionArray.map((pos) =>
         pos === "aboveTitle" ? "flex-start" : "center"
       )}
-      $mb={[24, 8]}
+      $mb={24}
     >
       {icon && (
         <Icon
