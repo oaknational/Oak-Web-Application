@@ -96,7 +96,10 @@ export const webinarToBlogListItem = (
   title: webinar.title,
   summary: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
-  mainImage: null,
+  category: webinar.category,
+  date: webinar.date,
+  mainImage: webinar.video.video.asset.playbackId,
+  thumbTime: webinar.video.video.asset.thumbTime,
 });
 
 export const getStaticProps: GetStaticProps<

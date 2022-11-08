@@ -130,7 +130,11 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        <InputFieldWrap $mb={error ? 0 : 32} $alignItems="center">
+        <InputFieldWrap
+          $mb={error ? 0 : 32}
+          $alignItems="center"
+          $background="white"
+        >
           <Flex $width={"100%"} $position={"relative"}>
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>

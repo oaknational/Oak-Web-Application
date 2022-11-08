@@ -1,4 +1,5 @@
 import { BlogWebinarCategory } from "../../common-lib/cms-types";
+import { SerializedWebinar } from "../../pages/beta/webinars/[webinarSlug]";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { Breadcrumb } from "../Breadcrumbs";
 
@@ -28,7 +29,7 @@ export const getBlogWebinarListBreadcrumbs = (
 
 export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
-  blog: SerializedBlog,
+  blog: SerializedBlog | SerializedWebinar,
   page: "blog" | "webinars"
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
