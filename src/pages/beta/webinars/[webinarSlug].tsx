@@ -45,7 +45,8 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
       breadcrumbs={getBlogWebinarPostBreadcrumbs(
         categories,
         webinar,
-        "webinars"
+        "beta/webinars",
+        "Webinars"
       )}
     >
       <BlogWebinarsIndexLayout content={props}>

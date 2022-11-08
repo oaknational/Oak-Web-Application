@@ -15,9 +15,10 @@ import { Breadcrumb } from "../Breadcrumbs";
 export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
   currentCategorySlug: string | null,
-  page: "blog" | "webinars"
+  page: "blog" | "beta/webinars", //@TODO: remove "beta/"
+  label: string
 ): Breadcrumb[] => [
-  { label: page.charAt(0).toUpperCase() + page.slice(1), href: `/${page}` },
+  { label: label, href: `/${page}` },
   {
     label:
       categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
@@ -30,11 +31,12 @@ export const getBlogWebinarListBreadcrumbs = (
 export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
   blog: SerializedBlog | SerializedWebinar,
-  page: "blog" | "webinars"
+  page: "blog" | "beta/webinars", //@TODO: remove "beta/"
+  label: string
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
   return [
-    { label: page.charAt(0).toUpperCase() + page.slice(1), href: `/${page}` },
+    { label: label, href: `/${page}` },
     {
       label:
         categories.find((cat) => cat.slug === category.slug)?.title || "All",
