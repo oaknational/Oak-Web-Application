@@ -17,6 +17,10 @@ import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPort
 import CMSVideo from "../../../components/CMSVideo";
 import Flex from "../../../components/Flex";
 import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
+import useWebinarRegistration from "../../../components/Blog/WebinarWall/useWebinarRegistration";
+import WebinarRegistration from "../../../components/Blog/WebinarWall";
+import AspectRatio from "../../../components/AspectRatio";
+import BoxBorders from "../../../components/SpriteSheet/BrushSvgs/BoxBorders";
 // import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
@@ -31,13 +35,15 @@ export type WebinarPageProps = {
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   const { webinar, categories } = props;
+  const { webinarLockState, webinarRegistrationProps } =
+    useWebinarRegistration();
 
   return (
     <Layout
       seoProps={getSeoProps({
         ...props.webinar.seo,
         title: webinar.seo?.title || webinar.title,
-        description: webinar.seo?.description || "",
+        description: webinar.seo?.description,
         imageUrl: "", // @TODO: add image from video frame
       })}
       $background="white"
@@ -49,7 +55,18 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
     >
       <BlogWebinarsIndexLayout content={props}>
         <Flex $position={"relative"} $mt={56}>
-          <CMSVideo video={webinar.video} />
+          {webinarLockState === "pending" && (
+            <>
+              <AspectRatio ratio="16:9" />
+              <BoxBorders />
+            </>
+          )}
+          {webinarLockState === "unlocked" && (
+            <CMSVideo video={webinar.video} />
+          )}
+          {webinarLockState === "locked" && (
+            <WebinarRegistration {...webinarRegistrationProps} />
+          )}
         </Flex>
         <Box $mt={[48]}>
           <BlogPortableText portableText={webinar.summaryPortableText} />

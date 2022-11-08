@@ -8,16 +8,16 @@ describe("useWebinarRegistration", () => {
   beforeEach(() => {
     window.localStorage.clear();
   });
-  test("webinarsUnlocked should default to false", () => {
+  test("webinarLockState should default to 'locked'", () => {
     const { result } = renderHook(useWebinarRegistration);
-    expect(result.current.webinarsUnlocked).toBe(false);
+    expect(result.current.webinarLockState).toBe("locked");
   });
-  test("calling onSubmit should set webinarsUnlocked to true", () => {
+  test("calling onSubmit should set webinarLockState to 'unlocked'", () => {
     const { result } = renderHook(useWebinarRegistration);
     act(() => {
-      result.current.onSubmit();
+      result.current.webinarRegistrationProps.onSubmit();
     });
-    expect(result.current.webinarsUnlocked).toBe(true);
+    expect(result.current.webinarLockState).toBe("unlocked");
   });
   test("calling onSubmit should set oak-past-webinars-unlocked local storage to true", () => {
     expect(window.localStorage.getItem("oak-past-webinars-unlocked")).toBe(
@@ -26,7 +26,7 @@ describe("useWebinarRegistration", () => {
     const { result } = renderHook(useWebinarRegistration);
 
     act(() => {
-      result.current.onSubmit();
+      result.current.webinarRegistrationProps.onSubmit();
     });
 
     expect(window.localStorage.getItem("oak-past-webinars-unlocked")).toBe(
