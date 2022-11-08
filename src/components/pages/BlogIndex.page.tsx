@@ -57,13 +57,6 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
         "blog"
       )}
     >
-      <MobileBlogFilters
-        page={"blog-index"}
-        categoryListProps={{
-          categories,
-          selectedCategorySlug: categorySlug,
-        }}
-      />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           title={"Blog Listing"}
@@ -74,6 +67,15 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
           }
           imageProps={cardImage}
         />
+
+        <MobileBlogFilters
+          page={"blog-index"}
+          categoryListProps={{
+            categories,
+            selectedCategorySlug: categorySlug,
+          }}
+        />
+
         <BlogWebinarsListAndCategories
           {...props}
           blogs={blogListItems}
@@ -91,6 +93,9 @@ export const blogToBlogListItem = (
   ...blog,
   contentType: "blog-post",
   titleTag: "h3",
+  category: blog.category,
+  date: blog.date,
+  mainImage: blog?.mainImage,
 });
 
 export const getStaticProps: GetStaticProps<

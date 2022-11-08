@@ -49,6 +49,8 @@ const testSerializedWebinarPreview2: SerializedWebinarPreview = {
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
 const webinarsListingPage = jest.fn(() => testPageData);
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
