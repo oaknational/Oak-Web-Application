@@ -3,9 +3,11 @@ import userEvent from "@testing-library/user-event";
 import noop from "../../../__tests__/__helpers__/noop";
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
-import WebinarWall, { WebinarWallProps } from "./WebinarWall";
+import UpcomingWebinarWall, {
+  UpcomingWebinarWallProps,
+} from "./UpcomingWebinarWall";
 
-const props: WebinarWallProps = {
+const props: UpcomingWebinarWallProps = {
   headingTag: "h5",
   headingText: "Register to view",
   text: "You have to reigster if you want to view this content......!",
@@ -14,9 +16,9 @@ const props: WebinarWallProps = {
   buttonText: "Register",
   buttonSuffixA11y: "for webinars",
 };
-describe("WebinarWall", () => {
+describe("UpcomingWebinarWall", () => {
   test("renders heading with correct tag and content", () => {
-    const { getByRole } = renderWithTheme(<WebinarWall {...props} />);
+    const { getByRole } = renderWithTheme(<UpcomingWebinarWall {...props} />);
 
     const heading = getByRole("heading", { level: 5 });
     expect(heading).toHaveTextContent("Register to view");
@@ -24,7 +26,7 @@ describe("WebinarWall", () => {
   test("clicking button (link) calls onClick()", async () => {
     const onClick = jest.fn();
     const { getByRole } = renderWithTheme(
-      <WebinarWall {...props} buttonOnClick={onClick} />
+      <UpcomingWebinarWall {...props} buttonOnClick={onClick} />
     );
 
     const button = getByRole("link");
@@ -36,7 +38,7 @@ describe("WebinarWall", () => {
     // visible label is just "Register", which on its own lacks context
     const onClick = jest.fn();
     const { getByRole } = renderWithTheme(
-      <WebinarWall {...props} buttonOnClick={onClick} />
+      <UpcomingWebinarWall {...props} buttonOnClick={onClick} />
     );
 
     const button = getByRole("link");

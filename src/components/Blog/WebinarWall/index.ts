@@ -1,1 +1,1 @@
-export { default } from "./WebinarWall";
+export { default } from "./WebinarRegistration";
