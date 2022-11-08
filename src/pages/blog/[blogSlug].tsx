@@ -55,7 +55,12 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      breadcrumbs={getBlogWebinarPostBreadcrumbs(categories, blog, "blog")}
+      breadcrumbs={getBlogWebinarPostBreadcrumbs(
+        categories,
+        blog,
+        "blog",
+        "Blog"
+      )}
     >
       <BlogWebinarsIndexLayout content={props}>
         <Box $mt={[48]}>

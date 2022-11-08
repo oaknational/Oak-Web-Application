@@ -54,7 +54,8 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       breadcrumbs={getBlogWebinarListBreadcrumbs(
         categories,
         categorySlug,
-        "blog"
+        "blog",
+        "Blog"
       )}
     >
       <MobileBlogFilters
