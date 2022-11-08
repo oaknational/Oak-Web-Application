@@ -33,13 +33,10 @@ describe("components/MobileBlogFilters", () => {
     );
     const user = userEvent.setup();
 
-    const allBlogs = getByText("All blogs").closest("a");
+    const allBlogs = getByText("All webinars").closest("a");
 
     await user.tab();
     expect(allBlogs).toHaveFocus();
-    // const listHeading = getByRole("heading", { level: 6 });
-
-    // expect(listHeading).toHaveTextContent("Item title");
   });
 
   test("it hides all blogs button when categories is clicked", async () => {
@@ -48,7 +45,7 @@ describe("components/MobileBlogFilters", () => {
     );
     const user = userEvent.setup();
 
-    const allBlogsContainer = getByText("All blogs").closest("div");
+    const allBlogsContainer = getByText("All webinars").closest("div");
 
     await user.tab();
     await user.tab();

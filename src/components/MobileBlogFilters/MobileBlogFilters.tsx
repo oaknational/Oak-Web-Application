@@ -63,8 +63,8 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
               icon="ArrowLeft"
               iconBackground="teachersHighlight"
               size="large"
-              label="All blogs"
-              href="/blog"
+              label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
+              href={`${page === "blog-index" ? "/blog" : "/beta/webinars"}`}
             />
           </Box>
         )}
@@ -82,7 +82,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           aria-controls={menuId}
         />
       </Flex>
-      <Box $dropShadow={"grey20"} $width={"100%"} $position={"relative"}>
+      <Box $width={"100%"} $position={"relative"}>
         <Box
           style={{
             height: isOpen ? categoryListHeight : 0,
@@ -92,7 +92,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"
-          $zIndex="inFront"
+          $zIndex="mobileBlogFilters"
           $background={isOpen ? "white" : "transparent"}
           $dropShadow={"grey20"}
         >

@@ -12,10 +12,11 @@ import { Heading } from "../Typography";
 import BlogCategoryList from "./BlogCategoryList";
 import useBlogCategoryList from "./BlogCategoryList/useBlogCategoryList";
 import BlogHeader from "./BlogHeader/BlogHeader";
+import { BlogCategoryPage } from "./BlogCategoryList/BlogCategoryList";
 
 type BlogWebinarsLayoutProps = {
-  content: BlogPageProps | WebinarPageProps;
   children?: ReactNode;
+  content: BlogPageProps | WebinarPageProps;
 };
 
 const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
@@ -23,6 +24,8 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
   const { categories } = content;
 
   const blog = "blog" in content ? content.blog : content.webinar;
+  const page: BlogCategoryPage =
+    "blog" in content ? "blog-index" : "webinars-index";
 
   const HEADER_HEIGHT = theme.header.height;
 
@@ -31,7 +34,7 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
   return (
     <>
       <MobileBlogFilters
-        page={"webinars-index"}
+        page={page}
         categoryListProps={{ categories }}
         withBackButton
       />
@@ -55,7 +58,7 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
                 labelledBy={blogCategoriesListProps.labelId}
                 $mt={24}
                 categories={categories}
-                page={"webinars-index"}
+                page={page}
               />
             </Box>
           </GridArea>
