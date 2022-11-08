@@ -1,3 +1,13 @@
+## [1.54.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.0...v1.54.1) (2022-11-08)
+
+
+### Bug Fixes
+
+* blog webinar header page prop ([976bfed](https://github.com/oaknational/Oak-Web-Application/commit/976bfeda1b6cdc90d3d9ea74503aff31002ef29a))
+* categories and webinar list links use beta url ([54639e0](https://github.com/oaknational/Oak-Web-Application/commit/54639e033d310935f1eab51a10e53dd9a5b5bcd5))
+* close modal when you click outside ([95841b7](https://github.com/oaknational/Oak-Web-Application/commit/95841b71a6fe610ef4f4dbb58897b48f36d5a305))
+* mobile filter url for webinars and blogs ([6716314](https://github.com/oaknational/Oak-Web-Application/commit/6716314d383737543f295a6f3adc54e7826f1771))
+
 # [1.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.53.0...v1.54.0) (2022-11-08)
 
 

@@ -60,13 +60,6 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         "Webinars"
       )}
     >
-      <MobileBlogFilters
-        page={"webinars-index"}
-        categoryListProps={{
-          categories,
-          selectedCategorySlug: categorySlug,
-        }}
-      />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           title={pageData.title}
@@ -75,6 +68,15 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           summary={pageData.summary}
           imageProps={cardImage}
         />
+
+        <MobileBlogFilters
+          page={"webinars-index"}
+          categoryListProps={{
+            categories,
+            selectedCategorySlug: categorySlug,
+          }}
+        />
+
         <BlogWebinarsListAndCategories
           {...props}
           blogs={webinars}
@@ -92,6 +94,7 @@ export const webinarToBlogListItem = (
 ): BlogListItemProps => ({
   ...webinar,
   contentType: "webinar",
+  title: webinar.title,
   summary: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
   category: webinar.category,
