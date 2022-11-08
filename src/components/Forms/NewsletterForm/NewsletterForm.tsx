@@ -19,11 +19,11 @@ const reportError = errorReporter("NewsletterForm.tsx");
 const schema = z.object({
   name: z
     .string()
-    .nonempty({ message: "Name can't be empty" })
+    .min(1, { message: "Name can't be empty" })
     .max(60, "Name must contain fewer than 60 charaters"),
   email: z
     .string()
-    .nonempty({
+    .min(1, {
       message: "Email can't be empty",
     })
     .email({

@@ -10,6 +10,10 @@ import NewsletterFormWrap from "./NewsletterFormWrap";
 
 const onSubmit = jest.fn();
 
+const waitForNextTick = async () => {
+  return waitFor(() => new Promise((resolve) => setTimeout(resolve, 0)));
+};
+
 describe("NewsletterForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -55,10 +59,11 @@ describe("NewsletterForm", () => {
     const user = userEvent.setup();
     await user.click(input);
     await user.tab();
-    console.log(input);
+
+    // HACK: wait for next tick
+    await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-
     expect(description).toBe("Name can't be empty");
   });
   test("should display error hint on blur if name more than 60 chars", async () => {
@@ -73,8 +78,11 @@ describe("NewsletterForm", () => {
       "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
     );
     await user.tab();
-    const description = computeAccessibleDescription(input);
 
+    // HACK: wait for next tick
+    await waitForNextTick();
+
+    const description = computeAccessibleDescription(input);
     expect(description).toBe("Name must contain fewer than 60 charaters");
   });
   test("should display error hint on blur if no email is entered", async () => {
@@ -86,8 +94,11 @@ describe("NewsletterForm", () => {
     const user = userEvent.setup();
     await user.click(input);
     await user.tab();
-    const description = computeAccessibleDescription(input);
 
+    // HACK: wait for next tick
+    await waitForNextTick();
+
+    const description = computeAccessibleDescription(input);
     expect(description).toBe("Email can't be empty");
   });
   test("should display error hint on blur email not formatted correctly", async () => {
@@ -100,8 +111,11 @@ describe("NewsletterForm", () => {
     await user.click(input);
     await user.keyboard("not an email");
     await user.tab();
-    const description = computeAccessibleDescription(input);
 
+    // HACK: wait for next tick
+    await waitForNextTick();
+
+    const description = computeAccessibleDescription(input);
     expect(description).toBe("Email not valid");
   });
   test("should display all error hints on submit", async () => {
@@ -115,6 +129,10 @@ describe("NewsletterForm", () => {
     const submit = getByRole("button", { name: "Sign up" });
     const user = userEvent.setup();
     await user.click(submit);
+
+    // HACK: wait for next tick
+    await waitForNextTick();
+
     // error is shown after form is submitted
     expect(computeAccessibleDescription(input)).toBe("Name can't be empty");
   });
@@ -144,6 +162,9 @@ describe("NewsletterForm", () => {
     const submit = getByRole("button", { name: "Sign up" });
     await user.click(submit);
 
+    // HACK: wait for next tick
+    await waitForNextTick();
+
     const error = getByRole("alert");
     expect(error).toHaveTextContent(
       "Thank you, that's been received, but please check as your email doesn't look quite right."
@@ -162,6 +183,9 @@ describe("NewsletterForm", () => {
     await user.type(email, "joebloggs@example.com");
     const submit = getByRole("button", { name: "Sign up" });
     await user.click(submit);
+
+    // HACK: wait for next tick
+    await waitForNextTick();
 
     const error = getByRole("alert");
     expect(error).toHaveTextContent("An unknown error occurred");
