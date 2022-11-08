@@ -1,21 +1,23 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Box from "../../Box";
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
 import Component from ".";
 
 export default {
-  title: "Blogs & Webinars/WebinarWall",
+  title: "Blogs & Webinars/WebinarRegistration",
   component: Component,
   decorators: [
+    AnalyticsDecorator,
     (Story) => (
-      <Box $position="relative" $height={240} $width={320} $ma="auto">
+      <Box $position="relative" $maxWidth={720} $ma="auto">
         <Story />
       </Box>
     ),
   ],
   argTypes: {
-    argTypes: { onClick: { action: "clicked" } },
+    argTypes: { onSubmit: { action: "submitted" } },
   },
 } as ComponentMeta<typeof Component>;
 
@@ -23,7 +25,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const WebinarWall = Template.bind({});
-WebinarWall.args = {
+export const WebinarRegistration = Template.bind({});
+WebinarRegistration.args = {
   headingTag: "h3",
 };

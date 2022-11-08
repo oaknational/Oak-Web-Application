@@ -88,7 +88,6 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
         iconPosition={"aboveTitle"}
         iconSize={80}
         tag={"h4"}
-        textCenter
       >
         Title
       </CardTitle>

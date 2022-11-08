@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const BlogCategoryList = Template.bind({});
 BlogCategoryList.args = {
+  page: "blog-index",
   categories: [
     { slug: "oak-updates", title: "Oak updates" },
     { slug: "lesson-planning", title: "Lesson planning" },

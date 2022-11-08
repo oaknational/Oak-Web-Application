@@ -30,13 +30,13 @@ import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFor
 import {
   blogToBlogListItem,
   SerializedBlogPostPreview,
-  serializeDate,
 } from "../components/pages/BlogIndex.page";
 import BlogList from "../components/Blog/BlogList";
 import {
   SerializedWebinarPreview,
   webinarToBlogListItem,
 } from "../components/pages/WebinarsIndex.page";
+import { serializeDate } from "../utils/serializeDate";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();

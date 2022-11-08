@@ -6,8 +6,8 @@ import BlogListItem, { BlogListItemProps } from ".";
 const testProps: BlogListItemProps = {
   title: "Item title",
   titleTag: "h3",
-  snippet: "Item snippet",
-  href: "https://www.test.com/",
+  summary: "Item summary",
+  slug: "item-slug",
   contentType: "blog-post",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
   mainImage: mockImageAsset(),
@@ -35,22 +35,40 @@ describe("components/BlogListItem", () => {
     expect(listHeading).toHaveTextContent("Item title");
   });
 
-  test("button should have the correct href", async () => {
+  test("blog-post: button should have the correct href", async () => {
+    const { getByRole } = renderWithTheme(
+      <BlogListItem {...testProps} contentType="blog-post" />
+    );
+    const button = getByRole("link", { name: testProps.title });
+    expect(button).toHaveAttribute("href", `/blog/${testProps.slug}`);
+  });
+
+  test("blog-post: should contain link to category", async () => {
+    const { getByRole } = renderWithTheme(
+      <BlogListItem {...testProps} contentType="blog-post" />
+    );
+    const button = getByRole("link", { name: testProps.category.title });
+    expect(button).toHaveAttribute(
+      "href",
+      `/blog/categories/${testProps.category.slug}`
+    );
+  });
+  test("webinar: button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
       <BlogListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.title });
-    expect(button).toHaveAttribute("href", "https://www.test.com/");
+    expect(button).toHaveAttribute("href", `/beta/webinars/${testProps.slug}`);
   });
 
-  test("should contain link to category", async () => {
+  test("webinar: should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
       <BlogListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.category.title });
     expect(button).toHaveAttribute(
       "href",
-      `/blog/categories/${testProps.category.slug}`
+      `/beta/webinars/categories/${testProps.category.slug}`
     );
   });
 

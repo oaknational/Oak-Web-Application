@@ -55,6 +55,7 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
           withContainingHrs
           withPagination
           withImage={page === "blog-index" ? false : true}
+          withUpcomingItem
         />
       </GridArea>
     </Grid>
