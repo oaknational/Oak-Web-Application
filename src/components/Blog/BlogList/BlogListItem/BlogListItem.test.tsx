@@ -17,8 +17,8 @@ const testProps: BlogListItemProps = {
 const testPropsWebinar: BlogListItemProps = {
   title: "Item title",
   titleTag: "h3",
-  snippet: "Item snippet",
-  href: "https://www.test.com/",
+  summary: "Item snippet",
+  slug: "item-slug",
   contentType: "webinar",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
   mainImage: "stringvideoplaybackid",
