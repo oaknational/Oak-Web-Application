@@ -64,7 +64,7 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
           </GridArea>
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
           <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
-            <BlogHeader blog={blog} />
+            <BlogHeader blog={blog} page={page} />
             {children}
           </GridArea>
         </Grid>
