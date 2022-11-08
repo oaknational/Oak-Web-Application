@@ -46,7 +46,6 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
     sanityClientLike,
     image,
     {
-      enableBlurUp: false,
       imageBuilder,
     }
   );
