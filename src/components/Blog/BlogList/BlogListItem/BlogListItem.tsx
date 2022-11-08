@@ -130,8 +130,9 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
               ) : (
                 <OakImage
                   fill
-                  $objectFit="cover"
+                  $objectFit="contain"
                   $objectPosition="center center"
+                  $background={"black"}
                   alt={""}
                   src={`https://image.mux.com/${mainImage}/thumbnail.png?width=400&height=200&fit_mode=smartcrop&time=${
                     thumbTime ? thumbTime : 20
