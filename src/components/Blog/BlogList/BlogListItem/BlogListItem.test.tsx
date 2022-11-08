@@ -12,7 +12,6 @@ const testProps: BlogListItemProps = {
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
   mainImage: mockImageAsset(),
   date: new Date(2022, 7, 22).toISOString(),
-  page: "blog-index",
 };
 
 describe("components/BlogListItem", () => {

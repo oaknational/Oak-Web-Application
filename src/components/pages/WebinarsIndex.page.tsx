@@ -97,7 +97,6 @@ export const webinarToBlogListItem = (
   summary: toPlainText(webinar.summaryPortableText),
   titleTag: "h3",
   mainImage: null,
-  page: "webinars-index",
 });
 
 export const getStaticProps: GetStaticProps<

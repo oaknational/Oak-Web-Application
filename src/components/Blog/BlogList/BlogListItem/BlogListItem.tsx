@@ -11,7 +11,6 @@ import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
-import { BlogCategoryPage } from "../../BlogCategoryList/BlogCategoryList";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
 
 type BlogListItemContentType = "blog-post" | "webinar";
@@ -57,7 +56,6 @@ export type BlogListItemProps = {
   date: string;
   mainImage?: Image | null;
   withImage?: boolean;
-  page: BlogCategoryPage;
 };
 
 /**

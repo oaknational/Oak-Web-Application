@@ -96,7 +96,6 @@ export const blogToBlogListItem = (
   category: blog.category,
   date: blog.date,
   mainImage: blog?.mainImage,
-  page: "blog-index",
 });
 
 export const getStaticProps: GetStaticProps<
