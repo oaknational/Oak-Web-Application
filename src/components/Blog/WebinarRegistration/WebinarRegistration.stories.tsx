@@ -6,7 +6,7 @@ import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator
 import Component from ".";
 
 export default {
-  title: "Blogs & Webinars/WebinarRegistration",
+  title: "Forms/WebinarRegistration",
   component: Component,
   decorators: [
     AnalyticsDecorator,

@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Form/Checkbox",
+  title: "Form Fields/Checkbox",
   component: Component,
   argTypes: {
     labelText: {
