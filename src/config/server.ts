@@ -140,6 +140,18 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
     envName,
   } = envVarConfig;
 
+  // Throw if server-only values are leaked to the client.
+  if (
+    isBrowser &&
+    !availableInBrowser &&
+    envValue &&
+    // Need this because environment variables loaded from .env.test or .env.test.local
+    // don't go through the Next build process and so don't respect NEXT_PUBLIC
+    process.env.NODE_ENV !== "test"
+  ) {
+    throw new Error("Unexpected value in client");
+  }
+
   // These secrets shouldn't be making it to the browser, so existence
   // checks will fail.
   if (!isBrowser) {
