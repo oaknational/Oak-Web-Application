@@ -6,7 +6,7 @@ import Box from "../../Box";
 import OakImage from "../../OakImage";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 
-export type WebinarWallProps = {
+export type UpcomingWebinarWallProps = {
   headingTag: HeadingTag;
   headingText: string;
   text: string;
@@ -26,7 +26,7 @@ export type WebinarWallProps = {
  * height.
  *
  */
-const WebinarWall: FC<WebinarWallProps> = (props) => {
+const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
   const {
     headingTag,
     headingText,
@@ -79,4 +79,4 @@ const WebinarWall: FC<WebinarWallProps> = (props) => {
   );
 };
 
-export default WebinarWall;
+export default UpcomingWebinarWall;
