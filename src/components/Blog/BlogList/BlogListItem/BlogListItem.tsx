@@ -11,6 +11,7 @@ import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
+import OakImage from "../../../OakImage";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
 
 type BlogListItemContentType = "blog-post" | "webinar";
@@ -54,9 +55,13 @@ export type BlogListItemProps = {
   contentType: BlogListItemContentType;
   category: BlogWebinarCategory;
   date: string;
-  mainImage?: Image | null;
   withImage?: boolean;
-};
+  thumbTime?: number | null;
+  mainImage?: Image | string | null;
+} & (
+  | { contentType: "blog-post"; mainImage?: Image | null }
+  | { contentType: "webinar"; mainImage?: string | null }
+);
 
 /**
  * Contains an image, title, and text summary.
@@ -65,8 +70,17 @@ export type BlogListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
-  const { titleTag, title, summary, category, date, withImage, mainImage } =
-    props;
+  const {
+    titleTag,
+    title,
+    summary,
+    category,
+    date,
+    withImage,
+    mainImage,
+    thumbTime,
+    contentType,
+  } = props;
 
   const {
     containerProps,
@@ -102,16 +116,28 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           <BoxBorders $zIndex={"inFront"} gapPosition="bottomRight" />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
-              <CMSImage
-                fill
-                $objectFit="cover"
-                $objectPosition="center center"
-                image={mainImage}
-                sizes="(min-width: 750px) 256px, 100vw"
-                // Explicitly set an empty string for missing alt text in thumbnails
-                // pending a a11y decision on alt for thumbs
-                alt={mainImage.altText || ""}
-              />
+              {contentType === "blog-post" ? (
+                <CMSImage
+                  fill
+                  $objectFit="cover"
+                  $objectPosition="center center"
+                  image={mainImage}
+                  sizes="(min-width: 750px) 256px, 100vw"
+                  // Explicitly set an empty string for missing alt text in thumbnails
+                  // pending a a11y decision on alt for thumbs
+                  alt={mainImage.altText || ""}
+                />
+              ) : (
+                <OakImage
+                  fill
+                  $objectFit="cover"
+                  $objectPosition="center center"
+                  alt={""}
+                  src={`https://image.mux.com/${mainImage}/thumbnail.png?width=400&height=200&fit_mode=smartcrop&time=${
+                    thumbTime ? thumbTime : 20
+                  }`}
+                />
+              )}
             </AspectRatio>
           </Box>
         </Box>

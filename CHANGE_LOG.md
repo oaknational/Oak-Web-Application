@@ -1,3 +1,11 @@
+# [1.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.52.0...v1.53.0) (2022-11-08)
+
+
+### Features
+
+* webinar images ([091234a](https://github.com/oaknational/Oak-Web-Application/commit/091234a66ed05d1a1a8130146f59de7b5823ae5b))
+* webinars and blogs on homepage ([09d6365](https://github.com/oaknational/Oak-Web-Application/commit/09d63656a8af244bc72d1effaae0db510bf9bc79))
+
 # [1.52.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.51.1...v1.52.0) (2022-11-08)
 
 
