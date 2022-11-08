@@ -1,3 +1,19 @@
+# [1.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.53.0...v1.54.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* remove unecessary null ([3441373](https://github.com/oaknational/Oak-Web-Application/commit/3441373b0270e9c72fdf99d7eace70758d1e2e3f))
+* use team member preview for author ([7a8874a](https://github.com/oaknational/Oak-Web-Application/commit/7a8874ae9d277cbc1e48806120e085ab51e077ae))
+
+
+### Features
+
+* add categories and create author field on serialized webinar ([56e6cd5](https://github.com/oaknational/Oak-Web-Application/commit/56e6cd51ceb54bb39ab80fe2857d2728305c92c6))
+* add portable teext ([d12ad7b](https://github.com/oaknational/Oak-Web-Application/commit/d12ad7bad23e67cf371e9af89233b3a2aeab6d07))
+* add video to webinar page ([f5b29d0](https://github.com/oaknational/Oak-Web-Application/commit/f5b29d0ff8c8afbe583f15d919dc86cb34eb006e))
+* basic layout of webinar slug page ([7a2348c](https://github.com/oaknational/Oak-Web-Application/commit/7a2348ca064419721371abbd79605d3071b1f3df))
+
 # [1.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.52.0...v1.53.0) (2022-11-08)
 
 
