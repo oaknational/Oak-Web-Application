@@ -63,8 +63,10 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           title={pageData.title}
-          heading={pageData.heading}
-          // TODO: Replace line summary with new field from CMS
+          heading={
+            categories.find((cat) => cat.slug === categorySlug)?.title ||
+            pageData.heading
+          }
           summary={pageData.summary}
           imageProps={cardImage}
         />

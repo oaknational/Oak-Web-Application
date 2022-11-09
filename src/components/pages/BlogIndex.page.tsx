@@ -61,8 +61,10 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           title={"Blog Listing"}
-          heading={"Inspiration for inside and outside the classroom"}
-          // TODO: Replace line summary with new field from CMS
+          heading={
+            categories.find((cat) => cat.slug === categorySlug)?.title ||
+            "Inspiration for inside and outside the classroom"
+          }
           summary={
             "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
           }
