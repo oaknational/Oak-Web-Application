@@ -46,7 +46,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       <P $font={"body-2"} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
-      <ButtonAsLink $mt={"auto"} label={"Label"} fullWidth page="home" />
+      <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
     </Component>
   </div>
 );
@@ -67,7 +67,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
           $mt={"auto"}
           $mb={16}
           label={"Label"}
-          fullWidth
+          $fullWidth
           page={"home"}
         />
       </Flex>
@@ -98,7 +98,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
         $mb={16}
         $mt={"auto"}
         label={"Label"}
-        fullWidth
+        $fullWidth
         page={"home"}
       />
     </Component>

@@ -24,7 +24,7 @@ const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
       {props.cta && (
         <ButtonAsLink
           $mt={"auto"}
-          fullWidth
+          $fullWidth
           page={null}
           href={getCTAHref(props.cta)}
           label={props.cta.label}

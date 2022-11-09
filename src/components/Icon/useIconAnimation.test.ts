@@ -1,5 +1,4 @@
-import { waitFor } from "@testing-library/react";
-import { renderHook } from "@testing-library/react";
+import { waitFor, renderHook } from "@testing-library/react";
 
 import useIconAnimation from "./useIconAnimation";
 

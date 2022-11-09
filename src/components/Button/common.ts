@@ -179,7 +179,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     iconBackground?: OakColorName;
     size?: ButtonSize;
     "aria-label"?: string;
-    fullWidth?: boolean;
+    $fullWidth?: boolean;
     $focusStyles?: [];
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {

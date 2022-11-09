@@ -1,5 +1,4 @@
-import { waitFor } from "@testing-library/react";
-import { renderHook, act } from "@testing-library/react";
+import { waitFor, renderHook, act } from "@testing-library/react";
 
 import { getOakGlobals } from "../browser-lib/oak-globals/oakGlobals";
 import { LS_KEY_THEME } from "../config/localStorageKeys";
