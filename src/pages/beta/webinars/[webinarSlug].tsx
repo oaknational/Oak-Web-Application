@@ -17,8 +17,7 @@ import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPort
 import Flex from "../../../components/Flex";
 import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
 import WebinarVideo from "../../../components/Blog/WebinarVideo";
-
-// import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
+import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
