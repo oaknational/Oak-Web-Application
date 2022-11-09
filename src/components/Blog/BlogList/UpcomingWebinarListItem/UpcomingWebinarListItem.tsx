@@ -55,8 +55,8 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         background="teachersHighlight"
         htmlAnchorProps={{ onClick: signUpOnClick, target: "_blank" }}
         href={signUpHref}
-        label="Notify me"
-        labelSuffixA11y={`about upcoming webinar: ${title}`}
+        label="Save my place"
+        labelSuffixA11y={`on the webinar: ${title}`}
         icon="ChevronRight"
         iconPosition="trailing"
       />

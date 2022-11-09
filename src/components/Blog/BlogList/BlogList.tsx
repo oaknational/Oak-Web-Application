@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react";
-import { isFuture, isPast } from "date-fns";
+import { isPast } from "date-fns";
 
+import isFutureWebinar from "../../../utils/isFutureWebinar";
 import Flex from "../../Flex";
 import { Pagination } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";
@@ -50,14 +51,12 @@ const BlogList: FC<BlogListProps> = (props) => {
 
   const { currentPage } = paginationProps;
 
-  const [upcomingItem] = items.filter((webinar) =>
-    isFuture(new Date(webinar.date))
-  );
+  const [upcomingItem] = items.filter(isFutureWebinar);
   const pastItems = useMemo(
     () =>
-      items.filter((webinar) =>
+      items.filter((item) =>
         // @todo isPast and isFuture can throw
-        isPast(new Date(webinar.date))
+        isPast(new Date(item.date))
       ),
     [items]
   );
@@ -80,7 +79,7 @@ const BlogList: FC<BlogListProps> = (props) => {
         <>
           <UpcomingWebinarListItem
             {...upcomingItem}
-            signUpHref="/"
+            signUpHref="https://share.hsforms.com/1USsrkazESq2Il8lxUx_vPgbvumd"
             signUpOnClick={() => null}
           />
           {withContainingHrs && <Hr thickness={4} $mv={32} />}

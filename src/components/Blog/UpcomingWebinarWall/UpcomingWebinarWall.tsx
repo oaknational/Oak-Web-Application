@@ -7,7 +7,7 @@ import OakImage from "../../OakImage";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 
 export type UpcomingWebinarWallProps = {
-  headingTag: HeadingTag;
+  headingTag?: HeadingTag;
   headingText: string;
   text: string;
   buttonOnClick: () => void;
@@ -28,7 +28,7 @@ export type UpcomingWebinarWallProps = {
  */
 const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
   const {
-    headingTag,
+    headingTag = "h2",
     headingText,
     text,
     buttonText,
