@@ -1,4 +1,4 @@
-import { getBlogBreadcrumbs } from "./getBlogBreadcrumbs";
+import { getBlogWebinarListBreadcrumbs } from "./getBreadcrumbs";
 
 const categories = [
   {
@@ -21,7 +21,12 @@ const categories = [
 
 describe("getBlogBreadcrumbs", () => {
   test("passed a category list and slug it returns a breadcrumbs array", () => {
-    const breadcrumbs = getBlogBreadcrumbs(categories, "research-and-insights");
+    const breadcrumbs = getBlogWebinarListBreadcrumbs(
+      categories,
+      "research-and-insights",
+      "blog",
+      "Blog"
+    );
     const expectedCrumbs = [
       {
         label: "Blog",
@@ -38,15 +43,20 @@ describe("getBlogBreadcrumbs", () => {
   });
 
   test("passed a category list but NO slug it still returns breadcrumbs array with All as the last slug", () => {
-    const breadcrumbs = getBlogBreadcrumbs(categories, null);
+    const breadcrumbs = getBlogWebinarListBreadcrumbs(
+      categories,
+      null,
+      "beta/webinars",
+      "Webinars"
+    );
     const expectedCrumbs = [
       {
-        label: "Blog",
-        href: "/blog",
+        label: "Webinars",
+        href: "/beta/webinars",
       },
       {
         label: "All",
-        href: "/blog",
+        href: "/beta/webinars",
         disabled: true,
       },
     ];

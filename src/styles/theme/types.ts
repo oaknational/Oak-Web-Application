@@ -77,6 +77,8 @@ export type PercentSpacing =
   | "50%"
   | "40%"
   | "30%"
+  | "33%"
+  | "25%"
   | "20%"
   | "15%"
   | "10%"
@@ -194,7 +196,6 @@ export type OakTheme = {
   buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
-  bigInput: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
   lessonControl: LessonControlConfig;

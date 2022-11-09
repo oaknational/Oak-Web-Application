@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { CSSProperties } from "styled-components";
 
 import { PixelSpacing } from "../../../styles/theme";
 import { ResponsiveValues } from "../../../styles/utils/responsive";
@@ -8,8 +9,8 @@ import Icon, { IconName } from "../../Icon";
 import Heading, { HeadingTag } from "../../Typography/Heading";
 
 export const getIconFlexPosition = (
-  iconPosition: CardTitleProps["iconPosition"]
-) => {
+  iconPosition: IconPosition | null
+): CSSProperties["flexDirection"] => {
   switch (iconPosition) {
     case "leading":
       return "row";
@@ -27,14 +28,12 @@ type IconPosition = "leading" | "trailing" | "aboveTitle";
 export type CardTitleProps = {
   tag: HeadingTag;
   icon?: IconName;
-  iconPosition?: IconPosition;
+  iconPosition?: ResponsiveValues<IconPosition>;
   iconSize?: PixelSpacing;
-  textCenter?: boolean;
   $font?: ResponsiveValues<FontVariant>;
 };
 
 const CardTitle: FC<CardTitleProps> = ({
-  textCenter,
   icon,
   iconPosition = "leading",
   iconSize = 32,
@@ -42,20 +41,49 @@ const CardTitle: FC<CardTitleProps> = ({
   children,
   $font = "heading-5",
 }) => {
+  const iconPositionArray: (IconPosition | null)[] = Array.isArray(iconPosition)
+    ? iconPosition
+    : [iconPosition];
+
   return (
     <Flex
-      $flexDirection={getIconFlexPosition(iconPosition)}
-      $justifyContent={textCenter ? "center" : "start"}
-      $alignItems="center"
+      $flexDirection={iconPositionArray.map(getIconFlexPosition)}
+      $alignItems={iconPositionArray.map((pos) =>
+        pos === "aboveTitle" ? "flex-start" : "center"
+      )}
       $mb={24}
     >
       {icon && (
         <Icon
           name={icon}
-          size={iconPosition === "aboveTitle" ? 64 : iconSize}
-          $mb={iconPosition === "aboveTitle" ? 12 : 0}
-          $mr={iconPosition === (icon && "leading") ? 12 : 0}
-          $ml={iconPosition === (icon && "trailing") ? 8 : 0}
+          size={iconPositionArray.map((pos) =>
+            pos === "aboveTitle" ? 64 : iconSize
+          )}
+          $mb={iconPositionArray.map((pos) => (pos === "aboveTitle" ? 12 : 0))}
+          $mr={iconPositionArray.map((pos) => {
+            switch (pos) {
+              case "leading":
+                return 12;
+              case "trailing":
+                return 0;
+              case "aboveTitle":
+                return "auto";
+              default:
+                return null;
+            }
+          })}
+          $ml={iconPositionArray.map((pos) => {
+            switch (pos) {
+              case "leading":
+                return 0;
+              case "trailing":
+                return 8;
+              case "aboveTitle":
+                return "auto";
+              default:
+                return null;
+            }
+          })}
           $pa={0}
         />
       )}

@@ -1,6 +1,20 @@
 [[plugins]]
   package = "./netlify/plugins/github-deployments"
 
+# Force all access through a managed TLD.
+[[redirects]]
+from = 'http://oak-web-application.netlify.app/*'
+to = 'https://owa.thenational.academy/:splat'
+status = 302
+force = true
+
+# Force all access through a managed TLD.
+[[redirects]]
+from = 'https://oak-web-application.netlify.app/*'
+to = 'https://owa.thenational.academy/:splat'
+status = 302
+force = true
+
 # Cancel production builds which are not versioning commits.
 [context.production]
   ignore = "node scripts/build/cancel_netlify_build.js"

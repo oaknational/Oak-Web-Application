@@ -4,6 +4,8 @@ import BookmarksPage from "../../../pages/beta/bookmarks";
 import { testBookmarks, testLessons } from "../../__helpers__/apolloMocks";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 const testUser = { id: "123", email: "test email" };
 const loggedInAuthProviderValue = {
   user: testUser,

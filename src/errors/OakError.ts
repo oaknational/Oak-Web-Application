@@ -158,6 +158,11 @@ class OakError extends Error {
     return this.errorInfo.meta;
   }
 
+  /** @returns The original error if present. */
+  public get originalError(): Error | unknown {
+    return this.errorInfo.originalError;
+  }
+
   /** @returns The error message. */
   public get message(): string {
     return getErrorMessage(this.errorInfo);

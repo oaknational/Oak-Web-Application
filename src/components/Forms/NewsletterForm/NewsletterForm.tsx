@@ -13,6 +13,8 @@ import {
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import errorReporter from "../../../common-lib/error-reporter";
+import Form from "../Form";
+import { BoxProps } from "../../Box";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -48,7 +50,7 @@ const userTypeOptions = USER_ROLES.map((userRole) => ({
 }));
 
 type NewsletterFormValues = z.infer<typeof schema>;
-export type NewsletterFormProps = {
+export type NewsletterFormProps = BoxProps & {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
   id: string;
   descriptionId: string;
@@ -63,6 +65,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   id,
   descriptionId,
   onSubmit,
+  ...boxProps
 }) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -75,7 +78,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   const { errors } = formState;
 
   return (
-    <form
+    <Form
       onSubmit={handleSubmit(async (data) => {
         setLoading(true);
         setError("");
@@ -95,6 +98,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         }
       })}
       aria-describedby={descriptionId}
+      $width={"100%"}
+      {...boxProps}
     >
       <Input
         id={`${id}-newsletter-signup-name`}
@@ -142,7 +147,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       >
         {!error && successMessage}
       </P>
-    </form>
+    </Form>
   );
 };
 

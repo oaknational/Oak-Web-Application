@@ -8,6 +8,7 @@ describe("BlogCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
         labelledBy={labelId}
+        page={"blog-index"}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
@@ -23,9 +24,30 @@ describe("BlogCategoryList", () => {
       "/blog/categories/lesson-planning"
     );
   });
+  test("should work with webinars", () => {
+    const { getByRole } = renderWithTheme(
+      <BlogCategoryList
+        labelledBy={labelId}
+        page={"webinars-index"}
+        categories={[
+          { title: "Oak Updates", slug: "oak-updates" },
+          { title: "Lesson Planning", slug: "lesson-planning" },
+        ]}
+      />
+    );
+    expect(getByRole("link", { name: "Oak Updates" })).toHaveAttribute(
+      "href",
+      "/beta/webinars/categories/oak-updates"
+    );
+    expect(getByRole("link", { name: "Lesson Planning" })).toHaveAttribute(
+      "href",
+      "/beta/webinars/categories/lesson-planning"
+    );
+  });
   test("current link should be signposted with aria-current='page'", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
+        page={"blog-index"}
         labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
@@ -40,6 +62,7 @@ describe("BlogCategoryList", () => {
   test("non current links should not be signposted with aria-current", () => {
     const { getByRole } = renderWithTheme(
       <BlogCategoryList
+        page={"blog-index"}
         labelledBy={labelId}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
@@ -56,6 +79,7 @@ describe("BlogCategoryList", () => {
       <>
         <span id={labelId}>Test Categories</span>
         <BlogCategoryList
+          page={"blog-index"}
           labelledBy={labelId}
           categories={[
             { title: "Oak Updates", slug: "oak-updates" },
