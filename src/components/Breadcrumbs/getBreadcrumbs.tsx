@@ -18,7 +18,7 @@ export const getBlogWebinarListBreadcrumbs = (
   page: "blog" | "beta/webinars", //@TODO: remove "beta/"
   label: string
 ): Breadcrumb[] => [
-  { label: label, href: `/${page}` },
+  { label, href: `/${page}` },
   {
     label:
       categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
@@ -36,7 +36,7 @@ export const getBlogWebinarPostBreadcrumbs = (
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
   return [
-    { label: label, href: `/${page}` },
+    { label, href: `/${page}` },
     {
       label:
         categories.find((cat) => cat.slug === category.slug)?.title || "All",
