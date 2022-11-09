@@ -133,12 +133,12 @@ describe("pages/about/who-we-are.tsx", () => {
 
       expect(seo).toEqual({
         ...mockSeoResult,
-        ogSiteName: "Oak National Academy",
-        title: "About Us | Oak National Academy",
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
         description: "We're doing the things that need to get done.",
-        ogTitle: "About Us | Oak National Academy",
+        ogTitle: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We're doing the things that need to get done.",
-        ogUrl: "https://www.thenational.academy",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
       });
     });
   });
