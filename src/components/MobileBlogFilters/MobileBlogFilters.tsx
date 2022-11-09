@@ -74,7 +74,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           variant="minimal"
           icon={isOpen ? "ChevronUp" : "ChevronDown"}
           iconBackground="teachersHighlight"
-          iconPosition="trailing"
+          $iconPosition="trailing"
           size="large"
           label="Categories"
           onClick={() => setIsOpen((isOpen) => !isOpen)}

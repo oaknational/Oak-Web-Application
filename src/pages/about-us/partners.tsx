@@ -77,7 +77,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </Flex>
         <ButtonAsLink
           icon={"ArrowRight"}
-          iconPosition={"trailing"}
+          $iconPosition={"trailing"}
           label={"Our teachers"}
           page="our-teachers"
           $mh="auto"

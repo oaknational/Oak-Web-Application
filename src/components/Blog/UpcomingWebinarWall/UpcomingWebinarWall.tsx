@@ -61,7 +61,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           label={buttonText}
           labelSuffixA11y={buttonSuffixA11y}
           icon="ChevronRight"
-          iconPosition="trailing"
+          $iconPosition="trailing"
         />
       </Box>
       <OakImage

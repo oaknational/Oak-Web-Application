@@ -34,11 +34,11 @@ type HoverStyles = ("underline-link-text" | "drop-shadow")[];
 export type CardLinkProps = {
   children: ReactNode;
   $hideDefaultFocus?: boolean;
-  hoverStyles?: HoverStyles;
+  $hoverStyles?: HoverStyles;
 } & OakLinkProps;
 
 type StyleProps = {
-  hoverStyles: HoverStyles;
+  $hoverStyles: HoverStyles;
   $hideDefaultFocus?: boolean;
 };
 
@@ -56,13 +56,13 @@ const StyledNextLink = styled(Link)<StyleProps>`
 
   :hover {
     ${(props) =>
-      props.hoverStyles.includes("underline-link-text") &&
+      props.$hoverStyles.includes("underline-link-text") &&
       css`
         text-decoration: underline;
       `}
 
     ${(props) =>
-      props.hoverStyles.includes("drop-shadow") &&
+      props.$hoverStyles.includes("drop-shadow") &&
       css`
         ::after {
           box-shadow: ${DROP_SHADOW.interactiveCardHover};
@@ -88,14 +88,14 @@ const StyledNextLink = styled(Link)<StyleProps>`
  * clickable as a link.
  */
 const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
-  ({ $hideDefaultFocus, hoverStyles = [], ...props }, ref) => {
+  ({ $hideDefaultFocus, $hoverStyles = [], ...props }, ref) => {
     const transformedProps = transformOakLinkProps(props);
 
     return (
       <StyledNextLink
         ref={ref}
         $hideDefaultFocus={$hideDefaultFocus}
-        hoverStyles={hoverStyles}
+        $hoverStyles={$hoverStyles}
         {...transformedProps}
       />
     );

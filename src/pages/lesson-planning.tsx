@@ -255,7 +255,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </Cover>
                 <ButtonAsLink
                   icon="Search"
-                  iconPosition="trailing"
+                  $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
                   page="teachers-home"
                   htmlAnchorProps={{
@@ -325,7 +325,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
                               icon="Search"
-                              iconPosition="trailing"
+                              $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
                               page="teachers-home"
@@ -446,7 +446,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 
               <ButtonAsLink
                 icon="Search"
-                iconPosition="trailing"
+                $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
                 page="teachers-home"
                 htmlAnchorProps={{

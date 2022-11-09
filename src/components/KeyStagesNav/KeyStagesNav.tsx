@@ -38,7 +38,7 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
           >
             <ButtonAsLink
               icon={"ArrowRight"}
-              iconPosition="trailing"
+              $iconPosition="trailing"
               label={keyStage.name}
               href={keyStage.url}
               $mb={16}

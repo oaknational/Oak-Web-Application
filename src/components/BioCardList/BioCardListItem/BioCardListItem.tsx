@@ -58,7 +58,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             labelSuffixA11y={`for ${name}`}
             variant="minimal"
             icon="ArrowRight"
-            iconPosition="trailing"
+            $iconPosition="trailing"
             iconBackground="teachersHighlight"
             $ml="auto"
             onClick={() => onClick(props)}

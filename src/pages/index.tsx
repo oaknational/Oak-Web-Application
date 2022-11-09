@@ -72,7 +72,7 @@ const Notification: FC = () => {
         <CardLink
           page={null}
           href={href}
-          hoverStyles={["underline-link-text"]}
+          $hoverStyles={["underline-link-text"]}
           htmlAnchorProps={{
             onClick: () =>
               track.notificationSelected({

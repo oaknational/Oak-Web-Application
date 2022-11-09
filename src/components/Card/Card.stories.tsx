@@ -37,7 +37,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
     <Component {...args}>
       <CardTitle
         icon={"Download"}
-        iconPosition={"leading"}
+        $iconPosition={"leading"}
         iconSize={32}
         tag={"h4"}
       >
@@ -85,7 +85,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
     <Component {...args}>
       <CardTitle
         icon={"Download"}
-        iconPosition={"aboveTitle"}
+        $iconPosition={"aboveTitle"}
         iconSize={80}
         tag={"h4"}
       >

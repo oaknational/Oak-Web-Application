@@ -153,7 +153,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           <OakLink
             {...categoryHoverProps}
             {...getItemCategoryLinkProps(props)}
-            focusStyles={["underline"]}
+            $focusStyles={["underline"]}
             $font="heading-7"
             $color="hyperlink"
           >
@@ -168,8 +168,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
             {...primaryTargetProps}
             {...getItemLinkProps(props)}
             htmlAnchorProps={{ title }}
-            focusStyles={["underline"]}
-            isHovered={cardIsHovered && !categoryIsHovered}
+            $focusStyles={["underline"]}
+            $isHovered={cardIsHovered && !categoryIsHovered}
           >
             {title}
           </OakLink>

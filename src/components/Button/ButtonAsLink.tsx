@@ -38,7 +38,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     ...linkProps
   } = transformedProps;
 
-  const { size, variant, iconPosition, background } =
+  const { size, variant, $iconPosition, background } =
     getButtonStylesProps(transformedProps);
 
   const defaultTitle =
@@ -54,7 +54,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
       size={size}
       variant={variant}
       background={background}
-      iconPosition={iconPosition}
+      $iconPosition={$iconPosition}
       disabled={disabled}
       // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
       aria-disabled={disabled}
@@ -65,7 +65,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         labelSuffixA11y={labelSuffixA11y}
         shouldHideLabel={shouldHideLabel}
         icon={icon}
-        iconPosition={iconPosition}
+        $iconPosition={$iconPosition}
         iconBackground={iconBackground}
         size={size}
         background={background}

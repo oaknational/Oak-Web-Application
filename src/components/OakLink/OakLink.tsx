@@ -18,15 +18,15 @@ import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
 
 type FocusStyle = "underline";
 type FocusStylesProps = {
-  focusStyles?: FocusStyle[];
+  $focusStyles?: FocusStyle[];
 };
 type StyleProps = FlexProps &
   FocusStylesProps & {
     /**
-     * isHovered is used to show hover styles (for example if a clickable card
+     * $isHovered is used to show hover styles (for example if a clickable card
      * is hovered), and this link is the click target for it.
      */
-    isHovered?: boolean;
+    $isHovered?: boolean;
     /**
      * Set 'inline=true' if the link is in amongst a block of text. Styles will
      * be affected: text-decoration: underline;
@@ -39,7 +39,7 @@ const inlineStyles = css`
   text-decoration: underline;
   color: ${(props) => props.theme.colors.hyperlink};
 `;
-const hoverStyles = css`
+const $hoverStyles = css`
   text-decoration: underline;
 `;
 
@@ -47,11 +47,12 @@ const StyledNextLink = styled(Link)<StyleProps>`
   ${box}
   ${flex}
   ${(props) => props.$isInline && inlineStyles}
-  ${(props) => props.focusStyles?.includes("underline") && focusUnderlineStyles}
+  ${(props) =>
+    props.$focusStyles?.includes("underline") && focusUnderlineStyles}
 
-  ${(props) => props.isHovered && hoverStyles}
+  ${(props) => props.$isHovered && $hoverStyles}
   :hover {
-    ${hoverStyles}
+    ${$hoverStyles}
   }
 `;
 
@@ -115,7 +116,7 @@ const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   return (
     <StyledNextLink ref={ref} {...transformedProps}>
       {props.children}
-      {props.focusStyles?.includes("underline") && (
+      {props.$focusStyles?.includes("underline") && (
         <FocusUnderline $color={"teachersYellow"} />
       )}
     </StyledNextLink>

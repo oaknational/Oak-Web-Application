@@ -41,7 +41,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
       <Box>
         <P>Coming soon, {formatDate(date, { month: "short" })}</P>
         <Heading tag={titleTag} $font={["heading-6", "heading-5"]} $mt={8}>
-          <OakLink page={"webinars"} slug={slug} focusStyles={["underline"]}>
+          <OakLink page={"webinars"} slug={slug} $focusStyles={["underline"]}>
             {title}
           </OakLink>
         </Heading>
@@ -59,7 +59,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         label="Notify me"
         labelSuffixA11y={`about upcoming webinar: ${title}`}
         icon="ChevronRight"
-        iconPosition="trailing"
+        $iconPosition="trailing"
       />
     </Flex>
   );
