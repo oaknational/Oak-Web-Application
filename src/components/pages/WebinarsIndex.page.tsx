@@ -57,7 +57,8 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       breadcrumbs={getBlogWebinarListBreadcrumbs(
         categories,
         categorySlug,
-        "webinars"
+        "beta/webinars",
+        "Webinars"
       )}
     >
       <MaxWidth $pt={[0, 80, 80]}>

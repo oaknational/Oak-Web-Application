@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from "react";
 import Component from ".";
 
 export default {
-  title: "Form/Input",
+  title: "Form Fields/Input",
   component: Component,
   argTypes: {
     placeholder: {

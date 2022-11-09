@@ -1,3 +1,27 @@
+## [1.55.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.0...v1.55.1) (2022-11-09)
+
+# [1.55.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.3...v1.55.0) (2022-11-09)
+
+
+### Features
+
+* hide webinar behind registration form ([a6a5370](https://github.com/oaknational/Oak-Web-Application/commit/a6a5370b6e828b55fbe9934d7ccb5033f1f3a2df))
+* hide webinar behind registration form ([97740d3](https://github.com/oaknational/Oak-Web-Application/commit/97740d3fc46db7899d82207073af244fae23316a))
+
+## [1.54.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.2...v1.54.3) (2022-11-08)
+
+
+### Bug Fixes
+
+* webinar images cut off ([8290066](https://github.com/oaknational/Oak-Web-Application/commit/8290066c6713b2463c5822c96745e672c33113cb))
+
+## [1.54.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.1...v1.54.2) (2022-11-08)
+
+
+### Bug Fixes
+
+* use label for breadcrumbs ([b37d72c](https://github.com/oaknational/Oak-Web-Application/commit/b37d72cabd37100980f9b17a544057226cee2e98))
+
 ## [1.54.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.0...v1.54.1) (2022-11-08)
 
 

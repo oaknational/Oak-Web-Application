@@ -131,8 +131,9 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
               ) : (
                 <OakImage
                   fill
-                  $objectFit="cover"
+                  $objectFit="contain"
                   $objectPosition="center center"
+                  $background={"black"}
                   alt={""}
                   src={getVideoThumbnail(mainImage, thumbTime)}
                 />

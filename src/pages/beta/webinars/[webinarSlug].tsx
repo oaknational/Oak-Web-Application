@@ -14,10 +14,10 @@ import { getBlogWebinarPostBreadcrumbs } from "../../../components/Breadcrumbs/g
 import Box from "../../../components/Box";
 import { decorateWithIsr } from "../../../node-lib/isr";
 import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
-import CMSVideo from "../../../components/CMSVideo";
 import Flex from "../../../components/Flex";
 import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
-import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
+import WebinarVideo from "../../../components/Blog/WebinarVideo";
+
 // import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
@@ -38,19 +38,20 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
       seoProps={getSeoProps({
         ...props.webinar.seo,
         title: webinar.seo?.title || webinar.title,
-        description: webinar.seo?.description || "",
+        description: webinar.seo?.description,
         imageUrl: "", // @TODO: add image from video frame
       })}
       $background="white"
       breadcrumbs={getBlogWebinarPostBreadcrumbs(
         categories,
         webinar,
-        "webinars"
+        "beta/webinars",
+        "Webinars"
       )}
     >
       <BlogWebinarsIndexLayout content={props}>
         <Flex $position={"relative"} $mt={56}>
-          <CMSVideo video={webinar.video} />
+          <WebinarVideo webinar={webinar} />
         </Flex>
         <Box $mt={[48]}>
           <BlogPortableText portableText={webinar.summaryPortableText} />
