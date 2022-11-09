@@ -49,7 +49,7 @@ describe("pages/index.tsx", () => {
         type: "blog-post",
         title: "Some blog post",
         slug: "some-blog-post",
-        date: new Date("2022-12-01").toISOString(),
+        date: new Date("2021-12-01").toISOString(),
         category: { title: "Some category", slug: "some-category" },
       },
       {
@@ -57,7 +57,7 @@ describe("pages/index.tsx", () => {
         type: "blog-post",
         title: "Some other post",
         slug: "some-other-post",
-        date: new Date("2022-12-01").toISOString(),
+        date: new Date("2021-12-01").toISOString(),
         category: { title: "Some category", slug: "some-category" },
       },
     ] as SerializedPost[];
@@ -123,6 +123,7 @@ describe("pages/index.tsx", () => {
 
       mockCMSClient.homepage.mockResolvedValue(pageData);
       mockCMSClient.blogPosts.mockResolvedValue([]);
+      mockCMSClient.webinars.mockResolvedValue([]);
     });
 
     it("Should return no more than 4 posts", async () => {
