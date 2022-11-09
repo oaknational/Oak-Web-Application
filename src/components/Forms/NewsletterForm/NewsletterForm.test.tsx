@@ -4,15 +4,12 @@ import { computeAccessibleDescription } from "dom-accessibility-api";
 
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 import OakError from "../../../errors/OakError";
+import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 
 import NewsletterForm from "./NewsletterForm";
 import NewsletterFormWrap from "./NewsletterFormWrap";
 
 const onSubmit = jest.fn();
-
-const waitForNextTick = async () => {
-  return waitFor(() => new Promise((resolve) => setTimeout(resolve, 0)));
-};
 
 describe("NewsletterForm", () => {
   beforeEach(() => {

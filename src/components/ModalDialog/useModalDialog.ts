@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { MutableRefObject, useRef } from "react";
 import {
   useOverlay,
   usePreventScroll,
@@ -26,10 +26,16 @@ type UseModalDialogProps = AriaDialogProps &
     size: DialogModalSize;
     closeModal?: () => void;
     isOpen: boolean;
+    returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
   };
 const useModalDialog = (props: UseModalDialogProps) => {
-  const { closeModal, isDismissable, isKeyboardDismissDisabled, isOpen } =
-    props;
+  const {
+    closeModal,
+    isDismissable,
+    isKeyboardDismissDisabled,
+    isOpen,
+    returnFocusRef,
+  } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
 
@@ -72,6 +78,7 @@ const useModalDialog = (props: UseModalDialogProps) => {
       id: titleId,
     },
     innerRef,
+    returnFocusRef,
   };
 };
 

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MutableRefObject } from "react";
 
 import useClickableCard from "../../../hooks/useClickableCard";
 import AvatarImage from "../../AvatarImage";
@@ -11,9 +11,10 @@ import { Heading, P } from "../../Typography";
 
 export type BioCardListItemProps = BioData & {
   onClick?: (bio: BioData) => void;
+  modalControllerRef?: MutableRefObject<HTMLButtonElement | null>;
 };
 const BioCardListItem: FC<BioCardListItemProps> = (props) => {
-  const { name, role, image, socials, onClick } = props;
+  const { name, role, image, socials, onClick, modalControllerRef } = props;
   const { containerProps, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
 
@@ -54,6 +55,12 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
         {onClick && (
           <Button
             {...primaryTargetProps}
+            ref={(node) => {
+              primaryTargetProps.ref.current = node;
+              if (modalControllerRef) {
+                modalControllerRef.current = node;
+              }
+            }}
             label="See bio"
             labelSuffixA11y={`for ${name}`}
             variant="minimal"
