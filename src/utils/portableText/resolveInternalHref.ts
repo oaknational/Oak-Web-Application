@@ -39,7 +39,16 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
     case "attachment":
       return entry.file.asset.url;
     default:
-      assertUnreachable(entry, new Error("Error resolving internal href"));
+      assertUnreachable(
+        entry,
+        new Error(
+          `Error resolving internal href; unexpected entry:\n${JSON.stringify(
+            entry,
+            null,
+            2
+          )}`
+        )
+      );
   }
 };
 
