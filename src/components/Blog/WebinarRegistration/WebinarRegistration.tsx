@@ -9,7 +9,7 @@ import OakLink from "../../OakLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 
 export type WebinarRegistrationProps = {
-  headingTag: HeadingTag;
+  headingTag?: HeadingTag;
   onSubmit: () => void;
 };
 
@@ -34,7 +34,7 @@ export type WebinarRegistrationProps = {
  *
  */
 const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
-  const { headingTag, onSubmit } = props;
+  const { headingTag = "h2", onSubmit } = props;
   const id = useId();
   const descriptionId = useId();
   const newsletterForm = useNewsletterForm({ onSubmit });
