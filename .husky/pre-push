@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run format
-npx lint-staged
+npm run check-types
+npm run test:ci
