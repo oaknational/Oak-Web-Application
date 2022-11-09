@@ -12,7 +12,7 @@ import iconButtonStyles, {
   IconButtonStylesProps,
 } from "./iconButton.styles";
 
-const StyledNextLink = styled(Link)<IconButtonStylesProps>`
+const StyledNextLink = styled.a<IconButtonStylesProps>`
   ${iconButtonStyles}
 `;
 
@@ -37,29 +37,30 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
   const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
-    <StyledNextLink
-      {...useButtonAsLinkProps()}
-      title={linkProps.title || ariaLabel}
-      onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
-      aria-label={ariaLabel}
-      size={size}
-      variant={variant}
-      background={background}
-      disabled={disabled}
-      // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
-      aria-disabled={disabled}
-      href={disabled ? "" : href}
-      {...linkProps}
-    >
-      <IconButtonInner
-        icon={icon}
+    <Link href={href} passHref legacyBehavior>
+      <StyledNextLink
+        {...useButtonAsLinkProps()}
+        {...linkProps}
+        title={linkProps.title || ariaLabel}
+        onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
+        aria-label={ariaLabel}
         size={size}
         variant={variant}
         background={background}
-        iconColorOverride={iconColorOverride}
-        iconAnimateTo={iconAnimateTo}
-      />
-    </StyledNextLink>
+        disabled={disabled}
+        aria-disabled={disabled}
+        href={href}
+      >
+        <IconButtonInner
+          icon={icon}
+          size={size}
+          variant={variant}
+          background={background}
+          iconColorOverride={iconColorOverride}
+          iconAnimateTo={iconAnimateTo}
+        />
+      </StyledNextLink>
+    </Link>
   );
 };
 

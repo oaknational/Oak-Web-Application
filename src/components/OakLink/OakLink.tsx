@@ -43,7 +43,7 @@ const $hoverStyles = css`
   text-decoration: underline;
 `;
 
-const StyledNextLink = styled(Link)<StyleProps>`
+const StyledNextLink = styled.a<StyleProps>`
   ${box}
   ${flex}
   ${(props) => props.$isInline && inlineStyles}
@@ -59,6 +59,7 @@ const StyledNextLink = styled(Link)<StyleProps>`
 export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
   StyleProps & {
     children: ReactNode;
+    disabled?: boolean;
     className?: string;
     htmlAnchorProps?: HTMLAnchorProps;
   } & (
@@ -86,7 +87,7 @@ const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
 export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
   props: T
 ) => {
-  const { htmlAnchorProps, ...linkProps } = props;
+  const { htmlAnchorProps, disabled, ...linkProps } = props;
   const href = getOakLinkHref(props);
 
   const isExternal = isExternalHref(href);
@@ -94,10 +95,14 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
 
   return {
     target,
-    href,
     role: "link",
+    disabled,
     ...htmlAnchorProps,
     ...linkProps,
+    /**
+     * @see https://www.scottohara.me/blog/2021/05/28/disabled-links.html
+     **/
+    href: disabled ? "" : href,
   };
 };
 
@@ -114,12 +119,16 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
   const transformedProps = transformOakLinkProps(props);
   return (
-    <StyledNextLink ref={ref} {...transformedProps}>
-      {props.children}
-      {props.$focusStyles?.includes("underline") && (
-        <FocusUnderline $color={"teachersYellow"} />
-      )}
-    </StyledNextLink>
+    <Link href={transformedProps.href} legacyBehavior passHref>
+      <StyledNextLink ref={ref} {...transformedProps}>
+        <>
+          {props.children}
+          {props.$focusStyles?.includes("underline") && (
+            <FocusUnderline $color={"teachersYellow"} />
+          )}
+        </>
+      </StyledNextLink>
+    </Link>
   );
 });
 

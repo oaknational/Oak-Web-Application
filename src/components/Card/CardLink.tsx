@@ -42,7 +42,7 @@ type StyleProps = {
   $hideDefaultFocus?: boolean;
 };
 
-const StyledNextLink = styled(Link)<StyleProps>`
+const StyledNextLink = styled.a<StyleProps>`
   ::after {
     content: "";
     position: absolute;
@@ -92,12 +92,14 @@ const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
     const transformedProps = transformOakLinkProps(props);
 
     return (
-      <StyledNextLink
-        ref={ref}
-        $hideDefaultFocus={$hideDefaultFocus}
-        $hoverStyles={$hoverStyles}
-        {...transformedProps}
-      />
+      <Link href={transformedProps.href} passHref legacyBehavior>
+        <StyledNextLink
+          ref={ref}
+          $hideDefaultFocus={$hideDefaultFocus}
+          $hoverStyles={$hoverStyles}
+          {...transformedProps}
+        />
+      </Link>
     );
   }
 );
