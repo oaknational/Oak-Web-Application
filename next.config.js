@@ -66,7 +66,7 @@ module.exports = async (phase) => {
   const SANITY_ASSET_CDN_HOST =
     process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
-  const imageDomains = [SANITY_ASSET_CDN_HOST].filter(Boolean);
+  const imageDomains = ["image.mux.com", SANITY_ASSET_CDN_HOST].filter(Boolean);
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
