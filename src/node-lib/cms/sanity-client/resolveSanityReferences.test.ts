@@ -81,7 +81,7 @@ describe("resolveReferences", () => {
       });
     });
 
-    it("calls api.portableTextReferences with each referenced ID", async () => {
+    it("calls api.blogPortableTextReferences with each referenced ID", async () => {
       await resolveSanityReferences(mockObjWithReferences);
 
       expect(sanityGraphqlApi.portableTextReferences).toBeCalledWith({

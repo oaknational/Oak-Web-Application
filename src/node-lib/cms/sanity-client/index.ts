@@ -26,6 +26,7 @@ import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinar
 
 import { resolveSanityReferences } from "./resolveSanityReferences";
 import { parseResults } from "./parseResults";
+import { addHubspotForms } from "./addHubspotForms";
 
 export type Params = {
   previewMode?: boolean;
@@ -39,7 +40,9 @@ const resolveEmbeddedReferences = async <T extends Record<string, unknown>>(
   document: T
 ): Promise<T> => {
   const withPortableTextReferences = await resolveSanityReferences(document);
-  return withPortableTextReferences;
+  const withForms = await addHubspotForms(withPortableTextReferences);
+
+  return withForms;
 };
 
 const getSanityClient = () => ({
