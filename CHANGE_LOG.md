@@ -1,3 +1,10 @@
+## [1.55.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.2...v1.55.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* ensure ssr code isn't bundled with client js ([45116f9](https://github.com/oaknational/Oak-Web-Application/commit/45116f95207374c4e5ba344e59c5bc3eec3af35f))
+
 ## [1.55.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.1...v1.55.2) (2022-11-09)
 
 
