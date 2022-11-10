@@ -7,6 +7,7 @@ import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageB
 import { videoSchema } from "../../../common-lib/cms-types/base";
 
 import { parseResults } from "./parseResults";
+import { resolveReferences } from "./resolveReferences";
 
 import getSanityClient from "./";
 
@@ -21,6 +22,14 @@ jest.mock("./parseResults", () => {
   return {
     __esModule: true,
     parseResults: jest.fn(original.parseResults),
+  };
+});
+
+jest.mock("./resolveReferences", () => {
+  const original = jest.requireActual("./resolveReferences");
+  return {
+    __esModule: true,
+    resolveReferences: jest.fn(original.resolveReferences),
   };
 });
 
@@ -152,6 +161,12 @@ describe("cms/sanity-client", () => {
         expect(res).toBeNull();
       });
 
+      it("attempts to resolve embedded portable text references", async () => {
+        await clientMethod();
+
+        expect(resolveReferences).toBeCalled();
+      });
+
       it("does not fetch draft content by default", async () => {
         await clientMethod();
         expect(mockMethod).toBeCalledWith(
@@ -173,7 +188,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          undefined
+          /* isPreviewMode: */ undefined
         );
       });
 
@@ -183,7 +198,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          true
+          /* isPreviewMode: */ true
         );
       });
     });
@@ -219,7 +234,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          undefined
+          /* isPreviewMode: */ undefined
         );
       });
 
@@ -229,7 +244,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          true
+          /* isPreviewMode: */ true
         );
       });
     });
@@ -238,10 +253,16 @@ describe("cms/sanity-client", () => {
       const mockMethod = mockSanityGraphqlApi[mockMethodName];
       const clientMethod = client[methodName];
 
-      it("returns null/ when no content is found", async () => {
+      it("returns null when no content is found", async () => {
         mockMethod.mockResolvedValueOnce({} as never);
         const res = await clientMethod("some-slug");
         expect(res).toBeNull();
+      });
+
+      it("attempts to resolve embedded portable text references", async () => {
+        await clientMethod("some-slug");
+
+        expect(resolveReferences).toBeCalled();
       });
 
       it("does not fetch draft content by default", async () => {
@@ -265,7 +286,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          undefined
+          /* isPreviewMode: */ undefined
         );
       });
 
@@ -275,7 +296,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          true
+          /* isPreviewMode: */ true
         );
       });
     });
