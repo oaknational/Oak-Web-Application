@@ -1,47 +1,327 @@
 {
   "allWebinar": [
     {
-      "id": "49694fbe-a31e-4294-aabb-d865f400865a",
+      "id": "cf-webinar-3bKsbVADxgx0BkTQAXWKt",
       "title": "Effective Feedback: a practical guide to using feedback to enhance student learning",
       "slug": {
         "current": "effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student"
       },
-      "date": "2022-07-26T14:40:00.000Z",
+      "date": "2022-03-31T14:30:00.000Z",
       "summaryPortableText": [
         {
-          "_key": "95d1ea0c6bda",
+          "_key": "9d52c592be3e774d524b80935ff0e66b",
           "_type": "block",
           "children": [
             {
-              "_key": "75562784d65f",
+              "_key": "e532f2d7852daa7ebdb2348d087418c1",
               "_type": "span",
               "marks": [],
-              "text": "Hello"
+              "text": "Join Oak's Curriculum Manager, Elisabeth Pugh, as she discusses how to use effective feedback to enhance pupils' learning. \n"
             }
           ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "c2b4dc8117e9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "26e66b5172f6",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d05ae19896f1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0a8a1f35470d",
+              "_type": "span",
+              "marks": [],
+              "text": "How to deliver pupils feedback to enhance learning"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3c7c181de654",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "caf064760c48",
+              "_type": "span",
+              "marks": [],
+              "text": "Examples of effective and ineffective feedback"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "48f136ec403b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a5919585504e",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's quizzes to support the feedback process "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "137289a54f5f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "739d528ff496",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a617622175bd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "77fb61891634",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary classroom teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "42032a8f9548",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8279b7e91e92",
+              "_type": "span",
+              "marks": [],
+              "text": "Heads of department "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "b573ab3f2f6c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "880abf3815a1",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "10687ae5efd4",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5c5eb40e2e89",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a3e836083bdf",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "edfa1daa234b",
+              "_type": "span",
+              "marks": ["a99d98e85601"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "db5337923440",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "148d759df022",
+              "_type": "span",
+              "marks": ["39cda956e0da"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "b811ebc4a6d1",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "a99d98e85601",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "39cda956e0da",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "3fc517349390",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "78638d057ec6",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "f1680e3d4ea4",
+              "_type": "span",
+              "marks": ["27150139afca"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "a587c1ea31a3",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "27150139afca",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "24627e5f498f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f867e0133c7e",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "117f8bce302d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2d5d2c0f34e3",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "71438f922e14",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e9f73c729083",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
           "markDefs": [],
           "style": "normal"
         }
       ],
       "category": {
-        "title": "Research and insights",
+        "title": "Lesson planning",
         "slug": {
-          "current": "research-and-insights"
+          "current": "lesson-planning"
         }
       },
       "hosts": [
         {
-          "id": "f502ef5c-57d5-44c8-9c34-ff6e581ce9dd",
+          "id": "tm-cf-elisabeth-pugh",
           "_key": null,
-          "name": "Person McPherson",
+          "name": "Elisabeth Pugh",
           "image": {
             "asset": {
-              "_id": "",
-              "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-            }
+              "_id": "image-f61c509f6d9fe859e3b4e59f3daa2fe366590f0a-350x280-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/f61c509f6d9fe859e3b4e59f3daa2fe366590f0a-350x280.png"
+            },
+            "hotspot": null
           }
         }
-      ]
+      ],
+      "video": {
+        "title": "Webinar: Effective Feedback: a practical guide to using feedback to enhance student learning",
+        "video": {
+          "asset": {
+            "assetId": "cjpqtGmpACkKl2vTOQHbYUc2KDMGA01jKt5kUHWFkytA",
+            "thumbTime": 5.790774,
+            "playbackId": "FXRBknPitUMahWq0202vlq7WdVe9yWtJsaEFeVi4SBwYo"
+          }
+        }
+      },
+      "seo": {
+        "title": "How to use feedback to enhance student learning",
+        "description": "In this webinar, learn how to use effective feedback and quizzes to enhance pupils' learning.",
+        "canonicalURL": null
+      }
     }
   ]
 }

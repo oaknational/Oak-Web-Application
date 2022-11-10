@@ -1,42 +1,598 @@
 {
   "allWebinar": [
     {
-      "id": "49694fbe-a31e-4294-aabb-d865f400865a",
-      "title": "Effective Feedback: a practical guide to using feedback to enhance student learning",
+      "id": "cc15a6ad-6a34-4a3f-b4cf-58721bb6b621",
+      "title": "Test Upcoming Webinar",
       "slug": {
-        "current": "effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student"
+        "current": "test-upcoming-webinar"
       },
-      "date": "2022-07-26T14:40:00.000Z",
+      "date": "2023-04-14T13:00:00.000Z",
+      "video": {
+        "title": "Oak is evolving",
+        "video": {
+          "asset": {
+            "assetId": "yHfnlREULGomTLTAcdt3iybOa8kDC005UOXYrLE1qvaU",
+            "thumbTime": 2,
+            "playbackId": "4zX2n02AxYTM4bhm4SvJnA5leiiZVgMMnHM8w4hesP4c"
+          }
+        }
+      },
       "category": {
-        "title": "Research and insights",
+        "title": "Oak updates",
         "slug": {
-          "current": "research-and-insights"
+          "current": "oak-updates"
         }
       },
       "summaryPortableText": [
         {
-          "_key": "95d1ea0c6bda",
+          "_key": "409ce8c7c248",
           "_type": "block",
           "children": [
             {
-              "_key": "75562784d65f",
+              "_key": "6af72fe6627c",
               "_type": "span",
               "marks": [],
-              "text": "Hello"
+              "text": "Join Oak National Academy's Music Subject Lead, Margaret O'Shea, and Oak music teachers for a free webinar to learn more about the music resources on offer."
             }
           ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "621f68647f83",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a8fda774ae1d",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a8186ef47ec7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7d6751fbf2d8",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d6d8fefc2fb5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4202fba245de",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's resources for remote and in-school teaching."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "733dde7360e3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "318458df1ce0",
+              "_type": "span",
+              "marks": [],
+              "text": "The principles and structure of Oak's music curriculum."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "eefede6f474c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "66fd97f4c272",
+              "_type": "span",
+              "marks": [],
+              "text": "Techniques for teaching music remotely."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "6db34e71a55f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cc311bc06a0d",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "73128dfeaf9f",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "45ec038c00f5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "65052d6f6149",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "6deb3f9c10f6",
+              "_type": "span",
+              "marks": ["fe7aa31a331a"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "0bd07fe48ad1",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "14e35773b25a",
+              "_type": "span",
+              "marks": ["1d1625774b8b"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "b540ee568f30",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "fe7aa31a331a",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "1d1625774b8b",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "0c9db5fd23d3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "784cb2fb4950",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "a130687c72b9",
+              "_type": "span",
+              "marks": ["6c2da513e01d"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "2b603a25046a",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "6c2da513e01d",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "945ddf50a38e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d70e9fece5d3",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cf1e8fa272e0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b74da038e33c",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "bddf0fa8d123",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "537a936f6b5d",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
           "markDefs": [],
           "style": "normal"
         }
       ]
     },
     {
-      "id": "7c3a2ebb-f910-45c5-8d15-d4cabae37062",
-      "title": "raining new teachers: creating a coherent curriculum that models the science of learning",
+      "id": "cf-webinar-3bKsbVADxgx0BkTQAXWKt",
+      "title": "Effective Feedback: a practical guide to using feedback to enhance student learning",
+      "slug": {
+        "current": "effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student"
+      },
+      "date": "2022-03-31T14:30:00.000Z",
+      "video": {
+        "title": "Webinar: Effective Feedback: a practical guide to using feedback to enhance student learning",
+        "video": {
+          "asset": {
+            "assetId": "cjpqtGmpACkKl2vTOQHbYUc2KDMGA01jKt5kUHWFkytA",
+            "thumbTime": 5.790774,
+            "playbackId": "FXRBknPitUMahWq0202vlq7WdVe9yWtJsaEFeVi4SBwYo"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "9d52c592be3e774d524b80935ff0e66b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e532f2d7852daa7ebdb2348d087418c1",
+              "_type": "span",
+              "marks": [],
+              "text": "Join Oak's Curriculum Manager, Elisabeth Pugh, as she discusses how to use effective feedback to enhance pupils' learning. \n"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "c2b4dc8117e9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "26e66b5172f6",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d05ae19896f1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0a8a1f35470d",
+              "_type": "span",
+              "marks": [],
+              "text": "How to deliver pupils feedback to enhance learning"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3c7c181de654",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "caf064760c48",
+              "_type": "span",
+              "marks": [],
+              "text": "Examples of effective and ineffective feedback"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "48f136ec403b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a5919585504e",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's quizzes to support the feedback process "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "137289a54f5f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "739d528ff496",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a617622175bd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "77fb61891634",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary classroom teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "42032a8f9548",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8279b7e91e92",
+              "_type": "span",
+              "marks": [],
+              "text": "Heads of department "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "b573ab3f2f6c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "880abf3815a1",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "10687ae5efd4",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5c5eb40e2e89",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a3e836083bdf",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "edfa1daa234b",
+              "_type": "span",
+              "marks": ["a99d98e85601"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "db5337923440",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "148d759df022",
+              "_type": "span",
+              "marks": ["39cda956e0da"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "b811ebc4a6d1",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "a99d98e85601",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "39cda956e0da",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "3fc517349390",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "78638d057ec6",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "f1680e3d4ea4",
+              "_type": "span",
+              "marks": ["27150139afca"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "a587c1ea31a3",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "27150139afca",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "24627e5f498f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f867e0133c7e",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "117f8bce302d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2d5d2c0f34e3",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "71438f922e14",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e9f73c729083",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-26mPa4gXa3VHYqo6u4alnG",
+      "title": "Training new teachers: creating a coherent curriculum that models the science of learning",
       "slug": {
         "current": "training-new-teachers-creating-a-coherent-curriculum-that-models-the-science"
       },
-      "date": "2022-03-31T08:47:00.000Z",
+      "date": "2022-03-17T15:30:00.000Z",
+      "video": {
+        "title": "Webinar: Training new teachers: creating a coherent curriculum that models the science of learning",
+        "video": {
+          "asset": {
+            "assetId": "p00OogB005bsfVJfA02UsH9iHmMJsSihqKlOgRIhwVAW38",
+            "thumbTime": 2163,
+            "playbackId": "y2H3XsJMbX01rKdCbNZwlFcHbpk7NFAsrBbNjp9kQIIw"
+          }
+        }
+      },
       "category": {
         "title": "Curriculum planning",
         "slug": {
@@ -45,16 +601,4056 @@
       },
       "summaryPortableText": [
         {
-          "_key": "8acafed7fafd",
+          "_key": "80f827c45ce1e8ff40da2034daaedc34",
           "_type": "block",
           "children": [
             {
-              "_key": "c9461e7e74fb",
+              "_key": "e6cacc3c6d95360d6e91c39d545a5b36",
               "_type": "span",
               "marks": [],
-              "text": "Test body"
+              "text": "Watch Oak's Head of Curriculum Design, Emma McCrea, as she discusses how to create a coherent curriculum that models the science of learning when training new teachers. \n\n"
+            },
+            {
+              "_key": "c1f84b0b3481",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers"
+            },
+            {
+              "_key": "5b26ce253793",
+              "_type": "span",
+              "marks": [],
+              "text": ":"
             }
           ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "560179efcbb0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7117756cccf8",
+              "_type": "span",
+              "marks": [],
+              "text": "What are the features of good curriculum design in ITT and novice teacher programmes?"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5aac61328538",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f6a1e1a43d6f",
+              "_type": "span",
+              "marks": [],
+              "text": "How can we use curriculum design to help trainee and new teachers truly understand and apply the science of learning in their practice?"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "e9e7ede29ce4",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "31a0ff9c98f3",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "38333cb03e6d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "3b21152aefbf",
+              "_type": "span",
+              "marks": [],
+              "text": "ITE : university tutors, school based mentors, SCITTs"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4d92335f8009",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "59ef070740b0",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "a9e75b787d08",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "9341b27cd303",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e2b146ff1ded",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "d997fdb57b96",
+              "_type": "span",
+              "marks": ["80bc5fdc2b8d"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "b4d19b9653c8",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "8fa26ab4f650",
+              "_type": "span",
+              "marks": ["f86f0268c8c8"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "5a222132c558",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "80bc5fdc2b8d",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "f86f0268c8c8",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "f3b4940f049c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "be794b3b8621",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "1cdffd7ecf3a",
+              "_type": "span",
+              "marks": ["2e3a4aa594f3"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "e804ead6ec9b",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "2e3a4aa594f3",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "c073920f35a1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "767d732e3af1",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "f5cda6d317a1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "27d2d3883008",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "555dfbd339ec",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c82551d13fd3",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-6YgjqGMQVWzR6CuH7jWoka",
+      "title": "Ensuring pupils are confident and prepared for SATs",
+      "slug": {
+        "current": "ensuring-pupils-are-confident-and-prepared-for-sats"
+      },
+      "date": "2022-03-09T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: Ensuring pupils are confident and prepared for SATs",
+        "video": {
+          "asset": {
+            "assetId": "S4YvllFK3EYsd7J4cUePVmM9o97ITUQhQ98KfY00uZiY",
+            "thumbTime": 12.616217,
+            "playbackId": "S3fznSrihRXtCAsrP7rUWZb5XwiGvtYTy2o004bTetr8"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "d26ca72e0aa7f61563c0bb5291e2b8c6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "be7109ad481b83ad5197c954331a00fb",
+              "_type": "span",
+              "marks": [],
+              "text": "Join Oak's Primary Curriculum Design Lead, Katie Marl, and Head of School Support, Rachel Strom, as they discuss how to make use of Oak's resources to ensure pupils are prepared for this year's KS2 SATS. Ideal for year 6 classroom teachers."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "bfee5590297d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "16bcd289a63b",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d818235a2506",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9c401fdc2c0d",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cd060d2c75cc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e2b2d7010d3a",
+              "_type": "span",
+              "marks": [],
+              "text": "How to make the most of Oak's resources, in and out of the classroom to support pupils."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "285d82b89043",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e996609f683b",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak to plan booster lessons and intervention."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "e2fef5247ae7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "284cc51aa75d",
+              "_type": "span",
+              "marks": [],
+              "text": "How to support pupils and parents to use Oak's resources for independent study or homework."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "da7f595fec2a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "69d0755f28d9",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's new SATs preparation schedule."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "6875d7327e81",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b43d6a6deaaf",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0fc8b093b530",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "23afa1fa10be",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "18095a915a44",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "05aacf5258df",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "8ae9fc163cd6",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "471125854236",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a46e883f3847",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "0d53ed0cf018",
+              "_type": "span",
+              "marks": ["fe31db37811e"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "6e6365e11c53",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "2bba5c3b32e5",
+              "_type": "span",
+              "marks": ["fd17b6bd7bdc"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "168ffd5b6db8",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "fe31db37811e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "fd17b6bd7bdc",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "a3b41ec356ad",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ae6cd7e15b19",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "a1e659d95dc8",
+              "_type": "span",
+              "marks": ["4fd9b009ac93"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "06feeb93e2e3",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "4fd9b009ac93",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "4ab5b075f581",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "3bd69cba1b7d",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d356f3ec2126",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "77f66ab77e71",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "ac454b8f3309",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "85092fc8edfe",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-1zMurXQPAglTLiI8KuZ04d",
+      "title": "How Oak can reduce your workload and support in your training year and beyond",
+      "slug": {
+        "current": "how-oak-can-reduce-your-workload-and-support-in-your-training-year-and"
+      },
+      "date": "2022-02-17T17:00:00.000Z",
+      "video": {
+        "title": "Webinar: How Oak can reduce your workload and support in your training year and beyond",
+        "video": {
+          "asset": {
+            "assetId": "q4kFPEC9TtHhL2Cg2WUjLtrgb77y4q01cEEtVAk9fs8k",
+            "thumbTime": 159,
+            "playbackId": "9CHw4VfkDNfH5f7MroE6dO5m02Q6JH6rNvMyGrnrUL02c"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "3fad0d52154b1fa4b07ae21f53825935",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a9e61695cdd68e0d3a4da102e879377e",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak's Primary Curriculum Design Lead, Katie Marl, provides practical advice for using Oak to help reduce workload and support you in becoming a fantastic teacher in your training year and beyond. \n"
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "928ed634c9ed",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2a0c470bd8d1",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers"
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "7ef047349fc2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "63b4da7fc5a6",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's resources to:"
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "6c626f1da15b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "590cd3c2e9a7",
+              "_type": "span",
+              "marks": [],
+              "text": "Familiarise yourself with new topics"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "1947f1a0df34",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7e19e368e324",
+              "_type": "span",
+              "marks": [],
+              "text": "Learn from experienced teachers "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "ea882230dccd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f9faea8feb42",
+              "_type": "span",
+              "marks": [],
+              "text": "Save time lesson planning "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "39f0a824bd0a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cb0d3647d5fc",
+              "_type": "span",
+              "marks": [],
+              "text": "Deliver great lessons "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "dc9dc4dd3a0e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5a8f33ce9e21",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for"
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "58f81e720094",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8b42f0476fc6",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary trainee teachers "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "743e8f0b7c9d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "02e4b7600841",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "eed3880e1cfa",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4621da205a84",
+              "_type": "span",
+              "marks": [],
+              "text": "If you found this webinar helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "33591c93f2b6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5049454da375",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "5627b8aa8de6",
+              "_type": "span",
+              "marks": ["0f0dc6c2090e"],
+              "text": "Lesson and Resource Directory"
+            },
+            {
+              "_key": "4020a2c44933",
+              "_type": "span",
+              "marks": [],
+              "text": " for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "423607e3e2a2",
+              "_type": "span",
+              "marks": ["e250f3b513d1"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "c8d11d97d17d",
+              "_type": "span",
+              "marks": [],
+              "text": " links). "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "0f0dc6c2090e",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "e250f3b513d1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "9bf1a9d0fcb0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "512334621643",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "8d017773170a",
+              "_type": "span",
+              "marks": ["2090d5aa75e1"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "a2db3c68d265",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "2090d5aa75e1",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "f7663576b7df",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d691cb7e0bf9",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7c86a9650a4e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7aba4fa7a5ee",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "9dcfdb720e46",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "dad307dffd7e",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in.\n"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-3Wre46CkJKYGW64CDMs1R2",
+      "title": "Boosting motivation in the classroom",
+      "slug": {
+        "current": "boosting-motivation-in-the-classroom"
+      },
+      "date": "2021-12-14T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: Boosting motivation in the classroom",
+        "video": {
+          "asset": {
+            "assetId": "KXffEg02kMCexCEseuIwvk7F02SLWavjmc2Qg4MRHoClU",
+            "thumbTime": 63.49729,
+            "playbackId": "rwXzOtjGBpGWlL1zeayTYq00CQ58xUFGPEF9b81Ck8lk"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "6564938ad77879ebbd83e2817567b5ac",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ce2b7f8c7bf79326e02fc04d2815169f",
+              "_type": "span",
+              "marks": [],
+              "text": "Watch Oak's Primary Curriculum Design Lead, Katie Marl, as she explores motivation in the classroom. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a5dce09066c5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "783fb0891f57",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0298366a1cf6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9669bb46568b",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "abf2698b5732",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1f56cb9059e3",
+              "_type": "span",
+              "marks": [],
+              "text": "An in depth look at how Oak fosters motivation in online lessons, the evidence behind it and top tips for boosting motivation in the classroom."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "991ba79c8542",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ad2ca6d4c705",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "713348fef285",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8f6a70aa07a0",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "395c5ffccbe9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cc94067e4cf5",
+              "_type": "span",
+              "marks": [],
+              "text": "Heads of Department"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "160e53558a61",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f6bca8d6cb8d",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "349f4cd1cc09",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this webinar helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d48f5865a38c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "dd068ea7c802",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "78717c3503d0",
+              "_type": "span",
+              "marks": ["f0475d8d8919"],
+              "text": "Lesson and Resource Directory"
+            },
+            {
+              "_key": "3b88496bd43b",
+              "_type": "span",
+              "marks": [],
+              "text": " for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "7e88119badfe",
+              "_type": "span",
+              "marks": ["4cc97a7592ed"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "774321929b69",
+              "_type": "span",
+              "marks": [],
+              "text": " links). "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "f0475d8d8919",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "4cc97a7592ed",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            },
+            {
+              "_key": "d9d0267689cf",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "9f6da8267467",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1e33620e4e32",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "2b5ffe4e7d92",
+              "_type": "span",
+              "marks": ["d9d0267689cf"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "f290a1507002",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "d9d0267689cf",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "2813ded8611a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1896699bdcff",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "fa2b40acf1ad",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1412a045b2e1",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7ea4fcec69eb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1f4432cda4f6",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4cf9a0f6bf89",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5b30e1b56cb5",
+              "_type": "span",
+              "marks": [],
+              "text": "Review the "
+            },
+            {
+              "_key": "70c0ff809d9f",
+              "_type": "span",
+              "marks": ["51b713ca7695"],
+              "text": "list of references "
+            },
+            {
+              "_key": "e5e5dc2e5668",
+              "_type": "span",
+              "marks": [],
+              "text": "to studies Katie mentioned for further reading."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "51b713ca7695",
+              "_type": "link",
+              "href": "https://assets.ctfassets.net/ygggx3rcdvia/3hMFJpqaZfkqcgUI0mHKee/210e5335e138743629557ae4082166a3/Boosting_motivation_in_the_classroom_Edu_Session_Dec_21_Further_Reading.pdf"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "d921abaadea3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1696342ec562",
+              "_type": "span",
+              "marks": [],
+              "text": "Watch our "
+            },
+            {
+              "_key": "7c78fe8d3f36",
+              "_type": "span",
+              "marks": ["2d3635345b18"],
+              "text": "ITT lessons"
+            },
+            {
+              "_key": "4df3e56bba50",
+              "_type": "span",
+              "marks": [],
+              "text": " mentioned in the session. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "2d3635345b18",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/lessons-for-itt"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "75127b62fc1b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ac7ef8bffe37",
+              "_type": "span",
+              "marks": [],
+              "text": "View further examples of feedback by "
+            },
+            {
+              "_key": "0feced42b740",
+              "_type": "span",
+              "marks": ["3a113d1beb19"],
+              "text": "following us on Twitter @OakNational"
+            },
+            {
+              "_key": "a3c304ffad02",
+              "_type": "span",
+              "marks": [],
+              "text": "."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "3a113d1beb19",
+              "_type": "link",
+              "href": "https://twitter.com/OakNational"
+            }
+          ],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-3dfDXrn7g2f5JiYZGp7vzK",
+      "title": "Use of low stakes testing to increase student motivation and supercharge learning",
+      "slug": {
+        "current": "use-of-low-stakes-testing-to-increase-student-motivation-and-supercharge"
+      },
+      "date": "2021-11-30T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: Use of low stakes testing to increase student motivation and supercharge learning",
+        "video": {
+          "asset": {
+            "assetId": "cjDx01GHRuV2Jv026nHnbgaL7CusEmUUhd02lJlVgNnnh8",
+            "thumbTime": 2946.432803,
+            "playbackId": "1wKTBB01tdff1gnTyCK9G9JRIzQjX3i9XR2hOnbb7vbA"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "0714f09c86c6d1c87326735d9d78ddf3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2e9c268b67f5623a79c977303310a6c3",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak's Subject Lead for science, Elisabeth Pugh, explores the use of low stakes testing in the classroom."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d1ce9b94ecc7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d57f9e14ecb6",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7d55348e6298",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6eeb13bab127",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4bea40ef3f6b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "775aaa7db48d",
+              "_type": "span",
+              "marks": [],
+              "text": "An in-depth look at the effective use of low stakes testing to increase student motivation and supercharge learning."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "bbae8e0a5d1a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e0e619879c2f",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5768d908b000",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "dfac9fdd4a1c",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "67df3b437a95",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0a89fdcdd030",
+              "_type": "span",
+              "marks": [],
+              "text": "Heads of Department"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "fee4c80450b3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "375e9ebb3664",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "c51f1b2b26f0",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "78d958804568",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b115cd55ef90",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "576840155701",
+              "_type": "span",
+              "marks": ["a48c9ef902e3"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "7342cff6434a",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "e7f529bee9dc",
+              "_type": "span",
+              "marks": ["f69ecdc26c8e"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "b81dc96885d9",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "a48c9ef902e3",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "f69ecdc26c8e",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "16755d0c5da2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "236384435092",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "6ee4ac8cef46",
+              "_type": "span",
+              "marks": ["fd2addef9899"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "444b0921356a",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "fd2addef9899",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "2e6da07f33be",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6e1b38cad1ce",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "20fa5e25cc2d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f32863b146de",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0f7656c22487",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "99227f8a0b34",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-4wypVQywhWBmhIbKGcQihR",
+      "title": "The Intuitive Curriculum: How can we make shared classroom resources easy to use?",
+      "slug": {
+        "current": "the-intuitive-curriculum-how-can-we-make-shared-classroom-resources-easy-to"
+      },
+      "date": "2021-11-16T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: The Intuitive Curriculum: How can we make shared classroom resources easy to use?",
+        "video": {
+          "asset": {
+            "assetId": "s16U3CdkP1EffwdDc01UbnDBqtgGcnVZWed901I7qe9sc",
+            "thumbTime": 2411.069627,
+            "playbackId": "MmNRAKnrBENJUGg6z5LAml8uYGdl1w00024IwK00WK1N6o"
+          }
+        }
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "4cc65f79cf6d08ee63c4e59de51baef7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c218ee5c2ea1323ee21e3290f3c4ac86",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak's English Subject Lead, Chris Fountain, explores the effective use of shared classroom resources and how they can save time, increase wellbeing and improve outcomes.\n"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "de3608ef1047",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d8b7e6578183",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0d28b3878c58",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "748d279d82e9",
+              "_type": "span",
+              "marks": [],
+              "text": "How to design shared classroom resources so that they can be used most effectively by other teachers who didn't make them, such as other teachers in your department or MAT."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7fe149fe31fc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1d8dbe962021",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d079efd200ee",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "bd651d7cd6a1",
+              "_type": "span",
+              "marks": [],
+              "text": "Heads of Department"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "01db3f68ea66",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "377342c45b30",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7dbfe1fe2556",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c0a915e0e32c",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "8e16463977da",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d3d43b972539",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ffad2a5176ee",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "c6c948a40fa0",
+              "_type": "span",
+              "marks": ["965948de2dfa"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "a03ea4b0f3d7",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "30f3d5a2187c",
+              "_type": "span",
+              "marks": ["876d187358b8"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "5ba9e82292ee",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "965948de2dfa",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "876d187358b8",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "8f71bdfc506e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d7684428ffa6",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "48e79c825217",
+              "_type": "span",
+              "marks": ["657e4f3109af"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "34f8867d8a47",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "657e4f3109af",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "8c0d02ff7b89",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8be822fecbc9",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "b00c4b66f306",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "3ed4fecf7cbb",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "6493b134661b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b2f71e150fea",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "96b346b1598c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0d5dcc35ffe4",
+              "_type": "span",
+              "marks": [],
+              "text": "And finally, you can "
+            },
+            {
+              "_key": "0238f31de240",
+              "_type": "span",
+              "marks": ["90b7a0ae2ce5"],
+              "text": "read Chris' blog about using Oak’s curriculum maps "
+            },
+            {
+              "_key": "1734e371205c",
+              "_type": "span",
+              "marks": [],
+              "text": "to see how Oak's resources can help with planning. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "90b7a0ae2ce5",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "8f5da8ba-915c-4ce7-acd1-c67d8d238206",
+                "_type": "reference"
+              }
+            }
+          ],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-4SAAXGhpj0WSMbgibQeD1f",
+      "title": "Using visual representations: enhance learning and understanding in mathematics",
+      "slug": {
+        "current": "using-visual-representations-to-enhance-learning-and-understanding-in"
+      },
+      "date": "2021-11-11T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: Using visual representations: enhance learning and understanding in mathematics",
+        "video": {
+          "asset": {
+            "assetId": "yBnj01e14lEDvmObdQ02deWIZEvS8LxqvIN02chs01axnMA",
+            "thumbTime": 10,
+            "playbackId": "f8G00x00E7tSHuQAZCF1zcjfz1kWHB1NmtVKO2Snt2TLg"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "cffe52f71144d64b865cc93f2a84861d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "017acb47ff0f4675c4654fd326c0f7a9",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak's Maths Subject Lead, Ed Southall, takes an in-depth look at the effective use of visual representations in mathematics. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4a18b080ebf6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "50807c2b3239",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "e1d5fe6855e9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e4cb85376272",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "df43ea938202",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0049a788b4f3",
+              "_type": "span",
+              "marks": [],
+              "text": "The use of visual representation across primary and secondary mathematics to help develop conceptual understanding of abstract topics. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "11532719557b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "44da6c872839",
+              "_type": "span",
+              "marks": [],
+              "text": "Useful models to make explanations of the four operations and other areas of maths more easy to grasp for students. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "6d77928c762b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "fc2ecff00c3c",
+              "_type": "span",
+              "marks": [],
+              "text": "Interesting tools such as double number lines, area and bar models."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "941ba24ad94f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d5f1edb3e629",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "1b64e764ef9a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6e4dcdca6aff",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary maths teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "fdb8ae13f109",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c61105162ceb",
+              "_type": "span",
+              "marks": [],
+              "text": "Heads of maths"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "9a96e9ad1815",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f5e5bf1767a4",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "23630b7735d2",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "82a5ef53ede2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cfc333431350",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "4a28359ab1cb",
+              "_type": "span",
+              "marks": ["fb85eed07c8b"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "2215055929f3",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "4c28602bcf23",
+              "_type": "span",
+              "marks": ["f85ca6cc3969"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "d1a9ea2d805b",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "fb85eed07c8b",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "f85ca6cc3969",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "5bf9a3d992a2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0b3107f8131e",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "67387faff203",
+              "_type": "span",
+              "marks": ["730af800cb2b"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "4b153aee8953",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "730af800cb2b",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "8626949b251d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d769b4a8e1e9",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "f074a5ffa20b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9791efb9b7c3",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d24cae81683a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b1234a798cd0",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-4zPhGpX1RnLoaVauctpThW",
+      "title": "What we’ve learnt about online learning and what it means for the future of education",
+      "slug": {
+        "current": "oak-national-academy-what-weve-learnt-about-online-learning-and-what-it"
+      },
+      "date": "2021-09-21T09:00:00.000Z",
+      "video": {
+        "title": "Webinar: What we’ve learnt about online learning and what it means for the future of education",
+        "video": {
+          "asset": {
+            "assetId": "YR9gYupbrfKjqqhtI00qEoJJwcNx00fikcRKPulr7n8Fg",
+            "thumbTime": 368.299672,
+            "playbackId": "QZXG158lOy8hrPsEWqHNBGbzhZB68a01Y01m65QqUlSww"
+          }
+        }
+      },
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "6c6d929f4eee",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a2a46664b2db",
+              "_type": "span",
+              "marks": [],
+              "text": "In this webinar, we discuss new research that looks at how teachers and pupils are using Oak, and what we've learnt about remote teaching. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "41007f14e473",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "bb88d521bcfd",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak launched just under 18 months ago to provide remote lessons for teachers and pupils during lockdown. Our platform has grown to host over 10,000 lessons, with pupils having now taken part in more than 130 million lessons. Oak has been used by 58% of all schools - used extensively for lesson planning, in-class teaching and cover, as well as remote provision. \n\nOur second annual report documents our progress, drawing on an evaluation of our impact by ImpactEd.\n\n"
+            },
+            {
+              "_key": "fc12c94e2d78",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "f0ab329e9aa0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5cfb36a934ec",
+              "_type": "span",
+              "marks": [],
+              "text": "A deep dive into research on how both children and teachers are using the  platform. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "070970d76220",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "bdd83d4a55e3",
+              "_type": "span",
+              "marks": [],
+              "text": "Current evidence on what makes for effective online or blending learning for pupils is thin on the ground, with the expansion of digital resources far outpacing research. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "30eeff614fe2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4a79fdc716c9",
+              "_type": "span",
+              "marks": [],
+              "text": "Chaired by Nicola Woolcock, Education Editor at The Times, speaker include:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "8af47768bc52",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "bbd6aab650d8",
+              "_type": "span",
+              "marks": [],
+              "text": "Matt Hood, Principal, Oak National Academy"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3d16b0a9a78c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "069a2ae7c848",
+              "_type": "span",
+              "marks": [],
+              "text": "Reka Budai, Research & Evaluation Manager, Oak National Academy"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cf6140fa9d9c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b03ab18f01e6",
+              "_type": "span",
+              "marks": [],
+              "text": "Owen Carter, Managing Director, ImpactEd"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "442cdaeb88cc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "bd4a7c6e84c3",
+              "_type": "span",
+              "marks": [],
+              "text": "Natalie Perera, Chief Executive, Education Policy Institute"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "519deb4f64b7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5bee618709d8",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "b55cf1fc0551",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "299efc745643",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "251bbfb36891",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "078d504e52f8",
+              "_type": "span",
+              "marks": ["20547bd66fd0"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "d538d7f36995",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "0e7545cc1db2",
+              "_type": "span",
+              "marks": ["7ae81f413d78"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "a0b04e2373eb",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "20547bd66fd0",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "7ae81f413d78",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "f22bac23a5b8",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cbb1a539fb5a",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "42879482bdcd",
+              "_type": "span",
+              "marks": ["dbadc35b20ed"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "857bf1da4076",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "dbadc35b20ed",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "48ce4a6f2e79",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b2126e6ca399",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "ca93a6eb4c8d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b6b5f7b171d4",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "b91b8fd6ca1d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6f3f7886648a",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-64z8jtUTGeV9zrkNQa5x8J",
+      "title": "Planning for the new school year with Oak National Academy",
+      "slug": {
+        "current": "planning-for-the-new-school-year-with-oak-national-academy-2"
+      },
+      "date": "2021-09-09T15:00:00.000Z",
+      "video": {
+        "title": "Webinar: Planning for the new school year with Oak National Academy",
+        "video": {
+          "asset": {
+            "assetId": "UnSZ1NVktzV00v9DUyHryW02DSu98iSCNdEGkVeJoeYec",
+            "thumbTime": 6.671174,
+            "playbackId": "POVkynmoqkx58a5jSq7J3EIi7ZgQ7nFZFT4zjCizQg4"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "bb25fa1d49c30fe45fac58e7253d1736",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ce0ea34098c2",
+              "_type": "span",
+              "marks": [],
+              "text": "Last year was tough, but that doesn't mean starting this year with a blank page. Instead, start it with a bustling library of everything you'll need for a full year of teaching. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "6d1ef40483fb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8dbe6e382822",
+              "_type": "span",
+              "marks": [],
+              "text": "Whether you're a new teacher starting from scratch or an experienced teacher updating schemes for a new set of pupils, Oak National Academy is a consistent source of inspiration and teaching materials to support you from the second you set foot back in the classrooom. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "536d176b143e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7bcc7beed6ad",
+              "_type": "span",
+              "marks": [],
+              "text": "In this webinar, we talk you through the latest developments at Oak and show how we can support you in the classroom in the coming year. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cc70b056c56c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "aac88c6d4fd8",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "c5e5425b5dcc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2b2f0cc0fe0a",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "c28fdd7d6e40",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "42e9b8da7a60",
+              "_type": "span",
+              "marks": [],
+              "text": "How to make best of use of our Teacher Hub to support in-class teaching."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "264dab42bb85",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8a813cda52f7",
+              "_type": "span",
+              "marks": [],
+              "text": "Our new and improved curriculum maps to support planning."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0d4d65338db9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "754f07f3144b",
+              "_type": "span",
+              "marks": [],
+              "text": "Improvements to our quizzes and lesson slides, including more downloadable resources, to support lesson delivery. "
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "ab7407e3952f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6230af5b6df2",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who is this webinar for?"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "e8f15ac7bb01",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ded077c37736",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "129f59431cfd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "49c8965f5beb",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "6e9fc279a3cd",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d2cafee19a0f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ec410ef4e935",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "099046ffc3ed",
+              "_type": "span",
+              "marks": ["9b0538da665b"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "11e33a3d7214",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "50102684601e",
+              "_type": "span",
+              "marks": ["b23c4439614a"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "2a1f2dc68d7c",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "9b0538da665b",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "b23c4439614a",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "74ddd86957c2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4e4de6263834",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "e21452e99c12",
+              "_type": "span",
+              "marks": ["c87425031599"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "70426ec8edb1",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "c87425031599",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "678f08de8daa",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "de73f993ce9e",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7373893881f9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c67f851956fd",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "f6bec8896c6a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4194b2ba362f",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-4sJhWWGME5sWEsASu21qjK",
+      "title": "Planning for the new school year with Oak National Academy",
+      "slug": {
+        "current": "planning-for-the-new-school-year-with-oak-national-academy"
+      },
+      "date": "2021-09-02T15:00:00.000Z",
+      "video": {
+        "title": "Webinar: Planning for the new school year with Oak National Academy",
+        "video": {
+          "asset": {
+            "assetId": "01kwWv00SOKGZSkry3z6AZG6K01nGxX01Om0269NGyAswa2k",
+            "thumbTime": 2221,
+            "playbackId": "nqfl6mUXK7dPh8etptMN9nZvrQUAQ2502qmNBhVkyLVA"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "7d640f2c0e281091ab66f595bff82422",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4134e2a8c92ab71390de6901d151c2e8",
+              "_type": "span",
+              "marks": [],
+              "text": "Last year was tough, but that doesn’t mean starting this year with a blank page. Instead, start it with a bustling library of everything you’ll need for a full year of teaching. \n\nWhether you’re a new teacher starting from scratch or an experienced teacher updating schemes for a new set of pupils, Oak National Academy is a consistent source of inspiration and teaching materials to support you from the second you set foot back in the classroom.\n\nIn this webinar we talk you through the latest developments at Oak and show how we can support you in the classroom in the coming year. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d8d660e37358",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "48977eb83592",
+              "_type": "span",
+              "marks": [],
+              "text": "\n\n"
+            },
+            {
+              "_key": "e6ad77522c4a",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers: "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "b1f695188980",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "3d54facd19f5",
+              "_type": "span",
+              "marks": [],
+              "text": "How to make best of use of our "
+            },
+            {
+              "_key": "ff89a40d0727",
+              "_type": "span",
+              "marks": ["8720be9c5d97"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "5a7728f0e1e0",
+              "_type": "span",
+              "marks": [],
+              "text": " to support in-class teaching."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "8720be9c5d97",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "ae7c58e52afd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "103417444919",
+              "_type": "span",
+              "marks": [],
+              "text": "Our new and improved "
+            },
+            {
+              "_key": "5d5c3139bb9e",
+              "_type": "span",
+              "marks": ["0555cc31d531"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "95f97d033f02",
+              "_type": "span",
+              "marks": [],
+              "text": " to support planning."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "0555cc31d531",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "284e3ff6d1f8",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "39226e0deb22",
+              "_type": "span",
+              "marks": [],
+              "text": "Improvements to our quizzes and lesson slides, including more downloadable resources, to support lesson delivery."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "43a004a2087c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5c15a62ed21b",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3a8ee0d3d549",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c7c89359b7a0",
+              "_type": "span",
+              "marks": [],
+              "text": "Primary and secondary teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "87d664fdbe03",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e0feff3c6703",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "91c37c303cf0",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "188dcade5805",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9bfc070d0a76",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "9419241f38f1",
+              "_type": "span",
+              "marks": ["5f64dfeacfcb"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "3349ff9b4ebe",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "9fda560952fd",
+              "_type": "span",
+              "marks": ["084e4e31f41e"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "b98e4d9dfaa5",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "5f64dfeacfcb",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "084e4e31f41e",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "3bc9f0c79e46",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1a8e366114a2",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "87caeb8469c3",
+              "_type": "span",
+              "marks": ["1f60f3d21ba3"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "04076afd1601",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "1f60f3d21ba3",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "7599084275d5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d39fe3365fad",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a343deb73cd4",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f82bd7653f7b",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4fdf5bf50be3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "433abeb6751e",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-wnDtmHUO6BcBKxvkuI6gm",
+      "title": "Lessons for ITT: Supporting trainee teachers in 2021",
+      "slug": {
+        "current": "lessons-for-itt-supporting-trainee-teachers-in-2021"
+      },
+      "date": "2021-03-23T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: Lessons for ITT: Supporting trainee teachers in 2021",
+        "video": {
+          "asset": {
+            "assetId": "vRxZ4A5SBxrVyorvG9c93ZOYKgjI20102YyeTBGach7Qg",
+            "thumbTime": 54,
+            "playbackId": "c1aQx43AGRQFiTzgmbKzF6F02P7BUq5a8FdQpPOSrZ01M"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "515f7bed8dd25f31661b52b4e26c3886",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e9b9054b76b87eff89acabeefd3b5783",
+              "_type": "span",
+              "marks": [],
+              "text": "Teachers entering the profession over the past year have had a training year like no other. The disruption has not only impacted on the learning and development of pupils, but of those training to teach them.\n\nSo, to help our newest colleagues, we’ve created a set of video resources to support trainee teachers. With access to in-person observations limited, we’re tapping into the collective expertise of the teachers who created lessons for Oak to provide an opportunity for trainees to not only observe lessons, but to understand the thinking and decisions that go into making them. These lesson videos for ITT are intended to exemplify key elements of the ITT Core Content Framework (CCF)."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "14ed5d3bd99e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "09e7b54bb9af",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "ef41ba996a62",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cbd5c94d2b67",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Who it's for"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "34c211b38a2c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "17cfb346df31",
+              "_type": "span",
+              "marks": [],
+              "text": "Trainee teachers"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3818881baab5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d6a6d2344bcc",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "8b40224cbdf1",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "1fc7d91e1274",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9897fe226fc7",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "e12c971f3bf8",
+              "_type": "span",
+              "marks": ["1795d0abd316"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "72902086a227",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "fe9ab5a18b1e",
+              "_type": "span",
+              "marks": ["9745ad77dd66"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "5e030f602ec4",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "1795d0abd316",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "9745ad77dd66",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "1043c7a1286d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "322f05b1a815",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "623cc82354af",
+              "_type": "span",
+              "marks": ["c3089d1f7b80"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "11b66d035b56",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "c3089d1f7b80",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "12d49908f2c1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8d13854bcd0a",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "831733199cab",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "df8301133f0c",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "9ffe53af911e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "92090e0e27f6",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-6QdBTkWUK23A4OpjCNXEEd",
+      "title": "Teaching music remotely with Oak",
+      "slug": {
+        "current": "teaching-music-remotely-with-oak-26-january"
+      },
+      "date": "2021-01-26T16:00:00.000Z",
+      "video": {
+        "title": "Webinar: Teaching music remotely with Oak",
+        "video": {
+          "asset": {
+            "assetId": "4Cfhi7e1PJjR8VITDlUikBhWdHnZXKl00Ely5hQWAu02Q",
+            "thumbTime": 13.891554,
+            "playbackId": "g2cGVoMk00rn7CobdaCFF2fBeZZsX8MYs9Ce4Kp02GPxg"
+          }
+        }
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "d184255781c9abd5923973f4ac220418",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "daf3355a24dffb801efba5ec7b05207e",
+              "_type": "span",
+              "marks": [],
+              "text": "Join Oak National Academy's Music Subject Lead, Margaret O'Shea, and Oak music teachers for a free webinar to learn more about the music resources on offer."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "864ba8885a9a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "25826af9602c",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4b4eac602537",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "02dc6ea6e67f",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "f8c764215be7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "eaa31262928c",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's resources for remote and in-school teaching."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "1e45170f586c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cc2fcbc28242",
+              "_type": "span",
+              "marks": [],
+              "text": "The principles and structure of Oak's music curriculum."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "18019d436061",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e5b197e01666",
+              "_type": "span",
+              "marks": [],
+              "text": "Techniques for teaching music remotely."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "ecf2ff5bba4e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "20df6ce9e16c",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "1b8f2a320d27",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "1768af2599c7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a9660b44af25",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "e033f6597539",
+              "_type": "span",
+              "marks": ["2989edba031b"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "acd93cccefcd",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "4bed006c0bb8",
+              "_type": "span",
+              "marks": ["253b0da0d086"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "f4a1768a6fdf",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "2989edba031b",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "253b0da0d086",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "ea009dce291c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "da7f82629953",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "0647c1c57ff9",
+              "_type": "span",
+              "marks": ["401e01f8178a"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "de7ad7d0e48d",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "401e01f8178a",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "8cbe8fa6609d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e902907d7daa",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "b5c91a6e567b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "28da547e67dd",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d4d65ba6208d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "90cb43f460b6",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    {
+      "id": "cf-webinar-mATmqSdsDZC9BB1Q5JAyk",
+      "title": "Getting the most out of Oak's specialist curriculum",
+      "slug": {
+        "current": "getting-the-most-out-of-oaks-specialist-curriculum"
+      },
+      "date": "2020-11-11T16:30:00.000Z",
+      "video": {
+        "title": "Webinar: Getting the most out of Oak's specialist curriculum",
+        "video": {
+          "asset": {
+            "assetId": "c02ZY1qbvIFfTXlLFNQcs201wbGgqH01focmvBA1FAYqa00",
+            "thumbTime": 2008.155021,
+            "playbackId": "48DKaE3KfYcVG01OHSiXzSVJoYrIOuTIY4KbL76zJxv8"
+          }
+        }
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summaryPortableText": [
+        {
+          "_key": "71006d5aa74e74e22ec87e76e23718e0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "445cfa186479fc0db9cb8cbf00ecaabf",
+              "_type": "span",
+              "marks": [],
+              "text": "It’s been a difficult half term for all schools, and we recognise the increased challenges for teachers whose learners have additional needs. \n\nWe’re bringing the SEND community together for a webinar to explore the unique specialist remote learning offer from Oak. \n\nJoin Specialist Lead, Alistair Crawford, to hear practical ways to get the very best out of Oak’s resources and collaborate to create a bespoke blended learning offer for your students. "
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4690c03682bc",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "22700cae819d",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "dff7a3538cce",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c0820fccbe61",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "ebbe567d4aea",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cdadcd7ab702",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6f1955933f10",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "f6dee1925de7",
+              "_type": "span",
+              "marks": ["677da5805942"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "a964ef1371b1",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "01a0a54b9156",
+              "_type": "span",
+              "marks": ["cfa74f839ebe"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "aad9f1d12a59",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "677da5805942",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "cfa74f839ebe",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "09e7475cb9a9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1b3ffa20c73d",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "07dd1b892d13",
+              "_type": "span",
+              "marks": ["190cb735ffdb"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "75e4073ef201",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "190cb735ffdb",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "4643d8942c9e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f1007a0e21dc",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "74a878804645",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8000803459e4",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "06d5f794d4ff",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "548ba7f755ed",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
           "markDefs": [],
           "style": "normal"
         }

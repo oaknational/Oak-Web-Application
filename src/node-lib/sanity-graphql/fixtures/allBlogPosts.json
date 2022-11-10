@@ -1,28 +1,70 @@
 {
   "allNewsPost": [
     {
-      "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
-      "title": "The evolution of Oak: supporting you to thrive",
-      "date": "2022-09-07",
+      "id": "e0ae4001-2936-4613-b2ad-8fec90ccacfa",
+      "title": "How to design a unit of study",
+      "date": "2022-11-08",
       "slug": {
-        "current": "evolution-of-oak"
+        "current": "how-to-design-a-unit-of-study"
       },
       "author": {
-        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
         "_key": null,
-        "name": "Matt Hood",
+        "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
         "image": {
           "asset": {
-            "_id": "",
-            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-          }
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
         }
       },
       "mainImage": {
+        "altText": null,
+        "isPresentational": true,
         "asset": {
-          "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
-          "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+          "_id": "image-a25238ed11492ce082d47e1966cb106db150d905-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/a25238ed11492ce082d47e1966cb106db150d905-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
         }
+      },
+      "summary": "Want inspiration to help you design a unit of study? Our handy guide takes you through the steps we follow."
+    },
+    {
+      "id": "d85662d3-e3f0-450f-bc87-ff6777abacb1",
+      "title": "Bid to partner with Oak",
+      "date": "2022-11-02",
+      "slug": {
+        "current": "bid-to-partner-with-oak"
+      },
+      "author": {
+        "id": "tm-cf-jonathan-dando",
+        "_key": null,
+        "name": "Jonathan Dando",
+        "role": "School Support Director",
+        "image": {
+          "asset": {
+            "_id": "image-c3f82345109a15af9a7a1b95fa63973d86aa9fae-4277x2849-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/c3f82345109a15af9a7a1b95fa63973d86aa9fae-4277x2849.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-0a11408118e658a807e0d885e76ad9e8c56623dc-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/0a11408118e658a807e0d885e76ad9e8c56623dc-720x480.png"
+        },
+        "hotspot": null
       },
       "category": {
         "title": "Oak updates",
@@ -30,7 +72,266 @@
           "current": "oak-updates"
         }
       },
-      "summary": "Summary to be added"
+      "summary": "Got a great set of resources? We're investing £8 million in developing and sharing curriculum materials – here's how you can bid."
+    },
+    {
+      "id": "864e51a5-968f-47ad-9c59-51e8ed12ae01",
+      "title": "How to build your confidence in teaching a new subject or topic",
+      "date": "2022-10-25",
+      "slug": {
+        "current": "building-confidence-in-teaching"
+      },
+      "author": {
+        "id": "13719a7b-4f00-4816-883a-8aded2a5c703",
+        "_key": null,
+        "name": "Katie Marl",
+        "role": "Primary Curriculum Design Lead",
+        "image": {
+          "asset": {
+            "_id": "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-863078eca5cc5f367932c4256aec09f559384c50-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/863078eca5cc5f367932c4256aec09f559384c50-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "New to key stage, year group content or subject? Find out how to improve your confidence quickly, using our thousands of free, adaptable resources. "
+    },
+    {
+      "id": "890f885b-e91b-4b8d-ab7d-e48900077b9c",
+      "title": "Our approach to EYFS",
+      "date": "2022-10-20",
+      "slug": {
+        "current": "oaks-approach-to-eyfs"
+      },
+      "author": {
+        "id": "13719a7b-4f00-4816-883a-8aded2a5c703",
+        "_key": null,
+        "name": "Katie Marl",
+        "role": "Primary Curriculum Design Lead",
+        "image": {
+          "asset": {
+            "_id": "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Learn more about our approach to the EYFS framework and our lessons, and how they can be used to support your teaching. \n"
+    },
+    {
+      "id": "e5c75fc7-5ac3-4686-9693-469917933d9b",
+      "title": "Workload and curriculum: what have teachers told us?",
+      "date": "2022-10-17",
+      "slug": {
+        "current": "workload-and-curriculum"
+      },
+      "author": {
+        "id": "tm-cf-reka-budai",
+        "_key": null,
+        "name": "Reka Budai",
+        "role": "Research and Evaluation Manager",
+        "image": {
+          "asset": {
+            "_id": "image-eca2e7e29b8865ebe1c6b324f693b7e737ef6d2e-2557x2558-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/eca2e7e29b8865ebe1c6b324f693b7e737ef6d2e-2557x2558.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-1d05392edd8ad87e793f3d8f5f230a7de62d4642-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/1d05392edd8ad87e793f3d8f5f230a7de62d4642-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summary": "What do teachers want and need to support lesson planning workload and curriculum design? Read our new report to find out."
+    },
+    {
+      "id": "60823db2-22bd-4d82-999b-c5fc69f8266a",
+      "title": "How to use quizzes to enhance your pupils’ learning",
+      "date": "2022-10-14",
+      "slug": {
+        "current": "how-to-use-quizzes-to-enhance-your-pupils-learning"
+      },
+      "author": {
+        "id": "tm-cf-elisabeth-pugh",
+        "_key": null,
+        "name": "Elisabeth Pugh",
+        "role": "Subject Lead (science)",
+        "image": {
+          "asset": {
+            "_id": "image-f61c509f6d9fe859e3b4e59f3daa2fe366590f0a-350x280-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/f61c509f6d9fe859e3b4e59f3daa2fe366590f0a-350x280.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-2630ae899481d88a8ab02ccd57f73386a599f194-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/2630ae899481d88a8ab02ccd57f73386a599f194-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Find out how to incorporate regular quizzing into your lessons to supercharge your pupils’ learning, without adding to your workload."
+    },
+    {
+      "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
+      "title": "The evolution of Oak: supporting you to thrive",
+      "date": "2022-09-07",
+      "slug": {
+        "current": "evolution-of-oak"
+      },
+      "author": {
+        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "_key": null,
+        "name": "Rachel Strom",
+        "role": "Head of School Support",
+        "image": {
+          "asset": {
+            "_id": "image-ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-4cc05931b255175de373931389f482eaea92bdf5-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/4cc05931b255175de373931389f482eaea92bdf5-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "It's time for Oak to evolve again. Learn more about our new role and how we plan to grow our support for schools and teachers."
+    },
+    {
+      "id": "9285c122-ebb3-4a6d-a318-a121c412e31b",
+      "title": "Create new resources for Oak",
+      "date": "2022-09-06",
+      "slug": {
+        "current": "market-engagement-webinar"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Find out more and save your place for a market engagement webinar providing further information about the proposed open procurement process."
+    },
+    {
+      "id": "cea99f06-77a8-49bf-a608-39b3b572b86d",
+      "title": "How to refresh your curriculum using Oak resources",
+      "date": "2022-09-01",
+      "slug": {
+        "current": "how-to-refresh-your-curriculum-using-oak-units"
+      },
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
+        "image": {
+          "asset": {
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Does your curriculum need a refresh?  Read our step-by-step guide to making changes using our resources."
     },
     {
       "id": "a4e50440-d1a6-499f-a507-e0298d39a5a1",
@@ -43,18 +344,23 @@
         "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
         "_key": null,
         "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
         "image": {
           "asset": {
-            "_id": "",
-            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-          }
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
         }
       },
       "mainImage": {
+        "altText": null,
+        "isPresentational": true,
         "asset": {
-          "_id": "image-a49a19cac079b0f511360c6580d088c8b4472b17-4961x3508-jpg",
-          "url": "https://cdn.sanity.io/images/cuvjke51/production/a49a19cac079b0f511360c6580d088c8b4472b17-4961x3508.jpg"
-        }
+          "_id": "image-5ba6961b5b3ac0b0a61d48eca286e7332533c018-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/5ba6961b5b3ac0b0a61d48eca286e7332533c018-720x480.png"
+        },
+        "hotspot": null
       },
       "category": {
         "title": "Curriculum planning",
@@ -62,95 +368,110 @@
           "current": "curriculum-planning"
         }
       },
-      "summary": "Post summary here"
+      "summary": "Need to design a subject curriculum but not sure where to start? Learn about the steps we take and download our guide. "
     },
     {
-      "id": "cea99f06-77a8-49bf-a608-39b3b572b86d",
-      "title": "How to refresh your curriculum using Oak units",
-      "date": "2022-09-01",
-      "slug": {
-        "current": "how-to-refresh-your-curriculum-using-oak-units"
-      },
-      "author": {
-        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
-        "_key": null,
-        "name": "Chris Fountain",
-        "image": {
-          "asset": {
-            "_id": "",
-            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-          }
-        }
-      },
-      "mainImage": {
-        "asset": {
-          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
-        }
-      },
-      "category": {
-        "title": "Curriculum planning",
-        "slug": {
-          "current": "curriculum-planning"
-        }
-      },
-      "summary": "Post summary here"
-    },
-    {
-      "id": "e0ae4001-2936-4613-b2ad-8fec90ccacfa",
-      "title": "How to design a unit of study",
-      "date": "2022-09-01",
-      "slug": {
-        "current": "how-to-design-a-unit-of-study"
-      },
-      "author": {
-        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
-        "_key": null,
-        "name": "Chris Fountain",
-        "image": {
-          "asset": {
-            "_id": "",
-            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-          }
-        }
-      },
-      "mainImage": {
-        "asset": {
-          "_id": "image-7bf4e1b0afe918577b25de0056ee5c36e607e2d3-2160x1313-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/production/7bf4e1b0afe918577b25de0056ee5c36e607e2d3-2160x1313.png"
-        }
-      },
-      "category": {
-        "title": "Curriculum planning",
-        "slug": {
-          "current": "curriculum-planning"
-        }
-      },
-      "summary": "Post summary here"
-    },
-    {
-      "id": "9285c122-ebb3-4a6d-a318-a121c412e31b",
-      "title": "Join us for our market engagement webinar",
+      "id": "1f4ff515-5324-434d-8b2f-7718e03b8c14",
+      "title": "Updates to our Lesson Resource Directory",
       "date": "2022-08-31",
       "slug": {
-        "current": "market-engagement-webinar"
+        "current": "lesson-resource-directory-update"
+      },
+      "author": {
+        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "_key": null,
+        "name": "Rachel Strom",
+        "role": "Head of School Support",
+        "image": {
+          "asset": {
+            "_id": "image-ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-65706d6272880a1866b8b44a505e45ba3d091568-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/65706d6272880a1866b8b44a505e45ba3d091568-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Our lesson and resource directory is a complete list of our lessons and resources, for a quick overview of subjects or key stages. Find out more and download the latest version here. "
+    },
+    {
+      "id": "17022177-bdcb-4dea-b504-8412f579fc27",
+      "title": "Why are teachers still using Oak?",
+      "date": "2022-07-08",
+      "slug": {
+        "current": "why-are-teachers-still-using-oak"
+      },
+      "author": {
+        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "_key": null,
+        "name": "Rachel Strom",
+        "role": "Head of School Support",
+        "image": {
+          "asset": {
+            "_id": "image-ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e1e92a2df0e434e2ce297bb7a750e753e0f76f9e-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e1e92a2df0e434e2ce297bb7a750e753e0f76f9e-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summary": "We’re still learning more about our 200,000 weekly users. We share what we know about why teachers are visiting Oak."
+    },
+    {
+      "id": "8c8eb1f5-df99-4a0e-ae1e-1dd75b1963ac",
+      "title": "Curriculum matters: Matt Hood’s keynote session at The Festival of Education",
+      "date": "2022-07-07",
+      "slug": {
+        "current": "curriculum-matters-matt-hood-keynote"
       },
       "author": {
         "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
         "_key": null,
         "name": "Matt Hood",
+        "role": "Chief Executive",
         "image": {
           "asset": {
-            "_id": "",
-            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-          }
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
         }
       },
       "mainImage": {
+        "altText": null,
+        "isPresentational": true,
         "asset": {
-          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
-        }
+          "_id": "image-6209237c3ace3ac4ab591dbb6a7e42e9d7a48911-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/6209237c3ace3ac4ab591dbb6a7e42e9d7a48911-720x480.png"
+        },
+        "hotspot": null
       },
       "category": {
         "title": "Oak updates",
@@ -158,7 +479,858 @@
           "current": "oak-updates"
         }
       },
-      "summary": "Find out more and save your place for a market engagement webinar providing further information about the proposed open procurement process for the creation of the new curriculum packages."
+      "summary": "Oak chief executive, Matt Hood, explains why curriculum matters so much and the system-wide challenges Oak will play a role in addressing. "
+    },
+    {
+      "id": "4202dd74-84c6-4946-929c-597e3f314ef6",
+      "title": "Oak’s future: Continuing to support teachers and pupils",
+      "date": "2022-06-14",
+      "slug": {
+        "current": "oaks-future-continuing-to-support-teachers-and-pupils"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Following recent announcements, we share more information on how Oak will support teachers in delivering excellent curriculum content and improving curriculum expertise."
+    },
+    {
+      "id": "e67d47c0-3ba7-4e70-91dd-5b9892cb3f9b",
+      "title": "How using Oak for revision has personalised revision plans and reduced teacher's workload",
+      "date": "2022-02-28",
+      "slug": {
+        "current": "how-using-oak-for-revision-has-helped-personalise-revision-plans-for-pupils"
+      },
+      "author": {
+        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "_key": null,
+        "name": "Rachel Strom",
+        "role": "Head of School Support",
+        "image": {
+          "asset": {
+            "_id": "image-ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-863078eca5cc5f367932c4256aec09f559384c50-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/863078eca5cc5f367932c4256aec09f559384c50-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Find out how using our resources to support revision has been beneficial for both pupils and teachers"
+    },
+    {
+      "id": "84dd3cda-f1e1-4861-ae6f-907890e903fb",
+      "title": "Join the Children’s Mental Health Week assembly 2022",
+      "date": "2022-01-27",
+      "slug": {
+        "current": "join-the-childrens-mental-health-week-assembly-2022"
+      },
+      "author": {
+        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "_key": null,
+        "name": "Rachel Strom",
+        "role": "Head of School Support",
+        "image": {
+          "asset": {
+            "_id": "image-ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": "Children's mental health week 2022 assemblies poster",
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-fad7d6e96eb463f38bc5f335cfcb614bf15da10a-1600x900-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/fad7d6e96eb463f38bc5f335cfcb614bf15da10a-1600x900.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "We’re supporting Place2Be and BAFTA Kids to bring you a free assembly to mark Children's Mental Health Week."
+    },
+    {
+      "id": "a153da0a-dc4a-479f-84a6-dd5c71d98e94",
+      "title": "How using Oak for lesson cover has improved outcomes for pupils and teachers",
+      "date": "2022-01-03",
+      "slug": {
+        "current": "how-using-oak-for-lesson-cover-has-improved-outcomes-for-pupils-and-teachers"
+      },
+      "author": {
+        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "_key": null,
+        "name": "Rachel Strom",
+        "role": "Head of School Support",
+        "image": {
+          "asset": {
+            "_id": "image-ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-1f478b3360173f16045e700c87278d3d9ac2cd5d-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/1f478b3360173f16045e700c87278d3d9ac2cd5d-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Rachel Watkins, Head of English at St Thomas á Becket secondary, shares the benefits they've realised from using Oak for lesson cover."
+    },
+    {
+      "id": "9463e3f1-4c6a-4bcb-82c6-ceeaa620e147",
+      "title": "What impact did Oak have in 2020/21?",
+      "date": "2021-10-22",
+      "slug": {
+        "current": "what-impact-did-oak-have-in-2020-21"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e1e92a2df0e434e2ce297bb7a750e753e0f76f9e-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e1e92a2df0e434e2ce297bb7a750e753e0f76f9e-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summary": "Oak supported teachers in over half of all state schools in England during 2020/21. Find out more about the impact we had."
+    },
+    {
+      "id": "8f5da8ba-915c-4ce7-acd1-c67d8d238206",
+      "title": "Using our new curriculum maps to support your classroom planning",
+      "date": "2021-08-01",
+      "slug": {
+        "current": "using-our-new-curriculum-maps-to-support-your-classroom-planning"
+      },
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
+        "image": {
+          "asset": {
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-65706d6272880a1866b8b44a505e45ba3d091568-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/65706d6272880a1866b8b44a505e45ba3d091568-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Find out how our curriculum maps can help you align our resources with your existing curriculum plans."
+    },
+    {
+      "id": "77ecb93f-4aca-445f-9d67-ac2479b4d609",
+      "title": "We’re staying open and free into next year",
+      "date": "2021-07-22",
+      "slug": {
+        "current": "oak-staying-open-and-free-into-next-year"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Oak National Academy and our thousands of lessons, slides and resources will remain available and free into the next year. Find out more."
+    },
+    {
+      "id": "09dde114-2d70-4f8c-af8e-f9b4c3e50698",
+      "title": "After lockdown: How have teachers used Oak resources since schools fully re-opened?",
+      "date": "2021-07-01",
+      "slug": {
+        "current": "how-have-teachers-used-oak-resources-since-schools-fully-re-opened"
+      },
+      "author": {
+        "id": "tm-cf-reka-budai",
+        "_key": null,
+        "name": "Reka Budai",
+        "role": "Research and Evaluation Manager",
+        "image": {
+          "asset": {
+            "_id": "image-eca2e7e29b8865ebe1c6b324f693b7e737ef6d2e-2557x2558-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/eca2e7e29b8865ebe1c6b324f693b7e737ef6d2e-2557x2558.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-6711a8a4c587735124562dc6a150b9b914f2d0f1-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/6711a8a4c587735124562dc6a150b9b914f2d0f1-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summary": "Now schools have fully re-opened how are teachers using our resources to support their teaching?"
+    },
+    {
+      "id": "d84bad6f-5702-4f67-8562-f7d192da7d94",
+      "title": "Breathe between the thoughts: Why mental health support for teachers is not a luxury but a basic need",
+      "date": "2021-02-23",
+      "slug": {
+        "current": "why-mental-health-support-for-teachers-is-not-a-luxury"
+      },
+      "author": {
+        "id": "f0c20b83-f670-4445-ad8c-826558d96320",
+        "_key": null,
+        "name": "Matthew Audley",
+        "role": "",
+        "image": {
+          "asset": {
+            "_id": "image-bdd397a2e7ad00852e00ee6ea3290eb472741fba-2320x3088-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/bdd397a2e7ad00852e00ee6ea3290eb472741fba-2320x3088.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-06079357b3f6597ef189324f07c977cd952e4024-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/06079357b3f6597ef189324f07c977cd952e4024-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "In this blog, we explore why mental health support for teachers is not a luxury but a basic need. "
+    },
+    {
+      "id": "6c21baae-b15d-4f6c-bd70-f9b777ab85c4",
+      "title": "SEN Support - Accessible remote learning & making the most of the Oak offer",
+      "date": "2021-01-29",
+      "slug": {
+        "current": "sen-support-accessible-remote-learning-and-making-the-most-of-the-oak-offer"
+      },
+      "author": {
+        "id": "258663fa-bd73-4571-acdc-33da8f7d01be",
+        "_key": null,
+        "name": "Alistair Crawford",
+        "role": "Specialist Lead",
+        "image": {
+          "asset": {
+            "_id": "image-4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-db36279cd4738a72c15e8ab89a148271e0a22bcf-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/db36279cd4738a72c15e8ab89a148271e0a22bcf-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "In this blog, we look at how you can make the most of our Special Educational Needs (SEN) lessons and resources for remote learning."
+    },
+    {
+      "id": "52afa9d1-afa2-490f-baf1-cf25278cd878",
+      "title": "Using Oak vs live lessons: does it have to be one or the other?",
+      "date": "2021-01-26",
+      "slug": {
+        "current": "using-oak-vs-live-lessons-does-it-have-to-be-one-or-the-other"
+      },
+      "author": {
+        "id": "abeeab98-9544-443a-bbbe-c9b4e6015594",
+        "_key": null,
+        "name": "Tom Rogers",
+        "role": "Guest blogger",
+        "image": {
+          "asset": {
+            "_id": "image-fad2f7787c62e803e51cb5f1024e20ba36a6d305-400x400-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/fad2f7787c62e803e51cb5f1024e20ba36a6d305-400x400.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-2630ae899481d88a8ab02ccd57f73386a599f194-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/2630ae899481d88a8ab02ccd57f73386a599f194-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "In the new world of online teaching, should schools be trying to do more live teaching, or use more recorded lessons? We explore the options."
+    },
+    {
+      "id": "afb06dfb-f78b-4a36-8030-72c1291c5b71",
+      "title": "Join our assembly for Children’s Mental Health Week 2021",
+      "date": "2021-01-19",
+      "slug": {
+        "current": "join-our-assembly-for-childrens-mental-health-week-2021"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": "Children's mental health week virtual assembly poster",
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-260958d0cb614d78326a9ddc7dae9c726b335e23-1180x680-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/260958d0cb614d78326a9ddc7dae9c726b335e23-1180x680.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "We're working with Place2be and BAFTA Kids to bring you a free assembly as part of Children's Mental Health Week 2021. "
+    },
+    {
+      "id": "3288bafe-2e26-4a98-9351-3d8ce05b5f8b",
+      "title": "Top tips for parents & carers supporting home learning",
+      "date": "2021-01-06",
+      "slug": {
+        "current": "top-tips-for-parents-supporting-home-learning"
+      },
+      "author": {
+        "id": "64ae9a03-af31-4641-9771-1982e902a1dd",
+        "_key": null,
+        "name": "Emma McCrea",
+        "role": "Head of Curriculum Design",
+        "image": {
+          "asset": {
+            "_id": "image-797a25caad6cb2ebca6d05f0582689aed207b1c0-4009x2674-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/797a25caad6cb2ebca6d05f0582689aed207b1c0-4009x2674.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-863078eca5cc5f367932c4256aec09f559384c50-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/863078eca5cc5f367932c4256aec09f559384c50-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Read our five top tips for parents who are supporting their children with home learning."
+    },
+    {
+      "id": "e2a2eb93-f204-4b30-8afb-97e3a8082dfb",
+      "title": "Oak’s RE curriculum, for the nation without a curriculum",
+      "date": "2021-01-04",
+      "slug": {
+        "current": "oaks-re-curriculum"
+      },
+      "author": {
+        "id": "tm-cf-miriam-kendrick",
+        "_key": null,
+        "name": "Miriam Kendrick",
+        "role": "",
+        "image": {
+          "asset": {
+            "_id": "image-4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Guest blogger, Miriam Kendrick, discusses religion and worldviews and provides guidance for schools without a national curriculum."
+    },
+    {
+      "id": "e480e024-9677-475a-91d7-de601b325248",
+      "title": "New year, new subjects",
+      "date": "2020-12-09",
+      "slug": {
+        "current": "new-year-new-subjects"
+      },
+      "author": {
+        "id": "13719a7b-4f00-4816-883a-8aded2a5c703",
+        "_key": null,
+        "name": "Katie Marl",
+        "role": "Primary Curriculum Design Lead",
+        "image": {
+          "asset": {
+            "_id": "image-586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/586258ca4b3b23d1a6fc47979841e5a5eb3dc36c-320x256.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-5ea867720f3a0e52c724a8f1474eedc7d6781ff2-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/5ea867720f3a0e52c724a8f1474eedc7d6781ff2-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Learn about our curriculum subject expansion, which includes adding almost 1,000 more lessons to our offering."
+    },
+    {
+      "id": "292606bb-e9c1-4d24-a76e-17807fdfbfa7",
+      "title": "Innovative ways schools are using Oak’s lessons and resources",
+      "date": "2020-10-08",
+      "slug": {
+        "current": "innovative-ways-schools-are-using-oaks-lessons-and-resources"
+      },
+      "author": {
+        "id": "4d7bd7e0-cb16-443c-97e2-0e71008f0b81",
+        "_key": null,
+        "name": "Tom Rose",
+        "role": "Education Director",
+        "image": {
+          "asset": {
+            "_id": "image-46baa6c21f667968a4b3ea8e016787ff5e4def64-500x500-webp",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/46baa6c21f667968a4b3ea8e016787ff5e4def64-500x500.webp"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-1f478b3360173f16045e700c87278d3d9ac2cd5d-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/1f478b3360173f16045e700c87278d3d9ac2cd5d-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Lesson planning",
+        "slug": {
+          "current": "lesson-planning"
+        }
+      },
+      "summary": "Read how teachers, ever the innovators, found new and unexpected ways to use Oak to support their work."
+    },
+    {
+      "id": "ab67d590-5e9c-4588-a729-4251a7e99f31",
+      "title": "Introducing the new Oak Teacher Hub",
+      "date": "2020-08-27",
+      "slug": {
+        "current": "introducing-the-new-oak-teacher-hub"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": null,
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Hear from Oak Principal, Matt Hood, about how our Teacher Hub complements remote and in-school teaching."
+    },
+    {
+      "id": "17dcad99-c819-4019-b59d-17a35081a1de",
+      "title": "Our specialist curriculum",
+      "date": "2020-08-24",
+      "slug": {
+        "current": "our-specialist-curriculum"
+      },
+      "author": {
+        "id": "258663fa-bd73-4571-acdc-33da8f7d01be",
+        "_key": null,
+        "name": "Alistair Crawford",
+        "role": "Specialist Lead",
+        "image": {
+          "asset": {
+            "_id": "image-4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-5ba6961b5b3ac0b0a61d48eca286e7332533c018-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/5ba6961b5b3ac0b0a61d48eca286e7332533c018-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Our specialist curriculum lessons are now live. Learn more about the resources you can access. "
+    },
+    {
+      "id": "2970ac48-bf75-48ce-a1ae-f489b4517a7c",
+      "title": "What should we teach in primary history, and how?",
+      "date": "2020-07-06",
+      "slug": {
+        "current": "what-should-we-teach-in-primary-history-and-how"
+      },
+      "author": {
+        "id": "f33805bc-5b3c-4470-aeeb-53808fe1788f",
+        "_key": null,
+        "name": "John Blake",
+        "role": "",
+        "image": {
+          "asset": {
+            "_id": "image-4f7959333ece17db5f7e0babbc2f233373d71696-618x930-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/4f7959333ece17db5f7e0babbc2f233373d71696-618x930.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-c16be555527536c3e3d8401591ae41a18e005f92-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/c16be555527536c3e3d8401591ae41a18e005f92-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "We explore primary school history and delve into what should be taught and how it should be delivered."
+    },
+    {
+      "id": "f8cf762a-529c-4ed2-96fb-4a5a2d3ae1b6",
+      "title": "How should we choose what we teach?",
+      "date": "2020-06-27",
+      "slug": {
+        "current": "how-should-we-choose-what-we-teach"
+      },
+      "author": {
+        "id": "700288f6-43e4-4acc-854a-8943baef9ff7",
+        "_key": null,
+        "name": "David Thomas",
+        "role": "Co-Founder",
+        "image": {
+          "asset": {
+            "_id": "image-999787f58e22ada6a6dde720d96a50cb85913395-400x400-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/999787f58e22ada6a6dde720d96a50cb85913395-400x400.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e7f4080fe7e7e717e09e51e56572416fbabb081b-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Read about the five reasons for selecting what knowledge to teach: one of the hardest decisions we make in education. "
+    },
+    {
+      "id": "1d15e098-5321-489c-8372-fffadce8c124",
+      "title": "Making Oak more collaborative",
+      "date": "2020-06-22",
+      "slug": {
+        "current": "making-oak-more-collaborative"
+      },
+      "author": {
+        "id": "700288f6-43e4-4acc-854a-8943baef9ff7",
+        "_key": null,
+        "name": "David Thomas",
+        "role": "Co-Founder",
+        "image": {
+          "asset": {
+            "_id": "image-999787f58e22ada6a6dde720d96a50cb85913395-400x400-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/999787f58e22ada6a6dde720d96a50cb85913395-400x400.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-0a11408118e658a807e0d885e76ad9e8c56623dc-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/0a11408118e658a807e0d885e76ad9e8c56623dc-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "We explore the different ways in which Oak can work with experts in the sector to be more collaborative. "
+    },
+    {
+      "id": "be92979f-724e-43f8-b570-297ce90b7535",
+      "title": "Continuing Oak next year",
+      "date": "2020-06-22",
+      "slug": {
+        "current": "continuing-oak-next-year"
+      },
+      "author": {
+        "id": "e56cebff-d05e-4678-b3d5-f2388ef5c6b3",
+        "_key": null,
+        "name": "Matt Hood",
+        "role": "Chief Executive",
+        "image": {
+          "asset": {
+            "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/8da6c69f0ee80a5be8649b6f9d998bbb6cf413a0-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Given the on-going uncertainty caused by the pandemic, we're delighted to be staying open for the next academic year. Find out more about our plans. "
+    },
+    {
+      "id": "a89fdfda-3a87-4d8a-8baf-0e319d19818f",
+      "title": "Remote learning: lessons learned",
+      "date": "2020-05-28",
+      "slug": {
+        "current": "remote-learning-lessons-learned"
+      },
+      "author": {
+        "id": "63b3fd05-bf9f-4ba2-82ab-75efade646f3",
+        "_key": null,
+        "name": "Jo Facer",
+        "role": "",
+        "image": {
+          "asset": {
+            "_id": "image-4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512.png"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-e1e92a2df0e434e2ce297bb7a750e753e0f76f9e-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/e1e92a2df0e434e2ce297bb7a750e753e0f76f9e-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Research and insights",
+        "slug": {
+          "current": "research-and-insights"
+        }
+      },
+      "summary": "Read about the lessons that have been learnt from teachers' experiences of remote learning and find helpful tips."
     }
   ]
 }

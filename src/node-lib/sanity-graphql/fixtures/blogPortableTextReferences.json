@@ -17,20 +17,14 @@
       "id": "9285c122-ebb3-4a6d-a318-a121c412e31b",
       "_type": "newsPost",
       "contentType": "newsPost",
-      "slug": { "current": "market-engagement-webinar" }
+      "slug": {
+        "current": "market-engagement-webinar"
+      }
     },
     {
       "id": "planningCorePage",
       "_type": "planningCorePage",
       "contentType": "planningCorePage"
-    },
-    {
-      "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
-      "_type": "policyPage",
-      "contentType": "policyPage",
-      "slug": {
-        "current": "privacy-policy"
-      }
     }
   ]
 }
