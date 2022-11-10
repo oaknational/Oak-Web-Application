@@ -61,7 +61,7 @@ const BlogList: FC<BlogListProps> = (props) => {
     [items]
   );
 
-  const currentTableData: Array<BlogListItemProps> = useMemo(() => {
+  const currentPageItems: Array<BlogListItemProps> = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
     return pastItems.slice(firstPageIndex, lastPageIndex);
@@ -85,15 +85,19 @@ const BlogList: FC<BlogListProps> = (props) => {
           {withContainingHrs && <Hr thickness={4} $mv={32} />}
         </>
       )}
-      <UL $reset>
-        {currentTableData.map((item, i) => (
-          <LI key={`BlogList-BlogListItem-${i}`}>
-            {i !== 0 && <Hr thickness={4} $mv={32} />}
-            <BlogListItem {...item} withImage={withImage} />
-          </LI>
-        ))}
-      </UL>
-      {withContainingHrs && <Hr thickness={4} $mt={32} $mb={0} />}
+      {currentPageItems.length ? (
+        <>
+          <UL $reset>
+            {currentPageItems.map((item, i) => (
+              <LI key={`BlogList-BlogListItem-${i}`}>
+                {i !== 0 && <Hr thickness={4} $mv={32} />}
+                <BlogListItem {...item} withImage={withImage} />
+              </LI>
+            ))}
+          </UL>
+          {withContainingHrs && <Hr thickness={4} $mt={32} $mb={0} />}
+        </>
+      ) : null}
       {withPagination && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
           <Pagination {...paginationProps} />
