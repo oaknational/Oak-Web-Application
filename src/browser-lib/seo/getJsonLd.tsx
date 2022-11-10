@@ -18,8 +18,8 @@ import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnai
 import { resolveOakHref } from "../../common-lib/urls";
 
 const courseProvider = {
-  name: config.get("appName"),
-  url: config.get("appUrl"),
+  name: config.get("seoAppName"),
+  url: config.get("seoAppUrl"),
 };
 
 // Organization
@@ -27,10 +27,10 @@ const courseProvider = {
 export const OrganizationJsonLd = () => {
   return (
     <OrganizationJsonLdNextSeo
-      name={config.get("appName")}
-      url={config.get("appUrl")}
-      sameAs={[config.get("appFacebook"), config.get("appTwitter")]}
-      logo={`${config.get("appUrl")}${config.get("appLogo")}`}
+      name={config.get("seoAppName")}
+      url={config.get("seoAppUrl")}
+      sameAs={[config.get("seoAppFacebook"), config.get("seoAppTwitter")]}
+      logo={`${config.get("seoAppUrl")}${config.get("seoAppLogo")}`}
     />
   );
 };
@@ -69,12 +69,12 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
 const blogToArticle = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
   return {
     type: "Article",
-    url: `${config.get("appUrl")}${resolveOakHref({
+    url: `${config.get("seoAppUrl")}${resolveOakHref({
       page: "blog",
       slug: blog.slug,
     })}`,
     title: blog.seo?.title || blog.title,
-    images: [blog.mainImage.asset?.url || config.get("appLogo")],
+    images: [blog.mainImage.asset?.url || config.get("seoAppUrl")],
     datePublished: blog.date,
     dateModified: blog.date,
     authorName: blog.author.name,
@@ -87,7 +87,7 @@ const webinarToArticle = (
 ): ArticleJsonLdProps => {
   return {
     type: "Article",
-    url: `${config.get("appUrl")}${resolveOakHref({
+    url: `${config.get("seoAppUrl")}${resolveOakHref({
       page: "webinars",
       slug: webinar.slug,
     })}`,
@@ -96,7 +96,7 @@ const webinarToArticle = (
       getVideoThumbnail(
         webinar.video.video.asset.playbackId,
         webinar.video.video.asset.thumbTime
-      ) || config.get("appLogo"),
+      ) || config.get("seoAppLogo"),
     ],
     datePublished: webinar.date,
     dateModified: webinar.date,

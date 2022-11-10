@@ -1,4 +1,3 @@
-import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
@@ -128,66 +127,66 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  appName: {
-    value: seoConfig.NEXT_PUBLIC_APP_NAME,
-    envName: "NEXT_PUBLIC_APP_NAME",
-    required: true,
+  seoAppName: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_NAME,
+    envName: "NEXT_PUBLIC_SEO_APP_NAME",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appDescription: {
-    value: seoConfig.NEXT_PUBLIC_APP_DESCRIPTION,
-    envName: "NEXT_PUBLIC_APP_DESCRIPTION",
-    required: true,
+  seoAppDescription: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_DESCRIPTION,
+    envName: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appLocale: {
-    value: seoConfig.NEXT_PUBLIC_APP_LOCALE,
-    envName: "NEXT_PUBLIC_APP_LOCALE",
-    required: true,
+  seoAppLocale: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_LOCALE,
+    envName: "NEXT_PUBLIC_SEO_APP_LOCALE",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appUrl: {
-    value: seoConfig.NEXT_PUBLIC_APP_URL,
-    envName: "NEXT_PUBLIC_APP_URL",
-    required: true,
+  seoAppUrl: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_URL,
+    envName: "NEXT_PUBLIC_SEO_APP_URL",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appLogo: {
-    value: seoConfig.NEXT_PUBLIC_APP_LOGO,
-    envName: "NEXT_PUBLIC_APP_LOGO",
-    required: true,
+  seoAppLogo: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_LOGO,
+    envName: "NEXT_PUBLIC_SEO_APP_LOGO",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appSocialSharingImg: {
-    value: seoConfig.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
-    envName: "NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG",
-    required: true,
+  seoAppSocialSharingImg: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG,
+    envName: "NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appFacebook: {
-    value: seoConfig.NEXT_PUBLIC_APP_FACEBOOK,
-    envName: "NEXT_PUBLIC_APP_FACEBOOK",
-    required: true,
+  seoAppFacebook: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK,
+    envName: "NEXT_PUBLIC_SEO_APP_FACEBOOK",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appTwitter: {
-    value: seoConfig.NEXT_PUBLIC_APP_TWITTER,
-    envName: "NEXT_PUBLIC_APP_TWITTER",
-    required: true,
+  seoAppTwitter: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_TWITTER,
+    envName: "NEXT_PUBLIC_SEO_APP_TWITTER",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appTwitterHandle: {
-    value: seoConfig.NEXT_PUBLIC_APP_TWITTER_HANDLE,
-    envName: "NEXT_PUBLIC_APP_TWITTER_HANDLE",
-    required: true,
+  seoAppTwitterHandle: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE,
+    envName: "NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
