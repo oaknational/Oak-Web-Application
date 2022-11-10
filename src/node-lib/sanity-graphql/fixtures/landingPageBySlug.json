@@ -1,9 +1,170 @@
 {
   "allLandingPage": [
     {
-      "id": "46955c76-7d08-4211-9fda-2e38d72155c6",
+      "id": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
       "slug": {
-        "current": "your-calendar-of-lesson-events-for-2022-and-beyond"
+        "current": "lesson-and-resource-directory"
+      },
+      "headerCta": {
+        "label": "Get the directory",
+        "linkType": "anchor",
+        "external": null,
+        "anchor": "formBlock",
+        "internal": null
+      },
+      "hero": {
+        "title": "Download our Lesson & Resource Directory",
+        "heading": "Get a complete list of every one of our resources and save time searching",
+        "image": null,
+        "cta": null
+      },
+      "content": [
+        {
+          "type": "LandingPageTextAndMediaBlock",
+          "textAndMedia": {
+            "title": "lesson and resource text block",
+            "bodyPortableText": [
+              {
+                "_key": "1efe6131440b",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "729404f14756",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Instantly see all subjects, units and lessons available for each key stage"
+                  }
+                ],
+                "level": 1,
+                "listItem": "number",
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "c0c472e1a301",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "6883b75703f9",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Quickly search and filter for lessons with downloadable resources"
+                  }
+                ],
+                "level": 1,
+                "listItem": "number",
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "46217f082ad4",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "ec6ac3031d3e",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Ideal for saving time when planning or setting last-minute cover"
+                  }
+                ],
+                "level": 1,
+                "listItem": "number",
+                "markDefs": [],
+                "style": "normal"
+              }
+            ],
+            "mediaType": "image",
+            "alignMedia": "left",
+            "cta": null,
+            "image": {
+              "altText": "\"\"",
+              "isPresentational": false,
+              "asset": {
+                "_id": "image-bdcbaaa7a6f5992d0dca8124faf2fecd7dd2c845-800x541-png",
+                "url": "https://cdn.sanity.io/images/cuvjke51/production/bdcbaaa7a6f5992d0dca8124faf2fecd7dd2c845-800x541.png"
+              },
+              "hotspot": null
+            },
+            "video": null
+          }
+        },
+        {
+          "type": "LandingPageTextBlock",
+          "bodyPortableText": [
+            {
+              "_key": "29f9fb0332fc",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "372ea6ed684a",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Instantly see all subjects, units and lessons available for each key stage with our Lesson & Resource Directory: a downloadable document detailing every single one of the thousands of resources in our Teacher Hub."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        {
+          "type": "LandingPageFormBlock",
+          "title": "Join our community",
+          "bodyPortableText": [
+            {
+              "_key": "7593805b3bca",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "7aacaad4a731",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Add your email here and we'll send you the Oak Lesson & Resource Directory and other helpful updates and resources. Unsubscribe at any time. Read our "
+                },
+                {
+                  "_key": "9d9485858ca0",
+                  "_type": "span",
+                  "marks": ["5ba56aeccae2"],
+                  "text": "privacy policy"
+                },
+                {
+                  "_key": "2fa3197023da",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "."
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "5ba56aeccae2",
+                  "_type": "internalLink",
+                  "reference": {
+                    "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+                    "_type": "reference"
+                  }
+                }
+              ],
+              "style": "normal"
+            }
+          ],
+          "form": {
+            "title": "Get your copy here"
+          }
+        },
+        {
+          "type": "LandingPageQuoteBlock",
+          "quote": {
+            "text": "Oak is consistent, reliable and can save you oodles of time.",
+            "role": "Science teacher",
+            "organisation": null,
+            "attribution": "Damian Gaskin"
+          }
+        }
+      ],
+      "seo": {
+        "title": "Download our Lesson & Resource Directory",
+        "description": "Get your copy of our Lesson & Resource Directory: a downloadable document detailing every single one of the thousands of resources we have available in our Teacher Hub.",
+        "canonicalURL": null
       }
     }
   ]
