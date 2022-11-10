@@ -12,22 +12,25 @@ import {
   resolveInternalHref,
   anchorKeys,
 } from "../../utils/portableText/resolveInternalHref";
-import {
-  CTAInternalLinkEntry,
-  portableTextSchema,
-  UnresolvedReference,
-  unresolvedReferenceSchema,
-} from "../../common-lib/cms-types";
+import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
 const reportError = errorReporter("PortableText");
-portableTextSchema;
+
+type UnresolvedReference = {
+  _ref: string;
+  _type: "reference";
+};
 
 const isUnresolvedReference = (x: unknown): x is UnresolvedReference =>
-  unresolvedReferenceSchema.safeParse(x).success;
+  Boolean(x) &&
+  x !== null &&
+  typeof x === "object" &&
+  !("contentType" in x) &&
+  "_ref" in x;
 
 /**
  * This component expects to receive a "resolved" portable text reference,
