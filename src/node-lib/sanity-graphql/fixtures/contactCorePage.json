@@ -226,7 +226,7 @@
             {
               "_key": "c41d44446c0f",
               "_type": "span",
-              "marks": ["2fcd430392c3"],
+              "marks": [],
               "text": "privacy policy"
             },
             {
@@ -236,16 +236,7 @@
               "text": "."
             }
           ],
-          "markDefs": [
-            {
-              "_key": "2fcd430392c3",
-              "_type": "internalLink",
-              "reference": {
-                "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
-                "_type": "reference"
-              }
-            }
-          ],
+          "markDefs": [],
           "style": "normal"
         },
         {
