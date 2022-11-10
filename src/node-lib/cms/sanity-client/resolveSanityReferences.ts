@@ -33,7 +33,7 @@ export const resolveSanityReferences = async <
     get([...path, "_ref"], portableText),
   ]);
 
-  const queryResults = await sanityGraphqlApi.blogPortableTextReferences({
+  const queryResults = await sanityGraphqlApi.portableTextReferences({
     ids: pathsAndRefs.map(([, id]) => id),
   });
 
@@ -51,7 +51,7 @@ export const resolveSanityReferences = async <
     if (!queryPart) {
       /**
        * If you're getting errors here make sure:
-       * - You've checked you're fetching the correct data in blogPortableTextReferences.gql
+       * - You've checked you're fetching the correct data in portableTextReferences.gql
        * - You've ran gql-codegen:sanity
        * - Checked they're covered in portableTextReferencedEntrySchema
        */

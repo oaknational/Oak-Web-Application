@@ -33,7 +33,7 @@ describe("resolveReferences", () => {
       jest.clearAllMocks();
       jest.resetModules();
 
-      mockSanityGraphqlApi.blogPortableTextReferences.mockResolvedValue({
+      mockSanityGraphqlApi.portableTextReferences.mockResolvedValue({
         allDocument: [
           {
             contentType: "newsPost",
@@ -81,10 +81,10 @@ describe("resolveReferences", () => {
       });
     });
 
-    it("calls api.blogPortableTextReferences with each referenced ID", async () => {
+    it("calls api.portableTextReferences with each referenced ID", async () => {
       await resolveSanityReferences(mockObjWithReferences);
 
-      expect(sanityGraphqlApi.blogPortableTextReferences).toBeCalledWith({
+      expect(sanityGraphqlApi.portableTextReferences).toBeCalledWith({
         ids: ["ref1", "ref2"],
       });
     });
@@ -98,7 +98,7 @@ describe("resolveReferences", () => {
         },
       ];
 
-      mockSanityGraphqlApi.blogPortableTextReferences.mockResolvedValue({
+      mockSanityGraphqlApi.portableTextReferences.mockResolvedValue({
         allDocument: mockErrorCausingResponse,
       });
 

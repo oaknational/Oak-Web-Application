@@ -123,7 +123,7 @@ describe("cms/sanity-client", () => {
      * re-generating fixtures, look for a `markDefs` array in the JSON with
      * a `_type: "reference"` and delete the markDef and associated ID above it `"marks": ["5ba56aeccae2"]`
      *
-     * This is because there's only one fixture file for `blogPortableTextReferences`
+     * This is because there's only one fixture file for `portableTextReferences`
      * shared between all files that depend on it
      */
     const singletonMethods = [
