@@ -7,7 +7,7 @@ import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageB
 import { videoSchema } from "../../../common-lib/cms-types/base";
 
 import { parseResults } from "./parseResults";
-import { resolveReferences } from "./resolveReferences";
+import { resolveSanityReferences } from "./resolveSanityReferences";
 
 import getSanityClient from "./";
 
@@ -25,11 +25,11 @@ jest.mock("./parseResults", () => {
   };
 });
 
-jest.mock("./resolveReferences", () => {
-  const original = jest.requireActual("./resolveReferences");
+jest.mock("./resolveSanityReferences", () => {
+  const original = jest.requireActual("./resolveSanityReferences");
   return {
     __esModule: true,
-    resolveReferences: jest.fn(original.resolveReferences),
+    resolveSanityReferences: jest.fn(original.resolveSanityReferences),
   };
 });
 
@@ -164,7 +164,7 @@ describe("cms/sanity-client", () => {
       it("attempts to resolve embedded portable text references", async () => {
         await clientMethod();
 
-        expect(resolveReferences).toBeCalled();
+        expect(resolveSanityReferences).toBeCalled();
       });
 
       it("does not fetch draft content by default", async () => {
@@ -262,7 +262,7 @@ describe("cms/sanity-client", () => {
       it("attempts to resolve embedded portable text references", async () => {
         await clientMethod("some-slug");
 
-        expect(resolveReferences).toBeCalled();
+        expect(resolveSanityReferences).toBeCalled();
       });
 
       it("does not fetch draft content by default", async () => {
