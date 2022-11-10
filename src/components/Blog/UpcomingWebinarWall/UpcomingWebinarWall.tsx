@@ -13,12 +13,11 @@ export type UpcomingWebinarWallProps = {
   buttonOnClick: () => void;
   buttonHref: string;
   buttonText: string;
-  buttonSuffixA11y?: string;
+  buttonSuffixA11y: string;
 };
 
 /**
- * Visual component to cover a webinar if a user is yet to click to 'Register'
- * interest on a past or future webinar.
+ * Visual component that goes where the webinar video would be.
  *
  * ## Usage
  *

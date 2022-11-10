@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { isPast } from "date-fns";
 
-import isFutureWebinar from "../../../utils/isFutureWebinar";
+import isFutureWebinar from "../../../utils/isUpcomingWebinar";
 import Flex from "../../Flex";
 import { Pagination } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";

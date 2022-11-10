@@ -5,15 +5,25 @@ import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import WebinarRegistration, {
   useWebinarRegistration,
 } from "../WebinarRegistration";
-import isFutureWebinar from "../../../utils/isFutureWebinar";
-import UpcomingWebinarWall from "../UpcomingWebinarWall";
+import isUpcomingWebinar from "../../../utils/isUpcomingWebinar";
+import UpcomingWebinarWall, {
+  useUpcomingWebinarWall,
+} from "../UpcomingWebinarWall";
 
 type WebinarVideoProps = {
-  webinar: Pick<SerializedWebinar, "video" | "date">;
+  webinar: SerializedWebinar;
 };
 /**
+ * ### For upcoming webinars:
+ *
+ * Displays the `UpcomingWebinarWall` component.
+ *
+ * ### For past webinars:
+ *
  * Displays the `WebinarRegistration` form to the user if they've never submitted
  * it. Else it shows them the video, using `CMSVideo` component.
+ *
+ * ### Note
  *
  * There is a "pending" state for server rendering, which shows a 16:9 white
  * box with borders.
@@ -24,13 +34,13 @@ const WebinarVideo = (props: WebinarVideoProps) => {
   const { webinarLockState, webinarRegistrationProps } =
     useWebinarRegistration();
 
-  if (isFutureWebinar(webinar)) {
+  const upcomingWebinarWallProps = useUpcomingWebinarWall(webinar);
+
+  if (isUpcomingWebinar(webinar)) {
     return (
       <AspectRatio ratio="16:9">
+        <UpcomingWebinarWall {...upcomingWebinarWallProps} />
         <BoxBorders />
-        {/* <UpcomingWebinarWall
-          buttonHref={"https://share.hsforms.com/1USsrkazESq2Il8lxUx_vPgbvumd"}
-        /> */}
       </AspectRatio>
     );
   }
