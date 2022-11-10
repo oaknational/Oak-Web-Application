@@ -42,7 +42,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
   const { categories, categorySlug, pageData } = props;
   const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
+    src: "/images/illustrations/idea-explosion.png",
     alt: "",
   };
 
