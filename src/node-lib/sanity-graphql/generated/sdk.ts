@@ -2926,7 +2926,7 @@ export type AboutLeadershipPageQueryVariables = Exact<{
 }>;
 
 
-export type AboutLeadershipPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageLeadership: Array<{ __typename?: 'AboutCorePageLeadership', id?: string | null, heading?: string | null, introPortableText?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, contentPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type AboutLeadershipPageQuery = { __typename?: 'RootQuery', aboutCorePage: Array<{ __typename?: 'AboutCorePage', title?: string | null, summaryPortableText?: any | null, contactSection?: { __typename?: 'AboutPageContactSection', infoPortableText?: any | null } | null }>, allAboutCorePageLeadership: Array<{ __typename?: 'AboutCorePageLeadership', id?: string | null, heading?: string | null, introPortableText?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type AboutPartnersPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -3104,7 +3104,16 @@ export type PolicyPageBySlugQueryVariables = Exact<{
 
 export type PolicyPageBySlugQuery = { __typename?: 'RootQuery', allPolicyPage: Array<{ __typename?: 'PolicyPage', title?: string | null, id?: string | null, lastUpdatedAt?: any | null, bodyPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
+export type QuoteFragment = { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null };
+
 export type SeoFragment = { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null };
+
+export type SupportCorePageQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type SupportCorePageQuery = { __typename?: 'RootQuery', allSupportCorePage: Array<{ __typename?: 'SupportCorePage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, cover?: { __typename?: 'SupportPageCover', title?: string | null, bodyPortableText?: any | null, quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | null, curriculum?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'CurriculumCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, development?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null } | null, planning?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type TeamMemberFragment = { __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null };
 
@@ -3265,6 +3274,14 @@ export const CardFragmentDoc = gql`
   }
 }
     ${CtaFragmentDoc}`;
+export const QuoteFragmentDoc = gql`
+    fragment Quote on Quote {
+  text
+  role
+  organisation
+  attribution
+}
+    `;
 export const SeoFragmentDoc = gql`
     fragment Seo on Seo {
   title
@@ -3795,10 +3812,7 @@ export const LandingPageBySlugDocument = gql`
       }
       ... on LandingPageQuoteBlock {
         quote {
-          text
-          role
-          organisation
-          attribution
+          ...Quote
         }
       }
       ... on LandingPageTextAndMediaBlock {
@@ -3814,6 +3828,7 @@ export const LandingPageBySlugDocument = gql`
 }
     ${CtaFragmentDoc}
 ${ImageWithAltTextFragmentDoc}
+${QuoteFragmentDoc}
 ${TextAndMediaFragmentDoc}
 ${SeoFragmentDoc}`;
 export const PlanningCorePageDocument = gql`
@@ -3902,6 +3917,47 @@ export const PolicyPageBySlugDocument = gql`
   }
 }
     ${SeoFragmentDoc}`;
+export const SupportCorePageDocument = gql`
+    query supportCorePage($isDraftFilter: Sanity_DocumentFilter) {
+  allSupportCorePage(
+    sort: {_updatedAt: DESC}
+    limit: 1
+    where: {_: $isDraftFilter, _id: {matches: "*supportCorePage"}}
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+    cover {
+      title
+      bodyPortableText: bodyRaw
+      quote {
+        ...Quote
+      }
+    }
+    curriculum {
+      title
+      bodyPortableText: bodyRaw
+      cta {
+        ...CTA
+      }
+    }
+    development {
+      title
+      bodyPortableText: bodyRaw
+    }
+    planning {
+      title
+      bodyPortableText: bodyRaw
+    }
+    seo {
+      ...Seo
+    }
+  }
+}
+    ${QuoteFragmentDoc}
+${CtaFragmentDoc}
+${SeoFragmentDoc}`;
 export const WebinarBySlugDocument = gql`
     query webinarBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allWebinar(
@@ -4013,6 +4069,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     policyPageBySlug(variables?: PolicyPageBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PolicyPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PolicyPageBySlugQuery>(PolicyPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'policyPageBySlug', 'query');
+    },
+    supportCorePage(variables?: SupportCorePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SupportCorePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SupportCorePageQuery>(SupportCorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'supportCorePage', 'query');
     },
     webinarBySlug(variables?: WebinarBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WebinarBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WebinarBySlugQuery>(WebinarBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'webinarBySlug', 'query');
