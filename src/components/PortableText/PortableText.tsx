@@ -12,29 +12,66 @@ import {
   resolveInternalHref,
   anchorKeys,
 } from "../../utils/portableText/resolveInternalHref";
-import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
+import {
+  CTAInternalLinkEntry,
+  portableTextSchema,
+  UnresolvedReference,
+  unresolvedReferenceSchema,
+} from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
 const reportError = errorReporter("PortableText");
+portableTextSchema;
 
+const isUnresolvedReference = (x: unknown): x is UnresolvedReference =>
+  unresolvedReferenceSchema.safeParse(x).success;
+
+/**
+ * This component expects to receive a "resolved" portable text reference,
+ * e.g.
+ *    { contentType: 'webinar', slug: 'some-webinar' }
+ * instead of
+ *    { _type: 'reference', _ref: '9c0bbd19-ffca-4c29-b60f-368a34abaacb' }
+ *
+ * The resolving happens at the CMS client layer, after fetching but
+ * before parsing, see sanity-client/resolveReferences.ts
+ */
 export const PTInternalLink: PortableTextMarkComponent<{
   _type: "internalLink";
-  reference?: CTAInternalLinkEntry;
+  reference?: CTAInternalLinkEntry | UnresolvedReference;
 }> = (props) => {
-  if (!props.value?.reference) {
-    console.warn("Unable to render internal link for props:", props);
+  const reference = props.value?.reference;
+
+  if (!reference) {
+    console.warn(
+      "Unable to render PTInternalLink (missing reference), props:",
+      props
+    );
+    return null;
+  }
+
+  if (isUnresolvedReference(reference)) {
+    reportError(
+      new Error("Encountered un-resolved reference within portable text"),
+      { severity: "warning", internalReference: reference }
+    );
+    console.warn(
+      "Unable to render PTInternalLink (un-resolved reference), props:",
+      props
+    );
+
     return null;
   }
 
   let href;
   try {
-    href = resolveInternalHref(props.value.reference);
+    href = resolveInternalHref(reference);
   } catch (err) {
-    reportError(err, { severity: "warning" });
-    console.warn("Unable to render internal link for props:", props);
+    reportError(err, { severity: "warning", internalReference: reference });
+    console.warn("Unable to render PTInternalLink, props:", props);
   }
 
   if (!href) {
