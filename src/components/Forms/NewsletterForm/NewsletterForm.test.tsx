@@ -1,4 +1,3 @@
-import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 
@@ -36,10 +35,15 @@ describe("NewsletterForm", () => {
     await user.keyboard("{arrowdown}");
     // confirm select value
     await user.keyboard("{Enter}");
+
     // hack to wait for dropdown to close
-    await waitFor(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    await waitForNextTick();
+
     await user.tab();
     await user.keyboard("{Enter}");
+
+    // Hack
+    await waitForNextTick();
 
     expect(onSubmit).toHaveBeenCalledWith({
       name: "a name",
