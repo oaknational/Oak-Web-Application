@@ -1,3 +1,10 @@
+## [1.55.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.1...v1.55.2) (2022-11-09)
+
+
+### Bug Fixes
+
+* remove defaults from seo config, instead, all should come from remote config ([8b148c8](https://github.com/oaknational/Oak-Web-Application/commit/8b148c8d82e7f53cdd0c39c832f29f54166741f5))
+
 ## [1.55.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.0...v1.55.1) (2022-11-09)
 
 # [1.55.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.3...v1.55.0) (2022-11-09)
