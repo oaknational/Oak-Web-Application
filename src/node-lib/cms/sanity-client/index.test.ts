@@ -26,10 +26,11 @@ jest.mock("./parseResults", () => {
 });
 
 jest.mock("./resolveSanityReferences", () => {
-  const original = jest.requireActual("./resolveSanityReferences");
   return {
     __esModule: true,
-    resolveSanityReferences: jest.fn(original.resolveSanityReferences),
+    // Return self without transform, bypassing any errors caused by
+    // dodgy mocks
+    resolveSanityReferences: jest.fn((x) => x),
   };
 });
 
