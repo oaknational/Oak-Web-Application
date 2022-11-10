@@ -34,15 +34,24 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
  *
  * n.b Make sure tests aren't running when this happens
  */
-// const fixtureGenerationWrapper: SdkFunctionWrapper = async (action, operationName) => {
+// const fixtureGenerationWrapper: SdkFunctionWrapper = async (
+//   action,
+//   operationName
+// ) => {
 //   const response = await action();
-//   writeFileSync(
-//     `./src/node-lib/sanity-graphql/fixtures/${operationName}.json`,
-//     JSON.stringify(response, null, 2)
-//   );
+
+//   import("fs").then((fs) => {
+//     fs.writeFileSync(
+//       `./src/node-lib/sanity-graphql/fixtures/${operationName}.json`,
+//       JSON.stringify(response, null, 2)
+//     );
+//   });
+
 //   return response;
 // };
 
-const sanityGraphqlApi = getSdk(sanityGraphqlClient);
+const sanityGraphqlApi = getSdk(
+  sanityGraphqlClient /*, fixtureGenerationWrapper */
+);
 
 export default sanityGraphqlApi;
