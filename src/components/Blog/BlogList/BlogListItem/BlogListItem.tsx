@@ -13,6 +13,7 @@ import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
 import OakImage from "../../../OakImage";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
+import formatDate from "../../../../utils/formatDate";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -90,11 +91,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
     useHover({});
 
-  const blogDate = new Date(date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const blogDate = formatDate(date);
 
   return (
     <Flex
