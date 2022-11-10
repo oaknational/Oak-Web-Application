@@ -124,7 +124,7 @@
                 {
                   "_key": "9d9485858ca0",
                   "_type": "span",
-                  "marks": ["5ba56aeccae2"],
+                  "marks": [""],
                   "text": "privacy policy"
                 },
                 {
@@ -134,16 +134,7 @@
                   "text": "."
                 }
               ],
-              "markDefs": [
-                {
-                  "_key": "5ba56aeccae2",
-                  "_type": "internalLink",
-                  "reference": {
-                    "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
-                    "_type": "reference"
-                  }
-                }
-              ],
+              "markDefs": [],
               "style": "normal"
             }
           ],

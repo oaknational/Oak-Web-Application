@@ -16,7 +16,13 @@ import getSanityClient from "./";
  */
 jest.mock("../../sanity-graphql");
 
-jest.mock("./parseResults");
+jest.mock("./parseResults", () => {
+  const original = jest.requireActual("./parseResults");
+  return {
+    __esModule: true,
+    parseResults: jest.fn(original.parseResults),
+  };
+});
 
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
   typeof sanityGraphqlApi
@@ -102,6 +108,13 @@ describe("cms/sanity-client", () => {
      *
      * methodName: the name of the function on CMSClient
      * mockMethodName: the name of a method on sanityGraphqlApi that's been mocked
+     *
+     * n.b. if some of these fail with an invalid reference error after
+     * re-generating fixtures, look for a `markDefs` array in the JSON with
+     * a `_type: "reference"` and delete the markDef and associated ID above it `"marks": ["5ba56aeccae2"]`
+     *
+     * This is because there's only one fixture file for `blogPortableTextReferences`
+     * shared between all files that depend on it
      */
     const singletonMethods = [
       ["homepage", "homepage"],
@@ -129,54 +142,51 @@ describe("cms/sanity-client", () => {
       ["landingPageBySlug", "landingPageBySlug"],
     ] as const;
 
-    describe.only.each(singletonMethods)(
-      `.%s()`,
-      (methodName, mockMethodName) => {
-        const mockMethod = mockSanityGraphqlApi[mockMethodName];
-        const clientMethod = client[methodName];
+    describe.each(singletonMethods)(`.%s()`, (methodName, mockMethodName) => {
+      const mockMethod = mockSanityGraphqlApi[mockMethodName];
+      const clientMethod = client[methodName];
 
-        it("returns null when no content is found", async () => {
-          mockMethod.mockResolvedValueOnce({} as never);
-          const res = await clientMethod();
-          expect(res).toBeNull();
-        });
+      it("returns null when no content is found", async () => {
+        mockMethod.mockResolvedValueOnce({} as never);
+        const res = await clientMethod();
+        expect(res).toBeNull();
+      });
 
-        it("does not fetch draft content by default", async () => {
-          await clientMethod();
-          expect(mockMethod).toBeCalledWith(
-            expect.objectContaining({ isDraftFilter: { is_draft: false } })
-          );
-        });
+      it("does not fetch draft content by default", async () => {
+        await clientMethod();
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
+        );
+      });
 
-        it("fetches draft content when previewMode flag is passed", async () => {
-          await clientMethod({ previewMode: true });
+      it("fetches draft content when previewMode flag is passed", async () => {
+        await clientMethod({ previewMode: true });
 
-          expect(mockMethod).toBeCalledWith(
-            expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
-          );
-        });
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
+        );
+      });
 
-        it("passes previewMode flag to parseResults when false", async () => {
-          await clientMethod();
+      it("passes previewMode flag to parseResults when false", async () => {
+        await clientMethod();
 
-          expect(parseResults).toBeCalledWith(
-            expect.anything(),
-            expect.anything(),
-            undefined
-          );
-        });
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          undefined
+        );
+      });
 
-        it("passes previewMode flag to parseResults when true", async () => {
-          await clientMethod({ previewMode: true });
+      it("passes previewMode flag to parseResults when true", async () => {
+        await clientMethod({ previewMode: true });
 
-          expect(parseResults).toBeCalledWith(
-            expect.anything(),
-            expect.anything(),
-            true
-          );
-        });
-      }
-    );
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          true
+        );
+      });
+    });
 
     describe.each(listMethods)(`.%s()`, (methodName, mockMethodName) => {
       const mockMethod = mockSanityGraphqlApi[mockMethodName];
