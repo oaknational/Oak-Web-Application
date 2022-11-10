@@ -11,7 +11,6 @@ const useUpcomingWebinarWall = (
       hour: "2-digit",
       minute: "2-digit",
     })} (UK time)`,
-    text: `<some text>You will only need to regiater once and you’ll be good to go.`,
     buttonOnClick: () => {
       // tracking
     },
