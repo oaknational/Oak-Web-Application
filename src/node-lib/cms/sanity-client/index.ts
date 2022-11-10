@@ -22,7 +22,7 @@ import {
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 
-import { resolveReferences } from "./resolveReferences";
+import { resolveSanityReferences } from "./resolveSanityReferences";
 import { parseResults } from "./parseResults";
 
 export type Params = {
@@ -36,7 +36,7 @@ export type ListParams = Params & {
 const addReferences = async <T extends Record<string, unknown>>(
   document: T
 ): Promise<T> => {
-  const withPortableTextReferences = await resolveReferences(document);
+  const withPortableTextReferences = await resolveSanityReferences(document);
   return withPortableTextReferences;
 };
 
@@ -126,7 +126,7 @@ const getSanityClient = () => ({
     }
 
     const contentWithReferences = blogPost?.contentPortableText
-      ? await resolveReferences(blogPost.contentPortableText)
+      ? await resolveSanityReferences(blogPost.contentPortableText)
       : [];
 
     const blogWithResolvedRefs = {

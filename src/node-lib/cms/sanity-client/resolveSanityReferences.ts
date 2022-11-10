@@ -13,7 +13,7 @@ const referencedDocumentsSchema = z.array(portableTextReferencedEntrySchema);
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
  */
-export const resolveReferences = async <
+export const resolveSanityReferences = async <
   T extends Record<string, unknown> | Record<string, unknown>[]
 >(
   portableText: T

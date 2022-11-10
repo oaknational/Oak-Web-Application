@@ -1,7 +1,10 @@
 import OakError from "../../../errors/OakError";
 import sanityGraphqlApi from "../../sanity-graphql";
 
-import { getAllPaths, resolveReferences } from "./resolveReferences";
+import {
+  getAllPaths,
+  resolveSanityReferences,
+} from "./resolveSanityReferences";
 
 jest.mock("../../sanity-graphql");
 
@@ -63,7 +66,7 @@ describe("resolveReferences", () => {
     };
 
     it("merges each _ref object with the result of the query", async () => {
-      const resolved = await resolveReferences(mockObjWithReferences);
+      const resolved = await resolveSanityReferences(mockObjWithReferences);
       expect(resolved.foo.bar.post).toMatchObject({
         contentType: "sanity.imageAsset",
         id: "ref1",
@@ -79,7 +82,7 @@ describe("resolveReferences", () => {
     });
 
     it("calls api.blogPortableTextReferences with each referenced ID", async () => {
-      await resolveReferences(mockObjWithReferences);
+      await resolveSanityReferences(mockObjWithReferences);
 
       expect(sanityGraphqlApi.blogPortableTextReferences).toBeCalledWith({
         ids: ["ref1", "ref2"],
@@ -99,12 +102,12 @@ describe("resolveReferences", () => {
         allDocument: mockErrorCausingResponse,
       });
 
-      const capturedError = await resolveReferences(
+      const capturedError = await resolveSanityReferences(
         mockObjWithReferences
       ).catch((err) => err);
 
       await expect(
-        async () => await resolveReferences(mockObjWithReferences)
+        async () => await resolveSanityReferences(mockObjWithReferences)
       ).rejects.toThrowError(
         new OakError({ code: "cms/invalid-reference-data" })
       );
