@@ -33,7 +33,7 @@ export type ListParams = Params & {
   limit?: number;
 };
 
-const addReferences = async <T extends Record<string, unknown>>(
+const resolveEmbeddedReferences = async <T extends Record<string, unknown>>(
   document: T
 ): Promise<T> => {
   const withPortableTextReferences = await resolveSanityReferences(document);
@@ -147,7 +147,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const withResolvedReferences = await addReferences(homepageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      homepageData
+    );
 
     return parseResults(homePageSchema, withResolvedReferences, previewMode);
   },
@@ -162,7 +164,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const withResolvedReferences = await addReferences(planningPageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      planningPageData
+    );
 
     return parseResults(
       planningPageSchema,
@@ -187,7 +191,7 @@ const getSanityClient = () => ({
       ...whoWeArePageData,
     };
 
-    const withResolvedReferences = await addReferences(pageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
     return parseResults(
       aboutWhoWeArePageSchema,
       withResolvedReferences,
@@ -211,7 +215,7 @@ const getSanityClient = () => ({
       ...leadershipPageData,
     };
 
-    const withResolvedReferences = await addReferences(pageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
     return parseResults(
       aboutLeadershipPageSchema,
       withResolvedReferences,
@@ -235,7 +239,7 @@ const getSanityClient = () => ({
       ...boardPageData,
     };
 
-    const withResolvedReferences = await addReferences(pageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
     return parseResults(
       aboutBoardPageSchema,
       withResolvedReferences,
@@ -259,7 +263,7 @@ const getSanityClient = () => ({
       ...partnersPageData,
     };
 
-    const withResolvedReferences = await addReferences(pageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
     return parseResults(
       aboutPartnersPageSchema,
       withResolvedReferences,
@@ -283,7 +287,7 @@ const getSanityClient = () => ({
       ...workWithUsPage,
     };
 
-    const withResolvedReferences = await addReferences(pageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
     return parseResults(
       aboutWorkWithUsPageSchema,
       withResolvedReferences,
@@ -301,7 +305,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const withResolvedReferences = await addReferences(curriculumPageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      curriculumPageData
+    );
     return parseResults(
       curriculumPageSchema,
       withResolvedReferences,
@@ -319,7 +325,9 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const withResolvedReferences = await addReferences(contactPageData);
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      contactPageData
+    );
 
     return parseResults(contactPageSchema, withResolvedReferences, previewMode);
   },
@@ -355,7 +363,7 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const withResolvedReferences = await addReferences(policyPage);
+    const withResolvedReferences = await resolveEmbeddedReferences(policyPage);
 
     return parseResults(policyPageSchema, withResolvedReferences, previewMode);
   },
@@ -391,7 +399,7 @@ const getSanityClient = () => ({
       return null;
     }
 
-    const withResolvedReferences = await addReferences(landingPage);
+    const withResolvedReferences = await resolveEmbeddedReferences(landingPage);
 
     return parseResults(landingPageSchema, withResolvedReferences, previewMode);
   },
