@@ -1,20 +1,17 @@
-import { FC, useMemo } from "react";
-import { isPast } from "date-fns";
+import { FC } from "react";
 
-import isFutureWebinar from "../../../utils/isUpcomingWebinar";
 import Flex from "../../Flex";
-import { Pagination } from "../../Pagination";
+import Pagination, { PaginationProps } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";
-import usePagination from "../../Pagination/usePagination";
 import Box from "../../Box";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
 
-const PAGE_SIZE = 4;
-
 export type BlogListProps = {
-  items: BlogListItemProps[];
+  upcomingItem?: BlogListItemProps;
+  currentPageItems: BlogListItemProps[];
+  paginationProps: PaginationProps;
   /**
    * adds image to each item
    */
@@ -33,39 +30,23 @@ export type BlogListProps = {
   withUpcomingItem?: boolean;
 };
 /**
- * Contains a list of BlogListItem with dividers between them.
+ * Contains a list of BlogListItem with dividers between them. Optionally
+ * displays an upcoming webinar at the top.
+ *
+ * ## Usage
+ *
+ * Use `useBlogList()` to get props to pass to `<BlogList />`
  */
 const BlogList: FC<BlogListProps> = (props) => {
   const {
-    items,
+    upcomingItem,
+    currentPageItems,
+    paginationProps,
     withImage,
     withContainingHrs,
     withPagination,
     withUpcomingItem,
   } = props;
-
-  const paginationProps = usePagination({
-    totalResults: items.length,
-    pageSize: PAGE_SIZE,
-  });
-
-  const { currentPage } = paginationProps;
-
-  const [upcomingItem] = items.filter(isFutureWebinar);
-  const pastItems = useMemo(
-    () =>
-      items.filter((item) =>
-        // @todo isPast and isFuture can throw
-        isPast(new Date(item.date))
-      ),
-    [items]
-  );
-
-  const currentPageItems: Array<BlogListItemProps> = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-    const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return pastItems.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, pastItems]);
 
   return (
     <Flex
