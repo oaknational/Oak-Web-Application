@@ -1,778 +1,433 @@
 {
   "allNewsPost": [
     {
-      "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
-      "title": "The evolution of Oak: supporting you to thrive",
-      "date": "2022-09-07",
+      "id": "e0ae4001-2936-4613-b2ad-8fec90ccacfa",
+      "title": "How to design a unit of study",
+      "date": "2022-11-08",
       "author": {
-        "id": "84301d7b-53d5-4764-9caf-96503dbb0959",
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
         "_key": null,
-        "name": "Rachel Strom",
+        "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
         "image": {
           "asset": {
-            "_id": "",
-            "url": "https://cdn.sanity.io/images/cuvjke51/production/ca2bc1ac537dc95aa312efeeade19d12091d8625-300x300.jpg"
-          }
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
         }
       },
-      "slug": { "current": "evolution-of-oak" },
+      "slug": {
+        "current": "how-to-design-a-unit-of-study"
+      },
       "mainImage": {
         "altText": null,
+        "isPresentational": true,
         "asset": {
-          "_id": "image-89468632d8244ab41a6e27b37e0307c6784dad44-1091x740-png",
-          "url": "https://cdn.sanity.io/images/cuvjke51/production/89468632d8244ab41a6e27b37e0307c6784dad44-1091x740.png"
-        }
+          "_id": "image-a25238ed11492ce082d47e1966cb106db150d905-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/a25238ed11492ce082d47e1966cb106db150d905-720x480.png"
+        },
+        "hotspot": null
       },
       "category": {
-        "title": "Oak updates",
-        "slug": { "current": "oak-updates" }
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
       },
-      "summary": "It's time for Oak to evolve again. Learn more about our new role and how we plan to grow our support for schools and teachers.",
+      "summary": "Want inspiration to help you design a unit of study? Our handy guide takes you through the steps we follow.",
       "contentPortableText": [
         {
-          "_key": "9277a0d011bc",
+          "_key": "c4450580080b",
           "_type": "block",
           "children": [
             {
-              "_key": "2d302ffcee08",
+              "_key": "d8b72c49e7480",
               "_type": "span",
               "marks": [],
-              "text": "Every teacher knows they need to adapt and evolve to help their pupils thrive. In recent years you’ve had this tested like never before."
+              "text": "Are you designing a unit of study from scratch or updating one you already have? It can be hard to know where to start. We’re sharing six steps to inspire and inform the way you design coherent and purposeful units for your pupils."
             }
           ],
           "markDefs": [],
           "style": "normal"
         },
         {
-          "_key": "047d57863c15",
+          "_key": "7b076ec06ec8",
           "_type": "block",
           "children": [
             {
-              "_key": "71ad4ea93457",
+              "_key": "9f4dc1a5a9040",
               "_type": "span",
               "marks": [],
-              "text": "Now, with the worst of the pandemic behind us, "
-            },
-            {
-              "_key": "17c3ebd42296",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "it’s time for Oak to evolve again."
+              "text": "Follow these steps to:"
             }
           ],
           "markDefs": [],
           "style": "normal"
         },
         {
-          "_key": "f4e28d54ec0e",
-          "_ref": "11b93e08-25a4-45fc-9e3f-4da8bb45e203",
+          "_key": "13b07b36a527",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "01c54c1b85ea0",
+              "_type": "span",
+              "marks": [],
+              "text": "identify the most important content for supporting you to meet your curriculum aims;"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7d6abce6720c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8b14f503d2d50",
+              "_type": "span",
+              "marks": [],
+              "text": "sequence the content into a logical unit plan; and,"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "9873498ce21e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ad465809c1690",
+              "_type": "span",
+              "marks": [],
+              "text": "create effective lesson resources."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4a62aec854eb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c4b9491289a40",
+              "_type": "span",
+              "marks": [],
+              "text": "Video guide"
+            }
+          ],
+          "markDefs": [],
+          "style": "sectionHeading"
+        },
+        {
+          "_key": "9f288ae16ad5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "96dabe4f836d0",
+              "_type": "span",
+              "marks": [],
+              "text": "We’ve broken down the approach we take into six steps. Watch Chris Fountain from our Education team explain what you should consider at each stage of the process."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0b111c8135c3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "87c1f9d2d264",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "13aa75a77eb8",
+          "_ref": "c4db75bb-92ef-4a6a-bd8e-e20e26f63cd0",
           "_type": "reference"
         },
         {
-          "_key": "53bdf9542bfb",
+          "_key": "8764e41067fe",
           "_type": "block",
           "children": [
             {
-              "_key": "a8fe3d8b30b80",
+              "_key": "3fafbd4099820",
               "_type": "span",
               "marks": [],
-              "text": "\nWe’ve become an independent public body, and are delighted this means we can continue supporting you for the years to come."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "a0e1e1bf0a12",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0d935df977b60",
-              "_type": "span",
-              "marks": [],
-              "text": "Much will stay the same. You can continue to plan with "
-            },
-            {
-              "_key": "23defeba3818",
-              "_type": "span",
-              "marks": ["64782a92bd16"],
-              "text": "our thousands of existing lessons and resources"
-            },
-            {
-              "_key": "6a8902bbddbc",
-              "_type": "span",
-              "marks": [],
-              "text": "."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "64782a92bd16",
-              "_type": "internalLink",
-              "reference": { "_ref": "planningCorePage", "_type": "reference" }
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "c5439b88b256",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "dac87b0c8d100",
-              "_type": "span",
-              "marks": [],
-              "text": "Keep using our downloadable and editable slides, the pupil worksheets, and the quizzes which project onto your whiteboard. Carry on accessing our video lessons that inspire your teaching, and checking out our detailed curriculum plans."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "97e09ee9f10e",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "516d858cbde70",
-              "_type": "span",
-              "marks": [],
-              "text": "But in the coming years, we’ve big plans to try and make your life a little easier. We’ll be concentrating on growing our support in two areas:"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "bcd59af83160",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "5185d37bb7e30",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Lesson planning for in-class delivery - "
-            },
-            {
-              "_key": "5185d37bb7e31",
-              "_type": "span",
-              "marks": [],
-              "text": "with brand new, improved resources"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "3a9584f70840",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "f2bbc20399b20",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Inspiration and advice on curriculum - "
-            },
-            {
-              "_key": "f2bbc20399b21",
-              "_type": "span",
-              "marks": [],
-              "text": "sharing great examples as you plan your own approach"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "428de9289acd",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "5e5950bdad70",
-              "_type": "span",
-              "marks": [],
-              "text": "There's more on our plans below, but first..."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "fad879e61e21",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "770d7ddd061d",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Why is Oak evolving?"
+              "text": "Six steps to design a unit of study"
             }
           ],
           "markDefs": [],
           "style": "sectionHeading"
         },
         {
-          "_key": "ab71a9c85afb",
+          "_key": "03e054ff5c09",
           "_type": "block",
           "children": [
             {
-              "_key": "e7daf386a94f0",
-              "_type": "span",
-              "marks": [],
-              "text": "We’ve always put listening to teachers at the heart of our work. So, over the last year, we’ve again asked what you need, and how Oak might evolve to better support you."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "b9955be0a1c7",
-          "_type": "quote",
-          "attribution": "Professor Dylan Wiliam",
-          "role": "Emeritus Professor of Educational Assessment, UCL",
-          "text": "The best curricula generate at least 25% more learning than the worst, irrespective of teacher quality."
-        },
-        {
-          "_key": "9f07a3978ebd",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "a28808fe4a5c0",
-              "_type": "span",
-              "marks": [],
-              "text": "\nWe know the best curricula result in pupils learning more. But you tell us designing a curriculum, and all its lessons resources, is demanding, time-consuming work that requires expertise.\n\nWe know this great expertise exists. It’s all there amongst the teachers in our 24,000 or so schools, and the organisations supporting them. But it’s a dispersed team. It’s not one that every teacher can easily tap into.\n\nWe also know you spend "
-            },
-            {
-              "_key": "ff87c3aa30161",
+              "_key": "560acd94b6360",
               "_type": "span",
               "marks": ["strong"],
-              "text": "a lot"
+              "text": "Identify the unit’s intended outcome"
             },
             {
-              "_key": "ff87c3aa30162",
+              "_key": "d2d637b34256",
               "_type": "span",
               "marks": [],
-              "text": " of time planning lesson materials. The majority of "
-            },
-            {
-              "_key": "968e64a98774",
-              "_type": "span",
-              "marks": ["8f5a42be4ee3"],
-              "text": "primary teachers spend between one to five hours searching online each week for resources"
-            },
-            {
-              "_key": "e1d3c1c6e224",
-              "_type": "span",
-              "marks": [],
-              "text": ", and almost "
-            },
-            {
-              "_key": "5568be6bb23f",
-              "_type": "span",
-              "marks": ["817c66f50bec"],
-              "text": "half say they plan a lot of lessons completely from scratch"
-            },
-            {
-              "_key": "9893d863646e",
-              "_type": "span",
-              "marks": [],
-              "text": ".\n\nWhen we asked you what support you wanted in these two areas, you were clear. Firstly, you wanted to be able to see high-quality examples of other curricula, and you wanted to collaborate with subject experts (1)."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "8f5a42be4ee3",
-              "_type": "link",
-              "href": "https://teachertapp.co.uk/working-hours-world-book-day-and-the-ideal-gcse-course-length/"
-            },
-            {
-              "_key": "817c66f50bec",
-              "_type": "link",
-              "href": "https://teachertapp.co.uk/should-we-keep-the-phonics-check-and-which-subjects-won-at-advanced-info/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "556ca795a4fb",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "d91159291f460",
-              "_type": "span",
-              "marks": [],
-              "text": "For lesson materials, you said you struggled to find resources that were free or affordable, high-quality and evidence-based, and those sequenced into full schemes of work. This was particularly challenging for those of you working in the most deprived areas, and those newest to the profession (2)."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "62bf18a53bcf",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "da09f2fd8af4",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Our plans for the future"
-            }
-          ],
-          "markDefs": [],
-          "style": "sectionHeading"
-        },
-        {
-          "_key": "432417c633e9",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "30e922b4e0c80",
-              "_type": "span",
-              "marks": [],
-              "text": "These resources will all be carefully sequenced into full curricula. And, as well as our own example curriculum, we’ll give you inspiration from others’ curriculum plans too, plus practical advice to help you think about your own."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "ae7bf042f577",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "69f1116289b30",
-              "_type": "span",
-              "marks": [],
-              "text": "Our aim is to make sure you have the best thinking, the deepest subject expertise, and the smartest learning design, all at your fingertips, whenever you may need it.\n\nWe’ll eventually update and improve materials for the full broad range of subjects. We’ll start with improvements to English, maths, science, geography, history and music. These new resources will roll out in a phased way, starting from autumn 2023. "
-            },
-            {
-              "_key": "267693b32a65",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "But you can continue to use all our existing lessons until then, and beyond.\n\n"
-            },
-            {
-              "_key": "85cd7a8b0002",
-              "_type": "span",
-              "marks": [],
-              "text": "You’ll see we look a bit different. Launching our new website is the first step to improve our offer. We’ll continue to make improvements over the coming months, including updates to Teacher Hub and Classroom, making them easier for you and your pupils."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "574d36c2bb77",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "be9b16fa4071",
-              "_type": "span",
-              "marks": [],
-              "text": "How can you get involved?"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "cbd4b0082632",
-              "_type": "link",
-              "href": "https://www.thenational.academy/about-us/board"
-            }
-          ],
-          "style": "sectionHeading"
-        },
-        {
-          "_key": "bbe54650a28c",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "24981b77bf03",
-              "_type": "span",
-              "marks": [],
-              "text": "Just like we started, we’ll always remain by teachers, for teachers. They’ll guide all our work, including at "
-            },
-            {
-              "_key": "66aa9c4c6343",
-              "_type": "span",
-              "marks": ["cbd4b0082632"],
-              "text": "our most senior levels"
-            },
-            {
-              "_key": "cca0b71b01eb",
-              "_type": "span",
-              "marks": [],
-              "text": "."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "cbd4b0082632",
-              "_type": "link",
-              "href": "https://www.thenational.academy/about-us/board"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "9b9233384b19",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "68d591ced9480",
-              "_type": "span",
-              "marks": [],
-              "text": "Given there’s so much expertise across our education system, we’ll be developing our new resources in partnership with brilliant schools, subject associations, education organisations and publishers from across the country. There are three key ways to get involved:"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "49ef447103d7",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "e003abb45bc00",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Become a Curriculum Partner"
-            },
-            {
-              "_key": "40306d07a5c6",
-              "_type": "span",
-              "marks": [],
-              "text": ": If you’ve a brilliant curriculum or set of resources, "
-            },
-            {
-              "_key": "69b9f8df0f38",
-              "_type": "span",
-              "marks": ["e86204d3056c"],
-              "text": "we want to hear from you"
-            },
-            {
-              "_key": "d454e998cad2",
-              "_type": "span",
-              "marks": [],
-              "text": ". We’ll be launching an open procurement to create new resources in our first subjects very soon."
+              "text": "\nStart at the end. Decide what you want pupils to know and be able to do by the end of the unit.\n"
             }
           ],
           "level": 1,
           "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3057ef91fcdd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "afc0e6da9ba2",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Place the unit within your existing curriculum"
+            },
+            {
+              "_key": "69616cbd3add",
+              "_type": "span",
+              "marks": [],
+              "text": "\nFind units within your existing curriculum that closely match your new unit, so you can make sure knowledge and ideas develop sequentially and logically.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cdc4fe9f9b0a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cda647fccf49",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Decide on the unit’s core content and vocabulary"
+            },
+            {
+              "_key": "0bce9dbe44d1",
+              "_type": "span",
+              "marks": [],
+              "text": "\nWrite down the key learning points, tier 2 and tier 3 vocabulary that pupils need to learn so you can make sure it’s incorporated.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "2088c3c7d1bb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "28181dd23cb8",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Sequence the content and create a unit plan"
+            },
+            {
+              "_key": "4ab3edd5655b",
+              "_type": "span",
+              "marks": [],
+              "text": "\nWork out how many lessons you have available to teach the unit and put together a plan that lists each lesson in a sequence.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d037df238c5f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "264bff02e597",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Create the lesson resources in blocks"
+            },
+            {
+              "_key": "4665f23bf3da",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIt helps to create the lesson resources in blocks of three or four, so you can create consistency and links between them.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "89f5e9e0ebe6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8173872c657e",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Review and iterate"
+            },
+            {
+              "_key": "1bd35a0d073a",
+              "_type": "span",
+              "marks": [],
+              "text": "\nEach time the unit is taught, gather feedback from the teachers and then iterate the unit to reflect the feedback."
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "428065d6eb27",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "247decda94cf",
+              "_type": "span",
+              "marks": [],
+              "text": "Download our free quick guide"
+            }
+          ],
+          "markDefs": [],
+          "style": "sectionHeading"
+        },
+        {
+          "_key": "e8ae750f67cd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e8720557c262",
+              "_type": "span",
+              "marks": [],
+              "text": "Access our free quick guide. It includes prompt questions for each of the steps, which you can use to guide your next planning session.\n\nSave the document to your Google Drive by clicking on File > Make a copy. Or download a copy by clicking on File > Download."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "aa115af24cd9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ce7a26aef51c",
+              "_type": "span",
+              "marks": [],
+              "text": "\n"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "011119ee2682",
+          "_type": "cta",
+          "external": "https://docs.google.com/document/d/1ShYtOCs1sQIriL4mN0ma6L0VlChdm1D1Sa5grNnH9N8/edit?usp=sharing",
+          "label": "Download our quick guide",
+          "linkType": "external"
+        },
+        {
+          "_key": "9498c616a7ec",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "844b928c8433",
+              "_type": "span",
+              "marks": [],
+              "text": "\n"
+            },
+            {
+              "_key": "9ade0631fb61",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Looking for more support around curriculum design? "
+            },
+            {
+              "_key": "d7bee6c3b7c1",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our guidance on "
+            },
+            {
+              "_key": "820db89c0dd3",
+              "_type": "span",
+              "marks": ["359108078038"],
+              "text": "designing a subject curriculum"
+            },
+            {
+              "_key": "f11699e715d8",
+              "_type": "span",
+              "marks": [],
+              "text": " and "
+            },
+            {
+              "_key": "f0c34174a29c",
+              "_type": "span",
+              "marks": ["238467f5286d"],
+              "text": "refreshing your curriculum using Oak units"
+            },
+            {
+              "_key": "23a38992c39d",
+              "_type": "span",
+              "marks": [],
+              "text": ". "
+            }
+          ],
           "markDefs": [
             {
-              "_key": "e86204d3056c",
+              "_key": "359108078038",
               "_type": "internalLink",
               "reference": {
-                "_ref": "9285c122-ebb3-4a6d-a318-a121c412e31b",
+                "_ref": "a4e50440-d1a6-499f-a507-e0298d39a5a1",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "238467f5286d",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "cea99f06-77a8-49bf-a608-39b3b572b86d",
                 "_type": "reference"
               }
             }
           ],
           "style": "normal"
-        },
-        {
-          "_key": "a00d502cbc50",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "c894cabc1bd60",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Join an Expert Group"
-            },
-            {
-              "_key": "ff3b87801d9b",
-              "_type": "span",
-              "marks": [],
-              "text": ": Later this year we’ll launch open applications to our Subject Expert Groups - these broad range of advisers will guide our work in each subject."
-            }
-          ],
-          "level": 1,
-          "listItem": "number",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "d2ad66a26c2b",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "e381ef69b1b9",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Road test our resources"
-            },
-            {
-              "_key": "03eeb0caedf6",
-              "_type": "span",
-              "marks": [],
-              "text": ": As we create improved resources, we’ll be recruiting schools to actively test, feedback and improve them - making sure they truly work in the classroom."
-            }
-          ],
-          "level": 1,
-          "listItem": "number",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "fce055d82cc8",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "b2747d2993930",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "Continuing to support you"
-            }
-          ],
-          "markDefs": [],
-          "style": "sectionHeading"
-        },
-        {
-          "_key": "d1d5cf852e9f",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "24f11808f8740",
-              "_type": "span",
-              "marks": [],
-              "text": "As Oak grows and develops, you can be sure that we will always be:"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "ba21b1b22aba",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "5d8c3352439f0",
-              "_type": "span",
-              "marks": [],
-              "text": "an "
-            },
-            {
-              "_key": "5d8c3352439f1",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "independent"
-            },
-            {
-              "_key": "5d8c3352439f2",
-              "_type": "span",
-              "marks": [],
-              "text": ", trusted resource for teachers, creating the highest-quality lessons and expert support;"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "2b4be40abeed",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "1ca235634a430",
-              "_type": "span",
-              "marks": [],
-              "text": "totally "
-            },
-            {
-              "_key": "1ca235634a431",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "adaptable"
-            },
-            {
-              "_key": "1ca235634a432",
-              "_type": "span",
-              "marks": [],
-              "text": ", because you know your pupils best, so you’ll always be able to flex our materials to their needs;"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "8bd0b469f489",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "f11aa90b4ae10",
-              "_type": "span",
-              "marks": [],
-              "text": "entirely "
-            },
-            {
-              "_key": "f11aa90b4ae11",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "optional"
-            },
-            {
-              "_key": "f11aa90b4ae12",
-              "_type": "span",
-              "marks": [],
-              "text": ", because only you know what’s right for your school;"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "223d942dbbb3",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "57114cb326150",
-              "_type": "span",
-              "marks": [],
-              "text": "completely "
-            },
-            {
-              "_key": "57114cb326151",
-              "_type": "span",
-              "marks": ["strong"],
-              "text": "free"
-            },
-            {
-              "_key": "57114cb326152",
-              "_type": "span",
-              "marks": [],
-              "text": ", because our country’s teachers deserve nothing less."
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "72e97b5e9ab3",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "cb9d9dd897eb0",
-              "_type": "span",
-              "marks": [],
-              "text": "In fact, we’ve written these things into our founding documents, so they can never change."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "70e5db925852",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "964d8cf80a390",
-              "_type": "span",
-              "marks": [],
-              "text": "We’ve been proud to play our part over the last two years, and we can’t wait to grow how we support you, your schools and pupils."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "74d48adf2fda",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "fb14c26946a50",
-              "_type": "span",
-              "marks": [],
-              "text": "As we start out on this new journey, as ever, if you’ve thoughts, feedback or ideas "
-            },
-            {
-              "_key": "3bbbfc755bcd",
-              "_type": "span",
-              "marks": ["eaafc00cb602"],
-              "text": "please get in touch"
-            },
-            {
-              "_key": "fa785cba2c58",
-              "_type": "span",
-              "marks": [],
-              "text": ". Happy teaching!"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "eaafc00cb602",
-              "_type": "link",
-              "href": "https://thenational.academy/contact-us"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "37f84b40d124",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "df1200c66a95",
-              "_type": "span",
-              "marks": [],
-              "text": "\n\n(1) Teacher Tapp survey, 5108 respondents, June 2022"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "cd68c551e73e",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "583556cc3b74",
-              "_type": "span",
-              "marks": [],
-              "text": "(2) Teacher Tapp, 5140 respondents, June 2022"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "03f24b122bca",
-          "_type": "block",
-          "children": [
-            { "_key": "97df45d6a146", "_type": "span", "marks": [], "text": "" }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "05369459ede4",
-          "_type": "block",
-          "children": [
-            { "_key": "298f0a1c8523", "_type": "span", "marks": [], "text": "" }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "71b0372d440a",
-          "_type": "block",
-          "children": [
-            { "_key": "aaa837a13107", "_type": "span", "marks": [], "text": "" }
-          ],
-          "markDefs": [],
-          "style": "normal"
         }
-      ]
+      ],
+      "seo": {
+        "title": "How To Design A Unit Of Study",
+        "description": "Want inspiration to help you design a unit of study? Our handy guide takes you through the steps we follow.",
+        "canonicalURL": null
+      }
     }
   ]
 }
