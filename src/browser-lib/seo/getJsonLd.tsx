@@ -16,8 +16,8 @@ import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
 
 const courseProvider = {
-  name: config.get("appName"),
-  url: config.get("appUrl"),
+  name: config.get("seoAppName"),
+  url: config.get("seoAppUrl"),
 };
 
 // Organization
@@ -25,10 +25,10 @@ const courseProvider = {
 export const OrganizationJsonLd = () => {
   return (
     <OrganizationJsonLdNextSeo
-      name={config.get("appName")}
-      url={config.get("appUrl")}
-      sameAs={[config.get("appFacebook"), config.get("appTwitter")]}
-      logo={`${config.get("appUrl")}${config.get("appLogo")}`}
+      name={config.get("seoAppName")}
+      url={config.get("seoAppUrl")}
+      sameAs={[config.get("seoAppFacebook"), config.get("seoAppTwitter")]}
+      logo={`${config.get("seoAppUrl")}${config.get("seoAppLogo")}`}
     />
   );
 };
@@ -67,9 +67,9 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
 const blogObject = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
   return {
     type: "Article",
-    url: `${config.get("appUrl")}/blog/${blog.slug}`,
+    url: `${config.get("seoAppUrl")}/blog/${blog.slug}`,
     title: blog.title,
-    images: [blog.mainImage.asset?.url || config.get("appLogo")],
+    images: [blog.mainImage.asset?.url || config.get("seoAppLogo")],
     datePublished: blog.date,
     dateModified: blog.date,
     authorName: blog.author.name,
