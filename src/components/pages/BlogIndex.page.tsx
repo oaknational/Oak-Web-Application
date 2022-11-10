@@ -10,6 +10,7 @@ import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSClient from "../../node-lib/cms";
 import {
+  BlogListingPage,
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
@@ -31,10 +32,11 @@ export type BlogListingPageProps = {
   blogs: SerializedBlogPostPreview[];
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
+  pageData: BlogListingPage;
 };
 
 const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
-  const { blogs, categories, categorySlug } = props;
+  const { blogs, categories, categorySlug, pageData } = props;
 
   const cardImage = {
     src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
@@ -60,14 +62,12 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
     >
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
-          title={"Blog Listing"}
+          title={pageData.title}
           heading={
             categories.find((cat) => cat.slug === categorySlug)?.title ||
-            "Inspiration for inside and outside the classroom"
+            pageData.heading
           }
-          summary={
-            "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
-          }
+          summary={pageData.summary}
           imageProps={cardImage}
         />
 
@@ -108,6 +108,16 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const pageData = await CMSClient.blogListingPage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
+
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
   });
@@ -130,6 +140,7 @@ export const getStaticProps: GetStaticProps<
       blogs,
       categories: blogCategories,
       categorySlug,
+      pageData,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);
