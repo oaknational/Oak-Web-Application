@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import { TextBlock } from "../../../common-lib/cms-types";
 import { OakColorName } from "../../../styles/theme";
+import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CardImage, { CardImageProps } from "../../Card/CardComponents/CardImage";
