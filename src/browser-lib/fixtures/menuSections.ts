@@ -24,6 +24,10 @@ export const menuSections: MenuSections = {
       page: "develop-your-curriculum",
       linkText: "Develop your curriculum",
     },
+    {
+      page: "support-your-team",
+      linkText: "Support your team",
+    },
   ],
   small: [
     {

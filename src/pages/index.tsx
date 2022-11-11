@@ -277,7 +277,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               </GridArea>
             </Grid>
             <Grid $cg={[8, 16]} $ph={[12, 0]}>
-              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
+              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
                 <CardLinkIcon
                   page="lesson-planning"
                   title={"Plan a lesson"}
@@ -286,7 +286,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   htmlAnchorProps={{ onClick: track.planALessonSelected }}
                 />
               </GridArea>
-              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 6]}>
+              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
                 <CardLinkIcon
                   page="develop-your-curriculum"
                   title={"Develop your curriculum"}
@@ -295,6 +295,18 @@ const Home: NextPage<HomePageProps> = (props) => {
                   htmlAnchorProps={{
                     onClick: track.developYourCurriculumSelected,
                   }}
+                />
+              </GridArea>
+              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
+                <CardLinkIcon
+                  page="support-your-team"
+                  title={"Support your team"}
+                  titleTag={"h4"}
+                  background={"pupilsPink"}
+                  // @todo add avo support your team
+                  // htmlAnchorProps={{
+                  //   onClick: track.developYourCurriculumSelected,
+                  // }}
                 />
               </GridArea>
             </Grid>
