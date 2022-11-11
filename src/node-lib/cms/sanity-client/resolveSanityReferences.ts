@@ -13,7 +13,7 @@ const referencedDocumentsSchema = z.array(portableTextReferencedEntrySchema);
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
  */
-export const resolveReferences = async <
+export const resolveSanityReferences = async <
   T extends Record<string, unknown> | Record<string, unknown>[]
 >(
   portableText: T
@@ -33,7 +33,7 @@ export const resolveReferences = async <
     get([...path, "_ref"], portableText),
   ]);
 
-  const queryResults = await sanityGraphqlApi.blogPortableTextReferences({
+  const queryResults = await sanityGraphqlApi.portableTextReferences({
     ids: pathsAndRefs.map(([, id]) => id),
   });
 
@@ -51,7 +51,7 @@ export const resolveReferences = async <
     if (!queryPart) {
       /**
        * If you're getting errors here make sure:
-       * - You've checked you're fetching the correct data in blogPortableTextReferences.gql
+       * - You've checked you're fetching the correct data in portableTextReferences.gql
        * - You've ran gql-codegen:sanity
        * - Checked they're covered in portableTextReferencedEntrySchema
        */

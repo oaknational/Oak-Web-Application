@@ -1,3 +1,41 @@
+# [1.56.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.5...v1.56.0) (2022-11-11)
+
+
+### Bug Fixes
+
+* add missing reference resolving to all cms client methods ([8cc51dc](https://github.com/oaknational/Oak-Web-Application/commit/8cc51dc8faa6d777414d78dafbc71f9a5e3cfe46))
+* don't incorrectly flag unresolved PT references ([4613aca](https://github.com/oaknational/Oak-Web-Application/commit/4613acaa4eb7f20e29df933a6ffef9585d2bd263))
+* rename portableTextReferences to remove old blog prefix ([46fbf95](https://github.com/oaknational/Oak-Web-Application/commit/46fbf95adcd605361857d42a05a991757969602a))
+* undo skipped sanity-client tests, fix related fixtures ([5f06ecf](https://github.com/oaknational/Oak-Web-Application/commit/5f06ecfabfef1c027b8ae1e5319243f69d43b033))
+
+
+### Features
+
+* **cms:** improve error messaging and docs around PT references ([77d2415](https://github.com/oaknational/Oak-Web-Application/commit/77d2415a1e8b44c1d67301cafab9cdcd7c674d8a))
+* resolve PT references for related client methods ([19405db](https://github.com/oaknational/Oak-Web-Application/commit/19405db2aac660ab6d4b063f13fd82acd17a9b7a))
+
+## [1.55.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.4...v1.55.5) (2022-11-11)
+
+
+### Bug Fixes
+
+* chevron up and down now work use them instead of rotate ([91f8aa9](https://github.com/oaknational/Oak-Web-Application/commit/91f8aa90752b22ab999113d7423ff94cce3a04e0))
+
+## [1.55.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.3...v1.55.4) (2022-11-10)
+
+
+### Bug Fixes
+
+* **cms:** allow fixtureGenerationWrapper to work with client side bundle bug ([42fee4a](https://github.com/oaknational/Oak-Web-Application/commit/42fee4afba7e800d5f2853afb890818177078a86))
+* **cms:** reduce size of generated fixture files in generation handler ([8ea79e8](https://github.com/oaknational/Oak-Web-Application/commit/8ea79e83de25ab4b2133ea3cee06259422c08630))
+
+## [1.55.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.2...v1.55.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* ensure ssr code isn't bundled with client js ([45116f9](https://github.com/oaknational/Oak-Web-Application/commit/45116f95207374c4e5ba344e59c5bc3eec3af35f))
+
 ## [1.55.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.1...v1.55.2) (2022-11-09)
 
 

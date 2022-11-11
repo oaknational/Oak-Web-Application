@@ -21,89 +21,37 @@
       "contactSection": {
         "infoPortableText": [
           {
-            "_key": "e0c6f10a0bae",
+            "_key": "015a03dd4e3d",
             "_type": "block",
             "children": [
               {
-                "_key": "16137e0bde570",
+                "_key": "f3c8553003a1",
                 "_type": "span",
-                "marks": [
-                  "strong"
-                ],
+                "marks": ["strong"],
                 "text": "General enquiries"
-              },
-              {
-                "_key": "b582301fb277",
-                "_type": "span",
-                "marks": [],
-                "text": "\nFor general enquiries and help please email help@thenational.academy."
               }
             ],
             "markDefs": [],
-            "style": "normal"
+            "style": "sectionHeading"
           },
           {
-            "_key": "71550ecd4198",
+            "_key": "0d1ab9516235",
             "_type": "block",
             "children": [
               {
-                "_key": "b2e4daa056f3",
+                "_key": "d419492e4832",
                 "_type": "span",
                 "marks": [],
-                "text": "\n"
+                "text": "For general enquiries and help please email "
               },
               {
-                "_key": "ce05d051065d",
+                "_key": "8f050600ffb4",
                 "_type": "span",
-                "marks": [
-                  "strong"
-                ],
-                "text": "Media enquiries"
+                "marks": ["a9633298e610"],
+                "text": "help@thenational.academy"
               },
               {
-                "_key": "189f67954654",
-                "_type": "span",
-                "marks": [],
-                "text": "\nFor media enquiries, please contact media@thenational.academy."
-              }
-            ],
-            "markDefs": [],
-            "style": "normal"
-          },
-          {
-            "_key": "8899b1fff883",
-            "_type": "block",
-            "children": [
-              {
-                "_key": "bcf96460c3ca",
-                "_type": "span",
-                "marks": [],
-                "text": "\n"
-              },
-              {
-                "_key": "813237286594",
-                "_type": "span",
-                "marks": [
-                  "strong"
-                ],
-                "text": "Get support"
-              },
-              {
-                "_key": "2931ce4285fa",
-                "_type": "span",
-                "marks": [],
-                "text": "\nYou’ll find lots of help and support for teachers, schools, pupils and parents in our "
-              },
-              {
-                "_key": "37c37aae53f3",
-                "_type": "span",
-                "marks": [
-                  "9f907ea04c75"
-                ],
-                "text": "help centre"
-              },
-              {
-                "_key": "4b8a6dd13f39",
+                "_key": "e6a5fdc1b5cd",
                 "_type": "span",
                 "marks": [],
                 "text": "."
@@ -111,7 +59,105 @@
             ],
             "markDefs": [
               {
-                "_key": "9f907ea04c75",
+                "_key": "a9633298e610",
+                "_type": "link",
+                "href": "mailto:help@thenational.academy"
+              }
+            ],
+            "style": "normal"
+          },
+          {
+            "_key": "128c1f20cbab",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "1ae26d7eba0b",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "Media enquiries"
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "44a327c14779",
+                "_type": "link",
+                "href": "media@thenational.academy"
+              }
+            ],
+            "style": "sectionHeading"
+          },
+          {
+            "_key": "1617858a10bc",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "d5ae2dc4134a",
+                "_type": "span",
+                "marks": [],
+                "text": "For media enquiries, please contact "
+              },
+              {
+                "_key": "b036676663ca",
+                "_type": "span",
+                "marks": ["ce965f2dca4f"],
+                "text": "media@thenational.academy"
+              },
+              {
+                "_key": "66bfbc949a8a",
+                "_type": "span",
+                "marks": [],
+                "text": "."
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "ce965f2dca4f",
+                "_type": "link",
+                "href": "mailto:media@thenational.academy"
+              }
+            ],
+            "style": "normal"
+          },
+          {
+            "_key": "970d57d633a7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "1cb43606f53d",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "Find help"
+              }
+            ],
+            "markDefs": [],
+            "style": "sectionHeading"
+          },
+          {
+            "_key": "224a7f8818dc",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "8fad5bc4c0ce",
+                "_type": "span",
+                "marks": [],
+                "text": "Search our FAQs and find useful information for teachers, schools, pupils and parents in our "
+              },
+              {
+                "_key": "bb5109084dbe",
+                "_type": "span",
+                "marks": ["f0b094a866c0"],
+                "text": "help centre"
+              },
+              {
+                "_key": "84668c391338",
+                "_type": "span",
+                "marks": [],
+                "text": "."
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "f0b094a866c0",
                 "_type": "link",
                 "href": "https://support.thenational.academy/"
               }
@@ -150,6 +196,7 @@
           "label": "Evolution of Oak",
           "linkType": "internal",
           "external": null,
+          "anchor": null,
           "internal": {
             "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
             "contentType": "newsPost",
@@ -193,6 +240,7 @@
             "label": "Blog about plans",
             "linkType": "internal",
             "external": null,
+            "anchor": null,
             "internal": {
               "id": "17dcad99-c819-4019-b59d-17a35081a1de",
               "contentType": "newsPost",
@@ -244,6 +292,7 @@
             "label": "Evolution of Oak",
             "linkType": "internal",
             "external": null,
+            "anchor": null,
             "internal": {
               "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
               "contentType": "newsPost",
@@ -257,6 +306,7 @@
           "label": "Evolution of Oak",
           "linkType": "internal",
           "external": null,
+          "anchor": null,
           "internal": {
             "id": "d33f03b2-1ba4-4189-a500-67e08989ec55",
             "contentType": "newsPost",

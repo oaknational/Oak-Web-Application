@@ -48,9 +48,7 @@
             {
               "_key": "fa64fc45777e",
               "_type": "span",
-              "marks": [
-                "9fd2686a6b06"
-              ],
+              "marks": ["9fd2686a6b06"],
               "text": "Help Centre."
             }
           ],
@@ -90,9 +88,7 @@
             {
               "_key": "7252b4a8992f",
               "_type": "span",
-              "marks": [
-                "eee02c9e14f3"
-              ],
+              "marks": ["eee02c9e14f3"],
               "text": "this short form"
             },
             {
@@ -138,9 +134,7 @@
             {
               "_key": "eaee1dab3037",
               "_type": "span",
-              "marks": [
-                "a3f5f4a4ff81"
-              ],
+              "marks": ["a3f5f4a4ff81"],
               "text": "help@thenational.academy"
             },
             {
@@ -186,9 +180,7 @@
             {
               "_key": "cadc8e2efc67",
               "_type": "span",
-              "marks": [
-                "50e0a481f13c"
-              ],
+              "marks": ["50e0a481f13c"],
               "text": "media@thenational.academy"
             },
             {
@@ -234,9 +226,7 @@
             {
               "_key": "c41d44446c0f",
               "_type": "span",
-              "marks": [
-                "2fcd430392c3"
-              ],
+              "marks": [],
               "text": "privacy policy"
             },
             {
@@ -246,16 +236,7 @@
               "text": "."
             }
           ],
-          "markDefs": [
-            {
-              "_key": "2fcd430392c3",
-              "_type": "internalLink",
-              "reference": {
-                "_ref": "4fde9be2-3d02-4c2d-8646-63b86469500b",
-                "_type": "reference"
-              }
-            }
-          ],
+          "markDefs": [],
           "style": "normal"
         },
         {
@@ -271,9 +252,7 @@
             {
               "_key": "98c35cc533ed",
               "_type": "span",
-              "marks": [
-                "f8add5720f86"
-              ],
+              "marks": ["f8add5720f86"],
               "text": "privacy@thenational.academy"
             },
             {
