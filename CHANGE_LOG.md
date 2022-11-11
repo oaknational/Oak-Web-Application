@@ -1,3 +1,10 @@
+## [1.55.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.4...v1.55.5) (2022-11-11)
+
+
+### Bug Fixes
+
+* chevron up and down now work use them instead of rotate ([91f8aa9](https://github.com/oaknational/Oak-Web-Application/commit/91f8aa90752b22ab999113d7423ff94cce3a04e0))
+
 ## [1.55.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.3...v1.55.4) (2022-11-10)
 
 
