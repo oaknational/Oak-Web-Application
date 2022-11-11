@@ -30,7 +30,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
   const { blogs, categories, categorySlug, pageData } = props;
 
   const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
+    src: "/images/illustrations/idea-explosion.png",
     alt: "",
   };
 
