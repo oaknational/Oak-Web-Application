@@ -75,9 +75,13 @@ const getSanityClient = () => ({
       return null;
     }
 
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      blogListingPageData
+    );
+
     return parseResults(
       blogListingPageSchema,
-      blogListingPageData,
+      withResolvedReferences,
       previewMode
     );
   },
