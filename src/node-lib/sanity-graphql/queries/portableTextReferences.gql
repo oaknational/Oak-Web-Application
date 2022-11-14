@@ -1,4 +1,4 @@
-query blogPortableTextReferences($ids: [ID!]) {
+query portableTextReferences($ids: [ID!]) {
   allDocument(where: { _id: { in: $ids } }) {
     id: _id
     _type
