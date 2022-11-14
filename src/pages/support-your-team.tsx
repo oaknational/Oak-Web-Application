@@ -51,13 +51,13 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           </Heading>
         </Flex>
         <Flex $justifyContent={"center"}>
-          <Flex>
+          <Flex $flexDirection={["column", "row", "row"]}>
             <BubbleMessage
               variant="Bubble"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
-              $mr={80}
+              $mr={[0, 0, 80]}
             />
             <BubbleMessage
               variant="Bubble2"
