@@ -5,12 +5,14 @@ import Flex, { FlexProps } from "../Flex";
 import OutlineHeading from "../OutlineHeading";
 import Svg from "../Svg";
 import { Heading } from "../Typography";
+import { OakColorName } from "../../styles/theme/types";
 
 type BubbleMessageProps = {
   outlineHeading: string;
   heading: string;
   subHeading: string;
   variant: "Bubble" | "Bubble2";
+  background: OakColorName;
 };
 
 const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
@@ -18,6 +20,7 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
   heading,
   subHeading,
   variant,
+  background,
   ...props
 }) => {
   return (
@@ -30,7 +33,7 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
       $justifyContent={"center"}
       {...props}
     >
-      <Svg name={variant} color="pastelTurqoise" $color={"pupilsPink"} $cover />
+      <Svg name={variant} $color={background} $cover />
       <Flex
         $width={320}
         $alignItems={"center"}

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { SvgProps } from "../getSvgId";
 
-const Bubble2: FC<SvgProps> = (props) => {
+const Bubble2: FC<SvgProps> = (props: SvgProps) => {
   return (
     <symbol viewBox="0 0 392 397" fill="none" {...props}>
       <path

@@ -53,6 +53,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         <Flex $justifyContent={"center"}>
           <Flex $flexDirection={["column", "row", "row"]}>
             <BubbleMessage
+              background={"pastelTurqoise"}
               variant="Bubble"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
@@ -60,6 +61,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               $mr={[0, 0, 80]}
             />
             <BubbleMessage
+              background={"twilight"}
               variant="Bubble2"
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
