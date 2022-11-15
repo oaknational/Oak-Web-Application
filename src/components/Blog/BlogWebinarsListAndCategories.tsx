@@ -11,6 +11,7 @@ import { BlogCategoryPage } from "./BlogCategoryList/BlogCategoryList";
 import useBlogCategoryList from "./BlogCategoryList/useBlogCategoryList";
 import BlogList from "./BlogList";
 import { BlogListItemProps } from "./BlogList/BlogListItem";
+import useBlogList from "./BlogList/useBlogList";
 
 type BlogWebinarsListAndCategoriesProps = Omit<
   BlogListingPageProps,
@@ -24,6 +25,13 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
   const blogCategoriesListProps = useBlogCategoryList();
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
+  const blogListProps = useBlogList({
+    items: blogs,
+    withImage: page === "blog-index" ? false : true,
+    withContainingHrs: true,
+    withPagination: true,
+    withUpcomingItem: true,
+  });
 
   return (
     <Grid $ph={[12, 0]}>
@@ -50,13 +58,7 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
       {/* @todo is there a nicer way to make this 1 column spacer? */}
       <GridArea $order={1} $colSpan={[12, 1]} />
       <GridArea $order={[1, 0]} $colSpan={[12, 7, 8]} $mt={[16, 72]}>
-        <BlogList
-          items={blogs}
-          withContainingHrs
-          withPagination
-          withImage={page === "blog-index" ? false : true}
-          withUpcomingItem
-        />
+        <BlogList {...blogListProps} />
       </GridArea>
     </Grid>
   );

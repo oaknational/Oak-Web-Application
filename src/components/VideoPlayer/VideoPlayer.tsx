@@ -95,6 +95,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
       <MuxPlayer
+        preload="metadata"
         streamType="on-demand"
         ref={mediaElRef}
         envKey={envKey}
@@ -112,7 +113,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         style={{
           aspectRatio: "16/9",
         }}
-
         // onDurationChange={(p) => console.log("duration change", p)}
         // onVolumeChange={(p) => console.log("volumn", p)}
         // onLoadedMetadata={(p) => console.log("onLoadedMetadata", p)}
