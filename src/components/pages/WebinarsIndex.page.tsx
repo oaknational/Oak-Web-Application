@@ -14,6 +14,7 @@ import {
 } from "../../common-lib/cms-types";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
+import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -75,8 +76,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           page={"webinars-index"}
         />
       </MaxWidth>
-      {/* <BlogListJsonLd blogs={props.webinars} /> @todo // needs more data from
-        sanity */}
+      <BlogListJsonLd blogs={props.webinars} />
     </Layout>
   );
 };

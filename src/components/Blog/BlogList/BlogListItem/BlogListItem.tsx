@@ -13,6 +13,7 @@ import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
 import OakImage from "../../../OakImage";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
+import { getVideoThumbnail } from "../../../VideoPlayer/getVideoThumbnail";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -134,9 +135,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
                   $objectPosition="center center"
                   $background={"black"}
                   alt={""}
-                  src={`https://image.mux.com/${mainImage}/thumbnail.png?width=400&height=200&fit_mode=smartcrop&time=${
-                    thumbTime ? thumbTime : 20
-                  }`}
+                  src={getVideoThumbnail(mainImage, thumbTime)}
                 />
               )}
             </AspectRatio>

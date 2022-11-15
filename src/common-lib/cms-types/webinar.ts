@@ -34,6 +34,8 @@ export const webinarPreviewSchema = webinarSchema.pick({
   category: true,
   summaryPortableText: true,
   video: true,
+  seo: true,
+  hosts: true,
 });
 
 export type WebinarPreview = z.infer<typeof webinarPreviewSchema>;
