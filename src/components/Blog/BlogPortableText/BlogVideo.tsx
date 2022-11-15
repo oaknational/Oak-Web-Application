@@ -14,7 +14,7 @@ const BlogVideo = (props: PortableTextComponentProps<Video>) => {
     <Box>
       {props.value && (
         <Flex $position={"relative"} $mt={56}>
-          <CMSVideo video={props.value} />
+          <CMSVideo video={props.value} location="blog" />
         </Flex>
       )}
     </Box>
