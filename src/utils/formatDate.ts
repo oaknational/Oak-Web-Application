@@ -3,6 +3,7 @@ const formatDate = (date: string, options?: Intl.DateTimeFormatOptions) => {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Europe/London",
     ...options,
   });
 };
