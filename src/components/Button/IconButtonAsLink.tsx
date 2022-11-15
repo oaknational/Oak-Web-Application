@@ -23,12 +23,11 @@ type IconButtonAsLinkProps = OakLinkPropsWithoutChildren &
   };
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
-  const transformedProps = transformOakLinkProps(props);
+  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
   const {
     icon,
     iconColorOverride,
     "aria-label": ariaLabel,
-    href,
     disabled,
     iconAnimateTo,
     ...linkProps
@@ -37,7 +36,7 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
   const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
-    <Link href={href} passHref legacyBehavior>
+    <Link {...nextLinkProps} passHref legacyBehavior>
       <StyledNextLink
         {...useButtonAsLinkProps()}
         {...linkProps}
@@ -49,7 +48,6 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
         background={background}
         disabled={disabled}
         aria-disabled={disabled}
-        href={href}
       >
         <IconButtonInner
           icon={icon}

@@ -89,10 +89,10 @@ const StyledNextLink = styled.a<StyleProps>`
  */
 const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
   ({ $hideDefaultFocus, $hoverStyles = [], ...props }, ref) => {
-    const transformedProps = transformOakLinkProps(props);
+    const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
 
     return (
-      <Link href={transformedProps.href} passHref legacyBehavior>
+      <Link {...nextLinkProps} passHref legacyBehavior>
         <StyledNextLink
           ref={ref}
           $hideDefaultFocus={$hideDefaultFocus}
