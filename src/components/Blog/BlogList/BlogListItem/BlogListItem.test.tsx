@@ -21,7 +21,7 @@ const testPropsWebinar: BlogListItemProps = {
   slug: "item-slug",
   contentType: "webinar",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
-  mainImage: "stringvideoplaybackid",
+  thumbnailUrl: "stringvideoplaybackid",
   date: new Date(2022, 7, 22).toISOString(),
 };
 

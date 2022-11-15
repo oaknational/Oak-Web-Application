@@ -14,7 +14,6 @@ import AspectRatio from "../../../AspectRatio";
 import OakImage from "../../../OakImage";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
 import formatDate from "../../../../utils/formatDate";
-import { getVideoThumbnail } from "../../../VideoPlayer/getVideoThumbnail";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -58,11 +57,9 @@ export type BlogListItemProps = {
   category: BlogWebinarCategory;
   date: string;
   withImage?: boolean;
-  thumbTime?: number | null;
-  mainImage?: Image | string | null;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }
-  | { contentType: "webinar"; mainImage?: string | null }
+  | { contentType: "webinar"; thumbnailUrl?: string | null }
 );
 
 /**
@@ -72,17 +69,7 @@ export type BlogListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
-  const {
-    titleTag,
-    title,
-    summary,
-    category,
-    date,
-    withImage,
-    mainImage,
-    thumbTime,
-    contentType,
-  } = props;
+  const { titleTag, title, summary, category, date, withImage } = props;
 
   const {
     containerProps,
@@ -102,7 +89,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       $alignItems={"center"}
       $pa={0}
     >
-      {withImage && mainImage && (
+      {withImage && (
         <Box
           $display={["block", "none", "block"]}
           $position={"relative"}
@@ -113,29 +100,32 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         >
           <BoxBorders
             $zIndex={"inFront"}
-            gapPosition={contentType === "webinar" ? undefined : "bottomRight"}
+            gapPosition={
+              props.contentType === "webinar" ? undefined : "bottomRight"
+            }
           />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
-              {contentType === "blog-post" ? (
+              {props.contentType === "blog-post" && props.mainImage && (
                 <CMSImage
                   fill
                   $objectFit="cover"
                   $objectPosition="center center"
-                  image={mainImage}
+                  image={props.mainImage}
                   sizes="(min-width: 750px) 256px, 100vw"
                   // Explicitly set an empty string for missing alt text in thumbnails
                   // pending a a11y decision on alt for thumbs
-                  alt={mainImage.altText || ""}
+                  alt={props.mainImage.altText || ""}
                 />
-              ) : (
+              )}
+              {props.contentType === "webinar" && props.thumbnailUrl && (
                 <OakImage
                   fill
                   $objectFit="contain"
                   $objectPosition="center center"
                   $background={"black"}
                   alt={""}
-                  src={getVideoThumbnail(mainImage, thumbTime)}
+                  src={props.thumbnailUrl}
                 />
               )}
             </AspectRatio>

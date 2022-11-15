@@ -13,7 +13,6 @@ describe("components/BlogList", () => {
             title: "Item title",
             titleTag: "h3",
             summary: "Item summary",
-            thumbTime: 3,
             slug: "item-slug",
             contentType: "blog-post",
             category: {
@@ -40,7 +39,6 @@ describe("components/BlogList", () => {
             title: "Item title",
             titleTag: "h3",
             summary: "Item summary",
-            thumbTime: 3,
             slug: "item-slug",
             contentType: "blog-post",
             category: {

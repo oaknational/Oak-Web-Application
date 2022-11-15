@@ -18,6 +18,7 @@ import Flex from "../../../components/Flex";
 import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
 import WebinarVideo from "../../../components/Blog/WebinarVideo";
 import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
+import { getVideoThumbnail } from "../../../components/VideoPlayer/getVideoThumbnail";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -38,7 +39,11 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
         ...props.webinar.seo,
         title: webinar.seo?.title || webinar.title,
         description: webinar.seo?.description,
-        imageUrl: "", // @TODO: add image from video frame
+        imageUrl: getVideoThumbnail({
+          video: webinar.video.video.asset,
+          width: 1600,
+          height: 900,
+        }),
       })}
       $background="white"
       breadcrumbs={getBlogWebinarPostBreadcrumbs(
