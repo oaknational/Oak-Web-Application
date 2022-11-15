@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import useVideoTracking from "./useVideoTracking";
+import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 
 const videoStarted = jest.fn();
 const videoPlayed = jest.fn();
@@ -19,7 +19,16 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-const getState = () => ({
+const eventProps = {
+  durationSeconds: 234,
+  isCaptioned: true,
+  isMuted: false,
+  timeElapsedSeconds: 211,
+  videoLocation: "webinar",
+  videoPlaybackId: "12mux67",
+  videoTitle: "Top video",
+};
+const getState: VideoTrackingGetState = () => ({
   duration: 234,
   slug: "something",
   captioned: true,
@@ -27,6 +36,7 @@ const getState = () => ({
   playbackId: "12mux67",
   muted: false,
   timeElapsed: 211,
+  location: "webinar",
 });
 
 describe("useVideoTracking", () => {
@@ -48,19 +58,20 @@ describe("useVideoTracking", () => {
     act(() => {
       result.current.onPlay();
     });
-    expect(videoPlayed).toHaveBeenCalled();
+
+    expect(videoPlayed).toHaveBeenCalledWith(eventProps);
   });
   test("calls track.videoPaused", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
       result.current.onPause();
     });
-    expect(videoPaused).toHaveBeenCalled();
+    expect(videoPaused).toHaveBeenCalledWith(eventProps);
   });
   test("calls track.videoFinished", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     result.current.onEnd();
-    expect(videoFinished).toHaveBeenCalled();
+    expect(videoFinished).toHaveBeenCalledWith(eventProps);
   });
   test("calls correct number of times when a sequence is run", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
