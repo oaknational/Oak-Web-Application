@@ -92,7 +92,9 @@
               {
                 "_key": "7693ff249079",
                 "_type": "span",
-                "marks": ["f44505bc5afc"],
+                "marks": [
+                  "f44505bc5afc"
+                ],
                 "text": "privacy policy"
               },
               {

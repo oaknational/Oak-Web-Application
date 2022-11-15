@@ -8,6 +8,14 @@ fragment WebinarPreviewFields on Webinar {
   video {
     ...Video
   }
+  hosts {
+    id: _id
+    _key
+    name
+    image {
+      ...Image
+    }
+  }
   category {
     title
     slug {

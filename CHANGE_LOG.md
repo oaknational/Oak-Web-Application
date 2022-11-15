@@ -1,3 +1,10 @@
+# [1.57.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.56.0...v1.57.0) (2022-11-15)
+
+
+### Features
+
+* json ld for webinars ([c5dcb20](https://github.com/oaknational/Oak-Web-Application/commit/c5dcb2048476a0af8cf9a3a4727f272c0c4c8c42))
+
 # [1.56.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.5...v1.56.0) (2022-11-11)
 
 

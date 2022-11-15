@@ -14,6 +14,7 @@ const currentPageItems: BlogListProps["currentPageItems"] = [
     contentType: "blog-post",
     category: { title: "Curriculum Planning", slug: "curriculum-planning" },
     date: new Date(2022, 7, 22).toISOString(),
+    thumbTime: 3,
   },
   {
     titleTag: "h2",
@@ -24,6 +25,7 @@ const currentPageItems: BlogListProps["currentPageItems"] = [
     contentType: "webinar",
     category: { title: "Curriculum Planning", slug: "curriculum-planning" },
     date: new Date(2022, 7, 17).toISOString(),
+    thumbTime: 3,
   },
   {
     titleTag: "h2",
@@ -34,6 +36,7 @@ const currentPageItems: BlogListProps["currentPageItems"] = [
     contentType: "blog-post",
     category: { title: "Curriculum Planning", slug: "curriculum-planning" },
     date: new Date(2022, 6, 26).toISOString(),
+    thumbTime: 3,
   },
 ];
 
