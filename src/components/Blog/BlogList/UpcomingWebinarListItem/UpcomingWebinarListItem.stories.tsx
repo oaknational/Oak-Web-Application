@@ -29,7 +29,7 @@ UpcomingWebinarListItem.args = {
   title: "Why are teachers still using Oak?",
   summary:
     "We know schools are facing yet another challenging term, with increasing numbers of staff and pupils isolating due to Covid, isolating due to Covid, isolating due to Covid, isolating due to Covid",
-  date: "2022-03-31T14:30:00.000Z",
+  date: "2052-03-31T14:30:00.000Z",
   slug: "why-oak",
   signUpHref: "https://example.com",
 };
