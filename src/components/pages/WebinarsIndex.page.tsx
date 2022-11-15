@@ -25,8 +25,7 @@ export type WebinarListingPageProps = {
  */
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
-  const webinars = props.webinars.map(webinarToBlogListItem);
-  const { categories, categorySlug, pageData } = props;
+  const { categories, categorySlug, pageData, webinars } = props;
 
   return (
     <PostListing
