@@ -5,9 +5,19 @@ import WebinarDetailPage, {
   SerializedWebinar,
   WebinarPageProps,
 } from "../../../pages/beta/webinars/[webinarSlug]";
-import { mockVideoAsset } from "../../__helpers__/cms";
+import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+
+const webinarPageViewed = jest.fn();
+jest.mock("../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      webinarPageViewed: (...args: unknown[]) => webinarPageViewed(...args),
+    },
+  }),
+}));
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
@@ -95,7 +105,23 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       });
     });
 
-    describe.skip("SEO", () => {
+    it("calls tracking.webinarPageViewed once, with correct props", () => {
+      renderWithProviders(
+        <WebinarDetailPage
+          webinar={testSerializedWebinar}
+          categories={[{ title: "Teaching", slug: "teaching" }]}
+        />
+      );
+
+      expect(webinarPageViewed).toHaveBeenCalledTimes(1);
+      expect(webinarPageViewed).toHaveBeenCalledWith({
+        videoAvailable: true,
+        webinarCategory: "Some category",
+        webinarTitle: "An upcoming webinar",
+      });
+    });
+
+    describe("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
           <WebinarDetailPage
@@ -104,7 +130,17 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
           />
         );
 
-        expect(seo).toEqual({});
+        expect(seo).toEqual({
+          ...mockSeoResult,
+          title: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
+          description: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogTitle: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          ogImage: "",
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        });
       });
     });
   });
