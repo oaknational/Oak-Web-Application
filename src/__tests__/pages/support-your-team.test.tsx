@@ -1,4 +1,4 @@
-import { screen, within } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";
@@ -67,21 +67,8 @@ describe("pages/support-your-team.tsx", () => {
     renderWithProviders(<Support pageData={testSupportPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "Curriculum title"
+      "Support title"
     );
-  });
-
-  it("renders the blog posts", async () => {
-    renderWithProviders(<Support pageData={testSupportPageData} />);
-    const { posts } = testSupportPageData.elements;
-
-    const container = screen.getByTestId("elements-of-curriculum");
-    const links = within(container).getAllByRole("link");
-
-    expect(links).toHaveLength(posts.length);
-
-    expect(links[0]).toHaveAttribute("href", "/blog/some-post");
-    expect(links[1]).toHaveAttribute("href", "/blog/some-other-post");
   });
 
   describe.skip("SEO", () => {
