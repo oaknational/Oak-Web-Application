@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useId } from "react-aria";
+import { FC, useId } from "react";
 
 import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";

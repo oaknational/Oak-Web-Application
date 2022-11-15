@@ -1,5 +1,4 @@
-import { useId } from "react-aria";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useRef, useEffect, useId } from "react";
 
 import Box from "../Box";
 import Button from "../Button";

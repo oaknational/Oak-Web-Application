@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from "react";
+import { MutableRefObject, useRef, useId } from "react";
 import {
   useOverlay,
   usePreventScroll,
@@ -11,7 +11,6 @@ import {
   DialogAria,
   KeyboardResult,
   ModalAria,
-  useId,
 } from "react-aria";
 
 export type DialogModalSize = "fullscreen" | "small";

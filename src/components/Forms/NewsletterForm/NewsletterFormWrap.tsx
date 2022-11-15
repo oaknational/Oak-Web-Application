@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useId } from "react-aria";
+import { FC, useId } from "react";
 
 import Card, { CardProps } from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";

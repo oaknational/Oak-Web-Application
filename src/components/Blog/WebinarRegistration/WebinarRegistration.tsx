@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useId } from "react-aria";
+import { FC, useId } from "react";
 
 import Flex from "../../Flex";
 import { HeadingTag, P } from "../../Typography";

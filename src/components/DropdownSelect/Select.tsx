@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { Ref, useId } from "react";
 import styled, { css } from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
@@ -9,7 +9,6 @@ import {
   useButton,
   mergeProps,
   useFocusRing,
-  useId,
 } from "react-aria";
 
 import Flex, { FlexProps } from "../Flex";
@@ -48,10 +47,6 @@ type SelectProps = {
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
 };
-
-// export const SelectContainer = (props: FlexProps) => (
-//   <Flex {...props} $flexDirection={"column"} $position={"relative"} />
-// );
 
 const SelectContainer = styled(Flex)`
   &:focus-within ${RotatedInputLabel} {
@@ -125,6 +120,9 @@ export function Select<T extends object>(
     ref
   );
 
+  // React.useId because: https://github.com/adobe/react-spectrum/issues/2438
+  labelProps.id = useId();
+
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(triggerProps, ref);
 
@@ -195,6 +193,7 @@ export function Select<T extends object>(
           />
           <SelectButton
             {...mergeProps(buttonProps, focusProps)}
+            aria-labelledby={labelProps.id}
             aria-describedby={props["aria-describedby"]}
             aria-invalid={props["aria-invalid"]}
             ref={ref}
