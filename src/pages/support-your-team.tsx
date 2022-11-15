@@ -24,7 +24,7 @@ export type SupportPageProps = {
 const Support: NextPage<SupportPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $ph={16} $pt={[64, 80]}>
+      <MaxWidth $ph={[0, 16]} $pt={[64, 80]}>
         <SummaryCard
           title={pageData.title}
           heading={pageData.heading}
@@ -79,7 +79,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             iconPosition={"trailing"}
           />
         </Flex>
-        <Grid $mb={56} $rg={56} $cg={[40]}>
+        <Grid $mb={56} $rg={56} $cg={[0, 40]}>
           <GridArea $colSpan={[12, 12, 6]}>
             <TextBlockCard
               background={"teachersPastelYellow"}
@@ -109,7 +109,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
           }}
           imageContainerProps={{
-            $maxHeight: 150,
+            $maxHeight: [null, null, 150],
           }}
         />
         <Flex
@@ -118,7 +118,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $flexDirection={"column"}
           $mt={48}
         >
-          <Heading $font={"heading-4"} $mb={20} tag={"h2"}>
+          <Heading $font={["heading-5", "heading-4"]} $mb={20} tag={"h2"}>
             Start using Oak today
           </Heading>
           <Box $width={360}>

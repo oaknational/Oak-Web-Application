@@ -41,6 +41,7 @@ const TextBlockCardImageCta: FC<
         $alignItems="center"
         $mr={[0, 0, 72]}
         $mb={[12, 12, 0]}
+        $ph={[16, 0]}
         {...imageContainerProps}
       >
         <CardImage imageSrc={image.imageSrc} alt={image.alt} />
