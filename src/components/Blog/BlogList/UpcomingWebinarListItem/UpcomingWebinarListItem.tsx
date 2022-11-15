@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useHover } from "react-aria";
 
 import Flex from "../../../Flex";
 import { Heading, P } from "../../../Typography";
@@ -8,6 +9,7 @@ import ButtonAsLink from "../../../Button/ButtonAsLink";
 import OakLink from "../../../OakLink";
 import formatDate from "../../../../utils/formatDate";
 import { BlogListItemProps } from "../BlogListItem";
+import useClickableCard from "../../../../hooks/useClickableCard";
 
 type UpcomingWebinarListItemProps = BlogListItemProps & {
   signUpHref: string;
@@ -30,18 +32,33 @@ type UpcomingWebinarListItemProps = BlogListItemProps & {
 const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
   const { titleTag, title, date, summary, slug, signUpHref, signUpOnClick } =
     props;
+  const {
+    containerProps,
+    primaryTargetProps,
+    isHovered: cardIsHovered,
+  } = useClickableCard<HTMLAnchorElement>();
+  const { hoverProps: buttonHoverProps, isHovered: buttonIsHovered } = useHover(
+    {}
+  );
   return (
     <Flex
+      {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={["flex-start", "center"]}
       $width={"100%"}
       $font={["body-4", "body-3"]}
     >
-      <Box>
+      <Box $mr="auto">
         <P>Coming soon, {formatDate(date, { month: "short" })}</P>
         <Heading tag={titleTag} $font={["heading-6", "heading-5"]} $mt={8}>
-          <OakLink page={"webinars"} slug={slug} $focusStyles={["underline"]}>
+          <OakLink
+            {...primaryTargetProps}
+            page={"webinars"}
+            slug={slug}
+            $focusStyles={["underline"]}
+            isHovered={cardIsHovered && !buttonIsHovered}
+          >
             {title}
           </OakLink>
         </Heading>
@@ -50,14 +67,15 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         </P>
       </Box>
       <ButtonAsLink
+        {...buttonHoverProps}
         $mt={[28, 0]}
         $ml={[0, 48]}
         background="teachersHighlight"
         htmlAnchorProps={{ onClick: signUpOnClick, target: "_blank" }}
         page={null}
         href={signUpHref}
-        label="Notify me"
-        labelSuffixA11y={`about upcoming webinar: ${title}`}
+        label="Save my place"
+        labelSuffixA11y={`on the webinar: ${title}`}
         icon="ChevronRight"
         $iconPosition="trailing"
       />

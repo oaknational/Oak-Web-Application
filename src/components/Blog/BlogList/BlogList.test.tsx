@@ -1,4 +1,5 @@
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
+import { mockPaginationProps } from "../../Pagination/Pagination.test";
 
 import BlogList from ".";
 
@@ -6,7 +7,8 @@ describe("components/BlogList", () => {
   test("renders the list items", () => {
     const { getByRole } = renderWithProviders(
       <BlogList
-        items={[
+        paginationProps={mockPaginationProps}
+        currentPageItems={[
           {
             title: "Item title",
             titleTag: "h3",
@@ -32,7 +34,8 @@ describe("components/BlogList", () => {
   test("formats the date correctly", () => {
     const { getByText } = renderWithProviders(
       <BlogList
-        items={[
+        paginationProps={mockPaginationProps}
+        currentPageItems={[
           {
             title: "Item title",
             titleTag: "h3",
