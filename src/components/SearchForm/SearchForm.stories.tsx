@@ -6,7 +6,7 @@ import { SearchProvider } from "../../context/Search/SearchContext";
 import Component from "./SearchForm";
 
 export default {
-  title: "Form/Search",
+  title: "Form Fields/Search",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

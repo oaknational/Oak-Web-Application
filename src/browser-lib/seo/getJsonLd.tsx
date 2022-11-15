@@ -12,12 +12,14 @@ import {
 
 import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
 import config from "../../config/browser";
-import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
+import { SerializedWebinarPreview } from "../../components/pages/WebinarsIndex.page";
+import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
+import { resolveOakHref } from "../../common-lib/urls";
 
 const courseProvider = {
-  name: config.get("appName"),
-  url: config.get("appUrl"),
+  name: config.get("seoAppName"),
+  url: config.get("seoAppUrl"),
 };
 
 // Organization
@@ -25,10 +27,10 @@ const courseProvider = {
 export const OrganizationJsonLd = () => {
   return (
     <OrganizationJsonLdNextSeo
-      name={config.get("appName")}
-      url={config.get("appUrl")}
-      sameAs={[config.get("appFacebook"), config.get("appTwitter")]}
-      logo={`${config.get("appUrl")}${config.get("appLogo")}`}
+      name={config.get("seoAppName")}
+      url={config.get("seoAppUrl")}
+      sameAs={[config.get("seoAppFacebook"), config.get("seoAppTwitter")]}
+      logo={`${config.get("seoAppUrl")}${config.get("seoAppLogo")}`}
     />
   );
 };
@@ -64,38 +66,79 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
 
 // Blogs
 
-const blogObject = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
+const blogToArticle = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
   return {
     type: "Article",
-    url: `${config.get("appUrl")}/blog/${blog.slug}`,
-    title: blog.title,
-    images: [blog.mainImage.asset?.url || config.get("appLogo")],
+    url: `${config.get("seoAppUrl")}${resolveOakHref({
+      page: "blog",
+      slug: blog.slug,
+    })}`,
+    title: blog.seo?.title || blog.title,
+    images: [blog.mainImage.asset?.url || config.get("seoAppUrl")],
     datePublished: blog.date,
     dateModified: blog.date,
     authorName: blog.author.name,
-    description: blog.summary,
+    description: blog.seo?.description || blog.summary,
+  };
+};
+
+const webinarToArticle = (
+  webinar: SerializedWebinarPreview
+): ArticleJsonLdProps => {
+  return {
+    type: "Article",
+    url: `${config.get("seoAppUrl")}${resolveOakHref({
+      page: "webinars",
+      slug: webinar.slug,
+    })}`,
+    title: webinar.seo?.title || webinar.title,
+    images: [
+      getVideoThumbnail(
+        webinar.video.video.asset.playbackId,
+        webinar.video.video.asset.thumbTime
+      ) || config.get("seoAppLogo"),
+    ],
+    datePublished: webinar.date,
+    dateModified: webinar.date,
+    authorName: webinar.hosts ? webinar.hosts[0]?.name : "",
+    description: webinar.seo?.description || webinar.title,
   };
 };
 
 type BlogListJsonLdProps = {
-  blogs: SerializedBlogPostPreview[];
+  blogs: SerializedBlogPostPreview[] | SerializedWebinarPreview[];
 };
 
 export const BlogListJsonLd: FC<BlogListJsonLdProps> = ({ blogs }) => {
-  const blogListForJsonLd = blogs.map((blog, index) => ({
-    position: index + 1,
-    courseName: blog.title,
-    ...blogObject(blog),
-  }));
+  const blogListForJsonLd = blogs.map((blog, index) => {
+    const blogObjects =
+      "video" in blog ? webinarToArticle(blog) : blogToArticle(blog);
+    return {
+      position: index + 1,
+      courseName: blog.title,
+      ...blogObjects,
+    };
+  });
 
   return CarouselJsonLd({
     ofType: "course",
     data: blogListForJsonLd,
-
     provider: { ...courseProvider },
   });
 };
 
-export const BlogJsonLd: FC<SerializedBlog> = (props) => {
-  return ArticleJsonLdNextSeo(blogObject(props));
+type BlogJsonLdProps = {
+  blog: SerializedBlogPostPreview | SerializedWebinarPreview;
+};
+
+export const BlogJsonLd: FC<BlogJsonLdProps> = ({ blog }) => {
+  return "video" in blog
+    ? ArticleJsonLdNextSeo({
+        isAccessibleForFree: true,
+        ...webinarToArticle(blog),
+      })
+    : ArticleJsonLdNextSeo({
+        isAccessibleForFree: true,
+        ...blogToArticle(blog),
+      });
 };

@@ -6,26 +6,28 @@ import config from "../../config/browser";
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
-      title={config.get("appName")}
-      description={config.get("appDescription")}
+      title={config.get("seoAppName")}
+      description={config.get("seoAppDescription")}
       openGraph={{
-        url: config.get("appName"),
-        locale: config.get("appLocale"),
-        title: config.get("appName"),
-        description: config.get("appDescription"),
+        url: config.get("seoAppName"),
+        locale: config.get("seoAppLocale"),
+        title: config.get("seoAppName"),
+        description: config.get("seoAppDescription"),
         images: [
           {
-            url: `${config.get("appUrl")}${config.get("appSocialSharingImg")}`,
+            url: `${config.get("seoAppUrl")}${config.get(
+              "seoAppSocialSharingImg"
+            )}`,
             width: 1280,
             height: 630,
-            alt: config.get("appName"),
+            alt: config.get("seoAppName"),
           },
         ],
-        site_name: config.get("appName"),
+        site_name: config.get("seoAppName"),
       }}
       twitter={{
-        handle: config.get("appTwitter"),
-        site: config.get("appTwitter"),
+        handle: config.get("seoAppTwitter"),
+        site: config.get("seoAppTwitter"),
         cardType: "summary_large_image",
       }}
     />

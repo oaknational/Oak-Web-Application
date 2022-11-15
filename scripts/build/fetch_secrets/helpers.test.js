@@ -26,7 +26,6 @@ describe("get_secret_names_from_public_config.js", () => {
       },
       oak: {
         appBaseUrl: "http://localhost:3000",
-        appName: "Oak Web Application",
       },
     });
 

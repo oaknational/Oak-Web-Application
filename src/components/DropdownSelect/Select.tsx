@@ -146,6 +146,7 @@ export function Select<T extends object>(
     <SelectContainer
       $flexDirection={"column"}
       $position={"relative"}
+      $background="white"
       {...containerProps}
     >
       <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
@@ -216,8 +217,7 @@ export function Select<T extends object>(
             </SelectInner>
             <Icon
               $color="black"
-              name={"ChevronDown"}
-              rotate={state.isOpen ? 0 : 180}
+              name={state.isOpen ? "ChevronUp" : "ChevronDown"}
             />
           </SelectButton>
           {state.isOpen && (

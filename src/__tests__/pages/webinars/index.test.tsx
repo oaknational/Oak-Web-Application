@@ -24,6 +24,12 @@ const testWebinarPreview: WebinarPreview = {
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
   video: mockVideoAsset(),
+  hosts: [
+    {
+      id: "1",
+      name: "name",
+    },
+  ],
 };
 
 const testSerializedWebinarPreview: SerializedWebinarPreview = {
@@ -39,6 +45,12 @@ const testWebinarPreview2: WebinarPreview = {
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
   video: mockVideoAsset(),
+  hosts: [
+    {
+      id: "1",
+      name: "name",
+    },
+  ],
 };
 
 const testSerializedWebinarPreview2: SerializedWebinarPreview = {
@@ -48,6 +60,8 @@ const testSerializedWebinarPreview2: SerializedWebinarPreview = {
 
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
 const webinarsListingPage = jest.fn(() => testPageData);
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {

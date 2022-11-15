@@ -159,6 +159,30 @@ async function main() {
       NEXT_PUBLIC_SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost,
     // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
     DISABLE_ISR: process.env.DISABLE_ISR,
+
+    // Seo
+
+    NEXT_PUBLIC_SEO_APP_NAME:
+      process.env.NEXT_PUBLIC_SEO_APP_NAME || oakConfig.seo?.appName,
+    NEXT_PUBLIC_SEO_APP_DESCRIPTION:
+      process.env.NEXT_PUBLIC_SEO_APP_DESCRIPTION ||
+      oakConfig.seo?.appDescription,
+    NEXT_PUBLIC_SEO_APP_LOCALE:
+      process.env.NEXT_PUBLIC_SEO_APP_LOCALE || oakConfig.seo?.appLocale,
+    NEXT_PUBLIC_SEO_APP_URL:
+      process.env.NEXT_PUBLIC_SEO_APP_URL || oakConfig.seo?.appUrl,
+    NEXT_PUBLIC_SEO_APP_LOGO:
+      process.env.NEXT_PUBLIC_SEO_APP_LOGO || oakConfig.seo?.appLogo,
+    NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG:
+      process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG ||
+      oakConfig.seo?.appSocialSharingImg,
+    NEXT_PUBLIC_SEO_APP_FACEBOOK:
+      process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK || oakConfig.seo?.appFacebook,
+    NEXT_PUBLIC_SEO_APP_TWITTER:
+      process.env.NEXT_PUBLIC_SEO_APP_TWITTER || oakConfig.seo?.appTwitter,
+    NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE:
+      process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE ||
+      oakConfig.seo?.appTwitterHandle,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
