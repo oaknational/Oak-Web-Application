@@ -4,6 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
@@ -18,6 +19,7 @@ import Flex from "../../../components/Flex";
 import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
 import WebinarVideo from "../../../components/Blog/WebinarVideo";
 import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -31,6 +33,14 @@ export type WebinarPageProps = {
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   const { webinar, categories } = props;
+  const { track } = useAnalytics();
+  useEffect(() => {
+    track.webinarPageViewed({
+      webinarTitle: webinar.title,
+      webinarCategory: webinar.category.title,
+      videoAvailable: Boolean(webinar.video),
+    });
+  }, [track, webinar]);
 
   return (
     <Layout
