@@ -19,9 +19,8 @@ export type BlogListingPageProps = {
   pageData: BlogListingPage;
 };
 
-const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
+const BlogIndexPage: NextPage<BlogListingPageProps> = (props) => {
   const { blogs, categories, categorySlug, pageData } = props;
-  const blogListItems = blogs.map(blogToBlogListItem);
   return (
     <PostListing
       seo={{
@@ -33,7 +32,7 @@ const BlogListingPage: NextPage<BlogListingPageProps> = (props) => {
       categories={categories}
       categorySlug={categorySlug}
       postsWithCategories={props}
-      posts={blogListItems}
+      posts={blogs}
       variant={{
         slug: "blog",
         title: "Blog",
@@ -53,4 +52,4 @@ export const blogToBlogListItem = (
   mainImage: blog?.mainImage,
 });
 
-export default BlogListingPage;
+export default BlogIndexPage;

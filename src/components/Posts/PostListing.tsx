@@ -6,7 +6,6 @@ import {
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
-import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import {
   CrumbPageVariant,
@@ -16,9 +15,17 @@ import SummaryCard from "../Card/SummaryCard";
 import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
-import { BlogListingPageProps } from "../pages/BlogIndex.page";
-import { WebinarListingPageProps } from "../pages/WebinarsIndex.page";
-// import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
+import {
+  BlogListingPageProps,
+  blogToBlogListItem,
+  SerializedBlogPostPreview,
+} from "../pages/BlogIndex.page";
+import {
+  SerializedWebinarPreview,
+  WebinarListingPageProps,
+  webinarToBlogListItem,
+} from "../pages/WebinarsIndex.page";
+import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 
 type PostListingProps = {
   seo: {
@@ -29,7 +36,7 @@ type PostListingProps = {
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
   postsWithCategories: WebinarListingPageProps | BlogListingPageProps;
-  posts: BlogListItemProps[];
+  posts: SerializedBlogPostPreview[] | SerializedWebinarPreview[];
   variant: {
     slug: CrumbPageVariant;
     title: string;
@@ -53,6 +60,10 @@ const PostListing: FC<PostListingProps> = ({
   const categoryHeading = categories.find(
     (cat) => cat.slug === categorySlug
   )?.title;
+
+  const postListItems = posts.map((post) =>
+    "video" in post ? webinarToBlogListItem(post) : blogToBlogListItem(post)
+  );
 
   return (
     <Layout
@@ -84,11 +95,11 @@ const PostListing: FC<PostListingProps> = ({
 
         <BlogWebinarsListAndCategories
           {...postsWithCategories}
-          blogs={posts}
+          blogs={postListItems}
           page={"blog-index"}
         />
       </MaxWidth>
-      {/* <BlogListJsonLd blogs={posts} /> */}
+      <BlogListJsonLd blogs={posts} />
     </Layout>
   );
 };
