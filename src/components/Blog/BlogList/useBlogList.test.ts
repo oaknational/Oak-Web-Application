@@ -18,7 +18,7 @@ describe("useBlogList.ts", () => {
         totalPages: 0,
         totalResults: 0,
         nextPageHref: { pathname: "", query: { page: "2" } },
-        prevPageHref: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
@@ -34,7 +34,8 @@ describe("useBlogList.ts", () => {
         totalPages: 1,
         totalResults: 1,
         nextPageHref: { pathname: "" },
-        prevPageHref: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
+        upcomingItem: undefined,
       },
     });
   });
@@ -56,7 +57,7 @@ describe("useBlogList.ts", () => {
         totalPages: 1,
         totalResults: 1,
         nextPageHref: { pathname: "" },
-        prevPageHref: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
@@ -80,7 +81,7 @@ describe("useBlogList.ts", () => {
         totalPages: 1,
         totalResults: 1,
         nextPageHref: { pathname: "" },
-        prevPageHref: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
@@ -103,7 +104,7 @@ describe("useBlogList.ts", () => {
         totalPages: 8,
         totalResults: 30,
         nextPageHref: { pathname: "", query: { page: "2" } },
-        prevPageHref: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
