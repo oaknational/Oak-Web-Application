@@ -14,6 +14,7 @@ import {
 } from "../../common-lib/cms-types";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
+import PostListing from "../Posts/PostListing";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -33,53 +34,59 @@ export type WebinarListingPageProps = {
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const webinars = props.webinars.map(webinarToBlogListItem);
   const { categories, categorySlug, pageData } = props;
-  const cardImage = {
-    src: "/images/illustrations/idea-explosion.png",
-    alt: "",
-  };
 
   return (
-    <Layout
-      seoProps={getSeoProps({
-        title: "Webinars",
-        description: "Webinars",
-      })}
-      $background="white"
-      breadcrumbs={getBlogWebinarListBreadcrumbs(
-        categories,
-        categorySlug,
-        "beta/webinars",
-        "Webinars"
-      )}
-    >
-      <MaxWidth $pt={[0, 80, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={
-            categories.find((cat) => cat.slug === categorySlug)?.title ||
-            pageData.heading
-          }
-          summary={pageData.summary}
-          imageProps={cardImage}
-        />
+    // <Layout
+    //   seoProps={getSeoProps({
+    //     title: "Webinars",
+    //     description: "Webinars",
+    //   })}
+    //   $background="white"
+    //   breadcrumbs={getBlogWebinarListBreadcrumbs(
+    //     categories,
+    //     categorySlug,
+    //     "beta/webinars",
+    //     "Webinars"
+    //   )}
+    // >
+    //   <MaxWidth $pt={[0, 80, 80]}>
 
-        <MobileBlogFilters
-          page={"webinars-index"}
-          categoryListProps={{
-            categories,
-            selectedCategorySlug: categorySlug,
-          }}
-        />
+    //     <MobileBlogFilters
+    //       page={"webinars-index"}
+    //       categoryListProps={{
+    //         categories,
+    //         selectedCategorySlug: categorySlug,
+    //       }}
+    //     />
 
-        <BlogWebinarsListAndCategories
-          {...props}
-          blogs={webinars}
-          page={"webinars-index"}
-        />
-      </MaxWidth>
-      {/* <BlogListJsonLd blogs={props.webinars} /> @todo // needs more data from
-        sanity */}
-    </Layout>
+    //     <BlogWebinarsListAndCategories
+    //       {...props}
+    //       blogs={webinars}
+    //       page={"webinars-index"}
+    //     />
+    //   </MaxWidth>
+    //   {/* <BlogListJsonLd blogs={props.webinars} /> @todo // needs more data from
+    //     sanity */}
+    // </Layout>
+    <>
+      <PostListing
+        seo={{
+          title: "Webinarss",
+          description: "Webinars",
+        }}
+        title={pageData.title}
+        heading={pageData.heading}
+        summary={pageData.summary}
+        categories={[]}
+        categorySlug={null}
+        postsWithCategories={props}
+        posts={[]}
+        variant={{
+          slug: "blog",
+          title: "",
+        }}
+      />
+    </>
   );
 };
 

@@ -12,10 +12,12 @@ import { Breadcrumb } from "../Breadcrumbs";
  *
  */
 
+export type CrumbPageVariant = "blog" | "beta/webinars"; //@TODO: remove "beta/"
+
 export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
   currentCategorySlug: string | null,
-  page: "blog" | "beta/webinars", //@TODO: remove "beta/"
+  page: CrumbPageVariant,
   label: string
 ): Breadcrumb[] => [
   { label, href: `/${page}` },
@@ -31,7 +33,7 @@ export const getBlogWebinarListBreadcrumbs = (
 export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
   blog: SerializedBlog | SerializedWebinar,
-  page: "blog" | "beta/webinars", //@TODO: remove "beta/"
+  page: CrumbPageVariant,
   label: string
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
