@@ -1,7 +1,11 @@
 import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import { mockSeo, portableTextFromString } from "../__helpers__/cms";
+import {
+  mockSeo,
+  mockSeoResult,
+  portableTextFromString,
+} from "../__helpers__/cms";
 import Support from "../../pages/support-your-team";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 import { SupportPage } from "../../common-lib/cms-types/supportPage";
@@ -46,7 +50,11 @@ const testSupportPageData: SupportPage = {
     },
   },
 
-  seo: mockSeo(),
+  seo: mockSeo({
+    title: "Support for Schools - Lesson Planning and Curriculum",
+    description:
+      "Our thousands of free curriculum resources help teachers in your school reduce lesson planning workload, build confidence in curriculum design, manage cover lessons and work for absent pupils. Find out more.",
+  }),
 };
 
 const getPageData = jest.fn(() => testSupportPageData);
@@ -75,7 +83,19 @@ describe("pages/support-your-team.tsx", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(<Support pageData={testSupportPageData} />);
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Support for Schools - Lesson Planning and Curriculum | NEXT_PUBLIC_SEO_APP_NAME",
+        description:
+          "Our thousands of free curriculum resources help teachers in your school reduce lesson planning workload, build confidence in curriculum design, manage cover lessons and work for absent pupils. Find out more.",
+        ogTitle:
+          "Support for Schools - Lesson Planning and Curriculum | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription:
+          "Our thousands of free curriculum resources help teachers in your school reduce lesson planning workload, build confidence in curriculum design, manage cover lessons and work for absent pupils. Find out more.",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+      });
     });
   });
 
