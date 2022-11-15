@@ -1,33 +1,3 @@
 {
-  "allDocument": [
-    {
-      "id": "a4e50440-d1a6-499f-a507-e0298d39a5a1",
-      "_type": "newsPost",
-      "contentType": "newsPost",
-      "slug": {
-        "current": "how-to-design-a-subject-curriculum"
-      }
-    },
-    {
-      "id": "c4db75bb-92ef-4a6a-bd8e-e20e26f63cd0",
-      "_type": "video",
-      "contentType": "video",
-      "title": "How to design a unit of study",
-      "video": {
-        "asset": {
-          "assetId": "IR102nZXYZVpIUNtOAuAPbnoKp8Frr01wHvlTg9SwJcs00",
-          "thumbTime": 3.736,
-          "playbackId": "l01Fh2sPaL9BOPWay5CSIV2U1awxQ0001wsuabfPnQMC100"
-        }
-      }
-    },
-    {
-      "id": "cea99f06-77a8-49bf-a608-39b3b572b86d",
-      "_type": "newsPost",
-      "contentType": "newsPost",
-      "slug": {
-        "current": "how-to-refresh-your-curriculum-using-oak-units"
-      }
-    }
-  ]
+  "allDocument": []
 }
