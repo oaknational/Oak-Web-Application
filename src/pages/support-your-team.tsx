@@ -71,7 +71,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            href={"/"}
+            href={"https://classroom.thenational.academy/teachers"}
             label={"Search our lessons"}
             icon={"ArrowRight"}
             iconPosition={"trailing"}
@@ -106,6 +106,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             imageSrc: "/images/illustrations/work-with-us-500.png",
             alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
           }}
+          imageContainerProps={{
+            $maxHeight: 150,
+          }}
         />
         <Flex
           $alignItems={"center"}
@@ -126,7 +129,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              href={"/"}
+              href={"https://classroom.thenational.academy/teachers"}
               label={"Search our lessons"}
               icon={"ArrowRight"}
               iconPosition={"trailing"}
