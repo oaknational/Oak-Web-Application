@@ -34,38 +34,6 @@ export const bodyPortableText = [
     markDefs: [],
     style: "normal",
   },
-  {
-    _key: "8e806e5b4b95",
-    _type: "block",
-    children: [
-      {
-        _key: "29ecca398151",
-        _type: "span",
-        marks: [],
-        text: "Downloadable and editable slides, worksheets and projectable quizzes",
-      },
-    ],
-    level: 1,
-    listItem: "bullet",
-    markDefs: [],
-    style: "normal",
-  },
-  {
-    _key: "957e2f2f16d5",
-    _type: "block",
-    children: [
-      {
-        _key: "80fba6ce1ec1",
-        _type: "span",
-        marks: [],
-        text: "All completely free to access; no impact on your budget",
-      },
-    ],
-    level: 1,
-    listItem: "bullet",
-    markDefs: [],
-    style: "normal",
-  },
 ];
 
 export default {

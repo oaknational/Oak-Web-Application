@@ -71,7 +71,7 @@ describe("pages/support-your-team.tsx", () => {
     );
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(<Support pageData={testSupportPageData} />);
 

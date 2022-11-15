@@ -5,11 +5,6 @@ import Flex from "../../../Flex";
 import Icon from "../../../Icon";
 import { LI, UL } from "../../../Typography";
 
-/**
- * This portable text block will turn bullet points into ticks.
- * ## Usage
- * Pass this into the components prop in the PortableText component.
- */
 export const ULTick: PortableTextComponents = {
   list: {
     bullet: ({ children }) => (
