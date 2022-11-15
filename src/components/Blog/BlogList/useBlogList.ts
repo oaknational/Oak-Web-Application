@@ -16,7 +16,9 @@ export type UseBlogListProps = Omit<BlogListProps, PropsAddedByHook> & {
 const useBlogList = (props: UseBlogListProps): BlogListProps => {
   const { items, ...rest } = props;
 
-  const allUpcomingItems = items.filter(isUpcomingWebinar);
+  const allUpcomingItems = items
+    .filter(isUpcomingWebinar)
+    .sort((a, b) => (a.date < b.date ? -1 : 1));
   // soonest upcoming item
   const upcomingItem = allUpcomingItems[0];
   const pastItems = useMemo(

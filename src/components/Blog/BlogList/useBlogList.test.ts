@@ -68,9 +68,8 @@ describe("useBlogList.ts", () => {
       mockWebinar({ date: "2052-04-14" })
     );
     const pastPost = webinarToBlogListItem(mockWebinar());
-    const { result } = renderHook(() =>
-      useBlogList({ items: [pastPost, firstUpcomingPost, secondUpcomingPost] })
-    );
+    const items = [secondUpcomingPost, firstUpcomingPost, pastPost];
+    const { result } = renderHook(() => useBlogList({ items }));
 
     expect(result.current).toEqual({
       upcomingItem: firstUpcomingPost,
@@ -85,9 +84,27 @@ describe("useBlogList.ts", () => {
       },
     });
   });
-  /**
-   * @todo mock usePagination
-   */
-  test.todo("pagination: returns correct 'currentPageItems'");
-  test.todo("pagination: returns correct 'paginationProps'");
+  test("pagination: returns correct 'paginationProps'", () => {
+    const upcomingPost = webinarToBlogListItem(
+      mockWebinar({ date: "2033-04-14" })
+    );
+    const pastPosts = new Array(30)
+      .fill(null)
+      .map(() => webinarToBlogListItem(mockWebinar()));
+    const items = [upcomingPost, ...pastPosts];
+    const { result } = renderHook(() => useBlogList({ items }));
+
+    expect(result.current).toEqual({
+      upcomingItem: upcomingPost,
+      currentPageItems: pastPosts.slice(0, 4),
+      paginationProps: {
+        pageSize: 4,
+        currentPage: 1,
+        totalPages: 8,
+        totalResults: 30,
+        nextPageHref: { pathname: "", query: { page: "2" } },
+        prevPageHref: { pathname: "" },
+      },
+    });
+  });
 });
