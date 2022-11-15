@@ -390,16 +390,19 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
   }));
 
   // @todo add to posts array and un-comment when webinars are finshed
-  // const webinarResults = await CMSClient.webinars({
-  //   previewMode: isPreviewMode,
-  //   limit: 5,
-  // });
-  // const webinars = webinarResults.map((webinar) => ({
-  //   ...webinar,
-  //   type: "webinar" as const,
-  // }));
+  const webinarResults = await CMSClient.webinars({
+    previewMode: isPreviewMode,
+    limit: 5,
+  });
+  const webinars = webinarResults.map((webinar) => ({
+    ...webinar,
+    type: "webinar" as const,
+  }));
 
-  const posts = [...blogPosts].sort(sortByDate).slice(0, 4).map(serializeDate);
+  const posts = [...blogPosts, ...webinars]
+    .sort(sortByDate)
+    .slice(0, 4)
+    .map(serializeDate);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {
