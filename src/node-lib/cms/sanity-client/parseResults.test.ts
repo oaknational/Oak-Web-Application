@@ -49,6 +49,14 @@ describe("cms/sanity-client/parseResults", () => {
       expect(parseResults(schema, { foo: true })).toEqual({ foo: true });
     });
 
+    it("throws when invalid data is provided for schema", () => {
+      const schema = z.object({ foo: z.boolean() });
+
+      expect(() => {
+        parseResults(schema, { foo: "true" });
+      }).toThrow();
+    });
+
     it("throws on invalid list items without isPreviewMode", () => {
       const schema = z.array(z.object({ foo: z.boolean() }));
       const data = [{ foo: null }, { foo: true }];

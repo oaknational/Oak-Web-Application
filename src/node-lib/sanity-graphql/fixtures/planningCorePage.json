@@ -34,7 +34,7 @@
                   "_key": "44e213fca06f0",
                   "_type": "span",
                   "marks": [],
-                  "text": "Help your pupils retrieve or activate prior knowledge with our intro quizzes. Project them in your classroom, or print them off as worksheets to use in class or as homework."
+                  "text": "Help your pupils retrieve or activate prior knowledge with our intro quizzes. Project them in your classroom, or print them off to use in class or as homework."
                 }
               ],
               "markDefs": [],
@@ -132,10 +132,13 @@
         "label": "Find teacher resources",
         "linkType": "internal",
         "external": "https://foo.com",
+        "anchor": null,
         "internal": {
           "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
           "contentType": "policyPage",
-          "slug": { "current": "privacy-policy" }
+          "slug": {
+            "current": "privacy-policy"
+          }
         }
       },
       "stepsHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
@@ -239,6 +242,7 @@
         "label": "Search our lessons",
         "linkType": "internal",
         "external": "https://google.com",
+        "anchor": null,
         "internal": {
           "id": "planningCorePage",
           "contentType": "planningCorePage"
@@ -269,14 +273,17 @@
           "label": "null",
           "linkType": "external",
           "external": "https://thenational.academy",
+          "anchor": null,
           "internal": null
         },
         "image": {
           "altText": null,
+          "isPresentational": null,
           "asset": {
             "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
             "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
-          }
+          },
+          "hotspot": null
         },
         "video": {
           "title": "Using Oak for quick and meaningful cover",
@@ -313,20 +320,24 @@
           "label": "I shouldn't exist",
           "linkType": "external",
           "external": "https://thenational.academy",
+          "anchor": null,
           "internal": null
         },
         "image": {
           "altText": null,
+          "isPresentational": null,
           "asset": {
             "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
             "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
-          }
+          },
+          "hotspot": null
         },
         "video": null
       },
       "seo": {
-        "title": "title",
-        "description": "description"
+        "title": "Free Lesson Planning Resources For Teachers",
+        "description": "Our Collection Of Adaptable Lesson Planning Resources Are Made For Teachers - Browse By subject, Key Stage From Reception To Year 11 And Download For Free.",
+        "canonicalURL": null
       }
     }
   ]

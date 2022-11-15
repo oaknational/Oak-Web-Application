@@ -1,12 +1,6 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import { decorateWithIsr } from "../../node-lib/isr";
 import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
 import Layout from "../../components/Layout";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
@@ -14,14 +8,13 @@ import { getBlogWebinarListBreadcrumbs } from "../../components/Breadcrumbs/getB
 import MobileBlogFilters from "../../components/MobileBlogFilters";
 import SummaryCard from "../../components/Card/SummaryCard";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import CMSClient from "../../node-lib/cms";
 import {
   BlogWebinarCategory,
   WebinarPreview,
 } from "../../common-lib/cms-types";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
-import { serializeDate } from "../../utils/serializeDate";
+import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -83,8 +76,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           page={"webinars-index"}
         />
       </MaxWidth>
-      {/* <BlogListJsonLd blogs={props.webinars} /> @todo // needs more data from
-        sanity */}
+      <BlogListJsonLd blogs={props.webinars} />
     </Layout>
   );
 };
@@ -102,68 +94,5 @@ export const webinarToBlogListItem = (
   mainImage: webinar.video.video.asset.playbackId,
   thumbTime: webinar.video.video.asset.thumbTime,
 });
-
-export const getStaticProps: GetStaticProps<
-  WebinarListingPageProps,
-  { categorySlug?: string }
-> = async (context) => {
-  const isPreviewMode = context.preview === true;
-
-  const pageData = await CMSClient.webinarsListingPage({
-    previewMode: isPreviewMode,
-  });
-
-  if (!pageData) {
-    return {
-      notFound: true,
-    };
-  }
-  const webinarResults = await CMSClient.webinars({
-    previewMode: isPreviewMode,
-  });
-
-  const categorySlug = context.params?.categorySlug || null;
-  const webinars = webinarResults.map(serializeDate).filter((webinar) => {
-    if (categorySlug) {
-      return webinar.category.slug === categorySlug;
-    }
-    return true;
-  });
-
-  const webinarCategories = [
-    ...new Map(
-      webinarResults
-        .map((webinar) => webinar.category)
-        .map((item) => [item["slug"], item])
-    ).values(),
-  ].sort((a, b) => (a.title < b.title ? -1 : 1));
-
-  const results: GetStaticPropsResult<WebinarListingPageProps> = {
-    props: {
-      webinars,
-      categories: webinarCategories,
-      categorySlug: categorySlug,
-      pageData,
-    },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
-};
-
-type URLParams = { categorySlug: string };
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const blogResults = await CMSClient.webinars();
-
-  const paths = blogResults.map((blogResult) => ({
-    params: {
-      categorySlug: blogResult.category.slug,
-    },
-  }));
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
 
 export default WebinarListingPage;

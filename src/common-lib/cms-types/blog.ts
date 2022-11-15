@@ -36,6 +36,7 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
   category: true,
   date: true,
   mainImage: true,
+  seo: true,
 });
 
 export type BlogPostPreview = z.infer<typeof blogPostPreviewSchema>;

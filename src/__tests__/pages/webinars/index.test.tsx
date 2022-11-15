@@ -24,6 +24,12 @@ const testWebinarPreview: WebinarPreview = {
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
   video: mockVideoAsset(),
+  hosts: [
+    {
+      id: "1",
+      name: "name",
+    },
+  ],
 };
 
 const testSerializedWebinarPreview: SerializedWebinarPreview = {
@@ -39,6 +45,12 @@ const testWebinarPreview2: WebinarPreview = {
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
   video: mockVideoAsset(),
+  hosts: [
+    {
+      id: "1",
+      name: "name",
+    },
+  ],
 };
 
 const testSerializedWebinarPreview2: SerializedWebinarPreview = {

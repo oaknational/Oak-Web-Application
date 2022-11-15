@@ -1,19 +1,11 @@
-import { uniqBy } from "lodash/fp";
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { NextPage } from "next";
 
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import CMSClient from "../../node-lib/cms";
 import {
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
-import { decorateWithIsr } from "../../node-lib/isr";
 import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
 import { getBlogWebinarListBreadcrumbs } from "../Breadcrumbs/getBreadcrumbs";
 import SummaryCard from "../Card/SummaryCard";
@@ -21,7 +13,6 @@ import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
-import { serializeDate } from "../../utils/serializeDate";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -98,57 +89,5 @@ export const blogToBlogListItem = (
   date: blog.date,
   mainImage: blog?.mainImage,
 });
-
-export const getStaticProps: GetStaticProps<
-  BlogListingPageProps,
-  // @todo is below typesafe?
-  { categorySlug?: string }
-> = async (context) => {
-  const isPreviewMode = context.preview === true;
-
-  const blogResults = await CMSClient.blogPosts({
-    previewMode: isPreviewMode,
-  });
-
-  const blogCategories = uniqBy(
-    "title",
-    blogResults.map((blogResult) => blogResult.category)
-  ).sort((a, b) => (a.title < b.title ? -1 : 1));
-
-  const categorySlug = context.params?.categorySlug || null;
-  const blogs = blogResults.map(serializeDate).filter((blog) => {
-    if (categorySlug) {
-      return blog.category.slug === categorySlug;
-    }
-    return true;
-  });
-
-  const results: GetStaticPropsResult<BlogListingPageProps> = {
-    props: {
-      blogs,
-      categories: blogCategories,
-      categorySlug,
-    },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-
-  return resultsWithIsr;
-};
-
-type URLParams = { categorySlug: string };
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const blogResults = await CMSClient.blogPosts();
-
-  const paths = blogResults.map((blogResult) => ({
-    params: {
-      categorySlug: blogResult.category.slug,
-    },
-  }));
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
 
 export default BlogListingPage;
