@@ -49,7 +49,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
       $width={"100%"}
       $font={["body-4", "body-3"]}
     >
-      <Box>
+      <Box $mr="auto">
         <P>Coming soon, {formatDate(date, { month: "short" })}</P>
         <Heading tag={titleTag} $font={["heading-6", "heading-5"]} $mt={8}>
           <OakLink
