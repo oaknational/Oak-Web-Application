@@ -114,7 +114,10 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $mr={[0, 32]}
           $mb={[32, 0]}
         >
-          <BoxBorders $zIndex={"inFront"} gapPosition="bottomRight" />
+          <BoxBorders
+            $zIndex={"inFront"}
+            gapPosition={contentType === "webinar" ? undefined : "bottomRight"}
+          />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
               {contentType === "blog-post" ? (
