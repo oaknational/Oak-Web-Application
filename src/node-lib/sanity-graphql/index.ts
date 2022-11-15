@@ -2,7 +2,12 @@ import { GraphQLClient } from "graphql-request";
 
 import serverConfig from "../../config/server";
 
-import { getSdk } from "./generated/sdk";
+import {
+  // AllBlogPostsQuery,
+  // AllWebinarsQuery,
+  getSdk,
+  // SdkFunctionWrapper,
+} from "./generated/sdk";
 
 const getGraphqlEndpoint = (opts: {
   projectId: string;
@@ -34,15 +39,44 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
  *
  * n.b Make sure tests aren't running when this happens
  */
-// const fixtureGenerationWrapper: SdkFunctionWrapper = async (action, operationName) => {
+// const fixtureGenerationWrapper: SdkFunctionWrapper = async (
+//   action,
+//   operationName
+// ) => {
 //   const response = await action();
-//   writeFileSync(
-//     `./src/node-lib/sanity-graphql/fixtures/${operationName}.json`,
-//     JSON.stringify(response, null, 2)
-//   );
+
+//   let trimmedResponse = response;
+
+//   // Bit of a hack to keep fixture size down
+//   if ("allWebinar" in response) {
+//     trimmedResponse = {
+//       allWebinar: (response as AllWebinarsQuery).allWebinar
+//         .slice(0, 2)
+//         .map((webinar) => {
+//           return {
+//             ...webinar,
+//             summary: webinar.summaryPortableText.slice(0, 3),
+//           };
+//         }),
+//     };
+//   } else if ("allNewsPost" in response) {
+//     trimmedResponse = {
+//       allNewsPost: (response as AllBlogPostsQuery).allNewsPost.slice(0, 2),
+//     };
+//   }
+
+//   import("fs").then((fs) => {
+//     fs.writeFileSync(
+//       `./src/node-lib/sanity-graphql/fixtures/${operationName}.json`,
+//       JSON.stringify(trimmedResponse, null, 2)
+//     );
+//   });
+
 //   return response;
 // };
 
-const sanityGraphqlApi = getSdk(sanityGraphqlClient);
+const sanityGraphqlApi = getSdk(
+  sanityGraphqlClient /*, fixtureGenerationWrapper */
+);
 
 export default sanityGraphqlApi;

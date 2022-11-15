@@ -7,6 +7,7 @@ import landingPageBySlugFixture from "../../sanity-graphql/fixtures/landingPageB
 import { videoSchema } from "../../../common-lib/cms-types/base";
 
 import { parseResults } from "./parseResults";
+import { resolveSanityReferences } from "./resolveSanityReferences";
 
 import getSanityClient from "./";
 
@@ -16,7 +17,22 @@ import getSanityClient from "./";
  */
 jest.mock("../../sanity-graphql");
 
-jest.mock("./parseResults");
+jest.mock("./parseResults", () => {
+  const original = jest.requireActual("./parseResults");
+  return {
+    __esModule: true,
+    parseResults: jest.fn(original.parseResults),
+  };
+});
+
+jest.mock("./resolveSanityReferences", () => {
+  return {
+    __esModule: true,
+    // Return self without transform, bypassing any errors caused by
+    // dodgy mocks
+    resolveSanityReferences: jest.fn((x) => x),
+  };
+});
 
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
   typeof sanityGraphqlApi
@@ -102,6 +118,13 @@ describe("cms/sanity-client", () => {
      *
      * methodName: the name of the function on CMSClient
      * mockMethodName: the name of a method on sanityGraphqlApi that's been mocked
+     *
+     * n.b. if some of these fail with an invalid reference error after
+     * re-generating fixtures, look for a `markDefs` array in the JSON with
+     * a `_type: "reference"` and delete the markDef and associated ID above it `"marks": ["5ba56aeccae2"]`
+     *
+     * This is because there's only one fixture file for `portableTextReferences`
+     * shared between all files that depend on it
      */
     const singletonMethods = [
       ["homepage", "homepage"],
@@ -129,54 +152,57 @@ describe("cms/sanity-client", () => {
       ["landingPageBySlug", "landingPageBySlug"],
     ] as const;
 
-    describe.only.each(singletonMethods)(
-      `.%s()`,
-      (methodName, mockMethodName) => {
-        const mockMethod = mockSanityGraphqlApi[mockMethodName];
-        const clientMethod = client[methodName];
+    describe.each(singletonMethods)(`.%s()`, (methodName, mockMethodName) => {
+      const mockMethod = mockSanityGraphqlApi[mockMethodName];
+      const clientMethod = client[methodName];
 
-        it("returns null when no content is found", async () => {
-          mockMethod.mockResolvedValueOnce({} as never);
-          const res = await clientMethod();
-          expect(res).toBeNull();
-        });
+      it("returns null when no content is found", async () => {
+        mockMethod.mockResolvedValueOnce({} as never);
+        const res = await clientMethod();
+        expect(res).toBeNull();
+      });
 
-        it("does not fetch draft content by default", async () => {
-          await clientMethod();
-          expect(mockMethod).toBeCalledWith(
-            expect.objectContaining({ isDraftFilter: { is_draft: false } })
-          );
-        });
+      it("attempts to resolve embedded portable text references", async () => {
+        await clientMethod();
 
-        it("fetches draft content when previewMode flag is passed", async () => {
-          await clientMethod({ previewMode: true });
+        expect(resolveSanityReferences).toBeCalled();
+      });
 
-          expect(mockMethod).toBeCalledWith(
-            expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
-          );
-        });
+      it("does not fetch draft content by default", async () => {
+        await clientMethod();
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: false } })
+        );
+      });
 
-        it("passes previewMode flag to parseResults when false", async () => {
-          await clientMethod();
+      it("fetches draft content when previewMode flag is passed", async () => {
+        await clientMethod({ previewMode: true });
 
-          expect(parseResults).toBeCalledWith(
-            expect.anything(),
-            expect.anything(),
-            undefined
-          );
-        });
+        expect(mockMethod).toBeCalledWith(
+          expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
+        );
+      });
 
-        it("passes previewMode flag to parseResults when true", async () => {
-          await clientMethod({ previewMode: true });
+      it("passes previewMode flag to parseResults when false", async () => {
+        await clientMethod();
 
-          expect(parseResults).toBeCalledWith(
-            expect.anything(),
-            expect.anything(),
-            true
-          );
-        });
-      }
-    );
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          /* isPreviewMode: */ undefined
+        );
+      });
+
+      it("passes previewMode flag to parseResults when true", async () => {
+        await clientMethod({ previewMode: true });
+
+        expect(parseResults).toBeCalledWith(
+          expect.anything(),
+          expect.anything(),
+          /* isPreviewMode: */ true
+        );
+      });
+    });
 
     describe.each(listMethods)(`.%s()`, (methodName, mockMethodName) => {
       const mockMethod = mockSanityGraphqlApi[mockMethodName];
@@ -209,7 +235,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          undefined
+          /* isPreviewMode: */ undefined
         );
       });
 
@@ -219,7 +245,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          true
+          /* isPreviewMode: */ true
         );
       });
     });
@@ -228,10 +254,16 @@ describe("cms/sanity-client", () => {
       const mockMethod = mockSanityGraphqlApi[mockMethodName];
       const clientMethod = client[methodName];
 
-      it("returns null/ when no content is found", async () => {
+      it("returns null when no content is found", async () => {
         mockMethod.mockResolvedValueOnce({} as never);
         const res = await clientMethod("some-slug");
         expect(res).toBeNull();
+      });
+
+      it("attempts to resolve embedded portable text references", async () => {
+        await clientMethod("some-slug");
+
+        expect(resolveSanityReferences).toBeCalled();
       });
 
       it("does not fetch draft content by default", async () => {
@@ -255,7 +287,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          undefined
+          /* isPreviewMode: */ undefined
         );
       });
 
@@ -265,7 +297,7 @@ describe("cms/sanity-client", () => {
         expect(parseResults).toBeCalledWith(
           expect.anything(),
           expect.anything(),
-          true
+          /* isPreviewMode: */ true
         );
       });
     });

@@ -21,89 +21,37 @@
       "contactSection": {
         "infoPortableText": [
           {
-            "_key": "e0c6f10a0bae",
+            "_key": "015a03dd4e3d",
             "_type": "block",
             "children": [
               {
-                "_key": "16137e0bde570",
+                "_key": "f3c8553003a1",
                 "_type": "span",
-                "marks": [
-                  "strong"
-                ],
+                "marks": ["strong"],
                 "text": "General enquiries"
-              },
-              {
-                "_key": "b582301fb277",
-                "_type": "span",
-                "marks": [],
-                "text": "\nFor general enquiries and help please email help@thenational.academy."
               }
             ],
             "markDefs": [],
-            "style": "normal"
+            "style": "sectionHeading"
           },
           {
-            "_key": "71550ecd4198",
+            "_key": "0d1ab9516235",
             "_type": "block",
             "children": [
               {
-                "_key": "b2e4daa056f3",
+                "_key": "d419492e4832",
                 "_type": "span",
                 "marks": [],
-                "text": "\n"
+                "text": "For general enquiries and help please email "
               },
               {
-                "_key": "ce05d051065d",
+                "_key": "8f050600ffb4",
                 "_type": "span",
-                "marks": [
-                  "strong"
-                ],
-                "text": "Media enquiries"
+                "marks": ["a9633298e610"],
+                "text": "help@thenational.academy"
               },
               {
-                "_key": "189f67954654",
-                "_type": "span",
-                "marks": [],
-                "text": "\nFor media enquiries, please contact media@thenational.academy."
-              }
-            ],
-            "markDefs": [],
-            "style": "normal"
-          },
-          {
-            "_key": "8899b1fff883",
-            "_type": "block",
-            "children": [
-              {
-                "_key": "bcf96460c3ca",
-                "_type": "span",
-                "marks": [],
-                "text": "\n"
-              },
-              {
-                "_key": "813237286594",
-                "_type": "span",
-                "marks": [
-                  "strong"
-                ],
-                "text": "Get support"
-              },
-              {
-                "_key": "2931ce4285fa",
-                "_type": "span",
-                "marks": [],
-                "text": "\nYou’ll find lots of help and support for teachers, schools, pupils and parents in our "
-              },
-              {
-                "_key": "37c37aae53f3",
-                "_type": "span",
-                "marks": [
-                  "9f907ea04c75"
-                ],
-                "text": "help centre"
-              },
-              {
-                "_key": "4b8a6dd13f39",
+                "_key": "e6a5fdc1b5cd",
                 "_type": "span",
                 "marks": [],
                 "text": "."
@@ -111,7 +59,105 @@
             ],
             "markDefs": [
               {
-                "_key": "9f907ea04c75",
+                "_key": "a9633298e610",
+                "_type": "link",
+                "href": "mailto:help@thenational.academy"
+              }
+            ],
+            "style": "normal"
+          },
+          {
+            "_key": "128c1f20cbab",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "1ae26d7eba0b",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "Media enquiries"
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "44a327c14779",
+                "_type": "link",
+                "href": "media@thenational.academy"
+              }
+            ],
+            "style": "sectionHeading"
+          },
+          {
+            "_key": "1617858a10bc",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "d5ae2dc4134a",
+                "_type": "span",
+                "marks": [],
+                "text": "For media enquiries, please contact "
+              },
+              {
+                "_key": "b036676663ca",
+                "_type": "span",
+                "marks": ["ce965f2dca4f"],
+                "text": "media@thenational.academy"
+              },
+              {
+                "_key": "66bfbc949a8a",
+                "_type": "span",
+                "marks": [],
+                "text": "."
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "ce965f2dca4f",
+                "_type": "link",
+                "href": "mailto:media@thenational.academy"
+              }
+            ],
+            "style": "normal"
+          },
+          {
+            "_key": "970d57d633a7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "1cb43606f53d",
+                "_type": "span",
+                "marks": ["strong"],
+                "text": "Find help"
+              }
+            ],
+            "markDefs": [],
+            "style": "sectionHeading"
+          },
+          {
+            "_key": "224a7f8818dc",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "8fad5bc4c0ce",
+                "_type": "span",
+                "marks": [],
+                "text": "Search our FAQs and find useful information for teachers, schools, pupils and parents in our "
+              },
+              {
+                "_key": "bb5109084dbe",
+                "_type": "span",
+                "marks": ["f0b094a866c0"],
+                "text": "help centre"
+              },
+              {
+                "_key": "84668c391338",
+                "_type": "span",
+                "marks": [],
+                "text": "."
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "f0b094a866c0",
                 "_type": "link",
                 "href": "https://support.thenational.academy/"
               }
@@ -154,9 +200,15 @@
             "asset": {
               "_id": "image-17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/17e0535120276d1b34353c09ad27d0f40cf3c6af-4024x6048.jpg"
+            },
+            "hotspot": {
+              "x": 0.5,
+              "y": 0.32358671586715876,
+              "width": 1,
+              "height": 0.6471734317343175
             }
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "fd6332d3007d",
               "_type": "block",
@@ -199,9 +251,10 @@
             "asset": {
               "_id": "image-5270e91716484e744583b19fb06b8123f5c03dab-1566x1908-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/5270e91716484e744583b19fb06b8123f5c03dab-1566x1908.jpg"
-            }
+            },
+            "hotspot": null
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "cc63e6291cf5",
               "_type": "block",
@@ -210,7 +263,7 @@
                   "_key": "19bb8462f8d10",
                   "_type": "span",
                   "marks": [],
-                  "text": "Cassie is the CEO of The Charter Schools Educational Trust in South London. The Trust leads a teaching school hub, Education Endowment Foundation Research School, a behaviour hub and a flexible working ambassador school. Until 2021, she was the headteacher of Charles Dickens Primary in Southwark. Cassie has been an Ofsted inspector, a National Leader of Education and was awarded an OBE in 2021 for services to education. Cassie is also a member of the advisory board for the London Regional Schools Commissioner and a governor for two South London schools."
+                  "text": "Cassie is the CEO of the Charter Schools Educational Trust in South London. The Trust leads a teaching school hub, Education Endowment Foundation Research School, a behaviour hub and a flexible working ambassador school. Until 2021, she was the headteacher of Charles Dickens Primary in Southwark. Cassie has been an Ofsted inspector, a National Leader of Education and was awarded an OBE in 2021 for services to education. Cassie is also a member of the advisory board for the London Regional Schools Commissioner and a governor for two south London schools."
                 }
               ],
               "markDefs": [],
@@ -230,9 +283,10 @@
             "asset": {
               "_id": "image-ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728-png",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/ae507d3e43c24385f78f46cf63054e7659d729eb-1728x1728.png"
-            }
+            },
+            "hotspot": null
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "3a10173313cb",
               "_type": "block",
@@ -241,7 +295,7 @@
                   "_key": "d8a8c26685d40",
                   "_type": "span",
                   "marks": [],
-                  "text": "Ramender is an Assistant Principal and Head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford before embarking on her PGCSE and taking up a role as English Teacher. In addition to her teaching commitments, Ramender is also an Assistant Lead Examiner for AQA, CPD author and Virtual Community Trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North."
+                  "text": "Ramender is assistant principal and head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford. In addition to her teaching commitments, Ramender is also an assistant lead examiner for AQA, CPD author and virtual community trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North."
                 }
               ],
               "markDefs": [],
@@ -261,9 +315,10 @@
             "asset": {
               "_id": "image-af2702688cc146771e68356554906c6c47a90242-481x640-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/af2702688cc146771e68356554906c6c47a90242-481x640.jpg"
-            }
+            },
+            "hotspot": null
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "3ae0e57ef519",
               "_type": "block",
@@ -272,7 +327,7 @@
                   "_key": "39f9c702b14a0",
                   "_type": "span",
                   "marks": [],
-                  "text": "Sean was a teacher, senior leader and associate adviser for Cambridgeshire before joining Ofsted as Her Majesty’s Inspector in 2003. In 2015 he became Ofsted's National Director - Education, a role he held until 2021. Sean has a BSc in Physics from Warwick University and an MA in Early Modern History from Birkbeck."
+                  "text": "Sean was a teacher, senior leader and associate adviser for Cambridgeshire before joining Ofsted as Her Majesty’s Inspector in 2003. In 2015 he became Ofsted's national director of education, a role he held until 2021. Sean has a BSc in Physics from Warwick University and an MA in Early Modern History from Birkbeck."
                 }
               ],
               "markDefs": [],
@@ -284,7 +339,7 @@
         {
           "id": "2a9d2a0c-1545-47f2-8ada-25d1f82736af",
           "name": "Louise Kirby",
-          "role": null,
+          "role": "Board member",
           "slug": {
             "current": "louise-thompson"
           },
@@ -292,9 +347,10 @@
             "asset": {
               "_id": "image-564618e0efbd0051ce433e9f4903bb457af584a8-451x640-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/564618e0efbd0051ce433e9f4903bb457af584a8-451x640.jpg"
-            }
+            },
+            "hotspot": null
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "25ff8ed1418a",
               "_type": "block",
@@ -303,7 +359,7 @@
                   "_key": "0b897c390c830",
                   "_type": "span",
                   "marks": [],
-                  "text": "Louise is an experienced governance, risk and compliance professional and a qualified Chartered Accountant. She works with a broad range of organisations and helps them to design and implement effective governance structures and to understand and manage their exposure to risk. Her experience has been gained across multiple sectors, including the private and public sector. "
+                  "text": "Louise is an experienced governance, risk and compliance professional and a qualified chartered accountant. She works with a broad range of organisations and helps them to design and implement effective governance structures and to understand and manage their exposure to risk. Her experience has been gained across multiple sectors, including the private and public sector. "
                 }
               ],
               "markDefs": [],
@@ -323,9 +379,15 @@
             "asset": {
               "_id": "image-abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/abbda4a3f28b97c71e7fd325a4b1b6afb3d0268d-465x310.jpg"
+            },
+            "hotspot": {
+              "x": 0.5838709677419355,
+              "y": 0.5,
+              "width": 0.6559139784946248,
+              "height": 1
             }
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "757099afc3d4",
               "_type": "block",
@@ -334,7 +396,7 @@
                   "_key": "0896172c1d840",
                   "_type": "span",
                   "marks": [],
-                  "text": "Henry de Zoete is an entrepreneur and alumnus of renowned Silicon Valley start-up accelerator, Y Combinator. In 2014, he co-founded The Big Deal, which uses tech to facilitate collective bargaining for consumers. He later went on to establish Look After My Bills, a tech start-up that became the largest auto-switching service in the UK, saving families money on their gas and electricity. After Henry raised global investment and secured the best deal in the history of BBC’s Dragons’ Den, Look After My Bills was acquired by GoCo Group PLC."
+                  "text": "Henry de Zoete is an entrepreneur and alumnus of Silicon Valley start-up accelerator, Y Combinator. In 2014, he co-founded The Big Deal, which uses tech to facilitate collective bargaining for consumers. He later went on to establish Look After My Bills, a tech start-up that became the largest auto-switching service in the UK, saving families money on their gas and electricity. Henry raised global investment and secured the best deal in the history of BBC’s Dragons’ Den before selling Look After My Bills."
                 }
               ],
               "markDefs": [],
@@ -348,7 +410,7 @@
                   "_key": "5a6dad33daa30",
                   "_type": "span",
                   "marks": [],
-                  "text": "Henry has previously served on the board of grassroots campaigning organisation, 38 Degrees, and was a special adviser in the Department for Education. Henry is currently a non- executive board member of the Cabinet Office and on the board of Hornby PLC."
+                  "text": "Henry has previously served on the board of grassroots campaigning organisation, 38 Degrees, and was a special adviser in the Department for Education. Henry is currently a non-executive board member of the Cabinet Office and on the board of Hornby PLC."
                 }
               ],
               "markDefs": [],
@@ -368,9 +430,10 @@
             "asset": {
               "_id": "image-b18dc90383f3328c90bd6e79018c2567f9467666-871x871-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/b18dc90383f3328c90bd6e79018c2567f9467666-871x871.jpg"
-            }
+            },
+            "hotspot": null
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "dc86b6aa6ea6",
               "_type": "block",
@@ -379,7 +442,7 @@
                   "_key": "92ed01cbc1e90",
                   "_type": "span",
                   "marks": [],
-                  "text": "Matt is a co-founder and the chief executive at Oak National Academy. He is also chair at Bay Leadership Academy in Morecambe and a governor at Lancaster and Morecambe College He was a co-founder at Ambition Institute, the UK’s larger provider of teacher and school leader professional development. And a founding trustee at The Brilliant Club, the UK’s largest widening participation charity. He was awarded an OBE for services to education in the 2020 Queen’s Birthday Honours."
+                  "text": "Matt is a co-founder and the chief executive at Oak National Academy. He is also chair at Bay Leadership Academy in Morecambe and a governor at Lancaster and Morecambe College. He was a co-founder at Ambition Institute, the UK’s largest provider of teacher and school leader professional development, and a founding trustee at The Brilliant Club, the UK’s largest widening participation charity. He was awarded an OBE for services to education in the 2020 Queen’s Birthday Honours."
                 }
               ],
               "markDefs": [],
@@ -388,7 +451,7 @@
           ],
           "socials": {
             "twitterUsername": "matthewhood",
-            "linkedinUrl": "https://www.linkedin.com/in/matthew-hood-54423237/"
+            "linkedinUrl": "https://www.linkedin.com/in/matt-hood-obe-54423237/"
           }
         },
         {
@@ -402,9 +465,10 @@
             "asset": {
               "_id": "image-0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137-jpg",
               "url": "https://cdn.sanity.io/images/cuvjke51/production/0b3ce4142a8bd8ddb0cc78ab59350e37fbbb7550-1600x2137.jpg"
-            }
+            },
+            "hotspot": null
           },
-          "contentPortableText": [
+          "bioPortableText": [
             {
               "_key": "63c223c33085",
               "_type": "block",
@@ -413,7 +477,7 @@
                   "_key": "334c236931a90",
                   "_type": "span",
                   "marks": [],
-                  "text": "Emma leads on operations at Oak National Academy. She has many years experience of working in EdTech and is passionate about using technology to create better opportunities for all. She started her career as a technologist specialising in data and algorithms before setting up one of the UK’s first Wifi networks (primarily for students) across the Northwest before leading the successful turnaround, sale and transition of an assessment business to ensure its long-term legacy."
+                  "text": "Emma leads on operations. She has many years experience of working in edtech and is passionate about using technology to create better opportunities for all. She started her career as a technologist specialising in data and algorithms before setting up one of the UK’s first WiFi networks (primarily for students) across the North West before leading the successful turnaround, sale and transition of an assessment business to ensure its long-term legacy."
                 }
               ],
               "markDefs": [],
@@ -439,8 +503,8 @@
           "file": {
             "asset": {
               "extension": "pdf",
-              "size": 284382,
-              "url": "https://cdn.sanity.io/files/cuvjke51/production/bee3867526c4bdf9aef9cce065107a6bb8a23ca3.pdf"
+              "size": 582738,
+              "url": "https://cdn.sanity.io/files/cuvjke51/production/691ef9af464319aa130f931edc91d6cf630bdd6c.pdf"
             }
           }
         },
