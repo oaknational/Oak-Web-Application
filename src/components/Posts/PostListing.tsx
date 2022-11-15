@@ -88,7 +88,7 @@ const PostListing: FC<PostListingProps> = ({
           page={"blog-index"}
         />
       </MaxWidth>
-      {/* <BlogListJsonLd blogs={props.blogs} /> */}
+      {/* <BlogListJsonLd blogs={posts} /> */}
     </Layout>
   );
 };

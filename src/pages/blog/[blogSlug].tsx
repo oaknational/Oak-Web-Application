@@ -67,7 +67,7 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
           <BlogPortableText portableText={props.blog.contentPortableText} />
         </Box>
       </BlogWebinarsIndexLayout>
-      <BlogJsonLd {...props.blog} />
+      <BlogJsonLd blog={props.blog} />
     </Layout>
   );
 };
