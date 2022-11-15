@@ -10,7 +10,6 @@ import UpcomingWebinarWall, {
 const props: UpcomingWebinarWallProps = {
   headingTag: "h5",
   headingText: "Register to view",
-  text: "You have to reigster if you want to view this content......!",
   buttonOnClick: noop,
   buttonHref: "https://www.example.com",
   buttonText: "Register",

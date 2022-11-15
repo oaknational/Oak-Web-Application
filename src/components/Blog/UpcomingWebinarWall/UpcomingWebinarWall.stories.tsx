@@ -35,7 +35,6 @@ export const UpcomingWebinarWall = Template.bind({});
 UpcomingWebinarWall.args = {
   headingTag: "h3",
   headingText: "Register to view",
-  text: "You will only need to register once and you’ll be good to go.",
   buttonHref: "https://example.com",
   buttonText: "Register",
 };

@@ -2,6 +2,13 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Pagination from "./Pagination";
 
+export const mockPaginationProps = {
+  totalPages: 25,
+  currentPage: 1,
+  nextPageHref: "/prev",
+  prevPageHref: "/next",
+};
+
 describe("Pagination", () => {
   test("it renders", () => {
     const totalPages = 25;
