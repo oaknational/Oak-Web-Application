@@ -37,6 +37,7 @@ import {
   webinarToBlogListItem,
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
+import useBlogList from "../components/Blog/BlogList/useBlogList";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -104,6 +105,7 @@ const Home: NextPage<HomePageProps> = (props) => {
     onSubmit: track.newsletterSignUpCompleted,
   });
   const posts = props.posts.map(postToBlogListItem);
+  const blogListProps = useBlogList({ items: posts, withImage: true });
 
   return (
     <Layout
@@ -333,7 +335,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     <Link href={"/blog"}>All blogs</Link>
                   </Typography>
                 </Flex>
-                <BlogList items={posts} withImage />
+                <BlogList {...blogListProps} />
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
