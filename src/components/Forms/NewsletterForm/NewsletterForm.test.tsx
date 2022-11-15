@@ -8,6 +8,8 @@ import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 import NewsletterForm from "./NewsletterForm";
 import NewsletterFormWrap from "./NewsletterFormWrap";
 
+jest.setTimeout(10000);
+
 const onSubmit = jest.fn();
 
 describe("NewsletterForm", () => {
@@ -15,8 +17,6 @@ describe("NewsletterForm", () => {
     jest.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
-    jest.setTimeout(10000);
-
     renderWithProviders(
       <NewsletterFormWrap onSubmit={onSubmit} anchorTargetId="email-sign-up" />
     );
@@ -45,8 +45,7 @@ describe("NewsletterForm", () => {
     await user.keyboard("{Enter}");
 
     // Hack
-    await waitForNextTick();
-    await waitForNextTick();
+    await waitForNextTick(100);
 
     expect(onSubmit).toHaveBeenCalledWith({
       name: "a name",
