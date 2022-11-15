@@ -47,7 +47,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             $textAlign="center"
             tag="h2"
           >
-            Using Oak in your school could have a big impact.
+            Using Oak in your school could have a big impact
           </Heading>
         </Flex>
         <Flex $justifyContent={"center"}>
