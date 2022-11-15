@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { TextBlockCard as Component } from "./TextBlockCard";
 
-const bodyPortableText = [
+export const bodyPortableText = [
   {
     _key: "f4b422515ecb",
     _type: "block",
