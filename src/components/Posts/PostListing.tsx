@@ -7,9 +7,7 @@ import {
 } from "../../common-lib/cms-types";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
 import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
-import BlogWebinarsListAndCategories, {
-  BlogWebinarsListAndCategoriesProps,
-} from "../Blog/BlogWebinarsListAndCategories";
+import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import {
   CrumbPageVariant,
   getBlogWebinarListBreadcrumbs,
@@ -18,6 +16,8 @@ import SummaryCard from "../Card/SummaryCard";
 import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
+import { BlogListingPageProps } from "../pages/BlogIndex.page";
+import { WebinarListingPageProps } from "../pages/WebinarsIndex.page";
 // import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 
 type PostListingProps = {
@@ -28,7 +28,7 @@ type PostListingProps = {
   pageData: WebinarsListingPage | BlogListingPage;
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
-  postsWithCategories: BlogWebinarsListAndCategoriesProps;
+  postsWithCategories: WebinarListingPageProps | BlogListingPageProps;
   posts: BlogListItemProps[];
   variant: {
     slug: CrumbPageVariant;
