@@ -12,6 +12,7 @@ export default function AnalyticsDecorator(Story: Story) {
       classroomSelected: noop,
       teacherHubSelected: noop,
       developYourCurriculumSelected: noop,
+      supportYourTeamSelected: noop,
       notificationSelected: noop,
       aboutSelected: noop,
       newsletterSignUpCompleted: noop,
