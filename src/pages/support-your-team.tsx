@@ -73,7 +73,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            href={"https://classroom.thenational.academy/teachers"}
+            href={"https://classroom.thenational.academy"}
             label={"Search our lessons"}
             icon={"ArrowRight"}
             iconPosition={"trailing"}
@@ -131,7 +131,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              href={"https://classroom.thenational.academy/teachers"}
+              href={"https://classroom.thenational.academy"}
               label={"Search our lessons"}
               icon={"ArrowRight"}
               iconPosition={"trailing"}
