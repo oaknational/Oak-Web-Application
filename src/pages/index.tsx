@@ -303,10 +303,9 @@ const Home: NextPage<HomePageProps> = (props) => {
                   title={"Support your team"}
                   titleTag={"h4"}
                   background={"pupilsPink"}
-                  // @todo add avo support your team
-                  // htmlAnchorProps={{
-                  //   onClick: track.developYourCurriculumSelected,
-                  // }}
+                  htmlAnchorProps={{
+                    onClick: track.supportYourTeamSelected,
+                  }}
                 />
               </GridArea>
             </Grid>
