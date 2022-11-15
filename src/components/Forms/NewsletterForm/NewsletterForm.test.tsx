@@ -15,6 +15,8 @@ describe("NewsletterForm", () => {
     jest.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
+    jest.setTimeout(10000);
+
     renderWithProviders(
       <NewsletterFormWrap onSubmit={onSubmit} anchorTargetId="email-sign-up" />
     );
@@ -43,6 +45,7 @@ describe("NewsletterForm", () => {
     await user.keyboard("{Enter}");
 
     // Hack
+    await waitForNextTick();
     await waitForNextTick();
 
     expect(onSubmit).toHaveBeenCalledWith({
