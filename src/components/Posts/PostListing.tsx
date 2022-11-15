@@ -49,6 +49,11 @@ const PostListing: FC<PostListingProps> = ({
     src: "/images/illustrations/idea-explosion.png",
     alt: "",
   };
+
+  const categoryHeading = categories.find(
+    (cat) => cat.slug === categorySlug
+  )?.title;
+
   return (
     <Layout
       seoProps={getSeoProps({
@@ -64,7 +69,11 @@ const PostListing: FC<PostListingProps> = ({
       )}
     >
       <MaxWidth $pt={[0, 80, 80]}>
-        <SummaryCard {...pageData} imageProps={cardImage} />
+        <SummaryCard
+          {...pageData}
+          heading={categoryHeading || pageData.heading}
+          imageProps={cardImage}
+        />
         <MobileBlogFilters
           page={"blog-index"}
           categoryListProps={{
