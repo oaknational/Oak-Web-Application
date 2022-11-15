@@ -4,7 +4,7 @@ import { BlogListProps } from "./BlogList";
 
 import Component from ".";
 
-const pastBlogs: BlogListProps["items"] = [
+const currentPageItems: BlogListProps["currentPageItems"] = [
   {
     titleTag: "h2",
     title: "The Long and Winding Road",
@@ -51,25 +51,22 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const BlogList = Template.bind({});
 BlogList.args = {
-  items: pastBlogs,
+  currentPageItems,
 };
 
 export const BlogListWithUpcomingWebinar = Template.bind({});
 BlogListWithUpcomingWebinar.args = {
-  items: [
-    {
-      titleTag: "h2",
-      title: "She came in through the bathroom window",
-      summary:
-        'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
-      slug: "long-road",
-      contentType: "webinar",
-      category: { title: "Curriculum Planning", slug: "curriculum-planning" },
-      date: new Date(2059, 7, 17).toISOString(),
-      thumbTime: 3,
-    },
-    ...pastBlogs,
-  ],
+  upcomingItem: {
+    titleTag: "h2",
+    title: "She came in through the bathroom window",
+    summary:
+      'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
+    slug: "long-road",
+    contentType: "webinar",
+    category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+    date: new Date(2059, 7, 17).toISOString(),
+  },
+  currentPageItems,
   withContainingHrs: true,
   withUpcomingItem: true,
 };
