@@ -1,3 +1,19 @@
+# [1.58.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.57.0...v1.58.0) (2022-11-15)
+
+
+### Bug Fixes
+
+* **upcoming-webinar:** display soonest upcoming webianr ([cc7dff0](https://github.com/oaknational/Oak-Web-Application/commit/cc7dff0b0ba5574c3ba0f0b9e5db3ebb3376f887))
+* **upcoming-webinar:** remove text, and stylefix ([1d3708b](https://github.com/oaknational/Oak-Web-Application/commit/1d3708b228a08810b9ba22c57dd7f2ad26a904f9))
+* **webinar-listing:** display properly if only item is upcoming webinar ([b3ac48f](https://github.com/oaknational/Oak-Web-Application/commit/b3ac48f482aaa811f532463253b95415905ed33f))
+* **webinar-listings:** fix click target of upcoming webinar list item ([241cca5](https://github.com/oaknational/Oak-Web-Application/commit/241cca5a03b987813b192ae8ee7cd3f9506052e1))
+
+
+### Features
+
+* add upcoming overlay to webinar video ([fa5cae2](https://github.com/oaknational/Oak-Web-Application/commit/fa5cae2af03f6202d86c97bbf92fd0cdee3cabf9))
+* add visual components for upcoming webinar ([689c19d](https://github.com/oaknational/Oak-Web-Application/commit/689c19dc318e698eb04607ce0449990f9dcff577))
+
 # [1.57.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.56.0...v1.57.0) (2022-11-15)
 
 
