@@ -7,7 +7,7 @@ import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CardImage, { CardImageProps } from "../../Card/CardComponents/CardImage";
-import Flex from "../../Flex";
+import Flex, { FlexProps } from "../../Flex";
 import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../../Typography";
 
@@ -16,8 +16,16 @@ const TextBlockCardImageCta: FC<
     background: OakColorName;
     image: CardImageProps;
     portableTextComponents?: PortableTextComponents;
+    imageContainerProps?: FlexProps;
   }
-> = ({ bodyPortableText, image, title, background, cta }) => {
+> = ({
+  bodyPortableText,
+  image,
+  title,
+  background,
+  cta,
+  imageContainerProps,
+}) => {
   return (
     <Card
       $flexDirection={["column", "column", "row"]}
@@ -33,6 +41,7 @@ const TextBlockCardImageCta: FC<
         $alignItems="center"
         $mr={[0, 0, 72]}
         $mb={[12, 12, 0]}
+        {...imageContainerProps}
       >
         <CardImage imageSrc={image.imageSrc} alt={image.alt} />
       </Flex>
