@@ -93,10 +93,9 @@ const webinarToArticle = (
     })}`,
     title: webinar.seo?.title || webinar.title,
     images: [
-      getVideoThumbnail(
-        webinar.video.video.asset.playbackId,
-        webinar.video.video.asset.thumbTime
-      ) || config.get("seoAppLogo"),
+      getVideoThumbnail({
+        video: webinar.video.video.asset,
+      }) || config.get("seoAppLogo"),
     ],
     datePublished: webinar.date,
     dateModified: webinar.date,
