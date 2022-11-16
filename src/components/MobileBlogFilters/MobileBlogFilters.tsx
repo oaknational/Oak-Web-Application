@@ -64,7 +64,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
               iconBackground="teachersHighlight"
               size="large"
               label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
-              href={`${page === "blog-index" ? "/blog" : "/beta/webinars"}`}
+              href={`${page === "blog-index" ? "/blog" : "/webinars"}`}
             />
           </Box>
         )}

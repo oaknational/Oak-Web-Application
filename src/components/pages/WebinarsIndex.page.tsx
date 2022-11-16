@@ -50,7 +50,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       breadcrumbs={getBlogWebinarListBreadcrumbs(
         categories,
         categorySlug,
-        "beta/webinars",
+        "webinars",
         "Webinars"
       )}
     >

@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 
-import { WebinarPageProps } from "../../pages/beta/webinars/[webinarSlug]";
+import { WebinarPageProps } from "../../pages/webinars/[webinarSlug]";
 import { BlogPageProps } from "../../pages/blog/[blogSlug]";
 import theme from "../../styles/theme";
 import Box from "../Box";

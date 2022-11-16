@@ -26,7 +26,7 @@ describe("pages/webinar/categories/[categorySlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all webinar categories", async () => {
       const { getStaticPaths } = await import(
-        "../../../../pages/beta/webinars/categories/[categorySlug]"
+        "../../../../pages/webinars/categories/[categorySlug]"
       );
 
       const pathsResult = await getStaticPaths({});
