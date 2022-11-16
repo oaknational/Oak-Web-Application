@@ -25,6 +25,7 @@ const footerSections: FooterSections = {
       { text: "Contact us", href: "/contact-us" },
       { text: "Help", href: "https://support.thenational.academy" },
       { text: "Blog", href: "/blog" },
+      { text: "Webinars", href: "/webinars" },
     ],
   },
 
