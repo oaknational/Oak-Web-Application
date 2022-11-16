@@ -329,11 +329,14 @@ const Home: NextPage<HomePageProps> = (props) => {
                   <Heading tag={"h3"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
-
-                  <Typography $font="heading-7">
-                    {/* <Link href={"/webinars"}>All webinars</Link> */}
-                    <Link href={"/blog"}>All blogs</Link>
-                  </Typography>
+                  <Flex $flexDirection={"row"}>
+                    <Typography $mr={16} $font="heading-7">
+                      <Link href={"/webinars"}>All webinars</Link>
+                    </Typography>
+                    <Typography $font="heading-7">
+                      <Link href={"/blog"}>All blogs</Link>
+                    </Typography>
+                  </Flex>
                 </Flex>
                 <BlogList {...blogListProps} />
               </Box>
@@ -392,16 +395,21 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
   }));
 
   // @todo add to posts array and un-comment when webinars are finshed
-  // const webinarResults = await CMSClient.webinars({
-  //   previewMode: isPreviewMode,
-  //   limit: 5,
-  // });
-  // const webinars = webinarResults.map((webinar) => ({
-  //   ...webinar,
-  //   type: "webinar" as const,
-  // }));
+  const webinarResults = await CMSClient.webinars({
+    previewMode: isPreviewMode,
+    limit: 5,
+  });
+  const webinars = webinarResults
+    .map((webinar) => ({
+      ...webinar,
+      type: "webinar" as const,
+    }))
+    .filter((webinar) => webinar.date.getTime() < new Date().getTime());
 
-  const posts = [...blogPosts].sort(sortByDate).slice(0, 4).map(serializeDate);
+  const posts = [...blogPosts, ...webinars]
+    .sort(sortByDate)
+    .slice(0, 4)
+    .map(serializeDate);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {
