@@ -4,16 +4,16 @@ import { useHover } from "react-aria";
 import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
 import Box from "../../../Box";
 import useClickableCard from "../../../../hooks/useClickableCard";
-import CMSImage from "../../../CMSImage";
 import Flex from "../../../Flex";
 import LineClamp from "../../../LineClamp";
 import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
-import OakImage from "../../../OakImage";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
 import formatDate from "../../../../utils/formatDate";
+
+import BlogListItemImage from "./BlogListItemImage";
 
 type BlogListItemContentType = "blog-post" | "webinar";
 
@@ -106,28 +106,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
-              {props.contentType === "blog-post" && props.mainImage && (
-                <CMSImage
-                  fill
-                  $objectFit="cover"
-                  $objectPosition="center center"
-                  image={props.mainImage}
-                  sizes="(min-width: 750px) 256px, 100vw"
-                  // Explicitly set an empty string for missing alt text in thumbnails
-                  // pending a a11y decision on alt for thumbs
-                  alt={props.mainImage.altText || ""}
-                />
-              )}
-              {props.contentType === "webinar" && props.thumbnailUrl && (
-                <OakImage
-                  fill
-                  $objectFit="contain"
-                  $objectPosition="center center"
-                  $background={"black"}
-                  alt={""}
-                  src={props.thumbnailUrl}
-                />
-              )}
+              <BlogListItemImage {...props} />
             </AspectRatio>
           </Box>
         </Box>
