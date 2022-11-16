@@ -4,6 +4,7 @@ import { BoxProps } from "../../Box";
 import { LI, UL } from "../../Typography";
 import OakLink from "../../OakLink";
 import Icon from "../../Icon";
+import Flex from "../../Flex";
 
 import BlogCategoryListItem from "./BlogCategoryListItem";
 
@@ -45,21 +46,24 @@ const BlogCategoryList: FC<BlogCategoryListProps> = (props) => {
         })}
 
         <LI $mt={32} $height={30} $font={"heading-7"}>
-          <OakLink
-            $display="flex"
-            $height="100%"
-            $alignItems="center"
-            page={page === "webinars-index" ? "blog-index" : "webinars-index"}
-          >
-            {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
-            <Icon
-              $ml={12}
-              variant="brush"
-              size={30}
-              $background={"teachersHighlight"}
-              name="ArrowRight"
-            />
-          </OakLink>
+          <Flex>
+            <OakLink
+              $display="flex"
+              $width={"auto"}
+              $height="100%"
+              $alignItems="center"
+              page={page === "webinars-index" ? "blog-index" : "webinars-index"}
+            >
+              {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
+              <Icon
+                $ml={12}
+                variant="brush"
+                size={30}
+                $background={"teachersHighlight"}
+                name="ArrowRight"
+              />
+            </OakLink>
+          </Flex>
         </LI>
       </UL>
     </nav>
