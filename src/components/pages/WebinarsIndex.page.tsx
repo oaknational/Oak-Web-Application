@@ -40,7 +40,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       postsWithCategories={props}
       posts={webinars}
       variant={{
-        slug: "beta/webinars",
+        slug: "webinars",
         title: "Webinars",
       }}
     />

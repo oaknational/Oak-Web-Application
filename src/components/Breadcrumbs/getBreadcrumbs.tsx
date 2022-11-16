@@ -1,5 +1,5 @@
 import { BlogWebinarCategory } from "../../common-lib/cms-types";
-import { SerializedWebinar } from "../../pages/beta/webinars/[webinarSlug]";
+import { SerializedWebinar } from "../../pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { Breadcrumb } from "../Breadcrumbs";
 
@@ -12,7 +12,7 @@ import { Breadcrumb } from "../Breadcrumbs";
  *
  */
 
-export type CrumbPageVariant = "blog" | "beta/webinars"; //@TODO: remove "beta/"
+export type CrumbPageVariant = "blog" | "webinars";
 
 export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
