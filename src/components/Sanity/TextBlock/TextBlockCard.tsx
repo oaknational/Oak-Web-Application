@@ -32,7 +32,7 @@ export const TextBlockCard: FC<
   const { title, bodyPortableText, portableTextComponents, background } = props;
   return (
     <Card $pt={24} $ph={[16, 24]} $background={background}>
-      <Heading $mb={32} tag="h2" $font={["heading-4", "heading-5"]}>
+      <Heading $mb={32} tag="h2" $font={["heading-5", "heading-4"]}>
         {title}
       </Heading>
       <PortableText

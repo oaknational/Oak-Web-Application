@@ -36,14 +36,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         />
         <Flex
           $justifyContent="center"
-          $maxWidth={["100%", 360]}
+          $maxWidth={["100%", 450]}
           $mh="auto"
           $pt={64}
           $pb={96}
           $ph={12}
         >
           <Heading
-            $font={["heading-4", "heading-5"]}
+            $font={["heading-5", "heading-4"]}
             $textAlign="center"
             tag="h2"
           >
