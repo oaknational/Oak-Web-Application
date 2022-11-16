@@ -54,7 +54,7 @@ const WebinarVideo = (props: WebinarVideoProps) => {
         </>
       );
     case "unlocked":
-      return <CMSVideo video={webinar.video} />;
+      return <CMSVideo video={webinar.video} location="webinar" />;
     case "locked":
       return <WebinarRegistration {...webinarRegistrationProps} />;
   }
