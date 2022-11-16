@@ -129,15 +129,18 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $justifyContent="flex-end"
               >
                 <Heading
-                  $font={["heading-4"]}
+                  $font={["heading-5", "heading-4"]}
                   tag={"h1"}
-                  $mb={[20, 16]}
+                  $mb={8}
                   data-testid="home-page-title"
                   $color={"black"}
                 >
                   {props.pageData.heading}
                 </Heading>
-                <Heading tag={"h2"} $font={["heading-6"]}>
+                <Heading
+                  tag={"h2"}
+                  $font={["heading-light-7", "heading-light-6"]}
+                >
                   {/* @TODO: The portable text in the CMS allows more features
                              than just plain text. We should decide if we want
                              to lock that down, or handle more cases here */}
