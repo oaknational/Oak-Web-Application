@@ -3,13 +3,7 @@ import styled, { css } from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
-import {
-  useSelect,
-  HiddenSelect,
-  useButton,
-  mergeProps,
-  useFocusRing,
-} from "react-aria";
+import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
 import Flex, { FlexProps } from "../Flex";
 import Icon, { IconName } from "../Icon";
@@ -114,11 +108,7 @@ export function Select<T extends object>(
   const ref = useObjectRef(myRef);
 
   // Get props for child elements from useSelect
-  const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
-    props,
-    state,
-    ref
-  );
+  const { labelProps, triggerProps, menuProps } = useSelect(props, state, ref);
 
   // React.useId because: https://github.com/adobe/react-spectrum/issues/2438
   labelProps.id = useId();
@@ -138,6 +128,8 @@ export function Select<T extends object>(
 
   // unique id for map key
   const id = useId();
+  const valueId = `${id}-value`;
+  const buttonId = `${id}-button`;
 
   return (
     <SelectContainer
@@ -185,12 +177,6 @@ export function Select<T extends object>(
         </NativeSelect>
       ) : (
         <>
-          <HiddenSelect
-            state={state}
-            triggerRef={ref}
-            label={props.label || props.placeholder}
-            name={props.name}
-          />
           <SelectButton
             {...mergeProps(buttonProps, focusProps)}
             aria-labelledby={labelProps.id}
@@ -200,13 +186,14 @@ export function Select<T extends object>(
             isOpen={state.isOpen}
             isFocusVisible={isFocusVisible}
             isPlaceholder={!state.selectedItem}
+            id={buttonId}
           >
             <SelectInner $alignItems={"center"}>
               {props.icon && <Icon $mr={8} name={props.icon} />}
               <SelectSpan
+                id={valueId}
                 data-testid={"select-span"}
                 title={props.placeholder}
-                {...valueProps}
               >
                 {state.selectedItem
                   ? state.selectedItem.rendered
