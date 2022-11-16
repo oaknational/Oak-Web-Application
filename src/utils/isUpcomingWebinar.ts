@@ -1,7 +1,7 @@
 import { isFuture } from "date-fns";
 
 import errorReporter from "../common-lib/error-reporter";
-import { SerializedWebinar } from "../pages/beta/webinars/[webinarSlug]";
+import { SerializedWebinar } from "../pages/webinars/[webinarSlug]";
 
 const reportError = errorReporter("isUpcomingWebinar");
 

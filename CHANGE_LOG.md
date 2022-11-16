@@ -1,3 +1,10 @@
+# [1.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.59.1...v1.60.0) (2022-11-16)
+
+
+### Features
+
+* **webinars:** move webinars out of /beta ([579af55](https://github.com/oaknational/Oak-Web-Application/commit/579af551f85a4793dab224d0bfe98099f387de6c))
+
 ## [1.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.59.0...v1.59.1) (2022-11-16)
 
 

@@ -1,5 +1,5 @@
 import { BlogWebinarCategory } from "../../common-lib/cms-types";
-import { SerializedWebinar } from "../../pages/beta/webinars/[webinarSlug]";
+import { SerializedWebinar } from "../../pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { Breadcrumb } from "../Breadcrumbs";
 
@@ -15,7 +15,7 @@ import { Breadcrumb } from "../Breadcrumbs";
 export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
   currentCategorySlug: string | null,
-  page: "blog" | "beta/webinars", //@TODO: remove "beta/"
+  page: "blog" | "webinars",
   label: string
 ): Breadcrumb[] => [
   { label: label, href: `/${page}` },
@@ -31,7 +31,7 @@ export const getBlogWebinarListBreadcrumbs = (
 export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
   blog: SerializedBlog | SerializedWebinar,
-  page: "blog" | "beta/webinars", //@TODO: remove "beta/"
+  page: "blog" | "webinars",
   label: string
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
