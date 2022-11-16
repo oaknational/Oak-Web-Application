@@ -46,17 +46,17 @@ describe("getBlogBreadcrumbs", () => {
     const breadcrumbs = getBlogWebinarListBreadcrumbs(
       categories,
       null,
-      "beta/webinars",
+      "webinars",
       "Webinars"
     );
     const expectedCrumbs = [
       {
         label: "Webinars",
-        href: "/beta/webinars",
+        href: "/webinars",
       },
       {
         label: "All",
-        href: "/beta/webinars",
+        href: "/webinars",
         disabled: true,
       },
     ];

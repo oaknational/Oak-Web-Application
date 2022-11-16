@@ -1,11 +1,11 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 
-import { WebinarListingPageProps } from "../../../components/pages/WebinarsIndex.page";
-import CMSClient from "../../../node-lib/cms";
-import { decorateWithIsr } from "../../../node-lib/isr";
-import { serializeDate } from "../../../utils/serializeDate";
+import { WebinarListingPageProps } from "../../components/pages/WebinarsIndex.page";
+import CMSClient from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
+import { serializeDate } from "../../utils/serializeDate";
 
-export { default } from "../../../components/pages/WebinarsIndex.page";
+export { default } from "../../components/pages/WebinarsIndex.page";
 
 export const getStaticProps: GetStaticProps<
   WebinarListingPageProps,
