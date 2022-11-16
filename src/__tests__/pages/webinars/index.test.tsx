@@ -93,11 +93,11 @@ describe("pages/webinar/index.tsx", () => {
       await waitFor(() => {
         expect(
           screen.getByText("An upcoming webinar").closest("a")
-        ).toHaveAttribute("href", "/beta/webinars/an-upcoming-webinar");
+        ).toHaveAttribute("href", "/webinars/an-upcoming-webinar");
 
         expect(screen.getByText("A past webinar").closest("a")).toHaveAttribute(
           "href",
-          "/beta/webinars/a-past-webinar"
+          "/webinars/a-past-webinar"
         );
       });
     });
@@ -123,7 +123,7 @@ describe("pages/webinar/index.tsx", () => {
 
   describe("getStaticProps", () => {
     it("Should return the webinars from the CMS", async () => {
-      const { getStaticProps } = await import("../../../pages/beta/webinars");
+      const { getStaticProps } = await import("../../../pages/webinars");
 
       const propsResult = (await getStaticProps({})) as {
         props: WebinarListingPageProps;
@@ -135,9 +135,7 @@ describe("pages/webinar/index.tsx", () => {
     });
 
     it.skip("Should not fetch draft content by default", async () => {
-      const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/index"
-      );
+      const { getStaticProps } = await import("../../../pages/webinars/index");
 
       await getStaticProps({});
       expect(webinars).toHaveBeenCalledWith({ previewMode: false });
@@ -145,9 +143,7 @@ describe("pages/webinar/index.tsx", () => {
     });
 
     it("Should fetch draft content in preview mode", async () => {
-      const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/index"
-      );
+      const { getStaticProps } = await import("../../../pages/webinars/index");
       await getStaticProps({ preview: true });
 
       expect(webinars).toHaveBeenCalledWith({ previewMode: true });

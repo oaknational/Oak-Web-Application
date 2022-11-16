@@ -90,7 +90,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             $minWidth={["50%"]}
           >
             {pageData.intro.mediaType == "video" && (
-              <CMSVideo video={pageData.intro.video} />
+              <CMSVideo video={pageData.intro.video} location="marketing" />
             )}
           </Flex>
           <Box $minWidth={["50%"]}>

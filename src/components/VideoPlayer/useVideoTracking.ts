@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
 import errorReporter from "../../common-lib/error-reporter";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 
@@ -12,7 +13,15 @@ const reportError = errorReporter("useVideoTracking");
  */
 const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
   const state = props.getState();
-  const { duration, captioned, playbackId, title, timeElapsed, muted } = state;
+  const {
+    duration,
+    captioned,
+    playbackId,
+    title,
+    timeElapsed,
+    muted,
+    location,
+  } = state;
 
   if (typeof timeElapsed !== "number") {
     const error = new Error("Could not track video event, props malformed");
@@ -25,20 +34,23 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
     isCaptioned: captioned,
     isMuted: muted,
     timeElapsedSeconds: timeElapsed,
-    videoTitle: playbackId,
-    videoPlaybackId: title,
+    videoTitle: title,
+    videoPlaybackId: playbackId,
+    videoLocation: location,
   };
 };
 
+export type VideoTrackingGetState = () => {
+  captioned: boolean;
+  duration: number | null;
+  muted: boolean;
+  playbackId: string;
+  timeElapsed: number | null;
+  title: string;
+  location: VideoLocationValueType;
+};
 type UseVideoTrackingProps = {
-  getState: () => {
-    captioned: boolean;
-    duration: number | null;
-    muted: boolean;
-    playbackId: string;
-    timeElapsed: number | null;
-    title: string;
-  };
+  getState: VideoTrackingGetState;
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();

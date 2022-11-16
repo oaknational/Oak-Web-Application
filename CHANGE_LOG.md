@@ -1,3 +1,34 @@
+# [1.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.60.0...v1.61.0) (2022-11-16)
+
+
+### Features
+
+* add webinar links to footer and menu ([da5220a](https://github.com/oaknational/Oak-Web-Application/commit/da5220a99c0c24e38e5469dd1d12d79bec3d764e))
+
+# [1.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.59.1...v1.60.0) (2022-11-16)
+
+
+### Features
+
+* **webinars:** move webinars out of /beta ([579af55](https://github.com/oaknational/Oak-Web-Application/commit/579af551f85a4793dab224d0bfe98099f387de6c))
+
+## [1.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.59.0...v1.59.1) (2022-11-16)
+
+
+### Bug Fixes
+
+* add webinar image url to seo props ([8d069cf](https://github.com/oaknational/Oak-Web-Application/commit/8d069cf97e43a12946a62a4cab5bda8c81181f8b))
+
+# [1.59.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.58.1...v1.59.0) (2022-11-16)
+
+
+### Features
+
+* track webinar page view ([9a21dd7](https://github.com/oaknational/Oak-Web-Application/commit/9a21dd76a333ec961b28f90ad5a5d6061532d40f))
+* **video-tracking:** adds video location to video ([0f1d4fe](https://github.com/oaknational/Oak-Web-Application/commit/0f1d4febb759e42a807aee4ff5e7abf731815cf8))
+
+## [1.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.58.0...v1.58.1) (2022-11-15)
+
 # [1.58.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.57.0...v1.58.0) (2022-11-15)
 
 

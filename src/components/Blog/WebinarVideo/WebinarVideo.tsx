@@ -1,4 +1,4 @@
-import { SerializedWebinar } from "../../../pages/beta/webinars/[webinarSlug]";
+import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
 import AspectRatio from "../../AspectRatio";
 import CMSVideo from "../../CMSVideo";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
@@ -54,7 +54,7 @@ const WebinarVideo = (props: WebinarVideoProps) => {
         </>
       );
     case "unlocked":
-      return <CMSVideo video={webinar.video} />;
+      return <CMSVideo video={webinar.video} location="webinar" />;
     case "locked":
       return <WebinarRegistration {...webinarRegistrationProps} />;
   }

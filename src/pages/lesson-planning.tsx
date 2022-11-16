@@ -370,7 +370,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $minWidth={["50%"]}
               >
                 {pageData.learnMoreBlock1.mediaType == "video" && (
-                  <CMSVideo video={pageData.learnMoreBlock1.video} />
+                  <CMSVideo
+                    video={pageData.learnMoreBlock1.video}
+                    location="marketing"
+                  />
                 )}
               </Flex>
             </Box>

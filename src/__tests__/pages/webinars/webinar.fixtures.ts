@@ -1,4 +1,4 @@
-import { SerializedWebinar } from "../../../pages/beta/webinars/[webinarSlug]";
+import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
 import { portableTextFromString } from "../../__helpers__/cms";
 
 export const mockWebinar = (webinar?: Partial<SerializedWebinar>) => ({

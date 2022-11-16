@@ -15,6 +15,7 @@ import {
 import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
+import { getVideoThumbnail } from "../VideoPlayer/getVideoThumbnail";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
   date: string;
@@ -49,7 +50,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
       breadcrumbs={getBlogWebinarListBreadcrumbs(
         categories,
         categorySlug,
-        "beta/webinars",
+        "webinars",
         "Webinars"
       )}
     >
@@ -91,8 +92,7 @@ export const webinarToBlogListItem = (
   titleTag: "h3",
   category: webinar.category,
   date: webinar.date,
-  mainImage: webinar.video.video.asset.playbackId,
-  thumbTime: webinar.video.video.asset.thumbTime,
+  thumbnailUrl: getVideoThumbnail({ video: webinar.video.video.asset }),
 });
 
 export default WebinarListingPage;
