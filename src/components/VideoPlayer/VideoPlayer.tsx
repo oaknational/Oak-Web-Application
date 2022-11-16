@@ -6,8 +6,9 @@ import Flex from "../Flex";
 import OakError from "../../errors/OakError";
 import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
+import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
 
-import useVideoTracking from "./useVideoTracking";
+import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
@@ -27,15 +28,16 @@ export type VideoPlayerProps = {
   playbackId: string;
   thumbnailTime?: number | null;
   title: string;
+  location: VideoLocationValueType;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
-  const { playbackId, thumbnailTime: thumbTime, title } = props;
+  const { playbackId, thumbnailTime: thumbTime, title, location } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
 
-  const getState = () => {
+  const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
     const duration = getDuration(mediaElRef);
     const muted = Boolean(mediaElRef.current?.muted);
@@ -48,6 +50,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       playbackId,
       timeElapsed,
       title,
+      location: location,
     };
   };
 

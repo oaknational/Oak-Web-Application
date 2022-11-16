@@ -59,6 +59,7 @@ const BlogTextAndMedia = (
           <VideoPlayer
             title={params.video.title}
             playbackId={params.video.video.asset.playbackId}
+            location="blog"
           />
         </Box>
       )}
