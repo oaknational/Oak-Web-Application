@@ -73,7 +73,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            href={"https://classroom.thenational.academy"}
+            href={"https://teachers.thenational.academy"}
             label={"Search our lessons"}
             icon={"ArrowRight"}
             iconPosition={"trailing"}
@@ -98,7 +98,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           background={"pastelTurqoise"}
           image={{
             imageSrc: "/images/illustrations/curriculum-371.png",
-            alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
+            alt: "develop your curriculum illustration",
           }}
         />
         <TextBlockCardImageCta
@@ -131,7 +131,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              href={"https://classroom.thenational.academy"}
+              href={"https://teachers.thenational.academy"}
               label={"Search our lessons"}
               icon={"ArrowRight"}
               iconPosition={"trailing"}
