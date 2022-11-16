@@ -322,11 +322,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $height={"100%"}
               >
                 <Flex
-                  $alignItems="center"
+                  $width={"100%"}
+                  $alignItems={["flex-start", "center"]}
                   $justifyContent="space-between"
                   $mb={48}
+                  $flexDirection={["column", "row"]}
                 >
-                  <Heading tag={"h3"} $font={"heading-5"}>
+                  <Heading $mb={[38, 0]} tag={"h3"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
                   <Flex $flexDirection={"row"}>
