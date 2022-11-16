@@ -66,10 +66,10 @@ const Notification: FC = () => {
           size={30}
         />
       </Box>
-      <Span $font={"body-3"} $color="oakGrey4">
+      <Span $font={["body-4", "body-3"]} $color="oakGrey4">
         Blog
       </Span>
-      <Heading $font={"heading-6"} tag="h2" $mt={4}>
+      <Heading $font={["heading-7", "heading-6"]} tag="h2" $mt={4}>
         <CardLink
           page={null}
           href={href}
@@ -85,7 +85,9 @@ const Notification: FC = () => {
           {heading}
         </CardLink>
       </Heading>
-      <P $mt={4}>Find out more</P>
+      <P $font={["body-4", "body-2"]} $mt={4}>
+        Find out more
+      </P>
     </Card>
   );
 };
@@ -126,7 +128,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $pr={[0, 16]}
                 $pb={[32, 0]}
                 $flexDirection={"column"}
-                $justifyContent="flex-end"
+                $justifyContent="center"
               >
                 <Heading
                   $font={["heading-5", "heading-4"]}
