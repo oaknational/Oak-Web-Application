@@ -7,20 +7,20 @@ import {
 import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 
-import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
-import Layout from "../../../components/Layout";
-import CMSClient from "../../../node-lib/cms";
-import { TeamMemberPreview, Webinar } from "../../../common-lib/cms-types";
-import { getBlogWebinarPostBreadcrumbs } from "../../../components/Breadcrumbs/getBreadcrumbs";
-import Box from "../../../components/Box";
-import { decorateWithIsr } from "../../../node-lib/isr";
-import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
-import Flex from "../../../components/Flex";
-import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
-import WebinarVideo from "../../../components/Blog/WebinarVideo";
-import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
-import { getVideoThumbnail } from "../../../components/VideoPlayer/getVideoThumbnail";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import Layout from "../../components/Layout";
+import CMSClient from "../../node-lib/cms";
+import { TeamMemberPreview, Webinar } from "../../common-lib/cms-types";
+import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
+import Box from "../../components/Box";
+import { decorateWithIsr } from "../../node-lib/isr";
+import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
+import Flex from "../../components/Flex";
+import BlogWebinarsIndexLayout from "../../components/Blog/BlogWebinarsIndexLayout";
+import WebinarVideo from "../../components/Blog/WebinarVideo";
+import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
+import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
+import useAnalytics from "../../context/Analytics/useAnalytics";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -59,7 +59,7 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
       breadcrumbs={getBlogWebinarPostBreadcrumbs(
         categories,
         webinar,
-        "beta/webinars",
+        "webinars",
         "Webinars"
       )}
     >

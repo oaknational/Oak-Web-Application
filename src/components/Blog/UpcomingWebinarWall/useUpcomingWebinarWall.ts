@@ -1,4 +1,4 @@
-import { SerializedWebinar } from "../../../pages/beta/webinars/[webinarSlug]";
+import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
 import formatDate from "../../../utils/formatDate";
 
 import { UpcomingWebinarWallProps } from "./UpcomingWebinarWall";

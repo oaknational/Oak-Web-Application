@@ -27,7 +27,7 @@ describe("urls.ts", () => {
         page: "webinars",
         slug: "a-webinar",
       };
-      expect(resolveOakHref(props)).toBe("/beta/webinars/a-webinar");
+      expect(resolveOakHref(props)).toBe("/webinars/a-webinar");
     });
     it("returns the correct path for a blog-index page", () => {
       const props: ResolveOakHrefProps = {
@@ -39,7 +39,7 @@ describe("urls.ts", () => {
       const props: ResolveOakHrefProps = {
         page: "webinars-index",
       };
-      expect(resolveOakHref(props)).toBe("/beta/webinars");
+      expect(resolveOakHref(props)).toBe("/webinars");
     });
     it("returns the correct path for a blog-index page with a category", () => {
       const props: ResolveOakHrefProps = {
@@ -53,7 +53,7 @@ describe("urls.ts", () => {
         page: "webinars-index",
         category: "lessons",
       };
-      expect(resolveOakHref(props)).toBe("/beta/webinars/categories/lessons");
+      expect(resolveOakHref(props)).toBe("/webinars/categories/lessons");
     });
     it("returns the correct path for a blog-index page with search object", () => {
       const props: ResolveOakHrefProps = {
@@ -62,7 +62,7 @@ describe("urls.ts", () => {
           page: "blog",
         },
       };
-      expect(resolveOakHref(props)).toBe("/beta/webinars?page=blog");
+      expect(resolveOakHref(props)).toBe("/webinars?page=blog");
     });
   });
 });
