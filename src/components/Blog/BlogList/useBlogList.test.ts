@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import { mockWebinar } from "../../../__tests__/pages/webinars/webinar.fixtures";
 import { webinarToBlogListItem } from "../../pages/WebinarsIndex.page";
@@ -17,8 +17,8 @@ describe("useBlogList.ts", () => {
         currentPage: 1,
         totalPages: 0,
         totalResults: 0,
-        nextPageHref: { pathname: "", query: { page: "2" } },
-        prevPageHref: { pathname: "" },
+        nextPageUrlObject: { pathname: "", query: { page: "2" } },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
@@ -33,8 +33,9 @@ describe("useBlogList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
-        nextPageHref: { pathname: "" },
-        prevPageHref: { pathname: "" },
+        nextPageUrlObject: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
+        upcomingItem: undefined,
       },
     });
   });
@@ -55,8 +56,8 @@ describe("useBlogList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
-        nextPageHref: { pathname: "" },
-        prevPageHref: { pathname: "" },
+        nextPageUrlObject: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
@@ -79,8 +80,8 @@ describe("useBlogList.ts", () => {
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
-        nextPageHref: { pathname: "" },
-        prevPageHref: { pathname: "" },
+        nextPageUrlObject: { pathname: "" },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });
@@ -102,8 +103,8 @@ describe("useBlogList.ts", () => {
         currentPage: 1,
         totalPages: 8,
         totalResults: 30,
-        nextPageHref: { pathname: "", query: { page: "2" } },
-        prevPageHref: { pathname: "" },
+        nextPageUrlObject: { pathname: "", query: { page: "2" } },
+        prevPageUrlObject: { pathname: "" },
       },
     });
   });

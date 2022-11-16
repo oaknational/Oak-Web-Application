@@ -87,22 +87,30 @@ const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
 export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
   props: T
 ) => {
-  const { htmlAnchorProps, disabled, ...linkProps } = props;
+  const { htmlAnchorProps, disabled, scroll, shallow, prefetch, ...linkProps } =
+    props;
   const href = getOakLinkHref(props);
 
   const isExternal = isExternalHref(href);
   const target = isExternal ? "_blank" : undefined;
 
-  return {
-    target,
-    role: "link",
-    disabled,
-    ...htmlAnchorProps,
-    ...linkProps,
+  const nextLinkProps = {
+    scroll,
+    shallow,
+    prefetch,
     /**
      * @see https://www.scottohara.me/blog/2021/05/28/disabled-links.html
      **/
     href: disabled ? "" : href,
+  };
+
+  return {
+    target,
+    role: "link",
+    disabled,
+    nextLinkProps,
+    ...htmlAnchorProps,
+    ...linkProps,
   };
 };
 
@@ -117,9 +125,9 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
  * restrict it?
  */
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
-  const transformedProps = transformOakLinkProps(props);
+  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
   return (
-    <Link href={transformedProps.href} legacyBehavior passHref>
+    <Link {...nextLinkProps} legacyBehavior passHref>
       <StyledNextLink ref={ref} {...transformedProps}>
         <>
           {props.children}

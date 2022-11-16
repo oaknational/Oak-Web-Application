@@ -25,9 +25,8 @@ export type ButtonAsLinkProps = CommonButtonProps &
     disabled?: boolean;
   };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
-  const transformedProps = transformOakLinkProps(props);
+  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
   const {
-    href,
     label,
     labelSuffixA11y,
     shouldHideLabel,
@@ -45,7 +44,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
 
   return (
-    <Link href={href} passHref legacyBehavior>
+    <Link {...nextLinkProps} passHref legacyBehavior>
       <StyledNextLink
         {...linkProps}
         onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
