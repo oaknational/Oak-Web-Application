@@ -1,3 +1,19 @@
+# [1.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.1...v1.62.0) (2022-11-17)
+
+
+### Bug Fixes
+
+* resolve embedded references for blog page as well ([484de19](https://github.com/oaknational/Oak-Web-Application/commit/484de19258076cce5c6edab06a18130a6347bbdd))
+
+
+### Features
+
+* add new image for webinars ([1bb76cf](https://github.com/oaknational/Oak-Web-Application/commit/1bb76cf6121feed0c9d2aacde122d0727a9f994c))
+* pull summary card data through from cms ([5a5740c](https://github.com/oaknational/Oak-Web-Application/commit/5a5740ce2e5bec957bfbf63bfdb847dd061048b5))
+* put new image on blog listing page as well as webinars ([e005328](https://github.com/oaknational/Oak-Web-Application/commit/e0053286490dfab0240bfb007ff2df96968a971e))
+* show category as heading in summary card ([ee20901](https://github.com/oaknational/Oak-Web-Application/commit/ee20901fb23417e2273f45fa6945cbc484ffc160))
+* swap category title for heading on category change ([97b2b0d](https://github.com/oaknational/Oak-Web-Application/commit/97b2b0da2cbf9ea6ae6393fa9dc90ffdcbc5cfa9))
+
 ## [1.61.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.0...v1.61.1) (2022-11-17)
 
 
