@@ -1,7 +1,5 @@
 import * as z from "zod";
 
-import { formDefinitionSchema } from "../forms/FormDefinition";
-
 import { documentSchema, seoSchema } from "./base";
 import { cardSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
@@ -16,7 +14,6 @@ export const homePageSchema = z
       .object({
         title: z.string(),
         bodyPortableText: portableTextSchema,
-        hubspotForm: formDefinitionSchema,
       })
       .passthrough(),
     seo: seoSchema.nullish(),

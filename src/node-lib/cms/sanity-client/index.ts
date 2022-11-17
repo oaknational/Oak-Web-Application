@@ -44,7 +44,9 @@ const resolveEmbeddedReferences = async <T extends Record<string, unknown>>(
   document: T
 ): Promise<T> => {
   const withPortableTextReferences = await resolveSanityReferences(document);
-  const withForms = await resolveHubspotFromReferences(withPortableTextReferences);
+  const withForms = await resolveHubspotFromReferences(
+    withPortableTextReferences
+  );
 
   return withForms;
 };
