@@ -1,3 +1,10 @@
+## [1.61.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.0...v1.61.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* url for lesson and resource directory ([faea706](https://github.com/oaknational/Oak-Web-Application/commit/faea706f80cddfaf6b10c8da4724baf659328175))
+
 # [1.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.60.0...v1.61.0) (2022-11-16)
 
 
