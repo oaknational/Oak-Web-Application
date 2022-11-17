@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
@@ -38,6 +37,7 @@ import {
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
 import useBlogList from "../components/Blog/BlogList/useBlogList";
+import OakLink from "../components/OakLink";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -333,10 +333,10 @@ const Home: NextPage<HomePageProps> = (props) => {
                   </Heading>
                   <Flex $flexDirection={"row"}>
                     <Typography $mr={16} $font="heading-7">
-                      <Link href={"/webinars"}>All webinars</Link>
+                      <OakLink page={"webinars-index"}>All webinars</OakLink>
                     </Typography>
                     <Typography $font="heading-7">
-                      <Link href={"/blog"}>All blogs</Link>
+                      <OakLink page={"blog-index"}>All blogs</OakLink>
                     </Typography>
                   </Flex>
                 </Flex>
@@ -396,7 +396,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     type: "blog-post" as const,
   }));
 
-  // @todo add to posts array and un-comment when webinars are finshed
   const webinarResults = await CMSClient.webinars({
     previewMode: isPreviewMode,
     limit: 5,
