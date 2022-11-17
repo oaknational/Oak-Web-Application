@@ -35,6 +35,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         description: "Webinars",
       }}
       pageData={pageData}
+      page={"webinars-index"}
       categories={categories}
       categorySlug={categorySlug}
       postsWithCategories={props}

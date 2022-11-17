@@ -26,6 +26,7 @@ import {
   webinarToBlogListItem,
 } from "../pages/WebinarsIndex.page";
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
+import { BlogCategoryPage } from "../Blog/BlogCategoryList/BlogCategoryList";
 
 type PostListingProps = {
   seo: {
@@ -37,6 +38,7 @@ type PostListingProps = {
   categorySlug: string | null;
   postsWithCategories: WebinarListingPageProps | BlogListingPageProps;
   posts: SerializedBlogPostPreview[] | SerializedWebinarPreview[];
+  page: BlogCategoryPage;
   variant: {
     slug: CrumbPageVariant;
     title: string;
@@ -51,6 +53,7 @@ const PostListing: FC<PostListingProps> = ({
   postsWithCategories,
   posts,
   variant,
+  page,
 }) => {
   const cardImage = {
     src: "/images/illustrations/idea-explosion.png",
@@ -86,7 +89,7 @@ const PostListing: FC<PostListingProps> = ({
           imageProps={cardImage}
         />
         <MobileBlogFilters
-          page={"blog-index"}
+          page={page}
           categoryListProps={{
             categories,
             selectedCategorySlug: categorySlug,
@@ -96,7 +99,7 @@ const PostListing: FC<PostListingProps> = ({
         <BlogWebinarsListAndCategories
           {...postsWithCategories}
           blogs={postListItems}
-          page={"blog-index"}
+          page={page}
         />
       </MaxWidth>
       <BlogListJsonLd blogs={posts} />
