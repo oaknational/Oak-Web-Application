@@ -102,8 +102,37 @@ describe("pages/webinar/index.tsx", () => {
       });
     });
 
-    describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
+    describe("SEO", () => {
+      it("renders the correct SEO details from the CMS", async () => {
+        const { seo } = renderWithSeo(
+          <WebinarListingPage
+            webinars={[
+              testSerializedWebinarPreview,
+              testSerializedWebinarPreview2,
+            ]}
+            pageData={{
+              ...testPageData,
+              seo: {
+                title: "Webinar SEO title",
+                description: "Webinar SEO description",
+                canonicalURL: "https://example.com/webinars",
+              },
+            }}
+            categories={[]}
+            categorySlug={null}
+          />
+        );
+
+        expect(seo).toMatchObject({
+          title: "Webinar SEO title | NEXT_PUBLIC_SEO_APP_NAME",
+          ogTitle: "Webinars SEO title | NEXT_PUBLIC_SEO_APP_NAME",
+          description: "Webinar SEO description | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription: "Webinar SEO description | NEXT_PUBLIC_SEO_APP_NAME",
+          canonical: "https://example.com/webinars",
+        });
+      });
+
+      it("renders the correct SEO fallbacks", async () => {
         const { seo } = renderWithSeo(
           <WebinarListingPage
             webinars={[
@@ -116,7 +145,20 @@ describe("pages/webinar/index.tsx", () => {
           />
         );
 
-        expect(seo).toEqual({});
+        expect(seo).toMatchObject({
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          description: "Webinars",
+          ogDescription: "Webinars",
+          ogImage:
+            "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
+          ogImageAlt: undefined,
+          ogImageHeight: undefined,
+          ogImageWidth: undefined,
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+          ogTitle: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          title: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
+        });
       });
     });
   });
