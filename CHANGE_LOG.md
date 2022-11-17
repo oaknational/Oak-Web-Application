@@ -1,3 +1,41 @@
+# [1.63.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.62.1...v1.63.0) (2022-11-17)
+
+
+### Features
+
+* sourcemaps in preview builds ([720874e](https://github.com/oaknational/Oak-Web-Application/commit/720874e062e999241acbecc44e1ff7e31871f766))
+
+## [1.62.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.62.0...v1.62.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* typo ([3183eb1](https://github.com/oaknational/Oak-Web-Application/commit/3183eb11d074faf90b0a38bcde231ae0407d2677))
+* webinar categories ([1e1e92b](https://github.com/oaknational/Oak-Web-Application/commit/1e1e92be30272985606c092e05b3cec56932bc00))
+
+# [1.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.1...v1.62.0) (2022-11-17)
+
+
+### Bug Fixes
+
+* resolve embedded references for blog page as well ([484de19](https://github.com/oaknational/Oak-Web-Application/commit/484de19258076cce5c6edab06a18130a6347bbdd))
+
+
+### Features
+
+* add new image for webinars ([1bb76cf](https://github.com/oaknational/Oak-Web-Application/commit/1bb76cf6121feed0c9d2aacde122d0727a9f994c))
+* pull summary card data through from cms ([5a5740c](https://github.com/oaknational/Oak-Web-Application/commit/5a5740ce2e5bec957bfbf63bfdb847dd061048b5))
+* put new image on blog listing page as well as webinars ([e005328](https://github.com/oaknational/Oak-Web-Application/commit/e0053286490dfab0240bfb007ff2df96968a971e))
+* show category as heading in summary card ([ee20901](https://github.com/oaknational/Oak-Web-Application/commit/ee20901fb23417e2273f45fa6945cbc484ffc160))
+* swap category title for heading on category change ([97b2b0d](https://github.com/oaknational/Oak-Web-Application/commit/97b2b0da2cbf9ea6ae6393fa9dc90ffdcbc5cfa9))
+
+## [1.61.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.0...v1.61.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* url for lesson and resource directory ([faea706](https://github.com/oaknational/Oak-Web-Application/commit/faea706f80cddfaf6b10c8da4724baf659328175))
+
 # [1.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.60.0...v1.61.0) (2022-11-16)
 
 
