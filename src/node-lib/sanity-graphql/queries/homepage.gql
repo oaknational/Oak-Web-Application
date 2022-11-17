@@ -13,13 +13,14 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     sidebarCard2 {
       ...Card
     }
-    sidebarForm {
-      title
-      bodyPortableText: bodyRaw
-      hubspotForm: form {
-        id: value
-      }
-    }
+    # Disabled until integration PR
+    # sidebarForm {
+    #   title
+    #   bodyPortableText: bodyRaw
+    #   hubspotForm: form {
+    #     id: value
+    #   }
+    # }
     seo {
       ...Seo
     }
