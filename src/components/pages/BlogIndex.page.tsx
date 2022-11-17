@@ -32,6 +32,7 @@ const BlogIndexPage: NextPage<BlogListingPageProps> = (props) => {
       categories={categories}
       categorySlug={categorySlug}
       postsWithCategories={props}
+      page={"blog-index"}
       posts={blogs}
       variant={{
         slug: "blog",
