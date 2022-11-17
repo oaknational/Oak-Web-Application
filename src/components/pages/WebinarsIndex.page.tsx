@@ -31,10 +31,11 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   return (
     <PostListing
       seo={{
-        title: "Webinarss",
+        title: "Webinars",
         description: "Webinars",
       }}
       pageData={pageData}
+      page={"webinars-index"}
       categories={categories}
       categorySlug={categorySlug}
       postsWithCategories={props}

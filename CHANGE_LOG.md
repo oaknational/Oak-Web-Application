@@ -1,3 +1,18 @@
+# [1.63.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.62.1...v1.63.0) (2022-11-17)
+
+
+### Features
+
+* sourcemaps in preview builds ([720874e](https://github.com/oaknational/Oak-Web-Application/commit/720874e062e999241acbecc44e1ff7e31871f766))
+
+## [1.62.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.62.0...v1.62.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* typo ([3183eb1](https://github.com/oaknational/Oak-Web-Application/commit/3183eb11d074faf90b0a38bcde231ae0407d2677))
+* webinar categories ([1e1e92b](https://github.com/oaknational/Oak-Web-Application/commit/1e1e92be30272985606c092e05b3cec56932bc00))
+
 # [1.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.1...v1.62.0) (2022-11-17)
 
 
