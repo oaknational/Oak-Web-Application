@@ -24,7 +24,11 @@ import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import { BasePortableTextProvider } from "../components/PortableText";
 
-export type ContactPageProps = {
+type PageProps = {
+  variants?: Record<string, boolean | undefined>;
+};
+
+export type ContactPageProps = PageProps & {
   pageData: ContactPage;
 };
 
@@ -64,7 +68,7 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
-const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
+const ContactUs: NextPage<ContactPageProps> = ({ pageData, variants }) => {
   const newsletterFormProps = useNewsletterForm();
 
   return (
@@ -97,14 +101,18 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
                 />
               </BasePortableTextProvider>
             </Box>
-            <NewsletterFormWrap
-              {...newsletterFormProps}
-              containerProps={{
-                $display: ["none", "flex"],
-                $minWidth: 360,
-                $ml: 64,
-              }}
-            />
+            {variants?.hubspotForms ? (
+              <div>New hubspot forms here!</div>
+            ) : (
+              <NewsletterFormWrap
+                {...newsletterFormProps}
+                containerProps={{
+                  $display: ["none", "flex"],
+                  $minWidth: 360,
+                  $ml: 64,
+                }}
+              />
+            )}
           </Flex>
         </Card>
         <NewsletterFormWrap
