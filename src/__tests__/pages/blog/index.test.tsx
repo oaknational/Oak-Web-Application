@@ -115,10 +115,10 @@ describe("pages/blog/index.tsx", () => {
 
         expect(seo).toMatchObject({
           title: "Blog SEO title | NEXT_PUBLIC_SEO_APP_NAME",
-          ogTitle: "Blogs SEO title | NEXT_PUBLIC_SEO_APP_NAME",
-          description: "Blog SEO description | NEXT_PUBLIC_SEO_APP_NAME",
-          ogDescription: "Blog SEO description | NEXT_PUBLIC_SEO_APP_NAME",
-          canonical: "https://example.com/blogs",
+          ogTitle: "Blog SEO title | NEXT_PUBLIC_SEO_APP_NAME",
+          description: "Blog SEO description",
+          ogDescription: "Blog SEO description",
+          canonical: "https://example.com/blog",
         });
       });
 

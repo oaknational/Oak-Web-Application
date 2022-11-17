@@ -27,12 +27,10 @@ import {
 } from "../pages/WebinarsIndex.page";
 import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { BlogCategoryPage } from "../Blog/BlogCategoryList/BlogCategoryList";
+import { SeoProps } from "../../browser-lib/seo/Seo";
 
 type PostListingProps = {
-  seo: {
-    title: string;
-    description: string;
-  };
+  seo: SeoProps;
   pageData: WebinarsListingPage | BlogListingPage;
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
@@ -70,10 +68,7 @@ const PostListing: FC<PostListingProps> = ({
 
   return (
     <Layout
-      seoProps={getSeoProps({
-        title: seo.title,
-        description: seo.description,
-      })}
+      seoProps={getSeoProps(seo)}
       $background="white"
       breadcrumbs={getBlogWebinarListBreadcrumbs(
         categories,

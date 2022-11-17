@@ -31,8 +31,11 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   return (
     <PostListing
       seo={{
-        title: "Webinars",
-        description: "Webinars",
+        title: pageData.seo?.title || "Webinars",
+        description:
+          pageData.seo?.description ||
+          "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
+        canonicalURL: pageData.seo?.canonicalURL || undefined,
       }}
       pageData={pageData}
       page={"webinars-index"}

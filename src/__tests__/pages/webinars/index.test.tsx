@@ -112,8 +112,8 @@ describe("pages/webinar/index.tsx", () => {
             pageData={{
               ...testPageData,
               seo: {
-                title: "Webinar SEO title",
-                description: "Webinar SEO description",
+                title: "Webinars SEO title",
+                description: "Webinars SEO description",
                 canonicalURL: "https://example.com/webinars",
               },
             }}
@@ -123,10 +123,10 @@ describe("pages/webinar/index.tsx", () => {
         );
 
         expect(seo).toMatchObject({
-          title: "Webinar SEO title | NEXT_PUBLIC_SEO_APP_NAME",
+          title: "Webinars SEO title | NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle: "Webinars SEO title | NEXT_PUBLIC_SEO_APP_NAME",
-          description: "Webinar SEO description | NEXT_PUBLIC_SEO_APP_NAME",
-          ogDescription: "Webinar SEO description | NEXT_PUBLIC_SEO_APP_NAME",
+          description: "Webinars SEO description",
+          ogDescription: "Webinars SEO description",
           canonical: "https://example.com/webinars",
         });
       });
@@ -146,14 +146,16 @@ describe("pages/webinar/index.tsx", () => {
 
         expect(seo).toMatchObject({
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
-          description: "Webinars",
-          ogDescription: "Webinars",
+          title: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
+          ogTitle: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
+          description:
+            "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
+          ogDescription:
+            "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
           ogImage:
             "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          ogTitle: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
-          title: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
         });
       });
     });
