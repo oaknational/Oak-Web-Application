@@ -15,6 +15,16 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const pageData = await CMSClient.blogListingPage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
+
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
   });
@@ -37,6 +47,7 @@ export const getStaticProps: GetStaticProps<
       blogs,
       categories: blogCategories,
       categorySlug,
+      pageData,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);

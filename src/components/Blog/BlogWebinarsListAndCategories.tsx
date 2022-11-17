@@ -13,7 +13,7 @@ import BlogList from "./BlogList";
 import { BlogListItemProps } from "./BlogList/BlogListItem";
 import useBlogList from "./BlogList/useBlogList";
 
-type BlogWebinarsListAndCategoriesProps = Omit<
+export type BlogWebinarsListAndCategoriesProps = Omit<
   BlogListingPageProps,
   "blogs"
 > & { blogs: BlogListItemProps[]; page: BlogCategoryPage };

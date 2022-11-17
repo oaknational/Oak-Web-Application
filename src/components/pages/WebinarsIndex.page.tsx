@@ -2,19 +2,12 @@ import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
 import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
-import Layout from "../../components/Layout";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import { getBlogWebinarListBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
-import MobileBlogFilters from "../../components/MobileBlogFilters";
-import SummaryCard from "../../components/Card/SummaryCard";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import {
   BlogWebinarCategory,
   WebinarPreview,
 } from "../../common-lib/cms-types";
-import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
-import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
+import PostListing from "../Posts/PostListing";
 import { getVideoThumbnail } from "../VideoPlayer/getVideoThumbnail";
 
 export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
@@ -33,52 +26,25 @@ export type WebinarListingPageProps = {
  */
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
-  const webinars = props.webinars.map(webinarToBlogListItem);
-  const { categories, categorySlug, pageData } = props;
-  const cardImage = {
-    src: "/images/illustrations/teacher-carrying-stuff-237-286.png",
-    alt: "",
-  };
+  const { categories, categorySlug, pageData, webinars } = props;
 
   return (
-    <Layout
-      seoProps={getSeoProps({
+    <PostListing
+      seo={{
         title: "Webinars",
         description: "Webinars",
-      })}
-      $background="white"
-      breadcrumbs={getBlogWebinarListBreadcrumbs(
-        categories,
-        categorySlug,
-        "webinars",
-        "Webinars"
-      )}
-    >
-      <MaxWidth $pt={[0, 80, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          // TODO: Replace line summary with new field from CMS
-          summary={pageData.summary}
-          imageProps={cardImage}
-        />
-
-        <MobileBlogFilters
-          page={"webinars-index"}
-          categoryListProps={{
-            categories,
-            selectedCategorySlug: categorySlug,
-          }}
-        />
-
-        <BlogWebinarsListAndCategories
-          {...props}
-          blogs={webinars}
-          page={"webinars-index"}
-        />
-      </MaxWidth>
-      <BlogListJsonLd blogs={props.webinars} />
-    </Layout>
+      }}
+      pageData={pageData}
+      page={"webinars-index"}
+      categories={categories}
+      categorySlug={categorySlug}
+      postsWithCategories={props}
+      posts={webinars}
+      variant={{
+        slug: "webinars",
+        title: "Webinars",
+      }}
+    />
   );
 };
 
