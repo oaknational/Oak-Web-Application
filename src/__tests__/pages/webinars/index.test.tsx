@@ -1,10 +1,11 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import { WebinarPreview } from "../../../common-lib/cms-types";
-import WebinarListingPage, {
+import {
   SerializedWebinarPreview,
   WebinarListingPageProps,
 } from "../../../components/pages/WebinarsIndex.page";
+import WebinarListingPage from "../../../pages/webinars";
 import { mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
@@ -77,7 +78,7 @@ describe("pages/webinar/index.tsx", () => {
   });
 
   describe("WebinarListingPage", () => {
-    it("Renders a link to each webinar ", async () => {
+    it("Renders a link to each webinar ", () => {
       renderWithProviders(
         <WebinarListingPage
           webinars={[
@@ -90,20 +91,18 @@ describe("pages/webinar/index.tsx", () => {
         />
       );
 
-      await waitFor(() => {
-        expect(
-          screen.getByText("An upcoming webinar").closest("a")
-        ).toHaveAttribute("href", "/webinars/an-upcoming-webinar");
+      expect(
+        screen.getByText("An upcoming webinar").closest("a")
+      ).toHaveAttribute("href", "/webinars/an-upcoming-webinar");
 
-        expect(screen.getByText("A past webinar").closest("a")).toHaveAttribute(
-          "href",
-          "/webinars/a-past-webinar"
-        );
-      });
+      expect(screen.getByText("A past webinar").closest("a")).toHaveAttribute(
+        "href",
+        "/webinars/a-past-webinar"
+      );
     });
 
     describe("SEO", () => {
-      it("renders the correct SEO details from the CMS", async () => {
+      it("renders the correct SEO details from the CMS", () => {
         const { seo } = renderWithSeo(
           <WebinarListingPage
             webinars={[
@@ -132,7 +131,7 @@ describe("pages/webinar/index.tsx", () => {
         });
       });
 
-      it("renders the correct SEO fallbacks", async () => {
+      it("renders the correct SEO fallbacks", () => {
         const { seo } = renderWithSeo(
           <WebinarListingPage
             webinars={[
@@ -151,9 +150,6 @@ describe("pages/webinar/index.tsx", () => {
           ogDescription: "Webinars",
           ogImage:
             "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
-          ogImageAlt: undefined,
-          ogImageHeight: undefined,
-          ogImageWidth: undefined,
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
@@ -176,7 +172,7 @@ describe("pages/webinar/index.tsx", () => {
       ]);
     });
 
-    it.skip("Should not fetch draft content by default", async () => {
+    it("Should not fetch draft content by default", async () => {
       const { getStaticProps } = await import("../../../pages/webinars/index");
 
       await getStaticProps({});
