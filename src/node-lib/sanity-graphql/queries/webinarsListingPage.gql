@@ -8,5 +8,8 @@ query webinarsListingPage($isDraftFilter: Sanity_DocumentFilter) {
     title
     heading
     summary: summaryRaw
+    seo {
+      ...Seo
+    }
   }
 }
