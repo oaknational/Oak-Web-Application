@@ -1,3 +1,10 @@
+# [1.65.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.64.0...v1.65.0) (2022-11-17)
+
+
+### Features
+
+* category link to blog all blogs or webinars ([c42af21](https://github.com/oaknational/Oak-Web-Application/commit/c42af21ebb0f667be918f341d9d9f555927f2d81))
+
 # [1.64.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.63.0...v1.64.0) (2022-11-17)
 
 
