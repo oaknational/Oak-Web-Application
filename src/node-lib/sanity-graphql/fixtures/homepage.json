@@ -12,7 +12,7 @@
               "_key": "24221de4ae210",
               "_type": "span",
               "marks": [],
-              "text": "We're growing our support to help you thrive."
+              "text": "We’re growing our support to help you thrive."
             }
           ],
           "markDefs": [],
@@ -20,7 +20,7 @@
         }
       ],
       "sidebarCard1": {
-        "title": "About Us",
+        "title": "About us",
         "image": null,
         "bodyPortableText": [
           {
@@ -42,9 +42,10 @@
           "label": "Find out more",
           "linkType": "internal",
           "external": null,
+          "anchor": null,
           "internal": {
-            "id": "planningCorePage",
-            "contentType": "planningCorePage"
+            "id": "aboutCorePage",
+            "contentType": "aboutCorePage"
           }
         }
       },
@@ -68,9 +69,10 @@
           }
         ],
         "cta": {
-          "label": "Visit Help Center",
+          "label": "Visit help centre",
           "linkType": "external",
           "external": "https://support.thenational.academy/",
+          "anchor": null,
           "internal": null
         }
       },
@@ -90,7 +92,9 @@
               {
                 "_key": "7693ff249079",
                 "_type": "span",
-                "marks": ["f44505bc5afc"],
+                "marks": [
+                  "f44505bc5afc"
+                ],
                 "text": "privacy policy"
               },
               {
@@ -113,6 +117,11 @@
             "style": "normal"
           }
         ]
+      },
+      "seo": {
+        "title": "Oak National Academy",
+        "description": "Explore thousands of high-quality resources for lesson planning and curriculum design. All optional, adaptable and free.",
+        "canonicalURL": null
       }
     }
   ]

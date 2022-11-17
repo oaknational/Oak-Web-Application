@@ -3,5 +3,3 @@
 
 npm run format
 npx lint-staged
-npm run check-types
-npm run test:ci

@@ -56,13 +56,16 @@ export type PixelSpacing =
   | 300
   | 320
   | 360
+  | 400
   | 480
   | 600
   | 720
   | 812
   | 840
+  | 900
   | 960
-  | 1280;
+  | 1280
+  | 1600;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
 export type PercentSpacing =
@@ -77,6 +80,8 @@ export type PercentSpacing =
   | "50%"
   | "40%"
   | "30%"
+  | "33%"
+  | "25%"
   | "20%"
   | "15%"
   | "10%"
@@ -194,7 +199,6 @@ export type OakTheme = {
   buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
-  bigInput: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
   lessonControl: LessonControlConfig;

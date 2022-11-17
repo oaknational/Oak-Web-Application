@@ -4,7 +4,7 @@ import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
-import { HomePage, WebinarPreview } from "../common-lib/cms-types";
+import { HomePage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
@@ -30,11 +30,14 @@ import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFor
 import {
   blogToBlogListItem,
   SerializedBlogPostPreview,
-  serializeDate,
 } from "../components/pages/BlogIndex.page";
 import BlogList from "../components/Blog/BlogList";
-
-import { SerializedWebinarPreview, webinarToBlogListItem } from "./webinars";
+import {
+  SerializedWebinarPreview,
+  webinarToBlogListItem,
+} from "../components/pages/WebinarsIndex.page";
+import { serializeDate } from "../utils/serializeDate";
+import useBlogList from "../components/Blog/BlogList/useBlogList";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -63,10 +66,10 @@ const Notification: FC = () => {
           size={30}
         />
       </Box>
-      <Span $font={"body-3"} $color="oakGrey4">
+      <Span $font={["body-4", "body-3"]} $color="oakGrey4">
         Blog
       </Span>
-      <Heading $font={"heading-6"} tag="h2" $mt={4}>
+      <Heading $font={["heading-7", "heading-6"]} tag="h2" $mt={4}>
         <CardLink
           page={null}
           href={href}
@@ -82,7 +85,9 @@ const Notification: FC = () => {
           {heading}
         </CardLink>
       </Heading>
-      <P $mt={4}>Find out more</P>
+      <P $font={["body-4", "body-2"]} $mt={4}>
+        Find out more
+      </P>
     </Card>
   );
 };
@@ -102,6 +107,7 @@ const Home: NextPage<HomePageProps> = (props) => {
     onSubmit: track.newsletterSignUpCompleted,
   });
   const posts = props.posts.map(postToBlogListItem);
+  const blogListProps = useBlogList({ items: posts, withImage: true });
 
   return (
     <Layout
@@ -122,18 +128,21 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $pr={[0, 16]}
                 $pb={[32, 0]}
                 $flexDirection={"column"}
-                $justifyContent="flex-end"
+                $justifyContent="center"
               >
                 <Heading
-                  $font={["heading-4"]}
+                  $font={["heading-5", "heading-4"]}
                   tag={"h1"}
-                  $mb={[20, 16]}
+                  $mb={8}
                   data-testid="home-page-title"
                   $color={"black"}
                 >
                   {props.pageData.heading}
                 </Heading>
-                <Heading tag={"h2"} $font={["heading-6"]}>
+                <Heading
+                  tag={"h2"}
+                  $font={["heading-light-7", "heading-light-6"]}
+                >
                   {/* @TODO: The portable text in the CMS allows more features
                              than just plain text. We should decide if we want
                              to lock that down, or handle more cases here */}
@@ -331,7 +340,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     <Link href={"/blog"}>All blogs</Link>
                   </Typography>
                 </Flex>
-                <BlogList items={posts} withImage />
+                <BlogList {...blogListProps} />
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
@@ -382,26 +391,22 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     limit: 5,
   });
 
-  // const webinarResults = await CMSClient.webinars({
-  //   previewMode: isPreviewMode,
-  //   limit: 5,
-  // });
-  const webinarResults: WebinarPreview[] = [];
-
   const blogPosts = blogResults.map((blog) => ({
     ...blog,
     type: "blog-post" as const,
   }));
 
-  const webinars = webinarResults.map((webinar) => ({
-    ...webinar,
-    type: "webinar" as const,
-  }));
+  // @todo add to posts array and un-comment when webinars are finshed
+  // const webinarResults = await CMSClient.webinars({
+  //   previewMode: isPreviewMode,
+  //   limit: 5,
+  // });
+  // const webinars = webinarResults.map((webinar) => ({
+  //   ...webinar,
+  //   type: "webinar" as const,
+  // }));
 
-  const posts = [...blogPosts, ...webinars]
-    .sort(sortByDate)
-    .slice(0, 4)
-    .map(serializeDate);
+  const posts = [...blogPosts].sort(sortByDate).slice(0, 4).map(serializeDate);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {

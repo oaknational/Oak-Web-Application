@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
+
 import Component from "./BlogPortableText";
 
 const sectionHeading = {
@@ -101,7 +103,8 @@ const callout = {
 };
 
 export default {
-  title: "Blogs/Portable Text",
+  title: "Blogs & Webinars/Blog Content",
+  decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 

@@ -4,39 +4,64 @@ import { WebinarPreview } from "../../../common-lib/cms-types";
 import WebinarListingPage, {
   SerializedWebinarPreview,
   WebinarListingPageProps,
-} from "../../../pages/webinars";
+} from "../../../components/pages/WebinarsIndex.page";
+import { mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+
+const testPageData = {
+  id: "123",
+  title: "page title",
+  heading: "page heading",
+  summary: [],
+};
 
 const testWebinarPreview: WebinarPreview = {
   title: "An upcoming webinar",
   id: "5",
   slug: "an-upcoming-webinar",
-  date: new Date("2022-12-01"),
+  date: new Date("2057-12-01"),
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+  video: mockVideoAsset(),
+  hosts: [
+    {
+      id: "1",
+      name: "name",
+    },
+  ],
 };
 
 const testSerializedWebinarPreview: SerializedWebinarPreview = {
   ...testWebinarPreview,
-  date: new Date("2022-12-01").toISOString(),
+  date: testWebinarPreview.date.toISOString(),
 };
 
 const testWebinarPreview2: WebinarPreview = {
   title: "A past webinar",
   id: "6",
   slug: "a-past-webinar",
-  date: new Date("2022-12-31"),
+  date: new Date("2021-12-31"),
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+  video: mockVideoAsset(),
+  hosts: [
+    {
+      id: "1",
+      name: "name",
+    },
+  ],
 };
 
 const testSerializedWebinarPreview2: SerializedWebinarPreview = {
   ...testWebinarPreview2,
-  date: new Date("2022-12-31").toISOString(),
+  date: testWebinarPreview2.date.toISOString(),
 };
 
 const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
+const webinarsListingPage = jest.fn(() => testPageData);
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {
@@ -46,6 +71,7 @@ describe("pages/webinar/index.tsx", () => {
       __esModule: true,
       default: {
         webinars: webinars,
+        webinarsListingPage: webinarsListingPage,
       },
     }));
   });
@@ -58,6 +84,9 @@ describe("pages/webinar/index.tsx", () => {
             testSerializedWebinarPreview,
             testSerializedWebinarPreview2,
           ]}
+          pageData={testPageData}
+          categories={[]}
+          categorySlug={null}
         />
       );
 
@@ -81,6 +110,9 @@ describe("pages/webinar/index.tsx", () => {
               testSerializedWebinarPreview,
               testSerializedWebinarPreview2,
             ]}
+            pageData={testPageData}
+            categories={[]}
+            categorySlug={null}
           />
         );
 
@@ -102,18 +134,20 @@ describe("pages/webinar/index.tsx", () => {
       ]);
     });
 
-    it("Should not fetch draft content by default", async () => {
-      const { getStaticProps } = await import("../../../pages/webinars");
+    it.skip("Should not fetch draft content by default", async () => {
+      const { getStaticProps } = await import("../../../pages/webinars/index");
 
       await getStaticProps({});
       expect(webinars).toHaveBeenCalledWith({ previewMode: false });
+      expect(webinarsListingPage).toHaveBeenCalledWith({ previewMode: false });
     });
 
     it("Should fetch draft content in preview mode", async () => {
-      const { getStaticProps } = await import("../../../pages/webinars");
+      const { getStaticProps } = await import("../../../pages/webinars/index");
       await getStaticProps({ preview: true });
 
       expect(webinars).toHaveBeenCalledWith({ previewMode: true });
+      expect(webinarsListingPage).toHaveBeenCalledWith({ previewMode: true });
     });
   });
 });

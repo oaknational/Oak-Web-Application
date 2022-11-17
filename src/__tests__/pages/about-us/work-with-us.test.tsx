@@ -7,8 +7,9 @@ import { AboutWorkWithUsPage } from "../../../common-lib/cms-types";
 import AboutWorkWithUs, {
   getStaticProps,
 } from "../../../pages/about-us/work-with-us";
+import { mockSeoResult } from "../../__helpers__/cms";
 
-import { testAboutPageBaseData } from "./who-we-are.test";
+import { testAboutPageBaseData } from "./about-us.fixtures";
 
 jest.mock("../../../node-lib/cms");
 
@@ -130,13 +131,21 @@ describe("pages/about-us/work-with-us.tsx", () => {
     });
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
         <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />
       );
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "We're doing the things that need to get done.",
+        ogTitle: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "We're doing the things that need to get done.",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+      });
     });
   });
 

@@ -1,0 +1,12 @@
+query newsListingPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewsListingPage(
+    where: { _: $isDraftFilter, _id: { matches: "*newsListingPage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    heading
+    summary: summaryRaw
+  }
+}

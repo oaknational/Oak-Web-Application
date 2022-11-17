@@ -64,7 +64,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
         )}
         {props.mediaType == "video" && (
           <Flex $alignItems={"center"} $ph={20}>
-            <CMSVideo video={props.video} />
+            <CMSVideo video={props.video} location="marketing" />
           </Flex>
         )}
       </Flex>

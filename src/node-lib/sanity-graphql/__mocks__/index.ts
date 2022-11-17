@@ -15,7 +15,8 @@ import contactCorePageFixture from "../fixtures/contactCorePage.json";
 import allPolicyPagesFixture from "../fixtures/allPolicyPages.json";
 import policyPageBySlugFixture from "../fixtures/policyPageBySlug.json";
 import landingPageBySlugFixture from "../fixtures/landingPageBySlug.json";
-import blogPortableTextReferences from "../fixtures/blogPortableTextReferences.json";
+import portableTextReferences from "../fixtures/portableTextReferences.json";
+import allNewsListingPageFixture from "../fixtures/newsListingPage.json";
 
 /**
  * See sanity-graphql/index.ts for instructions on generating these
@@ -26,7 +27,7 @@ export default {
   webinarBySlug: jest.fn(() => webinarBySlugFixture),
   allBlogPosts: jest.fn(() => allBlogPostsFixture),
   blogPostBySlug: jest.fn(() => blogPostBySlugFixture),
-  blogPortableTextReferences: jest.fn(() => blogPortableTextReferences),
+  portableTextReferences: jest.fn(() => portableTextReferences),
   homepage: jest.fn(() => homepageFixture),
   planningCorePage: jest.fn(() => planningCorePageFixture),
   aboutWhoWeArePage: jest.fn(() => aboutWhoWeArePageFixture),
@@ -40,4 +41,5 @@ export default {
   policyPageBySlug: jest.fn(() => policyPageBySlugFixture),
   allLandingPages: jest.fn(() => allLandingPagesFixture),
   landingPageBySlug: jest.fn(() => landingPageBySlugFixture),
+  newsListingPage: jest.fn(() => allNewsListingPageFixture),
 };

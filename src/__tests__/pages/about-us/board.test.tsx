@@ -5,9 +5,9 @@ import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient from "../../../node-lib/cms";
 import { AboutBoardPage } from "../../../common-lib/cms-types";
 import AboutBoard, { getStaticProps } from "../../../pages/about-us/board";
-import { portableTextFromString } from "../../__helpers__/cms";
+import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 
-import { testAboutPageBaseData } from "./who-we-are.test";
+import { testAboutPageBaseData } from "./about-us.fixtures";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlags: () => ({ enabled: {} }),
@@ -100,13 +100,21 @@ describe("pages/about-us/board.tsx", () => {
     );
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
         <AboutBoard pageData={testAboutBoardPageData} />
       );
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "We're doing the things that need to get done.",
+        ogTitle: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "We're doing the things that need to get done.",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+      });
     });
   });
 

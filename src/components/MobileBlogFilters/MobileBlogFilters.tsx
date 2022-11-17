@@ -1,19 +1,21 @@
-import { useId, usePreventScroll } from "react-aria";
+import { useId } from "react-aria";
 import { FC, useState, useRef, useEffect } from "react";
 
 import Box from "../Box";
 import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Cover from "../Cover";
 import Flex from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
 import BlogCategoryList, {
   BlogCategoryListProps,
+  BlogCategoryPage,
 } from "../Blog/BlogCategoryList/BlogCategoryList";
+import Cover from "../Cover";
 
-type MobileBlogFiltersProps = {
-  categoryListProps: Omit<BlogCategoryListProps, "labelledBy">;
+export type MobileBlogFiltersProps = {
+  categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
   withBackButton?: boolean;
+  page: BlogCategoryPage;
 };
 const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,114 +34,90 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
     checkAndSetHeight();
   }, [categoryListRef]);
 
-  const { categoryListProps, withBackButton } = props;
-
-  const BUTTON_ROW_HEIGHT = 80;
+  const { categoryListProps, withBackButton, page } = props;
+  const menuId = useId();
+  const triggerId = useId();
 
   const close = () => {
     setIsOpen(false);
   };
 
-  usePreventScroll({ isDisabled: !isOpen });
-
-  const menuId = useId();
-  const triggerId = useId();
-
   return (
-    <>
-      <Box $height={BUTTON_ROW_HEIGHT} $display={[null, "none"]} />
-      <Box
-        $cover
-        $position="fixed"
-        $background={"black"}
-        $opacity={isOpen ? 0.5 : 0}
-        onClick={close}
-        $zIndex={"inFront"}
-        $pointerEvents={isOpen ? null : "none"}
-        $transition="opacity 0.5s ease"
-        $display={[null, "none"]}
-      />
-      <Box
-        style={{
-          height: isOpen ? BUTTON_ROW_HEIGHT + categoryListHeight : 0,
-        }}
-        $display={["block", "none"]}
-        $position="absolute"
-        $transition="all 0.5s ease"
-        $width="100%"
-        $zIndex="inFront"
-        $background={isOpen ? "pastelTurqoise" : "transparent"}
-      >
-        <Flex
-          $justifyContent={"space-between"}
-          $alignItems="center"
-          $transition="all 0.5s ease"
-          $position="relative"
-          $height={BUTTON_ROW_HEIGHT}
-          $zIndex={"inFront"}
-        >
-          {withBackButton && (
-            <Flex
-              $width="50%"
-              $background={isOpen ? "white" : "transparent"}
-              $transition="all 0.5s ease"
-              $height="100%"
-              $alignItems="center"
-              $position="relative"
-            >
-              <ButtonAsLink
-                variant="minimal"
-                icon="ArrowLeft"
-                iconBackground="teachersHighlight"
-                size="large"
-                label="All blogs"
-                href="/blog"
-              />
-              <Cover
-                $background="black"
-                $opacity={isOpen ? 0.5 : 0}
-                $transform={`scaleX(${isOpen ? 100 : 99}%)`}
-                $pointerEvents={isOpen ? null : "none"}
-                $transition="all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)"
-                $transformOrigin="left"
-                onClick={close}
-              />
-            </Flex>
-          )}
-          <Button
-            id={triggerId}
-            $ml="auto"
-            variant="minimal"
-            icon={isOpen ? "ChevronUp" : "ChevronDown"}
-            iconBackground="teachersHighlight"
-            iconPosition="trailing"
-            size="large"
-            label="Categories"
-            onClick={() => setIsOpen((isOpen) => !isOpen)}
-            aria-expanded={isOpen}
-            aria-controls={menuId}
-          />
-        </Flex>
+    <Flex
+      $mt={24}
+      $display={["flex", "none"]}
+      $flexDirection={"column"}
+      $width={"100%"}
+    >
+      <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
+      <Flex>
+        {withBackButton && (
+          <Box
+            $transition="all 0.5s ease"
+            $visibility={isOpen ? "hidden" : "visible"}
+            $opacity={isOpen ? 0 : 1}
+            aria-hidden={isOpen ? "true" : false}
+          >
+            <ButtonAsLink
+              variant="minimal"
+              icon="ArrowLeft"
+              iconBackground="teachersHighlight"
+              size="large"
+              label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
+              href={`${page === "blog-index" ? "/blog" : "/webinars"}`}
+            />
+          </Box>
+        )}
+        <Button
+          id={triggerId}
+          $ml="auto"
+          variant="minimal"
+          icon={isOpen ? "ChevronUp" : "ChevronDown"}
+          iconBackground="teachersHighlight"
+          iconPosition="trailing"
+          size="large"
+          label="Categories"
+          onClick={() => setIsOpen((isOpen) => !isOpen)}
+          aria-expanded={isOpen}
+          aria-controls={menuId}
+        />
+      </Flex>
+      <Box $width={"100%"} $position={"relative"}>
         <Box
-          id={menuId}
-          ref={categoryListRef}
-          $top="100%"
-          $transform={`translateY(${isOpen ? 0 : "-100%"})`}
+          style={{
+            height: isOpen ? categoryListHeight : 0,
+            clipPath: "inset(0px 0px -15px 0px)",
+          }}
+          $display={["block", "none"]}
+          $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"
-          $opacity={isOpen ? 1 : 0}
-          aria-labelledby={triggerId}
-          $visibility={isOpen ? "visible" : "hidden"}
+          $zIndex="mobileBlogFilters"
+          $background={isOpen ? "white" : "transparent"}
+          $dropShadow={"grey20"}
         >
-          <BlogCategoryList
-            labelledBy={triggerId}
-            $pv={32}
-            $ph={16}
-            {...categoryListProps}
-          />
+          <Box
+            id={menuId}
+            ref={categoryListRef}
+            $top="100%"
+            $transform={`translateY(${isOpen ? 0 : "-20%"})`}
+            $transition="all 0.5s ease"
+            $width="100%"
+            $opacity={isOpen ? 1 : 0}
+            aria-labelledby={triggerId}
+            $visibility={isOpen ? "visible" : "hidden"}
+          >
+            <BlogCategoryList
+              labelledBy={triggerId}
+              $pv={28}
+              $ph={16}
+              {...categoryListProps}
+              page={page}
+            />
+          </Box>
         </Box>
       </Box>
-    </>
+    </Flex>
   );
 };
 

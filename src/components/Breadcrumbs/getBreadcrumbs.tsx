@@ -1,4 +1,5 @@
 import { BlogWebinarCategory } from "../../common-lib/cms-types";
+import { SerializedWebinar } from "../../pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "../../pages/blog/[blogSlug]";
 import { Breadcrumb } from "../Breadcrumbs";
 
@@ -11,31 +12,37 @@ import { Breadcrumb } from "../Breadcrumbs";
  *
  */
 
-export const getBlogBreadcrumbs = (
+export type CrumbPageVariant = "blog" | "webinars";
+
+export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
-  currentCategorySlug: string | null
+  currentCategorySlug: string | null,
+  page: CrumbPageVariant,
+  label: string
 ): Breadcrumb[] => [
-  { label: "Blog", href: "/blog" },
+  { label, href: `/${page}` },
   {
     label:
       categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
       "All",
-    href: currentCategorySlug || "/blog",
+    href: currentCategorySlug || `/${page}`,
     disabled: true,
   },
 ];
 
-export const getBlogPostBreadcrumbs = (
+export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
-  blog: SerializedBlog
+  blog: SerializedBlog | SerializedWebinar,
+  page: CrumbPageVariant,
+  label: string
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
   return [
-    { label: "Blog", href: "/blog" },
+    { label, href: `/${page}` },
     {
       label:
         categories.find((cat) => cat.slug === category.slug)?.title || "All",
-      href: `/blog/categories/${category.slug}`,
+      href: `/${page}/categories/${category.slug}`,
     },
     {
       label: title,

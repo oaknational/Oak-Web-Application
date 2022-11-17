@@ -1,3 +1,346 @@
+# [1.62.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.1...v1.62.0) (2022-11-17)
+
+
+### Bug Fixes
+
+* resolve embedded references for blog page as well ([484de19](https://github.com/oaknational/Oak-Web-Application/commit/484de19258076cce5c6edab06a18130a6347bbdd))
+
+
+### Features
+
+* add new image for webinars ([1bb76cf](https://github.com/oaknational/Oak-Web-Application/commit/1bb76cf6121feed0c9d2aacde122d0727a9f994c))
+* pull summary card data through from cms ([5a5740c](https://github.com/oaknational/Oak-Web-Application/commit/5a5740ce2e5bec957bfbf63bfdb847dd061048b5))
+* put new image on blog listing page as well as webinars ([e005328](https://github.com/oaknational/Oak-Web-Application/commit/e0053286490dfab0240bfb007ff2df96968a971e))
+* show category as heading in summary card ([ee20901](https://github.com/oaknational/Oak-Web-Application/commit/ee20901fb23417e2273f45fa6945cbc484ffc160))
+* swap category title for heading on category change ([97b2b0d](https://github.com/oaknational/Oak-Web-Application/commit/97b2b0da2cbf9ea6ae6393fa9dc90ffdcbc5cfa9))
+
+## [1.61.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.61.0...v1.61.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* url for lesson and resource directory ([faea706](https://github.com/oaknational/Oak-Web-Application/commit/faea706f80cddfaf6b10c8da4724baf659328175))
+
+# [1.61.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.60.0...v1.61.0) (2022-11-16)
+
+
+### Features
+
+* add webinar links to footer and menu ([da5220a](https://github.com/oaknational/Oak-Web-Application/commit/da5220a99c0c24e38e5469dd1d12d79bec3d764e))
+
+# [1.60.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.59.1...v1.60.0) (2022-11-16)
+
+
+### Features
+
+* **webinars:** move webinars out of /beta ([579af55](https://github.com/oaknational/Oak-Web-Application/commit/579af551f85a4793dab224d0bfe98099f387de6c))
+
+## [1.59.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.59.0...v1.59.1) (2022-11-16)
+
+
+### Bug Fixes
+
+* add webinar image url to seo props ([8d069cf](https://github.com/oaknational/Oak-Web-Application/commit/8d069cf97e43a12946a62a4cab5bda8c81181f8b))
+
+# [1.59.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.58.1...v1.59.0) (2022-11-16)
+
+
+### Features
+
+* track webinar page view ([9a21dd7](https://github.com/oaknational/Oak-Web-Application/commit/9a21dd76a333ec961b28f90ad5a5d6061532d40f))
+* **video-tracking:** adds video location to video ([0f1d4fe](https://github.com/oaknational/Oak-Web-Application/commit/0f1d4febb759e42a807aee4ff5e7abf731815cf8))
+
+## [1.58.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.58.0...v1.58.1) (2022-11-15)
+
+# [1.58.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.57.0...v1.58.0) (2022-11-15)
+
+
+### Bug Fixes
+
+* **upcoming-webinar:** display soonest upcoming webianr ([cc7dff0](https://github.com/oaknational/Oak-Web-Application/commit/cc7dff0b0ba5574c3ba0f0b9e5db3ebb3376f887))
+* **upcoming-webinar:** remove text, and stylefix ([1d3708b](https://github.com/oaknational/Oak-Web-Application/commit/1d3708b228a08810b9ba22c57dd7f2ad26a904f9))
+* **webinar-listing:** display properly if only item is upcoming webinar ([b3ac48f](https://github.com/oaknational/Oak-Web-Application/commit/b3ac48f482aaa811f532463253b95415905ed33f))
+* **webinar-listings:** fix click target of upcoming webinar list item ([241cca5](https://github.com/oaknational/Oak-Web-Application/commit/241cca5a03b987813b192ae8ee7cd3f9506052e1))
+
+
+### Features
+
+* add upcoming overlay to webinar video ([fa5cae2](https://github.com/oaknational/Oak-Web-Application/commit/fa5cae2af03f6202d86c97bbf92fd0cdee3cabf9))
+* add visual components for upcoming webinar ([689c19d](https://github.com/oaknational/Oak-Web-Application/commit/689c19dc318e698eb04607ce0449990f9dcff577))
+
+# [1.57.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.56.0...v1.57.0) (2022-11-15)
+
+
+### Features
+
+* json ld for webinars ([c5dcb20](https://github.com/oaknational/Oak-Web-Application/commit/c5dcb2048476a0af8cf9a3a4727f272c0c4c8c42))
+
+# [1.56.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.5...v1.56.0) (2022-11-11)
+
+
+### Bug Fixes
+
+* add missing reference resolving to all cms client methods ([8cc51dc](https://github.com/oaknational/Oak-Web-Application/commit/8cc51dc8faa6d777414d78dafbc71f9a5e3cfe46))
+* don't incorrectly flag unresolved PT references ([4613aca](https://github.com/oaknational/Oak-Web-Application/commit/4613acaa4eb7f20e29df933a6ffef9585d2bd263))
+* rename portableTextReferences to remove old blog prefix ([46fbf95](https://github.com/oaknational/Oak-Web-Application/commit/46fbf95adcd605361857d42a05a991757969602a))
+* undo skipped sanity-client tests, fix related fixtures ([5f06ecf](https://github.com/oaknational/Oak-Web-Application/commit/5f06ecfabfef1c027b8ae1e5319243f69d43b033))
+
+
+### Features
+
+* **cms:** improve error messaging and docs around PT references ([77d2415](https://github.com/oaknational/Oak-Web-Application/commit/77d2415a1e8b44c1d67301cafab9cdcd7c674d8a))
+* resolve PT references for related client methods ([19405db](https://github.com/oaknational/Oak-Web-Application/commit/19405db2aac660ab6d4b063f13fd82acd17a9b7a))
+
+## [1.55.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.4...v1.55.5) (2022-11-11)
+
+
+### Bug Fixes
+
+* chevron up and down now work use them instead of rotate ([91f8aa9](https://github.com/oaknational/Oak-Web-Application/commit/91f8aa90752b22ab999113d7423ff94cce3a04e0))
+
+## [1.55.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.3...v1.55.4) (2022-11-10)
+
+
+### Bug Fixes
+
+* **cms:** allow fixtureGenerationWrapper to work with client side bundle bug ([42fee4a](https://github.com/oaknational/Oak-Web-Application/commit/42fee4afba7e800d5f2853afb890818177078a86))
+* **cms:** reduce size of generated fixture files in generation handler ([8ea79e8](https://github.com/oaknational/Oak-Web-Application/commit/8ea79e83de25ab4b2133ea3cee06259422c08630))
+
+## [1.55.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.2...v1.55.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* ensure ssr code isn't bundled with client js ([45116f9](https://github.com/oaknational/Oak-Web-Application/commit/45116f95207374c4e5ba344e59c5bc3eec3af35f))
+
+## [1.55.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.1...v1.55.2) (2022-11-09)
+
+
+### Bug Fixes
+
+* remove defaults from seo config, instead, all should come from remote config ([8b148c8](https://github.com/oaknational/Oak-Web-Application/commit/8b148c8d82e7f53cdd0c39c832f29f54166741f5))
+
+## [1.55.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.55.0...v1.55.1) (2022-11-09)
+
+# [1.55.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.3...v1.55.0) (2022-11-09)
+
+
+### Features
+
+* hide webinar behind registration form ([a6a5370](https://github.com/oaknational/Oak-Web-Application/commit/a6a5370b6e828b55fbe9934d7ccb5033f1f3a2df))
+* hide webinar behind registration form ([97740d3](https://github.com/oaknational/Oak-Web-Application/commit/97740d3fc46db7899d82207073af244fae23316a))
+
+## [1.54.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.2...v1.54.3) (2022-11-08)
+
+
+### Bug Fixes
+
+* webinar images cut off ([8290066](https://github.com/oaknational/Oak-Web-Application/commit/8290066c6713b2463c5822c96745e672c33113cb))
+
+## [1.54.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.1...v1.54.2) (2022-11-08)
+
+
+### Bug Fixes
+
+* use label for breadcrumbs ([b37d72c](https://github.com/oaknational/Oak-Web-Application/commit/b37d72cabd37100980f9b17a544057226cee2e98))
+
+## [1.54.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.54.0...v1.54.1) (2022-11-08)
+
+
+### Bug Fixes
+
+* blog webinar header page prop ([976bfed](https://github.com/oaknational/Oak-Web-Application/commit/976bfeda1b6cdc90d3d9ea74503aff31002ef29a))
+* categories and webinar list links use beta url ([54639e0](https://github.com/oaknational/Oak-Web-Application/commit/54639e033d310935f1eab51a10e53dd9a5b5bcd5))
+* close modal when you click outside ([95841b7](https://github.com/oaknational/Oak-Web-Application/commit/95841b71a6fe610ef4f4dbb58897b48f36d5a305))
+* mobile filter url for webinars and blogs ([6716314](https://github.com/oaknational/Oak-Web-Application/commit/6716314d383737543f295a6f3adc54e7826f1771))
+
+# [1.54.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.53.0...v1.54.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* remove unecessary null ([3441373](https://github.com/oaknational/Oak-Web-Application/commit/3441373b0270e9c72fdf99d7eace70758d1e2e3f))
+* use team member preview for author ([7a8874a](https://github.com/oaknational/Oak-Web-Application/commit/7a8874ae9d277cbc1e48806120e085ab51e077ae))
+
+
+### Features
+
+* add categories and create author field on serialized webinar ([56e6cd5](https://github.com/oaknational/Oak-Web-Application/commit/56e6cd51ceb54bb39ab80fe2857d2728305c92c6))
+* add portable teext ([d12ad7b](https://github.com/oaknational/Oak-Web-Application/commit/d12ad7bad23e67cf371e9af89233b3a2aeab6d07))
+* add video to webinar page ([f5b29d0](https://github.com/oaknational/Oak-Web-Application/commit/f5b29d0ff8c8afbe583f15d919dc86cb34eb006e))
+* basic layout of webinar slug page ([7a2348c](https://github.com/oaknational/Oak-Web-Application/commit/7a2348ca064419721371abbd79605d3071b1f3df))
+
+# [1.53.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.52.0...v1.53.0) (2022-11-08)
+
+
+### Features
+
+* webinar images ([091234a](https://github.com/oaknational/Oak-Web-Application/commit/091234a66ed05d1a1a8130146f59de7b5823ae5b))
+* webinars and blogs on homepage ([09d6365](https://github.com/oaknational/Oak-Web-Application/commit/09d63656a8af244bc72d1effaae0db510bf9bc79))
+
+# [1.52.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.51.1...v1.52.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* **storybook:** adds storybook env ([2d5d07f](https://github.com/oaknational/Oak-Web-Application/commit/2d5d07fd77d8ba2bd0b09cc32d6518d5b1b03216))
+
+
+### Features
+
+* past webinar registration form ([3ed7c14](https://github.com/oaknational/Oak-Web-Application/commit/3ed7c14e7461a32e7887fcb296a859e643ec4dd9))
+
+## [1.51.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.51.0...v1.51.1) (2022-11-07)
+
+# [1.51.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.50.0...v1.51.0) (2022-11-07)
+
+
+### Features
+
+* **webinars:** upcoming-webinar-list-item ([2a5b863](https://github.com/oaknational/Oak-Web-Application/commit/2a5b863b6b4401aa303445c99bce5d807339f280))
+* **webinars:** upcoming-webinar-list-item ([f523a84](https://github.com/oaknational/Oak-Web-Application/commit/f523a841275c909c855a9d6ebac99e33930b442c))
+
+# [1.50.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.49.1...v1.50.0) (2022-11-04)
+
+
+### Bug Fixes
+
+* add a11y suffix to label for context ([3719e9a](https://github.com/oaknational/Oak-Web-Application/commit/3719e9a10ff565418c7e5db24995d0e38dc8425a))
+
+
+### Features
+
+* webinar wall ([891a13a](https://github.com/oaknational/Oak-Web-Application/commit/891a13ae991ef92d2dcf9310c911f5cd4789caa4))
+
+## [1.49.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.49.0...v1.49.1) (2022-11-02)
+
+# [1.49.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.6...v1.49.0) (2022-11-02)
+
+
+### Bug Fixes
+
+* **about-leadership:** bio modals ([846ed87](https://github.com/oaknational/Oak-Web-Application/commit/846ed8752fd8d8495d6a398dcf8a9868b73458b8))
+* **bio-modal:** tweak styles for laptop screens ([9d17612](https://github.com/oaknational/Oak-Web-Application/commit/9d17612e6abdc17a7ecbc071fd0b927613db6ac7))
+* leadership filter for chief executive ([852fef6](https://github.com/oaknational/Oak-Web-Application/commit/852fef68908d8c59cfff08c4fb7af920bf9ebc5d))
+* **leadership-bios:** align CEO center ([3c07262](https://github.com/oaknational/Oak-Web-Application/commit/3c07262f1287a972ea3eeb37c889639d86a6f1dc))
+
+
+### Features
+
+* about leadership page ([5645111](https://github.com/oaknational/Oak-Web-Application/commit/564511104d03f249f245efce82869cbe0eae5f6f))
+
+## [1.48.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.5...v1.48.6) (2022-11-02)
+
+
+### Bug Fixes
+
+* **icon:** chevron down ([810faf1](https://github.com/oaknational/Oak-Web-Application/commit/810faf18112474c09d1698480ec57c458596c2b9))
+
+## [1.48.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.4...v1.48.5) (2022-11-02)
+
+
+### Bug Fixes
+
+* **video-tracking:** allow duration: null in video tracking ([3bb920e](https://github.com/oaknational/Oak-Web-Application/commit/3bb920e6fb45ffa86eacb28793d0b10425de0ba7))
+
+## [1.48.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.3...v1.48.4) (2022-11-02)
+
+
+### Bug Fixes
+
+* **seo:** get seo props from CMS for work-with-us page ([dffea44](https://github.com/oaknational/Oak-Web-Application/commit/dffea44e2d05629976268fffd01f5a1eaa8c7335))
+
+## [1.48.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.2...v1.48.3) (2022-11-02)
+
+
+### Bug Fixes
+
+* path to json portable text ([a2d205e](https://github.com/oaknational/Oak-Web-Application/commit/a2d205e0dffb028d4f12c56df251e8463a854aab))
+
+## [1.48.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.1...v1.48.2) (2022-11-01)
+
+## [1.48.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.48.0...v1.48.1) (2022-11-01)
+
+
+### Bug Fixes
+
+* allow Pa11y to run against localhost ([02917e6](https://github.com/oaknational/Oak-Web-Application/commit/02917e634d866ab2b25b61743510b51cf2827f61))
+* **deps:** downgrade node-fetch so it can be used with 'require' ([4478a68](https://github.com/oaknational/Oak-Web-Application/commit/4478a683c2ef5d3c2bf479c1ac2c32e85a794d07))
+* **deps:** fix critical security warning ([b834164](https://github.com/oaknational/Oak-Web-Application/commit/b834164d68fc83d22f00fe7b5a2a89208104520f))
+* **video:** tell Mux it is rendering in a big slot ([52c5a46](https://github.com/oaknational/Oak-Web-Application/commit/52c5a4612296e8a1771f4e31262ba2efc225835a))
+
+# [1.48.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.4...v1.48.0) (2022-11-01)
+
+
+### Bug Fixes
+
+* disappearing webinar categories ([53d2704](https://github.com/oaknational/Oak-Web-Application/commit/53d27044f515e869b1e6c4ff94787b83d63501a0))
+* duplicate categories in webinars ([a462d4e](https://github.com/oaknational/Oak-Web-Application/commit/a462d4e812d483dcce9345f4799093b8c4bf7c20))
+* sort categories ([3d947a1](https://github.com/oaknational/Oak-Web-Application/commit/3d947a135150d2afc9fc07ad094c50600bcdb7f7))
+* webinar category links to webinar not blog ([b437af6](https://github.com/oaknational/Oak-Web-Application/commit/b437af6bbd1bb8b44059881680c52a4a607cbdfa))
+
+
+### Features
+
+* webinar listing page ([7edaed9](https://github.com/oaknational/Oak-Web-Application/commit/7edaed943ef10078204fde6f7982afa3b86f7fd4))
+
+## [1.47.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.3...v1.47.4) (2022-11-01)
+
+
+### Bug Fixes
+
+* **hyperlinks:** set color and underline for inline hyperlinks ([b0c3663](https://github.com/oaknational/Oak-Web-Application/commit/b0c3663a5607fc47f5b6b7cd9ab29b0d1bdf6053))
+
+## [1.47.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.2...v1.47.3) (2022-11-01)
+
+
+### Bug Fixes
+
+* add cookie consent decorator ([2240d9f](https://github.com/oaknational/Oak-Web-Application/commit/2240d9f3f711d2305d70852d8592f8c20ca9d3ed))
+* add posthog decorator ([b5ccd78](https://github.com/oaknational/Oak-Web-Application/commit/b5ccd78bbc78508ebbd69e6d8c0d3602bf23f0a0))
+* add toast provider to mock toast context ([7197c3b](https://github.com/oaknational/Oak-Web-Application/commit/7197c3be18c4513956b7787ab61fe185bb4133db))
+* mock analytics provider in storybook video with analytics decorator ([c89b88d](https://github.com/oaknational/Oak-Web-Application/commit/c89b88dbfb8b06dc6bbcaceaad91ea23f50a7d3d))
+* remove decorators from sonar coverage ([1d10fb5](https://github.com/oaknational/Oak-Web-Application/commit/1d10fb5d18e6b9a046f7dd4c73b8911942533f63))
+* remove divs and use correct ignore coverage ([9930791](https://github.com/oaknational/Oak-Web-Application/commit/993079136b976f0982d45e56b41d979d0e3200eb))
+* remove state ([432eedf](https://github.com/oaknational/Oak-Web-Application/commit/432eedf4924fb3d8b8459a76f5bc6f1e845614ca))
+
+## [1.47.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.1...v1.47.2) (2022-10-31)
+
+
+### Bug Fixes
+
+* **dropdown-select-a11y:** remove unused prop and add labelProps to actual label ([1342fbc](https://github.com/oaknational/Oak-Web-Application/commit/1342fbc64bc499e626eaf8faf16eae65658aee0f))
+* **input-ally:** remove duped hidden label from input ([a66f167](https://github.com/oaknational/Oak-Web-Application/commit/a66f1671b476b259e162698be22a5f5da608296b))
+
+## [1.47.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.47.0...v1.47.1) (2022-10-31)
+
+
+### Bug Fixes
+
+* **a11y:** form colour contrasts ([d314091](https://github.com/oaknational/Oak-Web-Application/commit/d3140914b5a232f21451f254d0bd582ee2c268a5))
+* use new failure colour ([8193293](https://github.com/oaknational/Oak-Web-Application/commit/8193293542388f78cb13d3f311daa78960e349ff))
+
+# [1.47.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.46.0...v1.47.0) (2022-10-27)
+
+
+### Features
+
+* **docs:** update some docs ([6ab7852](https://github.com/oaknational/Oak-Web-Application/commit/6ab7852d6f63548f88e317c810e3bf48e649b21f))
+
+# [1.46.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.1...v1.46.0) (2022-10-26)
+
+
+### Features
+
+* **Netlify:** turn default domain redirect back on ([0a274b3](https://github.com/oaknational/Oak-Web-Application/commit/0a274b3b6a021c26ae552a02c460568c84cc38f1))
+
+## [1.45.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.45.0...v1.45.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* rotate chevron in select on state change ([3e80d34](https://github.com/oaknational/Oak-Web-Application/commit/3e80d34b078743da8c36ede4b4b1500a09062e4e))
+
 # [1.45.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.44.1...v1.45.0) (2022-10-25)
 
 

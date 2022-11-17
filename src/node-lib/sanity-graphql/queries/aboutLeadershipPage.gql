@@ -18,6 +18,9 @@ query aboutLeadershipPage($isDraftFilter: Sanity_DocumentFilter) {
     id: _id
     heading: title
     introPortableText: introRaw
+    leadershipTeam {
+      ...TeamMember
+    }
     seo {
       ...Seo
     }
