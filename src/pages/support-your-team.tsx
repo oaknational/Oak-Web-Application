@@ -66,6 +66,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
+              $mr={[0, 16]}
             />
           </Flex>
         </Flex>
