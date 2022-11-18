@@ -58,7 +58,6 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
-              $mr={[0, 0, 80]}
             />
             <BubbleMessage
               background={"twilight"}
@@ -66,7 +65,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
-              $mr={[0, 16]}
+              $mr={[0, -8, 8]}
             />
           </Flex>
         </Flex>
