@@ -1,3 +1,37 @@
+# [1.67.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.66.0...v1.67.0) (2022-11-18)
+
+
+### Bug Fixes
+
+* **blog list:** don't trim non-existent summaries ([4f342e0](https://github.com/oaknational/Oak-Web-Application/commit/4f342e04e458ddf49bca49295e0d40687aeff558))
+* **blog list:** don't trim non-existent summaries, but with right syntax ([fb1f0c2](https://github.com/oaknational/Oak-Web-Application/commit/fb1f0c28ef61fa3b5388033ebfa29d5f6f8e91b0))
+* **deps:** fix most type errors ([2151ab7](https://github.com/oaknational/Oak-Web-Application/commit/2151ab75fda0250508a2df6a5034a18778b24d2f))
+* **dropdown-select:** remove 'children' types, so instead it inherirs from AriaSelectProps ([397cd5a](https://github.com/oaknational/Oak-Web-Application/commit/397cd5ac732b4c07f468ba326cd49f87973b510b))
+* **links:** pass the Next link props to the Next link ([7dd7914](https://github.com/oaknational/Oak-Web-Application/commit/7dd7914bb130f85e4bf06eb3a8b9828e2b552648))
+* **links:** use passHref pattern for now ([107de9c](https://github.com/oaknational/Oak-Web-Application/commit/107de9c0376a9fa54d0cef4ca2508a645a1e7a28))
+* make select component render same on client and server ([1a08785](https://github.com/oaknational/Oak-Web-Application/commit/1a08785adff11e236ed6ffc38bcc44851ca27e6f))
+* **pagination:** fix pagination issue in react 18 update ([fa5b4c3](https://github.com/oaknational/Oak-Web-Application/commit/fa5b4c3841ac56786935b62fe1cea7e1ce3a295e))
+* prefix styled component props with $ ([a8b016f](https://github.com/oaknational/Oak-Web-Application/commit/a8b016f20a92651b4853eb1aee345d83fe6dd0e7))
+* **test:** allow UI test to reliably pass ([5b4fc01](https://github.com/oaknational/Oak-Web-Application/commit/5b4fc019927d682948207ed9e4af74228a234a00))
+* **test:** intermittently failing test ([efa4023](https://github.com/oaknational/Oak-Web-Application/commit/efa4023237ca35a9a42e52be56b8e85e7773aa5c))
+* **test:** intermittently failing test, again ([d10319a](https://github.com/oaknational/Oak-Web-Application/commit/d10319a721f7533f136f642a579b37adcc279dfb))
+* **tests:** update test imports in line with React 18 ([768d7d2](https://github.com/oaknational/Oak-Web-Application/commit/768d7d2f1b10f971aa014361bcda5d38d4dd4549))
+* **tests:** wait for react-form-hook rerenders ([be06802](https://github.com/oaknational/Oak-Web-Application/commit/be06802fc4f77689f52150c1f49908ed9cf02ae5))
+* **test:** update expected values ([25eac4f](https://github.com/oaknational/Oak-Web-Application/commit/25eac4f43527d9cd4ff8b345c2f9b242f546487a))
+* **test:** update expected values, again ([b05e0f7](https://github.com/oaknational/Oak-Web-Application/commit/b05e0f72568462b50204d7a7b09cc7ab51e42ec1))
+* update OakLink to use the newer next/link api, and ensure OakLink is ubiquitous ([1614599](https://github.com/oaknational/Oak-Web-Application/commit/16145998882f591bf0feedba74cbd1e6655603c8))
+* **use-id:** use React.useId instead of react-aria ([961ffc4](https://github.com/oaknational/Oak-Web-Application/commit/961ffc48459c8af1cc219ece8e738604a11d59b7))
+
+
+### Features
+
+* **build:** enable overriding app version for testing ([43ed56d](https://github.com/oaknational/Oak-Web-Application/commit/43ed56d3a7383fdde229e2bc31243a3bc036040a))
+* **deps:** allow install without --legacy-peer-deps flag ([b33f0ab](https://github.com/oaknational/Oak-Web-Application/commit/b33f0ab835a73a4b1fce90ecc31f570d28747e6a))
+* **deps:** update Next and React ([8891f3c](https://github.com/oaknational/Oak-Web-Application/commit/8891f3cad3a33de4b575feb3bb87ddba91f8bb79))
+* **Next:** enable swcMinify ([4f67194](https://github.com/oaknational/Oak-Web-Application/commit/4f67194fa401949d681bff7298d5dd495abd35b9))
+* **Next:** re-enable SWC minify ([dcff7e8](https://github.com/oaknational/Oak-Web-Application/commit/dcff7e825c1d5b2fc067255dfb335e70565d29cf))
+* replace FocusScope with react-focus-on ([7019872](https://github.com/oaknational/Oak-Web-Application/commit/70198727b2a34892e1c15cf9a560af7440855590))
+
 # [1.66.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.65.0...v1.66.0) (2022-11-18)
 
 
