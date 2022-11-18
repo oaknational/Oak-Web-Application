@@ -1,7 +1,0 @@
-query lessonsBySlug($slug: String!) {
-  lessons(where: { slug: { _eq: $slug } }) {
-    id
-    slug
-    title
-  }
-}

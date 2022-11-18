@@ -79,23 +79,6 @@ async function main() {
     // Bugsnag
     NEXT_PUBLIC_BUGSNAG_API_KEY: oakConfig.bugsnag.apiKey,
 
-    // Firebase
-    NEXT_PUBLIC_FIREBASE_API_HOST: oakConfig.firebase.apiHost,
-    NEXT_PUBLIC_FIREBASE_API_KEY: oakConfig.firebase.apiKey,
-    NEXT_PUBLIC_FIREBASE_APP_ID: oakConfig.firebase.appId,
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: oakConfig.firebase.authDomain,
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID:
-      oakConfig.firebase.messagingSenderId,
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID: oakConfig.firebase.projectId,
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: oakConfig.firebase.storageBucket,
-    NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: oakConfig.firebase.tokenHost,
-    FIREBASE_SERVICE_ACCOUNT:
-      process.env.FIREBASE_SERVICE_ACCOUNT ||
-      secretsFromNetwork.FIREBASE_SERVICE_ACCOUNT,
-    FIREBASE_ADMIN_DATABASE_URL:
-      process.env.FIREBASE_ADMIN_DATABASE_URL ||
-      secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
-
     // Gleap
     NEXT_PUBLIC_GLEAP_API_KEY:
       process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,

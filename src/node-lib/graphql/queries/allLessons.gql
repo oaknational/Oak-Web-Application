@@ -1,7 +1,0 @@
-query allLessons {
-  lessons {
-    id
-    slug
-    title
-  }
-}

@@ -18,47 +18,28 @@ import ErrorBoundary from "../../components/ErrorBoundary";
 import { MenuProvider } from "../../context/Menu";
 import { ToastProvider } from "../../context/Toast";
 
-import MockedAuthProvider, {
-  MockedAuthProviderProps,
-} from "./MockedAuthProvider";
-import MockedApolloProvider from "./MockedApolloProvider";
 import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
-import MockedBookmarksProvider, {
-  MockedBookmarksProviderProps,
-} from "./MockedBookmarksProvider";
 import MockedCookieConsentProvider from "./MockedCookieConsentProvider";
 
 export type ProviderProps = {
   children?: React.ReactNode;
-  authProviderProps?: MockedAuthProviderProps;
-  bookmarksProviderProps?: MockedBookmarksProviderProps;
 };
 
-export const AllTheProviders: FC<ProviderProps> = ({
-  children,
-  authProviderProps,
-  bookmarksProviderProps,
-}) => {
+export const AllTheProviders: FC<ProviderProps> = ({ children }) => {
   return (
     <MockedCookieConsentProvider>
       <ThemeProvider theme={theme}>
         <ErrorBoundary>
           <MockedAnalyticsProvider>
-            <MockedAuthProvider {...authProviderProps}>
-              <MockedApolloProvider>
-                <MemoryRouterProvider>
-                  <MockedBookmarksProvider {...bookmarksProviderProps}>
-                    <OverlayProvider>
-                      <SearchProvider>
-                        <ToastProvider>
-                          <MenuProvider>{children}</MenuProvider>
-                        </ToastProvider>
-                      </SearchProvider>
-                    </OverlayProvider>
-                  </MockedBookmarksProvider>
-                </MemoryRouterProvider>
-              </MockedApolloProvider>
-            </MockedAuthProvider>
+            <MemoryRouterProvider>
+              <OverlayProvider>
+                <SearchProvider>
+                  <ToastProvider>
+                    <MenuProvider>{children}</MenuProvider>
+                  </ToastProvider>
+                </SearchProvider>
+              </OverlayProvider>
+            </MemoryRouterProvider>
           </MockedAnalyticsProvider>
         </ErrorBoundary>
       </ThemeProvider>

@@ -23,8 +23,6 @@ const customJestConfig = {
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "browser-lib/graphql/generated/*",
-    "node-lib/graphql/generated/*",
     "node-lib/sanity-graphql/generated/*",
     "src/storybook-decorators/*",
   ],
