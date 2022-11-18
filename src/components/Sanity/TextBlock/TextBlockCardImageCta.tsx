@@ -56,6 +56,7 @@ const TextBlockCardImageCta: FC<
             <ButtonAsLink
               $mt={32}
               href={getCTAHref(cta)}
+              page={null}
               label={cta.label}
               icon={"ArrowRight"}
               $iconPosition={"trailing"}
