@@ -1,3 +1,15 @@
+# [1.66.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.65.0...v1.66.0) (2022-11-18)
+
+
+### Bug Fixes
+
+* ensure SEO is pulled from listing pages ([9a6d6dc](https://github.com/oaknational/Oak-Web-Application/commit/9a6d6dcb73315b7a73e196495855dc44b53aee41))
+
+
+### Features
+
+* correct SEO props for webinar and blog listing pages ([82461b5](https://github.com/oaknational/Oak-Web-Application/commit/82461b5bcd5a59b9263b68a96b28cbec829c9d50))
+
 # [1.65.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.64.0...v1.65.0) (2022-11-17)
 
 
