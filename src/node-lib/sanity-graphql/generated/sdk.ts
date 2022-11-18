@@ -3087,7 +3087,7 @@ export type NewsListingPageQueryVariables = Exact<{
 }>;
 
 
-export type NewsListingPageQuery = { __typename?: 'RootQuery', allNewsListingPage: Array<{ __typename?: 'NewsListingPage', title?: string | null, heading?: string | null, id?: string | null, summary?: any | null }> };
+export type NewsListingPageQuery = { __typename?: 'RootQuery', allNewsListingPage: Array<{ __typename?: 'NewsListingPage', title?: string | null, heading?: string | null, id?: string | null, summary?: any | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type PlanningCorePageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -3138,7 +3138,7 @@ export type WebinarsListingPageQueryVariables = Exact<{
 }>;
 
 
-export type WebinarsListingPageQuery = { __typename?: 'RootQuery', allWebinarListingPage: Array<{ __typename?: 'WebinarListingPage', title?: string | null, heading?: string | null, id?: string | null, summary?: any | null }> };
+export type WebinarsListingPageQuery = { __typename?: 'RootQuery', allWebinarListingPage: Array<{ __typename?: 'WebinarListingPage', title?: string | null, heading?: string | null, id?: string | null, summary?: any | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export const ImageFragmentDoc = gql`
     fragment Image on Image {
@@ -3826,9 +3826,12 @@ export const NewsListingPageDocument = gql`
     title
     heading
     summary: summaryRaw
+    seo {
+      ...Seo
+    }
   }
 }
-    `;
+    ${SeoFragmentDoc}`;
 export const PlanningCorePageDocument = gql`
     query planningCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allPlanningCorePage(
@@ -3982,9 +3985,12 @@ export const WebinarsListingPageDocument = gql`
     title
     heading
     summary: summaryRaw
+    seo {
+      ...Seo
+    }
   }
 }
-    `;
+    ${SeoFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
