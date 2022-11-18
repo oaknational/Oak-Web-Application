@@ -120,6 +120,7 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
+    swcMinify: true,
 
     // Allow static builds with deleted beta pages to build.
     eslint: {

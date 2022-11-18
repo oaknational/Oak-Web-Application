@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import { FC, useRef } from "react";
+import { FC, MutableRefObject, useRef } from "react";
 
 import {
   Image,
@@ -21,6 +21,7 @@ import Svg from "../Svg";
 import { Heading, P } from "../Typography";
 
 import NavigationButtons from "./NavigationButtons";
+import { ModalControllerRefs } from "./useBioModal";
 
 export type BioData = {
   id: string;
@@ -38,9 +39,11 @@ export type BioModalProps = {
   bio?: BioData;
   nextBio?: () => void;
   prevBio?: () => void;
+  returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
+  modalControllerRefs: ModalControllerRefs;
 };
 const BioModal: FC<BioModalProps> = (props) => {
-  const { bio, isOpen, closeModal, nextBio, prevBio } = props;
+  const { bio, isOpen, closeModal, nextBio, prevBio, returnFocusRef } = props;
 
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -50,6 +53,7 @@ const BioModal: FC<BioModalProps> = (props) => {
     isDismissable: true,
     isKeyboardDismissDisabled: true,
     isOpen,
+    returnFocusRef,
   });
 
   const { titleProps } = modalDialogProps;

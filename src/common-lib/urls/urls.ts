@@ -1,5 +1,8 @@
 import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
+import errorReporter from "../error-reporter";
+
+const reportError = errorReporter("urls.ts");
 
 const OAK_PAGES = {
   "about-board": "/about-us/board",
@@ -14,6 +17,7 @@ const OAK_PAGES = {
   "lesson-planning": "/lesson-planning",
   "privacy-policy": "/legal/privacy-policy",
   "pupils-home": "https://classroom.thenational.academy",
+  "our-teachers": "https://classroom.thenational.academy/teachers",
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
@@ -47,10 +51,15 @@ export const isExternalHref = (href: MaybeOakHref) => {
   if (href.startsWith("/")) {
     return false;
   }
-  const url = new URL(href);
 
-  if (url.hostname === getCurrentHostname()) {
-    return false;
+  try {
+    const url = new URL(href);
+
+    if (url.hostname === getCurrentHostname()) {
+      return false;
+    }
+  } catch (error) {
+    reportError(error, { href });
   }
 
   return true;

@@ -65,6 +65,7 @@ export const getSignInCallbackUrl = () =>
 
 export type AuthProviderValue = OakAuth;
 export type AuthProviderProps = {
+  children?: React.ReactNode;
   value?: Partial<AuthProviderValue>;
 };
 const AuthProvider: FC<AuthProviderProps> = ({

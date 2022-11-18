@@ -62,9 +62,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       <ButtonAsLink
                         background="teachersHighlight"
                         label={card.cta.label}
+                        page={null}
                         href={card.cta.external}
                         icon={"External"}
-                        iconPosition={"trailing"}
+                        $iconPosition={"trailing"}
                       >
                         {card.cta.label}
                       </ButtonAsLink>

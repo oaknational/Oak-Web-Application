@@ -56,8 +56,8 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
             {...primaryTargetProps}
             page={"webinars"}
             slug={slug}
-            focusStyles={["underline"]}
-            isHovered={cardIsHovered && !buttonIsHovered}
+            $focusStyles={["underline"]}
+            $isHovered={cardIsHovered && !buttonIsHovered}
           >
             {title}
           </OakLink>
@@ -72,11 +72,12 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         $ml={[0, 48]}
         background="teachersHighlight"
         htmlAnchorProps={{ onClick: signUpOnClick, target: "_blank" }}
+        page={null}
         href={signUpHref}
         label="Save my place"
         labelSuffixA11y={`on the webinar: ${title}`}
         icon="ChevronRight"
-        iconPosition="trailing"
+        $iconPosition="trailing"
       />
     </Flex>
   );

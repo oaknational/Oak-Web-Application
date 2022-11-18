@@ -17,6 +17,7 @@ import {
 
 export type BookmarksProviderValue = BookmarksContext;
 export type BookmarksProviderProps = {
+  children?: React.ReactNode;
   value?: Partial<BookmarksContext>;
 };
 /**

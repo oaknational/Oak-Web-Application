@@ -8,7 +8,9 @@ type MenuContext = {
 
 export const menuContext = createContext<MenuContext | null>(null);
 
-export const MenuProvider: FC = ({ children }) => {
+export const MenuProvider: FC<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   const openMenu = useCallback(() => {

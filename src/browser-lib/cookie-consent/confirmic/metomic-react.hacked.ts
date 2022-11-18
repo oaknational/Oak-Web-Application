@@ -200,7 +200,7 @@ var m = function () {},
       t(function () {
         // Matthew Gregory edit - 2022 - 07 - 05 - just return children if in a test
         // environment
-        if (process.env.NODE_ENV === "test") return d;
+        if (process.env.NODE_ENV === "test") return;
         // Remy Sharp edit - 2022-02-09 - support disabling metomic programmatically
         // because we need to automatically load these pages up in Puppeteer for
         // screenshots to PDF.

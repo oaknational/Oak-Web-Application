@@ -32,8 +32,8 @@ export const buttonFlexDirectionMap: Record<
   leading: "row",
   trailing: "row-reverse",
 };
-export const getButtonFlexDirection = (iconPosition: IconPosition) =>
-  buttonFlexDirectionMap[iconPosition];
+export const getButtonFlexDirection = ($iconPosition: IconPosition) =>
+  buttonFlexDirectionMap[$iconPosition];
 
 type ButtonConfig = {
   height: PixelSpacing;
@@ -150,7 +150,7 @@ export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "brush";
 export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
-export type CommonButtonProps = OpacityProps &
+export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
   MarginProps & {
     id?: string;
     label: string;
@@ -175,16 +175,16 @@ export type CommonButtonProps = OpacityProps &
     variant?: ButtonVariant;
     background?: ButtonBackground;
     icon?: IconName;
-    iconPosition?: IconPosition;
+    $iconPosition?: IconPosition;
     iconBackground?: OakColorName;
     size?: ButtonSize;
     "aria-label"?: string;
-    fullWidth?: boolean;
-    focusStyles?: [];
+    $fullWidth?: boolean;
+    $focusStyles?: [];
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,
-  iconPosition: DEFAULT_ICON_POSITION,
+  $iconPosition: DEFAULT_ICON_POSITION,
   size: DEFAULT_BUTTON_SIZE,
 };
 
@@ -200,7 +200,7 @@ export type HTMLAnchorProps = Omit<
 
 export type CommonIconButtonProps = Omit<
   CommonButtonProps,
-  "label" | "iconPosition"
+  "label" | "$iconPosition"
 > & {
   icon: IconName;
   "aria-label": string;

@@ -32,6 +32,7 @@ const StyledLayout = styled.main`
 `;
 
 export type HeaderProps = {
+  children?: React.ReactNode;
   breadcrumbs?: Breadcrumb[];
 };
 
@@ -53,6 +54,7 @@ const footers: Record<FooterVariant, FC> = {
 };
 
 export type LayoutProps = {
+  children?: React.ReactNode;
   seoProps: SeoProps;
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
@@ -84,7 +86,6 @@ const Layout: FC<LayoutProps> = (props) => {
       <OrganizationJsonLd />
       <Container $background={$background}>
         <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-
         <StyledLayout>{children}</StyledLayout>
         <Footer />
         {isPreview && <PreviewControls />}

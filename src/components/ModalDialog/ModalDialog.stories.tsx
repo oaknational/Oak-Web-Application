@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
       <Button
         label="Open modal"
         icon="ArrowRight"
-        iconPosition="trailing"
+        $iconPosition="trailing"
         onClick={() => setIsOpen(true)}
       />
       {isOpen && (

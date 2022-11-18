@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useId } from "react-aria";
+import { FC, useId } from "react";
 
 import Flex from "../../Flex";
 import { HeadingTag, P } from "../../Typography";
@@ -60,7 +59,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
             tag={headingTag}
             icon="MagicCarpet"
             iconSize={56}
-            iconPosition={["leading", "aboveTitle"]}
+            $iconPosition={["leading", "aboveTitle"]}
           >
             Almost there!
           </CardTitle>
@@ -72,7 +71,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           >
             Fill this form to watch this webinar and get free resources and
             other helpful content by email. Unsubscribe any time.{" "}
-            <OakLink page="privacy-policy" isInline>
+            <OakLink page="privacy-policy" $isInline>
               Privacy policy
             </OakLink>
             .

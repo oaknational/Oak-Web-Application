@@ -14,12 +14,14 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args}>
     <ButtonAsLink
       href="/"
+      page={null}
       label="Download"
       aria-label="Download Lesson"
       icon="Download"
     />
     <ButtonAsLink
       href="/"
+      page={null}
       label="Share"
       aria-label="Share Lesson"
       icon="Share"

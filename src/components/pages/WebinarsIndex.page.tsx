@@ -57,7 +57,9 @@ export const webinarToBlogListItem = (
   ...webinar,
   contentType: "webinar",
   title: webinar.title,
-  summary: toPlainText(webinar.summaryPortableText),
+  summary: toPlainText(webinar.summaryPortableText)
+    .trim()
+    .replaceAll(/\s+/g, " "),
   titleTag: "h3",
   category: webinar.category,
   date: webinar.date,

@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { createResponse } from "node-mocks-http";
 
 import useApolloClient from "./useApolloClient";

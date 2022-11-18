@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/future/image";
+import { StaticImageData } from "next/image";
 import { CSSProperties, FC } from "react";
 
 import AspectRatio, { AspectRatios } from "../../AspectRatio";

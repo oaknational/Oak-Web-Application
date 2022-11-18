@@ -201,9 +201,9 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
+                  page="teachers-oak-curriculum"
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
-                  href={"https://teachers.thenational.academy/oaks-curricula"}
                 />
               </Flex>
             )}

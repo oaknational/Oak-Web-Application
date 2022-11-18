@@ -53,11 +53,12 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           $mt={28}
           background="teachersHighlight"
           htmlAnchorProps={{ onClick: buttonOnClick, target: "_blank" }}
+          page={null}
           href={buttonHref}
           label={buttonText}
           labelSuffixA11y={buttonSuffixA11y}
           icon="ChevronRight"
-          iconPosition="trailing"
+          $iconPosition="trailing"
         />
       </Box>
       <OakImage

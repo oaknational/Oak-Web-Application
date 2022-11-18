@@ -1,16 +1,9 @@
-import { ReactNode, Ref } from "react";
+import { Ref, useId } from "react";
 import styled, { css } from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
-import {
-  useSelect,
-  HiddenSelect,
-  useButton,
-  mergeProps,
-  useFocusRing,
-  useId,
-} from "react-aria";
+import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
 import Flex, { FlexProps } from "../Flex";
 import Icon, { IconName } from "../Icon";
@@ -44,15 +37,10 @@ type SelectProps = {
   onSelectionChange: (value: string) => void;
   placeholder?: string;
   icon?: IconName;
-  children: ReactNode;
   myRef: Ref<HTMLButtonElement>;
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
 };
-
-// export const SelectContainer = (props: FlexProps) => (
-//   <Flex {...props} $flexDirection={"column"} $position={"relative"} />
-// );
 
 const SelectContainer = styled(Flex)`
   &:focus-within ${RotatedInputLabel} {
@@ -120,11 +108,10 @@ export function Select<T extends object>(
   const ref = useObjectRef(myRef);
 
   // Get props for child elements from useSelect
-  const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
-    props,
-    state,
-    ref
-  );
+  const { labelProps, triggerProps, menuProps } = useSelect(props, state, ref);
+
+  // React.useId because: https://github.com/adobe/react-spectrum/issues/2438
+  labelProps.id = useId();
 
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(triggerProps, ref);
@@ -141,6 +128,8 @@ export function Select<T extends object>(
 
   // unique id for map key
   const id = useId();
+  const valueId = `${id}-value`;
+  const buttonId = `${id}-button`;
 
   return (
     <SelectContainer
@@ -188,27 +177,23 @@ export function Select<T extends object>(
         </NativeSelect>
       ) : (
         <>
-          <HiddenSelect
-            state={state}
-            triggerRef={ref}
-            label={props.label || props.placeholder}
-            name={props.name}
-          />
           <SelectButton
             {...mergeProps(buttonProps, focusProps)}
+            aria-labelledby={labelProps.id}
             aria-describedby={props["aria-describedby"]}
             aria-invalid={props["aria-invalid"]}
             ref={ref}
             isOpen={state.isOpen}
             isFocusVisible={isFocusVisible}
             isPlaceholder={!state.selectedItem}
+            id={buttonId}
           >
             <SelectInner $alignItems={"center"}>
               {props.icon && <Icon $mr={8} name={props.icon} />}
               <SelectSpan
+                id={valueId}
                 data-testid={"select-span"}
                 title={props.placeholder}
-                {...valueProps}
               >
                 {state.selectedItem
                   ? state.selectedItem.rendered

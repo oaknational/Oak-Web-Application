@@ -30,6 +30,7 @@ type SummaryButton = {
 };
 
 type CollapsibleSectionProps = {
+  children?: React.ReactNode;
   startOpen: boolean;
   title: string;
   headingTag: HeadingTag;

@@ -18,6 +18,7 @@ const PreviewControls: FC = () => {
       <span>Preview mode enabled</span>
 
       <ButtonAsLink
+        page={null}
         label="Exit preview"
         href={`/api/exit-preview${router.asPath}`}
         variant="minimal"

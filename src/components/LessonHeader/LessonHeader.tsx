@@ -31,13 +31,13 @@ const LessonHeader: FC<LessonHeaderProps> = (props) => {
       </Flex>
       <ButtonGroup>
         <ButtonAsLink
-          href="/"
+          page="home"
           label="Download"
           aria-label="Download Lesson"
           icon="Download"
         />
         <ButtonAsLink
-          href="/"
+          page="home"
           label="Share"
           aria-label="Share Lesson"
           icon="Share"

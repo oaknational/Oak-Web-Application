@@ -72,6 +72,7 @@ type AnalyticsServiceWithConfig =
 type AvoOptions = Parameters<typeof initAvo>[0];
 
 export type AnalyticsProviderProps = {
+  children?: React.ReactNode;
   avoOptions?: Partial<AvoOptions>;
 };
 

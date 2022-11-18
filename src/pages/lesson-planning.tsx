@@ -118,11 +118,11 @@ const getLessonPlanningCards = (planningPage: PlanningPage) => {
   ];
 };
 
-const SectionHeader: FC = (props) => {
+const SectionHeader: FC<{ children?: React.ReactNode }> = (props) => {
   return <Box as="header" $width={"100%"} {...props} />;
 };
 
-const SectionTitle: FC = (props) => {
+const SectionTitle: FC<{ children?: React.ReactNode }> = (props) => {
   return (
     <Flex
       $justifyContent="center"
@@ -255,9 +255,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </Cover>
                 <ButtonAsLink
                   icon="Search"
-                  iconPosition="trailing"
+                  $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={"https://teachers.thenational.academy"}
+                  page="teachers-home"
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -325,10 +325,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
                               icon="Search"
-                              iconPosition="trailing"
+                              $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={"https://teachers.thenational.academy"}
+                              page="teachers-home"
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -449,9 +449,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 
               <ButtonAsLink
                 icon="Search"
-                iconPosition="trailing"
+                $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={"https://teachers.thenational.academy"}
+                page="teachers-home"
                 htmlAnchorProps={{
                   target: "_blank",
                 }}
