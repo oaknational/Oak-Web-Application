@@ -14,6 +14,7 @@ const snapshotRelativeUrls = [
   "/",
   "/lesson-planning",
   "/develop-your-curriculum",
+  "/support-your-team",
   "/about-us/who-we-are",
   "/about-us/leadership",
   "/about-us/board",

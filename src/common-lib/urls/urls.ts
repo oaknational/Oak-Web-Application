@@ -17,6 +17,7 @@ const OAK_PAGES = {
   "lesson-planning": "/lesson-planning",
   "privacy-policy": "/legal/privacy-policy",
   "pupils-home": "https://classroom.thenational.academy",
+  "support-your-team": "/support-your-team",
   "our-teachers": "https://classroom.thenational.academy/teachers",
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":

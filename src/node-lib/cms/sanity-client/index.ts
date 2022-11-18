@@ -19,6 +19,7 @@ import {
   webinarSchema,
   landingPagePreviewSchema,
   landingPageSchema,
+  supportPageSchema,
   blogListingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
@@ -340,6 +341,19 @@ const getSanityClient = () => ({
       withResolvedReferences,
       previewMode
     );
+  },
+  supportPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.supportCorePage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const supportPageData = result?.allSupportCorePage?.[0];
+
+    if (!supportPageData) {
+      return null;
+    }
+
+    return parseResults(supportPageSchema, supportPageData, previewMode);
   },
   contactPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.contactCorePage({

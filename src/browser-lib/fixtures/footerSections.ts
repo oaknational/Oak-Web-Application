@@ -11,6 +11,7 @@ const footerSections: FooterSections = {
       { text: "Teacher Hub", type: "teachers-link" },
       { text: "Plan a lesson", href: "/lesson-planning" },
       { text: "Develop your curriculum", href: "/develop-your-curriculum" },
+      { text: "Support your team", href: "/support-your-team" },
     ],
   },
   oak: {

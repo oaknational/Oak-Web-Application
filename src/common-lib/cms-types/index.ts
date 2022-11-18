@@ -12,4 +12,5 @@ export * from "./blog";
 export * from "./webinar";
 export * from "./landingPage";
 export * from "./teamMember";
+export * from "./supportPage";
 export * from "./blogListingPage";
