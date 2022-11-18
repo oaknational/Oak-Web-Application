@@ -76,7 +76,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             href={"https://teachers.thenational.academy"}
             label={"Search our lessons"}
             icon={"ArrowRight"}
-            iconPosition={"trailing"}
+            $iconPosition={"trailing"}
           />
         </Flex>
         <Grid $mb={56} $rg={56} $cg={[0, 40]}>
