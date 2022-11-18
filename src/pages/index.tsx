@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import Link from "next/link";
 import { toPlainText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
@@ -38,6 +37,7 @@ import {
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
 import useBlogList from "../components/Blog/BlogList/useBlogList";
+import OakLink from "../components/OakLink";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -327,18 +327,23 @@ const Home: NextPage<HomePageProps> = (props) => {
                 $height={"100%"}
               >
                 <Flex
-                  $alignItems="center"
+                  $width={"100%"}
+                  $alignItems={["flex-start", "center"]}
                   $justifyContent="space-between"
                   $mb={48}
+                  $flexDirection={["column", "row"]}
                 >
-                  <Heading tag={"h3"} $font={"heading-5"}>
+                  <Heading $mb={[36, 0]} tag={"h3"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
-
-                  <Typography $font="heading-7">
-                    {/* <Link href={"/webinars"}>All webinars</Link> */}
-                    <Link href={"/blog"}>All blogs</Link>
-                  </Typography>
+                  <Flex $flexDirection={"row"}>
+                    <Typography $mr={16} $font="heading-7">
+                      <OakLink page={"webinars-index"}>All webinars</OakLink>
+                    </Typography>
+                    <Typography $font="heading-7">
+                      <OakLink page={"blog-index"}>All blogs</OakLink>
+                    </Typography>
+                  </Flex>
                 </Flex>
                 <BlogList {...blogListProps} />
               </Box>
@@ -396,17 +401,21 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     type: "blog-post" as const,
   }));
 
-  // @todo add to posts array and un-comment when webinars are finshed
-  // const webinarResults = await CMSClient.webinars({
-  //   previewMode: isPreviewMode,
-  //   limit: 5,
-  // });
-  // const webinars = webinarResults.map((webinar) => ({
-  //   ...webinar,
-  //   type: "webinar" as const,
-  // }));
+  const webinarResults = await CMSClient.webinars({
+    previewMode: isPreviewMode,
+    limit: 5,
+  });
+  const webinars = webinarResults
+    .map((webinar) => ({
+      ...webinar,
+      type: "webinar" as const,
+    }))
+    .filter((webinar) => webinar.date.getTime() < new Date().getTime());
 
-  const posts = [...blogPosts].sort(sortByDate).slice(0, 4).map(serializeDate);
+  const posts = [...blogPosts, ...webinars]
+    .sort(sortByDate)
+    .slice(0, 4)
+    .map(serializeDate);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {

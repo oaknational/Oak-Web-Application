@@ -24,9 +24,11 @@ const BlogIndexPage: NextPage<BlogListingPageProps> = (props) => {
   return (
     <PostListing
       seo={{
-        title: "Latest Blogs & Insights",
+        title: pageData.seo?.title || "Latest Blogs & Insights",
         description:
+          pageData.seo?.description ||
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
+        canonicalURL: pageData.seo?.canonicalURL || undefined,
       }}
       pageData={pageData}
       categories={categories}
