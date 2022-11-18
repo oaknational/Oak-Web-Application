@@ -73,7 +73,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            href={"https://teachers.thenational.academy"}
+            page={"home"}
             label={"Search our lessons"}
             icon={"ArrowRight"}
             $iconPosition={"trailing"}
@@ -131,10 +131,10 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              href={"https://teachers.thenational.academy"}
+              page={"home"}
               label={"Search our lessons"}
               icon={"ArrowRight"}
-              iconPosition={"trailing"}
+              $iconPosition={"trailing"}
             />
           </Flex>
         </Flex>
