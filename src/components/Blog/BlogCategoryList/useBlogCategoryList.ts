@@ -1,4 +1,4 @@
-import { useId } from "react-aria";
+import { useId } from "react";
 
 const useBlogCategoryList = () => {
   const labelId = useId();

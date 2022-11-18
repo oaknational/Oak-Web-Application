@@ -21,7 +21,7 @@ const testPropsWebinar: BlogListItemProps = {
   slug: "item-slug",
   contentType: "webinar",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
-  mainImage: "stringvideoplaybackid",
+  thumbnailUrl: "stringvideoplaybackid",
   date: new Date(2022, 7, 22).toISOString(),
 };
 
@@ -58,7 +58,7 @@ describe("components/BlogListItem", () => {
       <BlogListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.title });
-    expect(button).toHaveAttribute("href", `/beta/webinars/${testProps.slug}`);
+    expect(button).toHaveAttribute("href", `/webinars/${testProps.slug}`);
   });
 
   test("webinar: should contain link to category", async () => {
@@ -68,7 +68,7 @@ describe("components/BlogListItem", () => {
     const button = getByRole("link", { name: testProps.category.title });
     expect(button).toHaveAttribute(
       "href",
-      `/beta/webinars/categories/${testProps.category.slug}`
+      `/webinars/categories/${testProps.category.slug}`
     );
   });
 

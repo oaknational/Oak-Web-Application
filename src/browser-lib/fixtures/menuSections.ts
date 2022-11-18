@@ -35,6 +35,10 @@ export const menuSections: MenuSections = {
       linkText: "Blog",
     },
     {
+      page: "webinars-index",
+      linkText: "Webinars",
+    },
+    {
       page: "about-who-we-are",
       activeLinkHrefMatch: "/about-us",
       linkText: "About us",

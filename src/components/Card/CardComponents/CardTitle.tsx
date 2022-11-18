@@ -9,9 +9,9 @@ import Icon, { IconName } from "../../Icon";
 import Heading, { HeadingTag } from "../../Typography/Heading";
 
 export const getIconFlexPosition = (
-  iconPosition: IconPosition | null
+  $iconPosition: IconPosition | null
 ): CSSProperties["flexDirection"] => {
-  switch (iconPosition) {
+  switch ($iconPosition) {
     case "leading":
       return "row";
     case "trailing":
@@ -26,24 +26,27 @@ export const getIconFlexPosition = (
 type IconPosition = "leading" | "trailing" | "aboveTitle";
 
 export type CardTitleProps = {
+  children?: React.ReactNode;
   tag: HeadingTag;
   icon?: IconName;
-  iconPosition?: ResponsiveValues<IconPosition>;
+  $iconPosition?: ResponsiveValues<IconPosition>;
   iconSize?: PixelSpacing;
   $font?: ResponsiveValues<FontVariant>;
 };
 
 const CardTitle: FC<CardTitleProps> = ({
   icon,
-  iconPosition = "leading",
+  $iconPosition = "leading",
   iconSize = 32,
   tag,
   children,
   $font = "heading-5",
 }) => {
-  const iconPositionArray: (IconPosition | null)[] = Array.isArray(iconPosition)
-    ? iconPosition
-    : [iconPosition];
+  const iconPositionArray: (IconPosition | null)[] = Array.isArray(
+    $iconPosition
+  )
+    ? $iconPosition
+    : [$iconPosition];
 
   return (
     <Flex

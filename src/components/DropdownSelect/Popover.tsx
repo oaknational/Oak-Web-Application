@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { useOverlay, DismissButton, FocusScope } from "react-aria";
+import { useOverlay, DismissButton } from "react-aria";
+import { FocusOn } from "react-focus-on";
 
 import { zIndexMap } from "../../styles/utils/zIndex";
 
@@ -38,11 +39,11 @@ export function Popover(props: PopoverProps) {
   // Add a hidden <DismissButton> component at the end of the popover
   // to allow screen reader users to dismiss the popup easily.
   return (
-    <FocusScope restoreFocus>
+    <FocusOn>
       <Wrapper {...overlayProps} ref={popoverRef}>
         {children}
         <DismissButton onDismiss={onClose} />
       </Wrapper>
-    </FocusScope>
+    </FocusOn>
   );
 }

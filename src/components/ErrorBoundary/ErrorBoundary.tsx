@@ -52,11 +52,14 @@ const FallbackComponent: FC<FallbackComponentProps> = () => {
   return <ClientErrorView />;
 };
 
+export type ErrorBoundaryProps = {
+  children?: React.ReactNode;
+};
 /**
  * ErrorBoundary will catch any uncaught errors, showing the user ClientErrorView
  * and sending a report of the uncaught error to bugsnag.
  */
-const ErrorBoundary: FC = (props) => {
+const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
   const BugsnagErrorBoundary =
     bugsnagInitialised() &&
     Bugsnag.getPlugin("react")?.createErrorBoundary(React);

@@ -4,10 +4,20 @@ import { Webinar } from "../../../common-lib/cms-types";
 import WebinarDetailPage, {
   SerializedWebinar,
   WebinarPageProps,
-} from "../../../pages/beta/webinars/[webinarSlug]";
-import { mockVideoAsset } from "../../__helpers__/cms";
+} from "../../../pages/webinars/[webinarSlug]";
+import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+
+const webinarPageViewed = jest.fn();
+jest.mock("../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      webinarPageViewed: (...args: unknown[]) => webinarPageViewed(...args),
+    },
+  }),
+}));
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
@@ -95,7 +105,23 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       });
     });
 
-    describe.skip("SEO", () => {
+    it("calls tracking.webinarPageViewed once, with correct props", () => {
+      renderWithProviders(
+        <WebinarDetailPage
+          webinar={testSerializedWebinar}
+          categories={[{ title: "Teaching", slug: "teaching" }]}
+        />
+      );
+
+      expect(webinarPageViewed).toHaveBeenCalledTimes(1);
+      expect(webinarPageViewed).toHaveBeenCalledWith({
+        videoAvailable: true,
+        webinarCategory: "Some category",
+        webinarTitle: "An upcoming webinar",
+      });
+    });
+
+    describe("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
           <WebinarDetailPage
@@ -104,7 +130,21 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
           />
         );
 
-        expect(seo).toEqual({});
+        expect(seo).toEqual({
+          ...mockSeoResult,
+          title: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
+          description: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogTitle: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          ogImage:
+            "https://image.mux.com/5678/thumbnail.png?width=1600&height=900&fit_mode=smartcrop&time=1",
+          ogImageAlt: undefined,
+          ogImageHeight: undefined,
+          ogImageWidth: undefined,
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        });
       });
     });
   });
@@ -112,7 +152,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all webinars", async () => {
       const { getStaticPaths } = await import(
-        "../../../pages/beta/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -127,7 +167,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct webinar", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -141,7 +181,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should not fetch draft content by default", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -154,7 +194,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should fetch draft content in preview mode", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -168,7 +208,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     it("Should format the webinar date", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
@@ -183,7 +223,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       webinarBySlug.mockResolvedValueOnce(null as never);
 
       const { getStaticProps } = await import(
-        "../../../pages/beta/webinars/[webinarSlug]"
+        "../../../pages/webinars/[webinarSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },

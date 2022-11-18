@@ -13,15 +13,15 @@ describe("Pagination", () => {
   test("it renders", () => {
     const totalPages = 25;
     const currentPage = 1;
-    const nextPageHref = "prev";
-    const prevPageHref = "next";
+    const nextPageUrlObject = "prev";
+    const prevPageUrlObject = "next";
 
     const { getByRole } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        prevPageHref={prevPageHref}
-        nextPageHref={nextPageHref}
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
       />
     );
 
@@ -30,15 +30,15 @@ describe("Pagination", () => {
   test("displays the correct text", () => {
     const totalPages = 17;
     const currentPage = 15;
-    const nextPageHref = "next-page";
-    const prevPageHref = "prev-page";
+    const nextPageUrlObject = "next-page";
+    const prevPageUrlObject = "prev-page";
 
     const { getByText } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        prevPageHref={prevPageHref}
-        nextPageHref={nextPageHref}
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
       />
     );
 
@@ -47,17 +47,17 @@ describe("Pagination", () => {
   test("next arrow has correct href", () => {
     const totalPages = 25;
     const currentPage = 6;
-    const nextPageHref = {
+    const nextPageUrlObject = {
       pathname: "/blog/[categorySlug]",
       query: { categorySlug: "updates", page: 2 },
     };
-    const prevPageHref = "prev-page";
+    const prevPageUrlObject = "prev-page";
     const { getByRole } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        prevPageHref={prevPageHref}
-        nextPageHref={nextPageHref}
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
       />
     );
 
@@ -67,17 +67,17 @@ describe("Pagination", () => {
   test("previous arrow has correct href", () => {
     const totalPages = 25;
     const currentPage = 6;
-    const prevPageHref = {
+    const prevPageUrlObject = {
       pathname: "/blog/[categorySlug]",
       query: { categorySlug: "updates", page: 1 },
     };
-    const nextPageHref = "next-page";
+    const nextPageUrlObject = "next-page";
     const { getByRole } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        prevPageHref={prevPageHref}
-        nextPageHref={nextPageHref}
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
       />
     );
 
@@ -88,14 +88,14 @@ describe("Pagination", () => {
   test("the next arrow is disabled when there are no more pages", () => {
     const totalPages = 25;
     const currentPage = 25;
-    const nextPageHref = "next-page";
-    const prevPageHref = "prev-page";
+    const nextPageUrlObject = "next-page";
+    const prevPageUrlObject = "prev-page";
     const { getByText, getByLabelText } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        nextPageHref={nextPageHref}
-        prevPageHref={prevPageHref}
+        nextPageUrlObject={nextPageUrlObject}
+        prevPageUrlObject={prevPageUrlObject}
       />
     );
 
@@ -104,19 +104,19 @@ describe("Pagination", () => {
     getByText("page 25 / 25");
 
     expect(nextLink).toHaveAttribute("aria-disabled", "true");
-    expect(nextLink).not.toHaveAttribute("href");
+    expect(nextLink).toHaveAttribute("href", "");
   });
   test("previous button is disabled on page 1", () => {
     const totalPages = 25;
     const currentPage = 1;
-    const nextPageHref = "next-page";
-    const prevPageHref = "prev-page";
+    const nextPageUrlObject = "next-page";
+    const prevPageUrlObject = "prev-page";
     const { getByText, getByLabelText } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        nextPageHref={nextPageHref}
-        prevPageHref={prevPageHref}
+        nextPageUrlObject={nextPageUrlObject}
+        prevPageUrlObject={prevPageUrlObject}
       />
     );
     const previousLink = getByLabelText("previous page");
@@ -124,19 +124,19 @@ describe("Pagination", () => {
     getByText("page 1 / 25");
 
     expect(previousLink).toHaveAttribute("aria-disabled", "true");
-    expect(previousLink).not.toHaveAttribute("href");
+    expect(previousLink).toHaveAttribute("href", "");
   });
   test("nothing is displayed if there is only one page", () => {
     const totalPages = 1;
     const currentPage = 1;
-    const nextPageHref = "next-page";
-    const prevPageHref = "prev-page";
+    const nextPageUrlObject = "next-page";
+    const prevPageUrlObject = "prev-page";
     const { queryByRole } = renderWithTheme(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        nextPageHref={nextPageHref}
-        prevPageHref={prevPageHref}
+        nextPageUrlObject={nextPageUrlObject}
+        prevPageUrlObject={prevPageUrlObject}
       />
     );
 

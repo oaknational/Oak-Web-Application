@@ -30,6 +30,7 @@ const NavLink = ({ label, href }: LinkProps) => {
           variant={isCurrent ? "minimal" : "brush"}
           label={label}
           href={href}
+          page={null}
           $mr={[0, 36]}
           disabled={isCurrent}
         />
@@ -51,6 +52,7 @@ const NavLink = ({ label, href }: LinkProps) => {
           $opacity={isCurrent ? 0.6 : 1}
           variant={"minimal"}
           label={label}
+          page={null}
           href={href}
           $mr={[0, 36]}
         />

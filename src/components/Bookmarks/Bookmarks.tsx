@@ -17,7 +17,7 @@ const Bookmarks: FC = () => {
       {!user ? (
         <p data-testid="anonymous-vistor-message">
           Currently bookmarks are only available for logged in users.{" "}
-          <OakLink page={null} href="/beta/sign-in" isInline>
+          <OakLink page={null} href="/beta/sign-in" $isInline>
             Sign in
           </OakLink>{" "}
           to start adding bookmarks!

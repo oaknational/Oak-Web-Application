@@ -4,20 +4,23 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 
-import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
-import Layout from "../../../components/Layout";
-import CMSClient from "../../../node-lib/cms";
-import { TeamMemberPreview, Webinar } from "../../../common-lib/cms-types";
-import { getBlogWebinarPostBreadcrumbs } from "../../../components/Breadcrumbs/getBreadcrumbs";
-import Box from "../../../components/Box";
-import { decorateWithIsr } from "../../../node-lib/isr";
-import BlogPortableText from "../../../components/Blog/BlogPortableText/BlogPortableText";
-import Flex from "../../../components/Flex";
-import BlogWebinarsIndexLayout from "../../../components/Blog/BlogWebinarsIndexLayout";
-import WebinarVideo from "../../../components/Blog/WebinarVideo";
-import { BlogJsonLd } from "../../../browser-lib/seo/getJsonLd";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import Layout from "../../components/Layout";
+import CMSClient from "../../node-lib/cms";
+import { TeamMemberPreview, Webinar } from "../../common-lib/cms-types";
+import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
+import Box from "../../components/Box";
+import { decorateWithIsr } from "../../node-lib/isr";
+import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
+import Flex from "../../components/Flex";
+import BlogWebinarsIndexLayout from "../../components/Blog/BlogWebinarsIndexLayout";
+import WebinarVideo from "../../components/Blog/WebinarVideo";
+import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
+import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
+import useAnalytics from "../../context/Analytics/useAnalytics";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -31,6 +34,14 @@ export type WebinarPageProps = {
 
 const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
   const { webinar, categories } = props;
+  const { track } = useAnalytics();
+  useEffect(() => {
+    track.webinarPageViewed({
+      webinarTitle: webinar.title,
+      webinarCategory: webinar.category.title,
+      videoAvailable: Boolean(webinar.video),
+    });
+  }, [track, webinar]);
 
   return (
     <Layout
@@ -38,13 +49,17 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
         ...props.webinar.seo,
         title: webinar.seo?.title || webinar.title,
         description: webinar.seo?.description,
-        imageUrl: "", // @TODO: add image from video frame
+        imageUrl: getVideoThumbnail({
+          video: webinar.video.video.asset,
+          width: 1600,
+          height: 900,
+        }),
       })}
       $background="white"
       breadcrumbs={getBlogWebinarPostBreadcrumbs(
         categories,
         webinar,
-        "beta/webinars",
+        "webinars",
         "Webinars"
       )}
     >

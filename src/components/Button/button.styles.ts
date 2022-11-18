@@ -33,26 +33,26 @@ import { iconFocusUnderline } from "./IconFocusUnderline";
 export type ButtonStylesProps = OpacityProps &
   MarginProps & {
     size: ButtonSize;
-    iconPosition: IconPosition;
+    $iconPosition: IconPosition;
     variant: ButtonVariant;
     background: ButtonBackground;
-    fullWidth?: boolean;
+    $fullWidth?: boolean;
     disabled?: boolean;
-    focusStyles?: [];
+    $focusStyles?: [];
   };
 export const getButtonStylesProps = (
   props: CommonButtonProps
 ): ButtonStylesProps => {
   const {
     variant = DEFAULT_BUTTON_VARIANT,
-    iconPosition = DEFAULT_ICON_POSITION,
+    $iconPosition = DEFAULT_ICON_POSITION,
     size = DEFAULT_BUTTON_SIZE,
     background = DEFAULT_BUTTON_BACKGROUND,
-    fullWidth,
-    focusStyles,
+    $fullWidth,
+    $focusStyles,
   } = props;
 
-  return { size, iconPosition, variant, fullWidth, background, focusStyles };
+  return { size, $iconPosition, variant, $fullWidth, background, $focusStyles };
 };
 const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
@@ -63,8 +63,8 @@ const buttonStyles = css<ButtonStylesProps>`
   text-decoration: none;
   ${opacity}
   ${(props) => css`
-    width: ${props.fullWidth && "100%"};
-    flex-direction: ${getButtonFlexDirection(props.iconPosition)};
+    width: ${props.$fullWidth && "100%"};
+    flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
     height: ${getButtonHeight(props.size, props.variant)}px;
     padding: 0 ${getButtonPadding(props.size)}px;
     background-color: ${getButtonBackground(props.background, props.variant)};

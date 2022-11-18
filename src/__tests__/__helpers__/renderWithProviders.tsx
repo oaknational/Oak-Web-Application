@@ -14,7 +14,6 @@ import { OverlayProvider } from "react-aria";
 import "../../browser-lib/oak-globals/oakGlobals";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
-import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { MenuProvider } from "../../context/Menu";
 import { ToastProvider } from "../../context/Toast";
@@ -27,8 +26,10 @@ import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 import MockedBookmarksProvider, {
   MockedBookmarksProviderProps,
 } from "./MockedBookmarksProvider";
+import MockedCookieConsentProvider from "./MockedCookieConsentProvider";
 
 export type ProviderProps = {
+  children?: React.ReactNode;
   authProviderProps?: MockedAuthProviderProps;
   bookmarksProviderProps?: MockedBookmarksProviderProps;
 };
@@ -39,7 +40,7 @@ export const AllTheProviders: FC<ProviderProps> = ({
   bookmarksProviderProps,
 }) => {
   return (
-    <CookieConsentProvider>
+    <MockedCookieConsentProvider>
       <ThemeProvider theme={theme}>
         <ErrorBoundary>
           <MockedAnalyticsProvider>
@@ -61,7 +62,7 @@ export const AllTheProviders: FC<ProviderProps> = ({
           </MockedAnalyticsProvider>
         </ErrorBoundary>
       </ThemeProvider>
-    </CookieConsentProvider>
+    </MockedCookieConsentProvider>
   );
 };
 

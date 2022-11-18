@@ -11,7 +11,7 @@ import theme from "../../styles/theme";
 
 import SearchForm from "./SearchForm";
 
-const Providers: FC = ({ children }) => {
+const Providers: FC<{ children?: React.ReactNode }> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <SearchProvider>{children}</SearchProvider>

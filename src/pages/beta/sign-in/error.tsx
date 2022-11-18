@@ -16,7 +16,7 @@ const SignInError: NextPage = () => {
       >
         <p data-testid="sign-in-error-message">
           There was an error signing you in.{" "}
-          <OakLink page="home" isInline>
+          <OakLink page="home" $isInline>
             Take me home.
           </OakLink>
         </p>

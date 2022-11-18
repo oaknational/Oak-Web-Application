@@ -38,10 +38,11 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
           >
             <ButtonAsLink
               icon={"ArrowRight"}
-              iconPosition="trailing"
+              $iconPosition="trailing"
               label={keyStage.name}
               href={keyStage.url}
               $mb={16}
+              page={null}
             />
             {keyStage.years.map((year: KeyStageYear, index) => (
               <P key={index} $mb={16}>

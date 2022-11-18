@@ -10,6 +10,7 @@ export const defaultMockedAuthProviderValue = {
 };
 
 export type MockedAuthProviderProps = {
+  children?: React.ReactNode;
   value?: Partial<OakAuth>;
 };
 export const loggedInAuthProviderProps: MockedAuthProviderProps = {

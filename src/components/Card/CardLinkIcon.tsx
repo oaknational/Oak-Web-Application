@@ -39,8 +39,8 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       <Heading $font={["heading-6", "heading-5"]} tag={titleTag}>
         <CardLink
           {...cardLinkProps}
-          hoverStyles={["underline-link-text", "drop-shadow"]}
-          hideDefaultFocus
+          $hoverStyles={["underline-link-text", "drop-shadow"]}
+          $hideDefaultFocus
         >
           {title}
         </CardLink>

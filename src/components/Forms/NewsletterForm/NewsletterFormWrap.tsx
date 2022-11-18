@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { useId } from "react-aria";
+import { FC, useId } from "react";
 
 import Card, { CardProps } from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
@@ -40,7 +39,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       <P $mb={24} color={"black"} id={descriptionId}>
         Join 80,000 teachers and get free resources and other helpful content by
         email. Unsubscribe at any time. Read our{" "}
-        <OakLink page="privacy-policy" isInline>
+        <OakLink page="privacy-policy" $isInline>
           privacy policy
         </OakLink>
         .
