@@ -73,7 +73,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            page={"home"}
+            page={"teachers-home"}
             label={"Search our lessons"}
             icon={"ArrowRight"}
             $iconPosition={"trailing"}
@@ -131,7 +131,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              page={"home"}
+              page={"teachers-home"}
               label={"Search our lessons"}
               icon={"ArrowRight"}
               $iconPosition={"trailing"}
