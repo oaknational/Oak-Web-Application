@@ -10,6 +10,10 @@
     "cc": "commit",
     "cca": "git add . && commit",
     "check-types": "tsc --noEmit",
+    "config:pull": "node ./scripts/build/pull_config",
+    "config:push:dev": "node ./scripts/build/push_config --environment development",
+    "config:push:prod": "node ./scripts/build/push_config --environment production",
+    "config:push:test": "node ./scripts/build/push_config --environment test",
     "predev": "node scripts/build/write_env_file",
     "dev": "next dev",
     "export": "next export",
@@ -149,6 +153,7 @@
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "jest-fetch-mock": "^3.0.3",
+    "json-diff": "^1.0.0",
     "lint-staged": "^13.0.3",
     "msw": "^0.48.0",
     "next-router-mock": "^0.8.0",
@@ -172,7 +177,8 @@
     "typescript-plugin-css-modules": "^3.4.0",
     "webpack": "^5.74.0",
     "webpack-bugsnag-plugins": "^1.8.0",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.2",
+    "yargs": "^17.6.2"
   },
   "repository": {
     "type": "git",
