@@ -13,7 +13,7 @@ options:
 
 steps:
   - id: "remove-curriculum-pages"
-    name: "node:16"
+    name: "node:18"
     entrypoint: "npm"
     entrypoint: "bash"
     args:
@@ -22,12 +22,12 @@ steps:
         rm -rf ./src/pages/beta
 
   - id: "npm-ci"
-    name: "node:16"
+    name: "node:18"
     entrypoint: "npm"
     args: ["ci"]
 
   - id: "next-build"
-    name: "node:16"
+    name: "node:18"
     entrypoint: "npm"
     args: ["run", "build"]
     env:
@@ -38,7 +38,7 @@ steps:
       - "CLOUDBUILD_DEPLOYMENT_BASE_URL=$_DEPLOYMENT_BASE_URL"
 
   - id: "next-export"
-    name: "node:16"
+    name: "node:18"
     entrypoint: "npm"
     args: ["run", "export"]
     env:
