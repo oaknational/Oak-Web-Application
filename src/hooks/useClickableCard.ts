@@ -24,7 +24,7 @@ const getInteractiveAncestor = (
  * For creating a clickable card. Returns 'primaryTargetProps' and
  * 'containerProps'.
  * {primaryTargetProps} should be spread on the primary link or button of the
- * clikable card.
+ * clickable card.
  * {containerProps} should be spread on the container (the card itself).
  *
  * **Note: any secondary button or link callbacks should call
