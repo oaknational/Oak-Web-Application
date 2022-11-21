@@ -37,7 +37,9 @@ const getFileName = (environment) => {
     return "oak.config.test.json";
   }
 
-  throw new Error("Environment must be either 'development' or 'production' or 'test'");
+  throw new Error(
+    "Environment must be either 'development' or 'production' or 'test'"
+  );
 };
 const getLocalPath = (fileName) => path.join(OAK_CONFIG_PATH, fileName);
 const getLivePath = (fileName) => path.join(OAK_CONFIG_LIVE_PATH, fileName);
