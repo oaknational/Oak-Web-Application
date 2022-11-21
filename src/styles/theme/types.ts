@@ -5,7 +5,6 @@ import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
-import { LessonControlConfig } from "../../components/LessonControl";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
@@ -204,7 +203,6 @@ export type OakTheme = {
   input: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
-  lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;

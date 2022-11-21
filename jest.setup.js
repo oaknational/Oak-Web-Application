@@ -29,24 +29,13 @@ jest.mock("@bugsnag/js", () => ({
   },
 }));
 
-// @todo move thes mocks into __mocks__ folder and import into tests that use them
-jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(() => ({ config: {} })),
-  onIdTokenChanged: jest.fn(() => () => undefined),
-  onAuthStateChanged: jest.fn(() => () => undefined),
-  isSignInWithEmailLink: jest.fn(() => true),
-  signInWithEmailLink: jest.fn(async () => ({
-    user: { email: "test@thenational.academy" },
-  })),
-  sendSignInLinkToEmail: jest.fn(async () => undefined),
-  signOut: jest.fn(async () => undefined),
-}));
-
-export class FirebaseError extends Error {}
-jest.mock("firebase/app", () => ({
-  initializeApp: jest.fn(),
-  FirebaseError,
-}));
+jest.mock(
+  "./src/browser-lib/cookie-consent/confirmic/metomic-react.hacked.ts",
+  () => ({
+    __esModule: true,
+    MetomicProvider: ({ children }) => children,
+  })
+);
 
 jest.mock("posthog-js", () => ({
   __esModule: true,
