@@ -35,7 +35,12 @@ const AboutUsSummaryCard = ({
         $mr: 32,
       }}
     >
-      <ButtonLinkNav $mt={36} buttons={aboutNavLinks} ariaLabel="about us" />
+      <ButtonLinkNav
+        $mt={36}
+        $mr={-36}
+        buttons={aboutNavLinks}
+        ariaLabel="about us"
+      />
     </SummaryCard>
   );
 };

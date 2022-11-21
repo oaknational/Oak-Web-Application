@@ -53,56 +53,56 @@ const SummaryCard: FC<SummaryCardProps> = ({
       $pv={[24]}
       $ph={[16, 24]}
     >
-      <Flex
-        $justifyContent={"center"}
-        $flexDirection={"column"}
-        $maxWidth={812}
-        $mr={48}
-      >
-        <Heading
-          $mb={8}
-          tag={"h1"}
-          $font={["heading-6", "heading-5"]}
-          $color={"oakGrey4"}
-        >
-          {title}
-        </Heading>
-        <Heading $mb={16} $font={["heading-5", "heading-4"]} tag={"h2"}>
-          {heading}
-        </Heading>
-        <Typography $font={["body-2", "body-1"]}>
-          {typeof summary === "string" ? (
-            <p>{summary}</p>
-          ) : (
-            <PortableText value={summary} />
+      <Flex $flexDirection={"column"} $width="100%">
+        <Flex>
+          <Flex $justifyContent={"center"} $flexDirection={"column"} $mr={48}>
+            <Heading
+              $mb={8}
+              tag={"h1"}
+              $font={["heading-6", "heading-5"]}
+              $color={"oakGrey4"}
+            >
+              {title}
+            </Heading>
+            <Heading $mb={16} $font={["heading-5", "heading-4"]} tag={"h2"}>
+              {heading}
+            </Heading>
+            <Typography $font={["body-2", "body-1"]}>
+              {typeof summary === "string" ? (
+                <p>{summary}</p>
+              ) : (
+                <PortableText value={summary} />
+              )}
+            </Typography>
+          </Flex>
+          {imageProps && (
+            <Flex
+              $display={["none", "flex"]}
+              $position="relative"
+              $minWidth={166}
+              $justifyContent={["center", "flex-end"]}
+              $alignItems={["flex-end"]}
+              $pr={[0, 24]}
+              $pb={24}
+              {...imageContainerProps}
+            >
+              <Cover>
+                <OakImage
+                  aria-hidden={true}
+                  $objectFit="contain"
+                  $objectPosition={"right"}
+                  alt={imageProps.alt}
+                  src={imageProps.src}
+                  fill
+                  priority
+                />
+              </Cover>
+            </Flex>
           )}
-        </Typography>
+        </Flex>
         {children}
       </Flex>
-      {imageProps && (
-        <Flex
-          $display={["none", "flex"]}
-          $position="relative"
-          $minWidth={"30%"}
-          $justifyContent={["center", "flex-end"]}
-          $alignItems={["flex-end"]}
-          $pr={[0, 24]}
-          $pb={24}
-          {...imageContainerProps}
-        >
-          <Cover>
-            <OakImage
-              aria-hidden={true}
-              $objectFit="contain"
-              $objectPosition={"right"}
-              alt={imageProps.alt}
-              src={imageProps.src}
-              fill
-              priority
-            />
-          </Cover>
-        </Flex>
-      )}
+
       <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );
