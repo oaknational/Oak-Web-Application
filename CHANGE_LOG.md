@@ -1,3 +1,10 @@
+## [1.68.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.2...v1.68.3) (2022-11-21)
+
+
+### Bug Fixes
+
+* **lint staged:** don't lint everything all the time ([c60cf3e](https://github.com/oaknational/Oak-Web-Application/commit/c60cf3e108bdcf09b81f8d82dbba7bc130365304))
+
 ## [1.68.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.1...v1.68.2) (2022-11-21)
 
 ## [1.68.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.0...v1.68.1) (2022-11-21)
