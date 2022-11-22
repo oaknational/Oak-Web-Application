@@ -79,7 +79,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
             <Flex
               $display={["none", "flex"]}
               $position="relative"
-              $minWidth={166}
+              $minWidth={"30%"}
               $justifyContent={["center", "flex-end"]}
               $alignItems={["flex-end"]}
               $pr={[0, 24]}

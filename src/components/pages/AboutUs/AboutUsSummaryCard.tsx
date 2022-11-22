@@ -33,6 +33,7 @@ const AboutUsSummaryCard = ({
       imageContainerProps={{
         $minHeight: 220,
         $mr: 32,
+        $minWidth: 166,
       }}
     >
       <ButtonLinkNav
