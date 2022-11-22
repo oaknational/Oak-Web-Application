@@ -14,6 +14,7 @@ const snapshotRelativeUrls = [
   "/",
   "/lesson-planning",
   "/develop-your-curriculum",
+  "/support-your-team",
   "/about-us/who-we-are",
   "/about-us/leadership",
   "/about-us/board",
@@ -24,7 +25,7 @@ const snapshotRelativeUrls = [
   "/blog/evolution-of-oak",
   "/blog/join-the-childrens-mental-health-week-assembly-2022",
   "/legal/accessibility-statement",
-  "/lp/download-our-lesson-and-resource-directory",
+  "/lp/lesson-and-resource-directory",
 ];
 
 const urls = snapshotRelativeUrls.map((relUrl) => {

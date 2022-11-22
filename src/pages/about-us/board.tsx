@@ -100,6 +100,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                         <IconButtonAsLink
                           icon={"Download"}
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
+                          page={null}
                           href={`${doc.file.asset.url}?dl`}
                           background={"teachersHighlight"}
                         />

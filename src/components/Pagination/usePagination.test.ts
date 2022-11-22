@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import usePagination from "./usePagination";
 
@@ -43,8 +43,8 @@ describe("usePagination()", () => {
     );
 
     expect(result.current).toMatchObject({
-      prevPageHref: { pathname: undefined },
-      nextPageHref: { pathname, query: { page: "2" } },
+      prevPageUrlObject: { pathname: undefined },
+      nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
   test("correct hrefs on last page", () => {
@@ -55,8 +55,8 @@ describe("usePagination()", () => {
     );
 
     expect(result.current).toMatchObject({
-      prevPageHref: { pathname, query: { page: "4" } },
-      nextPageHref: { pathname: undefined },
+      prevPageUrlObject: { pathname, query: { page: "4" } },
+      nextPageUrlObject: { pathname: undefined },
     });
   });
   test("if page < 1, default to page=1 ", () => {
@@ -68,8 +68,8 @@ describe("usePagination()", () => {
 
     expect(result.current).toMatchObject({
       currentPage: 1,
-      prevPageHref: { pathname: undefined },
-      nextPageHref: { pathname, query: { page: "2" } },
+      prevPageUrlObject: { pathname: undefined },
+      nextPageUrlObject: { pathname, query: { page: "2" } },
     });
   });
   test("if page > totalPages, default to page=1 ", () => {
@@ -81,8 +81,8 @@ describe("usePagination()", () => {
 
     expect(result.current).toMatchObject({
       currentPage: 5,
-      prevPageHref: { pathname, query: { page: "4" } },
-      nextPageHref: { pathname: undefined },
+      prevPageUrlObject: { pathname, query: { page: "4" } },
+      nextPageUrlObject: { pathname: undefined },
     });
   });
   test("works if current route has dynamic slug in pathname", () => {
@@ -99,11 +99,11 @@ describe("usePagination()", () => {
       currentPage: 1,
       totalPages: 5,
       totalResults: 41,
-      nextPageHref: {
+      nextPageUrlObject: {
         pathname: "/blog/[categorySlug]",
         query: { categorySlug: "updates", page: "2" },
       },
-      prevPageHref: { pathname: undefined },
+      prevPageUrlObject: { pathname: undefined },
     });
   });
 });

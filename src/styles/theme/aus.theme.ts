@@ -12,14 +12,6 @@ const ausTheme: OakTheme = {
       text: "white",
     },
   },
-  lessonControl: {
-    ...defaultTheme.lessonControl,
-    current: {
-      background: "grey3",
-      border: "2px solid",
-      borderColor: "grey9",
-    },
-  },
   toggle: {
     on: {
       labelColor: "grey10",

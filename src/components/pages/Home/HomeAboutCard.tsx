@@ -16,7 +16,7 @@ const HomeAboutCard: FC<HomeSidebarTextCard> = (props) => {
 
   return (
     <Card $ph={[16, 24]} $borderRadius={0} $background="white">
-      <CardTitle icon="Search" iconPosition="leading" iconSize={32} tag="h2">
+      <CardTitle icon="Search" $iconPosition="leading" iconSize={32} tag="h2">
         {props.title}
       </CardTitle>
 
@@ -27,7 +27,8 @@ const HomeAboutCard: FC<HomeSidebarTextCard> = (props) => {
       {props.cta && (
         <ButtonAsLink
           $mt={"auto"}
-          fullWidth
+          $fullWidth
+          page={null}
           href={getCTAHref(props.cta)}
           label={props.cta.label}
           // @TODO: This link is dynamic, not always an about link

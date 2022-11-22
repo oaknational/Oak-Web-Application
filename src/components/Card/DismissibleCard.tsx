@@ -12,6 +12,7 @@ const CloseButtonWrapper = styled.div`
 `;
 
 type DismissibleCardProps = {
+  children?: React.ReactNode;
   // 'title' used for the close button's aria-label
   title: string;
 };

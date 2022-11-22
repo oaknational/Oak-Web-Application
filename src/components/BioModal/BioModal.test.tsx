@@ -30,6 +30,7 @@ const defaultProps = {
   openModal: jest.fn(),
   nextBio: jest.fn(),
   prevBio: jest.fn(),
+  modalControllerRefs: {},
 };
 
 describe("BioModal", () => {
@@ -73,6 +74,7 @@ describe("BioModal", () => {
     const prevButton = getByRole("button", { name: "previous board member" });
     const nextButton = getByRole("button", { name: "next board member" });
 
+    await user.tab();
     expect(closeButton).toHaveFocus();
     await user.tab();
     expect(prevButton).toHaveFocus();

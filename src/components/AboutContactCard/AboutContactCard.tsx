@@ -56,7 +56,7 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
               />
             </BasePortableTextProvider>
             <Flex $mb={[32, 0]}>
-              <ButtonAsLink label={"Contact us"} href={"/contact-us"} />
+              <ButtonAsLink label={"Contact us"} page="contact" />
             </Flex>
           </Card>
         </GridArea>

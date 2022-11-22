@@ -39,7 +39,7 @@ export type ButtonInnerProps = {
   labelSuffixA11y?: string;
   icon?: IconName;
   iconBackground?: OakColorName;
-  iconPosition: IconPosition;
+  $iconPosition: IconPosition;
   shouldHideLabel?: boolean[];
   size: ButtonSize;
   background: ButtonBackground;
@@ -48,7 +48,7 @@ export type ButtonInnerProps = {
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const {
-    iconPosition,
+    $iconPosition,
     iconBackground,
     size: buttonSize,
     icon,
@@ -72,7 +72,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   return (
     <>
       {icon && (
-        <ButtonIconWrapper iconPosition={iconPosition}>
+        <ButtonIconWrapper $iconPosition={$iconPosition}>
           <Icon
             variant="brush"
             name={icon}

@@ -21,6 +21,7 @@ export const searchContext = createContext<SearchQuery | null>(null);
 
 export type SearchProviderValue = SearchQuery;
 export type SearchProviderProps = {
+  children?: React.ReactNode;
   value?: Partial<SearchProviderValue>;
 };
 export const SearchProvider: FC<SearchProviderProps> = ({

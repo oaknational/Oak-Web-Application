@@ -1,0 +1,6 @@
+fragment Quote on Quote {
+  text
+  role
+  organisation
+  attribution
+}

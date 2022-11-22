@@ -27,7 +27,7 @@ export const PTActionTrigger: PortableTextMarkComponent<{
   }
 };
 
-const ConsentManagerTrigger: FC = (props) => {
+const ConsentManagerTrigger: FC<{ children?: React.ReactNode }> = (props) => {
   const { showConsentManager } = useCookieConsent();
 
   return (

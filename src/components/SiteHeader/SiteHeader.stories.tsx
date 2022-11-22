@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { AuthProvider } from "../../context/Auth";
 import { MenuProvider } from "../../context/Menu";
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import ToastDecorator from "../../storybook-decorators/ToastDecorator";
@@ -16,11 +15,9 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <AuthProvider>
-    <MenuProvider>
-      <Component {...args} />
-    </MenuProvider>
-  </AuthProvider>
+  <MenuProvider>
+    <Component {...args} />
+  </MenuProvider>
 );
 
 export const SiteHeader = Template.bind({});

@@ -38,7 +38,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     ...spacingProps
   } = props;
 
-  const { size, variant, iconPosition, background } =
+  const { size, variant, $iconPosition, background } =
     getButtonStylesProps(props);
 
   const defaultTitle =
@@ -53,7 +53,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       onClick={onClick}
       size={size}
       variant={variant}
-      iconPosition={iconPosition}
+      $iconPosition={$iconPosition}
       background={background}
       {...spacingProps}
     >
@@ -61,7 +61,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         label={label}
         labelSuffixA11y={labelSuffixA11y}
         icon={icon}
-        iconPosition={iconPosition}
+        $iconPosition={$iconPosition}
         iconBackground={iconBackground}
         shouldHideLabel={shouldHideLabel}
         size={size}

@@ -1,24 +1,22 @@
 import { FC } from "react";
 
 import Flex from "../../Flex";
-import { Heading, HeadingTag, P } from "../../Typography";
+import { Heading, HeadingTag } from "../../Typography";
 import Box from "../../Box";
 import OakImage from "../../OakImage";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 
 export type UpcomingWebinarWallProps = {
-  headingTag: HeadingTag;
+  headingTag?: HeadingTag;
   headingText: string;
-  text: string;
   buttonOnClick: () => void;
   buttonHref: string;
   buttonText: string;
-  buttonSuffixA11y?: string;
+  buttonSuffixA11y: string;
 };
 
 /**
- * Visual component to cover a webinar if a user is yet to click to 'Register'
- * interest on a past or future webinar.
+ * Visual component that goes where the webinar video would be.
  *
  * ## Usage
  *
@@ -28,9 +26,8 @@ export type UpcomingWebinarWallProps = {
  */
 const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
   const {
-    headingTag,
+    headingTag = "h2",
     headingText,
-    text,
     buttonText,
     buttonHref,
     buttonOnClick,
@@ -38,6 +35,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
   } = props;
   return (
     <Flex
+      $ph={16}
       $font={["body-3", "body-2"]}
       $textAlign="center"
       $flexDirection="column"
@@ -47,20 +45,20 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
       $overflow="hidden"
       $cover
     >
-      <Box $maxWidth={240} $zIndex="inFront">
+      <Box $maxWidth={320} $zIndex="inFront">
         <Heading tag={headingTag} $font={["heading-6", "heading-5"]}>
           {headingText}
         </Heading>
-        <P $mt={8}>{text}</P>
         <ButtonAsLink
           $mt={28}
           background="teachersHighlight"
           htmlAnchorProps={{ onClick: buttonOnClick, target: "_blank" }}
+          page={null}
           href={buttonHref}
           label={buttonText}
           labelSuffixA11y={buttonSuffixA11y}
           icon="ChevronRight"
-          iconPosition="trailing"
+          $iconPosition="trailing"
         />
       </Box>
       <OakImage
@@ -69,7 +67,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
         $position="absolute"
         $right={0}
         $bottom={0}
-        $width={"40%"}
+        $width={"50%"}
         $height={"auto"}
         width={401}
         height={289}

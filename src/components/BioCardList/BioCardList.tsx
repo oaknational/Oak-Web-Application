@@ -31,7 +31,11 @@ const BioCardList: FC<BioCardListProps> = (props) => {
             $colEnd={[null, 9, 10]}
           >
             <Box $width={["100%", "100%", "50%"]} $mh="auto">
-              <BioCardListItem {...firstBio} onClick={onCardClick} />
+              <BioCardListItem
+                {...firstBio}
+                onClick={onCardClick}
+                modalControllerRef={modal.modalControllerRefs[firstBio.id]}
+              />
             </Box>
           </GridArea>
         </Grid>
@@ -39,7 +43,11 @@ const BioCardList: FC<BioCardListProps> = (props) => {
       <Grid $cg={16} $rg={[16, 32]} $gridAutoRows={[null, "1fr"]}>
         {firstBio && !firstBioHasOwnRow && (
           <GridArea $colSpan={[12, 4, 3]}>
-            <BioCardListItem {...firstBio} onClick={onCardClick} />
+            <BioCardListItem
+              {...firstBio}
+              onClick={onCardClick}
+              modalControllerRef={modal.modalControllerRefs[firstBio.id]}
+            />
           </GridArea>
         )}
         {otherBios.map((bio) => (
@@ -47,7 +55,11 @@ const BioCardList: FC<BioCardListProps> = (props) => {
             $colSpan={[12, 4, 3]}
             key={`bio-card-list-gridarea-${bio.id}`}
           >
-            <BioCardListItem {...bio} onClick={onCardClick} />
+            <BioCardListItem
+              {...bio}
+              onClick={onCardClick}
+              modalControllerRef={modal.modalControllerRefs[bio.id]}
+            />
           </GridArea>
         ))}
       </Grid>

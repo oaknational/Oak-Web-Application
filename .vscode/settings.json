@@ -1,15 +1,7 @@
 {
-  "cSpell.words": [
-    "excalidraw",
-    "Nextjs",
-    "portabletext",
-    "sdlc"
-  ],
+  "cSpell.words": ["excalidraw", "Nextjs", "portabletext", "sdlc"],
   "deno.enable": true,
-  "deno.enablePaths": [
-    "netlify/edge-functions"
-  ],
+  "deno.enablePaths": ["netlify/edge-functions"],
   "deno.unstable": true,
-  "deno.importMap": ".netlify/edge-functions-import-map.json",
-  "deno.path": "/home/jim/.config/netlify/deno-cli/deno"
+  "deno.importMap": ".netlify/edge-functions-import-map.json"
 }

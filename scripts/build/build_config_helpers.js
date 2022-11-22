@@ -67,6 +67,11 @@ function getGitRef() {
  */
 function getAppVersion(isProductionBuild) {
   if (isProductionBuild) {
+    const appVersionOverride = process.env.OVERRIDE_APP_VERSION;
+    if (appVersionOverride) {
+      return appVersionOverride;
+    }
+
     // GCP get the tag name.
     const gcpTagName = process.env.GCP_TAG_NAME;
     if (gcpTagName) {
@@ -76,19 +81,21 @@ function getAppVersion(isProductionBuild) {
     // Vercel or Netlify, parse the release commit message or log.
     let infoMessage;
     const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
+    const netlifyCommitRef = process.env.COMMIT_REF;
     if (vercelCommitMessage) {
       infoMessage = vercelCommitMessage;
-    } else {
-      const commitRef = process.env.COMMIT_REF;
+    } else if (netlifyCommitRef) {
       const commitRegex = /^([a-zA-Z0-9]){8,}$/;
-      if (!commitRegex.test(commitRef)) {
-        throw new TypeError(`Invalid exec input: ${commitRef}`);
+      if (!commitRegex.test(netlifyCommitRef)) {
+        throw new TypeError(`Invalid exec input: ${netlifyCommitRef}`);
       }
       const netlifyCommitLog = execSync(
-        `git show --no-patch --oneline ${commitRef}`,
+        `git show --no-patch --oneline ${netlifyCommitRef}`,
         { encoding: "utf8" }
       );
       infoMessage = netlifyCommitLog;
+    } else {
+      throw new Error("Could not determine build environment");
     }
 
     // DEBUG

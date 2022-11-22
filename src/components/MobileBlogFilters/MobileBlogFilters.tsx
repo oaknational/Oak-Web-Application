@@ -1,5 +1,4 @@
-import { useId } from "react-aria";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useRef, useEffect, useId } from "react";
 
 import Box from "../Box";
 import Button from "../Button";
@@ -64,7 +63,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
               iconBackground="teachersHighlight"
               size="large"
               label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
-              href={`${page === "blog-index" ? "/blog" : "/beta/webinars"}`}
+              page={page}
             />
           </Box>
         )}
@@ -74,7 +73,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           variant="minimal"
           icon={isOpen ? "ChevronUp" : "ChevronDown"}
           iconBackground="teachersHighlight"
-          iconPosition="trailing"
+          $iconPosition="trailing"
           size="large"
           label="Categories"
           onClick={() => setIsOpen((isOpen) => !isOpen)}

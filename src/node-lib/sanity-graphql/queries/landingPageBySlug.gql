@@ -35,10 +35,7 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
       }
       ... on LandingPageQuoteBlock {
         quote {
-          text
-          role
-          organisation
-          attribution
+          ...Quote
         }
       }
       ... on LandingPageTextAndMediaBlock {

@@ -1,0 +1,25 @@
+{
+  "allNewsListingPage": [
+    {
+      "id": "newsListingPage",
+      "title": "Blog",
+      "heading": "Inspiration for inside and outside the classroom",
+      "summary": [
+        {
+          "_key": "0955823eee6d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "f983ec11b4740",
+              "_type": "span",
+              "marks": [],
+              "text": "Read blogs from our in-house experts to find ideas to take away and try, from curriculum planning to lesson delivery. Plus, keep up to date with the latest news and insights from Oak."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  ]
+}

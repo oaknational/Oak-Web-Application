@@ -37,7 +37,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
     <Component {...args}>
       <CardTitle
         icon={"Download"}
-        iconPosition={"leading"}
+        $iconPosition={"leading"}
         iconSize={32}
         tag={"h4"}
       >
@@ -46,7 +46,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       <P $font={"body-2"} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
-      <ButtonAsLink $mt={"auto"} label={"Lable"} fullWidth href={"/"} />
+      <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
     </Component>
   </div>
 );
@@ -67,8 +67,8 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
           $mt={"auto"}
           $mb={16}
           label={"Label"}
-          fullWidth
-          href={"/"}
+          $fullWidth
+          page={"home"}
         />
       </Flex>
     </Component>
@@ -85,7 +85,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
     <Component {...args}>
       <CardTitle
         icon={"Download"}
-        iconPosition={"aboveTitle"}
+        $iconPosition={"aboveTitle"}
         iconSize={80}
         tag={"h4"}
       >
@@ -98,8 +98,8 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
         $mb={16}
         $mt={"auto"}
         label={"Label"}
-        fullWidth
-        href={"/"}
+        $fullWidth
+        page={"home"}
       />
     </Component>
   </div>

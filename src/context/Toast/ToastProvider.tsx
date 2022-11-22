@@ -12,15 +12,17 @@ export type ToastContext = {
 
 export const toastContext = createContext<ToastContext | null>(null);
 
-export const ToastProvider: FC = ({ children }) => {
+export const ToastProvider: FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   const [message, setMessage] = useState("");
   const [shown, setShown] = useState(false);
   const [role, setRole] = useState<ToastRole>("status");
 
   const showToast = useCallback(
-    (message, role) => {
-      setMessage(message);
-      setRole(role);
+    (_message: string, _role: ToastRole) => {
+      setMessage(_message);
+      setRole(_role);
       setShown(true);
     },
     [setShown]

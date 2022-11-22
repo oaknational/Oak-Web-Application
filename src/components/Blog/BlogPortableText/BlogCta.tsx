@@ -12,6 +12,7 @@ const BlogCta = (props: PortableTextComponentProps<CTA>) => {
 
   return (
     <ButtonAsLink
+      page={null}
       label={cta.label}
       href={getCTAHref(cta)}
       background={"teachersHighlight"}

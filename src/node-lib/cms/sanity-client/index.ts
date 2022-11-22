@@ -19,6 +19,8 @@ import {
   webinarSchema,
   landingPagePreviewSchema,
   landingPageSchema,
+  supportPageSchema,
+  blogListingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 
@@ -58,6 +60,28 @@ const getSanityClient = () => ({
 
     return parseResults(
       webinarsListingPageSchema,
+      withResolvedReferences,
+      previewMode
+    );
+  },
+
+  blogListingPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.newsListingPage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const blogListingPageData = result?.allNewsListingPage?.[0];
+
+    if (!blogListingPageData) {
+      return null;
+    }
+
+    const withResolvedReferences = await resolveEmbeddedReferences(
+      blogListingPageData
+    );
+
+    return parseResults(
+      blogListingPageSchema,
       withResolvedReferences,
       previewMode
     );
@@ -317,6 +341,19 @@ const getSanityClient = () => ({
       withResolvedReferences,
       previewMode
     );
+  },
+  supportPage: async ({ previewMode, ...params }: Params = {}) => {
+    const result = await sanityGraphqlApi.supportCorePage({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+    });
+    const supportPageData = result?.allSupportCorePage?.[0];
+
+    if (!supportPageData) {
+      return null;
+    }
+
+    return parseResults(supportPageSchema, supportPageData, previewMode);
   },
   contactPage: async ({ previewMode, ...params }: Params = {}) => {
     const result = await sanityGraphqlApi.contactCorePage({

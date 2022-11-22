@@ -39,7 +39,8 @@ const StyledHeader = styled(Flex)`
   position: fixed;
 `;
 
-const FixedHeader: FC<BackgroundProps> = ({ children, $background }) => (
+type FixedHeaderProps = { children?: React.ReactNode } & BackgroundProps;
+const FixedHeader: FC<FixedHeaderProps> = ({ children, $background }) => (
   <HeaderWrapper>
     <StyledHeader
       as="header"

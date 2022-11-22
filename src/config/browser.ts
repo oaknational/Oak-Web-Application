@@ -41,64 +41,6 @@ const satisfies =
 type ConfigKey = keyof typeof envVars;
 
 const envVars = satisfies<Record<string, EnvVar>>()({
-  firebaseConfigApiHost: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_API_HOST,
-    envName: "NEXT_PUBLIC_FIREBASE_API_HOST",
-    required: true,
-    availableInBrowser: true,
-    default: "identitytoolkit.googleapis.com",
-    description: "Used for proxying firebase auth, for zero-rating",
-  },
-  firebaseConfigTokenApiHost: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST,
-    envName: "NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST",
-    required: true,
-    availableInBrowser: true,
-    default: "securetoken.googleapis.com",
-    description: "Used for proxying firebase auth, for zero-rating",
-  },
-  firebaseApiKey: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    envName: "NEXT_PUBLIC_FIREBASE_API_KEY",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseAuthDomain: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    envName: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseProjectId: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    envName: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseStorageBucket: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    envName: "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseMessagingSenderId: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    envName: "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseAppId: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    envName: "NEXT_PUBLIC_FIREBASE_APP_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
   clientAppBaseUrl: {
     value: process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL,
     envName: "NEXT_PUBLIC_CLIENT_APP_BASE_URL",

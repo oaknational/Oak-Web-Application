@@ -199,23 +199,6 @@ const theme: OakTheme = {
     background: "pupilsLightGreen",
     color: "black",
   },
-  lessonControl: {
-    default: {
-      background: "white",
-      border: "2px solid",
-      borderColor: "transparent",
-    },
-    current: {
-      background: "grey3",
-      border: "2px dashed",
-      borderColor: "black",
-    },
-    complete: {
-      background: "oakGrey4",
-      border: "2px solid",
-      borderColor: "transparent",
-    },
-  },
   checkbox: {
     default: {
       color: "black",

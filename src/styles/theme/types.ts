@@ -5,7 +5,6 @@ import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
-import { LessonControlConfig } from "../../components/LessonControl";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
@@ -48,6 +47,7 @@ export type PixelSpacing =
   | 96
   | 120
   | 140
+  | 150
   | 160
   | 172
   | 200
@@ -56,14 +56,18 @@ export type PixelSpacing =
   | 300
   | 320
   | 360
+  | 380
   | 400
+  | 450
   | 480
   | 600
   | 720
   | 812
   | 840
+  | 900
   | 960
-  | 1280;
+  | 1280
+  | 1600;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
 export type PercentSpacing =
@@ -199,7 +203,6 @@ export type OakTheme = {
   input: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
-  lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;

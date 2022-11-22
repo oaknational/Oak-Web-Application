@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 
 import useToastContext from "./useToastContext";
 import ToastProvider from "./ToastProvider";
@@ -29,10 +29,8 @@ describe("useToastContext", () => {
   });
 
   test("it should throw an error if called outside of toast provider", () => {
-    const { result } = renderHook(() => useToastContext());
-
-    expect(result.error).toEqual(
-      Error("useToastContext called outside of toast provider")
-    );
+    expect(() => {
+      renderHook(() => useToastContext());
+    }).toThrow(Error("useToastContext called outside of toast provider"));
   });
 });
