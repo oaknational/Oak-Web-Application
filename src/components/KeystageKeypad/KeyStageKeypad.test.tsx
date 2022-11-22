@@ -3,18 +3,18 @@ import keystageKeypad from "../../browser-lib/fixtures/keystageKeypad";
 
 import KeystageKeypad from ".";
 const keyStages = ["1", "2", "3", "4"];
-const years = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+const years = ["6", "7", "8", "9", "10", "11"];
 
 describe("components/Key Stage keypad", () => {
   test.each(keyStages)(
-    "renders a key stage button with %p text",
+    "renders a key stage and year button with %p text",
     (keyStage) => {
-      const { getByText } = renderWithTheme(
+      const { getAllByText } = renderWithTheme(
         <KeystageKeypad {...keystageKeypad} />
       );
-      const keyStageButton = getByText(keyStage);
+      const keyStageButton = getAllByText(keyStage);
 
-      expect(keyStageButton).toBeInTheDocument();
+      expect(keyStageButton.length).toEqual(2);
     }
   );
   test.each(years)("renders a year link with %p text", (year) => {
