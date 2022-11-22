@@ -37,13 +37,12 @@ Logic tests and snapshot tests should be in different files because their "failu
 
 ## E2E Browser Tests
 
-We use [Playwright](https://playwright.dev/).
+We use [Playwright](https://playwright.dev/) for E2E tests, however we don't currently run them in CI as we don't have complex journeys in this app. As we increase app complexity we will investigate re-adding CI E2E browser tests.
 
 ### When They Run
 
 - Manually against local Playwright binaries with `npm run playwright:test`. If you have no already downloaded the binaries you will need to run `npm run playwright:install` first.
 - Manually, locally, against Browserstack `npm run playwright:test:bs_local`. You will need `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` in your `.env` file. You can get those values from Browserstack by logging in.
-- On push in a Github workflow, against Browserstack.
 
 ### Location
 
@@ -51,8 +50,7 @@ The current tests live [here](../e2e_tests/browser/engineering/). The naming is 
 
 ## Storybook
 
-- Automated snapshot tests
-- Automated component a11y tests.
+- Design and engineering inspection of components in isolation, including a11y checks.
 
 ## Percy
 
