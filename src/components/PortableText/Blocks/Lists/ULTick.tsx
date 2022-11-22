@@ -1,9 +1,8 @@
 import { PortableTextComponents } from "@portabletext/react";
 
 import Circle from "../../../Circle";
-import Flex from "../../../Flex";
 import Icon from "../../../Icon";
-import { LI, UL } from "../../../Typography";
+import { LI, Span, UL } from "../../../Typography";
 
 export const ULTick: PortableTextComponents = {
   list: {
@@ -19,14 +18,18 @@ export const ULTick: PortableTextComponents = {
       const listItemText = props?.value?.children[0]?.text;
 
       return (
-        <Flex $mb={44} $alignItems={"center"}>
+        <LI
+          $display={"flex"}
+          $flexDirection={"row"}
+          listStyle={"none"}
+          $mb={44}
+          $alignItems={"center"}
+        >
           <Circle $mr={24} size={36} $background={"white"}>
             <Icon size={28} name={"Tick"} />
           </Circle>
-          <LI listStyle={"none"} $font={"heading-7"}>
-            {listItemText}
-          </LI>
-        </Flex>
+          <Span $font={"heading-7"}>{listItemText}</Span>
+        </LI>
       );
     },
   },
