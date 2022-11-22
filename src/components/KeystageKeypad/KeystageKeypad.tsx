@@ -12,7 +12,7 @@ export type KeypadItem = {
 
 export type KeystageKeypadProps = {
   keystages: KeypadItem[];
-  years: KeypadItem[];
+  years?: KeypadItem[];
 };
 
 const KeypadLink: FC<KeypadItem> = (props) => {
@@ -49,19 +49,28 @@ const KeystageKeypad: FC<KeystageKeypadProps> = ({ keystages, years }) => {
       <Heading $color={"oakGrey4"} $mb={20} tag="h3" $font={"heading-light-7"}>
         Key Stage
       </Heading>
-      <Grid $mb={48} $cg={24} $ph={8}>
+      <Grid $mb={years ? 48 : 24} $cg={24} $ph={8}>
         {keystages.map((keystage) => (
           <KeypadLink key={`keystage:${keystage.title}`} {...keystage} />
         ))}
       </Grid>
-      <Heading $color={"oakGrey4"} $mb={20} tag="h3" $font={"heading-light-7"}>
-        Year
-      </Heading>
-      <Grid $rg={24} $mb={48} $cg={24} $ph={8}>
-        {years.map((years) => (
-          <KeypadLink key={`year:${years.title}`} {...years} />
-        ))}
-      </Grid>
+      {years && (
+        <>
+          <Heading
+            $color={"oakGrey4"}
+            $mb={20}
+            tag="h3"
+            $font={"heading-light-7"}
+          >
+            Year
+          </Heading>
+          <Grid $rg={24} $mb={24} $cg={24} $ph={8}>
+            {years.map((years) => (
+              <KeypadLink key={`year:${years.title}`} {...years} />
+            ))}
+          </Grid>
+        </>
+      )}
     </nav>
   );
 };

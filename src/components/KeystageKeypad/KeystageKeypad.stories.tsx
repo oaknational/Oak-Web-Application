@@ -13,8 +13,13 @@ export default {
 
 const Template: ComponentStory<typeof Component> = () => {
   return (
-    <Flex $background={"pupilsLightGreen"} $pa={16}>
-      <Component {...keystageKeypad} />
+    <Flex $flexDirection={"column"} $pa={16}>
+      <Flex $background={"pupilsLightGreen"} $pa={16} $mb={12}>
+        <Component {...keystageKeypad} />
+      </Flex>
+      <Flex $background={"pupilsLightGreen"} $pa={16} $mb={12}>
+        <Component keystages={keystageKeypad.keystages} />
+      </Flex>
     </Flex>
   );
 };
