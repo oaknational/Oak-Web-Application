@@ -2,12 +2,13 @@ import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
 import config from "../../config/browser";
+import { AnonymousUserId } from "../../browser-lib/analytics/useAnonymousId";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 import OakError from "../../errors/OakError";
 
 import { consoleError, consoleLog } from "./logging";
-import bugsnagNotify from "./bugsnagNotify";
+import bugsnagNotify, { BugsnagConfig } from "./bugsnagNotify";
 
 /**
  * Test if a user agent matches any in a list of regex patterns.
@@ -26,11 +27,13 @@ const getBugsnagConfig = ({
   apiKey,
   appVersion,
   releaseStage,
+  userId,
 }: {
   apiKey: string;
   appVersion: string;
   releaseStage: string;
-}) => {
+  userId: AnonymousUserId;
+}): BugsnagConfig => {
   return {
     apiKey,
     appVersion,
@@ -38,7 +41,10 @@ const getBugsnagConfig = ({
     // @TODO: Add userId or anonymous id
     // user: { id: userId },
     releaseStage,
-    collectUserIp: true,
+    collectUserIp: false,
+    user: {
+      id: userId,
+    },
     // Route notifications via our domains for zero rating.
     endpoints: {
       notify: "https://bugsnag-notify.thenational.academy",
@@ -67,11 +73,12 @@ const getBugsnagConfig = ({
   };
 };
 
-export const initialiseBugsnag = () => {
+export const initialiseBugsnag = (userId: AnonymousUserId) => {
   const bugsnagConfig = getBugsnagConfig({
     apiKey: config.get("bugsnagApiKey"),
     appVersion: config.get("appVersion"),
     releaseStage: config.get("releaseStage"),
+    userId,
   });
 
   // Start Bugsnag
