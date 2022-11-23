@@ -1,6 +1,5 @@
 import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
-import { useKeyboard } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
 import { FocusOn } from "react-focus-on";
@@ -71,16 +70,6 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
     closeMenu();
   }, [pathname, closeMenu]);
 
-  const { keyboardProps } = useKeyboard({
-    onKeyDown: (e) => {
-      if (e.key === "Escape") {
-        closeMenu();
-      } else {
-        e.continuePropagation();
-      }
-    },
-  });
-
   const giveFocus = () => {
     closeButtonRef.current?.focus();
   };
@@ -117,7 +106,6 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
-              {...keyboardProps}
             >
               <Svg
                 name="LoopingLine"
