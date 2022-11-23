@@ -254,6 +254,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "Logs accessibility concerns to the console. Should be disabled in production",
   },
+  webinarSignUpUrl: {
+    value: process.env.NEXT_PUBLIC_WEBINAR_SIGN_UP_URL,
+    envName: "NEXT_PUBLIC_WEBINAR_SIGN_UP_URL",
+    required: true,
+    availableInBrowser: true,
+    description: "Sign up link for upcoming webinars",
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

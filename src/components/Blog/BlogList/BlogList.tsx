@@ -4,6 +4,7 @@ import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";
 import Box from "../../Box";
+import config from "../../../config/browser";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import BlogListItem, { BlogListItemProps } from "./BlogListItem";
@@ -60,7 +61,7 @@ const BlogList: FC<BlogListProps> = (props) => {
         <>
           <UpcomingWebinarListItem
             {...upcomingItem}
-            signUpHref="https://share.hsforms.com/1USsrkazESq2Il8lxUx_vPgbvumd"
+            signUpHref={config.get("webinarSignUpUrl")}
             signUpOnClick={() => null}
           />
           {withContainingHrs && <Hr thickness={4} $mv={32} />}
