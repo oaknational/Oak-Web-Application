@@ -1,4 +1,4 @@
-import { KeyStageKeypadProps } from "../../components/KeystageKeypad/KeyStageKeypad";
+import { KeyStageKeypadProps } from "../../components/KeyStageKeypad/KeyStageKeypad";
 
 const keyStageKeypad: KeyStageKeypadProps = {
   keyStages: [

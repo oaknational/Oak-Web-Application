@@ -24,4 +24,4 @@ const Template: ComponentStory<typeof Component> = () => {
   );
 };
 
-export const KeystageKeypad = Template.bind({});
+export const KeyStageKeypad = Template.bind({});
