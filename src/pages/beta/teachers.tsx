@@ -6,7 +6,7 @@ import Grid from "../../components/Grid";
 import GridArea from "../../components/Grid/GridArea";
 import { Heading } from "../../components/Typography";
 
-const Beta: FC = () => {
+const Teachers: FC = () => {
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <Grid $cg={16} $rg={[16, 48, 80]}>
@@ -20,4 +20,4 @@ const Beta: FC = () => {
   );
 };
 
-export default Beta;
+export default Teachers;
