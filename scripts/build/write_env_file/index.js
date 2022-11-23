@@ -115,6 +115,7 @@ async function main() {
       // Default to value in config, currently localhost:3000
       oakConfig.oak.appBaseUrl,
     NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
+    NEXT_PUBLIC_WEBINAR_SIGN_UP_URL: oakConfig.oak.webinarSignUpUrl,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
