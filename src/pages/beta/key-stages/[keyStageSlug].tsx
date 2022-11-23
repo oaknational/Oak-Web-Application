@@ -20,13 +20,13 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
   return (
     <Layout
       seoProps={getSeoProps({
-        title: "add real data", // @todo add real data
-        description: "add readl data",
+        title: "Key stage", // @todo add real data
+        description: "Key stage by subject",
       })}
       $background="white"
     >
       <Heading tag={"h1"}>Key stage {props.keyStageData.data}</Heading>
-      {/* <BlogJsonLd blog={props.blog} /> */}
+      {/* <BlogJsonLd  /> */}
     </Layout>
   );
 };

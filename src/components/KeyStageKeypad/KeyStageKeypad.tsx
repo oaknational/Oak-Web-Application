@@ -18,7 +18,7 @@ export type KeyStageKeypadProps = {
 const KeypadLink: FC<KeypadItem> = (props) => {
   const { title, slug } = props;
   return (
-    <GridArea $colSpan={[3, 3, 3]}>
+    <GridArea $colSpan={[3]}>
       <OakLink
         $background={"white"}
         $position={"relative"}
