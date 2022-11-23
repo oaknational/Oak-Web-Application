@@ -47,6 +47,9 @@ oak.config.ts
 oak.config.old.json
 oak.config.production.json
 
+# live oak-config (see push_config script)
+oak-config/live
+
 # vercel
 .vercel
 
