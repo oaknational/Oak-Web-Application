@@ -1,3 +1,18 @@
+## [1.68.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.3...v1.68.4) (2022-11-22)
+
+
+### Bug Fixes
+
+* run pa11y tests on support your team ([fa1e430](https://github.com/oaknational/Oak-Web-Application/commit/fa1e430544f219ea670b63733bc1fc6ce2c84f9d))
+* typo ([6c99492](https://github.com/oaknational/Oak-Web-Application/commit/6c99492a96e50d836807b9e762abf3f5232dfcc8))
+
+## [1.68.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.2...v1.68.3) (2022-11-21)
+
+
+### Bug Fixes
+
+* **lint staged:** don't lint everything all the time ([c60cf3e](https://github.com/oaknational/Oak-Web-Application/commit/c60cf3e108bdcf09b81f8d82dbba7bc130365304))
+
 ## [1.68.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.1...v1.68.2) (2022-11-21)
 
 ## [1.68.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.0...v1.68.1) (2022-11-21)
