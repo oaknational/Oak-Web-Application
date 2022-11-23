@@ -41,27 +41,6 @@ const satisfies =
 type ConfigKey = keyof typeof envVars;
 
 const envVars = satisfies<Record<string, EnvVar>>()({
-  firebaseAdminDatabaseUrl: {
-    value: process.env.FIREBASE_ADMIN_DATABASE_URL,
-    envName: "FIREBASE_ADMIN_DATABASE_URL",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  hasuraAdminSecret: {
-    value: process.env.HASURA_ADMIN_SECRET,
-    envName: "HASURA_ADMIN_SECRET",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  firebaseServiceAccount: {
-    value: process.env.FIREBASE_SERVICE_ACCOUNT,
-    envName: "FIREBASE_SERVICE_ACCOUNT",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
   sanityProjectId: {
     value: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     envName: "NEXT_PUBLIC_SANITY_PROJECT_ID",

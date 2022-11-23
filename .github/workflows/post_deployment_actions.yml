@@ -28,7 +28,6 @@ jobs:
       # Install.
       - run: npm ci
         env:
-          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
@@ -76,7 +75,6 @@ jobs:
           cache: "npm"
       - run: npm ci
         env:
-          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
@@ -145,7 +143,6 @@ jobs:
   #         cache: "npm"
   #     - run: npm ci
   #       env:
-  #         HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
   #         NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
   #     # Get branch name and PR number for deployment so we

@@ -1,3 +1,12 @@
+## [1.69.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.1...v1.69.2) (2022-11-23)
+
+## [1.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.0...v1.69.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* useLocalStorage hook should set local storage with initial value ([3147289](https://github.com/oaknational/Oak-Web-Application/commit/31472897065745c3a15a373ab3619a24dfff428c))
+
 # [1.69.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.4...v1.69.0) (2022-11-23)
 
 
