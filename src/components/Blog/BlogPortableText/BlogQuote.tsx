@@ -2,7 +2,7 @@ import { PortableTextComponentProps } from "@portabletext/react";
 
 import { Quote } from "../../../common-lib/cms-types";
 import Flex from "../../Flex";
-import { P } from "../../Typography";
+import { Span, P } from "../../Typography";
 
 const BlogQuote = (props: PortableTextComponentProps<Quote>) => {
   if (!props.value?.text) {
@@ -11,9 +11,9 @@ const BlogQuote = (props: PortableTextComponentProps<Quote>) => {
 
   return (
     <Flex $flexDirection={"column"} $mt={56}>
-      <P $font={["heading-light-5", "heading-light-4"]}>
-        <blockquote>&ldquo;{props.value.text}&rdquo;</blockquote>
-      </P>
+      <Span $font={["heading-light-5", "heading-light-4"]}>
+        <blockquote>&ldquo;{props.value.text.trim()}&rdquo;</blockquote>
+      </Span>
       <div>
         <P $font={"body-1"} $mt={[16]} $textAlign="center">
           <cite>{props.value?.attribution}</cite>
