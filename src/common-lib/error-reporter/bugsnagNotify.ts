@@ -1,4 +1,8 @@
-import Bugsnag, { NotifiableError, OnErrorCallback } from "@bugsnag/js";
+import Bugsnag, {
+  NotifiableError,
+  OnErrorCallback,
+  BrowserConfig as BugsnagConfig,
+} from "@bugsnag/js";
 
 /**
  * Wrapping Bugsnag.notify otherwise Vercel terminates the process before error is sent
@@ -8,3 +12,4 @@ const bugsnagNotify = (error: NotifiableError, onError: OnErrorCallback) =>
   new Promise((resolve) => Bugsnag.notify(error, onError, resolve));
 
 export default bugsnagNotify;
+export type { BugsnagConfig };
