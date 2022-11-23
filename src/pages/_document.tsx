@@ -57,7 +57,11 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <link rel="manifest" href="/site.webmanifest" />
+          <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossOrigin="use-credentials"
+          />
           <link
             href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
             rel="stylesheet"

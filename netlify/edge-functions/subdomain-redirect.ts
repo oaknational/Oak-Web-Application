@@ -41,7 +41,13 @@ async function redirectNetlifySubdomains(
 
   // Netlify makes some requests internally for optimisation functions,
   // skip the redirect for these.
-  const allowListPathStarts = ["/_ipx", "/images", "/.netlify"];
+  const allowListPathStarts = [
+    "/_ipx",
+    "/_next",
+    "/.netlify",
+    "/images",
+    "/site.webmanifest",
+  ];
   const urlPath = new URL(request.url).pathname;
   const isOnAllowList = allowListPathStarts.some((allowPath) =>
     urlPath.startsWith(allowPath)
