@@ -15,7 +15,7 @@ import Box from "../Box";
  */
 const AppHeader: FC<HeaderProps> = () => {
   return (
-    <FixedHeader $background="pastelTurqoise">
+    <FixedHeader $background="pastelTurquoise">
       <Flex $mr={40} $justifyContent={"space-between"}>
         <OakLink page={"home"}>
           <Logo title={"Oak National Academy"} height={48} width={104} />
