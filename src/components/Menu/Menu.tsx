@@ -100,7 +100,11 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
       {(state) => (
         <Box $position="absolute" ref={ref}>
           <MenuBackdrop state={state} />
-          <FocusOn enabled={open}>
+          <FocusOn
+            enabled={open}
+            onClickOutside={closeMenu}
+            onEscapeKey={closeMenu}
+          >
             <SideMenu
               data-testid={"menu"}
               $position="fixed"
