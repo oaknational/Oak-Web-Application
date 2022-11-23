@@ -1,3 +1,19 @@
+## [1.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.0...v1.69.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* useLocalStorage hook should set local storage with initial value ([3147289](https://github.com/oaknational/Oak-Web-Application/commit/31472897065745c3a15a373ab3619a24dfff428c))
+
+# [1.69.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.4...v1.69.0) (2022-11-23)
+
+
+### Features
+
+* **preview builds:** allow asset requests directly to origin ([a7a161d](https://github.com/oaknational/Oak-Web-Application/commit/a7a161d55e1d06eafc1545c23580694b047fb10f))
+* **preview builds:** allow web manifest direct from origin ([a8fe244](https://github.com/oaknational/Oak-Web-Application/commit/a8fe2448ef5747aa695e1913a53a2f4137a464fe))
+* **preview builds:** send cookies with manifest requets ([b805fe8](https://github.com/oaknational/Oak-Web-Application/commit/b805fe800321adfbd105be164361e32a6f57ee9b))
+
 ## [1.68.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.3...v1.68.4) (2022-11-22)
 
 
