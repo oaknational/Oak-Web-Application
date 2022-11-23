@@ -1,6 +1,8 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import KeyStageListPage from "../../../../pages/beta/key-stages/[keyStageSlug]";
+import KeyStageListPage, {
+  KeyStageProps,
+} from "../../../../pages/beta/key-stages/[keyStageSlug]";
 import renderWithProviders from "../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../__helpers__/renderWithSeo";
 
@@ -55,18 +57,17 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
   });
 
   describe("getStaticProps", () => {
-    it.skip("Should fetch the correct data", async () => {
+    it("Should fetch the correct data", async () => {
       const { getStaticProps } = await import(
         "../../../../pages/beta/key-stages/[keyStageSlug]"
       );
-      await getStaticProps({
+      const propsResult = (await getStaticProps({
         params: { keyStageSlug: "key-stage-1" },
-      });
+      })) as {
+        props: KeyStageProps;
+      };
 
-      //   expect(blogPostBySlug).toHaveBeenCalledWith(
-      //     "another-blog",
-      //     expect.any(Object)
-      //   );
+      expect(propsResult.props.keyStageData.data).toEqual("key-stage-1");
     });
   });
 });
