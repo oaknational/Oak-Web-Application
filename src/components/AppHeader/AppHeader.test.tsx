@@ -11,6 +11,14 @@ describe("components/AppHeader", () => {
     expect(getByRole("banner")).toBeInTheDocument();
   });
 
+  test("it should be the teachers header colour", () => {
+    const { getByRole } = renderWithProviders(<AppHeader />);
+
+    expect(getByRole("banner")).toHaveStyle(
+      "background-color: rgb(176, 226, 222);"
+    );
+  });
+
   test("clicking on the hamburger button opens the menu", async () => {
     const { getByLabelText, getByTestId } = renderWithProviders(<AppHeader />);
 
