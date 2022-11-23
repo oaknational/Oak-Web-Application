@@ -38,8 +38,6 @@ const getBugsnagConfig = ({
     apiKey,
     appVersion,
     plugins: [new BugsnagPluginReact()],
-    // @TODO: Add userId or anonymous id
-    // user: { id: userId },
     releaseStage,
     collectUserIp: false,
     user: {
