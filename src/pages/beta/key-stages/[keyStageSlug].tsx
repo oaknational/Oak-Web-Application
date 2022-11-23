@@ -13,7 +13,7 @@ import Box from "../../../components/Box";
 import { decorateWithIsr } from "../../../node-lib/isr";
 
 export type KeyStageProps = {
-  keyStageData: any;
+  keyStageData: { data: string | undefined };
 };
 
 const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
