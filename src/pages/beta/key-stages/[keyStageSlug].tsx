@@ -9,8 +9,8 @@ import {
 import keyStagesKeypad from "../../../browser-lib/fixtures/keyStagesKeypad";
 import Layout from "../../../components/Layout";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
-import Box from "../../../components/Box";
 import { decorateWithIsr } from "../../../node-lib/isr";
+import { Heading } from "../../../components/Typography";
 
 export type KeyStageProps = {
   keyStageData: { data: string | undefined };
@@ -25,7 +25,7 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
       })}
       $background="white"
     >
-      <Box>Key stage {props.keyStageData.data}</Box>
+      <Heading tag={"h1"}>Key stage {props.keyStageData.data}</Heading>
       {/* <BlogJsonLd blog={props.blog} /> */}
     </Layout>
   );
