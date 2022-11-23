@@ -1,3 +1,10 @@
+# [1.70.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.2...v1.70.0) (2022-11-23)
+
+
+### Features
+
+* **Bugsnag:** send anonymous IDs ([a35d785](https://github.com/oaknational/Oak-Web-Application/commit/a35d7858a4cd43bdb22c1eb5414d632dc081ee41))
+
 ## [1.69.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.1...v1.69.2) (2022-11-23)
 
 ## [1.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.0...v1.69.1) (2022-11-23)
