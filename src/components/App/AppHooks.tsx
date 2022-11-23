@@ -2,6 +2,7 @@ import { watchModals } from "@react-aria/aria-modal-polyfill";
 
 import useAxe from "../../browser-lib/axe/useAxe";
 import useBugsnag from "../../browser-lib/bugsnag/useBugsnag";
+import useAnonymousId from "../../browser-lib/analytics/useAnonymousId";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import useGleap from "../../browser-lib/gleap";
 import config from "../../config/browser";
@@ -20,8 +21,8 @@ if (isBrowser) {
  */
 const useAppHooks = () => {
   const { hasConsentedTo } = useCookieConsent();
-
-  useBugsnag({ enabled: hasConsentedTo("bugsnag") === "enabled" });
+  const userId = useAnonymousId();
+  useBugsnag({ enabled: hasConsentedTo("bugsnag") === "enabled", userId });
   useGleap({ enabled: hasConsentedTo("gleap") === "enabled" });
   useAxe({ enabled: config.get("axeA11yLogging") === "on" });
 };

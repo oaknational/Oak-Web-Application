@@ -2,20 +2,6 @@
   "bugsnag": {
     "apiKey": "123abc"
   },
-  "firebase": {
-    "apiHost": "example.com",
-    "apiKey": "123abc",
-    "appId": "12345",
-    "authDomain": "https://example.com",
-    "messagingSenderId": "abc123",
-    "projectId": "my_project",
-    "requiredSecrets": [
-      "FIREBASE_SERVICE_ACCOUNT",
-      "FIREBASE_ADMIN_DATABASE_URL"
-    ],
-    "storageBucket": "bucket_uri",
-    "tokenHost": "example.com"
-  },
   "gleap": {
     "apiKey": "gleap-api-key",
     "apiUrl": "gleap-api-url",
@@ -23,10 +9,6 @@
   },
   "googleSecretManager": {
     "projectId": "test-project-584399384539"
-  },
-  "hasura": {
-    "graphqlApiUrl": "https://example.com",
-    "requiredSecrets": ["HASURA_ADMIN_SECRET"]
   },
   "hubspot": {
     "portalId": "12345",
