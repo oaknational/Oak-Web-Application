@@ -69,7 +69,7 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const dimensions = rest.fill ? {} : { width, height };
 
   return (
-    <Box $background={loaded ? undefined : "pastelTurqoise"} $width="100%">
+    <Box $background={loaded ? undefined : "pastelTurquoise"} $width="100%">
       <OakImage
         onLoadingComplete={() => setLoaded(true)}
         {...imageProps}
