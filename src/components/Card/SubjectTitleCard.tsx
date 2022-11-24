@@ -18,7 +18,7 @@ type ImageProps = {
   alt: string;
 };
 
-type SubjectHeadingCardProps = {
+type SubjectTitleCardProps = {
   title: string;
   keyStage: string;
   iconName: IconName;
@@ -33,7 +33,7 @@ type SubjectHeadingCardProps = {
  * ## Usage
  * Summary card heading used at the top of page
  */
-const SubjectHeadingCard: FC<SubjectHeadingCardProps> = ({
+const SubjectTitleCard: FC<SubjectTitleCardProps> = ({
   title,
   keyStage,
   iconName,
@@ -55,8 +55,8 @@ const SubjectHeadingCard: FC<SubjectHeadingCardProps> = ({
   );
 };
 
-SubjectHeadingCard.defaultProps = {
+SubjectTitleCard.defaultProps = {
   background: "teachersPastelYellow",
 };
 
-export default SubjectHeadingCard;
+export default SubjectTitleCard;

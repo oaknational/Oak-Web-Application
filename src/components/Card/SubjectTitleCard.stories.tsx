@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./SubjectHeadingCard";
+import Component from "./SubjectTitleCard";
 
 export default {
-  title: "Cards/Subject heading",
+  title: "Cards/Subject title",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
@@ -12,9 +12,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const SubjectHeadingCard = Template.bind({});
+export const SubjectTitleCard = Template.bind({});
 
-SubjectHeadingCard.args = {
+SubjectTitleCard.args = {
   title: "Title",
   keyStage: "key stage 1",
   iconName: "Twitter",
