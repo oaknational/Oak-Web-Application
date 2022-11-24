@@ -297,7 +297,7 @@ export const postToBlogListItem = (
     : webinarToBlogListItem(blogOrWebinar);
 };
 
-const sortByDate = (a: { date: Date }, b: { date: Date }) => {
+export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
   return b.date.getTime() - a.date.getTime();
 };
 
