@@ -77,7 +77,8 @@ describe("common-lib/error-reporter", () => {
   });
   describe("initialiseBugsnag", () => {
     it("calls Bugsnag.start", () => {
-      initialiseBugsnag();
+      const userId = "1234";
+      initialiseBugsnag(userId);
       expect(mockStart).toHaveBeenCalled();
     });
   });

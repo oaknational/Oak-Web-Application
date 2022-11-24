@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Bugsnag from "@bugsnag/js";
 
 import { initialiseBugsnag } from "../../common-lib/error-reporter";
+import { AnonymousUserId } from "../analytics/useAnonymousId";
 
 export const bugsnagInitialised = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -11,12 +12,13 @@ export const bugsnagInitialised = () => {
 
 type UseBugsnagProps = {
   enabled: boolean;
+  userId: AnonymousUserId;
 };
-const useBugsnag = ({ enabled }: UseBugsnagProps) => {
+const useBugsnag = ({ enabled, userId }: UseBugsnagProps) => {
   useEffect(() => {
     // This should happen once per app load.
     if (enabled && !bugsnagInitialised()) {
-      initialiseBugsnag();
+      initialiseBugsnag(userId);
     }
     if (!enabled && bugsnagInitialised()) {
       /**
@@ -25,7 +27,7 @@ const useBugsnag = ({ enabled }: UseBugsnagProps) => {
        * in error-reporter to stop sending reports
        */
     }
-  }, [enabled]);
+  }, [enabled, userId]);
 };
 
 export default useBugsnag;
