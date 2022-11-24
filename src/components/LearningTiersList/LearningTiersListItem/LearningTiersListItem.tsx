@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import Flex from "../../Flex";
-
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading, Span } from "../../Typography";
 import { OakColorName } from "../../../styles/theme/types";
