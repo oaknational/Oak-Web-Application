@@ -6,6 +6,7 @@ import {
   dateSchema,
   blogWebinarCategorySchema,
   seoSchema,
+  videoSchema,
 } from "./base";
 import { portableTextSchema } from "./portableText";
 import { teamMemberPreviewSchema } from "./teamMember";
@@ -18,6 +19,7 @@ export const webinarSchema = z
     hosts: z.array(teamMemberPreviewSchema),
     category: blogWebinarCategorySchema,
     summaryPortableText: portableTextSchema,
+    video: videoSchema,
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
@@ -31,6 +33,9 @@ export const webinarPreviewSchema = webinarSchema.pick({
   date: true,
   category: true,
   summaryPortableText: true,
+  video: true,
+  seo: true,
+  hosts: true,
 });
 
 export type WebinarPreview = z.infer<typeof webinarPreviewSchema>;

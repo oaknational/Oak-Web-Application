@@ -44,6 +44,7 @@ const BlogTextAndMedia = (
           <ButtonAsLink
             $mt={24}
             label={params.cta.label}
+            page={null}
             href={getCTAHref(params.cta)}
             background={"teachersHighlight"}
           />
@@ -59,6 +60,7 @@ const BlogTextAndMedia = (
           <VideoPlayer
             title={params.video.title}
             playbackId={params.video.video.asset.playbackId}
+            location="blog"
           />
         </Box>
       )}

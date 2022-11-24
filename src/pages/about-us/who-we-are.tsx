@@ -55,8 +55,9 @@ const TimeLineCard: FC<TimeLineProps> = ({
             <ButtonAsLink
               $mt={[36]}
               icon={"ArrowRight"}
-              iconPosition={"trailing"}
+              $iconPosition={"trailing"}
               label={cta.label}
+              page={null}
               href={getCTAHref(cta)}
             />
           </Flex>
@@ -89,7 +90,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             $minWidth={["50%"]}
           >
             {pageData.intro.mediaType == "video" && (
-              <CMSVideo video={pageData.intro.video} />
+              <CMSVideo video={pageData.intro.video} location="marketing" />
             )}
           </Flex>
           <Box $minWidth={["50%"]}>
@@ -100,8 +101,9 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
               {pageData.intro.cta && (
                 <ButtonAsLink
                   icon={"ArrowRight"}
-                  iconPosition="trailing"
+                  $iconPosition="trailing"
                   label={pageData.intro.cta.label}
+                  page={null}
                   href={getCTAHref(pageData.intro.cta)}
                 />
               )}
@@ -149,7 +151,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             </Fragment>
           ))}
         </Grid>
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

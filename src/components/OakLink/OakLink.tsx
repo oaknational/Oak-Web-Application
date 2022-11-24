@@ -9,6 +9,7 @@ import {
   ResolveOakHrefProps,
 } from "../../common-lib/urls";
 import flex from "../../styles/utils/flex";
+import { OmitKeepDiscriminated } from "../../utils/generics";
 import { box } from "../Box";
 import { HTMLAnchorProps } from "../Button/common";
 import { FlexProps } from "../Flex";
@@ -17,89 +18,99 @@ import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
 
 type FocusStyle = "underline";
 type FocusStylesProps = {
-  focusStyles?: FocusStyle[];
+  $focusStyles?: FocusStyle[];
 };
 type StyleProps = FlexProps &
   FocusStylesProps & {
     /**
-     * isHovered is used to show hover styles (for example if a clickable card
+     * $isHovered is used to show hover styles (for example if a clickable card
      * is hovered), and this link is the click target for it.
      */
-    isHovered?: boolean;
+    $isHovered?: boolean;
+    /**
+     * Set 'inline=true' if the link is in amongst a block of text. Styles will
+     * be affected: text-decoration: underline;
+     */
+    $isInline?: boolean;
   };
 
-const hoverStyles = css`
+const inlineStyles = css`
+  display: inline;
+  text-decoration: underline;
+  color: ${(props) => props.theme.colors.hyperlink};
+`;
+const $hoverStyles = css`
   text-decoration: underline;
 `;
 
-const OakLinkA = styled.a<StyleProps>`
+const StyledNextLink = styled.a<StyleProps>`
   ${box}
   ${flex}
-  ${(props) => props.focusStyles?.includes("underline") && focusUnderlineStyles}
+  ${(props) => props.$isInline && inlineStyles}
+  ${(props) =>
+    props.$focusStyles?.includes("underline") && focusUnderlineStyles}
 
-  ${(props) => props.isHovered && hoverStyles}
+  ${(props) => props.$isHovered && $hoverStyles}
   :hover {
-    ${hoverStyles}
+    ${$hoverStyles}
   }
 `;
 
-export type OakLinkProps = Omit<LinkProps, "href" | "passHref"> &
+export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
   StyleProps & {
     children: ReactNode;
+    disabled?: boolean;
     className?: string;
     htmlAnchorProps?: HTMLAnchorProps;
   } & (
     | {
         /**
-         * To encourage the ues of 'page' prop (which will get resolved to an href)
+         * To encourage the use of 'page' prop (which will get resolved to an href)
          * you must pass page={null} when passing 'href' directly
          */
         page: null;
-        // href type pattern below is to allow any string value whilst offering OakHref autocomplete
-        // eslint-disable-next-line @typescript-eslint/ban-types
         href: MaybeOakHref;
       }
     | ResolveOakHrefProps
   );
+export type OakLinkPropsWithoutChildren = OmitKeepDiscriminated<
+  OakLinkProps,
+  "children"
+>;
 
-const getOakLinkHref = (props: OakLinkProps) => {
+const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
   const href = "href" in props ? props.href : resolveOakHref(props);
 
   return href;
 };
-export const getOakLinkLinkProps = (props: OakLinkProps): LinkProps => {
-  const href = getOakLinkHref(props);
 
-  const { as, replace, scroll, shallow, prefetch, locale } = props;
-
-  return { href, as, replace, scroll, shallow, prefetch, locale };
-};
-export const getOakLinkAnchorProps = (
-  props: OakLinkProps
-): HTMLAnchorProps & FlexProps => {
+export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
+  props: T
+) => {
+  const { htmlAnchorProps, disabled, scroll, shallow, prefetch, ...linkProps } =
+    props;
   const href = getOakLinkHref(props);
-  const {
-    as,
-    replace,
-    scroll,
-    shallow,
-    prefetch,
-    locale,
-    children,
-    className,
-    htmlAnchorProps,
-    ...styleProps
-  } = props;
 
   const isExternal = isExternalHref(href);
   const target = isExternal ? "_blank" : undefined;
 
+  const nextLinkProps = {
+    scroll,
+    shallow,
+    prefetch,
+    /**
+     * @see https://www.scottohara.me/blog/2021/05/28/disabled-links.html
+     **/
+    href: disabled ? "" : href,
+  };
+
   return {
-    children,
     target,
-    className,
-    ...styleProps,
+    role: "link",
+    disabled,
+    nextLinkProps,
     ...htmlAnchorProps,
+    ...linkProps,
   };
 };
 
@@ -114,20 +125,19 @@ export const getOakLinkAnchorProps = (
  * restrict it?
  */
 const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
+  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
   return (
-    <Link {...getOakLinkLinkProps(props)} passHref>
-      <OakLinkA ref={ref} {...getOakLinkAnchorProps(props)}>
-        {props.children}
-        {props.focusStyles?.includes("underline") && (
-          <FocusUnderline $color={"teachersYellow"} />
-        )}
-      </OakLinkA>
+    <Link {...nextLinkProps} legacyBehavior passHref>
+      <StyledNextLink ref={ref} {...transformedProps}>
+        <>
+          {props.children}
+          {props.$focusStyles?.includes("underline") && (
+            <FocusUnderline $color={"teachersYellow"} />
+          )}
+        </>
+      </StyledNextLink>
     </Link>
   );
 });
-
-OakLink.defaultProps = {
-  $display: "inline",
-};
 
 export default OakLink;

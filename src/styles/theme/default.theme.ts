@@ -22,10 +22,10 @@ const theme: OakTheme = {
     oakGrey2: "#dadada",
     oakGrey3: "#878787",
     oakGrey4: "#575756",
-    pastelTurqoise: "#b0e2de", // TODO: add tints
+    pastelTurquoise: "#b0e2de", // TODO: add tints
     // feedback colors
     warning: "#ff7234",
-    failure: "#ff2f20",
+    failure: "#e51d4d",
     success: "#a3e420",
     // pupil colours
     pupilsHighlight: "#25AB38",
@@ -68,7 +68,7 @@ const theme: OakTheme = {
     oakGrey2: "black",
     oakGrey3: "white",
     oakGrey4: "white",
-    pastelTurqoise: "black", // TODO: add tints
+    pastelTurquoise: "black", // TODO: add tints
     // feedback colors
     warning: "black",
     failure: "white",
@@ -124,81 +124,38 @@ const theme: OakTheme = {
     states: {
       default: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "white",
       },
       active: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "white",
       },
       valid: {
         text: "black",
-        placeholder: "grey7",
+        placeholder: "oakGrey4",
         icon: "grey8",
         border: "grey8",
         background: "white",
       },
       invalid: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "grey5",
       },
       disabled: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "grey5",
-      },
-    },
-  },
-  bigInput: {
-    height: "40px",
-    fontSize: "16px",
-    borderRadius: "20px",
-    borderWidth: "0",
-    states: {
-      default: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      active: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      valid: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      invalid: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      disabled: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
       },
     },
   },
@@ -241,23 +198,6 @@ const theme: OakTheme = {
     height: 72,
     background: "pupilsLightGreen",
     color: "black",
-  },
-  lessonControl: {
-    default: {
-      background: "white",
-      border: "2px solid",
-      borderColor: "transparent",
-    },
-    current: {
-      background: "grey3",
-      border: "2px dashed",
-      borderColor: "black",
-    },
-    complete: {
-      background: "grey7",
-      border: "2px solid",
-      borderColor: "transparent",
-    },
   },
   checkbox: {
     default: {

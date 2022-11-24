@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import config from "../../config/browser";
 
 export const DEFAULT_SEO_PROPS = {
-  title: config.get("appName"),
-  description: config.get("appDescription"),
+  title: config.get("seoAppName"),
+  description: config.get("seoAppDescription"),
 };
 
 export type SeoProps = {
@@ -25,7 +25,9 @@ export type SeoProps = {
 const Seo: FC<SeoProps> = ({
   title,
   description,
-  imageUrl = `${config.get("appUrl")}${config.get("appSocialSharingImg")}?2022`,
+  imageUrl = `${config.get("seoAppUrl")}${config.get(
+    "seoAppSocialSharingImg"
+  )}?2022`,
   noIndex = false,
   noFollow = false,
   canonicalURL,
@@ -34,7 +36,7 @@ const Seo: FC<SeoProps> = ({
 
   // Trim trailing slashes
   const formattedCanonicalURL = (
-    canonicalURL || `${config.get("appUrl")}${router.asPath}`
+    canonicalURL || `${config.get("seoAppUrl")}${router.asPath}`
   )?.replace(/\/$/, ""); //?
 
   return (
@@ -45,17 +47,17 @@ const Seo: FC<SeoProps> = ({
       openGraph={{
         title,
         description,
-        url: `${config.get("appUrl")}${router.asPath}`,
+        url: `${config.get("seoAppUrl")}${router.asPath}`,
         images: [
           {
             url: imageUrl,
           },
         ],
-        site_name: config.get("appName"),
+        site_name: config.get("seoAppName"),
       }}
       twitter={{
-        handle: config.get("appTwitterHandle"),
-        site: config.get("appTwitterHandle"),
+        handle: config.get("seoAppTwitterHandle"),
+        site: config.get("seoAppTwitterHandle"),
         cardType: "summary_large_image",
       }}
       noindex={noIndex}

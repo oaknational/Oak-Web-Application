@@ -1,4 +1,5 @@
 import { BrushSvgName } from "./BrushSvgs";
+import { BubbleSvgName } from "./BubbleSvgs";
 import { GraphicSvgName } from "./GraphicSvgs";
 import { IconSvgName } from "./IconSvgs";
 import { LessonElementSvgName } from "./LessonElementSvgs";
@@ -14,6 +15,7 @@ export type SvgName =
   | LessonElementSvgName
   | BrushSvgName
   | LoopingLineSvgName
+  | BubbleSvgName
   | "looping-arrow-1"
 
   // @todo name the below types

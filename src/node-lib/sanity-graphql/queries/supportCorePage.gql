@@ -1,0 +1,37 @@
+query supportCorePage($isDraftFilter: Sanity_DocumentFilter) {
+  allSupportCorePage(
+    sort: { _updatedAt: DESC }
+    limit: 1
+    where: { _: $isDraftFilter, _id: { matches: "*supportCorePage" } }
+  ) {
+    id: _id
+    title
+    heading
+    summaryPortableText: summaryRaw
+    cover {
+      title
+      bodyPortableText: bodyRaw
+      quote {
+        ...Quote
+      }
+    }
+    curriculum {
+      title
+      bodyPortableText: bodyRaw
+      cta {
+        ...CTA
+      }
+    }
+    development {
+      title
+      bodyPortableText: bodyRaw
+    }
+    planning {
+      title
+      bodyPortableText: bodyRaw
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

@@ -6,11 +6,22 @@ import BlogListItem, { BlogListItemProps } from ".";
 const testProps: BlogListItemProps = {
   title: "Item title",
   titleTag: "h3",
-  snippet: "Item snippet",
-  href: "https://www.test.com/",
+  summary: "Item summary",
+  slug: "item-slug",
   contentType: "blog-post",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
   mainImage: mockImageAsset(),
+  date: new Date(2022, 7, 22).toISOString(),
+};
+
+const testPropsWebinar: BlogListItemProps = {
+  title: "Item title",
+  titleTag: "h3",
+  summary: "Item snippet",
+  slug: "item-slug",
+  contentType: "webinar",
+  category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+  thumbnailUrl: "stringvideoplaybackid",
   date: new Date(2022, 7, 22).toISOString(),
 };
 
@@ -24,22 +35,40 @@ describe("components/BlogListItem", () => {
     expect(listHeading).toHaveTextContent("Item title");
   });
 
-  test("button should have the correct href", async () => {
+  test("blog-post: button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
-      <BlogListItem {...testProps} contentType="webinar" />
+      <BlogListItem {...testProps} contentType="blog-post" />
     );
     const button = getByRole("link", { name: testProps.title });
-    expect(button).toHaveAttribute("href", "https://www.test.com/");
+    expect(button).toHaveAttribute("href", `/blog/${testProps.slug}`);
   });
 
-  test("should contain link to category", async () => {
+  test("blog-post: should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
-      <BlogListItem {...testProps} contentType="webinar" />
+      <BlogListItem {...testProps} contentType="blog-post" />
     );
     const button = getByRole("link", { name: testProps.category.title });
     expect(button).toHaveAttribute(
       "href",
       `/blog/categories/${testProps.category.slug}`
+    );
+  });
+  test("webinar: button should have the correct href", async () => {
+    const { getByRole } = renderWithTheme(
+      <BlogListItem {...testPropsWebinar} />
+    );
+    const button = getByRole("link", { name: testProps.title });
+    expect(button).toHaveAttribute("href", `/webinars/${testProps.slug}`);
+  });
+
+  test("webinar: should contain link to category", async () => {
+    const { getByRole } = renderWithTheme(
+      <BlogListItem {...testPropsWebinar} />
+    );
+    const button = getByRole("link", { name: testProps.category.title });
+    expect(button).toHaveAttribute(
+      "href",
+      `/webinars/categories/${testProps.category.slug}`
     );
   });
 

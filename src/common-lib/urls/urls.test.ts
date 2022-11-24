@@ -1,4 +1,4 @@
-import { isExternalHref } from "./urls";
+import { isExternalHref, resolveOakHref, ResolveOakHrefProps } from "./urls";
 
 describe("urls.ts", () => {
   describe("isExternalHref()", () => {
@@ -15,5 +15,60 @@ describe("urls.ts", () => {
         expect(isExternalHref(href)).toBe(false);
       }
     );
+  });
+
+  describe("resolveOakHrefProps()", () => {
+    it("returns the correct path for Our Teachers", () => {
+      const props: ResolveOakHrefProps = { page: "our-teachers" };
+      expect(resolveOakHref(props)).toBe(
+        "https://classroom.thenational.academy/teachers"
+      );
+    });
+    it("returns the correct path for a blog", () => {
+      const props: ResolveOakHrefProps = { page: "blog", slug: "a-blog" };
+      expect(resolveOakHref(props)).toBe("/blog/a-blog");
+    });
+    it("returns the correct path for a webinars", () => {
+      const props: ResolveOakHrefProps = {
+        page: "webinars",
+        slug: "a-webinar",
+      };
+      expect(resolveOakHref(props)).toBe("/webinars/a-webinar");
+    });
+    it("returns the correct path for a blog-index page", () => {
+      const props: ResolveOakHrefProps = {
+        page: "blog-index",
+      };
+      expect(resolveOakHref(props)).toBe("/blog");
+    });
+    it("returns the correct path for a blog-index page ", () => {
+      const props: ResolveOakHrefProps = {
+        page: "webinars-index",
+      };
+      expect(resolveOakHref(props)).toBe("/webinars");
+    });
+    it("returns the correct path for a blog-index page with a category", () => {
+      const props: ResolveOakHrefProps = {
+        page: "blog-index",
+        category: "lessons",
+      };
+      expect(resolveOakHref(props)).toBe("/blog/categories/lessons");
+    });
+    it("returns the correct path for a blog-index page with a category", () => {
+      const props: ResolveOakHrefProps = {
+        page: "webinars-index",
+        category: "lessons",
+      };
+      expect(resolveOakHref(props)).toBe("/webinars/categories/lessons");
+    });
+    it("returns the correct path for a blog-index page with search object", () => {
+      const props: ResolveOakHrefProps = {
+        page: "webinars-index",
+        search: {
+          page: "blog",
+        },
+      };
+      expect(resolveOakHref(props)).toBe("/webinars?page=blog");
+    });
   });
 });

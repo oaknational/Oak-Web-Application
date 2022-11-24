@@ -139,7 +139,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $flexDirection={"column"}
                     $justifyContent={"center"}
                     $mb={[56, 0]}
-                    $background="pastelTurqoise"
+                    $background="pastelTurquoise"
                     $pv={[72, 80]}
                     $maxHeight={240}
                     $ph={[16, 24]}
@@ -201,9 +201,9 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
+                  page="teachers-oak-curriculum"
                   icon={"ArrowRight"}
                   label={pageData.ourApproach.cta?.label}
-                  href={"https://teachers.thenational.academy/oaks-curricula"}
                 />
               </Flex>
             )}

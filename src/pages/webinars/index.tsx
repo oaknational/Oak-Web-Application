@@ -1,85 +1,55 @@
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { toPlainText } from "@portabletext/react";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
+import { WebinarListingPageProps } from "../../components/pages/WebinarsIndex.page";
 import CMSClient from "../../node-lib/cms";
-import { WebinarPreview } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
-import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
-import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import BlogList from "../../components/Blog/BlogList";
+import { serializeDate } from "../../utils/serializeDate";
 
-export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
-  date: string;
-};
+export { default } from "../../components/pages/WebinarsIndex.page";
 
-export type WebinarListingPageProps = {
-  webinars: SerializedWebinarPreview[];
-};
-
-/**
- * @TODO: Remove /webinars/* from next-sitemap.config.js when built
- */
-
-const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
-  const webinars = props.webinars.map(webinarToBlogListItem);
-
-  return (
-    <Layout
-      seoProps={getSeoProps({
-        title: "Webinars",
-        description: "Webinars",
-      })}
-      $background="grey1"
-    >
-      <Heading tag="h1" $font="heading-4">
-        Webinars
-      </Heading>
-
-      <BlogList items={webinars} />
-    </Layout>
-  );
-};
-
-export const webinarToBlogListItem = (
-  webinar: SerializedWebinarPreview
-): BlogListItemProps => ({
-  contentType: "webinar",
-  title: webinar.title,
-  href: `/webinars/${webinar.slug}`,
-  snippet: toPlainText(webinar.summaryPortableText),
-  titleTag: "h3",
-  category: webinar.category,
-  date: webinar.date,
-  mainImage: null,
-});
-
-export const serializeDate = <T extends { date: Date }>(
-  item: T
-): T & { date: string } => ({
-  ...item,
-  date: item.date.toISOString(),
-});
-
-export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<
+  WebinarListingPageProps,
+  { categorySlug?: string }
+> = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const pageData = await CMSClient.webinarsListingPage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
   const webinarResults = await CMSClient.webinars({
     previewMode: isPreviewMode,
   });
 
-  const webinars = webinarResults.map(serializeDate);
+  const categorySlug = context.params?.categorySlug || null;
+  const webinars = webinarResults.map(serializeDate).filter((webinar) => {
+    if (categorySlug) {
+      return webinar.category.slug === categorySlug;
+    }
+    return true;
+  });
+
+  const webinarCategories = [
+    ...new Map(
+      webinarResults
+        .map((webinar) => webinar.category)
+        .map((item) => [item["slug"], item])
+    ).values(),
+  ].sort((a, b) => (a.title < b.title ? -1 : 1));
 
   const results: GetStaticPropsResult<WebinarListingPageProps> = {
     props: {
       webinars,
+      categories: webinarCategories,
+      categorySlug: categorySlug,
+      pageData,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;
 };
-
-export default WebinarListingPage;

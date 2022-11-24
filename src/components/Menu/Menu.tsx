@@ -1,8 +1,9 @@
 import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
-import { FocusScope, useKeyboard } from "react-aria";
+import { useKeyboard } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
+import { FocusOn } from "react-focus-on";
 
 import { useMenuContext } from "../../context/Menu/";
 import { OakColorName, PixelSpacing } from "../../styles/theme/types";
@@ -99,7 +100,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
       {(state) => (
         <Box $position="absolute" ref={ref}>
           <MenuBackdrop state={state} />
-          <FocusScope contain={open}>
+          <FocusOn enabled={open}>
             <SideMenu
               data-testid={"menu"}
               $position="fixed"
@@ -176,7 +177,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 </Flex>
               </Flex>
             </SideMenu>
-          </FocusScope>
+          </FocusOn>
         </Box>
       )}
     </Transition>

@@ -2,38 +2,21 @@
   "bugsnag": {
     "apiKey": "123abc"
   },
-  "firebase": {
-    "apiHost": "https://example.com",
-    "apiKey": "123abc",
-    "appId": "12345",
-    "authDomain": "https://example.com",
-    "messagingSenderId": "abc123",
-    "projectId": "my_project",
-    "requiredSecrets": [
-      "FIREBASE_SERVICE_ACCOUNT",
-      "FIREBASE_ADMIN_DATABASE_URL"
-    ],
-    "storageBucket": "bucket_uri",
-    "tokenHost": "https://example.com"
-  },
   "gleap": {
     "apiKey": "gleap-api-key",
     "apiUrl": "gleap-api-url",
     "widgetUrl": "gleap-widget-url"
   },
-  "hasura": {
-    "graphqlApiUrl": "https://example.com",
-    "requiredSecrets": ["HASURA_ADMIN_SECRET"]
-  },
   "hubspot": {
     "portalId": "12345",
     "newsletterFormId": "uuid-oijfeoe-ijfere-g-ererg",
     "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9",
-    "scriptDomain": "script.domain.example.com"
+    "requiredSecrets": ["HUBSPOT_FORMS_ACCESS_TOKEN"]
   },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
-    "appName": "Oak Web Application"
+    "appName": "Oak Web Application",
+    "webinarSignUpUrl": "https://example.com/webinar-sign-up"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",
@@ -41,6 +24,6 @@
   },
   "sanity": {
     "graphqlUrl": "https://cuvjke51.apicdn.sanity.io/v1/graphql/spike_2/default",
-    "requiredSecrets": ["SANITY_AUTH_SECRET", "SANITY_PREVIEW_SECRET"]
+    "requiredSecrets": ["SANITY_AUTH_SECRET"]
   }
 }

@@ -1,0 +1,15 @@
+query webinarsListingPage($isDraftFilter: Sanity_DocumentFilter) {
+  allWebinarListingPage(
+    where: { _: $isDraftFilter, _id: { matches: "*webinarListingPage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    heading
+    summary: summaryRaw
+    seo {
+      ...Seo
+    }
+  }
+}

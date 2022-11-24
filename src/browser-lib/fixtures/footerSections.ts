@@ -11,6 +11,7 @@ const footerSections: FooterSections = {
       { text: "Teacher Hub", type: "teachers-link" },
       { text: "Plan a lesson", href: "/lesson-planning" },
       { text: "Develop your curriculum", href: "/develop-your-curriculum" },
+      { text: "Support your team", href: "/support-your-team" },
     ],
   },
   oak: {
@@ -25,6 +26,7 @@ const footerSections: FooterSections = {
       { text: "Contact us", href: "/contact-us" },
       { text: "Help", href: "https://support.thenational.academy" },
       { text: "Blog", href: "/blog" },
+      { text: "Webinars", href: "/webinars" },
     ],
   },
 

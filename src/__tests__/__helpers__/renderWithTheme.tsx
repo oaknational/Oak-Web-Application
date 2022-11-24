@@ -13,6 +13,7 @@ import "../../browser-lib/oak-globals/oakGlobals";
 import defaultTheme from "../../styles/theme";
 
 export type ProviderProps = {
+  children?: React.ReactNode;
   theme?: Partial<DefaultTheme>;
 };
 

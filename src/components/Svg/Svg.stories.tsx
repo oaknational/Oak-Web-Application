@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "A/Svg",
+  title: "Media/Svg",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

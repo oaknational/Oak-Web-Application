@@ -1,7 +1,7 @@
 /**
  * Tests adapted from https://gist.github.com/JakeCoxon/c7ebf6e6496f8468226fd36b596e1985
  */
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import useStableCallback from "./useStableCallback";
 

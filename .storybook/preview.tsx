@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import * as NextImage from "next/future/image";
+import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
@@ -35,11 +35,11 @@ export const parameters = {
   options: {
     storySort: {
       method: "alphabetical",
-      order: ["Foundations"],
+      // Leave "Introduction" first so that user lands there
+      order: ["Introduction"],
     },
-    // defaults to "docs" view
-    viewMode: "docs",
   },
+  viewMode: "docs",
   previewTabs: {
     canvas: {
       hidden: true,

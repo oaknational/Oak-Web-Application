@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 
 import "../__tests__/__helpers__/LocalStorageMock";
 
@@ -19,10 +19,22 @@ describe("useLocalStorage()", () => {
     expect(result.current[0]).toBe("value");
   });
 
+  test("Local storage is initially set with initialValue", async () => {
+    renderHook(() => useLocalStorage("key", "value"));
+
+    expect(window.localStorage.getItem("key")).toBe(JSON.stringify("value"));
+  });
+
   test("Initial state is a callback function", () => {
     const { result } = renderHook(() => useLocalStorage("key", () => "value"));
 
     expect(result.current[0]).toBe("value");
+  });
+
+  test("Local storage is initially set with initialValue as callback function", async () => {
+    renderHook(() => useLocalStorage("key", () => "value"));
+
+    expect(window.localStorage.getItem("key")).toBe(JSON.stringify("value"));
   });
 
   test("Initial state is an array", () => {

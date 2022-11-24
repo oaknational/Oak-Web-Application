@@ -1,4 +1,10 @@
-import { useState, useCallback } from "react";
+import {
+  useState,
+  useCallback,
+  createRef,
+  useEffect,
+  MutableRefObject,
+} from "react";
 
 import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
@@ -10,14 +16,42 @@ const reportError = errorReporter("useBioModal");
 type UseBioModalProps = {
   bios: BioData[];
 };
+export type ModalControllerRefs = Record<
+  string,
+  MutableRefObject<HTMLButtonElement | null>
+>;
 export const useBioModal = (props: UseBioModalProps): BioModalProps => {
   const { bios } = props;
   const [bio, setBio] = useState<BioData>();
+  const [initialBio, setInitialBio] = useState<BioData>();
   const [isOpen, setIsOpen] = useState(false);
+  const [modalControllerRefs, setModalControllerRefs] =
+    useState<ModalControllerRefs>({});
+
+  useEffect(() => {
+    setModalControllerRefs((modalControllerRefs) => {
+      return bios.reduce((acc: ModalControllerRefs, cur) => {
+        acc[cur.id] = modalControllerRefs[cur.id] || createRef();
+        return acc;
+      }, {});
+    });
+
+    /**
+     * Ignoring exhaustive deps as we can't guarantee bios will have the same
+     * ref, and bios should not change dynamically, and we only need to set
+     * controller refs once.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const returnFocusRef = initialBio
+    ? modalControllerRefs[initialBio.id]
+    : undefined;
 
   const openModal = useCallback((initialBio: BioData) => {
     setIsOpen(true);
     setBio(initialBio);
+    setInitialBio(initialBio);
   }, []);
   const closeModal = useCallback(() => {
     setIsOpen(false);
@@ -73,5 +107,7 @@ export const useBioModal = (props: UseBioModalProps): BioModalProps => {
     nextBio,
     prevBio,
     bio,
+    returnFocusRef,
+    modalControllerRefs,
   };
 };

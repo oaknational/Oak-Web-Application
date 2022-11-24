@@ -24,7 +24,7 @@ export type HasConsentedToPolicy = (
   policyName: CookiePolicyName
 ) => CookieConsentState;
 
-type CookieConsentContext = {
+export type CookieConsentContext = {
   // makes consent manager modal visible
   showConsentManager: () => void;
   // whether the user has granted consent to the latest version of a partular policy
@@ -33,7 +33,9 @@ type CookieConsentContext = {
   hasConsentedToPolicy: HasConsentedToPolicy;
 };
 
-const cookieConsentContext = createContext<CookieConsentContext | null>(null);
+export const cookieConsentContext = createContext<CookieConsentContext | null>(
+  null
+);
 
 export const useCookieConsent = () => {
   const cookieConsentsContext = useContext(cookieConsentContext);
@@ -46,6 +48,7 @@ export const useCookieConsent = () => {
 };
 
 type CookieConsentProviderProps = {
+  children?: React.ReactNode;
   __testMockValue?: CookieConsentContext;
 };
 const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
