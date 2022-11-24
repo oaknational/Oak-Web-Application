@@ -1,3 +1,11 @@
+# [1.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.71.0...v1.72.0) (2022-11-24)
+
+
+### Features
+
+* add subject by key stage slug page ([1c109cd](https://github.com/oaknational/Oak-Web-Application/commit/1c109cddd3b3bc7130d435527b934137e3cf0054))
+* keystage keypad component ([8db8e31](https://github.com/oaknational/Oak-Web-Application/commit/8db8e31ce6e22c44b417cf48623506bd34a64920))
+
 # [1.71.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.70.0...v1.71.0) (2022-11-24)
 
 
