@@ -1,3 +1,10 @@
+## [1.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.0...v1.72.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* **blogs:** can't have a blockquote inside a p tag ([95246c8](https://github.com/oaknational/Oak-Web-Application/commit/95246c89737ee87ae1d8a4422535b9ec3dcb861d))
+
 # [1.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.71.0...v1.72.0) (2022-11-24)
 
 
