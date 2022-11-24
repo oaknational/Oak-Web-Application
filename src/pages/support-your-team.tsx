@@ -53,7 +53,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         <Flex $justifyContent={"center"}>
           <Flex $flexDirection={["column", "row", "row"]}>
             <BubbleMessage
-              background={"pastelTurqoise"}
+              background={"pastelTurquoise"}
               variant="Bubble"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
@@ -95,7 +95,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         </Grid>
         <TextBlockCardImageCta
           {...pageData.curriculum}
-          background={"pastelTurqoise"}
+          background={"pastelTurquoise"}
           image={{
             imageSrc: "/images/illustrations/curriculum-371.png",
             alt: "develop your curriculum illustration",
