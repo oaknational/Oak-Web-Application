@@ -59,7 +59,7 @@
     "@types/uuid": "^8.3.4",
     "change-case": "^4.1.2",
     "date-fns": "^2.29.3",
-    "gleap": "6.7.5",
+    "gleap": "^8.3.4",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "next": "^13.0.4",

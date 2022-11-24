@@ -237,9 +237,9 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  gleapWidgetUrl: {
-    value: process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL,
-    envName: "NEXT_PUBLIC_GLEAP_WIDGET_URL",
+  gleapFrameUrl: {
+    value: process.env.NEXT_PUBLIC_GLEAP_FRAME_URL,
+    envName: "NEXT_PUBLIC_GLEAP_FRAME_URL",
     required: true,
     availableInBrowser: true,
     default: null,

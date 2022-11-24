@@ -24,7 +24,7 @@ describe("useGleap", () => {
       renderHook(() => useGleap({ enabled: true }));
 
       expect(startGleap).toHaveBeenCalledWith({
-        widgetUrl: "NEXT_PUBLIC_GLEAP_WIDGET_URL",
+        frameUrl: "NEXT_PUBLIC_GLEAP_FRAME_URL",
         apiUrl: "NEXT_PUBLIC_GLEAP_API_URL",
         apiKey: "NEXT_PUBLIC_GLEAP_API_KEY",
       });
