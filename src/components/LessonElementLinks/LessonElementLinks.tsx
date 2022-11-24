@@ -100,7 +100,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
             <GraphicCircle
               $zIndex="neutral"
               icon="Presentation"
-              $background="pastelTurqoise"
+              $background="pastelTurquoise"
             />
             <OverlapBehind>
               <GraphicCircle icon="Video" />
