@@ -30,7 +30,7 @@ const Teachers: NextPage<HomePageProps> = (props) => {
             $mt={120}
             $color={"black"}
           >
-            Teachers Homepage
+            Your foundation for great lessons
           </Heading>
           <HomeSiteCards />
         </MaxWidth>
