@@ -1,3 +1,11 @@
+## [1.73.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.0...v1.73.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* **about me:** move the image resizing out of summaryCard so not to affect other pages ([6624137](https://github.com/oaknational/Oak-Web-Application/commit/662413744919d65c967530ae84e0640d0a09f7f0))
+* **about us:** link wraps incorrectly ([b5bfdec](https://github.com/oaknational/Oak-Web-Application/commit/b5bfdecb4ff575fb794ef16490f6e8a959b0e55a))
+
 # [1.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.1...v1.73.0) (2022-11-25)
 
 
