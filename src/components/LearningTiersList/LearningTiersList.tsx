@@ -1,12 +1,11 @@
 import { FC } from "react";
 
-import Grid, { GridArea } from "../Grid";
-
 import Flex from "../Flex";
+import Grid, { GridArea } from "../Grid";
+import { OakColorName } from "../../styles/theme/types";
 
 import LearningTiersListItem from "./LearningTiersListItem";
 import { LearningTiersListItemProps } from "./LearningTiersListItem/LearningTiersListItem";
-import { OakColorName } from "../../styles/theme/types";
 
 type LearningTiersListProps = {
   tiers: LearningTiersListItemProps[];
