@@ -11,7 +11,7 @@ import {
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import { portableTextFromString } from "../../__helpers__/cms";
 
-jest.mock("../../node-lib/cms");
+jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
