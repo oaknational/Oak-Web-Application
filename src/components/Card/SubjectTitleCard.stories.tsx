@@ -15,9 +15,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const SubjectTitleCard = Template.bind({});
 
 SubjectTitleCard.args = {
-  title: "Computer Science",
-  keyStage: "key Stage 4",
+  title: "Computer science",
+  keyStage: "Key stage 4",
   keyStageSlug: "key-stage-4",
-  iconName: "Twitter",
+  iconName: "Rocket",
   background: "teachersHighlight",
 };

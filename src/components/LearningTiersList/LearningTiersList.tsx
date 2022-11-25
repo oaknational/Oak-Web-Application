@@ -11,6 +11,13 @@ type LearningTiersListProps = {
   tiers: LearningTiersListItemProps[];
   background: OakColorName;
 };
+
+/**
+ * Clickable learning tier card list.
+ *
+ * ## Usage
+ * Used on a key stage 4 learning tier page
+ */
 const LearningTiersList: FC<LearningTiersListProps> = ({
   tiers,
   background,

@@ -17,12 +17,10 @@ type SubjectTitleCardProps = {
 };
 
 /**
- * Contains an heading, title, and optional image.
- * image disapears on mobile
- * Optional imageContainerProps for image size variants
+ * Contains an title, icon and keystage link.
  *
  * ## Usage
- * Summary card heading used at the top of page
+ * Used on subject by keystage, tier, unit and lesson pages.
  */
 const SubjectTitleCard: FC<SubjectTitleCardProps> = ({
   title,
