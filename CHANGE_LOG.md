@@ -1,3 +1,23 @@
+# [1.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.1...v1.73.0) (2022-11-25)
+
+
+### Bug Fixes
+
+* clicking on backdrop and using escape key closes menu ([8ff5c53](https://github.com/oaknational/Oak-Web-Application/commit/8ff5c5359003fe25ab6cdd0eb7d79db55140f2f7))
+* remove unused test ([e2d6eba](https://github.com/oaknational/Oak-Web-Application/commit/e2d6eba854819721c31b234308e0f281b54b6675))
+
+
+### Features
+
+* remove keyboard from react aria as now unused ([ab46c70](https://github.com/oaknational/Oak-Web-Application/commit/ab46c70c42b0812a7ce64bc4c658b64a7ac9fe18))
+
+## [1.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.0...v1.72.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* **blogs:** can't have a blockquote inside a p tag ([95246c8](https://github.com/oaknational/Oak-Web-Application/commit/95246c89737ee87ae1d8a4422535b9ec3dcb861d))
+
 # [1.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.71.0...v1.72.0) (2022-11-24)
 
 
