@@ -1,3 +1,33 @@
+## [1.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.0...v1.72.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* **blogs:** can't have a blockquote inside a p tag ([95246c8](https://github.com/oaknational/Oak-Web-Application/commit/95246c89737ee87ae1d8a4422535b9ec3dcb861d))
+
+# [1.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.71.0...v1.72.0) (2022-11-24)
+
+
+### Features
+
+* add subject by key stage slug page ([1c109cd](https://github.com/oaknational/Oak-Web-Application/commit/1c109cddd3b3bc7130d435527b934137e3cf0054))
+* keystage keypad component ([8db8e31](https://github.com/oaknational/Oak-Web-Application/commit/8db8e31ce6e22c44b417cf48623506bd34a64920))
+
+# [1.71.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.70.0...v1.71.0) (2022-11-24)
+
+
+### Bug Fixes
+
+* smaller svg ([9ee9c02](https://github.com/oaknational/Oak-Web-Application/commit/9ee9c0246548ba4c5e44de9149994daa103afa17))
+* spell 'turquoise' correctly ([2a5e2f2](https://github.com/oaknational/Oak-Web-Application/commit/2a5e2f27a6e923ed1f641f3662e41664407a0c37))
+
+
+### Features
+
+* add hamburger menu and tests to app header ([8d93d88](https://github.com/oaknational/Oak-Web-Application/commit/8d93d8881c149897814e367171bb087c804716e6))
+* add teachers page with new header ([970721a](https://github.com/oaknational/Oak-Web-Application/commit/970721a353eb76970788f674c4afbb2a6c4f635f))
+* add test to check we are on teachers page ([f162221](https://github.com/oaknational/Oak-Web-Application/commit/f16222160b015e09131d4bc91f4e1a392e28ab25))
+
 # [1.70.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.2...v1.70.0) (2022-11-23)
 
 
