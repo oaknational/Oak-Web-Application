@@ -6,7 +6,8 @@ import useLocalStorage, { parseJSON } from "../../hooks/useLocalStorage";
 
 const OLD_ANONYMOUS_ID_KEY = "anonymousID";
 
-const generateAnonymousId = () => {
+type AnonymousUserId = string;
+const generateAnonymousId = (): AnonymousUserId => {
   return uuidv4();
 };
 
@@ -14,7 +15,7 @@ const generateAnonymousId = () => {
  * If there is already an anonymous id (using the old key), then use that,
  * otherwise generate a new one.
  */
-const getOrGenerateAnonymousId = () => {
+const getOrGenerateAnonymousId = (): AnonymousUserId => {
   if (typeof window === "undefined") {
     return generateAnonymousId();
   }
@@ -47,7 +48,7 @@ const getOrGenerateAnonymousId = () => {
 
 const initialValue = getOrGenerateAnonymousId();
 
-const useAnonymousId = () => {
+const useAnonymousId = (): AnonymousUserId => {
   const [anonymousId, setAnonymousId] = useLocalStorage(
     LS_KEY_ANONYMOUS_ID,
     initialValue
@@ -68,3 +69,4 @@ const useAnonymousId = () => {
 };
 
 export default useAnonymousId;
+export type { AnonymousUserId };

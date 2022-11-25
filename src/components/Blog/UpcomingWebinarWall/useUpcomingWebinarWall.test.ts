@@ -10,7 +10,7 @@ describe("useUpcomingWebinarWall.ts", () => {
 
     expect(result.current).toMatchObject({
       headingText: "Starts at 14 April 2020 at 14:00 (UK time)",
-      buttonHref: "https://share.hsforms.com/1USsrkazESq2Il8lxUx_vPgbvumd",
+      buttonHref: "https://example.com/webinar-sign-up",
       buttonText: "Save my place",
       buttonSuffixA11y: "on the webinar",
     });

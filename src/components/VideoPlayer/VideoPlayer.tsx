@@ -113,10 +113,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         style={{
           aspectRatio: "16/9",
         }}
-        // onDurationChange={(p) => console.log("duration change", p)}
-        // onVolumeChange={(p) => console.log("volumn", p)}
-        // onLoadedMetadata={(p) => console.log("onLoadedMetadata", p)}
-        // onTimeUpdate={(p) => console.log("onTimeUpdate", p)}
       />
     </Flex>
   );

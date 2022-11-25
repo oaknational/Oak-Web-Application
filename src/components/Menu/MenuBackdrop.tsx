@@ -2,7 +2,6 @@ import { FC } from "react";
 import styled from "styled-components";
 import { usePreventScroll } from "react-aria";
 
-import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 
@@ -54,17 +53,9 @@ const Backdrop = styled.div<BackdropProps & TransitionProps>`
 `;
 
 const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
-  const { closeMenu } = useMenuContext();
   usePreventScroll({ isDisabled: state === "exited" });
   return (
-    <Backdrop
-      onClick={() => {
-        closeMenu();
-      }}
-      background="black"
-      state={state}
-      data-testid={"menu-backdrop"}
-    />
+    <Backdrop background="black" state={state} data-testid={"menu-backdrop"} />
   );
 };
 

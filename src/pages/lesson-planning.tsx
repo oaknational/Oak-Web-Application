@@ -229,14 +229,14 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $width={["100%", "auto"]}
                 $minWidth={"50%"}
                 $height={[360, 240]}
-                $background="pastelTurqoise"
+                $background="pastelTurquoise"
                 $justifyContent={"flex-end"}
                 $alignItems={["center", "center", "flex-end"]}
                 $pr={[0, 24]}
                 $pb={24}
                 $pa={0}
               >
-                <BrushBorders hideOnMobileH color={"pastelTurqoise"} />
+                <BrushBorders hideOnMobileH color={"pastelTurquoise"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
@@ -423,7 +423,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $width={["100%", "100%", "auto"]}
               $minWidth={"50%"}
               $height={[360, 240]}
-              $background="pastelTurqoise"
+              $background="pastelTurquoise"
               $justifyContent={"flex-end"}
               $alignItems={["center", "center", "flex-end"]}
               $pr={[0, 24]}
