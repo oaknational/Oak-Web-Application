@@ -3,10 +3,13 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import AppLayout from "../../components/AppLayout";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import { Heading } from "../../components/Typography";
-import { HomePageProps, postToBlogListItem, sortByDate } from "..";
+import {
+  getAndMergeWebinarsAndBlogs,
+  HomePageProps,
+  postToBlogListItem,
+} from "..";
 import CMSClient from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
-import { serializeDate } from "../../utils/serializeDate";
 import Flex from "../../components/Flex";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import {
@@ -48,45 +51,21 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
-  const homepageData = await CMSClient.homepage({
+  const teachersHomepageData = await CMSClient.homepage({
     previewMode: isPreviewMode,
   });
 
-  if (!homepageData) {
+  if (!teachersHomepageData) {
     return {
       notFound: true,
     };
   }
 
-  const blogResults = await CMSClient.blogPosts({
-    previewMode: isPreviewMode,
-    limit: 5,
-  });
-
-  const blogPosts = blogResults.map((blog) => ({
-    ...blog,
-    type: "blog-post" as const,
-  }));
-
-  const webinarResults = await CMSClient.webinars({
-    previewMode: isPreviewMode,
-    limit: 5,
-  });
-  const webinars = webinarResults
-    .map((webinar) => ({
-      ...webinar,
-      type: "webinar" as const,
-    }))
-    .filter((webinar) => webinar.date.getTime() < new Date().getTime());
-
-  const posts = [...blogPosts, ...webinars]
-    .sort(sortByDate)
-    .slice(0, 4)
-    .map(serializeDate);
+  const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {
-      pageData: homepageData,
+      pageData: teachersHomepageData,
       posts,
     },
   };

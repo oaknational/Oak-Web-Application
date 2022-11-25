@@ -301,21 +301,7 @@ export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
   return b.date.getTime() - a.date.getTime();
 };
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async (
-  context
-) => {
-  const isPreviewMode = context.preview === true;
-
-  const homepageData = await CMSClient.homepage({
-    previewMode: isPreviewMode,
-  });
-
-  if (!homepageData) {
-    return {
-      notFound: true,
-    };
-  }
-
+export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
     limit: 5,
@@ -337,10 +323,28 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     }))
     .filter((webinar) => webinar.date.getTime() < new Date().getTime());
 
-  const posts = [...blogPosts, ...webinars]
+  return [...blogPosts, ...webinars]
     .sort(sortByDate)
     .slice(0, 4)
     .map(serializeDate);
+};
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async (
+  context
+) => {
+  const isPreviewMode = context.preview === true;
+
+  const homepageData = await CMSClient.homepage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!homepageData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {
