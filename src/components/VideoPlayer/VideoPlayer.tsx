@@ -34,8 +34,17 @@ export type VideoPlayerProps = {
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const { playbackId, thumbnailTime: thumbTime, title, location } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
+  const [hasTrackedEnd, setHasTrackedEnd] = useState(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
+  const getPercentagedElapsed = () => {
+    const timeElapsed = getTimeElapsed(mediaElRef);
+    const duration = getDuration(mediaElRef);
+    if (!timeElapsed || !duration) {
+      return 0;
+    }
+    return timeElapsed / duration;
+  };
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
@@ -73,8 +82,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     videoTracking.onPause();
   };
 
-  const onEnded = () => {
-    videoTracking.onEnd();
+  const onTimeUpdate = () => {
+    if (getPercentagedElapsed() >= 90 && !hasTrackedEnd) {
+      videoTracking.onEnd();
+      setHasTrackedEnd(true);
+    }
   };
   const onError = (evt: Event) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
@@ -108,8 +120,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         secondaryColor={theme.colors.black}
         onPlay={onPlay}
         onPause={onPause}
-        onEnded={onEnded}
         onError={onError}
+        onTimeUpdate={onTimeUpdate}
         style={{
           aspectRatio: "16/9",
         }}
