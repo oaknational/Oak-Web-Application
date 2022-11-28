@@ -453,7 +453,49 @@ const getSanityClient = () => ({
 
     return parseResults(landingPageSchema, withResolvedReferences, previewMode);
   },
+  landingPageBySlug2: bySlug(
+    sanityGraphqlApi.landingPageBySlug,
+    landingPageSchema,
+    (res) => res?.allLandingPage?.[0]
+  ),
+
+  aboutBoardPage2: bySlug(
+    sanityGraphqlApi.aboutBoardPage,
+    aboutBoardPageSchema,
+    (res) => res?.allAboutCorePageBoard?.[0]
+  ),
 });
+
+type GQLMethod = typeof sanityGraphqlApi[keyof typeof sanityGraphqlApi];
+
+const bySlug = <
+  Method extends GQLMethod,
+  Resp extends Awaited<ReturnType<Method>>,
+  Data extends Record<string, unknown> | undefined,
+  Schema extends z.ZodTypeAny
+>(
+  graphqlMethod: Method,
+  schema: Schema,
+  getPageData: (res: Resp) => Data
+) => {
+  return async (slug: string, { previewMode, ...params }: Params = {}) => {
+    const result = await graphqlMethod({
+      isDraftFilter: getDraftFilterParam(previewMode),
+      ...params,
+      slug,
+    });
+
+    const pageData = getPageData(result);
+
+    if (!pageData) {
+      return null;
+    }
+
+    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
+
+    return parseResults(schema, withResolvedReferences, previewMode);
+  };
+};
 
 /**
  * When in preview mode we want to fetch draft and non-draft
