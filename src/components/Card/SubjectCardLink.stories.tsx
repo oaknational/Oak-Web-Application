@@ -12,10 +12,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const SubjectCardImage = Template.bind({});
+export const SubjectCard = Template.bind({});
 
-SubjectCardImage.args = {
-  href: "/",
+SubjectCard.args = {
   titleTag: "h3",
   subjectTitle: "Art and Design",
   imageBackground: "teachersPastelYellow",
