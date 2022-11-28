@@ -1,7 +1,7 @@
 import { SvgProps } from "../../getSvgId";
 
 const ArtAndDesign = (props: SvgProps) => (
-  <svg {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
