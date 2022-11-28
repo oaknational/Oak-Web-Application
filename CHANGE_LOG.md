@@ -1,3 +1,24 @@
+## [1.73.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.0...v1.73.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* **about me:** move the image resizing out of summaryCard so not to affect other pages ([6624137](https://github.com/oaknational/Oak-Web-Application/commit/662413744919d65c967530ae84e0640d0a09f7f0))
+* **about us:** link wraps incorrectly ([b5bfdec](https://github.com/oaknational/Oak-Web-Application/commit/b5bfdecb4ff575fb794ef16490f6e8a959b0e55a))
+
+# [1.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.1...v1.73.0) (2022-11-25)
+
+
+### Bug Fixes
+
+* clicking on backdrop and using escape key closes menu ([8ff5c53](https://github.com/oaknational/Oak-Web-Application/commit/8ff5c5359003fe25ab6cdd0eb7d79db55140f2f7))
+* remove unused test ([e2d6eba](https://github.com/oaknational/Oak-Web-Application/commit/e2d6eba854819721c31b234308e0f281b54b6675))
+
+
+### Features
+
+* remove keyboard from react aria as now unused ([ab46c70](https://github.com/oaknational/Oak-Web-Application/commit/ab46c70c42b0812a7ce64bc4c658b64a7ac9fe18))
+
 ## [1.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.0...v1.72.1) (2022-11-24)
 
 

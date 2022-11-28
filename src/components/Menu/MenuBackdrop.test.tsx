@@ -1,7 +1,4 @@
-import userEvent from "@testing-library/user-event";
-
 import { MenuProvider } from "../../context/Menu";
-import { menuContext } from "../../context/Menu/MenuProvider";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import MenuBackdrop from "./MenuBackdrop";
@@ -25,25 +22,5 @@ describe("menu backdrop", () => {
     );
 
     expect(getByTestId("menu-backdrop")).toBeVisible();
-  });
-
-  test("clicking the backdrop anywhere runs the closeMenu callback", async () => {
-    const menuValue = {
-      open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
-    };
-
-    const { getByTestId } = renderWithTheme(
-      <menuContext.Provider value={menuValue}>
-        <MenuBackdrop state="entered" />
-      </menuContext.Provider>
-    );
-    const user = userEvent.setup();
-    const backdrop = getByTestId("menu-backdrop");
-
-    await user.click(backdrop);
-
-    expect(menuValue.closeMenu).toHaveBeenCalled();
   });
 });
