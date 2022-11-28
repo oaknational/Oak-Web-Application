@@ -16,6 +16,15 @@ export type ListParams = Params & {
   limit?: number;
 };
 
+/**
+ * getBySlug, getSingleton and getList all exist to abstract the shared
+ * logic between all CMS client methods, namely:
+ *   1. Fetching the data with the correct params (inc preview checks)
+ *   2. Plucking the key from the results
+ *   3. Returning the appropriate fallback
+ *   4. Parsing with the provided schema
+ */
+
 export const getBySlug = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
@@ -27,13 +36,25 @@ export const getBySlug = <
   getResultValue: (res: Response) => Data
 ) => {
   return async (slug: string, { previewMode, ...params }: Params = {}) => {
-    const result = await graphqlMethod({
+    const response = await graphqlMethod({
       isDraftFilter: getDraftFilterParam(previewMode),
       slug,
       ...params,
     });
 
-    const pageData = getResultValue(result);
+    /**
+     * Casting to `Response` here because of a hairy TS problem with narrowing
+     * of the `response` variable. Hovering `response` above will show
+     * it could be any one of a union of GQLMethod, as I can't manage
+     * to narrow the generic to be only the return of the provided `Method`.
+     * No casting results in the following error
+     *     'X' is assignable to the constraint of type 'Response', but 'Response'
+     *     could be instantiated with a different subtype of constraint 'X | Y | Z...'
+     * If you hover `(response) =>` in the call-site of `getResultValue` you'll see
+     * that the correct type is inferred there
+     *   - RM 28/11/22
+     */
+    const pageData = getResultValue(response as Response);
 
     if (!pageData) {
       return null;
@@ -56,12 +77,13 @@ export const getSingleton = <
   getResultValue: (res: Response) => Data
 ) => {
   return async ({ previewMode, ...params }: Params = {}) => {
-    const result = await graphqlMethod({
+    const response = await graphqlMethod({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
 
-    const pageData = getResultValue(result);
+    // See comment explaining casting in `getBySlug` variant
+    const pageData = getResultValue(response as Response);
 
     if (!pageData) {
       return null;
@@ -75,21 +97,22 @@ export const getSingleton = <
 
 export const getList = <
   Method extends GQLMethod,
-  Resp extends Awaited<ReturnType<Method>>,
+  Response extends Awaited<ReturnType<Method>>,
   Data extends Array<Record<string, unknown>>,
   Schema extends z.ZodTypeAny
 >(
   graphqlMethod: Method,
   schema: Schema,
-  getPageData: (res: Resp) => Data
+  getPageData: (res: Response) => Data
 ) => {
   return async ({ previewMode, ...params }: ListParams = {}) => {
-    const results = await graphqlMethod({
+    const response = await graphqlMethod({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,
     });
 
-    const pageData = getPageData(results);
+    // See comment explaining casting in `getBySlug` variant
+    const pageData = getPageData(response as Response);
 
     if (!pageData) {
       return [];
@@ -121,7 +144,10 @@ export const resolveEmbeddedReferences = async <
 /**
  * When in preview mode we want to fetch draft and non-draft
  * content and filter client side, but for production we
- * never want draft content
+ * never want draft content.
+ *
+ * See sanity-graphql.md for more information on how/why the is_draft
+ * param is passed to queries
  */
 export const getDraftFilterParam = (
   isPreviewMode: boolean | undefined
