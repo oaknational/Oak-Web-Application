@@ -3,31 +3,23 @@ import { FC } from "react";
 import { OakColorName } from "../../styles/theme";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import OakImage from "../OakImage";
 import useClickableCard from "../../hooks/useClickableCard";
 import Flex from "../Flex";
 import OakLink from "../OakLink";
+import Svg from "../Svg";
+import { SvgName } from "../SpriteSheet/getSvgId";
 
 import Card, { CardProps } from "./Card";
-
-type RemoveField<Type, Key extends keyof Type> = {
-  [Property in keyof Type as Exclude<Property, Key>]: Type[Property];
-};
-
-type ImageProps = {
-  src: string;
-  alt: string;
-};
 
 type TitleProps = {
   subjectTitle: string;
   titleTag: HeadingTag;
 };
 
-type SubjectCardLinkProps = RemoveField<CardProps, "children"> & {
-  lessons: number;
-  units: number;
-  imageProps: ImageProps;
+type SubjectCardLinkProps = Omit<CardProps, "children"> & {
+  totalLessons: number;
+  totalUnits: number;
+  svgName: SvgName;
   imageBackground?: OakColorName;
   background: OakColorName;
   available: boolean;
@@ -38,7 +30,7 @@ type SubjectCardLinkProps = RemoveField<CardProps, "children"> & {
 
 type SummaryAvailableProps = Pick<
   SubjectCardLinkProps,
-  "keyStageSlug" | "subjectSlug" | "lessons" | "units"
+  "keyStageSlug" | "subjectSlug" | "totalLessons" | "totalUnits"
 > &
   TitleProps;
 
@@ -47,8 +39,8 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
   subjectSlug,
   titleTag,
   subjectTitle,
-  units,
-  lessons,
+  totalUnits,
+  totalLessons,
 }) => {
   const { primaryTargetProps } = useClickableCard<HTMLAnchorElement>();
   return (
@@ -63,8 +55,8 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
           {subjectTitle}
         </OakLink>
       </Heading>
-      <Typography $font={"body-2"}>{`${units} units`}</Typography>
-      <Typography $font={"body-2"}>{`${lessons} lessons`}</Typography>
+      <Typography $font={"body-2"}>{`${totalUnits} units`}</Typography>
+      <Typography $font={"body-2"}>{`${totalLessons} lessons`}</Typography>
     </>
   );
 };
@@ -80,11 +72,11 @@ const SummaryUnavailable: FC<TitleProps> = ({ titleTag, subjectTitle }) => {
 const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   subjectTitle,
   titleTag,
-  lessons,
-  units,
+  totalLessons,
+  totalUnits,
   imageBackground,
   background,
-  imageProps,
+  svgName,
   available,
   // hasTiers,
   keyStageSlug,
@@ -106,16 +98,12 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         $width={"100%"}
         $pv={16}
       >
-        <OakImage
-          aria-hidden={true}
-          alt={imageProps.alt}
-          src={imageProps.src}
-          height={80}
-          width={80}
+        <Svg
+          name={svgName}
+          $height={80}
+          $width={80}
           $ma={"auto"}
-          priority
           $transform={isHovered ? "scale(1.2)" : null}
-          $transition={"transform 0.4s ease-out"}
         />
       </Flex>
       <Flex
@@ -128,7 +116,7 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         $pv={available ? 20 : 44}
         $transform={isHovered ? "translateY(-8px)" : null}
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
-        $transition={"all 0.4s ease-out"}
+        $transition={"all 0.3s ease"}
       >
         {available ? (
           <SummaryAvailable
@@ -136,8 +124,8 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
             subjectSlug={subjectSlug}
             titleTag={titleTag}
             keyStageSlug={keyStageSlug}
-            lessons={lessons}
-            units={units}
+            totalLessons={totalLessons}
+            totalUnits={totalUnits}
           />
         ) : (
           <SummaryUnavailable subjectTitle={subjectTitle} titleTag={titleTag} />

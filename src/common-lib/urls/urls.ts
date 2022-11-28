@@ -122,7 +122,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `${path}?${query.toString()}`;
     }
     case "unit-index": {
-      return `/beta/teachers/key-stage/${props.keyStage}/subjects/${props.subject}/units`;
+      return `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
     }
 
     default:

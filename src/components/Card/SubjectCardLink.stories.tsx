@@ -19,11 +19,8 @@ SubjectCard.args = {
   subjectTitle: "Art and Design",
   imageBackground: "teachersPastelYellow",
   background: "white",
-  imageProps: {
-    src: "/images/illustrations/subject-art-and-design.svg",
-    alt: "planning",
-  },
-  lessons: 130,
-  units: 14,
+  svgName: "SubjectArtAndDesign",
+  totalLessons: 130,
+  totalUnits: 14,
   available: true,
 };

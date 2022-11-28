@@ -8,16 +8,13 @@ describe("SubjectCardLink", () => {
   test("render a Card with the Name of the Subject", () => {
     renderWithTheme(
       <SubjectCardLink
-        imageProps={{
-          src: "/images/illustrations/subject-art-and-design.svg",
-          alt: "planning",
-        }}
+        svgName="SubjectArtAndDesign"
         titleTag={"h3"}
         subjectTitle={"Art and Design"}
         imageBackground={"teachersPastelYellow"}
         background={"white"}
-        lessons={130}
-        units={14}
+        totalLessons={130}
+        totalUnits={14}
         available={false}
         keyStageSlug={"keyStage"}
         subjectSlug={"subject"}
@@ -28,16 +25,13 @@ describe("SubjectCardLink", () => {
   test("if available has a link to take you to the corresponding subject page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardLink
-        imageProps={{
-          src: "/images/illustrations/subject-art-and-design.svg",
-          alt: "planning",
-        }}
+        svgName="SubjectArtAndDesign"
         titleTag={"h3"}
         subjectTitle={"Art and Design"}
         imageBackground={"teachersPastelYellow"}
         background={"white"}
-        lessons={130}
-        units={14}
+        totalLessons={130}
+        totalUnits={14}
         available={true}
         keyStageSlug={"keyStage"}
         subjectSlug={"subject"}
