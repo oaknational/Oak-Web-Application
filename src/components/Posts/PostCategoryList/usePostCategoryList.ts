@@ -1,10 +1,10 @@
 import { useId } from "react";
 
-const useBlogCategoryList = () => {
+const usePostCategoryList = () => {
   const labelId = useId();
   return {
     labelId,
   };
 };
 
-export default useBlogCategoryList;
+export default usePostCategoryList;

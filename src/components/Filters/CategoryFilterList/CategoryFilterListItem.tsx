@@ -1,30 +1,29 @@
-import { FC } from "react";
-
 import { PixelSpacing } from "../../../styles/theme";
 import Icon from "../../Icon";
 import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
 import Flex from "../../Flex";
+import { ResolveOakHrefProps } from "../../../common-lib/urls";
 
-import { BlogCategoryPage } from "./BlogCategoryList";
-
-type BlogCategoryListItemProps = {
+export type CategoryLinkProps = ResolveOakHrefProps;
+export interface Category<T extends CategoryLinkProps> {
+  // key: string;
+  linkProps: T;
+  label: string;
+}
+interface CategoryFilterListItemProps<T extends CategoryLinkProps>
+  extends Category<T> {
   isSelected: boolean;
-  category: { title: string; slug: string } | { title: "All"; slug: null };
-  setSelected: (slug: string | null) => void;
-  page: BlogCategoryPage;
-};
-const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
-  const {
-    category: { slug, title },
-    isSelected,
-    setSelected,
-    page,
-  } = props;
+  setSelected: (category: T) => void;
+}
+const CategoryFilterListItem = <T extends CategoryLinkProps>(
+  props: CategoryFilterListItemProps<T>
+) => {
+  const { label, linkProps, isSelected, setSelected } = props;
   const arrowHidden = !isSelected;
 
   const onClick = () => {
-    setSelected(slug);
+    setSelected(linkProps);
   };
 
   const ICON_SIZE: [PixelSpacing, PixelSpacing] = [20, 30];
@@ -49,8 +48,7 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
         $display="flex"
         $height="100%"
         $alignItems="center"
-        page={page}
-        category={slug}
+        {...linkProps}
         htmlAnchorProps={{
           onClick,
           "aria-current": isSelected ? "page" : undefined,
@@ -80,11 +78,11 @@ const BlogCategoryListItem: FC<BlogCategoryListItemProps> = (props) => {
           }
           $width="100%"
         >
-          {title}
+          {label}
         </Flex>
       </OakLink>
     </LI>
   );
 };
 
-export default BlogCategoryListItem;
+export default CategoryFilterListItem;

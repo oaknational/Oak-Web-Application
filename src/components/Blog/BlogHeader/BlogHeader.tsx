@@ -9,11 +9,11 @@ import CopyLinkButton from "../../Button/CopyLinkButton";
 import Flex from "../../Flex";
 import OakLink from "../../OakLink";
 import { Heading, P, Span } from "../../Typography";
-import { BlogCategoryPage } from "../BlogCategoryList/BlogCategoryList";
+import { PostCategoryPage } from "../../Posts/PostCategoryList/PostCategoryList";
 
 type BlogHeaderProps = {
   blog: SerializedBlog | SerializedWebinar;
-  page: BlogCategoryPage;
+  page: PostCategoryPage;
 };
 
 const BlogHeader: FC<BlogHeaderProps> = ({ blog, page }) => {

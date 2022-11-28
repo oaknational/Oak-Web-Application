@@ -1,12 +1,12 @@
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
-import BlogCategoryList from "./BlogCategoryList";
+import PostCategoryList from "./PostCategoryList";
 
 const labelId = "test-label-id";
-describe("BlogCategoryList", () => {
+describe("PostCategoryList", () => {
   test("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
-      <BlogCategoryList
+      <PostCategoryList
         labelledBy={labelId}
         page={"blog-index"}
         categories={[
@@ -26,7 +26,7 @@ describe("BlogCategoryList", () => {
   });
   test("should work with webinars", () => {
     const { getByRole } = renderWithTheme(
-      <BlogCategoryList
+      <PostCategoryList
         labelledBy={labelId}
         page={"webinars-index"}
         categories={[
@@ -46,7 +46,7 @@ describe("BlogCategoryList", () => {
   });
   test("current link should be signposted with aria-current='page'", () => {
     const { getByRole } = renderWithTheme(
-      <BlogCategoryList
+      <PostCategoryList
         page={"blog-index"}
         labelledBy={labelId}
         categories={[
@@ -61,7 +61,7 @@ describe("BlogCategoryList", () => {
   });
   test("non current links should not be signposted with aria-current", () => {
     const { getByRole } = renderWithTheme(
-      <BlogCategoryList
+      <PostCategoryList
         page={"blog-index"}
         labelledBy={labelId}
         categories={[
@@ -78,7 +78,7 @@ describe("BlogCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <>
         <span id={labelId}>Test Categories</span>
-        <BlogCategoryList
+        <PostCategoryList
           page={"blog-index"}
           labelledBy={labelId}
           categories={[

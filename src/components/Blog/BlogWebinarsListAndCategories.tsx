@@ -5,10 +5,10 @@ import Box from "../Box";
 import Grid, { GridArea } from "../Grid";
 import { BlogListingPageProps } from "../pages/BlogIndex.page";
 import { Heading } from "../Typography";
+import PostCategoryList from "../Posts/PostCategoryList";
+import { PostCategoryPage } from "../Posts/PostCategoryList/PostCategoryList";
+import usePostCategoryList from "../Posts/PostCategoryList/usePostCategoryList";
 
-import BlogCategoryList from "./BlogCategoryList";
-import { BlogCategoryPage } from "./BlogCategoryList/BlogCategoryList";
-import useBlogCategoryList from "./BlogCategoryList/useBlogCategoryList";
 import BlogList from "./BlogList";
 import { BlogListItemProps } from "./BlogList/BlogListItem";
 import useBlogList from "./BlogList/useBlogList";
@@ -16,13 +16,13 @@ import useBlogList from "./BlogList/useBlogList";
 export type BlogWebinarsListAndCategoriesProps = Omit<
   BlogListingPageProps,
   "blogs"
-> & { blogs: BlogListItemProps[]; page: BlogCategoryPage };
+> & { blogs: BlogListItemProps[]; page: PostCategoryPage };
 
 const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
   props
 ) => {
   const { blogs, categories, categorySlug, page } = props;
-  const blogCategoriesListProps = useBlogCategoryList();
+  const blogCategoriesListProps = usePostCategoryList();
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
   const blogListProps = useBlogList({
@@ -46,7 +46,7 @@ const BlogWebinarsListAndCategories: FC<BlogWebinarsListAndCategoriesProps> = (
           <Heading tag="h3" $font="body-3" id={blogCategoriesListProps.labelId}>
             Categories
           </Heading>
-          <BlogCategoryList
+          <PostCategoryList
             labelledBy={blogCategoriesListProps.labelId}
             $mt={24}
             categories={categories}

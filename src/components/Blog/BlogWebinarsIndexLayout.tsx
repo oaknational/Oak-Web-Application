@@ -8,11 +8,10 @@ import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import { Heading } from "../Typography";
+import PostCategoryList from "../Posts/PostCategoryList";
+import { PostCategoryPage } from "../Posts/PostCategoryList/PostCategoryList";
 
-import BlogCategoryList from "./BlogCategoryList";
-import useBlogCategoryList from "./BlogCategoryList/useBlogCategoryList";
 import BlogHeader from "./BlogHeader/BlogHeader";
-import { BlogCategoryPage } from "./BlogCategoryList/BlogCategoryList";
 
 type BlogWebinarsLayoutProps = {
   children?: ReactNode;
@@ -24,12 +23,12 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
   const { categories } = content;
 
   const blog = "blog" in content ? content.blog : content.webinar;
-  const page: BlogCategoryPage =
+  const page: PostCategoryPage =
     "blog" in content ? "blog-index" : "webinars-index";
 
   const HEADER_HEIGHT = theme.header.height;
 
-  const blogCategoriesListProps = useBlogCategoryList();
+  const postCategoriesListProps = usePostCategoryList();
 
   return (
     <>
@@ -50,12 +49,12 @@ const BlogWebinarsIndexLayout: FC<BlogWebinarsLayoutProps> = (props) => {
               <Heading
                 tag="h3"
                 $font="body-3"
-                id={blogCategoriesListProps.labelId}
+                id={postCategoriesListProps.labelId}
               >
                 Categories
               </Heading>
-              <BlogCategoryList
-                labelledBy={blogCategoriesListProps.labelId}
+              <PostCategoryList
+                labelledBy={postCategoriesListProps.labelId}
                 $mt={24}
                 categories={categories}
                 page={page}

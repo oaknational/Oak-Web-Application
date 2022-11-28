@@ -1,6 +1,8 @@
 import { FC } from "react";
 
+import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import { SeoProps } from "../../browser-lib/seo/Seo";
 import {
   BlogListingPage,
   BlogWebinarCategory,
@@ -25,9 +27,8 @@ import {
   WebinarListingPageProps,
   webinarToBlogListItem,
 } from "../pages/WebinarsIndex.page";
-import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
-import { BlogCategoryPage } from "../Blog/BlogCategoryList/BlogCategoryList";
-import { SeoProps } from "../../browser-lib/seo/Seo";
+
+import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
 
 type PostListingProps = {
   seo: SeoProps;
@@ -36,7 +37,7 @@ type PostListingProps = {
   categorySlug: string | null;
   postsWithCategories: WebinarListingPageProps | BlogListingPageProps;
   posts: SerializedBlogPostPreview[] | SerializedWebinarPreview[];
-  page: BlogCategoryPage;
+  page: PostCategoryPage;
   variant: {
     slug: CrumbPageVariant;
     title: string;
