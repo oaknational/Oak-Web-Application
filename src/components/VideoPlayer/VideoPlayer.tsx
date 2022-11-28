@@ -12,6 +12,7 @@ import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
+import getPercentageElapsed from "./getPercentageElapsed";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -37,14 +38,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const [hasTrackedEnd, setHasTrackedEnd] = useState(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
-  const getPercentagedElapsed = () => {
-    const timeElapsed = getTimeElapsed(mediaElRef);
-    const duration = getDuration(mediaElRef);
-    if (!timeElapsed || !duration) {
-      return 0;
-    }
-    return timeElapsed / duration;
-  };
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
@@ -83,7 +76,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const onTimeUpdate = () => {
-    if (getPercentagedElapsed() >= 90 && !hasTrackedEnd) {
+    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEnd) {
       videoTracking.onEnd();
       setHasTrackedEnd(true);
     }
