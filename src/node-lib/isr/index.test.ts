@@ -1,7 +1,3 @@
-/**
- * @jest-environment node
- */
-
 describe("isr.decorateWithIsr()", () => {
   beforeEach(() => {
     jest.clearAllMocks();
