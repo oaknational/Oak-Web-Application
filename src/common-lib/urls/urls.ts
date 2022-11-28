@@ -71,7 +71,7 @@ export type ResolveOakHrefProps =
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars";
+      page: "blog" | "webinars" | "key-stage";
       slug: string;
     }
   | {
@@ -101,6 +101,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       const path: OakPageName = `${props.page}-index`;
       return `${OAK_PAGES[path]}/${props.slug}`;
     }
+    case "key-stage": {
+      return `/beta/key-stages/${props.slug}`;
+    }
     case "blog-index":
     case "webinars-index": {
       let path:
@@ -119,7 +122,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `${path}?${query.toString()}`;
     }
     case "unit-index": {
-      return `/beta/teachers/key-stage/${props.keyStage}/subjects/${props.subject}/units`
+      return `/beta/teachers/key-stage/${props.keyStage}/subjects/${props.subject}/units`;
     }
 
     default:

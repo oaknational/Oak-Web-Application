@@ -3,14 +3,12 @@ import { FC } from "react";
 import { OakColorName } from "../../styles/theme";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-
-import Card from "./Card";
-import { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 import OakImage from "../OakImage";
-import Box from "../Box";
 import useClickableCard from "../../hooks/useClickableCard";
 import Flex from "../Flex";
 import OakLink from "../OakLink";
+
+import Card, { CardProps } from "./Card";
 
 type RemoveField<Type, Key extends keyof Type> = {
   [Property in keyof Type as Exclude<Property, Key>]: Type[Property];
@@ -21,30 +19,28 @@ type ImageProps = {
   alt: string;
 };
 
-type TitleProps ={
-    subjectTitle: string;
-    titleTag: HeadingTag;
-}
+type TitleProps = {
+  subjectTitle: string;
+  titleTag: HeadingTag;
+};
 
-type SubjectCardLinkProps = RemoveField<CardLinkProps, "children"> & {
+type SubjectCardLinkProps = RemoveField<CardProps, "children"> & {
   lessons: number;
   units: number;
   imageProps: ImageProps;
   imageBackground?: OakColorName;
   background: OakColorName;
   available: boolean;
-  hasTiers: boolean;
+  // hasTiers: boolean;
   keyStageSlug: string;
   subjectSlug: string;
 } & TitleProps;
 
 type SummaryAvailableProps = Pick<
   SubjectCardLinkProps,
-  | "keyStageSlug"
-  | "subjectSlug"
-  | "lessons"
-  | "units"
-> & TitleProps;
+  "keyStageSlug" | "subjectSlug" | "lessons" | "units"
+> &
+  TitleProps;
 
 const SummaryAvailable: FC<SummaryAvailableProps> = ({
   keyStageSlug,
@@ -73,10 +69,7 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
   );
 };
 
-const SummaryUnavailable: FC<TitleProps> = ({
-  titleTag,
-  subjectTitle,
-}) => {
+const SummaryUnavailable: FC<TitleProps> = ({ titleTag, subjectTitle }) => {
   return (
     <Heading $font={["heading-7"]} tag={titleTag}>
       {subjectTitle}
@@ -93,14 +86,14 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   background,
   imageProps,
   available,
-  hasTiers,
+  // hasTiers,
   keyStageSlug,
   subjectSlug,
 }) => {
-  const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>()
+  const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
   return (
     <Card
-     {...(available && {...containerProps})}
+      {...(available && { ...containerProps })}
       $flexDirection={"column"}
       $alignItems="stretch"
       $background={"white"}
@@ -147,10 +140,7 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
             units={units}
           />
         ) : (
-          <SummaryUnavailable
-            subjectTitle={subjectTitle}
-            titleTag={titleTag}
-          />
+          <SummaryUnavailable subjectTitle={subjectTitle} titleTag={titleTag} />
         )}
       </Flex>
       <BoxBorders gapPosition="rightTop" />
