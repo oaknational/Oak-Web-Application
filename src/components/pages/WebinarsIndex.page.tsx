@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import { BlogListItemProps } from "../../components/Blog/BlogList/BlogListItem";
+import { PostListItemProps } from "../../components/Posts/PostList/PostListItem";
 import {
   BlogWebinarCategory,
   WebinarPreview,
@@ -51,9 +51,9 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   );
 };
 
-export const webinarToBlogListItem = (
+export const webinarToPostListItem = (
   webinar: SerializedWebinarPreview
-): BlogListItemProps => ({
+): PostListItemProps => ({
   ...webinar,
   contentType: "webinar",
   title: webinar.title,

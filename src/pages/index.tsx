@@ -23,20 +23,20 @@ import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
 import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { BlogListItemProps } from "../components/Blog/BlogList/BlogListItem";
+import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
 import OakImage from "../components/OakImage";
 import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import {
-  blogToBlogListItem,
+  blogToPostListItem,
   SerializedBlogPostPreview,
 } from "../components/pages/BlogIndex.page";
-import BlogList from "../components/Blog/BlogList";
+import PostList from "../components/Posts/PostList";
 import {
   SerializedWebinarPreview,
-  webinarToBlogListItem,
+  webinarToPostListItem,
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
-import useBlogList from "../components/Blog/BlogList/useBlogList";
+import usePostList from "../components/Posts/PostList/usePostList";
 import OakLink from "../components/OakLink";
 
 const Notification: FC = () => {
@@ -106,8 +106,8 @@ const Home: NextPage<HomePageProps> = (props) => {
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
-  const posts = props.posts.map(postToBlogListItem);
-  const blogListProps = useBlogList({ items: posts, withImage: true });
+  const posts = props.posts.map(postToPostListItem);
+  const blogListProps = usePostList({ items: posts, withImage: true });
 
   return (
     <Layout
@@ -356,7 +356,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     </Typography>
                   </Flex>
                 </Flex>
-                <BlogList {...blogListProps} />
+                <PostList {...blogListProps} />
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
@@ -375,12 +375,12 @@ const Home: NextPage<HomePageProps> = (props) => {
   );
 };
 
-export const postToBlogListItem = (
+export const postToPostListItem = (
   blogOrWebinar: SerializedPost
-): BlogListItemProps => {
+): PostListItemProps => {
   return blogOrWebinar.type === "blog-post"
-    ? blogToBlogListItem(blogOrWebinar)
-    : webinarToBlogListItem(blogOrWebinar);
+    ? blogToPostListItem(blogOrWebinar)
+    : webinarToPostListItem(blogOrWebinar);
 };
 
 const sortByDate = (a: { date: Date }, b: { date: Date }) => {
