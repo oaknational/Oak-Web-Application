@@ -17,6 +17,18 @@ const config = {
   coverageAnalysis: "perTest",
   checkers: ["typescript"],
   tsconfigFile: "tsconfig.json",
+  ignorePatterns: [
+    ".next",
+    ".netlify",
+    ".github",
+    ".storybook",
+    "coverage",
+    "dist",
+    "out",
+    "public",
+    "e2e_tests",
+    "cloudbuild",
+  ],
   // Only run test related to node-lib
   commandRunner: { command: "npm run test ./src/node-lib" },
   // Limit scope of mutation test. Just node-lib for now.
