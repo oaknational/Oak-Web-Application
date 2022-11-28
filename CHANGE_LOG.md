@@ -1,3 +1,87 @@
+## [1.73.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.0...v1.73.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* **about me:** move the image resizing out of summaryCard so not to affect other pages ([6624137](https://github.com/oaknational/Oak-Web-Application/commit/662413744919d65c967530ae84e0640d0a09f7f0))
+* **about us:** link wraps incorrectly ([b5bfdec](https://github.com/oaknational/Oak-Web-Application/commit/b5bfdecb4ff575fb794ef16490f6e8a959b0e55a))
+
+# [1.73.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.1...v1.73.0) (2022-11-25)
+
+
+### Bug Fixes
+
+* clicking on backdrop and using escape key closes menu ([8ff5c53](https://github.com/oaknational/Oak-Web-Application/commit/8ff5c5359003fe25ab6cdd0eb7d79db55140f2f7))
+* remove unused test ([e2d6eba](https://github.com/oaknational/Oak-Web-Application/commit/e2d6eba854819721c31b234308e0f281b54b6675))
+
+
+### Features
+
+* remove keyboard from react aria as now unused ([ab46c70](https://github.com/oaknational/Oak-Web-Application/commit/ab46c70c42b0812a7ce64bc4c658b64a7ac9fe18))
+
+## [1.72.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.72.0...v1.72.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* **blogs:** can't have a blockquote inside a p tag ([95246c8](https://github.com/oaknational/Oak-Web-Application/commit/95246c89737ee87ae1d8a4422535b9ec3dcb861d))
+
+# [1.72.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.71.0...v1.72.0) (2022-11-24)
+
+
+### Features
+
+* add subject by key stage slug page ([1c109cd](https://github.com/oaknational/Oak-Web-Application/commit/1c109cddd3b3bc7130d435527b934137e3cf0054))
+* keystage keypad component ([8db8e31](https://github.com/oaknational/Oak-Web-Application/commit/8db8e31ce6e22c44b417cf48623506bd34a64920))
+
+# [1.71.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.70.0...v1.71.0) (2022-11-24)
+
+
+### Bug Fixes
+
+* smaller svg ([9ee9c02](https://github.com/oaknational/Oak-Web-Application/commit/9ee9c0246548ba4c5e44de9149994daa103afa17))
+* spell 'turquoise' correctly ([2a5e2f2](https://github.com/oaknational/Oak-Web-Application/commit/2a5e2f27a6e923ed1f641f3662e41664407a0c37))
+
+
+### Features
+
+* add hamburger menu and tests to app header ([8d93d88](https://github.com/oaknational/Oak-Web-Application/commit/8d93d8881c149897814e367171bb087c804716e6))
+* add teachers page with new header ([970721a](https://github.com/oaknational/Oak-Web-Application/commit/970721a353eb76970788f674c4afbb2a6c4f635f))
+* add test to check we are on teachers page ([f162221](https://github.com/oaknational/Oak-Web-Application/commit/f16222160b015e09131d4bc91f4e1a392e28ab25))
+
+# [1.70.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.2...v1.70.0) (2022-11-23)
+
+
+### Features
+
+* **Bugsnag:** send anonymous IDs ([a35d785](https://github.com/oaknational/Oak-Web-Application/commit/a35d7858a4cd43bdb22c1eb5414d632dc081ee41))
+
+## [1.69.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.1...v1.69.2) (2022-11-23)
+
+## [1.69.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.69.0...v1.69.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* useLocalStorage hook should set local storage with initial value ([3147289](https://github.com/oaknational/Oak-Web-Application/commit/31472897065745c3a15a373ab3619a24dfff428c))
+
+# [1.69.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.4...v1.69.0) (2022-11-23)
+
+
+### Features
+
+* **preview builds:** allow asset requests directly to origin ([a7a161d](https://github.com/oaknational/Oak-Web-Application/commit/a7a161d55e1d06eafc1545c23580694b047fb10f))
+* **preview builds:** allow web manifest direct from origin ([a8fe244](https://github.com/oaknational/Oak-Web-Application/commit/a8fe2448ef5747aa695e1913a53a2f4137a464fe))
+* **preview builds:** send cookies with manifest requets ([b805fe8](https://github.com/oaknational/Oak-Web-Application/commit/b805fe800321adfbd105be164361e32a6f57ee9b))
+
+## [1.68.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.3...v1.68.4) (2022-11-22)
+
+
+### Bug Fixes
+
+* run pa11y tests on support your team ([fa1e430](https://github.com/oaknational/Oak-Web-Application/commit/fa1e430544f219ea670b63733bc1fc6ce2c84f9d))
+* typo ([6c99492](https://github.com/oaknational/Oak-Web-Application/commit/6c99492a96e50d836807b9e762abf3f5232dfcc8))
+
 ## [1.68.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.68.2...v1.68.3) (2022-11-21)
 
 

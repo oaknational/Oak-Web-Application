@@ -139,7 +139,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $flexDirection={"column"}
                     $justifyContent={"center"}
                     $mb={[56, 0]}
-                    $background="pastelTurqoise"
+                    $background="pastelTurquoise"
                     $pv={[72, 80]}
                     $maxHeight={240}
                     $ph={[16, 24]}

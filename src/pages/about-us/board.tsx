@@ -72,7 +72,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurqoise"} $mv={32} />
+            <Hr $color={"pastelTurquoise"} $mv={32} />
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
@@ -112,7 +112,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             })}
           </Grid>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurqoise"} $mv={0} $mt={32} />
+            <Hr $color={"pastelTurquoise"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
         <Card

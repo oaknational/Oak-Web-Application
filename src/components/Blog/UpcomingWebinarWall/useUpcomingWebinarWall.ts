@@ -1,3 +1,4 @@
+import config from "../../../config/browser";
 import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
 import formatDate from "../../../utils/formatDate";
 
@@ -14,7 +15,7 @@ const useUpcomingWebinarWall = (
     buttonOnClick: () => {
       // tracking
     },
-    buttonHref: "https://share.hsforms.com/1USsrkazESq2Il8lxUx_vPgbvumd",
+    buttonHref: config.get("webinarSignUpUrl"),
     buttonText: "Save my place",
     buttonSuffixA11y: "on the webinar",
   };
