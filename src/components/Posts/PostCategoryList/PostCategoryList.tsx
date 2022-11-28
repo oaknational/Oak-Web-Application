@@ -32,10 +32,13 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
         labelledBy={labelledBy}
         getIsSelected={getIsSelected}
         setSelected={setSelected}
-        categories={categories.map((c) => ({
-          label: c.title,
-          linkProps: { page: page, category: c.slug },
-        }))}
+        categories={[
+          { label: "All", linkProps: { page } },
+          ...categories.map((c) => ({
+            label: c.title,
+            linkProps: { page, category: c.slug },
+          })),
+        ]}
       />
       <Flex $mt={32} $height={30} $font={"heading-7"}>
         <OakLink

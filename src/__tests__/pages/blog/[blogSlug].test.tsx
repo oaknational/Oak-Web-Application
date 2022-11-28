@@ -1,7 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import { BlogPost } from "../../../common-lib/cms-types";
-import BlogSinglePage, { BlogSinglePageProps } from "../../../pages/blog/[blogSlug]";
+import BlogSinglePage, {
+  BlogSinglePageProps,
+} from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
