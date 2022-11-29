@@ -23,7 +23,6 @@ type SubjectCardLinkProps = Omit<CardProps, "children"> & {
   imageBackground?: OakColorName;
   background: OakColorName;
   available: boolean;
-  // hasTiers: boolean;
   keyStageSlug: string;
   subjectSlug: string;
 } & TitleProps;
@@ -78,7 +77,6 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   background,
   svgName,
   available,
-  // hasTiers,
   keyStageSlug,
   subjectSlug,
 }) => {
