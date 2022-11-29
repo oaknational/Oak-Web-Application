@@ -13,15 +13,24 @@ export const titleCardIconBackground = {
   lesson: "pupilsPink",
 } as const;
 
-export type TitleCardIconBackground = keyof typeof titleCardIconBackground;
+export type TitlePageType =
+  | {
+      page: "unit" | "subject";
+      keyStage: string;
+      keyStageSlug: string;
+    }
+  | {
+      page: "lesson";
+      keyStage: string;
+      keyStageSlug: string;
+      subject: string;
+      subjectSlug: string;
+    };
 
 type TitleCardProps = {
   title: string;
-  keyStage: string;
-  keyStageSlug: string;
   iconName: IconName;
-  background: TitleCardIconBackground;
-};
+} & TitlePageType;
 
 /**
  * Contains an title, icon and keystage link.
@@ -29,13 +38,8 @@ type TitleCardProps = {
  * ## Usage
  * Used on subject by keystage, tier, unit and lesson pages.
  */
-const TitleCard: FC<TitleCardProps> = ({
-  title,
-  keyStage,
-  keyStageSlug,
-  iconName,
-  background,
-}) => {
+const TitleCard: FC<TitleCardProps> = (props) => {
+  const { title, keyStage, keyStageSlug, iconName, page } = props;
   return (
     <Flex
       $display={"inline-flex"}
@@ -52,12 +56,18 @@ const TitleCard: FC<TitleCardProps> = ({
         $alignItems={"center"}
       >
         <Box $mh={24}>
-          <Heading $font={["heading-5", "heading-4"]} tag={"h1"}>
+          <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
           <OakLink slug={keyStageSlug} page={"key-stage"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
+          {page === "lesson" && (
+            // @todo Change to subject when pages are created
+            <OakLink $ml={16} slug={props.subjectSlug} page={"key-stage"}>
+              <Span $font={"heading-7"}>{props.subject}</Span>
+            </OakLink>
+          )}
         </Box>
       </Flex>
       <Flex
@@ -65,7 +75,7 @@ const TitleCard: FC<TitleCardProps> = ({
         $alignItems={"center"}
         $minHeight={[130, 160]}
         $width={["100%", 160]}
-        $background={titleCardIconBackground[background]}
+        $background={titleCardIconBackground[page]}
       >
         <Icon size={[92, 120]} name={iconName} />
       </Flex>

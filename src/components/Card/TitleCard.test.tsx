@@ -8,11 +8,13 @@ describe("Subject title card", () => {
   it("Renders correct title ", () => {
     renderWithTheme(
       <TitleCard
+        page={"lesson"}
         title="Computer Science"
         keyStage="key Stage 4"
         keyStageSlug="key-stage-1"
+        subject="Computing"
+        subjectSlug="computing"
         iconName="Twitter"
-        background="teachersHighlight"
       />
     );
 
