@@ -5,7 +5,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import LearningTiersList from "./LearningTiersList";
 
 describe("LearningTiersList", () => {
-  it("Renders correct titles ", async () => {
+  it("Renders correct titles ", () => {
     renderWithTheme(
       <LearningTiersList
         tiers={[
@@ -17,7 +17,7 @@ describe("LearningTiersList", () => {
       />
     );
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
         "Foundation"
       );

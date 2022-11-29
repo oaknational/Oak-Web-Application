@@ -5,7 +5,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import SubjectTitleCard from "./SubjectTitleCard";
 
 describe("Subject title card", () => {
-  it("Renders correct title ", async () => {
+  it("Renders correct title ", () => {
     renderWithTheme(
       <SubjectTitleCard
         title="Computer Science"
@@ -16,7 +16,7 @@ describe("Subject title card", () => {
       />
     );
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
         "Computer Science"
       );
