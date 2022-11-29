@@ -9,35 +9,29 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import Typography, { Heading, P, Span } from "../components/Typography";
+import { Heading, P, Span } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
-import CardLinkIcon from "../components/Card/CardLinkIcon";
 import Box from "../components/Box";
 import Layout from "../components/Layout";
 import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
 import Flex from "../components/Flex";
 import Icon from "../components/Icon";
-import HomeAboutCard from "../components/pages/Home/HomeAboutCard";
-import HomeHelpCard from "../components/pages/Home/HomeHelpCard";
-import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { BlogListItemProps } from "../components/Blog/BlogList/BlogListItem";
+import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
 import OakImage from "../components/OakImage";
-import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import {
-  blogToBlogListItem,
+  blogToPostListItem,
   SerializedBlogPostPreview,
 } from "../components/pages/BlogIndex.page";
-import BlogList from "../components/Blog/BlogList";
 import {
   SerializedWebinarPreview,
-  webinarToBlogListItem,
+  webinarToPostListItem,
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
-import useBlogList from "../components/Blog/BlogList/useBlogList";
-import OakLink from "../components/OakLink";
+import usePostList from "../components/Posts/PostList/usePostList";
+import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -103,11 +97,8 @@ export type HomePageProps = {
 
 const Home: NextPage<HomePageProps> = (props) => {
   const { track } = useAnalytics();
-  const newsletterFormProps = useNewsletterForm({
-    onSubmit: track.newsletterSignUpCompleted,
-  });
-  const posts = props.posts.map(postToBlogListItem);
-  const blogListProps = useBlogList({ items: posts, withImage: true });
+  const posts = props.posts.map(postToPostListItem);
+  const blogListProps = usePostList({ items: posts, withImage: true });
 
   return (
     <Layout
@@ -283,125 +274,29 @@ const Home: NextPage<HomePageProps> = (props) => {
                 </Card>
               </GridArea>
             </Grid>
-            <Grid $cg={[8, 16]} $ph={[12, 0]}>
-              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
-                <CardLinkIcon
-                  page="lesson-planning"
-                  title={"Plan a lesson"}
-                  titleTag={"h4"}
-                  background="pupilsLimeGreen"
-                  htmlAnchorProps={{ onClick: track.planALessonSelected }}
-                />
-              </GridArea>
-              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
-                <CardLinkIcon
-                  page="develop-your-curriculum"
-                  title={"Develop your curriculum"}
-                  titleTag={"h4"}
-                  background={"teachersYellow"}
-                  htmlAnchorProps={{
-                    onClick: track.developYourCurriculumSelected,
-                  }}
-                />
-              </GridArea>
-              <GridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
-                <CardLinkIcon
-                  page="support-your-team"
-                  title={"Support your team"}
-                  titleTag={"h4"}
-                  background={"pupilsPink"}
-                  htmlAnchorProps={{
-                    onClick: track.supportYourTeamSelected,
-                  }}
-                />
-              </GridArea>
-            </Grid>
+            <HomeSiteCards />
           </MaxWidth>
         </Flex>
       </Flex>
-      <Flex $background={"teachersPastelYellow"} $justifyContent={"center"}>
-        <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
-          <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
-            <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
-              <HomeAboutCard {...props.pageData.sidebarCard1} />
-            </GridArea>
-            <GridArea
-              $mb={[64, 0]}
-              $colSpan={[12, 8]}
-              $rowSpan={3}
-              $order={[3, 0]}
-            >
-              <Box
-                $background={"white"}
-                $ph={[16, 24]}
-                $pv={24}
-                $height={"100%"}
-              >
-                <Flex
-                  $width={"100%"}
-                  $alignItems={["flex-start", "center"]}
-                  $justifyContent="space-between"
-                  $mb={48}
-                  $flexDirection={["column", "row"]}
-                >
-                  <Heading $mb={[36, 0]} tag={"h3"} $font={"heading-5"}>
-                    Stay up to date!
-                  </Heading>
-                  <Flex $flexDirection={"row"}>
-                    <Typography $mr={16} $font="heading-7">
-                      <OakLink page={"webinars-index"}>All webinars</OakLink>
-                    </Typography>
-                    <Typography $font="heading-7">
-                      <OakLink page={"blog-index"}>All blogs</OakLink>
-                    </Typography>
-                  </Flex>
-                </Flex>
-                <BlogList {...blogListProps} />
-              </Box>
-            </GridArea>
-            <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
-              <HomeHelpCard {...props.pageData.sidebarCard2} />
-            </GridArea>
-            <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
-              <NewsletterFormWrap
-                {...newsletterFormProps}
-                anchorTargetId="email-sign-up"
-              />
-            </GridArea>
-          </Grid>
-        </MaxWidth>
-      </Flex>
+      <SharedHomeContent
+        blogListProps={blogListProps}
+        pageData={props.pageData}
+      />
     </Layout>
   );
 };
 
-export const postToBlogListItem = (
-  blogOrWebinar: SerializedPost
-): BlogListItemProps => {
-  return blogOrWebinar.type === "blog-post"
-    ? blogToBlogListItem(blogOrWebinar)
-    : webinarToBlogListItem(blogOrWebinar);
+export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
+  return post.type === "blog-post"
+    ? blogToPostListItem(post)
+    : webinarToPostListItem(post);
 };
 
-const sortByDate = (a: { date: Date }, b: { date: Date }) => {
+export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
   return b.date.getTime() - a.date.getTime();
 };
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async (
-  context
-) => {
-  const isPreviewMode = context.preview === true;
-
-  const homepageData = await CMSClient.homepage({
-    previewMode: isPreviewMode,
-  });
-
-  if (!homepageData) {
-    return {
-      notFound: true,
-    };
-  }
-
+export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
   const blogResults = await CMSClient.blogPosts({
     previewMode: isPreviewMode,
     limit: 5,
@@ -423,10 +318,28 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     }))
     .filter((webinar) => webinar.date.getTime() < new Date().getTime());
 
-  const posts = [...blogPosts, ...webinars]
+  return [...blogPosts, ...webinars]
     .sort(sortByDate)
     .slice(0, 4)
     .map(serializeDate);
+};
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async (
+  context
+) => {
+  const isPreviewMode = context.preview === true;
+
+  const homepageData = await CMSClient.homepage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!homepageData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
   const results: GetStaticPropsResult<HomePageProps> = {
     props: {

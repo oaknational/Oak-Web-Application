@@ -1,7 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import { BlogPost } from "../../../common-lib/cms-types";
-import BlogDetailPage, { BlogPageProps } from "../../../pages/blog/[blogSlug]";
+import BlogSinglePage, {
+  BlogSinglePageProps,
+} from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -84,10 +86,10 @@ describe("pages/blog/[blogSlug].tsx", () => {
     }));
   });
 
-  describe("BlogDetailPage", () => {
+  describe("BlogSinglePage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <BlogDetailPage blog={testSerializedBlog} categories={[]} />
+        <BlogSinglePage blog={testSerializedBlog} categories={[]} />
       );
 
       await waitFor(() => {
@@ -100,7 +102,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <BlogDetailPage blog={testSerializedBlog} categories={[]} />
+          <BlogSinglePage blog={testSerializedBlog} categories={[]} />
         );
 
         expect(seo).toEqual({});
@@ -161,7 +163,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
       const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
       const propsResult = (await getStaticProps({
         params: { blogSlug: "another-blog" },
-      })) as { props: BlogPageProps };
+      })) as { props: BlogSinglePageProps };
 
       expect(propsResult?.props?.blog).toMatchObject({
         date: "2025-01-01T00:00:00.000Z",
@@ -174,7 +176,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
       const { getStaticProps } = await import("../../../pages/blog/[blogSlug]");
       const propsResult = (await getStaticProps({
         params: { blogSlug: "another-blog" },
-      })) as { props: BlogPageProps };
+      })) as { props: BlogSinglePageProps };
 
       expect(propsResult).toMatchObject({
         notFound: true,
