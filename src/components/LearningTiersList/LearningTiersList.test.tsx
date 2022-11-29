@@ -9,9 +9,9 @@ describe("LearningTiersList", () => {
     renderWithTheme(
       <LearningTiersList
         tiers={[
-          { title: "Foundation", numberUnits: 3, numberLessons: 4 },
-          { title: "Core", numberUnits: 3, numberLessons: 4 },
-          { title: "Higher", numberUnits: 3, numberLessons: 4 },
+          { title: "Foundation", unitCount: 3, lessonCount: 4 },
+          { title: "Core", unitCount: 3, lessonCount: 4 },
+          { title: "Higher", unitCount: 3, lessonCount: 4 },
         ]}
         background="teachersYellow"
       />

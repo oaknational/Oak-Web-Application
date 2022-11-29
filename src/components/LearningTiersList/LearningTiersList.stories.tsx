@@ -15,9 +15,9 @@ export const LearningTiersList = Template.bind({});
 
 LearningTiersList.args = {
   tiers: [
-    { title: "Foundation", numberUnits: 23, numberLessons: 4 },
-    { title: "Core", numberUnits: 43, numberLessons: 4 },
-    { title: "Higher", numberUnits: 34, numberLessons: 5 },
+    { title: "Foundation", lessonCount: 23, unitCount: 4 },
+    { title: "Core", lessonCount: 43, unitCount: 4 },
+    { title: "Higher", lessonCount: 34, unitCount: 5 },
   ],
   background: "teachersPastelYellow",
 };
