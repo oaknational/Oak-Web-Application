@@ -1,3 +1,15 @@
+# [1.76.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.75.0...v1.76.0) (2022-11-29)
+
+
+### Bug Fixes
+
+* **categories-list:** all categories ([97370e7](https://github.com/oaknational/Oak-Web-Application/commit/97370e784937a8a4c83c081288227e11e011518d))
+
+
+### Features
+
+* **category-filters:** refactor category filters to be generic ([3db9e04](https://github.com/oaknational/Oak-Web-Application/commit/3db9e04cf2db6d8b9d90f0b1f8f23a9d6b68cc13))
+
 # [1.75.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.74.0...v1.75.0) (2022-11-29)
 
 
