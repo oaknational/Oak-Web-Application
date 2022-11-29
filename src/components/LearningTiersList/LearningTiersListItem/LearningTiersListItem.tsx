@@ -11,14 +11,14 @@ import Box from "../../Box";
 
 export type LearningTiersListItemProps = {
   title: string;
-  numberUnits: number;
-  numberLessons: number;
+  unitCount: number;
+  lessonCount: number;
 };
 
 const LearningTiersListItem: FC<
   LearningTiersListItemProps & { background: OakColorName }
 > = (props) => {
-  const { title, background, numberLessons, numberUnits } = props;
+  const { title, background, lessonCount, unitCount } = props;
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   return (
@@ -41,8 +41,8 @@ const LearningTiersListItem: FC<
         $transform={isHovered ? "translateY(-8px)" : null}
       >
         <Flex $ma={16} $flexDirection={"column"}>
-          <Span $font={"body-3"}>{`${numberUnits} units`}</Span>
-          <Span $font={"body-3"}>{`${numberLessons} lessons`}</Span>
+          <Span $font={"body-3"}>{`${unitCount} units`}</Span>
+          <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
         </Flex>
       </Box>
       <BoxBorders gapPosition="rightTop" />
