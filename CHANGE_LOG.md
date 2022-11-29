@@ -1,3 +1,11 @@
+## [1.76.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.0...v1.76.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* **video-tracking:** track end at 90 percent ([d12b832](https://github.com/oaknational/Oak-Web-Application/commit/d12b832fbb446af59cff199b59ad4f290e2bca79))
+* **video-tracking:** use ref for hasTrackedEnd ([b3a3cd1](https://github.com/oaknational/Oak-Web-Application/commit/b3a3cd176b2c20d0e4c0e6d18fb06385385e3a41))
+
 # [1.76.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.75.0...v1.76.0) (2022-11-29)
 
 
