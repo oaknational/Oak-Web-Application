@@ -40,7 +40,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           })),
         ]}
       />
-      <Flex $mt={32} $height={30} $font={"heading-7"}>
+      <Flex $pb={32} $ph={16} $height={30} $font={"heading-7"}>
         <OakLink
           $display="flex"
           $width={"auto"}

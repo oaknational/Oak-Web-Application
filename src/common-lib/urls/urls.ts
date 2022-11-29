@@ -10,6 +10,7 @@ const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
   "blog-index": "/blog",
+  "webinars-index": "/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
   contact: "/contact-us",
   "develop-your-curriculum": "/develop-your-curriculum",
@@ -23,7 +24,7 @@ const OAK_PAGES = {
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
-  "webinars-index": "/webinars",
+  "beta-teachers-home": "/beta/teachers",
 } as const;
 
 export type OakPageName = keyof typeof OAK_PAGES;
@@ -75,8 +76,10 @@ export type PostIndexLinkProps = {
     page?: string;
   };
 };
-export type UnitListingLinkProps = {
-  page: "unit-listing";
+export type UnitIndexLinkProps = {
+  page: "unit-index";
+  keyStage: string;
+  subject: string;
   search?: {
     ["learning-theme"]?: string | null;
   };
@@ -90,7 +93,7 @@ export type ResolveOakHrefProps =
       slug: string;
     }
   | PostIndexLinkProps
-  | UnitListingLinkProps;
+  | UnitIndexLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -130,8 +133,8 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
 
       return `${path}?${queryString}`;
     }
-    case "unit-listing": {
-      const path = "/units";
+    case "unit-index": {
+      const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
       if (!props.search) {
         return path;
       }
