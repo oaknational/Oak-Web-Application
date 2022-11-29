@@ -1,19 +1,20 @@
 import { FC } from "react";
 
-import { HomePage } from "../../common-lib/cms-types";
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import BlogList from "../Blog/BlogList";
-import { BlogListProps } from "../Blog/BlogList/BlogList";
-import Box from "../Box";
-import Flex from "../Flex";
-import { useNewsletterForm } from "../Forms/NewsletterForm";
-import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
-import Grid, { GridArea } from "../Grid";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import OakLink from "../OakLink";
-import HomeAboutCard from "../pages/Home/HomeAboutCard";
-import HomeHelpCard from "../pages/Home/HomeHelpCard";
-import Typography, { Heading } from "../Typography";
+import { HomePage } from "../../../common-lib/cms-types";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
+import BlogList from "../../Blog/BlogList";
+import { BlogListProps } from "../../Blog/BlogList/BlogList";
+import Box from "../../Box";
+import Flex from "../../Flex";
+import { useNewsletterForm } from "../../Forms/NewsletterForm";
+import NewsletterFormWrap from "../../Forms/NewsletterForm/NewsletterFormWrap";
+import Grid, { GridArea } from "../../Grid";
+import MaxWidth from "../../MaxWidth/MaxWidth";
+import OakLink from "../../OakLink";
+import Typography, { Heading } from "../../Typography";
+
+import HomeAboutCard from "./HomeAboutCard";
+import HomeHelpCard from "./HomeHelpCard";
 
 type SharedHomePageProps = {
   blogListProps: BlogListProps;

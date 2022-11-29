@@ -12,10 +12,7 @@ import CMSClient from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Flex from "../../components/Flex";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import {
-  HomeSiteCards,
-  SharedHomeContent,
-} from "../../components/SharedHomeContent";
+import { HomeSiteCards, SharedHomeContent } from "../../components/pages/Home";
 import useBlogList from "../../components/Blog/BlogList/useBlogList";
 
 const Teachers: NextPage<HomePageProps> = (props) => {

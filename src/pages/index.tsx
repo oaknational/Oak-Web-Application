@@ -31,10 +31,7 @@ import {
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
 import useBlogList from "../components/Blog/BlogList/useBlogList";
-import {
-  HomeSiteCards,
-  SharedHomeContent,
-} from "../components/SharedHomeContent";
+import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
