@@ -44,7 +44,7 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
   const { primaryTargetProps } = useClickableCard<HTMLAnchorElement>();
   return (
     <>
-      <Heading $font={["heading-7"]} tag={titleTag}>
+      <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
         <OakLink
           {...primaryTargetProps}
           page={"unit-index"}
@@ -62,7 +62,7 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
 
 const SummaryUnavailable: FC<TitleProps> = ({ titleTag, subjectTitle }) => {
   return (
-    <Heading $font={["heading-7"]} tag={titleTag}>
+    <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
       {subjectTitle}
     </Heading>
   );
@@ -111,10 +111,12 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         $width={"100%"}
         $justifyContent={"center"}
         $alignItems={"center"}
-        $pv={available ? 20 : 44}
+        $pv={8}
+        $ph={8}
         $transform={isHovered ? "translateY(-8px)" : null}
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $transition={"all 0.3s ease"}
+        $minHeight={110}
       >
         {available ? (
           <SummaryAvailable
