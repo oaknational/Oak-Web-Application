@@ -8,6 +8,7 @@ const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
   "blog-index": "/blog",
+  "webinars-index": "/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
   contact: "/contact-us",
   "develop-your-curriculum": "/develop-your-curriculum",
@@ -21,7 +22,6 @@ const OAK_PAGES = {
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
-  "webinars-index": "/webinars",
   "beta-teachers-home": "/beta/teachers",
 } as const;
 
@@ -81,6 +81,11 @@ export type ResolveOakHrefProps =
       search?: {
         page?: string;
       };
+    }
+  | {
+      page: "unit-index";
+      keyStage: string;
+      subject: string;
     };
 
 /**
@@ -116,6 +121,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       const query = new URLSearchParams(props.search);
 
       return `${path}?${query.toString()}`;
+    }
+    case "unit-index": {
+      return `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
     }
 
     default:

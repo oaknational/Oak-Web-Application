@@ -1,3 +1,18 @@
+## [1.73.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.1...v1.73.2) (2022-11-29)
+
+
+### Bug Fixes
+
+* **subject card component:** add prettier styles updated and linting fixes ([fc12208](https://github.com/oaknational/Oak-Web-Application/commit/fc1220817407554e9e7b47a280a29d48a14a0205))
+* **subject card component:** center title heading and add padding for long titles ([5ef97bf](https://github.com/oaknational/Oak-Web-Application/commit/5ef97bfaacdc60099c93e956f5d58cd3acd0c036))
+* **subject card component:** make units and lessons grey again ([7953c1c](https://github.com/oaknational/Oak-Web-Application/commit/7953c1cb934f8e081376b15f177cf843edb954da))
+* **subject card component:** remove tiers prop ([263d901](https://github.com/oaknational/Oak-Web-Application/commit/263d901e29023bf1b4d7130970b40167b689ce2e))
+* **subject card story:** add unit test ([0eeade5](https://github.com/oaknational/Oak-Web-Application/commit/0eeade5f30e5a9cee6d2e69cecd65707cadad6d9))
+* **subject card story:** remove unused variable ([4c73bfc](https://github.com/oaknational/Oak-Web-Application/commit/4c73bfcf18a36ce2d39f387b703422f594e4a071))
+* **subject card story:** unit test prettier ([9f3d905](https://github.com/oaknational/Oak-Web-Application/commit/9f3d905c1eb08a04216ff9075829366987a0074b))
+* **subject card:** add svg for image, relabel units and lessons ([5716535](https://github.com/oaknational/Oak-Web-Application/commit/5716535b0f742d959ed3a85320021588fde46801))
+* **subject card:** mix content fix ([c2ddbf3](https://github.com/oaknational/Oak-Web-Application/commit/c2ddbf3a6a98d72ebf5d5d3377c59a81fe28c49f))
+
 ## [1.73.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.0...v1.73.1) (2022-11-25)
 
 
