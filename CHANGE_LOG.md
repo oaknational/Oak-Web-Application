@@ -1,3 +1,10 @@
+# [1.74.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.2...v1.74.0) (2022-11-29)
+
+
+### Features
+
+* add comment to generated env file explaining write process ([bb75053](https://github.com/oaknational/Oak-Web-Application/commit/bb7505392c68e97c8b9d19afd9755015ea618a47))
+
 ## [1.73.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.1...v1.73.2) (2022-11-29)
 
 
