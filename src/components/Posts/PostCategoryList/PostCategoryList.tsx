@@ -22,7 +22,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
 
   const { getIsSelected, setSelected } = useCategoryFilterList({
     selectedKey: selectedCategorySlug,
-    getKey: (linkProps: PostIndexLinkProps) => linkProps.category,
+    getKey: (linkProps: PostIndexLinkProps) => linkProps.category || null,
   });
 
   return (
@@ -34,9 +34,9 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
         setSelected={setSelected}
         categories={[
           { label: "All", linkProps: { page } },
-          ...categories.map((c) => ({
-            label: c.title,
-            linkProps: { page, category: c.slug },
+          ...categories.map((cat) => ({
+            label: cat.title,
+            linkProps: { page, category: cat.slug },
           })),
         ]}
       />

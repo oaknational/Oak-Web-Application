@@ -59,6 +59,21 @@ describe("PostCategoryList", () => {
     const currentLink = getByRole("link", { current: "page" });
     expect(currentLink).toHaveAccessibleName("Lesson Planning");
   });
+  test("selectedCategorySlug null should mean All is current", () => {
+    const { getByRole } = renderWithTheme(
+      <PostCategoryList
+        page={"blog-index"}
+        labelledBy={labelId}
+        categories={[
+          { title: "Oak Updates", slug: "oak-updates" },
+          { title: "Lesson Planning", slug: "lesson-planning" },
+        ]}
+        selectedCategorySlug={null}
+      />
+    );
+    const currentLink = getByRole("link", { current: "page" });
+    expect(currentLink).toHaveAccessibleName("All");
+  });
   test("non current links should not be signposted with aria-current", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
