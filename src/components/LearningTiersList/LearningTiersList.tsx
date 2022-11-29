@@ -26,7 +26,7 @@ const LearningTiersList: FC<LearningTiersListProps> = ({
     <Flex $flexDirection="column">
       <Grid $mb={[16, 32]} $cg={16}>
         {tiers.map((tier) => (
-          <GridArea $colSpan={[12, 4]}>
+          <GridArea $mb={16} $colSpan={[12, 4]}>
             <LearningTiersListItem {...tier} background={background} />
           </GridArea>
         ))}
