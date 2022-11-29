@@ -7,7 +7,6 @@ import { ResolveOakHrefProps } from "../../../common-lib/urls";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
-  // key: string;
   linkProps: T;
   label: string;
 }
