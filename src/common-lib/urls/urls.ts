@@ -22,6 +22,7 @@ const OAK_PAGES = {
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
+  "beta-teachers-home": "/beta/teachers",
 } as const;
 
 export type OakPageName = keyof typeof OAK_PAGES;
