@@ -14,22 +14,22 @@ import { BlogPost } from "../../common-lib/cms-types";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Box from "../../components/Box";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
-import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
+import BlogPortableText from "../../components/Posts/PostPortableText/PostPortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import { sanityClientLike } from "../../components/CMSImage";
 import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
-import BlogWebinarsIndexLayout from "../../components/Blog/BlogWebinarsIndexLayout";
+import PostSingleLayout from "../../components/Posts/PostSingleLayout";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
 };
 
-export type BlogPageProps = {
+export type BlogSinglePageProps = {
   blog: SerializedBlog;
   categories: { title: string; slug: string }[];
 };
 
-const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
+const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
   const { blog, categories } = props;
 
   /**
@@ -62,11 +62,11 @@ const BlogDetailPage: NextPage<BlogPageProps> = (props) => {
         "Blog"
       )}
     >
-      <BlogWebinarsIndexLayout content={props}>
+      <PostSingleLayout content={props}>
         <Box $mt={[48]}>
           <BlogPortableText portableText={props.blog.contentPortableText} />
         </Box>
-      </BlogWebinarsIndexLayout>
+      </PostSingleLayout>
       <BlogJsonLd blog={props.blog} />
     </Layout>
   );
@@ -87,9 +87,10 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<
+  BlogSinglePageProps,
+  URLParams
+> = async (context) => {
   const blogSlug = context.params?.blogSlug as string;
   const isPreviewMode = context.preview === true;
 
@@ -114,7 +115,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
     date: blogResult.date.toISOString(),
   };
 
-  const results: GetStaticPropsResult<BlogPageProps> = {
+  const results: GetStaticPropsResult<BlogSinglePageProps> = {
     props: {
       categories,
       blog,
@@ -124,4 +125,4 @@ export const getStaticProps: GetStaticProps<BlogPageProps, URLParams> = async (
   return resultsWithIsr;
 };
 
-export default BlogDetailPage;
+export default BlogSinglePage;
