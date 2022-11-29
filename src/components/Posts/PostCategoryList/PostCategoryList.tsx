@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { BoxProps } from "../../Box";
+import Box, { BoxProps } from "../../Box";
 import OakLink from "../../OakLink";
 import Icon from "../../Icon";
 import Flex from "../../Flex";
@@ -26,9 +26,8 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   });
 
   return (
-    <>
+    <Box {...boxProps}>
       <CategoryFilterList
-        {...boxProps}
         labelledBy={labelledBy}
         getIsSelected={getIsSelected}
         setSelected={setSelected}
@@ -40,7 +39,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           })),
         ]}
       />
-      <Flex $pb={32} $ph={16} $height={30} $font={"heading-7"}>
+      <Flex $mt={32} $height={30} $font={"heading-7"}>
         <OakLink
           $display="flex"
           $width={"auto"}
@@ -58,7 +57,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           />
         </OakLink>
       </Flex>
-    </>
+    </Box>
   );
 };
 
