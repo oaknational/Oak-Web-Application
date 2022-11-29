@@ -12,4 +12,4 @@ export const blogListingPageSchema = z
   })
   .merge(documentSchema);
 
-export type BlogListingPage = z.infer<typeof blogListingPageSchema>;
+export type PostListingPage = z.infer<typeof blogListingPageSchema>;
