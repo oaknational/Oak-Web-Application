@@ -105,8 +105,8 @@ export const svgSymbols = {
  *
  * ## Usage
  * Just drop this component inside a Card or other relatively positioned
- * container, and it will act as a visual border around that component. gapPosition, hideTop
- * hiddBottom props are avaliable.
+ * container, and it will act as a visual border around that component. gapPosition, hideTop and
+ * hideBottom props are available.
  *
  * ## Note
  * Importantly, the SVGs for the border should have `preserveAspectRatio="none"`,
