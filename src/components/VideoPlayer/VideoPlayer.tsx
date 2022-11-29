@@ -35,7 +35,7 @@ export type VideoPlayerProps = {
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const { playbackId, thumbnailTime: thumbTime, title, location } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
-  const [hasTrackedEnd, setHasTrackedEnd] = useState(false);
+  const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
 
@@ -76,9 +76,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const onTimeUpdate = () => {
-    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEnd) {
+    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
       videoTracking.onEnd();
-      setHasTrackedEnd(true);
+      hasTrackedEndRef.current = true;
     }
   };
   const onError = (evt: Event) => {
