@@ -104,11 +104,11 @@ const webinarToArticle = (
   };
 };
 
-type BlogListJsonLdProps = {
+type PostListJsonLdProps = {
   blogs: SerializedBlogPostPreview[] | SerializedWebinarPreview[];
 };
 
-export const BlogListJsonLd: FC<BlogListJsonLdProps> = ({ blogs }) => {
+export const PostListJsonLd: FC<PostListJsonLdProps> = ({ blogs }) => {
   const blogListForJsonLd = blogs.map((blog, index) => {
     const blogObjects =
       "video" in blog ? webinarToArticle(blog) : blogToArticle(blog);
