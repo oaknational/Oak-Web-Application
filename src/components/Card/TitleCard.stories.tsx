@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./SubjectTitleCard";
+import Component from "./TitleCard";
 
 export default {
   title: "Cards",
@@ -12,9 +12,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const SubjectTitleCard = Template.bind({});
+export const TitleCard = Template.bind({});
 
-SubjectTitleCard.args = {
+TitleCard.args = {
   title: "Computer science",
   keyStage: "Key stage 4",
   keyStageSlug: "key-stage-4",

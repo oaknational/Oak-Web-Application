@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 import Flex from "../Flex";
-import { Heading } from "../Typography";
+import { Heading, Span } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Icon, { IconName } from "../Icon";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import OakLink from "../OakLink";
 import Box from "../Box";
 
-type SubjectTitleCardProps = {
+type TitleCardProps = {
   title: string;
   keyStage: string;
   keyStageSlug: string;
@@ -22,7 +22,7 @@ type SubjectTitleCardProps = {
  * ## Usage
  * Used on subject by keystage, tier, unit and lesson pages.
  */
-const SubjectTitleCard: FC<SubjectTitleCardProps> = ({
+const TitleCard: FC<TitleCardProps> = ({
   title,
   keyStage,
   keyStageSlug,
@@ -49,29 +49,25 @@ const SubjectTitleCard: FC<SubjectTitleCardProps> = ({
             {title}
           </Heading>
           <OakLink slug={keyStageSlug} page={"key-stage"}>
-            <Heading $font={"heading-7"} tag={"h2"}>
-              {keyStage}
-            </Heading>
+            <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
         </Box>
       </Flex>
       <Flex
         $justifyContent={"center"}
         $alignItems={"center"}
-        $height={[130, 160]}
+        $minHeight={[130, 160]}
         $width={["100%", 160]}
         $background={background}
       >
-        <Icon size={[92, 120]} name={iconName}>
-          {title}
-        </Icon>
+        <Icon size={[92, 120]} name={iconName} />
       </Flex>
     </Flex>
   );
 };
 
-SubjectTitleCard.defaultProps = {
+TitleCard.defaultProps = {
   background: "teachersPastelYellow",
 };
 
-export default SubjectTitleCard;
+export default TitleCard;
