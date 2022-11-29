@@ -1,3 +1,13 @@
+# [1.75.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.74.0...v1.75.0) (2022-11-29)
+
+
+### Features
+
+* add shared home content to teachers homepage ([8bbde6e](https://github.com/oaknational/Oak-Web-Application/commit/8bbde6e25461d28deed5b5d15815e3254aaf0cb6))
+* add shared home content to teachers homepage ([6c98fe3](https://github.com/oaknational/Oak-Web-Application/commit/6c98fe32d2601edcd1dbc654bd76b568a032737a))
+* add shared home content to teachers homepage ([a7b4edd](https://github.com/oaknational/Oak-Web-Application/commit/a7b4edd6695394cb6d7d00158ea469ddcb018c75))
+* oak icon links to teachers home not to homesite home ([2aefd80](https://github.com/oaknational/Oak-Web-Application/commit/2aefd803f3e07947fe7386014727bb7eb6476bc1))
+
 # [1.74.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.2...v1.74.0) (2022-11-29)
 
 
