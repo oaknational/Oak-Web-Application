@@ -72,7 +72,7 @@ describe("PortableText", () => {
       expect(link).toHaveAttribute("href", "/legal/some-policy");
     });
 
-    it("renders nothing and warns when it can't resolve a href", () => {
+    it("renders nothing and warns when passed an un-resolved ref", () => {
       const { queryByRole } = renderWithTheme(
         <PTInternalLink
           children={["Some internal link"]}
@@ -80,7 +80,7 @@ describe("PortableText", () => {
           markType="internalLink"
           value={{
             _type: "internalLink",
-            reference: { contentType: "doesntExist" as never },
+            reference: { _type: "reference", _ref: "abcdef" },
           }}
           renderNode={() => undefined}
         />
@@ -90,7 +90,38 @@ describe("PortableText", () => {
       expect(link).not.toBeInTheDocument();
 
       expect(consoleWarnSpy).toHaveBeenCalled();
-      expect(reportError).toHaveBeenCalled();
+      expect(reportError).toHaveBeenCalledWith(
+        expect.any(Error),
+        expect.objectContaining({
+          internalReference: { _ref: "abcdef", _type: "reference" },
+        })
+      );
+    });
+
+    it("renders nothing and warns when it can't resolve a href", () => {
+      const { queryByRole } = renderWithTheme(
+        <PTInternalLink
+          children={["Some internal link"]}
+          text="Some internal link"
+          markType="internalLink"
+          value={{
+            _type: "internalLink",
+            reference: { contentType: "does-not-exist" as never },
+          }}
+          renderNode={() => undefined}
+        />
+      );
+
+      const link = queryByRole("link");
+      expect(link).not.toBeInTheDocument();
+
+      expect(consoleWarnSpy).toHaveBeenCalled();
+      expect(reportError).toHaveBeenCalledWith(
+        expect.any(Error),
+        expect.objectContaining({
+          internalReference: { contentType: "does-not-exist" },
+        })
+      );
     });
   });
 

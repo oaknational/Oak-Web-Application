@@ -144,7 +144,7 @@ const Icon: FC<IconProps> = (props) => {
         <Svg
           {...svgProps}
           $transition="transform 0.4s ease-out"
-          $transform={scale}
+          $transform={svgProps.$transform || scale}
         />
       </IconWrapper>
     </IconOuterWrapper>

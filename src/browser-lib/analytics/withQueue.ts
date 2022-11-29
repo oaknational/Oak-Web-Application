@@ -8,13 +8,12 @@ import {
   PageFn,
   PageProperties,
 } from "../../context/Analytics/AnalyticsProvider";
-import { UserId } from "../../context/Auth";
 import isBrowser from "../../utils/isBrowser";
 
 type QueueItem =
   | {
       type: "identify";
-      userId: UserId;
+      userId: string;
       props: IdentifyProperties;
     }
   | {

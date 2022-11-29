@@ -5,18 +5,16 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import { margin, MarginProps } from "../../styles/utils/spacing";
-import Box from "../Box";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
-import ScreenReaderOnly from "../ScreenReaderOnly";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { Span } from "../Typography";
 import Label from "../Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
 import { OakColorName } from "../../styles/theme/types";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import Svg from "../Svg";
+import FieldError from "../FormFields/FieldError";
 
 import InputIcon from "./InputIcon";
 
@@ -121,7 +119,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 type InputProps = UnstyledInputProps &
   StyledInputProps & {
     id: string;
-    label?: string;
+    label: string;
     error?: string;
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
@@ -132,22 +130,20 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        {label && (
-          <ScreenReaderOnly>
-            <Label $font={"body-4"} htmlFor={id} id={labelId}>
-              {label}
-            </Label>
-          </ScreenReaderOnly>
-        )}
-        <InputFieldWrap $mb={error ? 0 : 32} $alignItems="center">
+        <InputFieldWrap
+          $mb={error ? 0 : 32}
+          $alignItems="center"
+          $background="white"
+        >
           <Flex $width={"100%"} $position={"relative"}>
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
               <RotatedInputLabel
                 aria-hidden="true"
-                background={error ? "teachersRed" : "pastelTurqoise"}
+                background={error ? "failure" : "pastelTurquoise"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
+                id={labelId}
                 $font={"body-3"}
               >
                 {label}
@@ -167,14 +163,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
           </Flex>
         </InputFieldWrap>
-
-        {error && (
-          <Box $mt={4} $mb={error ? 24 : 0}>
-            <Span $color="failure" $font={"body-4"} id={errorId}>
-              {error}
-            </Span>
-          </Box>
-        )}
+        <FieldError id={errorId}>{error}</FieldError>
       </>
     );
   }

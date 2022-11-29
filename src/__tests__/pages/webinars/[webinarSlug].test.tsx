@@ -2,10 +2,22 @@ import { screen, waitFor } from "@testing-library/react";
 
 import { Webinar } from "../../../common-lib/cms-types";
 import WebinarDetailPage, {
+  SerializedWebinar,
   WebinarPageProps,
 } from "../../../pages/webinars/[webinarSlug]";
+import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+
+const webinarPageViewed = jest.fn();
+jest.mock("../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      webinarPageViewed: (...args: unknown[]) => webinarPageViewed(...args),
+    },
+  }),
+}));
 
 const testWebinar: Webinar = {
   title: "An upcoming webinar",
@@ -26,6 +38,7 @@ const testWebinar: Webinar = {
   ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+  video: mockVideoAsset(),
 };
 
 const testWebinar2: Webinar = {
@@ -47,11 +60,17 @@ const testWebinar2: Webinar = {
   ],
   category: { title: "Some category", slug: "some-category" },
   summaryPortableText: [],
+  video: mockVideoAsset(),
 };
 
-const testSerializedWebinar = {
+const testSerializedWebinar: SerializedWebinar = {
   ...testWebinar,
   date: new Date().toISOString(),
+  author: {
+    name: "Joe Bloggs",
+    role: "Geographer Teacher",
+    id: "jbloggs",
+  },
 };
 
 const webinars = jest.fn(() => [testWebinar, testWebinar2]);
@@ -73,7 +92,10 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
       renderWithProviders(
-        <WebinarDetailPage webinar={testSerializedWebinar} />
+        <WebinarDetailPage
+          webinar={testSerializedWebinar}
+          categories={[{ title: "Teaching", slug: "teaching" }]}
+        />
       );
 
       await waitFor(() => {
@@ -83,13 +105,46 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       });
     });
 
-    describe.skip("SEO", () => {
+    it("calls tracking.webinarPageViewed once, with correct props", () => {
+      renderWithProviders(
+        <WebinarDetailPage
+          webinar={testSerializedWebinar}
+          categories={[{ title: "Teaching", slug: "teaching" }]}
+        />
+      );
+
+      expect(webinarPageViewed).toHaveBeenCalledTimes(1);
+      expect(webinarPageViewed).toHaveBeenCalledWith({
+        videoAvailable: true,
+        webinarCategory: "Some category",
+        webinarTitle: "An upcoming webinar",
+      });
+    });
+
+    describe("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo(
-          <WebinarDetailPage webinar={testSerializedWebinar} />
+          <WebinarDetailPage
+            webinar={testSerializedWebinar}
+            categories={[{ title: "Teaching", slug: "teaching" }]}
+          />
         );
 
-        expect(seo).toEqual({});
+        expect(seo).toEqual({
+          ...mockSeoResult,
+          title: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
+          description: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogTitle: "An upcoming webinar | NEXT_PUBLIC_SEO_APP_NAME",
+          ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          ogImage:
+            "https://image.mux.com/5678/thumbnail.png?width=1600&height=900&fit_mode=smartcrop&time=1",
+          ogImageAlt: undefined,
+          ogImageHeight: undefined,
+          ogImageWidth: undefined,
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        });
       });
     });
   });

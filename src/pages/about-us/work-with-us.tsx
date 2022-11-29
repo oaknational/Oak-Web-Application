@@ -5,7 +5,6 @@ import { Fragment } from "react";
 import config from "../../config/browser";
 import CMSClient from "../../node-lib/cms";
 import { AboutWorkWithUsPage } from "../../common-lib/cms-types";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Card from "../../components/Card";
@@ -18,6 +17,7 @@ import Grid, { GridArea } from "../../components/Grid";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
+import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
@@ -30,8 +30,9 @@ const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
 };
 
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
+  const { seo } = pageData;
   return (
-    <Layout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
         <AboutUsSummaryCard {...pageData} />
         <AboutIntroCard
@@ -61,9 +62,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       <ButtonAsLink
                         background="teachersHighlight"
                         label={card.cta.label}
+                        page={null}
                         href={card.cta.external}
                         icon={"External"}
-                        iconPosition={"trailing"}
+                        $iconPosition={"trailing"}
                       >
                         {card.cta.label}
                       </ButtonAsLink>
@@ -76,7 +78,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           ))}
         </Grid>
 
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

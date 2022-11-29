@@ -4,8 +4,6 @@ package-lock.json
 
 # Generated files
 src/browser-lib/avo/Avo.ts
-src/browser-lib/graphql/generated
-src/node-lib/graphql/generated
 src/node-lib/sanity-graphql/generated
 .next
 next-env.d.ts

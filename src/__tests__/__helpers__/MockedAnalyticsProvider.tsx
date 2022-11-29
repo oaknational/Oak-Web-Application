@@ -5,7 +5,9 @@ import { analyticsContext } from "../../context/Analytics/AnalyticsProvider";
 
 import noop from "./noop";
 
-const MockedAnalyticsProvider: FC = ({ children }) => {
+const MockedAnalyticsProvider: FC<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   const noopTrack = Object.entries(Avo).reduce((acc, [trackName]) => {
     // eslint-disable-next-line
     // @ts-ignore

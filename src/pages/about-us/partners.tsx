@@ -77,9 +77,9 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </Flex>
         <ButtonAsLink
           icon={"ArrowRight"}
-          iconPosition={"trailing"}
+          $iconPosition={"trailing"}
           label={"Our teachers"}
-          href={"https://classroom.thenational.academy/teachers"}
+          page="our-teachers"
           $mh="auto"
           $mb={[80, 92]}
         />
@@ -100,7 +100,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             <ImageContainer $pa={[8, 32]} name={partner.name} image={partner} />
           ))}
         </Flex>
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

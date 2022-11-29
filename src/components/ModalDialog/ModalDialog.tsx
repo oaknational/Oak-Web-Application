@@ -1,5 +1,5 @@
-import { FC, ReactNode, RefObject } from "react";
-import { FocusScope } from "react-aria";
+import { FC, MutableRefObject, ReactNode, RefObject } from "react";
+import { FocusOn } from "react-focus-on";
 
 import Flex from "../Flex";
 
@@ -12,10 +12,18 @@ type ModalDialogProps = {
   children: ReactNode;
   innerRef: RefObject<HTMLDivElement>;
   size: DialogModalSize;
+  returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
 };
 const ModalDialog: FC<ModalDialogProps> = (props) => {
-  const { children, size, innerRef, underlayProps, overlayProps, titleProps } =
-    props;
+  const {
+    children,
+    size,
+    innerRef,
+    underlayProps,
+    overlayProps,
+    titleProps,
+    returnFocusRef,
+  } = props;
 
   return (
     <Flex
@@ -27,7 +35,17 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
       $justifyContent="center"
       {...underlayProps}
     >
-      <FocusScope contain restoreFocus autoFocus>
+      <FocusOn
+        onDeactivation={() => {
+          /**
+           * @todo shouldn't need to do this, once react-aria OverlayProvider
+           * is removed
+           * Without the zero-timeout, focus will likely remain on the button/control
+           * you used to set isFocusLockDisabled = true
+           */
+          window.setTimeout(() => returnFocusRef?.current?.focus(), 0);
+        }}
+      >
         <Flex
           {...overlayProps}
           aria-labelledby={titleProps.id}
@@ -43,7 +61,7 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
         >
           {children}
         </Flex>
-      </FocusScope>
+      </FocusOn>
     </Flex>
   );
 };

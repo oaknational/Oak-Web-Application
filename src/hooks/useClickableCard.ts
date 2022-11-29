@@ -24,7 +24,7 @@ const getInteractiveAncestor = (
  * For creating a clickable card. Returns 'primaryTargetProps' and
  * 'containerProps'.
  * {primaryTargetProps} should be spread on the primary link or button of the
- * clikable card.
+ * clickable card.
  * {containerProps} should be spread on the container (the card itself).
  *
  * **Note: any secondary button or link callbacks should call
@@ -33,7 +33,7 @@ const getInteractiveAncestor = (
 const useClickableCard = <
   T extends HTMLAnchorElement | HTMLButtonElement
 >() => {
-  const ref = useRef<T>(null);
+  const ref = useRef<T | null>(null);
   const { isHovered, hoverProps } = useHover({});
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target instanceof Element) {

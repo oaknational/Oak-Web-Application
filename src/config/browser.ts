@@ -1,4 +1,3 @@
-import seoConfig from "../../next-seo.config";
 import isBrowser from "../utils/isBrowser";
 
 type EnvValue = string | number;
@@ -42,64 +41,6 @@ const satisfies =
 type ConfigKey = keyof typeof envVars;
 
 const envVars = satisfies<Record<string, EnvVar>>()({
-  firebaseConfigApiHost: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_API_HOST,
-    envName: "NEXT_PUBLIC_FIREBASE_API_HOST",
-    required: true,
-    availableInBrowser: true,
-    default: "identitytoolkit.googleapis.com",
-    description: "Used for proxying firebase auth, for zero-rating",
-  },
-  firebaseConfigTokenApiHost: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST,
-    envName: "NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST",
-    required: true,
-    availableInBrowser: true,
-    default: "securetoken.googleapis.com",
-    description: "Used for proxying firebase auth, for zero-rating",
-  },
-  firebaseApiKey: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    envName: "NEXT_PUBLIC_FIREBASE_API_KEY",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseAuthDomain: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    envName: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseProjectId: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    envName: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseStorageBucket: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    envName: "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseMessagingSenderId: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    envName: "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  firebaseAppId: {
-    value: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    envName: "NEXT_PUBLIC_FIREBASE_APP_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
   clientAppBaseUrl: {
     value: process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL,
     envName: "NEXT_PUBLIC_CLIENT_APP_BASE_URL",
@@ -128,66 +69,66 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  appName: {
-    value: seoConfig.NEXT_PUBLIC_APP_NAME,
-    envName: "NEXT_PUBLIC_APP_NAME",
-    required: true,
+  seoAppName: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_NAME,
+    envName: "NEXT_PUBLIC_SEO_APP_NAME",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appDescription: {
-    value: seoConfig.NEXT_PUBLIC_APP_DESCRIPTION,
-    envName: "NEXT_PUBLIC_APP_DESCRIPTION",
-    required: true,
+  seoAppDescription: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_DESCRIPTION,
+    envName: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appLocale: {
-    value: seoConfig.NEXT_PUBLIC_APP_LOCALE,
-    envName: "NEXT_PUBLIC_APP_LOCALE",
-    required: true,
+  seoAppLocale: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_LOCALE,
+    envName: "NEXT_PUBLIC_SEO_APP_LOCALE",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appUrl: {
-    value: seoConfig.NEXT_PUBLIC_APP_URL,
-    envName: "NEXT_PUBLIC_APP_URL",
-    required: true,
+  seoAppUrl: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_URL,
+    envName: "NEXT_PUBLIC_SEO_APP_URL",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appLogo: {
-    value: seoConfig.NEXT_PUBLIC_APP_LOGO,
-    envName: "NEXT_PUBLIC_APP_LOGO",
-    required: true,
+  seoAppLogo: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_LOGO,
+    envName: "NEXT_PUBLIC_SEO_APP_LOGO",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appSocialSharingImg: {
-    value: seoConfig.NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG,
-    envName: "NEXT_PUBLIC_APP_SOCIAL_SHARING_IMG",
-    required: true,
+  seoAppSocialSharingImg: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG,
+    envName: "NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appFacebook: {
-    value: seoConfig.NEXT_PUBLIC_APP_FACEBOOK,
-    envName: "NEXT_PUBLIC_APP_FACEBOOK",
-    required: true,
+  seoAppFacebook: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK,
+    envName: "NEXT_PUBLIC_SEO_APP_FACEBOOK",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appTwitter: {
-    value: seoConfig.NEXT_PUBLIC_APP_TWITTER,
-    envName: "NEXT_PUBLIC_APP_TWITTER",
-    required: true,
+  seoAppTwitter: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_TWITTER,
+    envName: "NEXT_PUBLIC_SEO_APP_TWITTER",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
-  appTwitterHandle: {
-    value: seoConfig.NEXT_PUBLIC_APP_TWITTER_HANDLE,
-    envName: "NEXT_PUBLIC_APP_TWITTER_HANDLE",
-    required: true,
+  seoAppTwitterHandle: {
+    value: process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE,
+    envName: "NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE",
+    required: false,
     availableInBrowser: true,
     default: null,
   },
@@ -312,6 +253,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: "off",
     description:
       "Logs accessibility concerns to the console. Should be disabled in production",
+  },
+  webinarSignUpUrl: {
+    value: process.env.NEXT_PUBLIC_WEBINAR_SIGN_UP_URL,
+    envName: "NEXT_PUBLIC_WEBINAR_SIGN_UP_URL",
+    required: true,
+    availableInBrowser: true,
+    description: "Sign up link for upcoming webinars",
+    default: null,
   },
 });
 

@@ -23,10 +23,11 @@ module.exports = async (phase) => {
   let appVersion;
   let isProductionBuild = false;
   const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
+  const isTestBuild = phase === PHASE_TEST || process.env.NODE_ENV === "test";
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
-  if (phase === PHASE_TEST || process.env.NODE_ENV === "test") {
+  if (isTestBuild) {
     oakConfig = await fetchConfig("oak-config/oak.config.test.json");
 
     releaseStage = RELEASE_STAGE_TESTING;
@@ -34,9 +35,6 @@ module.exports = async (phase) => {
   } else {
     const configLocation = process.env.OAK_CONFIG_LOCATION;
     oakConfig = await fetchConfig(configLocation);
-
-    // DEBUG
-    // console.log("Next Oak Config", oakConfig);
 
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
@@ -49,6 +47,7 @@ module.exports = async (phase) => {
         // Netlify
         process.env.CONTEXT
     );
+
     isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
     console.log(`Found app version: "${appVersion}"`);
@@ -69,16 +68,19 @@ module.exports = async (phase) => {
   const SANITY_ASSET_CDN_HOST =
     process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
-  const imageDomains = [SANITY_ASSET_CDN_HOST].filter(Boolean);
+  const imageDomains = ["image.mux.com", SANITY_ASSET_CDN_HOST].filter(Boolean);
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     webpack: (config, { dev }) => {
+      // Production and preview builds
+      if (!dev && !isTestBuild) {
+        // Add source maps.
+        config.devtool = "source-map";
+        console.log("Building source-maps");
+      }
       // Production builds only.
       if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
-        // Add source maps to production builds.
-        config.devtool = "source-map";
-
         // Tell Bugsnag about the build.
         const bugsnagBuildInfo = {
           apiKey: oakConfig.bugsnag.apiKey,
@@ -118,6 +120,7 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
+    swcMinify: true,
 
     // Allow static builds with deleted beta pages to build.
     eslint: {

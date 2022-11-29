@@ -1,14 +1,16 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Grid from "../Grid";
 import GridArea from "../Grid/GridArea";
+import Grid from "../Grid";
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 
 import Component from "./";
 
 export default {
   title: "Media/ Video Player",
   component: Component,
+  decorators: [AnalyticsDecorator],
   argTypes: {
     playbackId: {
       defaultValue: "wgjCIRWRr00OSum34AWeU87lmSSCtNjEOViD9X5YSG8k",

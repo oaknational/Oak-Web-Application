@@ -15,6 +15,7 @@ import lessonElementSvgSymbols, {
 import brushSvgSymbols, { BRUSH_NAMES } from "./BrushSvgs";
 import loopingLineSvgSymbols, { LOOPING_LINES } from "./LoopingLineSvgs";
 import LoopingArrow1 from "./LoopingArrow1.graphic";
+import bubbleSvgSymbols, { BUBBLES } from "./BubbleSvgs";
 
 const SpriteSheet: FC = () => {
   return (
@@ -61,6 +62,12 @@ const SpriteSheet: FC = () => {
       })}
       {LOOPING_LINES.map((name) => {
         const BrushSymbol = loopingLineSvgSymbols[name];
+        return (
+          <BrushSymbol key={`spritesheet-${name}`} id={getSvgId({ name })} />
+        );
+      })}
+      {BUBBLES.map((name) => {
+        const BrushSymbol = bubbleSvgSymbols[name];
         return (
           <BrushSymbol key={`spritesheet-${name}`} id={getSvgId({ name })} />
         );

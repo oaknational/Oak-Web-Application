@@ -2,11 +2,13 @@ import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
 import config from "../../config/browser";
+import { AnonymousUserId } from "../../browser-lib/analytics/useAnonymousId";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
+import OakError from "../../errors/OakError";
 
 import { consoleError, consoleLog } from "./logging";
-import bugsnagNotify from "./bugsnagNotify";
+import bugsnagNotify, { BugsnagConfig } from "./bugsnagNotify";
 
 /**
  * Test if a user agent matches any in a list of regex patterns.
@@ -25,19 +27,22 @@ const getBugsnagConfig = ({
   apiKey,
   appVersion,
   releaseStage,
+  userId,
 }: {
   apiKey: string;
   appVersion: string;
   releaseStage: string;
-}) => {
+  userId: AnonymousUserId;
+}): BugsnagConfig => {
   return {
     apiKey,
     appVersion,
     plugins: [new BugsnagPluginReact()],
-    // @TODO: Add userId or anonymous id
-    // user: { id: userId },
     releaseStage,
-    collectUserIp: true,
+    collectUserIp: false,
+    user: {
+      id: userId,
+    },
     // Route notifications via our domains for zero rating.
     endpoints: {
       notify: "https://bugsnag-notify.thenational.academy",
@@ -66,11 +71,12 @@ const getBugsnagConfig = ({
   };
 };
 
-export const initialiseBugsnag = () => {
+export const initialiseBugsnag = (userId: AnonymousUserId) => {
   const bugsnagConfig = getBugsnagConfig({
     apiKey: config.get("bugsnagApiKey"),
     appVersion: config.get("appVersion"),
     releaseStage: config.get("releaseStage"),
+    userId,
   });
 
   // Start Bugsnag
@@ -82,7 +88,6 @@ export const initialiseBugsnag = () => {
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
-  originalError?: Error;
   // All errors with the same groupingHash will be grouped together in Bugsnag
   groupingHash?: string;
 };
@@ -103,7 +108,10 @@ const errorify = (maybeError: unknown): Error => {
 };
 
 const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
-  const reportError = async (maybeError: Error | unknown, data?: ErrorData) => {
+  const reportError = async (
+    maybeError: OakError | Error | unknown,
+    data?: ErrorData
+  ) => {
     consoleError(maybeError);
     consoleLog(context, metadata, data);
 
@@ -121,7 +129,11 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
 
       await bugsnagNotify(err, (event: Event) => {
         event.context = context;
-        const { originalError, severity, groupingHash, ...metaFields } = {
+
+        const originalError =
+          maybeError instanceof OakError ? maybeError.originalError : undefined;
+
+        const { severity, groupingHash, ...metaFields } = {
           ...metadata,
           ...data,
         };

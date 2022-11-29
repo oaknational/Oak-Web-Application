@@ -1,23 +1,23 @@
 {
   "avo": {
-    "version": 2
+    "version": 3
   },
   "schema": {
     "id": "5PhajbVijwhXVKIJtGMT",
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "master",
-    "name": "main"
+    "id": "kruGF23Um",
+    "name": "support-your-team-source"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "BdVQf6g48upwHF90e9Hm",
-      "branchId": "master",
-      "updatedAt": "2022-09-07T12:39:10.115Z"
+      "actionId": "IddyPslhu4lO7EOhHI9P",
+      "branchId": "kruGF23Um",
+      "updatedAt": "2022-11-18T10:05:49.706Z"
     }
   ],
   "force": false

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Heading } from "../../Typography";
 
-const BlogSectionHeading: FC = (props) => {
+const BlogSectionHeading: FC<{ children?: React.ReactNode }> = (props) => {
   return (
     <Heading
       $font={["heading-6", "heading-4"]}

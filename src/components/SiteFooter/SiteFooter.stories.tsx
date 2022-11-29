@@ -1,10 +1,14 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
+import CookieConsentDecorator from "../../storybook-decorators/CookieConsentDecorator";
+
 import Component from "./SiteFooter";
 
 export default {
   title: "Headers & Footers/Site Footer",
+  decorators: [CookieConsentDecorator, AnalyticsDecorator],
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

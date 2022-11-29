@@ -118,11 +118,11 @@ const getLessonPlanningCards = (planningPage: PlanningPage) => {
   ];
 };
 
-const SectionHeader: FC = (props) => {
+const SectionHeader: FC<{ children?: React.ReactNode }> = (props) => {
   return <Box as="header" $width={"100%"} {...props} />;
 };
 
-const SectionTitle: FC = (props) => {
+const SectionTitle: FC<{ children?: React.ReactNode }> = (props) => {
   return (
     <Flex
       $justifyContent="center"
@@ -229,14 +229,14 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $width={["100%", "auto"]}
                 $minWidth={"50%"}
                 $height={[360, 240]}
-                $background="pastelTurqoise"
+                $background="pastelTurquoise"
                 $justifyContent={"flex-end"}
                 $alignItems={["center", "center", "flex-end"]}
                 $pr={[0, 24]}
                 $pb={24}
                 $pa={0}
               >
-                <BrushBorders hideOnMobileH color={"pastelTurqoise"} />
+                <BrushBorders hideOnMobileH color={"pastelTurquoise"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
@@ -255,9 +255,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </Cover>
                 <ButtonAsLink
                   icon="Search"
-                  iconPosition="trailing"
+                  $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  href={"https://teachers.thenational.academy"}
+                  page="teachers-home"
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -325,10 +325,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
                               icon="Search"
-                              iconPosition="trailing"
+                              $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              href={"https://teachers.thenational.academy"}
+                              page="teachers-home"
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -370,7 +370,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $minWidth={["50%"]}
               >
                 {pageData.learnMoreBlock1.mediaType == "video" && (
-                  <CMSVideo video={pageData.learnMoreBlock1.video} />
+                  <CMSVideo
+                    video={pageData.learnMoreBlock1.video}
+                    location="marketing"
+                  />
                 )}
               </Flex>
             </Box>
@@ -420,7 +423,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $width={["100%", "100%", "auto"]}
               $minWidth={"50%"}
               $height={[360, 240]}
-              $background="pastelTurqoise"
+              $background="pastelTurquoise"
               $justifyContent={"flex-end"}
               $alignItems={["center", "center", "flex-end"]}
               $pr={[0, 24]}
@@ -446,9 +449,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 
               <ButtonAsLink
                 icon="Search"
-                iconPosition="trailing"
+                $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                href={"https://teachers.thenational.academy"}
+                page="teachers-home"
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

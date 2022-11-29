@@ -55,7 +55,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               $mb={[40, 32]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
-              $textAlign={["center", "left"]}
+              $textAlign={["center"]}
             >
               Our interim board
             </Heading>
@@ -72,7 +72,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurqoise"} $mv={32} />
+            <Hr $color={"pastelTurquoise"} $mv={32} />
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
@@ -100,6 +100,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                         <IconButtonAsLink
                           icon={"Download"}
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
+                          page={null}
                           href={`${doc.file.asset.url}?dl`}
                           background={"teachersHighlight"}
                         />
@@ -111,7 +112,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             })}
           </Grid>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurqoise"} $mv={0} $mt={32} />
+            <Hr $color={"pastelTurquoise"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
         <Card
@@ -130,7 +131,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </Typography>
         </Card>
 
-        <AboutContactCard />
+        <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

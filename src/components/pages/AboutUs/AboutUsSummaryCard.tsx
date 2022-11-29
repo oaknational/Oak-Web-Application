@@ -1,4 +1,4 @@
-import { reducedAboutNavLinks } from "../../../browser-lib/fixtures/aboutNav";
+import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
 import {
   AboutBoardPage,
   AboutWhoWeArePage,
@@ -33,11 +33,13 @@ const AboutUsSummaryCard = ({
       imageContainerProps={{
         $minHeight: 220,
         $mr: 32,
+        $minWidth: 166,
       }}
     >
       <ButtonLinkNav
         $mt={36}
-        buttons={reducedAboutNavLinks}
+        $mr={-36}
+        buttons={aboutNavLinks}
         ariaLabel="about us"
       />
     </SummaryCard>

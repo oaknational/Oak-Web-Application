@@ -20,7 +20,7 @@ type HTMLProps = {
   onClick?: MouseEventHandler;
 };
 
-export type BoxProps = CoverProps &
+export type BoxProps = { children?: React.ReactNode } & CoverProps &
   PositionProps &
   SizeProps &
   SpacingProps &

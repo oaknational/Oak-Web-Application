@@ -1,10 +1,13 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
+
 import { SignupPrompt as Component } from "./SignupPrompt";
 
 export default {
   title: "Sanity/Pages/Landing Pages",
+  decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

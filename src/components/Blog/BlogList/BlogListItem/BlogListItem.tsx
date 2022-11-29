@@ -4,45 +4,72 @@ import { useHover } from "react-aria";
 import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
 import Box from "../../../Box";
 import useClickableCard from "../../../../hooks/useClickableCard";
-import CMSImage from "../../../CMSImage";
 import Flex from "../../../Flex";
 import LineClamp from "../../../LineClamp";
 import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../../Typography";
 import AspectRatio from "../../../AspectRatio";
+import { ResolveOakHrefProps } from "../../../../common-lib/urls";
+import formatDate from "../../../../utils/formatDate";
+
+import BlogListItemImage from "./BlogListItemImage";
 
 type BlogListItemContentType = "blog-post" | "webinar";
+
+const getItemLinkProps = (props: BlogListItemProps): ResolveOakHrefProps => {
+  switch (props.contentType) {
+    case "blog-post":
+      return {
+        page: "blog",
+        slug: props.slug,
+      };
+    case "webinar":
+      return {
+        page: "webinars",
+        slug: props.slug,
+      };
+  }
+};
+const getItemCategoryLinkProps = (
+  props: BlogListItemProps
+): ResolveOakHrefProps => {
+  switch (props.contentType) {
+    case "blog-post":
+      return {
+        page: "blog-index",
+        category: props.category.slug,
+      };
+    case "webinar":
+      return {
+        page: "webinars-index",
+        category: props.category.slug,
+      };
+  }
+};
 
 export type BlogListItemProps = {
   titleTag: HeadingTag;
   title: string;
-  snippet: string;
-  href: string;
+  summary: string;
+  slug: string;
   contentType: BlogListItemContentType;
   category: BlogWebinarCategory;
   date: string;
-  mainImage?: Image | null;
   withImage?: boolean;
-};
+} & (
+  | { contentType: "blog-post"; mainImage?: Image | null }
+  | { contentType: "webinar"; thumbnailUrl?: string | null }
+);
 
 /**
- * Contains an image, title, and text snippet.
+ * Contains an image, title, and text summary.
  * The component contains a link styled as a button, which
  * whose click target stretches across the entire component.
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const BlogListItem: FC<BlogListItemProps> = (props) => {
-  const {
-    titleTag,
-    title,
-    snippet,
-    href,
-    category,
-    date,
-    withImage,
-    mainImage,
-  } = props;
+  const { titleTag, title, summary, category, date, withImage } = props;
 
   const {
     containerProps,
@@ -52,11 +79,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
   const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
     useHover({});
 
-  const blogDate = new Date(date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const blogDate = formatDate(date);
 
   return (
     <Flex
@@ -66,7 +89,7 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
       $alignItems={"center"}
       $pa={0}
     >
-      {withImage && mainImage && (
+      {withImage && (
         <Box
           $display={["block", "none", "block"]}
           $position={"relative"}
@@ -75,19 +98,15 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
           $mr={[0, 32]}
           $mb={[32, 0]}
         >
-          <BoxBorders $zIndex={"inFront"} gapPosition="bottomRight" />
+          <BoxBorders
+            $zIndex={"inFront"}
+            gapPosition={
+              props.contentType === "webinar" ? undefined : "bottomRight"
+            }
+          />
           <Box $ma={1}>
             <AspectRatio ratio={"3:2"}>
-              <CMSImage
-                fill
-                $objectFit="cover"
-                $objectPosition="center center"
-                image={mainImage}
-                sizes="(min-width: 750px) 256px, 100vw"
-                // Explicitly set an empty string for missing alt text in thumbnails
-                // pending a a11y decision on alt for thumbs
-                alt={mainImage.altText || ""}
-              />
+              <BlogListItemImage {...props} />
             </AspectRatio>
           </Box>
         </Box>
@@ -101,9 +120,8 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         >
           <OakLink
             {...categoryHoverProps}
-            page="blog-index"
-            category={category.slug}
-            focusStyles={["underline"]}
+            {...getItemCategoryLinkProps(props)}
+            $focusStyles={["underline"]}
             $font="heading-7"
             $color="hyperlink"
           >
@@ -116,17 +134,16 @@ const BlogListItem: FC<BlogListItemProps> = (props) => {
         <Heading tag={titleTag} $font={"heading-5"} $mt={8}>
           <OakLink
             {...primaryTargetProps}
-            page={null}
-            href={href}
+            {...getItemLinkProps(props)}
             htmlAnchorProps={{ title }}
-            focusStyles={["underline"]}
-            isHovered={cardIsHovered && !categoryIsHovered}
+            $focusStyles={["underline"]}
+            $isHovered={cardIsHovered && !categoryIsHovered}
           >
             {title}
           </OakLink>
         </Heading>
         <P $font={"body-3"} $mt={8} $mb={[8, 0]}>
-          <LineClamp lines={2}>{snippet}</LineClamp>
+          <LineClamp lines={2}>{summary}</LineClamp>
         </P>
       </Flex>
     </Flex>

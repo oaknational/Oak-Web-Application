@@ -39,7 +39,7 @@ const AnchorLink = styled(CardLink)`
     top: -96px;
   }
 `;
-const LinkText: FC = (props) => (
+const LinkText: FC<{ children?: React.ReactNode }> = (props) => (
   <Typography
     $position="absolute"
     $top={"100%"}
@@ -100,7 +100,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
             <GraphicCircle
               $zIndex="neutral"
               icon="Presentation"
-              $background="pastelTurqoise"
+              $background="pastelTurquoise"
             />
             <OverlapBehind>
               <GraphicCircle icon="Video" />

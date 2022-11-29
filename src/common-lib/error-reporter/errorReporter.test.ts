@@ -1,5 +1,7 @@
 import Bugsnag from "@bugsnag/js";
 
+import OakError from "../../errors/OakError";
+
 import errorReporter, {
   initialiseBugsnag,
   ErrorData,
@@ -75,7 +77,8 @@ describe("common-lib/error-reporter", () => {
   });
   describe("initialiseBugsnag", () => {
     it("calls Bugsnag.start", () => {
-      initialiseBugsnag();
+      const userId = "1234";
+      initialiseBugsnag(userId);
       expect(mockStart).toHaveBeenCalled();
     });
   });
@@ -116,6 +119,18 @@ describe("common-lib/error-reporter", () => {
       expect(consoleError).toHaveBeenCalledWith("bad thing");
       expect(consoleLog).toHaveBeenCalledWith("Original error:");
       expect(consoleError).toHaveBeenCalledWith("test thing");
+    });
+    test("adds originalError if error is OakError", () => {
+      const originalError = new Error(
+        "some error from somewhere (not our fault!)"
+      );
+      const oakError = new OakError({ code: "misc/unknown", originalError });
+      reportError(oakError);
+
+      expect(event.addMetadata).toHaveBeenCalledWith("Meta", {
+        ...parentMetaFields,
+        originalError,
+      });
     });
   });
   describe("[disabled]: errorReporter()()", () => {

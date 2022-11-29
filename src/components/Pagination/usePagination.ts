@@ -35,10 +35,10 @@ const usePagination = (props: UsePaginationProps): UsePaginationReturnType => {
     currentPage,
     totalPages,
     totalResults,
-    nextPageHref: isLastPage
+    nextPageUrlObject: isLastPage
       ? { pathname: router.asPath }
       : { pathname: pathname, query: Object.fromEntries(nextPageParams) },
-    prevPageHref: isFirstPage
+    prevPageUrlObject: isFirstPage
       ? { pathname: router.asPath }
       : { pathname: pathname, query: Object.fromEntries(prevPageParams) },
   };

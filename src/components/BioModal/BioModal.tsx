@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import { FC, useRef } from "react";
+import { FC, MutableRefObject, useRef } from "react";
 
 import {
   Image,
@@ -21,6 +21,7 @@ import Svg from "../Svg";
 import { Heading, P } from "../Typography";
 
 import NavigationButtons from "./NavigationButtons";
+import { ModalControllerRefs } from "./useBioModal";
 
 export type BioData = {
   id: string;
@@ -38,9 +39,11 @@ export type BioModalProps = {
   bio?: BioData;
   nextBio?: () => void;
   prevBio?: () => void;
+  returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
+  modalControllerRefs: ModalControllerRefs;
 };
 const BioModal: FC<BioModalProps> = (props) => {
-  const { bio, isOpen, closeModal, nextBio, prevBio } = props;
+  const { bio, isOpen, closeModal, nextBio, prevBio, returnFocusRef } = props;
 
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -50,6 +53,7 @@ const BioModal: FC<BioModalProps> = (props) => {
     isDismissable: true,
     isKeyboardDismissDisabled: true,
     isOpen,
+    returnFocusRef,
   });
 
   const { titleProps } = modalDialogProps;
@@ -67,7 +71,7 @@ const BioModal: FC<BioModalProps> = (props) => {
 
   return (
     <ModalDialog {...modalDialogProps}>
-      <Flex $width={"100%"} $ph={[0, 72]} $pt={[0, 92]}>
+      <Flex $width={"100%"} $ph={[0, 72]}>
         <Box
           $position={"absolute"}
           $top={[16, 32]}
@@ -94,7 +98,7 @@ const BioModal: FC<BioModalProps> = (props) => {
           $justifyContent={"unset"}
           $alignItems={"unset"}
         >
-          <Grid $position="relative" $mt={[0, 72, 0]}>
+          <Grid $position="relative" $mt={[0, 16, 0]}>
             <GridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
               <Box $position={"relative"} $zIndex={"inFront"}>
                 <Heading
@@ -159,7 +163,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                 $ml={[0, 0, 72]}
                 $mb={[72]}
                 $mt={[0, 72, 0]}
-                $font={["body-1", "body-2"]}
+                $font={["body-2", "body-1"]}
               >
                 <PortableText value={bioPortableText} />
               </Box>
@@ -167,10 +171,10 @@ const BioModal: FC<BioModalProps> = (props) => {
           </Grid>
           <Flex
             $position={["fixed", "absolute"]}
-            $bottom={[0, 92]}
+            $bottom={[0]}
             $left={[16]}
             $right={[16]}
-            $pb={[16, 0]}
+            $pb={[16, 16, 0]}
             $pt={[16, 0]}
             $alignItems="center"
             $background={["white", "transparent"]}
@@ -191,7 +195,6 @@ const BioModal: FC<BioModalProps> = (props) => {
               defaultFocusRef={closeButtonRef}
             />
           </Flex>
-          <Box $width={"100%"} $height={92} />
         </MaxWidth>
       </Flex>
     </ModalDialog>

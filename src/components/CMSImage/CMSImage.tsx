@@ -12,6 +12,7 @@ import { Image } from "../../common-lib/cms-types";
 import OakImage, { OakImageProps } from "../OakImage";
 
 export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
+  children?: React.ReactNode;
   image: Image;
   alt?: string;
   imageBuilder?: UseNextSanityImageBuilder;
@@ -45,7 +46,6 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
     sanityClientLike,
     image,
     {
-      enableBlurUp: false,
       imageBuilder,
     }
   );
@@ -64,12 +64,12 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const finalAltText = image.isPresentational ? "" : altTextString;
 
   /**
-   * If `width` and `fill` are both passed, next/future/image throws an error
+   * If `width` and `fill` are both passed, next/image throws an error
    */
   const dimensions = rest.fill ? {} : { width, height };
 
   return (
-    <Box $background={loaded ? undefined : "pastelTurqoise"} $width="100%">
+    <Box $background={loaded ? undefined : "pastelTurquoise"} $width="100%">
       <OakImage
         onLoadingComplete={() => setLoaded(true)}
         {...imageProps}

@@ -5,7 +5,6 @@ import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
-import { LessonControlConfig } from "../../components/LessonControl";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
@@ -48,7 +47,9 @@ export type PixelSpacing =
   | 96
   | 120
   | 140
+  | 150
   | 160
+  | 166
   | 172
   | 200
   | 220
@@ -56,15 +57,29 @@ export type PixelSpacing =
   | 300
   | 320
   | 360
+  | 380
+  | 400
+  | 450
   | 480
   | 600
   | 720
   | 812
   | 840
+  | 900
   | 960
-  | 1280;
+  | 1280
+  | 1600;
 export type NullablePixelSpacing = PixelSpacing | null;
-export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
+export type NegativePixelSpacing =
+  | -36
+  | -32
+  | -28
+  | -24
+  | -20
+  | -16
+  | -12
+  | -8
+  | -4;
 export type PercentSpacing =
   | "100%"
   | "95%"
@@ -77,6 +92,8 @@ export type PercentSpacing =
   | "50%"
   | "40%"
   | "30%"
+  | "33%"
+  | "25%"
   | "20%"
   | "15%"
   | "10%"
@@ -106,7 +123,7 @@ const OakColorNameZod = z.union([
   z.literal("oakGrey2"),
   z.literal("oakGrey3"),
   z.literal("oakGrey4"),
-  z.literal("pastelTurqoise"),
+  z.literal("pastelTurquoise"),
   z.literal("warning"),
   z.literal("failure"),
   z.literal("success"),
@@ -194,10 +211,8 @@ export type OakTheme = {
   buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
-  bigInput: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
-  lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;

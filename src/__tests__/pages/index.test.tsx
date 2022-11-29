@@ -6,7 +6,11 @@ import Home, {
   SerializedPost,
 } from "../../pages";
 import CMSClient from "../../node-lib/cms";
-import { BlogPostPreview, HomePage } from "../../common-lib/cms-types";
+import {
+  BlogPostPreview,
+  HomePage,
+  WebinarPreview,
+} from "../../common-lib/cms-types";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 import { mockSeo, portableTextFromString } from "../__helpers__/cms";
@@ -49,7 +53,7 @@ describe("pages/index.tsx", () => {
         type: "blog-post",
         title: "Some blog post",
         slug: "some-blog-post",
-        date: new Date("2022-12-01").toISOString(),
+        date: new Date("2021-12-01").toISOString(),
         category: { title: "Some category", slug: "some-category" },
       },
       {
@@ -57,7 +61,7 @@ describe("pages/index.tsx", () => {
         type: "blog-post",
         title: "Some other post",
         slug: "some-other-post",
-        date: new Date("2022-12-01").toISOString(),
+        date: new Date("2021-12-01").toISOString(),
         category: { title: "Some category", slug: "some-category" },
       },
     ] as SerializedPost[];
@@ -117,12 +121,21 @@ describe("pages/index.tsx", () => {
       category: { title: "Some category", slug: "some-category" },
     } as BlogPostPreview;
 
+    const mockPost3 = {
+      id: "2",
+      title: "Some other post",
+      slug: "some-other-post",
+      date: new Date("2022-12-01"),
+      category: { title: "Some category", slug: "some-category" },
+    } as WebinarPreview;
+
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetModules();
 
       mockCMSClient.homepage.mockResolvedValue(pageData);
       mockCMSClient.blogPosts.mockResolvedValue([]);
+      mockCMSClient.webinars.mockResolvedValue([]);
     });
 
     it("Should return no more than 4 posts", async () => {
@@ -149,6 +162,18 @@ describe("pages/index.tsx", () => {
 
       const postIds = result.props.posts.map((p) => p.id);
       expect(postIds).toEqual(["1", "2", "3"]);
+    });
+
+    it("Should filter out upcoming webinars", async () => {
+      mockCMSClient.webinars.mockResolvedValueOnce([
+        { ...mockPost3, id: "2", date: new Date("2022-01-01") },
+        { ...mockPost3, id: "3", date: new Date("2021-01-01") },
+        { ...mockPost3, id: "1", date: new Date("4023-01-01") },
+      ]);
+      const result = (await getStaticProps({})) as { props: HomePageProps };
+
+      const postIds = result.props.posts.map((p) => p.id);
+      expect(postIds).toEqual(["2", "3"]);
     });
 
     it("Should not fetch draft content by default", async () => {

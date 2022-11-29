@@ -24,11 +24,19 @@ export const menuSections: MenuSections = {
       page: "develop-your-curriculum",
       linkText: "Develop your curriculum",
     },
+    {
+      page: "support-your-team",
+      linkText: "Support your team",
+    },
   ],
   small: [
     {
       page: "blog-index",
       linkText: "Blog",
+    },
+    {
+      page: "webinars-index",
+      linkText: "Webinars",
     },
     {
       page: "about-who-we-are",

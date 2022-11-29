@@ -79,23 +79,6 @@ async function main() {
     // Bugsnag
     NEXT_PUBLIC_BUGSNAG_API_KEY: oakConfig.bugsnag.apiKey,
 
-    // Firebase
-    NEXT_PUBLIC_FIREBASE_API_HOST: oakConfig.firebase.apiHost,
-    NEXT_PUBLIC_FIREBASE_API_KEY: oakConfig.firebase.apiKey,
-    NEXT_PUBLIC_FIREBASE_APP_ID: oakConfig.firebase.appId,
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: oakConfig.firebase.authDomain,
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID:
-      oakConfig.firebase.messagingSenderId,
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID: oakConfig.firebase.projectId,
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: oakConfig.firebase.storageBucket,
-    NEXT_PUBLIC_FIREBASE_TOKEN_API_HOST: oakConfig.firebase.tokenHost,
-    FIREBASE_SERVICE_ACCOUNT:
-      process.env.FIREBASE_SERVICE_ACCOUNT ||
-      secretsFromNetwork.FIREBASE_SERVICE_ACCOUNT,
-    FIREBASE_ADMIN_DATABASE_URL:
-      process.env.FIREBASE_ADMIN_DATABASE_URL ||
-      secretsFromNetwork.FIREBASE_ADMIN_DATABASE_URL,
-
     // Gleap
     NEXT_PUBLIC_GLEAP_API_KEY:
       process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
@@ -104,10 +87,8 @@ async function main() {
     NEXT_PUBLIC_GLEAP_WIDGET_URL:
       process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
 
-    // Hasura
+    // Curriculum data
     NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
-    HASURA_ADMIN_SECRET:
-      process.env.HASURA_ADMIN_SECRET || secretsFromNetwork.HASURA_ADMIN_SECRET,
 
     // Hubspot
     NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
@@ -132,6 +113,7 @@ async function main() {
       // Default to value in config, currently localhost:3000
       oakConfig.oak.appBaseUrl,
     NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
+    NEXT_PUBLIC_WEBINAR_SIGN_UP_URL: oakConfig.oak.webinarSignUpUrl,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
@@ -159,6 +141,30 @@ async function main() {
       NEXT_PUBLIC_SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost,
     // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
     DISABLE_ISR: process.env.DISABLE_ISR,
+
+    // Seo
+
+    NEXT_PUBLIC_SEO_APP_NAME:
+      process.env.NEXT_PUBLIC_SEO_APP_NAME || oakConfig.seo?.appName,
+    NEXT_PUBLIC_SEO_APP_DESCRIPTION:
+      process.env.NEXT_PUBLIC_SEO_APP_DESCRIPTION ||
+      oakConfig.seo?.appDescription,
+    NEXT_PUBLIC_SEO_APP_LOCALE:
+      process.env.NEXT_PUBLIC_SEO_APP_LOCALE || oakConfig.seo?.appLocale,
+    NEXT_PUBLIC_SEO_APP_URL:
+      process.env.NEXT_PUBLIC_SEO_APP_URL || oakConfig.seo?.appUrl,
+    NEXT_PUBLIC_SEO_APP_LOGO:
+      process.env.NEXT_PUBLIC_SEO_APP_LOGO || oakConfig.seo?.appLogo,
+    NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG:
+      process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG ||
+      oakConfig.seo?.appSocialSharingImg,
+    NEXT_PUBLIC_SEO_APP_FACEBOOK:
+      process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK || oakConfig.seo?.appFacebook,
+    NEXT_PUBLIC_SEO_APP_TWITTER:
+      process.env.NEXT_PUBLIC_SEO_APP_TWITTER || oakConfig.seo?.appTwitter,
+    NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE:
+      process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE ||
+      oakConfig.seo?.appTwitterHandle,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
