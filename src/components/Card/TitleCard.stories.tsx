@@ -19,5 +19,5 @@ TitleCard.args = {
   keyStage: "Key stage 4",
   keyStageSlug: "key-stage-4",
   iconName: "Rocket",
-  background: "teachersHighlight",
+  background: "subject",
 };
