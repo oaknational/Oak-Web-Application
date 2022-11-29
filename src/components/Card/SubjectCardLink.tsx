@@ -54,8 +54,14 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
           {subjectTitle}
         </OakLink>
       </Heading>
-      <Typography $font={"body-2"}>{`${totalUnits} units`}</Typography>
-      <Typography $font={"body-2"}>{`${totalLessons} lessons`}</Typography>
+      <Typography
+        $font={"body-2"}
+        $color={"grey4"}
+      >{`${totalUnits} units`}</Typography>
+      <Typography
+        $font={"body-2"}
+        $color={"grey4"}
+      >{`${totalLessons} lessons`}</Typography>
     </>
   );
 };
