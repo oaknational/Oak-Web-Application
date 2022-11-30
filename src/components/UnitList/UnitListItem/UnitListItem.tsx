@@ -19,10 +19,10 @@ export type UnitListItemProps = {
 };
 
 /**
- * Contains an image, title, and text summary.
- * The component contains a link styled as a button, which
- * whose click target stretches across the entire component.
- * The title tag (h1, h2, ...) is passed as a prop.
+ * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
+ * Links to a lesson-index page
+ *
+ *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
   const {
