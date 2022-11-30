@@ -14,25 +14,25 @@ import { TeamMemberPreview, Webinar } from "../../common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
 import Box from "../../components/Box";
 import { decorateWithIsr } from "../../node-lib/isr";
-import BlogPortableText from "../../components/Blog/BlogPortableText/BlogPortableText";
+import BlogPortableText from "../../components/Posts/PostPortableText/PostPortableText";
 import Flex from "../../components/Flex";
-import BlogWebinarsIndexLayout from "../../components/Blog/BlogWebinarsIndexLayout";
-import WebinarVideo from "../../components/Blog/WebinarVideo";
+import WebinarVideo from "../../components/Posts/WebinarVideo";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "../../context/Analytics/useAnalytics";
+import PostSingleLayout from "../../components/Posts/PostSingleLayout";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
   author: TeamMemberPreview | undefined;
 };
 
-export type WebinarPageProps = {
+export type WebinarSinglePageProps = {
   webinar: SerializedWebinar;
   categories: { title: string; slug: string }[];
 };
 
-const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
+const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
   const { webinar, categories } = props;
   const { track } = useAnalytics();
   useEffect(() => {
@@ -63,14 +63,14 @@ const WebinarDetailPage: NextPage<WebinarPageProps> = (props) => {
         "Webinars"
       )}
     >
-      <BlogWebinarsIndexLayout content={props}>
+      <PostSingleLayout content={props}>
         <Flex $position={"relative"} $mt={56}>
           <WebinarVideo webinar={webinar} />
         </Flex>
         <Box $mt={[48]}>
           <BlogPortableText portableText={webinar.summaryPortableText} />
         </Box>
-      </BlogWebinarsIndexLayout>
+      </PostSingleLayout>
       <BlogJsonLd blog={props.webinar} />
     </Layout>
   );
@@ -92,7 +92,7 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  WebinarPageProps,
+  WebinarSinglePageProps,
   URLParams
 > = async (context) => {
   const webinarSlug = context.params?.webinarSlug as string;
@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps<
     author: webinarResult.hosts[0], // make the first host equivalent to a blog author
   };
 
-  const results: GetStaticPropsResult<WebinarPageProps> = {
+  const results: GetStaticPropsResult<WebinarSinglePageProps> = {
     props: {
       webinar,
       categories,
@@ -131,4 +131,4 @@ export const getStaticProps: GetStaticProps<
   return resultsWithIsr;
 };
 
-export default WebinarDetailPage;
+export default WebinarSinglePage;

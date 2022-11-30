@@ -2,6 +2,8 @@ import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 
+import createQueryStringFromObject from "./createQueryStringFromObject";
+
 const reportError = errorReporter("urls.ts");
 
 const OAK_PAGES = {
@@ -67,6 +69,21 @@ export const isExternalHref = (href: MaybeOakHref) => {
   return true;
 };
 
+export type PostIndexLinkProps = {
+  page: "blog-index" | "webinars-index";
+  category?: string | null;
+  search?: {
+    page?: string;
+  };
+};
+export type UnitIndexLinkProps = {
+  page: "unit-index";
+  keyStage: string;
+  subject: string;
+  search?: {
+    ["learning-theme"]?: string | null;
+  };
+};
 export type ResolveOakHrefProps =
   | {
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
@@ -75,18 +92,8 @@ export type ResolveOakHrefProps =
       page: "blog" | "webinars" | "key-stage";
       slug: string;
     }
-  | {
-      page: "blog-index" | "webinars-index";
-      category?: string | null;
-      search?: {
-        page?: string;
-      };
-    }
-  | {
-      page: "unit-index";
-      keyStage: string;
-      subject: string;
-    };
+  | PostIndexLinkProps
+  | UnitIndexLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -118,12 +125,26 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       if (!props.search) {
         return path;
       }
-      const query = new URLSearchParams(props.search);
+      const queryString = createQueryStringFromObject(props.search);
 
-      return `${path}?${query.toString()}`;
+      if (!queryString) {
+        return path;
+      }
+
+      return `${path}?${queryString}`;
     }
     case "unit-index": {
-      return `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
+      const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
+      if (!props.search) {
+        return path;
+      }
+      const queryString = createQueryStringFromObject(props.search);
+
+      if (!queryString) {
+        return path;
+      }
+
+      return `${path}?${queryString}`;
     }
 
     default:
