@@ -1,4 +1,6 @@
 import * as z from "zod";
+import { hubspotFormDefinitionSchema } from "../../node-lib/hubspot-forms/hubspotSchemas";
+import { formDefinitionSchema } from "../forms/FormDefinition";
 
 import { imageSchema, videoSchema } from "./base";
 import { CTASchema } from "./cta";
@@ -42,3 +44,11 @@ export const textAndMediaSchema = z.discriminatedUnion("mediaType", [
 ]);
 
 export type TextAndMedia = z.infer<typeof textAndMediaSchema>;
+
+export const formWrapperSchema = z.object({
+  title: z.string(),
+  bodyPortableText: portableTextSchema.nullish(),
+  hubspotForm: formDefinitionSchema,
+});
+
+export type HubspotFormWrapper = z.infer<typeof formWrapperSchema>;

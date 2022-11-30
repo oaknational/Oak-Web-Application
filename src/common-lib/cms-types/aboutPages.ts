@@ -6,7 +6,12 @@ import {
   imageSchema,
   seoSchema,
 } from "./base";
-import { cardSchema, textAndMediaSchema, textBlockSchema } from "./blocks";
+import {
+  cardSchema,
+  formWrapperSchema,
+  textAndMediaSchema,
+  textBlockSchema,
+} from "./blocks";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
@@ -17,6 +22,7 @@ const aboutPageBaseSchema = z
     summaryPortableText: portableTextSchema,
     contactSection: z.object({
       infoPortableText: portableTextSchema,
+      contactForm: formWrapperSchema,
     }),
     seo: seoSchema.nullish(),
   })

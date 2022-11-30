@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 import { documentSchema, seoSchema } from "./base";
-import { cardSchema } from "./blocks";
+import { cardSchema, formWrapperSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
 
 export const homePageSchema = z
@@ -10,12 +10,7 @@ export const homePageSchema = z
     summaryPortableText: portableTextSchema,
     sidebarCard1: cardSchema,
     sidebarCard2: cardSchema,
-    sidebarForm: z
-      .object({
-        title: z.string(),
-        bodyPortableText: portableTextSchema,
-      })
-      .nullish(),
+    sidebarForm: formWrapperSchema,
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);

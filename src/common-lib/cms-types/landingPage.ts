@@ -8,7 +8,7 @@ import {
   imageSchema,
   formSchema,
 } from "./base";
-import { textAndMediaSchema } from "./blocks";
+import { formWrapperSchema, textAndMediaSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
 import { CTASchema } from "./cta";
 
@@ -32,7 +32,7 @@ export const landingPageSchema = z
           type: z.literal("LandingPageFormBlock"),
           title: z.string(),
           bodyPortableText: portableTextSchema,
-          form: formSchema,
+          form: formWrapperSchema,
         }),
         z.object({
           type: z.literal("LandingPageTextAndMediaBlock"),

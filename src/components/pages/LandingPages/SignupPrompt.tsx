@@ -1,7 +1,10 @@
 import { PortableText } from "@portabletext/react";
 import { FC } from "react";
 
-import { PortableTextJSON } from "../../../common-lib/cms-types";
+import {
+  HubspotFormWrapper,
+  PortableTextJSON,
+} from "../../../common-lib/cms-types";
 import Grid, { GridArea } from "../../Grid";
 import Typography, { Heading } from "../../Typography";
 
@@ -9,7 +12,7 @@ import { SignUpForm } from "./SignUpForm";
 
 export const SignupPrompt: FC<{
   title: string;
-  form: { title: string };
+  form: HubspotFormWrapper;
   bodyPortableText: PortableTextJSON;
 }> = ({ title, bodyPortableText, form }) => {
   return (
