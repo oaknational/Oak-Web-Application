@@ -154,7 +154,7 @@ const DynamicForm: FC<DynamicFormProps> = ({ form, onSubmit }) => {
       <Button
         $mt={24}
         label={form.submitButtonLabel}
-        fullWidth
+        $fullWidth
         htmlButtonProps={{ disabled: false /*todo: use `loading` state */ }}
         background="teachersHighlight"
       />
