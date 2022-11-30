@@ -1,0 +1,7 @@
+fragment AboutCorePage on AboutCorePage {
+  title
+  summaryPortableText: summaryRaw
+  contactSection {
+    infoPortableText: infoRaw
+  }
+}

@@ -4,11 +4,7 @@ query aboutLeadershipPage($isDraftFilter: Sanity_DocumentFilter) {
     sort: { _updatedAt: DESC }
     limit: 1
   ) {
-    title
-    summaryPortableText: summaryRaw
-    contactSection {
-      infoPortableText: infoRaw
-    }
+    ...AboutCorePage
   }
   allAboutCorePageLeadership(
     where: { _: $isDraftFilter, _id: { matches: "*aboutCorePage.leadership" } }
