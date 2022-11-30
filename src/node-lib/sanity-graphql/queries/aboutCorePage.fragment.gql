@@ -3,5 +3,8 @@ fragment AboutCorePage on AboutCorePage {
   summaryPortableText: summaryRaw
   contactSection {
     infoPortableText: infoRaw
+    contactForm {
+      ...HubspotForm
+    }
   }
 }

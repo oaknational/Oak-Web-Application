@@ -30,7 +30,7 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         title
         bodyPortableText: textRaw
         form {
-          title
+          ...HubspotForm
         }
       }
       ... on LandingPageQuoteBlock {

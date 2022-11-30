@@ -13,14 +13,9 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     sidebarCard2 {
       ...Card
     }
-    # Disabled until integration PR
-    # sidebarForm {
-    #   title
-    #   bodyPortableText: bodyRaw
-    #   hubspotForm: form {
-    #     id: value
-    #   }
-    # }
+    sidebarForm {
+      ...HubspotForm
+    }
     seo {
       ...Seo
     }

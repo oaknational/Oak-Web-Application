@@ -9,6 +9,9 @@ query contactCorePage($isDraftFilter: Sanity_DocumentFilter) {
     heading
     summaryPortableText: summaryRaw
     bodyPortableText: bodyRaw
+    formContent {
+      ...HubspotForm
+    }
     seo {
       ...Seo
     }

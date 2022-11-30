@@ -1,0 +1,9 @@
+fragment HubspotForm on FormWrapper {
+  title
+  bodyPortableText: bodyRaw
+  # Note this is expanded by resolveHubspotFormReferences.ts
+  # See hubspot-forms.md for more context
+  hubspotForm: form {
+    id: value
+  }
+}
