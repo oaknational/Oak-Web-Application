@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useRouter } from "next/router";
 
 import Box from "../Box";
 import Flex from "../Flex";
@@ -12,49 +11,53 @@ import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
 
 export type Tier = {
-  title: "Foundation" | "Core" | "Higher";
-  slug: "foundation" | "core" | "higher";
+  title: string;
+  slug: string;
   unitCount: number;
 };
 
 export type UnitListProps = {
   units: UnitListItemProps[];
+  keyStage: string;
+  subject: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
   tiers?: Tier[];
 };
 /**
- * Contains a list of Units
- * displays an upcoming webinar at the top.
+ * Contains a list of units
  *
  * ## Usage
- *
- * Use `useUnitList()` to get props to pass to `<UnitList />`
+ * Used on subject unit page and search results
  */
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, headingTag, tiers } = props;
-  const router = useRouter();
+  const { units, paginationProps, headingTag, tiers, keyStage, subject } =
+    props;
 
   return (
     <Flex $flexDirection="column">
-      <Heading $mb={24} tag={headingTag}>
-        Units
-      </Heading>
-      <Flex $mb={32}>
-        {tiers &&
-          tiers.map(({ title, slug, unitCount }) => (
-            // @todo change page to unit when slug page when it exists
-            <OakLink
-              path={router.pathname}
-              selectedTier={{ tier: slug }}
-              page={"unit-tiers"}
-            >
-              <Span
-                $font={"heading-7"}
-                $mr={32}
-              >{`${title} (${unitCount})`}</Span>
-            </OakLink>
-          ))}
+      <Flex $flexDirection={["column-reverse", "column"]}>
+        <Heading $font={["heading-6", "heading-5"]} $mb={24} tag={headingTag}>
+          Units
+        </Heading>
+
+        {tiers && (
+          <Flex $mb={[24, 32]}>
+            {tiers.map(({ title, slug, unitCount }) => (
+              <OakLink
+                keyStage={keyStage}
+                subject={subject}
+                search={{ tier: slug }}
+                page={"unit-index"}
+              >
+                <Span
+                  $font={"heading-7"}
+                  $mr={[12, 32]}
+                >{`${title} (${unitCount})`}</Span>
+              </OakLink>
+            ))}
+          </Flex>
+        )}
       </Flex>
 
       {units.length ? (

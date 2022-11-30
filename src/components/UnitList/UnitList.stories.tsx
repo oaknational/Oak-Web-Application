@@ -1,0 +1,95 @@
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+import { UnitListProps } from "./UnitList";
+
+import Component from ".";
+
+const currentPageItems: UnitListProps = {
+  units: [
+    {
+      title:
+        "1, To build knowledge of the historical context of the play ‘Macbeth’",
+      slug: "To-build-knowledge",
+      learningThemeTitle: "MacBeth",
+      lessonCount: 4,
+      hasUnitQuiz: false,
+      subject: "English",
+      keyStage: "2",
+    },
+    {
+      title:
+        "1, To build knowledge of the historical context of the play ‘Macbeth’",
+      slug: "To-build-knowledge",
+      learningThemeTitle: "MacBeth",
+      lessonCount: 4,
+      hasUnitQuiz: false,
+      subject: "English",
+      keyStage: "2",
+    },
+    {
+      title:
+        "1, To build knowledge of the historical context of the play ‘Macbeth’",
+      slug: "To-build-knowledge",
+      learningThemeTitle: "MacBeth",
+      lessonCount: 4,
+      hasUnitQuiz: true,
+      subject: "English",
+      keyStage: "2",
+    },
+    {
+      title:
+        "1, To build knowledge of the historical context of the play ‘Macbeth’",
+      slug: "To-build-knowledge",
+      learningThemeTitle: "MacBeth",
+      lessonCount: 4,
+      hasUnitQuiz: false,
+      subject: "English",
+      keyStage: "2",
+    },
+    {
+      title:
+        "1, To build knowledge of the historical context of the play ‘Macbeth’",
+      slug: "To-build-knowledge",
+      learningThemeTitle: "MacBeth",
+      lessonCount: 4,
+      hasUnitQuiz: false,
+      subject: "English",
+      keyStage: "2",
+    },
+  ],
+  keyStage: "4",
+  subject: "computing",
+  headingTag: "h1",
+  paginationProps: {
+    currentPage: 0,
+    totalPages: 2,
+    prevPageUrlObject: undefined,
+    nextPageUrlObject: undefined,
+  },
+};
+
+const tiers = [
+  { title: "Foundation", slug: "foundation", unitCount: 14 },
+  { title: "Core", slug: "core", unitCount: 14 },
+  { title: "Higher", slug: "higher", unitCount: 14 },
+];
+
+export default {
+  title: "Lists/Unit list",
+  component: Component,
+} as ComponentMeta<typeof Component>;
+
+const Template: ComponentStory<typeof Component> = (args) => {
+  return <Component {...args} />;
+};
+
+export const UnitList = Template.bind({});
+
+UnitList.args = currentPageItems;
+
+export const UnitListTiers = Template.bind({});
+
+UnitListTiers.args = {
+  ...currentPageItems,
+  tiers: tiers,
+};

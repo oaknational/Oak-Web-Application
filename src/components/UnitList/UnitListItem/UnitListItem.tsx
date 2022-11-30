@@ -2,9 +2,8 @@ import { FC } from "react";
 
 import useClickableCard from "../../../hooks/useClickableCard";
 import Flex from "../../Flex";
-import Icon, { IconName } from "../../Icon";
+import Icon from "../../Icon";
 import { Heading, Span } from "../../Typography";
-import { OakColorName } from "../../../styles/theme/types";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../Card";
 import OakLink from "../../OakLink";
@@ -15,8 +14,8 @@ export type UnitListItemProps = {
   learningThemeTitle?: string;
   lessonCount: number;
   hasUnitQuiz: boolean;
-  subjectIcon: IconName;
-  background: OakColorName;
+  subject: string;
+  keyStage: string;
 };
 
 /**
@@ -31,7 +30,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     learningThemeTitle,
     lessonCount,
     hasUnitQuiz,
-    subjectIcon,
+    subject,
+    keyStage,
     slug,
   } = props;
 
@@ -39,7 +39,14 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     useClickableCard<HTMLAnchorElement>();
 
   return (
-    <Card $mb={16} $overflow={"hidden"} {...containerProps} $pa={0}>
+    <Card
+      $justifyContent={"space-between"}
+      $flexDirection={"row"}
+      $mb={16}
+      $overflow={"hidden"}
+      {...containerProps}
+      $pa={0}
+    >
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
@@ -47,19 +54,29 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $position={"relative"}
         $flexDirection={"row"}
         $justifyContent={"space-between"}
-        $alignItems={"center"}
-        $pa={0}
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
+        $alignItems={"center"}
       >
         <Flex $mh={[16, 24]} $flexDirection={"column"}>
-          <OakLink slug={slug} page={"unit"} {...primaryTargetProps}>
-            <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
+          <OakLink
+            keyStage={keyStage}
+            subject={subject}
+            slug={slug}
+            page={"lesson-index"}
+            {...primaryTargetProps}
+          >
+            <Heading
+              $mt={24}
+              $mb={12}
+              $font={["heading-7", "heading-6"]}
+              tag={"h3"}
+            >
               {title}
             </Heading>
           </OakLink>
-          <Flex $flexDirection={["column", "row"]}>
+          <Flex $mb={24} $flexDirection={["column", "row"]}>
             {learningThemeTitle && (
-              <Span $mr={6} $font={["body-3", "heading-light-7"]}>
+              <Span $mr={6} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
                 {learningThemeTitle}
               </Span>
             )}
@@ -75,18 +92,21 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex
-          $justifyContent={"center"}
-          $alignItems={"center"}
-          $minHeight={110}
-          $minWidth={[72, 130]}
-          $background={"pupilsPink"}
-          $position={"relative"}
-        >
-          <Icon size={[50, 92]} name={subjectIcon}>
-            {title}
-          </Icon>
-        </Flex>
+      </Flex>
+      <Flex
+        $justifyContent={"center"}
+        $alignItems={"center"}
+        $minHeight={110}
+        $minWidth={[72, 130]}
+        $background={"teachersLilac"}
+        $position={"relative"}
+        $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
+        $transform={isHovered ? "translateY(-4px)" : null}
+        $transition={"all 0.4s ease-out"}
+      >
+        <Icon size={[50, 92]} name={"Rocket"}>
+          {title}
+        </Icon>
       </Flex>
       <BoxBorders gapPosition="bottomRight" />
     </Card>

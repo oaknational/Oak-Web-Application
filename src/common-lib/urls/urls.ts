@@ -82,18 +82,27 @@ export type UnitIndexLinkProps = {
   subject: string;
   search?: {
     ["learning-theme"]?: string | null;
+    ["tier"]?: string | null;
   };
 };
+export type LessonIndexLinkProps = {
+  page: "lesson-index";
+  keyStage: string;
+  subject: string;
+  slug: string;
+};
+
 export type ResolveOakHrefProps =
   | {
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars" | "key-stage" | "unit";
+      page: "blog" | "webinars" | "key-stage";
       slug: string;
     }
   | PostIndexLinkProps
-  | UnitIndexLinkProps;
+  | UnitIndexLinkProps
+  | LessonIndexLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -111,14 +120,6 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
     }
     case "key-stage": {
       return `/beta/key-stages/${props.slug}`;
-    }
-    case "unit": {
-      return `/beta/teachers/keystage/1/subject/units/${props.slug}`;
-    }
-    case "unit-tiers": {
-      const query = new URLSearchParams(props.selectedTier);
-
-      return `${props.path}/units/?${query.toString()}`;
     }
     case "blog-index":
     case "webinars-index": {
@@ -153,6 +154,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       }
 
       return `${path}?${queryString}`;
+    }
+    case "lesson-index": {
+      return `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units/${props.slug}`;
     }
 
     default:
