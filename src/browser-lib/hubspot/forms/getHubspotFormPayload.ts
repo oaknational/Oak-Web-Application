@@ -18,6 +18,14 @@ const getHubspotFormPayload = (props: {
     latest_utm_term: data.utm_term,
   };
 
+  /**
+   * @TODO: Fields defined in hubspot interface are being stripped out here
+   *
+   * We probably want to
+   * 1. not strip extra fields
+   * 2. match the snake_case field values in the source hubspot form
+   */
+
   const payload = {
     fields: Object.entries(snakeCaseData)
       .map(([name, value]) => {

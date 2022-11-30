@@ -36,7 +36,7 @@ export const SignupPrompt: FC<{
           </Typography>
         </GridArea>
         <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
-          <SignUpForm formTitle={form.title} />
+          <SignUpForm {...form} />
         </GridArea>
       </Grid>
     </>

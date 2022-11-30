@@ -1,16 +1,16 @@
-import { FC, useId } from "react";
+import { FC } from "react";
 
 import Card from "../../Card";
 import Box from "../../Box";
-import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
 import AnchorTarget from "../../AnchorTarget";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import { anchorMap } from "../../../utils/portableText/resolveInternalHref";
+import { HubspotFormWrapper } from "../../../common-lib/cms-types";
+import HubspotForm from "../../Forms/HubspotForm";
 
-export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
-  const { onSubmit } = useNewsletterForm();
-  const id = useId();
-  const descriptionId = `${id}-newsletter-form-description`;
+type SignUpFormProps = HubspotFormWrapper;
+
+export const SignUpForm: FC<SignUpFormProps> = ({ title, hubspotForm }) => {
   return (
     <Card
       $ml={[0, 48]}
@@ -23,14 +23,10 @@ export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
       <AnchorTarget id={anchorMap["formBlock"]} />
 
       <CardTitle icon="MagicCarpet" $font={["heading-5", "heading-6"]} tag="h3">
-        {formTitle}
+        {title}
       </CardTitle>
       <Box $mt={12}>
-        <NewsletterForm
-          onSubmit={onSubmit}
-          id={id}
-          descriptionId={descriptionId}
-        />
+        <HubspotForm form={hubspotForm} />
       </Box>
     </Card>
   );
