@@ -3,9 +3,9 @@ import { screen } from "@testing-library/react";
 import { BlogPostPreview } from "../../../common-lib/cms-types";
 import {
   SerializedBlogPostPreview,
-  BlogListingPageProps,
+  PostListingPageProps,
 } from "../../../components/pages/BlogIndex.page";
-import BlogListingPage from "../../../pages/blog";
+import PostListingPage from "../../../pages/blog";
 import { mockImageAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
@@ -73,10 +73,10 @@ describe("pages/blog/index.tsx", () => {
     }));
   });
 
-  describe("BlogListingPage", () => {
+  describe("PostListingPage", () => {
     it("Renders a link to each blog ", () => {
       renderWithProviders(
-        <BlogListingPage
+        <PostListingPage
           blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
           pageData={testPageData}
           categories={[]}
@@ -98,7 +98,7 @@ describe("pages/blog/index.tsx", () => {
     describe("SEO", () => {
       it("renders the correct SEO details from the CMS", () => {
         const { seo } = renderWithSeo(
-          <BlogListingPage
+          <PostListingPage
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
             pageData={{
               ...testPageData,
@@ -124,7 +124,7 @@ describe("pages/blog/index.tsx", () => {
 
       it("renders the correct SEO fallbacks", () => {
         const { seo } = renderWithSeo(
-          <BlogListingPage
+          <PostListingPage
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
             pageData={testPageData}
             categories={[]}
@@ -154,7 +154,7 @@ describe("pages/blog/index.tsx", () => {
       const { getStaticProps } = await import("../../../pages/blog");
 
       const propsResult = (await getStaticProps({})) as {
-        props: BlogListingPageProps;
+        props: PostListingPageProps;
       };
       expect(propsResult?.props?.blogs).toEqual([
         testSerializedBlogPreview,

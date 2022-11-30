@@ -1,12 +1,14 @@
 import { FC } from "react";
 
+import { PostListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import { SeoProps } from "../../browser-lib/seo/Seo";
 import {
-  BlogListingPage,
+  PostListingPage,
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
 import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
-import BlogWebinarsListAndCategories from "../Blog/BlogWebinarsListAndCategories";
+import PostListAndCategories from "../Posts/PostListAndCategories";
 import {
   CrumbPageVariant,
   getBlogWebinarListBreadcrumbs,
@@ -16,27 +18,26 @@ import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileBlogFilters from "../MobileBlogFilters";
 import {
-  BlogListingPageProps,
-  blogToBlogListItem,
+  PostListingPageProps,
+  blogToPostListItem,
   SerializedBlogPostPreview,
 } from "../pages/BlogIndex.page";
 import {
   SerializedWebinarPreview,
   WebinarListingPageProps,
-  webinarToBlogListItem,
+  webinarToPostListItem,
 } from "../pages/WebinarsIndex.page";
-import { BlogListJsonLd } from "../../browser-lib/seo/getJsonLd";
-import { BlogCategoryPage } from "../Blog/BlogCategoryList/BlogCategoryList";
-import { SeoProps } from "../../browser-lib/seo/Seo";
+
+import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
 
 type PostListingProps = {
   seo: SeoProps;
-  pageData: WebinarsListingPage | BlogListingPage;
+  pageData: WebinarsListingPage | PostListingPage;
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
-  postsWithCategories: WebinarListingPageProps | BlogListingPageProps;
+  postsWithCategories: WebinarListingPageProps | PostListingPageProps;
   posts: SerializedBlogPostPreview[] | SerializedWebinarPreview[];
-  page: BlogCategoryPage;
+  page: PostCategoryPage;
   variant: {
     slug: CrumbPageVariant;
     title: string;
@@ -63,7 +64,7 @@ const PostListing: FC<PostListingProps> = ({
   )?.title;
 
   const postListItems = posts.map((post) =>
-    "video" in post ? webinarToBlogListItem(post) : blogToBlogListItem(post)
+    "video" in post ? webinarToPostListItem(post) : blogToPostListItem(post)
   );
 
   return (
@@ -91,13 +92,13 @@ const PostListing: FC<PostListingProps> = ({
           }}
         />
 
-        <BlogWebinarsListAndCategories
+        <PostListAndCategories
           {...postsWithCategories}
           blogs={postListItems}
           page={page}
         />
       </MaxWidth>
-      <BlogListJsonLd blogs={posts} />
+      <PostListJsonLd blogs={posts} />
     </Layout>
   );
 };

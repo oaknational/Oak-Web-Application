@@ -35,6 +35,7 @@ import Star from "./Star.icon";
 import Tick from "./Tick.icon";
 import Twitter from "./Twitter.icon";
 import LinkedIn from "./LinkedIn.icon";
+import SubjectArtAndDesign from "./SubjectIconSvgs/ArtAndDesign.icon";
 
 const iconSvgSymbols = {
   ArrowDown,
@@ -72,6 +73,7 @@ const iconSvgSymbols = {
   SoundLow,
   SoundOff,
   Star,
+  SubjectArtAndDesign,
   Tick,
   Twitter,
 } as const;
