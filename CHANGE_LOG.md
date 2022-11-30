@@ -1,3 +1,34 @@
+# [1.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.1...v1.77.0) (2022-11-30)
+
+
+### Bug Fixes
+
+* **forms:** don't make fields with required:false default to true ([8c64f8a](https://github.com/oaknational/Oak-Web-Application/commit/8c64f8a2c34692d07dc43bc4c8443c08e6f6db20))
+* **hsforms:** better handle empty strings for optional fields ([6ed1351](https://github.com/oaknational/Oak-Web-Application/commit/6ed13514de90b52698d2bb4ef01bacdbf4c99664))
+* **hsforms:** disallow empty `string` type fields in zod schema ([930d397](https://github.com/oaknational/Oak-Web-Application/commit/930d397e528edbb218be10e09710f6a1676faa15))
+* **hsforms:** don't enforce homepage sidebarForm in zod ([ccf1d04](https://github.com/oaknational/Oak-Web-Application/commit/ccf1d049e565894ec0524c5bda4d9c92615010c9))
+* **hsforms:** ensure hubspotFormsAccessToken is in server not browser config ([e78d50e](https://github.com/oaknational/Oak-Web-Application/commit/e78d50ea7948c67b8a4da481b1e63a4ae4b32c43))
+* **hsforms:** fix crash on submit caused by debug line ([5994bbd](https://github.com/oaknational/Oak-Web-Application/commit/5994bbd6d7cfa22afc0574fde2dcaa270848f1b9))
+* **hsforms:** pass correct transient prop to Button ([007d560](https://github.com/oaknational/Oak-Web-Application/commit/007d5602d30be5c22c4acfd02de25e1e531d8bb3))
+* update sanity gql sdk, disable extraneous validation ([e68175e](https://github.com/oaknational/Oak-Web-Application/commit/e68175eca49e755414be2b23dfaf234a0425456c))
+
+
+### Features
+
+* **hsforms:** add form resolving to addReferences ([2d4cbbe](https://github.com/oaknational/Oak-Web-Application/commit/2d4cbbec52bd2e22beca7dec6cd4ca7530c62649))
+* **hsforms:** add handling for dependent fields from hubspot ([2ebd725](https://github.com/oaknational/Oak-Web-Application/commit/2ebd7251a188905e5328e39d25e0dea1e999abe1))
+* **hsforms:** add hubspot & ability to fetch hubspot forms ([b5a32f8](https://github.com/oaknational/Oak-Web-Application/commit/b5a32f828d52700ee249edd4f382a7afcd267dc9))
+* **hsforms:** add hubspot form references to homepage gql query ([2454266](https://github.com/oaknational/Oak-Web-Application/commit/2454266feebe8366eeae28b7a60525c17ce386f0))
+* **hsforms:** add utilities for converting hs forms to internal shape ([b194e6c](https://github.com/oaknational/Oak-Web-Application/commit/b194e6c58c616915426b5503fd4fe897e8e60f22))
+* **hsforms:** disable support for fields without UI components ([b449b7f](https://github.com/oaknational/Oak-Web-Application/commit/b449b7f28b698b8594f0fb666d6f6f8e14cda053))
+* **hsforms:** documentation, additional enum types, add zod schemas ([12a6f81](https://github.com/oaknational/Oak-Web-Application/commit/12a6f81e035528ece344e002fa24f810bd39b514))
+* **hsforms:** improve string/email error messages ([1d14492](https://github.com/oaknational/Oak-Web-Application/commit/1d14492d7f4cdb9cd28fb2435ac39686bf26f777))
+* **hsforms:** resolve references to hubspot forms in documents ([c0e0088](https://github.com/oaknational/Oak-Web-Application/commit/c0e0088630830762d075ab8b463b240a69e46dcb))
+* **hsforms:** scaffold HubspotForm component ([70d332e](https://github.com/oaknational/Oak-Web-Application/commit/70d332e73e2dd9f012b311616759fab9f34ab675))
+* **hsforms:** stub out HubspotForm component ([1127864](https://github.com/oaknational/Oak-Web-Application/commit/112786497a2bac44b8543b666890c3310ebb7ae0))
+* **hsforms:** tidy DynamicForm, add tests ([1d12025](https://github.com/oaknational/Oak-Web-Application/commit/1d1202535eca150f2ed67ee6b6fab187aaadb078))
+* **hsforms:** tidy resolveHubspotFormReferences, fix error handling ([37d7420](https://github.com/oaknational/Oak-Web-Application/commit/37d74201363d7c6603947d574d4d9d04becfd094))
+
 ## [1.76.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.0...v1.76.1) (2022-11-29)
 
 
