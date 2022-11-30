@@ -15,7 +15,7 @@ export const homePageSchema = z
         title: z.string(),
         bodyPortableText: portableTextSchema,
       })
-      .passthrough(),
+      .nullish(),
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
