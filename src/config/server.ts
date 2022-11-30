@@ -108,6 +108,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotFormsAccessToken: {
+    value: process.env.HUBSPOT_FORMS_ACCESS_TOKEN,
+    envName: "HUBSPOT_FORMS_ACCESS_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
