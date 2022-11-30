@@ -19,18 +19,18 @@ import Flex from "../components/Flex";
 import Icon from "../components/Icon";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
-import { BlogListItemProps } from "../components/Blog/BlogList/BlogListItem";
+import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
 import OakImage from "../components/OakImage";
 import {
-  blogToBlogListItem,
+  blogToPostListItem,
   SerializedBlogPostPreview,
 } from "../components/pages/BlogIndex.page";
 import {
   SerializedWebinarPreview,
-  webinarToBlogListItem,
+  webinarToPostListItem,
 } from "../components/pages/WebinarsIndex.page";
 import { serializeDate } from "../utils/serializeDate";
-import useBlogList from "../components/Blog/BlogList/useBlogList";
+import usePostList from "../components/Posts/PostList/usePostList";
 import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 
 const Notification: FC = () => {
@@ -97,8 +97,8 @@ export type HomePageProps = {
 
 const Home: NextPage<HomePageProps> = (props) => {
   const { track } = useAnalytics();
-  const posts = props.posts.map(postToBlogListItem);
-  const blogListProps = useBlogList({ items: posts, withImage: true });
+  const posts = props.posts.map(postToPostListItem);
+  const blogListProps = usePostList({ items: posts, withImage: true });
 
   return (
     <Layout
@@ -286,12 +286,10 @@ const Home: NextPage<HomePageProps> = (props) => {
   );
 };
 
-export const postToBlogListItem = (
-  blogOrWebinar: SerializedPost
-): BlogListItemProps => {
-  return blogOrWebinar.type === "blog-post"
-    ? blogToBlogListItem(blogOrWebinar)
-    : webinarToBlogListItem(blogOrWebinar);
+export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
+  return post.type === "blog-post"
+    ? blogToPostListItem(post)
+    : webinarToPostListItem(post);
 };
 
 export const sortByDate = (a: { date: Date }, b: { date: Date }) => {

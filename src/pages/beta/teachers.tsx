@@ -6,18 +6,18 @@ import { Heading } from "../../components/Typography";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
-  postToBlogListItem,
+  postToPostListItem,
 } from "..";
 import CMSClient from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
 import Flex from "../../components/Flex";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { HomeSiteCards, SharedHomeContent } from "../../components/pages/Home";
-import useBlogList from "../../components/Blog/BlogList/useBlogList";
+import usePostList from "../../components/Posts/PostList/usePostList";
 
 const Teachers: NextPage<HomePageProps> = (props) => {
-  const posts = props.posts.map(postToBlogListItem);
-  const blogListProps = useBlogList({ items: posts, withImage: true });
+  const posts = props.posts.map(postToPostListItem);
+  const blogListProps = usePostList({ items: posts, withImage: true });
 
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>

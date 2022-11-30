@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import { Webinar } from "../../../common-lib/cms-types";
 import WebinarDetailPage, {
   SerializedWebinar,
-  WebinarPageProps,
+  WebinarSinglePageProps,
 } from "../../../pages/webinars/[webinarSlug]";
 import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -212,7 +212,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
-      })) as { props: WebinarPageProps };
+      })) as { props: WebinarSinglePageProps };
 
       expect(propsResult?.props?.webinar).toMatchObject({
         date: "2025-01-01T00:00:00.000Z",
@@ -227,7 +227,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       );
       const propsResult = (await getStaticProps({
         params: { webinarSlug: "an-upcoming-webinar" },
-      })) as { props: WebinarPageProps };
+      })) as { props: WebinarSinglePageProps };
 
       expect(propsResult).toMatchObject({
         notFound: true,

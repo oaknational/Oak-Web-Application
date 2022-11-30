@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import { HomePage } from "../../../common-lib/cms-types";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import BlogList from "../../Blog/BlogList";
-import { BlogListProps } from "../../Blog/BlogList/BlogList";
+import PostList from "../../Posts/PostList";
+import { PostListProps } from "../../Posts/PostList/PostList";
 import Box from "../../Box";
 import Flex from "../../Flex";
 import { useNewsletterForm } from "../../Forms/NewsletterForm";
@@ -17,7 +17,7 @@ import HomeAboutCard from "./HomeAboutCard";
 import HomeHelpCard from "./HomeHelpCard";
 
 type SharedHomePageProps = {
-  blogListProps: BlogListProps;
+  blogListProps: PostListProps;
   pageData: HomePage;
 };
 
@@ -69,7 +69,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                     </Typography>
                   </Flex>
                 </Flex>
-                <BlogList {...blogListProps} />
+                <PostList {...blogListProps} />
               </Box>
             </GridArea>
             <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
