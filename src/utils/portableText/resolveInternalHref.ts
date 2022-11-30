@@ -1,54 +1,57 @@
 import { CTA, CTAInternalLinkEntry } from "../../common-lib/cms-types";
+import { resolveOakHref } from "../../common-lib/urls";
 import { assertUnreachable } from "../assertUnreachable";
 
+/**
+ * Mapping of CMS content types to oak pages
+ */
 export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
   switch (entry.contentType) {
     case "homepage":
       return `/`;
     case "aboutCorePage":
     case "aboutCorePage.whoWeAre":
-      return `/about-us/who-we-are`;
+      return resolveOakHref({ page: "about-who-we-are" });
     case "aboutCorePage.board":
-      return `/about-us/board`;
+      return resolveOakHref({ page: "about-board" });
     case "aboutCorePage.leadership":
-      return `/about-us/leadership`;
+      return resolveOakHref({ page: "about-leadership" });
     case "aboutCorePage.partners":
-      return `/about-us/partners`;
+      return resolveOakHref({ page: "about-partners" });
     case "aboutCorePage.workWithUs":
-      return `/about-us/work-with-us`;
+      return resolveOakHref({ page: "about-work-with-us" });
     case "planningCorePage":
-      return `/lesson-planning`;
+      return resolveOakHref({ page: "lesson-planning" });
     case "supportCorePage":
-      return `/support`;
+      return resolveOakHref({ page: "support-your-team" });
     case "curriculumCorePage":
-      return `/develop-your-curriculum`;
+      return resolveOakHref({ page: "develop-your-curriculum" });
     case "contactCorePage":
-      return `/contact-us`;
+      return resolveOakHref({ page: "contact" });
     case "landingPage":
-      return `/lp/${entry.slug}`;
+      return resolveOakHref({ page: "landing-page", slug: entry.slug });
     case "webinar":
-      return `/webinars/${entry.slug}`;
+      return resolveOakHref({ page: "webinars", slug: entry.slug });
     case "webinarListingPage":
-      return `/webinars`;
+      return resolveOakHref({ page: "webinars-index" });
     case "newsPost":
-      return `/blog/${entry.slug}`;
+      return resolveOakHref({ page: "blog", slug: entry.slug });
     case "newsListingPage":
-      return `/blog`;
+      return resolveOakHref({ page: "blog-index" });
     case "policyPage":
-      return `/legal/${entry.slug}`;
+      return resolveOakHref({ page: "policy", slug: entry.slug });
     case "attachment":
       return entry.file.asset.url;
-    default:
+    default: {
+      const entryJSON = JSON.stringify(entry, null, 2);
+
       assertUnreachable(
         entry,
         new Error(
-          `Error resolving internal href; unexpected entry:\n${JSON.stringify(
-            entry,
-            null,
-            2
-          )}`
+          `Error resolving internal href; unexpected entry:\n${entryJSON}`
         )
       );
+    }
   }
 };
 
