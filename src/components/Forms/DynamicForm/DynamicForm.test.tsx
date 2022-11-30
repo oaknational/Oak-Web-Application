@@ -181,6 +181,7 @@ describe("DynamicForm", () => {
       },
     ],
   } as FormDefinition;
+
   test("user can fill out and submit form with keyboard", async () => {
     renderWithTheme(
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
@@ -228,9 +229,11 @@ describe("DynamicForm", () => {
     const user = userEvent.setup();
     await user.click(nameInput);
     await user.tab();
-    const description = computeAccessibleDescription(nameInput);
 
-    expect(description).toBe("Name can't be empty");
+    await waitFor(() => {
+      const description = computeAccessibleDescription(nameInput);
+      expect(description).toBe("Name can't be empty");
+    });
   });
 
   test("should display all error hints on submit", async () => {
@@ -238,15 +241,19 @@ describe("DynamicForm", () => {
       <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
-    const input = getByPlaceholderText("Anna Smith");
+    const nameInput = getByPlaceholderText("Anna Smith");
     // initially error is not shown
-    expect(computeAccessibleDescription(input)).toBe("");
+    expect(computeAccessibleDescription(nameInput)).toBe("");
     const submit = getByRole("button", { name: "Sign up" });
     const user = userEvent.setup();
     await user.click(submit);
 
     // error is shown after form is submitted
-    expect(computeAccessibleDescription(input)).toBe("Name can't be empty");
+
+    await waitFor(() => {
+      const description = computeAccessibleDescription(nameInput);
+      expect(description).toBe("Name can't be empty");
+    });
   });
 
   test("onSubmit() should not be called if form invalid", async () => {
