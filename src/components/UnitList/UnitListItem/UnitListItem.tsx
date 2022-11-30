@@ -76,17 +76,17 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           </OakLink>
           <Flex $mb={24} $flexDirection={["column", "row"]}>
             {learningThemeTitle && (
-              <Span $mr={6} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
+              <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
                 {learningThemeTitle}
               </Span>
             )}
             <Flex>
-              <Span $mr={6} $font={["body-3", "heading-light-7"]}>
+              <Span $mr={16} $font={["body-3", "heading-light-7"]}>
                 {`${lessonCount} lessons`}
               </Span>
               {hasUnitQuiz && (
-                <Span $mr={6} $font={["body-3", "heading-light-7"]}>
-                  and unit quiz
+                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                  Unit quiz
                 </Span>
               )}
             </Flex>
