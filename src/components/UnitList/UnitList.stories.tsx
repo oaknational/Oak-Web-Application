@@ -61,10 +61,8 @@ const currentPageItems: UnitListProps = {
   subject: "computing",
   headingTag: "h1",
   paginationProps: {
-    currentPage: 0,
+    currentPage: 1,
     totalPages: 2,
-    prevPageUrlObject: undefined,
-    nextPageUrlObject: undefined,
   },
 };
 
