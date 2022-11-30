@@ -2,7 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 
 import KeyStageListPage, {
   KeyStageProps,
-} from "../../../../pages/beta/key-stages/[keyStageSlug]";
+} from "../../../../pages/beta/ks/[keyStageSlug]";
 import { mockSeoResult } from "../../../__helpers__/cms";
 import renderWithProviders from "../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../__helpers__/renderWithSeo";
@@ -50,7 +50,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all keystages", async () => {
       const { getStaticPaths } = await import(
-        "../../../../pages/beta/key-stages/[keyStageSlug]"
+        "../../../../pages/beta/ks/[keyStageSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -67,7 +67,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const { getStaticProps } = await import(
-        "../../../../pages/beta/key-stages/[keyStageSlug]"
+        "../../../../pages/beta/ks/[keyStageSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { keyStageSlug: "key-stage-1" },

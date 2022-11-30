@@ -11,9 +11,22 @@ import Layout from "../../../components/Layout";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import { decorateWithIsr } from "../../../node-lib/isr";
 import { Heading } from "../../../components/Typography";
+import {
+  unavailableSubjectListData,
+  subjectListData,
+} from "../../../browser-lib/fixtures/subjectListing";
+import { SubjectCardLinkProps } from "../../../components/Card/SubjectCardLink";
+import SubjectListingPage from "../../../components/pages/SubjectListing";
+import MaxWidth from "../../../components/MaxWidth/MaxWidth";
+import Breadcrumbs from "../../../components/Breadcrumbs";
+import Flex from "../../../components/Flex";
 
 export type KeyStageProps = {
-  keyStageData: { data: string | undefined };
+  keyStageData: {
+    url: string | undefined;
+    subjectListData: SubjectCardLinkProps[];
+    unavailableSubjectListData: SubjectCardLinkProps[];
+  };
 };
 
 const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
@@ -25,8 +38,18 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
       })}
       $background="white"
     >
-      <Heading tag={"h1"}>Key stage {props.keyStageData.data}</Heading>
-      {/* <BlogJsonLd  /> */}
+      <MaxWidth>
+        <Flex $pv={48}>
+          {" "}
+          <Breadcrumbs breadcrumbs={[{ href: "/beta", label: "Home" }]} />
+        </Flex>
+      </MaxWidth>
+      <MaxWidth $ph={[0, 12]}>
+        <Heading tag={"h4"} $font={"heading-4"}>
+          Key stage {props.keyStageData.url}
+        </Heading>
+      </MaxWidth>
+      <SubjectListingPage {...props} />
     </Layout>
   );
 };
@@ -49,7 +72,11 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
 export const getStaticProps: GetStaticProps<KeyStageProps, URLParams> = async (
   context
 ) => {
-  const keyStageData = { data: context.params?.keyStageSlug };
+  const keyStageData = {
+    url: context.params?.keyStageSlug,
+    subjectListData,
+    unavailableSubjectListData,
+  };
 
   if (!keyStageData) {
     return {

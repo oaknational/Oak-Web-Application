@@ -16,7 +16,7 @@ type TitleProps = {
   titleTag: HeadingTag;
 };
 
-type SubjectCardLinkProps = Omit<CardProps, "children"> & {
+export type SubjectCardLinkProps = Omit<CardProps, "children"> & {
   totalLessons: number;
   totalUnits: number;
   svgName: SvgName;
