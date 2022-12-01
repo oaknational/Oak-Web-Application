@@ -18,8 +18,8 @@ export type Tier = {
 
 export type UnitListProps = {
   units: UnitListItemProps[];
-  keyStage: string;
-  subject: string;
+  keyStageSlug: string;
+  subjectSlug: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
   tiers?: Tier[];
@@ -31,8 +31,14 @@ export type UnitListProps = {
  * Used on subject unit page and search results
  */
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, headingTag, tiers, keyStage, subject } =
-    props;
+  const {
+    units,
+    paginationProps,
+    headingTag,
+    tiers,
+    keyStageSlug,
+    subjectSlug,
+  } = props;
 
   return (
     <Flex $flexDirection="column">
@@ -45,8 +51,8 @@ const UnitList: FC<UnitListProps> = (props) => {
           <Flex $mb={[24, 32]}>
             {tiers.map(({ title, slug, unitCount }) => (
               <OakLink
-                keyStage={keyStage}
-                subject={subject}
+                keyStage={keyStageSlug}
+                subject={subjectSlug}
                 search={{ tier: slug }}
                 page={"unit-index"}
               >
@@ -63,8 +69,8 @@ const UnitList: FC<UnitListProps> = (props) => {
       {units.length ? (
         <>
           <UL $reset>
-            {units.map((item, i) => (
-              <LI key={`UnitList-UnitListItem-${i}`}>
+            {units.map((item) => (
+              <LI key={`UnitList-UnitListItem-${item.slug}`}>
                 <UnitListItem {...item} />
               </LI>
             ))}
