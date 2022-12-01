@@ -1,6 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import { subjectListData, unavailableSubjectListData } from "../../../../browser-lib/fixtures/subjectListing";
+import {
+  subjectListData,
+  unavailableSubjectListData,
+} from "../../../../browser-lib/fixtures/subjectListing";
 import KeyStageListPage, {
   KeyStageProps,
 } from "../../../../pages/beta/key-stages/[keyStageSlug]";
@@ -15,7 +18,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
         keyStageData={{
           url: "key-stage-1",
           subjectListData,
-          unavailableSubjectListData
+          unavailableSubjectListData,
         }}
       />
     );
@@ -34,7 +37,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
           keyStageData={{
             url: "key-stage-1",
             subjectListData,
-          unavailableSubjectListData
+            unavailableSubjectListData,
           }}
         />
       );

@@ -32,7 +32,7 @@ type SummaryAvailableProps = Pick<
   "keyStageSlug" | "subjectSlug" | "totalLessons" | "totalUnits"
 > &
   TitleProps & {
-    primaryTargetProps: { ref: MutableRefObject<HTMLAnchorElement | null>; };
+    primaryTargetProps: { ref: MutableRefObject<HTMLAnchorElement | null> };
   };
 
 const SummaryAvailable: FC<SummaryAvailableProps> = ({
