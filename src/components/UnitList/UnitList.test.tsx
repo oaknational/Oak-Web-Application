@@ -8,8 +8,8 @@ describe("components/UnitList", () => {
     const { getByRole } = renderWithProviders(
       <UnitList
         paginationProps={mockPaginationProps}
-        subject={"computing"}
-        keyStage={"2"}
+        subjectSlug={"computing"}
+        keyStageSlug={"2"}
         headingTag={"h1"}
         units={[
           {

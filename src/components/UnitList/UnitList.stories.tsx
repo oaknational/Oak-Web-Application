@@ -57,8 +57,8 @@ const currentPageItems: UnitListProps = {
       keyStage: "2",
     },
   ],
-  keyStage: "4",
-  subject: "computing",
+  keyStageSlug: "4",
+  subjectSlug: "computing",
   headingTag: "h1",
   paginationProps: {
     currentPage: 1,
