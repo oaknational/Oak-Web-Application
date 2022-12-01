@@ -1,3 +1,10 @@
+# [1.81.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.80.0...v1.81.0) (2022-12-01)
+
+
+### Features
+
+* **mux:** zero-rate Mux event calls to Litix ([b3b5cd8](https://github.com/oaknational/Oak-Web-Application/commit/b3b5cd86613f228fa4bde8875dbaaab5aa786936))
+
 # [1.80.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.79.0...v1.80.0) (2022-12-01)
 
 
