@@ -41,14 +41,21 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
       <MaxWidth>
         <Flex $pv={48}>
           {" "}
-          <Breadcrumbs breadcrumbs={[{ href: "/beta", label: "Home" }]} />
+          <Breadcrumbs
+            breadcrumbs={[{ href: "/beta/teachers", label: "Home" }]}
+          />
         </Flex>
       </MaxWidth>
-      <MaxWidth $ph={[0, 12]}>
-        <Heading tag={"h1"} $font={"heading-4"}>
-          {props.keyStageData.url?.split("-").join(" ")}
-        </Heading>
-      </MaxWidth>
+
+      {props.keyStageData.url && (
+        <MaxWidth $ph={[0, 12]}>
+          <Heading tag={"h1"} $font={"heading-4"}>
+            Key stage{" "}
+            {props.keyStageData.url[props.keyStageData.url.length - 1]}
+          </Heading>{" "}
+        </MaxWidth>
+      )}
+
       <SubjectListingPage {...props} />
     </Layout>
   );
