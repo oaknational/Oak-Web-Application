@@ -42,7 +42,7 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
         <Flex $pv={48}>
           {" "}
           <Breadcrumbs
-            breadcrumbs={[{ href: "/beta/teachers", label: "Home" }]}
+            breadcrumbs={[{ href: "/beta/teachers", label: "Home" },{ href: `/beta/key-stages/${props.keyStageData.url}`, label: `${props.keyStageData.url?.split("-").join(" ")}` }]}
           />
         </Flex>
       </MaxWidth>
