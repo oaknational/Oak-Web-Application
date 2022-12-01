@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from "react";
+import { FC } from "react";
 
 import { OakColorName } from "../../styles/theme";
 import Typography, { Heading, HeadingTag } from "../Typography";
@@ -26,55 +26,6 @@ export type SubjectCardLinkProps = Omit<CardProps, "children"> & {
   keyStageSlug: string;
   subjectSlug: string;
 } & TitleProps;
-
-type SummaryAvailableProps = Pick<
-  SubjectCardLinkProps,
-  "keyStageSlug" | "subjectSlug" | "totalLessons" | "totalUnits"
-> &
-  TitleProps & {
-    primaryTargetProps: { ref: MutableRefObject<HTMLAnchorElement | null> };
-  };
-
-const SummaryAvailable: FC<SummaryAvailableProps> = ({
-  keyStageSlug,
-  subjectSlug,
-  titleTag,
-  subjectTitle,
-  totalUnits,
-  totalLessons,
-  primaryTargetProps,
-}) => {
-  return (
-    <>
-      <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-        <OakLink
-          {...primaryTargetProps}
-          page={"unit-index"}
-          keyStage={keyStageSlug}
-          subject={subjectSlug}
-        >
-          {subjectTitle}
-        </OakLink>
-      </Heading>
-      <Typography
-        $font={"body-2"}
-        $color={"oakGrey4"}
-      >{`${totalUnits} units`}</Typography>
-      <Typography
-        $font={"body-2"}
-        $color={"oakGrey4"}
-      >{`${totalLessons} lessons`}</Typography>
-    </>
-  );
-};
-
-const SummaryUnavailable: FC<TitleProps> = ({ titleTag, subjectTitle }) => {
-  return (
-    <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-      {subjectTitle}
-    </Heading>
-  );
-};
 
 const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   subjectTitle,
@@ -128,17 +79,30 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         $minHeight={110}
       >
         {available ? (
-          <SummaryAvailable
-            subjectTitle={subjectTitle}
-            subjectSlug={subjectSlug}
-            titleTag={titleTag}
-            keyStageSlug={keyStageSlug}
-            totalLessons={totalLessons}
-            totalUnits={totalUnits}
-            primaryTargetProps={primaryTargetProps}
-          />
+          <>
+            <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+              <OakLink
+                {...primaryTargetProps}
+                page={"unit-index"}
+                keyStage={keyStageSlug}
+                subject={subjectSlug}
+              >
+                {subjectTitle}
+              </OakLink>
+            </Heading>
+            <Typography
+              $font={"body-2"}
+              $color={"oakGrey4"}
+            >{`${totalUnits} units`}</Typography>
+            <Typography
+              $font={"body-2"}
+              $color={"oakGrey4"}
+            >{`${totalLessons} lessons`}</Typography>
+          </>
         ) : (
-          <SummaryUnavailable subjectTitle={subjectTitle} titleTag={titleTag} />
+          <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+            {subjectTitle}
+          </Heading>
         )}
       </Flex>
       <BoxBorders gapPosition="rightTop" />
