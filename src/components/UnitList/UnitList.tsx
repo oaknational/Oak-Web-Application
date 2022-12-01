@@ -28,7 +28,7 @@ export type UnitListProps = {
  * Contains a list of units
  *
  * ## Usage
- * Used on subject unit page and search results
+ * Used on subject, unit and search results page
  */
 const UnitList: FC<UnitListProps> = (props) => {
   const {

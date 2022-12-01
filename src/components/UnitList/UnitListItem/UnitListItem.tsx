@@ -14,8 +14,8 @@ export type UnitListItemProps = {
   learningThemeTitle?: string;
   lessonCount: number;
   hasUnitQuiz: boolean;
-  subject: string;
-  keyStage: string;
+  subjectSlug: string;
+  keyStageSlug: string;
 };
 
 /**
@@ -30,8 +30,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     learningThemeTitle,
     lessonCount,
     hasUnitQuiz,
-    subject,
-    keyStage,
+    subjectSlug,
+    keyStageSlug,
     slug,
   } = props;
 
@@ -59,8 +59,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       >
         <Flex $mh={[16, 24]} $flexDirection={"column"}>
           <OakLink
-            keyStage={keyStage}
-            subject={subject}
+            keyStage={keyStageSlug}
+            subject={subjectSlug}
             slug={slug}
             page={"lesson-index"}
             {...primaryTargetProps}
