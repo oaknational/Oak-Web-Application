@@ -1,5 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
+import {
+  subjectListData,
+  unavailableSubjectListData,
+} from "../../../../browser-lib/fixtures/subjectListing";
 import KeyStageListPage, {
   KeyStageProps,
 } from "../../../../pages/beta/key-stages/[keyStageSlug]";
@@ -12,14 +16,16 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
     renderWithProviders(
       <KeyStageListPage
         keyStageData={{
-          data: "key-stage-1",
+          url: "key-stage-1",
+          subjectListData,
+          unavailableSubjectListData,
         }}
       />
     );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key stage key-stage-1"
+        "Key stage 1"
       );
     });
   });
@@ -29,7 +35,9 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
       const { seo } = renderWithSeo(
         <KeyStageListPage
           keyStageData={{
-            data: "key-stage-1",
+            url: "key-stage-1",
+            subjectListData,
+            unavailableSubjectListData,
           }}
         />
       );
@@ -75,7 +83,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
         props: KeyStageProps;
       };
 
-      expect(propsResult.props.keyStageData.data).toEqual("key-stage-1");
+      expect(propsResult.props.keyStageData.url).toEqual("key-stage-1");
     });
   });
 });
