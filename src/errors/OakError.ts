@@ -21,6 +21,7 @@ const ERROR_CODES = [
   "hubspot/identify-no-email",
   "preview/invalid-token",
   "cms/invalid-reference-data",
+  "cms/invalid-hubspot-form",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -111,6 +112,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "cms/invalid-reference-data": {
     message: "Couldn't find a matching portable text reference",
+    shouldNotify: true,
+    responseStatusCode: 500,
+  },
+  "cms/invalid-hubspot-form": {
+    message: "Error fetching or parsing referenced hubspot form",
     shouldNotify: true,
     responseStatusCode: 500,
   },

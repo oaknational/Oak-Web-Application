@@ -26,6 +26,7 @@ import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinar
 
 import { resolveSanityReferences } from "./resolveSanityReferences";
 import { parseResults } from "./parseResults";
+import { resolveHubspotFromReferences } from "./resolveHubspotFromReferences";
 
 export type Params = {
   previewMode?: boolean;
@@ -35,11 +36,19 @@ export type ListParams = Params & {
   limit?: number;
 };
 
+/**
+ * Search for references to other documents or hubspot forms within
+ * sanity documents and "resolve" them to their actual values
+ */
 const resolveEmbeddedReferences = async <T extends Record<string, unknown>>(
   document: T
 ): Promise<T> => {
   const withPortableTextReferences = await resolveSanityReferences(document);
-  return withPortableTextReferences;
+  const withForms = await resolveHubspotFromReferences(
+    withPortableTextReferences
+  );
+
+  return withForms;
 };
 
 const getSanityClient = () => ({
