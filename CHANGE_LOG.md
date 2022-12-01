@@ -1,3 +1,33 @@
+# [1.80.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.79.0...v1.80.0) (2022-12-01)
+
+
+### Features
+
+* unit list and list item ([cd67b96](https://github.com/oaknational/Oak-Web-Application/commit/cd67b96d8e3e68134c9cc498e2683f8579051008))
+
+# [1.79.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.78.0...v1.79.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* add padding to mobile layout ([e35064a](https://github.com/oaknational/Oak-Web-Application/commit/e35064a4b82c4cc703a09dfeea039ea2d702aa44))
+
+
+### Features
+
+* add keystage keypad to homepage ([50a9455](https://github.com/oaknational/Oak-Web-Application/commit/50a94555a2d51d14dbd3138adfda90992e48fff0))
+
+# [1.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.1...v1.78.0) (2022-12-01)
+
+
+### Features
+
+* add emty card add to storybook ([8bbf031](https://github.com/oaknational/Oak-Web-Application/commit/8bbf031d803c6db937fbb343b2a85c3caabcbf3c))
+* add learning tier list component ([292251a](https://github.com/oaknational/Oak-Web-Application/commit/292251a6930649e743b4a5728d274b9642e11633))
+* subject title card ([0cbcb30](https://github.com/oaknational/Oak-Web-Application/commit/0cbcb30f8f3ebcd7a2ff4c491da8ac0b857264c8))
+
+## [1.77.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.0...v1.77.1) (2022-11-30)
+
 # [1.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.1...v1.77.0) (2022-11-30)
 
 

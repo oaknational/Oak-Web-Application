@@ -9,6 +9,9 @@ const reportError = errorReporter("urls.ts");
 const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
+  "about-leadership": "/about-us/leadership",
+  "about-partners": "/about-us/partners",
+  "about-work-with-us": "/about-us/work-with-us",
   "blog-index": "/blog",
   "webinars-index": "/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -82,18 +85,27 @@ export type UnitIndexLinkProps = {
   subject: string;
   search?: {
     ["learning-theme"]?: string | null;
+    ["tier"]?: string | null;
   };
 };
+export type LessonIndexLinkProps = {
+  page: "lesson-index";
+  keyStage: string;
+  subject: string;
+  slug: string;
+};
+
 export type ResolveOakHrefProps =
   | {
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars" | "key-stage";
+      page: "blog" | "webinars" | "landing-page" | "policy" | "key-stage";
       slug: string;
     }
   | PostIndexLinkProps
-  | UnitIndexLinkProps;
+  | UnitIndexLinkProps
+  | LessonIndexLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -109,6 +121,10 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       const path: OakPageName = `${props.page}-index`;
       return `${OAK_PAGES[path]}/${props.slug}`;
     }
+    case "landing-page":
+      return `/lp/${props.slug}`;
+    case "policy":
+      return `/legal/${props.slug}`;
     case "key-stage": {
       return `/beta/key-stages/${props.slug}`;
     }
@@ -145,6 +161,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       }
 
       return `${path}?${queryString}`;
+    }
+    case "lesson-index": {
+      return `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units/${props.slug}`;
     }
 
     default:
