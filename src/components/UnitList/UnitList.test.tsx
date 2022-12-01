@@ -19,8 +19,8 @@ describe("components/UnitList", () => {
             learningThemeTitle: "MacBeth",
             lessonCount: 4,
             hasUnitQuiz: false,
-            subject: "English",
-            keyStage: "2",
+            subjectSlug: "english",
+            keyStageSlug: "2",
           },
         ]}
       />

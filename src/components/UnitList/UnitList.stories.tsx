@@ -13,8 +13,8 @@ const currentPageItems: UnitListProps = {
       learningThemeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: false,
-      subject: "English",
-      keyStage: "2",
+      subjectSlug: "english",
+      keyStageSlug: "2",
     },
     {
       title:
@@ -23,8 +23,8 @@ const currentPageItems: UnitListProps = {
       learningThemeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: false,
-      subject: "English",
-      keyStage: "2",
+      subjectSlug: "english",
+      keyStageSlug: "2",
     },
     {
       title:
@@ -33,8 +33,8 @@ const currentPageItems: UnitListProps = {
       learningThemeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: true,
-      subject: "English",
-      keyStage: "2",
+      subjectSlug: "english",
+      keyStageSlug: "2",
     },
     {
       title:
@@ -43,8 +43,8 @@ const currentPageItems: UnitListProps = {
       learningThemeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: false,
-      subject: "English",
-      keyStage: "2",
+      subjectSlug: "english",
+      keyStageSlug: "2",
     },
     {
       title:
@@ -53,8 +53,8 @@ const currentPageItems: UnitListProps = {
       learningThemeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: false,
-      subject: "English",
-      keyStage: "2",
+      subjectSlug: "english",
+      keyStageSlug: "2",
     },
   ],
   keyStageSlug: "4",
