@@ -17,6 +17,7 @@ import { HomeSiteCards, SharedHomeContent } from "../../components/pages/Home";
 import KeyStageKeypad from "../../components/KeyStageKeypad";
 import Grid, { GridArea } from "../../components/Grid";
 import usePostList from "../../components/Posts/PostList/usePostList";
+import Box from "../../components/Box";
 
 const Teachers: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToPostListItem);
@@ -26,22 +27,24 @@ const Teachers: NextPage<HomePageProps> = (props) => {
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
       <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
         <MaxWidth>
-          <Heading
-            $font={["heading-5", "heading-4"]}
-            tag={"h1"}
-            $mt={120}
-            $color={"black"}
-          >
-            Your foundation for great lessons
-          </Heading>
-          <Heading $font={"heading-light-6"} tag={"h2"} $mt={8}>
-            Find inspiration. Get support. Go teach.
-          </Heading>
-          <Grid $mt={48}>
-            <GridArea $colSpan={[12, 6, 4]}>
-              <KeyStageKeypad keyStages={keyStageKeypad.keyStages} />
-            </GridArea>
-          </Grid>
+          <Box $ph={[16, 0]}>
+            <Heading
+              $font={["heading-5", "heading-4"]}
+              tag={"h1"}
+              $mt={120}
+              $color={"black"}
+            >
+              Your foundation for great lessons
+            </Heading>
+            <Heading $font={"heading-light-6"} tag={"h2"} $mt={8}>
+              Find inspiration. Get support. Go teach.
+            </Heading>
+            <Grid $mt={48}>
+              <GridArea $colSpan={[12, 6, 4]}>
+                <KeyStageKeypad keyStages={keyStageKeypad.keyStages} />
+              </GridArea>
+            </Grid>
+          </Box>
           <HomeSiteCards />
         </MaxWidth>
       </Flex>
