@@ -58,11 +58,11 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
       </Heading>
       <Typography
         $font={"body-2"}
-        $color={"grey4"}
+        $color={"oakGrey4"}
       >{`${totalUnits} units`}</Typography>
       <Typography
         $font={"body-2"}
-        $color={"grey4"}
+        $color={"oakGrey4"}
       >{`${totalLessons} lessons`}</Typography>
     </>
   );

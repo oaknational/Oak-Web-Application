@@ -33,7 +33,7 @@ const SubjectListingPage: FC<SubjectListingProps> = (props) => {
   const { subjectListData, unavailableSubjectListData } = props.keyStageData;
   return (
     <Flex $flexDirection={"column"}>
-      <MaxWidth $ph={[12]}>
+      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Flex $pv={20}>
           <Typography $font={"body-2"}>
             {subjectListData.length} subjects

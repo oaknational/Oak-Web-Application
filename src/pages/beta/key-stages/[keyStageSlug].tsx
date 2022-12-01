@@ -18,8 +18,6 @@ import {
 import { SubjectCardLinkProps } from "../../../components/Card/SubjectCardLink";
 import SubjectListingPage from "../../../components/pages/SubjectListing";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
-import Breadcrumbs from "../../../components/Breadcrumbs";
-import Flex from "../../../components/Flex";
 
 export type KeyStageProps = {
   keyStageData: {
@@ -38,23 +36,8 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
       })}
       $background="white"
     >
-      <MaxWidth>
-        <Flex $pv={48}>
-          {" "}
-          <Breadcrumbs
-            breadcrumbs={[
-              { href: "/beta/teachers", label: "Home" },
-              {
-                href: `/beta/key-stages/${props.keyStageData.url}`,
-                label: `${props.keyStageData.url?.split("-").join(" ")}`,
-              },
-            ]}
-          />
-        </Flex>
-      </MaxWidth>
-
       {props.keyStageData.url && (
-        <MaxWidth $ph={[0, 12]}>
+        <MaxWidth $ph={12} $pt={48} $maxWidth={[480, 840, 1280]}>
           <Heading tag={"h1"} $font={"heading-4"}>
             Key stage{" "}
             {props.keyStageData.url[props.keyStageData.url.length - 1]}
