@@ -5,16 +5,16 @@ import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
-import BlogCategoryList, {
-  BlogCategoryListProps,
-  BlogCategoryPage,
-} from "../Blog/BlogCategoryList/BlogCategoryList";
 import Cover from "../Cover";
+import PostCategoryList, {
+  PostCategoryListProps,
+  PostCategoryPage,
+} from "../Posts/PostCategoryList/PostCategoryList";
 
 export type MobileBlogFiltersProps = {
-  categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
+  categoryListProps: Omit<PostCategoryListProps, "labelledBy" | "page">;
   withBackButton?: boolean;
-  page: BlogCategoryPage;
+  page: PostCategoryPage;
 };
 const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,7 +106,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             aria-labelledby={triggerId}
             $visibility={isOpen ? "visible" : "hidden"}
           >
-            <BlogCategoryList
+            <PostCategoryList
               labelledBy={triggerId}
               $pv={28}
               $ph={16}

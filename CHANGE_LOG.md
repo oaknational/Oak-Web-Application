@@ -1,3 +1,109 @@
+# [1.79.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.78.0...v1.79.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* add padding to mobile layout ([e35064a](https://github.com/oaknational/Oak-Web-Application/commit/e35064a4b82c4cc703a09dfeea039ea2d702aa44))
+
+
+### Features
+
+* add keystage keypad to homepage ([50a9455](https://github.com/oaknational/Oak-Web-Application/commit/50a94555a2d51d14dbd3138adfda90992e48fff0))
+
+# [1.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.1...v1.78.0) (2022-12-01)
+
+
+### Features
+
+* add emty card add to storybook ([8bbf031](https://github.com/oaknational/Oak-Web-Application/commit/8bbf031d803c6db937fbb343b2a85c3caabcbf3c))
+* add learning tier list component ([292251a](https://github.com/oaknational/Oak-Web-Application/commit/292251a6930649e743b4a5728d274b9642e11633))
+* subject title card ([0cbcb30](https://github.com/oaknational/Oak-Web-Application/commit/0cbcb30f8f3ebcd7a2ff4c491da8ac0b857264c8))
+
+## [1.77.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.0...v1.77.1) (2022-11-30)
+
+# [1.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.1...v1.77.0) (2022-11-30)
+
+
+### Bug Fixes
+
+* **forms:** don't make fields with required:false default to true ([8c64f8a](https://github.com/oaknational/Oak-Web-Application/commit/8c64f8a2c34692d07dc43bc4c8443c08e6f6db20))
+* **hsforms:** better handle empty strings for optional fields ([6ed1351](https://github.com/oaknational/Oak-Web-Application/commit/6ed13514de90b52698d2bb4ef01bacdbf4c99664))
+* **hsforms:** disallow empty `string` type fields in zod schema ([930d397](https://github.com/oaknational/Oak-Web-Application/commit/930d397e528edbb218be10e09710f6a1676faa15))
+* **hsforms:** don't enforce homepage sidebarForm in zod ([ccf1d04](https://github.com/oaknational/Oak-Web-Application/commit/ccf1d049e565894ec0524c5bda4d9c92615010c9))
+* **hsforms:** ensure hubspotFormsAccessToken is in server not browser config ([e78d50e](https://github.com/oaknational/Oak-Web-Application/commit/e78d50ea7948c67b8a4da481b1e63a4ae4b32c43))
+* **hsforms:** fix crash on submit caused by debug line ([5994bbd](https://github.com/oaknational/Oak-Web-Application/commit/5994bbd6d7cfa22afc0574fde2dcaa270848f1b9))
+* **hsforms:** pass correct transient prop to Button ([007d560](https://github.com/oaknational/Oak-Web-Application/commit/007d5602d30be5c22c4acfd02de25e1e531d8bb3))
+* update sanity gql sdk, disable extraneous validation ([e68175e](https://github.com/oaknational/Oak-Web-Application/commit/e68175eca49e755414be2b23dfaf234a0425456c))
+
+
+### Features
+
+* **hsforms:** add form resolving to addReferences ([2d4cbbe](https://github.com/oaknational/Oak-Web-Application/commit/2d4cbbec52bd2e22beca7dec6cd4ca7530c62649))
+* **hsforms:** add handling for dependent fields from hubspot ([2ebd725](https://github.com/oaknational/Oak-Web-Application/commit/2ebd7251a188905e5328e39d25e0dea1e999abe1))
+* **hsforms:** add hubspot & ability to fetch hubspot forms ([b5a32f8](https://github.com/oaknational/Oak-Web-Application/commit/b5a32f828d52700ee249edd4f382a7afcd267dc9))
+* **hsforms:** add hubspot form references to homepage gql query ([2454266](https://github.com/oaknational/Oak-Web-Application/commit/2454266feebe8366eeae28b7a60525c17ce386f0))
+* **hsforms:** add utilities for converting hs forms to internal shape ([b194e6c](https://github.com/oaknational/Oak-Web-Application/commit/b194e6c58c616915426b5503fd4fe897e8e60f22))
+* **hsforms:** disable support for fields without UI components ([b449b7f](https://github.com/oaknational/Oak-Web-Application/commit/b449b7f28b698b8594f0fb666d6f6f8e14cda053))
+* **hsforms:** documentation, additional enum types, add zod schemas ([12a6f81](https://github.com/oaknational/Oak-Web-Application/commit/12a6f81e035528ece344e002fa24f810bd39b514))
+* **hsforms:** improve string/email error messages ([1d14492](https://github.com/oaknational/Oak-Web-Application/commit/1d14492d7f4cdb9cd28fb2435ac39686bf26f777))
+* **hsforms:** resolve references to hubspot forms in documents ([c0e0088](https://github.com/oaknational/Oak-Web-Application/commit/c0e0088630830762d075ab8b463b240a69e46dcb))
+* **hsforms:** scaffold HubspotForm component ([70d332e](https://github.com/oaknational/Oak-Web-Application/commit/70d332e73e2dd9f012b311616759fab9f34ab675))
+* **hsforms:** stub out HubspotForm component ([1127864](https://github.com/oaknational/Oak-Web-Application/commit/112786497a2bac44b8543b666890c3310ebb7ae0))
+* **hsforms:** tidy DynamicForm, add tests ([1d12025](https://github.com/oaknational/Oak-Web-Application/commit/1d1202535eca150f2ed67ee6b6fab187aaadb078))
+* **hsforms:** tidy resolveHubspotFormReferences, fix error handling ([37d7420](https://github.com/oaknational/Oak-Web-Application/commit/37d74201363d7c6603947d574d4d9d04becfd094))
+
+## [1.76.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.0...v1.76.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* **video-tracking:** track end at 90 percent ([d12b832](https://github.com/oaknational/Oak-Web-Application/commit/d12b832fbb446af59cff199b59ad4f290e2bca79))
+* **video-tracking:** use ref for hasTrackedEnd ([b3a3cd1](https://github.com/oaknational/Oak-Web-Application/commit/b3a3cd176b2c20d0e4c0e6d18fb06385385e3a41))
+
+# [1.76.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.75.0...v1.76.0) (2022-11-29)
+
+
+### Bug Fixes
+
+* **categories-list:** all categories ([97370e7](https://github.com/oaknational/Oak-Web-Application/commit/97370e784937a8a4c83c081288227e11e011518d))
+
+
+### Features
+
+* **category-filters:** refactor category filters to be generic ([3db9e04](https://github.com/oaknational/Oak-Web-Application/commit/3db9e04cf2db6d8b9d90f0b1f8f23a9d6b68cc13))
+
+# [1.75.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.74.0...v1.75.0) (2022-11-29)
+
+
+### Features
+
+* add shared home content to teachers homepage ([8bbde6e](https://github.com/oaknational/Oak-Web-Application/commit/8bbde6e25461d28deed5b5d15815e3254aaf0cb6))
+* add shared home content to teachers homepage ([6c98fe3](https://github.com/oaknational/Oak-Web-Application/commit/6c98fe32d2601edcd1dbc654bd76b568a032737a))
+* add shared home content to teachers homepage ([a7b4edd](https://github.com/oaknational/Oak-Web-Application/commit/a7b4edd6695394cb6d7d00158ea469ddcb018c75))
+* oak icon links to teachers home not to homesite home ([2aefd80](https://github.com/oaknational/Oak-Web-Application/commit/2aefd803f3e07947fe7386014727bb7eb6476bc1))
+
+# [1.74.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.2...v1.74.0) (2022-11-29)
+
+
+### Features
+
+* add comment to generated env file explaining write process ([bb75053](https://github.com/oaknational/Oak-Web-Application/commit/bb7505392c68e97c8b9d19afd9755015ea618a47))
+
+## [1.73.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.1...v1.73.2) (2022-11-29)
+
+
+### Bug Fixes
+
+* **subject card component:** add prettier styles updated and linting fixes ([fc12208](https://github.com/oaknational/Oak-Web-Application/commit/fc1220817407554e9e7b47a280a29d48a14a0205))
+* **subject card component:** center title heading and add padding for long titles ([5ef97bf](https://github.com/oaknational/Oak-Web-Application/commit/5ef97bfaacdc60099c93e956f5d58cd3acd0c036))
+* **subject card component:** make units and lessons grey again ([7953c1c](https://github.com/oaknational/Oak-Web-Application/commit/7953c1cb934f8e081376b15f177cf843edb954da))
+* **subject card component:** remove tiers prop ([263d901](https://github.com/oaknational/Oak-Web-Application/commit/263d901e29023bf1b4d7130970b40167b689ce2e))
+* **subject card story:** add unit test ([0eeade5](https://github.com/oaknational/Oak-Web-Application/commit/0eeade5f30e5a9cee6d2e69cecd65707cadad6d9))
+* **subject card story:** remove unused variable ([4c73bfc](https://github.com/oaknational/Oak-Web-Application/commit/4c73bfcf18a36ce2d39f387b703422f594e4a071))
+* **subject card story:** unit test prettier ([9f3d905](https://github.com/oaknational/Oak-Web-Application/commit/9f3d905c1eb08a04216ff9075829366987a0074b))
+* **subject card:** add svg for image, relabel units and lessons ([5716535](https://github.com/oaknational/Oak-Web-Application/commit/5716535b0f742d959ed3a85320021588fde46801))
+* **subject card:** mix content fix ([c2ddbf3](https://github.com/oaknational/Oak-Web-Application/commit/c2ddbf3a6a98d72ebf5d5d3377c59a81fe28c49f))
+
 ## [1.73.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.73.0...v1.73.1) (2022-11-25)
 
 

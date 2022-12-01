@@ -2,11 +2,16 @@ import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 
+import createQueryStringFromObject from "./createQueryStringFromObject";
+
 const reportError = errorReporter("urls.ts");
 
 const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
+  "about-leadership": "/about-us/leadership",
+  "about-partners": "/about-us/partners",
+  "about-work-with-us": "/about-us/work-with-us",
   "blog-index": "/blog",
   "webinars-index": "/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -22,6 +27,7 @@ const OAK_PAGES = {
   "teachers-home": "https://teachers.thenational.academy",
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
+  "beta-teachers-home": "/beta/teachers",
 } as const;
 
 export type OakPageName = keyof typeof OAK_PAGES;
@@ -66,26 +72,31 @@ export const isExternalHref = (href: MaybeOakHref) => {
   return true;
 };
 
+export type PostIndexLinkProps = {
+  page: "blog-index" | "webinars-index";
+  category?: string | null;
+  search?: {
+    page?: string;
+  };
+};
+export type UnitIndexLinkProps = {
+  page: "unit-index";
+  keyStage: string;
+  subject: string;
+  search?: {
+    ["learning-theme"]?: string | null;
+  };
+};
 export type ResolveOakHrefProps =
   | {
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars" | "key-stage";
+      page: "blog" | "webinars" | "landing-page" | "policy" | "key-stage";
       slug: string;
     }
-  | {
-      page: "blog-index" | "webinars-index";
-      category?: string | null;
-      search?: {
-        page?: string;
-      };
-    }
-  | {
-      page: "unit-index";
-      keyStage: string;
-      subject: string;
-    };
+  | PostIndexLinkProps
+  | UnitIndexLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -101,6 +112,10 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       const path: OakPageName = `${props.page}-index`;
       return `${OAK_PAGES[path]}/${props.slug}`;
     }
+    case "landing-page":
+      return `/lp/${props.slug}`;
+    case "policy":
+      return `/legal/${props.slug}`;
     case "key-stage": {
       return `/beta/key-stages/${props.slug}`;
     }
@@ -117,12 +132,26 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       if (!props.search) {
         return path;
       }
-      const query = new URLSearchParams(props.search);
+      const queryString = createQueryStringFromObject(props.search);
 
-      return `${path}?${query.toString()}`;
+      if (!queryString) {
+        return path;
+      }
+
+      return `${path}?${queryString}`;
     }
     case "unit-index": {
-      return `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
+      const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
+      if (!props.search) {
+        return path;
+      }
+      const queryString = createQueryStringFromObject(props.search);
+
+      if (!queryString) {
+        return path;
+      }
+
+      return `${path}?${queryString}`;
     }
 
     default:
