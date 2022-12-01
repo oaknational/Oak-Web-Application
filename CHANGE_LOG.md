@@ -1,3 +1,15 @@
+# [1.79.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.78.0...v1.79.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* add padding to mobile layout ([e35064a](https://github.com/oaknational/Oak-Web-Application/commit/e35064a4b82c4cc703a09dfeea039ea2d702aa44))
+
+
+### Features
+
+* add keystage keypad to homepage ([50a9455](https://github.com/oaknational/Oak-Web-Application/commit/50a94555a2d51d14dbd3138adfda90992e48fff0))
+
 # [1.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.1...v1.78.0) (2022-12-01)
 
 
