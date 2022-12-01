@@ -11,33 +11,30 @@ import { SvgName } from "../SpriteSheet/getSvgId";
 
 import Card, { CardProps } from "./Card";
 
-type TitleProps = {
-  subjectTitle: string;
-  titleTag: HeadingTag;
+export type SubjectCardLinkProps = Omit<CardProps, "children"> & {
+  title: string;
+  titleTag?: HeadingTag;
+  slug: string;
+  unitCount: number;
+  keyStageSlug: string;
+  lessonCount?: number;
+  svgName?: SvgName;
+  imageBackground?: OakColorName;
+  background?: OakColorName;
+  available?: boolean;
 };
 
-export type SubjectCardLinkProps = Omit<CardProps, "children"> & {
-  totalLessons: number;
-  totalUnits: number;
-  svgName: SvgName;
-  imageBackground?: OakColorName;
-  background: OakColorName;
-  available: boolean;
-  keyStageSlug: string;
-  subjectSlug: string;
-} & TitleProps;
-
 const SubjectCardLink: FC<SubjectCardLinkProps> = ({
-  subjectTitle,
-  titleTag,
-  totalLessons,
-  totalUnits,
-  imageBackground,
-  background,
-  svgName,
-  available,
+  title,
+  slug,
+  titleTag = "h3",
   keyStageSlug,
-  subjectSlug,
+  lessonCount = 123,
+  unitCount,
+  imageBackground,
+  background = "teachersPastelYellow",
+  svgName = "SubjectArtAndDesign",
+  available = true,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -85,23 +82,23 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
                 {...primaryTargetProps}
                 page={"unit-index"}
                 keyStage={keyStageSlug}
-                subject={subjectSlug}
+                subject={slug}
               >
-                {subjectTitle}
+                {title}
               </OakLink>
             </Heading>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${totalUnits} units`}</Typography>
+            >{`${unitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${totalLessons} lessons`}</Typography>
+            >{`${lessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-            {subjectTitle}
+            {title}
           </Heading>
         )}
       </Flex>

@@ -1,0 +1,23 @@
+query teachersKeyStageSubjectUnits(
+  $keyStageSlug: String!
+  $subjectSlug: String!
+  $tierSlug: String
+) {
+  mv_units(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+    }
+  ) {
+    slug
+    title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjetcTitle: subject_title
+    themeSlug: theme_slug
+    themeTitle: theme_title
+    lessonCount: lesson_count
+    quizCount: quiz_count
+  }
+}
