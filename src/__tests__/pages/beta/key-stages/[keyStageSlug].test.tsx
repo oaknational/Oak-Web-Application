@@ -25,7 +25,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "key stage 1"
+        "Key stage 1"
       );
     });
   });
