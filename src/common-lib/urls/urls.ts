@@ -9,6 +9,9 @@ const reportError = errorReporter("urls.ts");
 const OAK_PAGES = {
   "about-board": "/about-us/board",
   "about-who-we-are": "/about-us/who-we-are",
+  "about-leadership": "/about-us/leadership",
+  "about-partners": "/about-us/partners",
+  "about-work-with-us": "/about-us/work-with-us",
   "blog-index": "/blog",
   "webinars-index": "/webinars",
   "careers-home": "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -97,7 +100,7 @@ export type ResolveOakHrefProps =
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars" | "key-stage";
+      page: "blog" | "webinars" | "landing-page" | "policy" | "key-stage";
       slug: string;
     }
   | PostIndexLinkProps
@@ -118,6 +121,10 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       const path: OakPageName = `${props.page}-index`;
       return `${OAK_PAGES[path]}/${props.slug}`;
     }
+    case "landing-page":
+      return `/lp/${props.slug}`;
+    case "policy":
+      return `/legal/${props.slug}`;
     case "key-stage": {
       return `/beta/key-stages/${props.slug}`;
     }

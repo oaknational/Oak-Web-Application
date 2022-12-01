@@ -97,6 +97,9 @@ async function main() {
     NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN:
       process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
       oakConfig.hubspot.scriptDomain,
+    HUBSPOT_FORMS_ACCESS_TOKEN:
+      process.env.HUBSPOT_FORMS_ACCESS_TOKEN ||
+      secretsFromNetwork.HUBSPOT_FORMS_ACCESS_TOKEN,
 
     // Oak
     // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
