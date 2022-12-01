@@ -1,3 +1,56 @@
+# [1.82.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.81.0...v1.82.0) (2022-12-01)
+
+
+### Features
+
+* **subject listing page:** add key stage to the breadcrumb ([9439323](https://github.com/oaknational/Oak-Web-Application/commit/943932320caf7284bc2e4d1c9d0986c1cb4a82b7))
+* **subject listing page:** add key stage to the breadcrumb prettier ([7e3de7c](https://github.com/oaknational/Oak-Web-Application/commit/7e3de7cb1645a586078c5e1fe188cf5d68816856))
+* **subject listing page:** bug and test fixes ([475846b](https://github.com/oaknational/Oak-Web-Application/commit/475846b595cb4c2c8626e0b3f47c57e6783c976c))
+* **subject listing page:** bug and test fixes 2 ([1a04b20](https://github.com/oaknational/Oak-Web-Application/commit/1a04b20a10ff3d46cfb70944a95a8789a57803fe))
+* **subject listing page:** capitalise key stage ([da27756](https://github.com/oaknational/Oak-Web-Application/commit/da27756512802cd88c7263e38e01efe2882b370a))
+* **subject listing page:** change grey color and remove breadcrumbs and add middle size max-width ([75e7a1e](https://github.com/oaknational/Oak-Web-Application/commit/75e7a1e5fc35ae2e2b727d81f70b52710e460ecf))
+* **subject listing page:** create key stage by subject listing page ([bf0cd65](https://github.com/oaknational/Oak-Web-Application/commit/bf0cd658772a0b2cd30e4163148617f7052d25b4))
+* **subject listing page:** merge changes ([9185f82](https://github.com/oaknational/Oak-Web-Application/commit/9185f82c454f74ef0681f28a105048a1d06e6f60))
+* **subject listing page:** remove extra summary component from subject list component ([73b3c9e](https://github.com/oaknational/Oak-Web-Application/commit/73b3c9ef7e9003aa83de7f4dc02a7c005dc81947))
+* **subject listing page:** sentence case test fix ([44e7a9b](https://github.com/oaknational/Oak-Web-Application/commit/44e7a9b635b477e062539fc501231355e300ece8))
+
+# [1.81.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.80.0...v1.81.0) (2022-12-01)
+
+
+### Features
+
+* **mux:** zero-rate Mux event calls to Litix ([b3b5cd8](https://github.com/oaknational/Oak-Web-Application/commit/b3b5cd86613f228fa4bde8875dbaaab5aa786936))
+
+# [1.80.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.79.0...v1.80.0) (2022-12-01)
+
+
+### Features
+
+* unit list and list item ([cd67b96](https://github.com/oaknational/Oak-Web-Application/commit/cd67b96d8e3e68134c9cc498e2683f8579051008))
+
+# [1.79.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.78.0...v1.79.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* add padding to mobile layout ([e35064a](https://github.com/oaknational/Oak-Web-Application/commit/e35064a4b82c4cc703a09dfeea039ea2d702aa44))
+
+
+### Features
+
+* add keystage keypad to homepage ([50a9455](https://github.com/oaknational/Oak-Web-Application/commit/50a94555a2d51d14dbd3138adfda90992e48fff0))
+
+# [1.78.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.1...v1.78.0) (2022-12-01)
+
+
+### Features
+
+* add emty card add to storybook ([8bbf031](https://github.com/oaknational/Oak-Web-Application/commit/8bbf031d803c6db937fbb343b2a85c3caabcbf3c))
+* add learning tier list component ([292251a](https://github.com/oaknational/Oak-Web-Application/commit/292251a6930649e743b4a5728d274b9642e11633))
+* subject title card ([0cbcb30](https://github.com/oaknational/Oak-Web-Application/commit/0cbcb30f8f3ebcd7a2ff4c491da8ac0b857264c8))
+
+## [1.77.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.77.0...v1.77.1) (2022-11-30)
+
 # [1.77.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.76.1...v1.77.0) (2022-11-30)
 
 

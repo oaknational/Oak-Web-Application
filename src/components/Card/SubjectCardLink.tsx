@@ -16,7 +16,7 @@ type TitleProps = {
   titleTag: HeadingTag;
 };
 
-type SubjectCardLinkProps = Omit<CardProps, "children"> & {
+export type SubjectCardLinkProps = Omit<CardProps, "children"> & {
   totalLessons: number;
   totalUnits: number;
   svgName: SvgName;
@@ -26,53 +26,6 @@ type SubjectCardLinkProps = Omit<CardProps, "children"> & {
   keyStageSlug: string;
   subjectSlug: string;
 } & TitleProps;
-
-type SummaryAvailableProps = Pick<
-  SubjectCardLinkProps,
-  "keyStageSlug" | "subjectSlug" | "totalLessons" | "totalUnits"
-> &
-  TitleProps;
-
-const SummaryAvailable: FC<SummaryAvailableProps> = ({
-  keyStageSlug,
-  subjectSlug,
-  titleTag,
-  subjectTitle,
-  totalUnits,
-  totalLessons,
-}) => {
-  const { primaryTargetProps } = useClickableCard<HTMLAnchorElement>();
-  return (
-    <>
-      <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-        <OakLink
-          {...primaryTargetProps}
-          page={"unit-index"}
-          keyStage={keyStageSlug}
-          subject={subjectSlug}
-        >
-          {subjectTitle}
-        </OakLink>
-      </Heading>
-      <Typography
-        $font={"body-2"}
-        $color={"grey4"}
-      >{`${totalUnits} units`}</Typography>
-      <Typography
-        $font={"body-2"}
-        $color={"grey4"}
-      >{`${totalLessons} lessons`}</Typography>
-    </>
-  );
-};
-
-const SummaryUnavailable: FC<TitleProps> = ({ titleTag, subjectTitle }) => {
-  return (
-    <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-      {subjectTitle}
-    </Heading>
-  );
-};
 
 const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   subjectTitle,
@@ -86,7 +39,8 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   keyStageSlug,
   subjectSlug,
 }) => {
-  const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
+  const { containerProps, isHovered, primaryTargetProps } =
+    useClickableCard<HTMLAnchorElement>();
   return (
     <Card
       {...(available && { ...containerProps })}
@@ -125,16 +79,30 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         $minHeight={110}
       >
         {available ? (
-          <SummaryAvailable
-            subjectTitle={subjectTitle}
-            subjectSlug={subjectSlug}
-            titleTag={titleTag}
-            keyStageSlug={keyStageSlug}
-            totalLessons={totalLessons}
-            totalUnits={totalUnits}
-          />
+          <>
+            <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+              <OakLink
+                {...primaryTargetProps}
+                page={"unit-index"}
+                keyStage={keyStageSlug}
+                subject={subjectSlug}
+              >
+                {subjectTitle}
+              </OakLink>
+            </Heading>
+            <Typography
+              $font={"body-2"}
+              $color={"oakGrey4"}
+            >{`${totalUnits} units`}</Typography>
+            <Typography
+              $font={"body-2"}
+              $color={"oakGrey4"}
+            >{`${totalLessons} lessons`}</Typography>
+          </>
         ) : (
-          <SummaryUnavailable subjectTitle={subjectTitle} titleTag={titleTag} />
+          <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
+            {subjectTitle}
+          </Heading>
         )}
       </Flex>
       <BoxBorders gapPosition="rightTop" />

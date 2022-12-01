@@ -2,7 +2,7 @@ import { UnitIndexLinkProps } from "../../../common-lib/urls";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
 
-type LearningThemeFiltersProps = {
+export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: { label: string; slug: string | null }[];
