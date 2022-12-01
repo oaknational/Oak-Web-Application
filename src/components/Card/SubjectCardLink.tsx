@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MutableRefObject } from "react";
 
 import { OakColorName } from "../../styles/theme";
 import Typography, { Heading, HeadingTag } from "../Typography";
@@ -31,7 +31,9 @@ type SummaryAvailableProps = Pick<
   SubjectCardLinkProps,
   "keyStageSlug" | "subjectSlug" | "totalLessons" | "totalUnits"
 > &
-  TitleProps;
+  TitleProps & {
+    primaryTargetProps: { ref: MutableRefObject<HTMLAnchorElement | null>; };
+  };
 
 const SummaryAvailable: FC<SummaryAvailableProps> = ({
   keyStageSlug,
@@ -40,8 +42,8 @@ const SummaryAvailable: FC<SummaryAvailableProps> = ({
   subjectTitle,
   totalUnits,
   totalLessons,
+  primaryTargetProps,
 }) => {
-  const { primaryTargetProps } = useClickableCard<HTMLAnchorElement>();
   return (
     <>
       <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
@@ -86,7 +88,8 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   keyStageSlug,
   subjectSlug,
 }) => {
-  const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
+  const { containerProps, isHovered, primaryTargetProps } =
+    useClickableCard<HTMLAnchorElement>();
   return (
     <Card
       {...(available && { ...containerProps })}
@@ -132,6 +135,7 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
             keyStageSlug={keyStageSlug}
             totalLessons={totalLessons}
             totalUnits={totalUnits}
+            primaryTargetProps={primaryTargetProps}
           />
         ) : (
           <SummaryUnavailable subjectTitle={subjectTitle} titleTag={titleTag} />

@@ -45,8 +45,8 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
         </Flex>
       </MaxWidth>
       <MaxWidth $ph={[0, 12]}>
-        <Heading tag={"h4"} $font={"heading-4"}>
-          Key stage {props.keyStageData.url}
+        <Heading tag={"h1"} $font={"heading-4"}>
+          {props.keyStageData.url?.split("-").join(" ")}
         </Heading>
       </MaxWidth>
       <SubjectListingPage {...props} />

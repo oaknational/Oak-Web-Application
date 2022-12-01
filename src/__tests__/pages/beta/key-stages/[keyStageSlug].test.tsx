@@ -1,8 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
+import { subjectListData, unavailableSubjectListData } from "../../../../browser-lib/fixtures/subjectListing";
 import KeyStageListPage, {
   KeyStageProps,
-} from "../../../../pages/beta/ks/[keyStageSlug]";
+} from "../../../../pages/beta/key-stages/[keyStageSlug]";
 import { mockSeoResult } from "../../../__helpers__/cms";
 import renderWithProviders from "../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../__helpers__/renderWithSeo";
@@ -12,14 +13,16 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
     renderWithProviders(
       <KeyStageListPage
         keyStageData={{
-          data: "key-stage-1",
+          url: "key-stage-1",
+          subjectListData,
+          unavailableSubjectListData
         }}
       />
     );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key stage key-stage-1"
+        "key stage 1"
       );
     });
   });
@@ -29,7 +32,9 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
       const { seo } = renderWithSeo(
         <KeyStageListPage
           keyStageData={{
-            data: "key-stage-1",
+            url: "key-stage-1",
+            subjectListData,
+          unavailableSubjectListData
           }}
         />
       );
@@ -50,7 +55,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
   describe("getStaticPaths", () => {
     it("Should return the paths of all keystages", async () => {
       const { getStaticPaths } = await import(
-        "../../../../pages/beta/ks/[keyStageSlug]"
+        "../../../../pages/beta/key-stages/[keyStageSlug]"
       );
 
       const pathsResult = await getStaticPaths({});
@@ -67,7 +72,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const { getStaticProps } = await import(
-        "../../../../pages/beta/ks/[keyStageSlug]"
+        "../../../../pages/beta/key-stages/[keyStageSlug]"
       );
       const propsResult = (await getStaticProps({
         params: { keyStageSlug: "key-stage-1" },
@@ -75,7 +80,7 @@ describe("pages/key-stages/[keyStageSlug].tsx", () => {
         props: KeyStageProps;
       };
 
-      expect(propsResult.props.keyStageData.data).toEqual("key-stage-1");
+      expect(propsResult.props.keyStageData.url).toEqual("key-stage-1");
     });
   });
 });
