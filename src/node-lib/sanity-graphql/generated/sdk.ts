@@ -31,15 +31,9 @@ export type AboutCorePage = Document & {
   _type?: Maybe<Scalars['String']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']>;
-  board?: Maybe<AboutPageBoard>;
   contactSection?: Maybe<AboutPageContactSection>;
-  leadership?: Maybe<AboutPageLeadership>;
-  partners?: Maybe<AboutPagePartners>;
-  seo?: Maybe<Seo>;
   summaryRaw?: Maybe<Scalars['JSON']>;
   title?: Maybe<Scalars['String']>;
-  whoWeAre?: Maybe<AboutPageWhoWeAre>;
-  workWithUs?: Maybe<AboutPageWorkWithUs>;
 };
 
 export type AboutCorePageBoard = Document & {
@@ -100,14 +94,8 @@ export type AboutCorePageFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  board?: InputMaybe<AboutPageBoardFilter>;
   contactSection?: InputMaybe<AboutPageContactSectionFilter>;
-  leadership?: InputMaybe<AboutPageLeadershipFilter>;
-  partners?: InputMaybe<AboutPagePartnersFilter>;
-  seo?: InputMaybe<SeoFilter>;
   title?: InputMaybe<StringFilter>;
-  whoWeAre?: InputMaybe<AboutPageWhoWeAreFilter>;
-  workWithUs?: InputMaybe<AboutPageWorkWithUsFilter>;
 };
 
 export type AboutCorePageLeadership = Document & {
@@ -214,14 +202,8 @@ export type AboutCorePageSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  board?: InputMaybe<AboutPageBoardSorting>;
   contactSection?: InputMaybe<AboutPageContactSectionSorting>;
-  leadership?: InputMaybe<AboutPageLeadershipSorting>;
-  partners?: InputMaybe<AboutPagePartnersSorting>;
-  seo?: InputMaybe<SeoSorting>;
   title?: InputMaybe<SortOrder>;
-  whoWeAre?: InputMaybe<AboutPageWhoWeAreSorting>;
-  workWithUs?: InputMaybe<AboutPageWorkWithUsSorting>;
 };
 
 export type AboutCorePageWhoWeAre = Document & {
@@ -325,29 +307,6 @@ export type AboutCorePageWorkWithUsSorting = {
   title?: InputMaybe<SortOrder>;
 };
 
-export type AboutPageBoard = {
-  __typename?: 'AboutPageBoard';
-  _key?: Maybe<Scalars['String']>;
-  _type?: Maybe<Scalars['String']>;
-  boardMembers?: Maybe<Array<Maybe<TeamMember>>>;
-  documents?: Maybe<Array<Maybe<Attachment>>>;
-  governanceRaw?: Maybe<Scalars['JSON']>;
-  introRaw?: Maybe<Scalars['JSON']>;
-  sectionHeading?: Maybe<Scalars['String']>;
-};
-
-export type AboutPageBoardFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  sectionHeading?: InputMaybe<StringFilter>;
-};
-
-export type AboutPageBoardSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  sectionHeading?: InputMaybe<SortOrder>;
-};
-
 export type AboutPageContactSection = {
   __typename?: 'AboutPageContactSection';
   _key?: Maybe<Scalars['String']>;
@@ -366,27 +325,6 @@ export type AboutPageContactSectionSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   contactForm?: InputMaybe<FormWrapperSorting>;
-};
-
-export type AboutPageLeadership = {
-  __typename?: 'AboutPageLeadership';
-  _key?: Maybe<Scalars['String']>;
-  _type?: Maybe<Scalars['String']>;
-  introRaw?: Maybe<Scalars['JSON']>;
-  leadershipTeam?: Maybe<Array<Maybe<TeamMember>>>;
-  sectionHeading?: Maybe<Scalars['String']>;
-};
-
-export type AboutPageLeadershipFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  sectionHeading?: InputMaybe<StringFilter>;
-};
-
-export type AboutPageLeadershipSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  sectionHeading?: InputMaybe<SortOrder>;
 };
 
 export type AboutPagePartnerImage = {
@@ -414,28 +352,6 @@ export type AboutPagePartnerImageSorting = {
   crop?: InputMaybe<SanityImageCropSorting>;
   hotspot?: InputMaybe<SanityImageHotspotSorting>;
   name?: InputMaybe<SortOrder>;
-};
-
-export type AboutPagePartners = {
-  __typename?: 'AboutPagePartners';
-  _key?: Maybe<Scalars['String']>;
-  _type?: Maybe<Scalars['String']>;
-  curriculumPartners?: Maybe<Array<Maybe<AboutPagePartnerImage>>>;
-  introRaw?: Maybe<Scalars['JSON']>;
-  sectionHeading?: Maybe<Scalars['String']>;
-  techPartners?: Maybe<Array<Maybe<AboutPagePartnerImage>>>;
-};
-
-export type AboutPagePartnersFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  sectionHeading?: InputMaybe<StringFilter>;
-};
-
-export type AboutPagePartnersSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  sectionHeading?: InputMaybe<SortOrder>;
 };
 
 export type AboutPageTimeline = {
@@ -466,41 +382,6 @@ export type AboutPageTimelineSorting = {
   to?: InputMaybe<TextBlockSorting>;
 };
 
-export type AboutPageWhoWeAre = {
-  __typename?: 'AboutPageWhoWeAre';
-  _key?: Maybe<Scalars['String']>;
-  _type?: Maybe<Scalars['String']>;
-  intro?: Maybe<TextAndMedia>;
-  principles?: Maybe<Array<Maybe<TextBlock>>>;
-  sectionHeading?: Maybe<Scalars['String']>;
-  timeline?: Maybe<AboutPageTimeline>;
-};
-
-export type AboutPageWhoWeAreFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<TextAndMediaFilter>;
-  sectionHeading?: InputMaybe<StringFilter>;
-  timeline?: InputMaybe<AboutPageTimelineFilter>;
-};
-
-export type AboutPageWhoWeAreSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  intro?: InputMaybe<TextAndMediaSorting>;
-  sectionHeading?: InputMaybe<SortOrder>;
-  timeline?: InputMaybe<AboutPageTimelineSorting>;
-};
-
-export type AboutPageWorkWithUs = {
-  __typename?: 'AboutPageWorkWithUs';
-  _key?: Maybe<Scalars['String']>;
-  _type?: Maybe<Scalars['String']>;
-  cards?: Maybe<AboutPageWorkWithUsCards>;
-  introRaw?: Maybe<Scalars['JSON']>;
-  sectionHeading?: Maybe<Scalars['String']>;
-};
-
 export type AboutPageWorkWithUsCards = {
   __typename?: 'AboutPageWorkWithUsCards';
   _key?: Maybe<Scalars['String']>;
@@ -527,20 +408,6 @@ export type AboutPageWorkWithUsCardsSorting = {
   curriculumPartner?: InputMaybe<CardSorting>;
   joinTheTeam?: InputMaybe<CardSorting>;
   teacherResearch?: InputMaybe<CardSorting>;
-};
-
-export type AboutPageWorkWithUsFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  cards?: InputMaybe<AboutPageWorkWithUsCardsFilter>;
-  sectionHeading?: InputMaybe<StringFilter>;
-};
-
-export type AboutPageWorkWithUsSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  cards?: InputMaybe<AboutPageWorkWithUsCardsSorting>;
-  sectionHeading?: InputMaybe<SortOrder>;
 };
 
 export type Attachment = Document & {
