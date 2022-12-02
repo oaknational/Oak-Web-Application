@@ -10,7 +10,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -22,7 +22,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -34,7 +34,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -46,7 +46,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -58,7 +58,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -70,7 +70,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -82,7 +82,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -94,7 +94,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -106,7 +106,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -118,7 +118,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -130,7 +130,7 @@ export const subjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: true,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
 ];
@@ -145,7 +145,7 @@ export const unavailableSubjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: false,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -157,7 +157,7 @@ export const unavailableSubjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: false,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -169,7 +169,7 @@ export const unavailableSubjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: false,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -181,7 +181,7 @@ export const unavailableSubjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: false,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
   {
@@ -193,7 +193,7 @@ export const unavailableSubjectListData: SubjectCardLinkProps[] = [
     totalLessons: 130,
     totalUnits: 14,
     available: false,
-    keyStageSlug: "key-stage-3",
+    keyStageSlug: "4",
     subjectSlug: "art-and-design",
   },
 ];

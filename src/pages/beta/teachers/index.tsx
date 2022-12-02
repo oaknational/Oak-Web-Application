@@ -1,23 +1,26 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import keyStageKeypad from "../../browser-lib/fixtures/keyStagesKeypad";
-import AppLayout from "../../components/AppLayout";
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import { Heading } from "../../components/Typography";
+import AppLayout from "../../../components/AppLayout";
+import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import { Heading } from "../../../components/Typography";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
   postToPostListItem,
-} from "..";
-import CMSClient from "../../node-lib/cms";
-import { decorateWithIsr } from "../../node-lib/isr";
-import Flex from "../../components/Flex";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import { HomeSiteCards, SharedHomeContent } from "../../components/pages/Home";
-import KeyStageKeypad from "../../components/KeyStageKeypad";
-import Grid, { GridArea } from "../../components/Grid";
-import usePostList from "../../components/Posts/PostList/usePostList";
-import Box from "../../components/Box";
+} from "../..";
+import CMSClient from "../../../node-lib/cms";
+import { decorateWithIsr } from "../../../node-lib/isr";
+import Flex from "../../../components/Flex";
+import MaxWidth from "../../../components/MaxWidth/MaxWidth";
+import {
+  HomeSiteCards,
+  SharedHomeContent,
+} from "../../../components/pages/Home";
+import KeyStageKeypad from "../../../components/KeyStageKeypad";
+import Grid, { GridArea } from "../../../components/Grid";
+import usePostList from "../../../components/Posts/PostList/usePostList";
+import Box from "../../../components/Box";
+import keyStageKeypad from "../../../browser-lib/fixtures/keyStagesKeypad";
 
 const Teachers: NextPage<HomePageProps> = (props) => {
   const posts = props.posts.map(postToPostListItem);

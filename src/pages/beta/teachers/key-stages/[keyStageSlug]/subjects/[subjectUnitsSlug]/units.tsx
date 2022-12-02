@@ -6,21 +6,22 @@ import {
   NextPage,
 } from "next";
 
-import UnitList, { Tier } from "../../../../components/UnitList/UnitList";
-import { UnitListItemProps } from "../../../../components/UnitList/UnitListItem/UnitListItem";
+import { UnitListItemProps } from "../../../../../../../components/UnitList/UnitListItem/UnitListItem";
+import { decorateWithIsr } from "../../../../../../../node-lib/isr";
+import AppLayout from "../../../../../../../components/AppLayout";
+import Flex from "../../../../../../../components/Flex";
+import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
+import { DEFAULT_SEO_PROPS } from "../../../../../../../browser-lib/seo/Seo";
+import TitleCard from "../../../../../../../components/Card/TitleCard";
+import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
+import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
+import Box from "../../../../../../../components/Box";
+import UnitList from "../../../../../../../components/UnitList";
+import { Tier } from "../../../../../../../components/UnitList/UnitList";
 import {
-  subjectUnits,
   mockFetchSubjectUnits,
-} from "../../../../browser-lib/fixtures/subjectUnits";
-import { decorateWithIsr } from "../../../../node-lib/isr";
-import AppLayout from "../../../../components/AppLayout";
-import Flex from "../../../../components/Flex";
-import MaxWidth from "../../../../components/MaxWidth/MaxWidth";
-import { DEFAULT_SEO_PROPS } from "../../../../browser-lib/seo/Seo";
-import TitleCard from "../../../../components/Card/TitleCard";
-import SubjectErrorCard from "../../../../components/Card/SubjectErrorCard";
-import Breadcrumbs from "../../../../components/Breadcrumbs";
-import Box from "../../../../components/Box";
+  subjectUnits,
+} from "../../../../../../../browser-lib/fixtures/subjectUnits";
 
 export type SubjectUnits = {
   keyStageTitle: string;
@@ -108,7 +109,7 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   const paths = subjectUnits.map((unit) => ({
     params: {
       subjectUnitsSlug: unit.subjectSlug,
-      //   keyStageSlug: unit.keyStageSlug,
+      keyStageSlug: unit.keyStageSlug,
     },
   }));
 

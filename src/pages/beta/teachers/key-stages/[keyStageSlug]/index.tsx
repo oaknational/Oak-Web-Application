@@ -6,18 +6,18 @@ import {
   NextPage,
 } from "next";
 
-import keyStagesKeypad from "../../../browser-lib/fixtures/keyStagesKeypad";
-import AppLayout from "../../../components/AppLayout";
-import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
-import { decorateWithIsr } from "../../../node-lib/isr";
-import { Heading } from "../../../components/Typography";
 import {
-  unavailableSubjectListData,
   subjectListData,
-} from "../../../browser-lib/fixtures/subjectListing";
-import { SubjectCardLinkProps } from "../../../components/Card/SubjectCardLink";
-import SubjectListingPage from "../../../components/pages/SubjectListing";
-import MaxWidth from "../../../components/MaxWidth/MaxWidth";
+  unavailableSubjectListData,
+} from "../../../../../browser-lib/fixtures/subjectListing";
+import { SubjectCardLinkProps } from "../../../../../components/Card/SubjectCardLink";
+import AppLayout from "../../../../../components/AppLayout";
+import { getSeoProps } from "../../../../../browser-lib/seo/getSeoProps";
+import MaxWidth from "../../../../../components/MaxWidth/MaxWidth";
+import { Heading } from "../../../../../components/Typography";
+import keyStagesKeypad from "../../../../../browser-lib/fixtures/keyStagesKeypad";
+import { decorateWithIsr } from "../../../../../node-lib/isr";
+import SubjectListingPage from "../../../../../components/pages/SubjectListing";
 
 export type KeyStageProps = {
   keyStageData: {
@@ -57,6 +57,7 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   const paths = keyStages.map((keyStage) => ({
     params: { keyStageSlug: keyStage.slug },
   }));
+  console.log("paths", paths);
 
   return {
     fallback: false,

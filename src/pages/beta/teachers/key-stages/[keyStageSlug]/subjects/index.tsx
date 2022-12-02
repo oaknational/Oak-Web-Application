@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import { DEFAULT_SEO_PROPS } from "../../../../browser-lib/seo/Seo";
-import AppLayout from "../../../../components/AppLayout";
-import Grid, { GridArea } from "../../../../components/Grid";
-import { Heading } from "../../../../components/Typography";
+import { DEFAULT_SEO_PROPS } from "../../../../../../browser-lib/seo/Seo";
+import AppLayout from "../../../../../../components/AppLayout";
+import Grid, { GridArea } from "../../../../../../components/Grid";
+import { Heading } from "../../../../../../components/Typography";
 
 const Beta: FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { SubjectUnits } from "../../pages/beta/key-stages/subjects/[subjectUnitsSlug]";
+import { SubjectUnits } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/units";
 
 export const subjectUnits: SubjectUnits[] = [
   {
@@ -16,7 +16,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "2",
+        keyStageSlug: "4",
       },
       {
         title:
@@ -26,7 +26,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "2",
+        keyStageSlug: "4",
       },
       {
         title:
@@ -36,7 +36,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "english",
-        keyStageSlug: "2",
+        keyStageSlug: "4",
       },
       {
         title:
@@ -46,7 +46,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "2",
+        keyStageSlug: "4",
       },
       {
         title:
@@ -56,7 +56,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "2",
+        keyStageSlug: "4",
       },
     ],
   },

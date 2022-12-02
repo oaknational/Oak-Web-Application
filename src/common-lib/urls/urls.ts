@@ -126,7 +126,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
     case "policy":
       return `/legal/${props.slug}`;
     case "key-stage": {
-      return `/beta/key-stages/${props.slug}`;
+      return `/beta/teachers/key-stages/${props.slug}`;
     }
     case "blog-index":
     case "webinars-index": {
@@ -150,7 +150,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `${path}?${queryString}`;
     }
     case "unit-index": {
-      const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
+      const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units`;
       if (!props.search) {
         return path;
       }
