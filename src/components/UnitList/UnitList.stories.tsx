@@ -60,6 +60,7 @@ const currentPageItems: UnitListProps = {
   keyStageSlug: "4",
   subjectSlug: "computing",
   headingTag: "h1",
+  availableTiers: [],
   paginationProps: {
     currentPage: 1,
     totalPages: 2,
@@ -89,5 +90,5 @@ export const UnitListTiers = Template.bind({});
 
 UnitListTiers.args = {
   ...currentPageItems,
-  tiers: tiers,
+  availableTiers: tiers,
 };
