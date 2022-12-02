@@ -21,8 +21,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
 
-  const { open } = useMenuContext();
-  const menuOpen = open; //rename here to save confusion
+  const { open: menuOpen } = useMenuContext();
 
   const categoryListRef = useRef<HTMLDivElement>(null);
   const checkAndSetHeight = () => {
