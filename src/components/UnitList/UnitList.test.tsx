@@ -11,6 +11,7 @@ describe("components/UnitList", () => {
         subjectSlug={"computing"}
         keyStageSlug={"2"}
         headingTag={"h1"}
+        availableTiers={[]}
         units={[
           {
             title:
