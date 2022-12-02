@@ -1,3 +1,10 @@
+## [1.82.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.82.1...v1.82.2) (2022-12-02)
+
+
+### Bug Fixes
+
+* **subject listing page:** use the teacher nav bar for subject listing page ([82c40a8](https://github.com/oaknational/Oak-Web-Application/commit/82c40a877f1a13cd57b5b88ad1c9a7b7c67e11d3))
+
 ## [1.82.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.82.0...v1.82.1) (2022-12-01)
 
 # [1.82.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.81.0...v1.82.0) (2022-12-01)
