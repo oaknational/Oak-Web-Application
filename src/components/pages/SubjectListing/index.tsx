@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { KeyStageProps } from "../../../pages/beta/teachers/key-stages/[keyStageSlug]";
 import SubjectCardLink, {
   SubjectCardLinkProps,
 } from "../../Card/SubjectCardLink";
