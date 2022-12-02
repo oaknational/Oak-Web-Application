@@ -35,12 +35,14 @@ export const getStaticProps: GetStaticProps<
   ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
   const categorySlug = context.params?.categorySlug || null;
-  const blogs = blogResults.map(serializeDate).filter((blog) => {
-    if (categorySlug) {
-      return blog.category.slug === categorySlug;
-    }
-    return true;
-  });
+  const blogs = blogResults
+    .map((blog) => serializeDate(blog))
+    .filter((blog) => {
+      if (categorySlug) {
+        return blog.category.slug === categorySlug;
+      }
+      return true;
+    });
 
   const results: GetStaticPropsResult<PostListingPageProps> = {
     props: {
