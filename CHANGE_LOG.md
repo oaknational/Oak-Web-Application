@@ -1,3 +1,10 @@
+## [1.83.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.83.0...v1.83.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* close mobile filter dropdown when menu opens ([2a30016](https://github.com/oaknational/Oak-Web-Application/commit/2a30016afb9036a9ff14bb328d55d846a80de565))
+
 # [1.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.82.2...v1.83.0) (2022-12-02)
 
 
