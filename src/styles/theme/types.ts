@@ -45,10 +45,13 @@ export type PixelSpacing =
   | 80
   | 92
   | 96
+  | 110
   | 120
+  | 130
   | 140
   | 150
   | 160
+  | 166
   | 172
   | 200
   | 220
@@ -58,6 +61,7 @@ export type PixelSpacing =
   | 360
   | 380
   | 400
+  | 420
   | 450
   | 480
   | 600
@@ -69,7 +73,16 @@ export type PixelSpacing =
   | 1280
   | 1600;
 export type NullablePixelSpacing = PixelSpacing | null;
-export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
+export type NegativePixelSpacing =
+  | -36
+  | -32
+  | -28
+  | -24
+  | -20
+  | -16
+  | -12
+  | -8
+  | -4;
 export type PercentSpacing =
   | "100%"
   | "95%"
@@ -113,7 +126,7 @@ const OakColorNameZod = z.union([
   z.literal("oakGrey2"),
   z.literal("oakGrey3"),
   z.literal("oakGrey4"),
-  z.literal("pastelTurqoise"),
+  z.literal("pastelTurquoise"),
   z.literal("warning"),
   z.literal("failure"),
   z.literal("success"),

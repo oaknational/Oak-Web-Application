@@ -40,7 +40,7 @@ const isUnresolvedReference = (x: unknown): x is UnresolvedReference =>
  *    { _type: 'reference', _ref: '9c0bbd19-ffca-4c29-b60f-368a34abaacb' }
  *
  * The resolving happens at the CMS client layer, after fetching but
- * before parsing, see sanity-client/resolveReferences.ts
+ * before parsing, see sanity-client/resolveSanityReferences.ts
  */
 export const PTInternalLink: PortableTextMarkComponent<{
   _type: "internalLink";

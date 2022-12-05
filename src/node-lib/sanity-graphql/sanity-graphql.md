@@ -87,7 +87,7 @@ query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
 - `sort`/`limit` as above
 - `contentPortableText: contentRaw` - all portable text fields are returned as raw JSON (so no sub-fields to query), with the suffix `*Raw`, in this case `contentRaw` as the field is named `content`.  
 We rename it to `contentPortableText` for explicitness as it's one of the few strongly sanity-specific fields in our schemas.  
-As portable text is raw JSON, all references to other content are in the form of `{_type: "reference", _ref: "some-id"}`. In the CMS client we go through an additional step to do a follow-up query to resolve all these references. See the implementation in `cms/sanity-client/resolveReferences.ts`
+As portable text is raw JSON, all references to other content are in the form of `{_type: "reference", _ref: "some-id"}`. In the CMS client we go through an additional step to do a follow-up query to resolve all these references. See the implementation in `cms/sanity-client/resolveSanityReferences.ts`
 
 ### Lists of items (e.g. blog posts)
 

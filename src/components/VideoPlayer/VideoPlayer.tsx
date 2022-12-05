@@ -12,6 +12,7 @@ import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
+import getPercentageElapsed from "./getPercentageElapsed";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -34,6 +35,7 @@ export type VideoPlayerProps = {
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const { playbackId, thumbnailTime: thumbTime, title, location } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
+  const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
 
@@ -73,8 +75,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     videoTracking.onPause();
   };
 
-  const onEnded = () => {
-    videoTracking.onEnd();
+  const onTimeUpdate = () => {
+    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
+      videoTracking.onEnd();
+      hasTrackedEndRef.current = true;
+    }
   };
   const onError = (evt: Event) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
@@ -103,13 +108,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         playbackId={playbackId}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
+        beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
         onPlay={onPlay}
         onPause={onPause}
-        onEnded={onEnded}
         onError={onError}
+        onTimeUpdate={onTimeUpdate}
         style={{
           aspectRatio: "16/9",
         }}
