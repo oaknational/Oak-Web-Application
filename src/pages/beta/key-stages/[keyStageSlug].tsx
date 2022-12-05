@@ -7,7 +7,7 @@ import {
 } from "next";
 
 import keyStagesKeypad from "../../../browser-lib/fixtures/keyStagesKeypad";
-import Layout from "../../../components/Layout";
+import AppLayout from "../../../components/AppLayout";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import { decorateWithIsr } from "../../../node-lib/isr";
 import { Heading } from "../../../components/Typography";
@@ -29,7 +29,7 @@ export type KeyStageProps = {
 
 const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
   return (
-    <Layout
+    <AppLayout
       seoProps={getSeoProps({
         title: "Key stage", // @todo add real data
         description: "Key stage by subject",
@@ -44,9 +44,8 @@ const KeyStageListPage: NextPage<KeyStageProps> = (props) => {
           </Heading>{" "}
         </MaxWidth>
       )}
-
       <SubjectListingPage {...props} />
-    </Layout>
+    </AppLayout>
   );
 };
 

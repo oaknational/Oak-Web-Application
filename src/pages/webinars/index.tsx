@@ -27,12 +27,14 @@ export const getStaticProps: GetStaticProps<
   });
 
   const categorySlug = context.params?.categorySlug || null;
-  const webinars = webinarResults.map(serializeDate).filter((webinar) => {
-    if (categorySlug) {
-      return webinar.category.slug === categorySlug;
-    }
-    return true;
-  });
+  const webinars = webinarResults
+    .map((webinar) => serializeDate(webinar))
+    .filter((webinar) => {
+      if (categorySlug) {
+        return webinar.category.slug === categorySlug;
+      }
+      return true;
+    });
 
   const webinarCategories = [
     ...new Map(
