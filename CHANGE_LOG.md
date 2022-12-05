@@ -1,3 +1,17 @@
+# [1.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.82.2...v1.83.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* fix bizarre ts issue when passing serializeDate directly to map ([777562d](https://github.com/oaknational/Oak-Web-Application/commit/777562d57555cbb3d91a93c37b296585d5e6dc11))
+
+
+### Features
+
+* create abstraction for fetching cms graphql content by slug ([469e2e8](https://github.com/oaknational/Oak-Web-Application/commit/469e2e8b0c99be8789e7dfdd7c0136ac50f20602))
+* extend abstractions for singleton and list methods, use in client ([2743954](https://github.com/oaknational/Oak-Web-Application/commit/27439546a19e8d24fd97cafaf8846ff5a769d217))
+* lift cms client helper methods to their own file ([6e2cf93](https://github.com/oaknational/Oak-Web-Application/commit/6e2cf93523cbeb3fc8e21fb9a7f27ae840572cca))
+
 ## [1.82.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.82.1...v1.82.2) (2022-12-02)
 
 

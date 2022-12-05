@@ -14,6 +14,12 @@ const referencedDocumentsSchema = z.array(portableTextReferencedEntrySchema);
 /**
  * Given a portable text JSON blob, search for all objects that have
  * `{_type: "reference"}` and fetch and replace them with actual content
+ *
+ * This is needed as portable text JSON is returned from the graphql endpoint
+ * with un-resolved references to other documents. resolveSanityReferences does
+ * a deep search for these references within a provided object/array of objects
+ * and does a batch query for all references, then replaces said references
+ * with their expanded forms. (e.g. slugs for pages so we can construct links)
  */
 export const resolveSanityReferences = async <
   T extends Record<string, unknown> | Record<string, unknown>[]

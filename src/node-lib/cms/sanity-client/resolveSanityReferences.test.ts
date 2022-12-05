@@ -22,7 +22,7 @@ const mockObjWithReferences = {
   ],
 };
 
-describe("resolveReferences", () => {
+describe("resolveSanityReferences", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
