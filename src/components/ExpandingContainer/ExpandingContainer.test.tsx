@@ -4,7 +4,7 @@ import Card from "../Card";
 import ExpandingContainer from ".";
 
 it("component renders with the title", () => {
-  renderWithTheme(
+    const { getAllByRole } =  renderWithTheme(
     <ExpandingContainer
       external={true}
       projectable={true}
@@ -16,6 +16,8 @@ it("component renders with the title", () => {
       </Card>
     </ExpandingContainer>
   );
+
+  expect(getAllByRole("button")).toHaveLength(4);
 });
 test.todo("renders top right icons");
 test.todo("component expands and contract on click");

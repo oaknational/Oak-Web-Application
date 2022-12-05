@@ -58,29 +58,35 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             {downloadable && (
               <IconButton
                 $mr={24}
-                aria-label="Click me"
+                aria-label="download click me"
                 background={"teachersHighlight"}
                 icon="Download"
-                onClick={() => {console.log("Download Clicked!")}}
+                onClick={() => {
+                  console.log("Download Clicked!");
+                }}
                 variant="brush"
               />
             )}
             {external && (
               <IconButton
                 $mr={24}
-                aria-label="Click me"
+                aria-label="External click me"
                 background={"teachersPastelBlue"}
                 icon="External"
-                onClick={() => {console.log("External Clicked!")}}
+                onClick={() => {
+                  console.log("External Clicked!");
+                }}
                 variant="brush"
               />
             )}
             {projectable && (
               <IconButton
-                aria-label="Click me"
+                aria-label="Project Click me"
                 background={"teachersPastelBlue"}
                 icon="Project"
-                onClick={() => {console.log("Project Clicked!")}}
+                onClick={() => {
+                  console.log("Project Clicked!");
+                }}
                 variant="brush"
               />
             )}
