@@ -11,7 +11,6 @@ import { decorateWithIsr } from "../../../../../../../node-lib/isr";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
-import { DEFAULT_SEO_PROPS } from "../../../../../../../browser-lib/seo/Seo";
 import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
@@ -22,6 +21,7 @@ import {
   mockFetchSubjectUnits,
   subjectUnits,
 } from "../../../../../../../browser-lib/fixtures/subjectUnits";
+import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 
 export type SubjectUnits = {
   keyStageTitle: string;
@@ -41,7 +41,12 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 }) => {
   const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } = pageData;
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS}>
+    <AppLayout
+      seoProps={getSeoProps({
+        title: "Units", // @todo add real data
+        description: "Subject units",
+      })}
+    >
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
           <Breadcrumbs
