@@ -1,3 +1,10 @@
+# [1.84.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.83.1...v1.84.0) (2022-12-05)
+
+
+### Features
+
+* **gleap:** update gleap to v8 ([8f2fdd2](https://github.com/oaknational/Oak-Web-Application/commit/8f2fdd28ed981a19ec4522d0cacf03c9d3e8070b))
+
 ## [1.83.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.83.0...v1.83.1) (2022-12-05)
 
 
