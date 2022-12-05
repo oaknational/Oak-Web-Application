@@ -35,31 +35,29 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         $dropShadow={isHovered ? "expandableContainerHover" : "subjectCard"}
         $pa={20}
       >
-        <Flex>
+        <Flex $justifyContent={"space-between"}>
           {" "}
-          <Flex
-            {...containerProps}
-            $width={"100%"}
-            $maxWidth={"100%"}
-            $alignItems={"center"}
-          >
-            <Button
-              {...primaryTargetProps}
-              variant="minimal"
-              label={title}
-              onClick={() => setToggleOpen(toggleOpen === false)}
-            />
-            <Icon
-              $color="black"
-              name={toggleOpen ? "ChevronDown" : "ChevronUp"}
-            />
-          </Flex>
+          <Card $pa={0} {...containerProps} $flexGrow={0}>
+            <Flex $position="relative" $alignItems={"center"}>
+              {" "}
+              <Button
+                {...primaryTargetProps}
+                variant="minimal"
+                label={title}
+                onClick={() => setToggleOpen(toggleOpen === false)}
+              />
+              <Icon
+                $color="black"
+                name={toggleOpen ? "ChevronDown" : "ChevronUp"}
+              />
+            </Flex>
+          </Card>
           <Flex>
             {downloadable && (
               <IconButton
                 $mr={24}
                 aria-label="download click me"
-                background={"teachersHighlight"}
+                background={"teachersPastelBlue"}
                 icon="Download"
                 onClick={() => {
                   console.log("Download Clicked!");
