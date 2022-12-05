@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import keyStageKeypad from "../../browser-lib/fixtures/keyStagesKeypad";
 import AppLayout from "../../components/AppLayout";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import { Heading } from "../../components/Typography";
+import { Heading, UnderlinedHeading } from "../../components/Typography";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
@@ -41,6 +41,9 @@ const Teachers: NextPage<HomePageProps> = (props) => {
             </Heading>
             <Grid $mt={48}>
               <GridArea $colSpan={[12, 6, 4]}>
+                <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
+                  Start exploring subjects
+                </UnderlinedHeading>
                 <KeyStageKeypad keyStages={keyStageKeypad.keyStages} />
               </GridArea>
             </Grid>

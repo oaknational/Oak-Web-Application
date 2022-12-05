@@ -2,10 +2,10 @@ import { KeyStageKeypadProps } from "../../components/KeyStageKeypad/KeyStageKey
 
 const keyStageKeypad: KeyStageKeypadProps = {
   keyStages: [
-    { title: "1", slug: "key-stage-1" },
-    { title: "2", slug: "key-stage-2" },
-    { title: "3", slug: "key-stage-3" },
-    { title: "4", slug: "key-stage-4" },
+    { title: "KS1", slug: "key-stage-1" },
+    { title: "KS2", slug: "key-stage-2" },
+    { title: "KS3", slug: "key-stage-3" },
+    { title: "KS4", slug: "key-stage-4" },
   ],
   years: [
     { title: "1", slug: "/" },
