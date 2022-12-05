@@ -4,7 +4,7 @@ import Card from "../Card";
 import ExpandingContainer from ".";
 
 it("component renders with the title", () => {
-    const { getAllByRole } =  renderWithTheme(
+  const { getAllByRole } = renderWithTheme(
     <ExpandingContainer
       external={true}
       projectable={true}

@@ -24,7 +24,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
-  const [toggleOpen, setToggleOpen] = useState(false);
+  const [toggleOpen, setToggleOpen] = useState(true);
   return (
     <Card $flexDirection={"column"}>
       <Flex
