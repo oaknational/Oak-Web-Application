@@ -16,11 +16,11 @@ export const SubjectCard = Template.bind({});
 
 SubjectCard.args = {
   titleTag: "h3",
-  subjectTitle: "Art and Design",
+  title: "Art and Design",
   imageBackground: "teachersPastelYellow",
   background: "white",
   svgName: "SubjectArtAndDesign",
-  totalLessons: 130,
-  totalUnits: 14,
+  lessonCount: 130,
+  unitCount: 14,
   available: true,
 };

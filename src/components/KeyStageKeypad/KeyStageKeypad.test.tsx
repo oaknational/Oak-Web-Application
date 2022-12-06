@@ -1,5 +1,5 @@
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import keyStageKeypad from "../../browser-lib/fixtures/keyStagesKeypad";
+import keyStageKeypad from "../../browser-lib/fixtures/keyStageKeypad";
 
 import KeyStageKeypad from "./KeyStageKeypad";
 const keyStages = ["1", "2", "3", "4"];

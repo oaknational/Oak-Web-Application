@@ -10,14 +10,14 @@ describe("SubjectCardLink", () => {
       <SubjectCardLink
         svgName="SubjectArtAndDesign"
         titleTag={"h3"}
-        subjectTitle={"Art and Design"}
+        title={"Art and Design"}
         imageBackground={"teachersPastelYellow"}
         background={"white"}
-        totalLessons={130}
-        totalUnits={14}
+        lessonCount={130}
+        unitCount={14}
         available={false}
         keyStageSlug={"keyStage"}
-        subjectSlug={"subject"}
+        slug={"subject"}
       />
     );
     expect(screen.getByText("Art and Design")).toBeInTheDocument();
@@ -27,14 +27,14 @@ describe("SubjectCardLink", () => {
       <SubjectCardLink
         svgName="SubjectArtAndDesign"
         titleTag={"h3"}
-        subjectTitle={"Art and Design"}
+        title={"Art and Design"}
         imageBackground={"teachersPastelYellow"}
         background={"white"}
-        totalLessons={130}
-        totalUnits={14}
+        lessonCount={130}
+        unitCount={14}
         available={true}
         keyStageSlug={"keyStage"}
-        subjectSlug={"subject"}
+        slug={"subject"}
       />
     );
     const cardClickTarget = getByRole("link", {
