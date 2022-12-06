@@ -39,11 +39,10 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   pageData,
 }) => {
   const { keyStageTitle, keyStageSlug, subjectTitle, units } = pageData;
-  const PAGE_SIZE = 5;
 
   const paginationProps = usePagination({
     totalResults: pageData.units.length,
-    pageSize: PAGE_SIZE,
+    pageSize: 20,
     items: units,
   });
 
