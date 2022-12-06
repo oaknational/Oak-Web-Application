@@ -18,6 +18,7 @@ export type Tier = {
 
 export type UnitListProps = {
   units: UnitListItemProps[];
+  currentPageItems: UnitListItemProps[];
   keyStageSlug: string;
   subjectSlug: string;
   paginationProps: PaginationProps;
@@ -38,6 +39,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     availableTiers,
     keyStageSlug,
     subjectSlug,
+    currentPageItems,
   } = props;
 
   return (
@@ -55,6 +57,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 subject={subjectSlug}
                 search={{ tier: slug }}
                 page={"unit-index"}
+                key={slug}
               >
                 <Span
                   $font={"heading-7"}
@@ -66,10 +69,10 @@ const UnitList: FC<UnitListProps> = (props) => {
         )}
       </Flex>
 
-      {units.length ? (
+      {currentPageItems.length ? (
         <>
           <UL $reset>
-            {units.map((item) => (
+            {currentPageItems.map((item) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
                 <UnitListItem {...item} />
               </LI>
@@ -77,7 +80,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           </UL>
         </>
       ) : null}
-      {units.length > 20 && (
+      {units.length > 5 && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
           <Pagination {...paginationProps} />
         </Box>

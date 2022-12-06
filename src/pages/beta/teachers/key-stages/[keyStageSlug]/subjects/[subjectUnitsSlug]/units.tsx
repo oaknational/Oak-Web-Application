@@ -13,8 +13,6 @@ import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
-import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
-import Box from "../../../../../../../components/Box";
 import UnitList from "../../../../../../../components/UnitList";
 import { Tier } from "../../../../../../../components/UnitList/UnitList";
 import {
@@ -22,6 +20,7 @@ import {
   subjectUnits,
 } from "../../../../../../../browser-lib/fixtures/subjectUnits";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
+import usePagination from "../../../../../../../components/Pagination/usePagination";
 
 export type SubjectUnits = {
   keyStageTitle: string;
@@ -39,7 +38,17 @@ export type SubjectUnitsListPageProps = {
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   pageData,
 }) => {
-  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } = pageData;
+  const { keyStageTitle, keyStageSlug, subjectTitle, units } = pageData;
+  const PAGE_SIZE = 5;
+
+  const paginationProps = usePagination({
+    totalResults: pageData.units.length,
+    pageSize: PAGE_SIZE,
+    items: units,
+  });
+
+  const { currentPageItems } = paginationProps;
+
   return (
     <AppLayout
       seoProps={getSeoProps({
@@ -48,7 +57,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
       })}
     >
       <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
+        {/* not part of mvp page, add later */}
+        {/* <Box $mv={[24, 48]}>
           <Breadcrumbs
             breadcrumbs={[
               { href: "/", label: "Home" },
@@ -56,7 +66,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               { href: subjectSlug, label: subjectTitle, disabled: true },
             ]}
           />
-        </Box>
+        </Box> */}
         <Flex $mb={32}>
           <SubjectErrorCard
             buttonProps={{
@@ -92,12 +102,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
         </Flex> */}
         <UnitList
           {...pageData}
-          paginationProps={{
-            currentPage: 0,
-            totalPages: 0,
-            prevPageUrlObject: undefined,
-            nextPageUrlObject: undefined,
-          }}
+          currentPageItems={currentPageItems}
+          paginationProps={paginationProps}
           headingTag={"h2"}
         />
       </MaxWidth>
