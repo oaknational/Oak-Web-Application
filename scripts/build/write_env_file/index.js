@@ -84,8 +84,8 @@ async function main() {
       process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
     NEXT_PUBLIC_GLEAP_API_URL:
       process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
-    NEXT_PUBLIC_GLEAP_WIDGET_URL:
-      process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL || oakConfig.gleap.widgetUrl,
+    NEXT_PUBLIC_GLEAP_FRAME_URL:
+      process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
 
     // Curriculum data
     NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
