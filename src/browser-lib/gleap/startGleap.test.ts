@@ -1,23 +1,23 @@
 import startGleap from "./startGleap";
 
-const setWidgetUrl = jest.fn();
+const setFrameUrl = jest.fn();
 const setApiUrl = jest.fn();
 const initialize = jest.fn();
 
 jest.mock("gleap", () => ({
   __esModule: true,
   default: {
-    setWidgetUrl: (url: string) => setWidgetUrl(url),
+    setFrameUrl: (url: string) => setFrameUrl(url),
     setApiUrl: (url: string) => setApiUrl(url),
     initialize: (url: string) => initialize(url),
   },
 }));
 
-const widgetUrl = "widget-url";
+const frameUrl = "frame-url";
 const apiUrl = "api-url";
 const apiKey = "api-key";
 const gleapConfig = {
-  widgetUrl,
+  frameUrl,
   apiUrl,
   apiKey,
 };
@@ -32,10 +32,10 @@ describe("startGleap", () => {
 
     expect(window.Gleap).toBeTruthy();
   });
-  test("should set the correct widget url", () => {
+  test("should set the correct frame url", () => {
     startGleap(gleapConfig);
 
-    expect(setWidgetUrl).toHaveBeenCalledWith(widgetUrl);
+    expect(setFrameUrl).toHaveBeenCalledWith(frameUrl);
   });
   test("should set the correct api url", () => {
     startGleap(gleapConfig);
