@@ -67,7 +67,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             ]}
           />
         </Box> */}
-        <Flex $mb={32}>
+        <Flex $mt={24} $mb={32}>
           <SubjectErrorCard
             buttonProps={{
               label: "Find out why",
