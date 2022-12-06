@@ -59,12 +59,12 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
-          <OakLink slug={keyStageSlug} page={"key-stage"}>
+          <OakLink slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
           {page === "lesson" && (
             // @todo Change to subject when pages are created
-            <OakLink $ml={16} slug={props.subjectSlug} page={"key-stage"}>
+            <OakLink $ml={16} slug={props.subjectSlug} page={"subject-index"}>
               <Span $font={"heading-7"}>{props.subject}</Span>
             </OakLink>
           )}

@@ -97,7 +97,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         <BoxBorders gapPosition="rightTop" />
       </Flex>
       <Flex
-      data-testid={"expanded-container"}
+        data-testid={"expanded-container"}
         $maxHeight={toggleOpen ? 0 : 1600}
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}

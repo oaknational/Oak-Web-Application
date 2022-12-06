@@ -100,7 +100,7 @@ export type ResolveOakHrefProps =
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars" | "landing-page" | "policy" | "key-stage";
+      page: "blog" | "webinars" | "landing-page" | "policy" | "subject-index";
       slug: string;
     }
   | PostIndexLinkProps
@@ -125,8 +125,8 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/lp/${props.slug}`;
     case "policy":
       return `/legal/${props.slug}`;
-    case "key-stage": {
-      return `/beta/key-stages/${props.slug}`;
+    case "subject-index": {
+      return `/beta/teachers/key-stages/${props.slug}/subjects`;
     }
     case "blog-index":
     case "webinars-index": {

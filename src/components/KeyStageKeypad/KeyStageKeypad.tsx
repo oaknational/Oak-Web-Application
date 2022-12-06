@@ -1,14 +1,12 @@
 import { FC } from "react";
 
+import { TeachersHomePageData } from "../../node-lib/curriculum-api";
 import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
 
-export type KeypadItem = {
-  title: string;
-  slug: string;
-};
+export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
 export type KeyStageKeypadProps = {
   keyStages: KeypadItem[];
@@ -16,7 +14,7 @@ export type KeyStageKeypadProps = {
 };
 
 const KeypadLink: FC<KeypadItem> = (props) => {
-  const { title, slug } = props;
+  const { shortCode, slug } = props;
   return (
     <GridArea $colSpan={[3]}>
       <OakLink
@@ -27,11 +25,11 @@ const KeypadLink: FC<KeypadItem> = (props) => {
         $height={28}
         $display={"flex"}
         slug={slug}
-        page={"key-stage"}
+        page={"subject-index"}
       >
         <BrushBorders color={"white"} />
         <Heading $font={"heading-7"} tag={"h4"}>
-          {title}
+          {shortCode}
         </Heading>
       </OakLink>
     </GridArea>

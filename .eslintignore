@@ -6,6 +6,7 @@ public
 out
 
 storybook-static
+src/node-lib/curriculum-api/generated
 src/node-lib/sanity-graphql/generated
 
 !.github

@@ -1,0 +1,12 @@
+overwrite: true
+schema:
+  - ${CURRICULUM_API_URL}:
+      headers:
+        X-Hasura-Admin-Secret: ${CURRICULUM_API_ADMIN_SECRET}
+documents: "src/node-lib/curriculum-api/**/*.{graphql,gql}"
+generates:
+  src/node-lib/curriculum-api/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"
