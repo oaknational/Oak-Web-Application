@@ -42,6 +42,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
               {" "}
               <Button
                 {...primaryTargetProps}
+                data-testid={"expand-button"}
                 variant="minimal"
                 label={title}
                 onClick={() => setToggleOpen(toggleOpen === false)}
@@ -96,6 +97,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         <BoxBorders gapPosition="rightTop" />
       </Flex>
       <Flex
+      data-testid={"expanded-container"}
         $maxHeight={toggleOpen ? 0 : 1600}
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}

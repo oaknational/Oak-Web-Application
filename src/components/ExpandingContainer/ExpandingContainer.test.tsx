@@ -68,4 +68,24 @@ it("renders top right icons", async () => {
   await user.click(externalButton);
   expect(log2).toHaveBeenCalled();
 });
-test.todo("component expands and contract on click");
+it("component expands and contract on click", async () => {
+  const user = userEvent.setup();
+  renderWithTheme(
+    <ExpandingContainer
+      external={true}
+      projectable={true}
+      downloadable={true}
+      title={"Video"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  const downloadButton = screen.getByTestId("expand-button");
+  await user.click(downloadButton);
+  expect(screen.getByTestId("expanded-container")).toHaveStyle("max-height: 1600px");
+
+
+});
