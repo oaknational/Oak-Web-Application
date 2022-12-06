@@ -57,7 +57,6 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   const paths = keyStages.map((keyStage) => ({
     params: { keyStageSlug: keyStage.slug },
   }));
-  console.log("paths", paths);
 
   return {
     fallback: false,

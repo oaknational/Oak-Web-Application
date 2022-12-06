@@ -124,8 +124,6 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
     },
   }));
 
-  console.log(paths);
-
   return {
     fallback: false,
     paths,
