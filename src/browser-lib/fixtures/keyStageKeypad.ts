@@ -1,12 +1,8 @@
 import { KeyStageKeypadProps } from "../../components/KeyStageKeypad/KeyStageKeypad";
+import teachersHomePageFixture from "../../node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 
 const keyStageKeypad: KeyStageKeypadProps = {
-  keyStages: [
-    { title: "Key stage 1", shortCode: "1", slug: "key-stage-1" },
-    { title: "Key stage 2", shortCode: "2", slug: "key-stage-2" },
-    { title: "Key stage 3", shortCode: "3", slug: "key-stage-3" },
-    { title: "Key stage 4", shortCode: "4", slug: "key-stage-4" },
-  ],
+  keyStages: teachersHomePageFixture().keyStages,
   years: [
     { title: "Year 1", shortCode: "1", slug: "/" },
     { title: "Year 2", shortCode: "2", slug: "/" },

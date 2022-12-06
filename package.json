@@ -19,7 +19,7 @@
     "export": "next export",
     "format": "prettier '**/*.{j,t}{s,sx}' --write",
     "format:check": "prettier '**/*.{j,t}{s,sx}' --check",
-    "gql-codegen": "npm run gql-codegen:browser && npm run gql-codegen:node",
+    "gql-codegen": "npm run gql-codegen:curriculum",
     "gql-codegen:curriculum": "graphql-codegen --config src/node-lib/curriculum-api/codegen.yml -r dotenv/config",
     "gql-codegen:sanity": "graphql-codegen --config src/node-lib/sanity-graphql/codegen.yml -r dotenv/config",
     "lint": "NODE_ENV=test next lint",
