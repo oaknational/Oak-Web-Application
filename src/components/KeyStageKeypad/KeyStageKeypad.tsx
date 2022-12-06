@@ -46,7 +46,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
   return (
     <nav aria-label="key stages and year groups">
-      <Heading $color={"oakGrey4"} $mb={20} tag="h3" $font={"heading-light-7"}>
+      <Heading $color={"oakGrey5"} $mb={20} tag="h3" $font={"heading-light-7"}>
         Key Stage
       </Heading>
       <Grid $mb={years ? 48 : 24} $cg={24} $ph={8}>
