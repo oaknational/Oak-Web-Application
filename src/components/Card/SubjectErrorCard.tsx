@@ -13,10 +13,10 @@ type SubjectErrorCardProps = {
 };
 
 /**
- * Contains an title, icon and keystage link.
+ * Contains an heading, text and button
  *
  * ## Usage
- * Used on subject by keystage, tier, unit and lesson pages.
+ * Used on unit listing page
  */
 const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
   const { heading, headingTag, text, buttonProps } = props;
