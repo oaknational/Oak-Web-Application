@@ -53,8 +53,9 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             </Flex>
           </Card>
           <Flex>
-            {downloadable===true && (
+            {downloadable === true && (
               <IconButton
+                data-testid={"download-button"}
                 $mr={24}
                 aria-label="download click me"
                 background={"teachersPastelBlue"}
@@ -65,8 +66,9 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 variant="brush"
               />
             )}
-            {external===true && (
+            {external === true && (
               <IconButton
+                data-testid={"external-button"}
                 $mr={24}
                 aria-label="External click me"
                 background={"teachersPastelBlue"}
@@ -77,8 +79,9 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 variant="brush"
               />
             )}
-            {projectable===true && (
+            {projectable === true && (
               <IconButton
+                data-testid={"project-button"}
                 aria-label="Project Click me"
                 background={"teachersPastelBlue"}
                 icon="Project"
