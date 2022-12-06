@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import keyStageKeypad from "../../browser-lib/fixtures/keyStagesKeypad";
 import AppLayout from "../../components/AppLayout";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import { Heading, P, UnderlinedHeading } from "../../components/Typography";
@@ -18,8 +17,16 @@ import KeyStageKeypad from "../../components/KeyStageKeypad";
 import Grid, { GridArea } from "../../components/Grid";
 import usePostList from "../../components/Posts/PostList/usePostList";
 import Box from "../../components/Box";
+import curriculumApi, {
+  TeachersHomePageData,
+} from "../../node-lib/curriculum-api";
 
-const Teachers: NextPage<HomePageProps> = (props) => {
+export type TeachersHomePageProps = HomePageProps & {
+  curriculumData: TeachersHomePageData;
+};
+
+const Teachers: NextPage<TeachersHomePageProps> = (props) => {
+  const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
 
@@ -49,7 +56,7 @@ const Teachers: NextPage<HomePageProps> = (props) => {
                   &nbsp;area.
                 </P>
                 <Box $mt={40}>
-                  <KeyStageKeypad keyStages={keyStageKeypad.keyStages} />
+                  <KeyStageKeypad keyStages={curriculumData.keyStages} />
                 </Box>
               </GridArea>
             </Grid>
@@ -70,6 +77,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
+  const curriculumData = await curriculumApi.teachersHomePage();
+
   const teachersHomepageData = await CMSClient.homepage({
     previewMode: isPreviewMode,
   });
@@ -82,9 +91,10 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
-  const results: GetStaticPropsResult<HomePageProps> = {
+  const results: GetStaticPropsResult<TeachersHomePageProps> = {
     props: {
       pageData: teachersHomepageData,
+      curriculumData,
       posts,
     },
   };

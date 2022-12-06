@@ -7,7 +7,8 @@ type DropShadowVariant =
   | "notificationCard"
   | "interactiveCardHover"
   | "subjectCardHover"
-  | "subjectCard";
+  | "subjectCard"
+  | "expandableContainerHover";
 export type DropShadowProps = {
   $dropShadow?: DropShadowVariant;
 };
@@ -17,6 +18,7 @@ export const DROP_SHADOW: Record<DropShadowVariant, string> = {
   interactiveCardHover: "3px 3px 8px rgba(0, 0, 0, 70%)",
   subjectCardHover: "0px 8px 0px 0px rgba(0, 0, 0, 1)",
   subjectCard: "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+  expandableContainerHover: "inset 0px -8px 0px 0px rgba(0, 0, 0, 1)",
 };
 const parseDropShadow = (variant?: DropShadowVariant | null) => {
   if (!variant) {

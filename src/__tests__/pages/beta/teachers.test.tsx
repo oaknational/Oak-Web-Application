@@ -1,38 +1,62 @@
 import { screen, within, getByRole } from "@testing-library/react";
 
-import Teachers, { getStaticProps } from "../../../pages/beta/teachers";
-import { HomePageProps, SerializedPost } from "../../../pages/";
+import Teachers, {
+  getStaticProps,
+  TeachersHomePageProps,
+} from "../../../pages/beta/teachers";
+import { HomePageProps, SerializedPost } from "../../../pages";
 import CMSClient from "../../../node-lib/cms";
-import {
-  BlogPostPreview,
-  HomePage,
-  WebinarPreview,
-} from "../../../common-lib/cms-types";
+import { BlogPostPreview, WebinarPreview } from "../../../common-lib/cms-types";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
-import { portableTextFromString } from "../../__helpers__/cms";
+import keyStageKeypad from "../../../browser-lib/fixtures/keyStageKeypad";
 
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
-
-const pageData = {
-  id: "homepage",
-  heading: "Oak",
-  summaryPortableText: portableTextFromString("Here's the page summary"),
-} as HomePage;
+const mockPosts = [
+  {
+    id: "1",
+    type: "blog-post",
+    title: "Some blog post",
+    slug: "some-blog-post",
+    date: new Date("2021-12-01").toISOString(),
+    category: { title: "Some category", slug: "some-category" },
+  },
+  {
+    id: "2",
+    type: "blog-post",
+    title: "Some other post",
+    slug: "some-other-post",
+    date: new Date("2021-12-01").toISOString(),
+    category: { title: "Some category", slug: "some-category" },
+  },
+] as SerializedPost[];
+const props: TeachersHomePageProps = {
+  pageData: {
+    heading: "",
+    id: "",
+    summaryPortableText: [],
+    sidebarCard1: { title: "", bodyPortableText: [] },
+    sidebarCard2: { title: "", bodyPortableText: [] },
+  },
+  posts: mockPosts,
+  curriculumData: {
+    keyStages: keyStageKeypad.keyStages,
+  },
+};
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/beta/teachers.tsx", () => {
   it("Renders correct title ", () => {
-    renderWithProviders(<Teachers pageData={pageData} posts={[]} />);
+    renderWithProviders(<Teachers {...props} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1).toHaveTextContent("Your foundation for great lessons");
   });
 
   it("Renders a link to the blog list", () => {
-    renderWithProviders(<Teachers pageData={pageData} posts={[]} />);
+    renderWithProviders(<Teachers {...props} />);
 
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
@@ -40,26 +64,7 @@ describe("pages/beta/teachers.tsx", () => {
   });
 
   it("Renders the provided blog posts", async () => {
-    const mockPosts = [
-      {
-        id: "1",
-        type: "blog-post",
-        title: "Some blog post",
-        slug: "some-blog-post",
-        date: new Date("2021-12-01").toISOString(),
-        category: { title: "Some category", slug: "some-category" },
-      },
-      {
-        id: "2",
-        type: "blog-post",
-        title: "Some other post",
-        slug: "some-other-post",
-        date: new Date("2021-12-01").toISOString(),
-        category: { title: "Some category", slug: "some-category" },
-      },
-    ] as SerializedPost[];
-
-    renderWithProviders(<Teachers pageData={pageData} posts={mockPosts} />);
+    renderWithProviders(<Teachers {...props} />);
 
     const list = screen
       .getAllByRole("list")
@@ -108,7 +113,7 @@ describe("pages/beta/teachers.tsx", () => {
       jest.clearAllMocks();
       jest.resetModules();
 
-      mockCMSClient.homepage.mockResolvedValue(pageData);
+      mockCMSClient.homepage.mockResolvedValue(props.pageData);
       mockCMSClient.blogPosts.mockResolvedValue([]);
       mockCMSClient.webinars.mockResolvedValue([]);
     });

@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import keyStageKeypad from "../../browser-lib/fixtures/keyStagesKeypad";
+import keyStageKeypad from "../../browser-lib/fixtures/keyStageKeypad";
 import Flex from "../Flex";
 
 import Component from "./KeyStageKeypad";
