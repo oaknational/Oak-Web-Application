@@ -52,8 +52,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   Start exploring subjects
                 </UnderlinedHeading>
                 <P $mt={16} $font={"body-2"}>
-                  Select a key stage to find teaching resources in your subject
-                  &nbsp;area.
+                  Select a key stage to find teaching resources in your
+                  subject&nbsp;area.
                 </P>
                 <Box $mt={40}>
                   <KeyStageKeypad keyStages={curriculumData.keyStages} />
