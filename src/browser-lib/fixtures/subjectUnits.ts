@@ -1,4 +1,4 @@
-import { SubjectUnits } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/units";
+import { SubjectUnits } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units";
 
 export const subjectUnits: SubjectUnits[] = [
   {

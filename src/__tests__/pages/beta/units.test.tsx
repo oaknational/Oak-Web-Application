@@ -2,7 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 
 import SubjectUnitsListPage, {
   SubjectUnitsListPageProps,
-} from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/units";
+} from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units";
 import { mockSeoResult } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
@@ -39,7 +39,7 @@ const unitPageData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
-describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/units.tsx", () => {
+describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.tsx", () => {
   it("Renders title from props ", () => {
     renderWithProviders(<SubjectUnitsListPage pageData={unitPageData} />);
 
@@ -72,14 +72,14 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/u
   describe("getStaticPaths", () => {
     it("Should return the paths of all subjects and keystage", async () => {
       const { getStaticPaths } = await import(
-        "../../../pages/beta/teachers//key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/units"
+        "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units"
       );
 
       const pathsResult = await getStaticPaths({});
 
       expect(pathsResult.paths).toEqual([
-        { params: { keyStageSlug: "4", subjectUnitsSlug: "art-and-design" } },
-        { params: { keyStageSlug: "4", subjectUnitsSlug: "maths" } },
+        { params: { keyStageSlug: "4", subjectSlug: "art-and-design" } },
+        { params: { keyStageSlug: "4", subjectSlug: "maths" } },
       ]);
     });
   });
@@ -87,10 +87,10 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/u
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const { getStaticProps } = await import(
-        "../../../pages/beta/teachers//key-stages/[keyStageSlug]/subjects/[subjectUnitsSlug]/units"
+        "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units"
       );
       const propsResult = (await getStaticProps({
-        params: { subjectUnitsSlug: "art-and-design" },
+        params: { subjectSlug: "art-and-design" },
       })) as {
         props: SubjectUnitsListPageProps;
       };

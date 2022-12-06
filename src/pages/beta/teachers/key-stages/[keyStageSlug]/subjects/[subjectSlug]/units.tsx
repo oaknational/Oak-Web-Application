@@ -112,14 +112,14 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 };
 
 export type URLParams = {
-  subjectUnitsSlug: string;
+  subjectSlug: string;
   //   keyStageSlug: string;
 };
 
 export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   const paths = subjectUnits.map((unit) => ({
     params: {
-      subjectUnitsSlug: unit.subjectSlug,
+      subjectSlug: unit.subjectSlug,
       keyStageSlug: unit.keyStageSlug,
     },
   }));
@@ -135,7 +135,7 @@ export const getStaticProps: GetStaticProps<
   URLParams
 > = async (context) => {
   const unitsData = mockFetchSubjectUnits(
-    context.params?.subjectUnitsSlug
+    context.params?.subjectSlug
     // context.params?.keyStageSlug
   );
 
