@@ -1,3 +1,10 @@
+# [1.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.85.0...v1.86.0) (2022-12-06)
+
+
+### Features
+
+* curriculum api client ([8433550](https://github.com/oaknational/Oak-Web-Application/commit/8433550fc9791c9907cdb7c97b02dcb275200075))
+
 # [1.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.84.0...v1.85.0) (2022-12-06)
 
 
