@@ -67,7 +67,6 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
-  x;
 
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;

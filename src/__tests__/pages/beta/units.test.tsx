@@ -11,7 +11,7 @@ const unitPageData = {
   subjectTitle: "Art and design",
   subjectSlug: "art-and-design",
   keyStageTitle: "Key stage 4",
-  keyStageSlug: "4",
+  keyStageSlug: "ks4",
   availableTiers: [],
   units: [
     {
@@ -22,7 +22,7 @@ const unitPageData = {
       lessonCount: 4,
       hasUnitQuiz: false,
       subjectSlug: "english",
-      keyStageSlug: "4",
+      keyStageSlug: "ks4",
     },
     {
       title:
@@ -32,7 +32,7 @@ const unitPageData = {
       lessonCount: 4,
       hasUnitQuiz: false,
       subjectSlug: "english",
-      keyStageSlug: "4",
+      keyStageSlug: "ks4",
     },
   ],
 };
@@ -50,7 +50,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
     });
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo(
         <SubjectUnitsListPage pageData={unitPageData} />
@@ -78,8 +78,8 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
       const pathsResult = await getStaticPaths({});
 
       expect(pathsResult.paths).toEqual([
-        { params: { keyStageSlug: "4", subjectSlug: "art-and-design" } },
-        { params: { keyStageSlug: "4", subjectSlug: "maths" } },
+        { params: { keyStageSlug: "ks4", subjectSlug: "art-and-design" } },
+        { params: { keyStageSlug: "ks4", subjectSlug: "maths" } },
       ]);
     });
   });

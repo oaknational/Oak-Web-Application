@@ -19,7 +19,9 @@ import {
 import usePostList from "../../../components/Posts/PostList/usePostList";
 import { Heading } from "../../../components/Typography";
 import CMSClient from "../../../node-lib/cms";
-
+import curriculumApi, {
+  TeachersHomePageData,
+} from "../../../node-lib/curriculum-api";
 import { decorateWithIsr } from "../../../node-lib/isr";
 
 export type TeachersHomePageProps = HomePageProps & {

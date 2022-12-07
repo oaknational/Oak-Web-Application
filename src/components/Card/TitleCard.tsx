@@ -47,8 +47,9 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $display={"inline-flex"}
         $flexDirection={"row"}
         $justifyContent={"space-between"}
+        $alignItems={"center"}
       >
-        <Flex $mh={24}>
+        <Box $mh={24}>
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
@@ -61,7 +62,13 @@ const TitleCard: FC<TitleCardProps> = (props) => {
               <Span $font={"heading-7"}>{props.subject}</Span>
             </OakLink>
           )}
-        </Flex>
+          {page === "lesson" && (
+            // @todo Change to subject when pages are created
+            <OakLink $ml={16} slug={props.subjectSlug} page={"key-stage"}>
+              <Span $font={"heading-7"}>{props.subject}</Span>
+            </OakLink>
+          )}
+        </Box>
         <Flex
           $justifyContent={"center"}
           $alignItems={"center"}

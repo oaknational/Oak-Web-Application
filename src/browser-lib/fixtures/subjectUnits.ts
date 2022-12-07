@@ -5,7 +5,7 @@ export const subjectUnits: SubjectUnits[] = [
     subjectTitle: "Art and design",
     subjectSlug: "art-and-design",
     keyStageTitle: "Key stage 4",
-    keyStageSlug: "4",
+    keyStageSlug: "ks4",
     availableTiers: [],
     units: [
       {
@@ -16,7 +16,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "4",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -26,7 +26,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "4",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -36,7 +36,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "english",
-        keyStageSlug: "4",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -46,7 +46,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "4",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -56,7 +56,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
-        keyStageSlug: "4",
+        keyStageSlug: "ks4",
       },
     ],
   },
@@ -64,7 +64,7 @@ export const subjectUnits: SubjectUnits[] = [
     subjectTitle: "Maths",
     subjectSlug: "maths",
     keyStageTitle: "Key stage 4",
-    keyStageSlug: "4",
+    keyStageSlug: "ks4",
     availableTiers: [
       { title: "Foundation", slug: "foundation", unitCount: 14 },
       { title: "Core", slug: "core", unitCount: 14 },
@@ -79,7 +79,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -89,7 +89,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -99,7 +99,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -109,7 +109,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -119,7 +119,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -129,7 +129,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -139,7 +139,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -149,7 +149,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -159,7 +159,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -169,7 +169,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -179,7 +179,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -189,7 +189,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -199,7 +199,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -209,7 +209,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -219,7 +219,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -229,7 +229,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -239,7 +239,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -249,7 +249,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -259,7 +259,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -269,7 +269,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -279,7 +279,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -289,7 +289,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -299,7 +299,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -309,7 +309,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
       {
         title:
@@ -319,7 +319,7 @@ export const subjectUnits: SubjectUnits[] = [
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
-        keyStageSlug: "2",
+        keyStageSlug: "ks4",
       },
     ],
   },
