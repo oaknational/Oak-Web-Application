@@ -15,6 +15,7 @@ describe("SubjectCardListItem", () => {
         unitCount={14}
         keyStageSlug={"keyStage"}
         slug={"subject"}
+        tierCount={null}
       />
     );
     expect(screen.getByText("Art and Design")).toBeInTheDocument();
@@ -29,6 +30,7 @@ describe("SubjectCardListItem", () => {
         unitCount={14}
         keyStageSlug={"keyStage"}
         slug={"subject"}
+        tierCount={null}
       />
     );
     const cardClickTarget = getByRole("link", {
