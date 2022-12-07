@@ -27,6 +27,7 @@ export type TeachersKeyStageSubjectsData = {
     keyStageTitle: string;
     unitCount: number | null;
     lessonCount: number | null;
+    tierCount: number | null;
   }[];
 };
 

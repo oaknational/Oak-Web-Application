@@ -8,6 +8,7 @@ import OakLink from "../OakLink";
 import Svg from "../Svg";
 import { SvgName } from "../SpriteSheet/getSvgId";
 import Card, { CardProps } from "../Card";
+import { ResolveOakHrefProps } from "../../common-lib/urls";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   title: string;
@@ -15,6 +16,7 @@ export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   keyStageSlug: string;
   unitCount: number | null;
   lessonCount: number | null;
+  tierCount: number | null;
   titleTag?: HeadingTag;
   svgName?: SvgName;
 };
@@ -24,7 +26,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   slug,
   titleTag = "h3",
   keyStageSlug,
-  lessonCount = 123,
+  lessonCount,
+  tierCount,
   unitCount,
   svgName = "SubjectArtAndDesign",
 }) => {
@@ -33,6 +36,10 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
 
   const isAvailable = Boolean(lessonCount);
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
+
+  const linkProps: ResolveOakHrefProps = tierCount
+    ? { page: "tier-selection", keyStage: keyStageSlug, subject: slug }
+    : { page: "unit-index", keyStage: keyStageSlug, subject: slug };
 
   return (
     <Card
@@ -73,12 +80,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         {isAvailable ? (
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-              <OakLink
-                {...primaryTargetProps}
-                page={"unit-index"}
-                keyStage={keyStageSlug}
-                subject={slug}
-              >
+              <OakLink {...primaryTargetProps} {...linkProps}>
                 {title}
               </OakLink>
             </Heading>

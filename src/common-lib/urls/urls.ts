@@ -79,6 +79,11 @@ export type PostIndexLinkProps = {
     page?: string;
   };
 };
+export type TierSelectionLinkProps = {
+  page: "tier-selection";
+  keyStage: string;
+  subject: string;
+};
 export type UnitIndexLinkProps = {
   page: "unit-index";
   keyStage: string;
@@ -104,6 +109,7 @@ export type ResolveOakHrefProps =
       slug: string;
     }
   | PostIndexLinkProps
+  | TierSelectionLinkProps
   | UnitIndexLinkProps
   | LessonIndexLinkProps;
 
@@ -149,11 +155,24 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
 
       return `${path}?${queryString}`;
     }
+    case "tier-selection": {
+      /**
+       * @todo poor naming. Can do better
+       * Technically this would be a "mandatory filter page"
+       * Or a "programme factor selection page"
+       * Though longer term it might be better to name these urls:
+       * "/key-stages/{}/subjects/{}" etc.
+       */
+      const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}`;
+
+      return path;
+    }
     case "unit-index": {
       const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
       if (!props.search) {
         return path;
       }
+
       const queryString = createQueryStringFromObject(props.search);
 
       if (!queryString) {

@@ -14,6 +14,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 71,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "religious-education",
@@ -22,6 +23,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 117,
         unitCount: 9,
+        tierCount: null,
       },
       {
         slug: "drama",
@@ -30,6 +32,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 67,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "spanish",
@@ -38,6 +41,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 230,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "science",
@@ -46,6 +50,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: null,
         unitCount: 28,
+        tierCount: null,
       },
       {
         slug: "german",
@@ -54,6 +59,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 228,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "music",
@@ -62,6 +68,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 116,
         unitCount: 10,
+        tierCount: null,
       },
       {
         slug: "maths",
@@ -70,6 +77,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 432,
         unitCount: 53,
+        tierCount: 6,
       },
       {
         slug: "physical-education",
@@ -78,6 +86,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 90,
         unitCount: 15,
+        tierCount: null,
       },
       {
         slug: "english",
@@ -86,6 +95,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 472,
         unitCount: 69,
+        tierCount: null,
       },
       {
         slug: "computing",
@@ -94,6 +104,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 106,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "history",
@@ -102,6 +113,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 232,
         unitCount: 51,
+        tierCount: null,
       },
       {
         slug: "citizenship",
@@ -110,6 +122,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 108,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "rshe-pshe",
@@ -118,6 +131,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 111,
         unitCount: 25,
+        tierCount: null,
       },
       {
         slug: "geography",
@@ -126,6 +140,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: null,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "design-technology",
@@ -134,6 +149,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 51,
         unitCount: 11,
+        tierCount: null,
       },
       {
         slug: "french",
@@ -142,6 +158,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 228,
         unitCount: 18,
+        tierCount: null,
       },
       {
         slug: "art",
@@ -150,6 +167,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 3",
         lessonCount: 8,
         unitCount: 8,
+        tierCount: null,
       },
     ],
     ...partial,
