@@ -1,28 +1,33 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import AppLayout from "../../../components/AppLayout";
-import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
-import { Heading } from "../../../components/Typography";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
   postToPostListItem,
 } from "../..";
-import CMSClient from "../../../node-lib/cms";
-import { decorateWithIsr } from "../../../node-lib/isr";
+import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import AppLayout from "../../../components/AppLayout";
+import Box from "../../../components/Box";
 import Flex from "../../../components/Flex";
+import Grid, { GridArea } from "../../../components/Grid";
+import KeyStageKeypad from "../../../components/KeyStageKeypad";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import {
   HomeSiteCards,
   SharedHomeContent,
 } from "../../../components/pages/Home";
-import KeyStageKeypad from "../../../components/KeyStageKeypad";
-import Grid, { GridArea } from "../../../components/Grid";
 import usePostList from "../../../components/Posts/PostList/usePostList";
-import Box from "../../../components/Box";
-import keyStageKeypad from "../../../browser-lib/fixtures/keyStagesKeypad";
+import { Heading } from "../../../components/Typography";
+import CMSClient from "../../../node-lib/cms";
 
-const Teachers: NextPage<HomePageProps> = (props) => {
+import { decorateWithIsr } from "../../../node-lib/isr";
+
+export type TeachersHomePageProps = HomePageProps & {
+  curriculumData: TeachersHomePageData;
+};
+
+const Teachers: NextPage<TeachersHomePageProps> = (props) => {
+  const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
 
@@ -44,7 +49,7 @@ const Teachers: NextPage<HomePageProps> = (props) => {
             </Heading>
             <Grid $mt={48}>
               <GridArea $colSpan={[12, 6, 4]}>
-                <KeyStageKeypad keyStages={keyStageKeypad.keyStages} />
+                <KeyStageKeypad keyStages={curriculumData.keyStages} />
               </GridArea>
             </Grid>
           </Box>
@@ -64,6 +69,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 ) => {
   const isPreviewMode = context.preview === true;
 
+  const curriculumData = await curriculumApi.teachersHomePage();
+
   const teachersHomepageData = await CMSClient.homepage({
     previewMode: isPreviewMode,
   });
@@ -76,9 +83,10 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
   const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
-  const results: GetStaticPropsResult<HomePageProps> = {
+  const results: GetStaticPropsResult<TeachersHomePageProps> = {
     props: {
       pageData: teachersHomepageData,
+      curriculumData,
       posts,
     },
   };

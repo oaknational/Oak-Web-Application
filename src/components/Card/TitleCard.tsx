@@ -48,26 +48,19 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $flexDirection={"row"}
         $justifyContent={"space-between"}
       >
-        <Flex
-          $mv={[24, 0]}
-          $flexDirection={"column"}
-          $justifyContent={["flex-start", "center"]}
-          $alignItems={["flex-start", "center"]}
-        >
-          <Box $mh={24}>
-            <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
-              {title}
-            </Heading>
-            <OakLink slug={keyStageSlug} page={"key-stage"}>
-              <Span $font={"heading-7"}>{keyStage}</Span>
+        <Flex $mh={24}>
+          <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
+            {title}
+          </Heading>
+          <OakLink slug={keyStageSlug} page={"subject-index"}>
+            <Span $font={"heading-7"}>{keyStage}</Span>
+          </OakLink>
+          {page === "lesson" && (
+            // @todo Change to subject when pages are created
+            <OakLink $ml={16} slug={props.subjectSlug} page={"subject-index"}>
+              <Span $font={"heading-7"}>{props.subject}</Span>
             </OakLink>
-            {page === "lesson" && (
-              // @todo Change to subject when pages are created
-              <OakLink $ml={16} slug={props.subjectSlug} page={"key-stage"}>
-                <Span $font={"heading-7"}>{props.subject}</Span>
-              </OakLink>
-            )}
-          </Box>
+          )}
         </Flex>
         <Flex
           $justifyContent={"center"}

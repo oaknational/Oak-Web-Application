@@ -1,27 +1,76 @@
-import { FC } from "react";
+import React from "react";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "../../../../../../browser-lib/seo/Seo";
+import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
-import Grid, { GridArea } from "../../../../../../components/Grid";
+import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
+import SubjectListingPage from "../../../../../../components/pages/SubjectListing";
 import { Heading } from "../../../../../../components/Typography";
+import curriculumApi, {
+  TeachersKeyStageSubjectsData,
+} from "../../../../../../node-lib/curriculum-api";
+import { decorateWithIsr } from "../../../../../../node-lib/isr";
 
-const SubjectTierPage: FC = () => {
+export type KeyStagePageProps = {
+  curriculumData: TeachersKeyStageSubjectsData;
+};
+
+const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
+  const { curriculumData } = props;
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
-      <Grid $cg={16} $rg={[16, 48, 80]}>
-        <GridArea $colSpan={[12, 12, 8]}>
-          <Heading
-            $font={"heading-1"}
-            tag={"h1"}
-            $mt={64}
-            data-testid="home-page-title"
-          >
-            Tiers page
-          </Heading>
-        </GridArea>
-      </Grid>
+    <AppLayout
+      seoProps={getSeoProps({
+        title: "Key stage", // @todo add real data
+        description: "Key stage by subject",
+      })}
+      $background="white"
+    >
+      <MaxWidth $ph={12} $pt={48} $maxWidth={[480, 840, 1280]}>
+        <Heading tag={"h1"} $font={"heading-4"}>
+          {curriculumData.keyStageTitle}
+        </Heading>
+      </MaxWidth>
+      <SubjectListingPage subjects={curriculumData.subjects} />
     </AppLayout>
   );
 };
 
-export default SubjectTierPage;
+type URLParams = { keyStageSlug: string };
+
+export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+  const { keyStages } = await curriculumApi.teachersHomePage();
+
+  const paths = keyStages.map((keyStage) => ({
+    params: { keyStageSlug: keyStage.slug },
+  }));
+
+  return {
+    fallback: false,
+    paths,
+  };
+};
+
+export const getStaticProps: GetStaticProps<
+  KeyStagePageProps,
+  URLParams
+> = async (context) => {
+  if (!context.params?.keyStageSlug) {
+    throw new Error("No keyStageSlug");
+  }
+
+  const curriculumData = await curriculumApi.teachersKeyStageSubjects({
+    keyStageSlug: context.params?.keyStageSlug,
+  });
+
+  const results = {
+    props: {
+      curriculumData,
+    },
+  };
+  x;
+
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
+};
+
+export default KeyStageListPage;

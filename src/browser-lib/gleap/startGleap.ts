@@ -9,11 +9,11 @@ declare global {
 type GleapConfig = {
   apiKey: string;
   apiUrl: string;
-  widgetUrl: string;
+  frameUrl: string;
 };
-const startGleap = ({ apiKey, apiUrl, widgetUrl }: GleapConfig) => {
+const startGleap = ({ apiKey, apiUrl, frameUrl }: GleapConfig) => {
   window.Gleap = Gleap;
-  window.Gleap.setWidgetUrl(widgetUrl);
+  window.Gleap.setFrameUrl(frameUrl);
   window.Gleap.setApiUrl(apiUrl);
   window.Gleap.initialize(apiKey);
 };

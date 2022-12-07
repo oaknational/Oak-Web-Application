@@ -1,3 +1,39 @@
+# [1.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.85.0...v1.86.0) (2022-12-06)
+
+
+### Features
+
+* curriculum api client ([8433550](https://github.com/oaknational/Oak-Web-Application/commit/8433550fc9791c9907cdb7c97b02dcb275200075))
+
+# [1.85.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.84.0...v1.85.0) (2022-12-06)
+
+
+### Features
+
+* **expandable component:** create expandable component ([982819d](https://github.com/oaknational/Oak-Web-Application/commit/982819d3e51a21e0a6e36aed212a2d6e47f29ad8))
+* **expandable component:** increase test coverage ([d3f0f0a](https://github.com/oaknational/Oak-Web-Application/commit/d3f0f0a65b281cf923168b15dc3918f19094373e))
+* **expandable component:** increase test coverage ([96b7e09](https://github.com/oaknational/Oak-Web-Application/commit/96b7e09bf082d524cba0af434a6a0564532a6bbe))
+* **expandable component:** increase test coverage ([98829a3](https://github.com/oaknational/Oak-Web-Application/commit/98829a342f811c49ca0bf3c0b2bb69466b6c1f5c))
+* **expandable component:** increase test coverage ([0eee923](https://github.com/oaknational/Oak-Web-Application/commit/0eee923093b15c06a08b602e847f0826840894cf))
+* **expandable component:** increase test function coverage ([2db5c94](https://github.com/oaknational/Oak-Web-Application/commit/2db5c94845003b42d79f35b2842502244a3c73f2))
+* **expandable component:** merge commit ([072b671](https://github.com/oaknational/Oak-Web-Application/commit/072b6710b7588fe78c02818654f61e4e0f7a6982))
+* **expandable component:** merge commit ([a64368e](https://github.com/oaknational/Oak-Web-Application/commit/a64368e5e97f20a0ad9c740013ab5c681fd89564))
+* **expandable component:** reduce clickable area to just title and icon ([2e021bf](https://github.com/oaknational/Oak-Web-Application/commit/2e021bfbb8ae393d777704399e7a3a7a32421a04))
+
+# [1.84.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.83.1...v1.84.0) (2022-12-05)
+
+
+### Features
+
+* **gleap:** update gleap to v8 ([8f2fdd2](https://github.com/oaknational/Oak-Web-Application/commit/8f2fdd28ed981a19ec4522d0cacf03c9d3e8070b))
+
+## [1.83.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.83.0...v1.83.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* close mobile filter dropdown when menu opens ([2a30016](https://github.com/oaknational/Oak-Web-Application/commit/2a30016afb9036a9ff14bb328d55d846a80de565))
+
 # [1.83.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.82.2...v1.83.0) (2022-12-02)
 
 
