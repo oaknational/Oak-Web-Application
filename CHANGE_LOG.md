@@ -1,3 +1,10 @@
+## [1.89.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.89.0...v1.89.1) (2022-12-09)
+
+
+### Bug Fixes
+
+* padding on right of input so we can still see cursor ([5a2852f](https://github.com/oaknational/Oak-Web-Application/commit/5a2852f1a3ecc37731b0ec8137c8ebc944a64c5c))
+
 # [1.89.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.88.0...v1.89.0) (2022-12-09)
 
 
