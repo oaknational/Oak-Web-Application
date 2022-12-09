@@ -1,65 +1,39 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { UnitListProps } from "./UnitList";
+import { UnitListItemProps } from "./UnitListItem/UnitListItem";
 
 import Component from ".";
+const units: UnitListItemProps[] = [
+  {
+    title:
+      "1, To build knowledge of the historical context of the play ‘Macbeth’",
+    slug: "To-build-knowledge",
+    learningThemeTitle: "MacBeth",
+    lessonCount: 4,
+    hasUnitQuiz: false,
+    subjectSlug: "english",
+    keyStageSlug: "2",
+  },
+  {
+    title:
+      "1, To build knowledge of the historical context of the play ‘Macbeth’",
+    slug: "To-build-knowledge",
+    learningThemeTitle: "MacBeth",
+    lessonCount: 4,
+    hasUnitQuiz: false,
+    subjectSlug: "english",
+    keyStageSlug: "2",
+  },
+];
 
 const currentPageItems: UnitListProps = {
-  units: [
-    {
-      title:
-        "1, To build knowledge of the historical context of the play ‘Macbeth’",
-      slug: "To-build-knowledge",
-      learningThemeTitle: "MacBeth",
-      lessonCount: 4,
-      hasUnitQuiz: false,
-      subjectSlug: "english",
-      keyStageSlug: "2",
-    },
-    {
-      title:
-        "1, To build knowledge of the historical context of the play ‘Macbeth’",
-      slug: "To-build-knowledge",
-      learningThemeTitle: "MacBeth",
-      lessonCount: 4,
-      hasUnitQuiz: false,
-      subjectSlug: "english",
-      keyStageSlug: "2",
-    },
-    {
-      title:
-        "1, To build knowledge of the historical context of the play ‘Macbeth’",
-      slug: "To-build-knowledge",
-      learningThemeTitle: "MacBeth",
-      lessonCount: 4,
-      hasUnitQuiz: true,
-      subjectSlug: "english",
-      keyStageSlug: "2",
-    },
-    {
-      title:
-        "1, To build knowledge of the historical context of the play ‘Macbeth’",
-      slug: "To-build-knowledge",
-      learningThemeTitle: "MacBeth",
-      lessonCount: 4,
-      hasUnitQuiz: false,
-      subjectSlug: "english",
-      keyStageSlug: "2",
-    },
-    {
-      title:
-        "1, To build knowledge of the historical context of the play ‘Macbeth’",
-      slug: "To-build-knowledge",
-      learningThemeTitle: "MacBeth",
-      lessonCount: 4,
-      hasUnitQuiz: false,
-      subjectSlug: "english",
-      keyStageSlug: "2",
-    },
-  ],
+  units: units,
+  currentPageItems: units,
   keyStageSlug: "4",
   subjectSlug: "computing",
   headingTag: "h1",
+  availableTiers: [],
   paginationProps: {
     currentPage: 1,
     totalPages: 2,
@@ -89,5 +63,5 @@ export const UnitListTiers = Template.bind({});
 
 UnitListTiers.args = {
   ...currentPageItems,
-  tiers: tiers,
+  availableTiers: tiers,
 };

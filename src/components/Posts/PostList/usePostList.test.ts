@@ -13,6 +13,7 @@ describe("usePostList.ts", () => {
     expect(result.current).toEqual({
       currentPageItems: [],
       paginationProps: {
+        currentPageItems: [],
         pageSize: 4,
         currentPage: 1,
         totalPages: 0,
@@ -29,6 +30,7 @@ describe("usePostList.ts", () => {
     expect(result.current).toEqual({
       currentPageItems: [pastPost],
       paginationProps: {
+        currentPageItems: [pastPost],
         pageSize: 4,
         currentPage: 1,
         totalPages: 1,
@@ -52,6 +54,7 @@ describe("usePostList.ts", () => {
       upcomingItem: upcomingPost,
       currentPageItems: [pastPost],
       paginationProps: {
+        currentPageItems: [pastPost],
         pageSize: 4,
         currentPage: 1,
         totalPages: 1,
@@ -76,6 +79,7 @@ describe("usePostList.ts", () => {
       upcomingItem: firstUpcomingPost,
       currentPageItems: [pastPost],
       paginationProps: {
+        currentPageItems: [pastPost],
         pageSize: 4,
         currentPage: 1,
         totalPages: 1,
@@ -99,6 +103,7 @@ describe("usePostList.ts", () => {
       upcomingItem: upcomingPost,
       currentPageItems: pastPosts.slice(0, 4),
       paginationProps: {
+        currentPageItems: pastPosts.slice(0, 4),
         pageSize: 4,
         currentPage: 1,
         totalPages: 8,

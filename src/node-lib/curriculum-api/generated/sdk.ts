@@ -17825,6 +17825,7 @@ export type Paper_Tiers = {
   programme_of_studies: Array<Programme_Of_Study>;
   /** An aggregated array relationship */
   programme_of_studies_aggregate: Programme_Of_Study_Aggregate;
+  slug: Scalars['String'];
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -17919,6 +17920,7 @@ export type Paper_Tiers_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   programme_of_studies?: InputMaybe<Programme_Of_Study_Bool_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -17927,7 +17929,9 @@ export enum Paper_Tiers_Constraint {
   /** unique or primary key constraint */
   PaperTierNameKey = 'paper_tier_name_key',
   /** unique or primary key constraint */
-  PaperTierPkey = 'paper_tier_pkey'
+  PaperTierPkey = 'paper_tier_pkey',
+  /** unique or primary key constraint */
+  PaperTiersSlugKey = 'paper_tiers_slug_key'
 }
 
 /** input type for incrementing integer column in table "paper_tiers" */
@@ -17941,6 +17945,7 @@ export type Paper_Tiers_Insert_Input = {
   id?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
   programme_of_studies?: InputMaybe<Programme_Of_Study_Arr_Rel_Insert_Input>;
+  slug?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
@@ -17950,6 +17955,7 @@ export type Paper_Tiers_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -17958,6 +17964,7 @@ export type Paper_Tiers_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -17967,6 +17974,7 @@ export type Paper_Tiers_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -17975,6 +17983,7 @@ export type Paper_Tiers_Min_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -18006,6 +18015,7 @@ export type Paper_Tiers_Order_By = {
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   programme_of_studies_aggregate?: InputMaybe<Programme_Of_Study_Aggregate_Order_By>;
+  slug?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -18023,6 +18033,8 @@ export enum Paper_Tiers_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
+  Slug = 'slug',
+  /** column name */
   UpdatedAt = 'updated_at'
 }
 
@@ -18031,6 +18043,7 @@ export type Paper_Tiers_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
@@ -18086,6 +18099,8 @@ export enum Paper_Tiers_Update_Column {
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  Slug = 'slug',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -33224,7 +33239,12 @@ export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjetcTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null }> };
+export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null }> };
+
+export type TeachersKeyStageSubjectUnitsPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TeachersKeyStageSubjectUnitsPathsQuery = { __typename?: 'query_root', mv_subjects: Array<{ __typename?: 'mv_subjects', subjectSlug?: string | null, keyStageSlug?: string | null }> };
 
 export type TeachersKeyStageSubjectsQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -33253,11 +33273,19 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug
-    subjetcTitle: subject_title
+    subjectTitle: subject_title
     themeSlug: theme_slug
     themeTitle: theme_title
     lessonCount: lesson_count
     quizCount: quiz_count
+  }
+}
+    `;
+export const TeachersKeyStageSubjectUnitsPathsDocument = gql`
+    query teachersKeyStageSubjectUnitsPaths {
+  mv_subjects {
+    subjectSlug: slug
+    keyStageSlug: key_stage_slug
   }
 }
     `;
@@ -33286,6 +33314,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersKeyStageSubjectUnits(variables: TeachersKeyStageSubjectUnitsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitsQuery>(TeachersKeyStageSubjectUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnits', 'query');
+    },
+    teachersKeyStageSubjectUnitsPaths(variables?: TeachersKeyStageSubjectUnitsPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitsPathsQuery>(TeachersKeyStageSubjectUnitsPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnitsPaths', 'query');
     },
     teachersKeyStageSubjects(variables: TeachersKeyStageSubjectsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectsQuery>(TeachersKeyStageSubjectsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjects', 'query');
