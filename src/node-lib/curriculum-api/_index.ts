@@ -25,14 +25,17 @@ export type TeachersKeyStageSubjectsData = {
     title: string;
     keyStageSlug: string;
     keyStageTitle: string;
-    unitCount: number;
-    lessonCount: number;
+    unitCount: number | null;
+    lessonCount: number | null;
+    tierCount: number | null;
   }[];
 };
 
 export type TeachersKeyStageSubjectUnitsData = {
   keyStageSlug: string;
+  keyStageTitle: string;
   subjectSlug: string;
+  subjectTitle: string;
   units: {
     slug: string;
     title: string;
@@ -83,12 +86,23 @@ const curriculumApi = {
 
     return {
       keyStageSlug: args[0].keyStageSlug,
+      keyStageTitle: res.mv_units[0]?.keyStageTitle,
       subjectSlug: args[0].subjectSlug,
+      subjectTitle: res.mv_units[0]?.subjectTitle,
       units: res.mv_units.filter((ks) =>
         // @todo this is not real logic, change to zod
         Object.values(ks).reduce((acc, value) => acc && Boolean(value), true)
       ),
     } as TeachersKeyStageSubjectUnitsData;
+  },
+  teachersKeyStageSubjectUnitsPaths: async () => {
+    const pairs = (await sdk.teachersKeyStageSubjectUnitsPaths())
+      .mv_subjects as {
+      subjectSlug: string;
+      keyStageSlug: string;
+    }[];
+
+    return pairs;
   },
 };
 

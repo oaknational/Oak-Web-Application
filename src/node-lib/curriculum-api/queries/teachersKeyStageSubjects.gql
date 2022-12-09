@@ -6,5 +6,6 @@ query teachersKeyStageSubjects($keyStageSlug: String!) {
     keyStageTitle: key_stage_title
     lessonCount: lesson_count
     unitCount: unit_count
+    # tierCount: tier_count
   }
 }

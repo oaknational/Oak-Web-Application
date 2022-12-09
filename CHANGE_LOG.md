@@ -1,3 +1,23 @@
+# [1.88.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.87.0...v1.88.0) (2022-12-09)
+
+
+### Bug Fixes
+
+* dedupe subjects fixtures ([58c11e9](https://github.com/oaknational/Oak-Web-Application/commit/58c11e91161f19c7dea3162141863eda15b08511))
+* **subjects-query:** to include unavailable lessons and tiers ([0aa13d8](https://github.com/oaknational/Oak-Web-Application/commit/0aa13d87716c0403ba38a8d6dbdb7cab9082f648))
+
+
+### Features
+
+* add tierCount and 'tier-selection' to urls ([2b1dd7c](https://github.com/oaknational/Oak-Web-Application/commit/2b1dd7c55f2ed199b8ec7f1dac1fe8152f0ab708))
+
+# [1.87.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.86.0...v1.87.0) (2022-12-09)
+
+
+### Features
+
+* unit listing page ([e5e02b3](https://github.com/oaknational/Oak-Web-Application/commit/e5e02b385c615b3883f973580d1e9e3c58e0f1fa))
+
 # [1.86.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.85.0...v1.86.0) (2022-12-06)
 
 
