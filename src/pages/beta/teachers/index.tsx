@@ -17,7 +17,8 @@ import {
   SharedHomeContent,
 } from "../../../components/pages/Home";
 import usePostList from "../../../components/Posts/PostList/usePostList";
-import { Heading } from "../../../components/Typography";
+import { Heading, P } from "../../../components/Typography";
+import UnderlinedHeading from "../../../components/Typography/UnderlinedHeading";
 import CMSClient from "../../../node-lib/cms";
 import curriculumApi, {
   TeachersHomePageData,
@@ -51,7 +52,16 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             </Heading>
             <Grid $mt={48}>
               <GridArea $colSpan={[12, 6, 4]}>
-                <KeyStageKeypad keyStages={curriculumData.keyStages} />
+                <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
+                  Start exploring subjects
+                </UnderlinedHeading>
+                <P $mt={16} $font={"body-2"}>
+                  Select a key stage to find teaching resources in your
+                  subject&nbsp;area.
+                </P>
+                <Box $mt={40}>
+                  <KeyStageKeypad keyStages={curriculumData.keyStages} />
+                </Box>
               </GridArea>
             </Grid>
           </Box>
