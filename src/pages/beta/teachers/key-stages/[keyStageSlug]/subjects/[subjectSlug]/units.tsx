@@ -15,7 +15,6 @@ import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import UnitList from "../../../../../../../components/UnitList";
 import { Tier } from "../../../../../../../components/UnitList/UnitList";
-import { mockFetchSubjectUnits } from "../../../../../../../browser-lib/fixtures/subjectUnits";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi from "../../../../../../../node-lib/curriculum-api";
@@ -25,7 +24,7 @@ export type SubjectUnits = {
   keyStageSlug: string;
   subjectTitle: string;
   subjectSlug: string;
-  availableTiers: Tier[];
+  tiers: Tier[];
   units: UnitListItemProps[];
 };
 
@@ -136,18 +135,11 @@ export const getStaticProps: GetStaticProps<
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { subjectSlug } = context.params;
-
-  const curriculumData = mockFetchSubjectUnits(
-    subjectSlug
-    // context.params?.keyStageSlug
-  );
-
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+  const { subjectSlug, keyStageSlug } = context.params;
+  const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
+    subjectSlug,
+    keyStageSlug,
+  });
 
   const results: GetStaticPropsResult<SubjectUnitsListPageProps> = {
     props: {

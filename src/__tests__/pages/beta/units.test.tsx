@@ -18,7 +18,7 @@ const unitPageData = {
       title:
         "1, To build knowledge of the historical context of the play ‘Macbeth’",
       slug: "To-build-knowledge",
-      learningThemeTitle: "MacBeth",
+      themeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: false,
       subjectSlug: "english",
@@ -28,7 +28,7 @@ const unitPageData = {
       title:
         "1, To build knowledge of the historical context of the play ‘Macbeth’",
       slug: "To-build-knowledge-2",
-      learningThemeTitle: "MacBeth",
+      themeTitle: "MacBeth",
       lessonCount: 4,
       hasUnitQuiz: false,
       subjectSlug: "english",

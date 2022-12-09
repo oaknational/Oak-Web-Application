@@ -11,15 +11,15 @@ export type {
 
 const curriculumApi: CurriculumApi = {
   ..._curriculumApi,
-  teachersHomePage: async () => {
-    return teachersHomePageFixture();
-  },
-  teachersKeyStageSubjects: async () => {
-    return teachersKeyStageSubjectsFixture();
-  },
-  teachersKeyStageSubjectUnitsPaths: async () => {
-    return teachersKeyStageSubjectUnitsPathsFixture();
-  },
+  // teachersHomePage: async () => {
+  //   return teachersHomePageFixture();
+  // },
+  // teachersKeyStageSubjects: async () => {
+  //   return teachersKeyStageSubjectsFixture();
+  // },
+  // teachersKeyStageSubjectUnitsPaths: async () => {
+  //   return teachersKeyStageSubjectUnitsPathsFixture();
+  // },
 };
 
 export default curriculumApi;

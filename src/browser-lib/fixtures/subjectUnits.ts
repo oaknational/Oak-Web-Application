@@ -12,7 +12,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "art1",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
@@ -22,7 +22,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "art2",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
@@ -32,7 +32,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "art3",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "english",
@@ -42,7 +42,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "art4",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
@@ -52,7 +52,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "art5",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "english",
@@ -75,7 +75,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge1",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -85,7 +85,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge2",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -95,7 +95,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge3",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -105,7 +105,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge5",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -115,7 +115,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge6",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -125,7 +125,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge7",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -135,7 +135,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge8",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -145,7 +145,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge9",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -155,7 +155,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge10",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -165,7 +165,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge11",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -175,7 +175,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge12",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -185,7 +185,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge13",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -195,7 +195,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge14",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -205,7 +205,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge15",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -215,7 +215,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge16",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -225,7 +225,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge17",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -235,7 +235,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge118",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -245,7 +245,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge19",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -255,7 +255,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge20",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -265,7 +265,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "1, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge21",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -275,7 +275,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "10, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge22",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -285,7 +285,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "10, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge32",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -295,7 +295,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "10, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge34",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: true,
         subjectSlug: "maths",
@@ -305,7 +305,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "10, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge45d",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",
@@ -315,7 +315,7 @@ export const subjectUnits: SubjectUnits[] = [
         title:
           "10, To build knowledge of the historical context of the play ‘Macbeth’",
         slug: "To-build-knowledge45",
-        learningThemeTitle: "MacBeth",
+        themeTitle: "MacBeth",
         lessonCount: 4,
         hasUnitQuiz: false,
         subjectSlug: "maths",

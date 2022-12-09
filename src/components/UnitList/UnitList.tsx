@@ -23,7 +23,7 @@ export type UnitListProps = {
   subjectSlug: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
-  availableTiers: Tier[];
+  tiers: Tier[];
 };
 /**
  * Contains a list of units
@@ -36,7 +36,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     units,
     paginationProps,
     headingTag,
-    availableTiers,
+    tiers = [],
     keyStageSlug,
     subjectSlug,
     currentPageItems,
@@ -49,9 +49,9 @@ const UnitList: FC<UnitListProps> = (props) => {
           Units
         </Heading>
 
-        {availableTiers.length > 0 && (
+        {tiers.length > 0 && (
           <Flex $mb={[24, 32]}>
-            {availableTiers.map(({ title, slug, unitCount }) => (
+            {tiers.map(({ title, slug, unitCount }) => (
               <OakLink
                 keyStage={keyStageSlug}
                 subject={subjectSlug}
