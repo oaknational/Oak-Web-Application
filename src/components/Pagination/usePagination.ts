@@ -1,16 +1,21 @@
 import { encode } from "querystring";
 
 import { useRouter } from "next/router";
+import { useMemo } from "react";
 
 import { PaginationProps } from "./Pagination";
+
+type Items<T> = { items: T[] };
 
 type UsePaginationProps = {
   totalResults: number;
   pageSize: number;
 };
-type UsePaginationReturnType = UsePaginationProps & PaginationProps;
-const usePagination = (props: UsePaginationProps): UsePaginationReturnType => {
-  const { pageSize, totalResults } = props;
+
+const usePagination = <T>(
+  props: UsePaginationProps & Items<T>
+): { currentPageItems: T[] } & UsePaginationProps & PaginationProps => {
+  const { pageSize, totalResults, items } = props;
   const totalPages = Math.ceil(totalResults / pageSize);
   const router = useRouter();
   const { page: pageRaw } = router.query;
@@ -30,9 +35,16 @@ const usePagination = (props: UsePaginationProps): UsePaginationReturnType => {
 
   const pathname = router.pathname;
 
+  const currentPageItems = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return items.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, items, pageSize]);
+
   return {
     pageSize,
     currentPage,
+    currentPageItems,
     totalPages,
     totalResults,
     nextPageUrlObject: isLastPage

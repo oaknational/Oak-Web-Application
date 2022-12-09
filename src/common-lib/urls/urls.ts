@@ -100,7 +100,13 @@ export type ResolveOakHrefProps =
       page: Exclude<OakPageName, "blog-index" | "webinars-index">;
     }
   | {
-      page: "blog" | "webinars" | "landing-page" | "policy" | "subject-index";
+      page:
+        | "blog"
+        | "webinars"
+        | "landing-page"
+        | "policy"
+        | "subject-index"
+        | "key-stage";
       slug: string;
     }
   | PostIndexLinkProps
@@ -125,6 +131,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/lp/${props.slug}`;
     case "policy":
       return `/legal/${props.slug}`;
+    case "key-stage": {
+      return `/beta/teachers/key-stages/${props.slug}`;
+    }
     case "subject-index": {
       return `/beta/teachers/key-stages/${props.slug}/subjects`;
     }
@@ -150,7 +159,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `${path}?${queryString}`;
     }
     case "unit-index": {
-      const path = `/beta/teachers/key-stage/${props.keyStage}/subject/${props.subject}/units`;
+      const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units`;
       if (!props.search) {
         return path;
       }

@@ -18,11 +18,12 @@ export type Tier = {
 
 export type UnitListProps = {
   units: UnitListItemProps[];
+  currentPageItems: UnitListItemProps[];
   keyStageSlug: string;
   subjectSlug: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
-  tiers?: Tier[];
+  availableTiers: Tier[];
 };
 /**
  * Contains a list of units
@@ -35,9 +36,10 @@ const UnitList: FC<UnitListProps> = (props) => {
     units,
     paginationProps,
     headingTag,
-    tiers,
+    availableTiers,
     keyStageSlug,
     subjectSlug,
+    currentPageItems,
   } = props;
 
   return (
@@ -47,14 +49,15 @@ const UnitList: FC<UnitListProps> = (props) => {
           Units
         </Heading>
 
-        {tiers && (
+        {availableTiers.length > 0 && (
           <Flex $mb={[24, 32]}>
-            {tiers.map(({ title, slug, unitCount }) => (
+            {availableTiers.map(({ title, slug, unitCount }) => (
               <OakLink
                 keyStage={keyStageSlug}
                 subject={subjectSlug}
                 search={{ tier: slug }}
                 page={"unit-index"}
+                key={slug}
               >
                 <Span
                   $font={"heading-7"}
@@ -66,10 +69,10 @@ const UnitList: FC<UnitListProps> = (props) => {
         )}
       </Flex>
 
-      {units.length ? (
+      {currentPageItems.length ? (
         <>
           <UL $reset>
-            {units.map((item) => (
+            {currentPageItems.map((item) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
                 <UnitListItem {...item} />
               </LI>
@@ -77,7 +80,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           </UL>
         </>
       ) : null}
-      {units.length > 20 && (
+      {units.length > 5 && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
           <Pagination {...paginationProps} />
         </Box>

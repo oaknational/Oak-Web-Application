@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { TeachersKeyStageSubjectsData } from "../../../node-lib/curriculum-api";
 import SubjectCardLink from "../../Card/SubjectCardLink";
+import { TeachersKeyStageSubjectsData } from "../../../node-lib/curriculum-api";
 import Flex from "../../Flex";
 import Grid, { GridArea } from "../../Grid";
 import MaxWidth from "../../MaxWidth/MaxWidth";
