@@ -22,6 +22,8 @@ const theme: OakTheme = {
     oakGrey2: "#dadada",
     oakGrey3: "#878787",
     oakGrey4: "#575756",
+    oakGrey5: "#2D2D2D",
+    oakGrey6: "#1B1B1B",
     pastelTurquoise: "#b0e2de", // TODO: add tints
     // feedback colors
     warning: "#ff7234",
@@ -68,6 +70,8 @@ const theme: OakTheme = {
     oakGrey2: "black",
     oakGrey3: "white",
     oakGrey4: "white",
+    oakGrey5: "white",
+    oakGrey6: "white",
     pastelTurquoise: "black", // TODO: add tints
     // feedback colors
     warning: "black",
