@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
-import SubjectListingPage from "../../../../../../components/pages/SubjectListing";
+import SubjectListingPage from "../../../../../../components/pages/SubjectListing.page";
 import { Heading } from "../../../../../../components/Typography";
 import curriculumApi, {
   TeachersKeyStageSubjectsData,

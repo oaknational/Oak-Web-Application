@@ -33,13 +33,9 @@ const usePostList = (props: UsePostListProps): PostListProps => {
   const paginationProps = usePagination({
     totalResults: pastItems.length,
     pageSize: PAGE_SIZE,
+    items: pastItems,
   });
-  const { currentPage } = paginationProps;
-  const currentPageItems: Array<PostListItemProps> = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-    const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return pastItems.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, pastItems]);
+  const { currentPageItems } = paginationProps;
 
   return {
     upcomingItem,

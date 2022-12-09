@@ -1,5 +1,6 @@
 import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "./fixtures/teachersKeyStageSubjects.fixture";
+import teachersKeyStageSubjectUnitsPathsFixture from "./fixtures/teachersKeyStageSubjectUnitsPaths.fixture";
 import _curriculumApi, { CurriculumApi } from "./_index";
 
 export type {
@@ -15,6 +16,9 @@ const curriculumApi: CurriculumApi = {
   },
   teachersKeyStageSubjects: async () => {
     return teachersKeyStageSubjectsFixture();
+  },
+  teachersKeyStageSubjectUnitsPaths: async () => {
+    return teachersKeyStageSubjectUnitsPathsFixture();
   },
 };
 
