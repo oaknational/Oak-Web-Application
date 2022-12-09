@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import { OakColorName } from "../../styles/theme";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
@@ -8,39 +7,43 @@ import Flex from "../Flex";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
 import { SvgName } from "../SpriteSheet/getSvgId";
+import Card, { CardProps } from "../Card";
+import { ResolveOakHrefProps } from "../../common-lib/urls";
 
-import Card, { CardProps } from "./Card";
-
-export type SubjectCardLinkProps = Omit<CardProps, "children"> & {
+export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   title: string;
-  titleTag?: HeadingTag;
   slug: string;
-  unitCount: number;
   keyStageSlug: string;
-  lessonCount?: number;
+  unitCount: number | null;
+  lessonCount: number | null;
+  tierCount: number | null;
+  titleTag?: HeadingTag;
   svgName?: SvgName;
-  imageBackground?: OakColorName;
-  background?: OakColorName;
-  available?: boolean;
 };
 
-const SubjectCardLink: FC<SubjectCardLinkProps> = ({
+const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   title,
   slug,
   titleTag = "h3",
   keyStageSlug,
-  lessonCount = 123,
+  lessonCount,
+  tierCount,
   unitCount,
-  imageBackground,
-  background = "teachersPastelYellow",
   svgName = "SubjectArtAndDesign",
-  available = true,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
+
+  const isAvailable = Boolean(lessonCount);
+  const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
+
+  const linkProps: ResolveOakHrefProps = tierCount
+    ? { page: "tier-selection", keyStage: keyStageSlug, subject: slug }
+    : { page: "unit-index", keyStage: keyStageSlug, subject: slug };
+
   return (
     <Card
-      {...(available && { ...containerProps })}
+      {...(isAvailable && { ...containerProps })}
       $flexDirection={"column"}
       $alignItems="stretch"
       $background={"white"}
@@ -48,7 +51,7 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
       $mb={[16, 0]}
     >
       <Flex
-        $background={available ? imageBackground : background}
+        $background={backgroundColor}
         $position={"relative"}
         $width={"100%"}
         $pv={16}
@@ -62,7 +65,6 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         />
       </Flex>
       <Flex
-        $background={background}
         $flexDirection={"column"}
         $position={"relative"}
         $width={"100%"}
@@ -75,15 +77,10 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
         $transition={"all 0.3s ease"}
         $minHeight={110}
       >
-        {available ? (
+        {isAvailable ? (
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-              <OakLink
-                {...primaryTargetProps}
-                page={"unit-index"}
-                keyStage={keyStageSlug}
-                subject={slug}
-              >
+              <OakLink {...primaryTargetProps} {...linkProps}>
                 {title}
               </OakLink>
             </Heading>
@@ -107,4 +104,4 @@ const SubjectCardLink: FC<SubjectCardLinkProps> = ({
   );
 };
 
-export default SubjectCardLink;
+export default SubjectCardListItem;

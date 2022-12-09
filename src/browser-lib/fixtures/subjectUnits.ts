@@ -3,7 +3,7 @@ import { SubjectUnits } from "../../pages/beta/teachers/key-stages/[keyStageSlug
 export const subjectUnits: SubjectUnits[] = [
   {
     subjectTitle: "Art and design",
-    subjectSlug: "art-and-design",
+    subjectSlug: "art",
     keyStageTitle: "Key stage 4",
     keyStageSlug: "ks4",
     availableTiers: [],

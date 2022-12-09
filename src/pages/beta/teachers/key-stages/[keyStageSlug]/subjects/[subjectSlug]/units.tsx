@@ -15,12 +15,10 @@ import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import UnitList from "../../../../../../../components/UnitList";
 import { Tier } from "../../../../../../../components/UnitList/UnitList";
-import {
-  mockFetchSubjectUnits,
-  subjectUnits,
-} from "../../../../../../../browser-lib/fixtures/subjectUnits";
+import { mockFetchSubjectUnits } from "../../../../../../../browser-lib/fixtures/subjectUnits";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 
 export type SubjectUnits = {
   keyStageTitle: string;
@@ -32,16 +30,16 @@ export type SubjectUnits = {
 };
 
 export type SubjectUnitsListPageProps = {
-  pageData: SubjectUnits;
+  curriculumData: SubjectUnits;
 };
 
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
-  pageData,
+  curriculumData,
 }) => {
-  const { keyStageTitle, keyStageSlug, subjectTitle, units } = pageData;
+  const { keyStageTitle, keyStageSlug, subjectTitle, units } = curriculumData;
 
   const paginationProps = usePagination({
-    totalResults: pageData.units.length,
+    totalResults: curriculumData.units.length,
     pageSize: 20,
     items: units,
   });
@@ -100,7 +98,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
           />
         </Flex> */}
         <UnitList
-          {...pageData}
+          {...curriculumData}
           currentPageItems={currentPageItems}
           paginationProps={paginationProps}
           headingTag={"h2"}
@@ -112,14 +110,16 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
 export type URLParams = {
   subjectSlug: string;
-  //   keyStageSlug: string;
+  keyStageSlug: string;
 };
 
 export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const paths = subjectUnits.map((unit) => ({
+  const keyStageSubjectPairs =
+    await curriculumApi.teachersKeyStageSubjectUnitsPaths();
+  const paths = keyStageSubjectPairs.map(({ subjectSlug, keyStageSlug }) => ({
     params: {
-      subjectSlug: unit.subjectSlug,
-      keyStageSlug: unit.keyStageSlug,
+      subjectSlug,
+      keyStageSlug,
     },
   }));
 
@@ -133,12 +133,17 @@ export const getStaticProps: GetStaticProps<
   SubjectUnitsListPageProps,
   URLParams
 > = async (context) => {
-  const unitsData = mockFetchSubjectUnits(
-    context.params?.subjectSlug
+  if (!context.params) {
+    throw new Error("No context.params");
+  }
+  const { subjectSlug } = context.params;
+
+  const curriculumData = mockFetchSubjectUnits(
+    subjectSlug
     // context.params?.keyStageSlug
   );
 
-  if (!unitsData) {
+  if (!curriculumData) {
     return {
       notFound: true,
     };
@@ -146,7 +151,7 @@ export const getStaticProps: GetStaticProps<
 
   const results: GetStaticPropsResult<SubjectUnitsListPageProps> = {
     props: {
-      pageData: unitsData,
+      curriculumData,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);

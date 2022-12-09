@@ -41,7 +41,7 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.tsx", () => {
   it("Renders title from props ", () => {
-    renderWithProviders(<SubjectUnitsListPage pageData={unitPageData} />);
+    renderWithProviders(<SubjectUnitsListPage curriculumData={unitPageData} />);
 
     waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -53,7 +53,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
   describe("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo(
-        <SubjectUnitsListPage pageData={unitPageData} />
+        <SubjectUnitsListPage curriculumData={unitPageData} />
       );
 
       expect(seo).toEqual({
@@ -77,10 +77,10 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
 
       const pathsResult = await getStaticPaths({});
 
-      expect(pathsResult.paths).toEqual([
-        { params: { keyStageSlug: "ks4", subjectSlug: "art-and-design" } },
-        { params: { keyStageSlug: "ks4", subjectSlug: "maths" } },
-      ]);
+      expect(pathsResult.paths).toHaveLength(76);
+      expect(pathsResult.paths[0]).toEqual({
+        params: { keyStageSlug: "ks4", subjectSlug: "combined-science" },
+      });
     });
   });
 
@@ -90,12 +90,12 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
         "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units"
       );
       const propsResult = (await getStaticProps({
-        params: { subjectSlug: "art-and-design" },
+        params: { subjectSlug: "art", keyStageSlug: "ks4" },
       })) as {
         props: SubjectUnitsListPageProps;
       };
 
-      expect(propsResult.props.pageData.subjectSlug).toEqual("art-and-design");
+      expect(propsResult.props.curriculumData.subjectSlug).toEqual("art");
     });
   });
 });
