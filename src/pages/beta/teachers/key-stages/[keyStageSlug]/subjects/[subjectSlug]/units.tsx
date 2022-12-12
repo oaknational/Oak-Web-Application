@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 
 import { UnitListItemProps } from "../../../../../../../components/UnitList/UnitListItem/UnitListItem";
-import { decorateWithIsr } from "../../../../../../../node-lib/isr";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -19,17 +13,16 @@ import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 
-export type SubjectUnits = {
-  keyStageTitle: string;
-  keyStageSlug: string;
-  subjectTitle: string;
-  subjectSlug: string;
-  tiers: Tier[];
-  units: UnitListItemProps[];
-};
-
 export type SubjectUnitsListPageProps = {
-  curriculumData: SubjectUnits;
+  curriculumData: {
+    keyStageTitle: string;
+    keyStageSlug: string;
+    subjectTitle: string;
+    subjectSlug: string;
+    tierSlug: string | null;
+    tiers: Tier[];
+    units: UnitListItemProps[];
+  };
 };
 
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
@@ -112,23 +105,7 @@ export type URLParams = {
   keyStageSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const keyStageSubjectPairs =
-    await curriculumApi.teachersKeyStageSubjectUnitsPaths();
-  const paths = keyStageSubjectPairs.map(({ subjectSlug, keyStageSlug }) => ({
-    params: {
-      subjectSlug,
-      keyStageSlug,
-    },
-  }));
-
-  return {
-    fallback: false,
-    paths,
-  };
-};
-
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   SubjectUnitsListPageProps,
   URLParams
 > = async (context) => {
@@ -136,18 +113,20 @@ export const getStaticProps: GetStaticProps<
     throw new Error("No context.params");
   }
   const { subjectSlug, keyStageSlug } = context.params;
+  const { tier } = context.query;
+  const tierSlug = Array.isArray(tier) ? tier[0] : tier;
   const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
     subjectSlug,
     keyStageSlug,
+    tierSlug,
   });
 
-  const results: GetStaticPropsResult<SubjectUnitsListPageProps> = {
+  const results: GetServerSidePropsResult<SubjectUnitsListPageProps> = {
     props: {
       curriculumData,
     },
   };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  return results;
 };
 
 export default SubjectUnitsListPage;

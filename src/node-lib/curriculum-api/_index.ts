@@ -31,11 +31,25 @@ export type TeachersKeyStageSubjectsData = {
   }[];
 };
 
+export type TeachersKeyStageSubjectTiersData = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  tiers: {
+    slug: string;
+    title: string;
+    unitCount: number | null;
+    lessonCount: number | null;
+  }[];
+};
+
 export type TeachersKeyStageSubjectUnitsData = {
   keyStageSlug: string;
   keyStageTitle: string;
   subjectSlug: string;
   subjectTitle: string;
+  tierSlug: string | null;
   tiers: {
     slug: string;
     title: string;
@@ -84,6 +98,28 @@ const curriculumApi = {
       ),
     } as TeachersKeyStageSubjectsData;
   },
+  teachersKeyStageSubjectTiers: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectTiers>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectTiers(...args);
+
+    return {
+      keyStageSlug: res.mv_key_stages[0]?.slug,
+      keyStageTitle: res.mv_key_stages[0]?.title,
+      subjectSlug: res.mv_subjects[0]?.slug,
+      subjectTitle: res.mv_subjects[0]?.title,
+      tiers: res.mv_tiers,
+    } as TeachersKeyStageSubjectTiersData;
+  },
+  teachersKeyStageSubjectTiersPaths: async () => {
+    const pairs = (await sdk.teachersKeyStageSubjectUnitsPaths())
+      .mv_subjects as {
+      subjectSlug: string;
+      keyStageSlug: string;
+    }[];
+
+    return pairs;
+  },
   teachersKeyStageSubjectUnits: async (
     ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnits>
   ) => {
@@ -94,6 +130,7 @@ const curriculumApi = {
       keyStageTitle: res.mv_key_stages[0]?.title,
       subjectSlug: res.mv_subjects[0]?.slug,
       subjectTitle: res.mv_subjects[0]?.title,
+      tierSlug: args[0].tierSlug || null,
       tiers: res.mv_tiers,
       units: res.mv_units,
     } as TeachersKeyStageSubjectUnitsData;

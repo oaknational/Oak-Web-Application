@@ -25,6 +25,7 @@ query teachersKeyStageSubjectUnits(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
+      tier_slug: { _eq: $tierSlug }
     }
   ) {
     slug

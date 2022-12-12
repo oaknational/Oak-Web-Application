@@ -1,24 +1,35 @@
 import { FC } from "react";
 
-import Flex from "../../Flex";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { Heading, Span } from "../../Typography";
-import { OakColorName } from "../../../styles/theme/types";
-import OakLink from "../../OakLink";
-import Card from "../../Card";
-import useClickableCard from "../../../hooks/useClickableCard";
-import Box from "../../Box";
+import Flex from "../Flex";
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
+import { Heading, Span } from "../Typography";
+import { OakColorName } from "../../styles/theme/types";
+import OakLink from "../OakLink";
+import Card from "../Card";
+import useClickableCard from "../../hooks/useClickableCard";
+import Box from "../Box";
 
-export type LearningTiersListItemProps = {
+export type TierListItemProps = {
   title: string;
-  unitCount: number;
-  lessonCount: number;
+  slug: string;
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitCount: number | null;
+  lessonCount: number | null;
 };
 
-const LearningTiersListItem: FC<
-  LearningTiersListItemProps & { background: OakColorName }
-> = (props) => {
-  const { title, background, lessonCount, unitCount } = props;
+const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
+  props
+) => {
+  const {
+    title,
+    slug,
+    subjectSlug,
+    keyStageSlug,
+    background,
+    lessonCount,
+    unitCount,
+  } = props;
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   return (
@@ -28,7 +39,13 @@ const LearningTiersListItem: FC<
         $transition={"all 0.4s ease-out"}
         $background={background}
       >
-        <OakLink {...primaryTargetProps} page={"home"}>
+        <OakLink
+          {...primaryTargetProps}
+          page={"unit-index"}
+          keyStage={keyStageSlug}
+          subject={subjectSlug}
+          search={{ tier: slug }}
+        >
           <Heading $ma={16} $font={"heading-7"} tag="h3">
             {title}
           </Heading>
@@ -50,4 +67,4 @@ const LearningTiersListItem: FC<
   );
 };
 
-export default LearningTiersListItem;
+export default TierListItem;

@@ -11,7 +11,8 @@ describe("components/UnitList", () => {
         subjectSlug={"computing"}
         keyStageSlug={"2"}
         headingTag={"h1"}
-        availableTiers={[]}
+        tiers={[]}
+        tierSlug={null}
         currentPageItems={[]}
         units={[
           {
@@ -20,7 +21,7 @@ describe("components/UnitList", () => {
             slug: "To-build-knowledge",
             themeTitle: "MacBeth",
             lessonCount: 4,
-            hasUnitQuiz: false,
+            quizCount: 0,
             subjectSlug: "english",
             keyStageSlug: "2",
           },

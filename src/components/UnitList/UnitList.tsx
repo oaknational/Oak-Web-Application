@@ -3,9 +3,9 @@ import { FC } from "react";
 import Box from "../Box";
 import Flex from "../Flex";
 import Pagination, { PaginationProps } from "../Pagination";
-import { Heading, LI, Span, UL } from "../Typography";
+import { Heading, LI, UL } from "../Typography";
 import { HeadingTag } from "../Typography/Heading";
-import OakLink from "../OakLink";
+import TabularNav from "../TabularNav";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -13,7 +13,7 @@ import { UnitListItemProps } from "./UnitListItem/UnitListItem";
 export type Tier = {
   title: string;
   slug: string;
-  unitCount: number;
+  unitCount: number | null;
 };
 
 export type UnitListProps = {
@@ -24,6 +24,7 @@ export type UnitListProps = {
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
   tiers: Tier[];
+  tierSlug: string | null;
 };
 /**
  * Contains a list of units
@@ -40,6 +41,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     keyStageSlug,
     subjectSlug,
     currentPageItems,
+    tierSlug,
   } = props;
 
   return (
@@ -50,22 +52,20 @@ const UnitList: FC<UnitListProps> = (props) => {
         </Heading>
 
         {tiers.length > 0 && (
-          <Flex $mb={[24, 32]}>
-            {tiers.map(({ title, slug, unitCount }) => (
-              <OakLink
-                keyStage={keyStageSlug}
-                subject={subjectSlug}
-                search={{ tier: slug }}
-                page={"unit-index"}
-                key={slug}
-              >
-                <Span
-                  $font={"heading-7"}
-                  $mr={[12, 32]}
-                >{`${title} (${unitCount})`}</Span>
-              </OakLink>
-            ))}
-          </Flex>
+          <nav aria-label="tiers">
+            <TabularNav
+              $mb={[10, 16]}
+              label="tiers"
+              links={tiers.map(({ title, slug, unitCount }) => ({
+                label: `${title} (${unitCount})`,
+                keyStage: keyStageSlug,
+                subject: subjectSlug,
+                search: { tier: slug },
+                page: "unit-index",
+                isCurrent: slug === tierSlug,
+              }))}
+            />
+          </nav>
         )}
       </Flex>
 
