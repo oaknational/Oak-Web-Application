@@ -26,7 +26,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
     useClickableCard<HTMLButtonElement>();
   const [toggleOpen, setToggleOpen] = useState(true);
   return (
-    <Card $flexDirection={"column"}>
+    <Card $flexDirection={"column"} $ph={0}>
       <Flex
         $position={"relative"}
         $width={"100%"}
