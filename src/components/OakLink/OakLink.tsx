@@ -62,6 +62,11 @@ export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
     disabled?: boolean;
     className?: string;
     htmlAnchorProps?: HTMLAnchorProps;
+    /**
+     * is this the current (selected) item in a nav.
+     * Should style the link appropriately and give correct aria-current attribute
+     */
+    isCurrent?: boolean;
   } & (
     | {
         /**
@@ -87,8 +92,15 @@ const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
 export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
   props: T
 ) => {
-  const { htmlAnchorProps, disabled, scroll, shallow, prefetch, ...linkProps } =
-    props;
+  const {
+    htmlAnchorProps,
+    disabled,
+    scroll,
+    shallow,
+    prefetch,
+    isCurrent,
+    ...linkProps
+  } = props;
   const href = getOakLinkHref(props);
 
   const isExternal = isExternalHref(href);
@@ -104,11 +116,17 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
     href: disabled ? "" : href,
   };
 
+  const ariaCurrent: HTMLAnchorProps["aria-current"] = isCurrent
+    ? "page"
+    : undefined;
+
   return {
     target,
     role: "link",
     disabled,
     nextLinkProps,
+    isCurrent,
+    ["aria-current"]: ariaCurrent,
     ...htmlAnchorProps,
     ...linkProps,
   };

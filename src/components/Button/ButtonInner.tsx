@@ -45,6 +45,7 @@ export type ButtonInnerProps = {
   background: ButtonBackground;
   variant: ButtonVariant;
   disabled?: boolean;
+  isCurrent?: boolean;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const {
@@ -57,6 +58,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     shouldHideLabel,
     background,
     variant,
+    isCurrent,
   } = props;
   const iconSize = buttonIconSizeMap[buttonSize];
 
@@ -88,6 +90,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
       <Box $position={"relative"}>
         <Box
           $display={shouldHideLabel?.map((hide) => (hide ? "none" : "block"))}
+          $textDecoration={isCurrent ? "underline" : undefined}
+          $color={isCurrent ? "oakGrey4" : undefined}
         >
           <ButtonLabel>
             {label}
