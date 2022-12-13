@@ -31,8 +31,10 @@ const SubjectTierListingPage: NextPage<SubjectTierListingPageProps> = ({
   return (
     <AppLayout
       seoProps={getSeoProps({
-        title: "Units", // @todo add real data
-        description: "Subject units",
+        title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
+        description: `We have resources for tiers: ${tiers
+          .map((tier) => tier.title)
+          .join(", ")}`,
       })}
     >
       <MaxWidth $ph={16}>
