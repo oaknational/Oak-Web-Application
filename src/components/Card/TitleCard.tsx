@@ -41,18 +41,12 @@ type TitleCardProps = {
 const TitleCard: FC<TitleCardProps> = (props) => {
   const { title, keyStage, keyStageSlug, iconName, page } = props;
   return (
-    <Flex
-      $display={"inline-flex"}
-      $flexDirection={["column-reverse", "row"]}
-      $position={"relative"}
-      $justifyContent={"space-between"}
-      $width={["100%", "auto"]}
-    >
-      <BoxBorders gapPosition="bottomRight" />
+    <Flex $width={["100%", "auto"]} $position={"relative"}>
       <Flex
-        $mv={[24, 0]}
-        $flexDirection={"column"}
-        $justifyContent={"center"}
+        $width={["100%", "auto"]}
+        $display={"inline-flex"}
+        $flexDirection={"row"}
+        $justifyContent={"space-between"}
         $alignItems={"center"}
       >
         <Box $mh={24}>
@@ -68,17 +62,24 @@ const TitleCard: FC<TitleCardProps> = (props) => {
               <Span $font={"heading-7"}>{props.subject}</Span>
             </OakLink>
           )}
+          {page === "lesson" && (
+            // @todo Change to subject when pages are created
+            <OakLink $ml={16} slug={props.subjectSlug} page={"key-stage"}>
+              <Span $font={"heading-7"}>{props.subject}</Span>
+            </OakLink>
+          )}
         </Box>
+        <Flex
+          $justifyContent={"center"}
+          $alignItems={"center"}
+          $minHeight={[96, 160]}
+          $width={[72, 160]}
+          $background={titleCardIconBackground[page]}
+        >
+          <Icon size={[44, 120]} name={iconName} />
+        </Flex>
       </Flex>
-      <Flex
-        $justifyContent={"center"}
-        $alignItems={"center"}
-        $minHeight={[130, 160]}
-        $width={["100%", 160]}
-        $background={titleCardIconBackground[page]}
-      >
-        <Icon size={[92, 120]} name={iconName} />
-      </Flex>
+      <BoxBorders gapPosition="bottomRight" />
     </Flex>
   );
 };

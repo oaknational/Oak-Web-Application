@@ -67,7 +67,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   )};
   border-width: ${(props) => props.theme.input.borderWidth};
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
-  padding-right: 0;
+  padding-right: 12px;
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
   font-weight: 300;
