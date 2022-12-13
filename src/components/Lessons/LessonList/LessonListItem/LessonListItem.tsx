@@ -1,34 +1,19 @@
-// import { FC } from "react";
-
-// import Flex from "../../Flex";
-
-// type LessonListItemProps = {
-//   title: string;
-//     description: string;
-//     slug: string;
-// };
-
-// const LessonListItem: FC<LessonListItemProps> = ()) => {
-//   return <Flex>Lesson List Item</Flex>;
-// };
-
-// export default LessonListItem;
-
 import { FC } from "react";
 
-import useClickableCard from "../../../hooks/useClickableCard";
-import Flex from "../../Flex";
-import Icon from "../../Icon";
-import { Heading, Span } from "../../Typography";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import Card from "../../Card";
-import OakLink from "../../OakLink";
+import useClickableCard from "../../../../hooks/useClickableCard";
+import Flex from "../../../Flex";
+import Icon from "../../../Icon";
+import { Heading, Span } from "../../../Typography";
+import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
+import Card from "../../../Card";
+import OakLink from "../../../OakLink";
 
-type LessonListItemProps = {
+export type LessonListItemProps = {
   title: string;
   description: string;
-  lessonSlug: string;
+  slug: string;
   keyStageSlug: string;
+  subjectSlug: string;
 };
 
 /**
@@ -36,7 +21,7 @@ type LessonListItemProps = {
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, description, lessonSlug, keyStageSlug } = props;
+  const { title, subjectSlug, slug, keyStageSlug } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -64,7 +49,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           <OakLink
             keyStage={keyStageSlug}
             subject={subjectSlug}
-            slug={lessonSlug}
+            slug={slug}
             page={"lesson-index"}
             {...primaryTargetProps}
           >
@@ -78,7 +63,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             </Heading>
           </OakLink>
           <Flex $mb={24} $flexDirection={["column", "row"]}>
-            {learningThemeTitle && (
+            {/* {learningThemeTitle && (
               <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
                 {learningThemeTitle}
               </Span>
@@ -92,7 +77,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                   Unit quiz
                 </Span>
               )}
-            </Flex>
+            </Flex> */}
           </Flex>
         </Flex>
       </Flex>
