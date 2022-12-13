@@ -26,15 +26,8 @@ type SubjectTierListingPageProps = {
 const SubjectTierListingPage: NextPage<SubjectTierListingPageProps> = ({
   curriculumData,
 }) => {
-  const {
-    keyStageTitle,
-    keyStageSlug,
-    subjectTitle,
-    subjectSlug,
-    tiers,
-    unitCount,
-    lessonCount,
-  } = curriculumData;
+  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug, tiers } =
+    curriculumData;
 
   return (
     <AppLayout
@@ -63,15 +56,11 @@ const SubjectTierListingPage: NextPage<SubjectTierListingPageProps> = ({
           keyStageSlug={keyStageSlug}
           title={subjectTitle}
           iconName={"Rocket"}
-          $mb={8}
+          $mb={64}
           $alignSelf={"flex-start"}
         />
-        <Flex $mb={36} $flexDirection="column">
-          <p>{unitCount} units</p>
-          <p>{lessonCount} lessons</p>
-        </Flex>
         <Heading tag="h2" $font="heading-5" $mb={30}>
-          Leaning tiers
+          Learning tiers
         </Heading>
         <TierList
           $mb={92}

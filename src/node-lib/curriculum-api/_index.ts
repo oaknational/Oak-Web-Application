@@ -36,8 +36,6 @@ export type TeachersKeyStageSubjectTiersData = {
   keyStageTitle: string;
   subjectSlug: string;
   subjectTitle: string;
-  lessonCount: number | null;
-  unitCount: number | null;
   tiers: {
     slug: string;
     title: string;

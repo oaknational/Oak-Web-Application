@@ -9,8 +9,6 @@ query teachersKeyStageSubjectTiers(
   mv_subjects(where: { slug: { _eq: $subjectSlug } }) {
     slug
     title
-    unitCount: unit_count
-    lessonCount: lesson_count
   }
   mv_tiers(
     where: {

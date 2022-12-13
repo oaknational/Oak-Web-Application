@@ -8,8 +8,6 @@ const teachersKeyStageSubjectTiersFixture = (
     keyStageTitle: "Key Stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
-    lessonCount: 101,
-    unitCount: 9,
     tiers: [
       {
         title: "Foundation",
