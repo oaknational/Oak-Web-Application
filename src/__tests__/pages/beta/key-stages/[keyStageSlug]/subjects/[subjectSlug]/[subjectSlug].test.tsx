@@ -53,8 +53,8 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/", () => {
         ogDescription: "We have resources for tiers: Foundation, Core, Higher",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        ogImage: "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
-
+        ogImage:
+          "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
       });
     });
   });

@@ -1,16 +1,13 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-import Grid, { GridArea } from "../Grid";
-import { OakColorName } from "../../styles/theme/types";
+import Grid, { GridArea, GridProps } from "../Grid";
 
 import TierListItem, { TierListItemProps } from "./TierListItem";
 
-type TierListProps = {
+type TierListProps = GridProps & {
   tiers: Omit<TierListItemProps, "subjectSlug" | "keyStageSlug">[];
   subjectSlug: string;
   keyStageSlug: string;
-  background?: OakColorName;
 };
 
 /**
@@ -23,23 +20,21 @@ const TierList: FC<TierListProps> = ({
   tiers,
   keyStageSlug,
   subjectSlug,
-  background = "teachersYellow",
+  ...gridProps
 }) => {
   return (
-    <Flex $flexDirection="column">
-      <Grid $mb={[16, 32]} $cg={16}>
-        {tiers.map((tier) => (
-          <GridArea $mb={16} $colSpan={[12, 4]}>
-            <TierListItem
-              {...tier}
-              subjectSlug={subjectSlug}
-              keyStageSlug={keyStageSlug}
-              background={background}
-            />
-          </GridArea>
-        ))}
-      </Grid>
-    </Flex>
+    <Grid $cg={16} {...gridProps}>
+      {tiers.map((tier) => (
+        <GridArea $mb={16} $colSpan={[12, 4]}>
+          <TierListItem
+            {...tier}
+            subjectSlug={subjectSlug}
+            keyStageSlug={keyStageSlug}
+            background={"teachersPastelYellow"}
+          />
+        </GridArea>
+      ))}
+    </Grid>
   );
 };
 

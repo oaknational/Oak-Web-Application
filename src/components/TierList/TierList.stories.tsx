@@ -36,5 +36,4 @@ TierList.args = {
       lessonCount: 4,
     },
   ],
-  background: "teachersPastelYellow",
 };

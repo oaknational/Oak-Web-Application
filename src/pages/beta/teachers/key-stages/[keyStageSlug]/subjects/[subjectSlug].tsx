@@ -17,6 +17,7 @@ import curriculumApi, {
   TeachersKeyStageSubjectTiersData,
 } from "../../../../../../node-lib/curriculum-api";
 import { decorateWithIsr } from "../../../../../../node-lib/isr";
+import { Heading } from "../../../../../../components/Typography";
 
 type SubjectTierListingPageProps = {
   curriculumData: TeachersKeyStageSubjectTiersData;
@@ -25,8 +26,15 @@ type SubjectTierListingPageProps = {
 const SubjectTierListingPage: NextPage<SubjectTierListingPageProps> = ({
   curriculumData,
 }) => {
-  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug, tiers } =
-    curriculumData;
+  const {
+    keyStageTitle,
+    keyStageSlug,
+    subjectTitle,
+    subjectSlug,
+    tiers,
+    unitCount,
+    lessonCount,
+  } = curriculumData;
 
   return (
     <AppLayout
@@ -42,24 +50,31 @@ const SubjectTierListingPage: NextPage<SubjectTierListingPageProps> = ({
           <SubjectErrorCard
             buttonProps={{
               label: "Find out why",
-              page: null,
-              href: "/",
+              page: "home",
             }}
             headingTag={"h3"}
             heading={"Some subjects unavailable"}
             text={"Unfortunately some subjects are now unavailable."}
           />
         </Flex>
-        <Flex $mb={24} $display={"inline-flex"}>
-          <TitleCard
-            page={"subject"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            title={subjectTitle}
-            iconName={"Rocket"}
-          />
+        <TitleCard
+          page={"subject"}
+          keyStage={keyStageTitle}
+          keyStageSlug={keyStageSlug}
+          title={subjectTitle}
+          iconName={"Rocket"}
+          $mb={8}
+          $alignSelf={"flex-start"}
+        />
+        <Flex $mb={36} $flexDirection="column">
+          <p>{unitCount} units</p>
+          <p>{lessonCount} lessons</p>
         </Flex>
+        <Heading tag="h2" $font="heading-5" $mb={30}>
+          Leaning tiers
+        </Heading>
         <TierList
+          $mb={92}
           tiers={tiers}
           keyStageSlug={keyStageSlug}
           subjectSlug={subjectSlug}

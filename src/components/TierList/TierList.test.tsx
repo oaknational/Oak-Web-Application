@@ -30,7 +30,6 @@ describe("TierList", () => {
             lessonCount: 4,
           },
         ]}
-        background="teachersYellow"
       />
     );
 

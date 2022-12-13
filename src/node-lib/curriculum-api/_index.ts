@@ -36,6 +36,8 @@ export type TeachersKeyStageSubjectTiersData = {
   keyStageTitle: string;
   subjectSlug: string;
   subjectTitle: string;
+  lessonCount: number | null;
+  unitCount: number | null;
   tiers: {
     slug: string;
     title: string;
@@ -108,6 +110,8 @@ const curriculumApi = {
       keyStageTitle: res.mv_key_stages[0]?.title,
       subjectSlug: res.mv_subjects[0]?.slug,
       subjectTitle: res.mv_subjects[0]?.title,
+      unitCount: res.mv_subjects[0]?.unitCount,
+      lessonCount: res.mv_subjects[0]?.lessonCount,
       tiers: res.mv_tiers,
     } as TeachersKeyStageSubjectTiersData;
   },

@@ -58,7 +58,7 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
         $transform={isHovered ? "translateY(-8px)" : null}
       >
         <Flex $ma={16} $flexDirection={"column"}>
-          <Span $font={"body-3"}>{`${unitCount} units`}</Span>
+          <Span $font={"body-3"} $mb={4}>{`${unitCount} units`}</Span>
           <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
         </Flex>
       </Box>

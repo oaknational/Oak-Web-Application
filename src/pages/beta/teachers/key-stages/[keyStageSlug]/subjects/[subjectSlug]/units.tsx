@@ -68,15 +68,15 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             text={"Unfortunately some subjects are now unavailable."}
           />
         </Flex>
-        <Flex $mb={24} $display={"inline-flex"}>
-          <TitleCard
-            page={"subject"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            title={subjectTitle}
-            iconName={"Rocket"}
-          />
-        </Flex>
+        <TitleCard
+          page={"subject"}
+          keyStage={keyStageTitle}
+          keyStageSlug={keyStageSlug}
+          title={subjectTitle}
+          iconName={"Rocket"}
+          $mb={24}
+          $alignSelf={"flex-start"}
+        />
         {/* not part of mvp page, add later */}
         {/* <Flex $mb={64} $display={"inline-flex"}>
           <ButtonAsLink

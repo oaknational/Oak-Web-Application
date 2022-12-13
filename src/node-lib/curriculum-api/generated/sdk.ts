@@ -33656,7 +33656,7 @@ export type TeachersKeyStageSubjectTiersQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectTiersQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }> };
+export type TeachersKeyStageSubjectTiersQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }> };
 
 export type TeachersKeyStageSubjectTiersPathsQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -33705,6 +33705,8 @@ export const TeachersKeyStageSubjectTiersDocument = gql`
   mv_subjects(where: {slug: {_eq: $subjectSlug}}) {
     slug
     title
+    unitCount: unit_count
+    lessonCount: lesson_count
   }
   mv_tiers(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
