@@ -56,7 +56,7 @@ const useClickableCard = <
   };
 
   return {
-    primaryTargetProps: { ref },
+    primaryTargetProps: { ref, $isHovered: isHovered },
     containerProps: { onClick, ...hoverProps },
     isHovered,
   };
