@@ -11,6 +11,7 @@ export const titleCardIconBackground = {
   subject: "teachersPastelYellow",
   unit: "teachersLilac",
   lesson: "pupilsPink",
+  lessons: "teachersLilac",
 } as const;
 
 export type TitlePageType =
