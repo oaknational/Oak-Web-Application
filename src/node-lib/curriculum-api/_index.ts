@@ -80,6 +80,7 @@ export type TeachersKeyStageSubjectUnitsLessonsData = {
   lessons: {
     slug: string;
     title: string;
+    description: string;
     keyStageSlug: string;
     keyStageTitle: string;
     subjectSlug: string;

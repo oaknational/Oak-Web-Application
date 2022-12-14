@@ -3,9 +3,8 @@ import { FC } from "react";
 import Box from "../../Box";
 import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
-import { Heading, LI, Span, UL } from "../../Typography";
+import { Heading, LI, UL } from "../../Typography";
 import { HeadingTag } from "../../Typography/Heading";
-// import OakLink from "../../OakLink";
 
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
@@ -22,18 +21,17 @@ export type LessonListProps = {
   subjectSlug: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
-  availableTiers: Tier[];
 };
 
 const LESSONS_PER_PAGE = 5;
 
 /**
- * Contains a list of units
+ * Contains a list of lessons
  *
  * ## Usage
- * Used on subject, unit and search results page
+ * Used on lesson listing page
  */
-const UnitList: FC<LessonListProps> = (props) => {
+const LessonList: FC<LessonListProps> = (props) => {
   const { lessons, paginationProps, headingTag, currentPageItems } = props;
 
   return (
@@ -64,4 +62,4 @@ const UnitList: FC<LessonListProps> = (props) => {
   );
 };
 
-export default UnitList;
+export default LessonList;

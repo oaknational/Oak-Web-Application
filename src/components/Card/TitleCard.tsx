@@ -15,7 +15,7 @@ export const titleCardIconBackground = {
 
 export type TitlePageType =
   | {
-      page: "unit" | "subject";
+      page: "unit" | "subject" | "lesson";
       keyStage: string;
       keyStageSlug: string;
     }
