@@ -4,7 +4,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
-import SubjectListingPage from "../../../../../../../../../components/pages/SubjectListing";
 import { Heading } from "../../../../../../../../../components/Typography";
 import curriculumApi, {
   TeachersKeyStageSubjectsData,
@@ -27,10 +26,10 @@ const LessonListPage: NextPage<LessonListPageProps> = (props) => {
     >
       <MaxWidth $ph={12} $pt={48} $maxWidth={[480, 840, 1280]}>
         <Heading tag={"h1"} $font={"heading-4"}>
-          {curriculumData.keyStageTitle}
+          {/* {curriculumData.keyStageTitle} */}
+          UNIT TITLE
         </Heading>
       </MaxWidth>
-      <SubjectListingPage subjects={curriculumData.subjects} />
     </AppLayout>
   );
 };
