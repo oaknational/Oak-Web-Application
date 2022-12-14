@@ -1,6 +1,8 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled from "styled-components";
 
+import { ResponsiveValues } from "../../styles/utils/responsive";
+import typography, { FontVariant } from "../../styles/utils/typography";
 import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
 
 import button, {
@@ -18,11 +20,13 @@ const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
 >`
   ${button}
+  ${typography}
 `;
 
 export type ButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   htmlButtonProps?: HTMLButtonProps;
+  $font?: ResponsiveValues<FontVariant>;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -35,6 +39,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     iconBackground,
+    $font,
     ...spacingProps
   } = props;
 
@@ -67,6 +72,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         size={size}
         variant={variant}
         background={background}
+        $font={$font}
       />
     </StyledButton>
   );

@@ -46,6 +46,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 variant="minimal"
                 label={title}
                 onClick={() => setToggleOpen(toggleOpen === false)}
+                $font={"heading-5"}
               />
               <Icon
                 $color="black"
@@ -57,9 +58,8 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             {downloadable === true && (
               <IconButton
                 data-testid={"download-button"}
-                $mr={24}
                 aria-label="download click me"
-                background={"teachersPastelBlue"}
+                background={"teachersHighlight"}
                 icon="Download"
                 onClick={() => {
                   console.log("Download Clicked!");
@@ -70,7 +70,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             {external === true && (
               <IconButton
                 data-testid={"external-button"}
-                $mr={24}
+                $ml={24}
                 aria-label="External click me"
                 background={"teachersPastelBlue"}
                 icon="External"
@@ -82,6 +82,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             )}
             {projectable === true && (
               <IconButton
+                $ml={24}
                 data-testid={"project-button"}
                 aria-label="Project Click me"
                 background={"teachersPastelBlue"}

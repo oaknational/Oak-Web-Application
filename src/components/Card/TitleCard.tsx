@@ -49,7 +49,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $justifyContent={"space-between"}
         $alignItems={"center"}
       >
-        <Box $mh={24}>
+        <Box $ma={24}>
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>

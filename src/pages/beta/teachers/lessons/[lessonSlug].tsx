@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -25,7 +25,7 @@ import Box from "../../../../components/Box";
 import BrushBorders from "../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "../../../../components/Card";
 import Grid, { GridArea } from "../../../../components/Grid";
-import Icon from "../../../../components/Icon";
+import Icon, { IconName } from "../../../../components/Icon";
 import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
 
 export type LessonOverview = {
@@ -43,6 +43,38 @@ export type LessonOverview = {
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverview;
+};
+
+type HelperProps = {
+  helperIcon: IconName;
+  helperTitle: string;
+  helperDescription: string;
+};
+
+const LessonHelper: FC<HelperProps> = ({
+  helperIcon,
+  helperTitle,
+  helperDescription,
+}) => {
+  return (
+    <GridArea $colSpan={[12, 12, 4]}>
+      <Card
+        $background={"teachersPastelYellow"}
+        $flexDirection={"row"}
+        $flexWrap={"wrap"}
+        $alignItems={"center"}
+        $pa={12}
+      >
+        <Heading $font={"heading-5"} tag={"h3"} $ma={12}>
+          <Icon variant="minimal" name={helperIcon} /> {helperTitle}
+        </Heading>
+        <Typography $font={"body-2"} $ma={12}>
+          {helperDescription}
+        </Typography>
+        <BrushBorders color="teachersPastelYellow" />
+      </Card>
+    </GridArea>
+  );
 };
 
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
@@ -83,9 +115,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           <Heading tag={"h2"} $font={"heading-6"}>
             Core content
           </Heading>
-          <UL>
+          <UL $pl={20}>
             {coreContent.map((contentString) => {
-              return <LI>{contentString}</LI>;
+              return <LI $font={"list-item-1"}>{contentString}</LI>;
             })}
           </UL>
         </Flex>
@@ -101,7 +133,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             $iconPosition={"trailing"}
             $mt={16}
           />
-          <Button
+          {/*
+          .todo
+           <Button
             $mr={24}
             icon="SendToPupil"
             iconBackground="teachersHighlight"
@@ -111,83 +145,49 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             variant="minimal"
             $iconPosition={"trailing"}
             $mt={16}
-          />
+          /> */}
         </Flex>
         <Hr $color={"oakGrey3"} />
-        <ExpandingContainer
-          title={"Presentation"}
-          projectable={true}
-          downloadable={true}
-          external={true}
-        >
+        <ExpandingContainer title={"Presentation"} downloadable={true}>
           <Box>Presentaion element</Box>
         </ExpandingContainer>
         <ExpandingContainer title={"Video"} downloadable={true}>
           <Box>Video element</Box>
         </ExpandingContainer>
-        <ExpandingContainer
-          title={"Worksheet"}
-          downloadable={true}
-          external={true}
-        >
+        <ExpandingContainer title={"Worksheet"} downloadable={true}>
           <Box>Worksheet element</Box>
         </ExpandingContainer>
-        <ExpandingContainer
-          title={"Starter quiz"}
-          projectable={true}
-          downloadable={true}
-          external={true}
-        >
+        <ExpandingContainer title={"Starter quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
-        <ExpandingContainer
-          title={"Exit quiz"}
-          projectable={true}
-          downloadable={true}
-          external={true}
-        >
+        <ExpandingContainer title={"Exit quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
-        <ExpandingContainer
-          title={"Transript"}
-          downloadable={true}
-          external={true}
-        >
+        <ExpandingContainer title={"Transript"} downloadable={true}>
           <Box>Transcript element</Box>
         </ExpandingContainer>
         <Hr $color={"oakGrey3"} />
+      </MaxWidth>
+      <MaxWidth $ph={[0, 16, 16]}>
         <Grid $rg={32} $cg={32} $mv={16}>
-          <GridArea $colSpan={[12, 12, 4]}>
-            <Card $background={"teachersPastelYellow"}>
-              <Heading $font={"heading-5"} tag={"h3"} $mb={24}>
-                <Icon variant="minimal" name={"EquipmentRequired"} /> Equipment
-                Required
-              </Heading>
-              <Typography $font={"body-2"}>{equipmentRequired}</Typography>
-              <BrushBorders color="teachersPastelYellow" />
-            </Card>
-          </GridArea>
-          <GridArea $colSpan={[12, 12, 4]}>
-            <Card $background={"teachersPastelYellow"}>
-              <Heading $font={"heading-5"} tag={"h3"} $mb={24}>
-                <Icon variant="minimal" name={"SupervisionLevel"} /> Supervision
-                Level
-              </Heading>
-              <Typography $font={"body-2"}>{supervisionLevel}</Typography>
-              <BrushBorders color="teachersPastelYellow" />
-            </Card>
-          </GridArea>
-          <GridArea $colSpan={[12, 12, 4]}>
-            <Card $background={"teachersPastelYellow"}>
-              <Heading $font={"heading-5"} tag={"h3"} $mb={24}>
-                <Icon variant="minimal" name={"ContentGuidance"} /> Content
-                Guidance
-              </Heading>
-              <Typography $font={"body-2"}>{contentGuidance}</Typography>
-              <BrushBorders color="teachersPastelYellow" />
-            </Card>
-          </GridArea>
+          <LessonHelper
+            helperTitle={"EquipmentRequired"}
+            helperIcon={"EquipmentRequired"}
+            helperDescription={equipmentRequired}
+          />
+          <LessonHelper
+            helperTitle={"Supervision Level"}
+            helperIcon={"SupervisionLevel"}
+            helperDescription={supervisionLevel}
+          />
+          <LessonHelper
+            helperTitle={"Content Guidance"}
+            helperIcon={"ContentGuidance"}
+            helperDescription={contentGuidance}
+          />
         </Grid>
+      </MaxWidth>
+      <MaxWidth $ph={16}>
         <Hr $color={"oakGrey3"} />
       </MaxWidth>
     </AppLayout>
@@ -220,10 +220,7 @@ export const getStaticProps: GetStaticProps<
   }
   const { lessonSlug } = context.params;
 
-  const curriculumData = mockFetchLessons(
-    lessonSlug
-    // context.params?.keyStageSlug
-  );
+  const curriculumData = mockFetchLessons(lessonSlug);
 
   if (!curriculumData) {
     return {

@@ -8,6 +8,8 @@ import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "../Svg";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import ScreenReaderOnly from "../ScreenReaderOnly";
+import { FontVariant } from "../../styles/utils/typography";
+import { ResponsiveValues } from "../../styles/utils/responsive";
 
 import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
@@ -46,6 +48,7 @@ export type ButtonInnerProps = {
   variant: ButtonVariant;
   disabled?: boolean;
   isCurrent?: boolean;
+  $font?: ResponsiveValues<FontVariant> | undefined;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const {
@@ -59,6 +62,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     background,
     variant,
     isCurrent,
+    $font,
   } = props;
   const iconSize = buttonIconSizeMap[buttonSize];
 
@@ -93,7 +97,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $textDecoration={isCurrent ? "underline" : undefined}
           $color={isCurrent ? "oakGrey4" : undefined}
         >
-          <ButtonLabel>
+          <ButtonLabel $font={$font}>
             {label}
             {labelSuffixA11y && (
               <ScreenReaderOnly> {labelSuffixA11y}</ScreenReaderOnly>
