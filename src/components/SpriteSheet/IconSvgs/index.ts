@@ -13,7 +13,7 @@ import ContentGuidance from "./CotentGuidance.icon";
 import Cross from "./Cross.icon";
 import Download from "./Download.icon";
 import External from "./External.icon";
-import EquiptmentRequired from "./EquiptmentRequired.icon";
+import EquipmentRequired from "./EquipmentRequired.icon";
 import Facebook from "./Facebook.icon";
 import FullScreen from "./FullScreen.icon";
 import Go from "./Go.icon";
@@ -56,7 +56,7 @@ const iconSvgSymbols = {
   ContentGuidance,
   Cross,
   Download,
-  EquiptmentRequired,
+  EquipmentRequired,
   External,
   Facebook,
   FullScreen,

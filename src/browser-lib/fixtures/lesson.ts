@@ -5,10 +5,10 @@ export const lessonOverview: LessonOverview = {
     "macbeth lesson 1 and a very very very long unit title that should wrap around nicely",
   lessonSlug: "macbeth-lesson-1",
   keyStageTitle: "Key stage 4",
-  keyStageSlug: "KS4",
+  keyStageSlug: "ks4",
   subjectSlug: "english",
   subjectTitle: "English",
-  equiptmentRequired: "Scissors, photos or pictures of holidays, glue.",
+  equipmentRequired: "Scissors, photos or pictures of holidays, glue.",
   supervisionLevel: "Adult supervision recommended.",
   contentGuidance: "Equipment requiring safe usage.",
   coreContent: [

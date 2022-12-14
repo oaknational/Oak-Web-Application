@@ -36,7 +36,7 @@ export type LessonOverview = {
   coreContent: string[];
   subjectTitle: string;
   subjectSlug: string;
-  equiptmentRequired: string;
+  equipmentRequired: string;
   supervisionLevel: string;
   contentGuidance: string;
 };
@@ -55,7 +55,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     coreContent,
     subjectSlug,
     subjectTitle,
-    equiptmentRequired,
+    equipmentRequired,
     supervisionLevel,
     contentGuidance,
   } = curriculumData;
@@ -160,10 +160,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           <GridArea $colSpan={[12, 12, 4]}>
             <Card $background={"teachersPastelYellow"}>
               <Heading $font={"heading-5"} tag={"h3"} $mb={24}>
-                <Icon variant="minimal" name={"EquiptmentRequired"} /> Equipment
+                <Icon variant="minimal" name={"EquipmentRequired"} /> Equipment
                 Required
               </Heading>
-              <Typography $font={"body-2"}>{equiptmentRequired}</Typography>
+              <Typography $font={"body-2"}>{equipmentRequired}</Typography>
               <BrushBorders color="teachersPastelYellow" />
             </Card>
           </GridArea>

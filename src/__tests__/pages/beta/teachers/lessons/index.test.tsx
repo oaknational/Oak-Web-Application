@@ -21,7 +21,7 @@ describe("pages/beta/teachers/lessons", () => {
           coreContent: ["string"],
           subjectTitle: "string",
           subjectSlug: "string",
-          equiptmentRequired: "string",
+          equipmentRequired: "string",
           supervisionLevel: "string",
           contentGuidance: "string",
         }}
@@ -47,7 +47,7 @@ describe("pages/beta/teachers/lessons", () => {
             coreContent: ["string"],
             subjectTitle: "string",
             subjectSlug: "string",
-            equiptmentRequired: "string",
+            equipmentRequired: "string",
             supervisionLevel: "string",
             contentGuidance: "string",
           }}
