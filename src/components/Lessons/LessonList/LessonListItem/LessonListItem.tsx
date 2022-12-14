@@ -3,7 +3,7 @@ import { FC } from "react";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
 import Icon from "../../../Icon";
-import { Heading, Span } from "../../../Typography";
+import { Heading } from "../../../Typography";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../../Card";
 import OakLink from "../../../OakLink";
