@@ -1,0 +1,14 @@
+query teachersKeyStageSubjectTiersPaths($keyStageSlug: String!) {
+  mv_key_stages(where: { slug: { _eq: $keyStageSlug } }) {
+    slug
+    title
+  }
+  mv_subjects(
+    where: { key_stage_slug: { _eq: $keyStageSlug }, unit_count: { _gt: 0 } }
+  ) {
+    slug
+    title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+  }
+}

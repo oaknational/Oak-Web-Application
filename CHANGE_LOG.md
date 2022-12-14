@@ -1,3 +1,15 @@
+# [1.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.89.1...v1.90.0) (2022-12-13)
+
+
+### Bug Fixes
+
+* add unitCount and lessonCount to tiers page ([017b460](https://github.com/oaknational/Oak-Web-Application/commit/017b46005913efcf36d5501106caa74503b688dc))
+
+
+### Features
+
+* **unit-themes-and-tiers:** fetch and themes and tiers in units query ([481f58e](https://github.com/oaknational/Oak-Web-Application/commit/481f58ef6aa8d83e916a26793db61659a20e3aac))
+
 ## [1.89.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.89.0...v1.89.1) (2022-12-09)
 
 

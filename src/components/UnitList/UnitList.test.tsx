@@ -11,16 +11,17 @@ describe("components/UnitList", () => {
         subjectSlug={"computing"}
         keyStageSlug={"2"}
         headingTag={"h1"}
-        availableTiers={[]}
+        tiers={[]}
+        tierSlug={null}
         currentPageItems={[]}
         units={[
           {
             title:
               "1, To build knowledge of the historical context of the play ‘Macbeth’",
             slug: "To-build-knowledge",
-            learningThemeTitle: "MacBeth",
+            themeTitle: "MacBeth",
             lessonCount: 4,
-            hasUnitQuiz: false,
+            quizCount: 0,
             subjectSlug: "english",
             keyStageSlug: "2",
           },
