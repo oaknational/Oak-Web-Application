@@ -4,7 +4,6 @@ import teachersKeyStageSubjectTiersFixture from "./fixtures/teachersKeyStageSubj
 import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStageSubjectTiersPaths.fixture";
 import teachersKeyStageSubjectUnitsFixture from "./fixtures/teachersKeyStageSubjectUnits.fixture";
 import teachersKeyStageSubjectUnitsPathsFixture from "./fixtures/teachersKeyStageSubjectUnitsPaths.fixture";
-import teachersKeyStageSubjectUnitsLessonsFixture from "./fixtures/teachersLessons.fixture";
 import _curriculumApi, { CurriculumApi } from "./_index";
 
 export type {
@@ -34,9 +33,6 @@ const curriculumApi: CurriculumApi = {
   },
   teachersKeyStageSubjectUnits: async () => {
     return teachersKeyStageSubjectUnitsFixture();
-  },
-  teachersKeyStageSubjectUnitsLessons: async () => {
-    return teachersKeyStageSubjectUnitsLessonsFixture();
   },
 };
 
