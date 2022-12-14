@@ -69,6 +69,30 @@ export type TeachersKeyStageSubjectUnitsData = {
   }[];
 };
 
+export type TeachersKeyStageSubjectUnitsLessonsData = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  tierSlug: string | null;
+  unitSlug: string;
+  unitTitle: string;
+  lessons: {
+    slug: string;
+    title: string;
+    keyStageSlug: string;
+    keyStageTitle: string;
+    subjectSlug: string;
+    subjectTitle: string;
+    themeSlug: string;
+    themeTitle: string;
+    quizCount: number | null;
+    videoCount: number | null;
+    presentationCount: number | null;
+    worksheetCount: number | null;
+  }[];
+};
+
 const sdk = getSdk(graphqlClient);
 
 const curriculumApi = {

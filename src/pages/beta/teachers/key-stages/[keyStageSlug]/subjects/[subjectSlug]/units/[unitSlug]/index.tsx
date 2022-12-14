@@ -1,17 +1,15 @@
 import React from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 
 import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
 import { Heading } from "../../../../../../../../../components/Typography";
-import curriculumApi, {
-  TeachersKeyStageSubjectsData,
-} from "../../../../../../../../../node-lib/curriculum-api";
-import { decorateWithIsr } from "../../../../../../../../../node-lib/isr";
+import teachersKeyStageSubjectUnitsLessonsFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/teachersLessons.fixture";
+import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../../../../../../node-lib/curriculum-api";
 
 type LessonListPageProps = {
-  curriculumData: TeachersKeyStageSubjectsData;
+  curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
 
 const LessonListPage: NextPage<LessonListPageProps> = (props) => {
@@ -26,8 +24,7 @@ const LessonListPage: NextPage<LessonListPageProps> = (props) => {
     >
       <MaxWidth $ph={12} $pt={48} $maxWidth={[480, 840, 1280]}>
         <Heading tag={"h1"} $font={"heading-4"}>
-          {/* {curriculumData.keyStageTitle} */}
-          UNIT TITLE
+          {curriculumData.unitTitle}
         </Heading>
       </MaxWidth>
     </AppLayout>
@@ -36,39 +33,18 @@ const LessonListPage: NextPage<LessonListPageProps> = (props) => {
 
 type URLParams = { unitSlug: string };
 
-// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-//   const { keyStages } = await curriculumApi.teachersHomePage();
+export const getServerSideProps: GetServerSideProps<
+  LessonListPageProps,
+  URLParams
+> = async () => {
+  const curriculumData = teachersKeyStageSubjectUnitsLessonsFixture();
 
-//   const paths = keyStages.map((keyStage) => ({
-//     params: { keyStageSlug: keyStage.slug },
-//   }));
-
-//   return {
-//     fallback: false,
-//     paths,
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps<
-//   LessonListPageProps,
-//   URLParams
-// > = async (context) => {
-//   if (!context.params?.keyStageSlug) {
-//     throw new Error("No keyStageSlug");
-//   }
-
-//   const curriculumData = await curriculumApi.teachersKeyStageSubjects({
-//     unitSlug: context.params?.unitSlug,
-//   });
-
-//   const results = {
-//     props: {
-//       curriculumData,
-//     },
-//   };
-
-//   const resultsWithIsr = decorateWithIsr(results);
-//   return resultsWithIsr;
-// };
+  const results: GetServerSidePropsResult<LessonListPageProps> = {
+    props: {
+      curriculumData,
+    },
+  };
+  return results;
+};
 
 export default LessonListPage;
