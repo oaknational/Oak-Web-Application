@@ -38,7 +38,7 @@ const LessonList: FC<LessonListProps> = (props) => {
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
         <Heading $font={["heading-6", "heading-5"]} $mb={24} tag={headingTag}>
-          Lessons
+          Lessons ({lessons.length})
         </Heading>
       </Flex>
 

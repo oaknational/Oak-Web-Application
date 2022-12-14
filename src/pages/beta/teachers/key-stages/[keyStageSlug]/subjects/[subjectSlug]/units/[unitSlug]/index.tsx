@@ -17,7 +17,14 @@ type LessonListPageProps = {
 };
 
 const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
-  const { keyStageTitle, keyStageSlug, unitTitle, lessons } = curriculumData;
+  const {
+    keyStageTitle,
+    keyStageSlug,
+    unitTitle,
+    lessons,
+    subjectSlug,
+    subjectTitle,
+  } = curriculumData;
 
   const paginationProps = usePagination({
     totalResults: lessons.length,
@@ -49,9 +56,11 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           />
         </Flex>
         <TitleCard
-          page={"lessons"}
+          page={"lesson"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
+          subjectSlug={subjectSlug}
+          subject={subjectTitle}
           title={unitTitle}
           iconName={"Rocket"}
           $mb={24}
