@@ -1,3 +1,10 @@
+# [1.91.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.90.0...v1.91.0) (2022-12-14)
+
+
+### Features
+
+* lesson resource graphics ([481765a](https://github.com/oaknational/Oak-Web-Application/commit/481765a50fc7c4ab9102100d16d7015b7eb31501))
+
 # [1.90.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.89.1...v1.90.0) (2022-12-13)
 
 
