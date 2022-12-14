@@ -33,13 +33,15 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
 
   return (
     <>
-      <MobileBlogFilters
-        page={page}
-        categoryListProps={{ categories }}
-        withBackButton
-      />
       <MaxWidth>
         <Grid $ph={[12, 0]}>
+          <GridArea $colSpan={[12]}>
+            <MobileBlogFilters
+              page={page}
+              categoryListProps={{ categories }}
+              withBackButton
+            />
+          </GridArea>
           <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
             <Box
               $display={["none", "block"]}
