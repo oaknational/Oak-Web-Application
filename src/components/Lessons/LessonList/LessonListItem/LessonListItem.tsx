@@ -8,6 +8,7 @@ import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../../Card";
 import OakLink from "../../../OakLink";
 import LineClamp from "../../../LineClamp";
+import LessonResourceGraphics from "../../../LessonResourceGraphics";
 
 export type LessonListItemProps = {
   title: string;
@@ -15,6 +16,10 @@ export type LessonListItemProps = {
   slug: string;
   keyStageSlug: string;
   subjectSlug: string;
+  quizCount: number | null;
+  videoCount: number | null;
+  presentationCount: number | null;
+  worksheetCount: number | null;
 };
 
 /**
@@ -22,10 +27,27 @@ export type LessonListItemProps = {
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, subjectSlug, slug, keyStageSlug, description } = props;
+  const {
+    title,
+    subjectSlug,
+    slug,
+    keyStageSlug,
+    description,
+    quizCount,
+    videoCount,
+    presentationCount,
+    worksheetCount,
+  } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
+
+  const resources = [
+    { title: "presentation", href: "/", resourceCount: presentationCount || 0 },
+    { title: "worksheet", href: "/", resourceCount: worksheetCount || 0 },
+    { title: "quiz", href: "/", resourceCount: quizCount || 0 },
+    { title: "video", href: "/", resourceCount: videoCount || 0 },
+  ];
 
   return (
     <Card
@@ -98,6 +120,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
               </Span>
             </LineClamp>
           </Flex>
+          <LessonResourceGraphics items={resources} />
         </Flex>
       </Flex>
       <Flex
