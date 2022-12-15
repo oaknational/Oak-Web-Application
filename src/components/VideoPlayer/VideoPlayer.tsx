@@ -7,12 +7,14 @@ import OakError from "../../errors/OakError";
 import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
 import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
+import LoadingSpinner from "../LoadingSpinner";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
 import getPercentageElapsed from "./getPercentageElapsed";
+import useSignedVideoToken, { PlaybackPolicy } from "./useSignedVideoToken";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -27,17 +29,26 @@ export type VideoStyleConfig = {
 
 export type VideoPlayerProps = {
   playbackId: string;
+  playbackPolicy: PlaybackPolicy;
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
-  const { playbackId, thumbnailTime: thumbTime, title, location } = props;
+  const {
+    thumbnailTime: thumbTime,
+    title,
+    location,
+    playbackId,
+    playbackPolicy,
+  } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
+  // const playbackId = "iVr600df01p002CIj5723gjLVh97iXs3me1bfJ8NlID02Q00";
+  // const playbackPolicy = "signed";
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
@@ -57,6 +68,10 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const videoTracking = useVideoTracking({ getState });
+  const tokens = useSignedVideoToken({
+    playbackId: playbackId,
+    playbackPolicy: playbackPolicy,
+  });
 
   const metadata = {
     "metadata-video-id": playbackId,
@@ -97,6 +112,10 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
      */
     return null;
   }
+  if (tokens.loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
       <MuxPlayer
@@ -106,6 +125,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
+        tokens={
+          tokens.playbackToken ? { playback: tokens.playbackToken } : undefined
+        }
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
