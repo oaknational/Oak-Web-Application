@@ -12,6 +12,15 @@ jest.mock("swr", () => ({
   default: (...args: []) => mockUseSWR(...args),
 }));
 
+const reportError = jest.fn();
+jest.mock("../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
+
 describe("useSignedVideoToken", () => {
   test("'loading' should default to false on public video", () => {
     const { result } = renderHook(() =>
@@ -67,5 +76,20 @@ describe("useSignedVideoToken", () => {
       playbackToken: "1234",
       error: null,
     });
+  });
+  test("should report an error if there is data but no token ", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: "123",
+      error: "error",
+    }));
+
+    renderHook(() =>
+      useSignedVideoToken({
+        playbackId: "123",
+        playbackPolicy: "signed",
+      })
+    );
+
+    expect(reportError).toHaveBeenCalled();
   });
 });
