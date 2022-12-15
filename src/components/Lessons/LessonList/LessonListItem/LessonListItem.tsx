@@ -42,12 +42,17 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
 
-  const resources = [
-    { title: "presentation", resourceCount: presentationCount || 0 },
-    { title: "worksheet", resourceCount: worksheetCount || 0 },
-    { title: "quiz", resourceCount: quizCount || 0 },
-    { title: "video", resourceCount: videoCount || 0 },
-  ];
+  const resources = [];
+  presentationCount &&
+    resources.push({
+      title: "presentation",
+      resourceCount: presentationCount,
+    });
+  worksheetCount &&
+    resources.push({ title: "worksheet", resourceCount: worksheetCount });
+  quizCount && resources.push({ title: "quiz", resourceCount: quizCount });
+  videoCount &&
+    resources.push({ title: "video", resourceCount: videoCount || 0 });
 
   return (
     <Card

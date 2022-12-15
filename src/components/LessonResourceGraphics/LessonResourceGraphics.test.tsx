@@ -54,16 +54,4 @@ describe("LessonResourceGraphics", () => {
     expect(screen.queryByText("Quizzes")).toBeInTheDocument();
     expect(screen.getByText("Videos")).toBeInTheDocument();
   });
-  test("should render the resources as links", () => {
-    const { getByText } = renderWithTheme(
-      <LessonResourceGraphics
-        items={[{ title: "presentation", resourceCount: 4 }]}
-      />
-    );
-
-    expect(getByText("Presentations").closest("a")).toHaveAttribute(
-      "href",
-      "/"
-    );
-  });
 });

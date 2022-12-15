@@ -45,7 +45,7 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
         quizCount: 1,
         videoCount: 1,
         presentationCount: 1,
-        worksheetCount: 0,
+        worksheetCount: 1,
       },
     ],
     ...partial,
