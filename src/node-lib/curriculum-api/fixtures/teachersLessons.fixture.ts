@@ -15,7 +15,8 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
       {
         slug: "geometry",
         title: "Geometry",
-        description: "Lorem ipsum",
+        description:
+          "In this lesson, we will focus on Islamic beliefs about holy books and we will consider why in Islam the Qur'an is a revelation prized above all others. We will explore the importance of holy books (Scrolls of Ibrahim, Tawrat, Zabur, Injil), the difference between those revelations and the revelation of the Qur'an and what the Qur'an is and what the Qur'an contains.",
         keyStageSlug: "ks4",
         keyStageTitle: "Key stage 4",
         subjectSlug: "maths",

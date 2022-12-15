@@ -7,6 +7,7 @@ import { Heading, Span } from "../../../Typography";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../../Card";
 import OakLink from "../../../OakLink";
+import LineClamp from "../../../LineClamp";
 
 export type LessonListItemProps = {
   title: string;
@@ -45,7 +46,12 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $alignItems={"center"}
       >
-        <Flex $mh={[16, 24]} $flexDirection={"column"}>
+        <Flex
+          $ml={[16, 24]}
+          $mr={[0, 24]}
+          $flexDirection={"column"}
+          $width={"100%"}
+        >
           <OakLink
             keyStage={keyStageSlug}
             subject={subjectSlug}
@@ -53,27 +59,53 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             page={"lesson-index"}
             {...primaryTargetProps}
           >
-            <Heading
-              $mt={24}
-              $mb={12}
-              $font={["heading-7", "heading-6"]}
-              tag={"h3"}
-            >
-              {title}
-            </Heading>
+            <Flex>
+              <Heading
+                $mt={24}
+                $mb={12}
+                $font={["heading-7", "heading-6"]}
+                tag={"h3"}
+              >
+                {title}
+              </Heading>
+              <Flex
+                $justifyContent={"center"}
+                $display={["flex", "none"]}
+                $alignItems={"center"}
+                $minHeight={72}
+                $minWidth={72}
+                $background={"teachersLilac"}
+                $position={"relative"}
+                $ml={"auto"}
+              >
+                <Icon size={[50, 92]} name={"Rocket"}>
+                  {title}
+                </Icon>
+              </Flex>
+            </Flex>
           </OakLink>
-          <Flex $mb={24} $flexDirection={["column", "row"]}>
-            <Span $font={"body-2"} $color={"oakGrey5"}>
-              {description}
-            </Span>
+          <Flex $display={["none", "flex"]} $mb={24}>
+            <LineClamp lines={2}>
+              <Span $font={"body-2"} $color={"oakGrey5"}>
+                {description}
+              </Span>
+            </LineClamp>
+          </Flex>
+          <Flex $display={["flex", "none"]} $mt={8} $mb={24} $mr={16}>
+            <LineClamp lines={5}>
+              <Span $font={"body-2"} $color={"oakGrey5"}>
+                {description}
+              </Span>
+            </LineClamp>
           </Flex>
         </Flex>
       </Flex>
       <Flex
         $justifyContent={"center"}
+        $display={["none", "flex"]}
         $alignItems={"center"}
         $minHeight={110}
-        $minWidth={[72, 130]}
+        $minWidth={130}
         $background={"teachersLilac"}
         $position={"relative"}
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
