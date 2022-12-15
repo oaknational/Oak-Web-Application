@@ -11,9 +11,9 @@ import OakLink from "../../OakLink";
 export type UnitListItemProps = {
   title: string;
   slug: string;
-  learningThemeTitle?: string;
-  lessonCount: number;
-  hasUnitQuiz: boolean;
+  themeTitle: string | null;
+  lessonCount: number | null;
+  quizCount: number | null;
   subjectSlug: string;
   keyStageSlug: string;
 };
@@ -27,9 +27,9 @@ export type UnitListItemProps = {
 const UnitListItem: FC<UnitListItemProps> = (props) => {
   const {
     title,
-    learningThemeTitle,
+    themeTitle,
     lessonCount,
-    hasUnitQuiz,
+    quizCount,
     subjectSlug,
     keyStageSlug,
     slug,
@@ -75,16 +75,16 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             </Heading>
           </OakLink>
           <Flex $mb={24} $flexDirection={["column", "row"]}>
-            {learningThemeTitle && (
+            {themeTitle && (
               <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
-                {learningThemeTitle}
+                {themeTitle}
               </Span>
             )}
             <Flex>
               <Span $mr={16} $font={["body-3", "heading-light-7"]}>
                 {`${lessonCount} lessons`}
               </Span>
-              {hasUnitQuiz && (
+              {quizCount && (
                 <Span $mr={16} $font={["body-3", "heading-light-7"]}>
                   Unit quiz
                 </Span>

@@ -2,18 +2,34 @@ import { screen, waitFor } from "@testing-library/react";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import LearningTiersList from "./LearningTiersList";
+import TierList from "./TierList";
 
-describe("LearningTiersList", () => {
+describe("TierList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
-      <LearningTiersList
+      <TierList
+        subjectSlug="maths"
+        keyStageSlug="ks4"
         tiers={[
-          { title: "Foundation", unitCount: 3, lessonCount: 4 },
-          { title: "Core", unitCount: 3, lessonCount: 4 },
-          { title: "Higher", unitCount: 3, lessonCount: 4 },
+          {
+            title: "Foundation",
+            slug: "foundation",
+            unitCount: 3,
+            lessonCount: 4,
+          },
+          {
+            title: "Core",
+            slug: "core",
+            unitCount: 3,
+            lessonCount: 4,
+          },
+          {
+            title: "Higher",
+            slug: "higher",
+            unitCount: 3,
+            lessonCount: 4,
+          },
         ]}
-        background="teachersYellow"
       />
     );
 

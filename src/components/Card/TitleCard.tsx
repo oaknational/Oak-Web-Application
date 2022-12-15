@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import { Heading, Span } from "../Typography";
 import Icon, { IconName } from "../Icon";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
@@ -15,19 +15,19 @@ export const titleCardIconBackground = {
 
 export type TitlePageType =
   | {
-      page: "unit" | "subject";
+      page: "subject";
       keyStage: string;
       keyStageSlug: string;
     }
   | {
-      page: "lesson";
+      page: "unit" | "lesson";
       keyStage: string;
       keyStageSlug: string;
       subject: string;
       subjectSlug: string;
     };
 
-type TitleCardProps = {
+type TitleCardProps = FlexProps & {
   title: string;
   iconName: IconName;
 } & TitlePageType;
@@ -39,9 +39,9 @@ type TitleCardProps = {
  * Used on subject by keystage, tier, unit and lesson pages.
  */
 const TitleCard: FC<TitleCardProps> = (props) => {
-  const { title, keyStage, keyStageSlug, iconName, page } = props;
+  const { title, keyStage, keyStageSlug, iconName, page, ...flexProps } = props;
   return (
-    <Flex $width={["100%", "auto"]} $position={"relative"}>
+    <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
       <Flex
         $width={["100%", "auto"]}
         $display={"inline-flex"}
@@ -49,14 +49,14 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $justifyContent={"space-between"}
         $alignItems={"center"}
       >
-        <Box $mh={24}>
+        <Box $ma={24}>
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
           <OakLink slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
-          {page === "lesson" && (
+          {page === "unit" && (
             // @todo Change to subject when pages are created
             <OakLink $ml={16} slug={props.subjectSlug} page={"subject-index"}>
               <Span $font={"heading-7"}>{props.subject}</Span>
@@ -74,6 +74,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           $alignItems={"center"}
           $minHeight={[96, 160]}
           $width={[72, 160]}
+          $height={"100%"}
           $background={titleCardIconBackground[page]}
         >
           <Icon size={[44, 120]} name={iconName} />
