@@ -11,6 +11,7 @@ import Flex from "../../../../../../../../../components/Flex";
 import TitleCard from "../../../../../../../../../components/Card/TitleCard";
 import LessonList from "../../../../../../../../../components/Lessons/LessonList/LessonList";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
+import Box from "../../../../../../../../../components/Box";
 
 type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
@@ -66,12 +67,14 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           $mb={24}
           $alignSelf={"flex-start"}
         />
-        <LessonList
-          {...curriculumData}
-          currentPageItems={currentPageItems}
-          paginationProps={paginationProps}
-          headingTag={"h2"}
-        />
+        <Box $mt={56}>
+          <LessonList
+            {...curriculumData}
+            currentPageItems={currentPageItems}
+            paginationProps={paginationProps}
+            headingTag={"h2"}
+          />
+        </Box>
       </MaxWidth>
     </AppLayout>
   );

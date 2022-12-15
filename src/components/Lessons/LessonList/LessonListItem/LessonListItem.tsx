@@ -3,7 +3,7 @@ import { FC } from "react";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
 import Icon from "../../../Icon";
-import { Heading } from "../../../Typography";
+import { Heading, Span } from "../../../Typography";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../../Card";
 import OakLink from "../../../OakLink";
@@ -21,7 +21,7 @@ export type LessonListItemProps = {
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, subjectSlug, slug, keyStageSlug } = props;
+  const { title, subjectSlug, slug, keyStageSlug, description } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -63,21 +63,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             </Heading>
           </OakLink>
           <Flex $mb={24} $flexDirection={["column", "row"]}>
-            {/* {learningThemeTitle && (
-              <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
-                {learningThemeTitle}
-              </Span>
-            )}
-            <Flex>
-              <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                {`${lessonCount} lessons`}
-              </Span>
-              {hasUnitQuiz && (
-                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                  Unit quiz
-                </Span>
-              )}
-            </Flex> */}
+            <Span $font={"body-2"} $color={"oakGrey5"}>
+              {description}
+            </Span>
           </Flex>
         </Flex>
       </Flex>
