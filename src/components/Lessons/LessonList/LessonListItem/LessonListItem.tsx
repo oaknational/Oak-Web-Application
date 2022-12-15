@@ -51,8 +51,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   worksheetCount &&
     resources.push({ title: "worksheet", resourceCount: worksheetCount });
   quizCount && resources.push({ title: "quiz", resourceCount: quizCount });
-  videoCount &&
-    resources.push({ title: "video", resourceCount: videoCount || 0 });
+  videoCount && resources.push({ title: "video", resourceCount: videoCount });
 
   return (
     <Card
