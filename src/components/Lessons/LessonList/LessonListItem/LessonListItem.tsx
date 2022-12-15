@@ -90,7 +90,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                 $alignItems={"center"}
                 $minHeight={72}
                 $minWidth={72}
-                $background={"teachersLilac"}
+                $background={"pupilsPink"}
                 $position={"relative"}
                 $ml={"auto"}
               >
@@ -125,7 +125,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $alignItems={"center"}
         $minHeight={110}
         $minWidth={130}
-        $background={"teachersLilac"}
+        $background={"pupilsPink"}
         $position={"relative"}
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $transform={isHovered ? "translateY(-4px)" : null}
