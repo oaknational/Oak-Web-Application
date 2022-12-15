@@ -43,10 +43,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     useClickableCard<HTMLAnchorElement>();
 
   const resources = [
-    { title: "presentation", href: "/", resourceCount: presentationCount || 0 },
-    { title: "worksheet", href: "/", resourceCount: worksheetCount || 0 },
-    { title: "quiz", href: "/", resourceCount: quizCount || 0 },
-    { title: "video", href: "/", resourceCount: videoCount || 0 },
+    { title: "presentation", resourceCount: presentationCount || 0 },
+    { title: "worksheet", resourceCount: worksheetCount || 0 },
+    { title: "quiz", resourceCount: quizCount || 0 },
+    { title: "video", resourceCount: videoCount || 0 },
   ];
 
   return (

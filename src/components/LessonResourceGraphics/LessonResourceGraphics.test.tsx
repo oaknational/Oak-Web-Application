@@ -9,10 +9,10 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "presentation", href: "/", resourceCount: 1 },
-          { title: "worksheet", href: "/", resourceCount: 1 },
-          { title: "quiz", href: "/", resourceCount: 1 },
-          { title: "video", href: "/", resourceCount: 1 },
+          { title: "presentation", resourceCount: 1 },
+          { title: "worksheet", resourceCount: 1 },
+          { title: "quiz", resourceCount: 1 },
+          { title: "video", resourceCount: 1 },
         ]}
       />
     );
@@ -26,8 +26,8 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "presentation", href: "/", resourceCount: 1 },
-          { title: "video", href: "/", resourceCount: 1 },
+          { title: "presentation", resourceCount: 1 },
+          { title: "video", resourceCount: 1 },
         ]}
       />
     );
@@ -41,10 +41,10 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "presentation", href: "/", resourceCount: 4 },
-          { title: "worksheet", href: "/", resourceCount: 5 },
-          { title: "quiz", href: "/", resourceCount: 3 },
-          { title: "video", href: "/", resourceCount: 3 },
+          { title: "presentation", resourceCount: 4 },
+          { title: "worksheet", resourceCount: 5 },
+          { title: "quiz", resourceCount: 3 },
+          { title: "video", resourceCount: 3 },
         ]}
       />
     );
@@ -57,7 +57,7 @@ describe("LessonResourceGraphics", () => {
   test("should render the resources as links", () => {
     const { getByText } = renderWithTheme(
       <LessonResourceGraphics
-        items={[{ title: "presentation", href: "/", resourceCount: 4 }]}
+        items={[{ title: "presentation", resourceCount: 4 }]}
       />
     );
 

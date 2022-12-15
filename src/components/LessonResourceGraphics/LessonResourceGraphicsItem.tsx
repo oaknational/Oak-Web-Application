@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import Flex from "../Flex";
 import Icon, { IconName } from "../Icon";
-import OakLink from "../OakLink/OakLink";
 import { Span } from "../Typography";
 import lessonElementSvgSymbols from "../SpriteSheet/LessonElementSvgs/index";
 
@@ -28,22 +27,18 @@ const isIconName = (title: string): title is IconName => {
 export type LessonResourceGraphicsItemProps = {
   title: string;
   resourceCount: number;
-  href: string;
 };
 
 const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = ({
   title,
   resourceCount,
-  href,
 }) => {
   const resourceTitle = capitalizedTitle(title);
   return (
-    <OakLink
+    <Flex
       $display={"flex"}
       $alignItems={"center"}
       $flexDirection={["column", "row"]}
-      href={href}
-      page={null}
       $mr={[32, 28]}
     >
       <Icon
@@ -60,7 +55,7 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = ({
           {getResourceTitle(resourceTitle, resourceCount)}
         </Span>
       </Flex>
-    </OakLink>
+    </Flex>
   );
 };
 
