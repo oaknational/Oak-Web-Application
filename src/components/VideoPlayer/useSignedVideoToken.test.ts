@@ -33,6 +33,17 @@ describe("useSignedVideoToken", () => {
 
     expect(loading).toBe(false);
   });
+  test("'token' should be null on a public video", () => {
+    const { result } = renderHook(() =>
+      useSignedVideoToken({
+        playbackId: "123",
+        playbackPolicy: "public",
+      })
+    );
+    const { playbackToken } = result.current;
+
+    expect(playbackToken).toBe(null);
+  });
   test("'loading' should default to true on signed video", () => {
     const { result } = renderHook(() =>
       useSignedVideoToken({

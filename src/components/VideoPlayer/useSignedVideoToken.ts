@@ -93,7 +93,7 @@ const useSignedVideoToken = ({
     return {
       loading: false,
       error: null,
-      playbackToken: playbackPolicy === "signed" ? token : undefined,
+      playbackToken: token,
     };
   }
 

@@ -47,8 +47,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
-  // const playbackId = "iVr600df01p002CIj5723gjLVh97iXs3me1bfJ8NlID02Q00";
-  // const playbackPolicy = "signed";
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
