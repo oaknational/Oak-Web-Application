@@ -9,9 +9,9 @@ const units: UnitListItemProps[] = [
     title:
       "1, To build knowledge of the historical context of the play ‘Macbeth’",
     slug: "To-build-knowledge",
-    learningThemeTitle: "MacBeth",
+    themeTitle: "MacBeth",
     lessonCount: 4,
-    hasUnitQuiz: false,
+    quizCount: 0,
     subjectSlug: "english",
     keyStageSlug: "2",
   },
@@ -19,9 +19,9 @@ const units: UnitListItemProps[] = [
     title:
       "1, To build knowledge of the historical context of the play ‘Macbeth’",
     slug: "To-build-knowledge",
-    learningThemeTitle: "MacBeth",
+    themeTitle: "MacBeth",
     lessonCount: 4,
-    hasUnitQuiz: false,
+    quizCount: 0,
     subjectSlug: "english",
     keyStageSlug: "2",
   },
@@ -33,7 +33,8 @@ const currentPageItems: UnitListProps = {
   keyStageSlug: "4",
   subjectSlug: "computing",
   headingTag: "h1",
-  availableTiers: [],
+  tiers: [],
+  tierSlug: null,
   paginationProps: {
     currentPage: 1,
     totalPages: 2,
@@ -63,5 +64,5 @@ export const UnitListTiers = Template.bind({});
 
 UnitListTiers.args = {
   ...currentPageItems,
-  availableTiers: tiers,
+  tiers: tiers,
 };

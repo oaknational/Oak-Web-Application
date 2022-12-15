@@ -34,6 +34,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     "aria-label": ariaLabel,
     iconBackground,
     disabled,
+    isCurrent,
     ...linkProps
   } = transformedProps;
 
@@ -70,6 +71,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           background={background}
           variant={variant}
           disabled={disabled}
+          isCurrent={isCurrent}
         />
       </StyledNextLink>
     </Link>

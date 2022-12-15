@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 
 import { UnitListItemProps } from "../../../../../../../components/UnitList/UnitListItem/UnitListItem";
-import { decorateWithIsr } from "../../../../../../../node-lib/isr";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -15,22 +9,20 @@ import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import UnitList from "../../../../../../../components/UnitList";
 import { Tier } from "../../../../../../../components/UnitList/UnitList";
-import { mockFetchSubjectUnits } from "../../../../../../../browser-lib/fixtures/subjectUnits";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 
-export type SubjectUnits = {
-  keyStageTitle: string;
-  keyStageSlug: string;
-  subjectTitle: string;
-  subjectSlug: string;
-  availableTiers: Tier[];
-  units: UnitListItemProps[];
-};
-
 export type SubjectUnitsListPageProps = {
-  curriculumData: SubjectUnits;
+  curriculumData: {
+    keyStageTitle: string;
+    keyStageSlug: string;
+    subjectTitle: string;
+    subjectSlug: string;
+    tierSlug: string | null;
+    tiers: Tier[];
+    units: UnitListItemProps[];
+  };
 };
 
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
@@ -76,15 +68,15 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             text={"Unfortunately some subjects are now unavailable."}
           />
         </Flex>
-        <Flex $mb={24} $display={"inline-flex"}>
-          <TitleCard
-            page={"subject"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            title={subjectTitle}
-            iconName={"Rocket"}
-          />
-        </Flex>
+        <TitleCard
+          page={"subject"}
+          keyStage={keyStageTitle}
+          keyStageSlug={keyStageSlug}
+          title={subjectTitle}
+          iconName={"Rocket"}
+          $mb={24}
+          $alignSelf={"flex-start"}
+        />
         {/* not part of mvp page, add later */}
         {/* <Flex $mb={64} $display={"inline-flex"}>
           <ButtonAsLink
@@ -113,49 +105,28 @@ export type URLParams = {
   keyStageSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const keyStageSubjectPairs =
-    await curriculumApi.teachersKeyStageSubjectUnitsPaths();
-  const paths = keyStageSubjectPairs.map(({ subjectSlug, keyStageSlug }) => ({
-    params: {
-      subjectSlug,
-      keyStageSlug,
-    },
-  }));
-
-  return {
-    fallback: false,
-    paths,
-  };
-};
-
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   SubjectUnitsListPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { subjectSlug } = context.params;
+  const { subjectSlug, keyStageSlug } = context.params;
+  const { tier } = context.query;
+  const tierSlug = Array.isArray(tier) ? tier[0] : tier;
+  const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
+    subjectSlug,
+    keyStageSlug,
+    tierSlug,
+  });
 
-  const curriculumData = mockFetchSubjectUnits(
-    subjectSlug
-    // context.params?.keyStageSlug
-  );
-
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const results: GetStaticPropsResult<SubjectUnitsListPageProps> = {
+  const results: GetServerSidePropsResult<SubjectUnitsListPageProps> = {
     props: {
       curriculumData,
     },
   };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  return results;
 };
 
 export default SubjectUnitsListPage;

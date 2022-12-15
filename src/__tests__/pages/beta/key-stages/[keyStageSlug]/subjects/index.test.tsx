@@ -1,9 +1,8 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import { subjects } from "../../../../../../browser-lib/fixtures/subjectListing";
 import teachersHomePageFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjects.fixture";
-import KeyStageListPage, {
+import SubjectListingPage, {
   getStaticPaths,
   getStaticProps,
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
@@ -22,36 +21,24 @@ jest.mock("../../../../../../node-lib/curriculum-api", () => ({
   },
 }));
 
+const props = {
+  curriculumData: teachersKeyStageSubjectsFixture(),
+};
+
 describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   it("Renders title from props ", async () => {
-    renderWithProviders(
-      <KeyStageListPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          subjects,
-        }}
-      />
-    );
+    renderWithProviders(<SubjectListingPage {...props} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key stage 1"
+        "Key Stage 4"
       );
     });
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
-        <KeyStageListPage
-          curriculumData={{
-            keyStageSlug: "ks1",
-            keyStageTitle: "Key stage 1",
-            subjects,
-          }}
-        />
-      );
+      const { seo } = renderWithSeo(<SubjectListingPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,
