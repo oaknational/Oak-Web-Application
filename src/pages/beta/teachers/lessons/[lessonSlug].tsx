@@ -100,7 +100,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       })}
     >
       <MaxWidth $ph={16}>
-        <Flex $mb={24} $display={"inline-flex"} $mt={50}>
+        <Flex $mb={36} $display={"inline-flex"} $mt={50}>
           <TitleCard
             page={"lesson"}
             keyStage={keyStageTitle}
@@ -112,16 +112,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           />
         </Flex>
         <Flex $flexDirection="column">
-          <Heading tag={"h2"} $font={"heading-6"}>
+          <Heading tag={"h2"} $font={"heading-6"} $mb={16}>
             Core content
           </Heading>
-          <UL $pl={20}>
+          <UL $pl={28}>
             {coreContent.map((contentString) => {
               return <LI $font={"list-item-1"}>{contentString}</LI>;
             })}
           </UL>
         </Flex>
-        <Flex $mt={28} $flexWrap={"wrap"}>
+        <Flex $mt={12} $flexWrap={"wrap"}>
           <Button
             $mr={24}
             icon="Save"
@@ -134,7 +134,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             $mt={16}
           />
           {/*
-          .todo
+          todo
            <Button
             $mr={24}
             icon="SendToPupil"
