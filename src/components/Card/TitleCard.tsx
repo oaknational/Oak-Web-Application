@@ -16,12 +16,12 @@ export const titleCardIconBackground = {
 
 export type TitlePageType =
   | {
-      page: "unit" | "subject";
+      page: "subject";
       keyStage: string;
       keyStageSlug: string;
     }
   | {
-      page: "lesson";
+      page: "unit" | "lesson";
       keyStage: string;
       keyStageSlug: string;
       subject: string;
@@ -50,14 +50,14 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $justifyContent={"space-between"}
         $alignItems={"center"}
       >
-        <Box $mh={24}>
+        <Box $ma={24}>
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
           <OakLink slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
-          {page === "lesson" && (
+          {page === "unit" && (
             // @todo Change to subject when pages are created
             <OakLink
               $ml={16}
@@ -74,6 +74,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           $alignItems={"center"}
           $minHeight={[96, 160]}
           $width={[72, 160]}
+          $height={"100%"}
           $background={titleCardIconBackground[page]}
         >
           <Icon size={[44, 120]} name={iconName} />
