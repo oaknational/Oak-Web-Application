@@ -9,6 +9,7 @@ import Card from "../../../Card";
 import OakLink from "../../../OakLink";
 import LineClamp from "../../../LineClamp";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
+import Box from "../../../Box";
 
 export type LessonListItemProps = {
   title: string;
@@ -106,21 +107,23 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
               </Flex>
             </Flex>
           </OakLink>
-          <Flex $display={["none", "flex"]} $mb={24}>
+          <Flex $display={["none", "flex"]} $mb={16}>
             <LineClamp lines={2}>
               <Span $font={"body-2"} $color={"oakGrey5"}>
                 {description}
               </Span>
             </LineClamp>
           </Flex>
-          <Flex $display={["flex", "none"]} $mt={8} $mb={24} $mr={16}>
+          <Flex $display={["flex", "none"]} $mt={8} $mb={16} $mr={16}>
             <LineClamp lines={5}>
               <Span $font={"body-2"} $color={"oakGrey5"}>
                 {description}
               </Span>
             </LineClamp>
           </Flex>
-          <LessonResourceGraphics items={resources} />
+          <Box $mb={24}>
+            <LessonResourceGraphics items={resources} />
+          </Box>
         </Flex>
       </Flex>
       <Flex
