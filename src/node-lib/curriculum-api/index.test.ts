@@ -2,7 +2,8 @@ import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "./fixtures/teachersKeyStageSubjects.fixture";
 import teachersKeyStageSubjectTiersFixture from "./fixtures/teachersKeyStageSubjectTiers.fixture";
 import teachersKeyStageSubjectUnitsFixture from "./fixtures/teachersKeyStageSubjectUnits.fixture";
-import curriculumApi from "./_index";
+
+import curriculumApi from ".";
 
 const teachersHomePage = jest.fn(() => ({
   mv_key_stages: teachersHomePageFixture().keyStages,
