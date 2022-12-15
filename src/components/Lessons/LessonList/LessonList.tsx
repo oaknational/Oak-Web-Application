@@ -8,12 +8,6 @@ import { HeadingTag } from "../../Typography/Heading";
 
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
-export type Tier = {
-  title: string;
-  slug: string;
-  unitCount: number;
-};
-
 export type LessonListProps = {
   lessons: LessonListItemProps[];
   currentPageItems: LessonListItemProps[];
@@ -46,7 +40,7 @@ const LessonList: FC<LessonListProps> = (props) => {
         <>
           <UL $reset>
             {currentPageItems.map((item) => (
-              <LI key={`UnitList-UnitListItem-${item.slug}`}>
+              <LI key={`LessonList-LessonListItem-${item.slug}`}>
                 <LessonListItem {...item} />
               </LI>
             ))}
