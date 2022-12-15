@@ -13,13 +13,14 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
     unitTitle: "Some unit",
     lessons: [
       {
-        slug: "geometry",
+        slug: "macbeth-lesson-1",
         title: "Islamic Geometry",
         description:
           "In this lesson, we will focus on Islamic beliefs about holy books and we will consider why in Islam the Qur'an is a revelation prized above all others. We will explore the importance of holy books (Scrolls of Ibrahim, Tawrat, Zabur, Injil), the difference between those revelations and the revelation of the Qur'an and what the Qur'an is and what the Qur'an contains.",
         keyStageSlug: "ks4",
         keyStageTitle: "Key stage 4",
         subjectSlug: "maths",
+        unitSlug: "some-unit-slug",
         subjectTitle: "Maths",
         themeSlug: "some-theme-slug",
         themeTitle: "Some theme title",
@@ -29,7 +30,7 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
         worksheetCount: 2,
       },
       {
-        slug: "trig",
+        slug: "macbeth-lesson-1",
         title:
           "Creating a sculpture inspired by Chakaia Booker and Anish Kapoor",
         description:
@@ -37,6 +38,7 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
         keyStageSlug: "ks4",
         keyStageTitle: "Key stage 4",
         subjectSlug: "maths",
+        unitSlug: "some-unit-slug",
         subjectTitle: "Maths",
         themeSlug: "some-theme-slug",
         themeTitle: "Some theme title",

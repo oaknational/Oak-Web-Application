@@ -99,6 +99,10 @@ export type LessonIndexLinkProps = {
   subject: string;
   slug: string;
 };
+export type LessonOverviewLinkProps = {
+  page: "lesson-overview";
+  slug: string;
+};
 
 export type ResolveOakHrefProps =
   | {
@@ -117,7 +121,8 @@ export type ResolveOakHrefProps =
   | PostIndexLinkProps
   | TierSelectionLinkProps
   | UnitIndexLinkProps
-  | LessonIndexLinkProps;
+  | LessonIndexLinkProps
+  | LessonOverviewLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -192,6 +197,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
     }
     case "lesson-index": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
+    }
+    case "lesson-overview": {
+      return `/beta/teachers/lessons/${props.slug}`;
     }
 
     default:

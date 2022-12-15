@@ -17,6 +17,7 @@ export type LessonListItemProps = {
   slug: string;
   keyStageSlug: string;
   subjectSlug: string;
+  unitSlug: string;
   quizCount: number | null;
   videoCount: number | null;
   presentationCount: number | null;
@@ -30,9 +31,7 @@ export type LessonListItemProps = {
 const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
     title,
-    subjectSlug,
     slug,
-    keyStageSlug,
     description,
     quizCount,
     videoCount,
@@ -75,13 +74,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           $flexDirection={"column"}
           $width={"100%"}
         >
-          <OakLink
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
-            slug={slug}
-            page={"lesson-index"}
-            {...primaryTargetProps}
-          >
+          <OakLink slug={slug} page={"lesson-overview"} {...primaryTargetProps}>
             <Flex>
               <Heading
                 $mt={24}

@@ -85,6 +85,7 @@ export type TeachersKeyStageSubjectUnitsLessonsData = {
     keyStageTitle: string;
     subjectSlug: string;
     subjectTitle: string;
+    unitSlug: string;
     themeSlug: string;
     themeTitle: string;
     quizCount: number | null;
