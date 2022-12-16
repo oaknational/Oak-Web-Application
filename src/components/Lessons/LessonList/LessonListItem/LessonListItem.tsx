@@ -26,7 +26,7 @@ export type LessonListItemProps = {
 
 /**
  * Contains a lesson title, description, icon, and icons for resources
- * Links to a lesson-overview page
+ * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
