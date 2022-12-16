@@ -87,7 +87,7 @@ async function main() {
     NEXT_PUBLIC_GLEAP_FRAME_URL:
       process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
 
-    // Curriculum data
+    // Curriculum data// breaking here
     NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
 
     // Hubspot
