@@ -1,3 +1,11 @@
+# [1.93.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.92.0...v1.93.0) (2022-12-16)
+
+
+### Features
+
+* **home page:** add avo analytics to the visit help center button ([4127d7c](https://github.com/oaknational/Oak-Web-Application/commit/4127d7ce9a1b6468832aea2cac10d63618994812))
+* **home page:** add comment to force rerun ([79a47e6](https://github.com/oaknational/Oak-Web-Application/commit/79a47e6a2000cc55a9b1f3503be31e89f03af437))
+
 # [1.92.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.91.0...v1.92.0) (2022-12-15)
 
 
