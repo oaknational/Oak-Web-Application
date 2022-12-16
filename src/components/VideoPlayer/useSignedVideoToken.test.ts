@@ -21,6 +21,19 @@ jest.mock("../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
+jest.mock("./getSignedVideoToken", () => ({
+  __esModule: true,
+  default: jest.fn().mockReturnValue(Promise.resolve([])),
+}));
+
+jest.mock("../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
+
 describe("useSignedVideoToken", () => {
   test("'loading' should default to false on public video", () => {
     const { result } = renderHook(() =>

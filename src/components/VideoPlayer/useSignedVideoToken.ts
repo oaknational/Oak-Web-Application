@@ -4,6 +4,8 @@ import useSWR from "swr";
 import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 
+import getSignedVideoToken from "./getSignedVideoToken";
+
 const reportError = errorReporter("useSignedPlaybackId");
 export const apiEndpoint =
   "https://api.thenational.academy/api/signed-video-token";
@@ -30,31 +32,11 @@ const useSignedVideoToken = ({
   playbackId,
   playbackPolicy,
 }: UseSignedPlaybackIdProps): UseSignedPlaybackIdReturnProps => {
-  const fetcher = async (url: string) => {
-    const res = await fetch(url);
-    if (!res.ok) {
-      const json = await res.json();
-      const error = new OakError({
-        code: "video/fetch-signed-token",
-        meta: {
-          json,
-          status: res.status,
-          statusText: res.statusText,
-          playbackId,
-          playbackPolicy,
-        },
-      });
-      reportError(error);
-      throw error;
-    }
-    return res.json();
-  };
-
   const { data, error } = useSWR(
     playbackPolicy === "signed"
       ? `${apiEndpoint}?id=${playbackId}&type=video`
       : null,
-    fetcher,
+    getSignedVideoToken,
     options
   );
   const token = data?.token;
