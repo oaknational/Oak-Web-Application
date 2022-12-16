@@ -114,14 +114,11 @@ const curriculumApi = {
       keyStageTitle: res.mv_key_stages[0]?.title,
       subjectSlug: res.mv_subjects[0]?.slug,
       subjectTitle: res.mv_subjects[0]?.title,
-      unitCount: res.mv_subjects[0]?.unitCount,
-      lessonCount: res.mv_subjects[0]?.lessonCount,
       tiers: res.mv_tiers,
     } as TeachersKeyStageSubjectTiersData;
   },
   teachersKeyStageSubjectTiersPaths: async () => {
-    const pairs = (await sdk.teachersKeyStageSubjectUnitsPaths())
-      .mv_subjects as {
+    const pairs = (await sdk.teachersKeyStageSubjectTiersPaths()).mv_tiers as {
       subjectSlug: string;
       keyStageSlug: string;
     }[];

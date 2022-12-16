@@ -33656,14 +33656,12 @@ export type TeachersKeyStageSubjectTiersQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectTiersQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }> };
+export type TeachersKeyStageSubjectTiersQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }> };
 
-export type TeachersKeyStageSubjectTiersPathsQueryVariables = Exact<{
-  keyStageSlug: Scalars['String'];
-}>;
+export type TeachersKeyStageSubjectTiersPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersKeyStageSubjectTiersPathsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null }> };
+export type TeachersKeyStageSubjectTiersPathsQuery = { __typename?: 'query_root', mv_tiers: Array<{ __typename?: 'mv_tiers', subjectSlug?: string | null, keyStageSlug?: string | null }> };
 
 export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -33705,8 +33703,6 @@ export const TeachersKeyStageSubjectTiersDocument = gql`
   mv_subjects(where: {slug: {_eq: $subjectSlug}}) {
     slug
     title
-    unitCount: unit_count
-    lessonCount: lesson_count
   }
   mv_tiers(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
@@ -33719,16 +33715,10 @@ export const TeachersKeyStageSubjectTiersDocument = gql`
 }
     `;
 export const TeachersKeyStageSubjectTiersPathsDocument = gql`
-    query teachersKeyStageSubjectTiersPaths($keyStageSlug: String!) {
-  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
-    slug
-    title
-  }
-  mv_subjects(where: {key_stage_slug: {_eq: $keyStageSlug}, unit_count: {_gt: 0}}) {
-    slug
-    title
+    query teachersKeyStageSubjectTiersPaths {
+  mv_tiers {
+    subjectSlug: subject_slug
     keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
   }
 }
     `;
@@ -33800,7 +33790,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     teachersKeyStageSubjectTiers(variables: TeachersKeyStageSubjectTiersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectTiersQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectTiersQuery>(TeachersKeyStageSubjectTiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectTiers', 'query');
     },
-    teachersKeyStageSubjectTiersPaths(variables: TeachersKeyStageSubjectTiersPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectTiersPathsQuery> {
+    teachersKeyStageSubjectTiersPaths(variables?: TeachersKeyStageSubjectTiersPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectTiersPathsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectTiersPathsQuery>(TeachersKeyStageSubjectTiersPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectTiersPaths', 'query');
     },
     teachersKeyStageSubjectUnits(variables: TeachersKeyStageSubjectUnitsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsQuery> {
