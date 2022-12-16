@@ -10,7 +10,7 @@ import Box from "../Box";
 export const titleCardIconBackground = {
   subject: "teachersPastelYellow",
   unit: "teachersLilac",
-  lesson: "pupilsPink",
+  lesson: "teachersLilac",
   lessons: "teachersLilac",
 } as const;
 
