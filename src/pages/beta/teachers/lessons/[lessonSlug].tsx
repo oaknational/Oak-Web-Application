@@ -40,7 +40,7 @@ export type LessonOverview = {
   equipmentRequired: string;
   supervisionLevel: string;
   contentGuidance: string;
-  video: string;
+  video?: string;
 };
 
 export type LessonOverviewPageProps = {
