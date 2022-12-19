@@ -155,13 +155,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           <Box>Presentaion element</Box>
         </ExpandingContainer>
         <ExpandingContainer title={"Video"} downloadable={true}>
-          {/* video goes here */}
-          <VideoPlayer
-            playbackId={video}
-            playbackPolicy={"signed"}
-            title={lessonTitle}
-            location={"lesson"}
-          />
+          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
+            <Box $maxWidth={["100%", 840]}>
+              <VideoPlayer
+                playbackId={video}
+                playbackPolicy={"signed"}
+                title={lessonTitle}
+                location={"lesson"}
+              />
+            </Box>
+          </Flex>
         </ExpandingContainer>
         <ExpandingContainer title={"Worksheet"} downloadable={true}>
           <Box>Worksheet element</Box>
