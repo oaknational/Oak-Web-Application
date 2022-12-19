@@ -154,30 +154,32 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <ExpandingContainer title={"Presentation"} downloadable={true}>
           <Box>Presentaion element</Box>
         </ExpandingContainer>
-        <ExpandingContainer title={"Video"} downloadable={true}>
-          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-            <Flex
-              $maxWidth={["100%", 840]}
-              $alignItems={"center"}
-              $flexDirection={"column"}
-            >
-              <VideoPlayer
-                playbackId={video}
-                playbackPolicy={"signed"}
-                title={lessonTitle}
-                location={"lesson"}
-              />
-              <Button
-                label="Signed video"
-                background="teachersHighlight"
-                $mt={20}
-                $mb={24}
-                icon={"SignLanguage"}
-                $iconPosition={"trailing"}
-              />
+        {video && (
+          <ExpandingContainer title={"Video"} downloadable={true}>
+            <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
+              <Flex
+                $maxWidth={["100%", 840]}
+                $alignItems={"center"}
+                $flexDirection={"column"}
+              >
+                <VideoPlayer
+                  playbackId={video}
+                  playbackPolicy={"signed"}
+                  title={lessonTitle}
+                  location={"lesson"}
+                />
+                <Button
+                  label="Signed video"
+                  background="teachersHighlight"
+                  $mt={20}
+                  $mb={24}
+                  icon={"SignLanguage"}
+                  $iconPosition={"trailing"}
+                />
+              </Flex>
             </Flex>
-          </Flex>
-        </ExpandingContainer>
+          </ExpandingContainer>
+        )}
         <ExpandingContainer title={"Worksheet"} downloadable={true}>
           <Box>Worksheet element</Box>
         </ExpandingContainer>
