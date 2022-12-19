@@ -27,6 +27,7 @@ import Card from "../../../../components/Card";
 import Grid, { GridArea } from "../../../../components/Grid";
 import Icon, { IconName } from "../../../../components/Icon";
 import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
+import VideoPlayer from "../../../../components/VideoPlayer";
 
 export type LessonOverview = {
   lessonTitle: string;
@@ -39,6 +40,7 @@ export type LessonOverview = {
   equipmentRequired: string;
   supervisionLevel: string;
   contentGuidance: string;
+  video: string;
 };
 
 export type LessonOverviewPageProps = {
@@ -90,6 +92,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     equipmentRequired,
     supervisionLevel,
     contentGuidance,
+    video,
   } = curriculumData;
 
   return (
@@ -152,7 +155,13 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           <Box>Presentaion element</Box>
         </ExpandingContainer>
         <ExpandingContainer title={"Video"} downloadable={true}>
-          <Box>Video element</Box>
+          {/* video goes here */}
+          <VideoPlayer
+            playbackId={video}
+            playbackPolicy={"signed"}
+            title={lessonTitle}
+            location={"lesson"}
+          />
         </ExpandingContainer>
         <ExpandingContainer title={"Worksheet"} downloadable={true}>
           <Box>Worksheet element</Box>
