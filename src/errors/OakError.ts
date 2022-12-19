@@ -16,6 +16,7 @@ const ERROR_CODES = [
   "hubspot/invalid-email",
   "hubspot/unknown",
   "video/unknown",
+  "video/fetch-signed-token",
   "hubspot/not-loaded",
   "hubspot/lost-information",
   "hubspot/identify-no-email",
@@ -103,6 +104,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "video/unknown": {
     message: "Sorry this video couldn't play, please try again",
+    shouldNotify: true,
+  },
+  "video/fetch-signed-token": {
+    message: "Failed to fetch signed video token",
     shouldNotify: true,
   },
   "preview/invalid-token": {
