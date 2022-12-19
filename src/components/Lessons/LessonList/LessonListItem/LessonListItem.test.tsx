@@ -18,36 +18,53 @@ describe("Lesson List Item", () => {
         worksheetCount={2}
       />
     );
-    const listHeading = getByRole("heading", { level: 3 });
+    const lessonHeading = getByRole("heading", { level: 3 });
 
-    expect(listHeading).toBeInTheDocument();
+    expect(lessonHeading).toBeInTheDocument();
   });
 
-  //   test("It shows the correct number of presentations", () => {
-  //     const { getByText } = renderWithProviders(
-  //       <LessonListItem
-  //         title={"Macbeth"}
-  //         slug={"macbeth"}
-  //         presentationCount={1}
-  //         quizCount={2}
-  //         subjectSlug={"english"}
-  //         keyStageSlug={"4"}
-  //         description={"Lorem ipsum"}
-  //         unitSlug={"foo"}
-  //         videoCount={1}
-  //         worksheetCount={2}
-  //       />
-  //     );
+  test("It shows lesson description", () => {
+    const { getAllByText } = renderWithProviders(
+      <LessonListItem
+        title={"Macbeth"}
+        slug={"macbeth"}
+        presentationCount={1}
+        quizCount={2}
+        subjectSlug={"english"}
+        keyStageSlug={"4"}
+        description={"In this lesson"}
+        unitSlug={"foo"}
+        videoCount={1}
+        worksheetCount={2}
+      />
+    );
 
-  //       expect(getByText("")).toBeInTheDocument();
+    const description = getAllByText("In this lesson")[0];
 
-  //       const listHeading = getByRole("heading", { level: 1 });
+    expect(description).toBeInTheDocument();
+  });
 
-  //     expect(listHeading).toBeInTheDocument();
-  //   });
-  //   test("It shows the correct number of worksheets", () => {});
-  //   test("It shows the correct number of videos", () => {});
-  //   test("It shows the correct number of quizzes", () => {});
+  test("It is a link to the lesson overview page", () => {
+    const { getByText } = renderWithProviders(
+      <LessonListItem
+        title={"Macbeth"}
+        slug={"macbeth-lesson-1"}
+        presentationCount={1}
+        quizCount={2}
+        subjectSlug={"english"}
+        keyStageSlug={"4"}
+        description={"In this lesson"}
+        unitSlug={"foo"}
+        videoCount={1}
+        worksheetCount={2}
+      />
+    );
+
+    expect(getByText("Macbeth").closest("a")).toHaveAttribute(
+      "href",
+      "/beta/teachers/lessons/macbeth-lesson-1"
+    );
+  });
 
   //   test("It doesn't presentations if none", () => {});
   //   test("It doesn't worksheets if none", () => {});
