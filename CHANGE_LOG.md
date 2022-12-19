@@ -1,3 +1,10 @@
+# [1.94.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.93.0...v1.94.0) (2022-12-19)
+
+
+### Features
+
+* add use signed video hook ([0ac460a](https://github.com/oaknational/Oak-Web-Application/commit/0ac460a577a951fced5bc1955a738f1bfb18713b))
+
 # [1.93.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.92.0...v1.93.0) (2022-12-16)
 
 
