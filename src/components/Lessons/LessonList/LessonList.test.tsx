@@ -10,7 +10,7 @@ describe("components/ Lesson List", () => {
         paginationProps={mockPaginationProps}
         subjectSlug={"computing"}
         keyStageSlug={"2"}
-        headingTag={"h1"}
+        headingTag={"h2"}
         currentPageItems={[]}
         lessons={[
           {
@@ -31,7 +31,7 @@ describe("components/ Lesson List", () => {
       />
     );
 
-    const listHeading = getByRole("heading", { level: 1 });
+    const listHeading = getByRole("heading", { level: 2 });
 
     expect(listHeading).toBeInTheDocument();
   });
