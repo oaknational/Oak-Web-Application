@@ -108,8 +108,8 @@ const teachersKeyStageSubjectUnitsData = z.object({
       keyStageTitle: z.string(),
       subjectSlug: z.string(),
       subjectTitle: z.string(),
-      themeSlug: z.string(),
-      themeTitle: z.string(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
       lessonCount: z.number().nullable(),
       quizCount: z.number().nullable(),
     })
@@ -220,7 +220,7 @@ const curriculumApi = {
       keyStageTitle: keyStages?.[0]?.title,
       subjectSlug: subjects?.[0]?.slug,
       subjectTitle: subjects?.[0]?.title,
-      tierSlug: args[0].tierSlug,
+      tierSlug: args[0].tierSlug || null,
       tiers,
       units,
     });

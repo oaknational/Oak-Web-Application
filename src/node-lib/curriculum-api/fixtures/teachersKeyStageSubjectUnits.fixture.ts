@@ -8,7 +8,7 @@ const teachersKeyStageSubjectUnitsFixture = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
-    tierSlug: null,
+    tierSlug: "core",
     tiers: [
       {
         title: "Foundation",
