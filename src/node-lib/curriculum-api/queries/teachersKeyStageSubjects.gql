@@ -1,4 +1,8 @@
 query teachersKeyStageSubjects($keyStageSlug: String!) {
+  mv_key_stages(where: { slug: { _eq: $keyStageSlug } }) {
+    slug
+    title
+  }
   mv_subjects(where: { key_stage_slug: { _eq: $keyStageSlug } }) {
     slug
     title
