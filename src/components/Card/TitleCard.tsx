@@ -10,7 +10,8 @@ import Box from "../Box";
 export const titleCardIconBackground = {
   subject: "teachersPastelYellow",
   unit: "teachersLilac",
-  lesson: "pupilsPink",
+  lesson: "teachersLilac",
+  lessons: "teachersLilac",
 } as const;
 
 export type TitlePageType =
@@ -58,13 +59,12 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           </OakLink>
           {page === "unit" && (
             // @todo Change to subject when pages are created
-            <OakLink $ml={16} slug={props.subjectSlug} page={"subject-index"}>
-              <Span $font={"heading-7"}>{props.subject}</Span>
-            </OakLink>
-          )}
-          {page === "lesson" && (
-            // @todo Change to subject when pages are created
-            <OakLink $ml={16} slug={props.subjectSlug} page={"key-stage"}>
+            <OakLink
+              $ml={16}
+              page={"unit-index"}
+              keyStage={keyStageSlug}
+              subject={props.subjectSlug}
+            >
               <Span $font={"heading-7"}>{props.subject}</Span>
             </OakLink>
           )}
