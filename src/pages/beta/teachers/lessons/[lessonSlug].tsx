@@ -188,6 +188,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   icon={"SignLanguage"}
                   $iconPosition={"trailing"}
                   onClick={toggleSignLanguage}
+                  data-testid={"sign-language-button"}
                 />
               )}
               {signLanguageVideo && signLanguageOn && (
@@ -197,6 +198,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   $mt={20}
                   $mb={24}
                   onClick={toggleSignLanguage}
+                  data-testid={"sign-language-button"}
                 />
               )}
             </Flex>

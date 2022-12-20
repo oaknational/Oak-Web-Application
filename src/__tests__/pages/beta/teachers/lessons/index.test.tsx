@@ -36,6 +36,60 @@ describe("pages/beta/teachers/lessons", () => {
     });
   });
 
+  it("renders sign language button if there is a sign language video", async () => {
+    renderWithProviders(
+      <LessonOverviewPage
+        curriculumData={{
+          keyStageSlug: "ks1",
+          keyStageTitle: "Key stage 1",
+          lessonTitle: "macbeth lesson 1",
+          lessonSlug: "macbeth-lesson-1",
+          coreContent: ["string"],
+          subjectTitle: "string",
+          subjectSlug: "string",
+          equipmentRequired: "string",
+          supervisionLevel: "string",
+          contentGuidance: "string",
+          video: "string",
+          signLanguageVideo: "string",
+        }}
+      />
+    );
+
+    await waitFor(() => {
+      expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
+        "Signed video"
+      );
+    });
+  });
+
+  it("sign language button toggles on click", async () => {
+    renderWithProviders(
+      <LessonOverviewPage
+        curriculumData={{
+          keyStageSlug: "ks1",
+          keyStageTitle: "Key stage 1",
+          lessonTitle: "macbeth lesson 1",
+          lessonSlug: "macbeth-lesson-1",
+          coreContent: ["string"],
+          subjectTitle: "string",
+          subjectSlug: "string",
+          equipmentRequired: "string",
+          supervisionLevel: "string",
+          contentGuidance: "string",
+          video: "string",
+          signLanguageVideo: "string",
+        }}
+      />
+    );
+
+    const signLanguageButton = screen.getByTestId("sign-language-button");
+    await signLanguageButton.click();
+    expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
+      "Unsigned"
+    );
+  });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
