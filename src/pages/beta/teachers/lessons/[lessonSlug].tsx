@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -40,7 +40,8 @@ export type LessonOverview = {
   equipmentRequired: string;
   supervisionLevel: string;
   contentGuidance: string;
-  video?: string;
+  video: string;
+  signLanguageVideo?: string;
 };
 
 export type LessonOverviewPageProps = {
@@ -93,7 +94,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     supervisionLevel,
     contentGuidance,
     video,
+    signLanguageVideo,
   } = curriculumData;
+
+  const [signLanguageOn, setSignLanguageOn] = useState(false);
+
+  const toggleSignLanguage = () => {
+    setSignLanguageOn(!signLanguageOn);
+  };
 
   return (
     <AppLayout
@@ -152,22 +160,26 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         </Flex>
         <Hr $color={"oakGrey3"} />
         <ExpandingContainer title={"Presentation"} downloadable={true}>
-          <Box>Presentaion element</Box>
+          <Box>Presentation element</Box>
         </ExpandingContainer>
-        {video && (
-          <ExpandingContainer title={"Video"} downloadable={true}>
-            <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-              <Flex
-                $maxWidth={["100%", 840]}
-                $alignItems={"center"}
-                $flexDirection={"column"}
-              >
-                <VideoPlayer
-                  playbackId={video}
-                  playbackPolicy={"signed"}
-                  title={lessonTitle}
-                  location={"lesson"}
-                />
+        <ExpandingContainer title={"Video"} downloadable={true}>
+          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
+            <Flex
+              $maxWidth={["100%", 840]}
+              $alignItems={"center"}
+              $flexDirection={"column"}
+            >
+              <VideoPlayer
+                playbackId={
+                  signLanguageVideo && signLanguageOn
+                    ? signLanguageVideo
+                    : video
+                }
+                playbackPolicy={"signed"}
+                title={lessonTitle}
+                location={"lesson"}
+              />
+              {signLanguageVideo && !signLanguageOn && (
                 <Button
                   label="Signed video"
                   background="teachersHighlight"
@@ -175,11 +187,21 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   $mb={24}
                   icon={"SignLanguage"}
                   $iconPosition={"trailing"}
+                  onClick={toggleSignLanguage}
                 />
-              </Flex>
+              )}
+              {signLanguageVideo && signLanguageOn && (
+                <Button
+                  label="Unsigned"
+                  background="teachersHighlight"
+                  $mt={20}
+                  $mb={24}
+                  onClick={toggleSignLanguage}
+                />
+              )}
             </Flex>
-          </ExpandingContainer>
-        )}
+          </Flex>
+        </ExpandingContainer>
         <ExpandingContainer title={"Worksheet"} downloadable={true}>
           <Box>Worksheet element</Box>
         </ExpandingContainer>

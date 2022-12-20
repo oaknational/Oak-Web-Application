@@ -15,7 +15,8 @@ export const lessonOverview: LessonOverview = {
     "To learn an outline of Elizabeth's background, her birth to Anne Boleyn and the influence this had on her governance.",
     "How her background influenced her policy towards: Ministers, government, religion, marriage.",
   ],
-  video: "s5c6qJxxdhdQhaVnQiJDxzRm02V01OSMFy02cxqjdIfapc",
+  video: "BOO5xy01fO1FGEJfFsYn02zoyVzdDVAlkapKQ00IRFdIZw",
+  signLanguageVideo: "E800MxPyXVXBg019TwsbP00268g1ezbSilJKYApdS5UKBY",
 };
 
 export const mockFetchLessons = (lessonSlug?: string) => {
