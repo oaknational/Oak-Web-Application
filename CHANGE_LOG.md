@@ -1,3 +1,18 @@
+# [1.97.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.96.0...v1.97.0) (2022-12-20)
+
+
+### Bug Fixes
+
+* add video field to tests ([62ccdd5](https://github.com/oaknational/Oak-Web-Application/commit/62ccdd54c29701551cf06527386fbbc9568a8dea))
+
+
+### Features
+
+* add initial test video to lesson overview page ([20dfd4f](https://github.com/oaknational/Oak-Web-Application/commit/20dfd4f78b1c8904b64f655a3848c31a68ad2fb3))
+* add sign language button ([3819e7f](https://github.com/oaknational/Oak-Web-Application/commit/3819e7f11370673bce632d370308aed6badfbf8b))
+* add toggle between sign languag and unsign language videos ([d1581c3](https://github.com/oaknational/Oak-Web-Application/commit/d1581c3b6efa31d28bc42b80c5e5f939b04399ea))
+* style video in expanding container ([0b4c46e](https://github.com/oaknational/Oak-Web-Application/commit/0b4c46e7a1f8c77d2cff66d3f8fd91e0d3666907))
+
 # [1.96.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.95.0...v1.96.0) (2022-12-20)
 
 
