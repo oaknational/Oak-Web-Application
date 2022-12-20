@@ -29,6 +29,10 @@ jest.mock("@bugsnag/js", () => ({
   },
 }));
 
+jest.mock("./src/node-lib/curriculum-api", () =>
+  jest.requireActual("./src/node-lib/curriculum-api/__mocks__")
+);
+
 jest.mock(
   "./src/browser-lib/cookie-consent/confirmic/metomic-react.hacked.ts",
   () => ({
