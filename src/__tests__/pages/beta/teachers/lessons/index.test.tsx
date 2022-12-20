@@ -24,6 +24,7 @@ describe("pages/beta/teachers/lessons", () => {
           equipmentRequired: "string",
           supervisionLevel: "string",
           contentGuidance: "string",
+          video: "string",
         }}
       />
     );
@@ -50,6 +51,7 @@ describe("pages/beta/teachers/lessons", () => {
             equipmentRequired: "string",
             supervisionLevel: "string",
             contentGuidance: "string",
+            video: "string",
           }}
         />
       );
