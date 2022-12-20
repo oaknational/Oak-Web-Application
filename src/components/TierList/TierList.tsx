@@ -25,7 +25,7 @@ const TierList: FC<TierListProps> = ({
   return (
     <Grid $cg={16} {...gridProps}>
       {tiers.map((tier) => (
-        <GridArea $mb={16} $colSpan={[12, 4]}>
+        <GridArea $mb={16} $colSpan={[12, 4]} key={`tier-list-${tier.slug}`}>
           <TierListItem
             {...tier}
             subjectSlug={subjectSlug}

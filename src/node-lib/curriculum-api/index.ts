@@ -1,39 +1,181 @@
-import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
-import teachersKeyStageSubjectsFixture from "./fixtures/teachersKeyStageSubjects.fixture";
-import teachersKeyStageSubjectTiersFixture from "./fixtures/teachersKeyStageSubjectTiers.fixture";
-import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStageSubjectTiersPaths.fixture";
-import teachersKeyStageSubjectUnitsFixture from "./fixtures/teachersKeyStageSubjectUnits.fixture";
-import teachersKeyStageSubjectUnitsPathsFixture from "./fixtures/teachersKeyStageSubjectUnitsPaths.fixture";
-import _curriculumApi, { CurriculumApi } from "./_index";
+import { GraphQLClient } from "graphql-request";
 
-export type {
-  TeachersHomePageData,
-  TeachersKeyStageSubjectsData,
-  TeachersKeyStageSubjectUnitsData,
-  TeachersKeyStageSubjectTiersData,
-  TeachersKeyStageSubjectUnitsLessonsData,
-} from "./_index";
+import config from "../../config/server";
 
-const curriculumApi: CurriculumApi = {
-  ..._curriculumApi,
-  teachersHomePage: async () => {
-    return teachersHomePageFixture();
+import { getSdk } from "./generated/sdk";
+
+const curriculumApiUrl = config.get("curriculumApiUrl");
+const curriculumApiAuthType = config.get("curriculumApiAuthType");
+const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+
+const graphqlClient = new GraphQLClient(curriculumApiUrl, {
+  headers: {
+    "x-oak-auth-type": curriculumApiAuthType,
+    "x-oak-auth-key": curriculumApiAuthKey,
   },
-  teachersKeyStageSubjects: async () => {
-    return teachersKeyStageSubjectsFixture();
+});
+
+export type TeachersHomePageData = {
+  keyStages: {
+    slug: string;
+    title: string;
+    shortCode: string;
+  }[];
+};
+
+export type TeachersKeyStageSubjectsData = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjects: {
+    slug: string;
+    title: string;
+    keyStageSlug: string;
+    keyStageTitle: string;
+    unitCount: number | null;
+    lessonCount: number | null;
+    tierCount: number | null;
+  }[];
+};
+
+export type TeachersKeyStageSubjectTiersData = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  tiers: {
+    slug: string;
+    title: string;
+    unitCount: number | null;
+    lessonCount: number | null;
+  }[];
+};
+
+export type TeachersKeyStageSubjectUnitsData = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  tierSlug: string | null;
+  tiers: {
+    slug: string;
+    title: string;
+    unitCount: number | null;
+  }[];
+  units: {
+    slug: string;
+    title: string;
+    keyStageSlug: string;
+    keyStageTitle: string;
+    subjectSlug: string;
+    subjectTitle: string;
+    themeSlug: string;
+    themeTitle: string;
+    lessonCount: number | null;
+    quizCount: number | null;
+  }[];
+};
+
+export type TeachersKeyStageSubjectUnitsLessonsData = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  tierSlug: string | null;
+  unitSlug: string;
+  unitTitle: string;
+  lessons: {
+    slug: string;
+    title: string;
+    description: string;
+    keyStageSlug: string;
+    keyStageTitle: string;
+    subjectSlug: string;
+    subjectTitle: string;
+    unitSlug: string;
+    themeSlug: string;
+    themeTitle: string;
+    quizCount: number | null;
+    videoCount: number | null;
+    presentationCount: number | null;
+    worksheetCount: number | null;
+  }[];
+};
+
+const sdk = getSdk(graphqlClient);
+
+const curriculumApi = {
+  teachersHomePage: async () => {
+    const res = await sdk.teachersHomePage();
+
+    return {
+      keyStages: res.mv_key_stages.filter(
+        (ks) => Boolean(ks.title) && Boolean(ks.slug) && Boolean(ks.shortCode)
+      ) as { slug: string; title: string; shortCode: string }[],
+    } as TeachersHomePageData;
+  },
+  teachersKeyStageSubjects: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjects>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjects(...args);
+
+    return {
+      keyStageSlug: args[0].keyStageSlug,
+      keyStageTitle: (res.mv_subjects[0]?.keyStageTitle || null) as string,
+      subjects: res.mv_subjects.filter(
+        (ks) =>
+          Boolean(ks.title) &&
+          Boolean(ks.slug) &&
+          Boolean(ks.keyStageTitle) &&
+          Boolean(ks.keyStageSlug)
+      ),
+    } as TeachersKeyStageSubjectsData;
+  },
+  teachersKeyStageSubjectTiers: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectTiers>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectTiers(...args);
+
+    return {
+      keyStageSlug: res.mv_key_stages[0]?.slug,
+      keyStageTitle: res.mv_key_stages[0]?.title,
+      subjectSlug: res.mv_subjects[0]?.slug,
+      subjectTitle: res.mv_subjects[0]?.title,
+      tiers: res.mv_tiers,
+    } as TeachersKeyStageSubjectTiersData;
   },
   teachersKeyStageSubjectTiersPaths: async () => {
-    return teachersKeyStageSubjectTiersPathsFixture();
+    const pairs = (await sdk.teachersKeyStageSubjectTiersPaths()).mv_tiers as {
+      subjectSlug: string;
+      keyStageSlug: string;
+    }[];
+
+    return pairs;
   },
-  teachersKeyStageSubjectTiers: async () => {
-    return teachersKeyStageSubjectTiersFixture();
+  teachersKeyStageSubjectUnits: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnits>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectUnits(...args);
+
+    return {
+      keyStageSlug: res.mv_key_stages[0]?.slug,
+      keyStageTitle: res.mv_key_stages[0]?.title,
+      subjectSlug: res.mv_subjects[0]?.slug,
+      subjectTitle: res.mv_subjects[0]?.title,
+      tierSlug: args[0].tierSlug || null,
+      tiers: res.mv_tiers,
+      units: res.mv_units,
+    } as TeachersKeyStageSubjectUnitsData;
   },
   teachersKeyStageSubjectUnitsPaths: async () => {
-    return teachersKeyStageSubjectUnitsPathsFixture();
-  },
-  teachersKeyStageSubjectUnits: async () => {
-    return teachersKeyStageSubjectUnitsFixture();
+    const pairs = (await sdk.teachersKeyStageSubjectUnitsPaths())
+      .mv_subjects as {
+      subjectSlug: string;
+      keyStageSlug: string;
+    }[];
+
+    return pairs;
   },
 };
 
+export type CurriculumApi = typeof curriculumApi;
 export default curriculumApi;

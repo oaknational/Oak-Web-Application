@@ -87,9 +87,6 @@ async function main() {
     NEXT_PUBLIC_GLEAP_FRAME_URL:
       process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
 
-    // Curriculum data// breaking here
-    NEXT_PUBLIC_GRAPHQL_API_URL: oakConfig.hasura.graphqlApiUrl,
-
     // Hubspot
     NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
     NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID: oakConfig.hubspot.newsletterFormId,
@@ -117,6 +114,15 @@ async function main() {
       oakConfig.oak.appBaseUrl,
     NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
     NEXT_PUBLIC_WEBINAR_SIGN_UP_URL: oakConfig.oak.webinarSignUpUrl,
+    // Curriculum data
+    CURRICULUM_API_URL:
+      process.env.CURRICULUM_API_URL || oakConfig.oak.curriculumApiUrl,
+    CURRICULUM_API_AUTH_TYPE:
+      process.env.CURRICULUM_API_AUTH_TYPE ||
+      oakConfig.oak.curriculumApiAuthType,
+    CURRICULUM_API_AUTH_KEY:
+      process.env.CURRICULUM_API_AUTH_KEY ||
+      secretsFromNetwork.CURRICULUM_API_AUTH_KEY,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
