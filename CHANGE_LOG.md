@@ -1,3 +1,15 @@
+# [1.96.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.95.0...v1.96.0) (2022-12-20)
+
+
+### Bug Fixes
+
+* **tiers-paths:** get correct tiers paths ([6ba009c](https://github.com/oaknational/Oak-Web-Application/commit/6ba009cbf0a20f7a73c96d9e75e757ce1e52dcec))
+
+
+### Features
+
+* add config and use live curriculum data api ([46e3e47](https://github.com/oaknational/Oak-Web-Application/commit/46e3e47c3efecbb9cae7c61e24e171bc3388ac6a))
+
 # [1.95.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.94.0...v1.95.0) (2022-12-20)
 
 
