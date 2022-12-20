@@ -11,6 +11,7 @@ export type {
   TeachersKeyStageSubjectsData,
   TeachersKeyStageSubjectUnitsData,
   TeachersKeyStageSubjectTiersData,
+  TeachersKeyStageSubjectUnitsLessonsData,
 } from "./_index";
 
 const curriculumApi: CurriculumApi = {

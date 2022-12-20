@@ -15,17 +15,17 @@ export const LessonResourceGraphic = Template.bind({});
 
 LessonResourceGraphic.args = {
   items: [
-    { title: "presentation", href: "/", resourceCount: 1 },
-    { title: "worksheet", href: "/", resourceCount: 2 },
-    { title: "quiz", href: "/", resourceCount: 3 },
-    { title: "video", href: "/", resourceCount: 2 },
+    { title: "presentation", resourceCount: 1 },
+    { title: "worksheet", resourceCount: 2 },
+    { title: "quiz", resourceCount: 3 },
+    { title: "video", resourceCount: 2 },
   ],
 };
 export const LessonResourceGraphicMissing = Template.bind({});
 
 LessonResourceGraphicMissing.args = {
   items: [
-    { title: "presentation", href: "/", resourceCount: 2 },
-    { title: "quiz", href: "/", resourceCount: 1 },
+    { title: "presentation", resourceCount: 2 },
+    { title: "quiz", resourceCount: 1 },
   ],
 };
