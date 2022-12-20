@@ -32,14 +32,15 @@ const NavLink = ({ label, href }: LinkProps) => {
           page={null}
           $mr={[0, 36]}
           disabled={isCurrent}
+          isCurrent={isCurrent}
         />
       </Box>
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
-          $opacity={isCurrent ? 0.6 : 1}
-          icon={isCurrent ? "ArrowRight" : undefined}
+          isCurrent={isCurrent}
+          currentStyles={["arrow-icon"]}
           $iconPosition={"leading"}
           iconBackground="transparent"
           variant={"minimal"}

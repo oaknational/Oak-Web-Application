@@ -10,8 +10,8 @@ import getColorByName from "../../styles/themeHelpers/getColorByName";
 import ScreenReaderOnly from "../ScreenReaderOnly";
 import { FontVariant } from "../../styles/utils/typography";
 import { ResponsiveValues } from "../../styles/utils/responsive";
+import Flex from "../Flex";
 
-import ButtonIconWrapper from "./ButtonIconWrapper";
 import ButtonLabel from "./ButtonLabel";
 import {
   ButtonBackground,
@@ -48,20 +48,27 @@ export type ButtonInnerProps = {
   variant: ButtonVariant;
   disabled?: boolean;
   isCurrent?: boolean;
+  /**
+   * currentStyles specifies which styles to apply when the button/link
+   * has state `current`. In some cases the text is underlined, in others
+   * it has an arrow icon.
+   */
+  currentStyles?: ("arrow-icon" | "text-underline")[];
   $font?: ResponsiveValues<FontVariant> | undefined;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
+  let { icon } = props;
   const {
     $iconPosition,
     iconBackground,
     size: buttonSize,
-    icon,
     label,
     labelSuffixA11y,
     shouldHideLabel,
     background,
     variant,
     isCurrent,
+    currentStyles,
     $font,
   } = props;
   const iconSize = buttonIconSizeMap[buttonSize];
@@ -75,10 +82,30 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const underlineColor =
     theme.buttonFocusUnderlineColors[defactoBackground] || "black";
 
+  icon =
+    isCurrent && currentStyles?.includes("arrow-icon") ? "ArrowRight" : icon;
+
+  /**
+   * currentColor is the text/icon color when the button has state "current"
+   * as standard, this applies to links (ButtonAsLink) when they link to the
+   * current page. In this case `isCurrent=true` should be passed as a prop.
+   * At the moment, currentColor is hardcoded, but there may come a time when
+   * we need the value to depend on the original color of the button, in which
+   * case it should come from theme.
+   */
+  const currentColor: OakColorName = "oakGrey4";
+
   return (
     <>
       {icon && (
-        <ButtonIconWrapper $iconPosition={$iconPosition}>
+        <Flex
+          $display={"inline-flex"}
+          $position="relative"
+          $alignItems="center"
+          $mr={$iconPosition === "leading" ? 8 : 0}
+          $ml={$iconPosition === "trailing" ? 8 : 0}
+          $color={isCurrent ? currentColor : undefined}
+        >
           <Icon
             variant="brush"
             name={icon}
@@ -88,14 +115,18 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           {variant === "minimal" && (
             <IconFocusUnderline $color={underlineColor} />
           )}
-        </ButtonIconWrapper>
+        </Flex>
       )}
 
       <Box $position={"relative"}>
         <Box
           $display={shouldHideLabel?.map((hide) => (hide ? "none" : "block"))}
-          $textDecoration={isCurrent ? "underline" : undefined}
-          $color={isCurrent ? "oakGrey4" : undefined}
+          $textDecoration={
+            isCurrent && currentStyles?.includes("text-underline")
+              ? "underline"
+              : undefined
+          }
+          $color={isCurrent ? currentColor : undefined}
         >
           <ButtonLabel $font={$font}>
             {label}
