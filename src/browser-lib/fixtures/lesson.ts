@@ -17,6 +17,8 @@ export const lessonOverview: LessonOverview = {
   ],
   video: "BOO5xy01fO1FGEJfFsYn02zoyVzdDVAlkapKQ00IRFdIZw",
   signLanguageVideo: "E800MxPyXVXBg019TwsbP00268g1ezbSilJKYApdS5UKBY",
+  presentation:
+    "https://docs.google.com/presentation/d/18ZFU8gdczMK9U3XxmC5mN9GLN7yigCQvbSX1E0SR0WU/edit#slide=id.g8c7bb33bff_1_71",
 };
 
 export const mockFetchLessons = (lessonSlug?: string) => {

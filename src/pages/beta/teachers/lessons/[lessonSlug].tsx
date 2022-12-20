@@ -28,6 +28,7 @@ import Grid, { GridArea } from "../../../../components/Grid";
 import Icon, { IconName } from "../../../../components/Icon";
 import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
 import VideoPlayer from "../../../../components/VideoPlayer";
+import AspectRatio from "../../../../components/AspectRatio";
 
 export type LessonOverview = {
   lessonTitle: string;
@@ -42,6 +43,7 @@ export type LessonOverview = {
   contentGuidance: string;
   video: string;
   signLanguageVideo?: string;
+  presentation: string;
 };
 
 export type LessonOverviewPageProps = {
@@ -95,6 +97,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     contentGuidance,
     video,
     signLanguageVideo,
+    presentation,
   } = curriculumData;
 
   const [signLanguageOn, setSignLanguageOn] = useState(false);
@@ -160,7 +163,22 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         </Flex>
         <Hr $color={"oakGrey3"} />
         <ExpandingContainer title={"Presentation"} downloadable={true}>
-          <Box>Presentation element</Box>
+          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
+            <Flex
+              $maxWidth={["100%", 840]}
+              $alignItems={"center"}
+              $flexDirection={"column"}
+            >
+              <AspectRatio ratio={"2:3"}>
+                <iframe
+                  src={presentation}
+                  title="lessonTitle"
+                  width="100%"
+                  height="100%"
+                />
+              </AspectRatio>
+            </Flex>
+          </Flex>
         </ExpandingContainer>
         <ExpandingContainer title={"Video"} downloadable={true}>
           <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
