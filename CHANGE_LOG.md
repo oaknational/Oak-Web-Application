@@ -1,3 +1,34 @@
+# [1.95.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.94.0...v1.95.0) (2022-12-20)
+
+
+### Bug Fixes
+
+* add new colour ([9740732](https://github.com/oaknational/Oak-Web-Application/commit/97407327ac3f86733dff3661978957c0b9da9c11))
+* broken link from unit page ([1fae6f9](https://github.com/oaknational/Oak-Web-Application/commit/1fae6f952f9e110e48ec0cafd255b6c5b0c8e798))
+* don't show resource icons if value is zero, undefined or null ([1e72309](https://github.com/oaknational/Oak-Web-Application/commit/1e7230958a4e0368c4bac53ee365f5a06c980ffa))
+* format number of lessons correctly ([baa6893](https://github.com/oaknational/Oak-Web-Application/commit/baa68938ff78ff0a5c44e41e5294be1c61eaa4b3))
+* make title card blue on lessons list page ([f8c9aa7](https://github.com/oaknational/Oak-Web-Application/commit/f8c9aa75dddf9cc5829c657d36697ef31e9814c2))
+* remove link form lesson resource graphic ([54e47ec](https://github.com/oaknational/Oak-Web-Application/commit/54e47ec348c5eb08ee8f66b511b43d1ad8c1158f))
+* remove redudant OR ([70702bc](https://github.com/oaknational/Oak-Web-Application/commit/70702bce40478c9c8c923a77a97928c38e60a742))
+* remove unusued span ([e25f7fb](https://github.com/oaknational/Oak-Web-Application/commit/e25f7fb48d9c76007f8683c8ed48824e56d04a0a))
+* type errors ([145459e](https://github.com/oaknational/Oak-Web-Application/commit/145459e4b13ef3419f8be1cd20a7b097bb057436))
+* use correct colour for lesson icons ([95810f8](https://github.com/oaknational/Oak-Web-Application/commit/95810f899669bb1d28b4938369682c2ccda8760f))
+
+
+### Features
+
+* add icons for resources ([d0a61fc](https://github.com/oaknational/Oak-Web-Application/commit/d0a61fc6c3629b8781e5cb7829691cf9ef7e8a9a))
+* add number of lessons and subject link ([722ac28](https://github.com/oaknational/Oak-Web-Application/commit/722ac28e126f8774863094b0a3accc4591e1a2b6))
+* add story for lesson list ([6a9eb54](https://github.com/oaknational/Oak-Web-Application/commit/6a9eb5413ef4f7d56131f7b9baf00c8d788ec9e3))
+* lesson listing components ([9d9ea21](https://github.com/oaknational/Oak-Web-Application/commit/9d9ea21464a3fa44832de6f1a2ee17c24d04b91d))
+* line clamp on description text and mobile layout ([63ca949](https://github.com/oaknational/Oak-Web-Application/commit/63ca949c76684eaa9cdabbf94d8ab0e9a88ac1ed))
+* link to lesson overview page ([67bfe2c](https://github.com/oaknational/Oak-Web-Application/commit/67bfe2cbe094bb9dbad4a4315650bd3d9a213f75))
+* put lesson data on lessons page ([1a86aee](https://github.com/oaknational/Oak-Web-Application/commit/1a86aeebca10ba3945694249c4e0fc9eb432f9e0))
+* put lesson list on lesson listing page ([d071851](https://github.com/oaknational/Oak-Web-Application/commit/d0718511d168f9d1f5e73115043f13f111b4acc7))
+* spacing on lesson list item ([cfc3649](https://github.com/oaknational/Oak-Web-Application/commit/cfc3649102bfc91585d3926b0e7efc78cf8ed545))
+* styling description in lesson list ([960bbfe](https://github.com/oaknational/Oak-Web-Application/commit/960bbfe58acb961e9607d562c52ee957c0658979))
+* update fixture data to test line length etc ([bf5a2af](https://github.com/oaknational/Oak-Web-Application/commit/bf5a2af14df2913027474b73bb18f48b235a1455))
+
 # [1.94.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.93.0...v1.94.0) (2022-12-19)
 
 
