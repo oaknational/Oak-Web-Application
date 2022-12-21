@@ -1,10 +1,12 @@
 const teachersKeyStageSubjectTiersPathsFixture = () => {
-  return [
-    {
-      keyStageSlug: "ks4",
-      subjectSlug: "maths",
-    },
-  ];
+  return {
+    tiers: [
+      {
+        keyStageSlug: "ks4",
+        subjectSlug: "maths",
+      },
+    ],
+  };
 };
 
 export default teachersKeyStageSubjectTiersPathsFixture;

@@ -7016,6 +7016,7 @@ export type Lessons = {
   video?: Maybe<Videos>;
   worksheet_download_url?: Maybe<Scalars['String']>;
   worksheet_has_embedded_media: Scalars['Boolean'];
+  worksheet_is_landscape: Scalars['Boolean'];
   worksheet_url?: Maybe<Scalars['String']>;
 };
 
@@ -7168,6 +7169,7 @@ export type Lessons_Bool_Exp = {
   video?: InputMaybe<Videos_Bool_Exp>;
   worksheet_download_url?: InputMaybe<String_Comparison_Exp>;
   worksheet_has_embedded_media?: InputMaybe<Boolean_Comparison_Exp>;
+  worksheet_is_landscape?: InputMaybe<Boolean_Comparison_Exp>;
   worksheet_url?: InputMaybe<String_Comparison_Exp>;
 };
 
@@ -7539,6 +7541,7 @@ export type Lessons_Insert_Input = {
   video?: InputMaybe<Videos_Obj_Rel_Insert_Input>;
   worksheet_download_url?: InputMaybe<Scalars['String']>;
   worksheet_has_embedded_media?: InputMaybe<Scalars['Boolean']>;
+  worksheet_is_landscape?: InputMaybe<Scalars['Boolean']>;
   worksheet_url?: InputMaybe<Scalars['String']>;
 };
 
@@ -7738,6 +7741,7 @@ export type Lessons_Order_By = {
   video?: InputMaybe<Videos_Order_By>;
   worksheet_download_url?: InputMaybe<Order_By>;
   worksheet_has_embedded_media?: InputMaybe<Order_By>;
+  worksheet_is_landscape?: InputMaybe<Order_By>;
   worksheet_url?: InputMaybe<Order_By>;
 };
 
@@ -7813,6 +7817,8 @@ export enum Lessons_Select_Column {
   /** column name */
   WorksheetHasEmbeddedMedia = 'worksheet_has_embedded_media',
   /** column name */
+  WorksheetIsLandscape = 'worksheet_is_landscape',
+  /** column name */
   WorksheetUrl = 'worksheet_url'
 }
 
@@ -7850,6 +7856,7 @@ export type Lessons_Set_Input = {
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   worksheet_download_url?: InputMaybe<Scalars['String']>;
   worksheet_has_embedded_media?: InputMaybe<Scalars['Boolean']>;
+  worksheet_is_landscape?: InputMaybe<Scalars['Boolean']>;
   worksheet_url?: InputMaybe<Scalars['String']>;
 };
 
@@ -7979,6 +7986,8 @@ export enum Lessons_Update_Column {
   WorksheetDownloadUrl = 'worksheet_download_url',
   /** column name */
   WorksheetHasEmbeddedMedia = 'worksheet_has_embedded_media',
+  /** column name */
+  WorksheetIsLandscape = 'worksheet_is_landscape',
   /** column name */
   WorksheetUrl = 'worksheet_url'
 }
@@ -33682,7 +33691,7 @@ export type TeachersKeyStageSubjectsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectsQuery = { __typename?: 'query_root', mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonCount?: any | null, unitCount?: any | null, tierCount?: any | null }> };
+export type TeachersKeyStageSubjectsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonCount?: any | null, unitCount?: any | null, tierCount?: any | null }> };
 
 
 export const TeachersHomePageDocument = gql`
@@ -33765,6 +33774,10 @@ export const TeachersKeyStageSubjectUnitsPathsDocument = gql`
     `;
 export const TeachersKeyStageSubjectsDocument = gql`
     query teachersKeyStageSubjects($keyStageSlug: String!) {
+  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
+    slug
+    title
+  }
   mv_subjects(where: {key_stage_slug: {_eq: $keyStageSlug}}) {
     slug
     title

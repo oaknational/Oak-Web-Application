@@ -14,6 +14,7 @@ const teachersHomePage = jest.fn(() => ({
   mv_key_stages: teachersHomePageFixture().keyStages,
 }));
 const teachersKeyStageSubjects = jest.fn(() => ({
+  mv_key_stages: teachersHomePageFixture().keyStages,
   mv_subjects: teachersKeyStageSubjectsFixture().subjects,
 }));
 const teachersKeyStageSubjectTiers = jest.fn(() => ({

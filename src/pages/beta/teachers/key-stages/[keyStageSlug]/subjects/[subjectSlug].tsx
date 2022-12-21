@@ -81,12 +81,14 @@ export type URLParams = {
 export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   const keyStageSubjectPairs =
     await curriculumApi.teachersKeyStageSubjectTiersPaths();
-  const paths = keyStageSubjectPairs.map(({ subjectSlug, keyStageSlug }) => ({
-    params: {
-      subjectSlug,
-      keyStageSlug,
-    },
-  }));
+  const paths = keyStageSubjectPairs.tiers.map(
+    ({ subjectSlug, keyStageSlug }) => ({
+      params: {
+        subjectSlug,
+        keyStageSlug,
+      },
+    })
+  );
 
   return {
     fallback: false,
