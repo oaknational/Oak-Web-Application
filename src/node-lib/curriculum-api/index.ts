@@ -6,13 +6,14 @@ import config from "../../config/server";
 import { getSdk } from "./generated/sdk";
 
 const curriculumApiUrl = config.get("curriculumApiUrl");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+// const curriculumApiAuthType = config.get("curriculumApiAuthType");
+// const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
 
 const graphqlClient = new GraphQLClient(curriculumApiUrl, {
   headers: {
-    "x-oak-auth-type": curriculumApiAuthType,
-    "x-oak-auth-key": curriculumApiAuthKey,
+    "X-Hasura-Admin-Secret": process.env.CURRICULUM_API_ADMIN_SECRET || "",
+    // "x-oak-auth-type": curriculumApiAuthType,
+    // "x-oak-auth-key": curriculumApiAuthKey,
   },
 });
 
@@ -151,6 +152,21 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   ),
 });
 
+const teachersLessonOverviewData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  contentGuidance: z.string().nullable(),
+  equipmentRequred: z.string().nullable(),
+  presentationUrl: z.string().nullable(),
+  supervisionLevel: z.string().nullable(),
+  worksheetUrl: z.string().nullable(),
+  hasCopyrightMaterial: z.boolean(),
+});
+
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type TeachersKeyStageSubjectsData = z.infer<
   typeof teachersKeyStageSubjectsData
@@ -166,6 +182,10 @@ export type TeachersKeyStageSubjectUnitsData = z.infer<
 
 export type TeachersKeyStageSubjectUnitsLessonsData = z.infer<
   typeof teachersKeyStageSubjectUnitsLessonsData
+>;
+
+export type TeachersLessonOverviewData = z.infer<
+  typeof teachersLessonOverviewData
 >;
 
 const sdk = getSdk(graphqlClient);
@@ -231,6 +251,18 @@ const curriculumApi = {
     return teachersKeyStageSubjectUnitsPathsSchema.parse({
       subjects,
     });
+  },
+  teachersLessonOverview: async (
+    ...args: Parameters<typeof sdk.teachersLessonOverview>
+  ) => {
+    const res = await sdk.teachersLessonOverview(...args);
+    const lessons = transformMVCase(res).lessons;
+    /**
+     * @todo query returns multiple valid lessons and we're only using one here
+     */
+    const lesson = lessons?.[0];
+
+    return teachersLessonOverviewData.parse(lesson);
   },
 };
 

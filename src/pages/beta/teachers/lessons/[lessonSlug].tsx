@@ -12,7 +12,6 @@ import Flex from "../../../../components/Flex";
 import MaxWidth from "../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../components/Card/TitleCard";
 import { getSeoProps } from "../../../../browser-lib/seo/getSeoProps";
-import { mockFetchLessons } from "../../../../browser-lib/fixtures/lesson";
 import Typography, {
   Heading,
   Hr,
@@ -28,24 +27,32 @@ import Grid, { GridArea } from "../../../../components/Grid";
 import Icon, { IconName } from "../../../../components/Icon";
 import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
 import VideoPlayer from "../../../../components/VideoPlayer";
+import curriculumApi, {
+  TeachersLessonOverviewData,
+} from "../../../../node-lib/curriculum-api";
 
 export type LessonOverview = {
   lessonTitle: string;
   lessonSlug: string;
-  keyStageTitle: string;
+  keyStageTitle: string; // lesson -> unit_lesson -> unit -> programme_of_study_unit -> programme_of_study -> year -> key_stage
   keyStageSlug: string;
   coreContent: string[];
-  subjectTitle: string;
+  subjectTitle: string; // lesson -> unit_lesson -> unit -> programme_of_study_unit -> programme_of_study -> field_of_study
   subjectSlug: string;
   equipmentRequired: string;
   supervisionLevel: string;
   contentGuidance: string;
-  video: string;
-  signLanguageVideo?: string;
+  video: string; // videos
+  signLanguageVideo?: string; // videos
+  starterQuizUrl: string;
+  exitQuizUrl: string;
+  presentationUrl: string;
+  worksheetUrl: string;
+  hasCopyrightMaterial: boolean;
 };
 
 export type LessonOverviewPageProps = {
-  curriculumData: LessonOverview;
+  curriculumData: TeachersLessonOverviewData;
 };
 
 type HelperProps = {
@@ -270,7 +277,7 @@ export const getStaticProps: GetStaticProps<
   }
   const { lessonSlug } = context.params;
 
-  const curriculumData = mockFetchLessons(lessonSlug);
+  const curriculumData = curriculumApi.teachersLessonOverview({ lessonSlug });
 
   if (!curriculumData) {
     return {
