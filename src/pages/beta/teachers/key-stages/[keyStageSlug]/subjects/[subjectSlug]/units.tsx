@@ -1,28 +1,20 @@
 import React from "react";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 
-import { UnitListItemProps } from "../../../../../../../components/UnitList/UnitListItem/UnitListItem";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import UnitList from "../../../../../../../components/UnitList";
-import { Tier } from "../../../../../../../components/UnitList/UnitList";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
-import curriculumApi from "../../../../../../../node-lib/curriculum-api";
+import curriculumApi, {
+  TeachersKeyStageSubjectUnitsData,
+} from "../../../../../../../node-lib/curriculum-api";
 
 export type SubjectUnitsListPageProps = {
-  curriculumData: {
-    keyStageTitle: string;
-    keyStageSlug: string;
-    subjectTitle: string;
-    subjectSlug: string;
-    tierSlug: string | null;
-    tiers: Tier[];
-    units: UnitListItemProps[];
-  };
+  curriculumData: TeachersKeyStageSubjectUnitsData;
 };
 
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
