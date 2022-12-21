@@ -101,6 +101,9 @@ export type LessonIndexLinkProps = {
 };
 export type LessonOverviewLinkProps = {
   page: "lesson-overview";
+  keyStage: string;
+  subject: string;
+  unit: string;
   slug: string;
 };
 
@@ -199,7 +202,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
     }
     case "lesson-overview": {
-      return `/beta/teachers/lessons/${props.slug}`;
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
     }
 
     default:

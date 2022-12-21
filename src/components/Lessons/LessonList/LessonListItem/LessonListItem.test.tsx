@@ -2,42 +2,33 @@ import renderWithProviders from "../../../../__tests__/__helpers__/renderWithPro
 
 import LessonListItem from "./LessonListItem";
 
+const props = {
+  title: "Macbeth",
+  slug: "macbeth-lesson-1",
+  presentationCount: 1,
+  quizCount: 2,
+  subjectSlug: "english",
+  keyStageSlug: "4",
+  description: "In this lesson",
+  unitSlug: "foo",
+  videoCount: 1,
+  worksheetCount: 2,
+  keyStageTitle: "Key stage 3",
+  subjectTitle: "Maths",
+  themeSlug: "circles",
+  themeTitle: "Circles",
+};
+
 describe("Lesson List Item", () => {
   test("It shows lesson title", () => {
-    const { getByRole } = renderWithProviders(
-      <LessonListItem
-        title={"Macbeth"}
-        slug={"macbeth"}
-        presentationCount={1}
-        quizCount={2}
-        subjectSlug={"english"}
-        keyStageSlug={"4"}
-        description={"Lorem ipsum"}
-        unitSlug={"foo"}
-        videoCount={1}
-        worksheetCount={2}
-      />
-    );
+    const { getByRole } = renderWithProviders(<LessonListItem {...props} />);
     const lessonHeading = getByRole("heading", { level: 3 });
 
     expect(lessonHeading).toBeInTheDocument();
   });
 
   test("It shows lesson description", () => {
-    const { getAllByText } = renderWithProviders(
-      <LessonListItem
-        title={"Macbeth"}
-        slug={"macbeth"}
-        presentationCount={1}
-        quizCount={2}
-        subjectSlug={"english"}
-        keyStageSlug={"4"}
-        description={"In this lesson"}
-        unitSlug={"foo"}
-        videoCount={1}
-        worksheetCount={2}
-      />
-    );
+    const { getAllByText } = renderWithProviders(<LessonListItem {...props} />);
 
     const description = getAllByText("In this lesson")[0];
 
@@ -45,24 +36,11 @@ describe("Lesson List Item", () => {
   });
 
   test("It is a link to the lesson overview page", () => {
-    const { getByText } = renderWithProviders(
-      <LessonListItem
-        title={"Macbeth"}
-        slug={"macbeth-lesson-1"}
-        presentationCount={1}
-        quizCount={2}
-        subjectSlug={"english"}
-        keyStageSlug={"4"}
-        description={"In this lesson"}
-        unitSlug={"foo"}
-        videoCount={1}
-        worksheetCount={2}
-      />
-    );
+    const { getByText } = renderWithProviders(<LessonListItem {...props} />);
 
     expect(getByText("Macbeth").closest("a")).toHaveAttribute(
       "href",
-      "/beta/teachers/lessons/macbeth-lesson-1"
+      "/beta/teachers/key-stages/4/subjects/english/units/foo/lessons/macbeth-lesson-1"
     );
   });
 

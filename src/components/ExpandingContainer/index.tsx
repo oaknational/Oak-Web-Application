@@ -36,10 +36,8 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         $pa={20}
       >
         <Flex $justifyContent={"space-between"}>
-          {" "}
           <Card $pa={0} {...containerProps} $flexGrow={0}>
             <Flex $position="relative" $alignItems={"center"}>
-              {" "}
               <Button
                 {...primaryTargetProps}
                 data-testid={"expand-button"}

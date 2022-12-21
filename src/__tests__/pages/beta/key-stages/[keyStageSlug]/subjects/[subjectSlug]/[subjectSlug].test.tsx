@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import teachersKeyStageSubjectTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectTiers.fixture";
-import teachersKeyStageSubjectTiersPathsFixture from "../../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectTiersPaths.fixture";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
 import TierListingPage, {
   getStaticPaths,
   getStaticProps,
@@ -10,21 +10,6 @@ import renderWithProviders from "../../../../../../__helpers__/renderWithProvide
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
-const teachersKeyStageSubjectTiers = jest.fn(
-  teachersKeyStageSubjectTiersFixture
-);
-const teachersKeyStageSubjectTiersPaths = jest.fn(
-  teachersKeyStageSubjectTiersPathsFixture
-);
-jest.mock("../../../../../../../node-lib/curriculum-api", () => ({
-  __esModule: true,
-  default: {
-    teachersKeyStageSubjectTiersPaths: (...args: []) =>
-      teachersKeyStageSubjectTiersPaths(...args),
-    teachersKeyStageSubjectTiers: (...args: []) =>
-      teachersKeyStageSubjectTiers(...args),
-  },
-}));
 
 const props = {
   curriculumData: teachersKeyStageSubjectTiersFixture(),
@@ -63,7 +48,9 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/", () => {
     it("Should return the paths of all keystages", async () => {
       await getStaticPaths({});
 
-      expect(teachersKeyStageSubjectTiersPaths).toHaveBeenCalled();
+      expect(
+        curriculumApi.teachersKeyStageSubjectTiersPaths
+      ).toHaveBeenCalled();
     });
   });
 
@@ -73,7 +60,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/", () => {
         params: { keyStageSlug: "ks123", subjectSlug: "maths" },
       });
 
-      expect(teachersKeyStageSubjectTiers).toHaveBeenCalledWith({
+      expect(curriculumApi.teachersKeyStageSubjectTiers).toHaveBeenCalledWith({
         keyStageSlug: "ks123",
         subjectSlug: "maths",
       });
