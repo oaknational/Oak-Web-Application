@@ -48,6 +48,7 @@ export type ButtonInnerProps = {
   variant: ButtonVariant;
   disabled?: boolean;
   isCurrent?: boolean;
+  isMobileView?: boolean;
   /**
    * currentStyles specifies which styles to apply when the button/link
    * has state `current`. In some cases the text is underlined, in others
@@ -68,6 +69,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     background,
     variant,
     isCurrent,
+    isMobileView,
     currentStyles,
     $font,
   } = props;
@@ -126,7 +128,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
               ? "underline"
               : undefined
           }
-          $color={isCurrent ? currentColor : undefined}
+          $color={isCurrent && isMobileView ? currentColor : undefined}
         >
           <ButtonLabel $font={$font}>
             {label}

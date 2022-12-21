@@ -37,6 +37,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     disabled,
     isCurrent,
     currentStyles,
+    isMobileView,
     ...linkProps
   } = transformedProps;
 
@@ -74,6 +75,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           variant={variant}
           disabled={disabled}
           isCurrent={isCurrent}
+          isMobileView={isMobileView}
           currentStyles={currentStyles}
         />
       </StyledNextLink>
