@@ -21,8 +21,12 @@ export const matchesUserAgent = (ua: string) => {
 
 const matchesIgnoredError = (message: string) => {
   const messagesToMatch = [
+    // Testing
+    /Test error/i,
     // Hubspot multiple initialisation error.
+    // https://github.com/oaknational/Oak-Web-Application/issues/999
     /Multiple lead flow scripts are trying to run on the current page/i,
+    /t.report is not a function/i,
   ];
   return messagesToMatch.some((regex) => regex.test(message));
 };
@@ -74,19 +78,18 @@ const getBugsnagConfig = ({
       // Ignore errors for some user agents.
       if (userAgent) {
         // If the user agent is in the ignore list then return false.
-        return !matchesUserAgent(userAgent);
+        const shouldIgnore = matchesUserAgent(userAgent);
+        if (shouldIgnore) {
+          return false;
+        }
       }
       // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
       const firstError = event?.errors[0];
-      // DEBUG
-      console.log("asdfaf", firstError);
-      if (firstError instanceof Error) {
+      if (firstError !== undefined) {
         const errorMessage = firstError.errorMessage;
         const shouldIgnore = matchesIgnoredError(errorMessage);
         if (shouldIgnore) {
-          // DEBUG
-          console.log("got one");
-          console.log(firstError);
+          console.warn(`Ignoring known issue: ${errorMessage}`);
           return false;
         }
       }
