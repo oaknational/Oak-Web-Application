@@ -16,6 +16,7 @@ const DEPLOY_CONTEXTS = {
   deployPreview: "deploy-preview",
   branchDeploy: "branch-deploy",
   dev: "dev",
+  cache_busting: "not a deploy context",
 };
 
 module.exports = function githubDeploymentPlugin() {

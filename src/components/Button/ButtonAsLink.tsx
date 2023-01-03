@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { OakLinkPropsWithoutChildren, transformOakLinkProps } from "../OakLink";
 
-import ButtonInner from "./ButtonInner";
+import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
 import buttonStyles, {
   ButtonStylesProps,
@@ -21,7 +21,8 @@ const StyledNextLink = styled.a<ButtonStylesProps>`
   `}
 `;
 export type ButtonAsLinkProps = CommonButtonProps &
-  OakLinkPropsWithoutChildren & {
+  OakLinkPropsWithoutChildren &
+  Pick<ButtonInnerProps, "currentStyles"> & {
     disabled?: boolean;
   };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
@@ -35,6 +36,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     iconBackground,
     disabled,
     isCurrent,
+    currentStyles,
     ...linkProps
   } = transformedProps;
 
@@ -72,6 +74,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           variant={variant}
           disabled={disabled}
           isCurrent={isCurrent}
+          currentStyles={currentStyles}
         />
       </StyledNextLink>
     </Link>
