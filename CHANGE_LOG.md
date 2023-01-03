@@ -1,3 +1,10 @@
+# [1.99.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.3...v1.99.0) (2023-01-03)
+
+
+### Features
+
+* update Node ([73f4417](https://github.com/oaknational/Oak-Web-Application/commit/73f4417b37c1d2645abe8212b4ae9a367bbce2d4))
+
 ## [1.98.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.2...v1.98.3) (2023-01-03)
 
 
