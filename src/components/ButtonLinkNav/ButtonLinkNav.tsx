@@ -33,7 +33,6 @@ const NavLink = ({ label, href }: LinkProps) => {
           $mr={[0, 36]}
           disabled={isCurrent}
           isCurrent={isCurrent}
-          isMobileView={false}
         />
       </Box>
       {/* Mobile */}
@@ -41,8 +40,7 @@ const NavLink = ({ label, href }: LinkProps) => {
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           isCurrent={isCurrent}
-          isMobileView={true}
-          currentStyles={["arrow-icon"]}
+          currentStyles={["arrow-icon", "color"]}
           $iconPosition={"leading"}
           iconBackground="transparent"
           variant={"minimal"}

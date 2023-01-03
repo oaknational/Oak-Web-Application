@@ -48,13 +48,12 @@ export type ButtonInnerProps = {
   variant: ButtonVariant;
   disabled?: boolean;
   isCurrent?: boolean;
-  isMobileView?: boolean;
   /**
    * currentStyles specifies which styles to apply when the button/link
    * has state `current`. In some cases the text is underlined, in others
    * it has an arrow icon.
    */
-  currentStyles?: ("arrow-icon" | "text-underline")[];
+  currentStyles?: ("arrow-icon" | "text-underline" | "color")[];
   $font?: ResponsiveValues<FontVariant> | undefined;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -69,7 +68,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     background,
     variant,
     isCurrent,
-    isMobileView,
     currentStyles,
     $font,
   } = props;
@@ -128,7 +126,11 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
               ? "underline"
               : undefined
           }
-          $color={isCurrent && isMobileView ? currentColor : undefined}
+          $color={
+            isCurrent && currentStyles?.includes("color")
+              ? currentColor
+              : undefined
+          }
         >
           <ButtonLabel $font={$font}>
             {label}

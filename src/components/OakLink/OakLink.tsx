@@ -67,7 +67,6 @@ export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
      * Should style the link appropriately and give correct aria-current attribute
      */
     isCurrent?: boolean;
-    isMobileView?: boolean;
   } & (
     | {
         /**
@@ -100,7 +99,6 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
     shallow,
     prefetch,
     isCurrent,
-    isMobileView,
     ...linkProps
   } = props;
   const href = getOakLinkHref(props);
@@ -128,7 +126,6 @@ export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
     disabled,
     nextLinkProps,
     isCurrent,
-    isMobileView,
     ["aria-current"]: ariaCurrent,
     ...htmlAnchorProps,
     ...linkProps,
