@@ -164,6 +164,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                 $mb={[72]}
                 $mt={[0, 72, 0]}
                 $font={["body-2", "body-1"]}
+                $minHeight={["auto", 270]}
               >
                 <PortableText value={bioPortableText} />
               </Box>

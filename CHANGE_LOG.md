@@ -1,3 +1,10 @@
+## [1.98.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.1...v1.98.2) (2023-01-03)
+
+
+### Bug Fixes
+
+* 975 modal navigation buttons alignment ([89e29b1](https://github.com/oaknational/Oak-Web-Application/commit/89e29b1f828051ce8b5b9387e371aac460ba7a5f))
+
 ## [1.98.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.0...v1.98.1) (2022-12-21)
 
 
