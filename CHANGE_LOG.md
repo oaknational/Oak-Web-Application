@@ -1,3 +1,19 @@
+## [1.98.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.2...v1.98.3) (2023-01-03)
+
+
+### Bug Fixes
+
+* 789 focus element change color only on mobile ([3b779e0](https://github.com/oaknational/Oak-Web-Application/commit/3b779e0e30e81c18489506ab84271ab0b6dc354b))
+* 789 focus element transparency and color ([7abc3b6](https://github.com/oaknational/Oak-Web-Application/commit/7abc3b669d6002f8f8c413f204ce0107aa5331e9))
+* 789 get color from currentStyles prop ([c06b9d8](https://github.com/oaknational/Oak-Web-Application/commit/c06b9d896298737a663008c5ecaffc46f7316899))
+
+## [1.98.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.1...v1.98.2) (2023-01-03)
+
+
+### Bug Fixes
+
+* 975 modal navigation buttons alignment ([89e29b1](https://github.com/oaknational/Oak-Web-Application/commit/89e29b1f828051ce8b5b9387e371aac460ba7a5f))
+
 ## [1.98.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.0...v1.98.1) (2022-12-21)
 
 
