@@ -19,6 +19,14 @@ export const matchesUserAgent = (ua: string) => {
   return userAgentsToMatch.some((regex) => regex.test(ua));
 };
 
+const matchesIgnoredError = (message: string) => {
+  const messagesToMatch = [
+    // Hubspot multiple initialisation error.
+    /Multiple lead flow scripts are trying to run on the current page/i,
+  ];
+  return messagesToMatch.some((regex) => regex.test(message));
+};
+
 /**
  * Generate bugsnag config.
  *
@@ -63,9 +71,24 @@ const getBugsnagConfig = ({
      */
     onError: function (event: Event) {
       const { userAgent } = event.device;
+      // Ignore errors for some user agents.
       if (userAgent) {
         // If the user agent is in the ignore list then return false.
         return !matchesUserAgent(userAgent);
+      }
+      // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
+      const firstError = event?.errors[0];
+      // DEBUG
+      console.log("asdfaf", firstError);
+      if (firstError instanceof Error) {
+        const errorMessage = firstError.errorMessage;
+        const shouldIgnore = matchesIgnoredError(errorMessage);
+        if (shouldIgnore) {
+          // DEBUG
+          console.log("got one");
+          console.log(firstError);
+          return false;
+        }
       }
     },
   };
