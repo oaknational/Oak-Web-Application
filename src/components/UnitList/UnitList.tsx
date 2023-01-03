@@ -6,6 +6,7 @@ import Pagination, { PaginationProps } from "../Pagination";
 import { Heading, LI, UL } from "../Typography";
 import { HeadingTag } from "../Typography/Heading";
 import TabularNav from "../TabularNav";
+import { TeachersKeyStageSubjectUnitsData } from "../../node-lib/curriculum-api";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -16,15 +17,10 @@ export type Tier = {
   unitCount: number | null;
 };
 
-export type UnitListProps = {
-  units: UnitListItemProps[];
+export type UnitListProps = TeachersKeyStageSubjectUnitsData & {
   currentPageItems: UnitListItemProps[];
-  keyStageSlug: string;
-  subjectSlug: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
-  tiers: Tier[];
-  tierSlug: string | null;
 };
 /**
  * Contains a list of units
