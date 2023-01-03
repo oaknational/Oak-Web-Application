@@ -25,6 +25,7 @@ describe("pages/beta/teachers/lessons", () => {
           supervisionLevel: "string",
           contentGuidance: "string",
           video: "string",
+          presentation: "string",
         }}
       />
     );
@@ -52,6 +53,7 @@ describe("pages/beta/teachers/lessons", () => {
           contentGuidance: "string",
           video: "string",
           signLanguageVideo: "string",
+          presentation: "string",
         }}
       />
     );
@@ -79,6 +81,7 @@ describe("pages/beta/teachers/lessons", () => {
           contentGuidance: "string",
           video: "string",
           signLanguageVideo: "string",
+          presentation: "string",
         }}
       />
     );
@@ -106,6 +109,7 @@ describe("pages/beta/teachers/lessons", () => {
             supervisionLevel: "string",
             contentGuidance: "string",
             video: "string",
+            presentation: "string",
           }}
         />
       );
