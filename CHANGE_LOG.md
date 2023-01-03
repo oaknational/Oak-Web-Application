@@ -1,3 +1,12 @@
+## [1.98.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.2...v1.98.3) (2023-01-03)
+
+
+### Bug Fixes
+
+* 789 focus element change color only on mobile ([3b779e0](https://github.com/oaknational/Oak-Web-Application/commit/3b779e0e30e81c18489506ab84271ab0b6dc354b))
+* 789 focus element transparency and color ([7abc3b6](https://github.com/oaknational/Oak-Web-Application/commit/7abc3b669d6002f8f8c413f204ce0107aa5331e9))
+* 789 get color from currentStyles prop ([c06b9d8](https://github.com/oaknational/Oak-Web-Application/commit/c06b9d896298737a663008c5ecaffc46f7316899))
+
 ## [1.98.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.1...v1.98.2) (2023-01-03)
 
 
