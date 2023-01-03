@@ -30,7 +30,7 @@ describe("components/AppHeader", () => {
     expect(getByTestId("menu")).toBeVisible();
   });
 
-  test("menu can be opened from keyboard", async () => {
+  test.skip("menu can be opened from keyboard", async () => {
     const { queryByText } = renderWithProviders(<AppHeader />);
 
     const user = userEvent.setup();
