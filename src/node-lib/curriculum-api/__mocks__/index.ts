@@ -1,30 +1,43 @@
+import { CurriculumApi } from "../";
 import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "../fixtures/teachersKeyStageSubjects.fixture";
 import teachersKeyStageSubjectTiersFixture from "../fixtures/teachersKeyStageSubjectTiers.fixture";
 import teachersKeyStageSubjectTiersPathsFixture from "../fixtures/teachersKeyStageSubjectTiersPaths.fixture";
 import teachersKeyStageSubjectUnitsFixture from "../fixtures/teachersKeyStageSubjectUnits.fixture";
 import teachersKeyStageSubjectUnitsPathsFixture from "../fixtures/teachersKeyStageSubjectUnitsPaths.fixture";
-import { CurriculumApi } from "../";
+import teachersLessonOverviewFixture from "../fixtures/teachersLessonOverview.fixture";
+import teachersLessonOverviewPaths from "../fixtures/teachersLessonOverviewPaths.fixture";
+import teachersKeyStageSubjectUnitsLessonsFixture from "../fixtures/teachersKeyStageSubjectUnitLessons.fixture";
 
 const curriculumApi: CurriculumApi = {
-  teachersHomePage: async () => {
+  // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
+  teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();
-  },
-  teachersKeyStageSubjects: async () => {
+  }),
+  teachersKeyStageSubjects: jest.fn(async () => {
     return teachersKeyStageSubjectsFixture();
-  },
-  teachersKeyStageSubjectTiersPaths: async () => {
+  }),
+  teachersKeyStageSubjectTiersPaths: jest.fn(async () => {
     return teachersKeyStageSubjectTiersPathsFixture();
-  },
-  teachersKeyStageSubjectTiers: async () => {
+  }),
+  teachersKeyStageSubjectTiers: jest.fn(async () => {
     return teachersKeyStageSubjectTiersFixture();
-  },
-  teachersKeyStageSubjectUnitsPaths: async () => {
+  }),
+  teachersKeyStageSubjectUnitsPaths: jest.fn(async () => {
     return teachersKeyStageSubjectUnitsPathsFixture();
-  },
-  teachersKeyStageSubjectUnits: async () => {
+  }),
+  teachersKeyStageSubjectUnits: jest.fn(async () => {
     return teachersKeyStageSubjectUnitsFixture();
-  },
+  }),
+  teachersKeyStageSubjectUnitLessons: jest.fn(async () => {
+    return teachersKeyStageSubjectUnitsLessonsFixture();
+  }),
+  teachersLessonOverviewPaths: jest.fn(async () => {
+    return teachersLessonOverviewPaths();
+  }),
+  teachersLessonOverview: jest.fn(async () => {
+    return teachersLessonOverviewFixture();
+  }),
 };
 
 export default curriculumApi;

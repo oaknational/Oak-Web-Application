@@ -5,56 +5,31 @@ import LessonOverviewPage, {
   getStaticProps,
   getStaticPaths,
   LessonOverviewPageProps,
-} from "../../../../../pages/beta/teachers/lessons/[lessonSlug]";
+} from "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { mockSeoResult } from "../../../../__helpers__/cms";
 import renderWithProviders from "../../../../__helpers__/renderWithProviders";
+import teachersLessonOverviewFixture from "../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
+
+const props = {
+  curriculumData: teachersLessonOverviewFixture({
+    videoMuxPlaybackId: "pid-001",
+    videoWithSignLanguageMuxPlaybackId: "pid-002",
+  }),
+};
 
 describe("pages/beta/teachers/lessons", () => {
   it("Renders title from the props", async () => {
-    renderWithProviders(
-      <LessonOverviewPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          lessonTitle: "macbeth lesson 1",
-          lessonSlug: "macbeth-lesson-1",
-          coreContent: ["string"],
-          subjectTitle: "string",
-          subjectSlug: "string",
-          equipmentRequired: "string",
-          supervisionLevel: "string",
-          contentGuidance: "string",
-          video: "string",
-        }}
-      />
-    );
+    renderWithProviders(<LessonOverviewPage {...props} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "macbeth lesson 1"
+        "Islamic Geometry"
       );
     });
   });
 
   it("renders sign language button if there is a sign language video", async () => {
-    renderWithProviders(
-      <LessonOverviewPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          lessonTitle: "macbeth lesson 1",
-          lessonSlug: "macbeth-lesson-1",
-          coreContent: ["string"],
-          subjectTitle: "string",
-          subjectSlug: "string",
-          equipmentRequired: "string",
-          supervisionLevel: "string",
-          contentGuidance: "string",
-          video: "string",
-          signLanguageVideo: "string",
-        }}
-      />
-    );
+    renderWithProviders(<LessonOverviewPage {...props} />);
 
     await waitFor(() => {
       expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
@@ -64,24 +39,7 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("sign language button toggles on click", async () => {
-    renderWithProviders(
-      <LessonOverviewPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          lessonTitle: "macbeth lesson 1",
-          lessonSlug: "macbeth-lesson-1",
-          coreContent: ["string"],
-          subjectTitle: "string",
-          subjectSlug: "string",
-          equipmentRequired: "string",
-          supervisionLevel: "string",
-          contentGuidance: "string",
-          video: "string",
-          signLanguageVideo: "string",
-        }}
-      />
-    );
+    renderWithProviders(<LessonOverviewPage {...props} />);
 
     const signLanguageButton = screen.getByTestId("sign-language-button");
     await signLanguageButton.click();
@@ -92,23 +50,7 @@ describe("pages/beta/teachers/lessons", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
-        <LessonOverviewPage
-          curriculumData={{
-            keyStageSlug: "ks1",
-            keyStageTitle: "Key stage 1",
-            lessonTitle: "macbeth lesson 1",
-            lessonSlug: "string",
-            coreContent: ["string"],
-            subjectTitle: "string",
-            subjectSlug: "string",
-            equipmentRequired: "string",
-            supervisionLevel: "string",
-            contentGuidance: "string",
-            video: "string",
-          }}
-        />
-      );
+      const { seo } = renderWithSeo(<LessonOverviewPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -126,21 +68,29 @@ describe("pages/beta/teachers/lessons", () => {
     it("Should return the paths of lesson overview", async () => {
       const pathsResult = await getStaticPaths({});
       expect(pathsResult.paths[0]).toEqual({
-        params: { lessonSlug: "macbeth-lesson-1" },
+        params: {
+          keyStageSlug: "ks4",
+          subjectSlug: "maths",
+          unitSlug: "geometry",
+          lessonSlug: "cirlces-001",
+        },
       });
     });
   });
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({
-        params: { lessonSlug: "macbeth-lesson-1" },
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          keyStageSlug: "ks2",
+          subjectSlug: "english",
+          unitSlug: "shakespeare",
+        },
       })) as {
         props: LessonOverviewPageProps;
       };
 
-      expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "macbeth-lesson-1"
-      );
+      expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
     });
   });
 });

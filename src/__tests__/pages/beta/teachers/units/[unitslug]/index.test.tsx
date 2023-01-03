@@ -1,4 +1,4 @@
-import teachersKeyStageSubjectUnitsLessonsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersLessons.fixture";
+import teachersKeyStageSubjectUnitsLessonsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitLessons.fixture";
 import LessonListPage from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 

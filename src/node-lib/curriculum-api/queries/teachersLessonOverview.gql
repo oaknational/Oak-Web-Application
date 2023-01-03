@@ -1,5 +1,17 @@
-query teachersLessonOverview($lessonSlug: String!) {
-  mv_lessons(where: {slug: {_eq: $lessonSlug}}) {
+query teachersLessonOverview(
+  $lessonSlug: String!
+  $keyStageSlug: String!
+  $subjectSlug: String!
+  $unitSlug: String!
+) {
+  mv_lessons(
+    where: {
+      slug: { _eq: $lessonSlug }
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+      unit_slug: { _eq: $unitSlug }
+    }
+  ) {
     slug
     title
     keyStageSlug: key_stage_slug
@@ -7,10 +19,13 @@ query teachersLessonOverview($lessonSlug: String!) {
     subjectSlug: subject_slug
     subjectTitle: subject_title
     contentGuidance: content_guidance
-    equipmentRequred: equipment_required
+    equipmentRequired: equipment_required
     presentationUrl: presentation_url
     supervisionLevel: supervision_level
     worksheetUrl: worksheet_url
     hasCopyrightMaterial: has_copyright_material
+    coreContent: core_content
+    videoMuxPlaybackId: video_mux_playback_id
+    videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
   }
 }

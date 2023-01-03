@@ -1,25 +1,46 @@
 import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
+import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/server";
+import OakError from "../../errors/OakError";
 
 import { getSdk } from "./generated/sdk";
 
-const curriculumApiUrl = config.get("curriculumApiUrl");
-// const curriculumApiAuthType = config.get("curriculumApiAuthType");
-// const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+const reportError = errorReporter("curriculum-api");
 
-const graphqlClient = new GraphQLClient(curriculumApiUrl, {
-  headers: {
-    "X-Hasura-Admin-Secret": process.env.CURRICULUM_API_ADMIN_SECRET || "",
-    // "x-oak-auth-type": curriculumApiAuthType,
-    // "x-oak-auth-key": curriculumApiAuthKey,
-  },
-});
+const curriculumApiUrl = config.get("curriculumApiUrl");
+const curriculumApiAuthType = config.get("curriculumApiAuthType");
+const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+
+/**
+ * 'Admin secret' for local development only.
+ * Basically we should be able to use auth-type and auth-key for both local and
+ * cloud authentication (according to Thomas) but locally it's not working so
+ * need to use admin-secret instead.
+ */
+const curruclumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
+
+/**
+ * TS complaining when Headers in not typed.
+ */
+type Headers =
+  | { "x-hasura-admin-secret": string }
+  | { "x-oak-auth-type": string; "x-oak-auth-key": string };
+const headers: Headers = curruclumApiAdminSecret
+  ? {
+      "x-hasura-admin-secret": curruclumApiAdminSecret,
+    }
+  : {
+      "x-oak-auth-type": curriculumApiAuthType,
+      "x-oak-auth-key": curriculumApiAuthKey,
+    };
+
+const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 
 /**
  * Rather than using a lib, or build a function to deeply transform any keys
- * from snake_case to camelCase, we prefer to make sucha transform in the gql
+ * from snake_case to camelCase, we prefer to make such a transform in the gql
  * query. However, we are unable (using codegen) to transform the names of
  * the tables from which data is returned. So for simplicity, this function
  * transforms just the upper most level (the table/MV names) of the responses
@@ -142,9 +163,9 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
       subjectSlug: z.string(),
       subjectTitle: z.string(),
       unitSlug: z.string(),
-      themeSlug: z.string(),
-      themeTitle: z.string(),
-      quizCount: z.number().nullable(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      quizCount: z.number().nullable().optional(), // @todo add quiz_count to MV mv_lessons
       videoCount: z.number().nullable(),
       presentationCount: z.number().nullable(),
       worksheetCount: z.number().nullable(),
@@ -152,6 +173,16 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   ),
 });
 
+const teachersLessonOverviewPaths = z.object({
+  lessons: z.array(
+    z.object({
+      keyStageSlug: z.string(),
+      subjectSlug: z.string(),
+      unitSlug: z.string(),
+      lessonSlug: z.string(),
+    })
+  ),
+});
 const teachersLessonOverviewData = z.object({
   slug: z.string(),
   title: z.string(),
@@ -159,12 +190,15 @@ const teachersLessonOverviewData = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  coreContent: z.array(z.string().nullable()),
   contentGuidance: z.string().nullable(),
-  equipmentRequred: z.string().nullable(),
+  equipmentRequired: z.string().nullable(),
   presentationUrl: z.string().nullable(),
   supervisionLevel: z.string().nullable(),
   worksheetUrl: z.string().nullable(),
   hasCopyrightMaterial: z.boolean(),
+  videoMuxPlaybackId: z.string().nullable(),
+  videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
@@ -184,11 +218,39 @@ export type TeachersKeyStageSubjectUnitsLessonsData = z.infer<
   typeof teachersKeyStageSubjectUnitsLessonsData
 >;
 
+export type TeachersLessonOverviewPaths = z.infer<
+  typeof teachersLessonOverviewPaths
+>;
 export type TeachersLessonOverviewData = z.infer<
   typeof teachersLessonOverviewData
 >;
 
 const sdk = getSdk(graphqlClient);
+
+const getFirstResultOrWarnOrFail =
+  ({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
+  <T>({ results }: { results: T[] }) => {
+    if (results.length > 1) {
+      const warning = new OakError({
+        code: "curriculum-api/uniqueness-assumption-violated",
+      });
+      reportError(warning, {
+        severity: "warning",
+        meta: {
+          note: "meta.results has been sliced to 10 so as not to create an obscenely large pageData object",
+          results: results.slice(10),
+          query,
+          args,
+        },
+      });
+    }
+    const [firstResult] = results;
+    if (!firstResult) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    return firstResult;
+  };
 
 const curriculumApi = {
   teachersHomePage: async () => {
@@ -200,11 +262,16 @@ const curriculumApi = {
     ...args: Parameters<typeof sdk.teachersKeyStageSubjects>
   ) => {
     const res = await sdk.teachersKeyStageSubjects(...args);
-    const { keyStages, subjects } = transformMVCase(res);
+    const { keyStages = [], subjects } = transformMVCase(res);
+
+    const keyStage = getFirstResultOrWarnOrFail({
+      query: "teachersKeyStageSubjects",
+      args,
+    })({ results: keyStages });
 
     return teachersKeyStageSubjectsData.parse({
-      keyStageSlug: keyStages?.[0]?.slug,
-      keyStageTitle: keyStages?.[0]?.title,
+      keyStageSlug: keyStage.slug,
+      keyStageTitle: keyStage.title,
       subjects,
     });
   },
@@ -212,13 +279,20 @@ const curriculumApi = {
     ...args: Parameters<typeof sdk.teachersKeyStageSubjectTiers>
   ) => {
     const res = await sdk.teachersKeyStageSubjectTiers(...args);
-    const { tiers, subjects, keyStages } = transformMVCase(res);
+    const { tiers, subjects = [], keyStages = [] } = transformMVCase(res);
+
+    const getFirstResult = getFirstResultOrWarnOrFail({
+      query: "teachersKeyStageSubjectTiers",
+      args,
+    });
+    const keyStage = getFirstResult({ results: keyStages });
+    const subject = getFirstResult({ results: subjects });
 
     return teachersKeyStageSubjectTiersData.parse({
-      keyStageSlug: keyStages?.[0]?.slug,
-      keyStageTitle: keyStages?.[0]?.title,
-      subjectSlug: subjects?.[0]?.slug,
-      subjectTitle: subjects?.[0]?.title,
+      keyStageSlug: keyStage.slug,
+      keyStageTitle: keyStage.title,
+      subjectSlug: subject.slug,
+      subjectTitle: subject.title,
       tiers,
     });
   },
@@ -234,13 +308,28 @@ const curriculumApi = {
     ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnits>
   ) => {
     const res = await sdk.teachersKeyStageSubjectUnits(...args);
-    const { tiers, units, keyStages, subjects } = transformMVCase(res);
+    const {
+      keyStages = [],
+      subjects = [],
+      tiers = [],
+      units,
+    } = transformMVCase(res);
+
+    const getFirstResult = getFirstResultOrWarnOrFail({
+      query: "teachersKeyStageSubjectUnits",
+      args,
+    });
+
+    const keyStage = getFirstResult({ results: keyStages });
+    const subject = getFirstResult({ results: subjects });
+    const tier = getFirstResult({ results: tiers });
+
     return teachersKeyStageSubjectUnitsData.parse({
-      keyStageSlug: keyStages?.[0]?.slug,
-      keyStageTitle: keyStages?.[0]?.title,
-      subjectSlug: subjects?.[0]?.slug,
-      subjectTitle: subjects?.[0]?.title,
-      tierSlug: args[0].tierSlug || null,
+      keyStageSlug: keyStage.slug,
+      keyStageTitle: keyStage.title,
+      subjectSlug: subject.slug,
+      subjectTitle: subject.title,
+      tierSlug: tier.slug || null,
       tiers,
       units,
     });
@@ -252,15 +341,47 @@ const curriculumApi = {
       subjects,
     });
   },
+  teachersKeyStageSubjectUnitLessons: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnitLessons>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectUnitLessons(...args);
+    const { units = [], lessons = [] } = transformMVCase(res);
+
+    const unit = getFirstResultOrWarnOrFail({
+      query: "teachersKeyStageSubjectUnitLessons",
+      args,
+    })({
+      results: units,
+    });
+
+    return teachersKeyStageSubjectUnitsLessonsData.parse({
+      ...unit,
+      themeSlug: "theme slug example",
+      themeTitle: "theme-slug-example",
+      tierSlug: null,
+      quizCount: null, // @todo
+      videoCount: null, // @todo
+      presentationCount: null, // @todo
+      worksheetCount: null, // @todo
+      lessons,
+    });
+  },
+  teachersLessonOverviewPaths: async () => {
+    const res = await sdk.teachersLessonOverviewPaths();
+    return teachersLessonOverviewPaths.parse(transformMVCase(res));
+  },
   teachersLessonOverview: async (
     ...args: Parameters<typeof sdk.teachersLessonOverview>
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
-    const lessons = transformMVCase(res).lessons;
-    /**
-     * @todo query returns multiple valid lessons and we're only using one here
-     */
-    const lesson = lessons?.[0];
+    const { lessons = [] } = transformMVCase(res);
+
+    const lesson = getFirstResultOrWarnOrFail({
+      query: "teachersLessonOverview",
+      args,
+    })({
+      results: lessons,
+    });
 
     return teachersLessonOverviewData.parse(lesson);
   },

@@ -23,6 +23,8 @@ const ERROR_CODES = [
   "preview/invalid-token",
   "cms/invalid-reference-data",
   "cms/invalid-hubspot-form",
+  "curriculum-api/not-found",
+  "curriculum-api/uniqueness-assumption-violated",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -124,6 +126,15 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Error fetching or parsing referenced hubspot form",
     shouldNotify: true,
     responseStatusCode: 500,
+  },
+  "curriculum-api/not-found": {
+    message: "Resource not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "curriculum-api/uniqueness-assumption-violated": {
+    message: "Multiple resources were found when maximum 1 was expected",
+    shouldNotify: true,
   },
 };
 
