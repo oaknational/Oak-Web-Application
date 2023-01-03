@@ -1,3 +1,22 @@
+## [1.98.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.0...v1.98.1) (2022-12-21)
+
+
+### Bug Fixes
+
+* 766 horizontal scroll on body on about page ([6f89b39](https://github.com/oaknational/Oak-Web-Application/commit/6f89b39d16f319831daa394774157d14c31384cf))
+
+# [1.98.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.97.0...v1.98.0) (2022-12-21)
+
+
+### Bug Fixes
+
+* improve zod and types for unit listing page ([cba3165](https://github.com/oaknational/Oak-Web-Application/commit/cba31652fe78986939acf3848c723cef0ecc8309))
+
+
+### Features
+
+* add zod parsing to currcilum data api ([602339f](https://github.com/oaknational/Oak-Web-Application/commit/602339f8ca3a23554eed29cdb3f375a7b2e6dab4))
+
 # [1.97.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.96.0...v1.97.0) (2022-12-20)
 
 

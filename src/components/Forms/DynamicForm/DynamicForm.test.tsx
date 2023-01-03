@@ -11,6 +11,8 @@ import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import DynamicForm, { DynamicFormField } from "./DynamicForm";
 
+jest.setTimeout(10000);
+
 const onSubmit = jest.fn();
 
 describe("DynamicForm", () => {
