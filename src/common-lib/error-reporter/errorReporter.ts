@@ -19,7 +19,7 @@ export const matchesUserAgent = (ua: string) => {
   return userAgentsToMatch.some((regex) => regex.test(ua));
 };
 
-const matchesIgnoredError = (message: string) => {
+export const matchesIgnoredError = (message: string) => {
   const messagesToMatch = [
     // Testing
     /Test error/i,
@@ -30,6 +30,28 @@ const matchesIgnoredError = (message: string) => {
   ];
   return messagesToMatch.some((regex) => regex.test(message));
 };
+
+export function bugsnagOnError(event: Event) {
+  const { userAgent } = event.device;
+  // Ignore errors for some user agents.
+  if (userAgent) {
+    // If the user agent is in the ignore list then return false.
+    const shouldIgnore = matchesUserAgent(userAgent);
+    if (shouldIgnore) {
+      return false;
+    }
+  }
+  // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
+  const firstError = event?.errors[0];
+  if (firstError !== undefined) {
+    const errorMessage = firstError.errorMessage;
+    const shouldIgnore = matchesIgnoredError(errorMessage);
+    if (shouldIgnore) {
+      console.warn(`Ignoring known issue: ${errorMessage}`);
+      return false;
+    }
+  }
+}
 
 /**
  * Generate bugsnag config.
@@ -73,27 +95,7 @@ const getBugsnagConfig = ({
      * We are using it here to prevent errors triggered by Detectify and Percy
      * from being sent to Bugsnag.
      */
-    onError: function (event: Event) {
-      const { userAgent } = event.device;
-      // Ignore errors for some user agents.
-      if (userAgent) {
-        // If the user agent is in the ignore list then return false.
-        const shouldIgnore = matchesUserAgent(userAgent);
-        if (shouldIgnore) {
-          return false;
-        }
-      }
-      // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
-      const firstError = event?.errors[0];
-      if (firstError !== undefined) {
-        const errorMessage = firstError.errorMessage;
-        const shouldIgnore = matchesIgnoredError(errorMessage);
-        if (shouldIgnore) {
-          console.warn(`Ignoring known issue: ${errorMessage}`);
-          return false;
-        }
-      }
-    },
+    onError: bugsnagOnError,
   };
 };
 
