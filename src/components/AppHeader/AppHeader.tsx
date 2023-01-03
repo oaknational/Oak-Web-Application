@@ -12,6 +12,7 @@ import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import MenuLinks from "../MenuLinks";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
+import SearchForm from "../SearchForm";
 
 /**
  * Header for logging in and using search -
@@ -32,6 +33,7 @@ const AppHeader: FC<HeaderProps> = () => {
         <OakLink page={"beta-teachers-home"}>
           <Logo title={"Oak National Academy"} height={48} width={104} />
         </OakLink>
+        <SearchForm />
         <IconButton
           aria-label="Menu"
           icon={"Hamburger"}
