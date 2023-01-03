@@ -16,6 +16,7 @@ type CMSVideoProps = OtherVideoPlayerProps & {
 const CMSVideo: FC<CMSVideoProps> = ({ video, ...rest }) => {
   return (
     <VideoPlayer
+      playbackPolicy="public"
       thumbnailTime={video.video.asset.thumbTime}
       playbackId={video.video.asset.playbackId}
       title={video.title}

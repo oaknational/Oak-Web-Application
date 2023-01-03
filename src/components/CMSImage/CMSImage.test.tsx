@@ -13,8 +13,8 @@ describe("CMSImage", () => {
       <ThemeProvider
         theme={
           {
-            colors: { pastelTurqoise: "#123456" },
-            contrastColors: { pastelTurqoise: "white" },
+            colors: { pastelTurquoise: "#123456" },
+            contrastColors: { pastelTurquoise: "white" },
           } as DefaultTheme
         }
       >

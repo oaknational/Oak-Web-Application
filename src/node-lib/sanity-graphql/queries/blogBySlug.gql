@@ -28,7 +28,7 @@ query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         current
       }
     }
-    # See resolveReferences and portableTextReferences.gql
+    # See resolveSanityReferences and portableTextReferences.gql
     # to see how the content is transformed to add
     # referenced entities
     summary

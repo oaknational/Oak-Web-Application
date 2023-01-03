@@ -24,436 +24,159 @@ import {
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 
-import { resolveSanityReferences } from "./resolveSanityReferences";
-import { parseResults } from "./parseResults";
-
-export type Params = {
-  previewMode?: boolean;
-};
-
-export type ListParams = Params & {
-  limit?: number;
-};
-
-const resolveEmbeddedReferences = async <T extends Record<string, unknown>>(
-  document: T
-): Promise<T> => {
-  const withPortableTextReferences = await resolveSanityReferences(document);
-  return withPortableTextReferences;
-};
+import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
 const getSanityClient = () => ({
-  webinarsListingPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.webinarsListingPage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const webinarsListingPageData = result?.allWebinarListingPage?.[0];
+  webinarsListingPage: getSingleton(
+    sanityGraphqlApi.webinarsListingPage,
+    webinarsListingPageSchema,
+    (result) => result?.allWebinarListingPage?.[0]
+  ),
+  blogListingPage: getSingleton(
+    sanityGraphqlApi.newsListingPage,
+    blogListingPageSchema,
+    (result) => result?.allNewsListingPage?.[0]
+  ),
+  webinars: getList(
+    sanityGraphqlApi.allWebinars,
+    z.array(webinarPreviewSchema),
+    (results) => results.allWebinar
+  ),
+  webinarBySlug: getBySlug(
+    sanityGraphqlApi.webinarBySlug,
+    webinarSchema,
+    (result) => result?.allWebinar?.[0]
+  ),
+  blogPosts: getList(
+    sanityGraphqlApi.allBlogPosts,
+    z.array(blogPostPreviewSchema),
+    (result) => result.allNewsPost
+  ),
+  blogPostBySlug: getBySlug(
+    sanityGraphqlApi.blogPostBySlug,
+    blogPostSchema,
+    (result) => result?.allNewsPost?.[0]
+  ),
+  homepage: getSingleton(
+    sanityGraphqlApi.homepage,
+    homePageSchema,
+    (result) => result?.allHomepage?.[0]
+  ),
+  planningPage: getSingleton(
+    sanityGraphqlApi.planningCorePage,
+    planningPageSchema,
+    (result) => result?.allPlanningCorePage?.[0]
+  ),
+  aboutWhoWeArePage: getSingleton(
+    sanityGraphqlApi.aboutWhoWeArePage,
+    aboutWhoWeArePageSchema,
+    (result) => {
+      const whoWeArePageData = result?.allAboutCorePageWhoWeAre?.[0];
+      const parentPageData = result?.aboutCorePage?.[0];
 
-    if (!webinarsListingPageData) {
-      return null;
+      return whoWeArePageData && parentPageData
+        ? {
+            ...parentPageData,
+            ...whoWeArePageData,
+          }
+        : undefined;
     }
+  ),
+  aboutLeadershipPage: getSingleton(
+    sanityGraphqlApi.aboutLeadershipPage,
+    aboutLeadershipPageSchema,
+    (result) => {
+      const leadershipPageData = result?.allAboutCorePageLeadership?.[0];
+      const parentPageData = result?.aboutCorePage?.[0];
 
-    const withResolvedReferences = await resolveEmbeddedReferences(
-      webinarsListingPageData
-    );
-
-    return parseResults(
-      webinarsListingPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-
-  blogListingPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.newsListingPage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const blogListingPageData = result?.allNewsListingPage?.[0];
-
-    if (!blogListingPageData) {
-      return null;
+      return leadershipPageData && parentPageData
+        ? {
+            ...parentPageData,
+            ...leadershipPageData,
+          }
+        : undefined;
     }
+  ),
+  aboutBoardPage: getSingleton(
+    sanityGraphqlApi.aboutBoardPage,
+    aboutBoardPageSchema,
+    (result) => {
+      const boardPageData = result?.allAboutCorePageBoard?.[0];
+      const parentPageData = result?.aboutCorePage?.[0];
 
-    const withResolvedReferences = await resolveEmbeddedReferences(
-      blogListingPageData
-    );
-
-    return parseResults(
-      blogListingPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-
-  webinars: async ({ previewMode, ...params }: ListParams = {}) => {
-    const webinarListSchema = z.array(webinarPreviewSchema);
-    const webinarResults = await sanityGraphqlApi.allWebinars({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-
-    if (!webinarResults.allWebinar) {
-      return [];
+      return boardPageData && parentPageData
+        ? {
+            ...parentPageData,
+            ...boardPageData,
+          }
+        : undefined;
     }
+  ),
+  aboutPartnersPage: getSingleton(
+    sanityGraphqlApi.aboutPartnersPage,
+    aboutPartnersPageSchema,
+    (result) => {
+      const partnersPageData = result?.allAboutCorePagePartners?.[0];
+      const parentPageData = result?.aboutCorePage?.[0];
 
-    return parseResults(
-      webinarListSchema,
-      webinarResults.allWebinar,
-      previewMode
-    );
-  },
-  webinarBySlug: async (
-    slug: string,
-    { previewMode, ...params }: Params = {}
-  ) => {
-    const webinarResult = await sanityGraphqlApi.webinarBySlug({
-      ...params,
-      isDraftFilter: getDraftFilterParam(previewMode),
-      slug,
-    });
-    const webinar = webinarResult?.allWebinar?.[0];
-
-    if (!webinar) {
-      return null;
+      return partnersPageData && parentPageData
+        ? {
+            ...parentPageData,
+            ...partnersPageData,
+          }
+        : undefined;
     }
+  ),
+  aboutWorkWithUsPage: getSingleton(
+    sanityGraphqlApi.aboutWorkWithUsPage,
+    aboutWorkWithUsPageSchema,
+    (result) => {
+      const workWithUsPage = result?.allAboutCorePageWorkWithUs?.[0];
+      const parentPageData = result?.aboutCorePage?.[0];
 
-    const withResolvedReferences = await resolveEmbeddedReferences(webinar);
-
-    return parseResults(webinarSchema, withResolvedReferences, previewMode);
-  },
-  blogPosts: async ({ previewMode, ...params }: ListParams = {}) => {
-    const blogPostListSchema = z.array(blogPostPreviewSchema);
-    const blogPostsResult = await sanityGraphqlApi.allBlogPosts({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-
-    if (!blogPostsResult.allNewsPost) {
-      return [];
+      return workWithUsPage
+        ? {
+            ...parentPageData,
+            ...workWithUsPage,
+          }
+        : undefined;
     }
-
-    return parseResults(
-      blogPostListSchema,
-      blogPostsResult.allNewsPost,
-      previewMode
-    );
-  },
-  blogPostBySlug: async (
-    slug: string,
-    { previewMode, ...params }: Params = {}
-  ) => {
-    const blogPostResult = await sanityGraphqlApi.blogPostBySlug({
-      ...params,
-      isDraftFilter: getDraftFilterParam(previewMode),
-      slug,
-    });
-    const blogPost = blogPostResult?.allNewsPost?.[0];
-
-    if (!blogPost) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(blogPost);
-
-    return parseResults(blogPostSchema, withResolvedReferences, previewMode);
-  },
-  homepage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.homepage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const homepageData = result?.allHomepage?.[0];
-
-    if (!homepageData) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(
-      homepageData
-    );
-
-    return parseResults(homePageSchema, withResolvedReferences, previewMode);
-  },
-  planningPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.planningCorePage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const planningPageData = result?.allPlanningCorePage?.[0];
-
-    if (!planningPageData) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(
-      planningPageData
-    );
-
-    return parseResults(
-      planningPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  aboutWhoWeArePage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.aboutWhoWeArePage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const whoWeArePageData = result?.allAboutCorePageWhoWeAre?.[0];
-    const parentPageData = result?.aboutCorePage?.[0];
-
-    if (!whoWeArePageData) {
-      return null;
-    }
-
-    const pageData = {
-      ...parentPageData,
-      ...whoWeArePageData,
-    };
-
-    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
-
-    return parseResults(
-      aboutWhoWeArePageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  aboutLeadershipPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.aboutLeadershipPage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const leadershipPageData = result?.allAboutCorePageLeadership?.[0];
-    const parentPageData = result?.aboutCorePage?.[0];
-
-    if (!leadershipPageData) {
-      return null;
-    }
-
-    const pageData = {
-      ...parentPageData,
-      ...leadershipPageData,
-    };
-
-    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
-
-    return parseResults(
-      aboutLeadershipPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  aboutBoardPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.aboutBoardPage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const boardPageData = result?.allAboutCorePageBoard?.[0];
-    const parentPageData = result?.aboutCorePage?.[0];
-
-    if (!boardPageData) {
-      return null;
-    }
-
-    const pageData = {
-      ...parentPageData,
-      ...boardPageData,
-    };
-
-    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
-
-    return parseResults(
-      aboutBoardPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  aboutPartnersPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.aboutPartnersPage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const partnersPageData = result?.allAboutCorePagePartners?.[0];
-    const parentPageData = result?.aboutCorePage?.[0];
-
-    if (!partnersPageData) {
-      return null;
-    }
-
-    const pageData = {
-      ...parentPageData,
-      ...partnersPageData,
-    };
-
-    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
-
-    return parseResults(
-      aboutPartnersPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  aboutWorkWithUsPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.aboutWorkWithUsPage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const workWithUsPage = result?.allAboutCorePageWorkWithUs?.[0];
-    const parentPageData = result?.aboutCorePage?.[0];
-
-    if (!workWithUsPage) {
-      return null;
-    }
-
-    const pageData = {
-      ...parentPageData,
-      ...workWithUsPage,
-    };
-
-    const withResolvedReferences = await resolveEmbeddedReferences(pageData);
-
-    return parseResults(
-      aboutWorkWithUsPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  curriculumPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.curriculumCorePage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const curriculumPageData = result?.allCurriculumCorePage?.[0];
-
-    if (!curriculumPageData) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(
-      curriculumPageData
-    );
-    return parseResults(
-      curriculumPageSchema,
-      withResolvedReferences,
-      previewMode
-    );
-  },
-  supportPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.supportCorePage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const supportPageData = result?.allSupportCorePage?.[0];
-
-    if (!supportPageData) {
-      return null;
-    }
-
-    return parseResults(supportPageSchema, supportPageData, previewMode);
-  },
-  contactPage: async ({ previewMode, ...params }: Params = {}) => {
-    const result = await sanityGraphqlApi.contactCorePage({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-    const contactPageData = result?.allContactCorePage?.[0];
-
-    if (!contactPageData) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(
-      contactPageData
-    );
-
-    return parseResults(contactPageSchema, withResolvedReferences, previewMode);
-  },
-  policyPages: async ({ previewMode, ...params }: ListParams = {}) => {
-    const policyPageListSchema = z.array(policyPagePreviewSchema);
-    const policyPageResults = await sanityGraphqlApi.allPolicyPages({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-
-    if (!policyPageResults.allPolicyPage) {
-      return [];
-    }
-
-    return parseResults(
-      policyPageListSchema,
-      policyPageResults.allPolicyPage,
-      previewMode
-    );
-  },
-  policyPageBySlug: async (
-    slug: string,
-    { previewMode, ...params }: Params = {}
-  ) => {
-    const policyPageResult = await sanityGraphqlApi.policyPageBySlug({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-      slug,
-    });
-
-    const policyPage = policyPageResult?.allPolicyPage?.[0];
-    if (!policyPage) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(policyPage);
-
-    return parseResults(policyPageSchema, withResolvedReferences, previewMode);
-  },
-  landingPages: async ({ previewMode, ...params }: ListParams = {}) => {
-    const landingPageListSchema = z.array(landingPagePreviewSchema);
-    const landingPageResults = await sanityGraphqlApi.allLandingPages({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-    });
-
-    if (!landingPageResults.allLandingPage) {
-      return [];
-    }
-
-    return parseResults(
-      landingPageListSchema,
-      landingPageResults.allLandingPage,
-      previewMode
-    );
-  },
-  landingPageBySlug: async (
-    slug: string,
-    { previewMode, ...params }: Params = {}
-  ) => {
-    const landingPageResult = await sanityGraphqlApi.landingPageBySlug({
-      isDraftFilter: getDraftFilterParam(previewMode),
-      ...params,
-      slug,
-    });
-    const landingPage = landingPageResult?.allLandingPage?.[0];
-
-    if (!landingPage) {
-      return null;
-    }
-
-    const withResolvedReferences = await resolveEmbeddedReferences(landingPage);
-
-    return parseResults(landingPageSchema, withResolvedReferences, previewMode);
-  },
+  ),
+  curriculumPage: getSingleton(
+    sanityGraphqlApi.curriculumCorePage,
+    curriculumPageSchema,
+    (result) => result?.allCurriculumCorePage?.[0]
+  ),
+  supportPage: getSingleton(
+    sanityGraphqlApi.supportCorePage,
+    supportPageSchema,
+    (result) => result?.allSupportCorePage?.[0]
+  ),
+  contactPage: getSingleton(
+    sanityGraphqlApi.contactCorePage,
+    contactPageSchema,
+    (result) => result?.allContactCorePage?.[0]
+  ),
+  policyPages: getList(
+    sanityGraphqlApi.allPolicyPages,
+    z.array(policyPagePreviewSchema),
+    (results) => results.allPolicyPage
+  ),
+  policyPageBySlug: getBySlug(
+    sanityGraphqlApi.policyPageBySlug,
+    policyPageSchema,
+    (result) => result?.allPolicyPage?.[0]
+  ),
+  landingPages: getList(
+    sanityGraphqlApi.allLandingPages,
+    z.array(landingPagePreviewSchema),
+    (results) => results.allLandingPage
+  ),
+  landingPageBySlug: getBySlug(
+    sanityGraphqlApi.landingPageBySlug,
+    landingPageSchema,
+    (result) => result?.allLandingPage?.[0]
+  ),
 });
-
-/**
- * When in preview mode we want to fetch draft and non-draft
- * content and filter client side, but for production we
- * never want draft content
- */
-const getDraftFilterParam = (
-  isPreviewMode: boolean | undefined
-): { is_draft: boolean | undefined } =>
-  isPreviewMode ? { is_draft: undefined } : { is_draft: false };
 
 export default getSanityClient;

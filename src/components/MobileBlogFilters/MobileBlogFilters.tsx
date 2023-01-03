@@ -1,24 +1,28 @@
-import { FC, useState, useRef, useEffect, useId } from "react";
+import { FC, useState, useRef, useEffect, useId, useCallback } from "react";
 
 import Box from "../Box";
 import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
-import BlogCategoryList, {
-  BlogCategoryListProps,
-  BlogCategoryPage,
-} from "../Blog/BlogCategoryList/BlogCategoryList";
 import Cover from "../Cover";
+import PostCategoryList, {
+  PostCategoryListProps,
+  PostCategoryPage,
+} from "../Posts/PostCategoryList/PostCategoryList";
+import { useMenuContext } from "../../context/Menu";
 
 export type MobileBlogFiltersProps = {
-  categoryListProps: Omit<BlogCategoryListProps, "labelledBy" | "page">;
+  categoryListProps: Omit<PostCategoryListProps, "labelledBy" | "page">;
   withBackButton?: boolean;
-  page: BlogCategoryPage;
+  page: PostCategoryPage;
 };
 const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
+
+  const { open: menuOpen } = useMenuContext();
+
   const categoryListRef = useRef<HTMLDivElement>(null);
   const checkAndSetHeight = () => {
     if (categoryListRef.current) {
@@ -37,9 +41,16 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   const menuId = useId();
   const triggerId = useId();
 
-  const close = () => {
+  const close = useCallback(() => {
     setIsOpen(false);
-  };
+  }, [setIsOpen]);
+
+  // Close the dropdown if the menu is open
+  useEffect(() => {
+    if (isOpen && menuOpen) {
+      close();
+    }
+  }, [isOpen, menuOpen, close]);
 
   return (
     <Flex
@@ -106,7 +117,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             aria-labelledby={triggerId}
             $visibility={isOpen ? "visible" : "hidden"}
           >
-            <BlogCategoryList
+            <PostCategoryList
               labelledBy={triggerId}
               $pv={28}
               $ph={16}

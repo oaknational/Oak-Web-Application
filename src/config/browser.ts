@@ -237,9 +237,9 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  gleapWidgetUrl: {
-    value: process.env.NEXT_PUBLIC_GLEAP_WIDGET_URL,
-    envName: "NEXT_PUBLIC_GLEAP_WIDGET_URL",
+  gleapFrameUrl: {
+    value: process.env.NEXT_PUBLIC_GLEAP_FRAME_URL,
+    envName: "NEXT_PUBLIC_GLEAP_FRAME_URL",
     required: true,
     availableInBrowser: true,
     default: null,
@@ -253,6 +253,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: "off",
     description:
       "Logs accessibility concerns to the console. Should be disabled in production",
+  },
+  webinarSignUpUrl: {
+    value: process.env.NEXT_PUBLIC_WEBINAR_SIGN_UP_URL,
+    envName: "NEXT_PUBLIC_WEBINAR_SIGN_UP_URL",
+    required: true,
+    availableInBrowser: true,
+    description: "Sign up link for upcoming webinars",
+    default: null,
   },
 });
 
