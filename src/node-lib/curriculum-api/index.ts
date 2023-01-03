@@ -322,14 +322,14 @@ const curriculumApi = {
 
     const keyStage = getFirstResult({ results: keyStages });
     const subject = getFirstResult({ results: subjects });
-    const tier = getFirstResult({ results: tiers });
+    const tier = args[0].tierSlug ?  getFirstResult({ results: tiers }): null
 
     return teachersKeyStageSubjectUnitsData.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
       subjectSlug: subject.slug,
       subjectTitle: subject.title,
-      tierSlug: tier.slug || null,
+      tierSlug: tier?.slug || null,
       tiers,
       units,
     });
