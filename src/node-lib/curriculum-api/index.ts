@@ -227,7 +227,8 @@ export type TeachersLessonOverviewData = z.infer<
 
 const sdk = getSdk(graphqlClient);
 
-const getFirstResultOrWarnOrFail = () =>
+const getFirstResultOrWarnOrFail =
+  () =>
   //({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
   <T>({ results }: { results: T[] }) => {
     if (results.length > 1) {
@@ -265,11 +266,10 @@ const curriculumApi = {
     const { keyStages = [], subjects } = transformMVCase(res);
 
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
-      //{
-      // query: "teachersKeyStageSubjects",
-      // args,
-   // }
-    
+    //{
+    // query: "teachersKeyStageSubjects",
+    // args,
+    // }
 
     return teachersKeyStageSubjectsData.parse({
       keyStageSlug: keyStage.slug,

@@ -1,12 +1,14 @@
 import React, { FC, useState } from "react";
 import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  //GetStaticPaths,
+  // GetStaticProps,
+  // GetStaticPropsResult,
   NextPage,
 } from "next";
 
-import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
+//import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -250,17 +252,17 @@ export type URLParams = {
   unitSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
-  const paths = lessons.map((params) => ({ params: params }));
+// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+//   const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+//   const paths = lessons.map((params) => ({ params: params }));
 
-  return {
-    fallback: false,
-    paths,
-  };
-};
+//   return {
+//     fallback: false,
+//     paths,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
@@ -282,13 +284,14 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
+  const results: GetServerSidePropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
     },
   };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  // const resultsWithIsr = decorateWithIsr(results);
+  // return resultsWithIsr;
+  return results
 };
 
 export default LessonOverviewPage;
