@@ -1,3 +1,22 @@
+## [1.99.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.2...v1.99.3) (2023-01-04)
+
+## [1.99.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.1...v1.99.2) (2023-01-04)
+
+
+### Bug Fixes
+
+* **ISR:** standardise ISR config ([6afdcd2](https://github.com/oaknational/Oak-Web-Application/commit/6afdcd26b6d563f847b2a8c0734e81acd23504cf))
+
+## [1.99.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.0...v1.99.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* change svg prop to fillrule ([cd5eb3a](https://github.com/oaknational/Oak-Web-Application/commit/cd5eb3a5bced2d74f01748e53cf546a411d22cdf))
+* change to clippath ([7b773a0](https://github.com/oaknational/Oak-Web-Application/commit/7b773a0dff5d921d4fd5c41e2ffe378cc6b44552))
+* change to cliprule ([b2bc256](https://github.com/oaknational/Oak-Web-Application/commit/b2bc256ade9fd95736053d04bc72e07b314fed80))
+* change to cliprule ([9615bb0](https://github.com/oaknational/Oak-Web-Application/commit/9615bb0f8dd1b889464b533720ea6a5fba5bb6f5))
+
 # [1.99.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.98.3...v1.99.0) (2023-01-03)
 
 
