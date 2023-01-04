@@ -15,9 +15,10 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
   return (
     <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
       <Flex
-        $minWidth={["100%", "70%", 840]}
+        $maxWidth={["100%", "70%", 960]}
         $alignItems={"center"}
         $flexDirection={"column"}
+        $flexGrow={1}
       >
         <AspectRatio ratio={"16:9"}>
           <iframe

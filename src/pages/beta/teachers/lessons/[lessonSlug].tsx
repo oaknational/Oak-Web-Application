@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -27,8 +27,8 @@ import Card from "../../../../components/Card";
 import Grid, { GridArea } from "../../../../components/Grid";
 import Icon, { IconName } from "../../../../components/Icon";
 import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
-import VideoPlayer from "../../../../components/VideoPlayer";
 import OverviewPresentation from "../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "../../../../components/pages/TeachersLessonOverview/OverviewVideo";
 
 export type LessonOverview = {
   lessonTitle: string;
@@ -43,8 +43,8 @@ export type LessonOverview = {
   contentGuidance: string;
   video: string;
   signLanguageVideo?: string;
-  presentation: string;
-  worksheet: string;
+  presentation?: string;
+  worksheet?: string;
 };
 
 export type LessonOverviewPageProps = {
@@ -102,11 +102,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     worksheet,
   } = curriculumData;
 
-  const [signLanguageOn, setSignLanguageOn] = useState(false);
-  const toggleSignLanguage = () => {
-    setSignLanguageOn(!signLanguageOn);
-  };
-
   return (
     <AppLayout
       seoProps={getSeoProps({
@@ -163,57 +158,32 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           /> */}
         </Flex>
         <Hr $color={"oakGrey3"} />
-        <ExpandingContainer title={"Presentation"} downloadable={true}>
-          <OverviewPresentation
-            asset={presentation}
-            lessonTitle={lessonTitle}
-          />
-        </ExpandingContainer>
-        <ExpandingContainer title={"Video"} downloadable={true}>
-          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-            <Flex
-              $maxWidth={["100%", "70%", 840]}
-              $alignItems={"center"}
-              $flexDirection={"column"}
-            >
-              <VideoPlayer
-                playbackId={
-                  signLanguageVideo && signLanguageOn
-                    ? signLanguageVideo
-                    : video
-                }
-                playbackPolicy={"signed"}
-                title={lessonTitle}
-                location={"lesson"}
-              />
-              {signLanguageVideo && !signLanguageOn && (
-                <Button
-                  label="Signed video"
-                  background="teachersHighlight"
-                  $mt={20}
-                  $mb={24}
-                  icon={"SignLanguage"}
-                  $iconPosition={"trailing"}
-                  onClick={toggleSignLanguage}
-                  data-testid={"sign-language-button"}
-                />
-              )}
-              {signLanguageVideo && signLanguageOn && (
-                <Button
-                  label="Unsigned"
-                  background="teachersHighlight"
-                  $mt={20}
-                  $mb={24}
-                  onClick={toggleSignLanguage}
-                  data-testid={"sign-language-button"}
-                />
-              )}
-            </Flex>
-          </Flex>
-        </ExpandingContainer>
-        <ExpandingContainer title={"Worksheet"} downloadable={true}>
-          <OverviewPresentation asset={worksheet} lessonTitle={lessonTitle} />
-        </ExpandingContainer>
+        {presentation && (
+          <ExpandingContainer
+            title={"Presentation"}
+            downloadable={true}
+            toggleClosed={false}
+          >
+            <OverviewPresentation
+              asset={presentation}
+              lessonTitle={lessonTitle}
+            />
+          </ExpandingContainer>
+        )}
+        {video && (
+          <ExpandingContainer title={"Video"} downloadable={true}>
+            <OverviewVideo
+              video={video}
+              signLanguageVideo={signLanguageVideo}
+              lessonTitle={lessonTitle}
+            />
+          </ExpandingContainer>
+        )}
+        {worksheet && (
+          <ExpandingContainer title={"Worksheet"} downloadable={true}>
+            <OverviewPresentation asset={worksheet} lessonTitle={lessonTitle} />
+          </ExpandingContainer>
+        )}
         <ExpandingContainer title={"Starter quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
