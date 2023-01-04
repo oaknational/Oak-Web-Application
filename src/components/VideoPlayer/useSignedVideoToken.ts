@@ -28,7 +28,7 @@ type UseSignedPlaybackIdReturnProps = {
   playbackToken: string | null | undefined;
 };
 
-const useSignedMuxToken = ({
+export const useSignedMuxToken = ({
   playbackId,
   playbackPolicy,
   type,

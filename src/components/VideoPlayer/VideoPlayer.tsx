@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from "react";
-import MuxPlayer, { Tokens } from "@mux/mux-player-react";
+import MuxPlayer from "@mux/mux-player-react";
+import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 
 import Flex from "../Flex";
@@ -135,9 +136,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
 
   const tokens: Tokens = {
-    playback: videoToken?.playbackToken,
-    thumbnail: thumbnailToken?.playbackToken,
-    storyboard: storyboardToken?.playbackToken,
+    playback: videoToken?.playbackToken ? videoToken.playbackToken : undefined,
+    thumbnail: thumbnailToken?.playbackToken
+      ? thumbnailToken.playbackToken
+      : undefined,
+    storyboard: storyboardToken?.playbackToken
+      ? storyboardToken.playbackToken
+      : undefined,
   };
 
   return (
