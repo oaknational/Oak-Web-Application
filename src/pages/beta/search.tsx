@@ -58,7 +58,7 @@ const Search = () => {
   return (
     <>
       <BrowserWidthBar $background="white" $pv={20}>
-        <Flex>
+        <Flex $mt={80}>
           {ALL_KEY_STAGES.map((ks) => (
             <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
           ))}
