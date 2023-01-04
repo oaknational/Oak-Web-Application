@@ -7,7 +7,7 @@ import OakError from "../../errors/OakError";
 import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
 import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
-import LoadingSpinner from "../LoadingSpinner";
+import { P } from "../Typography";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -127,7 +127,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     return null;
   }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
-    return <LoadingSpinner />;
+    return (
+      <Flex $flexDirection={"column"} $width={"100%"}>
+        <P $textAlign="center">Loading...</P>
+      </Flex>
+    );
   }
 
   const tokens: Tokens = {
