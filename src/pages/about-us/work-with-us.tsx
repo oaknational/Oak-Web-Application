@@ -2,8 +2,8 @@ import { NextPage, GetStaticProps } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import config from "../../config/browser";
 import CMSClient from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import { AboutWorkWithUsPage } from "../../common-lib/cms-types";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -99,12 +99,13 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     };
   }
 
-  return {
+  const results = {
     props: {
       pageData: aboutWorkWithUsPage,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default AboutUsBoard;
