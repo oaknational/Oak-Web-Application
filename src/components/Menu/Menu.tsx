@@ -1,4 +1,4 @@
-import { FC, HTMLProps, RefObject, useRef } from "react";
+import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { Transition, TransitionStatus } from "react-transition-group";
 // import { useRouter } from "next/router";
@@ -66,9 +66,9 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // useEffect(() => {
-  //   closeMenu();
-  // }, [pathname, closeMenu]);
+  useEffect(() => {
+    closeMenu();
+  }, [closeMenu]);
 
   const giveFocus = () => {
     closeButtonRef.current?.focus();
