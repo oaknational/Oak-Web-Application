@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import MuxPlayer from "@mux/mux-player-react";
+import MuxPlayer, { Tokens } from "@mux/mux-player-react";
 import MuxPlayerElement from "@mux/mux-player";
 
 import Flex from "../Flex";
@@ -14,7 +14,12 @@ import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
 import getPercentageElapsed from "./getPercentageElapsed";
-import useSignedVideoToken, { PlaybackPolicy } from "./useSignedVideoToken";
+import {
+  PlaybackPolicy,
+  useSignedVideoToken,
+  useSignedThumbnailToken,
+  useSignedStoryboardToken,
+} from "./useSignedVideoToken";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -66,7 +71,18 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const videoTracking = useVideoTracking({ getState });
-  const tokens = useSignedVideoToken({
+
+  const thumbnailToken = useSignedThumbnailToken({
+    playbackId,
+    playbackPolicy,
+  });
+
+  const videoToken = useSignedVideoToken({
+    playbackId: playbackId,
+    playbackPolicy: playbackPolicy,
+  });
+
+  const storyboardToken = useSignedStoryboardToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
   });
@@ -110,9 +126,15 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
      */
     return null;
   }
-  if (tokens.loading) {
+  if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return <LoadingSpinner />;
   }
+
+  const tokens: Tokens = {
+    playback: videoToken?.playbackToken,
+    thumbnail: thumbnailToken?.playbackToken,
+    storyboard: storyboardToken?.playbackToken,
+  };
 
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
@@ -123,9 +145,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        tokens={
-          tokens.playbackToken ? { playback: tokens.playbackToken } : undefined
-        }
+        tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
