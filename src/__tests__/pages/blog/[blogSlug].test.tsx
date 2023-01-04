@@ -7,6 +7,8 @@ import BlogSinglePage, {
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlags: () => ({ enabled: {} }),
 }));
