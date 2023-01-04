@@ -7,6 +7,7 @@ import IconButton from "../Button/IconButton";
 import flex, { FlexCssProps } from "../../styles/utils/flex";
 import Input from "../Input";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
+import { resolveOakHref } from "../../common-lib/urls";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -22,7 +23,12 @@ const SearchForm: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     e.preventDefault();
     setText(value);
-    router.push("/beta/search");
+    const searchPage = resolveOakHref({ page: "beta-search" });
+    if (router.pathname === searchPage)
+      router.push({
+        pathname: searchPage,
+        query: { term: value },
+      });
   };
 
   const onTextChange = (e: FormEvent<HTMLInputElement>) => {
