@@ -1,3 +1,12 @@
+## [1.99.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.2...v1.99.3) (2023-01-04)
+
+## [1.99.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.1...v1.99.2) (2023-01-04)
+
+
+### Bug Fixes
+
+* **ISR:** standardise ISR config ([6afdcd2](https://github.com/oaknational/Oak-Web-Application/commit/6afdcd26b6d563f847b2a8c0734e81acd23504cf))
+
 ## [1.99.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.0...v1.99.1) (2023-01-03)
 
 
