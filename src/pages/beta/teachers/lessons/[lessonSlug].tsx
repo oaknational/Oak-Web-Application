@@ -28,7 +28,7 @@ import Grid, { GridArea } from "../../../../components/Grid";
 import Icon, { IconName } from "../../../../components/Icon";
 import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
 import VideoPlayer from "../../../../components/VideoPlayer";
-import AspectRatio from "../../../../components/AspectRatio";
+import OverviewPresentation from "../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 
 export type LessonOverview = {
   lessonTitle: string;
@@ -44,6 +44,7 @@ export type LessonOverview = {
   video: string;
   signLanguageVideo?: string;
   presentation: string;
+  worksheet: string;
 };
 
 export type LessonOverviewPageProps = {
@@ -98,10 +99,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     video,
     signLanguageVideo,
     presentation,
+    worksheet,
   } = curriculumData;
 
   const [signLanguageOn, setSignLanguageOn] = useState(false);
-
   const toggleSignLanguage = () => {
     setSignLanguageOn(!signLanguageOn);
   };
@@ -163,27 +164,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         </Flex>
         <Hr $color={"oakGrey3"} />
         <ExpandingContainer title={"Presentation"} downloadable={true}>
-          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-            <Flex
-              $maxWidth={["100%", 840]}
-              $alignItems={"center"}
-              $flexDirection={"column"}
-            >
-              <AspectRatio ratio={"2:3"}>
-                <iframe
-                  src={presentation}
-                  title="lessonTitle"
-                  width="100%"
-                  height="100%"
-                />
-              </AspectRatio>
-            </Flex>
-          </Flex>
+          <OverviewPresentation
+            asset={presentation}
+            lessonTitle={lessonTitle}
+          />
         </ExpandingContainer>
         <ExpandingContainer title={"Video"} downloadable={true}>
           <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
             <Flex
-              $maxWidth={["100%", 840]}
+              $maxWidth={["100%", "70%", 840]}
               $alignItems={"center"}
               $flexDirection={"column"}
             >
@@ -223,7 +212,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </Flex>
         </ExpandingContainer>
         <ExpandingContainer title={"Worksheet"} downloadable={true}>
-          <Box>Worksheet element</Box>
+          <OverviewPresentation asset={worksheet} lessonTitle={lessonTitle} />
         </ExpandingContainer>
         <ExpandingContainer title={"Starter quiz"} downloadable={true}>
           <Box>quiz element</Box>

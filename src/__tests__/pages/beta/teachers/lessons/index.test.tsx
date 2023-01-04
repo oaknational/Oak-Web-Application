@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithSeo from "../../../../__helpers__/renderWithSeo";
 import LessonOverviewPage, {
@@ -9,82 +9,44 @@ import LessonOverviewPage, {
 import { mockSeoResult } from "../../../../__helpers__/cms";
 import renderWithProviders from "../../../../__helpers__/renderWithProviders";
 
+const testCurriculumData = {
+  curriculumData: {
+    keyStageSlug: "ks1",
+    keyStageTitle: "Key stage 1",
+    lessonTitle: "macbeth lesson 1",
+    lessonSlug: "macbeth-lesson-1",
+    coreContent: ["string"],
+    subjectTitle: "string",
+    subjectSlug: "string",
+    equipmentRequired: "string",
+    supervisionLevel: "string",
+    contentGuidance: "string",
+    video: "string",
+    signLanguageVideo: "string",
+    presentation: "string",
+    worksheet: "string",
+  },
+};
+
 describe("pages/beta/teachers/lessons", () => {
   it("Renders title from the props", async () => {
-    renderWithProviders(
-      <LessonOverviewPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          lessonTitle: "macbeth lesson 1",
-          lessonSlug: "macbeth-lesson-1",
-          coreContent: ["string"],
-          subjectTitle: "string",
-          subjectSlug: "string",
-          equipmentRequired: "string",
-          supervisionLevel: "string",
-          contentGuidance: "string",
-          video: "string",
-          presentation: "string",
-        }}
-      />
-    );
+    renderWithProviders(<LessonOverviewPage {...testCurriculumData} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "macbeth lesson 1"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "macbeth lesson 1"
+    );
   });
 
   it("renders sign language button if there is a sign language video", async () => {
-    renderWithProviders(
-      <LessonOverviewPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          lessonTitle: "macbeth lesson 1",
-          lessonSlug: "macbeth-lesson-1",
-          coreContent: ["string"],
-          subjectTitle: "string",
-          subjectSlug: "string",
-          equipmentRequired: "string",
-          supervisionLevel: "string",
-          contentGuidance: "string",
-          video: "string",
-          signLanguageVideo: "string",
-          presentation: "string",
-        }}
-      />
-    );
+    renderWithProviders(<LessonOverviewPage {...testCurriculumData} />);
 
-    await waitFor(() => {
-      expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
-        "Signed video"
-      );
-    });
+    expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
+      "Signed video"
+    );
   });
 
   it("sign language button toggles on click", async () => {
-    renderWithProviders(
-      <LessonOverviewPage
-        curriculumData={{
-          keyStageSlug: "ks1",
-          keyStageTitle: "Key stage 1",
-          lessonTitle: "macbeth lesson 1",
-          lessonSlug: "macbeth-lesson-1",
-          coreContent: ["string"],
-          subjectTitle: "string",
-          subjectSlug: "string",
-          equipmentRequired: "string",
-          supervisionLevel: "string",
-          contentGuidance: "string",
-          video: "string",
-          signLanguageVideo: "string",
-          presentation: "string",
-        }}
-      />
-    );
+    renderWithProviders(<LessonOverviewPage {...testCurriculumData} />);
 
     const signLanguageButton = screen.getByTestId("sign-language-button");
     await signLanguageButton.click();
@@ -93,25 +55,18 @@ describe("pages/beta/teachers/lessons", () => {
     );
   });
 
+  it("renders an iframe for a presentation and worksheet", async () => {
+    const { getAllByRole } = renderWithProviders(
+      <LessonOverviewPage {...testCurriculumData} />
+    );
+    const iframeElement = getAllByRole("iframe");
+    expect(iframeElement.length).toEqual(2);
+  });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(
-        <LessonOverviewPage
-          curriculumData={{
-            keyStageSlug: "ks1",
-            keyStageTitle: "Key stage 1",
-            lessonTitle: "macbeth lesson 1",
-            lessonSlug: "string",
-            coreContent: ["string"],
-            subjectTitle: "string",
-            subjectSlug: "string",
-            equipmentRequired: "string",
-            supervisionLevel: "string",
-            contentGuidance: "string",
-            video: "string",
-            presentation: "string",
-          }}
-        />
+        <LessonOverviewPage {...testCurriculumData} />
       );
 
       expect(seo).toEqual({
