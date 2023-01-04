@@ -291,7 +291,7 @@ export const getServerSideProps: GetServerSideProps<
   };
   // const resultsWithIsr = decorateWithIsr(results);
   // return resultsWithIsr;
-  return results
+  return results;
 };
 
 export default LessonOverviewPage;
