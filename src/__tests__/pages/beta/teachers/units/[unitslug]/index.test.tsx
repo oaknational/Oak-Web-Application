@@ -1,7 +1,11 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
 import teachersKeyStageSubjectUnitsLessonsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitLessons.fixture";
-import LessonListPage, {getServerSideProps, LessonListPageProps, URLParams} from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]";
+import LessonListPage, {
+  getServerSideProps,
+  LessonListPageProps,
+  URLParams,
+} from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 
 describe("Lesson listing page", () => {
@@ -34,7 +38,7 @@ describe("Lesson listing page", () => {
         params: {
           subjectSlug: "maths",
           keyStageSlug: "ks4",
-          unitSlug:"some-unit-slug"
+          unitSlug: "some-unit-slug",
         },
         query: {},
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
