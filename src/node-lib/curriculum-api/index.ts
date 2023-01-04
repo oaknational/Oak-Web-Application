@@ -1,13 +1,13 @@
 import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
-import errorReporter from "../../common-lib/error-reporter";
+//import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/server";
 import OakError from "../../errors/OakError";
 
 import { getSdk } from "./generated/sdk";
 
-const reportError = errorReporter("curriculum-api");
+//const reportError = errorReporter("curriculum-api");
 
 const curriculumApiUrl = config.get("curriculumApiUrl");
 const curriculumApiAuthType = config.get("curriculumApiAuthType");
@@ -227,8 +227,8 @@ export type TeachersLessonOverviewData = z.infer<
 
 const sdk = getSdk(graphqlClient);
 
-const getFirstResultOrWarnOrFail =
-  ({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
+const getFirstResultOrWarnOrFail = () =>
+  //({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
   <T>({ results }: { results: T[] }) => {
     if (results.length > 1) {
       // const warning = new OakError({
@@ -264,10 +264,12 @@ const curriculumApi = {
     const res = await sdk.teachersKeyStageSubjects(...args);
     const { keyStages = [], subjects } = transformMVCase(res);
 
-    const keyStage = getFirstResultOrWarnOrFail({
-      query: "teachersKeyStageSubjects",
-      args,
-    })({ results: keyStages });
+    const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
+      //{
+      // query: "teachersKeyStageSubjects",
+      // args,
+   // }
+    
 
     return teachersKeyStageSubjectsData.parse({
       keyStageSlug: keyStage.slug,
@@ -281,10 +283,7 @@ const curriculumApi = {
     const res = await sdk.teachersKeyStageSubjectTiers(...args);
     const { tiers, subjects = [], keyStages = [] } = transformMVCase(res);
 
-    const getFirstResult = getFirstResultOrWarnOrFail({
-      query: "teachersKeyStageSubjectTiers",
-      args,
-    });
+    const getFirstResult = getFirstResultOrWarnOrFail();
     const keyStage = getFirstResult({ results: keyStages });
     const subject = getFirstResult({ results: subjects });
 
@@ -315,10 +314,7 @@ const curriculumApi = {
       units,
     } = transformMVCase(res);
 
-    const getFirstResult = getFirstResultOrWarnOrFail({
-      query: "teachersKeyStageSubjectUnits",
-      args,
-    });
+    const getFirstResult = getFirstResultOrWarnOrFail();
 
     const keyStage = getFirstResult({ results: keyStages });
     const subject = getFirstResult({ results: subjects });
@@ -347,10 +343,7 @@ const curriculumApi = {
     const res = await sdk.teachersKeyStageSubjectUnitLessons(...args);
     const { units = [], lessons = [] } = transformMVCase(res);
 
-    const unit = getFirstResultOrWarnOrFail({
-      query: "teachersKeyStageSubjectUnitLessons",
-      args,
-    })({
+    const unit = getFirstResultOrWarnOrFail()({
       results: units,
     });
 
@@ -376,10 +369,7 @@ const curriculumApi = {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
 
-    const lesson = getFirstResultOrWarnOrFail({
-      query: "teachersLessonOverview",
-      args,
-    })({
+    const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
 
