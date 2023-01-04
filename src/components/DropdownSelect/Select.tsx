@@ -1,27 +1,29 @@
-import { ReactNode, Ref } from "react";
+import { Ref, useId } from "react";
 import styled, { css } from "styled-components";
 import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
-import {
-  useSelect,
-  HiddenSelect,
-  useButton,
-  mergeProps,
-  useFocusRing,
-} from "react-aria";
+import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
 import Flex, { FlexProps } from "../Flex";
 import Icon, { IconName } from "../Icon";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { srOnly } from "../ScreenReaderOnly";
+import ellipsis from "../../styles/ellipsis";
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
+import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 
-import { Popover } from "./Popover";
 import { ListBox } from "./ListBox";
+import { Popover } from "./Popover";
 
 export { Item } from "react-stately";
+
+export const DropdownFocusUnderline = styled(InputFocusUnderline)<{
+  isFocusVisible: boolean;
+}>`
+  display: ${(props) => (props.isFocusVisible ? "inline" : "none")};
+`;
 
 export type SelectItem = {
   value: string;
@@ -33,39 +35,29 @@ type SelectProps = {
   label: string;
   items: SelectItem[];
   onSelectionChange: (value: string) => void;
-  showLabel?: boolean;
   placeholder?: string;
   icon?: IconName;
-  children: ReactNode;
   myRef: Ref<HTMLButtonElement>;
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
 };
 
-export const SelectContainer = (props: FlexProps) => (
-  <Flex {...props} $flexDirection={"column"} $position={"relative"} />
-);
+const SelectContainer = styled(Flex)`
+  &:focus-within ${RotatedInputLabel} {
+    background: ${getColorByName("teachersHighlight")};
+    color: ${getColorByName("white")};
+  }
+`;
 
 interface SelectButtonProps {
   isOpen?: boolean;
   isFocusVisible?: boolean;
   isPlaceholder?: boolean;
 }
+
 const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
-  border-radius: ${(props) => props.theme.input.borderRadius};
-  border: 1px solid;
-  border-color: ${(props) =>
-    props.isFocusVisible
-      ? getColorByLocation(({ theme }) => theme.input.states.active.border)
-      : getColorByLocation(({ theme }) => theme.input.states.default.border)};
-  background: ${(props) =>
-    props.isOpen
-      ? getColorByLocation(({ theme }) => theme.input.states.active.background)
-      : getColorByLocation(
-          ({ theme }) => theme.input.states.default.background
-        )};
   padding-left: 12px;
   padding-right: 8px;
   display: inline-flex;
@@ -74,9 +66,15 @@ const selectButtonStyles = css<SelectButtonProps>`
   width: 100%;
   text-align: left;
   font-size: 16px;
+  background: transparent;
+  border: none;
+  padding-top: 3px;
+  margin-top: 10px;
+  outline: none;
   ${(props) =>
     props.isPlaceholder &&
     css`
+      font-size: 14px;
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.default.placeholder
       )};
@@ -89,29 +87,31 @@ const NativeSelect = styled.select`
   ${selectButtonStyles}
 `;
 
-const Label = styled.label<{ visuallyHidden: boolean }>`
-  display: block;
-  text-align: left;
-  font-family: ${getFontFamily("body")};
-  font-size: ${(props) => props.theme.input.fontSize};
-  ${(props) => props.visuallyHidden && srOnly}
+const SelectInner = styled(Flex)`
+  max-width: calc(100% - 20px);
+`;
+/**
+ * Contains either the selected value or the placeholder if no value is
+ * selected
+ */
+const SelectSpan = styled.span`
+  ${ellipsis}
 `;
 
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
-  const { myRef, showLabel, containerProps, items } = props;
+  const { myRef, containerProps, items } = props;
 
   // Create state based on the incoming props
   const state = useSelectState(props);
   const ref = useObjectRef(myRef);
 
   // Get props for child elements from useSelect
-  const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
-    props,
-    state,
-    ref
-  );
+  const { labelProps, triggerProps, menuProps } = useSelect(props, state, ref);
+
+  // React.useId because: https://github.com/adobe/react-spectrum/issues/2438
+  labelProps.id = useId();
 
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(triggerProps, ref);
@@ -126,11 +126,36 @@ export function Select<T extends object>(
           window.navigator.userAgent
         );
 
+  // unique id for map key
+  const id = useId();
+  const valueId = `${id}-value`;
+  const buttonId = `${id}-button`;
+
   return (
-    <SelectContainer {...containerProps}>
-      <Label {...labelProps} visuallyHidden={!showLabel}>
-        {props.label}
-      </Label>
+    <SelectContainer
+      $flexDirection={"column"}
+      $position={"relative"}
+      $background="white"
+      {...containerProps}
+    >
+      <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
+      <DropdownFocusUnderline
+        isFocusVisible={isFocusVisible}
+        aria-hidden="true"
+        name={"Underline1"}
+        $font={"body-3"}
+      />
+      <Flex $position={"absolute"}>
+        <RotatedInputLabel
+          background={props.onFocus ? "teachersPastelBlue" : "pastelTurquoise"}
+          color={"black"}
+          $font={"body-3"}
+          {...labelProps}
+        >
+          {props.label}
+        </RotatedInputLabel>
+      </Flex>
+
       {shouldRenderNativeSelect ? (
         <NativeSelect
           // Having to ignore due to inconsistent ref types
@@ -145,35 +170,40 @@ export function Select<T extends object>(
         >
           <option value="">{props.placeholder}</option>
           {items.map((item) => (
-            <option value={item.value}>{item.label}</option>
+            <option key={`Select-${id}-${item.value}`} value={item.value}>
+              {item.label}
+            </option>
           ))}
         </NativeSelect>
       ) : (
         <>
-          <HiddenSelect
-            state={state}
-            triggerRef={ref}
-            label={props.label || props.placeholder}
-            aria-describedby={props["aria-describedby"]}
-            aria-invalid={props["aria-invalid"]}
-            name={props.name}
-          />
           <SelectButton
             {...mergeProps(buttonProps, focusProps)}
+            aria-labelledby={labelProps.id}
+            aria-describedby={props["aria-describedby"]}
+            aria-invalid={props["aria-invalid"]}
             ref={ref}
             isOpen={state.isOpen}
             isFocusVisible={isFocusVisible}
             isPlaceholder={!state.selectedItem}
+            id={buttonId}
           >
-            <Flex $alignItems={"center"}>
-              {props.icon && <Icon $mr={8} name={props.icon}></Icon>}
-              <span data-testid={"select-span"} {...valueProps}>
+            <SelectInner $alignItems={"center"}>
+              {props.icon && <Icon $mr={8} name={props.icon} />}
+              <SelectSpan
+                id={valueId}
+                data-testid={"select-span"}
+                title={props.placeholder}
+              >
                 {state.selectedItem
                   ? state.selectedItem.rendered
                   : props.placeholder}
-              </span>
-            </Flex>
-            <Icon name={"ChevronDown"} />
+              </SelectSpan>
+            </SelectInner>
+            <Icon
+              $color="black"
+              name={state.isOpen ? "ChevronUp" : "ChevronDown"}
+            />
           </SelectButton>
           {state.isOpen && (
             <Popover isOpen={state.isOpen} onClose={state.close}>

@@ -2,27 +2,8 @@ fragment CTA on Cta {
   label
   linkType
   external
+  anchor
   internal {
-    ... on Webinar {
-      contentType: _type
-      slug {
-        current
-      }
-    }
-    ... on NewsPost {
-      contentType: _type
-      slug {
-        current
-      }
-    }
-    ... on PlanningCorePage {
-      contentType: _type
-    }
-    ... on PolicyPage {
-      contentType: _type
-      slug {
-        current
-      }
-    }
+    ...InternalLinkFields
   }
 }

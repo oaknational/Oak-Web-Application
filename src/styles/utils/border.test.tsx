@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import { border } from "./border";
 
@@ -65,7 +65,7 @@ describe("border", () => {
     const StyledComponent = styled.div`
       ${border}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $borderColor={"grey3"} />
     );
 
@@ -75,7 +75,7 @@ describe("border", () => {
     const StyledComponent = styled.div`
       ${border}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $borderRadius={32} />
     );
 

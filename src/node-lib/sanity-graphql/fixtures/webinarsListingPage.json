@@ -1,0 +1,25 @@
+{
+  "allWebinarListingPage": [
+    {
+      "id": "webinarListingPage",
+      "title": "Webinars",
+      "heading": "Inspiration for inside and outside the classroom",
+      "summary": [
+        {
+          "_key": "f6d8ab7ad65c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7e9f9fbf24910",
+              "_type": "span",
+              "marks": [],
+              "text": "Join us for a webinar to learn how to get the most out of Oak. All videos are recorded, captioned and uploaded after each event."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  ]
+}

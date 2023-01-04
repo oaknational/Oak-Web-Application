@@ -7,7 +7,6 @@ import Circle from "../Circle";
 import { OakColorName } from "../../styles/theme";
 import Typography from "../Typography";
 import CardLink from "../Card/CardLink";
-import { headingDefaults } from "../Typography/Heading";
 import { zIndexMap } from "../../styles/utils/zIndex";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
@@ -40,12 +39,11 @@ const AnchorLink = styled(CardLink)`
     top: -96px;
   }
 `;
-const LinkText: FC = (props) => (
+const LinkText: FC<{ children?: React.ReactNode }> = (props) => (
   <Typography
-    {...headingDefaults}
     $position="absolute"
     $top={"100%"}
-    $fontSize={16}
+    $font={"heading-7"}
     $textAlign="center"
     $mt={16}
     {...props}
@@ -60,7 +58,7 @@ const GraphicCircle: FC<GraphicCircleProps> = ({
   $background = "teachersPastelYellow",
 }) => (
   <Circle size={72} $background={$background} $dropShadow="grey20">
-    <Icon $pa={0} size={48} name={icon}></Icon>
+    <Icon $pa={0} size={48} name={icon} />
   </Circle>
 );
 
@@ -92,8 +90,8 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer>
           <GraphicCircle icon="Quiz" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.introQuiz}`}>
-              Intro Quiz
+            <AnchorLink page={null} href={`#${linkTargetIds.introQuiz}`}>
+              Intro quiz
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -102,15 +100,15 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
             <GraphicCircle
               $zIndex="neutral"
               icon="Presentation"
-              $background="pastelTurqoise"
+              $background="pastelTurquoise"
             />
             <OverlapBehind>
               <GraphicCircle icon="Video" />
             </OverlapBehind>
           </Flex>
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.video}`}>
-              Lesson Slides or Video
+            <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
+              Lesson slides or video
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -122,7 +120,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer>
           <GraphicCircle icon="Worksheet" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.worksheet}`}>
+            <AnchorLink page={null} href={`#${linkTargetIds.worksheet}`}>
               Worksheet
             </AnchorLink>
           </LinkText>
@@ -131,8 +129,8 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         <GraphicContainer $mr={0}>
           <GraphicCircle icon="Quiz" />
           <LinkText>
-            <AnchorLink href={`#${linkTargetIds.exitQuiz}`}>
-              Exit Quiz
+            <AnchorLink page={null} href={`#${linkTargetIds.exitQuiz}`}>
+              Exit quiz
             </AnchorLink>
           </LinkText>
         </GraphicContainer>

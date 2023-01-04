@@ -1,0 +1,16 @@
+query allPolicyPages($isDraftFilter: Sanity_DocumentFilter, $limit: Int = 9999) {
+  allPolicyPage(
+    where: { _: $isDraftFilter }
+    sort: [{ _updatedAt: DESC }]
+    limit: $limit
+  ) {
+    id: _id
+    title
+    slug {
+      current
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

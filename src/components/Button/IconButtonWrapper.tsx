@@ -5,7 +5,7 @@ import {
   ButtonSize,
   ButtonVariant,
   getButtonColor,
-  getButtonHeight,
+  getIconButtonHeight,
 } from "./common";
 
 type IconButtonWrapperProps = {
@@ -14,14 +14,15 @@ type IconButtonWrapperProps = {
   background: ButtonBackground;
 };
 const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 
   ${(props) => css`
-    height: ${getButtonHeight(props.size)}px;
-    width: ${getButtonHeight(props.size)}px;
-    min-width: ${getButtonHeight(props.size)}px;
+    height: ${getIconButtonHeight(props.size, props.variant)}px;
+    width: ${getIconButtonHeight(props.size, props.variant)}px;
+    min-width: ${getIconButtonHeight(props.size, props.variant)}px;
     color: ${getButtonColor(props.background, props.variant)};
   `}
 

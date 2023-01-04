@@ -1,0 +1,13 @@
+fragment ImageWithAltText on ImageWithAltText {
+  altText
+  isPresentational
+  asset {
+    ...ImageAsset
+  }
+  hotspot {
+    x
+    y
+    width
+    height
+  }
+}

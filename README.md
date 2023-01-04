@@ -26,10 +26,8 @@ Other documentation can be found in standalone READMEs:
 - Docs
   - [Images](./docs/images)
   - [Testing](./docs/testing.md)
+  - [SEO](./docs/seo.md) Meta tags, JSON-LD, sitemaps, robots.txt etc.
 - [Error Handling](./src/errors)
-- Hasura
-  - [Curriculum database](./hasura-curriculum)
-  - [Users database](./hasura-users/)
 - [React Context](./src/context)
 
 ## Getting started
@@ -74,7 +72,7 @@ We use [Husky to run pre-commit and commit message validating hooks](.husky), in
 Currently this hook
 
 - Formats the code using Prettier
-- Runs the linting
+- Runs style and code linting
 - Runs the unit tests
 
 #### Commit Message Validation
@@ -98,64 +96,9 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 #### Required Environment Variables for Builds
 
-**TO DO**
-
-- `SOMETHING_TO_DO_WITH_HASURA` - So secret.
-
 ### Release Mechanism
 
 - All changes to the `main` branch must happen through pull requests.
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
 - All commits on `main` will trigger a Vercel deploy, but non-release commits ([according to the commit message structure](scripts/build/cancel_vercel_build.js)), will be cancelled.
 - The Vercel deployment will trigger the `deployment_checks` Github workflow.
-
-## Npm dependencies
-
-This documentation should be upto-date with the dependencies (not dev-) in package.json with an explanation of what it is.
-
-This should help us avoid adding modules which duplicate functionality.
-
-- @bugsnag/js
-
-  - Main Bugsnag library (for bug reporting and tracking).
-
-- @bugsnag/plugin-react
-
-  - React library for Bugsnag
-
-- @hookform/resolvers
-
-  - Validation resolvers for react-hook-form (allows us to use zod schema for validation)
-
-- firebase
-
-  - Clientside firebase library
-
-- firebase-admin
-
-  - Backend (admin) firebase library
-
-- next
-
-- next-seo
-
-  - SEO library for Nextjs applications
-
-- node-fetch
-
-  - Fetch implementation for nodejs
-
-- react
-
-- react-dom
-
-- react-hook-form
-
-  - Forms library for react
-
-- styled-components
-
-  - Styling library for react
-
-- zod
-  - Types

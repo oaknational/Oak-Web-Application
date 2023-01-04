@@ -1,8 +1,10 @@
 import { FC } from "react";
 import type { AppProps } from "next/app";
-import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
 import { SSRProvider } from "@react-aria/ssr";
+import { OverlayProvider } from "react-aria";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -11,20 +13,26 @@ import "../browser-lib/gleap/gleap.css";
 import "../browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "../styles/GlobalStyle";
 import SpriteSheet from "../components/SpriteSheet";
-import { AuthProvider } from "../context/Auth";
-import useApolloClient from "../browser-lib/graphql/useApolloClient";
-import { SearchProvider } from "../context/Search/SearchContext";
 import ErrorBoundary from "../components/ErrorBoundary";
-import { BookmarksProvider } from "../context/Bookmarks";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
 import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";
-import AnalyticsProvider from "../context/Analytics/AnalyticsProvider";
+import AnalyticsProvider, {
+  AnalyticsProviderProps,
+} from "../context/Analytics/AnalyticsProvider";
 import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
+import { SearchProvider } from "../context/Search/SearchContext";
+import { ToastProvider } from "../context/Toast";
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
-  const apolloClient = useApolloClient();
+type OakWebApplicationProps = AppProps & {
+  analyticsOptions: AnalyticsProviderProps;
+};
+const OakWebApplication: FC<OakWebApplicationProps> = ({
+  Component,
+  pageProps,
+  analyticsOptions,
+}) => {
   const { theme } = useOakTheme();
 
   return (
@@ -34,28 +42,28 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <ThemeProvider theme={theme}>
           <ErrorBoundary>
             <SSRProvider>
-              <AnalyticsProvider>
-                <AuthProvider>
-                  <ApolloProvider client={apolloClient}>
-                    <BookmarksProvider>
-                      <SearchProvider>
-                        <DefaultSeo />
-                        <MenuProvider>
+              <PostHogProvider client={posthog}>
+                <AnalyticsProvider {...analyticsOptions}>
+                  <DefaultSeo />
+                  <OverlayProvider>
+                    <SearchProvider>
+                      <MenuProvider>
+                        <ToastProvider>
                           <Component {...pageProps} />
-                        </MenuProvider>
-                        <SpriteSheet />
-                        <AppHooks />
-                      </SearchProvider>
-                    </BookmarksProvider>
-                  </ApolloProvider>
-                </AuthProvider>
-              </AnalyticsProvider>
+                          <AppHooks />
+                        </ToastProvider>
+                      </MenuProvider>
+                    </SearchProvider>
+                  </OverlayProvider>
+                </AnalyticsProvider>
+              </PostHogProvider>
             </SSRProvider>
           </ErrorBoundary>
+          <SpriteSheet />
         </ThemeProvider>
       </CookieConsentProvider>
     </>
   );
 };
 
-export default MyApp;
+export default OakWebApplication;

@@ -8,6 +8,11 @@ jest.mock("@react-aria/ssr/dist/main", () => ({
   useSSRSafeId: () => "react-aria-generated-id",
 }));
 
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useId: () => "react-use-id-test-result",
+}));
+
 jest.mock("@bugsnag/js", () => ({
   __esModule: true,
   default: {
@@ -24,24 +29,17 @@ jest.mock("@bugsnag/js", () => ({
   },
 }));
 
-// @todo move thes mocks into __mocks__ folder and import into tests that use them
-jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(() => ({ config: {} })),
-  onIdTokenChanged: jest.fn(() => () => undefined),
-  onAuthStateChanged: jest.fn(() => () => undefined),
-  isSignInWithEmailLink: jest.fn(() => true),
-  signInWithEmailLink: jest.fn(async () => ({
-    user: { email: "test@thenational.academy" },
-  })),
-  sendSignInLinkToEmail: jest.fn(async () => undefined),
-  signOut: jest.fn(async () => undefined),
-}));
+jest.mock("./src/node-lib/curriculum-api", () =>
+  jest.requireActual("./src/node-lib/curriculum-api/__mocks__")
+);
 
-export class FirebaseError extends Error {}
-jest.mock("firebase/app", () => ({
-  initializeApp: jest.fn(),
-  FirebaseError,
-}));
+jest.mock(
+  "./src/browser-lib/cookie-consent/confirmic/metomic-react.hacked.ts",
+  () => ({
+    __esModule: true,
+    MetomicProvider: ({ children }) => children,
+  })
+);
 
 jest.mock("posthog-js", () => ({
   __esModule: true,

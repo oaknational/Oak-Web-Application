@@ -1,21 +1,23 @@
-import { FC } from "react";
+import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
-import { FocusScope } from "react-aria";
 import { Transition, TransitionStatus } from "react-transition-group";
+import { useRouter } from "next/router";
+import { FocusOn } from "react-focus-on";
 
 import { useMenuContext } from "../../context/Menu/";
-import { OakColorName } from "../../styles/theme/types";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
+import { OakColorName, PixelSpacing } from "../../styles/theme/types";
 import Flex from "../Flex";
-import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
 import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
+import SocialButtons from "../SocialButtons";
+import Svg from "../Svg";
+import Box from "../Box";
+import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 
 import MenuBackdrop from "./MenuBackdrop";
 
 export type MenuConfig = {
-  width: string;
-  color: OakColorName;
+  width: PixelSpacing;
   background: OakColorName;
 };
 
@@ -24,14 +26,7 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
-  ${zIndex}
-  background: ${(props) => getColorByName(props.background)};
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 0 0 0 16px;
+const SideMenu = styled(Flex)<TransitionProps>`
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -45,59 +40,103 @@ const SideMenu = styled(Flex)<MenuConfig & TransitionProps & ZIndexProps>`
         return "translate3D(100%, 0, 0)";
     }
   }};
+  visibility: ${(props) => {
+    switch (props.state) {
+      case "entering":
+        return "visible";
+      case "entered":
+        return "visible";
+      case "exiting":
+        return "visible";
+      case "exited":
+        return "hidden";
+    }
+  }};
 `;
 
-SideMenu.defaultProps = {
-  $width: ["100%", "40%"],
+type MenuProps = HTMLProps<HTMLButtonElement> & {
+  menuButtonRef: RefObject<HTMLButtonElement> | null;
 };
 
-const MenuHeader = styled(Flex)`
-  position: fixed;
-  right: 0;
-  top: 20px;
-  width: 30px;
-`;
-
-const Menu: FC = ({ children }) => {
-  const { open, toggleMenu } = useMenuContext();
+const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
+  const { open, closeMenu } = useMenuContext();
   const theme = useTheme();
-  const { menu } = theme;
-  const { background, color, width } = menu;
+  const { menu: menuConfig } = theme;
+  const { pathname } = useRouter();
+  const ref = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname, closeMenu]);
+
+  const giveFocus = () => {
+    closeButtonRef.current?.focus();
+  };
+
+  const removeFocus = () => {
+    menuButtonRef?.current?.focus();
+  };
 
   return (
-    <Transition timeout={transitionDuration} in={open} unmountOnExit>
+    <Transition
+      nodeRef={ref}
+      timeout={transitionDuration}
+      in={open}
+      onEntering={giveFocus}
+      onExited={removeFocus}
+    >
       {(state) => (
-        <>
+        <Box $position="absolute" ref={ref}>
           <MenuBackdrop state={state} />
-          <FocusScope contain restoreFocus autoFocus>
+          <FocusOn
+            enabled={open}
+            onClickOutside={closeMenu}
+            onEscapeKey={closeMenu}
+          >
             <SideMenu
+              data-testid={"menu"}
+              $position="fixed"
+              $top={0}
+              $right={0}
+              $height="100%"
+              $maxWidth="100%"
+              $width={menuConfig.width}
               $flexDirection={"column"}
-              background={background}
-              color={color}
-              width={width}
+              $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
             >
-              <MenuHeader
-                $justifyContent={"right"}
-                $alignItems={"center"}
-                $pr={16}
-              >
+              <Svg
+                name="LoopingLine"
+                $display={["none", "block"]}
+                $color={"pupilsPink"}
+                $zIndex={"behind"}
+                $cover
+              />
+              <Svg
+                name="LoopingLine2"
+                $display={["block", "none"]}
+                $color={"pupilsPink"}
+                $zIndex={"behind"}
+                $cover
+              />
+              <Box $position={"fixed"} $top={20} $right={16}>
                 <IconButton
                   aria-label="Close Menu"
                   icon={"Cross"}
                   variant={"minimal"}
-                  size={"header"}
-                  onClick={() => {
-                    toggleMenu();
-                  }}
+                  size={"large"}
+                  onClick={closeMenu}
+                  ref={closeButtonRef}
                 />
-              </MenuHeader>
+              </Box>
               <Flex
                 $flexDirection={"column"}
-                $overflow={"auto"}
+                $overflowY={"auto"}
                 $flexGrow={1}
-                $pt={[12, 72]}
+                $pv={[12, 72]}
+                $ph={[16, 72]}
               >
                 {/* Mobile logo */}
                 <Flex
@@ -114,22 +153,24 @@ const Menu: FC = ({ children }) => {
                 {children}
                 {/* Desktop logo */}
                 <Flex
-                  $justifyContent={"right"}
                   $mt={"auto"}
-                  $mb={72}
-                  $mr={[0, 72]}
-                  $display={["none", "flex"]}
+                  $pt={48}
+                  $justifyContent={"space-between"}
+                  $alignItems={"flex-end"}
                 >
-                  <Logo
-                    title={"Oak National Academy"}
-                    width={150}
-                    height={63}
-                  />
+                  <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
+                  <Flex $display={["none", "flex"]} $mb={6}>
+                    <Logo
+                      title={"Oak National Academy"}
+                      width={150}
+                      height={63}
+                    />
+                  </Flex>
                 </Flex>
               </Flex>
             </SideMenu>
-          </FocusScope>
-        </>
+          </FocusOn>
+        </Box>
       )}
     </Transition>
   );

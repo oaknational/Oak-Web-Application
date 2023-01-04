@@ -1,6 +1,0 @@
-mutation bookmarkedLessonRemove($lessonId: uuid!, $userId: uuid!) {
-  delete_bookmarkedLessons_by_pk(lessonId: $lessonId, userId: $userId) {
-    lessonId
-    userId
-  }
-}

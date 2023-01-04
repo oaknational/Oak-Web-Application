@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 
 import { AllTheProviders } from "../../__tests__/__helpers__/renderWithProviders";
 
@@ -20,7 +20,7 @@ describe("useAnalytics", () => {
     const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
 
     act(() => {
-      result.current.track.buttonClicked({ buttonIdentifier: "test" });
+      result.current.track.aboutSelected();
     });
 
     expect(posthogCapture).not.toHaveBeenCalled();
@@ -28,7 +28,7 @@ describe("useAnalytics", () => {
   test("posthog should not be initialised if statistics consent not given", () => {
     const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
     act(() => {
-      result.current.track.buttonClicked({ buttonIdentifier: "test" });
+      result.current.track.developYourCurriculumSelected();
     });
 
     expect(posthogInit).not.toHaveBeenCalled();

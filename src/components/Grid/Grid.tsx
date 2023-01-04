@@ -2,12 +2,7 @@ import styled, { css } from "styled-components";
 
 import { NullablePixelSpacing, PixelSpacing } from "../../styles/theme";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
-
-type GridGapProps = {
-  $rg?: ResponsiveValues<PixelSpacing>;
-  $cg?: ResponsiveValues<PixelSpacing>;
-};
+import Box, { BoxProps } from "../Box";
 
 const parse = (value?: NullablePixelSpacing) => {
   switch (typeof value) {
@@ -18,17 +13,23 @@ const parse = (value?: NullablePixelSpacing) => {
   }
 };
 
-const gridGap = css<GridGapProps>`
+const grid = css<GridProps>`
   ${responsive("grid-row-gap", (props) => props.$rg, parse)}
   ${responsive("grid-column-gap", (props) => props.$cg, parse)}
+  ${responsive("grid-auto-rows", (props) => props.$gridAutoRows)}
 `;
 
-const Grid = styled.div<GridGapProps & SpacingProps>`
+export type GridProps = BoxProps & {
+  $rg?: ResponsiveValues<PixelSpacing>;
+  $cg?: ResponsiveValues<PixelSpacing>;
+  // grid-auto-rows: 1fr; ensures all rows are the same height
+  $gridAutoRows?: ResponsiveValues<"1fr">;
+};
+const Grid = styled(Box)<GridProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
-  ${gridGap}
-  ${spacing}
+  ${grid}
 `;
 
 export default Grid;

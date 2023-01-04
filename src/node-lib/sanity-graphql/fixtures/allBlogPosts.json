@@ -1,0 +1,78 @@
+{
+  "allNewsPost": [
+    {
+      "id": "e0ae4001-2936-4613-b2ad-8fec90ccacfa",
+      "title": "How to design a unit of study",
+      "date": "2022-11-08",
+      "slug": {
+        "current": "how-to-design-a-unit-of-study"
+      },
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
+        "image": {
+          "asset": {
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-a25238ed11492ce082d47e1966cb106db150d905-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/a25238ed11492ce082d47e1966cb106db150d905-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Want inspiration to help you design a unit of study? Our handy guide and short video tutorial take you through the steps we follow."
+    },
+    {
+      "id": "d85662d3-e3f0-450f-bc87-ff6777abacb1",
+      "title": "Bid to partner with Oak",
+      "date": "2022-11-02",
+      "slug": {
+        "current": "bid-to-partner-with-oak"
+      },
+      "author": {
+        "id": "tm-cf-jonathan-dando",
+        "_key": null,
+        "name": "Jonathan Dando",
+        "role": "School Support Director",
+        "image": {
+          "asset": {
+            "_id": "image-c3f82345109a15af9a7a1b95fa63973d86aa9fae-4277x2849-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/c3f82345109a15af9a7a1b95fa63973d86aa9fae-4277x2849.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-0a11408118e658a807e0d885e76ad9e8c56623dc-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/0a11408118e658a807e0d885e76ad9e8c56623dc-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "summary": "Got a great set of resources? We're investing £8 million in developing and sharing curriculum materials – here's how you can bid."
+    }
+  ]
+}

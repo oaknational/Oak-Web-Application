@@ -4,7 +4,6 @@ import { css } from "styled-components";
 import responsive, { ResponsiveValues } from "./responsive";
 
 export type FlexCssProps = {
-  $display?: ResponsiveValues<CSSProperties["display"]>;
   $flexDirection?: ResponsiveValues<CSSProperties["flexDirection"]>;
   $alignItems?: ResponsiveValues<CSSProperties["alignItems"]>;
   $justifyContent?: ResponsiveValues<CSSProperties["justifyContent"]>;
@@ -12,10 +11,10 @@ export type FlexCssProps = {
   $flexGrow?: ResponsiveValues<CSSProperties["flexGrow"]>;
   $flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
   $alignSelf?: ResponsiveValues<CSSProperties["alignSelf"]>;
+  $flexShrink?: ResponsiveValues<CSSProperties["flexShrink"]>;
 };
 
 const flex = css<FlexCssProps>`
-  ${responsive("display", (props) => props.$display || "flex")}
   ${responsive("flex-direction", (props) => props.$flexDirection)}
   ${responsive("align-items", (props) => props.$alignItems)}
   ${responsive("justify-content", (props) => props.$justifyContent)}
@@ -23,6 +22,7 @@ const flex = css<FlexCssProps>`
   ${responsive("flex-grow", (props) => props.$flexGrow)}
   ${responsive("flex-wrap", (props) => props.$flexWrap)}
   ${responsive("align-self", (props) => props.$alignSelf)}
+  ${responsive("flex-shrink", (props) => props.$flexShrink)}
 `;
 
 export default flex;

@@ -12,11 +12,11 @@ describe("components/SiteHeader", () => {
   });
 
   test("it should contain a link to classroom", () => {
-    const { getByText } = renderWithProviders(<SiteHeader />);
+    const { getByTestId } = renderWithProviders(<SiteHeader />);
 
-    expect(getByText("Classroom").closest("a")).toHaveAttribute(
+    expect(getByTestId("SiteHeaderClassroomLink").closest("a")).toHaveAttribute(
       "href",
-      "https://classroom.thenational.academy/"
+      "https://classroom.thenational.academy"
     );
   });
 
@@ -25,20 +25,30 @@ describe("components/SiteHeader", () => {
 
     expect(getByText("Teacher Hub").closest("a")).toHaveAttribute(
       "href",
-      "https://teachers.thenational.academy/"
+      "https://teachers.thenational.academy"
     );
   });
 
   test("clicking on the hamburger button opens the menu", async () => {
-    const { getByLabelText, queryByText } = renderWithProviders(<SiteHeader />);
+    const { getByLabelText, getByTestId } = renderWithProviders(<SiteHeader />);
 
     const user = userEvent.setup();
     const hamburgerButton = getByLabelText("Menu");
-    expect(queryByText("Home")).not.toBeInTheDocument;
+    expect(getByTestId("menu")).not.toBeVisible();
 
     await user.click(hamburgerButton);
-    expect(queryByText("Home")).toBeInTheDocument;
+    expect(getByTestId("menu")).toBeVisible();
   });
 
-  test.todo("Open from keyboard");
+  test("menu can be opened from keyboard", async () => {
+    const { queryByText } = renderWithProviders(<SiteHeader />);
+
+    const user = userEvent.setup();
+    expect(queryByText("Home")).not.toBeVisible();
+
+    await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
+    await user.keyboard("{Enter}");
+    expect(queryByText("Home")).toBeVisible();
+  });
 });

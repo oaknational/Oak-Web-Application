@@ -2,7 +2,6 @@ import { FC } from "react";
 import styled from "styled-components";
 import { usePreventScroll } from "react-aria";
 
-import { useMenuContext } from "../../context/Menu/";
 import { OakColorName } from "../../styles/theme";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 
@@ -12,7 +11,11 @@ type BackdropProps = {
   background: OakColorName;
 };
 
-const Backdrop = styled.button<BackdropProps & TransitionProps>`
+/**
+ * Making this a div rather than a button so that it's not exposed to the
+ * accessiblity api (there is already an accessible close menu button)
+ */
+const Backdrop = styled.div<BackdropProps & TransitionProps>`
   position: fixed;
   top: 0;
   right: 0;
@@ -35,19 +38,24 @@ const Backdrop = styled.button<BackdropProps & TransitionProps>`
         return "0";
     }
   }};
+  visibility: ${(props) => {
+    switch (props.state) {
+      case "entering":
+        return "visible";
+      case "entered":
+        return "visible";
+      case "exiting":
+        return "visible";
+      case "exited":
+        return "hidden";
+    }
+  }};
 `;
 
 const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
-  const { toggleMenu } = useMenuContext();
-  usePreventScroll();
+  usePreventScroll({ isDisabled: state === "exited" });
   return (
-    <Backdrop
-      onClick={() => {
-        toggleMenu();
-      }}
-      background="black"
-      state={state}
-    />
+    <Backdrop background="black" state={state} data-testid={"menu-backdrop"} />
   );
 };
 

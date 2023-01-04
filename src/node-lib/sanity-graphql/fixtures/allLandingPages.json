@@ -1,0 +1,15 @@
+{
+  "allLandingPage": [
+    {
+      "id": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+      "slug": {
+        "current": "lesson-and-resource-directory"
+      },
+      "seo": {
+        "title": "Download our Lesson & Resource Directory",
+        "description": "Get your copy of our Lesson & Resource Directory: a downloadable document detailing every single one of the thousands of resources we have available in our Teacher Hub.",
+        "canonicalURL": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allNewsPost(
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    date
+    author {
+      id: _id
+      _key
+      name
+      role
+      image {
+        ...Image
+      }
+    }
+    slug {
+      current
+    }
+    mainImage {
+      ...ImageWithAltText
+    }
+    category {
+      title
+      slug {
+        current
+      }
+    }
+    # See resolveSanityReferences and portableTextReferences.gql
+    # to see how the content is transformed to add
+    # referenced entities
+    summary
+    contentPortableText: contentRaw
+    seo {
+      ...Seo
+    }
+  }
+}

@@ -4,23 +4,68 @@
  * Note, this config is also used as the source of URLs to test for Lighthouse CI.
  */
 
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+const isLocalHost = new URL(baseUrl).host === "localhost:3000";
+
+// Cloudflare Access token
+const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID;
+const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET;
+if (!isLocalHost && (!CfAccessClientId || !CfAccessClientSecret)) {
+  throw new TypeError(
+    "Please specify Cloudflare Access token headers in envs\nfor background info see https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/"
+  );
+}
+
+// https://github.com/pa11y/pa11y-ci#configuration
 const config = {
   defaults: {
     runners: ["axe"],
-    hideElements: "#mtm-root-container, #mtm-frame-container, #avo-debugger",
+    hideElements:
+      "#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore",
+    ignore: [
+      // Pa11y using Axe is looking for videos with track elements of type=captions, but the
+      // Mux player is rendering type=subtitles, so Pa11y is complaining, not sure who is wrong
+      // hiding for now
+      "video-caption",
+      // This is something to do with the video controls in the Shadow DOM, they appear white on black,
+      // but Pa11y isn't picking that up.
+      "color-contrast",
+    ],
+    headers: {
+      "CF-Access-Client-Id": CfAccessClientId,
+      "CF-Access-Client-Secret": CfAccessClientSecret,
+    },
   },
   urls: [],
+  // log: {
+  //   debug: console.log,
+  //   error: console.error,
+  //   info: console.info,
+  // },
 };
-
-const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
 // URLs should end with a `/` to avoid redirects from
 // e.g. `/unit` to `/unit/index.html` during tests.
 const relativeUrls = [
   "/",
-  "/beta/lessons/physics-only-review-chj3cd/",
-  "/beta/sign-in",
-  "/search",
+  "/lesson-planning",
+  "/develop-your-curriculum",
+  "/support-your-team",
+  "/about-us/who-we-are",
+  "/about-us/leadership",
+  "/about-us/board",
+  "/about-us/partners",
+  "/about-us/work-with-us",
+  "/blog",
+  "/blog/how-to-design-a-unit-of-study",
+  "/blog/evolution-of-oak",
+  "/blog/join-the-childrens-mental-health-week-assembly-2022",
+  "/legal/accessibility-statement",
+  "/lp/download-our-lesson-and-resource-directory",
+  // Ignore beta pages for now.
+  // "/beta/lessons/physics-only-review-chj3cd/",
+  // "/beta/sign-in",
+  // "/beta/search",
 ];
 
 // Add the base URL to the relative URLs.

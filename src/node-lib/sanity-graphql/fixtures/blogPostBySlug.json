@@ -1,0 +1,433 @@
+{
+  "allNewsPost": [
+    {
+      "id": "e0ae4001-2936-4613-b2ad-8fec90ccacfa",
+      "title": "How to design a unit of study",
+      "date": "2022-11-08",
+      "author": {
+        "id": "cc874b80-6149-45dd-9fe4-7894de9dde7a",
+        "_key": null,
+        "name": "Chris Fountain",
+        "role": "Subject Lead (English)",
+        "image": {
+          "asset": {
+            "_id": "image-6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/6ba6f4ff69bcedd5a5e379c466b0f8747d589b07-2337x2337.jpg"
+          },
+          "hotspot": null
+        }
+      },
+      "slug": {
+        "current": "how-to-design-a-unit-of-study"
+      },
+      "mainImage": {
+        "altText": null,
+        "isPresentational": true,
+        "asset": {
+          "_id": "image-a25238ed11492ce082d47e1966cb106db150d905-720x480-png",
+          "url": "https://cdn.sanity.io/images/cuvjke51/production/a25238ed11492ce082d47e1966cb106db150d905-720x480.png"
+        },
+        "hotspot": null
+      },
+      "category": {
+        "title": "Curriculum planning",
+        "slug": {
+          "current": "curriculum-planning"
+        }
+      },
+      "summary": "Want inspiration to help you design a unit of study? Our handy guide takes you through the steps we follow.",
+      "contentPortableText": [
+        {
+          "_key": "c4450580080b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d8b72c49e7480",
+              "_type": "span",
+              "marks": [],
+              "text": "Are you designing a unit of study from scratch or updating one you already have? It can be hard to know where to start. We’re sharing six steps to inspire and inform the way you design coherent and purposeful units for your pupils."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7b076ec06ec8",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9f4dc1a5a9040",
+              "_type": "span",
+              "marks": [],
+              "text": "Follow these steps to:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "13b07b36a527",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "01c54c1b85ea0",
+              "_type": "span",
+              "marks": [],
+              "text": "identify the most important content for supporting you to meet your curriculum aims;"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "7d6abce6720c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8b14f503d2d50",
+              "_type": "span",
+              "marks": [],
+              "text": "sequence the content into a logical unit plan; and,"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "9873498ce21e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ad465809c1690",
+              "_type": "span",
+              "marks": [],
+              "text": "create effective lesson resources."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "4a62aec854eb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "c4b9491289a40",
+              "_type": "span",
+              "marks": [],
+              "text": "Video guide"
+            }
+          ],
+          "markDefs": [],
+          "style": "sectionHeading"
+        },
+        {
+          "_key": "9f288ae16ad5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "96dabe4f836d0",
+              "_type": "span",
+              "marks": [],
+              "text": "We’ve broken down the approach we take into six steps. Watch Chris Fountain from our Education team explain what you should consider at each stage of the process."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "0b111c8135c3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "87c1f9d2d264",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "13aa75a77eb8",
+          "_ref": "c4db75bb-92ef-4a6a-bd8e-e20e26f63cd0",
+          "_type": "reference"
+        },
+        {
+          "_key": "8764e41067fe",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "3fafbd4099820",
+              "_type": "span",
+              "marks": [],
+              "text": "Six steps to design a unit of study"
+            }
+          ],
+          "markDefs": [],
+          "style": "sectionHeading"
+        },
+        {
+          "_key": "03e054ff5c09",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "560acd94b6360",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Identify the unit’s intended outcome"
+            },
+            {
+              "_key": "d2d637b34256",
+              "_type": "span",
+              "marks": [],
+              "text": "\nStart at the end. Decide what you want pupils to know and be able to do by the end of the unit.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3057ef91fcdd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "afc0e6da9ba2",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Place the unit within your existing curriculum"
+            },
+            {
+              "_key": "69616cbd3add",
+              "_type": "span",
+              "marks": [],
+              "text": "\nFind units within your existing curriculum that closely match your new unit, so you can make sure knowledge and ideas develop sequentially and logically.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cdc4fe9f9b0a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cda647fccf49",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Decide on the unit’s core content and vocabulary"
+            },
+            {
+              "_key": "0bce9dbe44d1",
+              "_type": "span",
+              "marks": [],
+              "text": "\nWrite down the key learning points, tier 2 and tier 3 vocabulary that pupils need to learn so you can make sure it’s incorporated.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "2088c3c7d1bb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "28181dd23cb8",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Sequence the content and create a unit plan"
+            },
+            {
+              "_key": "4ab3edd5655b",
+              "_type": "span",
+              "marks": [],
+              "text": "\nWork out how many lessons you have available to teach the unit and put together a plan that lists each lesson in a sequence.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d037df238c5f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "264bff02e597",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Create the lesson resources in blocks"
+            },
+            {
+              "_key": "4665f23bf3da",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIt helps to create the lesson resources in blocks of three or four, so you can create consistency and links between them.\n"
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "89f5e9e0ebe6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "8173872c657e",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Review and iterate"
+            },
+            {
+              "_key": "1bd35a0d073a",
+              "_type": "span",
+              "marks": [],
+              "text": "\nEach time the unit is taught, gather feedback from the teachers and then iterate the unit to reflect the feedback."
+            }
+          ],
+          "level": 1,
+          "listItem": "number",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "428065d6eb27",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "247decda94cf",
+              "_type": "span",
+              "marks": [],
+              "text": "Download our free quick guide"
+            }
+          ],
+          "markDefs": [],
+          "style": "sectionHeading"
+        },
+        {
+          "_key": "e8ae750f67cd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "e8720557c262",
+              "_type": "span",
+              "marks": [],
+              "text": "Access our free quick guide. It includes prompt questions for each of the steps, which you can use to guide your next planning session.\n\nSave the document to your Google Drive by clicking on File > Make a copy. Or download a copy by clicking on File > Download."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "aa115af24cd9",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ce7a26aef51c",
+              "_type": "span",
+              "marks": [],
+              "text": "\n"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "011119ee2682",
+          "_type": "cta",
+          "external": "https://docs.google.com/document/d/1ShYtOCs1sQIriL4mN0ma6L0VlChdm1D1Sa5grNnH9N8/edit?usp=sharing",
+          "label": "Download our quick guide",
+          "linkType": "external"
+        },
+        {
+          "_key": "9498c616a7ec",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "844b928c8433",
+              "_type": "span",
+              "marks": [],
+              "text": "\n"
+            },
+            {
+              "_key": "9ade0631fb61",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Looking for more support around curriculum design? "
+            },
+            {
+              "_key": "d7bee6c3b7c1",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our guidance on "
+            },
+            {
+              "_key": "820db89c0dd3",
+              "_type": "span",
+              "marks": ["359108078038"],
+              "text": "designing a subject curriculum"
+            },
+            {
+              "_key": "f11699e715d8",
+              "_type": "span",
+              "marks": [],
+              "text": " and "
+            },
+            {
+              "_key": "f0c34174a29c",
+              "_type": "span",
+              "marks": ["238467f5286d"],
+              "text": "refreshing your curriculum using Oak units"
+            },
+            {
+              "_key": "23a38992c39d",
+              "_type": "span",
+              "marks": [],
+              "text": ". "
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "359108078038",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "a4e50440-d1a6-499f-a507-e0298d39a5a1",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "238467f5286d",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "cea99f06-77a8-49bf-a608-39b3b572b86d",
+                "_type": "reference"
+              }
+            }
+          ],
+          "style": "normal"
+        }
+      ],
+      "seo": {
+        "title": "How To Design A Unit Of Study",
+        "description": "Want inspiration to help you design a unit of study? Our handy guide takes you through the steps we follow.",
+        "canonicalURL": null
+      }
+    }
+  ]
+}

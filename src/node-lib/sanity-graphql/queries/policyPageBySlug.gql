@@ -1,0 +1,18 @@
+query policyPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allPolicyPage(
+    sort: { _updatedAt: DESC }
+    limit: 1
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+  ) {
+    id: _id
+    title
+    lastUpdatedAt: _updatedAt
+    slug {
+      current
+    }
+    bodyPortableText: bodyRaw
+    seo {
+      ...Seo
+    }
+  }
+}

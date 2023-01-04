@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import * as NextImage from "next/image";
+import { RouterContext } from "next/dist/shared/lib/router-context";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
@@ -34,15 +35,18 @@ export const parameters = {
   options: {
     storySort: {
       method: "alphabetical",
-      order: ["Foundations"],
+      // Leave "Introduction" first so that user lands there
+      order: ["Introduction"],
     },
-    // defaults to "docs" view
-    viewMode: "docs",
   },
+  viewMode: "docs",
   previewTabs: {
     canvas: {
       hidden: true,
     },
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 };
 
@@ -53,13 +57,10 @@ const withThemeProvider = (Story, context) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap"
+          href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
           rel="stylesheet"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
-          rel="stylesheet"
-        />
+
         <Story {...context} />
         <SpriteSheet />
       </ThemeProvider>

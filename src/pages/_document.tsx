@@ -7,7 +7,7 @@ import Document, {
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-import config from "../config";
+import config from "../config/browser";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -41,18 +41,40 @@ class MyDocument extends Document {
       <Html lang="en-GB">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap"
-            rel="stylesheet"
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossOrigin="use-credentials"
+          />
+          <link
+            href="https://googleapis-fonts.thenational.academy/css2?family=Lexend:wght@300;400;600&display=swap"
             rel="stylesheet"
           />
+
           <meta name="release-stage" content={config.get("releaseStage")} />
           <meta name="revised" content={new Date().toUTCString()} />
           <meta name="version" content={config.get("appVersion")} />
-          {/* Remove before launch https://github.com/oaknational/Oak-Web-Application/issues/118 */}
-          <meta name="robots" content="noindex" />
+
+          <meta
+            name="pingdom-uptime-check"
+            content={config.get("pingdomUptimeId")}
+          />
         </Head>
         <body>
           <Main />

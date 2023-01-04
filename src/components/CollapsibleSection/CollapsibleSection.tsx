@@ -1,6 +1,7 @@
 import { FC, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
 
+import Button from "../Button";
 import IconButton from "../Button/IconButton";
 import Flex from "../Flex";
 import { IconName } from "../Icon";
@@ -29,6 +30,7 @@ type SummaryButton = {
 };
 
 type CollapsibleSectionProps = {
+  children?: React.ReactNode;
   startOpen: boolean;
   title: string;
   headingTag: HeadingTag;
@@ -74,10 +76,13 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
           $justifyContent={"space-between"}
           $background={"white"}
         >
-          <SummaryHeading $fontSize={24} tag={headingTag}>
-            <a aria-expanded={open} onClick={(e) => handleClick(e)}>
-              {title}
-            </a>
+          <SummaryHeading $font={"heading-5"} tag={headingTag}>
+            <Button
+              variant="minimal"
+              aria-expanded={open}
+              onClick={(e) => handleClick(e)}
+              label={title}
+            />
           </SummaryHeading>
           <Flex>
             {buttons &&

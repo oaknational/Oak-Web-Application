@@ -1,0 +1,28 @@
+query homepage($isDraftFilter: Sanity_DocumentFilter) {
+  allHomepage(
+    where: { _: $isDraftFilter, _id: { matches: "*homepage" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    heading
+    summaryPortableText: summaryRaw
+    sidebarCard1 {
+      ...Card
+    }
+    sidebarCard2 {
+      ...Card
+    }
+    # Disabled until integration PR
+    # sidebarForm {
+    #   title
+    #   bodyPortableText: bodyRaw
+    #   hubspotForm: form {
+    #     id: value
+    #   }
+    # }
+    seo {
+      ...Seo
+    }
+  }
+}

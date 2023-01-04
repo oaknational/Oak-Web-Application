@@ -5,8 +5,9 @@
 import { z } from "zod";
 
 import errorReporter from "../../../common-lib/error-reporter";
-import config from "../../../config";
+import config from "../../../config/browser";
 import OakError, { ErrorMeta } from "../../../errors/OakError";
+import { UtmParams } from "../../../hooks/useUtmParams";
 
 import getHubspotFormPayload from "./getHubspotFormPayload";
 import getHubspotUserToken from "./getHubspotUserToken";
@@ -73,7 +74,7 @@ export type HubspotFormData = {
    * form value. It is stripped out in getHubspotFormPayload.
    */
   userRole: UserRole | "";
-};
+} & UtmParams;
 type HubspotSubmitFormProps = {
   hubspotFormId: string;
   data: HubspotFormData;

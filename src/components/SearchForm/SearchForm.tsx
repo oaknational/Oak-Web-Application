@@ -22,7 +22,7 @@ const SearchForm: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     e.preventDefault();
     setText(value);
-    router.push("/search");
+    router.push("/beta/search");
   };
 
   const onTextChange = (e: FormEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ const SearchForm: FC = () => {
         value={value}
         type="search"
         onChange={onTextChange}
-        aria-label="Search"
+        label="Search"
         placeholder="Search"
       />
       <IconButton

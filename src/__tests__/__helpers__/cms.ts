@@ -1,4 +1,9 @@
-import { PortableTextJSON, SanityImage } from "../../node-lib/cms";
+import {
+  PortableTextJSON,
+  Image,
+  Seo,
+  Video,
+} from "../../common-lib/cms-types";
 
 /**
  * Return a representation of a string as sanity's "portable text"
@@ -21,11 +26,44 @@ export const portableTextFromString = (text: string): PortableTextJSON => [
   },
 ];
 
-export const mockImageAsset = (id = "abcdef"): SanityImage => {
+export const mockImageAsset = (id = "abcdef"): Image => {
   return {
     asset: {
       _id: `image-${id}-300x300-png`,
       url: `https://cdn.sanity.io/images/p/d/${id}-300x300.png`,
     },
   };
+};
+
+export const mockVideoAsset = (): Video => {
+  return {
+    title: "video title",
+    video: {
+      asset: {
+        assetId: "1234",
+        playbackId: "5678",
+        thumbTime: 1,
+      },
+    },
+  };
+};
+
+export const mockSeo = (seo?: Partial<Seo>): Seo => {
+  return {
+    title: "Mock Page Title",
+    description: "Mock page description",
+    canonicalURL: "/",
+    ...seo,
+  };
+};
+
+// This will be SEO results based on the app processing the result of mockSeo()
+export const mockSeoResult = {
+  title: "MockPageTitle | NEXT_PUBLIC_SEO_APP_NAME",
+  description: "Mock page description",
+  ogTitle: "MockPageTitle | NEXT_PUBLIC_SEO_APP_NAME",
+  ogDescription: "Mock page description",
+  ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+  ogImage: "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
+  ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
 };

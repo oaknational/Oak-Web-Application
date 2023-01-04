@@ -1,6 +1,5 @@
+const { execSync } = require("child_process");
 const { existsSync, readFileSync } = require("fs");
-
-const { version: packageJsonVersion } = require("../../package.json");
 
 /**
  * Attempt to read the SHA of the current Git HEAD from the local file system.
@@ -43,8 +42,8 @@ function getGitRef() {
     // Github Workflow
     process.env.GITHUB_SHA ||
     // GCP Build
-    process.env.COMMIT_SHA ||
-    process.env.TAG_NAME ||
+    process.env.GCP_COMMIT_SHA ||
+    process.env.GCP_TAG_NAME ||
     // Override
     process.env.GIT_SHA_OVERRIDE;
 
@@ -59,7 +58,7 @@ function getGitRef() {
 /**
  * Determine an app version.
  *
- * For production builds use the version from the package.json file.
+ * For production builds parse the version from the Git ref triggering the build.
  * For all other builds use the current Git HEAD SHA.
  *
  * @param {Boolean} isProductionBuild Is this a production build?
@@ -68,7 +67,62 @@ function getGitRef() {
  */
 function getAppVersion(isProductionBuild) {
   if (isProductionBuild) {
-    return `v${packageJsonVersion}`;
+    const appVersionOverride = process.env.OVERRIDE_APP_VERSION;
+    if (appVersionOverride) {
+      return appVersionOverride;
+    }
+
+    // GCP get the tag name.
+    const gcpTagName = process.env.GCP_TAG_NAME;
+    if (gcpTagName) {
+      return `${gcpTagName}-static`;
+    }
+
+    // Vercel or Netlify, parse the release commit message or log.
+    let infoMessage;
+    const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
+    const netlifyCommitRef = process.env.COMMIT_REF;
+    if (vercelCommitMessage) {
+      infoMessage = vercelCommitMessage;
+    } else if (netlifyCommitRef) {
+      const commitRegex = /^([a-zA-Z0-9]){8,}$/;
+      if (!commitRegex.test(netlifyCommitRef)) {
+        throw new TypeError(`Invalid exec input: ${netlifyCommitRef}`);
+      }
+      const netlifyCommitLog = execSync(
+        `git show --no-patch --oneline ${netlifyCommitRef}`,
+        { encoding: "utf8" }
+      );
+      infoMessage = netlifyCommitLog;
+    } else {
+      throw new Error("Could not determine build environment");
+    }
+
+    // DEBUG
+    console.log("infoMessage", infoMessage);
+
+    // Vercel or Netlify
+    // Release commit format defined in release.config.js
+    const releaseCommitFormat = /build\(release [vV]\d+\.\d+\.\d+\):/;
+    const isReleaseCommit = releaseCommitFormat.test(infoMessage);
+    if (isReleaseCommit) {
+      const matches = infoMessage.match(/([vV]\d+\.\d+\.\d+)/);
+      if (matches === null) {
+        throw new TypeError(
+          "Could not extract app version from commit info message"
+        );
+      }
+      let version = matches[0];
+
+      // Differentiate Vercel and Netlify versions for Bugsnag
+      if (process.env.VERCEL) {
+        version = `${version}-vercel`;
+      }
+      return version;
+    }
+
+    // Couldn't figure out production version number, bail.
+    throw new TypeError("Could not determine production version number.");
   } else {
     const gitRef = getGitRef();
     if (!gitRef) {
@@ -80,9 +134,12 @@ function getAppVersion(isProductionBuild) {
   }
 }
 
-const RELEASE_STAGE_TESTING = "testing";
+const RELEASE_STAGE_TESTING = "test";
 const RELEASE_STAGE_DEVELOPMENT = "development";
+const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
+const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
 const RELEASE_STAGE_PREVIEW = "preview";
+const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
 const RELEASE_STAGE_PRODUCTION = "production";
 const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
 /**
@@ -97,8 +154,11 @@ const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
 function getReleaseStage(candidateReleaseStage = RELEASE_STAGE_NOT_DEFINED) {
   switch (candidateReleaseStage) {
     case RELEASE_STAGE_DEVELOPMENT:
+    case RELEASE_STAGE_DEVELOPMENT_NETLIFY:
+    case RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY:
       return RELEASE_STAGE_DEVELOPMENT;
     case RELEASE_STAGE_PREVIEW:
+    case RELEASE_STAGE_PREVIEW_NETLIFY:
       return RELEASE_STAGE_PREVIEW;
     case RELEASE_STAGE_PRODUCTION:
       return RELEASE_STAGE_PRODUCTION;

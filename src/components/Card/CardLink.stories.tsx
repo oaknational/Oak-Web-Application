@@ -15,10 +15,14 @@ export default {
 const Template: ComponentStory<typeof Component> = () => {
   return (
     <Card $background={"grey4"}>
-      <Heading $mt={24} $mb={12} $fontSize={24} tag={"h5"} $color={"grey8"}>
-        <Component href="https://classroom.thenational.academy/">
-          Card link
-        </Component>
+      <Heading
+        $mt={24}
+        $mb={12}
+        $font={"heading-5"}
+        tag={"h5"}
+        $color={"grey8"}
+      >
+        <Component page="pupils-home"> Card link</Component>
       </Heading>
       <P>
         Drop a CardLink component into a Card, pass in an href and the whole

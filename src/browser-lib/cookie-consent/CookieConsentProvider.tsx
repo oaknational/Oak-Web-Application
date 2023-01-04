@@ -11,17 +11,20 @@ import { createContext, FC, useContext } from "react";
 import { MetomicProvider } from "./confirmic/metomic-react.hacked.ts";
 import useConfirmicConsents from "./confirmic/useConfirmicConsents";
 import {
-  CookieConsentChoice,
+  CookieConsent,
+  CookieConsentState,
   CookiePolicyName,
   servicePolicyMap,
   ServiceType,
 } from "./types";
 
-export type CookieConsents = Record<CookiePolicyName, CookieConsentChoice>;
-export type HasConsentedTo = (serviceType: ServiceType) => boolean;
-export type HasConsentedToPolicy = (policyName: CookiePolicyName) => boolean;
+export type CookieConsents = Record<CookiePolicyName, CookieConsent>;
+export type HasConsentedTo = (serviceType: ServiceType) => CookieConsentState;
+export type HasConsentedToPolicy = (
+  policyName: CookiePolicyName
+) => CookieConsentState;
 
-type CookieConsentContext = {
+export type CookieConsentContext = {
   // makes consent manager modal visible
   showConsentManager: () => void;
   // whether the user has granted consent to the latest version of a partular policy
@@ -30,7 +33,9 @@ type CookieConsentContext = {
   hasConsentedToPolicy: HasConsentedToPolicy;
 };
 
-const cookieConsentContext = createContext<CookieConsentContext | null>(null);
+export const cookieConsentContext = createContext<CookieConsentContext | null>(
+  null
+);
 
 export const useCookieConsent = () => {
   const cookieConsentsContext = useContext(cookieConsentContext);
@@ -43,6 +48,7 @@ export const useCookieConsent = () => {
 };
 
 type CookieConsentProviderProps = {
+  children?: React.ReactNode;
   __testMockValue?: CookieConsentContext;
 };
 const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
@@ -58,11 +64,11 @@ const CookieConsentProvider: FC<CookieConsentProviderProps> = (props) => {
   const hasConsentedTo = (serviceType: ServiceType) => {
     const policyName = servicePolicyMap[serviceType];
 
-    return consents[policyName].enabled;
+    return consents[policyName].state;
   };
 
   const hasConsentedToPolicy = (policyName: CookiePolicyName) => {
-    return consents[policyName].enabled;
+    return consents[policyName].state;
   };
 
   return (

@@ -37,21 +37,16 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
     <Component {...args}>
       <CardTitle
         icon={"Download"}
-        iconPosition={"leading"}
+        $iconPosition={"leading"}
         iconSize={32}
         tag={"h4"}
       >
         Title
       </CardTitle>
-      <P $fontSize={16} $mb={24} $color={"grey6"}>
+      <P $font={"body-2"} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
-      <ButtonAsLink
-        $mt={"auto"}
-        label={"Lable"}
-        fullWidth
-        href={"/"}
-      ></ButtonAsLink>
+      <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
     </Component>
   </div>
 );
@@ -65,16 +60,16 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
       />
       <Flex $pa={24} $flexDirection={"column"}>
         <CardTitle tag={"h4"}>Title</CardTitle>
-        <P $fontSize={16} $mb={24} $color={"grey6"}>
+        <P $font={"body-2"} $mb={24} $color={"grey6"}>
           Short snappy description of what this card is about.
         </P>
         <ButtonAsLink
           $mt={"auto"}
           $mb={16}
           label={"Label"}
-          fullWidth
-          href={"/"}
-        ></ButtonAsLink>
+          $fullWidth
+          page={"home"}
+        />
       </Flex>
     </Component>
   </div>
@@ -90,23 +85,22 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
     <Component {...args}>
       <CardTitle
         icon={"Download"}
-        iconPosition={"aboveTitle"}
+        $iconPosition={"aboveTitle"}
         iconSize={80}
         tag={"h4"}
-        textCenter
       >
         Title
       </CardTitle>
-      <P $textAlign="center" $fontSize={16} $mb={24} $color={"grey6"}>
+      <P $textAlign="center" $font={"body-2"} $mb={24} $color={"grey6"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink
         $mb={16}
         $mt={"auto"}
         label={"Label"}
-        fullWidth
-        href={"/"}
-      ></ButtonAsLink>
+        $fullWidth
+        page={"home"}
+      />
     </Component>
   </div>
 );

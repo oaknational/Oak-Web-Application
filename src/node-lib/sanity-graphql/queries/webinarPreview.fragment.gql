@@ -4,5 +4,23 @@ fragment WebinarPreviewFields on Webinar {
   slug {
     current
   }
+  date
+  video {
+    ...Video
+  }
+  hosts {
+    id: _id
+    _key
+    name
+    image {
+      ...Image
+    }
+  }
+  category {
+    title
+    slug {
+      current
+    }
+  }
   summaryPortableText: summaryRaw
 }

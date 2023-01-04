@@ -3,13 +3,16 @@ import styled from "styled-components";
 
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 
+export const ASPECT_RATIOS = ["7:8", "2:3", "1:1", "3:2", "16:9"] as const;
 // Constraining ratio for 1 consistency and 2 option to move to static css
-export type Ratio = "1:1" | "3:2" | "16:9";
+export type Ratio = typeof ASPECT_RATIOS[number];
 export type AspectRatios = ResponsiveValues<Ratio>;
 const ratioPercentageMap: Record<Ratio, number> = {
   "16:9": 56.25,
   "3:2": 66.66,
   "1:1": 100,
+  "2:3": 150,
+  "7:8": 114,
 };
 const ratioToPercentage = (ratio?: Ratio | null) =>
   ratio ? `${ratioPercentageMap[ratio]}%` : undefined;
@@ -30,6 +33,7 @@ const AspectRatioInner = styled.div`
 `;
 
 type AspectRatioProps = {
+  children?: React.ReactNode;
   ratio: AspectRatios;
 };
 /**
@@ -38,9 +42,10 @@ type AspectRatioProps = {
  *
  * ## Usage
  * Use this component when you want to ensure a box has a certain aspect ratio.
- * The 'ratio' prop is repsonsive, so you can pass an array e.g. ["3:2", "16:9"]
+ * Wrap with component with <code>position: relative</code> and a width or min-width
+ * The 'ratio' prop is responsive, so you can pass an array e.g. <code>["3:2", "16:9"]</code>
  * which will result in different aspect ratios on different screen widths.
- * For an example usage, see the CardImage component.
+ * For an example usage, see the <code>CardImage</code> component.
  */
 const AspectRatio: FC<AspectRatioProps> = (props) => {
   const { children, ratio, ...htmlAttrs } = props;

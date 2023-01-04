@@ -5,18 +5,28 @@ import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
-import { LessonControlConfig } from "../../components/LessonControl";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
+import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 
 /**
+ * Adds a finite list of pixel values which we're allowed to use throughout the
+ * app's styles.
+ * Keeping this list finite and explicit means that that (1) consistency is
+ * encouraged and (2) if we want to migrate our styles to a static css solution
+ * e.g. Vanilla Extract, then we can (otherwise we rely on runtime css to
+ * generate classes for adhoc pixel values).
  * @todo use negative number type
  * @see https://stackoverflow.com/questions/21224922/is-there-a-way-to-represent-a-non-negative-integer-in-typescript-so-that-the-com
  */
 export type PixelSpacing =
   | 0
+  | 1
+  | 3
   | 4
+  | 6
   | 8
+  | 10
   | 12
   | 16
   | 20
@@ -26,30 +36,74 @@ export type PixelSpacing =
   | 32
   | 36
   | 40
+  | 44
   | 48
+  | 50
   | 56
   | 64
   | 72
   | 80
+  | 92
+  | 96
+  | 110
   | 120
+  | 130
+  | 140
+  | 150
+  | 160
+  | 166
+  | 172
+  | 200
+  | 220
   | 240
+  | 270
+  | 300
+  | 320
   | 360
+  | 380
+  | 400
+  | 420
+  | 450
   | 480
-  | 1200;
+  | 600
+  | 720
+  | 812
+  | 840
+  | 900
+  | 960
+  | 1280
+  | 1600;
 export type NullablePixelSpacing = PixelSpacing | null;
-export type NegativePixelSpacing = -16 | -12 | -8 | -4;
+export type NegativePixelSpacing =
+  | -36
+  | -32
+  | -28
+  | -24
+  | -20
+  | -16
+  | -12
+  | -8
+  | -4;
 export type PercentSpacing =
   | "100%"
+  | "95%"
   | "90%"
+  | "85%"
   | "80%"
   | "70%"
   | "60%"
+  | "55%"
   | "50%"
   | "40%"
   | "30%"
+  | "33%"
+  | "25%"
   | "20%"
   | "15%"
-  | "10%";
+  | "10%"
+  // vw units sometimes needed to fix edge cages
+  | "28vw";
+export type Unset = "unset";
 
 /**
  * @todo parse theme with zod
@@ -73,7 +127,9 @@ const OakColorNameZod = z.union([
   z.literal("oakGrey2"),
   z.literal("oakGrey3"),
   z.literal("oakGrey4"),
-  z.literal("pastelTurqoise"),
+  z.literal("oakGrey5"),
+  z.literal("oakGrey6"),
+  z.literal("pastelTurquoise"),
   z.literal("warning"),
   z.literal("failure"),
   z.literal("success"),
@@ -92,6 +148,8 @@ const OakColorNameZod = z.union([
   z.literal("teachersLilac"),
   z.literal("teachersHighlight"),
   z.literal("twilight"),
+  z.literal("videoBlue"),
+  z.literal("hyperlink"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;
@@ -159,13 +217,12 @@ export type OakTheme = {
   buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
-  bigInput: InputConfig;
   button: ButtonConfig;
   badge: BadgeConfig;
-  lessonControl: LessonControlConfig;
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
+  video: VideoStyleConfig;
   menu: MenuConfig;
 };
 

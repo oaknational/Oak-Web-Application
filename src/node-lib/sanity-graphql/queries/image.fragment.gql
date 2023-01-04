@@ -1,5 +1,12 @@
 fragment Image on Image {
   asset {
-    ...ImageAsset
+    _id
+    url
+  }
+  hotspot {
+    x
+    y
+    width
+    height
   }
 }

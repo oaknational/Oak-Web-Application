@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 
 import useMenuContext from "./useMenuContext";
 import MenuProvider from "./MenuProvider";
@@ -17,11 +17,23 @@ describe("useMenuContext()", () => {
     const { result } = renderHook(() => useMenuContext(), {
       wrapper: MenuProvider,
     });
-    const { toggleMenu } = result.current;
+    const { openMenu } = result.current;
     act(() => {
-      toggleMenu();
+      openMenu();
     });
 
     expect(result.current.open).toBe(true);
+  });
+
+  test("closeMenu should close menu", () => {
+    const { result } = renderHook(() => useMenuContext(), {
+      wrapper: MenuProvider,
+    });
+    const { closeMenu } = result.current;
+    act(() => {
+      closeMenu();
+    });
+
+    expect(result.current.open).toBe(false);
   });
 });

@@ -1,43 +1,47 @@
-import posthogJs from "posthog-js";
+import { PostHog } from "posthog-js";
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
+import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
+import withQueue from "../analytics/withQueue";
+import config from "../../config/browser";
 
 export type PosthogConfig = {
   apiKey: string;
   apiHost: string;
 };
-const posthog: AnalyticsService<PosthogConfig> = {
-  init: ({ apiKey, apiHost }) => {
-    posthogJs.init(apiKey, {
-      api_host: apiHost,
-      debug: true,
-    });
-  },
+
+export const posthogToAnalyticsServiceWithoutQueue = (
+  client: PostHog
+): AnalyticsService<PosthogConfig> => ({
+  name: "posthog",
+  init: ({ apiKey, apiHost }) =>
+    new Promise((resolve) => {
+      client.init(apiKey, {
+        api_host: apiHost,
+        debug: config.get("releaseStage") !== "production",
+        loaded: () => resolve(),
+        disable_session_recording: true,
+      });
+    }),
   identify: (userId, properties) => {
-    /**
-     * @todo: do we want to let posthog generate the id for us?
-     */
-    posthogJs.identify(userId, properties);
+    client.identify(userId, properties);
   },
   page: () => {
-    posthogJs.capture("$pageview");
+    client.capture("$pageview");
   },
   track: (name, properties) => {
-    posthogJs.capture(name, properties);
+    client.capture(name, properties);
   },
   optIn: () => {
-    posthogJs.opt_in_capturing();
+    if (client.has_opted_out_capturing()) {
+      client.opt_in_capturing();
+    }
   },
   optOut: () => {
-    // Causing posthog to throw exception
-    // posthogJs.opt_out_capturing();
+    client.opt_out_capturing();
   },
-  loaded: () => {
-    /**
-     * @todo actually check if loaded
-     */
-    return true;
-  },
-};
+  state: () => getHasConsentedTo("posthog"),
+});
 
-export default posthog;
+export default (client: PostHog) =>
+  withQueue(posthogToAnalyticsServiceWithoutQueue(client));

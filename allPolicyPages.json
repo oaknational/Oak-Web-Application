@@ -1,0 +1,46 @@
+{
+  "allPolicyPage": [
+    {
+      "id": "45b666a3-dde5-47ed-885b-66b5b9f84190",
+      "title": "Copyright notice",
+      "slug": {
+        "current": "copyright-notice"
+      }
+    },
+    {
+      "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+      "title": "Privacy",
+      "slug": {
+        "current": "privacy-policy"
+      }
+    },
+    {
+      "id": "6cb51ebe-22c0-48b8-a6f5-980fbf65df0f",
+      "title": "Physical activity disclaimer",
+      "slug": {
+        "current": "physical-activity-disclaimer"
+      }
+    },
+    {
+      "id": "b08b96f2-492d-4b47-a148-4e47d81aaef3",
+      "title": "Freedom of information request",
+      "slug": {
+        "current": "freedom-of-information-request"
+      }
+    },
+    {
+      "id": "badc88ce-0093-4963-a661-866bfb487799",
+      "title": "Terms and conditions",
+      "slug": {
+        "current": "terms-and-conditions"
+      }
+    },
+    {
+      "id": "f38c8cda-d831-46e8-8797-6583a8d22d82",
+      "title": "Accessibility statement",
+      "slug": {
+        "current": "accessibility-statement"
+      }
+    }
+  ]
+}

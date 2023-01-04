@@ -15,10 +15,14 @@ const ERROR_CODES = [
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
+  "video/unknown",
+  "video/fetch-signed-token",
   "hubspot/not-loaded",
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
+  "cms/invalid-reference-data",
+  "cms/invalid-hubspot-form",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -98,10 +102,28 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "File imported more times than allowed",
     shouldNotify: true,
   },
+  "video/unknown": {
+    message: "Sorry this video couldn't play, please try again",
+    shouldNotify: true,
+  },
+  "video/fetch-signed-token": {
+    message: "Failed to fetch signed video token",
+    shouldNotify: true,
+  },
   "preview/invalid-token": {
     message: "Invalid CMS preview token provided",
     responseStatusCode: 401,
     shouldNotify: false,
+  },
+  "cms/invalid-reference-data": {
+    message: "Couldn't find a matching portable text reference",
+    shouldNotify: true,
+    responseStatusCode: 500,
+  },
+  "cms/invalid-hubspot-form": {
+    message: "Error fetching or parsing referenced hubspot form",
+    shouldNotify: true,
+    responseStatusCode: 500,
   },
 };
 
@@ -130,8 +152,11 @@ export interface ErrorInfo {
  * @constructor
  */
 class OakError extends Error {
-  constructor(private errorInfo: ErrorInfo) {
+  private errorInfo;
+
+  constructor(errorInfo: ErrorInfo) {
     super(getErrorMessage(errorInfo));
+    this.errorInfo = errorInfo;
   }
 
   /** @returns The error code. */
@@ -142,6 +167,11 @@ class OakError extends Error {
   /** @returns The error meta data. */
   public get meta(): ErrorMeta | undefined {
     return this.errorInfo.meta;
+  }
+
+  /** @returns The original error if present. */
+  public get originalError(): Error | unknown {
+    return this.errorInfo.originalError;
   }
 
   /** @returns The error message. */

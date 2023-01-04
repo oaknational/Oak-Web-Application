@@ -5,8 +5,8 @@ package-lock.json
 public
 out
 
-src/browser-lib/graphql/generated
-src/node-lib/graphql/generated
+storybook-static
+src/node-lib/curriculum-api/generated
 src/node-lib/sanity-graphql/generated
 
 !.github

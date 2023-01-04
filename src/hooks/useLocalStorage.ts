@@ -1,3 +1,4 @@
+// Adapted from:
 // https://usehooks-ts.com/react-hook/use-local-storage
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
@@ -5,6 +6,15 @@ import useStableCallback from "./useStableCallback";
 import useEventListener from "./useEventListener";
 
 const LOCAL_STORAGE_EVENT = "local-storage";
+
+/**
+ * Use a valuePending symbol so that we don't rely on null/undefined which
+ * could be a valid value.
+ * This way we can differentiate between no value (or pending value) and a set
+ * value.
+ */
+const valuePending = Symbol("value-pending");
+type ValuePending = typeof valuePending;
 
 declare global {
   interface WindowEventMap {
@@ -16,6 +26,13 @@ type SetValue<T> = Dispatch<SetStateAction<T>>;
 
 export const dispatchLocalStorageEvent = () => {
   window.dispatchEvent(new Event(LOCAL_STORAGE_EVENT));
+};
+
+const callIfFunction = <T>(value: T) => {
+  if (typeof value === "function") {
+    return value();
+  }
+  return value;
 };
 
 /**
@@ -35,24 +52,28 @@ function useLocalStorage<T>(
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
-  const readValue = useRef((): T => {
+  const readLSValue = useRef((): T | ValuePending => {
     // Prevent build error "window is undefined" but keep keep working
     if (typeof window === "undefined") {
-      return initialValue;
+      return valuePending;
     }
 
     try {
       const item = window.localStorage.getItem(key);
-      return item ? (parseJSON(item) as T) : initialValue;
+      return item ? (parseJSON(item) as T) : valuePending;
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);
-      return initialValue;
+      return valuePending;
     }
   }).current;
 
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
-  const [storedValue, setStoredValue] = useState<T>(readValue);
+  const [stateValue, setStateValue] = useState<T | ValuePending>(readLSValue);
+  // currentValue is either the stateValue or the initialValue
+  const currentValue =
+    stateValue === valuePending ? callIfFunction(initialValue) : stateValue;
+  const localStorageValue = readLSValue();
 
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
@@ -66,13 +87,18 @@ function useLocalStorage<T>(
 
     try {
       // Allow value to be a function so we have the same API as useState
-      const newValue = value instanceof Function ? value(storedValue) : value;
+      const newValue = value instanceof Function ? value(currentValue) : value;
 
-      if (newValue === storedValue) {
+      if (newValue === localStorageValue) {
+        // If newValue is the same as the value currently in local storage, don't update
         return;
       }
 
-      if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
+      if (
+        typeof areEqual === "function" &&
+        localStorageValue !== valuePending &&
+        areEqual(newValue, localStorageValue)
+      ) {
         // If areEqual function is passed, and old/new values are equal, don't update
         return;
       }
@@ -80,21 +106,8 @@ function useLocalStorage<T>(
       // Save to local storage
       window.localStorage.setItem(key, JSON.stringify(newValue));
 
-      if (newValue === storedValue) {
-        // Don't update if old and new values same
-        return;
-      }
-
-      if (typeof areEqual === "function" && areEqual(newValue, storedValue)) {
-        // If areEqual function is passed, and old/new values are equivalent, don't update
-        return;
-      }
-
-      // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(newValue));
-
       // Save state
-      setStoredValue(newValue);
+      setStateValue(newValue);
 
       // We dispatch a custom event so every useLocalStorage hook are notified
       dispatchLocalStorageEvent();
@@ -106,27 +119,32 @@ function useLocalStorage<T>(
   const setValue = useStableCallback(onValueChange);
 
   useEffect(() => {
-    setStoredValue(readValue());
-  }, [readValue]);
+    // Store the initialValue if no value present
+    if (readLSValue() === valuePending && typeof initialValue !== undefined) {
+      setValue(initialValue);
+    }
+  }, [readLSValue, setValue, initialValue]);
+
+  useEffect(() => {
+    setStateValue(readLSValue());
+  }, [readLSValue]);
 
   const handleStorageChange = () => {
-    setStoredValue(readValue());
+    setStateValue(readLSValue());
   };
 
   // this only works for other documents, not the current one
   useEventListener("storage", handleStorageChange);
-
-  // this is a custom event, triggered in writeValueToLocalStorage
-  // See: useLocalStorage()
+  // see dispatchLocalStorageEvent()
   useEventListener(LOCAL_STORAGE_EVENT, handleStorageChange);
 
-  return [storedValue, setValue];
+  return [currentValue, setValue];
 }
 
 export default useLocalStorage;
 
 // A wrapper for "JSON.parse()"" to support "undefined" value
-function parseJSON<T>(value: string | null): T | undefined {
+export function parseJSON<T>(value: string | null): T | undefined {
   try {
     return value === "undefined" ? undefined : JSON.parse(value ?? "");
   } catch (error) {

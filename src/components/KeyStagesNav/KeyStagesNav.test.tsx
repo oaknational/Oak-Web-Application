@@ -1,4 +1,4 @@
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
 
 import KeyStagesNav from ".";
@@ -22,7 +22,7 @@ describe("components/Key Stages Nav", () => {
   test.each(keyStages)(
     "renders a key stage button with %p text",
     (keyStage) => {
-      const { getByText } = renderWithProviders(
+      const { getByText } = renderWithTheme(
         <KeyStagesNav keyStages={keyStagesNavData} />
       );
       const keyStageButton = getByText(keyStage);
@@ -30,8 +30,17 @@ describe("components/Key Stages Nav", () => {
       expect(keyStageButton).toBeInTheDocument();
     }
   );
+
+  it("it renders a nav with correct assessibilty description", () => {
+    const { container } = renderWithTheme(
+      <KeyStagesNav keyStages={keyStagesNavData} />
+    );
+
+    const nav = container.querySelector("nav");
+    expect(nav).toHaveAccessibleName("key stages and year groups");
+  });
   test.each(years)("renders a year link with %p text", (year) => {
-    const { getByText } = renderWithProviders(
+    const { getByText } = renderWithTheme(
       <KeyStagesNav keyStages={keyStagesNavData} />
     );
     const keyStageLink = getByText(year);

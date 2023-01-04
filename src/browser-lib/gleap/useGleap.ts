@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-import config from "../../config";
+import config from "../../config/browser";
 
 import startGleap, { hasLoaded } from "./startGleap";
 
 const apiKey = config.get("gleapApiKey");
 const apiUrl = config.get("gleapApiUrl");
-const widgetUrl = config.get("gleapWidgetUrl");
+const frameUrl = config.get("gleapFrameUrl");
 
 type UseGleapProps = {
   enabled: boolean;
@@ -29,7 +29,7 @@ const useGleap = ({ enabled }: UseGleapProps) => {
       window.location.reload();
     }
     if (shouldStartGleap) {
-      startGleap({ apiKey, widgetUrl, apiUrl });
+      startGleap({ apiKey, frameUrl, apiUrl });
     }
   }, [enabled]);
 };

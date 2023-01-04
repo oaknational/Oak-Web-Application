@@ -1,0 +1,260 @@
+{
+  "allPolicyPage": [
+    {
+      "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+      "title": "Privacy",
+      "lastUpdatedAt": "2022-08-31T14:27:15Z",
+      "slug": {
+        "current": "privacy-policy"
+      },
+      "bodyPortableText": [
+        {
+          "_key": "c54a694023bb",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "0e4f601e44ee",
+              "_type": "span",
+              "marks": [],
+              "text": "1. Introduction"
+            }
+          ],
+          "markDefs": [],
+          "style": "h2"
+        },
+        {
+          "_key": "a0b7775f56a6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d811a148a4fc0",
+              "_type": "span",
+              "marks": [],
+              "text": "Oak National Academy is committed to protecting and preserving the privacy of visitors to our website and other people with whom we communicate electronically (for example, by email). Under data protection law, individuals have a right to be informed about how we use any personal data which we hold about them. When we refer to \""
+            },
+            {
+              "_key": "d811a148a4fc1",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "you"
+            },
+            {
+              "_key": "d811a148a4fc2",
+              "_type": "span",
+              "marks": [],
+              "text": "\" or \""
+            },
+            {
+              "_key": "d811a148a4fc3",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "your"
+            },
+            {
+              "_key": "d811a148a4fc4",
+              "_type": "span",
+              "marks": [],
+              "text": "\" in this notice, we are referring to you as an individual visiting our website or communicating with us electronically. We refer to Oak Limited as “"
+            },
+            {
+              "_key": "d811a148a4fc5",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Oak"
+            },
+            {
+              "_key": "d811a148a4fc6",
+              "_type": "span",
+              "marks": [],
+              "text": "”, \""
+            },
+            {
+              "_key": "d811a148a4fc7",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "we"
+            },
+            {
+              "_key": "d811a148a4fc8",
+              "_type": "span",
+              "marks": [],
+              "text": "\", \""
+            },
+            {
+              "_key": "d811a148a4fc9",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "our"
+            },
+            {
+              "_key": "d811a148a4fc10",
+              "_type": "span",
+              "marks": [],
+              "text": "\" or \""
+            },
+            {
+              "_key": "d811a148a4fc11",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "us"
+            },
+            {
+              "_key": "d811a148a4fc12",
+              "_type": "span",
+              "marks": [],
+              "text": "\"."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d066eca7d77a",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2b2d5d0b4f5e0",
+              "_type": "span",
+              "marks": [],
+              "text": "We comply with this right by providing privacy notices (sometimes called fair processing notices). This notice sets out information about our collection and processing of personal information related to visitors to our website and other people with whom we communicate electronically. We have a separate privacy notice for teachers who contribute, or are considering contributing, to our programme – this notice does not apply to the information that we collect about those teachers. We also have separate privacy notices for our members of staff and contractors and suppliers."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d86c05e1fe3d",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6ab189d96f90",
+              "_type": "span",
+              "marks": [],
+              "text": "We are the data controller for the purposes of data protection law."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a753ae5e9479",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "182d9beef767",
+              "_type": "span",
+              "marks": [],
+              "text": "Our Data Protection Officer (DPO) is Jayne Taylor."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3c3bab0e24c8",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4879b276fd0b",
+              "_type": "span",
+              "marks": [],
+              "text": "This Privacy Notice should be read in conjunction with our Data Protection Policy, which is available by request from our DPO."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "3e1c51a754f0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "622457c6b002",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Our contact details"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5f47f7d8963c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4b17fb3cabd2",
+              "_type": "span",
+              "marks": [],
+              "text": "Name: Oak National Academy"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "5e44a3a76e7b",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "64a108c16a95",
+              "_type": "span",
+              "marks": [],
+              "text": "Address: Oak National Academy, PO Box 520, Newcastle upon Tyne, NE3 9GW"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "e8e7be7e2e87",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7a6bdf046a7e",
+              "_type": "span",
+              "marks": [],
+              "text": "E-mail: "
+            },
+            {
+              "_key": "e00e3eb40602",
+              "_type": "span",
+              "marks": ["7aa507dfe22d"],
+              "text": "dpo@thenational.academy"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "7aa507dfe22d",
+              "_type": "link",
+              "href": "mailto:dpo@thenational.academy"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "6dd92d7ad7d5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "26a0c3fe2ff1",
+              "_type": "span",
+              "marks": [],
+              "text": "Company Number: 14174888"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  ]
+}

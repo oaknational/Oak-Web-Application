@@ -1,59 +1,57 @@
-import { GetStaticProps, NextPage } from "next";
-import { toPlainText } from "@portabletext/react";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
-import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import BlogList from "../../components/BlogList";
-import { BlogListItemProps } from "../../components/BlogList/BlogListItem";
-import Layout from "../../components/Layout";
-import { Heading } from "../../components/Typography";
-import CMSClient, { WebinarPreview } from "../../node-lib/cms";
+import { WebinarListingPageProps } from "../../components/pages/WebinarsIndex.page";
+import CMSClient from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
+import { serializeDate } from "../../utils/serializeDate";
 
-export type WebinarListingPageProps = {
-  webinars: WebinarPreview[];
-  isPreviewMode: boolean;
-};
+export { default } from "../../components/pages/WebinarsIndex.page";
 
-const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
-  const webinars = props.webinars.map(webinarToBlogListItem);
-
-  return (
-    <Layout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background="grey1"
-      isPreviewMode={props.isPreviewMode}
-    >
-      <Heading tag="h1" $fontSize={32}>
-        Webinars
-      </Heading>
-
-      <BlogList title={"Stay up to date!"} items={webinars} titleTag={"h2"} />
-    </Layout>
-  );
-};
-
-const webinarToBlogListItem = (webinar: WebinarPreview): BlogListItemProps => ({
-  contentType: "webinar",
-  title: webinar.title,
-  href: `/webinars/${webinar.slug}`,
-  snippet: toPlainText(webinar.summaryPortableText),
-  titleTag: "h3",
-});
-
-export const getStaticProps: GetStaticProps<WebinarListingPageProps> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<
+  WebinarListingPageProps,
+  { categorySlug?: string }
+> = async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const pageData = await CMSClient.webinarsListingPage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
   const webinarResults = await CMSClient.webinars({
     previewMode: isPreviewMode,
   });
 
-  return {
+  const categorySlug = context.params?.categorySlug || null;
+  const webinars = webinarResults
+    .map((webinar) => serializeDate(webinar))
+    .filter((webinar) => {
+      if (categorySlug) {
+        return webinar.category.slug === categorySlug;
+      }
+      return true;
+    });
+
+  const webinarCategories = [
+    ...new Map(
+      webinarResults
+        .map((webinar) => webinar.category)
+        .map((item) => [item["slug"], item])
+    ).values(),
+  ].sort((a, b) => (a.title < b.title ? -1 : 1));
+
+  const results: GetStaticPropsResult<WebinarListingPageProps> = {
     props: {
-      webinars: webinarResults,
-      isPreviewMode,
+      webinars,
+      categories: webinarCategories,
+      categorySlug: categorySlug,
+      pageData,
     },
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
-
-export default WebinarListingPage;

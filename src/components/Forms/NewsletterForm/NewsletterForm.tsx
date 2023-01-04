@@ -1,11 +1,8 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Card from "../../Card";
-import CardTitle from "../../Card/CardComponents/CardTitle";
 import Input from "../../Input";
 import { P } from "../../Typography";
 import Button from "../../Button";
@@ -15,15 +12,20 @@ import {
   UserRole,
   USER_ROLES,
 } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
+import errorReporter from "../../../common-lib/error-reporter";
+import Form from "../Form";
+import { BoxProps } from "../../Box";
+
+const reportError = errorReporter("NewsletterForm.tsx");
 
 const schema = z.object({
   name: z
     .string()
-    .nonempty({ message: "Name can't be empty" })
+    .min(1, { message: "Name can't be empty" })
     .max(60, "Name must contain fewer than 60 charaters"),
   email: z
     .string()
-    .nonempty({
+    .min(1, {
       message: "Email can't be empty",
     })
     .email({
@@ -48,8 +50,10 @@ const userTypeOptions = USER_ROLES.map((userRole) => ({
 }));
 
 type NewsletterFormValues = z.infer<typeof schema>;
-type NewsletterFormProps = {
+export type NewsletterFormProps = BoxProps & {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
+  id: string;
+  descriptionId: string;
 };
 /**
  * Newsletter Form is a styled sign-up form for the newsletter.
@@ -57,8 +61,12 @@ type NewsletterFormProps = {
  * ## Usage
  * Submitting this form will send data to Hubspot.
  */
-const NewsletterForm: FC<NewsletterFormProps> = (props) => {
-  const { onSubmit } = props;
+const NewsletterForm: FC<NewsletterFormProps> = ({
+  id,
+  descriptionId,
+  onSubmit,
+  ...boxProps
+}) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -69,89 +77,77 @@ const NewsletterForm: FC<NewsletterFormProps> = (props) => {
 
   const { errors } = formState;
 
-  const descriptionId = "newsletter-form-description";
-
   return (
-    <Card $borderRadius={0} $background="white">
-      <CardTitle tag="h2" icon="MagicCarpet">
-        Don’t miss out
-      </CardTitle>
-      <P color={"black"} id={descriptionId}>
-        {`Join 80,000 teachers and get free lessons, resources and other helpful
-        content by email. Unsubscribe at any time. Read our privacy policy `}
-        <Link href="/">
-          <a>here</a>
-        </Link>
-        .
-      </P>
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          setLoading(true);
-          setError("");
-          setSuccessMessage("");
-          try {
-            const successMessage = await onSubmit(data);
-            setSuccessMessage(
-              successMessage || "Thanks, that's been received!"
-            );
-          } catch (error) {
-            if (error instanceof OakError) {
-              setError(error.message);
-            } else {
-              // @todo bugsnag
-              setError("An unknown error occurred");
-            }
-          } finally {
-            setLoading(false);
+    <Form
+      onSubmit={handleSubmit(async (data) => {
+        setLoading(true);
+        setError("");
+        setSuccessMessage("");
+        try {
+          const successMessage = await onSubmit(data);
+          setSuccessMessage(successMessage || "Thanks, that's been received!");
+        } catch (error) {
+          if (error instanceof OakError) {
+            setError(error.message);
+          } else {
+            reportError(error);
+            setError("An unknown error occurred");
           }
-        })}
-        aria-describedby={descriptionId}
+        } finally {
+          setLoading(false);
+        }
+      })}
+      aria-describedby={descriptionId}
+      $width={"100%"}
+      {...boxProps}
+    >
+      <Input
+        id={`${id}-newsletter-signup-name`}
+        label="Name"
+        placeholder="Anna Smith"
+        {...register("name")}
+        error={errors.name?.message}
+      />
+      <Input
+        id={`${id}-newsletter-signup-email`}
+        label="Email"
+        placeholder="anna@amail.com"
+        {...register("email")}
+        error={errors.email?.message}
+      />
+      <DropdownSelect
+        id={`${id}-newsletter-signup-userrole`}
+        $mt={32}
+        label="Role"
+        placeholder="What describes you best?"
+        listItems={userTypeOptions}
+        {...register("userRole")}
+        error={errors.userRole?.message}
+      />
+      <Button
+        $mt={24}
+        label="Sign up"
+        $fullWidth
+        htmlButtonProps={{ disabled: loading }}
+        background="teachersHighlight"
+      />
+      <P
+        $mt={error ? 16 : 0}
+        $font={"body-3"}
+        aria-live="assertive"
+        role="alert"
+        $color="failure"
       >
-        <Input
-          id="newsletter-signup-name"
-          $mt={24}
-          placeholder="Name"
-          {...register("name")}
-          error={errors.name?.message}
-        />
-        <Input
-          id="newsletter-signup-email"
-          $mt={24}
-          placeholder="Email Address"
-          {...register("email")}
-          error={errors.email?.message}
-        />
-        <DropdownSelect
-          id="newsletter-signup-userrole"
-          $mt={24}
-          label="User type"
-          placeholder="What describes you best?"
-          listItems={userTypeOptions}
-          {...register("userRole")}
-          error={errors.userRole?.message}
-        />
-        <Button
-          $mt={24}
-          label="Sign Up"
-          fullWidth
-          htmlButtonProps={{ disabled: loading }}
-        />
-        <P
-          $mt={error ? 12 : 0}
-          $fontSize={14}
-          aria-live="assertive"
-          role="alert"
-          $color="failure"
-        >
-          {error}
-        </P>
-        {!error && successMessage && (
-          <P $mt={12} $fontSize={14}>
-            {successMessage}
-          </P>
-        )}
-      </form>
-    </Card>
+        {error}
+      </P>
+      <P
+        $mt={!error && successMessage ? 16 : 0}
+        $font={"body-3"}
+        aria-live="polite"
+      >
+        {!error && successMessage}
+      </P>
+    </Form>
   );
 };
 

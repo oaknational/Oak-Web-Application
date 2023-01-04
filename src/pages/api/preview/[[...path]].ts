@@ -1,11 +1,11 @@
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
-import config from "../../../config";
+import serverConfig from "../../../config/server";
 import errorReporter from "../../../common-lib/error-reporter";
 import OakError from "../../../errors/OakError";
 
-const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
+export const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
 
 const reportError = errorReporter("/api/preview/[[...path]]");
 
@@ -22,23 +22,25 @@ const preview: NextApiHandler = async (req, res) => {
    * [1]: https://github.com/vercel/next.js/blob/canary/examples/cms-sanity/pages/api/preview.js
    */
   try {
-    if (req.query.secret !== config.get("sanityPreviewSecret")) {
+    if (req.query.secret !== serverConfig.get("sanityPreviewSecret")) {
       throw new OakError({
         code: "preview/invalid-token",
       });
     }
 
+    const pathQueryParam = req.query.path;
     const redirectLocation = z
       .array(slugStringSchema)
       .transform((segments) => {
         return `/${segments.join("/")}`;
       })
-      .parse(req.query.path);
+      .parse(pathQueryParam || []);
 
     res.setPreviewData({ previewMode: "on" });
 
-    res.writeHead(307, { Location: redirectLocation });
-    res.end();
+    // We add the `?` to prevent Next from adding the query params
+    // from the original request on to the redirect URL
+    res.redirect(307, `${redirectLocation}?`);
   } catch (error) {
     reportError(error);
 

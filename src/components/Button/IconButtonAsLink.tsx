@@ -1,6 +1,8 @@
-import { AnchorHTMLAttributes, DetailedHTMLProps, FC } from "react";
-import Link, { LinkProps } from "next/link";
+import { FC } from "react";
+import Link from "next/link";
 import styled from "styled-components";
+
+import { OakLinkPropsWithoutChildren, transformOakLinkProps } from "../OakLink";
 
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
 import IconButtonInner from "./IconButtonInner";
@@ -10,46 +12,42 @@ import iconButtonStyles, {
   IconButtonStylesProps,
 } from "./iconButton.styles";
 
-const StyledA = styled.a<IconButtonStylesProps>`
+const StyledNextLink = styled.a<IconButtonStylesProps>`
   ${iconButtonStyles}
 `;
 
-type IconButtonAsLinkProps = CommonIconButtonProps & {
-  "aria-label": string;
-  href: string;
-  nextLinkProps?: Omit<LinkProps, "href">;
-  anchorProps?: Omit<
-    DetailedHTMLProps<
-      AnchorHTMLAttributes<HTMLAnchorElement>,
-      HTMLAnchorElement
-    >,
-    "ref" | "aria-label"
-  >;
-};
+type IconButtonAsLinkProps = OakLinkPropsWithoutChildren &
+  CommonIconButtonProps & {
+    "aria-label": string;
+    disabled?: boolean;
+  };
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
+  const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
   const {
     icon,
     iconColorOverride,
     "aria-label": ariaLabel,
-    href,
-    nextLinkProps,
-    anchorProps,
-    ...styleProps
-  } = props;
+    disabled,
+    iconAnimateTo,
+    ...linkProps
+  } = transformedProps;
 
   const { size, variant, background } = getIconButtonStylesProps(props);
 
   return (
-    <Link {...nextLinkProps} href={href} passHref>
-      <StyledA
-        {...anchorProps}
+    <Link {...nextLinkProps} passHref legacyBehavior>
+      <StyledNextLink
         {...useButtonAsLinkProps()}
+        {...linkProps}
+        title={linkProps.title || ariaLabel}
+        onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
         aria-label={ariaLabel}
         size={size}
         variant={variant}
         background={background}
-        {...styleProps}
+        disabled={disabled}
+        aria-disabled={disabled}
       >
         <IconButtonInner
           icon={icon}
@@ -57,8 +55,9 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
           variant={variant}
           background={background}
           iconColorOverride={iconColorOverride}
+          iconAnimateTo={iconAnimateTo}
         />
-      </StyledA>
+      </StyledNextLink>
     </Link>
   );
 };

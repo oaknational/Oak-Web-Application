@@ -2,59 +2,66 @@ import React, { FC } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
-import config from "../../config";
-
-const IMAGES = {
-  default: config.get("appSocialSharingImg"),
-};
+import config from "../../config/browser";
 
 export const DEFAULT_SEO_PROPS = {
-  title: config.get("appName"),
-  description: config.get("appDescription"),
+  title: config.get("seoAppName"),
+  description: config.get("seoAppDescription"),
 };
-
-type Images = typeof IMAGES;
-type Image = keyof Images;
 
 export type SeoProps = {
   title: string;
   description: string;
+  canonicalURL?: string;
   noIndex?: boolean;
-  image?: Image;
+  noFollow?: boolean;
+  imageUrl?: string;
 };
 
-/** 1.Seo titles should be between 50-60 characters long 
-    2. Seo title should contain app name
-    3. Seo descriptions should be between 150-300 characters long */
-const Seo: FC<SeoProps> = ({ title, description, image = "default" }) => {
+/**
+ * Oak Seo component. A wrapper round NextSeo with sensible defaults.
+ * @see [seo.md](../../../docs/seo.md)
+ */
+const Seo: FC<SeoProps> = ({
+  title,
+  description,
+  imageUrl = `${config.get("seoAppUrl")}${config.get(
+    "seoAppSocialSharingImg"
+  )}?2022`,
+  noIndex = false,
+  noFollow = false,
+  canonicalURL,
+}) => {
   const router = useRouter();
 
-  const sharingImage = IMAGES[image] ? IMAGES[image] : IMAGES["default"];
+  // Trim trailing slashes
+  const formattedCanonicalURL = (
+    canonicalURL || `${config.get("seoAppUrl")}${router.asPath}`
+  )?.replace(/\/$/, ""); //?
 
   return (
     <NextSeo
       title={title}
       description={description}
-      canonical={`${config.get("appUrl")}${router.asPath}`}
+      canonical={formattedCanonicalURL}
       openGraph={{
         title,
         description,
-        url: `${config.get("appUrl")}${router.asPath}`,
+        url: `${config.get("seoAppUrl")}${router.asPath}`,
         images: [
           {
-            url: `${config.get("appUrl")}${sharingImage}`,
-            width: 1200,
-            height: 630,
-            alt: config.get("appName"),
+            url: imageUrl,
           },
         ],
-        site_name: config.get("appName"),
+        site_name: config.get("seoAppName"),
       }}
       twitter={{
-        handle: config.get("appTwitterHandle"),
-        site: config.get("appTwitterHandle"),
+        handle: config.get("seoAppTwitterHandle"),
+        site: config.get("seoAppTwitterHandle"),
         cardType: "summary_large_image",
       }}
+      noindex={noIndex}
+      nofollow={noFollow}
     />
   );
 };

@@ -4,8 +4,8 @@ import { ServiceType } from "./types";
 import useHasConsentedTo from "./useHasConsentedTo";
 
 type CookieConsentGateProps = {
-  serviceType: ServiceType;
   children: ReactNode;
+  serviceType: ServiceType;
 };
 /**
  * CookieConsentGate will conditionally render it's children if the user
@@ -14,7 +14,8 @@ type CookieConsentGateProps = {
  */
 const CookieConsentGate: FC<CookieConsentGateProps> = (props) => {
   const { serviceType, children } = props;
-  const hasConsented = useHasConsentedTo(serviceType);
+  const consentState = useHasConsentedTo(serviceType);
+  const hasConsented = consentState === "enabled";
 
   if (!hasConsented) {
     return null;

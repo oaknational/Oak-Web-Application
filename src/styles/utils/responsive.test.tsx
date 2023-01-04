@@ -8,7 +8,7 @@ import styled, {
 import { render } from "@testing-library/react";
 
 import { OakColorName } from "../theme";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import responsive from "./responsive";
 
@@ -72,7 +72,7 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0px;
 
-      @media (min-width: 800px) {
+      @media (min-width: 750px) {
         padding-left: 12px;
       }
     `;
@@ -92,7 +92,7 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 36px;
 
-      @media (min-width: 800px) {
+      @media (min-width: 750px) {
         padding-left: 12px;
       }
 
@@ -124,7 +124,7 @@ describe("responsive", () => {
         (colorName) => (props) => props.theme.colors[colorName as OakColorName]
       )}
     `;
-    const { getByTestId } = renderWithProviders(
+    const { getByTestId } = renderWithTheme(
       <StyledComponent data-testid="test" $color="teachersPurple" />
     );
 

@@ -2,14 +2,11 @@ import React, { Component, ErrorInfo, FC, ReactNode } from "react";
 import Bugsnag from "@bugsnag/js";
 
 import { bugsnagInitialised } from "../../browser-lib/bugsnag/useBugsnag";
+import ErrorView from "../ErrorView";
 
 const ClientErrorView: FC = () => {
   return (
-    <div>
-      <h1>
-        Client error occurred (<em>style me</em>)
-      </h1>
-    </div>
+    <ErrorView headerVariant="client-error" footerVariant="client-error" />
   );
 };
 
@@ -55,11 +52,14 @@ const FallbackComponent: FC<FallbackComponentProps> = () => {
   return <ClientErrorView />;
 };
 
+export type ErrorBoundaryProps = {
+  children?: React.ReactNode;
+};
 /**
  * ErrorBoundary will catch any uncaught errors, showing the user ClientErrorView
  * and sending a report of the uncaught error to bugsnag.
  */
-const ErrorBoundary: FC = (props) => {
+const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
   const BugsnagErrorBoundary =
     bugsnagInitialised() &&
     Bugsnag.getPlugin("react")?.createErrorBoundary(React);

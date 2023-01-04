@@ -4,7 +4,7 @@ import Hr from "./Hr";
 
 describe("Hr", () => {
   test("should render a 'separator'", () => {
-    const { getByRole } = renderWithProviders(<Hr />);
-    expect(getByRole("separator")).toBeInTheDocument();
+    const { getByTestId } = renderWithProviders(<Hr />);
+    expect(getByTestId("hr")).toBeInTheDocument();
   });
 });

@@ -1,8 +1,13 @@
 import { GraphQLClient } from "graphql-request";
 
-import config from "../../config";
+import serverConfig from "../../config/server";
 
-import { getSdk } from "./generated/sdk";
+import {
+  // AllBlogPostsQuery,
+  // AllWebinarsQuery,
+  getSdk,
+  // SdkFunctionWrapper,
+} from "./generated/sdk";
 
 const getGraphqlEndpoint = (opts: {
   projectId: string;
@@ -16,16 +21,62 @@ const getGraphqlEndpoint = (opts: {
 };
 
 const graphqlAPIUrl = getGraphqlEndpoint({
-  projectId: config.get("sanityProjectId"),
-  dataset: config.get("sanityDataset"),
-  datasetTag: config.get("sanityDatasetTag"),
-  useCDN: config.get("sanityUseCDN") === "true",
+  projectId: serverConfig.get("sanityProjectId"),
+  dataset: serverConfig.get("sanityDataset"),
+  datasetTag: serverConfig.get("sanityDatasetTag"),
+  useCDN: serverConfig.get("sanityUseCDN") === "true",
 });
 
-const client = new GraphQLClient(graphqlAPIUrl, {
-  headers: { Authorization: `Bearer ${config.get("sanityGraphqlApiSecret")}` },
+export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
+  headers: {
+    Authorization: `Bearer ${serverConfig.get("sanityGraphqlApiSecret")}`,
+  },
 });
 
-const sanityGraphqlApi = getSdk(client);
+/**
+ * Pass fixtureGenerationWrapper as a second argument to getSdk to have fixtures
+ * automatically generated for each API operation
+ *
+ * n.b Make sure tests aren't running when this happens
+ */
+// const fixtureGenerationWrapper: SdkFunctionWrapper = async (
+//   action,
+//   operationName
+// ) => {
+//   const response = await action();
+
+//   let trimmedResponse = response;
+
+//   // Bit of a hack to keep fixture size down
+//   if ("allWebinar" in response) {
+//     trimmedResponse = {
+//       allWebinar: (response as AllWebinarsQuery).allWebinar
+//         .slice(0, 2)
+//         .map((webinar) => {
+//           return {
+//             ...webinar,
+//             summary: webinar.summaryPortableText.slice(0, 3),
+//           };
+//         }),
+//     };
+//   } else if ("allNewsPost" in response) {
+//     trimmedResponse = {
+//       allNewsPost: (response as AllBlogPostsQuery).allNewsPost.slice(0, 2),
+//     };
+//   }
+
+//   import("fs").then((fs) => {
+//     fs.writeFileSync(
+//       `./src/node-lib/sanity-graphql/fixtures/${operationName}.json`,
+//       JSON.stringify(trimmedResponse, null, 2)
+//     );
+//   });
+
+//   return response;
+// };
+
+const sanityGraphqlApi = getSdk(
+  sanityGraphqlClient /*, fixtureGenerationWrapper */
+);
 
 export default sanityGraphqlApi;

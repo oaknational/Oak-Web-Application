@@ -9,49 +9,41 @@ import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";
+import { OverlayProvider } from "react-aria";
 
 import "../../browser-lib/oak-globals/oakGlobals";
-import { BookmarksProvider } from "../../context/Bookmarks";
 import { SearchProvider } from "../../context/Search/SearchContext";
 import theme from "../../styles/theme";
-import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import ErrorBoundary from "../../components/ErrorBoundary";
-import AnalyticsProvider from "../../context/Analytics/AnalyticsProvider";
 import { MenuProvider } from "../../context/Menu";
+import { ToastProvider } from "../../context/Toast";
 
-import MockedAuthProvider, {
-  MockedAuthProviderProps,
-} from "./MockedAuthProvider";
-import MockedApolloProvider from "./MockedApolloProvider";
+import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
+import MockedCookieConsentProvider from "./MockedCookieConsentProvider";
 
-type ProviderProps = {
-  authProviderProps?: MockedAuthProviderProps;
+export type ProviderProps = {
+  children?: React.ReactNode;
 };
 
-export const AllTheProviders: FC<ProviderProps> = ({
-  children,
-  authProviderProps,
-}) => {
+export const AllTheProviders: FC<ProviderProps> = ({ children }) => {
   return (
-    <CookieConsentProvider>
+    <MockedCookieConsentProvider>
       <ThemeProvider theme={theme}>
         <ErrorBoundary>
-          <AnalyticsProvider>
-            <MockedAuthProvider {...authProviderProps}>
-              <MockedApolloProvider>
-                <MemoryRouterProvider>
-                  <BookmarksProvider>
-                    <SearchProvider>
-                      <MenuProvider>{children}</MenuProvider>
-                    </SearchProvider>
-                  </BookmarksProvider>
-                </MemoryRouterProvider>
-              </MockedApolloProvider>
-            </MockedAuthProvider>
-          </AnalyticsProvider>
+          <MockedAnalyticsProvider>
+            <MemoryRouterProvider>
+              <OverlayProvider>
+                <SearchProvider>
+                  <ToastProvider>
+                    <MenuProvider>{children}</MenuProvider>
+                  </ToastProvider>
+                </SearchProvider>
+              </OverlayProvider>
+            </MemoryRouterProvider>
+          </MockedAnalyticsProvider>
         </ErrorBoundary>
       </ThemeProvider>
-    </CookieConsentProvider>
+    </MockedCookieConsentProvider>
   );
 };
 

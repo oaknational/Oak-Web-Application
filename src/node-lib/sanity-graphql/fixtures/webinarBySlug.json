@@ -1,0 +1,335 @@
+{
+  "allWebinar": [
+    {
+      "id": "cc15a6ad-6a34-4a3f-b4cf-58721bb6b621",
+      "title": "Test Upcoming Webinar",
+      "slug": {
+        "current": "test-upcoming-webinar"
+      },
+      "date": "2022-11-17T13:10:00.000Z",
+      "summaryPortableText": [
+        {
+          "_key": "409ce8c7c248",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6af72fe6627c",
+              "_type": "span",
+              "marks": [],
+              "text": "Join Oak National Academy's Music Subject Lead, Margaret O'Shea, and Oak music teachers for a free webinar to learn more about the music resources on offer."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "621f68647f83",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a8fda774ae1d",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a8186ef47ec7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7d6751fbf2d8",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "d6d8fefc2fb5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "4202fba245de",
+              "_type": "span",
+              "marks": [],
+              "text": "How to use Oak's resources for remote and in-school teaching."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "733dde7360e3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "318458df1ce0",
+              "_type": "span",
+              "marks": [],
+              "text": "The principles and structure of Oak's music curriculum."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "eefede6f474c",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "66fd97f4c272",
+              "_type": "span",
+              "marks": [],
+              "text": "Techniques for teaching music remotely."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "6db34e71a55f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "cc311bc06a0d",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "Further resources "
+            },
+            {
+              "_key": "73128dfeaf9f",
+              "_type": "span",
+              "marks": [],
+              "text": "\nIf you found this workshop helpful, here are some additional resources to help support your in-class teaching:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "45ec038c00f5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "65052d6f6149",
+              "_type": "span",
+              "marks": [],
+              "text": "Explore our "
+            },
+            {
+              "_key": "6deb3f9c10f6",
+              "_type": "span",
+              "marks": ["fe7aa31a331a"],
+              "text": "Lesson and Resource Directory "
+            },
+            {
+              "_key": "0bd07fe48ad1",
+              "_type": "span",
+              "marks": [],
+              "text": "for a full list of lessons, filtered by subject and key stage (including "
+            },
+            {
+              "_key": "14e35773b25a",
+              "_type": "span",
+              "marks": ["1d1625774b8b"],
+              "text": "Teacher Hub"
+            },
+            {
+              "_key": "b540ee568f30",
+              "_type": "span",
+              "marks": [],
+              "text": " links)."
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "fe7aa31a331a",
+              "_type": "internalLink",
+              "reference": {
+                "_ref": "9c0bbd19-ffca-4c29-b60f-368a34abaacb",
+                "_type": "reference"
+              }
+            },
+            {
+              "_key": "1d1625774b8b",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "0c9db5fd23d3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "784cb2fb4950",
+              "_type": "span",
+              "marks": [],
+              "text": "Take a look at our "
+            },
+            {
+              "_key": "a130687c72b9",
+              "_type": "span",
+              "marks": ["6c2da513e01d"],
+              "text": "curriculum maps"
+            },
+            {
+              "_key": "2b603a25046a",
+              "_type": "span",
+              "marks": [],
+              "text": ". For each subject and key stage there is a map that provides:"
+            }
+          ],
+          "level": 1,
+          "listItem": "bullet",
+          "markDefs": [
+            {
+              "_key": "6c2da513e01d",
+              "_type": "link",
+              "href": "https://teachers.thenational.academy/oaks-curricula"
+            }
+          ],
+          "style": "normal"
+        },
+        {
+          "_key": "945ddf50a38e",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d70e9fece5d3",
+              "_type": "span",
+              "marks": [],
+              "text": "an overview of the curriculum principles we’ve followed;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "cf1e8fa272e0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "b74da038e33c",
+              "_type": "span",
+              "marks": [],
+              "text": "details about all units of work in each subject and key stage;"
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "bddf0fa8d123",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "537a936f6b5d",
+              "_type": "span",
+              "marks": [],
+              "text": "one or more optional sequences you can teach them in."
+            }
+          ],
+          "level": 2,
+          "listItem": "bullet",
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "category": {
+        "title": "Oak updates",
+        "slug": {
+          "current": "oak-updates"
+        }
+      },
+      "hosts": [
+        {
+          "id": "258663fa-bd73-4571-acdc-33da8f7d01be",
+          "_key": null,
+          "name": "Alistair Crawford",
+          "image": {
+            "asset": {
+              "_id": "image-4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512-png",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/4a6f77eac16e072438fe3e95bf04ad07cd14600e-512x512.png"
+            },
+            "hotspot": null
+          }
+        }
+      ],
+      "video": {
+        "title": "Oak is evolving",
+        "video": {
+          "asset": {
+            "assetId": "yHfnlREULGomTLTAcdt3iybOa8kDC005UOXYrLE1qvaU",
+            "thumbTime": 2,
+            "playbackId": "4zX2n02AxYTM4bhm4SvJnA5leiiZVgMMnHM8w4hesP4c"
+          }
+        }
+      },
+      "seo": null,
+      "summary": [
+        {
+          "_key": "409ce8c7c248",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "6af72fe6627c",
+              "_type": "span",
+              "marks": [],
+              "text": "Join Oak National Academy's Music Subject Lead, Margaret O'Shea, and Oak music teachers for a free webinar to learn more about the music resources on offer."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "621f68647f83",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "a8fda774ae1d",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "a8186ef47ec7",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "7d6751fbf2d8",
+              "_type": "span",
+              "marks": ["strong"],
+              "text": "This webinar covers:"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  ]
+}

@@ -22,10 +22,12 @@ const theme: OakTheme = {
     oakGrey2: "#dadada",
     oakGrey3: "#878787",
     oakGrey4: "#575756",
-    pastelTurqoise: "#b0e2de", // TODO: add tints
+    oakGrey5: "#2D2D2D",
+    oakGrey6: "#1B1B1B",
+    pastelTurquoise: "#b0e2de", // TODO: add tints
     // feedback colors
     warning: "#ff7234",
-    failure: "#ff2f20",
+    failure: "#e51d4d",
     success: "#a3e420",
     // pupil colours
     pupilsHighlight: "#25AB38",
@@ -44,6 +46,9 @@ const theme: OakTheme = {
     teachersPurple: "#845ad9",
     teachersLilac: "#c6d1ef",
     twilight: "#E5D1E0",
+    videoBlue: "#CEE7E5",
+    // hyperlinks
+    hyperlink: "#0D24C4",
   },
   contrastColors: {
     white: "black",
@@ -65,7 +70,9 @@ const theme: OakTheme = {
     oakGrey2: "black",
     oakGrey3: "white",
     oakGrey4: "white",
-    pastelTurqoise: "black", // TODO: add tints
+    oakGrey5: "white",
+    oakGrey6: "white",
+    pastelTurquoise: "black", // TODO: add tints
     // feedback colors
     warning: "black",
     failure: "white",
@@ -87,6 +94,8 @@ const theme: OakTheme = {
     teachersPurple: "white",
     teachersLilac: "black",
     twilight: "black",
+    videoBlue: "black",
+    hyperlink: "white",
   },
   buttonIconBackgroundColors: {
     teachersHighlight: "teachersYellow",
@@ -104,7 +113,7 @@ const theme: OakTheme = {
   },
   fonts: {
     // Paragraphs etc.
-    body: "ABeeZee, sans-serif",
+    body: "Lexend, sans-serif",
     // Buttons etc.
     ui: "Lexend, sans-serif",
     // Headings etc.
@@ -119,81 +128,38 @@ const theme: OakTheme = {
     states: {
       default: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "white",
       },
       active: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
-        background: "grey3",
+        background: "white",
       },
       valid: {
         text: "black",
-        placeholder: "grey7",
+        placeholder: "oakGrey4",
         icon: "grey8",
         border: "grey8",
         background: "white",
       },
       invalid: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "grey5",
       },
       disabled: {
         text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
+        placeholder: "oakGrey4",
+        icon: "oakGrey4",
         border: "grey8",
         background: "grey5",
-      },
-    },
-  },
-  bigInput: {
-    height: "40px",
-    fontSize: "16px",
-    borderRadius: "20px",
-    borderWidth: "0",
-    states: {
-      default: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      active: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      valid: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      invalid: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
-      },
-      disabled: {
-        text: "black",
-        placeholder: "grey7",
-        icon: "grey7",
-        border: "grey8",
-        background: "white",
       },
     },
   },
@@ -220,9 +186,8 @@ const theme: OakTheme = {
     },
   },
   menu: {
-    background: "pupilsPink",
-    color: "black",
-    width: "40vw",
+    background: "twilight",
+    width: 720,
   },
   badge: {
     size: "54px",
@@ -238,23 +203,6 @@ const theme: OakTheme = {
     background: "pupilsLightGreen",
     color: "black",
   },
-  lessonControl: {
-    default: {
-      background: "white",
-      border: "2px solid",
-      borderColor: "transparent",
-    },
-    current: {
-      background: "grey3",
-      border: "2px dashed",
-      borderColor: "black",
-    },
-    complete: {
-      background: "grey7",
-      border: "2px solid",
-      borderColor: "transparent",
-    },
-  },
   checkbox: {
     default: {
       color: "black",
@@ -267,16 +215,18 @@ const theme: OakTheme = {
     states: {
       default: {
         background: "white",
+        color: "oakGrey4",
       },
       isFocused: {
-        background: "grey8",
-        color: "white",
+        background: "white",
+        color: "grey4",
+        weight: 700,
       },
       isFocusedSelected: {
-        color: "grey10",
+        color: "grey4",
       },
       isFocusedNotSelected: {
-        color: "black",
+        color: "grey4",
       },
     },
   },
@@ -295,6 +245,13 @@ const theme: OakTheme = {
       labelColor: "grey3",
       background: "white",
       switchColor: "grey6",
+    },
+  },
+  video: {
+    controls: {
+      primary: "teachersHighlight",
+      secondary: "pupilsHighlight",
+      tertiary: "white",
     },
   },
 };

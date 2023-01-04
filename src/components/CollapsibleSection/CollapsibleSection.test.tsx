@@ -1,14 +1,14 @@
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import { Heading } from "../Typography";
 
 import CollapsibleSection from "./CollapsibleSection";
 
 describe("CollapsibleSection", () => {
   it("renders a CollapsibleSection", () => {
-    renderWithProviders(
+    renderWithTheme(
       <CollapsibleSection
         title={"Presentation"}
         headingTag={"h2"}
@@ -34,13 +34,13 @@ describe("CollapsibleSection", () => {
   });
 
   it("Opens section on click of button", async () => {
-    renderWithProviders(
+    renderWithTheme(
       <CollapsibleSection
         title={"Presentation"}
         headingTag={"h2"}
         startOpen={false}
       >
-        <Heading $fontSize={20} tag={"h2"}>
+        <Heading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </CollapsibleSection>
@@ -58,7 +58,7 @@ describe("CollapsibleSection", () => {
   it("has passed in buttons with onClick event", async () => {
     const handleClick = jest.fn();
 
-    renderWithProviders(
+    renderWithTheme(
       <CollapsibleSection
         title={"Presentation"}
         headingTag={"h2"}
@@ -71,7 +71,7 @@ describe("CollapsibleSection", () => {
           },
         ]}
       >
-        <Heading $fontSize={20} tag={"h2"}>
+        <Heading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
         </Heading>
       </CollapsibleSection>

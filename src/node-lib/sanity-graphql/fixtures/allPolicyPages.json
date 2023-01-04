@@ -1,0 +1,18 @@
+{
+  "allPolicyPage": [
+    {
+      "id": "45b666a3-dde5-47ed-885b-66b5b9f84190",
+      "title": "Copyright notice",
+      "slug": {
+        "current": "copyright-notice"
+      }
+    },
+    {
+      "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+      "title": "Privacy",
+      "slug": {
+        "current": "privacy-policy"
+      }
+    }
+  ]
+}

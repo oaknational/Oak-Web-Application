@@ -1,0 +1,344 @@
+{
+  "allPlanningCorePage": [
+    {
+      "id": "planningCorePage",
+      "title": "Plan a lesson",
+      "heading": "Find inspiration and save time planning",
+      "summaryPortableText": [
+        {
+          "_key": "8e967ea12cb2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "626d79c2948f0",
+              "_type": "span",
+              "marks": [],
+              "text": "Our lessons and resources are designed to give teachers all the tools they need to make lesson planning easy. Find out more about how you can adapt them for your class and school."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "lessonElements": {
+        "_type": "planningPageLessonElements",
+        "introQuiz": {
+          "title": "Intro quiz",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "917f31adbda2",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "44e213fca06f0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Help your pupils retrieve or activate prior knowledge with our intro quizzes. Project them in your classroom, or print them off to use in class or as homework."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "video": {
+          "title": "Video",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "6e56085f55dd",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "0ab2b730787c0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Build your confidence tackling unfamiliar topics by observing experienced teachers delivering the lesson, or use the videos to support your pupils with homework and revision."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "slides": {
+          "title": "Lesson slides",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "29626b88ca83",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "34e74495b00a0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "The majority of our lesson slides can be downloaded and edited. Use them as a foundation for your own lesson plans, and adapt them to make them your own."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "worksheet": {
+          "title": "Worksheets",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "0528af385d2d",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5c5c4643e6e30",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Our lesson worksheets help your pupils practise key lesson content, and support your planning for questions and tasks. Use them in the classroom, for homework and revision."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "exitQuiz": {
+          "title": "Exit quiz",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "7b24c47fd7e1",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "9ac5a03825750",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Finish your lesson with our exit quizzes, designed to test your pupils’ knowledge recall and to support you to identify areas which require reteaching."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        }
+      },
+      "lessonElementsCTA": {
+        "label": "Find teacher resources",
+        "linkType": "internal",
+        "external": "https://foo.com",
+        "anchor": null,
+        "internal": {
+          "id": "4fde9be2-3d02-4c2d-8646-63b86469500b",
+          "contentType": "policyPage",
+          "slug": {
+            "current": "privacy-policy"
+          }
+        }
+      },
+      "stepsHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
+      "steps": {
+        "step1": {
+          "title": "Find the right lesson",
+          "image": {
+            "asset": {
+              "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+            }
+          },
+          "bodyPortableText": [
+            {
+              "_key": "c5fd219ba3cb",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "69bfb50b933f0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Match your intended learning outcomes to the core content summary at the top of each Oak lesson overview page. Familiarise yourself with the resources by clicking through the slides, scanning the transcript and reviewing the quiz questions."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "step2": {
+          "title": "Tailor your explanation",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "43a12519987c",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "d13f3d5c4f7d0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Watch the video to inspire and refine how you will explain new content. Consider your pupils’ current levels of understanding, gaps in their knowledge, what they have learnt recently and what they will learn next when personalising your explanation."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "step3": {
+          "title": "Adapt the tasks for your class",
+          "image": null,
+          "bodyPortableText": [
+            {
+              "_key": "0f3d6c013b26",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "48afeb29a02e0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Build in or remove additional scaffolding and support to suit the learning needs of your pupils. Decide how your class will complete each task and consider how you’ll divide your available time between tasks, explanations and quizzes."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        },
+        "step4": {
+          "title": "Teach the lesson",
+          "image": {
+            "asset": {
+              "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+              "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+            }
+          },
+          "bodyPortableText": [
+            {
+              "_key": "4af9862cbb4b",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "3c2f4ab44df20",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Now you have reviewed, adapted and prepared the resources, it’s time to teach the lesson! While you’re teaching, try to tweak task formats, explanation wordings and check for understanding questions to ensure you are responding to the needs of your pupils."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "cta": null
+        }
+      },
+      "stepsCTA": {
+        "label": "Search our lessons",
+        "linkType": "internal",
+        "external": "https://google.com",
+        "anchor": null,
+        "internal": {
+          "id": "planningCorePage",
+          "contentType": "planningCorePage"
+        }
+      },
+      "learnMoreHeading": "How to plan a lesson using our resources and adapt them for your classroom.",
+      "learnMoreBlock1": {
+        "title": "Plan for lesson cover",
+        "bodyPortableText": [
+          {
+            "_key": "487337587821",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "b45aa6ed77210",
+                "_type": "span",
+                "marks": [],
+                "text": "Whether you’re arranging cover for your class or standing in for a colleague, make sure pupils’ learning doesn’t fall behind, without adding to your workload.\n\nSelect the lesson you need and you or your colleague can pick up from where the class left off when you return. Choose from our bank of classroom resources and use our recorded lesson videos to support teaching."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "mediaType": "video",
+        "alignMedia": "left",
+        "cta": {
+          "label": "null",
+          "linkType": "external",
+          "external": "https://thenational.academy",
+          "anchor": null,
+          "internal": null
+        },
+        "image": {
+          "altText": null,
+          "isPresentational": null,
+          "asset": {
+            "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+          },
+          "hotspot": null
+        },
+        "video": {
+          "title": "Using Oak for quick and meaningful cover",
+          "video": {
+            "asset": {
+              "assetId": "8gPQJPvhqNxGttw7UkxVswPNy01Y3XaUuodKO02GrCmEk",
+              "thumbTime": 3,
+              "playbackId": "SmnnFu4FT7CzUJyYm6k2UkAZ5vYdv802er6501gxcb4OY"
+            }
+          }
+        }
+      },
+      "learnMoreBlock2": {
+        "title": "Plan for absent pupils",
+        "bodyPortableText": [
+          {
+            "_key": "7552686bb7c6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "51d72872a48d0",
+                "_type": "span",
+                "marks": [],
+                "text": "Keep pupils who are temporarily learning from home on track by directing them to curriculum-aligned lesson videos in our pupil area. Our lesson videos give your pupils access to a teacher who explains and scaffolds their learning, just like you would in the classroom. And you can keep track of their progress with our quizzes; they can send their scores directly to you."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "mediaType": "image",
+        "alignMedia": "right",
+        "cta": {
+          "label": "I shouldn't exist",
+          "linkType": "external",
+          "external": "https://thenational.academy",
+          "anchor": null,
+          "internal": null
+        },
+        "image": {
+          "altText": null,
+          "isPresentational": null,
+          "asset": {
+            "_id": "image-0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946-jpg",
+            "url": "https://cdn.sanity.io/images/cuvjke51/production/0b79b8db82cc4371d94b94a4ce58513ba7d67bfd-4867x2946.jpg"
+          },
+          "hotspot": null
+        },
+        "video": null
+      },
+      "seo": {
+        "title": "Free Lesson Planning Resources For Teachers",
+        "description": "Our Collection Of Adaptable Lesson Planning Resources Are Made For Teachers - Browse By subject, Key Stage From Reception To Year 11 And Download For Free.",
+        "canonicalURL": null
+      }
+    }
+  ]
+}

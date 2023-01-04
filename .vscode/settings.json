@@ -1,3 +1,16 @@
 {
-  "cSpell.words": ["excalidraw", "sdlc"]
+  "cSpell.words": [
+    "arrowdown",
+    "booleancheckbox",
+    "excalidraw",
+    "hookform",
+    "Nextjs",
+    "portabletext",
+    "phonenumber",
+    "sdlc"
+  ],
+  "deno.enable": true,
+  "deno.enablePaths": ["netlify/edge-functions"],
+  "deno.unstable": true,
+  "deno.importMap": ".netlify/edge-functions-import-map.json"
 }

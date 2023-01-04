@@ -4,14 +4,19 @@ import { useState } from "react";
 import Component from ".";
 
 export default {
-  title: "Form/Dropdown",
+  title: "Form Fields/Dropdown",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
   const [, setSelected] = useState<string>();
-  return <Component {...args} onChange={(e) => setSelected(e.target.value)} />;
+  return (
+    <Component
+      {...args}
+      onChange={(e) => setSelected("value" in e.target ? e.target.value : "")}
+    />
+  );
 };
 
 export const DropdownSelect = Template.bind({});

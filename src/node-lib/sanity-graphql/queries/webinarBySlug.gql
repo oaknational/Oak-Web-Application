@@ -1,6 +1,8 @@
-query webinarBySlug($slug: String, $isDraft: Boolean = false) {
+query webinarBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allWebinar(
-    where: { _: { is_draft: $isDraft }, slug: { current: { eq: $slug } } }
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
   ) {
     id: _id
     title
@@ -9,15 +11,25 @@ query webinarBySlug($slug: String, $isDraft: Boolean = false) {
     }
     date
     summaryPortableText: summaryRaw
+    category {
+      title
+      slug {
+        current
+      }
+    }
     hosts {
       id: _id
       _key
       name
       image {
-        asset {
-          url
-        }
+        ...Image
       }
+    }
+    video {
+      ...Video
+    }
+    seo {
+      ...Seo
     }
   }
 }

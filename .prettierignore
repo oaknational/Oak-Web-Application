@@ -1,10 +1,15 @@
-.next
-next-env.d.ts
+# Node files
 node_modules
 package-lock.json
-public
-out
 
-src/browser-lib/graphql/generated
-src/node-lib/graphql/generated
+# Generated files
+src/browser-lib/avo/Avo.ts
+src/node-lib/curriculum-api/generated
 src/node-lib/sanity-graphql/generated
+.next
+next-env.d.ts
+out
+storybook-static
+
+# Test coverage
+coverage

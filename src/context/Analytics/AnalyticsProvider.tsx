@@ -1,18 +1,28 @@
-import { createContext, FC, useCallback, useEffect, useMemo } from "react";
+import {
+  createContext,
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import router from "next/router";
+import { usePostHogContext } from "posthog-js/react";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
-import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
-import usePosthog from "../../browser-lib/posthog/usePosthog";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
 import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
-import useHubspot from "../../browser-lib/hubspot/useHubspot";
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
-
-type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
-type AnalyticsContext = {
-  track: TrackFns;
-};
+import { ServiceType } from "../../browser-lib/cookie-consent/types";
+import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
+import posthogToAnalyticsService, {
+  PosthogConfig,
+} from "../../browser-lib/posthog/posthog";
+import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
+import config from "../../config/browser";
+import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
+import useStableCallback from "../../hooks/useStableCallback";
+import isBrowser from "../../utils/isBrowser";
+import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
 
 export type UserId = string;
 export type EventName = string;
@@ -21,88 +31,167 @@ export type EventFn = (
   eventName: EventName,
   properties: EventProperties
 ) => void;
-export type PageFn = () => void;
+export type PageProperties = { path: string };
+export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
   userId: UserId,
   properties: IdentifyProperties
 ) => void;
 
+export type TrackEventName = Extract<
+  keyof typeof Avo,
+  | "planALessonSelected"
+  | "classroomSelected"
+  | "teacherHubSelected"
+  | "developYourCurriculumSelected"
+  | "notificationSelected"
+  | "aboutSelected"
+>;
+
+type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
+type AnalyticsContext = {
+  track: TrackFns;
+  identify: IdentifyFn;
+};
+
 export type AnalyticsService<ServiceConfig> = {
-  init: (config: ServiceConfig) => void;
-  enabled?: boolean;
-  loaded: () => boolean;
+  name: ServiceType;
+  init: (config: ServiceConfig) => Promise<void>;
+  state: () => "enabled" | "disabled" | "pending";
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
   optOut: () => void;
   optIn: () => void;
 };
+type AnalyticsServiceWithConfig =
+  | AnalyticsService<HubspotConfig>
+  | AnalyticsService<PosthogConfig>;
+
+type AvoOptions = Parameters<typeof initAvo>[0];
+
+export type AnalyticsProviderProps = {
+  children?: React.ReactNode;
+  avoOptions?: Partial<AvoOptions>;
+};
 
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
-const AnalyticsProvider: FC = (props) => {
-  const { children } = props;
+const getPathAndQuery = () => {
+  if (!isBrowser) {
+    throw new Error("getPathAndQuery run outside of the browser");
+  }
+  return window.location.pathname + window.location.search;
+};
 
-  const trackingEnabled = useCookieConsent().hasConsentedToPolicy("statistics");
+const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
+  const { children, avoOptions = {} } = props;
 
   /**
    * Posthog
    */
-  const posthogEnabled = useHasConsentedTo("posthog");
-  const posthog = usePosthog({ enabled: posthogEnabled });
+  const { client: posthogClient } = usePostHogContext();
+  if (!posthogClient) {
+    throw new Error(
+      "AnalyticsProvider should be contained within PostHogProvider"
+    );
+  }
+
+  const posthogService = useRef(
+    posthogToAnalyticsService(posthogClient)
+  ).current;
+  const posthogConsent = useHasConsentedTo("posthog");
+  const posthog = useAnalyticsService({
+    service: posthogService,
+    config: {
+      apiHost: config.get("posthogApiHost"),
+      apiKey: config.get("posthogApiKey"),
+    },
+    consentState: posthogConsent,
+  });
 
   /**
    * Hubspot
    */
-  const hubspotEnabled = useHasConsentedTo("hubspot");
-  const hubspot = useHubspot({ enabled: hubspotEnabled });
+  const hubspotConsent = useHasConsentedTo("hubspot");
+  const hubspot = useAnalyticsService({
+    service: hubspotWithQueue,
+    config: {
+      portalId: config.get("hubspotPortalId"),
+      scriptDomain: config.get("hubspotScriptDomain"),
+    },
+    consentState: hubspotConsent,
+  });
 
   /**
    * Avo
    */
-  initAvo({ env: getAvoEnv() }, {}, getAvoBridge({ posthog, hubspot }));
+  initAvo(
+    { env: getAvoEnv(), webDebugger: false, ...avoOptions },
+    {},
+    getAvoBridge({ posthog })
+  );
 
   /**
    * Page view tracking
    */
-  const page = useCallback(() => {
-    posthog.page();
-    hubspot.page();
-  }, [posthog, hubspot]);
-  useEffect((): (() => void) => {
-    router.events.on("routeChangeComplete", page);
+  const page = useStableCallback(
+    (opts: { services: AnalyticsServiceWithConfig[] }) => {
+      const { services } = opts;
+      const props = { path: getPathAndQuery() };
+      services.forEach((service) => {
+        service.page(props);
+      });
+    }
+  );
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", () => {
+      page({ services: [posthog, hubspot] });
+    });
 
     return () => {
       router.events.off("routeChangeComplete", page);
     };
-  }, [page]);
+  }, [page, posthog, hubspot]);
+
+  /**
+   * Identify
+   * To be called on form submission (or later on sign up).
+   * Currently we're only sending identify calls to hubspot.
+   */
+  const identify: IdentifyFn = useCallback(
+    (id, props) => {
+      hubspot.identify(id, props);
+    },
+    [hubspot]
+  );
 
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
    * Track functions are then called for individual services as found in
    * getAvoBridge.
+   * @todo explicitly define track event names and pick them from Avo.
    */
   const track = useMemo(() => {
-    const avoTrack = Object.keys(Avo).reduce((accum, key) => {
-      if (trackingEnabled) {
-        return Avo;
-      } else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        accum[key] = () => {
-          console.log("Track called, but no consent given");
-        };
-        return accum;
-      }
-    }, Avo);
+    return Avo;
+  }, []);
 
-    return avoTrack;
-  }, [trackingEnabled]);
+  /**
+   * analytics
+   * The analytics instance returned by useAnalytics hooks
+   */
+  const analytics = useMemo(() => {
+    return {
+      track,
+      identify,
+    };
+  }, [track, identify]);
 
   return (
-    <analyticsContext.Provider value={{ track }}>
+    <analyticsContext.Provider value={analytics}>
       {children}
     </analyticsContext.Provider>
   );

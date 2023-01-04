@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { FC } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import AppHeader from "../AppHeader";
@@ -8,9 +9,14 @@ import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
-import footerSections from "../../browser-lib/fixtures/footerSectionLinks";
 import SiteHeader from "../SiteHeader";
 import PreviewControls from "../PreviewControls";
+import ClientErrorHeader from "../ClientErrorHeader";
+import ClientErrorFooter from "../ClientErrorFooter";
+import LandingPagesHeader from "../LandingPagesHeader";
+import { CTA } from "../../common-lib/cms-types";
+import { LandingPagesHeaderProps } from "../LandingPagesHeader/LandingPagesHeader";
+import { Breadcrumb } from "../Breadcrumbs";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;
@@ -25,30 +31,51 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
-type HeaderVariant = "app" | "site";
-const headers: Record<HeaderVariant, FC> = {
+export type HeaderProps = {
+  children?: React.ReactNode;
+  breadcrumbs?: Breadcrumb[];
+};
+
+export type HeaderVariant = "app" | "site" | "landing-pages" | "client-error";
+const headers: Record<
+  HeaderVariant,
+  FC | FC<LandingPagesHeaderProps> | FC<HeaderProps>
+> = {
   app: AppHeader,
   site: SiteHeader,
+  "landing-pages": LandingPagesHeader,
+  "client-error": ClientErrorHeader,
 };
-interface LayoutProps {
-  seoProps: SeoProps;
-  headerVariant?: "app" | "site";
-  $background?: OakColorName;
-  isPreviewMode?: boolean;
-}
 
-/** 1. Titles for SEO should be between 50-60 characters long 
-    2. Title should contain app name
-    3. SEO descriptions should be between 150-300 characters long */
+export type FooterVariant = "default" | "client-error";
+const footers: Record<FooterVariant, FC> = {
+  default: SiteFooter,
+  "client-error": ClientErrorFooter,
+};
+
+export type LayoutProps = {
+  children?: React.ReactNode;
+  seoProps: SeoProps;
+  headerVariant?: HeaderVariant;
+  footerVariant?: FooterVariant;
+  breadcrumbs?: Breadcrumb[];
+  $background?: OakColorName;
+  headerCta?: CTA | null;
+};
+
 const Layout: FC<LayoutProps> = (props) => {
   const {
     children,
     seoProps,
     $background,
+    breadcrumbs,
     headerVariant = "site",
-    isPreviewMode,
+    footerVariant = "default",
   } = props;
   const Header = headers[headerVariant];
+  const Footer = footers[footerVariant];
+
+  const { isPreview } = useRouter();
 
   return (
     <>
@@ -58,10 +85,10 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
-        <Header />
+        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
         <StyledLayout>{children}</StyledLayout>
-        <SiteFooter footerSections={footerSections} />
-        {isPreviewMode && <PreviewControls />}
+        <Footer />
+        {isPreview && <PreviewControls />}
       </Container>
     </>
   );

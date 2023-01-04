@@ -1,0 +1,127 @@
+/* SITE */
+             
+Oak National Academy’s tech platform has been created by a team of human developers supporting a committed team of teachers and volunteers.
+
+/* TEAM */
+
+
+  Craig McCahill (Developer)
+  From: London, UK
+
+
+  Ian Kynnersley (Head of Engineering)
+  Site: https://www.iankynnersley.co.uk/
+  LinkedIn: https://www.linkedin.com/in/iankynnersley/
+  Twitter: https://twitter.com/kpopper
+  From: London, UK
+  
+
+  Jack Skerrett (QA)
+  LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
+  From: Cornwall, UK
+
+
+  Jim Cresswell (Developer)
+  Site: https://jimcresswell.net/
+  LinkedIn: https://uk.linkedin.com/in/jimcresswell/
+  From: UK
+
+
+  Joe Baker (Developer)
+  Email: jbr90.dev@gmail.com
+  From: Brighton, UK
+
+
+  John Roberts (Director of Product and Technology)
+  Site: https://johnroberts.me
+  LinkedIn: https://linkedin.com/in/johnrobertsuk
+  Twitter: @johnrobeds
+  From: Manchester, UK
+
+
+  Matt Gregory (Developer)
+  Site: https://mantagen.org
+
+
+  Mitch Lloyd (Developer)
+  Twitter: @MitchellLloyd15
+  Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
+  Email: mitchelllloyd154@gmail.com
+  From: Manchester, UK
+
+
+  Ross Mackay (Developer)
+  Site: https://rossmackay.co
+  Twitter: @r_mcky
+  From: London, UK
+
+
+  Shaun Orpen (Developer)
+  Site: https://shaunorpen.com/
+  LinkedIn: https://linkedin.com/in/shaunorpen
+  Twitter: https://twitter.com/shaunorpen
+  From: UK
+
+
+  Stuart G Wilson (Product Designer)
+  Site: qegadesign.myportfolio.com
+  Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
+  From: Glasgow, UK
+
+
+  Thomas Birch (Data)
+  Site: https://capeflair.com
+  From: Guildford, UK
+
+
+  Tom Wise (UX/UI and Design)
+  Site: https://putty.studio
+  LinkedIn: https://www.linkedin.com/in/tom-wise1234/
+  From: Brighton, UK
+
+
+  Verity Roberts (Product Manager)
+  From: Cambridge, UK
+
+
+
+/* THANKS */
+
+  Lee Fuller (Developer)
+  Site: https://lee-fuller.co.uk/
+  LinkedIn: https://www.linkedin.com/in/lee--fuller/
+  Twitter: @lee_fuller_
+  From: Standish, UK
+
+
+  Leo Allen (Data and Analytics)
+  Site: https://linkedin.com/in/leoallen
+  Twitter: @leoallen85
+  From: London, UK
+
+
+  Rees McIvor (Developer)
+  Site: https://www.logicrises.co.uk/
+  From: Shropshire, UK
+
+
+  Remy Sharp (Developer)
+  Site: https://remysharp.com
+  Twitter: @rem
+  From: Brighton, UK    
+
+
+  Shaquille Hobbs-Daley (Developer)
+  LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
+  From: London, UK
+
+
+  Stef Lewandowski (Lead Developer)
+  Site: https://stef.io
+  Twitter: @stef
+  From: London, UK
+
+
+
+
+There are many other humans and organisations that have supported Oak National Academy. We've listed out a number of the key partner organisations at https://www.thenational.academy/people-and-partners
