@@ -14,7 +14,7 @@ import LessonList from "../../../../../../../../../components/Lessons/LessonList
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 
-type LessonListPageProps = {
+export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
 
@@ -81,7 +81,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
   );
 };
 
-type URLParams = {
+export type URLParams = {
   keyStageSlug: string;
   subjectSlug: string;
   unitSlug: string;

@@ -1,10 +1,8 @@
 import { screen, waitFor } from "@testing-library/react";
+import { GetServerSidePropsContext, PreviewData } from "next";
 
 import renderWithSeo from "../../../../__helpers__/renderWithSeo";
-import LessonOverviewPage from //getServerSideProps,
-//getStaticPaths,
-// LessonOverviewPageProps,
-"../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+import LessonOverviewPage, {LessonOverviewPageProps, getServerSideProps, URLParams} from  "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { mockSeoResult } from "../../../../__helpers__/cms";
 import renderWithProviders from "../../../../__helpers__/renderWithProviders";
 import teachersLessonOverviewFixture from "../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
@@ -62,34 +60,22 @@ describe("pages/beta/teachers/lessons", () => {
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
       });
     });
-    // });
-    // describe("getStaticPaths", () => {
-    //   it("Should return the paths of lesson overview", async () => {
-    //     const pathsResult = await getStaticPaths({});
-    //     expect(pathsResult.paths[0]).toEqual({
-    //       params: {
-    //         keyStageSlug: "ks4",
-    //         subjectSlug: "maths",
-    //         unitSlug: "geometry",
-    //         lessonSlug: "cirlces-001",
-    //       },
-    //     });
-    //   });
-    // });
-    // describe("getServerSideProps", () => {
-    //   it("Should fetch the correct data", async () => {
-    //     const propsResult = (await getServerSideProps({
-    //       params: {
-    //         lessonSlug: "macbeth-lesson-1",
-    //         keyStageSlug: "ks2",
-    //         subjectSlug: "english",
-    //         unitSlug: "shakespeare",
-    //       },
-    //     })) as {
-    //       props: LessonOverviewPageProps;
-    //     };
+     });
+    describe("getServerSideProps", () => {
+      it("Should fetch the correct data", async () => {
+        const propsResult = (await getServerSideProps({
+          params: {
+            lessonSlug: "macbeth-lesson-1",
+            keyStageSlug: "ks2",
+            subjectSlug: "english",
+            unitSlug: "shakespeare",
+          },
+          query:{},
+        } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
+          props: LessonOverviewPageProps;
+        };
 
-    //     expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
-    //   });
+        expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
+      });
   });
 });
