@@ -231,18 +231,18 @@ const getFirstResultOrWarnOrFail =
   ({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
   <T>({ results }: { results: T[] }) => {
     if (results.length > 1) {
-      const warning = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      reportError(warning, {
-        severity: "warning",
-        meta: {
-          note: "meta.results has been sliced to 10 so as not to create an obscenely large pageData object",
-          results: results.slice(10),
-          query,
-          args,
-        },
-      });
+      // const warning = new OakError({
+      //   code: "curriculum-api/uniqueness-assumption-violated",
+      // });
+      // reportError(warning, {
+      //   severity: "warning",
+      //   meta: {
+      //     note: "meta.results has been sliced to 10 so as not to create an obscenely large pageData object",
+      //     results: results.slice(10),
+      //     query,
+      //     args,
+      //   },
+      // });
     }
     const [firstResult] = results;
     if (!firstResult) {
