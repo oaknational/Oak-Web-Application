@@ -22,11 +22,11 @@ export const searchContext = createContext<SearchQuery | null>(null);
 export type SearchProviderValue = SearchQuery;
 export type SearchProviderProps = {
   children?: React.ReactNode;
-  value?: Partial<SearchProviderValue>;
+  // value?: Partial<SearchProviderValue>;
 };
 export const SearchProvider: FC<SearchProviderProps> = ({
   children,
-  value: propsValue,
+  // value: propsValue,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [keyStages, setKeyStages] = useState(new Set<KeyStage>());
@@ -38,7 +38,7 @@ export const SearchProvider: FC<SearchProviderProps> = ({
   };
 
   return (
-    <searchContext.Provider value={{ ...searchQuery, ...propsValue }}>
+    <searchContext.Provider value={searchQuery}>
       {children}
     </searchContext.Provider>
   );

@@ -1,5 +1,5 @@
 import { FC, useState, FormEvent } from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { useSearchQuery } from "../../context/Search/SearchContext";
@@ -18,11 +18,11 @@ const SearchForm: FC = () => {
   const { text, setText } = useSearchQuery();
   const [value, setValue] = useState(text);
 
-  const router = useRouter();
+  // const router = useRouter();
   const handleSubmit = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     e.preventDefault();
     setText(value);
-    router.push("/beta/search");
+    // router.push("/beta/search");
   };
 
   const onTextChange = (e: FormEvent<HTMLInputElement>) => {
