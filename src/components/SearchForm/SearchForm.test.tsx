@@ -26,6 +26,7 @@ jest.mock("next/router", () => ({
   ...jest.requireActual("next/router"),
   useRouter: () => ({
     push: jest.fn(),
+    query: {},
   }),
 }));
 jest.mock("../../context/Search/SearchContext", () => ({
