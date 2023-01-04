@@ -1,8 +1,8 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 
-import config from "../../config/browser";
 import CMSClient from "../../node-lib/cms";
+import { decorateWithIsr } from "../../node-lib/isr";
 import { AboutPartnersPage } from "../../common-lib/cms-types";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -121,12 +121,13 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     };
   }
 
-  return {
+  const results = {
     props: {
       pageData: aboutPartnersPage,
     },
-    revalidate: config.get("sanityRevalidateSeconds"),
   };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default AboutUsPartners;
