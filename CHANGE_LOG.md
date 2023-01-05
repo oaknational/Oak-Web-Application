@@ -1,3 +1,10 @@
+## [1.99.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.4...v1.99.5) (2023-01-05)
+
+
+### Bug Fixes
+
+* 1085 fix border box gap to match designs ([d824063](https://github.com/oaknational/Oak-Web-Application/commit/d824063e0455b966af93c2bb3f97ed024d1234d1))
+
 ## [1.99.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.3...v1.99.4) (2023-01-05)
 
 

@@ -140,7 +140,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           {title}
         </Icon>
       </Flex>
-      <BoxBorders gapPosition="bottomRight" />
+      <BoxBorders gapPosition="bottomRightCorner" />
     </Card>
   );
 };
