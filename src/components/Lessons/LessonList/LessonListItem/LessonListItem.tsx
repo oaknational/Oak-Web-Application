@@ -10,19 +10,10 @@ import OakLink from "../../../OakLink";
 import LineClamp from "../../../LineClamp";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
+import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
 
-export type LessonListItemProps = {
-  title: string;
-  description: string;
-  slug: string;
-  keyStageSlug: string;
-  subjectSlug: string;
-  unitSlug: string;
-  quizCount: number | null;
-  videoCount: number | null;
-  presentationCount: number | null;
-  worksheetCount: number | null;
-};
+export type LessonListItemProps =
+  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number];
 
 /**
  * Contains a lesson title, description, icon, and icons for resources
@@ -32,6 +23,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
     title,
     slug,
+    keyStageSlug,
+    subjectSlug,
+    unitSlug,
     description,
     quizCount,
     videoCount,
@@ -78,7 +72,14 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           $flexDirection={"column"}
           $width={"100%"}
         >
-          <OakLink slug={slug} page={"lesson-overview"} {...primaryTargetProps}>
+          <OakLink
+            slug={slug}
+            keyStage={keyStageSlug}
+            subject={subjectSlug}
+            unit={unitSlug}
+            page={"lesson-overview"}
+            {...primaryTargetProps}
+          >
             <Flex>
               <Heading
                 $mt={24}

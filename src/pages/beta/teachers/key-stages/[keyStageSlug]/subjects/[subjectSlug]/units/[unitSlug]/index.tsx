@@ -4,8 +4,9 @@ import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
-import teachersKeyStageSubjectUnitsLessonsFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/teachersLessons.fixture";
-import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../../../../../../node-lib/curriculum-api";
+import curriculumApi, {
+  TeachersKeyStageSubjectUnitsLessonsData,
+} from "../../../../../../../../../node-lib/curriculum-api";
 import SubjectErrorCard from "../../../../../../../../../components/Card/SubjectErrorCard";
 import Flex from "../../../../../../../../../components/Flex";
 import TitleCard from "../../../../../../../../../components/Card/TitleCard";
@@ -13,7 +14,7 @@ import LessonList from "../../../../../../../../../components/Lessons/LessonList
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 
-type LessonListPageProps = {
+export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
 
@@ -80,13 +81,30 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
   );
 };
 
-type URLParams = { unitSlug: string };
+export type URLParams = {
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitSlug: string;
+};
 
 export const getServerSideProps: GetServerSideProps<
   LessonListPageProps,
   URLParams
-> = async () => {
-  const curriculumData = teachersKeyStageSubjectUnitsLessonsFixture();
+> = async (context) => {
+  if (!context.params) {
+    throw new Error("no context.params");
+  }
+  const { keyStageSlug, subjectSlug, unitSlug } = context.params;
+  if (!keyStageSlug || !subjectSlug || !unitSlug) {
+    throw new Error("unexpected context.params");
+  }
+  const curriculumData = await curriculumApi.teachersKeyStageSubjectUnitLessons(
+    {
+      keyStageSlug,
+      subjectSlug,
+      unitSlug,
+    }
+  );
 
   const results: GetServerSidePropsResult<LessonListPageProps> = {
     props: {
