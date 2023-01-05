@@ -108,7 +108,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           {title}
         </Icon>
       </Flex>
-      <BoxBorders gapPosition="bottomRight" />
+      <BoxBorders gapPosition="bottomRightCorner" />
     </Card>
   );
 };
