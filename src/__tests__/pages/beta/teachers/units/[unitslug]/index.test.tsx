@@ -49,5 +49,12 @@ describe("Lesson listing page", () => {
         teachersKeyStageSubjectUnitsLessonsFixture()
       );
     });
+    it("should throw error", async () => {
+      await expect(
+        getServerSideProps(
+          {} as GetServerSidePropsContext<URLParams, PreviewData>
+        )
+      ).rejects.toThrowError("no context.params");
+    });
   });
 });

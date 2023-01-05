@@ -81,5 +81,12 @@ describe("pages/beta/teachers/lessons", () => {
 
       expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
     });
+    it("should throw error", async () => {
+      await expect(
+        getServerSideProps(
+          {} as GetServerSidePropsContext<URLParams, PreviewData>
+        )
+      ).rejects.toThrowError("No context.params");
+    });
   });
 });
