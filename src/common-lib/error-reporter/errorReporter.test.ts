@@ -1,4 +1,4 @@
-import Bugsnag from "@bugsnag/js";
+import Bugsnag, { Event as BugsnagEvent } from "@bugsnag/js";
 
 import OakError from "../../errors/OakError";
 
@@ -6,6 +6,8 @@ import errorReporter, {
   initialiseBugsnag,
   ErrorData,
   matchesUserAgent,
+  matchesIgnoredError,
+  bugsnagOnError,
 } from "./errorReporter";
 
 const getHasConsentedTo = jest.fn();
@@ -73,6 +75,51 @@ describe("common-lib/error-reporter", () => {
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) percy AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36"
         )
       ).toBe(true);
+    });
+  });
+  describe("matchesIgnoredError", () => {
+    it("returns false if the error should not be ignored", () => {
+      const shouldIgnore = matchesIgnoredError(
+        "Proper error that should be reported"
+      );
+      expect(shouldIgnore).toBe(false);
+    });
+    it("returns true if the error should be ignored", () => {
+      const shouldIgnore = matchesIgnoredError("Test error");
+      expect(shouldIgnore).toBe(true);
+    });
+  });
+  describe("Bugsnag onError handler", () => {
+    it("Returns undefined for non-ignored error", () => {
+      const event = {
+        device: { userAgent: "real browser" },
+        errors: [
+          {
+            errorMessage: "real error",
+          },
+        ],
+      } as BugsnagEvent;
+      const result = bugsnagOnError(event);
+      expect(result).toBe(undefined);
+    });
+    it("Returns false for ignored user agents", () => {
+      const event = {
+        device: { userAgent: "detectify" },
+      } as BugsnagEvent;
+      const result = bugsnagOnError(event);
+      expect(result).toBe(false);
+    });
+    it("Returns false for ignored errors", () => {
+      const event = {
+        device: {},
+        errors: [
+          {
+            errorMessage: "Test error",
+          },
+        ],
+      } as BugsnagEvent;
+      const result = bugsnagOnError(event);
+      expect(result).toBe(false);
     });
   });
   describe("initialiseBugsnag", () => {

@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import useSignedVideoToken from "./useSignedVideoToken";
+import { useSignedMuxToken } from "./useSignedVideoToken";
 
 const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
   data: null,
@@ -34,23 +34,26 @@ jest.mock("../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-describe("useSignedVideoToken", () => {
+describe("useSignedMuxToken", () => {
   test("'loading' should default to false on public video", () => {
     const { result } = renderHook(() =>
-      useSignedVideoToken({
+      useSignedMuxToken({
         playbackId: "123",
         playbackPolicy: "public",
+        type: "video",
       })
     );
     const { loading } = result.current;
 
     expect(loading).toBe(false);
   });
+
   test("'token' should be null on a public video", () => {
     const { result } = renderHook(() =>
-      useSignedVideoToken({
+      useSignedMuxToken({
         playbackId: "123",
         playbackPolicy: "public",
+        type: "video",
       })
     );
     const { playbackToken } = result.current;
@@ -59,9 +62,10 @@ describe("useSignedVideoToken", () => {
   });
   test("'loading' should default to true on signed video", () => {
     const { result } = renderHook(() =>
-      useSignedVideoToken({
+      useSignedMuxToken({
         playbackId: "123",
         playbackPolicy: "signed",
+        type: "video",
       })
     );
     const { loading } = result.current;
@@ -71,9 +75,10 @@ describe("useSignedVideoToken", () => {
   test("should return correct state on error ", () => {
     mockUseSWR.mockImplementationOnce(() => ({ data: null, error: "error" }));
     const { result } = renderHook(() =>
-      useSignedVideoToken({
+      useSignedMuxToken({
         playbackId: "123",
         playbackPolicy: "signed",
+        type: "video",
       })
     );
 
@@ -89,9 +94,10 @@ describe("useSignedVideoToken", () => {
       error: null,
     }));
     const { result } = renderHook(() =>
-      useSignedVideoToken({
+      useSignedMuxToken({
         playbackId: "123",
         playbackPolicy: "signed",
+        type: "video",
       })
     );
 
@@ -108,9 +114,10 @@ describe("useSignedVideoToken", () => {
     }));
 
     renderHook(() =>
-      useSignedVideoToken({
+      useSignedMuxToken({
         playbackId: "123",
         playbackPolicy: "signed",
+        type: "video",
       })
     );
 
