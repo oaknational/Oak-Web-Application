@@ -1,6 +1,6 @@
 import { TeachersLessonOverviewPaths } from "..";
 
-const teachersLessonOverviewPaths = (
+const teachersLessonOverviewPathsFixture = (
   partial?: Partial<TeachersLessonOverviewPaths>
 ): TeachersLessonOverviewPaths => {
   return {
@@ -34,4 +34,4 @@ const teachersLessonOverviewPaths = (
   };
 };
 
-export default teachersLessonOverviewPaths;
+export default teachersLessonOverviewPathsFixture;
