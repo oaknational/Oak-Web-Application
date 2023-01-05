@@ -46,7 +46,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
       )}
       {signLanguageVideo && signLanguageOn && (
         <Button
-          label="Unsigned"
+          label="Unsigned video"
           background="teachersHighlight"
           $mt={20}
           $mb={24}
