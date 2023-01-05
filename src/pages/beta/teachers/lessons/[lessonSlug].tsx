@@ -165,6 +165,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <ExpandingContainer title={"Video"} downloadable={true}>
           <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
             <Flex
+              $width={"100%"}
               $maxWidth={["100%", 840]}
               $alignItems={"center"}
               $flexDirection={"column"}
@@ -193,7 +194,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               )}
               {signLanguageVideo && signLanguageOn && (
                 <Button
-                  label="Unsigned"
+                  label="Unsigned video"
                   background="teachersHighlight"
                   $mt={20}
                   $mb={24}

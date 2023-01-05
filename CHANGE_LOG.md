@@ -1,3 +1,14 @@
+## [1.99.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.3...v1.99.4) (2023-01-05)
+
+
+### Bug Fixes
+
+* 1130 change loading spinner to text ([87ea248](https://github.com/oaknational/Oak-Web-Application/commit/87ea2480bb5f92dd31de06a419fede777d97b2c4))
+* 1130 fix video resizing and missing thumbnail and storyboard resources ([f695c97](https://github.com/oaknational/Oak-Web-Application/commit/f695c97446e46aaa6322d10d230aa1907e284d8a))
+* 1130 update tests ([3696abb](https://github.com/oaknational/Oak-Web-Application/commit/3696abb137ee113bb328f81ba7a1221197c86c81))
+
+## [1.99.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.2...v1.99.3) (2023-01-04)
+
 ## [1.99.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.1...v1.99.2) (2023-01-04)
 
 
