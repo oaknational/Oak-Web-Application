@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
+import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 
 import Flex from "../Flex";
@@ -7,14 +8,19 @@ import OakError from "../../errors/OakError";
 import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
 import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
-import LoadingSpinner from "../LoadingSpinner";
+import { P } from "../Typography";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
 import getPercentageElapsed from "./getPercentageElapsed";
-import useSignedVideoToken, { PlaybackPolicy } from "./useSignedVideoToken";
+import {
+  PlaybackPolicy,
+  useSignedVideoToken,
+  useSignedThumbnailToken,
+  useSignedStoryboardToken,
+} from "./useSignedVideoToken";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -66,7 +72,18 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const videoTracking = useVideoTracking({ getState });
-  const tokens = useSignedVideoToken({
+
+  const thumbnailToken = useSignedThumbnailToken({
+    playbackId,
+    playbackPolicy,
+  });
+
+  const videoToken = useSignedVideoToken({
+    playbackId: playbackId,
+    playbackPolicy: playbackPolicy,
+  });
+
+  const storyboardToken = useSignedStoryboardToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
   });
@@ -110,9 +127,23 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
      */
     return null;
   }
-  if (tokens.loading) {
-    return <LoadingSpinner />;
+  if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
+    return (
+      <Flex $flexDirection={"column"} $width={"100%"}>
+        <P $textAlign="center">Loading...</P>
+      </Flex>
+    );
   }
+
+  const tokens: Tokens = {
+    playback: videoToken?.playbackToken ? videoToken.playbackToken : undefined,
+    thumbnail: thumbnailToken?.playbackToken
+      ? thumbnailToken.playbackToken
+      : undefined,
+    storyboard: storyboardToken?.playbackToken
+      ? storyboardToken.playbackToken
+      : undefined,
+  };
 
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
@@ -123,9 +154,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        tokens={
-          tokens.playbackToken ? { playback: tokens.playbackToken } : undefined
-        }
+        tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
