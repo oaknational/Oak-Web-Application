@@ -18,6 +18,7 @@ import Typography, {
   Hr,
   LI,
   UL,
+  P,
 } from "../../../../components/Typography";
 import Button from "../../../../components/Button";
 import ExpandingContainer from "../../../../components/ExpandingContainer";
@@ -45,6 +46,7 @@ export type LessonOverview = {
   signLanguageVideo?: string;
   presentation?: string;
   worksheet?: string;
+  transcript?: string[];
 };
 
 export type LessonOverviewPageProps = {
@@ -100,6 +102,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     signLanguageVideo,
     presentation,
     worksheet,
+    transcript,
   } = curriculumData;
 
   return (
@@ -190,9 +193,33 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <ExpandingContainer title={"Exit quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
-        <ExpandingContainer title={"Transript"} downloadable={true}>
-          <Box>Transcript element</Box>
-        </ExpandingContainer>
+        {transcript && (
+          <ExpandingContainer title={"Transcript"}>
+            <Flex $width={"100%"} $justifyContent={"center"}>
+              <Box
+                $width={["100%", "70%", "60%"]}
+                $maxHeight={[380, 640, 640]}
+                $background="oakGrey2"
+                $ph={16}
+                $pv={32}
+                $mt={20}
+                $borderRadius={[8, 3, 3]}
+              >
+                <Box
+                  $maxHeight={[320, 580, 580]}
+                  $overflowY={"scroll"}
+                  $pr={32}
+                >
+                  {transcript.map((transcriptString) => (
+                    <P $mb={[24, 16]} $font={"body-1"}>
+                      {transcriptString}
+                    </P>
+                  ))}
+                </Box>
+              </Box>
+            </Flex>
+          </ExpandingContainer>
+        )}
         <Hr $color={"oakGrey3"} />
       </MaxWidth>
       <MaxWidth $ph={[0, 16, 16]}>
