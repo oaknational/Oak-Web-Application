@@ -28,13 +28,16 @@ type UseSignedPlaybackIdReturnProps = {
   playbackToken: string | null | undefined;
 };
 
-const useSignedVideoToken = ({
+export const useSignedMuxToken = ({
   playbackId,
   playbackPolicy,
-}: UseSignedPlaybackIdProps): UseSignedPlaybackIdReturnProps => {
+  type,
+}: UseSignedPlaybackIdProps & {
+  type: string;
+}): UseSignedPlaybackIdReturnProps => {
   const { data, error } = useSWR(
     playbackPolicy === "signed"
-      ? `${apiEndpoint}?id=${playbackId}&type=video`
+      ? `${apiEndpoint}?id=${playbackId}&type=${type}`
       : null,
     getSignedVideoToken,
     options
@@ -86,4 +89,20 @@ const useSignedVideoToken = ({
   };
 };
 
-export default useSignedVideoToken;
+export const useSignedVideoToken = ({
+  playbackId,
+  playbackPolicy,
+}: UseSignedPlaybackIdProps) =>
+  useSignedMuxToken({ playbackId, playbackPolicy, type: "video" });
+
+export const useSignedThumbnailToken = ({
+  playbackId,
+  playbackPolicy,
+}: UseSignedPlaybackIdProps) =>
+  useSignedMuxToken({ playbackId, playbackPolicy, type: "thumbnail" });
+
+export const useSignedStoryboardToken = ({
+  playbackId,
+  playbackPolicy,
+}: UseSignedPlaybackIdProps) =>
+  useSignedMuxToken({ playbackId, playbackPolicy, type: "storyboard" });
