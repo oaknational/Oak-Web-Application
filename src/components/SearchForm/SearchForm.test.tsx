@@ -20,15 +20,18 @@ const Providers: FC<{ children?: React.ReactNode }> = ({ children }) => {
 };
 
 const setTextSpy = jest.fn();
+const setPushSpy = jest.fn();
 
 jest.mock("next/router", () => ({
   __esModule: true,
   ...jest.requireActual("next/router"),
   useRouter: () => ({
-    push: jest.fn(),
+    pathname: "/beta/teachers",
+    push: setPushSpy,
     query: {},
   }),
 }));
+
 jest.mock("../../context/Search/SearchContext", () => ({
   __esModule: true,
   ...jest.requireActual("../../context/Search/SearchContext"),
@@ -65,5 +68,23 @@ describe("The <SearchForm> Component", () => {
     await user.click(searchButton);
 
     expect(setTextSpy).toHaveBeenCalledWith(text);
+  });
+
+  it("navigates to search page", async () => {
+    const text = "Macbeth";
+    render(<SearchForm />, { wrapper: Providers });
+    const user = userEvent.setup();
+
+    const searchField = screen.getByRole("searchbox");
+    await user.click(searchField);
+    await user.keyboard(text);
+
+    const searchButton = screen.getByRole("button");
+    await user.click(searchButton);
+
+    expect(setPushSpy).toHaveBeenCalledWith({
+      pathname: "/beta/search",
+      query: { term: text },
+    });
   });
 });
