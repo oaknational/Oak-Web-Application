@@ -33,7 +33,7 @@ const AppHeader: FC<HeaderProps> = () => {
         <OakLink page={"beta-teachers-home"}>
           <Logo title={"Oak National Academy"} height={48} width={104} />
         </OakLink>
-        {/* UNCOMMENT IF YOU WANT TEST SEARCH */}
+        {/* UNCOMMENT IF YOU WANT TO TEST SEARCH */}
         {/* <SearchForm /> */}
         <IconButton
           aria-label="Menu"
