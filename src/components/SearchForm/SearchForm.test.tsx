@@ -83,7 +83,7 @@ describe("The <SearchForm> Component", () => {
     await user.click(searchButton);
 
     expect(setPushSpy).toHaveBeenCalledWith({
-      pathname: "/beta/search",
+      pathname: "/beta/teachers/search",
       query: { term: text },
     });
   });
