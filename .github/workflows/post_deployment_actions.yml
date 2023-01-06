@@ -23,7 +23,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: "npm"
       # Install.
       - run: npm ci
@@ -71,7 +71,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: "npm"
       - run: npm ci
         env:
@@ -139,7 +139,7 @@ jobs:
   #     - name: Use Node.js
   #       uses: actions/setup-node@v3
   #       with:
-  #         node-version: 16.x
+  #         node-version: 18.x
   #         cache: "npm"
   #     - run: npm ci
   #       env:

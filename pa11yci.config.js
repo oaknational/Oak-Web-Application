@@ -65,7 +65,7 @@ const relativeUrls = [
   // Ignore beta pages for now.
   // "/beta/lessons/physics-only-review-chj3cd/",
   // "/beta/sign-in",
-  // "/beta/search",
+  // "/beta/teachers/search",
 ];
 
 // Add the base URL to the relative URLs.

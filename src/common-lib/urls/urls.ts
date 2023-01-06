@@ -28,6 +28,7 @@ const OAK_PAGES = {
   "teachers-oak-curriculum":
     "https://teachers.thenational.academy/oaks-curricula",
   "beta-teachers-home": "/beta/teachers",
+  "beta-search": "/beta/teachers/search",
 } as const;
 
 export type OakPageName = keyof typeof OAK_PAGES;
@@ -101,6 +102,9 @@ export type LessonIndexLinkProps = {
 };
 export type LessonOverviewLinkProps = {
   page: "lesson-overview";
+  keyStage: string;
+  subject: string;
+  unit: string;
   slug: string;
 };
 
@@ -199,9 +203,11 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
     }
     case "lesson-overview": {
-      return `/beta/teachers/lessons/${props.slug}`;
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
     }
-
+    case "beta-search": {
+      return "/beta/teachers/search";
+    }
     default:
       return OAK_PAGES[props.page];
   }

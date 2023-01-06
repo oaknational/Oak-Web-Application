@@ -1,57 +1,45 @@
 import React, { FC, useState } from "react";
 import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  //GetStaticPaths,
+  // GetStaticProps,
+  // GetStaticPropsResult,
   NextPage,
 } from "next";
 
-import { decorateWithIsr } from "../../../../node-lib/isr";
-import AppLayout from "../../../../components/AppLayout";
-import Flex from "../../../../components/Flex";
-import MaxWidth from "../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../components/Card/TitleCard";
-import { getSeoProps } from "../../../../browser-lib/seo/getSeoProps";
-import { mockFetchLessons } from "../../../../browser-lib/fixtures/lesson";
+//import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
+import AppLayout from "../../../../../../../../../../components/AppLayout";
+import Flex from "../../../../../../../../../../components/Flex";
+import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
+import TitleCard from "../../../../../../../../../../components/Card/TitleCard";
+import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Typography, {
   Heading,
   Hr,
   LI,
   UL,
-} from "../../../../components/Typography";
-import Button from "../../../../components/Button";
-import ExpandingContainer from "../../../../components/ExpandingContainer";
-import Box from "../../../../components/Box";
-import BrushBorders from "../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
-import Card from "../../../../components/Card";
-import Grid, { GridArea } from "../../../../components/Grid";
-import Icon, { IconName } from "../../../../components/Icon";
-import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
-import VideoPlayer from "../../../../components/VideoPlayer";
-
-export type LessonOverview = {
-  lessonTitle: string;
-  lessonSlug: string;
-  keyStageTitle: string;
-  keyStageSlug: string;
-  coreContent: string[];
-  subjectTitle: string;
-  subjectSlug: string;
-  equipmentRequired: string;
-  supervisionLevel: string;
-  contentGuidance: string;
-  video: string;
-  signLanguageVideo?: string;
-};
+} from "../../../../../../../../../../components/Typography";
+import Button from "../../../../../../../../../../components/Button";
+import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
+import Box from "../../../../../../../../../../components/Box";
+import BrushBorders from "../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import Card from "../../../../../../../../../../components/Card";
+import Grid, { GridArea } from "../../../../../../../../../../components/Grid";
+import Icon, { IconName } from "../../../../../../../../../../components/Icon";
+import VideoPlayer from "../../../../../../../../../../components/VideoPlayer";
+import curriculumApi, {
+  TeachersLessonOverviewData,
+} from "../../../../../../../../../../node-lib/curriculum-api";
 
 export type LessonOverviewPageProps = {
-  curriculumData: LessonOverview;
+  curriculumData: TeachersLessonOverviewData;
 };
 
 type HelperProps = {
   helperIcon: IconName;
   helperTitle: string;
-  helperDescription: string;
+  helperDescription: string | null;
 };
 
 const LessonHelper: FC<HelperProps> = ({
@@ -59,6 +47,9 @@ const LessonHelper: FC<HelperProps> = ({
   helperTitle,
   helperDescription,
 }) => {
+  if (helperDescription) {
+    return null;
+  }
   return (
     <GridArea $colSpan={[12, 12, 4]}>
       <Card
@@ -84,7 +75,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
   const {
-    lessonTitle,
+    title,
     keyStageTitle,
     keyStageSlug,
     coreContent,
@@ -93,8 +84,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     equipmentRequired,
     supervisionLevel,
     contentGuidance,
-    video,
-    signLanguageVideo,
+    videoMuxPlaybackId,
+    videoWithSignLanguageMuxPlaybackId,
   } = curriculumData;
 
   const [signLanguageOn, setSignLanguageOn] = useState(false);
@@ -102,6 +93,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   const toggleSignLanguage = () => {
     setSignLanguageOn(!signLanguageOn);
   };
+
+  const muxPlaybackId =
+    videoWithSignLanguageMuxPlaybackId && signLanguageOn
+      ? videoWithSignLanguageMuxPlaybackId
+      : videoMuxPlaybackId;
 
   return (
     <AppLayout
@@ -118,7 +114,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             keyStageSlug={keyStageSlug}
             subject={subjectTitle}
             subjectSlug={subjectSlug}
-            title={lessonTitle}
+            title={title}
             iconName={"Rocket"}
           />
         </Flex>
@@ -127,8 +123,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             Core content
           </Heading>
           <UL $pl={28}>
-            {coreContent.map((contentString) => {
-              return <LI $font={"list-item-1"}>{contentString}</LI>;
+            {coreContent.map((contentString, i) => {
+              if (!contentString) {
+                return null;
+              }
+              return (
+                <LI key={`core-content-string-${i}`} $font={"list-item-1"}>
+                  {contentString}
+                </LI>
+              );
             })}
           </UL>
         </Flex>
@@ -162,48 +165,46 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <ExpandingContainer title={"Presentation"} downloadable={true}>
           <Box>Presentation element</Box>
         </ExpandingContainer>
-        <ExpandingContainer title={"Video"} downloadable={true}>
-          <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-            <Flex
-              $maxWidth={["100%", 840]}
-              $alignItems={"center"}
-              $flexDirection={"column"}
-            >
-              <VideoPlayer
-                playbackId={
-                  signLanguageVideo && signLanguageOn
-                    ? signLanguageVideo
-                    : video
-                }
-                playbackPolicy={"signed"}
-                title={lessonTitle}
-                location={"lesson"}
-              />
-              {signLanguageVideo && !signLanguageOn && (
-                <Button
-                  label="Signed video"
-                  background="teachersHighlight"
-                  $mt={20}
-                  $mb={24}
-                  icon={"SignLanguage"}
-                  $iconPosition={"trailing"}
-                  onClick={toggleSignLanguage}
-                  data-testid={"sign-language-button"}
+        {muxPlaybackId && (
+          <ExpandingContainer title={"Video"} downloadable={true}>
+            <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
+              <Flex
+                $maxWidth={["100%", 840]}
+                $alignItems={"center"}
+                $flexDirection={"column"}
+              >
+                <VideoPlayer
+                  playbackId={muxPlaybackId}
+                  playbackPolicy={"signed"}
+                  title={title}
+                  location={"lesson"}
                 />
-              )}
-              {signLanguageVideo && signLanguageOn && (
-                <Button
-                  label="Unsigned"
-                  background="teachersHighlight"
-                  $mt={20}
-                  $mb={24}
-                  onClick={toggleSignLanguage}
-                  data-testid={"sign-language-button"}
-                />
-              )}
+                {videoWithSignLanguageMuxPlaybackId && !signLanguageOn && (
+                  <Button
+                    label="Signed video"
+                    background="teachersHighlight"
+                    $mt={20}
+                    $mb={24}
+                    icon={"SignLanguage"}
+                    $iconPosition={"trailing"}
+                    onClick={toggleSignLanguage}
+                    data-testid={"sign-language-button"}
+                  />
+                )}
+                {videoWithSignLanguageMuxPlaybackId && signLanguageOn && (
+                  <Button
+                    label="Unsigned"
+                    background="teachersHighlight"
+                    $mt={20}
+                    $mb={24}
+                    onClick={toggleSignLanguage}
+                    data-testid={"sign-language-button"}
+                  />
+                )}
+              </Flex>
             </Flex>
-          </Flex>
-        </ExpandingContainer>
+          </ExpandingContainer>
+        )}
         <ExpandingContainer title={"Worksheet"} downloadable={true}>
           <Box>Worksheet element</Box>
         </ExpandingContainer>
@@ -246,31 +247,36 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
 export type URLParams = {
   lessonSlug: string;
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const paths = teachersLessonsLessonPathsFixture().map(({ lessonSlug }) => ({
-    params: {
-      lessonSlug,
-    },
-  }));
+// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+//   const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+//   const paths = lessons.map((params) => ({ params: params }));
 
-  return {
-    fallback: false,
-    paths,
-  };
-};
+//   return {
+//     fallback: false,
+//     paths,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { lessonSlug } = context.params;
+  const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
 
-  const curriculumData = mockFetchLessons(lessonSlug);
+  const curriculumData = await curriculumApi.teachersLessonOverview({
+    lessonSlug,
+    keyStageSlug,
+    subjectSlug,
+    unitSlug,
+  });
 
   if (!curriculumData) {
     return {
@@ -278,13 +284,14 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
+  const results: GetServerSidePropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
     },
   };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  // const resultsWithIsr = decorateWithIsr(results);
+  // return resultsWithIsr;
+  return results;
 };
 
 export default LessonOverviewPage;
