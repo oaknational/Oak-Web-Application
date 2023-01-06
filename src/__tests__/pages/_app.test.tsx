@@ -19,6 +19,8 @@ jest.mock("../../hooks/useOakTheme", () => ({
   }),
 }));
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("<MyApp>", () => {
   it("Renders Component", () => {
     const Component = () => {
