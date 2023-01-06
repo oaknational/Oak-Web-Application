@@ -11,6 +11,7 @@ const OverviewAssetWrap: FC<WrapProps> = ({ children }) => {
     <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
       <Flex
         $maxWidth={["100%", "70%", 900]}
+        $width={"100%"}
         $alignItems={"center"}
         $flexDirection={"column"}
         $flexGrow={1}

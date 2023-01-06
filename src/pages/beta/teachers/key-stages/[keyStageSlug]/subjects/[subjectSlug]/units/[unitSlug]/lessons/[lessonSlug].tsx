@@ -21,7 +21,6 @@ import Typography, {
   UL,
 } from "../../../../../../../../../../components/Typography";
 import Button from "../../../../../../../../../../components/Button";
-import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 import Box from "../../../../../../../../../../components/Box";
 import BrushBorders from "../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "../../../../../../../../../../components/Card";
@@ -32,6 +31,7 @@ import curriculumApi, {
 } from "../../../../../../../../../../node-lib/curriculum-api";
 import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
