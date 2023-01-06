@@ -26,6 +26,10 @@ describe("components/ Lesson List", () => {
             videoCount: 1,
             presentationCount: 1,
             worksheetCount: 1,
+            keyStageTitle: "Key stage 3",
+            subjectTitle: "Maths",
+            themeSlug: "circles",
+            themeTitle: "Circles",
           },
         ]}
       />
