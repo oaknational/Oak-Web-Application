@@ -1,3 +1,21 @@
+# [1.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.100.0...v1.101.0) (2023-01-06)
+
+
+### Bug Fixes
+
+* broken tests - mock jest ([b5536e1](https://github.com/oaknational/Oak-Web-Application/commit/b5536e14a1144ab1873088b197ce88371d9f6194))
+* broken tests - mock jest part 3 ([d97e234](https://github.com/oaknational/Oak-Web-Application/commit/d97e234eb4b827ff98d823fe68de1de1a36ecaaf))
+* broken tests - mock jest part 4 ([17548fb](https://github.com/oaknational/Oak-Web-Application/commit/17548fb2573e492a661b0cb6837a0d836f03e145))
+* exxlusions continues on search page after move ([5125d73](https://github.com/oaknational/Oak-Web-Application/commit/5125d73d168c0b0152c861081c9fcd40563a554f))
+* get initial search term in context from query param ([cbe3c78](https://github.com/oaknational/Oak-Web-Application/commit/cbe3c780e0f3e77ec982fb7c63c27091c5ce8827))
+* mock router and hide search form to let tests pass ([62d04d8](https://github.com/oaknational/Oak-Web-Application/commit/62d04d80ba7165ab6e84b6d496e778d69e81d5d5))
+
+
+### Features
+
+* move to beta/teachers from /beta ([3a69d61](https://github.com/oaknational/Oak-Web-Application/commit/3a69d61be75c24883b6c0d9f1ed482ce8d81f5e1))
+* show results correctly ([84428cf](https://github.com/oaknational/Oak-Web-Application/commit/84428cf11beab1617225260b952a9d040bd56752))
+
 # [1.100.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.5...v1.100.0) (2023-01-05)
 
 
