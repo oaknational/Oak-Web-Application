@@ -13,12 +13,13 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
   asset,
   title,
 }) => {
+  const slidesId = asset.split("/")?.[5];
   return (
     <OverviewAssetWrap>
       <AspectRatio ratio={"16:9"}>
         <iframe
           role="iframe"
-          src={`${asset}/embed?start=false&amp;loop=false&amp;delayms=3000`}
+          src={`https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`}
           title={title}
           width="100%"
           height="100%"
