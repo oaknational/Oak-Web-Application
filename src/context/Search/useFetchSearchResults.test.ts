@@ -3,6 +3,8 @@ import { renderHook, act } from "@testing-library/react";
 import { SearchProvider } from "./SearchContext";
 import useFetchSearchResults from "./useFetchSearchResults";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 const reportError = jest.fn();
 const errorReporter = () => () => reportError;
 

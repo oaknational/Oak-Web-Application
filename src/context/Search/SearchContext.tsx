@@ -1,4 +1,5 @@
 import { createContext, FC, useContext, useState } from "react";
+import { useRouter } from "next/router";
 
 export enum KeyStages {
   foundation = "foundation",
@@ -28,7 +29,11 @@ export const SearchProvider: FC<SearchProviderProps> = ({
   children,
   value: propsValue,
 }) => {
-  const [searchText, setSearchText] = useState("");
+  const {
+    query: { term },
+  } = useRouter();
+  const initialTerm = term && typeof term === "string" ? term : "";
+  const [searchText, setSearchText] = useState(initialTerm);
   const [keyStages, setKeyStages] = useState(new Set<KeyStage>());
   const searchQuery: SearchQuery = {
     text: searchText,

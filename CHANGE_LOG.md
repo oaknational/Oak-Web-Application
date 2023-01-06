@@ -1,3 +1,54 @@
+# [1.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.100.0...v1.101.0) (2023-01-06)
+
+
+### Bug Fixes
+
+* broken tests - mock jest ([b5536e1](https://github.com/oaknational/Oak-Web-Application/commit/b5536e14a1144ab1873088b197ce88371d9f6194))
+* broken tests - mock jest part 3 ([d97e234](https://github.com/oaknational/Oak-Web-Application/commit/d97e234eb4b827ff98d823fe68de1de1a36ecaaf))
+* broken tests - mock jest part 4 ([17548fb](https://github.com/oaknational/Oak-Web-Application/commit/17548fb2573e492a661b0cb6837a0d836f03e145))
+* exxlusions continues on search page after move ([5125d73](https://github.com/oaknational/Oak-Web-Application/commit/5125d73d168c0b0152c861081c9fcd40563a554f))
+* get initial search term in context from query param ([cbe3c78](https://github.com/oaknational/Oak-Web-Application/commit/cbe3c780e0f3e77ec982fb7c63c27091c5ce8827))
+* mock router and hide search form to let tests pass ([62d04d8](https://github.com/oaknational/Oak-Web-Application/commit/62d04d80ba7165ab6e84b6d496e778d69e81d5d5))
+
+
+### Features
+
+* move to beta/teachers from /beta ([3a69d61](https://github.com/oaknational/Oak-Web-Application/commit/3a69d61be75c24883b6c0d9f1ed482ce8d81f5e1))
+* show results correctly ([84428cf](https://github.com/oaknational/Oak-Web-Application/commit/84428cf11beab1617225260b952a9d040bd56752))
+
+# [1.100.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.5...v1.100.0) (2023-01-05)
+
+
+### Bug Fixes
+
+* **beta/teachers/pages:** make tiers optional ([ad8ac9b](https://github.com/oaknational/Oak-Web-Application/commit/ad8ac9bda209637b0bf1c755c5c4f79d3b39c549))
+* **beta/teachers/pages:** make tiers optional styling ([696521f](https://github.com/oaknational/Oak-Web-Application/commit/696521f48b79357e36971e5c5fb82a3edb5f05f7))
+* **data layer:** change static props to serversideprops to speed up deployment ([23aee47](https://github.com/oaknational/Oak-Web-Application/commit/23aee477eb70b69013610847fe75a32d3dab3edb))
+* **data layer:** change static props to serversideprops to speed up deployment test fix ([5dc3dd0](https://github.com/oaknational/Oak-Web-Application/commit/5dc3dd082ccfbfc5b82e83c669aea672247943c5))
+* **data layer:** comment out warnings on build ([509396f](https://github.com/oaknational/Oak-Web-Application/commit/509396fb4eb016fc0f9a890e4d24567cedad5a37))
+* **data layer:** delete merge HEAD file ([049c80f](https://github.com/oaknational/Oak-Web-Application/commit/049c80f53c9440f0d3b3d5f40a06dbb1cc4f8e3a))
+* **data layer:** increase curriculum-api test coverage ([8847a6c](https://github.com/oaknational/Oak-Web-Application/commit/8847a6c52506f7550f844366a17fffb3221da9e0))
+* **data layer:** increase test coverage ([5496646](https://github.com/oaknational/Oak-Web-Application/commit/5496646fae0f5693d95e4a5dc9062e1b78e7338c))
+* **data layer:** increase test coverage style fix ([1c2f0d4](https://github.com/oaknational/Oak-Web-Application/commit/1c2f0d4b0bee72f6087c3aea10d4a7c170328a1c))
+* **data layer:** merge main into branch ([0046295](https://github.com/oaknational/Oak-Web-Application/commit/0046295c5c99f78831127738e9158c27f48e5404))
+* **data layer:** pages catch error test coverage ([c97a472](https://github.com/oaknational/Oak-Web-Application/commit/c97a4728e5a56ba07679db946cec720464935e4a))
+* **data layer:** resolve conflits and merge ([3fb3547](https://github.com/oaknational/Oak-Web-Application/commit/3fb354762992a1515a2223994a0f0a38a2dd5005))
+* **data layer:** resolve conflits and merge ([66c6f33](https://github.com/oaknational/Oak-Web-Application/commit/66c6f333bde238a0b3440e56fe67f858e52e46b2))
+* **svgs:** change fill-rule to fillRule ([6ec8dc2](https://github.com/oaknational/Oak-Web-Application/commit/6ec8dc29897dcb7e6f29f1df2f3be12cd4d101f1))
+
+
+### Features
+
+* fetch lesson data from curriculum-api ([5a38fb0](https://github.com/oaknational/Oak-Web-Application/commit/5a38fb0221043dcb6838718c731b34d89ea44749))
+* lesson data WIP ([4aa185d](https://github.com/oaknational/Oak-Web-Application/commit/4aa185d5c882af23e4a4950b8a9cf1347aa91ef2))
+
+## [1.99.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.4...v1.99.5) (2023-01-05)
+
+
+### Bug Fixes
+
+* 1085 fix border box gap to match designs ([d824063](https://github.com/oaknational/Oak-Web-Application/commit/d824063e0455b966af93c2bb3f97ed024d1234d1))
+
 ## [1.99.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.99.3...v1.99.4) (2023-01-05)
 
 
