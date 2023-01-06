@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import teachersHomePageFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
+import curriculumApi from "../../../../../../node-lib/curriculum-api/__mocks__";
 import teachersKeyStageSubjectsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjects.fixture";
 import SubjectListingPage, {
   getStaticPaths,
@@ -9,17 +9,6 @@ import SubjectListingPage, {
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
-
-const teachersHomePage = jest.fn(teachersHomePageFixture);
-const teachersKeyStageSubjects = jest.fn(teachersKeyStageSubjectsFixture);
-jest.mock("../../../../../../node-lib/curriculum-api", () => ({
-  __esModule: true,
-  default: {
-    teachersHomePage: (...args: []) => teachersHomePage(...args),
-    teachersKeyStageSubjects: (...args: []) =>
-      teachersKeyStageSubjects(...args),
-  },
-}));
 
 const props = {
   curriculumData: teachersKeyStageSubjectsFixture(),
@@ -57,7 +46,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
     it("Should return the paths of all keystages", async () => {
       await getStaticPaths({});
 
-      expect(teachersHomePage).toHaveBeenCalled();
+      expect(curriculumApi.teachersHomePage).toHaveBeenCalled();
     });
   });
 
@@ -67,7 +56,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         params: { keyStageSlug: "ks123" },
       });
 
-      expect(teachersKeyStageSubjects).toHaveBeenCalledWith({
+      expect(curriculumApi.teachersKeyStageSubjects).toHaveBeenCalledWith({
         keyStageSlug: "ks123",
       });
     });
