@@ -3,6 +3,8 @@ import { renderHook, act } from "@testing-library/react";
 import { KeyStage, SearchProvider } from "./SearchContext";
 import useKeyStageToggle from "./useKeyStageToggle";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 const testKeyStage: KeyStage = "1";
 describe("useKeyStageToggle()", () => {
   test("'checked' should default to false", () => {
