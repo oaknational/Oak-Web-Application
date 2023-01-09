@@ -14,8 +14,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const LessonHelper = Template.bind({});
 
 LessonHelper.args = {
-  helperDescription:"this is the helper description",
-  helperIcon:"ContentGuidance",
-  helperTitle:"this is the helper title"
+  helperDescription: "this is the helper description",
+  helperIcon: "ContentGuidance",
+  helperTitle: "this is the helper title",
 };
-
