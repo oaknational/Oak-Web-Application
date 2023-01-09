@@ -35,8 +35,8 @@ import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
-  const href = "/blog/evolution-of-oak";
-  const heading = "About the future of Oak";
+  const href = "/blog/help-shape-oak";
+  const heading = "Help shape Oak";
   return (
     <Card
       $background="white"
