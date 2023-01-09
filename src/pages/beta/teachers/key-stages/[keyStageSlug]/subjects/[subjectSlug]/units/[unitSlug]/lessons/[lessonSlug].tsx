@@ -187,17 +187,17 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         )}
         <Grid $rg={32} $cg={32} $mv={16}>
           <LessonHelper
-            helperTitle={"EquipmentRequired"}
+            helperTitle={"Equipment required"}
             helperIcon={"EquipmentRequired"}
             helperDescription={equipmentRequired}
           />
           <LessonHelper
-            helperTitle={"Supervision Level"}
+            helperTitle={"Supervision level"}
             helperIcon={"SupervisionLevel"}
             helperDescription={supervisionLevel}
           />
           <LessonHelper
-            helperTitle={"Content Guidance"}
+            helperTitle={"Content guidance"}
             helperIcon={"ContentGuidance"}
             helperDescription={contentGuidance}
           />
