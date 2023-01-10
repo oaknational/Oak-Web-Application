@@ -15,6 +15,8 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
       : null;
 
   return {
+    from: 0,
+    size: 20,
     query: {
       bool: {
         // search twice with an OR
