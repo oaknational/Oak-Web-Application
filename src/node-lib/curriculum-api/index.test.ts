@@ -2,6 +2,10 @@ import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "./fixtures/teachersKeyStageSubjects.fixture";
 import teachersKeyStageSubjectTiersFixture from "./fixtures/teachersKeyStageSubjectTiers.fixture";
 import teachersKeyStageSubjectUnitsFixture from "./fixtures/teachersKeyStageSubjectUnits.fixture";
+import teachersKeyStageSubjectUnitsLessonsFixture from "./fixtures/teachersKeyStageSubjectUnitLessons.fixture";
+import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStageSubjectTiersPaths.fixture";
+import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fixture";
+import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
 
 import curriculumApi from ".";
 
@@ -32,6 +36,9 @@ const teachersKeyStageSubjectTiers = jest.fn(() => ({
   ],
   mv_tiers: teachersKeyStageSubjectTiersFixture().tiers,
 }));
+const teachersKeyStageSubjectTiersPaths = jest.fn(() => ({
+  mv_tiers: teachersKeyStageSubjectTiersPathsFixture().tiers,
+}));
 const teachersKeyStageSubjectUnitsPaths = jest.fn(() => ({
   mv_subjects: [],
 }));
@@ -51,6 +58,45 @@ const teachersKeyStageSubjectUnits = jest.fn(() => ({
   mv_tiers: teachersKeyStageSubjectUnitsFixture().tiers,
   mv_units: teachersKeyStageSubjectUnitsFixture().units,
 }));
+const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
+  mv_units: [
+    {
+      unitSlug: teachersKeyStageSubjectUnitsLessonsFixture().unitSlug,
+      subjectSlug: teachersKeyStageSubjectUnitsLessonsFixture().subjectSlug,
+      keyStageSlug: teachersKeyStageSubjectUnitsLessonsFixture().keyStageSlug,
+      subjectTitle: teachersKeyStageSubjectUnitsLessonsFixture().subjectTitle,
+      unitTitle: teachersKeyStageSubjectUnitsLessonsFixture().unitTitle,
+      keyStageTitle: teachersKeyStageSubjectUnitsLessonsFixture().keyStageTitle,
+    },
+  ],
+  mv_lessons: teachersKeyStageSubjectUnitsLessonsFixture().lessons,
+}));
+const teachersLessonOverview = jest.fn(() => ({
+  mv_lessons: [
+    {
+      slug: teachersLessonOverviewFixture().slug,
+      title: teachersLessonOverviewFixture().title,
+      keyStageSlug: teachersLessonOverviewFixture().keyStageSlug,
+      keyStageTitle: teachersLessonOverviewFixture().keyStageTitle,
+      subjectSlug: teachersLessonOverviewFixture().subjectSlug,
+      subjectTitle: teachersLessonOverviewFixture().subjectTitle,
+      coreContent: teachersLessonOverviewFixture().coreContent,
+      equipmentRequired: teachersLessonOverviewFixture().equipmentRequired,
+      supervisionLevel: teachersLessonOverviewFixture().supervisionLevel,
+      contentGuidance: teachersLessonOverviewFixture().contentGuidance,
+      presentationUrl: teachersLessonOverviewFixture().presentationUrl,
+      worksheetUrl: teachersLessonOverviewFixture().worksheetUrl,
+      hasCopyrightMaterial:
+        teachersLessonOverviewFixture().hasCopyrightMaterial,
+      videoMuxPlaybackId: teachersLessonOverviewFixture().videoMuxPlaybackId,
+      videoWithSignLanguageMuxPlaybackId:
+        teachersLessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
+    },
+  ],
+}));
+const teachersLessonOverviewPaths = jest.fn(() => ({
+  mv_lessons: teachersLessonOverviewPathsFixture().lessons,
+}));
 
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
@@ -60,10 +106,17 @@ jest.mock("./generated/sdk", () => ({
       teachersKeyStageSubjects(...args),
     teachersKeyStageSubjectTiers: (...args: []) =>
       teachersKeyStageSubjectTiers(...args),
+    teachersKeyStageSubjectTiersPaths: (...args: []) =>
+      teachersKeyStageSubjectTiersPaths(...args),
     teachersKeyStageSubjectUnits: (...args: []) =>
       teachersKeyStageSubjectUnits(...args),
     teachersKeyStageSubjectUnitsPaths: (...args: []) =>
       teachersKeyStageSubjectUnitsPaths(...args),
+    teachersKeyStageSubjectUnitLessons: (...args: []) =>
+      teachersKeyStageSubjectUnitLessons(...args),
+    teachersLessonOverview: (...args: []) => teachersLessonOverview(...args),
+    teachersLessonOverviewPaths: (...args: []) =>
+      teachersLessonOverviewPaths(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -100,5 +153,39 @@ describe("curriculum-api", () => {
       keyStageSlug: "ks123",
       subjectSlug: "english-9",
     });
+  });
+  test("teachersKeyStageSubjectTiersPaths", async () => {
+    await curriculumApi.teachersKeyStageSubjectTiersPaths();
+    expect(teachersKeyStageSubjectTiersPaths).toHaveBeenCalled();
+  });
+  test("teachersKeyStageSubjectUnitLessons", async () => {
+    await curriculumApi.teachersKeyStageSubjectUnitLessons({
+      keyStageSlug: "ks123",
+      subjectSlug: "english-9",
+      unitSlug: "macbeth-1",
+    });
+    expect(teachersKeyStageSubjectUnitLessons).toHaveBeenCalledWith({
+      keyStageSlug: "ks123",
+      subjectSlug: "english-9",
+      unitSlug: "macbeth-1",
+    });
+  });
+  test("teachersLessonOverview", async () => {
+    await curriculumApi.teachersLessonOverview({
+      keyStageSlug: "ks123",
+      subjectSlug: "english-9",
+      unitSlug: "macbeth-1",
+      lessonSlug: "islamic-geometry",
+    });
+    expect(teachersLessonOverview).toHaveBeenCalledWith({
+      keyStageSlug: "ks123",
+      subjectSlug: "english-9",
+      unitSlug: "macbeth-1",
+      lessonSlug: "islamic-geometry",
+    });
+  });
+  test("teachersLessonOverviewPaths", async () => {
+    await curriculumApi.teachersLessonOverviewPaths();
+    expect(teachersLessonOverviewPaths).toHaveBeenCalled();
   });
 });

@@ -1,4 +1,4 @@
-import { SearchHit } from "../../pages/beta/search";
+import { SearchHit } from "../../pages/beta/teachers/search";
 import OakLink from "../OakLink";
 
 interface SearchResultsProps {

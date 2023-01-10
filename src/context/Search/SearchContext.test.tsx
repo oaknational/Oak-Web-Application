@@ -2,6 +2,8 @@ import { act, renderHook } from "@testing-library/react";
 
 import { KeyStage, SearchProvider, useSearchQuery } from "./SearchContext";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("context/SearchContext.tsx", () => {
   it("should default searchQuery.text to empty string", () => {
     const { result } = renderHook(useSearchQuery, { wrapper: SearchProvider });

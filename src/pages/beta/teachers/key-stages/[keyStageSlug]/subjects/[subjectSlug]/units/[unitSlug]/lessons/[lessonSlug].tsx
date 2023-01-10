@@ -1,62 +1,47 @@
 import React, { FC } from "react";
 import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  //GetStaticPaths,
+  // GetStaticProps,
+  // GetStaticPropsResult,
   NextPage,
 } from "next";
 
-import { decorateWithIsr } from "../../../../node-lib/isr";
-import AppLayout from "../../../../components/AppLayout";
-import Flex from "../../../../components/Flex";
-import MaxWidth from "../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../components/Card/TitleCard";
-import { getSeoProps } from "../../../../browser-lib/seo/getSeoProps";
-import { mockFetchLessons } from "../../../../browser-lib/fixtures/lesson";
+//import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
+import AppLayout from "../../../../../../../../../../components/AppLayout";
+import Flex from "../../../../../../../../../../components/Flex";
+import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
+import TitleCard from "../../../../../../../../../../components/Card/TitleCard";
+import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Typography, {
   Heading,
   Hr,
   LI,
   UL,
   P,
-} from "../../../../components/Typography";
-import Button from "../../../../components/Button";
-import ExpandingContainer from "../../../../components/ExpandingContainer";
-import Box from "../../../../components/Box";
-import BrushBorders from "../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
-import Card from "../../../../components/Card";
-import Grid, { GridArea } from "../../../../components/Grid";
-import Icon, { IconName } from "../../../../components/Icon";
-import teachersLessonsLessonPathsFixture from "../../../../node-lib/curriculum-api/fixtures/teachersLessonsLessonPaths.fixture";
-import OverviewPresentation from "../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
-import OverviewVideo from "../../../../components/pages/TeachersLessonOverview/OverviewVideo";
-
-export type LessonOverview = {
-  lessonTitle: string;
-  lessonSlug: string;
-  keyStageTitle: string;
-  keyStageSlug: string;
-  coreContent: string[];
-  subjectTitle: string;
-  subjectSlug: string;
-  equipmentRequired: string;
-  supervisionLevel: string;
-  contentGuidance: string;
-  video: string;
-  signLanguageVideo?: string;
-  presentation?: string;
-  worksheet?: string;
-  transcript?: string[];
-};
+} from "../../../../../../../../../../components/Typography";
+import Button from "../../../../../../../../../../components/Button";
+import Box from "../../../../../../../../../../components/Box";
+import BrushBorders from "../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import Card from "../../../../../../../../../../components/Card";
+import Grid, { GridArea } from "../../../../../../../../../../components/Grid";
+import Icon, { IconName } from "../../../../../../../../../../components/Icon";
+import curriculumApi, {
+  TeachersLessonOverviewData,
+} from "../../../../../../../../../../node-lib/curriculum-api";
+import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 
 export type LessonOverviewPageProps = {
-  curriculumData: LessonOverview;
+  curriculumData: TeachersLessonOverviewData;
 };
 
 type HelperProps = {
   helperIcon: IconName;
   helperTitle: string;
-  helperDescription: string;
+  helperDescription: string | null;
 };
 
 const LessonHelper: FC<HelperProps> = ({
@@ -64,6 +49,9 @@ const LessonHelper: FC<HelperProps> = ({
   helperTitle,
   helperDescription,
 }) => {
+  if (helperDescription) {
+    return null;
+  }
   return (
     <GridArea $colSpan={[12, 12, 4]}>
       <Card
@@ -89,7 +77,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
   const {
-    lessonTitle,
+    title,
     keyStageTitle,
     keyStageSlug,
     coreContent,
@@ -98,12 +86,24 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     equipmentRequired,
     supervisionLevel,
     contentGuidance,
-    video,
-    signLanguageVideo,
-    presentation,
-    worksheet,
-    transcript,
+    videoMuxPlaybackId,
+    videoWithSignLanguageMuxPlaybackId,
+    presentationUrl,
+    worksheetUrl,
   } = curriculumData;
+
+  const transcript = [
+    "Hello, and welcome to the lesson today.",
+    "My name is Miss Masson and I will be one of the teachers teaching you on this unit, Elizabeth I: Meeting the challenge, 1558 to 1588.",
+    "Today is lesson one of 30 and today's lesson focuses on answering the question, why did Elizabeth's background and character impact on her early reign?",
+    "Before starting the lesson today, it would be a good idea to find a quiet space to work in, and also to have a piece of paper and a pen available.",
+    "If you need to get those materials in front of you, then please pause the video now and resume when you are ready to start the lesson.",
+    "My name is Miss Masson and I will be one of the teachers teaching you on this unit, Elizabeth I: Meeting the challenge, 1558 to 1588.",
+    "Today is lesson one of 30 and today's lesson focuses on answering the question, why did Elizabeth's background and character impact on her early reign?",
+    "Before starting the lesson today, it would be a good idea to find a quiet space to work in, and also to have a piece of paper and a pen available.",
+    "If you need to get those materials in front of you, then please pause the video now and resume when you are ready to start the lesson.",
+    "So this can include decimals that terminate, that means they've got a finite number of digits after the decimal point, or decimals that recur, which means there's a repeating pattern of numbers after the decimal point.",
+  ];
 
   return (
     <AppLayout
@@ -120,7 +120,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             keyStageSlug={keyStageSlug}
             subject={subjectTitle}
             subjectSlug={subjectSlug}
-            title={lessonTitle}
+            title={title}
             iconName={"Rocket"}
           />
         </Flex>
@@ -129,8 +129,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             Core content
           </Heading>
           <UL $pl={28}>
-            {coreContent.map((contentString) => {
-              return <LI $font={"list-item-1"}>{contentString}</LI>;
+            {coreContent.map((contentString, i) => {
+              if (!contentString) {
+                return null;
+              }
+              return (
+                <LI key={`core-content-string-${i}`} $font={"list-item-1"}>
+                  {contentString}
+                </LI>
+              );
             })}
           </UL>
         </Flex>
@@ -161,30 +168,27 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           /> */}
         </Flex>
         <Hr $color={"oakGrey3"} />
-        {presentation && (
+        {presentationUrl && (
           <ExpandingContainer
             title={"Presentation"}
             downloadable={true}
             toggleClosed={false}
           >
-            <OverviewPresentation
-              asset={presentation}
-              lessonTitle={lessonTitle}
-            />
+            <OverviewPresentation asset={presentationUrl} title={title} />
           </ExpandingContainer>
         )}
-        {video && (
+        {videoMuxPlaybackId && (
           <ExpandingContainer title={"Video"} downloadable={true}>
             <OverviewVideo
-              video={video}
-              signLanguageVideo={signLanguageVideo}
-              lessonTitle={lessonTitle}
+              video={videoMuxPlaybackId}
+              signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+              title={title}
             />
           </ExpandingContainer>
         )}
-        {worksheet && (
+        {worksheetUrl && (
           <ExpandingContainer title={"Worksheet"} downloadable={true}>
-            <OverviewPresentation asset={worksheet} lessonTitle={lessonTitle} />
+            <OverviewPresentation asset={worksheetUrl} title={title} />
           </ExpandingContainer>
         )}
         <ExpandingContainer title={"Starter quiz"} downloadable={true}>
@@ -250,31 +254,36 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
 export type URLParams = {
   lessonSlug: string;
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const paths = teachersLessonsLessonPathsFixture().map(({ lessonSlug }) => ({
-    params: {
-      lessonSlug,
-    },
-  }));
+// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+//   const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+//   const paths = lessons.map((params) => ({ params: params }));
 
-  return {
-    fallback: false,
-    paths,
-  };
-};
+//   return {
+//     fallback: false,
+//     paths,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { lessonSlug } = context.params;
+  const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
 
-  const curriculumData = mockFetchLessons(lessonSlug);
+  const curriculumData = await curriculumApi.teachersLessonOverview({
+    lessonSlug,
+    keyStageSlug,
+    subjectSlug,
+    unitSlug,
+  });
 
   if (!curriculumData) {
     return {
@@ -282,13 +291,14 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
+  const results: GetServerSidePropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
     },
   };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  // const resultsWithIsr = decorateWithIsr(results);
+  // return resultsWithIsr;
+  return results;
 };
 
 export default LessonOverviewPage;

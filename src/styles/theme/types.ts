@@ -88,6 +88,7 @@ export type NegativePixelSpacing =
   | -4;
 export type PercentSpacing =
   | "100%"
+  | "99%"
   | "95%"
   | "90%"
   | "85%"
@@ -103,6 +104,7 @@ export type PercentSpacing =
   | "20%"
   | "15%"
   | "10%"
+  | "5%"
   // vw units sometimes needed to fix edge cages
   | "28vw";
 export type Unset = "unset";

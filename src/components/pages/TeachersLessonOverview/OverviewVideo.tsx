@@ -7,14 +7,14 @@ import OverviewAssetWrap from "./OverviewAssetWrap";
 
 interface OverviewVideoProps {
   video: string;
-  signLanguageVideo?: string;
-  lessonTitle: string;
+  signLanguageVideo: string | null;
+  title: string;
 }
 
 export const OverviewVideo: FC<OverviewVideoProps> = ({
   video,
   signLanguageVideo,
-  lessonTitle,
+  title,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
 
@@ -29,7 +29,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           signLanguageVideo && signLanguageOn ? signLanguageVideo : video
         }
         playbackPolicy={"signed"}
-        title={lessonTitle}
+        title={title}
         location={"lesson"}
       />
       {signLanguageVideo && !signLanguageOn && (

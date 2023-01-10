@@ -1,44 +1,34 @@
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
+import { GetServerSidePropsContext, PreviewData } from "next";
 
 import renderWithSeo from "../../../../__helpers__/renderWithSeo";
-import LessonOverviewPage, {
-  getStaticProps,
-  getStaticPaths,
-  LessonOverviewPageProps,
-} from "../../../../../pages/beta/teachers/lessons/[lessonSlug]";
 import { mockSeoResult } from "../../../../__helpers__/cms";
 import renderWithProviders from "../../../../__helpers__/renderWithProviders";
+import teachersLessonOverviewFixture from "../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
+import LessonOverviewPage, {
+  getServerSideProps,
+  LessonOverviewPageProps,
+  URLParams,
+} from "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
-const testCurriculumData = {
-  curriculumData: {
-    keyStageSlug: "ks1",
-    keyStageTitle: "Key stage 1",
-    lessonTitle: "macbeth lesson 1",
-    lessonSlug: "macbeth-lesson-1",
-    coreContent: ["string"],
-    subjectTitle: "string",
-    subjectSlug: "string",
-    equipmentRequired: "string",
-    supervisionLevel: "string",
-    contentGuidance: "string",
-    video: "string",
-    signLanguageVideo: "string",
-    presentation: "string",
-    worksheet: "string",
-  },
+const props = {
+  curriculumData: teachersLessonOverviewFixture({
+    videoMuxPlaybackId: "pid-001",
+    videoWithSignLanguageMuxPlaybackId: "pid-002",
+  }),
 };
 
 describe("pages/beta/teachers/lessons", () => {
   it("Renders title from the props", async () => {
-    renderWithProviders(<LessonOverviewPage {...testCurriculumData} />);
+    renderWithProviders(<LessonOverviewPage {...props} />);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "macbeth lesson 1"
+      "Islamic Geometry"
     );
   });
 
   it("renders sign language button if there is a sign language video", async () => {
-    renderWithProviders(<LessonOverviewPage {...testCurriculumData} />);
+    renderWithProviders(<LessonOverviewPage {...props} />);
 
     expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
       "Signed video"
@@ -46,10 +36,12 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("sign language button toggles on click", async () => {
-    renderWithProviders(<LessonOverviewPage {...testCurriculumData} />);
+    renderWithProviders(<LessonOverviewPage {...props} />);
 
     const signLanguageButton = screen.getByTestId("sign-language-button");
-    await signLanguageButton.click();
+    act(() => {
+      signLanguageButton.click();
+    });
     expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
       "Unsigned"
     );
@@ -57,7 +49,7 @@ describe("pages/beta/teachers/lessons", () => {
 
   it("renders an iframe for a presentation and worksheet", async () => {
     const { getAllByRole } = renderWithProviders(
-      <LessonOverviewPage {...testCurriculumData} />
+      <LessonOverviewPage {...props} />
     );
     const iframeElement = getAllByRole("iframe");
     expect(iframeElement.length).toEqual(2);
@@ -65,9 +57,7 @@ describe("pages/beta/teachers/lessons", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
-        <LessonOverviewPage {...testCurriculumData} />
-      );
+      const { seo } = renderWithSeo(<LessonOverviewPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -81,25 +71,28 @@ describe("pages/beta/teachers/lessons", () => {
       });
     });
   });
-  describe("getStaticPaths", () => {
-    it("Should return the paths of lesson overview", async () => {
-      const pathsResult = await getStaticPaths({});
-      expect(pathsResult.paths[0]).toEqual({
-        params: { lessonSlug: "macbeth-lesson-1" },
-      });
-    });
-  });
-  describe("getStaticProps", () => {
+  describe("getServerSideProps", () => {
     it("Should fetch the correct data", async () => {
-      const propsResult = (await getStaticProps({
-        params: { lessonSlug: "macbeth-lesson-1" },
-      })) as {
+      const propsResult = (await getServerSideProps({
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          keyStageSlug: "ks2",
+          subjectSlug: "english",
+          unitSlug: "shakespeare",
+        },
+        query: {},
+      } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
         props: LessonOverviewPageProps;
       };
 
-      expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "macbeth-lesson-1"
-      );
+      expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
+    });
+    it("should throw error", async () => {
+      await expect(
+        getServerSideProps(
+          {} as GetServerSidePropsContext<URLParams, PreviewData>
+        )
+      ).rejects.toThrowError("No context.params");
     });
   });
 });

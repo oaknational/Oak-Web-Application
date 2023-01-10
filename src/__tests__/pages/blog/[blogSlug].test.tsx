@@ -16,6 +16,7 @@ jest.mock("next/router", () => ({
   useRouter: () => ({
     ...jest.requireActual("next/router").useRouter,
     asPath: "asPath test value",
+    query: {},
   }),
 }));
 jest.mock("next-sanity-image", () => ({
