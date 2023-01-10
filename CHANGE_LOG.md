@@ -1,3 +1,10 @@
+# [1.102.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.101.0...v1.102.0) (2023-01-09)
+
+
+### Features
+
+* 1143 update copy on notification box on homepage ([6f5abd3](https://github.com/oaknational/Oak-Web-Application/commit/6f5abd3a247519446627c7a5132fb8027c230986))
+
 # [1.101.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.100.0...v1.101.0) (2023-01-06)
 
 
