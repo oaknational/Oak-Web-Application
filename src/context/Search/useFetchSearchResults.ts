@@ -42,8 +42,14 @@ const useFetchSearchResults = () => {
 
         handleFetchError(response);
         const data = await response.json();
+
         if (data) {
           const { hits } = data;
+          const {
+            total: { value },
+          } = hits;
+
+          console.log("Total hits:", value);
           const hitList: SearchHit[] = hits.hits;
 
           if (!isCancelled) {
