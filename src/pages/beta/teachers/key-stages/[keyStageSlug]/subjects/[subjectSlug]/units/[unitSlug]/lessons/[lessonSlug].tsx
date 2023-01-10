@@ -31,7 +31,6 @@ import OverviewPresentation from "../../../../../../../../../../components/pages
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 
-
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
 };
