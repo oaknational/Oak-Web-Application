@@ -90,20 +90,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
+    transcript,
   } = curriculumData;
-
-  const transcript = [
-    "Hello, and welcome to the lesson today.",
-    "My name is Miss Masson and I will be one of the teachers teaching you on this unit, Elizabeth I: Meeting the challenge, 1558 to 1588.",
-    "Today is lesson one of 30 and today's lesson focuses on answering the question, why did Elizabeth's background and character impact on her early reign?",
-    "Before starting the lesson today, it would be a good idea to find a quiet space to work in, and also to have a piece of paper and a pen available.",
-    "If you need to get those materials in front of you, then please pause the video now and resume when you are ready to start the lesson.",
-    "My name is Miss Masson and I will be one of the teachers teaching you on this unit, Elizabeth I: Meeting the challenge, 1558 to 1588.",
-    "Today is lesson one of 30 and today's lesson focuses on answering the question, why did Elizabeth's background and character impact on her early reign?",
-    "Before starting the lesson today, it would be a good idea to find a quiet space to work in, and also to have a piece of paper and a pen available.",
-    "If you need to get those materials in front of you, then please pause the video now and resume when you are ready to start the lesson.",
-    "So this can include decimals that terminate, that means they've got a finite number of digits after the decimal point, or decimals that recur, which means there's a repeating pattern of numbers after the decimal point.",
-  ];
 
   return (
     <AppLayout

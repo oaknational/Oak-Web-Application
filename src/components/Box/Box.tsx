@@ -15,6 +15,7 @@ import transform, { TransformProps } from "../../styles/utils/transform";
 import transition, { TransitionProps } from "../../styles/utils/transition";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
+import customScrollbar from "../../styles/utils/customScrollbar";
 
 type HTMLProps = {
   onClick?: MouseEventHandler;
@@ -51,6 +52,7 @@ export const box = css<BoxProps>`
   ${transition}
   ${opacity}
   ${typography}
+  ${customScrollbar}
   ${(props) =>
     /* onClick might be passed in the useClickableCard pattern */
     props.onClick &&
@@ -61,27 +63,26 @@ export const box = css<BoxProps>`
     `}
 `;
 
-const customScrollbarStyles = `
-  &::-webkit-scrollbar-track {
-    border-radius: 15px;
-    background-color: #ffffff;
-  }
-  &::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 15px;
-    background-color: #ffffff;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 15px;
-    background-color: #999999;
-  }
-`;
+// const customScrollbarStyles = `
+//   &::-webkit-scrollbar-track {
+//     border-radius: 15px;
+//     background-color: #ffffff;
+//   }
+//   &::-webkit-scrollbar {
+//     width: 10px;
+//     border-radius: 15px;
+//     background-color: #ffffff;
+//   }
+//   &::-webkit-scrollbar-thumb {
+//     border-radius: 15px;
+//     background-color: #999999;
+//   }
+// `;
 /**
  * Box exposes position, size, spacing, and background props on a div.
  */
 const Box = styled.div<BoxProps>`
   ${box}
-  ${customScrollbarStyles}
 `;
 
 export default Box;
