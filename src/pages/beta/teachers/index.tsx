@@ -53,7 +53,16 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             </Heading>
             <Grid $mt={48}>
               <GridArea $colSpan={[12, 6, 4]}>
-                <SearchForm />
+                <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
+                  Search our resources by topic
+                </UnderlinedHeading>
+                <P $mt={16} $font={"body-2"}>
+                  Select a key stage to find teaching resources in your
+                  subject&nbsp;area.
+                </P>
+                <Box $mt={16}>
+                  <SearchForm />
+                </Box>
               </GridArea>
               <GridArea $colSpan={[12, 6, 4]}>
                 <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
