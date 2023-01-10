@@ -1,15 +1,15 @@
-import { screen, waitFor } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
 
 import renderWithSeo from "../../../../__helpers__/renderWithSeo";
-import LessonOverviewPage, {
-  LessonOverviewPageProps,
-  getServerSideProps,
-  URLParams,
-} from "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { mockSeoResult } from "../../../../__helpers__/cms";
 import renderWithProviders from "../../../../__helpers__/renderWithProviders";
 import teachersLessonOverviewFixture from "../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
+import LessonOverviewPage, {
+  getServerSideProps,
+  LessonOverviewPageProps,
+  URLParams,
+} from "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
 const props = {
   curriculumData: teachersLessonOverviewFixture({
@@ -22,31 +22,37 @@ describe("pages/beta/teachers/lessons", () => {
   it("Renders title from the props", async () => {
     renderWithProviders(<LessonOverviewPage {...props} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Islamic Geometry"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Islamic Geometry"
+    );
   });
 
   it("renders sign language button if there is a sign language video", async () => {
     renderWithProviders(<LessonOverviewPage {...props} />);
 
-    await waitFor(() => {
-      expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
-        "Signed video"
-      );
-    });
+    expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
+      "Signed video"
+    );
   });
 
   it("sign language button toggles on click", async () => {
     renderWithProviders(<LessonOverviewPage {...props} />);
 
     const signLanguageButton = screen.getByTestId("sign-language-button");
-    await signLanguageButton.click();
+    act(() => {
+      signLanguageButton.click();
+    });
     expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
       "Unsigned"
     );
+  });
+
+  it("renders an iframe for a presentation and worksheet", async () => {
+    const { getAllByRole } = renderWithProviders(
+      <LessonOverviewPage {...props} />
+    );
+    const iframeElement = getAllByRole("iframe");
+    expect(iframeElement.length).toEqual(2);
   });
 
   describe("SEO", () => {

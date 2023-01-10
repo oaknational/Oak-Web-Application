@@ -21,7 +21,6 @@ import {
   UL,
 } from "../../../../../../../../../../components/Typography";
 import Button from "../../../../../../../../../../components/Button";
-import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 import Box from "../../../../../../../../../../components/Box";
 import Grid from "../../../../../../../../../../components/Grid";
 import VideoPlayer from "../../../../../../../../../../components/VideoPlayer";
@@ -29,6 +28,11 @@ import curriculumApi, {
   TeachersLessonOverviewData,
 } from "../../../../../../../../../../node-lib/curriculum-api";
 import LessonHelper from "../../../../../../../../../../components/LessonHelper";
+import BrushBorders from "../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
+
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -49,18 +53,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     contentGuidance,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
+    presentationUrl,
+    worksheetUrl,
   } = curriculumData;
-
-  const [signLanguageOn, setSignLanguageOn] = useState(false);
-
-  const toggleSignLanguage = () => {
-    setSignLanguageOn(!signLanguageOn);
-  };
-
-  const muxPlaybackId =
-    videoWithSignLanguageMuxPlaybackId && signLanguageOn
-      ? videoWithSignLanguageMuxPlaybackId
-      : videoMuxPlaybackId;
 
   return (
     <AppLayout
@@ -125,52 +120,29 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           /> */}
         </Flex>
         <Hr $color={"oakGrey3"} />
-        <ExpandingContainer title={"Presentation"} downloadable={true}>
-          <Box>Presentation element</Box>
-        </ExpandingContainer>
-        {muxPlaybackId && (
-          <ExpandingContainer title={"Video"} downloadable={true}>
-            <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-              <Flex
-                $maxWidth={["100%", 840]}
-                $alignItems={"center"}
-                $flexDirection={"column"}
-              >
-                <VideoPlayer
-                  playbackId={muxPlaybackId}
-                  playbackPolicy={"signed"}
-                  title={title}
-                  location={"lesson"}
-                />
-                {videoWithSignLanguageMuxPlaybackId && !signLanguageOn && (
-                  <Button
-                    label="Signed video"
-                    background="teachersHighlight"
-                    $mt={20}
-                    $mb={24}
-                    icon={"SignLanguage"}
-                    $iconPosition={"trailing"}
-                    onClick={toggleSignLanguage}
-                    data-testid={"sign-language-button"}
-                  />
-                )}
-                {videoWithSignLanguageMuxPlaybackId && signLanguageOn && (
-                  <Button
-                    label="Unsigned"
-                    background="teachersHighlight"
-                    $mt={20}
-                    $mb={24}
-                    onClick={toggleSignLanguage}
-                    data-testid={"sign-language-button"}
-                  />
-                )}
-              </Flex>
-            </Flex>
+        {presentationUrl && (
+          <ExpandingContainer
+            title={"Presentation"}
+            downloadable={true}
+            toggleClosed={false}
+          >
+            <OverviewPresentation asset={presentationUrl} title={title} />
           </ExpandingContainer>
         )}
-        <ExpandingContainer title={"Worksheet"} downloadable={true}>
-          <Box>Worksheet element</Box>
-        </ExpandingContainer>
+        {videoMuxPlaybackId && (
+          <ExpandingContainer title={"Video"} downloadable={true}>
+            <OverviewVideo
+              video={videoMuxPlaybackId}
+              signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+              title={title}
+            />
+          </ExpandingContainer>
+        )}
+        {worksheetUrl && (
+          <ExpandingContainer title={"Worksheet"} downloadable={true}>
+            <OverviewPresentation asset={worksheetUrl} title={title} />
+          </ExpandingContainer>
+        )}
         <ExpandingContainer title={"Starter quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
