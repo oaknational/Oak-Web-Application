@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -23,12 +23,10 @@ import {
 import Button from "../../../../../../../../../../components/Button";
 import Box from "../../../../../../../../../../components/Box";
 import Grid from "../../../../../../../../../../components/Grid";
-import VideoPlayer from "../../../../../../../../../../components/VideoPlayer";
 import curriculumApi, {
   TeachersLessonOverviewData,
 } from "../../../../../../../../../../node-lib/curriculum-api";
 import LessonHelper from "../../../../../../../../../../components/LessonHelper";
-import BrushBorders from "../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
