@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React from "react";
 import {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -14,61 +14,25 @@ import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../../../../components/Card/TitleCard";
 import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
-import Typography, {
+import {
   Heading,
   Hr,
   LI,
   UL,
 } from "../../../../../../../../../../components/Typography";
 import Button from "../../../../../../../../../../components/Button";
-import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 import Box from "../../../../../../../../../../components/Box";
-import BrushBorders from "../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
-import Card from "../../../../../../../../../../components/Card";
-import Grid, { GridArea } from "../../../../../../../../../../components/Grid";
-import Icon, { IconName } from "../../../../../../../../../../components/Icon";
-import VideoPlayer from "../../../../../../../../../../components/VideoPlayer";
+import Grid from "../../../../../../../../../../components/Grid";
 import curriculumApi, {
   TeachersLessonOverviewData,
 } from "../../../../../../../../../../node-lib/curriculum-api";
+import LessonHelper from "../../../../../../../../../../components/LessonHelper";
+import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
-};
-
-type HelperProps = {
-  helperIcon: IconName;
-  helperTitle: string;
-  helperDescription: string | null;
-};
-
-const LessonHelper: FC<HelperProps> = ({
-  helperIcon,
-  helperTitle,
-  helperDescription,
-}) => {
-  if (helperDescription) {
-    return null;
-  }
-  return (
-    <GridArea $colSpan={[12, 12, 4]}>
-      <Card
-        $background={"teachersPastelYellow"}
-        $flexDirection={"row"}
-        $flexWrap={"wrap"}
-        $alignItems={"center"}
-        $pa={12}
-      >
-        <Heading $font={"heading-5"} tag={"h3"} $ma={12}>
-          <Icon variant="minimal" name={helperIcon} /> {helperTitle}
-        </Heading>
-        <Typography $font={"body-2"} $ma={12}>
-          {helperDescription}
-        </Typography>
-        <BrushBorders color="teachersPastelYellow" />
-      </Card>
-    </GridArea>
-  );
 };
 
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
@@ -86,18 +50,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     contentGuidance,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
+    presentationUrl,
+    worksheetUrl,
   } = curriculumData;
-
-  const [signLanguageOn, setSignLanguageOn] = useState(false);
-
-  const toggleSignLanguage = () => {
-    setSignLanguageOn(!signLanguageOn);
-  };
-
-  const muxPlaybackId =
-    videoWithSignLanguageMuxPlaybackId && signLanguageOn
-      ? videoWithSignLanguageMuxPlaybackId
-      : videoMuxPlaybackId;
 
   return (
     <AppLayout
@@ -162,52 +117,29 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           /> */}
         </Flex>
         <Hr $color={"oakGrey3"} />
-        <ExpandingContainer title={"Presentation"} downloadable={true}>
-          <Box>Presentation element</Box>
-        </ExpandingContainer>
-        {muxPlaybackId && (
-          <ExpandingContainer title={"Video"} downloadable={true}>
-            <Flex $mt={[0, 16]} $justifyContent={"center"} $width={"100%"}>
-              <Flex
-                $maxWidth={["100%", 840]}
-                $alignItems={"center"}
-                $flexDirection={"column"}
-              >
-                <VideoPlayer
-                  playbackId={muxPlaybackId}
-                  playbackPolicy={"signed"}
-                  title={title}
-                  location={"lesson"}
-                />
-                {videoWithSignLanguageMuxPlaybackId && !signLanguageOn && (
-                  <Button
-                    label="Signed video"
-                    background="teachersHighlight"
-                    $mt={20}
-                    $mb={24}
-                    icon={"SignLanguage"}
-                    $iconPosition={"trailing"}
-                    onClick={toggleSignLanguage}
-                    data-testid={"sign-language-button"}
-                  />
-                )}
-                {videoWithSignLanguageMuxPlaybackId && signLanguageOn && (
-                  <Button
-                    label="Unsigned"
-                    background="teachersHighlight"
-                    $mt={20}
-                    $mb={24}
-                    onClick={toggleSignLanguage}
-                    data-testid={"sign-language-button"}
-                  />
-                )}
-              </Flex>
-            </Flex>
+        {presentationUrl && (
+          <ExpandingContainer
+            title={"Presentation"}
+            downloadable={true}
+            toggleClosed={false}
+          >
+            <OverviewPresentation asset={presentationUrl} title={title} />
           </ExpandingContainer>
         )}
-        <ExpandingContainer title={"Worksheet"} downloadable={true}>
-          <Box>Worksheet element</Box>
-        </ExpandingContainer>
+        {videoMuxPlaybackId && (
+          <ExpandingContainer title={"Video"} downloadable={true}>
+            <OverviewVideo
+              video={videoMuxPlaybackId}
+              signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+              title={title}
+            />
+          </ExpandingContainer>
+        )}
+        {worksheetUrl && (
+          <ExpandingContainer title={"Worksheet"} downloadable={true}>
+            <OverviewPresentation asset={worksheetUrl} title={title} />
+          </ExpandingContainer>
+        )}
         <ExpandingContainer title={"Starter quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
@@ -217,22 +149,24 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <ExpandingContainer title={"Transript"} downloadable={true}>
           <Box>Transcript element</Box>
         </ExpandingContainer>
-        <Hr $color={"oakGrey3"} />
       </MaxWidth>
       <MaxWidth $ph={[0, 16, 16]}>
+        {(equipmentRequired || supervisionLevel || contentGuidance) && (
+          <Hr $color={"oakGrey3"} />
+        )}
         <Grid $rg={32} $cg={32} $mv={16}>
           <LessonHelper
-            helperTitle={"EquipmentRequired"}
+            helperTitle={"Equipment required"}
             helperIcon={"EquipmentRequired"}
             helperDescription={equipmentRequired}
           />
           <LessonHelper
-            helperTitle={"Supervision Level"}
+            helperTitle={"Supervision level"}
             helperIcon={"SupervisionLevel"}
             helperDescription={supervisionLevel}
           />
           <LessonHelper
-            helperTitle={"Content Guidance"}
+            helperTitle={"Content guidance"}
             helperIcon={"ContentGuidance"}
             helperDescription={contentGuidance}
           />
