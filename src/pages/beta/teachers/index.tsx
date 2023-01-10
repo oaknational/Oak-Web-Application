@@ -17,6 +17,7 @@ import {
   SharedHomeContent,
 } from "../../../components/pages/Home";
 import usePostList from "../../../components/Posts/PostList/usePostList";
+import SearchForm from "../../../components/SearchForm";
 import { Heading, P } from "../../../components/Typography";
 import UnderlinedHeading from "../../../components/Typography/UnderlinedHeading";
 import CMSClient from "../../../node-lib/cms";
@@ -51,6 +52,9 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
               Find inspiration. Get support. Go teach.
             </Heading>
             <Grid $mt={48}>
+              <GridArea $colSpan={[12, 6, 4]}>
+                <SearchForm />
+              </GridArea>
               <GridArea $colSpan={[12, 6, 4]}>
                 <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
                   Start exploring subjects
