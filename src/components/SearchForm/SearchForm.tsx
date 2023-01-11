@@ -108,6 +108,7 @@ const SearchForm: FC = () => {
         icon="Go"
         aria-label="Submit"
         htmlButtonProps={{ type: "submit" }}
+        size={"large"}
         $ml={20}
       />
     </StyledForm>
