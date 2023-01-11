@@ -58,8 +58,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   Search our resources by topic
                 </UnderlinedHeading>
                 <P $mt={16} $font={"body-2"}>
-                  Select a key stage to find teaching resources in your
-                  subject&nbsp;area.
+                  Discover thousands of free, adaptable teaching resources,
+                  including slides, worksheets and&nbsp;quizzes.
                 </P>
                 <Box $mt={16}>
                   <SearchForm />
@@ -94,7 +94,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   </OakLink>
                 </Span>
               </GridArea>
-              <GridArea $colSpan={[12, 6, 4]}>
+              <GridArea $colSpan={[12, 6, 4]} $mt={[56, 0]}>
                 <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
                   Start exploring subjects
                 </UnderlinedHeading>
