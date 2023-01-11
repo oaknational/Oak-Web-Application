@@ -52,8 +52,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
+    transcript,
   } = curriculumData;
-
+console.log("transcript", transcript)
   return (
     <AppLayout
       seoProps={getSeoProps({
