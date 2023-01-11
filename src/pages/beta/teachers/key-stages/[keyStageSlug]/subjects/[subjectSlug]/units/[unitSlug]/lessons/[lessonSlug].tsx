@@ -54,7 +54,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     worksheetUrl,
     transcript,
   } = curriculumData;
-console.log("transcript", transcript)
+  console.log("transcript", transcript);
   return (
     <AppLayout
       seoProps={getSeoProps({
