@@ -52,8 +52,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             <Heading $font={"heading-light-6"} tag={"h2"} $mt={8}>
               Find inspiration. Get support. Go teach.
             </Heading>
-            <Grid $mt={48}>
-              <GridArea $colSpan={[12, 6, 4]}>
+            <Grid $mt={48} $cg={16}>
+              <GridArea $colSpan={[12, 6, 4]} $pr={16}>
                 <UnderlinedHeading $font={"heading-6"} tag={"h2"} $mt={8}>
                   Search our resources by topic
                 </UnderlinedHeading>
@@ -64,7 +64,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                 <Box $mt={16}>
                   <SearchForm />
                 </Box>
-                <P $mt={16} $font={"body-2"}>
+                <P $mt={18} $font={"body-2"}>
                   Search suggestions:
                 </P>
                 <Span>

@@ -18,7 +18,7 @@ import FieldError from "../FormFields/FieldError";
 
 import InputIcon from "./InputIcon";
 
-type StyledInputProps = MarginProps & {
+export type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
 };
