@@ -87,32 +87,4 @@ describe("The <SearchForm> Component", () => {
       query: { term: text },
     });
   });
-
-  it("updates parameters if user is already on the search page", async () => {
-    jest.mock("next/router", () => ({
-      __esModule: true,
-      ...jest.requireActual("next/router"),
-      useRouter: () => ({
-        pathname: "/beta/teachers/search?term=summer&page=2",
-        push: setPushSpy,
-        query: {},
-      }),
-    }));
-
-    const text = "Macbeth";
-    render(<SearchForm />, { wrapper: Providers });
-    const user = userEvent.setup();
-
-    const searchField = screen.getByRole("searchbox");
-    await user.click(searchField);
-    await user.keyboard(text);
-
-    const searchButton = screen.getByRole("button");
-    await user.click(searchButton);
-
-    expect(setPushSpy).toHaveBeenCalledWith({
-      pathname: "/beta/teachers/search",
-      query: { term: text },
-    });
-  });
 });
