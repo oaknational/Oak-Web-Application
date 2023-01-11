@@ -24,11 +24,10 @@ const SearchForm: FC = () => {
     e.preventDefault();
     setText(value);
     const searchPage = resolveOakHref({ page: "beta-search" });
-    if (router.pathname !== searchPage)
-      router.push({
-        pathname: searchPage,
-        query: { term: value },
-      });
+    router.push({
+      pathname: searchPage,
+      query: { term: value },
+    });
   };
 
   const onTextChange = (e: FormEvent<HTMLInputElement>) => {

@@ -45,11 +45,6 @@ const useFetchSearchResults = () => {
 
         if (data) {
           const { hits } = data;
-          const {
-            total: { value },
-          } = hits;
-
-          console.log("Total hits:", value);
           const hitList: SearchHit[] = hits.hits;
 
           if (!isCancelled) {
