@@ -8,7 +8,7 @@ interface SearchResultsProps {
   hits: Array<SearchHit>;
 }
 
-const RESULTS_PER_PAGE = 8;
+const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
   const { hits } = props;
