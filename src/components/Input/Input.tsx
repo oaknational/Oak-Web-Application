@@ -47,7 +47,7 @@ export const RotatedInputLabel = styled(Label)<{
   color: ${(props) => getColorByName(props.color)};
 `;
 
-const InputFieldWrap = styled(Flex)`
+export const InputFieldWrap = styled(Flex)`
   &:focus-within ${RotatedInputLabel} {
     background: ${getColorByName("teachersHighlight")};
     color: ${getColorByName("white")};

@@ -13,7 +13,11 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "../../styles/utils/responsive";
 import Flex from "../Flex";
-import { StyledInputProps } from "../Input/Input";
+import {
+  InputFieldWrap,
+  InputFocusUnderline,
+  StyledInputProps,
+} from "../Input/Input";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -94,14 +98,17 @@ const SearchForm: FC = () => {
       $alignItems={"center"}
     >
       <Flex $position={"relative"} $width={"100%"}>
-        <StyledInput
-          id="search-form-search-input"
-          value={value}
-          type="search"
-          onChange={onTextChange}
-          placeholder="Search"
-        />
-        <ButtonBorders background={"white"} />
+        <InputFieldWrap $width={"100%"}>
+          <StyledInput
+            id="search-form-search-input"
+            value={value}
+            type="search"
+            onChange={onTextChange}
+            placeholder="Search"
+          />
+          <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
+          <ButtonBorders background={"white"} />
+        </InputFieldWrap>
       </Flex>
       <IconButton
         onClick={handleSubmit}
