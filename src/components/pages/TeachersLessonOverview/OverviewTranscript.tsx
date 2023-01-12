@@ -8,20 +8,20 @@ interface OverviewTranscriptProps {
   transcript: string;
 }
 
+export const splitTextIntoSentences = (text: string) => {
+  const regex =
+    /(?:(?:Jr|Master|Mr|Ms|Mrs|Dr|Capt|Col|Sgt|Sr|Prof|Rep|Mt|Mount|St|Etc|Eg)\.\s+|["'“([]?)(?:\b(?:(?!(?:\S{1,})[.?!]+["']?\s+["']?[A-Z]).)*)(?:(?:(?:Jr|Master|Mr|Ms|Mrs|Dr|Capt|Col|Sgt|Sr|Prof|Rep|Mt|Mount|St|Etc|Eg)\.\s+(?:(?!\w{2,}[.?!]['"]?\s+["']?[A-Z]).)*)?)*(?:(?![.?!]["']?\s+["']?\w).)*(?:[.?!)\]]+["'”]?|[^\r\n]+$)/g;
+  const result = text.replace(regex, function (m) {
+    return `${m}\r`;
+  });
+  return result.split("\r");
+};
+
 export const OverviewTranscript: FC<OverviewTranscriptProps> = ({
   transcript,
 }) => {
-  const splitTextIntoSentences = (text: string) => {
-    const regex =
-      /(?:(?:Jr|Master|Mr|Ms|Mrs|Dr|Capt|Col|Sgt|Sr|Prof|Rep|Mt|Mount|St|Etc|Eg)\.\s+|["'“([]?)(?:\b(?:(?!(?:\S{1,})[.?!]+["']?\s+["']?[A-Z]).)*)(?:(?:(?:Jr|Master|Mr|Ms|Mrs|Dr|Capt|Col|Sgt|Sr|Prof|Rep|Mt|Mount|St|Etc|Eg)\.\s+(?:(?!\w{2,}[.?!]['"]?\s+["']?[A-Z]).)*)?)*(?:(?![.?!]["']?\s+["']?\w).)*(?:[.?!)\]]+["'”]?|[^\r\n]+$)/g;
-    const result = text.replace(regex, function (m) {
-      return `${m}\r`;
-    });
-    return result.split("\r");
-  };
-
   return (
-    <Flex $width={"100%"} $justifyContent={"center"}>
+    <Flex $width={"100%"} $justifyContent={"center"} data-testid="transcript">
       <Box
         $width={["100%", "70%", "60%"]}
         $maxHeight={[380, 640, 640]}
