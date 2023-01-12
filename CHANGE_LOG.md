@@ -1,3 +1,17 @@
+# [1.106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.105.0...v1.106.0) (2023-01-12)
+
+
+### Features
+
+* 1078 add pagination to search results ([325720e](https://github.com/oaknational/Oak-Web-Application/commit/325720ed7982f998949a28d0f2c381aee7610cef))
+* 1078 add tests ([3db71b3](https://github.com/oaknational/Oak-Web-Application/commit/3db71b365ccc8bbaab378e754768b57c86a4e32f))
+* 1078 remove limit of earch results ([01e28f1](https://github.com/oaknational/Oak-Web-Application/commit/01e28f1865084c81fef1f35fdc200a2999dd9d9f))
+* 1078 update results per page and results limit ([9906f93](https://github.com/oaknational/Oak-Web-Application/commit/9906f93fd367bae34e0bd82a14052f39a08e2b15))
+* 1078 update tests ([d2dc1d3](https://github.com/oaknational/Oak-Web-Application/commit/d2dc1d3b6c18bf13e8167157085b519ed12a00fd))
+* 1078 update url when on search page and add test ([5e68e79](https://github.com/oaknational/Oak-Web-Application/commit/5e68e7900fbb254a13fec4b92c9c359325e1a2eb))
+* add pagination params ([781c592](https://github.com/oaknational/Oak-Web-Application/commit/781c59293185d59f6a5bd94569b29bd032b31506))
+* log total returned hits ([70ce9f3](https://github.com/oaknational/Oak-Web-Application/commit/70ce9f3b84ae8dd819f4a941d978db847fd56c32))
+
 # [1.105.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.104.0...v1.105.0) (2023-01-12)
 
 
