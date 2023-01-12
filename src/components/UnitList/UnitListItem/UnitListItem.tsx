@@ -16,6 +16,7 @@ export type UnitListItemProps = {
   quizCount: number | null;
   subjectSlug: string;
   keyStageSlug: string;
+  unitStudyOrder: number | null;
 };
 
 /**
@@ -33,6 +34,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     subjectSlug,
     keyStageSlug,
     slug,
+    unitStudyOrder,
   } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
@@ -71,7 +73,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
               $font={["heading-7", "heading-6"]}
               tag={"h3"}
             >
-              {title}
+              {unitStudyOrder}. {title}
             </Heading>
           </OakLink>
           <Flex $mb={24} $flexDirection={["column", "row"]}>

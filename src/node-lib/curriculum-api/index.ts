@@ -134,6 +134,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       themeTitle: z.string().nullable(),
       lessonCount: z.number().nullable(),
       quizCount: z.number().nullable(),
+      unitStudyOrder: z.number().nullable(),
     })
   ),
 });
