@@ -56,6 +56,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     transcript,
   } = curriculumData;
 
+  console.log(curriculumData);
+
   return (
     <AppLayout
       seoProps={getSeoProps({
@@ -165,11 +167,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   $overflowY={"scroll"}
                   $pr={32}
                 >
-                  {transcript.map((transcriptString) => (
-                    <P $mb={[24, 16]} $font={"body-1"}>
-                      {transcriptString}
-                    </P>
-                  ))}
+                  <P $mb={[24, 16]} $font={"body-1"} $whiteSpace="pre-wrap">
+                    {transcript}
+                  </P>
                 </Box>
               </Box>
             </Flex>
