@@ -7,6 +7,7 @@ import { Heading, Span } from "../../Typography";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../Card";
 import OakLink from "../../OakLink";
+import { SearchResultsListProps } from "../../Lessons/LessonList/LessonListItem/LessonListItem";
 
 export type UnitListItemProps = {
   title: string;
@@ -16,7 +17,7 @@ export type UnitListItemProps = {
   quizCount: number | null;
   subjectSlug: string;
   keyStageSlug: string;
-};
+} & SearchResultsListProps;
 
 /**
  * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
@@ -33,6 +34,9 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     subjectSlug,
     keyStageSlug,
     slug,
+    type,
+    keyStageTitle,
+    subjectTitle,
   } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
@@ -57,7 +61,16 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $alignItems={"center"}
       >
-        <Flex $mh={[16, 24]} $flexDirection={"column"}>
+        <Flex $mt={24} $mh={[16, 24]} $flexDirection={"column"}>
+          {type && keyStageTitle && subjectTitle && (
+            <Span
+              $font={"heading-light-6"}
+              $color={"oakGrey4"}
+              $mb={4}
+            >{`${keyStageTitle}, ${subjectTitle}, ${
+              type.charAt(0).toUpperCase() + type.slice(1)
+            }:`}</Span>
+          )}
           <OakLink
             keyStage={keyStageSlug}
             subject={subjectSlug}
@@ -65,12 +78,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             page={"lesson-index"}
             {...primaryTargetProps}
           >
-            <Heading
-              $mt={24}
-              $mb={12}
-              $font={["heading-7", "heading-6"]}
-              tag={"h3"}
-            >
+            <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
               {title}
             </Heading>
           </OakLink>
@@ -81,9 +89,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
               </Span>
             )}
             <Flex>
-              <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                {`${lessonCount} lessons`}
-              </Span>
+              {lessonCount && (
+                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                  {`${lessonCount} lessons`}
+                </Span>
+              )}
               {quizCount && (
                 <Span $mr={16} $font={["body-3", "heading-light-7"]}>
                   Unit quiz
