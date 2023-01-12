@@ -1,3 +1,15 @@
+# [1.105.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.104.0...v1.105.0) (2023-01-12)
+
+
+### Features
+
+* 1057 add tests ([e0f6015](https://github.com/oaknational/Oak-Web-Application/commit/e0f60150222b44c6e4bd3caee8bdaf150db99a31))
+* 1057 add transcript box and custom scrollbar ([eac0ff6](https://github.com/oaknational/Oak-Web-Application/commit/eac0ff685aeb1ae5b062f0a988b481d39c92a501))
+* 1057 format transcript and make it focusable ([616c3d1](https://github.com/oaknational/Oak-Web-Application/commit/616c3d14d011f5f1a8c08e50f687fe0af39897ba))
+* 1057 remove commented out styles ([379ac11](https://github.com/oaknational/Oak-Web-Application/commit/379ac11d0d722d67384bdc21e53ddb6d4353a944))
+* 1057 update transcript to be the string rather than array ([aecea88](https://github.com/oaknational/Oak-Web-Application/commit/aecea88654ce8507dbf740b5b379171e7ffcfbf4))
+* 1057 updates ([ba5e61f](https://github.com/oaknational/Oak-Web-Application/commit/ba5e61fdab5d56382ccd8d11f06821afbc5a2c88))
+
 # [1.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.103.1...v1.104.0) (2023-01-12)
 
 
