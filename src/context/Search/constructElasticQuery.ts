@@ -15,6 +15,8 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
       : null;
 
   return {
+    from: 0, // index first result shown
+    size: 10000, // how many per page
     query: {
       bool: {
         // search twice with an OR

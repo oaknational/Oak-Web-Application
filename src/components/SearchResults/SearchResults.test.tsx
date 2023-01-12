@@ -62,6 +62,7 @@ describe("The <SearchForm> Component", () => {
       "/beta/teachers/key-stages/ks3/subjects/computing/units/computing-systems-1558"
     );
   });
+
   test("A lesson search result links to the lesson overview page", () => {
     const { getByText } = renderWithProviders(
       <SearchResults hits={searchHits} />
@@ -75,5 +76,29 @@ describe("The <SearchForm> Component", () => {
       "href",
       "/beta/teachers/key-stages/ks3/subjects/maths/units/different-number-systems-77bd/lessons/number-systems-binary-the-language-of-computers-68tkee"
     );
+  });
+
+  test("it renders the search results", () => {
+    const { getByRole } = renderWithProviders(
+      <SearchResults hits={[searchResult]} />
+    );
+
+    const searchElement = getByRole("listitem");
+
+    expect(searchElement).toBeInTheDocument();
+  });
+
+  test("it renders pagination if there are more results than set in RESULTS_PER_PAGE", () => {
+    const hits = [];
+
+    for (let i = 0; i <= RESULTS_PER_PAGE; i++) {
+      hits.push({ id: i, ...searchHits[0] });
+    }
+
+    const { getByRole } = renderWithProviders(<SearchResults hits={hits} />);
+
+    const pagination = getByRole("navigation");
+
+    expect(pagination).toBeInTheDocument();
   });
 });

@@ -18,7 +18,7 @@ import FieldError from "../FormFields/FieldError";
 
 import InputIcon from "./InputIcon";
 
-type StyledInputProps = MarginProps & {
+export type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
 };
@@ -47,7 +47,7 @@ export const RotatedInputLabel = styled(Label)<{
   color: ${(props) => getColorByName(props.color)};
 `;
 
-const InputFieldWrap = styled(Flex)`
+export const InputFieldWrap = styled(Flex)`
   &:focus-within ${RotatedInputLabel} {
     background: ${getColorByName("teachersHighlight")};
     color: ${getColorByName("white")};

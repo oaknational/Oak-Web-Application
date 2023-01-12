@@ -29,6 +29,7 @@ import curriculumApi, {
 import LessonHelper from "../../../../../../../../../../components/LessonHelper";
 import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 
 export type LessonOverviewPageProps = {
@@ -52,6 +53,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
+    transcript,
   } = curriculumData;
 
   return (
@@ -146,9 +148,12 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <ExpandingContainer title={"Exit quiz"} downloadable={true}>
           <Box>quiz element</Box>
         </ExpandingContainer>
-        <ExpandingContainer title={"Transript"} downloadable={true}>
-          <Box>Transcript element</Box>
-        </ExpandingContainer>
+        {transcript && (
+          <ExpandingContainer title={"Transcript"}>
+            <OverviewTranscript transcript={transcript} />
+          </ExpandingContainer>
+        )}
+        <Hr $color={"oakGrey3"} />
       </MaxWidth>
       <MaxWidth $ph={[0, 16, 16]}>
         {(equipmentRequired || supervisionLevel || contentGuidance) && (

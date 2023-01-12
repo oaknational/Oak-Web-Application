@@ -3,6 +3,9 @@ import Flex from "../Flex";
 import LessonListItem from "../Lessons/LessonList/LessonListItem";
 import { LI, UL } from "../Typography";
 import UnitListItem from "../UnitList/UnitListItem";
+import Box from "../Box";
+import Pagination from "../Pagination";
+import usePagination from "../Pagination/usePagination";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
@@ -58,8 +61,16 @@ const getUnitObject = (hit: SearchHit) => {
   };
 };
 
+export const RESULTS_PER_PAGE = 20;
+
 const SearchResults = (props: SearchResultsProps) => {
   const { hits } = props;
+
+  const paginationProps = usePagination({
+    totalResults: hits.length,
+    pageSize: RESULTS_PER_PAGE,
+    items: hits,
+  });
   return (
     <Flex $flexDirection="column">
       {hits.length ? (
@@ -82,11 +93,11 @@ const SearchResults = (props: SearchResultsProps) => {
       ) : null}
       {/* {to be added with pagination PR} */}
 
-      {/* {units.length > 5 && (     
-          <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-            <Pagination {...paginationProps} />
-          </Box>
-        )} */}
+      {hits.length > RESULTS_PER_PAGE && (
+        <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
+          <Pagination {...paginationProps} />
+        </Box>
+      )}
     </Flex>
   );
 };
