@@ -1,3 +1,12 @@
+# [1.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.103.1...v1.104.0) (2023-01-12)
+
+
+### Features
+
+* **lesson-query:** add transcript fix test ([4f9f835](https://github.com/oaknational/Oak-Web-Application/commit/4f9f8357f0bfa82229cf873055fa3385f6566981))
+* **lesson-query:** add transcript to lesson query ([b340547](https://github.com/oaknational/Oak-Web-Application/commit/b340547fe1dcc42ebf429b2c932fd9934ea49059))
+* **lesson-query:** add transcript to lesson query style ([4fae51a](https://github.com/oaknational/Oak-Web-Application/commit/4fae51a2e9a02e8b434b75569225897c55116729))
+
 ## [1.103.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.103.0...v1.103.1) (2023-01-10)
 
 
