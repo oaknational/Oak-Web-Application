@@ -15,6 +15,7 @@ import transform, { TransformProps } from "../../styles/utils/transform";
 import transition, { TransitionProps } from "../../styles/utils/transition";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 import zIndex, { ZIndexProps } from "../../styles/utils/zIndex";
+import customScrollbar from "../../styles/utils/customScrollbar";
 
 type HTMLProps = {
   onClick?: MouseEventHandler;
@@ -51,6 +52,7 @@ export const box = css<BoxProps>`
   ${transition}
   ${opacity}
   ${typography}
+  ${customScrollbar}
   ${(props) =>
     /* onClick might be passed in the useClickableCard pattern */
     props.onClick &&
@@ -60,6 +62,7 @@ export const box = css<BoxProps>`
       }
     `}
 `;
+
 /**
  * Box exposes position, size, spacing, and background props on a div.
  */
