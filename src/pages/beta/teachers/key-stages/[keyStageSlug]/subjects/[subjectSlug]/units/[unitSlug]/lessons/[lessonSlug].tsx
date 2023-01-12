@@ -19,7 +19,6 @@ import {
   Hr,
   LI,
   UL,
-  P,
 } from "../../../../../../../../../../components/Typography";
 import Button from "../../../../../../../../../../components/Button";
 import Box from "../../../../../../../../../../components/Box";
@@ -30,6 +29,7 @@ import curriculumApi, {
 import LessonHelper from "../../../../../../../../../../components/LessonHelper";
 import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 
 export type LessonOverviewPageProps = {
@@ -150,27 +150,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         </ExpandingContainer>
         {transcript && (
           <ExpandingContainer title={"Transcript"}>
-            <Flex $width={"100%"} $justifyContent={"center"}>
-              <Box
-                $width={["100%", "70%", "60%"]}
-                $maxHeight={[380, 640, 640]}
-                $background="oakGrey2"
-                $ph={16}
-                $pv={32}
-                $mt={20}
-                $borderRadius={[8, 3, 3]}
-              >
-                <Box
-                  $maxHeight={[320, 580, 580]}
-                  $overflowY={"scroll"}
-                  $pr={32}
-                >
-                  <P $mb={[24, 16]} $font={"body-1"} $whiteSpace="pre-wrap">
-                    {transcript}
-                  </P>
-                </Box>
-              </Box>
-            </Flex>
+            <OverviewTranscript transcript={transcript} />
           </ExpandingContainer>
         )}
         <Hr $color={"oakGrey3"} />
