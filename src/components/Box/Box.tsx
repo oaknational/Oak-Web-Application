@@ -63,21 +63,6 @@ export const box = css<BoxProps>`
     `}
 `;
 
-// const customScrollbarStyles = `
-//   &::-webkit-scrollbar-track {
-//     border-radius: 15px;
-//     background-color: #ffffff;
-//   }
-//   &::-webkit-scrollbar {
-//     width: 10px;
-//     border-radius: 15px;
-//     background-color: #ffffff;
-//   }
-//   &::-webkit-scrollbar-thumb {
-//     border-radius: 15px;
-//     background-color: #999999;
-//   }
-// `;
 /**
  * Box exposes position, size, spacing, and background props on a div.
  */
