@@ -28,7 +28,7 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
         videoCount: 1,
         presentationCount: 1,
         worksheetCount: 2,
-        hasCopyrightMaterial:false,
+        hasCopyrightMaterial: false,
       },
       {
         slug: "macbeth-lesson-1",
@@ -47,7 +47,7 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
         videoCount: 1,
         presentationCount: 1,
         worksheetCount: 1,
-        hasCopyrightMaterial:false,
+        hasCopyrightMaterial: false,
       },
     ],
     ...partial,
