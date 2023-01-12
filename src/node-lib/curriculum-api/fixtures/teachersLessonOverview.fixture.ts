@@ -21,7 +21,7 @@ const teachersLessonOverviewFixture = (
     hasCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
-    transcript: "Hello, and welcome to the lesson today.",
+    transcript: null,
     ...partial,
   };
 };
