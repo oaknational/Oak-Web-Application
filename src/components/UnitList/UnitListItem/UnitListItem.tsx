@@ -8,6 +8,7 @@ import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../Card";
 import OakLink from "../../OakLink";
 import { SearchResultsListProps } from "../../Lessons/LessonList/LessonListItem/LessonListItem";
+import CategoryHeading from "../../Lessons/CategoryHeading";
 
 export type UnitListItemProps = {
   title: string;
@@ -17,6 +18,7 @@ export type UnitListItemProps = {
   quizCount: number | null;
   subjectSlug: string;
   keyStageSlug: string;
+  hideTopHeading?: boolean;
 } & SearchResultsListProps;
 
 /**
@@ -34,7 +36,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     subjectSlug,
     keyStageSlug,
     slug,
-    type,
+    hideTopHeading,
     keyStageTitle,
     subjectTitle,
   } = props;
@@ -61,27 +63,50 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $alignItems={"center"}
       >
-        <Flex $mt={24} $mh={[16, 24]} $flexDirection={"column"}>
-          {type && keyStageTitle && subjectTitle && (
-            <Span
-              $font={"heading-light-6"}
-              $color={"oakGrey4"}
-              $mb={4}
-            >{`${keyStageTitle}, ${subjectTitle}, ${
-              type.charAt(0).toUpperCase() + type.slice(1)
-            }:`}</Span>
-          )}
-          <OakLink
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
-            slug={slug}
-            page={"lesson-index"}
-            {...primaryTargetProps}
-          >
-            <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
-              {title}
-            </Heading>
-          </OakLink>
+        <Flex
+          $ml={[16, 24]}
+          $mr={[0, 24]}
+          $flexDirection={"column"}
+          $width={"100%"}
+        >
+          <Flex>
+            <Flex $mt={24} $flexDirection={"column"}>
+              {!hideTopHeading && (
+                <CategoryHeading
+                  keyStageTitle={keyStageTitle}
+                  subjectTitle={subjectTitle}
+                  page={"Unit"}
+                />
+              )}
+
+              <OakLink
+                slug={slug}
+                keyStage={keyStageSlug}
+                subject={subjectSlug}
+                page={"lesson-index"}
+                {...primaryTargetProps}
+              >
+                <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
+                  {title}
+                </Heading>
+              </OakLink>
+            </Flex>
+            <Flex
+              $justifyContent={"center"}
+              $display={["flex", "none"]}
+              $alignItems={"center"}
+              $minHeight={72}
+              $minWidth={72}
+              $background={"teachersLilac"}
+              $position={"relative"}
+              $ml={"auto"}
+            >
+              <Icon size={[50, 92]} name={"Rocket"}>
+                {title}
+              </Icon>
+            </Flex>
+          </Flex>
+
           <Flex $mb={24} $flexDirection={["column", "row"]}>
             {themeTitle && (
               <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
@@ -105,10 +130,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       </Flex>
       <Flex
         $justifyContent={"center"}
+        $display={["none", "flex"]}
         $alignItems={"center"}
         $minHeight={110}
-        $minWidth={[72, 130]}
-        $background={"teachersLilac"}
+        $minWidth={130}
+        $background={"pupilsPink"}
         $position={"relative"}
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $transform={isHovered ? "translateY(-4px)" : null}

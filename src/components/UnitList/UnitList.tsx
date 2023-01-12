@@ -70,7 +70,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           <UL $reset>
             {currentPageItems.map((item) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
-                <UnitListItem {...item} />
+                <UnitListItem {...item} hideTopHeading />
               </LI>
             ))}
           </UL>

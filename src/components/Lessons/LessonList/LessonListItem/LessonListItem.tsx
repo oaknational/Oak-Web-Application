@@ -11,11 +11,12 @@ import LineClamp from "../../../LineClamp";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
+import CategoryHeading from "../../CategoryHeading";
 
 export type SearchResultsListProps = {
   keyStageTitle?: string;
-  type?: string;
   subjectTitle?: string;
+  hideTopHeading?: boolean;
 };
 
 export type LessonListItemProps =
@@ -32,14 +33,14 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     slug,
     keyStageSlug,
     subjectSlug,
+    subjectTitle,
     unitSlug,
     description,
     quizCount,
     videoCount,
     presentationCount,
     worksheetCount,
-    type,
-    subjectTitle,
+    hideTopHeading,
     keyStageTitle,
   } = props;
 
@@ -82,35 +83,36 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           $flexDirection={"column"}
           $width={"100%"}
         >
-          <Flex $mt={24} $flexDirection={"column"}>
-            {type && keyStageTitle && subjectTitle && (
-              <Span
-                $font={"heading-light-6"}
-                $color={"oakGrey4"}
-                $mb={4}
-              >{`${keyStageTitle}, ${subjectTitle}, ${
-                type.charAt(0).toUpperCase() + type.slice(1)
-              }:`}</Span>
-            )}
-            <OakLink
-              slug={slug}
-              keyStage={keyStageSlug}
-              subject={subjectSlug}
-              unit={unitSlug}
-              page={"lesson-overview"}
-              {...primaryTargetProps}
-            >
-              <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
-                {title}
-              </Heading>
-            </OakLink>
+          <Flex>
+            <Flex $mt={24} $flexDirection={"column"}>
+              {!hideTopHeading && (
+                <CategoryHeading
+                  keyStageTitle={keyStageTitle}
+                  subjectTitle={subjectTitle}
+                  page={"Lesson"}
+                />
+              )}
+
+              <OakLink
+                slug={slug}
+                keyStage={keyStageSlug}
+                subject={subjectSlug}
+                unit={unitSlug}
+                page={"lesson-overview"}
+                {...primaryTargetProps}
+              >
+                <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
+                  {title}
+                </Heading>
+              </OakLink>
+            </Flex>
             <Flex
               $justifyContent={"center"}
               $display={["flex", "none"]}
               $alignItems={"center"}
               $minHeight={72}
               $minWidth={72}
-              $background={"pupilsPink"}
+              $background={"teachersLilac"}
               $position={"relative"}
               $ml={"auto"}
             >
@@ -119,6 +121,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
               </Icon>
             </Flex>
           </Flex>
+
           <Flex $display={["none", "flex"]} $mb={16}>
             <LineClamp lines={2}>
               <Span $font={"body-2"} $color={"oakGrey5"}>
