@@ -9,6 +9,7 @@ import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import KeyStageFilter from "../../../components/SearchFilters/KeyStageFilter";
 import Flex from "../../../components/Flex";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
+import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 
 export interface SearchHit {
   _source: {
@@ -56,18 +57,20 @@ const Search = () => {
   }, [fetchSearchResults]);
 
   return (
-    <>
-      <BrowserWidthBar $background="white" $pv={20}>
-        <Flex $mt={80}>
-          {ALL_KEY_STAGES.map((ks) => (
-            <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
-          ))}
-        </Flex>
-      </BrowserWidthBar>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <SearchResults hits={results} />
-    </>
+    <Flex $background="white">
+      <MaxWidth $ph={16}>
+        <BrowserWidthBar $background="white" $pv={20}>
+          <Flex $mt={80}>
+            {ALL_KEY_STAGES.map((ks) => (
+              <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
+            ))}
+          </Flex>
+        </BrowserWidthBar>
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        <SearchResults hits={results} />
+      </MaxWidth>
+    </Flex>
   );
 };
 

@@ -71,12 +71,13 @@ const SearchResults = (props: SearchResultsProps) => {
     pageSize: RESULTS_PER_PAGE,
     items: hits,
   });
+  const { currentPageItems } = paginationProps;
   return (
-    <Flex $flexDirection="column">
+    <Flex $background={"white"} $flexDirection="column">
       {hits.length ? (
         <>
           <UL $reset>
-            {hits.map((hit) => {
+            {currentPageItems.map((hit) => {
               const { _source } = hit;
               return (
                 <LI key={`SearchList-SearchListItem-${_source.slug}`}>
@@ -91,7 +92,6 @@ const SearchResults = (props: SearchResultsProps) => {
           </UL>
         </>
       ) : null}
-      {/* {to be added with pagination PR} */}
 
       {hits.length > RESULTS_PER_PAGE && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
