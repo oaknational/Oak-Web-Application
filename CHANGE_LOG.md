@@ -1,3 +1,17 @@
+# [1.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.106.0...v1.107.0) (2023-01-12)
+
+
+### Features
+
+* add basic layout ([6950ef0](https://github.com/oaknational/Oak-Web-Application/commit/6950ef04007eb6cee64862c4335c5e6f087f6f5d))
+* add focus state for search form ([4eacb50](https://github.com/oaknational/Oak-Web-Application/commit/4eacb500564a1c7ec363dc5fb64b277a9910fbc4))
+* add links for search ([4105bf1](https://github.com/oaknational/Oak-Web-Application/commit/4105bf19e62fcd1111ec862856d5a1b839641e31))
+* add new pixel spacing ([f36d895](https://github.com/oaknational/Oak-Web-Application/commit/f36d8952351f5d9e8f4f07ab737de43e5e6c0552))
+* make go button correct size ([506923d](https://github.com/oaknational/Oak-Web-Application/commit/506923d158d94b4c56c44975c3e90d9ce6638245))
+* reveal search forms ([9c035a5](https://github.com/oaknational/Oak-Web-Application/commit/9c035a51d177f34ed856e749760e1681361483e5))
+* style search form ([07fb707](https://github.com/oaknational/Oak-Web-Application/commit/07fb7070c5040961ea6813cd97e7417ecb7f2a0c))
+* update copy and mobile layout ([8d64b57](https://github.com/oaknational/Oak-Web-Application/commit/8d64b573990167333d28b70e3d44c0d961d3e254))
+
 # [1.106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.105.0...v1.106.0) (2023-01-12)
 
 
