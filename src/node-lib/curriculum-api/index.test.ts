@@ -91,6 +91,7 @@ const teachersLessonOverview = jest.fn(() => ({
       videoMuxPlaybackId: teachersLessonOverviewFixture().videoMuxPlaybackId,
       videoWithSignLanguageMuxPlaybackId:
         teachersLessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
+      transcript: teachersLessonOverviewFixture().transcript,
     },
   ],
 }));

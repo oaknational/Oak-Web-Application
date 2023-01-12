@@ -7016,6 +7016,7 @@ export type Lessons = {
   video?: Maybe<Videos>;
   worksheet_download_url?: Maybe<Scalars['String']>;
   worksheet_has_embedded_media: Scalars['Boolean'];
+  worksheet_is_landscape: Scalars['Boolean'];
   worksheet_url?: Maybe<Scalars['String']>;
 };
 
@@ -7168,6 +7169,7 @@ export type Lessons_Bool_Exp = {
   video?: InputMaybe<Videos_Bool_Exp>;
   worksheet_download_url?: InputMaybe<String_Comparison_Exp>;
   worksheet_has_embedded_media?: InputMaybe<Boolean_Comparison_Exp>;
+  worksheet_is_landscape?: InputMaybe<Boolean_Comparison_Exp>;
   worksheet_url?: InputMaybe<String_Comparison_Exp>;
 };
 
@@ -7539,6 +7541,7 @@ export type Lessons_Insert_Input = {
   video?: InputMaybe<Videos_Obj_Rel_Insert_Input>;
   worksheet_download_url?: InputMaybe<Scalars['String']>;
   worksheet_has_embedded_media?: InputMaybe<Scalars['Boolean']>;
+  worksheet_is_landscape?: InputMaybe<Scalars['Boolean']>;
   worksheet_url?: InputMaybe<Scalars['String']>;
 };
 
@@ -7738,6 +7741,7 @@ export type Lessons_Order_By = {
   video?: InputMaybe<Videos_Order_By>;
   worksheet_download_url?: InputMaybe<Order_By>;
   worksheet_has_embedded_media?: InputMaybe<Order_By>;
+  worksheet_is_landscape?: InputMaybe<Order_By>;
   worksheet_url?: InputMaybe<Order_By>;
 };
 
@@ -7813,6 +7817,8 @@ export enum Lessons_Select_Column {
   /** column name */
   WorksheetHasEmbeddedMedia = 'worksheet_has_embedded_media',
   /** column name */
+  WorksheetIsLandscape = 'worksheet_is_landscape',
+  /** column name */
   WorksheetUrl = 'worksheet_url'
 }
 
@@ -7850,6 +7856,7 @@ export type Lessons_Set_Input = {
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   worksheet_download_url?: InputMaybe<Scalars['String']>;
   worksheet_has_embedded_media?: InputMaybe<Scalars['Boolean']>;
+  worksheet_is_landscape?: InputMaybe<Scalars['Boolean']>;
   worksheet_url?: InputMaybe<Scalars['String']>;
 };
 
@@ -7979,6 +7986,8 @@ export enum Lessons_Update_Column {
   WorksheetDownloadUrl = 'worksheet_download_url',
   /** column name */
   WorksheetHasEmbeddedMedia = 'worksheet_has_embedded_media',
+  /** column name */
+  WorksheetIsLandscape = 'worksheet_is_landscape',
   /** column name */
   WorksheetUrl = 'worksheet_url'
 }
@@ -17246,6 +17255,7 @@ export type Mv_Lessons = {
   theme_slug?: Maybe<Scalars['String']>;
   theme_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  transcript?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
   video_count?: Maybe<Scalars['bigint']>;
@@ -17347,6 +17357,7 @@ export type Mv_Lessons_Bool_Exp = {
   theme_slug?: InputMaybe<String_Comparison_Exp>;
   theme_title?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  transcript?: InputMaybe<String_Comparison_Exp>;
   unit_slug?: InputMaybe<String_Comparison_Exp>;
   unit_title?: InputMaybe<String_Comparison_Exp>;
   video_count?: InputMaybe<Bigint_Comparison_Exp>;
@@ -17381,6 +17392,7 @@ export type Mv_Lessons_Insert_Input = {
   theme_slug?: InputMaybe<Scalars['String']>;
   theme_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+  transcript?: InputMaybe<Scalars['String']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
   video_count?: InputMaybe<Scalars['bigint']>;
@@ -17407,6 +17419,7 @@ export type Mv_Lessons_Max_Fields = {
   theme_slug?: Maybe<Scalars['String']>;
   theme_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  transcript?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
   video_count?: Maybe<Scalars['bigint']>;
@@ -17432,6 +17445,7 @@ export type Mv_Lessons_Max_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -17458,6 +17472,7 @@ export type Mv_Lessons_Min_Fields = {
   theme_slug?: Maybe<Scalars['String']>;
   theme_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  transcript?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
   video_count?: Maybe<Scalars['bigint']>;
@@ -17483,6 +17498,7 @@ export type Mv_Lessons_Min_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -17524,6 +17540,7 @@ export type Mv_Lessons_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -17568,6 +17585,8 @@ export enum Mv_Lessons_Select_Column {
   /** column name */
   Title = 'title',
   /** column name */
+  Transcript = 'transcript',
+  /** column name */
   UnitSlug = 'unit_slug',
   /** column name */
   UnitTitle = 'unit_title',
@@ -17601,6 +17620,7 @@ export type Mv_Lessons_Set_Input = {
   theme_slug?: InputMaybe<Scalars['String']>;
   theme_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+  transcript?: InputMaybe<Scalars['String']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
   video_count?: InputMaybe<Scalars['bigint']>;
@@ -34240,7 +34260,7 @@ export type TeachersKeyStageSubjectUnitLessonsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, description?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: any | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null }> };
+export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, description?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: any | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null }> };
 
 export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -34271,7 +34291,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null }> };
 
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -34348,6 +34368,7 @@ export const TeachersKeyStageSubjectUnitLessonsDocument = gql`
     presentationCount: presentation_count
     worksheetCount: worksheet_count
     hasCopyrightMaterial: has_copyright_material
+    transcript
   }
 }
     `;
@@ -34429,6 +34450,7 @@ export const TeachersLessonOverviewDocument = gql`
     coreContent: core_content
     videoMuxPlaybackId: video_mux_playback_id
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
+    transcript
   }
 }
     `;
