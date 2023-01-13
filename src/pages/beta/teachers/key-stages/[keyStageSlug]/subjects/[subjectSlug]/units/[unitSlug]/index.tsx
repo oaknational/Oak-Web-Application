@@ -10,9 +10,9 @@ import curriculumApi, {
 import SubjectErrorCard from "../../../../../../../../../components/Card/SubjectErrorCard";
 import Flex from "../../../../../../../../../components/Flex";
 import TitleCard from "../../../../../../../../../components/Card/TitleCard";
-import LessonList from "../../../../../../../../../components/Lessons/LessonList/LessonList";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
+import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
 
 export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
