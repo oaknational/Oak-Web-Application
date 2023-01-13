@@ -1,4 +1,9 @@
-import { SearchHit } from "../../pages/beta/teachers/search";
+import {
+  isLessonSearchHit,
+  LessonSearchHit,
+  SearchHit,
+  UnitSearchHit,
+} from "../../pages/beta/teachers/search";
 import Flex from "../Flex";
 import LessonListItem from "../UnitAndLessonLists/LessonList/LessonListItem";
 import { LI, UL } from "../Typography";
@@ -25,7 +30,7 @@ const keyStageTitleMap: Record<string, string> = {
   "Key Stage 4": "KS4",
 };
 
-const getLessonObject = (hit: SearchHit) => {
+const getLessonObject = (hit: LessonSearchHit) => {
   const { _source } = hit;
   return {
     description: _source.lesson_description,
@@ -45,7 +50,7 @@ const getLessonObject = (hit: SearchHit) => {
   };
 };
 
-const getUnitObject = (hit: SearchHit) => {
+const getUnitObject = (hit: UnitSearchHit) => {
   const { _source } = hit;
   return {
     title: _source.title,
@@ -79,9 +84,10 @@ const SearchResults = (props: SearchResultsProps) => {
           <UL $reset>
             {currentPageItems.map((hit) => {
               const { _source } = hit;
+
               return (
                 <LI key={`SearchList-SearchListItem-${_source.slug}`}>
-                  {_source.type === "lesson" ? (
+                  {isLessonSearchHit(hit) ? (
                     <LessonListItem {...getLessonObject(hit)} />
                   ) : (
                     <UnitListItem {...getUnitObject(hit)} />

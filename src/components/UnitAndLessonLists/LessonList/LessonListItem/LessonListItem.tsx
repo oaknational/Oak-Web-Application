@@ -2,17 +2,16 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
-import { Heading, Span } from "../../../Typography";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../../Card";
-import OakLink from "../../../OakLink";
 import LineClamp from "../../../LineClamp";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
-import CategoryHeading from "../../CategoryHeading";
 import IconMobile from "../../IconMobile";
 import IconDesktop from "../../IconDesktop";
+import ListItemHeading from "../../ListItemHeading";
+import { Span } from "../../../Typography";
 
 export type SearchResultsListProps = {
   keyStageTitle?: string;
@@ -31,18 +30,11 @@ export type LessonListItemProps =
 const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
     title,
-    slug,
-    keyStageSlug,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
     description,
     quizCount,
     videoCount,
     presentationCount,
     worksheetCount,
-    hideTopHeading,
-    keyStageTitle,
   } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
@@ -85,28 +77,11 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           $width={"100%"}
         >
           <Flex>
-            <Flex $mt={24} $flexDirection={"column"}>
-              {!hideTopHeading && (
-                <CategoryHeading
-                  keyStageTitle={keyStageTitle}
-                  subjectTitle={subjectTitle}
-                  page={"Lesson"}
-                />
-              )}
-
-              <OakLink
-                slug={slug}
-                keyStage={keyStageSlug}
-                subject={subjectSlug}
-                unit={unitSlug}
-                page={"lesson-overview"}
-                {...primaryTargetProps}
-              >
-                <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
-                  {title}
-                </Heading>
-              </OakLink>
-            </Flex>
+            <ListItemHeading
+              {...props}
+              primaryTargetProps={primaryTargetProps}
+              page={"Lesson"}
+            />
             <IconMobile background={"teachersLilac"} title={title} />
           </Flex>
 

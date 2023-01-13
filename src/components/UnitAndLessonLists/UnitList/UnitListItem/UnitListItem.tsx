@@ -2,14 +2,13 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
-import { Heading, Span } from "../../../Typography";
+import { Span } from "../../../Typography";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import Card from "../../../Card";
-import OakLink from "../../../OakLink";
 import { SearchResultsListProps } from "../../LessonList/LessonListItem/LessonListItem";
-import CategoryHeading from "../../CategoryHeading";
 import IconDesktop from "../../IconDesktop";
 import IconMobile from "../../IconMobile";
+import ListItemHeading from "../../ListItemHeading";
 
 export type UnitListItemProps = {
   title: string;
@@ -29,18 +28,7 @@ export type UnitListItemProps = {
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const {
-    title,
-    themeTitle,
-    lessonCount,
-    quizCount,
-    subjectSlug,
-    keyStageSlug,
-    slug,
-    hideTopHeading,
-    keyStageTitle,
-    subjectTitle,
-  } = props;
+  const { title, themeTitle, lessonCount, quizCount } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -71,27 +59,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           $width={"100%"}
         >
           <Flex>
-            <Flex $mt={24} $flexDirection={"column"}>
-              {!hideTopHeading && (
-                <CategoryHeading
-                  keyStageTitle={keyStageTitle}
-                  subjectTitle={subjectTitle}
-                  page={"Unit"}
-                />
-              )}
-
-              <OakLink
-                slug={slug}
-                keyStage={keyStageSlug}
-                subject={subjectSlug}
-                page={"lesson-index"}
-                {...primaryTargetProps}
-              >
-                <Heading $mb={12} $font={["heading-7", "heading-6"]} tag={"h3"}>
-                  {title}
-                </Heading>
-              </OakLink>
-            </Flex>
+            <ListItemHeading
+              {...props}
+              primaryTargetProps={primaryTargetProps}
+              page={"Unit"}
+            />
             <IconMobile background={"pupilsPink"} title={title} />
           </Flex>
 
