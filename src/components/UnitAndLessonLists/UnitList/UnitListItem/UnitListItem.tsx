@@ -36,7 +36,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       title={title}
       isHovered={isHovered}
       containerProps={containerProps}
-      background={"pupilsPink"}
+      background={"teachersLilac"}
     >
       <Flex
         $ml={[16, 24]}
@@ -50,7 +50,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             primaryTargetProps={primaryTargetProps}
             page={"Unit"}
           />
-          <IconMobile background={"pupilsPink"} title={title} />
+          <IconMobile background={"teachersLilac"} title={title} />
         </Flex>
 
         <Flex $mb={24} $flexDirection={["column", "row"]}>

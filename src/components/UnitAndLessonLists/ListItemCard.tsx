@@ -23,7 +23,7 @@ export type ListItemCardProps = {
  * Links to a lesson-index page
  */
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const { title, children, isHovered, containerProps } = props;
+  const { title, children, isHovered, containerProps, background } = props;
   //   const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
 
   return (
@@ -49,7 +49,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       </Flex>
       <IconDesktop
         title={title}
-        background={"teachersLilac"}
+        background={background}
         isHovered={isHovered}
       />
       <BoxBorders gapPosition="bottomRightCorner" />

@@ -53,7 +53,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     <ListItemCard
       title={title}
       isHovered={isHovered}
-      background={"teachersLilac"}
+      background={"pupilsPink"}
       containerProps={containerProps}
     >
       <Flex
@@ -68,7 +68,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             primaryTargetProps={primaryTargetProps}
             page={"Lesson"}
           />
-          <IconMobile background={"teachersLilac"} title={title} />
+          <IconMobile background={"pupilsPink"} title={title} />
         </Flex>
 
         <Flex $display={["none", "flex"]} $mb={16}>
