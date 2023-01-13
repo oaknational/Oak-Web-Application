@@ -1,8 +1,8 @@
 import { SearchHit } from "../../pages/beta/teachers/search";
 import Flex from "../Flex";
-import LessonListItem from "../Lessons/LessonList/LessonListItem";
+import LessonListItem from "../UnitAndLessonLists/LessonList/LessonListItem";
 import { LI, UL } from "../Typography";
-import UnitListItem from "../UnitList/UnitListItem";
+import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
 import Box from "../Box";
 import Pagination from "../Pagination";
 import usePagination from "../Pagination/usePagination";

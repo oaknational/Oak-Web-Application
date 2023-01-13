@@ -1,14 +1,15 @@
 import { FC } from "react";
 
-import useClickableCard from "../../../hooks/useClickableCard";
-import Flex from "../../Flex";
-import Icon from "../../Icon";
-import { Heading, Span } from "../../Typography";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import Card from "../../Card";
-import OakLink from "../../OakLink";
-import { SearchResultsListProps } from "../../Lessons/LessonList/LessonListItem/LessonListItem";
-import CategoryHeading from "../../Lessons/CategoryHeading";
+import useClickableCard from "../../../../hooks/useClickableCard";
+import Flex from "../../../Flex";
+import { Heading, Span } from "../../../Typography";
+import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
+import Card from "../../../Card";
+import OakLink from "../../../OakLink";
+import { SearchResultsListProps } from "../../LessonList/LessonListItem/LessonListItem";
+import CategoryHeading from "../../CategoryHeading";
+import IconDesktop from "../../IconDesktop";
+import IconMobile from "../../IconMobile";
 
 export type UnitListItemProps = {
   title: string;
@@ -91,20 +92,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
                 </Heading>
               </OakLink>
             </Flex>
-            <Flex
-              $justifyContent={"center"}
-              $display={["flex", "none"]}
-              $alignItems={"center"}
-              $minHeight={72}
-              $minWidth={72}
-              $background={"teachersLilac"}
-              $position={"relative"}
-              $ml={"auto"}
-            >
-              <Icon size={[50, 92]} name={"Rocket"}>
-                {title}
-              </Icon>
-            </Flex>
+            <IconMobile background={"pupilsPink"} title={title} />
           </Flex>
 
           <Flex $mb={24} $flexDirection={["column", "row"]}>
@@ -128,22 +116,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex
-        $justifyContent={"center"}
-        $display={["none", "flex"]}
-        $alignItems={"center"}
-        $minHeight={110}
-        $minWidth={130}
-        $background={"pupilsPink"}
-        $position={"relative"}
-        $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
-        $transform={isHovered ? "translateY(-4px)" : null}
-        $transition={"all 0.4s ease-out"}
-      >
-        <Icon size={[50, 92]} name={"Rocket"}>
-          {title}
-        </Icon>
-      </Flex>
+      <IconDesktop
+        title={title}
+        background={"pupilsPink"}
+        isHovered={isHovered}
+      />
       <BoxBorders gapPosition="bottomRightCorner" />
     </Card>
   );
