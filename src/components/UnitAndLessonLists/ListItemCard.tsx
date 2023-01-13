@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { DOMAttributes, FC, MouseEventHandler } from "react";
+import { FocusableElement } from "@react-types/shared";
 
-import useClickableCard from "../../hooks/useClickableCard";
 import Card from "../Card";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -13,6 +13,9 @@ export type ListItemCardProps = {
   isHovered: boolean;
   children: React.ReactNode;
   background: OakColorName;
+  containerProps: {
+    onClick: MouseEventHandler<HTMLDivElement>;
+  } & Pick<DOMAttributes<FocusableElement>, "onClick">;
 };
 
 /**
@@ -20,8 +23,8 @@ export type ListItemCardProps = {
  * Links to a lesson-index page
  */
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const { title, children } = props;
-  const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
+  const { title, children, isHovered, containerProps } = props;
+  //   const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
 
   return (
     <Card

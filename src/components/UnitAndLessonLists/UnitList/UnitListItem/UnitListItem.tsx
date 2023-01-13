@@ -28,11 +28,16 @@ export type UnitListItemProps = {
 const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { title, themeTitle, lessonCount, quizCount } = props;
 
-  const { isHovered, primaryTargetProps } =
+  const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
 
   return (
-    <ListItemCard title={title} isHovered={isHovered} background={"pupilsPink"}>
+    <ListItemCard
+      title={title}
+      isHovered={isHovered}
+      containerProps={containerProps}
+      background={"pupilsPink"}
+    >
       <Flex
         $ml={[16, 24]}
         $mr={[0, 24]}

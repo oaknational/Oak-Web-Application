@@ -4,7 +4,12 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { SearchProvider } from "../../context/Search/SearchContext";
 
 import Component from "./SearchResults";
-import { searchResults } from "./SearchResults.test";
+import { searchResult } from "./SearchResults.test";
+
+const searchResults = [];
+for (let i = 0; i <= 20; i++) {
+  searchResults.push({ _source: { ...searchResult._source, id: i } });
+}
 
 export default {
   title: "Lists/Search results",
@@ -18,5 +23,3 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const SearchResults = Template.bind({});
-
-SearchResults.args = { hits: searchResults };
