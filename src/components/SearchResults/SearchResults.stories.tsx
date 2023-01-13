@@ -4,10 +4,10 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { SearchProvider } from "../../context/Search/SearchContext";
 
 import Component from "./SearchResults";
-import { searchHits } from "./SearchResults.test";
+import { searchResults } from "./SearchResults.test";
 
 export default {
-  title: "Form Fields/Search",
+  title: "Lists/Search results",
   component: Component,
 } as ComponentMeta<typeof Component>;
 
@@ -19,4 +19,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const SearchResults = Template.bind({});
 
-SearchResults.args = searchHits;
+SearchResults.args = { hits: searchResults };

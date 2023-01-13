@@ -3,11 +3,12 @@
  */
 import React from "react";
 
+import { SearchHit } from "../../pages/beta/teachers/search";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import SearchResults from "./SearchResults";
 
-export const searchResults = [
+export const searchResults: Array<SearchHit> = [
   {
     _source: {
       id: 4097,
