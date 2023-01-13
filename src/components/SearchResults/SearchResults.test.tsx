@@ -7,7 +7,7 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 
 import SearchResults from "./SearchResults";
 
-export const searchHits = [
+export const searchResults = [
   {
     _source: {
       id: 4097,
@@ -42,6 +42,7 @@ export const searchHits = [
       key_stage_title: "Key Stage 3",
       key_stage_slug: "key-stage-3",
       year_slug: "year-8",
+      year_title: "Year 7",
       is_specialist: false,
       is_sensitive: false,
       topic_title: "Different number systems",
@@ -54,7 +55,7 @@ export const searchHits = [
 describe("The <SearchForm> Component", () => {
   test("A unit search result links to the lesson listing page", () => {
     const { getByText } = renderWithProviders(
-      <SearchResults hits={searchHits} />
+      <SearchResults hits={searchResults} />
     );
 
     expect(getByText("Computing systems").closest("a")).toHaveAttribute(
@@ -65,7 +66,7 @@ describe("The <SearchForm> Component", () => {
 
   test("A lesson search result links to the lesson overview page", () => {
     const { getByText } = renderWithProviders(
-      <SearchResults hits={searchHits} />
+      <SearchResults hits={searchResults} />
     );
 
     expect(
@@ -79,20 +80,43 @@ describe("The <SearchForm> Component", () => {
   });
 
   test("it renders the search results", () => {
-    const { getByRole } = renderWithProviders(
-      <SearchResults hits={[searchResult]} />
+    const { getAllByRole } = renderWithProviders(
+      <SearchResults hits={searchResults} />
     );
 
-    const searchElement = getByRole("listitem");
+    const searchElement = getAllByRole("listitem");
 
-    expect(searchElement).toBeInTheDocument();
+    expect(searchElement.length).toEqual(2);
   });
 
   test("it renders pagination if there are more results than set in RESULTS_PER_PAGE", () => {
     const hits = [];
+    const RESULTS_PER_PAGE = 20;
+
+    const searchResult = {
+      _source: {
+        id: 4660,
+        type: "lesson",
+        slug: "computer-specifications-74r32c",
+        title: "Computer specifications",
+        lesson_description:
+          "In this lesson, we will learn how to evaluate a computer based on its specifications. We will discover the factors that limit a CPU's performance: clock speed, cache, and the number of cores. The end of this lesson will involve us choosing the right computer for a given task.",
+        topic_title: "Computer Systems",
+        theme_title: "Computer Science",
+        topic_slug: "computer-systems-e17a",
+        subject_title: "Computing",
+        subject_slug: "computing",
+        key_stage_title: "Key Stage 4",
+        key_stage_slug: "key-stage-4",
+        year_title: "Year 10",
+        year_slug: "year-10",
+        is_sensitive: false,
+        is_specialist: null,
+      },
+    };
 
     for (let i = 0; i <= RESULTS_PER_PAGE; i++) {
-      hits.push({ id: i, ...searchHits[0] });
+      hits.push({ id: i, ...searchResult });
     }
 
     const { getByRole } = renderWithProviders(<SearchResults hits={hits} />);
