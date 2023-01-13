@@ -35,7 +35,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     worksheetCount,
   } = props;
 
-  const { isHovered, primaryTargetProps } =
+  const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
 
   const resources = [];
@@ -54,6 +54,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       title={title}
       isHovered={isHovered}
       background={"teachersLilac"}
+      containerProps={containerProps}
     >
       <Flex
         $ml={[16, 24]}
