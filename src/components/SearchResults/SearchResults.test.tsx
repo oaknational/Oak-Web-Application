@@ -37,18 +37,13 @@ export const searchResults: Array<SearchHit> = [
       slug: "computing-systems-1558",
       title: "Computing systems",
       subject_title: "Computing",
-      lesson_description:
-        "In this lesson, we will be exploring the binary code and its use in computing.",
       subject_slug: "computing",
+      theme_title: "computing",
       key_stage_title: "Key Stage 3",
       key_stage_slug: "key-stage-3",
       year_slug: "year-8",
-      year_title: "Year 7",
       is_specialist: false,
       is_sensitive: false,
-      topic_title: "Different number systems",
-      theme_title: "",
-      topic_slug: "different-number-systems-77bd",
     },
   },
 ];
@@ -94,30 +89,30 @@ describe("The <SearchForm> Component", () => {
     const hits = [];
     const RESULTS_PER_PAGE = 20;
 
-    const searchResult = {
+    const searchResult: SearchHit = {
       _source: {
-        id: 4660,
+        id: 4097,
         type: "lesson",
-        slug: "computer-specifications-74r32c",
-        title: "Computer specifications",
+        slug: "number-systems-binary-the-language-of-computers-68tkee",
+        title: "Number systems: Binary - the language of computers",
         lesson_description:
-          "In this lesson, we will learn how to evaluate a computer based on its specifications. We will discover the factors that limit a CPU's performance: clock speed, cache, and the number of cores. The end of this lesson will involve us choosing the right computer for a given task.",
-        topic_title: "Computer Systems",
-        theme_title: "Computer Science",
-        topic_slug: "computer-systems-e17a",
-        subject_title: "Computing",
-        subject_slug: "computing",
-        key_stage_title: "Key Stage 4",
-        key_stage_slug: "key-stage-4",
-        year_title: "Year 10",
-        year_slug: "year-10",
+          "In this lesson, we will be exploring the binary code and its use in computing.",
+        topic_title: "Different number systems",
+        theme_title: "",
+        topic_slug: "different-number-systems-77bd",
+        subject_title: "Maths",
+        subject_slug: "maths",
+        key_stage_title: "Key Stage 3",
+        key_stage_slug: "key-stage-3",
+        year_title: "Year 7",
+        year_slug: "year-7",
         is_sensitive: false,
         is_specialist: null,
       },
     };
 
     for (let i = 0; i <= RESULTS_PER_PAGE; i++) {
-      hits.push({ id: i, ...searchResult });
+      hits.push({ _source: { ...searchResult._source, id: i } });
     }
 
     const { getByRole } = renderWithProviders(<SearchResults hits={hits} />);

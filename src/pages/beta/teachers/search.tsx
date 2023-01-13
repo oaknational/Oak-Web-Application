@@ -19,9 +19,9 @@ interface CommonProps {
   subject_slug: string;
   key_stage_title: string;
   key_stage_slug: string;
-  is_specialist: boolean;
+  is_specialist: boolean | null;
   is_sensitive: boolean;
-  theme_title: string | null;
+  theme_title: string;
 }
 
 export interface LessonSearchHit {
