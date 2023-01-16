@@ -31,6 +31,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     videoCount,
     presentationCount,
     worksheetCount,
+    hasCopyrightMaterial,
   } = props;
 
   const { containerProps, isHovered, primaryTargetProps } =
@@ -38,6 +39,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   const resources = [];
   presentationCount &&
+    !hasCopyrightMaterial &&
     resources.push({
       title: "presentation",
       resourceCount: presentationCount,

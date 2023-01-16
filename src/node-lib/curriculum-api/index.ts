@@ -170,6 +170,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
       videoCount: z.number().nullable(),
       presentationCount: z.number().nullable(),
       worksheetCount: z.number().nullable(),
+      hasCopyrightMaterial: z.boolean(),
     })
   ),
 });

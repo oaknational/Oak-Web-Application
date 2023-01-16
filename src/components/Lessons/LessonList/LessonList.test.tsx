@@ -30,6 +30,7 @@ describe("components/ Lesson List", () => {
             subjectTitle: "Maths",
             themeSlug: "circles",
             themeTitle: "Circles",
+            hasCopyrightMaterial: false,
           },
         ]}
       />
