@@ -54,6 +54,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     presentationUrl,
     worksheetUrl,
     transcript,
+    hasCopyrightMaterial,
   } = curriculumData;
 
   return (
@@ -119,7 +120,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           /> */}
         </Flex>
         <Hr $color={"oakGrey3"} />
-        {presentationUrl && (
+        {presentationUrl && !hasCopyrightMaterial && (
           <ExpandingContainer
             title={"Presentation"}
             downloadable={true}
