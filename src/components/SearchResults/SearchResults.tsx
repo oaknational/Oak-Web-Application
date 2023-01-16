@@ -52,6 +52,7 @@ const getLessonObject = (
     worksheetCount: null,
     title: _source.title,
     slug: _source.slug,
+    hasCopyrightMaterial: false, // this will need to be added to elastic search
   };
 };
 
