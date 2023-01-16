@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 export const mockPaginationProps = {
   totalPages: 25,
   currentPage: 1,
+  pageSize: 20,
   nextPageHref: "/prev",
   prevPageHref: "/next",
 };
