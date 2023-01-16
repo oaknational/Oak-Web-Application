@@ -13,7 +13,7 @@ import ListItemCard from "../../ListItemCard";
 
 export type LessonListItemProps =
   TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
-    hideTopHeading: boolean;
+    hideTopHeading?: boolean;
   };
 
 /**
