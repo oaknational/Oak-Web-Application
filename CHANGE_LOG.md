@@ -1,3 +1,43 @@
+# [1.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.106.0...v1.107.0) (2023-01-12)
+
+
+### Features
+
+* add basic layout ([6950ef0](https://github.com/oaknational/Oak-Web-Application/commit/6950ef04007eb6cee64862c4335c5e6f087f6f5d))
+* add focus state for search form ([4eacb50](https://github.com/oaknational/Oak-Web-Application/commit/4eacb500564a1c7ec363dc5fb64b277a9910fbc4))
+* add links for search ([4105bf1](https://github.com/oaknational/Oak-Web-Application/commit/4105bf19e62fcd1111ec862856d5a1b839641e31))
+* add new pixel spacing ([f36d895](https://github.com/oaknational/Oak-Web-Application/commit/f36d8952351f5d9e8f4f07ab737de43e5e6c0552))
+* make go button correct size ([506923d](https://github.com/oaknational/Oak-Web-Application/commit/506923d158d94b4c56c44975c3e90d9ce6638245))
+* reveal search forms ([9c035a5](https://github.com/oaknational/Oak-Web-Application/commit/9c035a51d177f34ed856e749760e1681361483e5))
+* style search form ([07fb707](https://github.com/oaknational/Oak-Web-Application/commit/07fb7070c5040961ea6813cd97e7417ecb7f2a0c))
+* update copy and mobile layout ([8d64b57](https://github.com/oaknational/Oak-Web-Application/commit/8d64b573990167333d28b70e3d44c0d961d3e254))
+
+# [1.106.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.105.0...v1.106.0) (2023-01-12)
+
+
+### Features
+
+* 1078 add pagination to search results ([325720e](https://github.com/oaknational/Oak-Web-Application/commit/325720ed7982f998949a28d0f2c381aee7610cef))
+* 1078 add tests ([3db71b3](https://github.com/oaknational/Oak-Web-Application/commit/3db71b365ccc8bbaab378e754768b57c86a4e32f))
+* 1078 remove limit of earch results ([01e28f1](https://github.com/oaknational/Oak-Web-Application/commit/01e28f1865084c81fef1f35fdc200a2999dd9d9f))
+* 1078 update results per page and results limit ([9906f93](https://github.com/oaknational/Oak-Web-Application/commit/9906f93fd367bae34e0bd82a14052f39a08e2b15))
+* 1078 update tests ([d2dc1d3](https://github.com/oaknational/Oak-Web-Application/commit/d2dc1d3b6c18bf13e8167157085b519ed12a00fd))
+* 1078 update url when on search page and add test ([5e68e79](https://github.com/oaknational/Oak-Web-Application/commit/5e68e7900fbb254a13fec4b92c9c359325e1a2eb))
+* add pagination params ([781c592](https://github.com/oaknational/Oak-Web-Application/commit/781c59293185d59f6a5bd94569b29bd032b31506))
+* log total returned hits ([70ce9f3](https://github.com/oaknational/Oak-Web-Application/commit/70ce9f3b84ae8dd819f4a941d978db847fd56c32))
+
+# [1.105.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.104.0...v1.105.0) (2023-01-12)
+
+
+### Features
+
+* 1057 add tests ([e0f6015](https://github.com/oaknational/Oak-Web-Application/commit/e0f60150222b44c6e4bd3caee8bdaf150db99a31))
+* 1057 add transcript box and custom scrollbar ([eac0ff6](https://github.com/oaknational/Oak-Web-Application/commit/eac0ff685aeb1ae5b062f0a988b481d39c92a501))
+* 1057 format transcript and make it focusable ([616c3d1](https://github.com/oaknational/Oak-Web-Application/commit/616c3d14d011f5f1a8c08e50f687fe0af39897ba))
+* 1057 remove commented out styles ([379ac11](https://github.com/oaknational/Oak-Web-Application/commit/379ac11d0d722d67384bdc21e53ddb6d4353a944))
+* 1057 update transcript to be the string rather than array ([aecea88](https://github.com/oaknational/Oak-Web-Application/commit/aecea88654ce8507dbf740b5b379171e7ffcfbf4))
+* 1057 updates ([ba5e61f](https://github.com/oaknational/Oak-Web-Application/commit/ba5e61fdab5d56382ccd8d11f06821afbc5a2c88))
+
 # [1.104.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.103.1...v1.104.0) (2023-01-12)
 
 

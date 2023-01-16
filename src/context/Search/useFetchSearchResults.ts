@@ -42,6 +42,7 @@ const useFetchSearchResults = () => {
 
         handleFetchError(response);
         const data = await response.json();
+
         if (data) {
           const { hits } = data;
           const hitList: SearchHit[] = hits.hits;
