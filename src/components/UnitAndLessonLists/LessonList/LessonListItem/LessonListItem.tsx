@@ -11,12 +11,6 @@ import ListItemHeading from "../../ListItemHeading";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 
-export type SearchResultsListProps = {
-  keyStageTitle?: string;
-  subjectTitle?: string;
-  hideTopHeading?: boolean;
-};
-
 export type LessonListItemProps =
   TeachersKeyStageSubjectUnitsLessonsData["lessons"][number];
 
