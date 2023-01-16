@@ -18390,6 +18390,7 @@ export type Mv_Units = {
   tier_slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   unit_study_order?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "mv_units" */
@@ -18475,6 +18476,7 @@ export type Mv_Units_Bool_Exp = {
   tier_slug?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   unit_study_order?: InputMaybe<Int_Comparison_Exp>;
+  year?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** input type for incrementing integer column in table "mv_units" */
@@ -18499,6 +18501,7 @@ export type Mv_Units_Insert_Input = {
   tier_slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   unit_study_order?: InputMaybe<Scalars['Int']>;
+  year?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -18517,6 +18520,7 @@ export type Mv_Units_Max_Fields = {
   tier_slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   unit_study_order?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "mv_units" */
@@ -18534,6 +18538,7 @@ export type Mv_Units_Max_Order_By = {
   tier_slug?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   unit_study_order?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -18552,6 +18557,7 @@ export type Mv_Units_Min_Fields = {
   tier_slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   unit_study_order?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "mv_units" */
@@ -18569,6 +18575,7 @@ export type Mv_Units_Min_Order_By = {
   tier_slug?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   unit_study_order?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "mv_units" */
@@ -18600,6 +18607,7 @@ export type Mv_Units_Order_By = {
   tier_slug?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   unit_study_order?: InputMaybe<Order_By>;
+  year?: InputMaybe<Order_By>;
 };
 
 /** select columns of table "mv_units" */
@@ -18629,7 +18637,9 @@ export enum Mv_Units_Select_Column {
   /** column name */
   Title = 'title',
   /** column name */
-  UnitStudyOrder = 'unit_study_order'
+  UnitStudyOrder = 'unit_study_order',
+  /** column name */
+  Year = 'year'
 }
 
 /** input type for updating data in table "mv_units" */
@@ -18647,6 +18657,7 @@ export type Mv_Units_Set_Input = {
   tier_slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   unit_study_order?: InputMaybe<Scalars['Int']>;
+  year?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -34447,7 +34458,7 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
   }
   mv_units(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, tier_slug: {_eq: $tierSlug}}
-    order_by: {unit_study_order: asc}
+    order_by: {year: asc, unit_study_order: asc}
   ) {
     slug
     title

@@ -17,9 +17,11 @@ export type Tier = {
   unitCount: number | null;
 };
 
+type PageSize = { pageSize: number };
+type CurrenPageItemsProps = Omit<UnitListItemProps, "index">;
 export type UnitListProps = TeachersKeyStageSubjectUnitsData & {
-  currentPageItems: UnitListItemProps[];
-  paginationProps: PaginationProps;
+  currentPageItems: CurrenPageItemsProps[];
+  paginationProps: PaginationProps & PageSize;
   headingTag: HeadingTag;
 };
 /**
@@ -40,6 +42,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     tierSlug,
   } = props;
 
+  const { currentPage, pageSize } = paginationProps;
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
@@ -68,9 +71,12 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         <>
           <UL $reset>
-            {currentPageItems.map((item) => (
+            {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
-                <UnitListItem {...item} />
+                <UnitListItem
+                  {...item}
+                  index={index + pageSize * (currentPage - 1)}
+                />
               </LI>
             ))}
           </UL>
