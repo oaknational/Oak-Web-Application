@@ -18,8 +18,7 @@ export type SearchResultsListProps = {
 };
 
 export type LessonListItemProps =
-  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] &
-    SearchResultsListProps;
+  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number];
 
 /**
  * Contains a lesson title, description, icon, and icons for resources
@@ -61,33 +60,36 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
+        $pb={24}
       >
         <Flex>
           <ListItemHeading
             {...props}
             primaryTargetProps={primaryTargetProps}
-            page={"Lesson"}
+            page="Lesson"
           />
           <IconMobile background={"pupilsPink"} title={title} />
         </Flex>
 
-        <Flex $display={["none", "flex"]} $mb={16}>
+        <Flex $display={["none", "flex"]}>
           <LineClamp lines={2}>
             <Span $font={"body-2"} $color={"oakGrey5"}>
               {description}
             </Span>
           </LineClamp>
         </Flex>
-        <Flex $display={["flex", "none"]} $mt={8} $mb={16} $mr={16}>
+        <Flex $display={["flex", "none"]} $mt={8} $mr={16}>
           <LineClamp lines={5}>
             <Span $font={"body-2"} $color={"oakGrey5"}>
               {description}
             </Span>
           </LineClamp>
         </Flex>
-        <Box $mb={24}>
-          <LessonResourceGraphics items={resources} />
-        </Box>
+        {resources.length > 0 && (
+          <Box $mt={16}>
+            <LessonResourceGraphics items={resources} />
+          </Box>
+        )}
       </Flex>
     </ListItemCard>
   );

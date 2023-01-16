@@ -11,6 +11,10 @@ import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
 import Box from "../Box";
 import Pagination from "../Pagination";
 import usePagination from "../Pagination/usePagination";
+import {
+  TeachersKeyStageSubjectUnitsData,
+  TeachersKeyStageSubjectUnitsLessonsData,
+} from "../../node-lib/curriculum-api";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
@@ -30,7 +34,9 @@ const keyStageTitleMap: Record<string, string> = {
   "Key Stage 4": "KS4",
 };
 
-const getLessonObject = (hit: LessonSearchHit) => {
+const getLessonObject = (
+  hit: LessonSearchHit
+): TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] => {
   const { _source } = hit;
   return {
     description: _source.lesson_description,
@@ -46,23 +52,24 @@ const getLessonObject = (hit: LessonSearchHit) => {
     worksheetCount: null,
     title: _source.title,
     slug: _source.slug,
-    type: _source.type,
   };
 };
 
-const getUnitObject = (hit: UnitSearchHit) => {
+const getUnitObject = (
+  hit: UnitSearchHit
+): TeachersKeyStageSubjectUnitsData["units"][number] => {
   const { _source } = hit;
   return {
     title: _source.title,
     slug: _source.slug,
     themeTitle: _source.theme_title,
+    themeSlug: null, // null values need to be added to elastic search
     lessonCount: null,
     quizCount: null,
     subjectSlug: _source.subject_slug,
     subjectTitle: _source.subject_title,
     keyStageSlug: keyStageSlugMap[_source.key_stage_slug] || "",
     keyStageTitle: keyStageTitleMap[_source.key_stage_title] || "",
-    type: _source.type,
   };
 };
 

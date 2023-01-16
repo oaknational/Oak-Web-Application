@@ -5,6 +5,8 @@ import OakLink from "../OakLink";
 import { Heading } from "../Typography";
 
 import CategoryHeading from "./CategoryHeading";
+import { LessonListItemProps } from "./LessonList/LessonListItem";
+import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -12,34 +14,13 @@ type PrimaryTargetProps = {
 };
 
 interface CommonProps {
-  title: string;
-  slug: string;
-  keyStageSlug: string;
-  subjectSlug: string;
-  subjectTitle?: string;
   hideTopHeading?: boolean;
-  keyStageTitle?: string;
   primaryTargetProps: PrimaryTargetProps;
+  page: "Unit" | "Lesson";
 }
 
-interface Lesson extends CommonProps {
-  page: "Lesson";
-  unitSlug: string;
-}
-
-interface Unit extends CommonProps {
-  page: "Unit";
-}
-
-type ListItemHeadingProps = Lesson | Unit;
-
-function isLesson(x: ListItemHeadingProps): x is Lesson {
-  return x.page === "Lesson";
-}
-
-function isUnit(x: ListItemHeadingProps): x is Unit {
-  return x.page === "Unit";
-}
+type ListItemHeadingProps = CommonProps &
+  (LessonListItemProps | UnitListItemProps);
 
 const ListTitle: FC<{ children?: React.ReactNode }> = ({ children }) => {
   return (
@@ -71,7 +52,8 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
           page={page}
         />
       )}
-      {isLesson(props) && (
+      {"unitSlug" in props ? (
+        // lesson
         <OakLink
           slug={slug}
           keyStage={keyStageSlug}
@@ -82,8 +64,8 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
         >
           <ListTitle>{title}</ListTitle>
         </OakLink>
-      )}
-      {isUnit(props) && (
+      ) : (
+        // unit
         <OakLink
           slug={slug}
           keyStage={keyStageSlug}

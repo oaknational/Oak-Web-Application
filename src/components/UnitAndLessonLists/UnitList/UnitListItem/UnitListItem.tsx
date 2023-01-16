@@ -3,21 +3,13 @@ import { FC } from "react";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
-import { SearchResultsListProps } from "../../LessonList/LessonListItem/LessonListItem";
 import IconMobile from "../../IconMobile";
 import ListItemHeading from "../../ListItemHeading";
 import ListItemCard from "../../ListItemCard";
+import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 
-export type UnitListItemProps = {
-  title: string;
-  slug: string;
-  themeTitle: string | null;
-  lessonCount: number | null;
-  quizCount: number | null;
-  subjectSlug: string;
-  keyStageSlug: string;
-  hideTopHeading?: boolean;
-} & SearchResultsListProps;
+export type UnitListItemProps =
+  TeachersKeyStageSubjectUnitsData["units"][number];
 
 /**
  * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
@@ -43,6 +35,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
+        $pb={24}
       >
         <Flex>
           <ListItemHeading
@@ -53,7 +46,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           <IconMobile background={"teachersLilac"} title={title} />
         </Flex>
 
-        <Flex $mb={24} $flexDirection={["column", "row"]}>
+        <Flex $flexDirection={["column", "row"]}>
           {themeTitle && (
             <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
               {themeTitle}
