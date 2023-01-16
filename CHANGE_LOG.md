@@ -1,3 +1,13 @@
+## [1.107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.0...v1.107.1) (2023-01-16)
+
+
+### Bug Fixes
+
+* **lesson-listing-and-overview:** remove copyright material ([b0781cd](https://github.com/oaknational/Oak-Web-Application/commit/b0781cdc17c3af5690907493334ea856f413f72c))
+* **lesson-listing-and-overview:** type error fixes ([d5fc0e6](https://github.com/oaknational/Oak-Web-Application/commit/d5fc0e615b4e76d7ee4984f997f3c02b9268967a))
+* **lesson-listing-and-overview:** type error fixes style ([078674c](https://github.com/oaknational/Oak-Web-Application/commit/078674ce1851174676c75249971be6454d9d2263))
+* **lesson-listing-and-overview:** type error test fix ([978bc26](https://github.com/oaknational/Oak-Web-Application/commit/978bc261e7e9bcac7ac2a58c2baacd5586e43f10))
+
 # [1.107.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.106.0...v1.107.0) (2023-01-12)
 
 
