@@ -12,7 +12,9 @@ import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 
 export type LessonListItemProps =
-  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number];
+  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
+    hideTopHeading: boolean;
+  };
 
 /**
  * Contains a lesson title, description, icon, and icons for resources

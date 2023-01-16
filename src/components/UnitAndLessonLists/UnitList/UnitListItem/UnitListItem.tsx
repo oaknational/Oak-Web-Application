@@ -9,7 +9,9 @@ import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 
 export type UnitListItemProps =
-  TeachersKeyStageSubjectUnitsData["units"][number];
+  TeachersKeyStageSubjectUnitsData["units"][number] & {
+    hideTopHeading: boolean;
+  };
 
 /**
  * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
