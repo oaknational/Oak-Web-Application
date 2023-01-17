@@ -1,3 +1,13 @@
+## [1.107.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.1...v1.107.2) (2023-01-17)
+
+
+### Bug Fixes
+
+* resolve paths to list components ([6153ce7](https://github.com/oaknational/Oak-Web-Application/commit/6153ce727a865d6d5f1db1d58a355f9033e777c8))
+* search result tests after merge with main ([30d4575](https://github.com/oaknational/Oak-Web-Application/commit/30d45753160ad5446a97c3b7563083fbcc1fd7e4))
+* storybook story ([e8d340c](https://github.com/oaknational/Oak-Web-Application/commit/e8d340cfda259c82fe4e2ac83f29d43cf095cb91))
+* whole card is clickable ([276464a](https://github.com/oaknational/Oak-Web-Application/commit/276464a6e00f6d2dc5632cfc6dc03114437ff05a))
+
 ## [1.107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.0...v1.107.1) (2023-01-16)
 
 
