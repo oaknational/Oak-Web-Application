@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
-import LineClamp from "../../../LineClamp";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
@@ -70,11 +69,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         </Flex>
 
         <Flex $mt={[8, 0]} $mr={[16, 0]}>
-          <LineClamp lines={5}>
-            <Span $font={"body-2"} $color={"oakGrey5"}>
-              {description}
-            </Span>
-          </LineClamp>
+          <Span $font={"body-2"} $color={"oakGrey5"}>
+            {description}
+          </Span>
         </Flex>
         {resources.length > 0 && (
           <Box $mt={16}>
