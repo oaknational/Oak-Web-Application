@@ -69,14 +69,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           <IconMobile background={"pupilsPink"} title={title} />
         </Flex>
 
-        <Flex $display={["none", "flex"]}>
-          <LineClamp lines={2}>
-            <Span $font={"body-2"} $color={"oakGrey5"}>
-              {description}
-            </Span>
-          </LineClamp>
-        </Flex>
-        <Flex $display={["flex", "none"]} $mt={8} $mr={16}>
+        <Flex $mt={[8, 0]} $mr={[16, 0]}>
           <LineClamp lines={5}>
             <Span $font={"body-2"} $color={"oakGrey5"}>
               {description}

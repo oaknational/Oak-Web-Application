@@ -42,7 +42,7 @@ const getLessonObject = (
     description: _source.lesson_description,
     themeTitle: _source.theme_title,
     subjectSlug: _source.subject_slug,
-    keyStageSlug: keyStageSlugMap[_source.key_stage_slug] || "",
+    keyStageSlug: keyStageSlugMap[_source.key_stage_slug] || "", // @todo - remove map once new index is created for material views
     keyStageTitle: keyStageTitleMap[_source.key_stage_title] || "",
     subjectTitle: _source.subject_title,
     unitSlug: _source.topic_slug,
