@@ -69,7 +69,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         </Flex>
 
         <Flex $mt={[8, 0]} $mr={[16, 0]}>
-          <Span $font={"body-2"} $color={"oakGrey5"}>
+          <Span $font={["body-3", "body-2"]} $color={"oakGrey5"}>
             {description}
           </Span>
         </Flex>
