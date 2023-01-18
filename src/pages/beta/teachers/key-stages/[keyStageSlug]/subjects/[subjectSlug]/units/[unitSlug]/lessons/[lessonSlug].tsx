@@ -135,7 +135,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               video={videoMuxPlaybackId}
               signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
               title={title}
-              hasCaptions={transcript}
+              hasCaptions={Boolean(transcript)}
             />
           </ExpandingContainer>
         )}
