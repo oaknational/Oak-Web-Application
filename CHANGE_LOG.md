@@ -1,3 +1,11 @@
+# [1.108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.2...v1.108.0) (2023-01-19)
+
+
+### Features
+
+* 1055 add message for non captioned videos ([1787886](https://github.com/oaknational/Oak-Web-Application/commit/1787886002e4c8c068b5814ddc2951d217f67b76))
+* 1055 update type ([f7c6018](https://github.com/oaknational/Oak-Web-Application/commit/f7c60184dd2c162765bb49713d963ff0ff8321d3))
+
 ## [1.107.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.1...v1.107.2) (2023-01-17)
 
 
