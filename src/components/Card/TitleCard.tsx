@@ -42,7 +42,12 @@ type TitleCardProps = FlexProps & {
 const TitleCard: FC<TitleCardProps> = (props) => {
   const { title, keyStage, keyStageSlug, iconName, page, ...flexProps } = props;
   return (
-    <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
+    <Flex
+      $width={["100%", "auto"]}
+      $maxWidth={["100%", "100%", "60%"]}
+      $position={"relative"}
+      {...flexProps}
+    >
       <Flex
         $width={["100%", "auto"]}
         $display={"inline-flex"}
