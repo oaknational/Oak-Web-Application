@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import Pagination, { PaginationProps } from "../Pagination";
-import { Heading, LI, UL } from "../Typography";
-import { HeadingTag } from "../Typography/Heading";
-import TabularNav from "../TabularNav";
-import { TeachersKeyStageSubjectUnitsData } from "../../node-lib/curriculum-api";
+import Box from "../../Box";
+import Flex from "../../Flex";
+import Pagination, { PaginationProps } from "../../Pagination";
+import { Heading, LI, UL } from "../../Typography";
+import { HeadingTag } from "../../Typography/Heading";
+import TabularNav from "../../TabularNav";
+import { TeachersKeyStageSubjectUnitsData } from "../../../node-lib/curriculum-api";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -70,7 +70,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           <UL $reset>
             {currentPageItems.map((item) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
-                <UnitListItem {...item} />
+                <UnitListItem {...item} hideTopHeading />
               </LI>
             ))}
           </UL>
