@@ -9,18 +9,10 @@ import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 export type CheckboxButtonConfig = {
   default: {
     color: OakColorName;
+    background: OakColorName;
   };
   disabled: {
     color: OakColorName;
-  };
-  searchFilter: {
-    default: {
-      color: OakColorName;
-      background: OakColorName;
-    };
-    disabled: {
-      color: OakColorName;
-    };
   };
 };
 
@@ -33,27 +25,32 @@ const CheckboxLabel = styled.label<{ disabled: boolean; checked: boolean }>`
   font-weight: 600;
   margin: 8px;
   color: ${getColorByLocation(
-    ({ theme }) => theme.checkbox.searchFilter.default.color
+    ({ theme }) => theme.checkboxButton.default.color
   )};
   background-color: ${getColorByLocation(
-    ({ theme }) => theme.checkbox.searchFilter.default.background
+    ({ theme }) => theme.checkboxButton.default.background
   )};
   ${(props) =>
     props.disabled &&
     css`
       color: ${getColorByLocation(
-        ({ theme }) => theme.checkbox.searchFilter.disabled.color
+        ({ theme }) => theme.checkboxButton.disabled.color
       )};
     `}
   ${(props) =>
     props.checked &&
     css`
       color: ${getColorByLocation(
-        ({ theme }) => theme.checkbox.searchFilter.disabled.color
+        ({ theme }) => theme.checkboxButton.disabled.color
       )};
       background-color: transparent;
       text-decoration: underline;
     `}
+
+  input[type="checkbox"]:hover + span,
+  input[type="checkbox"]:focus + span {
+    text-decoration: underline;
+  }
 
   input[type="checkbox"]:focus + svg {
     // TODO: add focus ring component to replace this

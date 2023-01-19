@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
-import { ALL_KEY_STAGES } from "../../../context/Search/SearchContext";
 import AppLayout from "../../../components/AppLayout";
 import SearchResults from "../../../components/SearchResults";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
-import KeyStageFilter from "../../../components/SearchFilters/KeyStageFilter";
+import SearchFilters from "../../../components/SearchFilters";
 import Grid, { GridArea } from "../../../components/Grid";
 import Flex from "../../../components/Flex";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
-import { P } from "../../../components/Typography";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
+import MobileSearchFilters from "../../../components/MobileSearchFilters";
 
 interface CommonProps {
   id: number;
@@ -78,24 +77,14 @@ const Search = () => {
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
           <GridArea $colSpan={[12, 4, 3]} $pr={16}>
-            <Flex $flexDirection="column" $mb={32}>
-              <P $mb={16}>Key stage</P>
-              <Flex>
-                {ALL_KEY_STAGES.map((ks) => (
-                  <KeyStageFilter
-                    key={`search-filters-keystage-${ks}`}
-                    ks={ks}
-                  />
-                ))}
-              </Flex>
+            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+              <SearchFilters />
             </Flex>
+            <MobileSearchFilters>
+              <SearchFilters />
+            </MobileSearchFilters>
           </GridArea>
           <GridArea $colSpan={[12, 8, 9]} $pr={16}>
-            {/* <Flex $mb={80}>
-              {ALL_KEY_STAGES.map((ks) => (
-                <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
-              ))}
-            </Flex> */}
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             <SearchResults hits={results} />

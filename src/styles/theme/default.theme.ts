@@ -210,14 +210,14 @@ const theme: OakTheme = {
     disabled: {
       color: "grey4",
     },
-    searchFilter: {
-      default: {
-        color: "black",
-        background: "pastelTurquoise",
-      },
-      disabled: {
-        color: "oakGrey4",
-      },
+  },
+  checkboxButton: {
+    default: {
+      color: "black",
+      background: "pastelTurquoise",
+    },
+    disabled: {
+      color: "oakGrey4",
     },
   },
   selectListBox: {
