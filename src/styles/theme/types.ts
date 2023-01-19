@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
+import { CheckboxButtonConfig } from "../../components/CheckboxButton";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
 import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { MenuConfig } from "../../components/Menu/Menu";
@@ -225,6 +226,7 @@ export type OakTheme = {
   button: ButtonConfig;
   badge: BadgeConfig;
   checkbox: CheckboxConfig;
+  checkboxButton: CheckboxButtonConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
   video: VideoStyleConfig;

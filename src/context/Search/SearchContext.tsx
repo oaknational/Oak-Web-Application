@@ -2,7 +2,7 @@ import { createContext, FC, useContext, useState } from "react";
 import { useRouter } from "next/router";
 
 export enum KeyStages {
-  foundation = "foundation",
+  // foundation = "foundation",
   keystage1 = "1",
   keystage2 = "2",
   keystage3 = "3",

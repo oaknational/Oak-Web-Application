@@ -5,10 +5,11 @@ import { ALL_KEY_STAGES } from "../../../context/Search/SearchContext";
 import AppLayout from "../../../components/AppLayout";
 import SearchResults from "../../../components/SearchResults";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
-import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import KeyStageFilter from "../../../components/SearchFilters/KeyStageFilter";
+import Grid, { GridArea } from "../../../components/Grid";
 import Flex from "../../../components/Flex";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
+import { P } from "../../../components/Typography";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 
 interface CommonProps {
@@ -75,16 +76,31 @@ const Search = () => {
   return (
     <Flex $background="white">
       <MaxWidth $ph={16}>
-        <BrowserWidthBar $background="white" $pv={20}>
-          <Flex $mt={80}>
-            {ALL_KEY_STAGES.map((ks) => (
-              <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
-            ))}
-          </Flex>
-        </BrowserWidthBar>
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        <SearchResults hits={results} />
+        <Grid $mt={48} $cg={16}>
+          <GridArea $colSpan={[12, 4, 3]} $pr={16}>
+            <Flex $flexDirection="column" $mb={32}>
+              <P $mb={16}>Key stage</P>
+              <Flex>
+                {ALL_KEY_STAGES.map((ks) => (
+                  <KeyStageFilter
+                    key={`search-filters-keystage-${ks}`}
+                    ks={ks}
+                  />
+                ))}
+              </Flex>
+            </Flex>
+          </GridArea>
+          <GridArea $colSpan={[12, 8, 9]} $pr={16}>
+            {/* <Flex $mb={80}>
+              {ALL_KEY_STAGES.map((ks) => (
+                <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
+              ))}
+            </Flex> */}
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+            <SearchResults hits={results} />
+          </GridArea>
+        </Grid>
       </MaxWidth>
     </Flex>
   );
