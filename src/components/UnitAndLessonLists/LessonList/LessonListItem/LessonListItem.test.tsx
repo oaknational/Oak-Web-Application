@@ -17,6 +17,7 @@ const props = {
   subjectTitle: "Maths",
   themeSlug: "circles",
   themeTitle: "Circles",
+  hasCopyrightMaterial: false,
 };
 
 describe("Lesson List Item", () => {

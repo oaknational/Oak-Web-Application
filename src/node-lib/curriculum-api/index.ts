@@ -169,6 +169,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
       videoCount: z.number().nullable(),
       presentationCount: z.number().nullable(),
       worksheetCount: z.number().nullable(),
+      hasCopyrightMaterial: z.boolean(),
     })
   ),
 });
@@ -199,6 +200,7 @@ const teachersLessonOverviewData = z.object({
   hasCopyrightMaterial: z.boolean(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
+  transcript: z.string().nullable(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
