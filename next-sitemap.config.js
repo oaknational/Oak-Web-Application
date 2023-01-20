@@ -31,6 +31,16 @@ module.exports = {
     "/webinars/*",
     // Don't list the file that generates the sitemaps for the dynamic pages.
     "/server-sitemap-index.xml",
+    // Pointer exclusions
+    "/webinars/using-oak-to-support-during-covid-disruption-and-setting-cover-2",
+    "/webinars/boosting-motivation-in-the-classroom",
+    "/blog/what-impact-did-oak-have-in-2020-21",
+    "/blog/using-our-new-curriculum-maps-to-support-your-classroom-planning",
+    "/webinars",
+    "/news-and-views",
+    "/about-oak",
+    "/people-and-partners",
+    "/contact",
   ],
   // Ignore server-side sitemap config for static version of site.
   // https://github.com/iamvishnusankar/next-sitemap#generating-dynamicserver-side-sitemaps
