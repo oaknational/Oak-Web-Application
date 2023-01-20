@@ -80,13 +80,6 @@ export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
   const { hits } = props;
-  // const highlightedHits = hits.map((hit) => ({
-  //   _source: { ...hit._source, ...hit.highlight },
-  // }));
-
-  console.log("hits", hits);
-  // console.log("highlighted", highlightedHits);
-
   const paginationProps = usePagination({
     totalResults: hits.length,
     pageSize: RESULTS_PER_PAGE,
