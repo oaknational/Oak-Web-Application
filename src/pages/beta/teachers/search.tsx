@@ -10,6 +10,12 @@ import Flex from "../../../components/Flex";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import MobileSearchFilters from "../../../components/MobileSearchFilters";
+import Button from "../../../components/Button";
+import { P } from "../../../components/Typography";
+import {
+  useSearchQuery,
+  KeyStage,
+} from "../../../context/Search/SearchContext";
 
 interface CommonProps {
   id: number;
@@ -72,10 +78,40 @@ const Search = () => {
      */
   }, [fetchSearchResults]);
 
+  const { keyStages, setKeyStages } = useSearchQuery();
+
+  const onRemoveFilterClick = (keyStage: KeyStage) => {
+    const newKeyStages = new Set(keyStages);
+    newKeyStages.delete(keyStage);
+    setKeyStages(newKeyStages);
+  };
+
   return (
-    <Flex $background="white">
+    <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
+          <GridArea $colSpan={[12, 12, 12]} $mt={24} $mb={24}>
+            <Flex
+              $alignItems={["flex-start", "center"]}
+              $flexDirection={["column", "row"]}
+            >
+              <P $mr={20} $color={["oakGrey4", "black"]}>
+                Active filters:
+              </P>
+              <Flex $alignItems={"center"}>
+                {Array.from(keyStages).map((keyStage: KeyStage) => (
+                  <Button
+                    label={`KS${keyStage}`}
+                    onClick={() => onRemoveFilterClick(keyStage)}
+                    variant="minimal"
+                    icon="Cross"
+                    $iconPosition="trailing"
+                    $mr={16}
+                  />
+                ))}
+              </Flex>
+            </Flex>
+          </GridArea>
           <GridArea $colSpan={[12, 4, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
               <SearchFilters />
