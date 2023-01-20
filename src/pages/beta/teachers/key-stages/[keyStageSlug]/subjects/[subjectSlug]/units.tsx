@@ -6,12 +6,12 @@ import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../components/Card/TitleCard";
 import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
-import UnitList from "../../../../../../../components/UnitList";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
   TeachersKeyStageSubjectUnitsData,
 } from "../../../../../../../node-lib/curriculum-api";
+import UnitList from "../../../../../../../components/UnitAndLessonLists/UnitList";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;

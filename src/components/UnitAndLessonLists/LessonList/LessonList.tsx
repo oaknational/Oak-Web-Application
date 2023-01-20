@@ -41,7 +41,7 @@ const LessonList: FC<LessonListProps> = (props) => {
           <UL $reset>
             {currentPageItems.map((item) => (
               <LI key={`LessonList-LessonListItem-${item.slug}`}>
-                <LessonListItem {...item} />
+                <LessonListItem {...item} hideTopHeading />
               </LI>
             ))}
           </UL>

@@ -14,25 +14,41 @@ import Card from "../../../components/Card";
 import SearchForm from "../../../components/SearchForm";
 import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 
-export interface SearchHit {
+interface CommonProps {
+  id: number;
+  slug: string;
+  title: string;
+  subject_title: string;
+  subject_slug: string;
+  key_stage_title: string;
+  key_stage_slug: string;
+  is_specialist: boolean | null;
+  is_sensitive: boolean;
+  theme_title: string;
+}
+
+export interface LessonSearchHit {
   _source: {
-    id: number;
-    is_sensitive: boolean;
-    is_specialist: boolean | null;
-    key_stage_slug: string;
-    key_stage_title: string;
+    type: "lesson";
     lesson_description: string;
-    slug: string;
-    subject_slug: string;
-    subject_title: string;
-    theme_title: string;
-    title: string;
-    topic_slug: string;
     topic_title: string;
-    type: string;
-    year_slug: string;
+    topic_slug: string;
     year_title: string;
-  };
+    year_slug: string;
+  } & CommonProps;
+}
+
+export interface UnitSearchHit {
+  _source: {
+    type: "unit";
+    year_slug: string;
+  } & CommonProps;
+}
+
+export type SearchHit = LessonSearchHit | UnitSearchHit;
+
+export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
+  return x._source.type === "lesson";
 }
 
 const Search = () => {
