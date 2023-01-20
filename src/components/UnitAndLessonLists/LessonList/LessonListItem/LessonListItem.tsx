@@ -69,9 +69,13 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         </Flex>
 
         <Flex $mt={[8, 0]} $mr={[16, 0]}>
-          <Span $font={["body-3", "body-2"]} $color={"oakGrey5"}>
-            {description}
-          </Span>
+          <Span
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+            $font={["body-3", "body-2"]}
+            $color={"oakGrey5"}
+          />
         </Flex>
         {resources.length > 0 && (
           <Box $mt={16}>

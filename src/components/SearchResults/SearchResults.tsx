@@ -1,8 +1,8 @@
 import {
-  isLessonSearchHit,
   LessonSearchHit,
   SearchHit,
   UnitSearchHit,
+  isLessonSearchHit,
 } from "../../pages/beta/teachers/search";
 import Flex from "../Flex";
 import LessonListItem from "../UnitAndLessonLists/LessonList/LessonListItem";
@@ -37,21 +37,22 @@ const keyStageTitleMap: Record<string, string> = {
 const getLessonObject = (
   hit: LessonSearchHit
 ): TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] => {
-  const { _source } = hit;
+  const { _source, highlight } = hit;
+  const highlightedHit = { ..._source, ...highlight };
   return {
-    description: _source.lesson_description,
-    themeTitle: _source.theme_title,
-    subjectSlug: _source.subject_slug,
-    keyStageSlug: keyStageSlugMap[_source.key_stage_slug] || "", // @todo - remove map once new index is created for material views
-    keyStageTitle: keyStageTitleMap[_source.key_stage_title] || "",
-    subjectTitle: _source.subject_title,
-    unitSlug: _source.topic_slug,
+    description: highlightedHit.lesson_description,
+    themeTitle: highlightedHit.theme_title,
+    subjectSlug: highlightedHit.subject_slug,
+    keyStageSlug: keyStageSlugMap[highlightedHit.key_stage_slug] || "", // @todo - remove map once new index is created for material views
+    keyStageTitle: keyStageTitleMap[highlightedHit.key_stage_title] || "",
+    subjectTitle: highlightedHit.subject_title,
+    unitSlug: highlightedHit.topic_slug,
     themeSlug: null, // null values -  add to elastic slug index in acorn
     videoCount: null,
     presentationCount: null,
     worksheetCount: null,
-    title: _source.title,
-    slug: _source.slug,
+    title: highlightedHit.title,
+    slug: highlightedHit.slug,
     hasCopyrightMaterial: false, // this will need to be added to elastic search
   };
 };
@@ -59,18 +60,19 @@ const getLessonObject = (
 const getUnitObject = (
   hit: UnitSearchHit
 ): TeachersKeyStageSubjectUnitsData["units"][number] => {
-  const { _source } = hit;
+  const { _source, highlight } = hit;
+  const highlightedHit = { ..._source, ...highlight };
   return {
-    title: _source.title,
-    slug: _source.slug,
-    themeTitle: _source.theme_title,
+    title: highlightedHit.title,
+    slug: highlightedHit.slug,
+    themeTitle: highlightedHit.theme_title,
     themeSlug: null, // null values need to be added to elastic search
     lessonCount: null,
     quizCount: null,
-    subjectSlug: _source.subject_slug,
-    subjectTitle: _source.subject_title,
-    keyStageSlug: keyStageSlugMap[_source.key_stage_slug] || "",
-    keyStageTitle: keyStageTitleMap[_source.key_stage_title] || "",
+    subjectSlug: highlightedHit.subject_slug,
+    subjectTitle: highlightedHit.subject_title,
+    keyStageSlug: keyStageSlugMap[highlightedHit.key_stage_slug] || "",
+    keyStageTitle: keyStageTitleMap[highlightedHit.key_stage_title] || "",
   };
 };
 
@@ -78,6 +80,12 @@ export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
   const { hits } = props;
+  // const highlightedHits = hits.map((hit) => ({
+  //   _source: { ...hit._source, ...hit.highlight },
+  // }));
+
+  console.log("hits", hits);
+  // console.log("highlighted", highlightedHits);
 
   const paginationProps = usePagination({
     totalResults: hits.length,
@@ -85,6 +93,8 @@ const SearchResults = (props: SearchResultsProps) => {
     items: hits,
   });
   const { currentPageItems } = paginationProps;
+
+  console.log(currentPageItems);
   return (
     <Flex $background={"white"} $flexDirection="column">
       {hits.length ? (

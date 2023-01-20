@@ -50,9 +50,14 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
 
         <Flex $flexDirection={["column", "row"]}>
           {themeTitle && (
-            <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
-              {themeTitle}
-            </Span>
+            <Span
+              dangerouslySetInnerHTML={{
+                __html: themeTitle,
+              }}
+              $mr={16}
+              $mb={[4, 0]}
+              $font={["body-3", "heading-light-7"]}
+            />
           )}
           <Flex>
             {lessonCount && (
