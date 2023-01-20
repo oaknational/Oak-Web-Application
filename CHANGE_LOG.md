@@ -1,3 +1,10 @@
+# [1.109.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.108.0...v1.109.0) (2023-01-19)
+
+
+### Features
+
+* **sitemap:** exclusions for Pointer ([69ed971](https://github.com/oaknational/Oak-Web-Application/commit/69ed971988fd9c438e7926f20f336d47e6fc35fe))
+
 # [1.108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.2...v1.108.0) (2023-01-19)
 
 
