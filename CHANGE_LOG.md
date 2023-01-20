@@ -1,3 +1,12 @@
+## [1.109.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.0...v1.109.1) (2023-01-20)
+
+
+### Bug Fixes
+
+* 1142 amend title width ([0ddcbb8](https://github.com/oaknational/Oak-Web-Application/commit/0ddcbb82ecb94e598672c24b5a7217b3fb798ae2))
+* 1142 lesson and unit title cards width ([3661e04](https://github.com/oaknational/Oak-Web-Application/commit/3661e047e3bb68c4573368364f829ca9cfe1ab63))
+* 1142 remove commented out line ([dbc1e7d](https://github.com/oaknational/Oak-Web-Application/commit/dbc1e7d90d3b54b2470b6b352b3c1905e1143498))
+
 # [1.109.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.108.0...v1.109.0) (2023-01-19)
 
 
