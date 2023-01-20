@@ -44,7 +44,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
   return (
     <Flex
       $width={["100%", "auto"]}
-      $maxWidth={["100%", "100%", "60%"]}
+      // $maxWidth={["100%", "100%", "60%"]}
       $position={"relative"}
       {...flexProps}
     >
@@ -55,7 +55,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $justifyContent={"space-between"}
         $alignItems={"center"}
       >
-        <Box $ma={24}>
+        <Box $ma={24} $maxWidth={["100%", 740, 740]}>
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
