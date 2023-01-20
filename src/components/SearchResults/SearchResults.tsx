@@ -34,7 +34,7 @@ const keyStageTitleMap: Record<string, string> = {
   "Key Stage 4": "KS4",
 };
 
-const getLessonObject = (
+export const getLessonObject = (
   hit: LessonSearchHit
 ): TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] => {
   const { _source, highlight } = hit;
@@ -57,7 +57,7 @@ const getLessonObject = (
   };
 };
 
-const getUnitObject = (
+export const getUnitObject = (
   hit: UnitSearchHit
 ): TeachersKeyStageSubjectUnitsData["units"][number] => {
   const { _source, highlight } = hit;
