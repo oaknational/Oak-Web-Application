@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
-import { ALL_KEY_STAGES } from "../../../context/Search/SearchContext";
+import {
+  ALL_KEY_STAGES,
+  useSearchQuery,
+} from "../../../context/Search/SearchContext";
 import AppLayout from "../../../components/AppLayout";
 import SearchResults from "../../../components/SearchResults";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
@@ -13,6 +16,7 @@ import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import Card from "../../../components/Card";
 import SearchForm from "../../../components/SearchForm";
 import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import { Heading } from "../../../components/Typography";
 
 interface CommonProps {
   id: number;
@@ -52,6 +56,7 @@ export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
 }
 
 const Search = () => {
+  const { text: searchTerm } = useSearchQuery();
   const { fetchSearchResults, loading, error, results } =
     useFetchSearchResults();
 
@@ -78,6 +83,20 @@ const Search = () => {
   return (
     <Flex $background="white">
       <MaxWidth $ph={16}>
+        {(searchTerm && (
+          <Heading tag={"h1"} $font={"heading-2"} $mt={24}>
+            &ldquo;{searchTerm}&rdquo;
+          </Heading>
+        )) || (
+          <Heading tag={"h1"} $font={"heading-2"} $mt={24}>
+            Search
+          </Heading>
+        )}
+
+        <Heading tag="h3" $font={"heading-light-6"} $mt={24}>
+          Search for topics and key words to explore thousands of lessons and
+          adaptable resources
+        </Heading>
         <Card
           $background={"teachersPastelYellow"}
           $flexDirection={"row"}
@@ -86,12 +105,14 @@ const Search = () => {
           $pv={[24]}
           $ph={[16, 24]}
           $mt={24}
+          $mb={20}
+          $position={"relative"}
         >
           <SearchForm />
           <BrushBorders color={"teachersPastelYellow"} />
         </Card>
         <BrowserWidthBar $background="white" $pv={20}>
-          <Flex $mt={80}>
+          <Flex $mt={24}>
             {ALL_KEY_STAGES.map((ks) => (
               <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
             ))}
