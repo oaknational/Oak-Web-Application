@@ -87,7 +87,6 @@ const SearchResults = (props: SearchResultsProps) => {
   });
   const { currentPageItems } = paginationProps;
 
-  console.log(currentPageItems);
   return (
     <Flex $background={"white"} $flexDirection="column">
       {hits.length ? (
