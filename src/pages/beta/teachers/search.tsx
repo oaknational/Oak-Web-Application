@@ -103,7 +103,7 @@ const Search = () => {
                   <Button
                     label={`KS${keyStage}`}
                     onClick={() => onRemoveFilterClick(keyStage)}
-                    variant="minimal"
+                    variant="buttonStyledAsLink"
                     icon="Cross"
                     $iconPosition="trailing"
                     $mr={16}
