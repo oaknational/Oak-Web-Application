@@ -18,7 +18,7 @@ export type UnitListItemProps = {
   keyStageSlug: string;
   unitStudyOrder: number;
   index: number;
-  year:string
+  year: string;
 };
 
 /**
