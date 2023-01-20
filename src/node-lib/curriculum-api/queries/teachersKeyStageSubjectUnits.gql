@@ -27,7 +27,7 @@ query teachersKeyStageSubjectUnits(
       subject_slug: { _eq: $subjectSlug }
       tier_slug: { _eq: $tierSlug }
     }
-    order_by: {year:asc, unit_study_order: asc }
+    distinct_on: slug
   ) {
     slug
     title
@@ -40,5 +40,6 @@ query teachersKeyStageSubjectUnits(
     lessonCount: lesson_count
     quizCount: quiz_count
     unitStudyOrder: unit_study_order
+    year
   }
 }

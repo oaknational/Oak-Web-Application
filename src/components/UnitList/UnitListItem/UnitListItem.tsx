@@ -16,8 +16,9 @@ export type UnitListItemProps = {
   quizCount: number | null;
   subjectSlug: string;
   keyStageSlug: string;
-  unitStudyOrder: number | null;
+  unitStudyOrder: number;
   index: number;
+  year:string
 };
 
 /**
