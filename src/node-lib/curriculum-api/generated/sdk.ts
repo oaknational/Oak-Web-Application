@@ -35349,7 +35349,7 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
   }
   mv_units(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, tier_slug: {_eq: $tierSlug}}
-    distinct_on: slug
+    order_by: {year: asc, unit_study_order: asc}
   ) {
     slug
     title

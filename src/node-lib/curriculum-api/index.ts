@@ -323,27 +323,27 @@ const curriculumApi = {
     const keyStage = getFirstResult({ results: keyStages });
     const subject = getFirstResult({ results: subjects });
     const tier = args[0].tierSlug ? getFirstResult({ results: tiers }) : null;
-    const unitSorted = units?.sort((a, b) => {
-      if (
-        typeof a.year === "string" &&
-        typeof b.year === "string" &&
-        typeof a.unitStudyOrder === "number" &&
-        typeof b.unitStudyOrder === "number"
-      ) {
-        if (a.year < b.year) {
-          return -1;
-        }
-        if (a.year > b.year) {
-          return 1;
-        }
-        if (a.unitStudyOrder > b.unitStudyOrder) {
-          return 1;
-        }
-        return -1;
-      } else {
-        return 0;
-      }
-    });
+    // const unitSorted = units?.sort((a, b) => {
+    //   if (
+    //     typeof a.year === "string" &&
+    //     typeof b.year === "string" &&
+    //     typeof a.unitStudyOrder === "number" &&
+    //     typeof b.unitStudyOrder === "number"
+    //   ) {
+    //     if (a.year < b.year) {
+    //       return -1;
+    //     }
+    //     if (a.year > b.year) {
+    //       return 1;
+    //     }
+    //     if (a.unitStudyOrder > b.unitStudyOrder) {
+    //       return 1;
+    //     }
+    //     return -1;
+    //   } else {
+    //     return 0;
+    //   }
+    // });
 
     return teachersKeyStageSubjectUnitsData.parse({
       keyStageSlug: keyStage.slug,
@@ -352,7 +352,7 @@ const curriculumApi = {
       subjectTitle: subject.title,
       tierSlug: tier?.slug || null,
       tiers,
-      units: unitSorted,
+      units,
     });
   },
   teachersKeyStageSubjectUnitsPaths: async () => {

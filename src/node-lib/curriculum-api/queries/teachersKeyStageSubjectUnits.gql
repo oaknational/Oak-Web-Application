@@ -27,7 +27,9 @@ query teachersKeyStageSubjectUnits(
       subject_slug: { _eq: $subjectSlug }
       tier_slug: { _eq: $tierSlug }
     }
-    distinct_on: slug
+    order_by:{
+      year: asc, unit_study_order:asc
+    }
   ) {
     slug
     title
