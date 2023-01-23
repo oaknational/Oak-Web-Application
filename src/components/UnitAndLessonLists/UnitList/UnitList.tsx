@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import Pagination, { PaginationProps } from "../Pagination";
-import { Heading, LI, UL } from "../Typography";
-import { HeadingTag } from "../Typography/Heading";
-import TabularNav from "../TabularNav";
-import { TeachersKeyStageSubjectUnitsData } from "../../node-lib/curriculum-api";
+import Box from "../../Box";
+import Flex from "../../Flex";
+import Pagination, { PaginationProps } from "../../Pagination";
+import { Heading, LI, UL } from "../../Typography";
+import { HeadingTag } from "../../Typography/Heading";
+import TabularNav from "../../TabularNav";
+import { TeachersKeyStageSubjectUnitsData } from "../../../node-lib/curriculum-api";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -17,9 +17,12 @@ export type Tier = {
   unitCount: number | null;
 };
 
+type PageSize = { pageSize: number };
+type CurrenPageItemsProps = Omit<UnitListItemProps, "index">;
+
 export type UnitListProps = TeachersKeyStageSubjectUnitsData & {
-  currentPageItems: UnitListItemProps[];
-  paginationProps: PaginationProps;
+  currentPageItems: CurrenPageItemsProps[];
+  paginationProps: PaginationProps & PageSize;
   headingTag: HeadingTag;
 };
 /**
@@ -39,7 +42,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     currentPageItems,
     tierSlug,
   } = props;
-
+  const { currentPage, pageSize } = paginationProps;
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
@@ -68,9 +71,13 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         <>
           <UL $reset>
-            {currentPageItems.map((item) => (
+            {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
-                <UnitListItem {...item} />
+                <UnitListItem
+                  {...item}
+                  hideTopHeading
+                  index={index + pageSize * (currentPage - 1)}
+                />
               </LI>
             ))}
           </UL>

@@ -18,6 +18,7 @@ query teachersKeyStageSubjectUnitLessons(
     subjectTitle: subject_title
   }
   mv_lessons(
+    order_by: { position_in_unit: asc }
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
