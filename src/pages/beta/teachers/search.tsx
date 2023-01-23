@@ -9,26 +9,43 @@ import BrowserWidthBar from "../../../components/BrowserWidthBar";
 import KeyStageFilter from "../../../components/SearchFilters/KeyStageFilter";
 import Flex from "../../../components/Flex";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
+import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 
-export interface SearchHit {
+interface CommonProps {
+  id: number;
+  slug: string;
+  title: string;
+  subject_title: string;
+  subject_slug: string;
+  key_stage_title: string;
+  key_stage_slug: string;
+  is_specialist: boolean | null;
+  is_sensitive: boolean;
+  theme_title: string;
+}
+
+export interface LessonSearchHit {
   _source: {
-    id: number;
-    is_sensitive: boolean;
-    is_specialist: boolean | null;
-    key_stage_slug: string;
-    key_stage_title: string;
+    type: "lesson";
     lesson_description: string;
-    slug: string;
-    subject_slug: string;
-    subject_title: string;
-    theme_title: string;
-    title: string;
-    topic_slug: string;
     topic_title: string;
-    type: string;
-    year_slug: string;
+    topic_slug: string;
     year_title: string;
-  };
+    year_slug: string;
+  } & CommonProps;
+}
+
+export interface UnitSearchHit {
+  _source: {
+    type: "unit";
+    year_slug: string;
+  } & CommonProps;
+}
+
+export type SearchHit = LessonSearchHit | UnitSearchHit;
+
+export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
+  return x._source.type === "lesson";
 }
 
 const Search = () => {
@@ -56,18 +73,20 @@ const Search = () => {
   }, [fetchSearchResults]);
 
   return (
-    <>
-      <BrowserWidthBar $background="white" $pv={20}>
-        <Flex $mt={80}>
-          {ALL_KEY_STAGES.map((ks) => (
-            <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
-          ))}
-        </Flex>
-      </BrowserWidthBar>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <SearchResults hits={results} />
-    </>
+    <Flex $background="white">
+      <MaxWidth $ph={16}>
+        <BrowserWidthBar $background="white" $pv={20}>
+          <Flex $mt={80}>
+            {ALL_KEY_STAGES.map((ks) => (
+              <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
+            ))}
+          </Flex>
+        </BrowserWidthBar>
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        <SearchResults hits={results} />
+      </MaxWidth>
+    </Flex>
   );
 };
 

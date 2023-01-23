@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import Pagination, { PaginationProps } from "../Pagination";
-import { Heading, LI, UL } from "../Typography";
-import { HeadingTag } from "../Typography/Heading";
-import TabularNav from "../TabularNav";
-import { TeachersKeyStageSubjectUnitsData } from "../../node-lib/curriculum-api";
+import Box from "../../Box";
+import Flex from "../../Flex";
+import Pagination, { PaginationProps } from "../../Pagination";
+import { Heading, LI, UL } from "../../Typography";
+import { HeadingTag } from "../../Typography/Heading";
+import TabularNav from "../../TabularNav";
+import { TeachersKeyStageSubjectUnitsData } from "../../../node-lib/curriculum-api";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -17,11 +17,9 @@ export type Tier = {
   unitCount: number | null;
 };
 
-type PageSize = { pageSize: number };
-type CurrenPageItemsProps = Omit<UnitListItemProps, "index">;
 export type UnitListProps = TeachersKeyStageSubjectUnitsData & {
-  currentPageItems: CurrenPageItemsProps[];
-  paginationProps: PaginationProps & PageSize;
+  currentPageItems: UnitListItemProps[];
+  paginationProps: PaginationProps;
   headingTag: HeadingTag;
 };
 /**
@@ -42,7 +40,6 @@ const UnitList: FC<UnitListProps> = (props) => {
     tierSlug,
   } = props;
 
-  const { currentPage, pageSize } = paginationProps;
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
@@ -71,12 +68,9 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         <>
           <UL $reset>
-            {currentPageItems.map((item, index) => (
+            {currentPageItems.map((item) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
-                <UnitListItem
-                  {...item}
-                  index={index + pageSize * (currentPage - 1)}
-                />
+                <UnitListItem {...item} hideTopHeading />
               </LI>
             ))}
           </UL>

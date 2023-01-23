@@ -1,3 +1,37 @@
+## [1.109.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.0...v1.109.1) (2023-01-20)
+
+
+### Bug Fixes
+
+* 1142 amend title width ([0ddcbb8](https://github.com/oaknational/Oak-Web-Application/commit/0ddcbb82ecb94e598672c24b5a7217b3fb798ae2))
+* 1142 lesson and unit title cards width ([3661e04](https://github.com/oaknational/Oak-Web-Application/commit/3661e047e3bb68c4573368364f829ca9cfe1ab63))
+* 1142 remove commented out line ([dbc1e7d](https://github.com/oaknational/Oak-Web-Application/commit/dbc1e7d90d3b54b2470b6b352b3c1905e1143498))
+
+# [1.109.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.108.0...v1.109.0) (2023-01-19)
+
+
+### Features
+
+* **sitemap:** exclusions for Pointer ([69ed971](https://github.com/oaknational/Oak-Web-Application/commit/69ed971988fd9c438e7926f20f336d47e6fc35fe))
+
+# [1.108.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.2...v1.108.0) (2023-01-19)
+
+
+### Features
+
+* 1055 add message for non captioned videos ([1787886](https://github.com/oaknational/Oak-Web-Application/commit/1787886002e4c8c068b5814ddc2951d217f67b76))
+* 1055 update type ([f7c6018](https://github.com/oaknational/Oak-Web-Application/commit/f7c60184dd2c162765bb49713d963ff0ff8321d3))
+
+## [1.107.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.1...v1.107.2) (2023-01-17)
+
+
+### Bug Fixes
+
+* resolve paths to list components ([6153ce7](https://github.com/oaknational/Oak-Web-Application/commit/6153ce727a865d6d5f1db1d58a355f9033e777c8))
+* search result tests after merge with main ([30d4575](https://github.com/oaknational/Oak-Web-Application/commit/30d45753160ad5446a97c3b7563083fbcc1fd7e4))
+* storybook story ([e8d340c](https://github.com/oaknational/Oak-Web-Application/commit/e8d340cfda259c82fe4e2ac83f29d43cf095cb91))
+* whole card is clickable ([276464a](https://github.com/oaknational/Oak-Web-Application/commit/276464a6e00f6d2dc5632cfc6dc03114437ff05a))
+
 ## [1.107.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.107.0...v1.107.1) (2023-01-16)
 
 

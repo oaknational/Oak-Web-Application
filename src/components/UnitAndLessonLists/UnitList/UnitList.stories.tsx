@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import teachersKeyStageSubjectUnitsFixture from "../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnits.fixture";
+import teachersKeyStageSubjectUnitsFixture from "../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnits.fixture";
 
 import { UnitListProps } from "./UnitList";
 
