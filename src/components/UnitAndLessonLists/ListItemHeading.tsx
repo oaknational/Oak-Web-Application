@@ -75,7 +75,7 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
           {...primaryTargetProps}
         >
           <ListTitle>
-            {index!==null ? `${index + 1}.` : ""} {title}
+            {index !== null ? `${index + 1}.` : ""} {title}
           </ListTitle>
         </OakLink>
       )}
