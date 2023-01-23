@@ -13,6 +13,7 @@ const currentPageItems: UnitListProps = {
   paginationProps: {
     currentPage: 1,
     totalPages: 2,
+    pageSize: 20,
   },
 };
 

@@ -38,6 +38,8 @@ const teachersKeyStageSubjectUnitsFixture = (
         themeTitle: "Some theme title",
         lessonCount: 18,
         quizCount: 1,
+        unitStudyOrder: 1,
+        year: "Year 7",
       },
     ],
     ...partial,

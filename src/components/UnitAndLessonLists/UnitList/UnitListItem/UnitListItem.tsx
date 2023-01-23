@@ -11,6 +11,7 @@ import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculu
 export type UnitListItemProps =
   TeachersKeyStageSubjectUnitsData["units"][number] & {
     hideTopHeading?: boolean;
+    index: number | null;
   };
 
 /**
@@ -20,7 +21,7 @@ export type UnitListItemProps =
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const { title, themeTitle, lessonCount, quizCount } = props;
+  const { title, themeTitle, lessonCount, quizCount, index } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -44,6 +45,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             {...props}
             primaryTargetProps={primaryTargetProps}
             page={"Unit"}
+            index={index}
           />
           <IconMobile background={"teachersLilac"} title={title} />
         </Flex>
