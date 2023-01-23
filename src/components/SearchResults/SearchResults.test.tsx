@@ -72,7 +72,7 @@ export const searchResult: SearchHit = {
     is_sensitive: false,
     is_specialist: null,
     year: "Year 10",
-        unit_study_order: 1,
+    unit_study_order: 1,
   },
 };
 
