@@ -64,6 +64,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             {...props}
             primaryTargetProps={primaryTargetProps}
             page="Lesson"
+            index={null}
           />
           <IconMobile background={"pupilsPink"} title={title} />
         </Flex>
