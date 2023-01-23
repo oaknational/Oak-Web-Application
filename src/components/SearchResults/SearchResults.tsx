@@ -71,6 +71,8 @@ const getUnitObject = (
     subjectTitle: _source.subject_title,
     keyStageSlug: keyStageSlugMap[_source.key_stage_slug] || "",
     keyStageTitle: keyStageTitleMap[_source.key_stage_title] || "",
+    year:_source.year,
+    unitStudyOrder:_source.unit_study_order
   };
 };
 
@@ -98,7 +100,7 @@ const SearchResults = (props: SearchResultsProps) => {
                   {isLessonSearchHit(hit) ? (
                     <LessonListItem {...getLessonObject(hit)} />
                   ) : (
-                    <UnitListItem {...getUnitObject(hit)} />
+                    <UnitListItem {...getUnitObject(hit)} index={null}/>
                   )}
                 </LI>
               );

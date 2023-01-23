@@ -11,7 +11,7 @@ import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculu
 export type UnitListItemProps =
   TeachersKeyStageSubjectUnitsData["units"][number] & {
     hideTopHeading?: boolean;
-    index: number;
+    index: number | null;
   };
 
 /**
