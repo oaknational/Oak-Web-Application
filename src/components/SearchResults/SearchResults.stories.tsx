@@ -30,6 +30,8 @@ SearchResults.args = {
         year_slug: "year-10",
         is_specialist: false,
         is_sensitive: false,
+        year: "Year 10",
+        unit_study_order: 1,
       },
     },
     {
@@ -51,6 +53,8 @@ SearchResults.args = {
         year_slug: "year-10",
         is_sensitive: false,
         is_specialist: null,
+        year: "Year 10",
+        unit_study_order: 1,
       },
     },
   ],
