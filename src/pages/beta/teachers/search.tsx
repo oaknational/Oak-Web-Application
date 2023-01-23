@@ -23,7 +23,7 @@ interface CommonProps {
   is_sensitive: boolean;
   theme_title: string;
   year: string;
-  unit_study_order:number;
+  unit_study_order: number;
 }
 
 export interface LessonSearchHit {
