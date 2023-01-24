@@ -5,16 +5,15 @@ import {
   isLessonSearchHit,
 } from "../../pages/beta/teachers/search";
 import Flex from "../Flex";
-import LessonListItem from "../UnitAndLessonLists/LessonList/LessonListItem";
+import LessonListItem, {
+  LessonListItemProps,
+} from "../UnitAndLessonLists/LessonList/LessonListItem";
 import { LI, UL } from "../Typography";
 import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
 import Box from "../Box";
 import Pagination from "../Pagination";
 import usePagination from "../Pagination/usePagination";
-import {
-  TeachersKeyStageSubjectUnitsData,
-  TeachersKeyStageSubjectUnitsLessonsData,
-} from "../../node-lib/curriculum-api";
+import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
@@ -36,7 +35,7 @@ const keyStageTitleMap: Record<string, string> = {
 
 export const getLessonObject = (
   hit: LessonSearchHit
-): TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] => {
+): Omit<LessonListItemProps, "hideTopHeading"> => {
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
   return {
@@ -59,7 +58,7 @@ export const getLessonObject = (
 
 export const getUnitObject = (
   hit: UnitSearchHit
-): TeachersKeyStageSubjectUnitsData["units"][number] => {
+): Omit<UnitListItemProps, "hideTopHeading" | "index"> => {
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
   return {
@@ -100,7 +99,7 @@ const SearchResults = (props: SearchResultsProps) => {
                   {isLessonSearchHit(hit) ? (
                     <LessonListItem {...getLessonObject(hit)} />
                   ) : (
-                    <UnitListItem {...getUnitObject(hit)} />
+                    <UnitListItem {...getUnitObject(hit)} index={null} />
                   )}
                 </LI>
               );

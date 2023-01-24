@@ -22,6 +22,8 @@ interface CommonProps {
   is_specialist: boolean | null;
   is_sensitive: boolean;
   theme_title: string;
+  year: string;
+  unit_study_order: number;
 }
 
 type LessonSource = {

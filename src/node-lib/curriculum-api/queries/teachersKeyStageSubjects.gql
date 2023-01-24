@@ -3,7 +3,10 @@ query teachersKeyStageSubjects($keyStageSlug: String!) {
     slug
     title
   }
-  mv_subjects(where: { key_stage_slug: { _eq: $keyStageSlug } }) {
+  mv_subjects(
+    order_by: { slug: asc }
+    where: { key_stage_slug: { _eq: $keyStageSlug } }
+  ) {
     slug
     title
     keyStageSlug: key_stage_slug

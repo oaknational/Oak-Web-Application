@@ -1,3 +1,24 @@
+## [1.109.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.1...v1.109.2) (2023-01-23)
+
+
+### Bug Fixes
+
+* **lesson-unit-order:** firx unit and lesson order ([adaf784](https://github.com/oaknational/Oak-Web-Application/commit/adaf7841c2a55b43df305e19a8cffa6ec8582388))
+* **lesson-unit-order:** fix fixture type error ([98bd7cf](https://github.com/oaknational/Oak-Web-Application/commit/98bd7cf9ebf7640261be7476a0578202037368f9))
+* **unit listing:** make query distinct on lesson slug then order by year and unit order ([30d1c62](https://github.com/oaknational/Oak-Web-Application/commit/30d1c62566ef32f9c5e424f3d27158f026314adb))
+* **unit listing:** make query distinct on lesson slug then order by year and unit order styling ([88c3ca0](https://github.com/oaknational/Oak-Web-Application/commit/88c3ca01ad70c34e74efeb9de35c4cea1b9c5139))
+* **unit-listing:** remove duplication and order by year and then unit ordering ([c0f3d2f](https://github.com/oaknational/Oak-Web-Application/commit/c0f3d2fb045a361cd407e728b9ff4f351588441a))
+* **unit-listing:** type error fix ([08f1764](https://github.com/oaknational/Oak-Web-Application/commit/08f176438858d428c3ca343320489b6112f9fee7))
+* **unit-listing:** type error fix ([abbc073](https://github.com/oaknational/Oak-Web-Application/commit/abbc07318be73bef8342680e7d16d14a58b32be9))
+* **units and lesson listing:** distinct on MV, remove sorting on the FE ([3352d29](https://github.com/oaknational/Oak-Web-Application/commit/3352d2958790bcf46dc3c372bb108895202d865c))
+* **units and lesson listing:** merge conflicts and putting numbering back into units page ([6fcdc0a](https://github.com/oaknational/Oak-Web-Application/commit/6fcdc0a54820be6ee793ad44e30261f3b22985ae))
+* **units and lesson listing:** search merge conflict resolution ([910104a](https://github.com/oaknational/Oak-Web-Application/commit/910104a229bded6821318d4bd1d37d6670f8feb2))
+* **units and lesson listing:** search merge style ([7826c37](https://github.com/oaknational/Oak-Web-Application/commit/7826c3787bf65fb46fae5e2211c72c75ce521345))
+* **units and lesson listing:** style ([cfc711e](https://github.com/oaknational/Oak-Web-Application/commit/cfc711e012c805d085c49766d1a7f87a4299a37e))
+* **units and lesson listing:** type fixes ([fc085ab](https://github.com/oaknational/Oak-Web-Application/commit/fc085ab2da1c148828155f8648ab6162c7db7afe))
+* **units and lesson listing:** type fixes ([6d1e7d3](https://github.com/oaknational/Oak-Web-Application/commit/6d1e7d38d61983e36ce804f69f26ba23e5d257da))
+* **units and lesson listing:** type fixes ([53a0107](https://github.com/oaknational/Oak-Web-Application/commit/53a0107ec2c6cdf538c6d986647999d924a7561a))
+
 ## [1.109.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.0...v1.109.1) (2023-01-20)
 
 
