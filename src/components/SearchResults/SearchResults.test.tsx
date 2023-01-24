@@ -28,8 +28,6 @@ export const searchResults: Array<SearchHit> = [
       year_slug: "year-7",
       is_sensitive: false,
       is_specialist: null,
-      year: "Year 10",
-      unit_study_order: 1,
     },
   },
   {
@@ -46,8 +44,6 @@ export const searchResults: Array<SearchHit> = [
       year_slug: "year-8",
       is_specialist: false,
       is_sensitive: false,
-      year: "Year 10",
-      unit_study_order: 1,
     },
   },
 ];
@@ -71,8 +67,6 @@ export const searchResult: SearchHit = {
     year_slug: "year-7",
     is_sensitive: false,
     is_specialist: null,
-    year: "Year 10",
-    unit_study_order: 1,
   },
 };
 
@@ -148,8 +142,6 @@ describe("The <SearchForm> Component", () => {
         year_slug: "year-7",
         is_sensitive: false,
         is_specialist: null,
-        year: "Year 10",
-        unit_study_order: 1,
       },
     };
 
