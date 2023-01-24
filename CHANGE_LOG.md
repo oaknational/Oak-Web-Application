@@ -1,3 +1,10 @@
+# [1.110.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.2...v1.110.0) (2023-01-24)
+
+
+### Features
+
+* highlighted search terms to search results ([f4000ba](https://github.com/oaknational/Oak-Web-Application/commit/f4000ba0aa165e25533774109cb2c549a1cb7140))
+
 ## [1.109.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.1...v1.109.2) (2023-01-23)
 
 
