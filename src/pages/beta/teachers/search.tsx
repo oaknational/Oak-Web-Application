@@ -22,26 +22,30 @@ interface CommonProps {
   is_specialist: boolean | null;
   is_sensitive: boolean;
   theme_title: string;
-  year: string;
-  unit_study_order: number;
 }
 
+type LessonSource = {
+  type: "lesson";
+  lesson_description: string;
+  topic_title: string;
+  topic_slug: string;
+  year_title: string;
+  year_slug: string;
+};
+
+type UnitSource = {
+  type: "unit";
+  year_slug: string;
+};
+
 export interface LessonSearchHit {
-  _source: {
-    type: "lesson";
-    lesson_description: string;
-    topic_title: string;
-    topic_slug: string;
-    year_title: string;
-    year_slug: string;
-  } & CommonProps;
+  _source: LessonSource & CommonProps;
+  highlight?: Partial<LessonSource>;
 }
 
 export interface UnitSearchHit {
-  _source: {
-    type: "unit";
-    year_slug: string;
-  } & CommonProps;
+  _source: UnitSource & CommonProps;
+  highlight?: Partial<UnitSource>;
 }
 
 export type SearchHit = LessonSearchHit | UnitSearchHit;
