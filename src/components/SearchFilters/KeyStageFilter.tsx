@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { KeyStage } from "../../context/Search/SearchContext";
 import useKeyStageToggle from "../../context/Search/useKeyStageToggle";
-import CheckboxButton from "../CheckboxButton";
+import CheckboxButton from "../Checkbox";
 
 type KeyStageFilterProps = {
   ks: KeyStage;
