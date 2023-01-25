@@ -226,7 +226,6 @@ export type OakTheme = {
   button: ButtonConfig;
   badge: BadgeConfig;
   checkbox: CheckboxConfig;
-  checkboxButton: CheckboxButtonConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
   video: VideoStyleConfig;

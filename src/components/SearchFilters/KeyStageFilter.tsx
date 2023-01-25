@@ -3,7 +3,7 @@ import { FC } from "react";
 import { KeyStage } from "../../context/Search/SearchContext";
 import useKeyStageToggle from "../../context/Search/useKeyStageToggle";
 import Box from "../Box";
-import CheckboxButton from "../Checkbox";
+import Checkbox from "../Checkbox";
 
 type KeyStageFilterProps = {
   ks: KeyStage;
@@ -13,7 +13,7 @@ const KeyStageFilter: FC<KeyStageFilterProps> = (props) => {
   const { onChange, checked } = useKeyStageToggle(ks);
   return (
     <Box $width={"50%"}>
-      <CheckboxButton
+      <Checkbox
         labelText={`KS${ks}`}
         id={`custom-checkbox-${ks}`}
         checked={checked}

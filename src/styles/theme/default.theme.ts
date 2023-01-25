@@ -211,15 +211,6 @@ const theme: OakTheme = {
       color: "grey4",
     },
   },
-  checkboxButton: {
-    default: {
-      color: "black",
-      background: "pastelTurquoise",
-    },
-    disabled: {
-      color: "oakGrey4",
-    },
-  },
   selectListBox: {
     states: {
       default: {
