@@ -84,11 +84,11 @@ const Search = () => {
     <Flex $background="white">
       <MaxWidth $ph={16}>
         {(searchTerm && (
-          <Heading tag={"h1"} $font={"heading-2"} $mt={24}>
+          <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
             &ldquo;{searchTerm}&rdquo;
           </Heading>
         )) || (
-          <Heading tag={"h1"} $font={"heading-2"} $mt={24}>
+          <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
             Search
           </Heading>
         )}
@@ -99,9 +99,7 @@ const Search = () => {
         </Heading>
         <Card
           $background={"teachersPastelYellow"}
-          $flexDirection={"row"}
-          $justifyContent={"space-between"}
-          $width="100%"
+          $width={"100%"}
           $pv={[24]}
           $ph={[16, 24]}
           $mt={24}
