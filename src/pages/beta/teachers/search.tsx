@@ -1,21 +1,18 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
+import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
+import { useSearchQuery } from "../../../context/Search/SearchContext";
 import AppLayout from "../../../components/AppLayout";
 import SearchResults from "../../../components/SearchResults";
-import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import SearchFilters from "../../../components/SearchFilters";
+import ActiveFilters from "../../../components/SearchFilters/ActiveFilters";
 import Grid, { GridArea } from "../../../components/Grid";
 import Flex from "../../../components/Flex";
-import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import MobileSearchFilters from "../../../components/MobileSearchFilters";
-import Button from "../../../components/Button";
-import { P , Heading } from "../../../components/Typography";
-import {
-  useSearchQuery,
-  KeyStage,
-} from "../../../context/Search/SearchContext";
+import { Heading } from "../../../components/Typography";
 import Card from "../../../components/Card";
 import SearchForm from "../../../components/SearchForm";
 import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
@@ -88,14 +85,6 @@ const Search = () => {
      */
   }, [fetchSearchResults]);
 
-  const { keyStages, setKeyStages } = useSearchQuery();
-
-  const onRemoveFilterClick = (keyStage: KeyStage) => {
-    const newKeyStages = new Set(keyStages);
-    newKeyStages.delete(keyStage);
-    setKeyStages(newKeyStages);
-  };
-
   return (
     <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
@@ -129,28 +118,9 @@ const Search = () => {
                 <BrushBorders color={"teachersPastelYellow"} />
               </Card>
             </Flex>
-            <Flex
-              $alignItems={["flex-start", "center"]}
-              $flexDirection={["column", "row"]}
-            >
-              <P $mr={20} $color={["oakGrey4", "black"]}>
-                Active filters:
-              </P>
-              <Flex $alignItems={"center"}>
-                {Array.from(keyStages).map((keyStage: KeyStage) => (
-                  <Button
-                    label={`KS${keyStage}`}
-                    onClick={() => onRemoveFilterClick(keyStage)}
-                    variant="buttonStyledAsLink"
-                    icon="Cross"
-                    $iconPosition="trailing"
-                    $mr={16}
-                  />
-                ))}
-              </Flex>
-            </Flex>
+            <ActiveFilters />
           </GridArea>
-          <GridArea $colSpan={[12, 4, 3]} $pr={16}>
+          <GridArea $colSpan={[12, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
               <SearchFilters />
             </Flex>
@@ -158,7 +128,7 @@ const Search = () => {
               <SearchFilters />
             </MobileSearchFilters>
           </GridArea>
-          <GridArea $colSpan={[12, 8, 9]} $pr={16}>
+          <GridArea $colSpan={[12, 9]} $pr={16}>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             <SearchResults hits={results} />

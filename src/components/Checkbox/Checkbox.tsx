@@ -53,6 +53,7 @@ const checkboxHoverStyles = css`
 
 const CheckboxLabel = styled.label<{ disabled: boolean; checked: boolean }>`
   position: relative;
+  margin-bottom: 24px;
   cursor: ${(props) => !props.disabled && "pointer"};
   display: flex;
   align-items: center;
@@ -103,6 +104,7 @@ const VisualCheckbox = styled.span<{ checked: boolean }>`
 const CheckboxLabelText = styled.span`
   margin-left: 8px;
   margin-right: 16px;
+  font-weight: 400;
 `;
 
 type CheckboxProps = {
