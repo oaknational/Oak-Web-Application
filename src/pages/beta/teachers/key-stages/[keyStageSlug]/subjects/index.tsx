@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
@@ -9,7 +9,11 @@ import { Heading } from "../../../../../../components/Typography";
 import curriculumApi, {
   TeachersKeyStageSubjectsData,
 } from "../../../../../../node-lib/curriculum-api";
-import { decorateWithIsr } from "../../../../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../node-lib/isr";
 
 export type KeyStagePageProps = {
   curriculumData: TeachersKeyStageSubjectsData;
@@ -37,7 +41,11 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
 
 type URLParams = { keyStageSlug: string };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   /**
    * @todo this should probably be a new query called 'teachersKeyStageSubjectsPaths',
    * although there's a trade off between having well named and specific queries for
@@ -55,10 +63,11 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
     params: { keyStageSlug: keyStage.slug },
   }));
 
-  return {
+  const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
     paths,
   };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<

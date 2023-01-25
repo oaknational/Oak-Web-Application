@@ -1,5 +1,5 @@
 import {
-  GetStaticPaths,
+  GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
@@ -8,7 +8,11 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 import CMSClient from "../../node-lib/cms";
 import { PolicyPage } from "../../common-lib/cms-types";
-import { decorateWithIsr } from "../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../node-lib/isr";
 import Flex from "../../components/Flex";
 import Grid, { GridArea } from "../../components/Grid";
 import Layout from "../../components/Layout";
@@ -112,17 +116,22 @@ type URLParams = {
   policyPageSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   const policyResults = await CMSClient.policyPages();
 
   const paths = policyResults.map((policyPage) => ({
     params: { policyPageSlug: policyPage.slug },
   }));
 
-  return {
+  const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
     paths,
   };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  GetStaticPaths,
+  GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
@@ -16,7 +16,11 @@ import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
 import curriculumApi, {
   TeachersKeyStageSubjectTiersData,
 } from "../../../../../../node-lib/curriculum-api";
-import { decorateWithIsr } from "../../../../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../node-lib/isr";
 import { Heading } from "../../../../../../components/Typography";
 
 type SubjectTierListingPageProps = {
@@ -78,7 +82,11 @@ export type URLParams = {
   keyStageSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   const keyStageSubjectPairs =
     await curriculumApi.teachersKeyStageSubjectTiersPaths();
   const paths = keyStageSubjectPairs.tiers.map(
@@ -90,10 +98,11 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
     })
   );
 
-  return {
+  const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
     paths,
   };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<

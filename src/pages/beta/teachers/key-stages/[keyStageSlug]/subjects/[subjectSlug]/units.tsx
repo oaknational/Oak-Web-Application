@@ -105,6 +105,10 @@ export const getServerSideProps: GetServerSideProps<
     throw new Error("No context.params");
   }
   const { subjectSlug, keyStageSlug } = context.params;
+  // QUESTION: should we fetch the data for all tiers and handle the
+  // filtering client side, so that we can use getStaticProps here?
+  // It's a bigger initial download for the user, but changing tier
+  // won't require a new network call.
   const { tier } = context.query;
   const tierSlug = Array.isArray(tier) ? tier[0] : tier;
   const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({

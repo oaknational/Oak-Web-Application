@@ -6,6 +6,10 @@ const disableIsr = serverConfig.get("disableIsr");
 if (disableIsr) {
   console.info("ISR disabled in env");
 }
+// For now we can couple these settings,
+// but keeping them semantically separate
+// in case we want finer control later.
+const shouldSkipInitialBuild = !disableIsr;
 
 /**
  * Default add incremental static regeneration config to the getStaticProps result.
@@ -28,4 +32,22 @@ function decorateWithIsr<P>(
   return decoratedResults;
 }
 
-export { decorateWithIsr };
+interface FallbackBlockingConfig {
+  paths: ReadonlyArray<never>;
+  fallback: "blocking";
+}
+/**
+ * Generate config for getStaticPaths that disables the initial static build of a page.
+ *
+ * https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#generating-paths-on-demand
+ *
+ * @returns The getStaticPaths config.
+ */
+function getFallbackBlockingConfig(): FallbackBlockingConfig {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+}
+
+export { decorateWithIsr, getFallbackBlockingConfig, shouldSkipInitialBuild };

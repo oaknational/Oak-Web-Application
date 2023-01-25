@@ -1,14 +1,16 @@
 import React from "react";
 import {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  //GetStaticPaths,
-  // GetStaticProps,
-  // GetStaticPropsResult,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
   NextPage,
 } from "next";
 
-//import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../../../../node-lib/isr";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -193,17 +195,22 @@ export type URLParams = {
   unitSlug: string;
 };
 
-// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-//   const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
-//   const paths = lessons.map((params) => ({ params: params }));
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
 
-//   return {
-//     fallback: false,
-//     paths,
-//   };
-// };
+  const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+  const paths = lessons.map((params) => ({ params: params }));
 
-export const getServerSideProps: GetServerSideProps<
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
@@ -225,14 +232,13 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const results: GetServerSidePropsResult<LessonOverviewPageProps> = {
+  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
     },
   };
-  // const resultsWithIsr = decorateWithIsr(results);
-  // return resultsWithIsr;
-  return results;
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default LessonOverviewPage;
