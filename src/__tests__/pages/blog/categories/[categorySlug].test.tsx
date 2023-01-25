@@ -30,7 +30,7 @@ describe("pages/blog/categories/[categorySlug].tsx", () => {
         "../../../../pages/blog/categories/[categorySlug]"
       );
 
-      const pathsResult = await getStaticPaths({});
+      const pathsResult = await getStaticPaths();
 
       expect(pathsResult.paths).toEqual([
         { params: { categorySlug: "some-blog-category" } },

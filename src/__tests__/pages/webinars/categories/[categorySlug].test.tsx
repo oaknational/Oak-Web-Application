@@ -29,7 +29,7 @@ describe("pages/webinar/categories/[categorySlug].tsx", () => {
         "../../../../pages/webinars/categories/[categorySlug]"
       );
 
-      const pathsResult = await getStaticPaths({});
+      const pathsResult = await getStaticPaths();
 
       expect(pathsResult.paths).toEqual([
         { params: { categorySlug: "some-webinar-category" } },

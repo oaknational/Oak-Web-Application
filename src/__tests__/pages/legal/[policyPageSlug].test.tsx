@@ -81,7 +81,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
         "../../../pages/legal/[policyPageSlug]"
       );
 
-      const pathsResult = await getStaticPaths({});
+      const pathsResult = await getStaticPaths();
 
       expect(pathsResult.paths).toEqual([
         { params: { policyPageSlug: "privacy-policy" } },

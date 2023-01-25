@@ -115,7 +115,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     it("Should return the paths of all blogs", async () => {
       const { getStaticPaths } = await import("../../../pages/blog/[blogSlug]");
 
-      const pathsResult = await getStaticPaths({});
+      const pathsResult = await getStaticPaths();
 
       expect(pathsResult.paths).toEqual([
         { params: { blogSlug: "a-blog" } },
