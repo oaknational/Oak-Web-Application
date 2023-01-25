@@ -3,10 +3,10 @@
  */
 import React from "react";
 
-import { SearchHit } from "../../pages/beta/teachers/search";
+import { SearchHit, UnitSearchHit } from "../../pages/beta/teachers/search";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import SearchResults from "./SearchResults";
+import SearchResults, { getLessonObject, getUnitObject } from "./SearchResults";
 
 export const searchResults: Array<SearchHit> = [
   {
@@ -28,8 +28,6 @@ export const searchResults: Array<SearchHit> = [
       year_slug: "year-7",
       is_sensitive: false,
       is_specialist: null,
-      year: "Year 10",
-      unit_study_order: 1,
     },
   },
   {
@@ -46,8 +44,6 @@ export const searchResults: Array<SearchHit> = [
       year_slug: "year-8",
       is_specialist: false,
       is_sensitive: false,
-      year: "Year 10",
-      unit_study_order: 1,
     },
   },
 ];
@@ -71,8 +67,6 @@ export const searchResult: SearchHit = {
     year_slug: "year-7",
     is_sensitive: false,
     is_specialist: null,
-    year: "Year 10",
-    unit_study_order: 1,
   },
 };
 
@@ -113,6 +107,18 @@ describe("The <SearchForm> Component", () => {
     expect(searchElement.length).toEqual(2);
   });
 
+  test("getLessonObject maps to new key stage slug", () => {
+    const lessonListObject = getLessonObject(searchResult);
+
+    expect(lessonListObject.keyStageSlug).toEqual("ks3");
+  });
+
+  test("getUnitObject maps to new key stage slug", () => {
+    const unitListObject = getUnitObject(searchResults[1] as UnitSearchHit);
+
+    expect(unitListObject.keyStageSlug).toEqual("ks3");
+  });
+
   test("it renders pagination if there are more results than set in RESULTS_PER_PAGE", () => {
     const hits = [];
     const RESULTS_PER_PAGE = 20;
@@ -136,8 +142,6 @@ describe("The <SearchForm> Component", () => {
         year_slug: "year-7",
         is_sensitive: false,
         is_specialist: null,
-        year: "Year 10",
-        unit_study_order: 1,
       },
     };
 

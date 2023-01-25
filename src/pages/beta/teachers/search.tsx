@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
-import { ALL_KEY_STAGES } from "../../../context/Search/SearchContext";
+import {
+  ALL_KEY_STAGES,
+  useSearchQuery,
+} from "../../../context/Search/SearchContext";
 import AppLayout from "../../../components/AppLayout";
 import SearchResults from "../../../components/SearchResults";
 import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
@@ -10,6 +13,10 @@ import KeyStageFilter from "../../../components/SearchFilters/KeyStageFilter";
 import Flex from "../../../components/Flex";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
+import Card from "../../../components/Card";
+import SearchForm from "../../../components/SearchForm";
+import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import { Heading } from "../../../components/Typography";
 
 interface CommonProps {
   id: number;
@@ -22,26 +29,30 @@ interface CommonProps {
   is_specialist: boolean | null;
   is_sensitive: boolean;
   theme_title: string;
-  year: string;
-  unit_study_order: number;
 }
 
+type LessonSource = {
+  type: "lesson";
+  lesson_description: string;
+  topic_title: string;
+  topic_slug: string;
+  year_title: string;
+  year_slug: string;
+};
+
+type UnitSource = {
+  type: "unit";
+  year_slug: string;
+};
+
 export interface LessonSearchHit {
-  _source: {
-    type: "lesson";
-    lesson_description: string;
-    topic_title: string;
-    topic_slug: string;
-    year_title: string;
-    year_slug: string;
-  } & CommonProps;
+  _source: LessonSource & CommonProps;
+  highlight?: Partial<LessonSource>;
 }
 
 export interface UnitSearchHit {
-  _source: {
-    type: "unit";
-    year_slug: string;
-  } & CommonProps;
+  _source: UnitSource & CommonProps;
+  highlight?: Partial<UnitSource>;
 }
 
 export type SearchHit = LessonSearchHit | UnitSearchHit;
@@ -51,6 +62,7 @@ export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
 }
 
 const Search = () => {
+  const { text: searchTerm } = useSearchQuery();
   const { fetchSearchResults, loading, error, results } =
     useFetchSearchResults();
 
@@ -77,8 +89,34 @@ const Search = () => {
   return (
     <Flex $background="white">
       <MaxWidth $ph={16}>
+        {(searchTerm && (
+          <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
+            &ldquo;{searchTerm}&rdquo;
+          </Heading>
+        )) || (
+          <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
+            Search
+          </Heading>
+        )}
+
+        <Heading tag="h3" $font={"heading-light-6"} $mt={24}>
+          Search for topics and key words to explore thousands of lessons and
+          adaptable resources
+        </Heading>
+        <Card
+          $background={"teachersPastelYellow"}
+          $width={"100%"}
+          $pv={[24]}
+          $ph={[16, 24]}
+          $mt={24}
+          $mb={20}
+          $position={"relative"}
+        >
+          <SearchForm />
+          <BrushBorders color={"teachersPastelYellow"} />
+        </Card>
         <BrowserWidthBar $background="white" $pv={20}>
-          <Flex $mt={80}>
+          <Flex $mt={24}>
             {ALL_KEY_STAGES.map((ks) => (
               <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
             ))}

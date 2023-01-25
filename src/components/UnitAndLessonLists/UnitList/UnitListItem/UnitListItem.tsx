@@ -8,11 +8,13 @@ import ListItemHeading from "../../ListItemHeading";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 
-export type UnitListItemProps =
-  TeachersKeyStageSubjectUnitsData["units"][number] & {
-    hideTopHeading?: boolean;
-    index: number | null;
-  };
+export type UnitListItemProps = Omit<
+  TeachersKeyStageSubjectUnitsData["units"][number],
+  "year" | "unitStudyOrder"
+> & {
+  hideTopHeading?: boolean;
+  index: number | null;
+};
 
 /**
  * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
@@ -52,9 +54,14 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
 
         <Flex $flexDirection={["column", "row"]}>
           {themeTitle && (
-            <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
-              {themeTitle}
-            </Span>
+            <Span
+              dangerouslySetInnerHTML={{
+                __html: themeTitle,
+              }}
+              $mr={16}
+              $mb={[4, 0]}
+              $font={["body-3", "heading-light-7"]}
+            />
           )}
           <Flex>
             {lessonCount && (
