@@ -31,22 +31,28 @@ interface CommonProps {
   theme_title: string;
 }
 
+type LessonSource = {
+  type: "lesson";
+  lesson_description: string;
+  topic_title: string;
+  topic_slug: string;
+  year_title: string;
+  year_slug: string;
+};
+
+type UnitSource = {
+  type: "unit";
+  year_slug: string;
+};
+
 export interface LessonSearchHit {
-  _source: {
-    type: "lesson";
-    lesson_description: string;
-    topic_title: string;
-    topic_slug: string;
-    year_title: string;
-    year_slug: string;
-  } & CommonProps;
+  _source: LessonSource & CommonProps;
+  highlight?: Partial<LessonSource>;
 }
 
 export interface UnitSearchHit {
-  _source: {
-    type: "unit";
-    year_slug: string;
-  } & CommonProps;
+  _source: UnitSource & CommonProps;
+  highlight?: Partial<UnitSource>;
 }
 
 export type SearchHit = LessonSearchHit | UnitSearchHit;
