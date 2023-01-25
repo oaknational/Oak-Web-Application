@@ -1,23 +1,29 @@
-import { FC, useState, useRef, useEffect, useId, useCallback } from "react";
+import {
+  FC,
+  useState,
+  useRef,
+  useEffect,
+  useId,
+  useCallback,
+  ReactNode,
+} from "react";
 
 import Box from "../Box";
 import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
 import Cover from "../Cover";
-import PostCategoryList, {
-  PostCategoryListProps,
-  PostCategoryPage,
-} from "../Posts/PostCategoryList/PostCategoryList";
 import { useMenuContext } from "../../context/Menu";
+import { PostCategoryPage } from "../Posts/PostCategoryList/PostCategoryList";
 
-export type MobileBlogFiltersProps = {
-  categoryListProps: Omit<PostCategoryListProps, "labelledBy" | "page">;
+export type MobileFiltersProps = {
   withBackButton?: boolean;
-  page: PostCategoryPage;
-};
-const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
+  page?: PostCategoryPage;
+  children: ReactNode;
+  title:string;
+} & FlexProps ;
+const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
 
@@ -37,7 +43,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
     checkAndSetHeight();
   }, [categoryListRef]);
 
-  const { categoryListProps, withBackButton, page } = props;
+  const { withBackButton, page, children, title, ...flexProps } = props;
   const menuId = useId();
   const triggerId = useId();
 
@@ -58,10 +64,11 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
       $display={["flex", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
+      {...flexProps}
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
       <Flex>
-        {withBackButton && (
+        {withBackButton && (page==="blog-index" || page==="webinars-index" ) && (
           <Box
             $transition="all 0.5s ease"
             $visibility={isOpen ? "hidden" : "visible"}
@@ -86,7 +93,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           iconBackground="teachersHighlight"
           $iconPosition="trailing"
           size="large"
-          label="Categories"
+          label={title}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           aria-expanded={isOpen}
           aria-controls={menuId}
@@ -102,7 +109,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"
-          $zIndex="mobileBlogFilters"
+          $zIndex="mobileFilters"
           $background={isOpen ? "white" : "transparent"}
           $dropShadow={"grey20"}
         >
@@ -117,13 +124,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             aria-labelledby={triggerId}
             $visibility={isOpen ? "visible" : "hidden"}
           >
-            <PostCategoryList
-              labelledBy={triggerId}
-              $pv={28}
-              $ph={16}
-              {...categoryListProps}
-              page={page}
-            />
+            {children}
           </Box>
         </Box>
       </Box>
@@ -131,4 +132,4 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   );
 };
 
-export default MobileBlogFilters;
+export default MobileFilters;

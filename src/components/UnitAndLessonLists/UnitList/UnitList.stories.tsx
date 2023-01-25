@@ -9,7 +9,6 @@ import Component from ".";
 const currentPageItems: UnitListProps = {
   ...teachersKeyStageSubjectUnitsFixture(),
   currentPageItems: teachersKeyStageSubjectUnitsFixture().units.slice(0, 5),
-  headingTag: "h1",
   paginationProps: {
     currentPage: 1,
     totalPages: 2,

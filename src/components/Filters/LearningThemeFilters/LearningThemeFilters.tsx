@@ -1,11 +1,13 @@
 import { UnitIndexLinkProps } from "../../../common-lib/urls";
+import { TeachersKeyStageSubjectUnitsData } from "../../../node-lib/curriculum-api";
+import Flex from "../../Flex";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
 
 export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
-  learningThemes: { label: string; slug: string | null }[];
+  learningThemes: TeachersKeyStageSubjectUnitsData["learningThemes"];
   linkProps: UnitIndexLinkProps;
 };
 const LearningThemeFilters = ({
@@ -16,21 +18,39 @@ const LearningThemeFilters = ({
 }: LearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
-    getKey: (linkProps: UnitIndexLinkProps) =>
-      linkProps.search?.["learning-theme"],
+    getKey: (linkProps: UnitIndexLinkProps) => {
+      if (linkProps.search?.["learning-theme"]) {
+        return linkProps.search?.["learning-theme"];
+      } else return "all";
+    },
+  });
+
+  const learningThemesMapped = learningThemes.map((learningTheme) => {
+    return { label: learningTheme?.label, slug: learningTheme?.slug };
   });
   return (
-    <CategoryFilterList
-      {...listStateProps}
-      labelledBy={labelledBy}
-      categories={learningThemes.map(({ slug, label }) => ({
-        label,
-        linkProps: {
-          ...linkProps,
-          search: { ...linkProps.search, ["learning-theme"]: slug },
-        },
-      }))}
-    />
+    <Flex $flexDirection={"column"}>
+      <CategoryFilterList
+        {...listStateProps}
+        labelledBy={labelledBy}
+        categories={[
+          {
+            label: "All in suggested order",
+            linkProps: {
+              ...linkProps,
+              search: { ...linkProps.search, ["learning-theme"]: undefined },
+            },
+          },
+          ...learningThemesMapped.map(({ label, slug }) => ({
+            label: label ? label : "",
+            linkProps: {
+              ...linkProps,
+              search: { ...linkProps.search, ["learning-theme"]: slug },
+            },
+          })),
+        ]}
+      />
+    </Flex>
   );
 };
 
