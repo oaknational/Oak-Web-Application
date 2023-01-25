@@ -5,14 +5,18 @@ type ConstructQueryParams = {
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
   const { term, keyStages } = query;
-  const filter =
+  const keyStageFilter =
     keyStages.size > 0
       ? {
           terms: {
             key_stage_slug: Array.from(keyStages),
           },
         }
-      : null;
+      : {
+          terms: {
+            key_stage_slug: ["1", "2", "3", "4"],
+          },
+        };
 
   const highlight = {
     number_of_fragments: 0,
@@ -57,7 +61,29 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           },
         ],
         // keystage filter
-        filter,
+        filter: [
+          // {
+          //   term: {
+          //     expired: false,
+          //   },
+          // },
+          // {
+          //   term: {
+          //     is_specialist: false,
+          //   },
+          // },
+          // {
+          //   terms: {
+          //     "key_stage_slug.keyword": [
+          //       "key-stage-1",
+          //       "key-stage-2",
+          //       "key-stage-3",
+          //       "key-stage-4",
+          //     ],
+          //   },
+          // },
+          { ...keyStageFilter },
+        ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */
         minimum_should_match: 1,
