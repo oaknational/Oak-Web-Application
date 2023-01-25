@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 
 import Button from "../../Button";
 import VideoPlayer from "../../VideoPlayer";
+import { P } from "../../Typography";
 
 import OverviewAssetWrap from "./OverviewAssetWrap";
 
@@ -9,12 +10,14 @@ interface OverviewVideoProps {
   video: string;
   signLanguageVideo: string | null;
   title: string;
+  hasCaptions: boolean;
 }
 
 export const OverviewVideo: FC<OverviewVideoProps> = ({
   video,
   signLanguageVideo,
   title,
+  hasCaptions,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
 
@@ -53,6 +56,12 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           onClick={toggleSignLanguage}
           data-testid={"sign-language-button"}
         />
+      )}
+      {!hasCaptions && !signLanguageVideo && (
+        <P $mt={24} $textAlign="center">
+          Some of our videos, including non-English language videos, do not have
+          captions.
+        </P>
       )}
     </OverviewAssetWrap>
   );

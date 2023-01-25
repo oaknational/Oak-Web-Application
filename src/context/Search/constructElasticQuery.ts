@@ -14,7 +14,18 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
         }
       : null;
 
-  return {
+  const highlight = {
+    number_of_fragments: 0,
+    pre_tags: ["<b>"],
+    post_tags: ["</b>"],
+    fields: {
+      topic_title: {},
+      theme_title: {},
+      lesson_description: {},
+    },
+  };
+
+  const result = {
     from: 0, // index first result shown
     size: 10000, // how many per page
     query: {
@@ -52,7 +63,10 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
         minimum_should_match: 1,
       },
     },
+    highlight,
   };
+
+  return result;
 };
 
 export default constructElasticQuery;

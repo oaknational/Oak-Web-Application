@@ -11,11 +11,14 @@ import useFetchSearchResults from "../../../context/Search/useFetchSearchResults
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import MobileSearchFilters from "../../../components/MobileSearchFilters";
 import Button from "../../../components/Button";
-import { P } from "../../../components/Typography";
+import { P , Heading } from "../../../components/Typography";
 import {
   useSearchQuery,
   KeyStage,
 } from "../../../context/Search/SearchContext";
+import Card from "../../../components/Card";
+import SearchForm from "../../../components/SearchForm";
+import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 
 interface CommonProps {
   id: number;
@@ -30,22 +33,28 @@ interface CommonProps {
   theme_title: string;
 }
 
+type LessonSource = {
+  type: "lesson";
+  lesson_description: string;
+  topic_title: string;
+  topic_slug: string;
+  year_title: string;
+  year_slug: string;
+};
+
+type UnitSource = {
+  type: "unit";
+  year_slug: string;
+};
+
 export interface LessonSearchHit {
-  _source: {
-    type: "lesson";
-    lesson_description: string;
-    topic_title: string;
-    topic_slug: string;
-    year_title: string;
-    year_slug: string;
-  } & CommonProps;
+  _source: LessonSource & CommonProps;
+  highlight?: Partial<LessonSource>;
 }
 
 export interface UnitSearchHit {
-  _source: {
-    type: "unit";
-    year_slug: string;
-  } & CommonProps;
+  _source: UnitSource & CommonProps;
+  highlight?: Partial<UnitSource>;
 }
 
 export type SearchHit = LessonSearchHit | UnitSearchHit;
@@ -55,6 +64,7 @@ export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
 }
 
 const Search = () => {
+  const { text: searchTerm } = useSearchQuery();
   const { fetchSearchResults, loading, error, results } =
     useFetchSearchResults();
 
@@ -91,6 +101,34 @@ const Search = () => {
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
           <GridArea $colSpan={[12, 12, 12]} $mt={24} $mb={24}>
+            <Flex $flexDirection={["column"]}>
+              {(searchTerm && (
+                <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
+                  &ldquo;{searchTerm}&rdquo;
+                </Heading>
+              )) || (
+                <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
+                  Search
+                </Heading>
+              )}
+
+              <Heading tag="h3" $font={"heading-light-6"} $mt={24}>
+                Search for topics and key words to explore thousands of lessons
+                and adaptable resources
+              </Heading>
+              <Card
+                $background={"teachersPastelYellow"}
+                $width={"100%"}
+                $pv={[24]}
+                $ph={[16, 24]}
+                $mt={24}
+                $mb={20}
+                $position={"relative"}
+              >
+                <SearchForm />
+                <BrushBorders color={"teachersPastelYellow"} />
+              </Card>
+            </Flex>
             <Flex
               $alignItems={["flex-start", "center"]}
               $flexDirection={["column", "row"]}

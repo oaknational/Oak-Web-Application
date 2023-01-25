@@ -8,10 +8,13 @@ import ListItemHeading from "../../ListItemHeading";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 
-export type UnitListItemProps =
-  TeachersKeyStageSubjectUnitsData["units"][number] & {
-    hideTopHeading?: boolean;
-  };
+export type UnitListItemProps = Omit<
+  TeachersKeyStageSubjectUnitsData["units"][number],
+  "year" | "unitStudyOrder"
+> & {
+  hideTopHeading?: boolean;
+  index: number | null;
+};
 
 /**
  * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
@@ -20,7 +23,7 @@ export type UnitListItemProps =
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const { title, themeTitle, lessonCount, quizCount } = props;
+  const { title, themeTitle, lessonCount, quizCount, index } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -44,15 +47,21 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             {...props}
             primaryTargetProps={primaryTargetProps}
             page={"Unit"}
+            index={index}
           />
           <IconMobile background={"teachersLilac"} title={title} />
         </Flex>
 
         <Flex $flexDirection={["column", "row"]}>
           {themeTitle && (
-            <Span $mr={16} $mb={[4, 0]} $font={["body-3", "heading-light-7"]}>
-              {themeTitle}
-            </Span>
+            <Span
+              dangerouslySetInnerHTML={{
+                __html: themeTitle,
+              }}
+              $mr={16}
+              $mb={[4, 0]}
+              $font={["body-3", "heading-light-7"]}
+            />
           )}
           <Flex>
             {lessonCount && (
