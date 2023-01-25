@@ -14,6 +14,8 @@ module.exports = {
   // Generate a robots.txt that instructs no crawling (individual pages also have no index set).
   generateRobotsTxt: true,
   robotsTxtOptions: {
+    // List the dynamically generated sitemaps here.
+    additionalSitemaps: [new URL(`${sitemapBaseUrl}/blog/sitemap.xml`).href],
     policies: [
       {
         userAgent: "*",
@@ -23,6 +25,8 @@ module.exports = {
     ],
   },
   exclude: [
+    // Exclude dynamically created sitemaps
+    "blog/sitemap.xml",
     // Don't add beta pages to the sitemap for now.
     "/beta",
     "/beta/*",
@@ -42,12 +46,4 @@ module.exports = {
     "/people-and-partners",
     "/contact",
   ],
-  // Ignore server-side sitemap config for static version of site.
-  // https://github.com/iamvishnusankar/next-sitemap#generating-dynamicserver-side-sitemaps
-  // robotsTxtOptions: {
-  //   additionalSitemaps: [
-  //     "https://example.com/server-sitemap-index.xml", // <==== Add here
-  //   ],
-  // },
-  // ...other options
 };
