@@ -21,8 +21,8 @@ export type MobileFiltersProps = {
   withBackButton?: boolean;
   page?: PostCategoryPage;
   children: ReactNode;
-  title:string;
-} & FlexProps ;
+  title: string;
+} & FlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
@@ -68,23 +68,24 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
       <Flex>
-        {withBackButton && (page==="blog-index" || page==="webinars-index" ) && (
-          <Box
-            $transition="all 0.5s ease"
-            $visibility={isOpen ? "hidden" : "visible"}
-            $opacity={isOpen ? 0 : 1}
-            aria-hidden={isOpen ? "true" : false}
-          >
-            <ButtonAsLink
-              variant="minimal"
-              icon="ArrowLeft"
-              iconBackground="teachersHighlight"
-              size="large"
-              label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
-              page={page}
-            />
-          </Box>
-        )}
+        {withBackButton &&
+          (page === "blog-index" || page === "webinars-index") && (
+            <Box
+              $transition="all 0.5s ease"
+              $visibility={isOpen ? "hidden" : "visible"}
+              $opacity={isOpen ? 0 : 1}
+              aria-hidden={isOpen ? "true" : false}
+            >
+              <ButtonAsLink
+                variant="minimal"
+                icon="ArrowLeft"
+                iconBackground="teachersHighlight"
+                size="large"
+                label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
+                page={page}
+              />
+            </Box>
+          )}
         <Button
           id={triggerId}
           $ml="auto"

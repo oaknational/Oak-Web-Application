@@ -13,6 +13,5 @@ describe("components/UnitList", () => {
         currentPageItems={[]}
       />
     );
-
   });
 });

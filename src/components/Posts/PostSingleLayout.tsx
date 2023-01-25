@@ -36,18 +36,14 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
       <MaxWidth>
         <Grid $ph={[12, 0]}>
           <GridArea $colSpan={[12]}>
-            <MobileFilters
-              page={page}
-              withBackButton
-              title={"Categories"}
-            >
-               <PostCategoryList
-            labelledBy={triggerId}
-            $pv={28}
-            $ph={16}
-            categories={categories}
-            page={page}
-          />
+            <MobileFilters page={page} withBackButton title={"Categories"}>
+              <PostCategoryList
+                labelledBy={triggerId}
+                $pv={28}
+                $ph={16}
+                categories={categories}
+                page={page}
+              />
             </MobileFilters>
           </GridArea>
           <GridArea $order={[0, 2]} $colSpan={[12, 3]}>

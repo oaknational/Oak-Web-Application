@@ -57,7 +57,7 @@ const teachersKeyStageSubjectUnits = jest.fn(() => ({
   ],
   mv_tiers: teachersKeyStageSubjectUnitsFixture().tiers,
   mv_units: teachersKeyStageSubjectUnitsFixture().units,
-  mv_learning_themes:teachersKeyStageSubjectUnitsFixture().learningThemes,
+  mv_learning_themes: teachersKeyStageSubjectUnitsFixture().learningThemes,
 }));
 const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
   mv_units: [
