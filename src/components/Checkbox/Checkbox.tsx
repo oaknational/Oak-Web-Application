@@ -112,11 +112,19 @@ type CheckboxProps = {
   id: string;
   checked: boolean;
   disabled?: boolean;
+  ariaLabel?: string;
   onChange: () => void;
 };
 
 const Checkbox: FC<CheckboxProps> = (props) => {
-  const { labelText, checked, disabled = false, onChange, id } = props;
+  const {
+    labelText,
+    checked = false,
+    disabled = false,
+    onChange,
+    id,
+    ariaLabel,
+  } = props;
 
   const select = () => {
     if (!disabled) onChange();
@@ -135,6 +143,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         onChange={select}
         checked={checked}
         disabled={disabled}
+        aria-label={ariaLabel}
       />
       <VisualCheckbox checked={checked}>
         {checked && <Icon name={"Tick"} $color={"white"} size={20} />}

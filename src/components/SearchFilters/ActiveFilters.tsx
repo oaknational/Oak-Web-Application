@@ -16,16 +16,18 @@ const ActiveFilters: FC = () => {
 
   return (
     <Flex
-      $alignItems={["flex-start", "center"]}
+      $alignItems={["flex-start", "baseline"]}
       $flexDirection={["column", "row"]}
     >
-      <P $mr={20} $color={["oakGrey4", "black"]}>
+      <P $mr={20} $mt={8} $mb={8} $color={["oakGrey4", "black"]}>
         Active filters:
       </P>
       <Flex $alignItems={"center"}>
         {Array.from(keyStages).map((keyStage: KeyStage) => (
           <Button
             label={`KS${keyStage}`}
+            aria-label={`Active filter for KS${keyStage}`}
+            key={`active-filter-ks-${keyStage}`}
             onClick={() => onRemoveFilterClick(keyStage)}
             variant="buttonStyledAsLink"
             icon="Cross"

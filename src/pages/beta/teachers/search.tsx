@@ -101,7 +101,7 @@ const Search = () => {
                 </Heading>
               )}
 
-              <Heading tag="h3" $font={"heading-light-6"} $mt={24}>
+              <Heading tag="h2" $font={"heading-light-6"} $mt={24}>
                 Search for topics and key words to explore thousands of lessons
                 and adaptable resources
               </Heading>
