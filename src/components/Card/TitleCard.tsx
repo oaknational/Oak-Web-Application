@@ -31,8 +31,6 @@ export type TitlePageType =
 type TitleCardProps = FlexProps & {
   title: string;
   iconName: IconName;
-  subject: string;
-  subjectSlug: string;
 } & TitlePageType;
 
 /**
@@ -42,16 +40,7 @@ type TitleCardProps = FlexProps & {
  * Used on subject by keystage, tier, unit and lesson pages.
  */
 const TitleCard: FC<TitleCardProps> = (props) => {
-  const {
-    title,
-    keyStage,
-    keyStageSlug,
-    subject,
-    subjectSlug,
-    iconName,
-    page,
-    ...flexProps
-  } = props;
+  const { title, keyStage, keyStageSlug, iconName, page, ...flexProps } = props;
 
   return (
     <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
@@ -69,14 +58,17 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           <OakLink slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
-          <OakLink
-            $ml={16}
-            page={"unit-index"}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
-          >
-            <Span $font={"heading-7"}>{subject}</Span>
-          </OakLink>
+          {page !== "subject" && (
+            // @todo Change to subject when pages are created
+            <OakLink
+              $ml={16}
+              page={"unit-index"}
+              keyStage={keyStageSlug}
+              subject={props.subjectSlug}
+            >
+              <Span $font={"heading-7"}>{props.subject}</Span>
+            </OakLink>
+          )}
         </Box>
         <Flex
           $justifyContent={"center"}
