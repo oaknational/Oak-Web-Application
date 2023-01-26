@@ -14,7 +14,7 @@ import { box, BoxProps } from "../Box";
 import useIconAnimation from "./useIconAnimation";
 
 export type IconName = IconSvgName | GraphicSvgName | LessonElementSvgName;
-type IconVariant = "minimal" | "brush";
+type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
 
 type RotateValue = 0 | 180;
 type RotateProps = { rotate?: RotateValue };
