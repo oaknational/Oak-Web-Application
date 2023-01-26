@@ -60,28 +60,18 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
             },
           },
         ],
-        // keystage filter
+        // filter
         filter: [
-          // {
-          //   term: {
-          //     expired: false,
-          //   },
-          // },
-          // {
-          //   term: {
-          //     is_specialist: false,
-          //   },
-          // },
-          // {
-          //   terms: {
-          //     "key_stage_slug.keyword": [
-          //       "key-stage-1",
-          //       "key-stage-2",
-          //       "key-stage-3",
-          //       "key-stage-4",
-          //     ],
-          //   },
-          // },
+          {
+            term: {
+              expired: false,
+            },
+          },
+          {
+            term: {
+              is_specialist: false,
+            },
+          },
           { ...keyStageFilter },
         ],
         /* if this is not set in a "should" any filtered content will appear
