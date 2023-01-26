@@ -28,7 +28,7 @@ describe("context/SearchContext.tsx", () => {
   it("should update keyStages with setKeyStages", async () => {
     const { result } = renderHook(useSearchQuery, { wrapper: SearchProvider });
 
-    const keyStages = new Set<KeyStage>(["foundation"]);
+    const keyStages = new Set<KeyStage>(["3"]);
     await act(async () => {
       await result.current.setKeyStages(keyStages);
     });
