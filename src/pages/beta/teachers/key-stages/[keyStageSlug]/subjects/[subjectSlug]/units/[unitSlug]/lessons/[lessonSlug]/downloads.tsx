@@ -24,7 +24,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     <AppLayout
       seoProps={getSeoProps({
         title: "Lesson downloads", // @todo add real data
-        description: "Lessons downloads",
+        description: "Lesson downloads",
       })}
     >
       <MaxWidth $ph={16}>
