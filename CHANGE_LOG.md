@@ -1,3 +1,10 @@
+# [1.114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.113.0...v1.114.0) (2023-01-26)
+
+
+### Features
+
+* **CMS:** add new pages automatically ([3d4041a](https://github.com/oaknational/Oak-Web-Application/commit/3d4041a61bebe0907d828f20934be1edd204e041))
+
 # [1.113.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.112.0...v1.113.0) (2023-01-26)
 
 
