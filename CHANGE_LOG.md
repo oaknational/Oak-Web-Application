@@ -1,3 +1,10 @@
+# [1.113.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.112.0...v1.113.0) (2023-01-26)
+
+
+### Features
+
+* filter out expired and specialist lessons ([6568c2e](https://github.com/oaknational/Oak-Web-Application/commit/6568c2ed9271e6f40ece0a8be95d602b7121e6d8))
+
 # [1.112.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.111.1...v1.112.0) (2023-01-26)
 
 
