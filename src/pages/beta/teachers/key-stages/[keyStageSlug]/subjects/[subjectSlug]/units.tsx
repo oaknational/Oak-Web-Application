@@ -102,7 +102,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
         </Flex> */}
 
         <Grid>
-          <GridArea $order={[0, 2]} $colSpan={[12, 3, 2]} $ph={[16]}>
+          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
             <Box
               $display={["none", "block"]}
               $position={[null, "sticky"]}
@@ -134,12 +134,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               )}
             </Box>
           </GridArea>
-          <GridArea
-            $order={[1, 0]}
-            $colSpan={[12, 9, 10]}
-            $mt={[16, 72]}
-            $ph={[16]}
-          >
+          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 72]}>
             <Flex $flexDirection={["column-reverse", "column"]}>
               <Flex
                 $flexDirection={"row"}
@@ -157,7 +152,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
                 <MobileFilters title="Learning themes" $mt={0}>
                   <LearningThemeFilters
-                    labelledBy={"Learning themes"}
+                    labelledBy={"Learning themes filter"}
                     learningThemes={learningThemes}
                     selectedThemeSlug={
                       learningThemeSlug ? learningThemeSlug : "all"
