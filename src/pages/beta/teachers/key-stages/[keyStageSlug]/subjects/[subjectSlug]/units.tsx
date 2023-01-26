@@ -110,7 +110,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               $mt={[0, 24]}
               $pt={[48]}
             >
-              {learningThemes.length > 0 ? (
+              {learningThemes.length > 1 && (
                 <Flex $flexDirection={"column"}>
                   <Heading tag="h3" $font="body-3" $mb={16}>
                     Learning themes
@@ -129,8 +129,6 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                     }}
                   />
                 </Flex>
-              ) : (
-                ""
               )}
             </Box>
           </GridArea>
@@ -149,22 +147,23 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                     Units
                   </Heading>
                 </Flex>
-
-                <MobileFilters title="Learning themes" $mt={0}>
-                  <LearningThemeFilters
-                    labelledBy={"Learning themes filter"}
-                    learningThemes={learningThemes}
-                    selectedThemeSlug={
-                      learningThemeSlug ? learningThemeSlug : "all"
-                    }
-                    linkProps={{
-                      page: "unit-index",
-                      keyStage: keyStageSlug,
-                      subject: subjectSlug,
-                      search: { ["tier"]: tierSlug },
-                    }}
-                  />
-                </MobileFilters>
+                {learningThemes.length > 1 && (
+                  <MobileFilters title="Learning themes" $mt={0}>
+                    <LearningThemeFilters
+                      labelledBy={"Learning themes filter"}
+                      learningThemes={learningThemes}
+                      selectedThemeSlug={
+                        learningThemeSlug ? learningThemeSlug : "all"
+                      }
+                      linkProps={{
+                        page: "unit-index",
+                        keyStage: keyStageSlug,
+                        subject: subjectSlug,
+                        search: { ["tier"]: tierSlug },
+                      }}
+                    />
+                  </MobileFilters>
+                )}
               </Flex>
 
               {tiers.length > 0 && (
