@@ -1,3 +1,14 @@
+## [1.111.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.111.0...v1.111.1) (2023-01-25)
+
+# [1.111.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.110.0...v1.111.0) (2023-01-25)
+
+
+### Features
+
+* 1073 fix styling issues ([a803c98](https://github.com/oaknational/Oak-Web-Application/commit/a803c9896e3536b6b798c9f5603e1ef1f7086f98))
+* add search form to search page ([61b24b1](https://github.com/oaknational/Oak-Web-Application/commit/61b24b1d52fef2832e75d1651dab6c45f42034d3))
+* add title and subtitle explanation text ([80bfa2d](https://github.com/oaknational/Oak-Web-Application/commit/80bfa2d27cb1b3739deeb77256db7ca9314f01a3))
+
 # [1.110.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.109.2...v1.110.0) (2023-01-24)
 
 
