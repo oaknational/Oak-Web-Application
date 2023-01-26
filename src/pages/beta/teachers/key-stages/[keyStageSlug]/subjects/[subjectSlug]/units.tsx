@@ -112,11 +112,11 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             >
               {learningThemes.length > 0 ? (
                 <Flex $flexDirection={"column"}>
-                  <Heading tag="h3" $font="body-3">
-                    Learning Themes
+                  <Heading tag="h3" $font="body-3" $mb={16}>
+                    Learning themes
                   </Heading>
                   <LearningThemeFilters
-                    labelledBy={"Learning Themes"}
+                    labelledBy={"Learning themes"}
                     learningThemes={learningThemes}
                     selectedThemeSlug={
                       learningThemeSlug ? learningThemeSlug : "all"
@@ -155,9 +155,9 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                   </Heading>
                 </Flex>
 
-                <MobileFilters title="Learning Themes" $mt={0}>
+                <MobileFilters title="Learning themes" $mt={0}>
                   <LearningThemeFilters
-                    labelledBy={"Learning Themes"}
+                    labelledBy={"Learning themes"}
                     learningThemes={learningThemes}
                     selectedThemeSlug={
                       learningThemeSlug ? learningThemeSlug : "all"

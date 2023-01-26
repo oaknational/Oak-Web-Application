@@ -41,7 +41,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
       $position="relative"
       $overflow="visisble"
       $alignItems="center"
-      $mv={6}
+      $mb={12}
     >
       <OakLink
         $display="flex"
