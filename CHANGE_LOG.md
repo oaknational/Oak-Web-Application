@@ -1,3 +1,20 @@
+# [1.112.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.111.1...v1.112.0) (2023-01-26)
+
+
+### Features
+
+* 1074 add mobile view and menu ([bef7ac5](https://github.com/oaknational/Oak-Web-Application/commit/bef7ac57a7a77c1c9e46dc8d9dac9ae1e1d0680a))
+* 1074 add more tests ([46949f2](https://github.com/oaknational/Oak-Web-Application/commit/46949f2f46f8f688647796257be7a3a127befcdc))
+* 1074 add tests and PR amends ([775fac8](https://github.com/oaknational/Oak-Web-Application/commit/775fac817b42dad1b6fa7228fe4bf084ae2a19a3))
+* 1074 Amend filter checkbox styles ([904b1cf](https://github.com/oaknational/Oak-Web-Application/commit/904b1cf1f41b65b9415914504c2d6fc0f3cdef06))
+* 1074 filter results by keystages ([c522b56](https://github.com/oaknational/Oak-Web-Application/commit/c522b56a87db31ec6b673f987ffac29128b08eec))
+* 1074 Move ActiveFilters to own component and small refactor ([9a710c3](https://github.com/oaknational/Oak-Web-Application/commit/9a710c3bf94c093a68b339786df058039fcc3ab0))
+* 1074 remove foundation from key stages ([46546cd](https://github.com/oaknational/Oak-Web-Application/commit/46546cd71f901de5bb4a41dfff6f5a777ee3ec49))
+* 1074 remove unused type ([f5c0798](https://github.com/oaknational/Oak-Web-Application/commit/f5c0798f0e8bd846b1dd17c2163bbb313df75204))
+* 1074 Unify checkbox components ([3c219d5](https://github.com/oaknational/Oak-Web-Application/commit/3c219d552ae7b8d5ef85066a7818606e08e62c90))
+* 1079 active filters ([439f2ff](https://github.com/oaknational/Oak-Web-Application/commit/439f2ff3bb9417396694e6a8dea9dacd307d5405))
+* 1079 add buttonStyledAsLink variant to the button ([8a6b091](https://github.com/oaknational/Oak-Web-Application/commit/8a6b091193a4c3f479d4e22e72d4c9126216c122))
+
 ## [1.111.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.111.0...v1.111.1) (2023-01-25)
 
 # [1.111.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.110.0...v1.111.0) (2023-01-25)
