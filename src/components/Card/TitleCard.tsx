@@ -59,7 +59,6 @@ const TitleCard: FC<TitleCardProps> = (props) => {
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
           {page !== "subject" && (
-            // @todo Change to subject when pages are created
             <OakLink
               $ml={16}
               page={"unit-index"}
