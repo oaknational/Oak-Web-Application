@@ -17,10 +17,10 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("Presentation")).toBeInTheDocument();
-    expect(screen.getByText("Worksheet")).toBeInTheDocument();
-    expect(screen.getByText("Quiz")).toBeInTheDocument();
-    expect(screen.getByText("Video")).toBeInTheDocument();
+    expect(screen.getByText("1 Presentation")).toBeInTheDocument();
+    expect(screen.getByText("1 Worksheet")).toBeInTheDocument();
+    expect(screen.getByText("1 Quiz")).toBeInTheDocument();
+    expect(screen.getByText("1 Video")).toBeInTheDocument();
   });
   it("Renders correct titles when resources are missing ", () => {
     renderWithTheme(
@@ -32,10 +32,10 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("Presentation")).toBeInTheDocument();
-    expect(screen.queryByText("Worksheet")).toBeNull();
-    expect(screen.queryByText("Quiz")).toBeNull();
-    expect(screen.getByText("Video")).toBeInTheDocument();
+    expect(screen.getByText("1 Presentation")).toBeInTheDocument();
+    expect(screen.queryByText("1 Worksheet")).toBeNull();
+    expect(screen.queryByText("1 Quiz")).toBeNull();
+    expect(screen.getByText("1 Video")).toBeInTheDocument();
   });
   it("Renders pluralized titles", () => {
     renderWithTheme(
@@ -49,9 +49,9 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("Presentations")).toBeInTheDocument();
-    expect(screen.queryByText("Worksheets")).toBeInTheDocument();
-    expect(screen.queryByText("Quizzes")).toBeInTheDocument();
-    expect(screen.getByText("Videos")).toBeInTheDocument();
+    expect(screen.getByText("4 Presentations")).toBeInTheDocument();
+    expect(screen.queryByText("5 Worksheets")).toBeInTheDocument();
+    expect(screen.queryByText("3 Quizzes")).toBeInTheDocument();
+    expect(screen.getByText("3 Videos")).toBeInTheDocument();
   });
 });
