@@ -138,7 +138,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
           ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
           ogImage:
-            "https://image.mux.com/5678/thumbnail.png?width=1600&height=900&fit_mode=smartcrop&time=1",
+            "https://image.mux.com/5678/thumbnail.webp?width=1600&height=900&fit_mode=smartcrop&time=1",
           ogImageAlt: undefined,
           ogImageHeight: undefined,
           ogImageWidth: undefined,

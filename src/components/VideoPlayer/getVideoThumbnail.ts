@@ -11,5 +11,5 @@ export const getVideoThumbnail = ({
   height = 200,
 }: GetVideoThumbnailProps) => {
   const { playbackId, thumbTime = 200 } = video;
-  return `https://image.mux.com/${playbackId}/thumbnail.png?width=${width}&height=${height}&fit_mode=smartcrop&time=${thumbTime}`;
+  return `https://image.mux.com/${playbackId}/thumbnail.webp?width=${width}&height=${height}&fit_mode=smartcrop&time=${thumbTime}`;
 };
