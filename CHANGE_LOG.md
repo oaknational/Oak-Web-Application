@@ -1,3 +1,13 @@
+# [1.116.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.115.0...v1.116.0) (2023-01-27)
+
+
+### Features
+
+* 1191 correct lesson title styling ([668fcf7](https://github.com/oaknational/Oak-Web-Application/commit/668fcf76b320cf18d7a5ca5e32081bd1bb0fb84e))
+* 1191 don't display subject link on subject listing page ([cfaf280](https://github.com/oaknational/Oak-Web-Application/commit/cfaf280744968764d1e72af7f212e952f9ce59d7))
+* 1191 remove subject link from TitleCard component ([a87c999](https://github.com/oaknational/Oak-Web-Application/commit/a87c9993fa2d5b499fb632c3ac6abbc00477c365))
+* 1191 remove unnecessary comment ([800c06c](https://github.com/oaknational/Oak-Web-Application/commit/800c06c60c350a2a7ffa7793b0aa561db7c6bcf3))
+
 # [1.115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.114.1...v1.115.0) (2023-01-27)
 
 
