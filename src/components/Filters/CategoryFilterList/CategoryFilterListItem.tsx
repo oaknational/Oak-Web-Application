@@ -36,12 +36,12 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   return (
     <LI
       $display="flex"
-      $height={30}
       $font={"heading-7"}
       $opacity={isSelected ? 0.6 : 1}
       $position="relative"
-      $overflow="hidden"
+      $overflow="visisble"
       $alignItems="center"
+      $mb={12}
     >
       <OakLink
         $display="flex"

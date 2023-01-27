@@ -57,6 +57,7 @@ const teachersKeyStageSubjectUnits = jest.fn(() => ({
   ],
   mv_tiers: teachersKeyStageSubjectUnitsFixture().tiers,
   mv_units: teachersKeyStageSubjectUnitsFixture().units,
+  mv_learning_themes: teachersKeyStageSubjectUnitsFixture().learningThemes,
 }));
 const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
   mv_units: [
@@ -135,10 +136,12 @@ describe("curriculum-api", () => {
     await curriculumApi.teachersKeyStageSubjectUnits({
       keyStageSlug: "ks123",
       subjectSlug: "english-9",
+      learningThemeSlug: null,
     });
     expect(teachersKeyStageSubjectUnits).toHaveBeenCalledWith({
       keyStageSlug: "ks123",
       subjectSlug: "english-9",
+      learningThemeSlug: null,
     });
   });
   test("teachersKeyStageSubjectUnitsPaths", async () => {

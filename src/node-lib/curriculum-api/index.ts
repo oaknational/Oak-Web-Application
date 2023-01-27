@@ -46,12 +46,13 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L>(res: {
+const transformMVCase = <K, S, T, U, L, V>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
   mv_units?: U;
   mv_lessons?: L;
+  mv_learning_themes?: V;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -59,6 +60,7 @@ const transformMVCase = <K, S, T, U, L>(res: {
     tiers: res.mv_tiers,
     units: res.mv_units,
     lessons: res.mv_lessons,
+    learningThemes: res.mv_learning_themes,
   };
 };
 
@@ -137,6 +139,21 @@ const teachersKeyStageSubjectUnitsData = z.object({
       unitStudyOrder: z.number(),
       year: z.string(),
     })
+  ),
+  learningThemes: z.array(
+    z
+      .object({
+        label: z.string(),
+        tierSlug: z.string().nullable(),
+        tierName: z.string().nullable(),
+        subjectTitle: z.string(),
+        subjectSlug: z.string(),
+        slug: z.string(),
+        keyStageTitle: z.string(),
+        keyStageSlug: z.string(),
+      })
+      .nullable()
+      .optional()
   ),
 });
 const teachersKeyStageSubjectUnitsPathsSchema = z.object({
@@ -316,6 +333,7 @@ const curriculumApi = {
       subjects = [],
       tiers = [],
       units,
+      learningThemes,
     } = transformMVCase(res);
 
     const getFirstResult = getFirstResultOrWarnOrFail();
@@ -323,27 +341,6 @@ const curriculumApi = {
     const keyStage = getFirstResult({ results: keyStages });
     const subject = getFirstResult({ results: subjects });
     const tier = args[0].tierSlug ? getFirstResult({ results: tiers }) : null;
-    // const unitSorted = units?.sort((a, b) => {
-    //   if (
-    //     typeof a.year === "string" &&
-    //     typeof b.year === "string" &&
-    //     typeof a.unitStudyOrder === "number" &&
-    //     typeof b.unitStudyOrder === "number"
-    //   ) {
-    //     if (a.year < b.year) {
-    //       return -1;
-    //     }
-    //     if (a.year > b.year) {
-    //       return 1;
-    //     }
-    //     if (a.unitStudyOrder > b.unitStudyOrder) {
-    //       return 1;
-    //     }
-    //     return -1;
-    //   } else {
-    //     return 0;
-    //   }
-    // });
 
     return teachersKeyStageSubjectUnitsData.parse({
       keyStageSlug: keyStage.slug,
@@ -353,6 +350,7 @@ const curriculumApi = {
       tierSlug: tier?.slug || null,
       tiers,
       units,
+      learningThemes,
     });
   },
   teachersKeyStageSubjectUnitsPaths: async () => {

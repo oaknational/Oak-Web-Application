@@ -42,6 +42,7 @@ const teachersKeyStageSubjectUnitsFixture = (
         year: "Year 7",
       },
     ],
+    learningThemes: [],
     ...partial,
   };
 };

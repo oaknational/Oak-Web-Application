@@ -2,35 +2,18 @@ import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import MobileBlogFilters, { MobileBlogFiltersProps } from "./MobileBlogFilters";
+import MobileFilters, { MobileFiltersProps } from "./MobileFilters";
 
-const testProps: MobileBlogFiltersProps = {
+const testProps: MobileFiltersProps = {
   page: "webinars-index",
   withBackButton: true,
-  categoryListProps: {
-    categories: [
-      {
-        title: "Curriculum planning",
-        slug: "curriculum-planning",
-      },
-      {
-        title: "Lesson planning",
-        slug: "lesson-planning",
-      },
-      {
-        title: "Research and insights",
-        slug: "research-and-insights",
-      },
-    ],
-    selectedCategorySlug: "lesson-planning",
-  },
+  children: "",
+  title: "Categories",
 };
 
-describe("components/MobileBlogFilters", () => {
+describe("components/MobileFilters", () => {
   test("it renders all blogs button and has focus", async () => {
-    const { getByText } = renderWithProviders(
-      <MobileBlogFilters {...testProps} />
-    );
+    const { getByText } = renderWithProviders(<MobileFilters {...testProps} />);
     const user = userEvent.setup();
 
     const allBlogs = getByText("All webinars").closest("a");
@@ -40,9 +23,7 @@ describe("components/MobileBlogFilters", () => {
   });
 
   test("it hides all blogs button when categories is clicked", async () => {
-    const { getByText } = renderWithProviders(
-      <MobileBlogFilters {...testProps} />
-    );
+    const { getByText } = renderWithProviders(<MobileFilters {...testProps} />);
     const user = userEvent.setup();
 
     const allBlogsContainer = getByText("All webinars").closest("div");
