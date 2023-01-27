@@ -7,7 +7,8 @@ describe("PostCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <LearningThemeFilters
         labelledBy={"Learning Theme Filter"}
-        learningThemes={[{
+        learningThemes={[
+          {
             keyStageSlug: "ks3",
             keyStageTitle: "Key Stage 3",
             subjectSlug: "english",
@@ -16,21 +17,20 @@ describe("PostCategoryList", () => {
             slug: "grammar",
             label: "Grammar",
             tierName: "Core",
-        }]}
-        selectedThemeSlug={
-            "all"
-          }
-          linkProps={{
-            page: "unit-index",
-            keyStage: "ks3",
-            subject: "english",
-            search: { ["tier"]: "core" },
-          }}
+          },
+        ]}
+        selectedThemeSlug={"all"}
+        linkProps={{
+          page: "unit-index",
+          keyStage: "ks3",
+          subject: "english",
+          search: { ["tier"]: "core" },
+        }}
       />
     );
     expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/english/units?tier=core&learning-theme=grammar" 
+      "/beta/teachers/key-stages/ks3/subjects/english/units?tier=core&learning-theme=grammar"
     );
   });
 });
