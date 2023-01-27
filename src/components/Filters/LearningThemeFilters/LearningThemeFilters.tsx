@@ -25,9 +25,31 @@ const LearningThemeFilters = ({
     },
   });
 
-  const learningThemesMapped = learningThemes.map((learningTheme) => {
-    return { label: learningTheme?.label, slug: learningTheme?.slug };
-  });
+  const learningThemesMapped = learningThemes
+    .map((learningTheme) => {
+      return { label: learningTheme?.label, slug: learningTheme?.slug };
+    })
+    .sort(
+      (
+        a: {
+          label: string | undefined;
+          slug: string | undefined;
+        },
+        b: {
+          label: string | undefined;
+          slug: string | undefined;
+        }
+      ) => {
+        if (a?.slug === "no-theme") {
+          return 0;
+        } else if (b?.slug === "no-theme") {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    );
+
   return (
     <Flex $flexDirection={"column"}>
       <CategoryFilterList
