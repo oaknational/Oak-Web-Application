@@ -58,16 +58,6 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           <OakLink slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
-          {page !== "subject" && (
-            <OakLink
-              $ml={16}
-              page={"unit-index"}
-              keyStage={keyStageSlug}
-              subject={props.subjectSlug}
-            >
-              <Span $font={"heading-7"}>{props.subject}</Span>
-            </OakLink>
-          )}
         </Box>
         <Flex
           $justifyContent={"center"}
