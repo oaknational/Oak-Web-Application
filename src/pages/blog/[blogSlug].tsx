@@ -82,7 +82,7 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
   }));
 
   return {
-    fallback: false,
+    fallback: "blocking",
     paths,
   };
 };
