@@ -42,6 +42,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
             multi_match: {
               query: term,
               type: "phrase",
+              analyzer: "stop",
               // boost title highest, then other titles, then intro text
               fields: ["title^10", "*_title^6", "lesson_description^3"],
             },
@@ -52,6 +53,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
               query: term,
               fields: ["*"],
               type: "most_fields",
+              analyzer: "stop",
               /* Search terms <=4 characters have to be an exact match
                   terms >4 and <7 can have 1 error >=7 can have 2 errors */
               fuzziness: "AUTO:4,7",
