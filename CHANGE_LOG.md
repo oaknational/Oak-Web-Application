@@ -1,3 +1,11 @@
+## [1.114.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.114.0...v1.114.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **lesson listin accessibility:** test fix ([56ded61](https://github.com/oaknational/Oak-Web-Application/commit/56ded61a32bfa3c077aa03f7cda9532ae445f3d7))
+* **lesson-listing:** put lesson resource graphic text in one span for accesability ([25b6816](https://github.com/oaknational/Oak-Web-Application/commit/25b6816c50d5a153b674ebd7587e4800957ac9e9))
+
 # [1.114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.113.0...v1.114.0) (2023-01-26)
 
 
