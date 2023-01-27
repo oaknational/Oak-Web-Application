@@ -1,3 +1,11 @@
+# [1.115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.114.1...v1.115.0) (2023-01-27)
+
+
+### Features
+
+* 1109 add downloads page ([3c625f2](https://github.com/oaknational/Oak-Web-Application/commit/3c625f2111c4d46e02d4ca90c8780659023ae183))
+* 1109 add test ([2d8f8f9](https://github.com/oaknational/Oak-Web-Application/commit/2d8f8f9f7a67601e1ea189c537200cf52058f5bb))
+
 ## [1.114.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.114.0...v1.114.1) (2023-01-27)
 
 
