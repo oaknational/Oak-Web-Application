@@ -58,7 +58,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           />
         </Flex>
         <TitleCard
-          page={"lesson"}
+          page={"lessons"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
           subjectSlug={subjectSlug}
