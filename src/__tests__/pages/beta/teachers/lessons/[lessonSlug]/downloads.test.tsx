@@ -1,6 +1,9 @@
 import { screen } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
+import userEvent from "@testing-library/user-event";
+import { computeAccessibleDescription } from "dom-accessibility-api";
 
+import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
@@ -25,6 +28,54 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       "Downloads: Islamic Geometry"
     );
+  });
+
+  describe("download form", () => {
+    it("Renders download form", async () => {
+      renderWithProviders(<LessonDownloadsPage {...props} />);
+
+      expect(screen.getByRole("heading", { level: 5 })).toHaveTextContent(
+        "Your details"
+      );
+      expect(screen.getByTestId("email-heading")).toHaveTextContent(
+        "For optional resources."
+      );
+    });
+
+    it("should display error hint on blur email if not formatted correctly", async () => {
+      const { getByPlaceholderText } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      const input = getByPlaceholderText("Enter email address here");
+      const user = userEvent.setup();
+      await user.click(input);
+      await user.keyboard("not an email");
+      await user.tab();
+
+      // HACK: wait for next tick
+      await waitForNextTick();
+
+      const description = computeAccessibleDescription(input);
+      expect(description).toBe("Email not valid");
+    });
+
+    it("should not display error hint on blur email if empty", async () => {
+      const { getByPlaceholderText } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      const input = getByPlaceholderText("Enter email address here");
+      const user = userEvent.setup();
+      await user.click(input);
+      await user.tab();
+
+      // HACK: wait for next tick
+      await waitForNextTick();
+
+      const description = computeAccessibleDescription(input);
+      expect(description).toBe("");
+    });
   });
 
   describe("SEO", () => {
