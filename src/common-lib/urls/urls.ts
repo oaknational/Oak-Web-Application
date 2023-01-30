@@ -106,6 +106,13 @@ export type LessonOverviewLinkProps = {
   unit: string;
   slug: string;
 };
+export type DownloadsLinkProps = {
+  page: "downloads";
+  keyStage: string;
+  subject: string;
+  unit: string;
+  slug: string;
+};
 
 export type ResolveOakHrefProps =
   | {
@@ -126,7 +133,8 @@ export type ResolveOakHrefProps =
   | TierSelectionLinkProps
   | UnitIndexLinkProps
   | LessonIndexLinkProps
-  | LessonOverviewLinkProps;
+  | LessonOverviewLinkProps
+  | DownloadsLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -209,6 +217,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return props.term
         ? `/beta/teachers/search?term=${props.term}`
         : "/beta/teachers/search";
+    }
+    case "downloads": {
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}/downloads`;
     }
     default:
       return OAK_PAGES[props.page];
