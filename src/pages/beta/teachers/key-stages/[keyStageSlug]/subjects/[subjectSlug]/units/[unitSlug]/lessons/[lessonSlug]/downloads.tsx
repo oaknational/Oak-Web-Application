@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,6 +13,8 @@ import Heading from "../../../../../../../../../../../components/Typography/Head
 import P from "../../../../../../../../../../../components/Typography/P";
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Input from "../../../../../../../../../../../components/Input";
+import Checkbox from "../../../../../../../../../../../components/Checkbox";
+import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import curriculumApi, {
   TeachersLessonOverviewData,
@@ -50,6 +52,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   });
 
   const { errors } = formState;
+  const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
   return (
     <AppLayout
@@ -90,11 +93,40 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             {...register("email")}
             error={errors.email?.message}
           />
-          <P $font="body-3" $mt={-24}>
+          <P $font="body-3" $mt={-24} $mb={42}>
             Join our community to get free lessons, resources and other helpful
             content. Unsubscribe at any time. Our{" "}
             <OakLink page={"privacy-policy"}>Privacy Policy</OakLink>.
           </P>
+          <Box
+            $position={"relative"}
+            $background={"pastelTurquoise"}
+            $pv={8}
+            $ph={8}
+            $mv={8}
+          >
+            <BrushBorders
+              hideOnMobileH
+              hideOnMobileV
+              color={"pastelTurquoise"}
+            />
+            <Heading
+              tag="h6"
+              $font={"heading-7"}
+              $mt={0}
+              $mb={16}
+              data-testid="email-heading"
+            >
+              Terms of use (required):
+            </Heading>
+            <Checkbox
+              labelText={"I accept terms of use. Terms & Conditions"}
+              id={"terms-of-use"}
+              checked={acceptedTCs}
+              onChange={() => setAcceptedTCs(!acceptedTCs)}
+              ariaLabel={"I accept terms of use. Terms & Conditions"}
+            />
+          </Box>
         </Box>
       </MaxWidth>
     </AppLayout>
