@@ -1,4 +1,4 @@
-/** @type {import('next-sitemap').IConfig} */
+const path = require("node:path/posix");
 
 // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
 const sitemapBaseUrl = process.env.SITEMAP_BASE_URL;
@@ -8,14 +8,31 @@ if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
   );
 }
 
+// Can't read the Oak config here, so process switch manually.
+// As long as ISR isn't disabled we should add the dynamic
+// sitemaps to the sitemap list.
+const shouldSkipInitialBuild = process.env.DISABLE_ISR !== "on";
+
+// List of dynamically generated sitemaps for pages using `fallback: "blocking"`
+const serversideSitemapPaths = [
+  "/blog/sitemap.xml",
+  "/blog/categories/sitemap.xml",
+];
+const serversideSitemapUrls = serversideSitemapPaths.map(
+  (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href
+);
+
 // https://github.com/iamvishnusankar/next-sitemap#readme
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: sitemapBaseUrl,
   // Generate a robots.txt that instructs no crawling (individual pages also have no index set).
   generateRobotsTxt: true,
   robotsTxtOptions: {
-    // List the dynamically generated sitemaps here.
-    additionalSitemaps: [new URL(`${sitemapBaseUrl}/blog/sitemap.xml`).href],
+    // List the dynamically generated sitemaps here, exclude below.
+    additionalSitemaps: shouldSkipInitialBuild
+      ? serversideSitemapUrls
+      : undefined,
     policies: [
       {
         userAgent: "*",
@@ -25,8 +42,6 @@ module.exports = {
     ],
   },
   exclude: [
-    // Exclude dynamically created sitemaps
-    "blog/sitemap.xml",
     // Don't add beta pages to the sitemap for now.
     "/beta",
     "/beta/*",
@@ -45,5 +60,8 @@ module.exports = {
     "/about-oak",
     "/people-and-partners",
     "/contact",
-  ],
+  ].concat(
+    // Exclude dynamically created sitemaps
+    shouldSkipInitialBuild ? serversideSitemapPaths : []
+  ),
 };

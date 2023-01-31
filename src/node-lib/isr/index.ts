@@ -1,4 +1,7 @@
-import { GetStaticPropsResult } from "next";
+import path from "node:path/posix";
+
+import { GetServerSidePropsContext, GetStaticPropsResult } from "next";
+import { getServerSideSitemap } from "next-sitemap";
 
 import serverConfig from "../../config/server";
 
@@ -50,4 +53,27 @@ function getFallbackBlockingConfig(): FallbackBlockingConfig {
   };
 }
 
-export { decorateWithIsr, getFallbackBlockingConfig, shouldSkipInitialBuild };
+function getServerSideSitemapEntries(
+  context: GetServerSidePropsContext,
+  sitemapBaseUrl: string,
+  pagePath: string,
+  pageSlugs: string[]
+) {
+  const fields = Array.from(pageSlugs).map((slug) => {
+    return {
+      loc: new URL(path.join(sitemapBaseUrl, pagePath, slug)).href,
+      lastmod: new Date().toISOString(),
+      // change frequency
+      // priority
+    };
+  });
+
+  return getServerSideSitemap(context, fields);
+}
+
+export {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  getServerSideSitemapEntries,
+  shouldSkipInitialBuild,
+};
