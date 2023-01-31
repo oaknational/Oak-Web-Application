@@ -1,7 +1,8 @@
 import { GetServerSideProps } from "next";
+import { getServerSideSitemap } from "next-sitemap";
 
 import CMSClient from "../../../node-lib/cms";
-import { getServerSideSitemapEntries } from "../../../node-lib/isr";
+import { getServerSideSitemapFields } from "../../../node-lib/isr";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
@@ -10,12 +11,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const blogResults = await CMSClient.blogPosts();
   const blogSlugs = blogResults.map((blog) => blog.slug);
 
-  return getServerSideSitemapEntries(
+  const fields = getServerSideSitemapFields(
     context,
     sitemapBaseUrl,
     "/blog/",
     blogSlugs
   );
+
+  return getServerSideSitemap(context, fields);
 };
 
 // Default export to prevent next.js errors

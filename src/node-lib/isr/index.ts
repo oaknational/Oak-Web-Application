@@ -1,7 +1,6 @@
 import path from "node:path/posix";
 
 import { GetServerSidePropsContext, GetStaticPropsResult } from "next";
-import { getServerSideSitemap } from "next-sitemap";
 
 import serverConfig from "../../config/server";
 
@@ -53,11 +52,16 @@ function getFallbackBlockingConfig(): FallbackBlockingConfig {
   };
 }
 
-function getServerSideSitemapEntries(
+/**
+ * A convenience function for when the page path is of the form
+ * `some/path/[someSlug]`, not suitable for more complex dynamic
+ * path structures.
+ */
+function getServerSideSitemapFields(
   context: GetServerSidePropsContext,
   sitemapBaseUrl: string,
   pagePath: string,
-  pageSlugs: string[]
+  pageSlugs: string[] | Set<string>
 ) {
   const fields = Array.from(pageSlugs).map((slug) => {
     return {
@@ -67,13 +71,12 @@ function getServerSideSitemapEntries(
       // priority
     };
   });
-
-  return getServerSideSitemap(context, fields);
+  return fields;
 }
 
 export {
   decorateWithIsr,
   getFallbackBlockingConfig,
-  getServerSideSitemapEntries,
+  getServerSideSitemapFields,
   shouldSkipInitialBuild,
 };

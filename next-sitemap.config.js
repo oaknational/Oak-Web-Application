@@ -19,6 +19,8 @@ const serversideSitemapPaths = [
   "/blog/categories/sitemap.xml",
   "/webinars/sitemap.xml",
   "/webinars/categories/sitemap.xml",
+  // Don't include the beta dynamic sitemaps until the beta goes public.
+  "/beta/teachers/key-stages/sitemap.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href
