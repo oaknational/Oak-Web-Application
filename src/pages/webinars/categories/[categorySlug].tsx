@@ -13,11 +13,11 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const blogResults = await CMSClient.webinars();
+  const webinarResults = await CMSClient.webinars();
 
-  const paths = blogResults.map((blogResult) => ({
+  const paths = webinarResults.map((webinarResult) => ({
     params: {
-      categorySlug: blogResult.category.slug,
+      categorySlug: webinarResult.category.slug,
     },
   }));
 

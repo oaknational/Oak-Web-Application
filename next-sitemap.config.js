@@ -17,6 +17,8 @@ const shouldSkipInitialBuild = process.env.DISABLE_ISR !== "on";
 const serversideSitemapPaths = [
   "/blog/sitemap.xml",
   "/blog/categories/sitemap.xml",
+  "/webinars/sitemap.xml",
+  "/webinars/categories/sitemap.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href
