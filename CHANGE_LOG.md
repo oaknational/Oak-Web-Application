@@ -1,3 +1,10 @@
+# [1.119.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.118.0...v1.119.0) (2023-01-31)
+
+
+### Features
+
+* add stop filters to construct query ([3b2eb58](https://github.com/oaknational/Oak-Web-Application/commit/3b2eb587b420869263576743371fcfb66528b707))
+
 # [1.118.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.117.0...v1.118.0) (2023-01-30)
 
 
