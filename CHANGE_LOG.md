@@ -1,3 +1,62 @@
+# [1.119.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.118.0...v1.119.0) (2023-01-31)
+
+
+### Features
+
+* add stop filters to construct query ([3b2eb58](https://github.com/oaknational/Oak-Web-Application/commit/3b2eb587b420869263576743371fcfb66528b707))
+
+# [1.118.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.117.0...v1.118.0) (2023-01-30)
+
+
+### Features
+
+* 1108 add links to download page ([64b821e](https://github.com/oaknational/Oak-Web-Application/commit/64b821e64db3b3b98f79527da771af3c30727445))
+
+# [1.117.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.116.0...v1.117.0) (2023-01-27)
+
+
+### Bug Fixes
+
+* **theme filter:** add test to learning theme filter ([536a70c](https://github.com/oaknational/Oak-Web-Application/commit/536a70c29c70194f8d05645c7b05a629863e79d7))
+* **theme filter:** add test to learning theme filter style ([8a9ea79](https://github.com/oaknational/Oak-Web-Application/commit/8a9ea79b1dbb1047fe925a240dcec115d257d2dd))
+* **theme filter:** move no theme to the bottom of the list ([72b8b26](https://github.com/oaknational/Oak-Web-Application/commit/72b8b2614198d2397277fa504a561ecd7e62c521))
+* **theme filter:** remove filter for subjects with > 2 themes ([de2e07b](https://github.com/oaknational/Oak-Web-Application/commit/de2e07bdb5f33825d8f2496142abc855f501dec0))
+* **theme filter:** remove mobileblogfilter ([ee3b738](https://github.com/oaknational/Oak-Web-Application/commit/ee3b738ceb2d270271509d4c20bb5da20af17128))
+* **theme filter:** styling asjustments ([68b78d5](https://github.com/oaknational/Oak-Web-Application/commit/68b78d5e05556985e0a2d63ae5f3cdd7e8fb549e))
+
+
+### Features
+
+* **learning them filter:** add learning theme filter to units listing ([090d114](https://github.com/oaknational/Oak-Web-Application/commit/090d114feb24a888dd0e8a8e1c29bdf99faa5ded))
+* **learning them filter:** add learning theme filter to units listing styling ([da9e03b](https://github.com/oaknational/Oak-Web-Application/commit/da9e03b4723444c4ddd7673c7fd03fbc667a0770))
+* **learning them filter:** filter element spacing ([aeff8fb](https://github.com/oaknational/Oak-Web-Application/commit/aeff8fbe354586d7653a9d7b50d71d7cf40cddb9))
+
+# [1.116.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.115.0...v1.116.0) (2023-01-27)
+
+
+### Features
+
+* 1191 correct lesson title styling ([668fcf7](https://github.com/oaknational/Oak-Web-Application/commit/668fcf76b320cf18d7a5ca5e32081bd1bb0fb84e))
+* 1191 don't display subject link on subject listing page ([cfaf280](https://github.com/oaknational/Oak-Web-Application/commit/cfaf280744968764d1e72af7f212e952f9ce59d7))
+* 1191 remove subject link from TitleCard component ([a87c999](https://github.com/oaknational/Oak-Web-Application/commit/a87c9993fa2d5b499fb632c3ac6abbc00477c365))
+* 1191 remove unnecessary comment ([800c06c](https://github.com/oaknational/Oak-Web-Application/commit/800c06c60c350a2a7ffa7793b0aa561db7c6bcf3))
+
+# [1.115.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.114.1...v1.115.0) (2023-01-27)
+
+
+### Features
+
+* 1109 add downloads page ([3c625f2](https://github.com/oaknational/Oak-Web-Application/commit/3c625f2111c4d46e02d4ca90c8780659023ae183))
+* 1109 add test ([2d8f8f9](https://github.com/oaknational/Oak-Web-Application/commit/2d8f8f9f7a67601e1ea189c537200cf52058f5bb))
+
+## [1.114.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.114.0...v1.114.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **lesson listin accessibility:** test fix ([56ded61](https://github.com/oaknational/Oak-Web-Application/commit/56ded61a32bfa3c077aa03f7cda9532ae445f3d7))
+* **lesson-listing:** put lesson resource graphic text in one span for accesability ([25b6816](https://github.com/oaknational/Oak-Web-Application/commit/25b6816c50d5a153b674ebd7587e4800957ac9e9))
+
 # [1.114.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.113.0...v1.114.0) (2023-01-26)
 
 

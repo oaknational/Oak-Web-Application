@@ -78,7 +78,7 @@ const MobileSearchFilters: FC<MobileSearchFiltersProps> = (props) => {
           $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"
-          $zIndex="mobileBlogFilters"
+          $zIndex="mobileFilters"
           $background={isOpen ? "white" : "transparent"}
           $dropShadow={"grey20"}
         >

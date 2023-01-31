@@ -47,12 +47,9 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = ({
         $mr={[0, 6]}
         $mb={[8, 0]}
       />
-      <Span $font={"body-3"} $mr={[0, 4]}>
-        {resourceCount}
-      </Span>
       <Flex $display={["none", "flex"]}>
         <Span $font={"body-3"}>
-          {getResourceTitle(resourceTitle, resourceCount)}
+          {resourceCount} {getResourceTitle(resourceTitle, resourceCount)}
         </Span>
       </Flex>
     </Flex>

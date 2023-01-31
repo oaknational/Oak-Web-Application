@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -11,6 +12,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../../../node-lib/isr";
+import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -22,7 +24,7 @@ import {
   LI,
   UL,
 } from "../../../../../../../../../../components/Typography";
-import Button from "../../../../../../../../../../components/Button";
+import ButtonAsLink from "../../../../../../../../../../components/Button/ButtonAsLink";
 import Box from "../../../../../../../../../../components/Box";
 import Grid from "../../../../../../../../../../components/Grid";
 import curriculumApi, {
@@ -58,6 +60,17 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     transcript,
     hasCopyrightMaterial,
   } = curriculumData;
+
+  const router = useRouter();
+  const { lessonSlug, unitSlug } = router.query;
+
+  const downLoadLink = resolveOakHref({
+    page: "downloads",
+    keyStage: keyStageSlug,
+    subject: subjectSlug,
+    unit: `${unitSlug}`,
+    slug: `${lessonSlug}`,
+  });
 
   return (
     <AppLayout
@@ -96,12 +109,13 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </UL>
         </Flex>
         <Flex $mt={12} $flexWrap={"wrap"}>
-          <Button
+          <ButtonAsLink
             $mr={24}
             icon="Save"
             iconBackground="teachersHighlight"
             label="All lesson resources"
-            onClick={() => null}
+            href={downLoadLink}
+            page={null}
             size="large"
             variant="minimal"
             $iconPosition={"trailing"}
@@ -126,13 +140,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           <ExpandingContainer
             title={"Presentation"}
             downloadable={true}
+            downloadLink={downLoadLink}
             toggleClosed={false}
           >
             <OverviewPresentation asset={presentationUrl} title={title} />
           </ExpandingContainer>
         )}
         {videoMuxPlaybackId && (
-          <ExpandingContainer title={"Video"} downloadable={true}>
+          <ExpandingContainer title={"Video"}>
             <OverviewVideo
               video={videoMuxPlaybackId}
               signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
@@ -142,14 +157,26 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </ExpandingContainer>
         )}
         {worksheetUrl && (
-          <ExpandingContainer title={"Worksheet"} downloadable={true}>
+          <ExpandingContainer
+            title={"Worksheet"}
+            downloadable={true}
+            downloadLink={downLoadLink}
+          >
             <OverviewPresentation asset={worksheetUrl} title={title} />
           </ExpandingContainer>
         )}
-        <ExpandingContainer title={"Starter quiz"} downloadable={true}>
+        <ExpandingContainer
+          title={"Starter quiz"}
+          downloadable={true}
+          downloadLink={downLoadLink}
+        >
           <Box>quiz element</Box>
         </ExpandingContainer>
-        <ExpandingContainer title={"Exit quiz"} downloadable={true}>
+        <ExpandingContainer
+          title={"Exit quiz"}
+          downloadable={true}
+          downloadLink={downLoadLink}
+        >
           <Box>quiz element</Box>
         </ExpandingContainer>
         {transcript && (
