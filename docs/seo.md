@@ -2,7 +2,9 @@
 
 ## Sitemaps and robots.txt
 
-The config for generating the sitemaps and robots.txt at build time are here [next-sitemap.config.js](../next-seo.config.ts).
+The config for generating the sitemaps and robots.txt at build time are here [next-sitemap.config.js](../next-sitemap.config.js).
+
+We also have server-side generated sitemaps for dynamic routes (routes with slugs) which return `fallback: "blocking"` from `getStaticPaths`. Those need to be server side because we typically don't know all (or any) of the paths at build time, e.g. [src/pages/blog/sitemap.xml/index.tsx](../src/pages/blog/sitemap.xml/index.tsx). The sever side sitemap pages themselves are excluded from the main sitemap, but referenced in the sitemap index. If you add a new server side sitemap you also need to add the path to that page to the `serversideSitemapPaths` variable in [next-sitemap.config.js](../next-sitemap.config.js).
 
 ## Meta tags
 
