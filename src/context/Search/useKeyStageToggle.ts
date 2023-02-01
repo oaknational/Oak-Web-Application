@@ -4,9 +4,9 @@ import { KeyStage, useSearchQuery } from "./SearchContext";
 
 const useKeyStageToggle = (ks: KeyStage) => {
   const { keyStages, setKeyStages } = useSearchQuery();
+  const router = useRouter();
 
   const checked = keyStages.has(ks);
-  const router = useRouter();
 
   const onChange = () => {
     const newKeyStages = new Set(keyStages);
