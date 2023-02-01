@@ -10,6 +10,7 @@ jest.mock("../../context/Search/SearchContext", () => ({
     setKeyStages: jest.fn(),
   }),
 }));
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("ActiveFilters", () => {
   test("should render an array of active filters buttons based on the selected keystages", () => {
