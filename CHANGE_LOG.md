@@ -1,3 +1,13 @@
+# [1.120.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.119.0...v1.120.0) (2023-02-01)
+
+
+### Features
+
+* 1139 add email field and validation to download form ([0236e3c](https://github.com/oaknational/Oak-Web-Application/commit/0236e3cd63c67a4c15e1d637b60720ef05f9da90))
+* 1139 amend heading margins according to design change ([331d017](https://github.com/oaknational/Oak-Web-Application/commit/331d0176b81d56a0e67e8119712f8db60035d5f7))
+* 1139 PR updates ([a14528d](https://github.com/oaknational/Oak-Web-Application/commit/a14528dd889171cadae2c53a1eb271f8fcbf484f))
+* 1139 PR updates ([4eac308](https://github.com/oaknational/Oak-Web-Application/commit/4eac3086df4ed543011027fa07d6e3764b077b48))
+
 # [1.119.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.118.0...v1.119.0) (2023-01-31)
 
 
