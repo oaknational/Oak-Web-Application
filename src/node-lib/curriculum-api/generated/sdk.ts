@@ -16607,7 +16607,12 @@ export type Mutation_RootUpdate_Mv_Learning_ThemesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Mv_LessonsArgs = {
+  _append?: InputMaybe<Mv_Lessons_Append_Input>;
+  _delete_at_path?: InputMaybe<Mv_Lessons_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Mv_Lessons_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Mv_Lessons_Delete_Key_Input>;
   _inc?: InputMaybe<Mv_Lessons_Inc_Input>;
+  _prepend?: InputMaybe<Mv_Lessons_Prepend_Input>;
   _set?: InputMaybe<Mv_Lessons_Set_Input>;
   where: Mv_Lessons_Bool_Exp;
 };
@@ -17647,12 +17652,21 @@ export type Mv_Lessons = {
   core_content?: Maybe<Scalars['json']>;
   description?: Maybe<Scalars['String']>;
   equipment_required?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  exit_quiz?: Maybe<Quizzes>;
+  exit_quiz_id?: Maybe<Scalars['Int']>;
+  exit_quiz_url?: Maybe<Scalars['jsonb']>;
   has_copyright_material?: Maybe<Scalars['Boolean']>;
+  /** An object relationship */
+  intro_quiz?: Maybe<Quizzes>;
+  intro_quiz_id?: Maybe<Scalars['Int']>;
+  intro_quiz_url?: Maybe<Scalars['json']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
   position_in_unit?: Maybe<Scalars['Int']>;
   presentation_count?: Maybe<Scalars['bigint']>;
   presentation_url?: Maybe<Scalars['String']>;
+  quiz_count?: Maybe<Scalars['bigint']>;
   slug?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -17673,6 +17687,18 @@ export type Mv_Lessons = {
 
 /** columns and relationships of "mv_lessons" */
 export type Mv_LessonsCore_ContentArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "mv_lessons" */
+export type Mv_LessonsExit_Quiz_UrlArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "mv_lessons" */
+export type Mv_LessonsIntro_Quiz_UrlArgs = {
   path?: InputMaybe<Scalars['String']>;
 };
 
@@ -17721,6 +17747,11 @@ export type Mv_Lessons_Aggregate_Order_By = {
   variance?: InputMaybe<Mv_Lessons_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Mv_Lessons_Append_Input = {
+  exit_quiz_url?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** input type for inserting array relation for remote table "mv_lessons" */
 export type Mv_Lessons_Arr_Rel_Insert_Input = {
   data: Array<Mv_Lessons_Insert_Input>;
@@ -17729,16 +17760,22 @@ export type Mv_Lessons_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Mv_Lessons_Avg_Fields = {
   __typename?: 'mv_lessons_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "mv_lessons" */
 export type Mv_Lessons_Avg_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -17752,12 +17789,19 @@ export type Mv_Lessons_Bool_Exp = {
   core_content?: InputMaybe<Json_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   equipment_required?: InputMaybe<String_Comparison_Exp>;
+  exit_quiz?: InputMaybe<Quizzes_Bool_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  exit_quiz_url?: InputMaybe<Jsonb_Comparison_Exp>;
   has_copyright_material?: InputMaybe<Boolean_Comparison_Exp>;
+  intro_quiz?: InputMaybe<Quizzes_Bool_Exp>;
+  intro_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  intro_quiz_url?: InputMaybe<Json_Comparison_Exp>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
   key_stage_title?: InputMaybe<String_Comparison_Exp>;
   position_in_unit?: InputMaybe<Int_Comparison_Exp>;
   presentation_count?: InputMaybe<Bigint_Comparison_Exp>;
   presentation_url?: InputMaybe<String_Comparison_Exp>;
+  quiz_count?: InputMaybe<Bigint_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
   subject_title?: InputMaybe<String_Comparison_Exp>;
@@ -17775,10 +17819,28 @@ export type Mv_Lessons_Bool_Exp = {
   worksheet_url?: InputMaybe<String_Comparison_Exp>;
 };
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Mv_Lessons_Delete_At_Path_Input = {
+  exit_quiz_url?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Mv_Lessons_Delete_Elem_Input = {
+  exit_quiz_url?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Mv_Lessons_Delete_Key_Input = {
+  exit_quiz_url?: InputMaybe<Scalars['String']>;
+};
+
 /** input type for incrementing integer column in table "mv_lessons" */
 export type Mv_Lessons_Inc_Input = {
+  exit_quiz_id?: InputMaybe<Scalars['Int']>;
+  intro_quiz_id?: InputMaybe<Scalars['Int']>;
   position_in_unit?: InputMaybe<Scalars['Int']>;
   presentation_count?: InputMaybe<Scalars['bigint']>;
+  quiz_count?: InputMaybe<Scalars['bigint']>;
   video_count?: InputMaybe<Scalars['Int']>;
   worksheet_count?: InputMaybe<Scalars['bigint']>;
 };
@@ -17789,12 +17851,19 @@ export type Mv_Lessons_Insert_Input = {
   core_content?: InputMaybe<Scalars['json']>;
   description?: InputMaybe<Scalars['String']>;
   equipment_required?: InputMaybe<Scalars['String']>;
+  exit_quiz?: InputMaybe<Quizzes_Obj_Rel_Insert_Input>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']>;
+  exit_quiz_url?: InputMaybe<Scalars['jsonb']>;
   has_copyright_material?: InputMaybe<Scalars['Boolean']>;
+  intro_quiz?: InputMaybe<Quizzes_Obj_Rel_Insert_Input>;
+  intro_quiz_id?: InputMaybe<Scalars['Int']>;
+  intro_quiz_url?: InputMaybe<Scalars['json']>;
   key_stage_slug?: InputMaybe<Scalars['String']>;
   key_stage_title?: InputMaybe<Scalars['String']>;
   position_in_unit?: InputMaybe<Scalars['Int']>;
   presentation_count?: InputMaybe<Scalars['bigint']>;
   presentation_url?: InputMaybe<Scalars['String']>;
+  quiz_count?: InputMaybe<Scalars['bigint']>;
   slug?: InputMaybe<Scalars['String']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
@@ -17818,11 +17887,14 @@ export type Mv_Lessons_Max_Fields = {
   content_guidance?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   equipment_required?: Maybe<Scalars['String']>;
+  exit_quiz_id?: Maybe<Scalars['Int']>;
+  intro_quiz_id?: Maybe<Scalars['Int']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
   position_in_unit?: Maybe<Scalars['Int']>;
   presentation_count?: Maybe<Scalars['bigint']>;
   presentation_url?: Maybe<Scalars['String']>;
+  quiz_count?: Maybe<Scalars['bigint']>;
   slug?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -17845,11 +17917,14 @@ export type Mv_Lessons_Max_Order_By = {
   content_guidance?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   equipment_required?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
   presentation_url?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -17873,11 +17948,14 @@ export type Mv_Lessons_Min_Fields = {
   content_guidance?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   equipment_required?: Maybe<Scalars['String']>;
+  exit_quiz_id?: Maybe<Scalars['Int']>;
+  intro_quiz_id?: Maybe<Scalars['Int']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
   position_in_unit?: Maybe<Scalars['Int']>;
   presentation_count?: Maybe<Scalars['bigint']>;
   presentation_url?: Maybe<Scalars['String']>;
+  quiz_count?: Maybe<Scalars['bigint']>;
   slug?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -17900,11 +17978,14 @@ export type Mv_Lessons_Min_Order_By = {
   content_guidance?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   equipment_required?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
   presentation_url?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -17942,12 +18023,19 @@ export type Mv_Lessons_Order_By = {
   core_content?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   equipment_required?: InputMaybe<Order_By>;
+  exit_quiz?: InputMaybe<Quizzes_Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  exit_quiz_url?: InputMaybe<Order_By>;
   has_copyright_material?: InputMaybe<Order_By>;
+  intro_quiz?: InputMaybe<Quizzes_Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_url?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
   presentation_url?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -17965,6 +18053,11 @@ export type Mv_Lessons_Order_By = {
   worksheet_url?: InputMaybe<Order_By>;
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Mv_Lessons_Prepend_Input = {
+  exit_quiz_url?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** select columns of table "mv_lessons" */
 export enum Mv_Lessons_Select_Column {
   /** column name */
@@ -17976,7 +18069,15 @@ export enum Mv_Lessons_Select_Column {
   /** column name */
   EquipmentRequired = 'equipment_required',
   /** column name */
+  ExitQuizId = 'exit_quiz_id',
+  /** column name */
+  ExitQuizUrl = 'exit_quiz_url',
+  /** column name */
   HasCopyrightMaterial = 'has_copyright_material',
+  /** column name */
+  IntroQuizId = 'intro_quiz_id',
+  /** column name */
+  IntroQuizUrl = 'intro_quiz_url',
   /** column name */
   KeyStageSlug = 'key_stage_slug',
   /** column name */
@@ -17987,6 +18088,8 @@ export enum Mv_Lessons_Select_Column {
   PresentationCount = 'presentation_count',
   /** column name */
   PresentationUrl = 'presentation_url',
+  /** column name */
+  QuizCount = 'quiz_count',
   /** column name */
   Slug = 'slug',
   /** column name */
@@ -18025,12 +18128,17 @@ export type Mv_Lessons_Set_Input = {
   core_content?: InputMaybe<Scalars['json']>;
   description?: InputMaybe<Scalars['String']>;
   equipment_required?: InputMaybe<Scalars['String']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']>;
+  exit_quiz_url?: InputMaybe<Scalars['jsonb']>;
   has_copyright_material?: InputMaybe<Scalars['Boolean']>;
+  intro_quiz_id?: InputMaybe<Scalars['Int']>;
+  intro_quiz_url?: InputMaybe<Scalars['json']>;
   key_stage_slug?: InputMaybe<Scalars['String']>;
   key_stage_title?: InputMaybe<Scalars['String']>;
   position_in_unit?: InputMaybe<Scalars['Int']>;
   presentation_count?: InputMaybe<Scalars['bigint']>;
   presentation_url?: InputMaybe<Scalars['String']>;
+  quiz_count?: InputMaybe<Scalars['bigint']>;
   slug?: InputMaybe<Scalars['String']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
@@ -18051,16 +18159,22 @@ export type Mv_Lessons_Set_Input = {
 /** aggregate stddev on columns */
 export type Mv_Lessons_Stddev_Fields = {
   __typename?: 'mv_lessons_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "mv_lessons" */
 export type Mv_Lessons_Stddev_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -18068,16 +18182,22 @@ export type Mv_Lessons_Stddev_Order_By = {
 /** aggregate stddev_pop on columns */
 export type Mv_Lessons_Stddev_Pop_Fields = {
   __typename?: 'mv_lessons_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_lessons" */
 export type Mv_Lessons_Stddev_Pop_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -18085,16 +18205,22 @@ export type Mv_Lessons_Stddev_Pop_Order_By = {
 /** aggregate stddev_samp on columns */
 export type Mv_Lessons_Stddev_Samp_Fields = {
   __typename?: 'mv_lessons_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_lessons" */
 export type Mv_Lessons_Stddev_Samp_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -18102,16 +18228,22 @@ export type Mv_Lessons_Stddev_Samp_Order_By = {
 /** aggregate sum on columns */
 export type Mv_Lessons_Sum_Fields = {
   __typename?: 'mv_lessons_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']>;
+  intro_quiz_id?: Maybe<Scalars['Int']>;
   position_in_unit?: Maybe<Scalars['Int']>;
   presentation_count?: Maybe<Scalars['bigint']>;
+  quiz_count?: Maybe<Scalars['bigint']>;
   video_count?: Maybe<Scalars['Int']>;
   worksheet_count?: Maybe<Scalars['bigint']>;
 };
 
 /** order by sum() on columns of table "mv_lessons" */
 export type Mv_Lessons_Sum_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -18119,16 +18251,22 @@ export type Mv_Lessons_Sum_Order_By = {
 /** aggregate var_pop on columns */
 export type Mv_Lessons_Var_Pop_Fields = {
   __typename?: 'mv_lessons_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "mv_lessons" */
 export type Mv_Lessons_Var_Pop_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -18136,16 +18274,22 @@ export type Mv_Lessons_Var_Pop_Order_By = {
 /** aggregate var_samp on columns */
 export type Mv_Lessons_Var_Samp_Fields = {
   __typename?: 'mv_lessons_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "mv_lessons" */
 export type Mv_Lessons_Var_Samp_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -18153,16 +18297,22 @@ export type Mv_Lessons_Var_Samp_Order_By = {
 /** aggregate variance on columns */
 export type Mv_Lessons_Variance_Fields = {
   __typename?: 'mv_lessons_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']>;
+  intro_quiz_id?: Maybe<Scalars['Float']>;
   position_in_unit?: Maybe<Scalars['Float']>;
   presentation_count?: Maybe<Scalars['Float']>;
+  quiz_count?: Maybe<Scalars['Float']>;
   video_count?: Maybe<Scalars['Float']>;
   worksheet_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "mv_lessons" */
 export type Mv_Lessons_Variance_Order_By = {
+  exit_quiz_id?: InputMaybe<Order_By>;
+  intro_quiz_id?: InputMaybe<Order_By>;
   position_in_unit?: InputMaybe<Order_By>;
   presentation_count?: InputMaybe<Order_By>;
+  quiz_count?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
   worksheet_count?: InputMaybe<Order_By>;
 };
@@ -35602,7 +35752,7 @@ export type TeachersKeyStageSubjectUnitLessonsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, description?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null }> };
+export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, description?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, quizCount?: any | null }> };
 
 export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -35634,7 +35784,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, introQuizUrl?: any | null, exitQuizUrl?: any | null, introQuiz?: { __typename?: 'quizzes', title?: string | null, maxPoints?: number | null, questions: Array<{ __typename?: 'questions_expanded', id?: number | null, order?: number | null, title?: string | null, required?: boolean | null, choices?: any | null, active?: boolean | null, answer?: any | null, type?: string | null, points?: number | null, images?: any | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null }> } | null, exitQuiz?: { __typename?: 'quizzes', title?: string | null, maxPoints?: number | null, questions: Array<{ __typename?: 'questions_expanded', id?: number | null, order?: number | null, title?: string | null, required?: boolean | null, choices?: any | null, active?: boolean | null, answer?: any | null, type?: string | null, points?: number | null, images?: any | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null }> } | null }> };
 
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -35712,6 +35862,7 @@ export const TeachersKeyStageSubjectUnitLessonsDocument = gql`
     presentationCount: presentation_count
     worksheetCount: worksheet_count
     hasCopyrightMaterial: has_copyright_material
+    quizCount: quiz_count
   }
 }
     `;
@@ -35812,6 +35963,46 @@ export const TeachersLessonOverviewDocument = gql`
     videoMuxPlaybackId: video_mux_playback_id
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
     transcript
+    introQuizUrl: intro_quiz_url
+    exitQuizUrl: exit_quiz_url
+    introQuiz: intro_quiz {
+      title
+      maxPoints: max_points
+      questions(order_by: {order: asc}) {
+        id
+        order
+        title
+        required
+        choices
+        choiceImages: choice_images
+        active
+        answer
+        type
+        points
+        images
+        feedbackCorrect: feedback_correct
+        feedbackIncorrect: feedback_incorrect
+      }
+    }
+    exitQuiz: exit_quiz {
+      title
+      maxPoints: max_points
+      questions(order_by: {order: asc}) {
+        id
+        order
+        title
+        required
+        choices
+        choiceImages: choice_images
+        active
+        answer
+        type
+        points
+        images
+        feedbackCorrect: feedback_correct
+        feedbackIncorrect: feedback_incorrect
+      }
+    }
   }
 }
     `;

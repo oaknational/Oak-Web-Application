@@ -28,5 +28,45 @@ query teachersLessonOverview(
     videoMuxPlaybackId: video_mux_playback_id
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
     transcript
+    introQuizUrl: intro_quiz_url
+    exitQuizUrl: exit_quiz_url
+    introQuiz: intro_quiz {
+      title
+      maxPoints: max_points
+      questions(order_by: { order: asc }) {
+        id
+        order
+        title
+        required
+        choices
+        choiceImages: choice_images
+        active
+        answer
+        type
+        points
+        images
+        feedbackCorrect: feedback_correct
+        feedbackIncorrect: feedback_incorrect
+      }
+    }
+    exitQuiz: exit_quiz {
+      title
+      maxPoints: max_points
+      questions(order_by: { order: asc }) {
+        id
+        order
+        title
+        required
+        choices
+        choiceImages: choice_images
+        active
+        answer
+        type
+        points
+        images
+        feedbackCorrect: feedback_correct
+        feedbackIncorrect: feedback_incorrect
+      }
+    }
   }
 }

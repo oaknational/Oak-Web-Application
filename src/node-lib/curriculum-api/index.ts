@@ -184,7 +184,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
       unitSlug: z.string(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable().optional(), // @todo add quiz_count to MV mv_lessons
+      quizCount: z.number().nullable(),
       videoCount: z.number().nullable(),
       presentationCount: z.number().nullable(),
       worksheetCount: z.number().nullable(),
@@ -220,6 +220,54 @@ const teachersLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcript: z.string().nullable(),
+  introQuizUrl: z.string().nullable(),
+  exitQuizUrl: z.string().nullable(),
+  introQuiz: z
+    .object({
+      title: z.string(),
+      maxPoints: z.number(),
+      questions: z.array(
+        z.object({
+          id: z.number().nullable().optional(),
+          order: z.number().nullable().optional(),
+          title: z.string().nullable().optional(),
+          points: z.number().nullable().optional(),
+          required: z.boolean().nullable(),
+          choices: z.array(z.string().nullable()),
+          active: z.boolean(),
+          answer: z.string(),
+          type: z.string(),
+          images: z.array(z.string().nullable()),
+          feedbackCorrect: z.string().nullable(),
+          feedbackIncorrect: z.string().nullable(),
+          choiceImages: z.array(z.string().nullable()),
+        })
+      ),
+    })
+    .nullable(),
+  exitQuiz: z
+    .object({
+      title: z.string(),
+      maxPoints: z.number(),
+      questions: z.array(
+        z.object({
+          id: z.number().nullable().optional(),
+          order: z.number().nullable().optional(),
+          title: z.string().nullable().optional(),
+          points: z.number().nullable().optional(),
+          required: z.boolean().nullable(),
+          choices: z.array(z.string().nullable()),
+          active: z.boolean(),
+          answer: z.string(),
+          type: z.string(),
+          images: z.array(z.string().nullable()),
+          feedbackCorrect: z.string().nullable(),
+          feedbackIncorrect: z.string().nullable(),
+          choiceImages: z.array(z.string().nullable()),
+        })
+      ),
+    })
+    .nullable(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
