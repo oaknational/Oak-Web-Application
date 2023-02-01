@@ -71,17 +71,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]}>
-          <Heading tag="h5" $font={"heading-5"} $mb={16}>
+          <Heading tag="h2" $font={"heading-5"} $mb={16}>
             Your details
           </Heading>
           <Heading
-            tag="h6"
+            tag="h3"
             $font={"heading-7"}
             $mt={0}
             $mb={24}
             data-testid="email-heading"
           >
-            For optional resources.
+            For regular updates from Oak (optional)
           </Heading>
           <Input
             id={"email"}
@@ -93,7 +93,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <P $font="body-3" $mt={-24}>
             Join our community to get free lessons, resources and other helpful
             content. Unsubscribe at any time. Our{" "}
-            <OakLink page={"privacy-policy"}>Privacy Policy</OakLink>.
+            <OakLink page={"privacy-policy"}>privacy policy</OakLink>.
           </P>
         </Box>
       </MaxWidth>
