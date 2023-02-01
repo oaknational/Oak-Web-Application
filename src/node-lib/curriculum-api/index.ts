@@ -193,6 +193,30 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   ),
 });
 
+const teachersKeyStageSubjectUnitsLessonsQuizData = z
+  .object({
+    title: z.string(),
+    maxPoints: z.number(),
+    questions: z.array(
+      z.object({
+        id: z.number().nullable().optional(),
+        order: z.number().nullable().optional(),
+        title: z.string().nullable().optional(),
+        points: z.number().nullable().optional(),
+        required: z.boolean().nullable(),
+        choices: z.array(z.string().nullable()),
+        active: z.boolean(),
+        answer: z.string(),
+        type: z.string(),
+        images: z.array(z.string().nullable()),
+        feedbackCorrect: z.string().nullable(),
+        feedbackIncorrect: z.string().nullable(),
+        choiceImages: z.array(z.string().nullable()),
+      })
+    ),
+  })
+  .nullable();
+
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
     z.object({
@@ -222,52 +246,8 @@ const teachersLessonOverviewData = z.object({
   transcript: z.string().nullable(),
   introQuizUrl: z.string().nullable(),
   exitQuizUrl: z.string().nullable(),
-  introQuiz: z
-    .object({
-      title: z.string(),
-      maxPoints: z.number(),
-      questions: z.array(
-        z.object({
-          id: z.number().nullable().optional(),
-          order: z.number().nullable().optional(),
-          title: z.string().nullable().optional(),
-          points: z.number().nullable().optional(),
-          required: z.boolean().nullable(),
-          choices: z.array(z.string().nullable()),
-          active: z.boolean(),
-          answer: z.string(),
-          type: z.string(),
-          images: z.array(z.string().nullable()),
-          feedbackCorrect: z.string().nullable(),
-          feedbackIncorrect: z.string().nullable(),
-          choiceImages: z.array(z.string().nullable()),
-        })
-      ),
-    })
-    .nullable(),
-  exitQuiz: z
-    .object({
-      title: z.string(),
-      maxPoints: z.number(),
-      questions: z.array(
-        z.object({
-          id: z.number().nullable().optional(),
-          order: z.number().nullable().optional(),
-          title: z.string().nullable().optional(),
-          points: z.number().nullable().optional(),
-          required: z.boolean().nullable(),
-          choices: z.array(z.string().nullable()),
-          active: z.boolean(),
-          answer: z.string(),
-          type: z.string(),
-          images: z.array(z.string().nullable()),
-          feedbackCorrect: z.string().nullable(),
-          feedbackIncorrect: z.string().nullable(),
-          choiceImages: z.array(z.string().nullable()),
-        })
-      ),
-    })
-    .nullable(),
+  introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  exitQuiz:teachersKeyStageSubjectUnitsLessonsQuizData,
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
