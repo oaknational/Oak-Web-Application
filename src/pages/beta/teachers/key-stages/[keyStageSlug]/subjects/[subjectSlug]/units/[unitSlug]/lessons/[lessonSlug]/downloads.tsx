@@ -71,7 +71,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]}>
-          <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={36}>
+          <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
             Your details
           </Heading>
           <Heading
