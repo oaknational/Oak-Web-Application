@@ -34,19 +34,21 @@ export const SearchProvider: FC<SearchProviderProps> = ({
   const initialTerm = term && typeof term === "string" ? term : "";
   const [searchText, setSearchText] = useState(initialTerm);
 
-  const initialKeyStagesArray = keystagesFromURL
+  const initialKeyStagesArrayFromURL = keystagesFromURL
     ? keystagesFromURL.toString().split(",")
     : [];
 
-  const isOfTypeKeyStage = (stage: string): stage is KeyStage =>
-    ALL_KEY_STAGES.includes(stage);
+  const isValueKeyStage = (stage: string): stage is KeyStage => {
+    const STRING_KEY_STAGES: string[] = ALL_KEY_STAGES;
+    return STRING_KEY_STAGES.includes(stage);
+  };
 
-  const typedInitialKeyStagesArray = initialKeyStagesArray.filter(
-    (ks: string): ks is KeyStage => isOfTypeKeyStage(ks)
+  const initialKeyStagesArray = initialKeyStagesArrayFromURL.filter(
+    (ks: string): ks is KeyStage => isValueKeyStage(ks)
   );
 
   const initialKeyStage = initialKeyStagesArray
-    ? new Set<KeyStage>(typedInitialKeyStagesArray)
+    ? new Set<KeyStage>(initialKeyStagesArray)
     : new Set<KeyStage>();
   const [keyStages, setKeyStages] = useState(initialKeyStage);
 
