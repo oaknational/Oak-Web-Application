@@ -25,20 +25,20 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {
     renderWithProviders(<LessonDownloadsPage {...props} />);
 
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "Downloads: Islamic Geometry"
     );
   });
 
   describe("download form", () => {
-    it("Renders download form", async () => {
+    it("Renders download form", () => {
       renderWithProviders(<LessonDownloadsPage {...props} />);
 
-      expect(screen.getByRole("heading", { level: 5 })).toHaveTextContent(
+      expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
         "Your details"
       );
       expect(screen.getByTestId("email-heading")).toHaveTextContent(
-        "For optional resources."
+        "For regular updates from Oak (optional)"
       );
     });
 
