@@ -29,11 +29,27 @@ export const SearchProvider: FC<SearchProviderProps> = ({
   value: propsValue,
 }) => {
   const {
-    query: { term },
+    query: { term, keystages },
   } = useRouter();
   const initialTerm = term && typeof term === "string" ? term : "";
   const [searchText, setSearchText] = useState(initialTerm);
-  const [keyStages, setKeyStages] = useState(new Set<KeyStage>());
+
+  const initialKeyStagesArray = keystages
+    ? keystages.toString().split(",")
+    : [];
+
+  const isOfTypeKeyStage = (stage: string): stage is KeyStage =>
+    ALL_KEY_STAGES.includes(stage);
+
+  const typedInitialKeyStagesArray = initialKeyStagesArray.filter(
+    (ks: string): ks is KeyStage => isOfTypeKeyStage(ks)
+  );
+
+  const initialKeyStage = initialKeyStagesArray
+    ? new Set<KeyStage>(typedInitialKeyStagesArray)
+    : new Set<KeyStage>();
+  const [keyStages, setKeyStages] = useState(initialKeyStage);
+
   const searchQuery: SearchQuery = {
     text: searchText,
     setText: setSearchText,

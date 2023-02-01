@@ -1,9 +1,12 @@
+import { useRouter } from "next/router";
+
 import { KeyStage, useSearchQuery } from "./SearchContext";
 
 const useKeyStageToggle = (ks: KeyStage) => {
   const { keyStages, setKeyStages } = useSearchQuery();
 
   const checked = keyStages.has(ks);
+  const router = useRouter();
 
   const onChange = () => {
     const newKeyStages = new Set(keyStages);
@@ -13,6 +16,12 @@ const useKeyStageToggle = (ks: KeyStage) => {
       newKeyStages.add(ks);
     }
     setKeyStages(newKeyStages);
+
+    // shallow push with new params
+    const chosenKeyStagesArray = Array.from(newKeyStages);
+    const chosenKeyStagesString = chosenKeyStagesArray.join(",");
+    router.query.keystages = chosenKeyStagesString;
+    router.push(router, undefined, { shallow: true });
   };
 
   return {

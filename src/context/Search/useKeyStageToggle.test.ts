@@ -15,7 +15,7 @@ describe("useKeyStageToggle()", () => {
 
     expect(checked).toBe(false);
   });
-  test.skip("onChange should toggle checked", () => {
+  test("onChange should toggle checked", () => {
     const { result } = renderHook(() => useKeyStageToggle(testKeyStage), {
       wrapper: SearchProvider,
     });
