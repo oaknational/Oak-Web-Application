@@ -22,12 +22,12 @@ const teachersLessonOverviewFixture = (
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcript: null,
-    introQuizUrl:null,
-    exitQuizUrl:null,
-    introQuiz:{
-      maxPoints:3,
-      title:"Quiz question",
-      questions:[
+    introQuizUrl: null,
+    exitQuizUrl: null,
+    introQuiz: {
+      maxPoints: 3,
+      title: "Quiz question",
+      questions: [
         {
           title: "what is a question",
           points: 3,
@@ -63,11 +63,11 @@ const teachersLessonOverviewFixture = (
           ],
         },
       ],
-  },
-    exitQuiz:{
-      maxPoints:3,
-      title:"Quiz question",
-      questions:[
+    },
+    exitQuiz: {
+      maxPoints: 3,
+      title: "Quiz question",
+      questions: [
         {
           title: "what is a question",
           points: 3,
@@ -103,7 +103,7 @@ const teachersLessonOverviewFixture = (
           ],
         },
       ],
-  },
+    },
     ...partial,
   };
 };
