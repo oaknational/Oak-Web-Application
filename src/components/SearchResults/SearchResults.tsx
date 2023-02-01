@@ -53,6 +53,7 @@ export const getLessonObject = (
     title: highlightedHit.title,
     slug: highlightedHit.slug,
     hasCopyrightMaterial: false, // this will need to be added to elastic search
+    quizCount: null,
   };
 };
 
