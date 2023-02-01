@@ -247,7 +247,7 @@ const teachersLessonOverviewData = z.object({
   introQuizUrl: z.string().nullable(),
   exitQuizUrl: z.string().nullable(),
   introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
-  exitQuiz:teachersKeyStageSubjectUnitsLessonsQuizData,
+  exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
