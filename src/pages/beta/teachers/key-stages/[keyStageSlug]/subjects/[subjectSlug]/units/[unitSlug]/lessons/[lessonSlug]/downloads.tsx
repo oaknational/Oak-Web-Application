@@ -32,12 +32,16 @@ const schema = z.object({
     })
     .optional()
     .or(z.literal("")),
+  terms: z.literal(true, {
+    errorMap: () => ({ message: "You must accept terms and conditions" }),
+  }),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
 export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
+  terms: boolean;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -93,7 +97,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             {...register("email")}
             error={errors.email?.message}
           />
-          <P $font="body-3" $mt={-24} $mb={42}>
+          <P $font="body-3" $mt={-24} $mb={40}>
             Join our community to get free lessons, resources and other helpful
             content. Unsubscribe at any time. Our{" "}
             <OakLink page={"privacy-policy"}>privacy policy</OakLink>.
@@ -103,30 +107,30 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             $background={"pastelTurquoise"}
             $pv={8}
             $ph={8}
-            $mv={8}
+            $mb={24}
           >
             <BrushBorders
               hideOnMobileH
               hideOnMobileV
               color={"pastelTurquoise"}
             />
-            <Heading
-              tag="h6"
-              $font={"heading-7"}
-              $mt={0}
-              $mb={16}
-              data-testid="email-heading"
-            >
-              Terms of use (required):
-            </Heading>
             <Checkbox
-              labelText={"I accept terms of use. Terms & Conditions"}
-              id={"terms-of-use"}
+              labelText={"I accept terms and conditions (required)"}
+              id={"terms"}
               checked={acceptedTCs}
               onChange={() => setAcceptedTCs(!acceptedTCs)}
-              ariaLabel={"I accept terms of use. Terms & Conditions"}
+              ariaLabel={"I accept terms and conditions (required)"}
+              $mb={0}
+              required
+              error={errors.terms?.message}
             />
           </Box>
+          <P $font="body-3">
+            Read our{" "}
+            <OakLink page={"terms-and-conditions"}>
+              terms &amp; conditions
+            </OakLink>
+          </P>
         </Box>
       </MaxWidth>
     </AppLayout>
