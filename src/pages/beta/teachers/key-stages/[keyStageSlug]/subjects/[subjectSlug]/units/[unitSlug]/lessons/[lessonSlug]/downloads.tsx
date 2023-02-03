@@ -122,7 +122,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               id={"terms"}
               checked={acceptedTCs}
               onChange={() => setAcceptedTCs(!acceptedTCs)}
-              ariaLabel={"I accept terms and conditions (required)"}
               $mb={0}
               required
               error={errors.terms?.message}

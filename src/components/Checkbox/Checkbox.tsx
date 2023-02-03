@@ -140,7 +140,6 @@ const Checkbox: FC<CheckboxProps> = (props) => {
   } = props;
 
   const errorId = `${id}-error`;
-  const labelId = `${id}-label`;
 
   const select = () => {
     if (!disabled) onChange();
@@ -161,11 +160,10 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           onChange={select}
           checked={checked}
           disabled={disabled}
-          aria-label={ariaLabel}
+          aria-label={ariaLabel ? ariaLabel : labelText}
           required={required}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
-          aria-labelledby={labelId}
         />
         <VisualCheckbox checked={checked}>
           {checked && <Icon name={"Tick"} $color={"white"} size={20} />}
