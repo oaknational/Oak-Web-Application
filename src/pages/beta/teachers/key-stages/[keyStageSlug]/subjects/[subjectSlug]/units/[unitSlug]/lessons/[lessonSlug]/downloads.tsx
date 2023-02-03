@@ -100,7 +100,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <P $font="body-3" $mt={-24} $mb={40}>
             Join our community to get free lessons, resources and other helpful
             content. Unsubscribe at any time. Our{" "}
-            <OakLink page={"privacy-policy"}>privacy policy</OakLink>.
+            <OakLink page={"privacy-policy"} $isInline>
+              privacy policy
+            </OakLink>
+            .
           </P>
           <Box
             $position={"relative"}
@@ -127,7 +130,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           </Box>
           <P $font="body-3">
             Read our{" "}
-            <OakLink page={"terms-and-conditions"}>
+            <OakLink page={"terms-and-conditions"} $isInline>
               terms &amp; conditions
             </OakLink>
           </P>
