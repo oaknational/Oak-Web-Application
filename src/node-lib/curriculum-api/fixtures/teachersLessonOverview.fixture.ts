@@ -22,10 +22,8 @@ const teachersLessonOverviewFixture = (
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcript: null,
-    introQuizUrl: null,
-    exitQuizUrl: null,
-    introQuiz: null,
-    exitQuiz: null,
+    introQuiz: [],
+    exitQuiz: [],
     ...partial,
   };
 };
