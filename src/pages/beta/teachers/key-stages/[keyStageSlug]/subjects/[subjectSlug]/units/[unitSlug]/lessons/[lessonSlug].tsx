@@ -165,22 +165,24 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             <OverviewPresentation asset={worksheetUrl} title={title} />
           </ExpandingContainer>
         )}
-        {introQuiz && (
+        {introQuiz.length > 0 ? (
           <ExpandingContainer
             title={"Starter quiz"}
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer {...introQuiz} />
+            <QuizContainer questions={introQuiz} />
           </ExpandingContainer>
+        ) : (
+          ""
         )}
-        {exitQuiz && (
+        {exitQuiz.length > 0 && (
           <ExpandingContainer
             title={"Exit quiz"}
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer {...exitQuiz} />
+            <QuizContainer questions={exitQuiz} />
           </ExpandingContainer>
         )}
 

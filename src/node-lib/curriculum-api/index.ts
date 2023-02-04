@@ -53,6 +53,8 @@ const transformMVCase = <K, S, T, U, L, V>(res: {
   mv_units?: U;
   mv_lessons?: L;
   mv_learning_themes?: V;
+  // introQuiz?: W;
+  // exitQuiz?: W;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -61,6 +63,8 @@ const transformMVCase = <K, S, T, U, L, V>(res: {
     units: res.mv_units,
     lessons: res.mv_lessons,
     learningThemes: res.mv_learning_themes,
+    // introQuiz: res.introQuiz,
+    // exitQuiz: res.exitQuiz,
   };
 };
 
@@ -193,29 +197,29 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   ),
 });
 
-const teachersKeyStageSubjectUnitsLessonsQuizData = z
-  .object({
-    title: z.string(),
-    maxPoints: z.number(),
-    questions: z.array(
-      z.object({
-        id: z.number().nullable().optional(),
-        order: z.number().nullable().optional(),
-        title: z.string().nullable().optional(),
-        points: z.number().nullable().optional(),
-        required: z.boolean().nullable(),
-        choices: z.array(z.string().nullable()),
-        active: z.boolean(),
-        answer: z.string(),
-        type: z.string(),
-        images: z.array(z.string().nullable()),
-        feedbackCorrect: z.string().nullable(),
-        feedbackIncorrect: z.string().nullable(),
-        choiceImages: z.array(z.string().nullable()),
-      })
-    ),
+const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
+  z.object({
+    keyStageSlug: z.string(),
+    keyStageTitle: z.string(),
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    unitSlug: z.string(),
+    unitTitle: z.string(),
+    order: z.number().nullable().optional(),
+    title: z.string().nullable().optional(),
+    points: z.number().nullable().optional(),
+    required: z.boolean().nullable(),
+    choices: z.array(z.string().nullable()),
+    active: z.boolean(),
+    answer: z.string(),
+    type: z.string(),
+    quizType: z.string(),
+    images: z.array(z.string().nullable()),
+    feedbackCorrect: z.string().nullable(),
+    feedbackIncorrect: z.string().nullable(),
+    choiceImages: z.array(z.string().nullable()),
   })
-  .nullable();
+);
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
@@ -244,8 +248,6 @@ const teachersLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcript: z.string().nullable(),
-  introQuizUrl: z.string().nullable(),
-  exitQuizUrl: z.string().nullable(),
   introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
 });
@@ -419,12 +421,17 @@ const curriculumApi = {
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
+    const { introQuiz, exitQuiz } = res;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
 
-    return teachersLessonOverviewData.parse(lesson);
+    return teachersLessonOverviewData.parse({
+      ...lesson,
+      introQuiz,
+      exitQuiz,
+    });
   },
 };
 

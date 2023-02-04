@@ -5,14 +5,13 @@ import OakImage from "../../OakImage";
 import Typography, { LI, OL } from "../../Typography";
 import { QuizProps } from "../QuizContainer";
 
-export type QuizQuestionListProps = {
-  listProps: QuizProps["questions"];
-};
+export type QuizQuestionListProps = QuizProps;
 
-const QuestionsList: FC<QuizQuestionListProps> = ({ listProps }) => {
+const QuestionsList: FC<QuizQuestionListProps> = (props) => {
+  const { questions } = props;
   return (
     <OL>
-      {listProps.map((question) => {
+      {questions.map((question) => {
         const {
           title,
           choices,
