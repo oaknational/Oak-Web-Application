@@ -79,6 +79,10 @@ async function main() {
     // Bugsnag
     NEXT_PUBLIC_BUGSNAG_API_KEY: oakConfig.bugsnag.apiKey,
 
+    // Datadog
+    /** @todo have the default value in the config file. */
+    DATADOG_CSP_CLIENT_TOKEN: process.env.DATADOG_CSP_CLIENT_TOKEN,
+
     // Gleap
     NEXT_PUBLIC_GLEAP_API_KEY:
       process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,

@@ -1,6 +1,18 @@
 // https://nextjs.org/docs/advanced-features/security-headers
 
-const getContentSecurityPolicy = (isDevServer) =>
+const getCspReportUri = (dataDogClientToken) => {
+  // Without an intermediate end-point this means exposing the client token to the browser as header content.
+  // The keys can be used to submit data and events.
+  const ddTags = "owa,csp";
+  // Note, if we have DataDog RUM turned on we don't need to configure this endpoint,
+  // the reports would be collected automatically.
+  return `https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=${dataDogClientToken}&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=${ddTags}`;
+};
+
+const getContentSecurityPolicy = ({
+  isNextjsDevelopmentServer,
+  dataDogClientToken,
+}) =>
   `
 frame-ancestors
  'self';
@@ -12,7 +24,7 @@ script-src
  'report-sample'
  ${
    // Need this for auto-reload scripts etc.
-   isDevServer ? "'unsafe-eval'" : ""
+   isNextjsDevelopmentServer ? "'unsafe-eval'" : ""
  }
  https://config.thenational.academy
  https://consent-manager.thenational.academy
@@ -93,6 +105,10 @@ prefetch-src
 worker-src
  'self';
 upgrade-insecure-requests;
+${
+  // Only enable CSP violation reporting if the token has been supplied.
+  dataDogClientToken ? `report-uri ${getCspReportUri(dataDogClientToken)};` : ""
+}
 `
     .replace(/\s+/g, " ")
     .trim();
@@ -137,7 +153,19 @@ xr-spatial-tracking=()
  * @param {boolean} isDevServer Flag for if this is a local dev server.
  * @returns {Array<{key: string, value: string}>} The security header keys and values.
  */
-const getSecurityHeaders = (isDevServer) => {
+const getSecurityHeaders = ({
+  isNextjsDevelopmentServer,
+  dataDogClientToken,
+}) => {
+  if (!dataDogClientToken) {
+    console.warn("CSP reporting disabled in this environment.");
+  }
+  // DEBUG
+  if (!dataDogClientToken) {
+    throw new Error(
+      "Please specific a client token for CSP violation reporting"
+    );
+  }
   const headerArray = [
     {
       key: "X-DNS-Prefetch-Control",
@@ -163,15 +191,19 @@ const getSecurityHeaders = (isDevServer) => {
       key: "Referrer-Policy",
       value: "strict-origin-when-cross-origin",
     },
-    // Where are value is specified in both feature policy and permissions policy
+    // Where a value is specified in both feature policy and permissions policy
     // the permissions policy value will be used.
     {
       key: "Permissions-Policy",
       value: getPermissionPolicy(),
     },
+    // CSP report-only for now https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
     {
-      key: "Content-Security-Policy",
-      value: getContentSecurityPolicy(isDevServer),
+      key: "Content-Security-Policy-Report-Only",
+      value: getContentSecurityPolicy({
+        isNextjsDevelopmentServer,
+        dataDogClientToken,
+      }),
     },
   ];
   return headerArray;

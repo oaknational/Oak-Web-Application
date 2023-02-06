@@ -19,7 +19,6 @@ const {
 const fetchConfig = require("./scripts/build/fetch_config");
 const { getSecurityHeaders } = require("./scripts/build/policies");
 
-
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = async (phase) => {
   /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
@@ -31,7 +30,6 @@ module.exports = async (phase) => {
   const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
   const isNextjsDevelopmentServer = phase === PHASE_DEVELOPMENT_SERVER;
   const isTestBuild = phase === PHASE_TEST || process.env.NODE_ENV === "test";
-
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
@@ -77,6 +75,9 @@ module.exports = async (phase) => {
     process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
   const imageDomains = ["image.mux.com", SANITY_ASSET_CDN_HOST].filter(Boolean);
+
+  /** @todo move this into the config file */
+  const dataDogClientToken = process.env.DATADOG_CSP_CLIENT_TOKEN;
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -135,7 +136,10 @@ module.exports = async (phase) => {
         {
           // Apply these headers to all routes in your application.
           source: "/:path*",
-          headers: getSecurityHeaders(isNextjsDevelopmentServer),
+          headers: getSecurityHeaders({
+            isNextjsDevelopmentServer,
+            dataDogClientToken,
+          }),
         },
       ];
     },
