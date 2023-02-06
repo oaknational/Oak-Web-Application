@@ -7,12 +7,17 @@ import { getServerSideSitemap } from "next-sitemap";
 import curriculumApi from "../../../../../node-lib/curriculum-api";
 
 /**
- * @todo this page generates a sitemap with about 8000 entries so far. We need to split it into
- * multiple smaller sitemaps and reference them all in the sitemap index.
+ * Get all the key stages and construct sitemap entries for them, then all the subjects in each key stage,
+ * then units in each subject, then lessons in each unit, and construct sitemap entries for them.
  *
- * maybe do it on keystage since there are only a few of those, and we need to know
- * the URLs in advance so we can explicitly add them to the additional sitemap
- * config in next-sitemap.config.js .
+ *
+ * @todo this is the naive approach, and generates far too many pages for a sitemap file, they should be limited to about
+ * 10k entries. We can split on key stage, but that might not be enough. But we can split further using sitemap
+ * index files, but next-sitemap doesn't expose that functionality for server-side sitemaps (I think),
+ * so we would need to do some digging, that also hits the complexity of needing to know the sitemap file names
+ * at build time so we can statically reference them in the next-sitemap config.
+ *
+ * @todo these are effectively nested loops, and *very* slow, can we move this into a materialised view?
  */
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
@@ -20,52 +25,52 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const basePath = "beta/teachers/key-stages";
 
-  const keyStageSubjectPairs =
-    await curriculumApi.teachersKeyStageSubjectTiersPaths();
-  // Key stage, subject, unit combos. We don't know the units yet,
-  // so start with an empty array.
-  interface Params {
-    keyStageSlug: string;
-    subjectSlug: string;
-    unitSlugs: string[];
-  }
-  const ksuSlugs = keyStageSubjectPairs.tiers.map(
-    ({ keyStageSlug, subjectSlug }) => {
-      const params: Params = {
-        keyStageSlug,
-        subjectSlug,
-        unitSlugs: [],
-      };
-      return params;
-    }
-  );
-
   /**
    * Figure out the paths to all the nested dynamic routes under this directory.
    */
 
   // key-stages/[keyStageSlug]/subject
-  const uniqueKeystages = new Set(
-    ksuSlugs.map((ksSlug) => ksSlug.keyStageSlug)
+  const keyStageResult = await curriculumApi.teachersHomePage();
+  const keyStageSlugs = keyStageResult.keyStages.map(
+    (keyStage) => keyStage.slug
   );
-  const keystageFields = Array.from(uniqueKeystages).map((keystage) => {
+  const keyStagePaths = keyStageSlugs.map((keyStageSlug) =>
+    path.join(sitemapBaseUrl, basePath, keyStageSlug, "subjects")
+  );
+  const keystageFields = keyStagePaths.map((kPath) => {
     return {
-      loc: new URL(path.join(sitemapBaseUrl, basePath, keystage, "subjects"))
-        .href,
+      loc: new URL(kPath).href,
       lastmod: new Date().toISOString(),
     };
   });
 
   // key-stages/[keyStageSlug]/subject/[subjectSlug]
   // key-stages/[keyStageSlug]/subject/[subjectSlug]/units
+  interface KeyStageSubjectSlug {
+    keyStageSlug: string;
+    subjectSlug: string;
+  }
+  const keyStageSubjectSlugs: KeyStageSubjectSlug[] = [];
+  for await (const keyStageSlug of keyStageSlugs) {
+    const subjectResults = await curriculumApi.teachersKeyStageSubjects({
+      keyStageSlug,
+    });
+    subjectResults.subjects.forEach((subject) => {
+      const keyStageSubjectSlug: KeyStageSubjectSlug = {
+        keyStageSlug: subject.keyStageSlug,
+        subjectSlug: subject.slug,
+      };
+      keyStageSubjectSlugs.push(keyStageSubjectSlug);
+    });
+  }
   const keystageSubjectPaths = flatten(
-    ksuSlugs.map((ksSlug) => {
+    keyStageSubjectSlugs.map((keyStageSubjectSlug) => {
       const pagePath = path.join(
         sitemapBaseUrl,
         basePath,
-        ksSlug.keyStageSlug,
+        keyStageSubjectSlug.keyStageSlug,
         "subjects",
-        ksSlug.subjectSlug
+        keyStageSubjectSlug.subjectSlug
       );
       return [pagePath, path.join(pagePath, "units")];
     })
@@ -78,90 +83,112 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   });
 
   // key-stages/[keyStageSlug]/subject/[subjectSlug]/units/[unitSlug]
-  let keystageSubjectUnitPaths: string[] = [];
-  for await (const ksuSlug of ksuSlugs) {
-    const { keyStageSlug, subjectSlug } = ksuSlug;
-    // Given the key stage and subject, fetch the units.
-    const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
+  interface KeyStageSubjectUnitSlug {
+    keyStageSlug: string;
+    subjectSlug: string;
+    unitSlug: string;
+  }
+  const keyStageSubjectUnitSlugs: KeyStageSubjectUnitSlug[] = [];
+  for await (const keyStageSubjectSlug of keyStageSubjectSlugs) {
+    const { keyStageSlug, subjectSlug } = keyStageSubjectSlug;
+    const unitResults = await curriculumApi.teachersKeyStageSubjectUnits({
       keyStageSlug,
       subjectSlug,
     });
-    const unitSlugs = curriculumData.units.map((unit) => unit.slug);
-
-    // Store the units of the slugs object for use in subsequent path constructions.
-    ksuSlug.unitSlugs = unitSlugs;
-
-    const pagePaths = unitSlugs.map((unitSlug) => {
-      const pagePath = path.join(
+    unitResults.units.forEach((unit) => {
+      const keyStageSubjectUnitSlug: KeyStageSubjectUnitSlug = {
+        keyStageSlug: unit.keyStageSlug,
+        subjectSlug: unit.subjectSlug,
+        unitSlug: unit.slug,
+      };
+      keyStageSubjectUnitSlugs.push(keyStageSubjectUnitSlug);
+    });
+  }
+  const keystageSubjectUnitPaths = keyStageSubjectUnitSlugs.map(
+    (keyStageSubjectUnitSlug) =>
+      path.join(
         sitemapBaseUrl,
         basePath,
-        keyStageSlug,
+        keyStageSubjectUnitSlug.keyStageSlug,
         "subjects",
-        subjectSlug,
+        keyStageSubjectUnitSlug.subjectSlug,
         "units",
-        unitSlug
-      );
-      return pagePath;
-    });
-
-    keystageSubjectUnitPaths = keystageSubjectUnitPaths.concat(pagePaths);
-  }
-  const keystageSubjectUnitFields = keystageSubjectUnitPaths.map((ksuPath) => {
-    return {
-      loc: new URL(ksuPath).href,
-      lastmod: new Date().toISOString(),
-    };
-  });
-
-  // key-stages/[keyStageSlug]/subject/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]
-  // key-stages/[keyStageSlug]/subject/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads
-  let keystageSubjectUnitLessonPaths: string[] = [];
-  for await (const ksuSlug of ksuSlugs) {
-    const { keyStageSlug, subjectSlug, unitSlugs } = ksuSlug;
-    for await (const unitSlug of unitSlugs) {
-      // Given the key stage, subject, and unit, fetch the lessons.
-      const curriculumData =
-        await curriculumApi.teachersKeyStageSubjectUnitLessons({
-          keyStageSlug,
-          subjectSlug,
-          unitSlug,
-        });
-      const lessonSlugs = curriculumData.lessons.map((lesson) => lesson.slug);
-      const pagePaths = lessonSlugs.map((lessonSlug) => {
-        const pagePath = path.join(
-          sitemapBaseUrl,
-          basePath,
-          keyStageSlug,
-          "subjects",
-          subjectSlug,
-          "units",
-          unitSlug,
-          "lessons",
-          lessonSlug
-        );
-        const downloadsPagePath = path.join(pagePath, "downloads");
-        return [pagePath, downloadsPagePath];
-      });
-      keystageSubjectUnitLessonPaths = keystageSubjectUnitLessonPaths.concat(
-        flatten(pagePaths)
-      );
-    }
-  }
-  const keystageSubjectUnitLessonFields = keystageSubjectUnitLessonPaths.map(
-    (ksulPath) => {
+        keyStageSubjectUnitSlug.unitSlug
+      )
+  );
+  const keystageSubjectUnitFields = keystageSubjectUnitPaths.map(
+    (keystageSubjectUnitPath) => {
       return {
-        loc: new URL(ksulPath).href,
+        loc: new URL(keystageSubjectUnitPath).href,
         lastmod: new Date().toISOString(),
       };
     }
   );
 
+  // // DEBUG
+  // console.log({ keystageSubjectUnitFields });
+  // context.res.end("done!");
+  // const result = { props: {} };
+  // return result;
+
+  // key-stages/[keyStageSlug]/subject/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]
+  // key-stages/[keyStageSlug]/subject/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads
+  interface KeyStageSubjectUnitLessonSlug {
+    keyStageSlug: string;
+    subjectSlug: string;
+    unitSlug: string;
+    lessonSlug: string;
+  }
+  const keyStageSubjectUnitLessonSlugs: KeyStageSubjectUnitLessonSlug[] = [];
+  for await (const keyStageSubjectUnitSlug of keyStageSubjectUnitSlugs) {
+    const { keyStageSlug, subjectSlug, unitSlug } = keyStageSubjectUnitSlug;
+    const lessonResults =
+      await curriculumApi.teachersKeyStageSubjectUnitLessons({
+        keyStageSlug,
+        subjectSlug,
+        unitSlug,
+      });
+    lessonResults.lessons.forEach((lesson) => {
+      const keyStageSubjectUnitLessonSlug: KeyStageSubjectUnitLessonSlug = {
+        keyStageSlug: lesson.keyStageSlug,
+        subjectSlug: lesson.subjectSlug,
+        unitSlug: lesson.unitSlug,
+        lessonSlug: lesson.slug,
+      };
+      keyStageSubjectUnitLessonSlugs.push(keyStageSubjectUnitLessonSlug);
+    });
+  }
+  const keystageSubjectUnitLessonPaths = flatten(
+    keyStageSubjectUnitLessonSlugs.map((keyStageSubjectUnitLessonSlug) => {
+      const lessonPath = path.join(
+        sitemapBaseUrl,
+        basePath,
+        keyStageSubjectUnitLessonSlug.keyStageSlug,
+        "subjects",
+        keyStageSubjectUnitLessonSlug.subjectSlug,
+        "units",
+        keyStageSubjectUnitLessonSlug.unitSlug,
+        "lessons",
+        keyStageSubjectUnitLessonSlug.lessonSlug
+      );
+      return [lessonPath, path.join(lessonPath, "downloads")];
+    })
+  );
+  const keystageSubjectUnitLessonFields = keystageSubjectUnitLessonPaths.map(
+    (keystageSubjectUnitLessonPath) => {
+      return {
+        loc: new URL(keystageSubjectUnitLessonPath).href,
+        lastmod: new Date().toISOString(),
+      };
+    }
+  );
+
+  // Join the fields and send the response.
   const fields = keystageFields.concat(
     keystageSubjectFields,
     keystageSubjectUnitFields,
     keystageSubjectUnitLessonFields
   );
-
   return getServerSideSitemap(context, fields);
 };
 
