@@ -38,7 +38,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
                         {" "}
                         <OakImage
                           fill
-                          $objectFit="contain"
+                          objectFit="contain"
                           $objectPosition="left"
                           src={image}
                           alt={"quiz image"}
@@ -47,22 +47,24 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
                     );
                   } else {
                     const { title, images } = image;
-
-                    images.map((image) => {
-                      console.log(image, title);
-                      return (
-                        <Box $position="relative" $minHeight={110}>
-                          {" "}
-                          <OakImage
-                            fill
-                            $objectFit="contain"
-                            $objectPosition="left"
-                            src={image}
-                            alt={title}
-                          />
-                        </Box>
-                      );
-                    });
+                    return (
+                      <>
+                        {images.map((image) => {
+                          return (
+                            <Box $position="relative" $minHeight={110}>
+                              {" "}
+                              <OakImage
+                                fill
+                                $objectFit="contain"
+                                $objectPosition="left"
+                                src={image}
+                                alt={title}
+                              />
+                            </Box>
+                          );
+                        })}
+                      </>
+                    );
                   }
                 }
               })}

@@ -216,7 +216,7 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     quizType: z.string(),
     images: z.union([
       z.array(z.object({ title: z.string(), images: z.array(z.string()) })),
-      z.array(z.string().nullable()),
+      z.array(z.string()),
     ]),
     feedbackCorrect: z.string().nullable(),
     feedbackIncorrect: z.string().nullable(),
