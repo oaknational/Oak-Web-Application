@@ -36,7 +36,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
       <MaxWidth>
         <Grid $ph={[12, 0]}>
           <GridArea $colSpan={[12]}>
-            <MobileFilters page={page} withBackButton title={"Categories"}>
+            <MobileFilters page={page} withBackButton label={"Categories"}>
               <PostCategoryList
                 labelledBy={triggerId}
                 $pv={28}

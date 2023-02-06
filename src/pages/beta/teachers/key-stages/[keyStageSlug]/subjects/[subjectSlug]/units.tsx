@@ -148,7 +148,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                   </Heading>
                 </Flex>
                 {learningThemes.length > 1 && (
-                  <MobileFilters title="Learning themes" $mt={0}>
+                  <MobileFilters label="Learning themes" $mt={0}>
                     <LearningThemeFilters
                       labelledBy={"Learning themes filter"}
                       learningThemes={learningThemes}
