@@ -1,3 +1,15 @@
+# [1.124.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.123.1...v1.124.0) (2023-02-06)
+
+
+### Features
+
+* 1217 add TSc field to downloads form ([f80a3f0](https://github.com/oaknational/Oak-Web-Application/commit/f80a3f05df447f4a7b047d1e5bd7700d998cd89c))
+* 1217 correct links styling ([e16864d](https://github.com/oaknational/Oak-Web-Application/commit/e16864dd70f7b25a22892d63782bd96ff48231c4))
+* 1217 text amend ([4304a21](https://github.com/oaknational/Oak-Web-Application/commit/4304a2145d41266c593729f8ac928c44105be277))
+* 1217 update allowed npm version ([2d53c93](https://github.com/oaknational/Oak-Web-Application/commit/2d53c9396eb04bece18c769544ecc3053910580b))
+* 1217 update tests ([536768f](https://github.com/oaknational/Oak-Web-Application/commit/536768fc3d8bcff69275318539423bdfc0085ff1))
+* 1217 Updates to TCs field ([b0ba64e](https://github.com/oaknational/Oak-Web-Application/commit/b0ba64e2d0d9196795945e6b98928a03ae7959c3))
+
 ## [1.123.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.123.0...v1.123.1) (2023-02-06)
 
 # [1.123.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.122.0...v1.123.0) (2023-02-06)
