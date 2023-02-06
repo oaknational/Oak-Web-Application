@@ -31,7 +31,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("download form", () => {
-    it("Renders download form", () => {
+    it("Renders download form with correct elements", () => {
       renderWithProviders(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
@@ -40,6 +40,26 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(screen.getByTestId("email-heading")).toHaveTextContent(
         "For regular updates from Oak (optional)"
       );
+      expect(
+        screen.getByPlaceholderText("Enter email address here")
+      ).toBeInTheDocument();
+
+      const privacyPolicyLink = screen.getByRole("link", {
+        name: "privacy policy",
+      });
+      expect(privacyPolicyLink).toBeInTheDocument();
+      expect(privacyPolicyLink).toHaveAttribute(
+        "href",
+        "/legal/privacy-policy"
+      );
+      expect(
+        screen.getByLabelText("I accept terms and conditions (required)")
+      ).toBeInTheDocument();
+      const tcsLink = screen.getByRole("link", {
+        name: "terms & conditions",
+      });
+      expect(tcsLink).toBeInTheDocument();
+      expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {
