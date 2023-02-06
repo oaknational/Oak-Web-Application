@@ -11,6 +11,7 @@ jest.mock("../../context/Search/SearchContext", () => ({
     setKeyStages: jest.fn(),
   }),
 }));
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("SearchFilters", () => {
   test("should render SearchFilters based on ALL_KEY_STAGES", () => {
