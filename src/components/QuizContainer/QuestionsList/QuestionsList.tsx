@@ -21,6 +21,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
           images,
           feedbackCorrect,
           feedbackIncorrect,
+          type,
         } = question;
 
         return (
@@ -31,18 +32,38 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
             {images &&
               images.map((image) => {
                 if (image) {
-                  return (
-                    <Box $position="relative" $minHeight={110}>
-                      {" "}
-                      <OakImage
-                        fill
-                        $objectFit="contain"
-                        $objectPosition="left"
-                        src={image}
-                        alt={"quiz image"}
-                      />
-                    </Box>
-                  );
+                  if (typeof image === "string") {
+                    return (
+                      <Box $position="relative" $minHeight={110}>
+                        {" "}
+                        <OakImage
+                          fill
+                          $objectFit="contain"
+                          $objectPosition="left"
+                          src={image}
+                          alt={"quiz image"}
+                        />
+                      </Box>
+                    );
+                  } else {
+                    const { title, images } = image;
+
+                    images.map((image) => {
+                      console.log(image, title);
+                      return (
+                        <Box $position="relative" $minHeight={110}>
+                          {" "}
+                          <OakImage
+                            fill
+                            $objectFit="contain"
+                            $objectPosition="left"
+                            src={image}
+                            alt={title}
+                          />
+                        </Box>
+                      );
+                    });
+                  }
                 }
               })}
             {choiceImages &&
@@ -74,10 +95,11 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
                 })}
               </Typography>
             )}
-
-            <Typography $mb={32} $font={["body-2", "body-1"]}>
-              answer: {answer}
-            </Typography>
+            {type !== "checkbox" && (
+              <Typography $mb={32} $font={["body-2", "body-1"]}>
+                answer: {answer}
+              </Typography>
+            )}
             <Typography $mb={32} $font={["body-2", "body-1"]}>
               points: {points}
             </Typography>
