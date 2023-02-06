@@ -14,6 +14,7 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex, { FlexProps } from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
 import Cover from "../Cover";
+import { IconName } from "../Icon";
 import { useMenuContext } from "../../context/Menu";
 import { PostCategoryPage } from "../Posts/PostCategoryList/PostCategoryList";
 
@@ -21,7 +22,10 @@ export type MobileFiltersProps = {
   withBackButton?: boolean;
   page?: PostCategoryPage;
   children: ReactNode;
-  title: string;
+  iconOpened?: IconName;
+  iconClosed?: IconName;
+  label: string;
+  labelOpened?: string;
 } & FlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +47,16 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     checkAndSetHeight();
   }, [categoryListRef]);
 
-  const { withBackButton, page, children, title, ...flexProps } = props;
+  const {
+    withBackButton,
+    page,
+    children,
+    iconOpened = "ChevronUp",
+    iconClosed = "ChevronDown",
+    label,
+    labelOpened = label,
+    ...flexProps
+  } = props;
   const menuId = useId();
   const triggerId = useId();
 
@@ -90,11 +103,11 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           id={triggerId}
           $ml="auto"
           variant="minimal"
-          icon={isOpen ? "ChevronUp" : "ChevronDown"}
+          icon={isOpen ? iconOpened : iconClosed}
           iconBackground="teachersHighlight"
           $iconPosition="trailing"
           size="large"
-          label={title}
+          label={isOpen ? labelOpened : label}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           aria-expanded={isOpen}
           aria-controls={menuId}

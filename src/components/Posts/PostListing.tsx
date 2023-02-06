@@ -87,7 +87,7 @@ const PostListing: FC<PostListingProps> = ({
           heading={categoryHeading || pageData.heading}
           imageProps={cardImage}
         />
-        <MobileFilters page={page} title={"Categories"}>
+        <MobileFilters page={page} label={"Categories"}>
           <PostCategoryList
             labelledBy={triggerId}
             $pv={28}
