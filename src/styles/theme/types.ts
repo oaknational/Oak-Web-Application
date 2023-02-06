@@ -29,6 +29,7 @@ export type PixelSpacing =
   | 10
   | 12
   | 16
+  | 18
   | 20
   | 24
   | 28
@@ -45,23 +46,31 @@ export type PixelSpacing =
   | 80
   | 92
   | 96
+  | 110
   | 120
+  | 130
   | 140
   | 150
   | 160
+  | 166
   | 172
   | 200
   | 220
   | 240
+  | 270
   | 300
   | 320
   | 360
   | 380
   | 400
+  | 420
   | 450
   | 480
+  | 580
   | 600
+  | 640
   | 720
+  | 740
   | 812
   | 840
   | 900
@@ -69,9 +78,19 @@ export type PixelSpacing =
   | 1280
   | 1600;
 export type NullablePixelSpacing = PixelSpacing | null;
-export type NegativePixelSpacing = -32 | -28 | -24 | -20 | -16 | -12 | -8 | -4;
+export type NegativePixelSpacing =
+  | -36
+  | -32
+  | -28
+  | -24
+  | -20
+  | -16
+  | -12
+  | -8
+  | -4;
 export type PercentSpacing =
   | "100%"
+  | "99%"
   | "95%"
   | "90%"
   | "85%"
@@ -87,6 +106,7 @@ export type PercentSpacing =
   | "20%"
   | "15%"
   | "10%"
+  | "5%"
   // vw units sometimes needed to fix edge cages
   | "28vw";
 export type Unset = "unset";
@@ -113,6 +133,8 @@ const OakColorNameZod = z.union([
   z.literal("oakGrey2"),
   z.literal("oakGrey3"),
   z.literal("oakGrey4"),
+  z.literal("oakGrey5"),
+  z.literal("oakGrey6"),
   z.literal("pastelTurquoise"),
   z.literal("warning"),
   z.literal("failure"),

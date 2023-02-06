@@ -7,7 +7,7 @@ describe("get_secret_names_from_public_config.js", () => {
         apiKey: "123abc",
       },
       service: {
-        graphqlApiUrl: "https://example.com",
+        curriculumApiUrl: "https://example.com",
         requiredSecrets: ["SERVICE_SECRET"],
       },
       oak: {

@@ -4,7 +4,6 @@ import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import { HTMLAnchorProps } from "../Button/common";
 import Flex, { FlexProps } from "../Flex";
-import Icon from "../Icon";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
 
 type LinkProps = { label: string; href: string };
@@ -33,23 +32,17 @@ const NavLink = ({ label, href }: LinkProps) => {
           page={null}
           $mr={[0, 36]}
           disabled={isCurrent}
+          isCurrent={isCurrent}
         />
       </Box>
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
-        {isCurrent && (
-          <Flex $alignItems={"center"}>
-            <Icon
-              $opacity={isCurrent ? 0.6 : 1}
-              $ml={12}
-              variant={"minimal"}
-              name={"ArrowRight"}
-            />
-          </Flex>
-        )}
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
-          $opacity={isCurrent ? 0.6 : 1}
+          isCurrent={isCurrent}
+          currentStyles={["arrow-icon", "color"]}
+          $iconPosition={"leading"}
+          iconBackground="transparent"
           variant={"minimal"}
           label={label}
           page={null}

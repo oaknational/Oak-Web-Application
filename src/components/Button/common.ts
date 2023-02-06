@@ -12,18 +12,16 @@ import { OpacityProps } from "../../styles/utils/opacity";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
-export type ButtonVariant = "brush" | "minimal";
+export type ButtonVariant = "brush" | "minimal" | "buttonStyledAsLink";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large";
 
 const SMALL_BUTTON_ICON_SIZE = 28;
 const SMALL_BUTTON_HEIGHT = 40;
-const SMALL_BUTTON_PADDING_X = 8;
 
 const LARGE_BUTTON_ICON_SIZE = 36;
 const LARGE_BUTTON_HEIGHT = 48;
-const LARGE_BUTTON_PADDING_X = 8;
 
 export const buttonFlexDirectionMap: Record<
   IconPosition,
@@ -58,6 +56,18 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 0,
   },
+  "small-buttonStyledAsLink-button": {
+    height: 30,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 0,
+  },
+  "large-buttonStyledAsLink-button": {
+    height: 36,
+    iconOuterHeight: 36,
+    iconInnerHeight: 30,
+    paddingH: 0,
+  },
   "small-brush-button": {
     height: 44,
     iconOuterHeight: 30,
@@ -77,6 +87,18 @@ const BUTTON_CONFIGS: Record<
     paddingH: 0,
   },
   "large-minimal-icon-button": {
+    height: 30,
+    iconOuterHeight: 30,
+    iconInnerHeight: 30,
+    paddingH: 0,
+  },
+  "small-buttonStyledAsLink-icon-button": {
+    height: 20,
+    iconOuterHeight: 20,
+    iconInnerHeight: 20,
+    paddingH: 0,
+  },
+  "large-buttonStyledAsLink-icon-button": {
     height: 30,
     iconOuterHeight: 30,
     iconInnerHeight: 30,
@@ -122,11 +144,17 @@ export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
 export const getButtonBackground = (
   background: ButtonBackground,
   variant: ButtonVariant
-) => (variant === "minimal" ? "transparent" : getColorByName(background));
+) =>
+  variant === "minimal" || variant === "buttonStyledAsLink"
+    ? "transparent"
+    : getColorByName(background);
 export const getButtonColor = (
   background: ButtonBackground,
   variant: ButtonVariant
-) => (variant === "minimal" ? "black" : getTextColorForBackground(background));
+) =>
+  variant === "minimal" || variant === "buttonStyledAsLink"
+    ? "black"
+    : getTextColorForBackground(background);
 export const getButtonIconBackground =
   (background: ButtonBackground) => (props: PropsWithTheme) =>
     props.theme.buttonIconBackgroundColors[background] ||
@@ -136,11 +164,11 @@ export const getButtonDropShadowColor =
   (background: ButtonBackground) => (props: PropsWithTheme) =>
     props.theme.buttonDropShadows[background] || DEFAULT_DROP_SHADOW_COLOR;
 
-const buttonPaddingMap: Record<ButtonSize, PixelSpacing> = {
-  small: SMALL_BUTTON_PADDING_X,
-  large: LARGE_BUTTON_PADDING_X,
-};
-export const getButtonPadding = (size: ButtonSize) => buttonPaddingMap[size];
+export const getButtonPadding = (
+  size: ButtonSize,
+  variant: ButtonVariant,
+  buttonOrIconButton: "button" | "icon-button"
+) => getButtonConfig(size, variant, buttonOrIconButton).paddingH;
 export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_ICON_SIZE,
   large: LARGE_BUTTON_ICON_SIZE,

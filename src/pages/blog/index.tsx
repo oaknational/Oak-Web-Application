@@ -1,7 +1,7 @@
 import { uniqBy } from "lodash/fp";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 
-import { BlogListingPageProps } from "../../components/pages/BlogIndex.page";
+import { PostListingPageProps } from "../../components/pages/BlogIndex.page";
 import CMSClient from "../../node-lib/cms";
 import { decorateWithIsr } from "../../node-lib/isr";
 import { serializeDate } from "../../utils/serializeDate";
@@ -9,7 +9,7 @@ import { serializeDate } from "../../utils/serializeDate";
 export { default } from "../../components/pages/BlogIndex.page";
 
 export const getStaticProps: GetStaticProps<
-  BlogListingPageProps,
+  PostListingPageProps,
   // @todo is below typesafe?
   { categorySlug?: string }
 > = async (context) => {
@@ -35,14 +35,16 @@ export const getStaticProps: GetStaticProps<
   ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
   const categorySlug = context.params?.categorySlug || null;
-  const blogs = blogResults.map(serializeDate).filter((blog) => {
-    if (categorySlug) {
-      return blog.category.slug === categorySlug;
-    }
-    return true;
-  });
+  const blogs = blogResults
+    .map((blog) => serializeDate(blog))
+    .filter((blog) => {
+      if (categorySlug) {
+        return blog.category.slug === categorySlug;
+      }
+      return true;
+    });
 
-  const results: GetStaticPropsResult<BlogListingPageProps> = {
+  const results: GetStaticPropsResult<PostListingPageProps> = {
     props: {
       blogs,
       categories: blogCategories,

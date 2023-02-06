@@ -1,25 +1,25 @@
 import { NextPage } from "next";
 
 import {
-  BlogListingPage,
+  PostListingPage,
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
-import { BlogListItemProps } from "../Blog/BlogList/BlogListItem";
+import { PostListItemProps } from "../Posts/PostList/PostListItem";
 import PostListing from "../Posts/PostListing";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
 };
 
-export type BlogListingPageProps = {
+export type PostListingPageProps = {
   blogs: SerializedBlogPostPreview[];
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
-  pageData: BlogListingPage;
+  pageData: PostListingPage;
 };
 
-const BlogIndexPage: NextPage<BlogListingPageProps> = (props) => {
+const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
   const { blogs, categories, categorySlug, pageData } = props;
   return (
     <PostListing
@@ -44,9 +44,9 @@ const BlogIndexPage: NextPage<BlogListingPageProps> = (props) => {
   );
 };
 
-export const blogToBlogListItem = (
+export const blogToPostListItem = (
   blog: SerializedBlogPostPreview
-): BlogListItemProps => ({
+): PostListItemProps => ({
   ...blog,
   summary: blog.summary?.trim(),
   contentType: "blog-post",

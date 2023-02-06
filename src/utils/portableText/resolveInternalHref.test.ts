@@ -10,7 +10,7 @@ describe("resolveInternalHref()", () => {
     ["aboutCorePage.partners", {}, `/about-us/partners`],
     ["aboutCorePage.workWithUs", {}, `/about-us/work-with-us`],
     ["planningCorePage", {}, "/lesson-planning"],
-    ["supportCorePage", {}, "/support"],
+    ["supportCorePage", {}, "/support-your-team"],
     ["curriculumCorePage", {}, "/develop-your-curriculum"],
     ["webinar", { slug: "the-webinar" }, "/webinars/the-webinar"],
     ["webinarListingPage", {}, "/webinars"],

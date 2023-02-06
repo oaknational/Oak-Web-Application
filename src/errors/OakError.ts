@@ -16,11 +16,15 @@ const ERROR_CODES = [
   "hubspot/invalid-email",
   "hubspot/unknown",
   "video/unknown",
+  "video/fetch-signed-token",
   "hubspot/not-loaded",
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
   "cms/invalid-reference-data",
+  "cms/invalid-hubspot-form",
+  "curriculum-api/not-found",
+  "curriculum-api/uniqueness-assumption-violated",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -104,6 +108,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Sorry this video couldn't play, please try again",
     shouldNotify: true,
   },
+  "video/fetch-signed-token": {
+    message: "Failed to fetch signed video token",
+    shouldNotify: true,
+  },
   "preview/invalid-token": {
     message: "Invalid CMS preview token provided",
     responseStatusCode: 401,
@@ -113,6 +121,20 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Couldn't find a matching portable text reference",
     shouldNotify: true,
     responseStatusCode: 500,
+  },
+  "cms/invalid-hubspot-form": {
+    message: "Error fetching or parsing referenced hubspot form",
+    shouldNotify: true,
+    responseStatusCode: 500,
+  },
+  "curriculum-api/not-found": {
+    message: "Resource not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "curriculum-api/uniqueness-assumption-violated": {
+    message: "Multiple resources were found when maximum 1 was expected",
+    shouldNotify: true,
   },
 };
 

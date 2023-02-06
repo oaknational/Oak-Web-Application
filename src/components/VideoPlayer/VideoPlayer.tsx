@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
+import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 
 import Flex from "../Flex";
@@ -7,11 +8,19 @@ import OakError from "../../errors/OakError";
 import theme, { OakColorName } from "../../styles/theme";
 import errorReporter from "../../common-lib/error-reporter";
 import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
+import { P } from "../Typography";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
+import getPercentageElapsed from "./getPercentageElapsed";
+import {
+  PlaybackPolicy,
+  useSignedVideoToken,
+  useSignedThumbnailToken,
+  useSignedStoryboardToken,
+} from "./useSignedVideoToken";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -26,14 +35,22 @@ export type VideoStyleConfig = {
 
 export type VideoPlayerProps = {
   playbackId: string;
+  playbackPolicy: PlaybackPolicy;
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
-  const { playbackId, thumbnailTime: thumbTime, title, location } = props;
+  const {
+    thumbnailTime: thumbTime,
+    title,
+    location,
+    playbackId,
+    playbackPolicy,
+  } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
+  const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
 
@@ -56,6 +73,21 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const videoTracking = useVideoTracking({ getState });
 
+  const thumbnailToken = useSignedThumbnailToken({
+    playbackId,
+    playbackPolicy,
+  });
+
+  const videoToken = useSignedVideoToken({
+    playbackId: playbackId,
+    playbackPolicy: playbackPolicy,
+  });
+
+  const storyboardToken = useSignedStoryboardToken({
+    playbackId: playbackId,
+    playbackPolicy: playbackPolicy,
+  });
+
   const metadata = {
     "metadata-video-id": playbackId,
     "metadata-video-title": title,
@@ -73,8 +105,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     videoTracking.onPause();
   };
 
-  const onEnded = () => {
-    videoTracking.onEnd();
+  const onTimeUpdate = () => {
+    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
+      videoTracking.onEnd();
+      hasTrackedEndRef.current = true;
+    }
   };
   const onError = (evt: Event) => {
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
@@ -92,6 +127,24 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
      */
     return null;
   }
+  if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
+    return (
+      <Flex $flexDirection={"column"} $width={"100%"}>
+        <P $textAlign="center">Loading...</P>
+      </Flex>
+    );
+  }
+
+  const tokens: Tokens = {
+    playback: videoToken?.playbackToken ? videoToken.playbackToken : undefined,
+    thumbnail: thumbnailToken?.playbackToken
+      ? thumbnailToken.playbackToken
+      : undefined,
+    storyboard: storyboardToken?.playbackToken
+      ? storyboardToken.playbackToken
+      : undefined,
+  };
+
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
       <MuxPlayer
@@ -101,15 +154,17 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
+        tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
+        beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
         onPlay={onPlay}
         onPause={onPause}
-        onEnded={onEnded}
         onError={onError}
+        onTimeUpdate={onTimeUpdate}
         style={{
           aspectRatio: "16/9",
         }}
