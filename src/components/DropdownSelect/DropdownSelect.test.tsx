@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { screen, fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
@@ -107,41 +107,5 @@ describe("select", () => {
     const select = screen.getByTestId("select");
 
     expect(select).toBeInTheDocument();
-  });
-
-  describe("mobile ua", () => {
-    let useAgent: jest.SpyInstance;
-
-    beforeEach(() => {
-      useAgent = jest.spyOn(window.navigator, "userAgent", "get");
-    });
-
-    it("renders a native select element, which calls 'setSelectedKey' on change", async () => {
-      useAgent.mockReturnValue("Android");
-
-      const { getByLabelText } = renderWithTheme(
-        <DropdownSelect
-          id="test-select"
-          listItems={roles}
-          name={"Name"}
-          placeholder={"Placeholder"}
-          label={"select me"}
-          onChange={setSelectedKey}
-        />
-      );
-
-      const select = getByLabelText("select me");
-      const options = select.querySelectorAll("option");
-      fireEvent.change(select, { target: { value: "pupil" } });
-      options.forEach((option) => {
-        if (option.value === "pupil") {
-          expect(option.selected).toBeTruthy();
-        } else {
-          expect(option.selected).toBeFalsy();
-        }
-      });
-
-      expect(setSelectedKey).toHaveBeenCalled();
-    });
   });
 });

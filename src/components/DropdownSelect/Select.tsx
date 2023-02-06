@@ -83,9 +83,6 @@ const selectButtonStyles = css<SelectButtonProps>`
 export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   ${selectButtonStyles}
 `;
-const NativeSelect = styled.select`
-  ${selectButtonStyles}
-`;
 
 const SelectInner = styled(Flex)`
   max-width: calc(100% - 20px);
@@ -101,7 +98,7 @@ const SelectSpan = styled.span`
 export function Select<T extends object>(
   props: AriaSelectProps<T> & SelectProps
 ) {
-  const { myRef, containerProps, items } = props;
+  const { myRef, containerProps } = props;
 
   // Create state based on the incoming props
   const state = useSelectState(props);
@@ -117,14 +114,6 @@ export function Select<T extends object>(
   const { buttonProps } = useButton(triggerProps, ref);
 
   const { focusProps, isFocusVisible } = useFocusRing();
-
-  // On tablets and phones, make use of native select components
-  const shouldRenderNativeSelect =
-    typeof window === "undefined"
-      ? false
-      : /Mobi|iP(hone|od|ad)|Android|BlackBerry/i.test(
-          window.navigator.userAgent
-        );
 
   // unique id for map key
   const id = useId();
@@ -156,62 +145,41 @@ export function Select<T extends object>(
         </RotatedInputLabel>
       </Flex>
 
-      {shouldRenderNativeSelect ? (
-        <NativeSelect
-          // Having to ignore due to inconsistent ref types
-          // eslint-disable-next-line
-          // @ts-ignore
-          ref={ref}
+      <>
+        <SelectButton
+          {...mergeProps(buttonProps, focusProps)}
           aria-labelledby={labelProps.id}
           aria-describedby={props["aria-describedby"]}
           aria-invalid={props["aria-invalid"]}
+          ref={ref}
+          isOpen={state.isOpen}
+          isFocusVisible={isFocusVisible}
           isPlaceholder={!state.selectedItem}
-          onChange={(e) => state.setSelectedKey(e.target.value)}
+          id={buttonId}
         >
-          <option value="">{props.placeholder}</option>
-          {items.map((item) => (
-            <option key={`Select-${id}-${item.value}`} value={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </NativeSelect>
-      ) : (
-        <>
-          <SelectButton
-            {...mergeProps(buttonProps, focusProps)}
-            aria-labelledby={labelProps.id}
-            aria-describedby={props["aria-describedby"]}
-            aria-invalid={props["aria-invalid"]}
-            ref={ref}
-            isOpen={state.isOpen}
-            isFocusVisible={isFocusVisible}
-            isPlaceholder={!state.selectedItem}
-            id={buttonId}
-          >
-            <SelectInner $alignItems={"center"}>
-              {props.icon && <Icon $mr={8} name={props.icon} />}
-              <SelectSpan
-                id={valueId}
-                data-testid={"select-span"}
-                title={props.placeholder}
-              >
-                {state.selectedItem
-                  ? state.selectedItem.rendered
-                  : props.placeholder}
-              </SelectSpan>
-            </SelectInner>
-            <Icon
-              $color="black"
-              name={state.isOpen ? "ChevronUp" : "ChevronDown"}
-            />
-          </SelectButton>
-          {state.isOpen && (
-            <Popover isOpen={state.isOpen} onClose={state.close}>
-              <ListBox {...menuProps} state={state} />
-            </Popover>
-          )}
-        </>
-      )}
+          <SelectInner $alignItems={"center"}>
+            {props.icon && <Icon $mr={8} name={props.icon} />}
+            <SelectSpan
+              id={valueId}
+              data-testid={"select-span"}
+              title={props.placeholder}
+            >
+              {state.selectedItem
+                ? state.selectedItem.rendered
+                : props.placeholder}
+            </SelectSpan>
+          </SelectInner>
+          <Icon
+            $color="black"
+            name={state.isOpen ? "ChevronUp" : "ChevronDown"}
+          />
+        </SelectButton>
+        {state.isOpen && (
+          <Popover isOpen={state.isOpen} onClose={state.close}>
+            <ListBox {...menuProps} state={state} />
+          </Popover>
+        )}
+      </>
     </SelectContainer>
   );
 }
