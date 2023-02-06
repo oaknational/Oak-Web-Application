@@ -17,7 +17,9 @@ import curriculumApi from "../../../../../node-lib/curriculum-api";
  * so we would need to do some digging, that also hits the complexity of needing to know the sitemap file names
  * at build time so we can statically reference them in the next-sitemap config.
  *
- * @todo these are effectively nested loops, and *very* slow, can we move this into a materialised view?
+ * @todo these are effectively nested loops, and *very* slow, about ten minutes on a high powered Mac,
+ * can we move this into a materialised view and a single request? And can we move it getStaticProps
+ * with ISR turned on?
  */
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
