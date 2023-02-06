@@ -44,7 +44,7 @@ style-src
  'self'
  'report-sample'
  'unsafe-inline'
- fonts.googleapis.com;
+ googleapis-fonts.thenational.academy;
 object-src
  'none';
 frame-src
@@ -71,8 +71,7 @@ img-src
 font-src
  'self'
  data:
- fonts.googleapis.com
- fonts.gstatic.com;
+ gstatic-fonts.thenational.academy;
 connect-src
  'self'
  *.thenational.academy
@@ -80,8 +79,6 @@ connect-src
  api.avo.app
  api.hubapi.com
  cloudflareinsights.com
- fonts.googleapis.com
- fonts.gstatic.com
  forms.hsforms.com
  js.hs-analytics.net
  js.hs-banner.com
