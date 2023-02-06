@@ -7,10 +7,25 @@ import { OakColorName } from "../../../../styles/theme/types";
 
 export const gapPositionMap = {
   rightTop: "90%",
-  bottomRight: "85%",
+  bottomRight: "90%",
+  bottomRightCorner: "99%",
 } as const;
 
 export type GapPosition = keyof typeof gapPositionMap;
+
+const getBorderHeight = (gapPosition: GapPosition | undefined) => {
+  if (gapPosition === "rightTop") return gapPositionMap.rightTop;
+  if (gapPosition === "bottomRightCorner")
+    return gapPositionMap.bottomRightCorner;
+  return "100%";
+};
+
+const getBorderWidth = (gapPosition: GapPosition | undefined) => {
+  if (gapPosition === "bottomRight") return gapPositionMap.bottomRight;
+  if (gapPosition === "bottomRightCorner")
+    return gapPositionMap.bottomRightCorner;
+  return "100%";
+};
 
 export type BoxBordersProps = {
   gapPosition?: GapPosition;
@@ -133,7 +148,8 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
         $width={3}
         $top={"unset"}
         $left={"unset"}
-        $height={gapPosition === "rightTop" ? gapPositionMap.rightTop : "100%"}
+        $bottom={gapPosition === "bottomRightCorner" ? "5%" : undefined}
+        $height={getBorderHeight(gapPosition)}
       />
       {!props.hideBottom && (
         <Svg
@@ -142,9 +158,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
           $cover
           $height={3}
           $top={"unset"}
-          $width={
-            gapPosition === "bottomRight" ? gapPositionMap.bottomRight : "100%"
-          }
+          $width={getBorderWidth(gapPosition)}
         />
       )}
       <Svg

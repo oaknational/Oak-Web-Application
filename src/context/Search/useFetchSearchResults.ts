@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/browser";
 import OakError from "../../errors/OakError";
-import { SearchHit } from "../../pages/beta/search";
+import { SearchHit } from "../../pages/beta/teachers/search";
 import handleFetchError from "../../utils/handleFetchError";
 
 import constructElasticQuery from "./constructElasticQuery";
@@ -42,6 +42,7 @@ const useFetchSearchResults = () => {
 
         handleFetchError(response);
         const data = await response.json();
+
         if (data) {
           const { hits } = data;
           const hitList: SearchHit[] = hits.hits;

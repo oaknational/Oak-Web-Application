@@ -18,7 +18,10 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.tsx", () => {
   it("Renders title from props ", () => {
     renderWithProviders(
-      <SubjectUnitsListPage curriculumData={curriculumData} />
+      <SubjectUnitsListPage
+        curriculumData={curriculumData}
+        learningThemeSlug={null}
+      />
     );
 
     waitFor(() => {
@@ -31,7 +34,10 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
   describe("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo(
-        <SubjectUnitsListPage curriculumData={curriculumData} />
+        <SubjectUnitsListPage
+          curriculumData={curriculumData}
+          learningThemeSlug={null}
+        />
       );
 
       expect(seo).toEqual({

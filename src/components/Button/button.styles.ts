@@ -4,11 +4,13 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
+import { getBreakpoint } from "../../styles/utils/responsive";
 import { BackgroundIcon } from "../Icon/Icon";
 
 import {
   ButtonFocusUnderline,
   ButtonMinimalFocusUnderline,
+  ButtonStyledAsLinkFocusUnderline,
 } from "./ButtonInner";
 import ButtonLabel from "./ButtonLabel";
 import {
@@ -85,6 +87,14 @@ const buttonStyles = css<ButtonStylesProps>`
     display: none;
   }
 
+  ${ButtonStyledAsLinkFocusUnderline} {
+    display: none;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+  }
+
   ${(props) =>
     props.variant === "brush" &&
     css`
@@ -137,6 +147,23 @@ const buttonStyles = css<ButtonStylesProps>`
       }
 
       ${iconFocusUnderline}
+    `}
+
+  ${(props) =>
+    props.variant === "buttonStyledAsLink" &&
+    css`
+      &:hover,
+      &:focus {
+        & ${ButtonStyledAsLinkFocusUnderline} {
+          display: block;
+        }
+      }
+
+      @media (max-width: ${getBreakpoint("small")}px) {
+        & ${ButtonStyledAsLinkFocusUnderline} {
+          display: block;
+        }
+      }
     `}
 
   ${margin}

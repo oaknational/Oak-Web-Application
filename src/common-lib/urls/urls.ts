@@ -101,6 +101,16 @@ export type LessonIndexLinkProps = {
 };
 export type LessonOverviewLinkProps = {
   page: "lesson-overview";
+  keyStage: string;
+  subject: string;
+  unit: string;
+  slug: string;
+};
+export type DownloadsLinkProps = {
+  page: "downloads";
+  keyStage: string;
+  subject: string;
+  unit: string;
   slug: string;
 };
 
@@ -118,11 +128,13 @@ export type ResolveOakHrefProps =
         | "key-stage";
       slug: string;
     }
+  | { page: "beta-search"; term?: string }
   | PostIndexLinkProps
   | TierSelectionLinkProps
   | UnitIndexLinkProps
   | LessonIndexLinkProps
-  | LessonOverviewLinkProps;
+  | LessonOverviewLinkProps
+  | DownloadsLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -199,9 +211,16 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
     }
     case "lesson-overview": {
-      return `/beta/teachers/lessons/${props.slug}`;
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
     }
-
+    case "beta-search": {
+      return props.term
+        ? `/beta/teachers/search?term=${props.term}`
+        : "/beta/teachers/search";
+    }
+    case "downloads": {
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}/downloads`;
+    }
     default:
       return OAK_PAGES[props.page];
   }

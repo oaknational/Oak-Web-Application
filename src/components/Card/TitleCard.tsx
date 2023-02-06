@@ -10,7 +10,7 @@ import Box from "../Box";
 export const titleCardIconBackground = {
   subject: "teachersPastelYellow",
   unit: "teachersLilac",
-  lesson: "teachersLilac",
+  lesson: "pupilsPink",
   lessons: "teachersLilac",
 } as const;
 
@@ -21,7 +21,7 @@ export type TitlePageType =
       keyStageSlug: string;
     }
   | {
-      page: "unit" | "lesson";
+      page: "unit" | "lessons" | "lesson";
       keyStage: string;
       keyStageSlug: string;
       subject: string;
@@ -41,6 +41,7 @@ type TitleCardProps = FlexProps & {
  */
 const TitleCard: FC<TitleCardProps> = (props) => {
   const { title, keyStage, keyStageSlug, iconName, page, ...flexProps } = props;
+
   return (
     <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
       <Flex
@@ -50,24 +51,13 @@ const TitleCard: FC<TitleCardProps> = (props) => {
         $justifyContent={"space-between"}
         $alignItems={"center"}
       >
-        <Box $ma={24}>
+        <Box $ma={24} $maxWidth={["100%", 740, 740]}>
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
           <OakLink slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
-          {page === "unit" && (
-            // @todo Change to subject when pages are created
-            <OakLink
-              $ml={16}
-              page={"unit-index"}
-              keyStage={keyStageSlug}
-              subject={props.subjectSlug}
-            >
-              <Span $font={"heading-7"}>{props.subject}</Span>
-            </OakLink>
-          )}
         </Box>
         <Flex
           $justifyContent={"center"}
