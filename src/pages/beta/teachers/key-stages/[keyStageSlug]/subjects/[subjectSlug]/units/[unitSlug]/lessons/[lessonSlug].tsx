@@ -57,6 +57,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     worksheetUrl,
     transcript,
     hasCopyrightMaterial,
+    hasDownloadableResources,
   } = curriculumData;
 
   const router = useRouter();
@@ -107,18 +108,21 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </UL>
         </Flex>
         <Flex $mt={12} $flexWrap={"wrap"}>
-          <ButtonAsLink
-            $mr={24}
-            icon="Save"
-            iconBackground="teachersHighlight"
-            label="All lesson resources"
-            href={downLoadLink}
-            page={null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-            $mt={16}
-          />
+          {hasDownloadableResources && (
+            <ButtonAsLink
+              $mr={24}
+              icon="Save"
+              iconBackground="teachersHighlight"
+              label="All lesson resources"
+              href={downLoadLink}
+              page={null}
+              size="large"
+              variant="minimal"
+              $iconPosition={"trailing"}
+              $mt={16}
+              data-testid={"download-all-button"}
+            />
+          )}
           {/*
           todo
            <Button

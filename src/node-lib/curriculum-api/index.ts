@@ -220,6 +220,7 @@ const teachersLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcript: z.string().nullable(),
+  hasDownloadableResources: z.boolean().nullable(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
