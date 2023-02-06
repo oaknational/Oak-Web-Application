@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 
 import { useSearchQuery, KeyStage } from "../../context/Search/SearchContext";
 import Flex from "../Flex";
@@ -7,11 +8,18 @@ import { P } from "../Typography";
 
 const ActiveFilters: FC = () => {
   const { keyStages, setKeyStages } = useSearchQuery();
+  const router = useRouter();
 
   const onRemoveFilterClick = (keyStage: KeyStage) => {
     const newKeyStages = new Set(keyStages);
     newKeyStages.delete(keyStage);
     setKeyStages(newKeyStages);
+
+    // shallow push with new params
+    const chosenKeyStagesArray = Array.from(newKeyStages);
+    const chosenKeyStagesString = chosenKeyStagesArray.join(",");
+    router.query.keystages = chosenKeyStagesString;
+    router.push(router, undefined, { shallow: true });
   };
 
   return (

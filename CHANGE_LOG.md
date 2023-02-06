@@ -1,3 +1,16 @@
+## [1.123.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.123.0...v1.123.1) (2023-02-06)
+
+# [1.123.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.122.0...v1.123.0) (2023-02-06)
+
+
+### Features
+
+* 1150 add filters to url ([142ff5f](https://github.com/oaknational/Oak-Web-Application/commit/142ff5f9db6679af2800fd83321cffac162eed13))
+* 1150 add tests ([d266619](https://github.com/oaknational/Oak-Web-Application/commit/d266619cbca314bcb7fb39cf4b4b6f7f7743ddac))
+* 1150 fix type and correct naming ([ae09471](https://github.com/oaknational/Oak-Web-Application/commit/ae09471d6bcd3778779ff7943912cfd379841316))
+* 1150 remove filters from url when removing active filters ([be55eb8](https://github.com/oaknational/Oak-Web-Application/commit/be55eb84ace16d13033e3c21bf8a0391ea049972))
+* 1150 update tests ([ff90b6c](https://github.com/oaknational/Oak-Web-Application/commit/ff90b6cdab1217f05b770ca25e8e788dcfc17bd2))
+
 # [1.122.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.121.0...v1.122.0) (2023-02-03)
 
 

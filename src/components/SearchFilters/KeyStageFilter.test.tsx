@@ -10,6 +10,7 @@ jest.mock("../../context/Search/SearchContext", () => ({
     setKeyStages: jest.fn(),
   }),
 }));
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("KeyStageFilter", () => {
   test("should render a custom checkbox with correct text and attributes", () => {
