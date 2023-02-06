@@ -132,6 +132,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <OakLink page={"terms-and-conditions"} $isInline>
               terms &amp; conditions
             </OakLink>
+            .
           </P>
         </Box>
       </MaxWidth>
