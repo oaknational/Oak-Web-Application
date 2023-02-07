@@ -13,7 +13,7 @@ Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95C
 Expires: 2023-07-31T20:59:00.000Z
 
 # Oak National Academy Security Disclosure Policy
-Policy: https://www.thenational.academy/security-disclosure-policy/
+Policy: https://www.thenational.academy/legal/security-disclosure-policy/
 
 # Our security.txt is hosted at the following canonical locations
 Canonical: https://www.thenational.academy/.well-known/security.txt
