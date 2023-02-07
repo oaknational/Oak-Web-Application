@@ -97,16 +97,18 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
                 })}
               </Typography>
             )}
-            {type !== "checkbox" && (
-              <Typography $mb={32} $font={["body-2", "body-1"]}>
-                answer:{" "}
-                {typeof answer === "string"
-                  ? answer
-                  : answer.map((ans) => {
-                      return <> ;{ans}</>;
-                    })}
-              </Typography>
-            )}
+            <Typography $mb={32} $font={["body-2", "body-1"]}>
+              type: {type}
+            </Typography>
+            <Typography $mb={32} $font={["body-2", "body-1"]}>
+              answer:{" "}
+              {typeof answer === "string"
+                ? answer
+                : answer.map((ans) => {
+                    return <> ;{ans}</>;
+                  })}
+            </Typography>
+
             <Typography $mb={32} $font={["body-2", "body-1"]}>
               points: {points}
             </Typography>
