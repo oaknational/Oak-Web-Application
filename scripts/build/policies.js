@@ -3,7 +3,9 @@
 const getCspReportUri = (dataDogClientToken) => {
   // Without an intermediate end-point this means exposing the client token to the browser as header content.
   // The keys can be used to submit data and events.
-  const ddTags = "owa,csp";
+  // We might be able to use tags to distinguish between
+  // deployment environments, e.g. PR and production.
+  const ddTags = "owa-csp";
   // Note, if we have DataDog RUM turned on we don't need to configure this endpoint,
   // the reports would be collected automatically.
   return `https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=${dataDogClientToken}&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=${ddTags}`;
@@ -22,6 +24,11 @@ default-src
 script-src
  'self'
  'report-sample'
+ ${
+   // Need this for injected Cloudflare scripts.
+   // Is there a better way?
+   "unsafe-inline"
+ }
  ${
    // Need this for auto-reload scripts etc.
    isNextjsDevelopmentServer ? "'unsafe-eval'" : ""
@@ -154,11 +161,13 @@ const getSecurityHeaders = ({
   isNextjsDevelopmentServer,
   dataDogClientToken,
 }) => {
-  if (!dataDogClientToken) {
+  if (
+    !dataDogClientToken ||
+    dataDogClientToken === "" ||
+    dataDogClientToken === "undefined"
+  ) {
     console.warn("CSP reporting disabled in this environment.");
-  }
-  // DEBUG
-  if (!dataDogClientToken) {
+    // DEBUG
     throw new Error(
       "Please specific a client token for CSP violation reporting"
     );
