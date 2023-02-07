@@ -90,6 +90,6 @@ it("component expands and contract on click", async () => {
   const downloadButton = screen.getByTestId("expand-button");
   await user.click(downloadButton);
   expect(screen.getByTestId("expanded-container")).toHaveStyle(
-    "max-height: 1600px"
+    "max-height: 9600px"
   );
 });
