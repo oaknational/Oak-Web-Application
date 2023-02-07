@@ -104,7 +104,8 @@ form-action
  forms.hsforms.com
  forms.hubspot.com;
 media-src
- 'self';
+ 'self'
+  *.thenational.academy;
 prefetch-src
  'self';
 worker-src
