@@ -19,6 +19,8 @@ import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/ge
 import curriculumApi, {
   TeachersLessonOverviewData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
+import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -49,6 +51,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
     curriculumData;
+  const { inputValue, setInputValue, data } = useSchoolPicker();
 
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
@@ -77,6 +80,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             iconName={"Rocket"}
           />
         </Flex>
+
         <Box $maxWidth={[null, 420, 420]}>
           <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
             Your details
@@ -85,6 +89,21 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             tag="h3"
             $font={"heading-7"}
             $mt={0}
+            $mb={24}
+            data-testid="email-heading"
+          >
+            Find your school in the field below (required)
+          </Heading>
+          <SchoolPicker
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            schools={data}
+            label={"School Picker"}
+          />
+          <Heading
+            tag="h3"
+            $font={"heading-7"}
+            $mt={16}
             $mb={24}
             data-testid="email-heading"
           >

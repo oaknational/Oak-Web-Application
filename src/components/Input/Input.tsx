@@ -81,6 +81,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 
   ::placeholder {
+    font-size: 14px;
     font-family: ${getFontFamily("ui")};
     color: ${getColorByLocation(
       ({ theme }) => theme.input.states.default.placeholder

@@ -75,6 +75,7 @@ const SearchAutocomplete = <T extends School>(
           id={id}
           aria-labelledby={labelId}
           data-testid={"search-autocomplete-input"}
+          placeholder={"Search by name or postcode"}
         />
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}
