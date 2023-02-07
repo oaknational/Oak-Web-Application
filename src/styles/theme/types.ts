@@ -76,7 +76,9 @@ export type PixelSpacing =
   | 900
   | 960
   | 1280
-  | 1600;
+  | 1600
+  | 3200
+  | 9600;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing =
   | -36
