@@ -214,13 +214,15 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     answer: z.union([z.array(z.string()), z.string()]),
     type: z.string(),
     quizType: z.string(),
-    images: z.union([
-      z.array(z.object({ title: z.string(), images: z.array(z.string()) })),
-      z.array(z.string()),
-    ]),
+    images: z
+      .union([
+        z.array(z.object({ title: z.string(), images: z.array(z.string()) })),
+        z.array(z.string()),
+      ])
+      .nullable(),
     feedbackCorrect: z.string().nullable(),
     feedbackIncorrect: z.string().nullable(),
-    choiceImages: z.array(z.string().nullable()),
+    choiceImages: z.array(z.string()).nullable(),
   })
 );
 

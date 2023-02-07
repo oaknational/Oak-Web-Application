@@ -99,7 +99,12 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
             )}
             {type !== "checkbox" && (
               <Typography $mb={32} $font={["body-2", "body-1"]}>
-                answer: {answer}
+                answer:{" "}
+                {typeof answer === "string"
+                  ? answer
+                  : answer.map((ans) => {
+                      return <> ;{ans}</>;
+                    })}
               </Typography>
             )}
             <Typography $mb={32} $font={["body-2", "body-1"]}>
