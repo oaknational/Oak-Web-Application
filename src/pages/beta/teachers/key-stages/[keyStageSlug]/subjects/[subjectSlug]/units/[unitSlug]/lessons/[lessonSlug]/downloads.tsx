@@ -85,13 +85,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
             Your details
           </Heading>
-          <Heading
-            tag="h3"
-            $font={"heading-7"}
-            $mt={0}
-            $mb={24}
-            data-testid="email-heading"
-          >
+          <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
