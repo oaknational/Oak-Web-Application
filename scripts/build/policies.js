@@ -46,6 +46,7 @@ script-src
  https://*.hsleadflows.net
  https://*.hubspotfeedback.com
  https://*.usemessages.com
+ https://ajax.cloudflareinsights.com
  https://static.cloudflareinsights.com;
 style-src
  'self'
