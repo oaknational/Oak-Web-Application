@@ -1,8 +1,20 @@
+import { useState } from "react";
 import useSWR from "swr";
 
 import OakError from "../../errors/OakError";
 
-export default function useSchoolPicker(value: string) {
+import { School } from "./SchoolPicker";
+
+type useSchoolPickerReturnProps = {
+  data: School[];
+  error: Error;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function useSchoolPicker(): useSchoolPickerReturnProps {
+  const [inputValue, setInputValue] = useState("");
+
   const fetcher = (queryUrl: string) =>
     fetch(queryUrl).then((res) => {
       if (res.ok) {
@@ -25,13 +37,14 @@ export default function useSchoolPicker(value: string) {
       }
     });
 
-  const queryUrl = `https://school-picker.thenational.academy/${value}`;
+  const queryUrl = `https://school-picker.thenational.academy/${inputValue}`;
 
   const { data, error } = useSWR(queryUrl, fetcher);
 
   return {
-    suggestions: data || [],
-    isLoading: !error && !data,
+    data,
     error,
+    setInputValue,
+    inputValue,
   };
 }

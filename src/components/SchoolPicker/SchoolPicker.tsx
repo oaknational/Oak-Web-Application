@@ -1,58 +1,38 @@
-import React, { useState } from "react";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import { Item } from "react-stately";
-import ComboBox from "../ComboBox";
 
-import DropdownSelect from "../DropdownSelect";
-import { ComboSelect } from "../DropdownSelect/ComboSelect";
-import Flex from "../Flex";
-
-import useSchoolPicker from "./useSchoolPicker";
+import SearchAutocomplete from "../SearchAutocomplete/SearchAutocomplete";
 
 type SchoolPickerProps = {
-  inputValued: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  schools: School[];
+  defaultSchools?: School[];
+  label: string;
 };
 
-const SchoolPicker: FC<SchoolPickerProps> = () => {
-  const [inputValue, setInputValue] = useState("");
-  console.log(inputValue);
-  const { suggestions } = useSchoolPicker(inputValue);
-  console.log(suggestions);
-  // const suggestions = [
-  //   { id: "1", name: "school" },
-  //   { id: "2", name: "schoolsss" },
-  // ];
+export type School = {
+  name: string;
+  urn: string;
+  la: string;
+};
 
+const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   return (
-    <>
-      <ComboBox
-        onInputChange={setInputValue}
-        inputValue={inputValue}
-        label="Favorite Animal"
-        defaultItems={suggestions}
-      >
-        {suggestions.map((suggestion, index) => (
-          <Item key={`${index}-${suggestion.name}`}>{suggestion.name}</Item>
-        ))}
-      </ComboBox>
-    </>
+    <SearchAutocomplete
+      label={props.label}
+      items={props.schools || []}
+      inputValue={props.inputValue}
+      onInputChange={props.setInputValue}
+      defaultItems={props.defaultSchools}
+    >
+      {(item) => (
+        <Item
+          key={`${item.urn}-${item.name}`}
+        >{`${item.name}, ${item.la}`}</Item>
+      )}
+    </SearchAutocomplete>
   );
 };
 
 export default SchoolPicker;
-
-// {/* <Flex>
-//   <ComboBox label="Assignee" defaultItems={options}>
-//     {(item) => (
-//       <Item textValue={item.name}>
-//         {/* <Avatar src={item.avatar} alt={item.name} /> */}
-//         <div>
-//           {/* <Label>{item.name}</Label>
-//           <Description>{item.username}</Description> */}
-//         </div>
-//       </Item>
-//     )}
-//   </ComboBox>
-//   <p>Selected topic id: {majorId}</p>
-// </Flex> */}

@@ -10,6 +10,7 @@ interface PopoverProps {
   children: React.ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  focusOn?: boolean;
 }
 
 const Wrapper = styled.div`
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
 
 export function Popover(props: PopoverProps) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const { popoverRef = ref, isOpen, onClose, children } = props;
+  const { popoverRef = ref, isOpen, onClose, children, focusOn = true } = props;
 
   // Handle events that should cause the popup to close,
   // e.g. blur, clicking outside, or pressing the escape key.
@@ -39,7 +40,7 @@ export function Popover(props: PopoverProps) {
   // Add a hidden <DismissButton> component at the end of the popover
   // to allow screen reader users to dismiss the popup easily.
   return (
-    <FocusOn>
+    <FocusOn enabled={focusOn}>
       <Wrapper {...overlayProps} ref={popoverRef}>
         {children}
         <DismissButton onDismiss={onClose} />
