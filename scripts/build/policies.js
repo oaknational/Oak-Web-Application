@@ -27,7 +27,7 @@ script-src
  ${
    // Need this for injected Cloudflare scripts.
    // Is there a better way?
-   "unsafe-inline"
+   "'unsafe-inline'"
  }
  ${
    // Need this for auto-reload scripts etc.
