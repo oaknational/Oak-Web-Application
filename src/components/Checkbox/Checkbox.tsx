@@ -2,11 +2,13 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import { OakColorName } from "../../styles/theme";
+import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import Icon from "../Icon";
 import FocusUnderline from "../OakLink/FocusUnderline";
+import FieldError from "../FormFields/FieldError";
 
 export type CheckboxConfig = {
   default: {
@@ -16,6 +18,22 @@ export type CheckboxConfig = {
     color: OakColorName;
   };
 };
+
+type CheckboxProps = {
+  labelText: string;
+  id: string;
+  checked: boolean;
+  disabled?: boolean;
+  ariaLabel?: string;
+  required?: boolean;
+  error?: string;
+  onChange: () => void;
+} & SpacingProps;
+
+type CheckboxLabelProps = {
+  disabled: boolean;
+  checked: boolean;
+} & SpacingProps;
 
 const checkboxFocusStyles = css`
   ${FocusUnderline} {
@@ -51,9 +69,9 @@ const checkboxHoverStyles = css`
   }
 `;
 
-const CheckboxLabel = styled.label<{ disabled: boolean; checked: boolean }>`
+const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
   display: flex;
   align-items: center;
@@ -69,6 +87,7 @@ const CheckboxLabel = styled.label<{ disabled: boolean; checked: boolean }>`
 
   ${checkboxFocusStyles}
   ${checkboxHoverStyles}
+  ${spacing}
 `;
 
 const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
@@ -107,15 +126,6 @@ const CheckboxLabelText = styled.span`
   font-weight: 400;
 `;
 
-type CheckboxProps = {
-  labelText: string;
-  id: string;
-  checked: boolean;
-  disabled?: boolean;
-  ariaLabel?: string;
-  onChange: () => void;
-};
-
 const Checkbox: FC<CheckboxProps> = (props) => {
   const {
     labelText,
@@ -124,33 +134,45 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     onChange,
     id,
     ariaLabel,
+    required = false,
+    error,
+    ...spacingProps
   } = props;
+
+  const errorId = `${id}-error`;
 
   const select = () => {
     if (!disabled) onChange();
   };
 
   return (
-    <CheckboxLabel
-      htmlFor={id}
-      onClick={() => select}
-      checked={checked}
-      disabled={disabled}
-    >
-      <ScreenReaderCheckbox
-        type="checkbox"
-        id={id}
-        onChange={select}
+    <>
+      <CheckboxLabel
+        htmlFor={id}
+        onClick={() => select}
         checked={checked}
         disabled={disabled}
-        aria-label={ariaLabel}
-      />
-      <VisualCheckbox checked={checked}>
-        {checked && <Icon name={"Tick"} $color={"white"} size={20} />}
-      </VisualCheckbox>
-      {labelText && <CheckboxLabelText>{labelText}</CheckboxLabelText>}
-      <FocusUnderline $color={"teachersYellow"} />
-    </CheckboxLabel>
+        {...spacingProps}
+      >
+        <ScreenReaderCheckbox
+          type="checkbox"
+          id={id}
+          onChange={select}
+          checked={checked}
+          disabled={disabled}
+          aria-label={ariaLabel ? ariaLabel : labelText}
+          required={required}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? errorId : undefined}
+        />
+        <VisualCheckbox checked={checked}>
+          {checked && <Icon name={"Tick"} $color={"white"} size={20} />}
+        </VisualCheckbox>
+        {labelText && <CheckboxLabelText>{labelText}</CheckboxLabelText>}
+        <FocusUnderline $color={"teachersYellow"} />
+      </CheckboxLabel>
+      <FieldError id={errorId}>{error}</FieldError>
+    </>
   );
 };
 
