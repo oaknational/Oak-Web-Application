@@ -1,13 +1,10 @@
-import React, { useId, useRef } from "react";
+import React, { useEffect, useId, useRef } from "react";
 import {
   ComboBoxStateOptions,
   useComboBoxState,
 } from "@react-stately/combobox";
-import {
-  useSearchAutocomplete,
-  AriaSearchAutocompleteProps,
-} from "@react-aria/autocomplete";
 import { useFilter } from "@react-aria/i18n";
+import { useComboBox } from "react-aria";
 
 import { Popover } from "../DropdownSelect/Popover";
 import { ListBox } from "../DropdownSelect/ListBox";
@@ -19,9 +16,7 @@ import { School } from "../SchoolPicker/SchoolPicker";
 
 // Reuse the ListBox and Popover from your component library. See below for details.
 
-const SearchAutocomplete = <T extends School>(
-  props: ComboBoxStateOptions<T> | AriaSearchAutocompleteProps<T>
-) => {
+const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
   // Setup filter function and state.
   const { contains } = useFilter({ sensitivity: "base" });
   const state = useComboBoxState({ ...props, defaultFilter: contains });
@@ -30,13 +25,20 @@ const SearchAutocomplete = <T extends School>(
   const inputRef = useRef(null);
   const listBoxRef = useRef(null);
   const popoverRef = useRef(null);
+  const { inputValue } = state;
 
-  const { inputProps, listBoxProps, labelProps } = useSearchAutocomplete(
+  useEffect(() => {
+    if (inputValue.length > 0) {
+      state.open();
+    }
+  }, [inputValue, state]);
+
+  const { inputProps, listBoxProps, labelProps } = useComboBox(
     {
       ...props,
-      popoverRef,
-      listBoxRef,
       inputRef,
+      listBoxRef,
+      popoverRef,
     },
     state
   );
@@ -99,4 +101,4 @@ const SearchAutocomplete = <T extends School>(
   );
 };
 
-export default SearchAutocomplete;
+export default SearchComboBox;
