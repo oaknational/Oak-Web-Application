@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Item } from "react-stately";
 
-import SearchAutocomplete from "../SearchAutocomplete/SearchAutocomplete";
+import SearchComboBox from "../SearchComboBox/SearchComboBox";
 
 type SchoolPickerProps = {
   inputValue: string;
@@ -17,21 +17,31 @@ export type School = {
   la: string;
 };
 
+/**
+ * A React aria combo box component school picker
+ * use useSchoolPicker hook to fetch data and control input.
+ *
+ * ## Hook
+ * const { inputValue, setInputValue, data } = useSchoolPicker();
+ *
+ * ## Usage
+ * Used on downloads page
+ */
 const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   return (
-    <SearchAutocomplete
+    <SearchComboBox
+      allowsCustomValue
       label={props.label}
-      items={props.schools || []}
       inputValue={props.inputValue}
       onInputChange={props.setInputValue}
-      defaultItems={props.defaultSchools}
+      defaultItems={props.schools || []}
     >
       {(item) => (
         <Item
           key={`${item.urn}-${item.name}`}
         >{`${item.name}, ${item.la}`}</Item>
       )}
-    </SearchAutocomplete>
+    </SearchComboBox>
   );
 };
 
