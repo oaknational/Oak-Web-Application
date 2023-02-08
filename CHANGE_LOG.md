@@ -1,3 +1,13 @@
+# [1.126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.125.0...v1.126.0) (2023-02-08)
+
+
+### Features
+
+* **security policy:** add credits file ([c19af01](https://github.com/oaknational/Oak-Web-Application/commit/c19af01d074872413aa831d4434ffbab3c79d2c4))
+* **security policy:** signed security.txt ([85f09c1](https://github.com/oaknational/Oak-Web-Application/commit/85f09c1ae8dffb5dbc2159b14709235d9e10c7a9))
+* **security policy:** update URL ([a98302e](https://github.com/oaknational/Oak-Web-Application/commit/a98302e53f666fb966c76594903e752efee10ec5))
+* **security:** add security disclosure policy ([781f9b3](https://github.com/oaknational/Oak-Web-Application/commit/781f9b3b7b1e497b44eeb5a271162eb317e30b23))
+
 # [1.125.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.124.0...v1.125.0) (2023-02-07)
 
 
