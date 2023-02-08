@@ -1,0 +1,45 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+# Oak National Academy - reporting security vulnerabilities to the Oak National team
+
+# Please report any security vulnerabilities to us via the contact method(s) below, only after reading our security disclosure policy.
+Contact: mailto:security@thenational.academy
+Preferred-Languages: en
+
+# Encrypt your messages to Oak National Academy using the PGP key below
+Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
+Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
+
+# This security is annually reviewed
+Expires: 2023-07-31T20:59:00.000Z
+
+# Oak National Academy Security Disclosure Policy
+Policy: https://www.thenational.academy/legal/security-disclosure-policy/
+
+# Our security.txt is hosted at the following canonical locations
+Canonical: https://www.thenational.academy/.well-known/security.txt
+
+# Our security acknowledgments page
+Acknowledgments: https://www.thenational.academy/.well-known/security-credits.txt
+
+# We're continually recruiting at Oak National Academy, please visit the link below
+Hiring: https://jobs.thenational.academy
+
+# Please see https://securitytxt.org/ for details of the specification of this file
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmPihxMACgkQlx8GIFG2
+C31pAA//ds+Ytm1eqGx0a5PlrKdpajAr3HCgjYPetNfeid/fPcHuOUymUsAmS8h3
+hBzxdpRJfpH34tzJU0ZUz6jDpY2JqpIe7m+tc35q4IySmqxKwnAV/SfemNIxb2A+
+L04aekGp+GVaoBf+ZlHxlQEGgP2Z9ne7gO1Pc+HfkzU4vYeK5/9C+6pLk9bVnxau
+LMs21/DZwIVxQ/LhfTAfHZo/SgqYlp3+Z4V6uG0JS+Sb/NhoTp+fSkB+qPEx5e3c
+ei98edxzR7EG/2p9KNmOd0uhBQVhUred47cWyJz3yezpqW6BHjBNC4lmrQRmq54g
+RZ91gS2FRNUzCKFKDFbQZZb1blqkWzaaP9fKPo/90pJ4ZF7ck1JBKB3iqGZUXcCL
+3AQ5yAY+BuM00CCnIFkZO54mKvRclqk7biOkb4JUIXoYLj6+pkE1UIIoGfVXO5iV
+orSmmkxHbEt9f5V0eqnpgw4+cl4QQ04iYIFAcFY9n0QO6eWbRD2arimljZ2hW0Rh
+WL1ELeLU5Txfe13I+Py5m96JOJXYUmIdr2ZLYnqzozmvlQlV7MWEbcu3/yXws7hT
++W1VubwhIOkKUU2m+/bBPeA4JTB7U0swzTWqTWK8pPGgIEIeq7ZZHf2UQi5gT42i
+TpF8nQv6yeULmdP0/PWk74vEEbBhaoFGkzsJLWL6YFvxEc5duUw=
+=F882
+-----END PGP SIGNATURE-----
