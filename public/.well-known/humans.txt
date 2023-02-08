@@ -5,10 +5,6 @@ Oak National Academy’s tech platform has been created by a team of human devel
 /* TEAM */
 
 
-  Craig McCahill (Developer)
-  From: London, UK
-
-
   Ian Kynnersley (Head of Engineering)
   Site: https://www.iankynnersley.co.uk/
   LinkedIn: https://www.linkedin.com/in/iankynnersley/
@@ -56,13 +52,6 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: London, UK
 
 
-  Shaun Orpen (Developer)
-  Site: https://shaunorpen.com/
-  LinkedIn: https://linkedin.com/in/shaunorpen
-  Twitter: https://twitter.com/shaunorpen
-  From: UK
-
-
   Stuart G Wilson (Product Designer)
   Site: qegadesign.myportfolio.com
   Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
@@ -74,18 +63,17 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: Guildford, UK
 
 
-  Tom Wise (UX/UI and Design)
-  Site: https://putty.studio
-  LinkedIn: https://www.linkedin.com/in/tom-wise1234/
-  From: Brighton, UK
-
-
   Verity Roberts (Product Manager)
   From: Cambridge, UK
 
 
 
 /* THANKS */
+
+
+  Craig McCahill (Developer)
+  From: London, UK
+
 
   Lee Fuller (Developer)
   Site: https://lee-fuller.co.uk/
@@ -111,6 +99,13 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: Brighton, UK    
 
 
+  Shaun Orpen (Developer)
+  Site: https://shaunorpen.com/
+  LinkedIn: https://linkedin.com/in/shaunorpen
+  Twitter: https://twitter.com/shaunorpen
+  From: UK
+
+
   Shaquille Hobbs-Daley (Developer)
   LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
   From: London, UK
@@ -120,6 +115,12 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Site: https://stef.io
   Twitter: @stef
   From: London, UK
+
+
+  Tom Wise (UX/UI and Design)
+  Site: https://putty.studio
+  LinkedIn: https://www.linkedin.com/in/tom-wise1234/
+  From: Brighton, UK
 
 
 
