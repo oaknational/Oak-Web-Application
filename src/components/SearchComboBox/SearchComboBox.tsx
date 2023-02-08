@@ -28,7 +28,7 @@ const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
   const { inputValue } = state;
 
   useEffect(() => {
-    if (inputValue.length > 0) {
+    if (inputValue.length > 0 && !state.selectedItem) {
       state.open();
     }
   }, [inputValue, state]);
