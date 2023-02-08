@@ -97,11 +97,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const reportError = errorReporter("VideoPlayer.tsx");
 
+  const PLAYING_CLASSNAME = "playing";
   const onPlay = () => {
+    mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
     videoTracking.onPlay();
   };
 
   const onPause = () => {
+    mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
     videoTracking.onPause();
   };
 
