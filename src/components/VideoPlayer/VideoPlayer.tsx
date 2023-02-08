@@ -99,6 +99,10 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const PLAYING_CLASSNAME = "playing";
   const onPlay = () => {
+    // This enables the detection of whether or not a video
+    // is being played without having to look in the
+    // shadow DOM, useful for simple automated test tools
+    // and site monitoring synthetics.
     mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
     videoTracking.onPlay();
   };
