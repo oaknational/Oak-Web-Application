@@ -1,2 +1,1 @@
-# This document lists people who have contributed to the security of the national.academy
-
+# This document lists people who have contributed to the security of www.thenational.academy
