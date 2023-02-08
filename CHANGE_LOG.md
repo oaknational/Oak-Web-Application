@@ -1,3 +1,10 @@
+# [1.127.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.126.0...v1.127.0) (2023-02-08)
+
+
+### Features
+
+* **video:** make video playing detectable outside the shadow DOM ([a2db022](https://github.com/oaknational/Oak-Web-Application/commit/a2db0221117638fccd97d7dc391f13a38a65ebff))
+
 # [1.126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.125.0...v1.126.0) (2023-02-08)
 
 
