@@ -8,7 +8,7 @@ const testProps: MobileFiltersProps = {
   page: "webinars-index",
   withBackButton: true,
   children: "",
-  title: "Categories",
+  label: "Categories",
 };
 
 describe("components/MobileFilters", () => {
