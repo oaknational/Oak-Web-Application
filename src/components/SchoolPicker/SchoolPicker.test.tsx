@@ -161,7 +161,7 @@ describe("search autocomplete", () => {
     await user.keyboard("{arrowdown}");
 
     expect(
-      getByText("Dorothy Gardner Nursery School, Westminster")
+      getByText("Dorothy Gardner Nursery School, Westminster, W9 3JY")
     ).toBeInTheDocument();
   });
 
