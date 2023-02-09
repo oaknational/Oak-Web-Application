@@ -21,6 +21,8 @@ import curriculumApi, {
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
+import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
+import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -51,7 +53,22 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
     curriculumData;
+  const [selected, setSelected] = useState("");
   const { inputValue, setInputValue, data } = useSchoolPicker();
+
+  const handleInputChange = (value: React.SetStateAction<string>) => {
+    if (selected) {
+      setSelected("");
+    }
+    setInputValue(value);
+  };
+
+  const handleRadioChange = (e: string) => {
+    if (inputValue) {
+      setInputValue("");
+    }
+    setSelected(e);
+  };
 
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
@@ -90,10 +107,19 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           </Heading>
           <SchoolPicker
             inputValue={inputValue}
-            setInputValue={setInputValue}
+            setInputValue={handleInputChange}
             schools={data}
-            label={"School Picker"}
+            label={"Name of school:"}
           />
+          <Box $mt={12} $ml={24} $mb={32}>
+            <P $mb={12} $font={"body-2"}>
+              Or select one of the following:
+            </P>
+            <RadioGroup value={selected} onChange={handleRadioChange}>
+              <Radio value={"homeschool"}>Homeschool</Radio>
+              <Radio value={"notListed"}>My school isn’t listed</Radio>
+            </RadioGroup>
+          </Box>
           <Heading
             tag="h3"
             $font={"heading-7"}
