@@ -39,11 +39,9 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Site: https://mantagen.org
 
 
-  Mitch Lloyd (Developer)
-  Twitter: @MitchellLloyd15
-  Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
-  Email: mitchelllloyd154@gmail.com
-  From: Manchester, UK
+  Lionel Jingles (Developer)
+  LinkedIn: https://www.linkedin.com/in/lionel-jingles/
+  From: San Francisco, US
 
 
   Ross Mackay (Developer)
@@ -67,6 +65,10 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: Cambridge, UK
 
 
+  Weronika Szalas (Developer)
+  LinkedIn: https://www.linkedin.com/in/szalasw/
+  From: Katowice, Poland
+
 
 /* THANKS */
 
@@ -86,6 +88,13 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Site: https://linkedin.com/in/leoallen
   Twitter: @leoallen85
   From: London, UK
+
+
+  Mitch Lloyd (Developer)
+  Twitter: @MitchellLloyd15
+  Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
+  Email: mitchelllloyd154@gmail.com
+  From: Manchester, UK
 
 
   Rees McIvor (Developer)
