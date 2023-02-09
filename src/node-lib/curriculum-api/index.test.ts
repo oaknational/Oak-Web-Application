@@ -97,6 +97,8 @@ const teachersLessonOverview = jest.fn(() => ({
         teachersLessonOverviewFixture().hasDownloadableResources,
     },
   ],
+  introQuiz: teachersLessonOverviewFixture().introQuiz,
+  exitQuiz: teachersLessonOverviewFixture().exitQuiz,
 }));
 const teachersLessonOverviewPaths = jest.fn(() => ({
   mv_lessons: teachersLessonOverviewPathsFixture().lessons,

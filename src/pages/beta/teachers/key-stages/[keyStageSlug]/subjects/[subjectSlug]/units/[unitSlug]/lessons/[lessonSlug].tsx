@@ -23,7 +23,6 @@ import {
   UL,
 } from "../../../../../../../../../../components/Typography";
 import ButtonAsLink from "../../../../../../../../../../components/Button/ButtonAsLink";
-import Box from "../../../../../../../../../../components/Box";
 import Grid from "../../../../../../../../../../components/Grid";
 import curriculumApi, {
   TeachersLessonOverviewData,
@@ -33,6 +32,7 @@ import OverviewPresentation from "../../../../../../../../../../components/pages
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
 import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
+import QuizContainer from "../../../../../../../../../../components/QuizContainer";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -58,6 +58,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     transcript,
     hasCopyrightMaterial,
     hasDownloadableResources,
+    introQuiz,
+    exitQuiz,
   } = curriculumData;
 
   const router = useRouter();
@@ -167,26 +169,32 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             <OverviewPresentation asset={worksheetUrl} title={title} />
           </ExpandingContainer>
         )}
-        <ExpandingContainer
-          title={"Starter quiz"}
-          downloadable={true}
-          downloadLink={downLoadLink}
-        >
-          <Box>quiz element</Box>
-        </ExpandingContainer>
-        <ExpandingContainer
-          title={"Exit quiz"}
-          downloadable={true}
-          downloadLink={downLoadLink}
-        >
-          <Box>quiz element</Box>
-        </ExpandingContainer>
+        {introQuiz.length > 0 ? (
+          <ExpandingContainer
+            title={"Starter quiz"}
+            downloadable={true}
+            downloadLink={downLoadLink}
+          >
+            <QuizContainer questions={introQuiz} />
+          </ExpandingContainer>
+        ) : (
+          ""
+        )}
+        {exitQuiz.length > 0 && (
+          <ExpandingContainer
+            title={"Exit quiz"}
+            downloadable={true}
+            downloadLink={downLoadLink}
+          >
+            <QuizContainer questions={exitQuiz} />
+          </ExpandingContainer>
+        )}
+
         {transcript && (
           <ExpandingContainer title={"Transcript"}>
             <OverviewTranscript transcript={transcript} />
           </ExpandingContainer>
         )}
-        <Hr $color={"oakGrey3"} />
       </MaxWidth>
       <MaxWidth $ph={[0, 16, 16]}>
         {(equipmentRequired || supervisionLevel || contentGuidance) && (
