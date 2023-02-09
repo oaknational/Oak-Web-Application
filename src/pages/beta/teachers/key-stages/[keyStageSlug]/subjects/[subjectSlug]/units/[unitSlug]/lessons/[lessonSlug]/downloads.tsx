@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,6 +13,8 @@ import Heading from "../../../../../../../../../../../components/Typography/Head
 import P from "../../../../../../../../../../../components/Typography/P";
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Input from "../../../../../../../../../../../components/Input";
+import Checkbox from "../../../../../../../../../../../components/Checkbox";
+import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import curriculumApi, {
   TeachersLessonOverviewData,
@@ -30,12 +32,16 @@ const schema = z.object({
     })
     .optional()
     .or(z.literal("")),
+  terms: z.literal(true, {
+    errorMap: () => ({ message: "You must accept terms and conditions" }),
+  }),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
 export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
+  terms: boolean;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -50,6 +56,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   });
 
   const { errors } = formState;
+  const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
   return (
     <AppLayout
@@ -90,10 +97,42 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             {...register("email")}
             error={errors.email?.message}
           />
-          <P $font="body-3" $mt={-24}>
+          <P $font="body-3" $mt={-24} $mb={40}>
             Join our community to get free lessons, resources and other helpful
             content. Unsubscribe at any time. Our{" "}
-            <OakLink page={"privacy-policy"}>privacy policy</OakLink>.
+            <OakLink page={"privacy-policy"} $isInline>
+              privacy policy
+            </OakLink>
+            .
+          </P>
+          <Box
+            $position={"relative"}
+            $background={"pastelTurquoise"}
+            $pv={8}
+            $ph={8}
+            $mb={24}
+          >
+            <BrushBorders
+              hideOnMobileH
+              hideOnMobileV
+              color={"pastelTurquoise"}
+            />
+            <Checkbox
+              labelText={"I accept terms and conditions (required)"}
+              id={"terms"}
+              checked={acceptedTCs}
+              onChange={() => setAcceptedTCs(!acceptedTCs)}
+              $mb={0}
+              required
+              error={errors.terms?.message}
+            />
+          </Box>
+          <P $font="body-3">
+            Read our{" "}
+            <OakLink page={"terms-and-conditions"} $isInline>
+              terms &amp; conditions
+            </OakLink>
+            .
           </P>
         </Box>
       </MaxWidth>

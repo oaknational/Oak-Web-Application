@@ -2,8 +2,7 @@ import { renderHook, act } from "@testing-library/react";
 import { useRouter } from "next/router";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import { SearchProvider , KeyStage } from "../../context/Search/SearchContext";
-
+import { SearchProvider, KeyStage } from "../../context/Search/SearchContext";
 
 import ActiveFilters from "./ActiveFilters";
 

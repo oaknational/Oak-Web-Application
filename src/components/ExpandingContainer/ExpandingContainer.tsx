@@ -101,7 +101,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
       </Flex>
       <Flex
         data-testid={"expanded-container"}
-        $maxHeight={toggleOpen ? 0 : 1600}
+        $maxHeight={toggleOpen ? 0 : 9600}
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}
       >
