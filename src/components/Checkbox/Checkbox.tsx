@@ -110,7 +110,7 @@ const CheckboxLabelText = styled.span`
   font-weight: 400;
 `;
 
-const CheckboxBase: FC<CheckboxProps> = (props) => {
+const Checkbox: FC<CheckboxProps> = (props) => {
   const {
     labelText,
     checked = false,
@@ -168,4 +168,4 @@ const CheckboxBase: FC<CheckboxProps> = (props) => {
   );
 };
 
-export default CheckboxBase;
+export default Checkbox;

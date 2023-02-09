@@ -11,10 +11,9 @@ import { IconName } from "../Icon";
 
 type ResourceType = "quiz" | "presentation" | "worksheet";
 
-type DownloadCardProps = {
+export type DownloadCardProps = {
   id: string;
   checked: boolean;
-  disabled?: boolean;
   onChange: () => void;
   title: string;
   resourceType: ResourceType;

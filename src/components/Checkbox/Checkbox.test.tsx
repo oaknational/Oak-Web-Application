@@ -6,7 +6,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import Checkbox from "./Checkbox";
 
 describe("Checkbox", () => {
-  it("renders a checkbox", () => {
+  it("renders a checkbox with a label text", () => {
     renderWithTheme(
       <Checkbox
         id="unique-123"
