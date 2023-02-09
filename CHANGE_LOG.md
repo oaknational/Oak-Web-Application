@@ -1,3 +1,10 @@
+# [1.128.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.1...v1.128.0) (2023-02-09)
+
+
+### Features
+
+* 1244 Refactor Mobile Filters components ([33effa2](https://github.com/oaknational/Oak-Web-Application/commit/33effa2f37d9b564eb8ce14365ec6ee36a3c8fef))
+
 ## [1.127.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.0...v1.127.1) (2023-02-09)
 
 
