@@ -1,3 +1,63 @@
+# [1.128.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.1...v1.128.0) (2023-02-09)
+
+
+### Features
+
+* 1244 Refactor Mobile Filters components ([33effa2](https://github.com/oaknational/Oak-Web-Application/commit/33effa2f37d9b564eb8ce14365ec6ee36a3c8fef))
+
+## [1.127.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.0...v1.127.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* 1227 render custom select list on mobile ([863649d](https://github.com/oaknational/Oak-Web-Application/commit/863649d0e50097e42b8b202360824e8b8ead359b))
+
+# [1.127.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.126.0...v1.127.0) (2023-02-08)
+
+
+### Features
+
+* **video:** make video playing detectable outside the shadow DOM ([a2db022](https://github.com/oaknational/Oak-Web-Application/commit/a2db0221117638fccd97d7dc391f13a38a65ebff))
+
+# [1.126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.125.0...v1.126.0) (2023-02-08)
+
+
+### Features
+
+* **security policy:** add credits file ([c19af01](https://github.com/oaknational/Oak-Web-Application/commit/c19af01d074872413aa831d4434ffbab3c79d2c4))
+* **security policy:** signed security.txt ([85f09c1](https://github.com/oaknational/Oak-Web-Application/commit/85f09c1ae8dffb5dbc2159b14709235d9e10c7a9))
+* **security policy:** update URL ([a98302e](https://github.com/oaknational/Oak-Web-Application/commit/a98302e53f666fb966c76594903e752efee10ec5))
+* **security:** add security disclosure policy ([781f9b3](https://github.com/oaknational/Oak-Web-Application/commit/781f9b3b7b1e497b44eeb5a271162eb317e30b23))
+
+# [1.125.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.124.0...v1.125.0) (2023-02-07)
+
+
+### Bug Fixes
+
+* **quiz data:** curriculum api test fix ([acba3d0](https://github.com/oaknational/Oak-Web-Application/commit/acba3d042fee674b7a2f96686c3e07d89574a8b0))
+* **quiz data:** expanding container test fix ([83ae995](https://github.com/oaknational/Oak-Web-Application/commit/83ae99582a9ced0a3ea9d0f6afdd154680c77be2))
+* **quiz data:** handle order type and match type questions ([2ce8c19](https://github.com/oaknational/Oak-Web-Application/commit/2ce8c19b7c9fc6f64fa00ad1ce9710aa5b3ded65))
+* **quiz data:** questions test coverage ([0f01508](https://github.com/oaknational/Oak-Web-Application/commit/0f01508a621bb9559861a61d382178f53a2b9a87))
+* **quiz data:** show checkbox answers ([c7a1287](https://github.com/oaknational/Oak-Web-Application/commit/c7a12872fc301fdf929c48a44b9a85be8cbc2505))
+* **quiz data:** update quiz data query to mv_question ([4df6b6f](https://github.com/oaknational/Oak-Web-Application/commit/4df6b6f677fccb9797666f27fe458c950caaf779))
+* **quiz data:** update quiz fixtures types ([5e030e1](https://github.com/oaknational/Oak-Web-Application/commit/5e030e13aa7258ccbc3520b480d846ff62c28bdc))
+* **quiz data:** update quiz story type ([c83c995](https://github.com/oaknational/Oak-Web-Application/commit/c83c995ddff7c1c158137e4546634a2fd2821d2b))
+* **quiz data:** update quiz story type ([ced9d24](https://github.com/oaknational/Oak-Web-Application/commit/ced9d2407f8fbdffde1605907a1b2fddbd71bac9))
+* **quizzes:** fix quiz types ([6de7a2b](https://github.com/oaknational/Oak-Web-Application/commit/6de7a2bbc881d81e3e425fd8f92c742533c67337))
+* **quizzes:** fix quiz types ([b7363b4](https://github.com/oaknational/Oak-Web-Application/commit/b7363b4018992324fb6c3c6c8b39b91920aa8ba8))
+* **quizzes:** image and question length fix ([21ff0f3](https://github.com/oaknational/Oak-Web-Application/commit/21ff0f309d4ab450a1492e513490a827a9d0cf9f))
+* **quizzes:** merge ([45b2269](https://github.com/oaknational/Oak-Web-Application/commit/45b2269233be78ed437b4ec21da84080b0316bda))
+
+
+### Features
+
+* **lesson overiew quiz:** lesson overview test fix ([5c4284f](https://github.com/oaknational/Oak-Web-Application/commit/5c4284f5fe4bea3cb910e3c73d558cab5d50808b))
+* **lesson overiew quiz:** lesson overview test fix ([977f757](https://github.com/oaknational/Oak-Web-Application/commit/977f75742b2f81e6bc61bd2e190d57f2e5ad107c))
+* **lesson overiew quiz:** remove duplications ([1974902](https://github.com/oaknational/Oak-Web-Application/commit/19749026f660239356be3449614f1363a7c91c2b))
+* **lesson overiew quiz:** remove duplications ([5fbe9e3](https://github.com/oaknational/Oak-Web-Application/commit/5fbe9e3712fca93a1646b5769387920837c403d2))
+* **lesson overiew quiz:** type fix add quizcount to searchresults ([3348aa3](https://github.com/oaknational/Oak-Web-Application/commit/3348aa3584271c9ea8791eed09c3358c89040404))
+* **lesson_overview:** add and display quiz data on lesson overview page ([138fbd3](https://github.com/oaknational/Oak-Web-Application/commit/138fbd373a9dfa9fea5655244ece06410133353d))
+
 # [1.124.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.123.1...v1.124.0) (2023-02-06)
 
 
