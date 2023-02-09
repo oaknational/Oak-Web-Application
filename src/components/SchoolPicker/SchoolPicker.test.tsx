@@ -191,6 +191,8 @@ describe("search autocomplete", () => {
     await user.keyboard("{arrowdown}");
     await user.keyboard("{arrowdown}");
     await user.keyboard("{Enter}");
-    expect(input).toHaveValue("Dame Dorothy Primary School, Sunderland");
+    expect(input).toHaveValue(
+      "Dame Dorothy Primary School, Sunderland, SR6 0EA"
+    );
   });
 });
