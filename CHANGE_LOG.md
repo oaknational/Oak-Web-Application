@@ -1,3 +1,10 @@
+## [1.127.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.0...v1.127.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* 1227 render custom select list on mobile ([863649d](https://github.com/oaknational/Oak-Web-Application/commit/863649d0e50097e42b8b202360824e8b8ead359b))
+
 # [1.127.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.126.0...v1.127.0) (2023-02-08)
 
 
