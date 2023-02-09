@@ -11,7 +11,7 @@ export default {
       defaultValue: "Click me",
     },
     id: {
-      defaultValue: "Click me",
+      defaultValue: "1",
     },
     checked: {
       defaultValue: false,

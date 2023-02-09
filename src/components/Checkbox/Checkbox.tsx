@@ -6,9 +6,10 @@ import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import Icon from "../Icon";
 import FocusUnderline from "../OakLink/FocusUnderline";
 import FieldError from "../FormFields/FieldError";
+
+import VisualCheckbox from "./VisualCheckbox";
 
 export type CheckboxConfig = {
   default: {
@@ -20,7 +21,7 @@ export type CheckboxConfig = {
 };
 
 type CheckboxProps = {
-  labelText: string;
+  labelText?: string;
   id: string;
   checked: boolean;
   disabled?: boolean;
@@ -28,6 +29,8 @@ type CheckboxProps = {
   required?: boolean;
   error?: string;
   onChange: () => void;
+  children?: React.ReactNode;
+  type?: string;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -77,6 +80,7 @@ const CheckboxLabel = styled.label<CheckboxLabelProps>`
   align-items: center;
   font-family: ${getFontFamily("ui")};
   color: ${getColorByLocation(({ theme }) => theme.checkbox.default.color)};
+  width: 100%;
   ${(props) =>
     props.disabled &&
     css`
@@ -100,33 +104,13 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
   opacity: 0;
 `;
 
-const VisualCheckbox = styled.span<{ checked: boolean }>`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 2px;
-  border-color: ${(props) =>
-    props.checked
-      ? getColorByName("teachersHighlight")
-      : getColorByName("oakGrey3")};
-  background-color: ${(props) =>
-    props.checked
-      ? getColorByName("teachersHighlight")
-      : getColorByName("white")};
-`;
-
 const CheckboxLabelText = styled.span`
   margin-left: 8px;
   margin-right: 16px;
   font-weight: 400;
 `;
 
-const Checkbox: FC<CheckboxProps> = (props) => {
+const CheckboxBase: FC<CheckboxProps> = (props) => {
   const {
     labelText,
     checked = false,
@@ -136,6 +120,8 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     ariaLabel,
     required = false,
     error,
+    children,
+    type,
     ...spacingProps
   } = props;
 
@@ -165,15 +151,21 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
         />
-        <VisualCheckbox checked={checked}>
-          {checked && <Icon name={"Tick"} $color={"white"} size={20} />}
-        </VisualCheckbox>
-        {labelText && <CheckboxLabelText>{labelText}</CheckboxLabelText>}
-        <FocusUnderline $color={"teachersYellow"} />
+        <VisualCheckbox checked={checked} type={type} />
+        {/* card checkbox */}
+        {!labelText && type === "cardCheckbox" && children}
+        {/* basic label checkbox */}
+
+        {labelText && type !== "cardCheckbox" && (
+          <>
+            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
+            <FocusUnderline $color={"teachersYellow"} />
+          </>
+        )}
       </CheckboxLabel>
       <FieldError id={errorId}>{error}</FieldError>
     </>
   );
 };
 
-export default Checkbox;
+export default CheckboxBase;
