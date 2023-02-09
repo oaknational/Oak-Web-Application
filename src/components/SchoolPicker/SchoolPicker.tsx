@@ -31,7 +31,6 @@ export type School = {
 const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   return (
     <SearchComboBox
-      allowsCustomValue
       label={props.label}
       inputValue={props.inputValue}
       onInputChange={props.setInputValue}

@@ -93,7 +93,7 @@ const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
           popoverRef={popoverRef}
           isOpen={state.isOpen}
           onClose={() => state.close}
-          focusOn={false}
+          focusOn={!state.isFocused}
         >
           <ListBox {...listBoxProps} listBoxRef={listBoxRef} state={state} />
         </Popover>
