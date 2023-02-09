@@ -78,6 +78,7 @@ const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
           aria-labelledby={labelId}
           data-testid={"search-autocomplete-input"}
           placeholder={"Search by name or postcode"}
+          aria-describedby={undefined}
         />
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}

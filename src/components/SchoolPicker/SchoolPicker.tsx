@@ -15,6 +15,7 @@ export type School = {
   name: string;
   urn: string;
   la: string;
+  postcode: string;
 };
 
 /**
@@ -39,7 +40,7 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       {(item) => (
         <Item
           key={`${item.urn}-${item.name}`}
-        >{`${item.name}, ${item.la}`}</Item>
+        >{`${item.name}, ${item.la}, ${item.postcode}`}</Item>
       )}
     </SearchComboBox>
   );
