@@ -1,3 +1,14 @@
+## [1.129.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.129.0...v1.129.1) (2023-02-10)
+
+# [1.129.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.128.0...v1.129.0) (2023-02-09)
+
+
+### Features
+
+* 1196 Hide download all resources button if lesson has no downloadable resources ([7fba8a8](https://github.com/oaknational/Oak-Web-Application/commit/7fba8a89240fd05cfa6591fcb85a3dfcd83b3116))
+* 1196 remove unnecessary space ([0a8f39c](https://github.com/oaknational/Oak-Web-Application/commit/0a8f39c60e2c9df33f6bb30d98db215c9e3c5488))
+* 1196 update curriculum-api test ([ca6ebdd](https://github.com/oaknational/Oak-Web-Application/commit/ca6ebddb1e06a2b9a6f7f5dc0030abbd01f20009))
+
 # [1.128.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.1...v1.128.0) (2023-02-09)
 
 

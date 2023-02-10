@@ -22,6 +22,7 @@ const teachersLessonOverviewFixture = (
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcript: null,
+    hasDownloadableResources: true,
     introQuiz: [
       {
         keyStageSlug: "ks3",
