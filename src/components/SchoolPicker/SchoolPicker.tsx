@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Key } from "react";
 import { Item } from "react-stately";
 
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
@@ -6,9 +6,7 @@ import SearchComboBox from "../SearchComboBox/SearchComboBox";
 type SchoolPickerProps = {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedValue: React.Dispatch<React.SetStateAction<
-    string | number
-  > | null>;
+  setSelectedValue: React.Dispatch<React.SetStateAction<Key | undefined>>;
   schools: School[];
   defaultSchools?: School[];
   label: string;
@@ -38,9 +36,7 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       inputValue={props.inputValue}
       onInputChange={props.setInputValue}
       defaultItems={props.schools || []}
-      onSelectionChange={(value) =>
-        props.setSelectedValue(value as string | number | null)
-      }
+      onSelectionChange={(value) => props.setSelectedValue(value)}
     >
       {(item) => (
         <Item

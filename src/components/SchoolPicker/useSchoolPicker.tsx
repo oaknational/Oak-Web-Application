@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Key, useState } from "react";
 import useSWR from "swr";
 
 import OakError from "../../errors/OakError";
@@ -10,16 +10,13 @@ type useSchoolPickerReturnProps = {
   error: Error | null;
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  selectedValue: string;
-  setSelectedValue: React.Dispatch<React.SetStateAction<
-    string | number
-  > | null>;
+  selectedValue: Key | undefined;
+  setSelectedValue: React.Dispatch<React.SetStateAction<Key | undefined>>;
 };
 
 export default function useSchoolPicker(): useSchoolPickerReturnProps {
   const [inputValue, setInputValue] = useState("");
-  const [selectedValue, setSelectedValue] =
-    useState<React.Dispatch<React.SetStateAction<string | number> | null>>("");
+  const [selectedValue, setSelectedValue] = useState<Key | undefined>();
 
   const fetcher = (queryUrl: string) =>
     fetch(queryUrl).then((res) => {
