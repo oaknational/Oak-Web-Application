@@ -118,7 +118,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               Or select one of the following:
             </P>
             <RadioGroup value={selectedRadio} onChange={handleRadioChange}>
-              <Radio value={"homeschool"}>Homeschool</Radio>
+              <Radio data-testid={"radio-download"} value={"homeschool"}>
+                Homeschool
+              </Radio>
               <Radio value={"notListed"}>My school isn’t listed</Radio>
             </RadioGroup>
           </Box>
