@@ -23,6 +23,7 @@ export type CheckboxConfig = {
 type CheckboxProps = {
   labelText?: string;
   id: string;
+  name: string;
   checked: boolean;
   disabled?: boolean;
   ariaLabel?: string;
@@ -39,6 +40,21 @@ type CheckboxLabelProps = {
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
+  input[type="checkbox"]:focus + span {
+    border-color: ${getColorByName("black")};
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      left: -5px;
+      right: 0;
+      border: solid 3px ${getColorByName("teachersYellow")};
+      border-radius: 3px;
+    }
+  }
+
   ${FocusUnderline} {
     display: none;
     position: absolute;
@@ -80,8 +96,6 @@ const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
-  display: flex;
-  align-items: center;
   font-family: ${getFontFamily("ui")};
   color: ${getColorByLocation(({ theme }) => theme.checkbox.default.color)};
   width: 100%;
@@ -121,6 +135,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     disabled = false,
     onChange,
     id,
+    name,
     ariaLabel,
     required = false,
     error,
@@ -147,6 +162,8 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         <ScreenReaderCheckbox
           type="checkbox"
           id={id}
+          value={id}
+          name={name}
           onChange={select}
           checked={checked}
           disabled={disabled}

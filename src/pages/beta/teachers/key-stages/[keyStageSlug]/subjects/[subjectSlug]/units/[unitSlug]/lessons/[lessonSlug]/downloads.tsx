@@ -9,8 +9,11 @@ import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
 import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../../../../../components/Card/TitleCard";
-import Heading from "../../../../../../../../../../../components/Typography/Heading";
-import P from "../../../../../../../../../../../components/Typography/P";
+import {
+  Heading,
+  Hr,
+  P,
+} from "../../../../../../../../../../../components/Typography";
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
@@ -60,11 +63,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   });
 
   const { errors } = formState;
+
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
   const [resourcesToDownload, setResourcesToDownload] = useState<string[]>([]);
 
   const onResourceToDownloadToggle = (toggledResource: string) => {
-    let updatedResourcesToDownload = [];
+    let updatedResourcesToDownload = resourcesToDownload;
 
     if (resourcesToDownload.includes(toggledResource)) {
       updatedResourcesToDownload = resourcesToDownload.filter(
@@ -85,7 +89,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         description: "Lesson downloads",
       })}
     >
-      <MaxWidth $ph={16}>
+      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Flex $mb={8} $display={"inline-flex"} $mt={50}>
           <TitleCard
             page={"lesson"}
@@ -97,7 +101,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             iconName={"Rocket"}
           />
         </Flex>
-        <Box $maxWidth={[null, 420, 420]}>
+        <Box $maxWidth={[null, 420, 420]} $mb={96}>
           <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
             Your details
           </Heading>
@@ -140,6 +144,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <Checkbox
               labelText={"I accept terms and conditions (required)"}
               id={"terms"}
+              name={"termsAndConditions"}
               checked={acceptedTCs}
               onChange={() => setAcceptedTCs(!acceptedTCs)}
               $mb={0}
@@ -155,13 +160,73 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             .
           </P>
         </Box>
+
         <Grid $mt={32}>
+          <GridArea $colSpan={[12]}>
+            <Flex>
+              <Heading tag="h2" $font={"heading-5"}>
+                Lesson resources
+              </Heading>
+            </Flex>
+            <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
+          </GridArea>
           <GridArea $colSpan={[6, 3, 2]}>
             <DownloadCard
-              id={"downloadElement"}
-              checked={resourcesToDownload.includes("downloadElement")}
-              onChange={() => onResourceToDownloadToggle("downloadElement")}
+              id={"downloadElement1"}
+              name={"lessonResourcesToDownload"}
+              checked={resourcesToDownload.includes("downloadElement1")}
+              onChange={() => onResourceToDownloadToggle("downloadElement1")}
               title={"Intro quiz questions"}
+              resourceType="quiz"
+            />
+          </GridArea>
+          <GridArea $colSpan={[6, 3, 2]}>
+            <DownloadCard
+              id={"downloadElement2"}
+              name={"lessonResourcesToDownload"}
+              checked={resourcesToDownload.includes("downloadElement2")}
+              onChange={() => onResourceToDownloadToggle("downloadElement2")}
+              title={"Intro quiz answers"}
+              resourceType="quiz"
+            />
+          </GridArea>
+          <GridArea $colSpan={[6, 3, 2]}>
+            <DownloadCard
+              id={"downloadElement3"}
+              name={"lessonResourcesToDownload"}
+              checked={resourcesToDownload.includes("downloadElement3")}
+              onChange={() => onResourceToDownloadToggle("downloadElement3")}
+              title={"Presentation"}
+              resourceType="presentation"
+            />
+          </GridArea>
+          <GridArea $colSpan={[6, 3, 2]}>
+            <DownloadCard
+              id={"downloadElement4"}
+              name={"lessonResourcesToDownload"}
+              checked={resourcesToDownload.includes("downloadElement4")}
+              onChange={() => onResourceToDownloadToggle("downloadElement4")}
+              title={"Worksheet"}
+              resourceType="worksheet"
+            />
+          </GridArea>
+          <GridArea $colSpan={[6, 3, 2]}>
+            <DownloadCard
+              id={"downloadElement5"}
+              name={"lessonResourcesToDownload"}
+              checked={resourcesToDownload.includes("downloadElement5")}
+              onChange={() => onResourceToDownloadToggle("downloadElement5")}
+              title={"Exit quiz questions"}
+              resourceType="quiz"
+            />
+          </GridArea>
+          <GridArea $colSpan={[6, 3, 2]}>
+            <DownloadCard
+              id={"downloadElement6"}
+              name={"lessonResourcesToDownload"}
+              checked={resourcesToDownload.includes("downloadElement6")}
+              onChange={() => onResourceToDownloadToggle("downloadElement6")}
+              title={"Exit quiz answers"}
               resourceType="quiz"
             />
           </GridArea>

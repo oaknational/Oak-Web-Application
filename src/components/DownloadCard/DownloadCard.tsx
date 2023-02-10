@@ -14,6 +14,7 @@ type ResourceType = "quiz" | "presentation" | "worksheet";
 
 export type DownloadCardProps = {
   id: string;
+  name: string;
   checked: boolean;
   onChange: () => void;
   title: string;
@@ -46,7 +47,8 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
       $flexDirection="column"
       $alignItems="center"
       $height={220}
-      $width={["100%", 200]}
+      $width={["100%"]}
+      $maxWidth={200}
     >
       <Flex $minHeight={110} $pv={16}>
         <GraphicCircleIcon
@@ -76,7 +78,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, title } = props;
+  const { checked = false, onChange, id, title, name } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
@@ -84,6 +86,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
     <Box $maxWidth={200} {...hoverProps}>
       <Checkbox
         id={id}
+        name={name}
         checked={checked}
         onChange={() => onChange()}
         type={"cardCheckbox"}
