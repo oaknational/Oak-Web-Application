@@ -7,13 +7,19 @@ import { School } from "./SchoolPicker";
 
 type useSchoolPickerReturnProps = {
   data: School[];
-  error: Error;
+  error: Error | null;
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedValue: string;
+  setSelectedValue: React.Dispatch<React.SetStateAction<
+    string | number
+  > | null>;
 };
 
 export default function useSchoolPicker(): useSchoolPickerReturnProps {
   const [inputValue, setInputValue] = useState("");
+  const [selectedValue, setSelectedValue] =
+    useState<React.Dispatch<React.SetStateAction<string | number> | null>>("");
 
   const fetcher = (queryUrl: string) =>
     fetch(queryUrl).then((res) => {
@@ -42,9 +48,11 @@ export default function useSchoolPicker(): useSchoolPickerReturnProps {
   const { data, error } = useSWR(queryUrl, fetcher);
 
   return {
-    data,
+    data: data || [],
     error,
     setInputValue,
     inputValue,
+    selectedValue,
+    setSelectedValue,
   };
 }

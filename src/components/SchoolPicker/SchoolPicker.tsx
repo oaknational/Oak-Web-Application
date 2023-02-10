@@ -6,6 +6,9 @@ import SearchComboBox from "../SearchComboBox/SearchComboBox";
 type SchoolPickerProps = {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedValue: React.Dispatch<React.SetStateAction<
+    string | number
+  > | null>;
   schools: School[];
   defaultSchools?: School[];
   label: string;
@@ -35,6 +38,9 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       inputValue={props.inputValue}
       onInputChange={props.setInputValue}
       defaultItems={props.schools || []}
+      onSelectionChange={(value) =>
+        props.setSelectedValue(value as string | number | null)
+      }
     >
       {(item) => (
         <Item
