@@ -1,4 +1,5 @@
 import { FC } from "react";
+import styled from "styled-components";
 import { useHover } from "react-aria";
 
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -29,18 +30,23 @@ const resourceTypeIconMap = {
   worksheet: "Worksheet",
 };
 
+const BoxWithFocusState = styled.div`
+  position: relative;
+  border: solid 4px transparent;
+`;
+
 const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
   isHovered,
   title,
   resourceType,
 }) => (
-  <Box>
+  <BoxWithFocusState>
     <BoxBorders gapPosition="rightTop" />
     <Flex
       $flexDirection="column"
       $alignItems="center"
       $height={220}
-      $width={200}
+      $width={["100%", 200]}
     >
       <Flex $minHeight={110} $pv={16}>
         <GraphicCircleIcon
@@ -58,6 +64,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $minHeight={110}
         $ph={8}
         $width={"100%"}
+        $textAlign={"center"}
       >
         <P $font="heading-7" $mt={36} $mb={4}>
           {title}
@@ -65,7 +72,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         <P $color={isHovered ? "black" : "oakGrey4"}>PDF</P>
       </Flex>
     </Flex>
-  </Box>
+  </BoxWithFocusState>
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {

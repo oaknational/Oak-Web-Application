@@ -18,8 +18,8 @@ type VisualCheckboxWrapper = {
 const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   position: ${(props) =>
     props?.type === "cardCheckbox" ? "absolute" : "relative"};
-  left: ${(props) => (props?.type === "cardCheckbox" ? "8px" : "initial")};
-  top: ${(props) => (props?.type === "cardCheckbox" ? "8px" : "initial")};
+  left: ${(props) => (props?.type === "cardCheckbox" ? "12px" : "initial")};
+  top: ${(props) => (props?.type === "cardCheckbox" ? "12px" : "initial")};
   display: flex;
   align-items: center;
   justify-content: center;

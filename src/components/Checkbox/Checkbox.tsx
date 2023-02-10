@@ -53,6 +53,10 @@ const checkboxFocusStyles = css`
   input[type="checkbox"]:focus ~ ${FocusUnderline} {
     display: block;
   }
+
+  input[type="checkbox"]:focus ~ div {
+    border: solid 4px ${getColorByName("teachersYellow")};
+  }
 `;
 
 const checkboxHoverStyles = css`
