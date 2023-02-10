@@ -52,6 +52,7 @@ export default {
 
 const Template: ComponentStory<typeof Component> = () => {
   const [inputValue, setInputValue] = useState("");
+
   return (
     <Box $width={400} $height={400}>
       <Component
@@ -60,6 +61,9 @@ const Template: ComponentStory<typeof Component> = () => {
         setInputValue={setInputValue}
         schools={items}
         defaultSchools={items}
+        setSelectedValue={function (): void {
+          throw new Error("Function not implemented.");
+        }}
       />
     </Box>
   );
