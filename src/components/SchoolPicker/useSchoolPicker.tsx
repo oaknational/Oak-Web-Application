@@ -1,9 +1,31 @@
 import { Key, useState } from "react";
 import useSWR from "swr";
 
+import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 
 import { School } from "./SchoolPicker";
+const reportError = errorReporter("SchoolPicker");
+
+export const fetcher = (queryUrl: string) =>
+  fetch(queryUrl).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      const error = new OakError({
+        code: "school-picker/fetch-suggestions",
+        meta: {
+          status: res.status,
+          statusText: res.statusText,
+          queryUrl,
+          json: res.json,
+        },
+      });
+
+      reportError(error);
+      throw error;
+    }
+  });
 
 type useSchoolPickerReturnProps = {
   data: School[];
@@ -17,28 +39,6 @@ type useSchoolPickerReturnProps = {
 export default function useSchoolPicker(): useSchoolPickerReturnProps {
   const [inputValue, setInputValue] = useState("");
   const [selectedValue, setSelectedValue] = useState<Key | undefined>();
-
-  const fetcher = (queryUrl: string) =>
-    fetch(queryUrl).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else if (res.status === 404) {
-        return [];
-      } else {
-        const error = new OakError({
-          code: "school-picker/fetch-suggestions",
-          meta: {
-            status: res.status,
-            statusText: res.statusText,
-            queryUrl,
-            json: res.json,
-          },
-        });
-
-        reportError(error);
-        throw error;
-      }
-    });
 
   const queryUrl = `https://school-picker.thenational.academy/${inputValue}`;
 
