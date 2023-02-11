@@ -1,12 +1,14 @@
-import { FC, Key } from "react";
+import { FC } from "react";
 import { Item } from "react-stately";
 
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
 
-type SchoolPickerProps = {
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedValue: React.Dispatch<React.SetStateAction<Key | undefined>>;
+import { UseSchoolPickerReturnProps } from "./useSchoolPicker";
+
+type SchoolPickerProps = Omit<
+  UseSchoolPickerReturnProps,
+  "data" | "error" | "selectedValue"
+> & {
   schools: School[];
   defaultSchools?: School[];
   label: string;

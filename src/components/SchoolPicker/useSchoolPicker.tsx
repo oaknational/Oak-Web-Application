@@ -27,7 +27,7 @@ export const fetcher = (queryUrl: string) =>
     }
   });
 
-type useSchoolPickerReturnProps = {
+export type UseSchoolPickerReturnProps = {
   data: School[];
   error: Error | null;
   inputValue: string;
@@ -36,7 +36,7 @@ type useSchoolPickerReturnProps = {
   setSelectedValue: React.Dispatch<React.SetStateAction<Key | undefined>>;
 };
 
-export default function useSchoolPicker(): useSchoolPickerReturnProps {
+export default function useSchoolPicker(): UseSchoolPickerReturnProps {
   const [inputValue, setInputValue] = useState("");
   const [selectedValue, setSelectedValue] = useState<Key | undefined>();
 
