@@ -1,4 +1,4 @@
-import { FC, useContext, useRef } from "react";
+import { FC, useContext, useId, useRef } from "react";
 import {
   useFocusRing,
   useRadio,
@@ -19,6 +19,11 @@ const Radio: FC<AriaRadioProps> = (props) => {
   const ref = useRef(null);
   const { inputProps, isSelected, isDisabled } = useRadio(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
+
+  inputProps.name = useId();
+  inputProps.id = useId();
+
+  inputProps["aria-labelledby"] = useId();
 
   const StyledRadio = styled.span<{
     isSelected: boolean;
@@ -76,6 +81,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
 
   return (
     <label
+      aria-describedby="undefined"
       style={{
         display: "flex",
         alignItems: "center",
@@ -84,10 +90,19 @@ const Radio: FC<AriaRadioProps> = (props) => {
       }}
     >
       <VisuallyHidden>
-        <input {...inputProps} {...focusProps} ref={ref} />
+        <input
+          {...inputProps}
+          {...focusProps}
+          ref={ref}
+          aria-describedby="undefined"
+        />
       </VisuallyHidden>
 
-      <StyledRadio isSelected={isSelected} isFocusVisible={isFocusVisible} />
+      <StyledRadio
+        isSelected={isSelected}
+        isFocusVisible={isFocusVisible}
+        aria-describedby="undefined"
+      />
 
       {children}
     </label>

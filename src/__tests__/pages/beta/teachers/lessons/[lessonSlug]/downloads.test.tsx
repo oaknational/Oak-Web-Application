@@ -200,9 +200,6 @@ describe("School picker and radio buttons", () => {
       <LessonDownloadsPage {...props} />
     );
 
-    // initial value from mocked hook
-    // expect(input).toHaveValue("");
-
     const radio = getByTestId("radio-download");
     const user = userEvent.setup();
     await user.click(radio);
@@ -217,8 +214,6 @@ describe("School picker and radio buttons", () => {
 
     rerender(<LessonDownloadsPage {...props} />);
 
-    console.log(input);
-
     expect(setSelectedRadio).toBeCalledWith("");
     // expect(radio).not.toBeChecked();
   });
@@ -231,8 +226,6 @@ describe("School picker and radio buttons", () => {
     const user = userEvent.setup();
     await user.click(radio);
     await user.tab();
-
-    // await waitForNextTick();
 
     rerender(<LessonDownloadsPage {...props} />);
 

@@ -117,7 +117,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <P $mb={12} $font={"body-2"}>
               Or select one of the following:
             </P>
-            <RadioGroup value={selectedRadio} onChange={handleRadioChange}>
+            <RadioGroup
+              aria-label={"home school or my school isn't listed"}
+              value={selectedRadio}
+              onChange={handleRadioChange}
+            >
               <Radio data-testid={"radio-download"} value={"homeschool"}>
                 Homeschool
               </Radio>
