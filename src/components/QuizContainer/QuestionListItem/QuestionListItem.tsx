@@ -74,7 +74,9 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                     {" "}
                     {() => {
                       if (choiceImages && choiceImages.length > 0) {
-                        const choiceImagesString:string = choiceImages[index] as string
+                        const choiceImagesString: string = choiceImages[
+                          index
+                        ] as string;
                         return (
                           <Box $position="relative" $minHeight={110}>
                             {" "}
@@ -109,9 +111,11 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
               } else {
                 return (
                   <>
-                   {() => {
+                    {() => {
                       if (choiceImages && choiceImages.length > 0) {
-                        const choiceImagesString:string = choiceImages[index] as string
+                        const choiceImagesString: string = choiceImages[
+                          index
+                        ] as string;
                         return (
                           <Box $position="relative" $minHeight={110}>
                             {" "}
@@ -157,13 +161,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                       )}
                       {type === "match" ? (
                         <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-                          {answer[index]} - 
+                          {answer[index]} -
                         </Heading>
                       ) : (
                         ""
                       )}
                       <Typography $font={["body-1"]}>{choice}</Typography>
-                      
                     </Flex>
                   </Flex>
                 </>

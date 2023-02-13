@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../node-lib/cms";
