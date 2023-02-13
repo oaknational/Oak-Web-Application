@@ -60,6 +60,7 @@ query teachersLessonOverview(
     title
     type
     order
+    displayNumber: display_number
   }
   introQuiz: mv_questions(
     where: {
@@ -92,5 +93,6 @@ query teachersLessonOverview(
     title
     type
     order
+    displayNumber: display_number
   }
 }
