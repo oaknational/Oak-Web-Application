@@ -36185,7 +36185,7 @@ export type TeachersKeyStageSubjectUnitLessonsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, description?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, quizCount?: any | null }> };
+export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, description?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, hasDownloadableResources?: boolean | null, quizCount?: any | null }> };
 
 export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -36295,6 +36295,7 @@ export const TeachersKeyStageSubjectUnitLessonsDocument = gql`
     presentationCount: presentation_count
     worksheetCount: worksheet_count
     hasCopyrightMaterial: has_copyright_material
+    hasDownloadableResources: has_downloadable_resources
     quizCount: quiz_count
   }
 }
@@ -36396,6 +36397,7 @@ export const TeachersLessonOverviewDocument = gql`
     videoMuxPlaybackId: video_mux_playback_id
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
     transcript
+    hasDownloadableResources: has_downloadable_resources
   }
   exitQuiz: mv_questions(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}

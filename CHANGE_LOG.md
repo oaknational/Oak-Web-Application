@@ -1,3 +1,54 @@
+# [1.130.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.129.1...v1.130.0) (2023-02-10)
+
+
+### Features
+
+* 1236 add download checkbox card ([2809c7b](https://github.com/oaknational/Oak-Web-Application/commit/2809c7b5947a2cc3d96224b589f2773cc8f9d6ac))
+* 1236 add focus state ([583d329](https://github.com/oaknational/Oak-Web-Application/commit/583d329d52d5e76cbc25019a9e18ab9dba30e6ce))
+* 1236 add tests ([518c94f](https://github.com/oaknational/Oak-Web-Application/commit/518c94f36e70469e20af42eda8268d40c88fd8c0))
+
+## [1.129.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.129.0...v1.129.1) (2023-02-10)
+
+# [1.129.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.128.0...v1.129.0) (2023-02-09)
+
+
+### Features
+
+* 1196 Hide download all resources button if lesson has no downloadable resources ([7fba8a8](https://github.com/oaknational/Oak-Web-Application/commit/7fba8a89240fd05cfa6591fcb85a3dfcd83b3116))
+* 1196 remove unnecessary space ([0a8f39c](https://github.com/oaknational/Oak-Web-Application/commit/0a8f39c60e2c9df33f6bb30d98db215c9e3c5488))
+* 1196 update curriculum-api test ([ca6ebdd](https://github.com/oaknational/Oak-Web-Application/commit/ca6ebddb1e06a2b9a6f7f5dc0030abbd01f20009))
+
+# [1.128.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.1...v1.128.0) (2023-02-09)
+
+
+### Features
+
+* 1244 Refactor Mobile Filters components ([33effa2](https://github.com/oaknational/Oak-Web-Application/commit/33effa2f37d9b564eb8ce14365ec6ee36a3c8fef))
+
+## [1.127.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.127.0...v1.127.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* 1227 render custom select list on mobile ([863649d](https://github.com/oaknational/Oak-Web-Application/commit/863649d0e50097e42b8b202360824e8b8ead359b))
+
+# [1.127.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.126.0...v1.127.0) (2023-02-08)
+
+
+### Features
+
+* **video:** make video playing detectable outside the shadow DOM ([a2db022](https://github.com/oaknational/Oak-Web-Application/commit/a2db0221117638fccd97d7dc391f13a38a65ebff))
+
+# [1.126.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.125.0...v1.126.0) (2023-02-08)
+
+
+### Features
+
+* **security policy:** add credits file ([c19af01](https://github.com/oaknational/Oak-Web-Application/commit/c19af01d074872413aa831d4434ffbab3c79d2c4))
+* **security policy:** signed security.txt ([85f09c1](https://github.com/oaknational/Oak-Web-Application/commit/85f09c1ae8dffb5dbc2159b14709235d9e10c7a9))
+* **security policy:** update URL ([a98302e](https://github.com/oaknational/Oak-Web-Application/commit/a98302e53f666fb966c76594903e752efee10ec5))
+* **security:** add security disclosure policy ([781f9b3](https://github.com/oaknational/Oak-Web-Application/commit/781f9b3b7b1e497b44eeb5a271162eb317e30b23))
+
 # [1.125.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.124.0...v1.125.0) (2023-02-07)
 
 
