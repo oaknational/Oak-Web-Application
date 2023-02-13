@@ -9,8 +9,8 @@ export type QuizQuestionListProps = QuizProps;
 
 const QuestionsList: FC<QuizQuestionListProps> = (props) => {
   const { questions, info } = props;
-  const { questionCount } = info;
-  console.log(questions);
+  const { questionCount } = info ?? {};
+
   return (
     <MaxWidth $maxWidth={[360, 580, 720]} $ph={10}>
       <Heading $font={"heading-5"} tag={"h3"} $mt={56}>

@@ -230,7 +230,7 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
 const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z.object({
   title: z.string(),
   questionCount: z.number(),
-});
+}).nullable();
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
@@ -313,6 +313,32 @@ const getFirstResultOrWarnOrFail =
     const [firstResult] = results;
     if (!firstResult) {
       throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    return firstResult;
+  };
+
+  const getFirstResultOrNull =
+  () =>
+  //({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
+  <T>({ results }: { results: T[] }) => {
+    if (results.length > 1) {
+      // const warning = new OakError({
+      //   code: "curriculum-api/uniqueness-assumption-violated",
+      // });
+      // reportError(warning, {
+      //   severity: "warning",
+      //   meta: {
+      //     note: "meta.results has been sliced to 10 so as not to create an obscenely large pageData object",
+      //     results: results.slice(10),
+      //     query,
+      //     args,
+      //   },
+      // });
+    }
+    const [firstResult] = results;
+    if (!firstResult) {
+      return null
     }
 
     return firstResult;
@@ -441,14 +467,13 @@ const curriculumApi = {
       results: lessons,
     });
 
-    const exitQuizInfoSingle = getFirstResultOrWarnOrFail()({
+    const exitQuizInfoSingle = getFirstResultOrNull()({
       results: exitQuizInfo,
     });
 
-    const introQuizInfoSingle = getFirstResultOrWarnOrFail()({
+    const introQuizInfoSingle = getFirstResultOrNull()({
       results: introQuizInfo,
     });
-
     return teachersLessonOverviewData.parse({
       ...lesson,
       introQuizInfo: introQuizInfoSingle,
