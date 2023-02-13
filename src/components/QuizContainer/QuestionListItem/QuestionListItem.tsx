@@ -7,7 +7,7 @@ import OakImage from "../../OakImage";
 import Typography, { Heading, LI, UL } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
-type QuestionListItemProps = QuizQuestionListProps["questions"][0];
+export type QuestionListItemProps = QuizQuestionListProps["questions"][0];
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choiceImages, choices, answer, type, displayNumber } =
@@ -15,12 +15,10 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   return (
     <LI $mb={32}>
       <Flex $mb={12}>
-        {displayNumber ? (
+        {displayNumber && (
           <Typography $font={["body-1-bold"]} $mr={12}>
             {displayNumber}
           </Typography>
-        ) : (
-          ""
         )}
         <Typography $font={["body-1-bold"]}>{title}</Typography>
       </Flex>
@@ -69,28 +67,41 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           {choices.map((choice, index) => {
             if (typeof answer === "string") {
               if (answer === choice) {
-                return (
-                  <>
-                    {" "}
-                    {() => {
-                      if (choiceImages && choiceImages.length > 0) {
-                        const choiceImagesString: string = choiceImages[
-                          index
-                        ] as string;
-                        return (
-                          <Box $position="relative" $minHeight={110}>
-                            {" "}
-                            <OakImage
-                              fill
-                              $objectFit="contain"
-                              $objectPosition="left"
-                              src={choiceImagesString}
-                              alt={"quiz image"}
-                            />
-                          </Box>
-                        );
-                      }
-                    }}
+                if (choiceImages && choiceImages.length > 0) {
+                  const choiceImagesString: string = choiceImages[
+                    index
+                  ] as string;
+                  return (
+                    <>
+                      {" "}
+                      <Box $position="relative" $minHeight={110}>
+                        {" "}
+                        <OakImage
+                          fill
+                          $objectFit="contain"
+                          $objectPosition="left"
+                          src={choiceImagesString}
+                          alt={"quiz image"}
+                        />
+                      </Box>
+                      <Flex>
+                        <Typography
+                          $font={["body-1"]}
+                          $background={"teachersPastelYellow"}
+                          $borderRadius={8}
+                          $mb={6}
+                          $ph={10}
+                          $display={"flex"}
+                        >
+                          <Icon name={"Tick"} $mr={16} />
+
+                          {choice}
+                        </Typography>
+                      </Flex>
+                    </>
+                  );
+                } else {
+                  return (
                     <Flex>
                       <Typography
                         $font={["body-1"]}
@@ -99,42 +110,43 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                         $mb={6}
                         $ph={10}
                         $display={"flex"}
-                        $textAlign={"center"}
                       >
                         <Icon name={"Tick"} $mr={16} />
 
                         {choice}
                       </Typography>
                     </Flex>
-                  </>
-                );
+                  );
+                }
               } else {
-                return (
-                  <>
-                    {() => {
-                      if (choiceImages && choiceImages.length > 0) {
-                        const choiceImagesString: string = choiceImages[
-                          index
-                        ] as string;
-                        return (
-                          <Box $position="relative" $minHeight={110}>
-                            {" "}
-                            <OakImage
-                              fill
-                              $objectFit="contain"
-                              $objectPosition="left"
-                              src={choiceImagesString}
-                              alt={"quiz image"}
-                            />
-                          </Box>
-                        );
-                      }
-                    }}
+                if (choiceImages && choiceImages.length > 0) {
+                  const choiceImagesString: string = choiceImages[
+                    index
+                  ] as string;
+                  return (
+                    <>
+                      <Box $position="relative" $minHeight={110}>
+                        {" "}
+                        <OakImage
+                          fill
+                          $objectFit="contain"
+                          $objectPosition="left"
+                          src={choiceImagesString}
+                          alt={"quiz image"}
+                        />
+                      </Box>
+                      <Typography $mb={6} $font={["body-1"]} $ml={40} $ph={10}>
+                        {choice}
+                      </Typography>
+                    </>
+                  );
+                } else {
+                  return (
                     <Typography $mb={6} $font={["body-1"]} $ml={40} $ph={10}>
                       {choice}
                     </Typography>
-                  </>
-                );
+                  );
+                }
               }
             } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
               return (
@@ -147,24 +159,19 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                       $borderRadius={8}
                       $mb={6}
                       $ph={10}
-                      $textAlign={"center"}
                       $alignItems={"center"}
                     >
                       {" "}
                       <Icon name={"Tick"} $mr={16} />
-                      {type === "order" ? (
+                      {type === "order" && (
                         <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
                           {index + 1} -
                         </Heading>
-                      ) : (
-                        ""
                       )}
-                      {type === "match" ? (
+                      {type === "match" && (
                         <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
                           {answer[index]} -
                         </Heading>
-                      ) : (
-                        ""
                       )}
                       <Typography $font={["body-1"]}>{choice}</Typography>
                     </Flex>
@@ -192,7 +199,6 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   $borderRadius={8}
                   $mb={6}
                   $ph={10}
-                  $textAlign={"center"}
                   $alignItems={"center"}
                 >
                   {" "}
