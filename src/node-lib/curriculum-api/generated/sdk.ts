@@ -18993,6 +18993,7 @@ export type Mv_Quizzes = {
   lesson_slug?: Maybe<Scalars['String']>;
   lesson_title?: Maybe<Scalars['String']>;
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -19055,11 +19056,13 @@ export type Mv_Quizzes_Arr_Rel_Insert_Input = {
 export type Mv_Quizzes_Avg_Fields = {
   __typename?: 'mv_quizzes_avg_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Avg_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "mv_quizzes". All fields are combined with a logical 'AND'. */
@@ -19073,6 +19076,7 @@ export type Mv_Quizzes_Bool_Exp = {
   lesson_slug?: InputMaybe<String_Comparison_Exp>;
   lesson_title?: InputMaybe<String_Comparison_Exp>;
   max_points?: InputMaybe<Int_Comparison_Exp>;
+  question_count?: InputMaybe<Bigint_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
   subject_title?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
@@ -19084,6 +19088,7 @@ export type Mv_Quizzes_Bool_Exp = {
 /** input type for incrementing integer column in table "mv_quizzes" */
 export type Mv_Quizzes_Inc_Input = {
   max_points?: InputMaybe<Scalars['Int']>;
+  question_count?: InputMaybe<Scalars['bigint']>;
 };
 
 /** input type for inserting data into table "mv_quizzes" */
@@ -19094,6 +19099,7 @@ export type Mv_Quizzes_Insert_Input = {
   lesson_slug?: InputMaybe<Scalars['String']>;
   lesson_title?: InputMaybe<Scalars['String']>;
   max_points?: InputMaybe<Scalars['Int']>;
+  question_count?: InputMaybe<Scalars['bigint']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -19111,6 +19117,7 @@ export type Mv_Quizzes_Max_Fields = {
   lesson_slug?: Maybe<Scalars['String']>;
   lesson_title?: Maybe<Scalars['String']>;
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -19127,6 +19134,7 @@ export type Mv_Quizzes_Max_Order_By = {
   lesson_slug?: InputMaybe<Order_By>;
   lesson_title?: InputMaybe<Order_By>;
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
@@ -19144,6 +19152,7 @@ export type Mv_Quizzes_Min_Fields = {
   lesson_slug?: Maybe<Scalars['String']>;
   lesson_title?: Maybe<Scalars['String']>;
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -19160,6 +19169,7 @@ export type Mv_Quizzes_Min_Order_By = {
   lesson_slug?: InputMaybe<Order_By>;
   lesson_title?: InputMaybe<Order_By>;
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
@@ -19190,6 +19200,7 @@ export type Mv_Quizzes_Order_By = {
   lesson_slug?: InputMaybe<Order_By>;
   lesson_title?: InputMaybe<Order_By>;
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
@@ -19213,6 +19224,8 @@ export enum Mv_Quizzes_Select_Column {
   /** column name */
   MaxPoints = 'max_points',
   /** column name */
+  QuestionCount = 'question_count',
+  /** column name */
   SubjectSlug = 'subject_slug',
   /** column name */
   SubjectTitle = 'subject_title',
@@ -19234,6 +19247,7 @@ export type Mv_Quizzes_Set_Input = {
   lesson_slug?: InputMaybe<Scalars['String']>;
   lesson_title?: InputMaybe<Scalars['String']>;
   max_points?: InputMaybe<Scalars['Int']>;
+  question_count?: InputMaybe<Scalars['bigint']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -19246,77 +19260,91 @@ export type Mv_Quizzes_Set_Input = {
 export type Mv_Quizzes_Stddev_Fields = {
   __typename?: 'mv_quizzes_stddev_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Stddev_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Mv_Quizzes_Stddev_Pop_Fields = {
   __typename?: 'mv_quizzes_stddev_pop_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Stddev_Pop_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Mv_Quizzes_Stddev_Samp_Fields = {
   __typename?: 'mv_quizzes_stddev_samp_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Stddev_Samp_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
 export type Mv_Quizzes_Sum_Fields = {
   __typename?: 'mv_quizzes_sum_fields';
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
 };
 
 /** order by sum() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Sum_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_pop on columns */
 export type Mv_Quizzes_Var_Pop_Fields = {
   __typename?: 'mv_quizzes_var_pop_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Var_Pop_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Mv_Quizzes_Var_Samp_Fields = {
   __typename?: 'mv_quizzes_var_samp_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Var_Samp_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Mv_Quizzes_Variance_Fields = {
   __typename?: 'mv_quizzes_variance_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Variance_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "mv_subjects" */
@@ -36217,7 +36245,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
 
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
