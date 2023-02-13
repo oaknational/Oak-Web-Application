@@ -227,10 +227,12 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
   })
 );
 
-const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z.object({
-  title: z.string(),
-  questionCount: z.number(),
-}).nullable();
+const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z
+  .object({
+    title: z.string(),
+    questionCount: z.number(),
+  })
+  .nullable();
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
@@ -318,7 +320,7 @@ const getFirstResultOrWarnOrFail =
     return firstResult;
   };
 
-  const getFirstResultOrNull =
+const getFirstResultOrNull =
   () =>
   //({ query, args }: { query: keyof typeof sdk; args: unknown }) =>
   <T>({ results }: { results: T[] }) => {
@@ -338,7 +340,7 @@ const getFirstResultOrWarnOrFail =
     }
     const [firstResult] = results;
     if (!firstResult) {
-      return null
+      return null;
     }
 
     return firstResult;

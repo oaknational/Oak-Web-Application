@@ -10,6 +10,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const questions: QuizQuestionListProps = {
+  info: { title: "question title", questionCount: 2 },
   questions: [
     {
       keyStageSlug: "ks3",
