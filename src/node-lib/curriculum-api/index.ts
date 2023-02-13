@@ -227,7 +227,10 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
   })
 );
 
-const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z.object({ title: z.string(), questionCount: z.number() });
+const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z.object({
+  title: z.string(),
+  questionCount: z.number(),
+});
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(

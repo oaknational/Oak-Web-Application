@@ -5,7 +5,10 @@ import Flex from "../Flex";
 
 import QuestionsList from "./QuestionsList";
 
-export type QuizProps = { questions: TeachersLessonOverviewData["exitQuiz"], info:TeachersLessonOverviewData["exitQuizInfo"] };
+export type QuizProps = {
+  questions: TeachersLessonOverviewData["exitQuiz"];
+  info: TeachersLessonOverviewData["exitQuizInfo"];
+};
 
 const QuizContainer: FC<QuizProps> = (props) => {
   return (

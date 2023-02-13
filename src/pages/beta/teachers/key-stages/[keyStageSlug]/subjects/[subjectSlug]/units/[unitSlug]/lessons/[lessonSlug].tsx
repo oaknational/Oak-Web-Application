@@ -61,7 +61,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     introQuiz,
     exitQuiz,
     introQuizInfo,
-    exitQuizInfo
+    exitQuizInfo,
   } = curriculumData;
 
   const router = useRouter();
@@ -177,7 +177,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer questions={introQuiz} info={introQuizInfo}/>
+            <QuizContainer questions={introQuiz} info={introQuizInfo} />
           </ExpandingContainer>
         ) : (
           ""
@@ -188,7 +188,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer questions={exitQuiz} info={exitQuizInfo}/>
+            <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
           </ExpandingContainer>
         )}
 
