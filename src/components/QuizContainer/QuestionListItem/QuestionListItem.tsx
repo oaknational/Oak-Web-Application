@@ -28,12 +28,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           if (image) {
             if (typeof image === "string") {
               return (
-                <Box $position="relative" $minHeight={110}>
+                <Box $position="relative" $minHeight={200} $ml={[0, 50]}>
                   {" "}
                   <OakImage
                     fill
                     objectFit="contain"
-                    $objectPosition="left"
+                    $objectPosition={["center", "left"]}
                     src={image}
                     alt={"quiz image"}
                   />
@@ -45,12 +45,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                 <>
                   {images.map((image) => {
                     return (
-                      <Box $position="relative" $minHeight={110}>
+                      <Box $position="relative" $minHeight={200} $ml={[0, 50]}>
                         {" "}
                         <OakImage
                           fill
                           $objectFit="contain"
-                          $objectPosition="left"
+                          $objectPosition={["center", "left"]}
                           src={image}
                           alt={title}
                         />
@@ -74,12 +74,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   return (
                     <>
                       {" "}
-                      <Box $position="relative" $minHeight={110}>
+                      <Box $position="relative" $minHeight={200} $ml={[0, 50]}>
                         {" "}
                         <OakImage
                           fill
                           $objectFit="contain"
-                          $objectPosition="left"
+                          $objectPosition={["center", "left"]}
                           src={choiceImagesString}
                           alt={"quiz image"}
                         />
@@ -125,12 +125,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   ] as string;
                   return (
                     <>
-                      <Box $position="relative" $minHeight={110}>
+                      <Box $position="relative" $minHeight={200} $ml={[0, 50]}>
                         {" "}
                         <OakImage
                           fill
                           $objectFit="contain"
-                          $objectPosition="left"
+                          $objectPosition={["center", "left"]}
                           src={choiceImagesString}
                           alt={"quiz image"}
                         />

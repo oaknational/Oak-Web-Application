@@ -227,6 +227,8 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
   })
 );
 
+const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z.object({ title: z.string(), questionCount: z.number() });
+
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
     z.object({
@@ -257,6 +259,8 @@ const teachersLessonOverviewData = z.object({
   hasDownloadableResources: z.boolean().nullable(),
   introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
@@ -428,14 +432,24 @@ const curriculumApi = {
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
-    const { introQuiz, exitQuiz } = res;
+    const { introQuiz, exitQuiz, exitQuizInfo, introQuizInfo } = res;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
 
+    const exitQuizInfoSingle = getFirstResultOrWarnOrFail()({
+      results: exitQuizInfo,
+    });
+
+    const introQuizInfoSingle = getFirstResultOrWarnOrFail()({
+      results: introQuizInfo,
+    });
+
     return teachersLessonOverviewData.parse({
       ...lesson,
+      introQuizInfo: introQuizInfoSingle,
+      exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
     });
