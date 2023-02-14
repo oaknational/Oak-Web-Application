@@ -15,6 +15,7 @@ const props = {
   curriculumData: teachersLessonOverviewFixture({
     videoMuxPlaybackId: "pid-001",
     videoWithSignLanguageMuxPlaybackId: "pid-002",
+    hasDownloadableResources: true,
   }),
 };
 
@@ -32,6 +33,14 @@ describe("pages/beta/teachers/lessons", () => {
 
     expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
       "Signed video"
+    );
+  });
+
+  it("renders Download All button if lesson has downloadable resources", async () => {
+    renderWithProviders(<LessonOverviewPage {...props} />);
+
+    expect(screen.getByTestId("download-all-button")).toHaveTextContent(
+      "All lesson resources"
     );
   });
 
