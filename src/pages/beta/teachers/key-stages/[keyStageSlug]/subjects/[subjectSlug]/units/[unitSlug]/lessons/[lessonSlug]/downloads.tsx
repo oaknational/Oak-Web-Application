@@ -65,21 +65,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { errors } = formState;
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
-  const [resourcesToDownload, setResourcesToDownload] = useState<string[]>([]);
+
+  const [resourcesToDownload, setResourcesToDownload] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const onResourceToDownloadToggle = (toggledResource: string) => {
-    let updatedResourcesToDownload = resourcesToDownload;
-
-    if (resourcesToDownload.includes(toggledResource)) {
-      updatedResourcesToDownload = resourcesToDownload.filter(
-        (resource: string) => resource !== toggledResource
-      );
-    } else {
-      updatedResourcesToDownload.push(toggledResource);
-    }
-
-    setResourcesToDownload(updatedResourcesToDownload);
-    return;
+    setResourcesToDownload({
+      ...resourcesToDownload,
+      [toggledResource]: resourcesToDownload[toggledResource] ? false : true,
+    });
   };
 
   return (
@@ -174,7 +169,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <DownloadCard
               id={"downloadElement1"}
               name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload.includes("downloadElement1")}
+              checked={resourcesToDownload["downloadElement1"]}
               onChange={() => onResourceToDownloadToggle("downloadElement1")}
               title={"Intro quiz questions"}
               resourceType="quiz"
@@ -184,7 +179,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <DownloadCard
               id={"downloadElement2"}
               name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload.includes("downloadElement2")}
+              checked={resourcesToDownload["downloadElement2"]}
               onChange={() => onResourceToDownloadToggle("downloadElement2")}
               title={"Intro quiz answers"}
               resourceType="quiz"
@@ -194,7 +189,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <DownloadCard
               id={"downloadElement3"}
               name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload.includes("downloadElement3")}
+              checked={resourcesToDownload["downloadElement3"]}
               onChange={() => onResourceToDownloadToggle("downloadElement3")}
               title={"Presentation"}
               resourceType="presentation"
@@ -204,7 +199,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <DownloadCard
               id={"downloadElement4"}
               name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload.includes("downloadElement4")}
+              checked={resourcesToDownload["downloadElement4"]}
               onChange={() => onResourceToDownloadToggle("downloadElement4")}
               title={"Worksheet"}
               resourceType="worksheet"
@@ -214,7 +209,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <DownloadCard
               id={"downloadElement5"}
               name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload.includes("downloadElement5")}
+              checked={resourcesToDownload["downloadElement5"]}
               onChange={() => onResourceToDownloadToggle("downloadElement5")}
               title={"Exit quiz questions"}
               resourceType="quiz"
@@ -224,7 +219,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <DownloadCard
               id={"downloadElement6"}
               name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload.includes("downloadElement6")}
+              checked={resourcesToDownload["downloadElement6"]}
               onChange={() => onResourceToDownloadToggle("downloadElement6")}
               title={"Exit quiz answers"}
               resourceType="quiz"
