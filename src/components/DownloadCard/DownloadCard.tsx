@@ -89,7 +89,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         name={name}
         checked={checked}
         onChange={() => onChange()}
-        type={"cardCheckbox"}
+        variant={"cardCheckbox"}
         ariaLabel={title}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />

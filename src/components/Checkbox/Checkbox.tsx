@@ -20,6 +20,8 @@ export type CheckboxConfig = {
   };
 };
 
+export type CheckboxVariant = "cardCheckbox";
+
 type CheckboxProps = {
   labelText?: string;
   id: string;
@@ -31,12 +33,13 @@ type CheckboxProps = {
   error?: string;
   onChange: () => void;
   children?: React.ReactNode;
-  type?: string;
+  variant?: CheckboxVariant;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
   disabled: boolean;
   checked: boolean;
+  variant?: CheckboxVariant;
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
@@ -94,6 +97,9 @@ const checkboxHoverStyles = css`
 
 const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
+  display: ${(props) =>
+    props.variant !== "cardCheckbox" ? "flex" : "initial"};
+  align-items: center;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
   font-family: ${getFontFamily("ui")};
@@ -140,7 +146,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     required = false,
     error,
     children,
-    type,
+    variant,
     ...spacingProps
   } = props;
 
@@ -157,6 +163,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         onClick={() => select}
         checked={checked}
         disabled={disabled}
+        variant={variant}
         {...spacingProps}
       >
         <ScreenReaderCheckbox
@@ -172,12 +179,12 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
         />
-        <VisualCheckbox checked={checked} type={type} />
+        <VisualCheckbox checked={checked} variant={variant} />
         {/* card checkbox */}
-        {!labelText && type === "cardCheckbox" && children}
+        {!labelText && variant === "cardCheckbox" && children}
         {/* basic label checkbox */}
 
-        {labelText && type !== "cardCheckbox" && (
+        {labelText && variant !== "cardCheckbox" && (
           <>
             <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
             <FocusUnderline $color={"teachersYellow"} />
