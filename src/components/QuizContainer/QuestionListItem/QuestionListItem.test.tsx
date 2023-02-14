@@ -3,8 +3,7 @@ import teachersLessonOverviewFixture from "../../../node-lib/curriculum-api/fixt
 
 import QuestionListItem, { QuestionListItemProps } from ".";
 
-const testProps: QuestionListItemProps =
-  teachersLessonOverviewFixture().introQuiz[0];
+const testProps =  teachersLessonOverviewFixture().introQuiz[0] as QuestionListItemProps;
 
 describe("components/QuestionListItem", () => {
   test("renders the correct heading tag", () => {
@@ -17,10 +16,10 @@ describe("components/QuestionListItem", () => {
   });
 
   test("renders the provided image", () => {
-    const { getByRole } = renderWithTheme(<QuestionListItem {...testProps} />);
+    const { getAllByRole } = renderWithTheme(<QuestionListItem {...testProps} />)
 
-    const image = getByRole("img");
+    const images = getAllByRole("img");
 
-    expect(image).toBeInTheDocument();
+    expect(images.length).toEqual(3);
   });
 });
