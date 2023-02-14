@@ -21,11 +21,11 @@ import Grid, {
   GridArea,
 } from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
-  TeachersLessonOverviewData,
+  TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 
 export type LessonDownloadsPageProps = {
-  curriculumData: TeachersLessonOverviewData;
+  curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
 const schema = z.object({
@@ -53,7 +53,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
     curriculumData;
-
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
@@ -187,12 +186,13 @@ export const getServerSideProps: GetServerSideProps<
   }
   const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
 
-  const curriculumData = await curriculumApi.teachersLessonOverview({
-    lessonSlug,
-    keyStageSlug,
-    subjectSlug,
-    unitSlug,
-  });
+  const curriculumData =
+    await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
+      lessonSlug,
+      keyStageSlug,
+      subjectSlug,
+      unitSlug,
+    });
 
   if (!curriculumData) {
     return {
