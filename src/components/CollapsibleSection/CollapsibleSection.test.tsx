@@ -2,6 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
 import { Heading } from "../Typography";
 
 import CollapsibleSection from "./CollapsibleSection";
@@ -49,6 +50,8 @@ describe("CollapsibleSection", () => {
     const user = userEvent.setup();
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
+
+    await waitForNextTick();
 
     const label = screen.getByText("Use Oak in Beta");
 
