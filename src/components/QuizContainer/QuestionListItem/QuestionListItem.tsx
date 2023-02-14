@@ -20,7 +20,9 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
             {displayNumber}
           </Typography>
         )}
-        <Typography $font={["body-1-bold"]}>{title}</Typography>
+        <Typography $font={["body-1-bold"]} data-testid={"title-div"}>
+          {title}
+        </Typography>
       </Flex>
 
       {images &&
