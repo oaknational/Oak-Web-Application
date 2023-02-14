@@ -5,7 +5,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsFixtures = (
 ): TeachersKeyStageSubjectUnitsLessonsDownloadsData => {
   return {
     slug: "macbeth-lesson-1",
-    title: "Islamic Geometry",
+    title: "Islamic Geometry1",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
