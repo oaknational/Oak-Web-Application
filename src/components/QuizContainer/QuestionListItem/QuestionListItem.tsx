@@ -30,7 +30,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           if (image) {
             if (typeof image === "string") {
               return (
-                <Box $position="relative" $minHeight={200} $ml={[0, 48]} $mb={24}>
+                <Box
+                  $position="relative"
+                  $minHeight={200}
+                  $ml={[0, 48]}
+                  $mb={24}
+                >
                   {" "}
                   <OakImage
                     fill
@@ -47,7 +52,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                 <>
                   {images.map((image) => {
                     return (
-                      <Box $position="relative" $minHeight={200} $ml={[0, 48]} $mb={24}>
+                      <Box
+                        $position="relative"
+                        $minHeight={200}
+                        $ml={[0, 48]}
+                        $mb={24}
+                      >
                         {" "}
                         <OakImage
                           fill
@@ -76,7 +86,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   return (
                     <>
                       {" "}
-                      <Box $position="relative" $minHeight={200} $ml={[0, 50]} $mb={24}>
+                      <Box
+                        $position="relative"
+                        $minHeight={200}
+                        $ml={[0, 50]}
+                        $mb={24}
+                      >
                         {" "}
                         <OakImage
                           fill
@@ -127,7 +142,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   ] as string;
                   return (
                     <>
-                      <Box $position="relative" $minHeight={200} $ml={[0, 50]} $mb={24}>
+                      <Box
+                        $position="relative"
+                        $minHeight={200}
+                        $ml={[0, 50]}
+                        $mb={24}
+                      >
                         {" "}
                         <OakImage
                           fill
