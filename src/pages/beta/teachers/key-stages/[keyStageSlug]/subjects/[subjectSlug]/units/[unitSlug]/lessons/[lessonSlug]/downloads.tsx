@@ -53,7 +53,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
     curriculumData;
-  console.log(curriculumData);
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
