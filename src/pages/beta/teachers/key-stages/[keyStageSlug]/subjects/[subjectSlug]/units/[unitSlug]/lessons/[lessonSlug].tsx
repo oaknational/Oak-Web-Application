@@ -142,7 +142,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Hr $color={"oakGrey3"} />
         {presentationUrl && !hasCopyrightMaterial && (
           <ExpandingContainer
-            title={"Presentation"}
+            title={"Slide deck"}
             downloadable={true}
             downloadLink={downLoadLink}
             toggleClosed={false}

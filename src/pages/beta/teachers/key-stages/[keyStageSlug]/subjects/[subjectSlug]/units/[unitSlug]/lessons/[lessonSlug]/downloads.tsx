@@ -161,7 +161,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               id={"downloadElement"}
               checked={resourcesToDownload.includes("downloadElement")}
               onChange={() => onResourceToDownloadToggle("downloadElement")}
-              title={"Intro quiz questions"}
+              title={"Starter quiz questions"}
               resourceType="quiz"
             />
           </GridArea>

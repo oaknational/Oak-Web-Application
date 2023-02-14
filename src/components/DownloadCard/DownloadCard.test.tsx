@@ -11,16 +11,16 @@ describe("DownloadCard", () => {
       <DownloadCard
         id="unique-123"
         checked
-        title="Presentation"
+        title="Slide deck"
         onChange={jest.fn()}
-        resourceType="presentation"
+        resourceType="slideDeck"
       />
     );
 
     const input = screen.getByRole("checkbox");
 
     expect(input).toBeInTheDocument();
-    expect(screen.getByText("Presentation")).toBeInTheDocument();
+    expect(screen.getByText("Slide deck")).toBeInTheDocument();
     expect(screen.getByText("PDF")).toBeInTheDocument();
   });
 
@@ -35,9 +35,9 @@ describe("DownloadCard", () => {
       <DownloadCard
         id="unique-123"
         checked={value}
-        title="Presentation"
+        title="Slide deck"
         onChange={() => toggleValue()}
-        resourceType="presentation"
+        resourceType="slideDeck"
       />
     );
 
@@ -46,16 +46,16 @@ describe("DownloadCard", () => {
     const input = screen.getByRole("checkbox");
     expect(input).not.toBeChecked();
 
-    const label = screen.getByText("Presentation");
+    const label = screen.getByText("Slide deck");
     await user.click(label);
 
     rerender(
       <DownloadCard
         id="unique-123"
         checked={value}
-        title="Presentation"
+        title="Slide deck"
         onChange={() => toggleValue()}
-        resourceType="presentation"
+        resourceType="slideDeck"
       />
     );
 

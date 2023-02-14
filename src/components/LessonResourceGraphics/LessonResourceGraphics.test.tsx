@@ -17,7 +17,7 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("1 Presentation")).toBeInTheDocument();
+    expect(screen.getByText("1 Slide deck")).toBeInTheDocument();
     expect(screen.getByText("1 Worksheet")).toBeInTheDocument();
     expect(screen.getByText("1 Quiz")).toBeInTheDocument();
     expect(screen.getByText("1 Video")).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("1 Presentation")).toBeInTheDocument();
+    expect(screen.getByText("1 Slide deck")).toBeInTheDocument();
     expect(screen.queryByText("1 Worksheet")).toBeNull();
     expect(screen.queryByText("1 Quiz")).toBeNull();
     expect(screen.getByText("1 Video")).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("4 Presentations")).toBeInTheDocument();
+    expect(screen.getByText("4 Slide decks")).toBeInTheDocument();
     expect(screen.queryByText("5 Worksheets")).toBeInTheDocument();
     expect(screen.queryByText("3 Quizzes")).toBeInTheDocument();
     expect(screen.getByText("3 Videos")).toBeInTheDocument();
