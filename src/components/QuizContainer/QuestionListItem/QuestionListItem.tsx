@@ -35,6 +35,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   $minHeight={200}
                   $ml={[0, 48]}
                   $mb={24}
+                  $mt={24}
                 >
                   {" "}
                   <OakImage
@@ -57,6 +58,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                         $minHeight={200}
                         $ml={[0, 48]}
                         $mb={24}
+                        $mt={24}
                       >
                         {" "}
                         <OakImage
@@ -91,6 +93,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                         $minHeight={200}
                         $ml={[0, 50]}
                         $mb={24}
+                        $mt={24}
                       >
                         {" "}
                         <OakImage
@@ -147,6 +150,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                         $minHeight={200}
                         $ml={[0, 50]}
                         $mb={24}
+                        $mt={24}
                       >
                         {" "}
                         <OakImage
