@@ -189,13 +189,13 @@ describe("curriculum-api", () => {
       keyStageSlug: "ks123",
       subjectSlug: "english-9",
       unitSlug: "macbeth-1",
-      lessonSlug: "islamic-geometry",
+      lessonSlug: "islamic-geometry1",
     });
     expect(teachersKeyStageSubjectUnitLessonsDownloads).toHaveBeenCalledWith({
       keyStageSlug: "ks123",
       subjectSlug: "english-9",
       unitSlug: "macbeth-1",
-      lessonSlug: "islamic-geometry",
+      lessonSlug: "islamic-geometry1",
     });
   });
   test("teachersLessonOverview", async () => {
