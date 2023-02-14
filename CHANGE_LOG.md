@@ -1,3 +1,31 @@
+# [1.131.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.130.3...v1.131.0) (2023-02-14)
+
+
+### Bug Fixes
+
+* **downloads:** fix deploy fail ([2762e91](https://github.com/oaknational/Oak-Web-Application/commit/2762e91de037a679c776338384d0c2ef852b42db))
+* **downloads:** fix downloads unit test ([4bd8eb1](https://github.com/oaknational/Oak-Web-Application/commit/4bd8eb18ef0cd8a5471be8c7c916e0e561591484))
+* **downloads:** test coverage increase ([ef6a854](https://github.com/oaknational/Oak-Web-Application/commit/ef6a854ddb537b33f29099edc9b36998214c215b))
+* **downloads:** test coverage increase ([f4655ad](https://github.com/oaknational/Oak-Web-Application/commit/f4655ad64e0a3ec1518b35145eea68bfd6aaa01e))
+* **downloads:** test coverage increase ([0992fcf](https://github.com/oaknational/Oak-Web-Application/commit/0992fcfac1cc17d61ad7842b8237d6a21d8a9d05))
+
+
+### Features
+
+* **downloads:** add downloads que ([6f4a9ed](https://github.com/oaknational/Oak-Web-Application/commit/6f4a9edb8e8678227b7f7fc47ee4e948b96c528d))
+
+## [1.130.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.130.2...v1.130.3) (2023-02-14)
+
+## [1.130.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.130.1...v1.130.2) (2023-02-14)
+
+
+### Bug Fixes
+
+* **tests:** async tests timing out ([d2b0ac6](https://github.com/oaknational/Oak-Web-Application/commit/d2b0ac6ae04524ed61b5e9d6aeb56f66ad6b151d))
+* **tests:** async tests timing out again ([894a5a8](https://github.com/oaknational/Oak-Web-Application/commit/894a5a8b69979567b65d837b6a57816d4a437da0))
+
+## [1.130.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.130.0...v1.130.1) (2023-02-14)
+
 # [1.130.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.129.1...v1.130.0) (2023-02-10)
 
 
