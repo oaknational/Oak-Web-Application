@@ -10,7 +10,7 @@ import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
-type ResourceType = "quiz" | "slideDeck" | "worksheet";
+type ResourceType = "quiz" | "slidedeck" | "worksheet";
 
 export type DownloadCardProps = {
   id: string;
@@ -26,7 +26,7 @@ type DownloadCardLabelProps = DownloadCardProps & {
 
 const resourceTypeIconMap = {
   quiz: "Quiz",
-  slideDeck: "Slide deck",
+  slidedeck: "Slidedeck",
   worksheet: "Worksheet",
 };
 

@@ -13,7 +13,7 @@ describe("DownloadCard", () => {
         checked
         title="Slide deck"
         onChange={jest.fn()}
-        resourceType="slideDeck"
+        resourceType="slidedeck"
       />
     );
 
@@ -37,7 +37,7 @@ describe("DownloadCard", () => {
         checked={value}
         title="Slide deck"
         onChange={() => toggleValue()}
-        resourceType="slideDeck"
+        resourceType="slidedeck"
       />
     );
 
@@ -55,7 +55,7 @@ describe("DownloadCard", () => {
         checked={value}
         title="Slide deck"
         onChange={() => toggleValue()}
-        resourceType="slideDeck"
+        resourceType="slidedeck"
       />
     );
 
