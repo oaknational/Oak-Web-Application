@@ -36388,7 +36388,9 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
     `;
 export const TeachersKeyStageSubjectUnitLessonsDownloadsDocument = gql`
     query teachersKeyStageSubjectUnitLessonsDownloads($lessonSlug: String!, $keyStageSlug: String!, $subjectSlug: String!, $unitSlug: String!) {
-  mv_downloads {
+  mv_downloads(
+    where: {slug: {_eq: $lessonSlug}, key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}}
+  ) {
     downloads
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
