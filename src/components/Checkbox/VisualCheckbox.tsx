@@ -44,8 +44,19 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
 
 const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
   return (
-    <VisualCheckboxWrapper checked={props.checked} variant={props.variant}>
-      {props.checked && <Icon name={"Tick"} $color={"white"} size={20} />}
+    <VisualCheckboxWrapper
+      checked={props.checked}
+      variant={props.variant}
+      data-testid="visual-checkbox"
+    >
+      {props.checked && (
+        <Icon
+          name={"Tick"}
+          $color={"white"}
+          size={20}
+          data-testid="tick-icon"
+        />
+      )}
     </VisualCheckboxWrapper>
   );
 };

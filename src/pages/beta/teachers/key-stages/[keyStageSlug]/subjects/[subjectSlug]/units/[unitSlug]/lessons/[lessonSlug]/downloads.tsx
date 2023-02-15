@@ -174,10 +174,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           </GridArea>
           {downloads?.map((download, index) => {
             return (
-              <GridArea $colSpan={[6, 3, 2]}>
+              <GridArea $colSpan={[6, 3, 2]} key={index}>
                 <DownloadCard
                   key={index}
-                  id={`${index}`}
+                  id={download.type}
                   name={"lessonResourcesToDownload"}
                   checked={resourcesToDownload[index] || false}
                   onChange={() => onResourceToDownloadToggle(`${index}`)}
