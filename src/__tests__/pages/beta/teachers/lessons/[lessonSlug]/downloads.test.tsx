@@ -7,18 +7,15 @@ import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
-import teachersLessonOverviewFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
 import LessonDownloadsPage, {
   getServerSideProps,
   LessonDownloadsPageProps,
   URLParams,
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 
 const props = {
-  curriculumData: teachersLessonOverviewFixture({
-    videoMuxPlaybackId: "pid-001",
-    videoWithSignLanguageMuxPlaybackId: "pid-002",
-  }),
+  curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
 };
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
