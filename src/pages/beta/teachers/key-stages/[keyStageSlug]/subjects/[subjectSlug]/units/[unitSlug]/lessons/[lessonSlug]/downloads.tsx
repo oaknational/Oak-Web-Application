@@ -17,7 +17,9 @@ import {
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
-import DownloadCard from "../../../../../../../../../../../components/DownloadCard";
+import DownloadCard, {
+  type DownloadResourceType,
+} from "../../../../../../../../../../../components/DownloadCard";
 import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
@@ -29,16 +31,6 @@ import curriculumApi, {
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
-};
-
-export type DownloadResourceType =
-  | "exit_quiz"
-  | "slides"
-  | "worksheet"
-  | "worksheet::text";
-export type DownloadResource = {
-  type: DownloadResourceType;
-  title: string;
 };
 
 const schema = z.object({
@@ -180,7 +172,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </Flex>
             <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
           </GridArea>
-          {downloads?.map((download: DownloadType, index) => {
+          {downloads?.map((download, index) => {
             return (
               <GridArea $colSpan={[6, 3, 2]}>
                 <DownloadCard
@@ -189,7 +181,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   name={"lessonResourcesToDownload"}
                   checked={resourcesToDownload[index] || false}
                   onChange={() => onResourceToDownloadToggle(`${index}`)}
-                  resourceType={download.type}
+                  resourceType={download.type as DownloadResourceType}
                 />
               </GridArea>
             );

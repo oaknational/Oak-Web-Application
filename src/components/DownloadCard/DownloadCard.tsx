@@ -10,14 +10,18 @@ import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
-type ResourceType = "exit_quiz" | "slides" | "worksheet" | "worksheet::text";
+export type DownloadResourceType =
+  | "exit_quiz"
+  | "slides"
+  | "worksheet"
+  | "worksheet::text";
 
 export type DownloadCardProps = {
   id: string;
   name: string;
   checked: boolean;
   onChange: () => void;
-  resourceType: ResourceType;
+  resourceType: DownloadResourceType;
 };
 
 type DownloadCardLabelProps = DownloadCardProps & {
@@ -34,12 +38,12 @@ export const RESOURCE_TITLE_AND_ICON = {
   },
 };
 
-export const getResourceTitleByType = (type: ResourceType) => {
+export const getResourceTitleByType = (type: DownloadResourceType) => {
   const currentResource = RESOURCE_TITLE_AND_ICON[type];
   return currentResource ? currentResource.title : "Download";
 };
 
-export const getResourceIconByType = (type: ResourceType) => {
+export const getResourceIconByType = (type: DownloadResourceType) => {
   const currentResource = RESOURCE_TITLE_AND_ICON[type];
   return currentResource ? currentResource.icon : "Download";
 };
