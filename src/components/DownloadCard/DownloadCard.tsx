@@ -10,14 +10,13 @@ import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
-type ResourceType = "quiz" | "presentation" | "worksheet";
+type ResourceType = "exit_quiz" | "slides" | "worksheet" | "worksheet::text";
 
 export type DownloadCardProps = {
   id: string;
   name: string;
   checked: boolean;
   onChange: () => void;
-  title: string;
   resourceType: ResourceType;
 };
 
@@ -25,10 +24,24 @@ type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-const resourceTypeIconMap = {
-  quiz: "Quiz",
-  presentation: "Presentation",
-  worksheet: "Worksheet",
+export const RESOURCE_TITLE_AND_ICON = {
+  exit_quiz: { title: "Exit quiz", icon: "Quiz" },
+  slides: { title: "Slide deck", icon: "Slidedeck" },
+  worksheet: { title: "Worksheet", icon: "Worksheet" },
+  "worksheet::text": {
+    title: "Worksheet (black and white)",
+    icon: "Worksheet",
+  },
+};
+
+export const getResourceTitleByType = (type: ResourceType) => {
+  const currentResource = RESOURCE_TITLE_AND_ICON[type];
+  return currentResource ? currentResource.title : "Download";
+};
+
+export const getResourceIconByType = (type: ResourceType) => {
+  const currentResource = RESOURCE_TITLE_AND_ICON[type];
+  return currentResource ? currentResource.icon : "Download";
 };
 
 const BoxWithFocusState = styled.div`
@@ -38,7 +51,6 @@ const BoxWithFocusState = styled.div`
 
 const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
   isHovered,
-  title,
   resourceType,
 }) => (
   <BoxWithFocusState>
@@ -52,7 +64,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
     >
       <Flex $minHeight={110} $pv={16}>
         <GraphicCircleIcon
-          icon={resourceTypeIconMap[resourceType] as IconName}
+          icon={getResourceIconByType(resourceType) as IconName}
           hasDropShadow={false}
           isHovered={isHovered}
         />
@@ -69,7 +81,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $textAlign={"center"}
       >
         <P $font="heading-7" $mt={36} $mb={4}>
-          {title}
+          {getResourceTitleByType(resourceType)}
         </P>
         <P $color={isHovered ? "black" : "oakGrey4"}>PDF</P>
       </Flex>
@@ -78,7 +90,8 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, title, name } = props;
+  const { checked = false, onChange, id, name, resourceType } = props;
+  const title = getResourceTitleByType(resourceType);
 
   const { hoverProps, isHovered } = useHover({});
 

@@ -31,6 +31,16 @@ export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
+export type DownloadResourceType =
+  | "exit_quiz"
+  | "slides"
+  | "worksheet"
+  | "worksheet::text";
+export type DownloadResource = {
+  type: DownloadResourceType;
+  title: string;
+};
+
 const schema = z.object({
   email: z
     .string()
@@ -54,8 +64,14 @@ export type DownloadFormProps = {
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
-  const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
-    curriculumData;
+  const {
+    title,
+    keyStageTitle,
+    keyStageSlug,
+    subjectSlug,
+    subjectTitle,
+    downloads,
+  } = curriculumData;
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
@@ -164,66 +180,20 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </Flex>
             <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
           </GridArea>
-          <GridArea $colSpan={[6, 3, 2]}>
-            <DownloadCard
-              id={"downloadElement1"}
-              name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload["downloadElement1"] || false}
-              onChange={() => onResourceToDownloadToggle("downloadElement1")}
-              title={"Intro quiz questions"}
-              resourceType="quiz"
-            />
-          </GridArea>
-          <GridArea $colSpan={[6, 3, 2]}>
-            <DownloadCard
-              id={"downloadElement2"}
-              name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload["downloadElement2"] || false}
-              onChange={() => onResourceToDownloadToggle("downloadElement2")}
-              title={"Intro quiz answers"}
-              resourceType="quiz"
-            />
-          </GridArea>
-          <GridArea $colSpan={[6, 3, 2]}>
-            <DownloadCard
-              id={"downloadElement3"}
-              name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload["downloadElement3"] || false}
-              onChange={() => onResourceToDownloadToggle("downloadElement3")}
-              title={"Presentation"}
-              resourceType="presentation"
-            />
-          </GridArea>
-          <GridArea $colSpan={[6, 3, 2]}>
-            <DownloadCard
-              id={"downloadElement4"}
-              name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload["downloadElement4"] || false}
-              onChange={() => onResourceToDownloadToggle("downloadElement4")}
-              title={"Worksheet"}
-              resourceType="worksheet"
-            />
-          </GridArea>
-          <GridArea $colSpan={[6, 3, 2]}>
-            <DownloadCard
-              id={"downloadElement5"}
-              name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload["downloadElement5"] || false}
-              onChange={() => onResourceToDownloadToggle("downloadElement5")}
-              title={"Exit quiz questions"}
-              resourceType="quiz"
-            />
-          </GridArea>
-          <GridArea $colSpan={[6, 3, 2]}>
-            <DownloadCard
-              id={"downloadElement6"}
-              name={"lessonResourcesToDownload"}
-              checked={resourcesToDownload["downloadElement6"] || false}
-              onChange={() => onResourceToDownloadToggle("downloadElement6")}
-              title={"Exit quiz answers"}
-              resourceType="quiz"
-            />
-          </GridArea>
+          {downloads?.map((download: DownloadType, index) => {
+            return (
+              <GridArea $colSpan={[6, 3, 2]}>
+                <DownloadCard
+                  key={index}
+                  id={`${index}`}
+                  name={"lessonResourcesToDownload"}
+                  checked={resourcesToDownload[index] || false}
+                  onChange={() => onResourceToDownloadToggle(`${index}`)}
+                  resourceType={download.type}
+                />
+              </GridArea>
+            );
+          })}
         </Grid>
       </MaxWidth>
     </AppLayout>
