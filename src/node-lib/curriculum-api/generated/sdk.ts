@@ -17248,10 +17248,9 @@ export type Mv_All_Year_Groups_Set_Input = {
 export type Mv_Downloads = {
   __typename?: 'mv_downloads';
   downloads?: Maybe<Scalars['json']>;
-  has_copyright_material?: Maybe<Scalars['Boolean']>;
+  has_downloadable_resources?: Maybe<Scalars['Boolean']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
-  presentation_url?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -17260,7 +17259,6 @@ export type Mv_Downloads = {
   title?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
-  worksheet_url?: Maybe<Scalars['String']>;
 };
 
 
@@ -17309,10 +17307,9 @@ export type Mv_Downloads_Bool_Exp = {
   _not?: InputMaybe<Mv_Downloads_Bool_Exp>;
   _or?: InputMaybe<Array<InputMaybe<Mv_Downloads_Bool_Exp>>>;
   downloads?: InputMaybe<Json_Comparison_Exp>;
-  has_copyright_material?: InputMaybe<Boolean_Comparison_Exp>;
+  has_downloadable_resources?: InputMaybe<Boolean_Comparison_Exp>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
   key_stage_title?: InputMaybe<String_Comparison_Exp>;
-  presentation_url?: InputMaybe<String_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
   subject_title?: InputMaybe<String_Comparison_Exp>;
@@ -17321,16 +17318,14 @@ export type Mv_Downloads_Bool_Exp = {
   title?: InputMaybe<String_Comparison_Exp>;
   unit_slug?: InputMaybe<String_Comparison_Exp>;
   unit_title?: InputMaybe<String_Comparison_Exp>;
-  worksheet_url?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** input type for inserting data into table "mv_downloads" */
 export type Mv_Downloads_Insert_Input = {
   downloads?: InputMaybe<Scalars['json']>;
-  has_copyright_material?: InputMaybe<Scalars['Boolean']>;
+  has_downloadable_resources?: InputMaybe<Scalars['Boolean']>;
   key_stage_slug?: InputMaybe<Scalars['String']>;
   key_stage_title?: InputMaybe<Scalars['String']>;
-  presentation_url?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
@@ -17339,7 +17334,6 @@ export type Mv_Downloads_Insert_Input = {
   title?: InputMaybe<Scalars['String']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
-  worksheet_url?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -17347,7 +17341,6 @@ export type Mv_Downloads_Max_Fields = {
   __typename?: 'mv_downloads_max_fields';
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
-  presentation_url?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -17356,14 +17349,12 @@ export type Mv_Downloads_Max_Fields = {
   title?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
-  worksheet_url?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "mv_downloads" */
 export type Mv_Downloads_Max_Order_By = {
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
-  presentation_url?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -17372,7 +17363,6 @@ export type Mv_Downloads_Max_Order_By = {
   title?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
-  worksheet_url?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -17380,7 +17370,6 @@ export type Mv_Downloads_Min_Fields = {
   __typename?: 'mv_downloads_min_fields';
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
-  presentation_url?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -17389,14 +17378,12 @@ export type Mv_Downloads_Min_Fields = {
   title?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
-  worksheet_url?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "mv_downloads" */
 export type Mv_Downloads_Min_Order_By = {
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
-  presentation_url?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -17405,7 +17392,6 @@ export type Mv_Downloads_Min_Order_By = {
   title?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
-  worksheet_url?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "mv_downloads" */
@@ -17425,10 +17411,9 @@ export type Mv_Downloads_Obj_Rel_Insert_Input = {
 /** ordering options when selecting data from "mv_downloads" */
 export type Mv_Downloads_Order_By = {
   downloads?: InputMaybe<Order_By>;
-  has_copyright_material?: InputMaybe<Order_By>;
+  has_downloadable_resources?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
-  presentation_url?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -17437,7 +17422,6 @@ export type Mv_Downloads_Order_By = {
   title?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
-  worksheet_url?: InputMaybe<Order_By>;
 };
 
 /** select columns of table "mv_downloads" */
@@ -17445,13 +17429,11 @@ export enum Mv_Downloads_Select_Column {
   /** column name */
   Downloads = 'downloads',
   /** column name */
-  HasCopyrightMaterial = 'has_copyright_material',
+  HasDownloadableResources = 'has_downloadable_resources',
   /** column name */
   KeyStageSlug = 'key_stage_slug',
   /** column name */
   KeyStageTitle = 'key_stage_title',
-  /** column name */
-  PresentationUrl = 'presentation_url',
   /** column name */
   Slug = 'slug',
   /** column name */
@@ -17467,18 +17449,15 @@ export enum Mv_Downloads_Select_Column {
   /** column name */
   UnitSlug = 'unit_slug',
   /** column name */
-  UnitTitle = 'unit_title',
-  /** column name */
-  WorksheetUrl = 'worksheet_url'
+  UnitTitle = 'unit_title'
 }
 
 /** input type for updating data in table "mv_downloads" */
 export type Mv_Downloads_Set_Input = {
   downloads?: InputMaybe<Scalars['json']>;
-  has_copyright_material?: InputMaybe<Scalars['Boolean']>;
+  has_downloadable_resources?: InputMaybe<Scalars['Boolean']>;
   key_stage_slug?: InputMaybe<Scalars['String']>;
   key_stage_title?: InputMaybe<Scalars['String']>;
-  presentation_url?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
@@ -17487,7 +17466,6 @@ export type Mv_Downloads_Set_Input = {
   title?: InputMaybe<Scalars['String']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
-  worksheet_url?: InputMaybe<Scalars['String']>;
 };
 
 /** columns and relationships of "mv_key_stages" */
@@ -36220,7 +36198,7 @@ export type TeachersKeyStageSubjectUnitLessonsDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitLessonsDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads', downloads?: any | null, slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, hasCopyrightMaterial?: boolean | null, presentationUrl?: string | null, worksheetUrl?: string | null }> };
+export type TeachersKeyStageSubjectUnitLessonsDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads', downloads?: any | null, slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
 
 export type TeachersKeyStageSubjectUnitsPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -36389,9 +36367,6 @@ export const TeachersKeyStageSubjectUnitLessonsDownloadsDocument = gql`
     themeTitle: theme_title
     unitSlug: unit_slug
     unitTitle: unit_title
-    hasCopyrightMaterial: has_copyright_material
-    presentationUrl: presentation_url
-    worksheetUrl: worksheet_url
   }
 }
     `;

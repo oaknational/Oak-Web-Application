@@ -74,7 +74,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         "name",
         "lessonResourcesToDownload"
       );
-      expect(lessonResources).toHaveAttribute("value", "exit_quiz");
+      expect(lessonResources).toHaveAttribute("value", "exit-quiz-questions");
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {

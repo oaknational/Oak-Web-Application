@@ -173,18 +173,22 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
           </GridArea>
           {downloads?.map((download, index) => {
-            return (
-              <GridArea $colSpan={[6, 3, 2]} key={index}>
-                <DownloadCard
-                  key={index}
-                  id={download.type}
-                  name={"lessonResourcesToDownload"}
-                  checked={resourcesToDownload[index] || false}
-                  onChange={() => onResourceToDownloadToggle(`${index}`)}
-                  resourceType={download.type as DownloadResourceType}
-                />
-              </GridArea>
-            );
+            if (download.exists && !download.forbidden) {
+              return (
+                <GridArea $colSpan={[6, 3, 2]} key={index}>
+                  <DownloadCard
+                    key={index}
+                    id={download.type}
+                    name={"lessonResourcesToDownload"}
+                    label={download.label}
+                    extension={download.ext}
+                    resourceType={download.type as DownloadResourceType}
+                    checked={resourcesToDownload[index] || false}
+                    onChange={() => onResourceToDownloadToggle(`${index}`)}
+                  />
+                </GridArea>
+              );
+            }
           })}
         </Grid>
       </MaxWidth>

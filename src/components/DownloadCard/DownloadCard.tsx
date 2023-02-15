@@ -11,42 +11,42 @@ import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
 export type DownloadResourceType =
-  | "exit_quiz"
-  | "slides"
-  | "worksheet"
-  | "worksheet::text";
+  | "slideDeck"
+  | "intro-quiz-questions"
+  | "intro-quiz-answers"
+  | "exit-quiz-questions"
+  | "exit-quiz-answers"
+  | "worksheet-pdf"
+  | "worksheet-pptx";
 
 export type DownloadCardProps = {
   id: string;
   name: string;
+  label: string;
   checked: boolean;
   onChange: () => void;
   resourceType: DownloadResourceType;
+  extension: string;
 };
 
 type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-export const RESOURCE_TITLE_AND_ICON = {
-  exit_quiz: { title: "Exit quiz", icon: "Quiz" },
-  slides: { title: "Slide deck", icon: "Slidedeck" },
-  worksheet: { title: "Worksheet", icon: "Worksheet" },
-  "worksheet::text": {
-    title: "Worksheet (black and white)",
-    icon: "Worksheet",
-  },
+export const RESOURCE_TYPE_ICON_MAP = {
+  slideDeck: "Slidedeck",
+  "intro-quiz-questions": "Quiz",
+  "intro-quiz-answers": "Quiz",
+  "exit-quiz-questions": "Quiz",
+  "exit-quiz-answers": "Quiz",
+  "worksheet-pdf": "Worksheet",
+  "worksheet-pptx": "Worksheet",
 };
 
-export const getResourceTitleByType = (type: DownloadResourceType) => {
-  const currentResource = RESOURCE_TITLE_AND_ICON[type];
-  return currentResource ? currentResource.title : "Download";
-};
-
-export const getResourceIconByType = (type: DownloadResourceType) => {
-  const currentResource = RESOURCE_TITLE_AND_ICON[type];
-  return currentResource ? currentResource.icon : "Download";
-};
+export const getResourceIconByType = (resourceType: DownloadResourceType) =>
+  RESOURCE_TYPE_ICON_MAP[resourceType]
+    ? RESOURCE_TYPE_ICON_MAP[resourceType]
+    : "Download";
 
 const BoxWithFocusState = styled.div`
   position: relative;
@@ -56,6 +56,8 @@ const BoxWithFocusState = styled.div`
 const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
   isHovered,
   resourceType,
+  label,
+  extension,
 }) => (
   <BoxWithFocusState>
     <BoxBorders gapPosition="rightTop" />
@@ -85,17 +87,18 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $textAlign={"center"}
       >
         <P $font="heading-7" $mt={36} $mb={4}>
-          {getResourceTitleByType(resourceType)}
+          {label}
         </P>
-        <P $color={isHovered ? "black" : "oakGrey4"}>PDF</P>
+        <P $color={isHovered ? "black" : "oakGrey4"}>
+          {extension.toUpperCase()}
+        </P>
       </Flex>
     </Flex>
   </BoxWithFocusState>
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, name, resourceType } = props;
-  const title = getResourceTitleByType(resourceType);
+  const { checked = false, onChange, id, name, label } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
@@ -107,7 +110,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         checked={checked}
         onChange={() => onChange()}
         variant={"cardCheckbox"}
-        ariaLabel={title}
+        ariaLabel={label}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>

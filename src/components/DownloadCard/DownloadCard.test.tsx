@@ -11,9 +11,11 @@ describe("DownloadCard", () => {
       <DownloadCard
         id="unique-123"
         name="downloadResources"
+        label="Worksheet"
+        extension="pdf"
         checked
         onChange={jest.fn()}
-        resourceType="worksheet"
+        resourceType="worksheet-pdf"
       />
     );
 
@@ -36,8 +38,10 @@ describe("DownloadCard", () => {
         id="unique-123"
         checked={value}
         name="downloadResources"
+        label="Worksheet"
+        extension="pdf"
         onChange={() => toggleValue()}
-        resourceType="worksheet"
+        resourceType="worksheet-pdf"
       />
     );
 
@@ -54,8 +58,10 @@ describe("DownloadCard", () => {
         id="unique-123"
         checked={value}
         name="downloadResources"
+        label="Worksheet"
+        extension="pdf"
         onChange={() => toggleValue()}
-        resourceType="worksheet"
+        resourceType="worksheet-pdf"
       />
     );
 
