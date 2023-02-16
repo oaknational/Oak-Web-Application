@@ -17,9 +17,10 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
   return (
     <ImageBox
       $position={"relative"}
-      $imageHeight={dims.height * 2}
-      $imageWidth={dims.width * 2}
+      $imageHeight={dims.height}
+      $imageWidth={dims.width}
       $maxWidth={"100%"}
+      $maxHeight={200}
       $ba={8}
       $borderColor={"white"}
       $borderRadius={3}
