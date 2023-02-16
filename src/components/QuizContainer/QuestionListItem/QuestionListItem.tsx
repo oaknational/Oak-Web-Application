@@ -112,28 +112,31 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           {title}
         </Typography>
       </Flex>
-      
-        {images && 
-          images.map((image) => {
-            if (image) {
-              if (typeof image === "string") {
-                return <Flex $mb={32}><QuizImage src={image}/></Flex>;
-              } else {
-                const { title, images } = image;
-                return (
-                  <Flex $mb={32}> 
-                    {images.map((image) => {
-                      return <QuizImage src={image} alt={title}/>;
-                    })}
-                  </Flex>
-                );
-              }
-            }
-          })}
 
+      {images &&
+        images.map((image) => {
+          if (image) {
+            if (typeof image === "string") {
+              return (
+                <Flex $mb={32}>
+                  <QuizImage src={image} />
+                </Flex>
+              );
+            } else {
+              const { title, images } = image;
+              return (
+                <Flex $mb={32}>
+                  {images.map((image) => {
+                    return <QuizImage src={image} alt={title} />;
+                  })}
+                </Flex>
+              );
+            }
+          }
+        })}
 
       {choices && choices.length > 0 ? (
-        <Flex $flexDirection={"column"} $width={"max-content"} >
+        <Flex $flexDirection={"column"} $width={"max-content"}>
           {choices.map((choice, index) => {
             if (typeof answer === "string") {
               if (answer === choice) {
