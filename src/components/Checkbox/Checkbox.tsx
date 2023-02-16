@@ -20,9 +20,12 @@ export type CheckboxConfig = {
   };
 };
 
+export type CheckboxVariant = "cardCheckbox";
+
 type CheckboxProps = {
   labelText?: string;
   id: string;
+  name: string;
   checked: boolean;
   disabled?: boolean;
   ariaLabel?: string;
@@ -30,15 +33,32 @@ type CheckboxProps = {
   error?: string;
   onChange: () => void;
   children?: React.ReactNode;
-  type?: string;
+  variant?: CheckboxVariant;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
   disabled: boolean;
   checked: boolean;
+  variant?: CheckboxVariant;
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
+  input[type="checkbox"]:focus + span,
+  input[type="checkbox"]:active + span {
+    border-color: ${getColorByName("black")};
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      left: -5px;
+      right: 0;
+      border: solid 3px ${getColorByName("teachersYellow")};
+      border-radius: 3px;
+    }
+  }
+
   ${FocusUnderline} {
     display: none;
     position: absolute;
@@ -54,7 +74,12 @@ const checkboxFocusStyles = css`
     display: block;
   }
 
-  input[type="checkbox"]:focus ~ div {
+  input[type="checkbox"]:active ~ ${FocusUnderline} {
+    display: block;
+  }
+
+  input[type="checkbox"]:focus ~ div,
+  input[type="checkbox"]:active ~ div {
     border: solid 4px ${getColorByName("teachersYellow")};
   }
 `;
@@ -78,10 +103,11 @@ const checkboxHoverStyles = css`
 
 const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
+  display: ${(props) =>
+    props.variant !== "cardCheckbox" ? "flex" : "initial"};
+  align-items: center;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
-  display: flex;
-  align-items: center;
   font-family: ${getFontFamily("ui")};
   color: ${getColorByLocation(({ theme }) => theme.checkbox.default.color)};
   width: 100%;
@@ -121,11 +147,12 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     disabled = false,
     onChange,
     id,
+    name,
     ariaLabel,
     required = false,
     error,
     children,
-    type,
+    variant,
     ...spacingProps
   } = props;
 
@@ -142,11 +169,14 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         onClick={() => select}
         checked={checked}
         disabled={disabled}
+        variant={variant}
         {...spacingProps}
       >
         <ScreenReaderCheckbox
           type="checkbox"
           id={id}
+          value={id}
+          name={name}
           onChange={select}
           checked={checked}
           disabled={disabled}
@@ -155,12 +185,12 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
         />
-        <VisualCheckbox checked={checked} type={type} />
+        <VisualCheckbox checked={checked} variant={variant} />
         {/* card checkbox */}
-        {!labelText && type === "cardCheckbox" && children}
+        {!labelText && variant === "cardCheckbox" && children}
         {/* basic label checkbox */}
 
-        {labelText && type !== "cardCheckbox" && (
+        {labelText && variant !== "cardCheckbox" && (
           <>
             <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
             <FocusUnderline $color={"teachersYellow"} />

@@ -5,21 +5,23 @@ import position, { PositionProps } from "../../styles/utils/position";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Icon from "../Icon";
 
+import type { CheckboxVariant } from "./Checkbox";
+
 type VisualCheckboxProps = {
   checked: boolean;
-  type?: string;
+  variant?: CheckboxVariant;
 };
 
 type VisualCheckboxWrapper = {
   checked: boolean;
-  type?: string;
+  variant?: CheckboxVariant;
 } & PositionProps;
 
 const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   position: ${(props) =>
-    props?.type === "cardCheckbox" ? "absolute" : "relative"};
-  left: ${(props) => (props?.type === "cardCheckbox" ? "12px" : "initial")};
-  top: ${(props) => (props?.type === "cardCheckbox" ? "12px" : "initial")};
+    props?.variant === "cardCheckbox" ? "absolute" : "relative"};
+  left: ${(props) => (props?.variant === "cardCheckbox" ? "12px" : "initial")};
+  top: ${(props) => (props?.variant === "cardCheckbox" ? "12px" : "initial")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,8 +44,19 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
 
 const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
   return (
-    <VisualCheckboxWrapper checked={props.checked} type={props.type}>
-      {props.checked && <Icon name={"Tick"} $color={"white"} size={20} />}
+    <VisualCheckboxWrapper
+      checked={props.checked}
+      variant={props.variant}
+      data-testid="visual-checkbox"
+    >
+      {props.checked && (
+        <Icon
+          name={"Tick"}
+          $color={"white"}
+          size={20}
+          data-testid="tick-icon"
+        />
+      )}
     </VisualCheckboxWrapper>
   );
 };

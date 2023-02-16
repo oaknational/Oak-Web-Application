@@ -13,6 +13,9 @@ export default {
     id: {
       defaultValue: "1",
     },
+    name: {
+      defaultValue: "checkbox-group",
+    },
     checked: {
       defaultValue: false,
     },
