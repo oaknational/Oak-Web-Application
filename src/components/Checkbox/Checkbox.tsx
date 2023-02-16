@@ -43,7 +43,8 @@ type CheckboxLabelProps = {
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
-  input[type="checkbox"]:focus + span {
+  input[type="checkbox"]:focus + span,
+  input[type="checkbox"]:active + span {
     border-color: ${getColorByName("black")};
 
     &::before {
@@ -73,7 +74,12 @@ const checkboxFocusStyles = css`
     display: block;
   }
 
-  input[type="checkbox"]:focus ~ div {
+  input[type="checkbox"]:active ~ ${FocusUnderline} {
+    display: block;
+  }
+
+  input[type="checkbox"]:focus ~ div,
+  input[type="checkbox"]:active ~ div {
     border: solid 4px ${getColorByName("teachersYellow")};
   }
 `;
