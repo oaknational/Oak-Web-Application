@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
@@ -48,6 +49,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
   const { currentPageItems } = paginationProps;
   const theme = useTheme();
+  const { tier } = useRouter().query; // added useRouter to get the query value instead of tierSlug
   const HEADER_HEIGHT = theme.header.height;
   return (
     <AppLayout
@@ -177,7 +179,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                       subject: subjectSlug,
                       search: { tier: slug },
                       page: "unit-index",
-                      isCurrent: slug === tierSlug,
+                      isCurrent: slug === tier,
+                      currentStyles: ["color"],
                     }))}
                   />
                 </nav>
@@ -218,8 +221,8 @@ export const getServerSideProps: GetServerSideProps<
       ? learningTheme[0]
       : null
     : learningTheme;
-  const tierSlug = Array.isArray(tier) ? tier[0] : tier;
 
+  const tierSlug = Array.isArray(tier) ? tier[0] : tier; // same thing back each time? What's the purpose of this line
   const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
     subjectSlug,
     keyStageSlug,
