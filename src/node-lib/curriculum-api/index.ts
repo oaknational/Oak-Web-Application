@@ -487,7 +487,7 @@ const curriculumApi = {
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
-    const { introQuiz, exitQuiz, exitQuizInfo, introQuizInfo } = res;
+    const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
