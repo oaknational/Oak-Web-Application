@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,14 +14,18 @@ import P from "../../../../../../../../../../../components/Typography/P";
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
+import DownloadCard from "../../../../../../../../../../../components/DownloadCard";
 import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
+import Grid, {
+  GridArea,
+} from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
-  TeachersLessonOverviewData,
+  TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 
 export type LessonDownloadsPageProps = {
-  curriculumData: TeachersLessonOverviewData;
+  curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
 const schema = z.object({
@@ -49,7 +53,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
     curriculumData;
-
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
@@ -57,6 +60,22 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const { errors } = formState;
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+  const [resourcesToDownload, setResourcesToDownload] = useState<string[]>([]);
+
+  const onResourceToDownloadToggle = (toggledResource: string) => {
+    let updatedResourcesToDownload = [];
+
+    if (resourcesToDownload.includes(toggledResource)) {
+      updatedResourcesToDownload = resourcesToDownload.filter(
+        (resource: string) => resource !== toggledResource
+      );
+    } else {
+      updatedResourcesToDownload.push(toggledResource);
+    }
+
+    setResourcesToDownload(updatedResourcesToDownload);
+    return;
+  };
 
   return (
     <AppLayout
@@ -135,6 +154,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             .
           </P>
         </Box>
+        <Grid $mt={32}>
+          <GridArea $colSpan={[6, 3, 2]}>
+            <DownloadCard
+              id={"downloadElement"}
+              checked={resourcesToDownload.includes("downloadElement")}
+              onChange={() => onResourceToDownloadToggle("downloadElement")}
+              title={"Intro quiz questions"}
+              resourceType="quiz"
+            />
+          </GridArea>
+        </Grid>
       </MaxWidth>
     </AppLayout>
   );
@@ -156,12 +186,13 @@ export const getServerSideProps: GetServerSideProps<
   }
   const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
 
-  const curriculumData = await curriculumApi.teachersLessonOverview({
-    lessonSlug,
-    keyStageSlug,
-    subjectSlug,
-    unitSlug,
-  });
+  const curriculumData =
+    await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
+      lessonSlug,
+      keyStageSlug,
+      subjectSlug,
+      unitSlug,
+    });
 
   if (!curriculumData) {
     return {

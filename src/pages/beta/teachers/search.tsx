@@ -10,8 +10,9 @@ import SearchFilters from "../../../components/SearchFilters";
 import ActiveFilters from "../../../components/SearchFilters/ActiveFilters";
 import Grid, { GridArea } from "../../../components/Grid";
 import Flex from "../../../components/Flex";
+import Box from "../../../components/Box";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
-import MobileSearchFilters from "../../../components/MobileSearchFilters";
+import MobileFilters from "../../../components/MobileFilters";
 import { Heading } from "../../../components/Typography";
 import Card from "../../../components/Card";
 import SearchForm from "../../../components/SearchForm";
@@ -124,9 +125,16 @@ const Search = () => {
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
               <SearchFilters />
             </Flex>
-            <MobileSearchFilters>
-              <SearchFilters />
-            </MobileSearchFilters>
+            <Box $mb={32}>
+              <MobileFilters
+                label="Filters"
+                labelOpened="Close"
+                iconOpened="Cross"
+                iconClosed="Hamburger"
+              >
+                <SearchFilters />
+              </MobileFilters>
+            </Box>
           </GridArea>
           <GridArea $colSpan={[12, 9]} $pr={16}>
             {loading && <p>Loading...</p>}

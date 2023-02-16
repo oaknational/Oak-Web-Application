@@ -46,13 +46,14 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L, V>(res: {
+const transformMVCase = <K, S, T, U, L, V, W>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
   mv_units?: U;
   mv_lessons?: L;
   mv_learning_themes?: V;
+  mv_downloads?: W;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -61,6 +62,7 @@ const transformMVCase = <K, S, T, U, L, V>(res: {
     units: res.mv_units,
     lessons: res.mv_lessons,
     learningThemes: res.mv_learning_themes,
+    downloads: res.mv_downloads,
   };
 };
 
@@ -184,7 +186,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
       unitSlug: z.string(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable().optional(), // @todo add quiz_count to MV mv_lessons
+      quizCount: z.number().nullable(),
       videoCount: z.number().nullable(),
       presentationCount: z.number().nullable(),
       worksheetCount: z.number().nullable(),
@@ -192,6 +194,35 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
     })
   ),
 });
+
+const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
+  z.object({
+    keyStageSlug: z.string(),
+    keyStageTitle: z.string(),
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    unitSlug: z.string(),
+    unitTitle: z.string(),
+    order: z.number().nullable().optional(),
+    title: z.string().nullable().optional(),
+    points: z.number().nullable().optional(),
+    required: z.boolean().nullable(),
+    choices: z.array(z.string().nullable()),
+    active: z.boolean(),
+    answer: z.union([z.array(z.string()), z.string()]),
+    type: z.string(),
+    quizType: z.string(),
+    images: z
+      .union([
+        z.array(z.object({ title: z.string(), images: z.array(z.string()) })),
+        z.array(z.string()),
+      ])
+      .nullable(),
+    feedbackCorrect: z.string().nullable(),
+    feedbackIncorrect: z.string().nullable(),
+    choiceImages: z.array(z.string()).nullable(),
+  })
+);
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
@@ -220,6 +251,31 @@ const teachersLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcript: z.string().nullable(),
+  hasDownloadableResources: z.boolean().nullable(),
+  introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+});
+
+const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
+  downloads: z.array(
+    z.object({
+      type: z.string(),
+      source: z.string(),
+    })
+  ),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  themeSlug: z.string(),
+  themeTitle: z.string(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  hasCopyrightMaterial: z.boolean(),
+  presentationUrl: z.string(),
+  worksheetUrl: z.string(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
@@ -244,6 +300,10 @@ export type TeachersLessonOverviewPaths = z.infer<
 >;
 export type TeachersLessonOverviewData = z.infer<
   typeof teachersLessonOverviewData
+>;
+
+export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
+  typeof teachersKeyStageSubjectUnitsLessonsDownloadsData
 >;
 
 const sdk = getSdk(graphqlClient);
@@ -391,12 +451,31 @@ const curriculumApi = {
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
+    const { introQuiz, exitQuiz } = res;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
 
-    return teachersLessonOverviewData.parse(lesson);
+    return teachersLessonOverviewData.parse({
+      ...lesson,
+      introQuiz,
+      exitQuiz,
+    });
+  },
+  teachersKeyStageSubjectUnitLessonsDownloads: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnitLessonsDownloads>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectUnitLessonsDownloads(...args);
+    const { downloads = [] } = transformMVCase(res);
+
+    const download = getFirstResultOrWarnOrFail()({
+      results: downloads,
+    });
+
+    return teachersKeyStageSubjectUnitsLessonsDownloadsData.parse({
+      ...download,
+    });
   },
 };
 
