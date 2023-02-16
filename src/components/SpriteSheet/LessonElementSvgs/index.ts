@@ -1,9 +1,11 @@
+import Presentation from "./Presentation.icon";
 import Slidedeck from "./Presentation.icon";
 import Quiz from "./Quiz.icon";
 import Video from "./Video.icon";
 import Worksheet from "./Worksheet.icon";
 
 const lessonElementSvgSymbols = {
+  Presentation,
   Slidedeck,
   Quiz,
   Video,

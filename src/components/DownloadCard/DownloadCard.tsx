@@ -10,25 +10,43 @@ import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
-type ResourceType = "quiz" | "slidedeck" | "worksheet";
+export type DownloadResourceType =
+  | "slideDeck"
+  | "intro-quiz-questions"
+  | "intro-quiz-answers"
+  | "exit-quiz-questions"
+  | "exit-quiz-answers"
+  | "worksheet-pdf"
+  | "worksheet-pptx";
 
 export type DownloadCardProps = {
   id: string;
+  name: string;
+  label: string;
   checked: boolean;
   onChange: () => void;
-  title: string;
-  resourceType: ResourceType;
+  resourceType: DownloadResourceType;
+  extension: string;
 };
 
 type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-const resourceTypeIconMap = {
-  quiz: "Quiz",
-  slidedeck: "Slidedeck",
-  worksheet: "Worksheet",
+export const RESOURCE_TYPE_ICON_MAP = {
+  slideDeck: "Slidedeck",
+  "intro-quiz-questions": "Quiz",
+  "intro-quiz-answers": "Quiz",
+  "exit-quiz-questions": "Quiz",
+  "exit-quiz-answers": "Quiz",
+  "worksheet-pdf": "Worksheet",
+  "worksheet-pptx": "Worksheet",
 };
+
+export const getResourceIconByType = (resourceType: DownloadResourceType) =>
+  RESOURCE_TYPE_ICON_MAP[resourceType]
+    ? RESOURCE_TYPE_ICON_MAP[resourceType]
+    : "Download";
 
 const BoxWithFocusState = styled.div`
   position: relative;
@@ -37,8 +55,9 @@ const BoxWithFocusState = styled.div`
 
 const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
   isHovered,
-  title,
   resourceType,
+  label,
+  extension,
 }) => (
   <BoxWithFocusState>
     <BoxBorders gapPosition="rightTop" />
@@ -46,11 +65,12 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
       $flexDirection="column"
       $alignItems="center"
       $height={220}
-      $width={["100%", 200]}
+      $width={["100%"]}
+      $maxWidth={200}
     >
       <Flex $minHeight={110} $pv={16}>
         <GraphicCircleIcon
-          icon={resourceTypeIconMap[resourceType] as IconName}
+          icon={getResourceIconByType(resourceType) as IconName}
           hasDropShadow={false}
           isHovered={isHovered}
         />
@@ -67,16 +87,18 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $textAlign={"center"}
       >
         <P $font="heading-7" $mt={36} $mb={4}>
-          {title}
+          {label}
         </P>
-        <P $color={isHovered ? "black" : "oakGrey4"}>PDF</P>
+        <P $color={isHovered ? "black" : "oakGrey4"}>
+          {extension.toUpperCase()}
+        </P>
       </Flex>
     </Flex>
   </BoxWithFocusState>
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, title } = props;
+  const { checked = false, onChange, id, name, label } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
@@ -84,10 +106,11 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
     <Box $maxWidth={200} {...hoverProps}>
       <Checkbox
         id={id}
+        name={name}
         checked={checked}
         onChange={() => onChange()}
-        type={"cardCheckbox"}
-        ariaLabel={title}
+        variant={"cardCheckbox"}
+        ariaLabel={label}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>

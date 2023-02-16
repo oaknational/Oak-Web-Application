@@ -1,3 +1,28 @@
+# [1.132.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.131.2...v1.132.0) (2023-02-16)
+
+
+### Features
+
+* 1237 add checkboxactive style and fallback for presentation icon ([8a12ae9](https://github.com/oaknational/Oak-Web-Application/commit/8a12ae9ee0cc1880616b29c0f0968d58b8da2b2f))
+* 1237 add name to key stage filter checkboxes ([604eb3b](https://github.com/oaknational/Oak-Web-Application/commit/604eb3b6b4fb757712d9561fd5aef4351434dcae))
+* 1237 display checkboxes in grid ([4068b4c](https://github.com/oaknational/Oak-Web-Application/commit/4068b4c570fbd6ccd800dae189cdd8147a47929e))
+* 1237 fix missing types ([b79a795](https://github.com/oaknational/Oak-Web-Application/commit/b79a7953d6827961e2ff79e6ab7f1dcf6e60d764))
+* 1237 fix multiple checkbox state ([71290cd](https://github.com/oaknational/Oak-Web-Application/commit/71290cdcf5e152e8ad01ad033cc5c04cb7aab86e))
+* 1237 fix test ([53d4641](https://github.com/oaknational/Oak-Web-Application/commit/53d4641b7dfddf9563f7451670d5a5f9885b0b28))
+* 1237 fix type errors ([7e4d2cd](https://github.com/oaknational/Oak-Web-Application/commit/7e4d2cd8f489732c1819d184e8df68afca8e163f))
+* 1237 get data from curriculum api ([8909734](https://github.com/oaknational/Oak-Web-Application/commit/890973435348fdab111b5bcf89b00688966efa26))
+* 1237 plug with the real data ([c9c6060](https://github.com/oaknational/Oak-Web-Application/commit/c9c60604174a6bec7a2e4b3bb71af408b1c1d906))
+* 1237 update type ([6e719f9](https://github.com/oaknational/Oak-Web-Application/commit/6e719f941cb524a945fb8daed44c8fec994d8337))
+
+## [1.131.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.131.1...v1.131.2) (2023-02-15)
+
+## [1.131.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.131.0...v1.131.1) (2023-02-14)
+
+
+### Bug Fixes
+
+* **downloads query:** add where clause to downloads query ([21ba94d](https://github.com/oaknational/Oak-Web-Application/commit/21ba94d87122ad171eeb1e178434224daf890952))
+
 # [1.131.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.130.3...v1.131.0) (2023-02-14)
 
 
