@@ -222,7 +222,7 @@ export const getServerSideProps: GetServerSideProps<
       : null
     : learningTheme;
 
-  const tierSlug = Array.isArray(tier) ? tier[0] : tier; // same thing back each time? What's the purpose of this line
+  const tierSlug = Array.isArray(tier) ? tier[0] : tier;
   const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
     subjectSlug,
     keyStageSlug,
