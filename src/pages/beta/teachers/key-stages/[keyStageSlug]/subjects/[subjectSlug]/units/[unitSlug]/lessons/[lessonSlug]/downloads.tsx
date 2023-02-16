@@ -81,7 +81,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const getInitialResourcesToDownloadState = () => {
     const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
 
-    downloads.map((download) => {
+    downloads?.forEach((download) => {
       if (download.exists) {
         initialResourcesToDownloadState[download.type as DownloadResourceType] =
           false;
@@ -231,16 +231,15 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </Flex>
             <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
           </GridArea>
-          {downloads?.map((download, index) => {
+          {downloads?.map((download) => {
             if (download.exists && !download.forbidden) {
               return (
                 <GridArea
                   $colSpan={[6, 3, 2]}
-                  key={index}
+                  key={download.type}
                   data-testid={"lessonResourcesToDownload"}
                 >
                   <DownloadCard
-                    key={index}
                     id={download.type}
                     name={"lessonResourcesToDownload"}
                     label={download.label}
