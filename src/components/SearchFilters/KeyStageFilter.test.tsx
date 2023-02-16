@@ -17,6 +17,7 @@ describe("KeyStageFilter", () => {
     const { getByRole } = renderWithTheme(<KeyStageFilter ks="1" />);
     const checkbox = getByRole("checkbox");
     expect(checkbox.id).toEqual("custom-checkbox-1");
+    expect(checkbox.getAttribute("name")).toEqual("keyStageFilters");
     expect(checkbox).not.toBeChecked();
   });
 
