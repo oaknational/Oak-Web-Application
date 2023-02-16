@@ -180,7 +180,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                       search: { tier: slug },
                       page: "unit-index",
                       isCurrent: slug === tier,
-                      currentStyles: ["color"],
+                      currentStyles: ["color", "text-underline"],
                     }))}
                   />
                 </nav>
