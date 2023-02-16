@@ -212,22 +212,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
         <Grid $mt={32}>
           <GridArea $colSpan={[12]}>
-            <Flex $alignItems={"center"}>
-              <Heading tag="h2" $font={"heading-5"} $mb={8}>
+            <Flex
+              $alignItems={["left", "center"]}
+              $flexDirection={["column", "row"]}
+            >
+              <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
                 Lesson resources
               </Heading>
-              <Button
-                label="Select all"
-                variant="minimal"
-                onClick={() => onSelectAllClick()}
-                $ml={48}
-              />
-              <Button
-                label="Deselect all"
-                variant="minimal"
-                onClick={() => onDeselectAllClick()}
-                $ml={24}
-              />
+              <Box $ml={[0, 48]}>
+                <Button
+                  label="Select all"
+                  variant="minimal"
+                  onClick={() => onSelectAllClick()}
+                />
+                <Button
+                  label="Deselect all"
+                  variant="minimal"
+                  onClick={() => onDeselectAllClick()}
+                  $ml={24}
+                />
+              </Box>
             </Flex>
             <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
           </GridArea>
