@@ -13,10 +13,11 @@ import Flex from "../../../components/Flex";
 import Box from "../../../components/Box";
 import MaxWidth from "../../../components/MaxWidth/MaxWidth";
 import MobileFilters from "../../../components/MobileFilters";
-import { Heading, P } from "../../../components/Typography";
+import { Heading } from "../../../components/Typography";
 import Card from "../../../components/Card";
 import SearchForm from "../../../components/SearchForm";
 import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import NoSearchResults from "../../../components/SearchResults/NoSearchResults";
 
 interface CommonProps {
   id: number;
@@ -139,19 +140,8 @@ const Search = () => {
           <GridArea $colSpan={[12, 9]} $pr={16}>
             {error && <p>{error}</p>}
             {loading && <p>Loading...</p>}
-            {!loading && !results.length && !!searchTerm ? (
-              <Flex $flexDirection="column" $pl={24}>
-                <Heading tag={"h4"} $mt={24} $mb={16} $font={"heading-7"}>
-                  No search results
-                </Heading>
-                <Flex $flexDirection="column">
-                  <P $font={"body-1"} $mb={12}>
-                    Sorry, we could not find any results for "{searchTerm}".
-                    <br /> <br /> Please enter a topic you wish to explore in
-                    the search bar above.
-                  </P>
-                </Flex>
-              </Flex>
+            {!loading && !results.length && searchTerm ? (
+              <NoSearchResults searchTerm={searchTerm} />
             ) : (
               <SearchResults hits={results} />
             )}
