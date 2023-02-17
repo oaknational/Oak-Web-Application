@@ -104,7 +104,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choiceImages, choices, answer, type, displayNumber } =
     props;
   return (
-    <Flex $flexDirection={"column"} $mb={16}>
+    <Flex $flexDirection={"column"} $mb={[8, 16]}>
       <Flex $mb={16}>
         {displayNumber && (
           <Typography $font={["body-1-bold"]} $mr={12}>
@@ -139,11 +139,11 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
         })}
 
       {choices && choices.length > 0 ? (
-        <Flex $flexDirection={"column"} $width={"max-content"}>
-          {choices.map((choice, index) => {
-            if (typeof answer === "string") {
-              if (answer === choice) {
-                if (choiceImages && choiceImages.length > 0) {
+        choiceImages && choiceImages.length > 0 ? (
+          <Flex $flexDirection={"column"} $width={"max-content"}>
+            {choices.map((choice, index) => {
+              if (typeof answer === "string") {
+                if (answer === choice) {
                   const choiceImagesString: string = choiceImages[
                     index
                   ] as string;
@@ -164,12 +164,6 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                     </AnswerBox>
                   );
                 } else {
-                  return (
-                    <CorrectAnswer choice={choice} index={index} type={type} />
-                  );
-                }
-              } else {
-                if (choiceImages && choiceImages.length > 0) {
                   const choiceImagesString: string = choiceImages[
                     index
                   ] as string;
@@ -192,6 +186,33 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                       </>
                     </AnswerBox>
                   );
+                }
+              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+                return (
+                  <CorrectAnswer
+                    type={type}
+                    choice={choice}
+                    index={index}
+                    answer={answer}
+                  />
+                );
+              } else {
+                return (
+                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
+                    {choice}
+                  </Typography>
+                );
+              }
+            })}
+          </Flex>
+        ) : (
+          <Flex $flexDirection={"column"} $width={"max-content"} $mb={26}>
+            {choices.map((choice, index) => {
+              if (typeof answer === "string") {
+                if (answer === choice) {
+                  return (
+                    <CorrectAnswer choice={choice} index={index} type={type} />
+                  );
                 } else {
                   return (
                     <Typography $font={["body-1"]} $ml={40} $ph={10} $mb={6}>
@@ -199,25 +220,25 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                     </Typography>
                   );
                 }
+              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+                return (
+                  <CorrectAnswer
+                    type={type}
+                    choice={choice}
+                    index={index}
+                    answer={answer}
+                  />
+                );
+              } else {
+                return (
+                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
+                    {choice}
+                  </Typography>
+                );
               }
-            } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
-              return (
-                <CorrectAnswer
-                  type={type}
-                  choice={choice}
-                  index={index}
-                  answer={answer}
-                />
-              );
-            } else {
-              return (
-                <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
-                  {choice}
-                </Typography>
-              );
-            }
-          })}
-        </Flex>
+            })}
+          </Flex>
+        )
       ) : (
         <Flex $flexDirection={"column"} $width={"max-content"}>
           {[...answer].map((ans, index) => {
