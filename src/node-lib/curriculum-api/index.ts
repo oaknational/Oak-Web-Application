@@ -259,8 +259,11 @@ const teachersLessonOverviewData = z.object({
 const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   downloads: z.array(
     z.object({
+      exists: z.boolean(),
       type: z.string(),
-      source: z.string(),
+      label: z.string(),
+      ext: z.string(),
+      forbidden: z.boolean().optional(),
     })
   ),
   keyStageSlug: z.string(),
@@ -269,13 +272,10 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   title: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  themeSlug: z.string(),
-  themeTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
   unitSlug: z.string(),
   unitTitle: z.string(),
-  hasCopyrightMaterial: z.boolean(),
-  presentationUrl: z.string(),
-  worksheetUrl: z.string(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;

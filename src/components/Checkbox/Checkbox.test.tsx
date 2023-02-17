@@ -10,21 +10,26 @@ describe("Checkbox", () => {
     renderWithTheme(
       <Checkbox
         id="unique-123"
+        name="terms"
         checked
         labelText="Agree to terms"
         onChange={jest.fn()}
       />
     );
 
-    const input = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox.getAttribute("name")).toEqual("terms");
+    expect(checkbox.getAttribute("id")).toEqual("unique-123");
+    expect(checkbox.getAttribute("checked")).toEqual("");
 
-    expect(input).toBeInTheDocument();
+    expect(checkbox).toBeInTheDocument();
   });
 
   it("renders a label", () => {
     renderWithTheme(
       <Checkbox
         id="unique-123"
+        name="terms"
         checked
         labelText="Agree to terms"
         onChange={jest.fn()}
@@ -46,6 +51,7 @@ describe("Checkbox", () => {
     const { rerender } = renderWithTheme(
       <Checkbox
         id="unique-123"
+        name="terms"
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
@@ -55,6 +61,7 @@ describe("Checkbox", () => {
     const user = userEvent.setup();
 
     const input = screen.getByRole("checkbox");
+    expect(input.getAttribute("checked")).toEqual(null);
     expect(input).not.toBeChecked();
 
     const label = screen.getByText("Agree to terms");
@@ -63,6 +70,7 @@ describe("Checkbox", () => {
     rerender(
       <Checkbox
         id="unique-123"
+        name="terms"
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
@@ -82,6 +90,7 @@ describe("Checkbox", () => {
     const { rerender } = renderWithTheme(
       <Checkbox
         id="unique-123"
+        name="terms"
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
@@ -100,6 +109,7 @@ describe("Checkbox", () => {
     rerender(
       <Checkbox
         id="unique-123"
+        name="terms"
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
@@ -119,6 +129,7 @@ describe("Checkbox", () => {
 
     const { rerender } = renderWithTheme(
       <Checkbox
+        name="terms"
         id="unique-123"
         labelText="Agree to terms"
         checked={value}
@@ -136,6 +147,7 @@ describe("Checkbox", () => {
 
     rerender(
       <Checkbox
+        name="terms"
         id="unique-123"
         labelText="Agree to terms"
         checked={value}
@@ -149,6 +161,7 @@ describe("Checkbox", () => {
   it("has a label associated with it", () => {
     renderWithTheme(
       <Checkbox
+        name="terms"
         id="unique-123"
         checked
         labelText="Agree to terms"
@@ -159,5 +172,22 @@ describe("Checkbox", () => {
     const checkboxElement = screen.getByLabelText("Agree to terms");
     expect(checkboxElement.tagName).toEqual("INPUT");
     expect(checkboxElement.getAttribute("type")).toEqual("checkbox");
+  });
+
+  it("renders children as label is resourceType is cardCheckbox", () => {
+    renderWithTheme(
+      <Checkbox
+        name="downloadResources"
+        id="unique-123"
+        checked
+        onChange={jest.fn()}
+        variant="cardCheckbox"
+      >
+        <p>Test download resource</p>
+      </Checkbox>
+    );
+
+    const label = screen.getByText("Test download resource");
+    expect(label).toBeInTheDocument();
   });
 });

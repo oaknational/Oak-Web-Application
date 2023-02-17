@@ -10,17 +10,19 @@ describe("DownloadCard", () => {
     renderWithTheme(
       <DownloadCard
         id="unique-123"
+        name="downloadResources"
+        label="Worksheet"
+        extension="pdf"
         checked
-        title="Presentation"
         onChange={jest.fn()}
-        resourceType="presentation"
+        resourceType="worksheet-pdf"
       />
     );
 
     const input = screen.getByRole("checkbox");
 
     expect(input).toBeInTheDocument();
-    expect(screen.getByText("Presentation")).toBeInTheDocument();
+    expect(screen.getByText("Worksheet")).toBeInTheDocument();
     expect(screen.getByText("PDF")).toBeInTheDocument();
   });
 
@@ -35,9 +37,11 @@ describe("DownloadCard", () => {
       <DownloadCard
         id="unique-123"
         checked={value}
-        title="Presentation"
+        name="downloadResources"
+        label="Worksheet"
+        extension="pdf"
         onChange={() => toggleValue()}
-        resourceType="presentation"
+        resourceType="worksheet-pdf"
       />
     );
 
@@ -46,16 +50,18 @@ describe("DownloadCard", () => {
     const input = screen.getByRole("checkbox");
     expect(input).not.toBeChecked();
 
-    const label = screen.getByText("Presentation");
+    const label = screen.getByText("Worksheet");
     await user.click(label);
 
     rerender(
       <DownloadCard
         id="unique-123"
         checked={value}
-        title="Presentation"
+        name="downloadResources"
+        label="Worksheet"
+        extension="pdf"
         onChange={() => toggleValue()}
-        resourceType="presentation"
+        resourceType="worksheet-pdf"
       />
     );
 
