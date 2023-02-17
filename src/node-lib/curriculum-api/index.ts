@@ -282,8 +282,8 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   title: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  themeSlug: z.string(),
-  themeTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
   unitSlug: z.string(),
   unitTitle: z.string(),
 });
