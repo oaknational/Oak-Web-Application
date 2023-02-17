@@ -21,6 +21,7 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
       $imageWidth={dims.width}
       $maxWidth={"100%"}
       $maxHeight={200}
+      $minHeight={96}
       $ba={8}
       $borderColor={"white"}
       $borderRadius={3}
@@ -91,7 +92,8 @@ const AnswerBox: FC<{ children: ReactNode }> = ({ children }) => {
       $borderStyle={"solid"}
       $borderColor={"oakGrey3"}
       $mb={32}
-      $pl={8}
+      $ph={8}
+      $pb={2}
     >
       {children}
     </Box>
@@ -179,7 +181,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                           src={choiceImagesString}
                           alt={"quiz image"}
                         />
-                        <Typography $ml={40} $mb={8} $font={["body-1"]}>
+                        <Typography
+                          $ml={40}
+                          $ph={10}
+                          $mb={6}
+                          $font={["body-1"]}
+                        >
                           {choice}
                         </Typography>
                       </>
@@ -187,7 +194,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   );
                 } else {
                   return (
-                    <Typography $font={["body-1"]} $ml={40} $ph={10}>
+                    <Typography $font={["body-1"]} $ml={40} $ph={10} $mb={6}>
                       {choice}
                     </Typography>
                   );
@@ -204,7 +211,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
               );
             } else {
               return (
-                <Typography $ml={40} $font={["body-1"]} $ph={10}>
+                <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
                   {choice}
                 </Typography>
               );

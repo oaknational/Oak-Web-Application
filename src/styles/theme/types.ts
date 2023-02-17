@@ -22,6 +22,7 @@ import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
 export type PixelSpacing =
   | 0
   | 1
+  | 2
   | 3
   | 4
   | 6
