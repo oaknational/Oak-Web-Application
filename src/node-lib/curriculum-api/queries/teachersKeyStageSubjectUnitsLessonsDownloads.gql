@@ -23,8 +23,5 @@ query teachersKeyStageSubjectUnitLessonsDownloads(
     themeTitle: theme_title
     unitSlug: unit_slug
     unitTitle: unit_title
-    hasCopyrightMaterial: has_copyright_material
-    presentationUrl: presentation_url
-    worksheetUrl: worksheet_url
   }
 }
