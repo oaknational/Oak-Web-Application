@@ -104,7 +104,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choiceImages, choices, answer, type, displayNumber } =
     props;
   return (
-    <Flex $flexDirection={"column"} $mb={[8, 16]}>
+    <Flex $flexDirection={"column"} $mb={[0, 16]}>
       <Flex $mb={16}>
         {displayNumber && (
           <Typography $font={["body-1-bold"]} $mr={12}>
@@ -140,7 +140,11 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
 
       {choices && choices.length > 0 ? (
         choiceImages && choiceImages.length > 0 ? (
-          <Flex $flexDirection={"column"} $width={"max-content"}>
+          <Flex
+            $flexDirection={"column"}
+            $width={"max-content"}
+            $maxWidth={"100%"}
+          >
             {choices.map((choice, index) => {
               if (typeof answer === "string") {
                 if (answer === choice) {
@@ -206,7 +210,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
             })}
           </Flex>
         ) : (
-          <Flex $flexDirection={"column"} $width={"max-content"} $mb={26}>
+          <Flex
+            $flexDirection={"column"}
+            $width={"max-content"}
+            $maxWidth={"100%"}
+            $mb={26}
+          >
             {choices.map((choice, index) => {
               if (typeof answer === "string") {
                 if (answer === choice) {
@@ -240,7 +249,11 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           </Flex>
         )
       ) : (
-        <Flex $flexDirection={"column"} $width={"max-content"}>
+        <Flex
+          $flexDirection={"column"}
+          $width={"max-content"}
+          $maxWidth={"100%"}
+        >
           {[...answer].map((ans, index) => {
             return <CorrectAnswer choice={ans} index={index} type={type} />;
           })}
