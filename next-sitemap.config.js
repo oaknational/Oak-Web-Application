@@ -20,7 +20,8 @@ const serversideSitemapPaths = [
   "/webinars/sitemap.xml",
   "/webinars/categories/sitemap.xml",
   // Don't include the beta dynamic sitemaps until the beta goes public.
-  "/beta/teachers/key-stages/sitemap.xml",
+  /** @todo fix generating this page so it takes under a minute at request time */
+  // "/beta/teachers/key-stages/sitemap.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href
@@ -52,8 +53,8 @@ module.exports = {
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
-    // Don't list the file that generates the sitemaps for the dynamic pages.
-    "/server-sitemap-index.xml",
+    // Don't list the files that generate sitemaps for the dynamic pages.
+    "/beta/teachers/key-stages/sitemap.xml",
     // Pointer exclusions
     "/webinars/using-oak-to-support-during-covid-disruption-and-setting-cover-2",
     "/webinars/boosting-motivation-in-the-classroom",
