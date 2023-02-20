@@ -64,4 +64,13 @@ describe("useFetchSearchResults()", () => {
      */
     expect(results).toEqual([]);
   });
+
+  test("'showMessage' should default to false", () => {
+    const { result } = renderHook(() => useFetchSearchResults(), {
+      wrapper: SearchProvider,
+    });
+    const { showMessage } = result.current;
+
+    expect(showMessage).toBe(false);
+  });
 });
