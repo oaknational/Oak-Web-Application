@@ -18,8 +18,8 @@ force = true
 # Don't bundle some giant Next.js files with lambda functions
 [functions]
 included_files = [
-  "!./node_modules/sharp/vendor/**",
-  "!node_modules/sharp/**",
+  "!node_modules/sharp/**/*",
+  "!node_modules/sharp/vendor/**/*",
   "!node_modules/sharp/vendor/8.12.2/linux-x64/lib/libvips-cpp.so.42",
 ]
 
