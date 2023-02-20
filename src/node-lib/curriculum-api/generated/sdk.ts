@@ -13659,6 +13659,8 @@ export type Mutation_Root = {
   delete_management_videos_by_pk?: Maybe<Management_Videos>;
   /** delete data from the table: "mv_all_year_groups" */
   delete_mv_all_year_groups?: Maybe<Mv_All_Year_Groups_Mutation_Response>;
+  /** delete data from the table: "mv_downloads" */
+  delete_mv_downloads?: Maybe<Mv_Downloads_Mutation_Response>;
   /** delete data from the table: "mv_key_stages" */
   delete_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
   /** delete data from the table: "mv_learning_themes" */
@@ -13921,6 +13923,10 @@ export type Mutation_Root = {
   insert_mv_all_year_groups?: Maybe<Mv_All_Year_Groups_Mutation_Response>;
   /** insert a single row into the table: "mv_all_year_groups" */
   insert_mv_all_year_groups_one?: Maybe<Mv_All_Year_Groups>;
+  /** insert data into the table: "mv_downloads" */
+  insert_mv_downloads?: Maybe<Mv_Downloads_Mutation_Response>;
+  /** insert a single row into the table: "mv_downloads" */
+  insert_mv_downloads_one?: Maybe<Mv_Downloads>;
   /** insert data into the table: "mv_key_stages" */
   insert_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
   /** insert a single row into the table: "mv_key_stages" */
@@ -14199,6 +14205,8 @@ export type Mutation_Root = {
   update_management_videos_by_pk?: Maybe<Management_Videos>;
   /** update data of the table: "mv_all_year_groups" */
   update_mv_all_year_groups?: Maybe<Mv_All_Year_Groups_Mutation_Response>;
+  /** update data of the table: "mv_downloads" */
+  update_mv_downloads?: Maybe<Mv_Downloads_Mutation_Response>;
   /** update data of the table: "mv_key_stages" */
   update_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
   /** update data of the table: "mv_learning_themes" */
@@ -14719,6 +14727,12 @@ export type Mutation_RootDelete_Management_Videos_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Mv_All_Year_GroupsArgs = {
   where: Mv_All_Year_Groups_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Mv_DownloadsArgs = {
+  where: Mv_Downloads_Bool_Exp;
 };
 
 
@@ -15568,6 +15582,18 @@ export type Mutation_RootInsert_Mv_All_Year_GroupsArgs = {
 /** mutation root */
 export type Mutation_RootInsert_Mv_All_Year_Groups_OneArgs = {
   object: Mv_All_Year_Groups_Insert_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Mv_DownloadsArgs = {
+  objects: Array<Mv_Downloads_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Mv_Downloads_OneArgs = {
+  object: Mv_Downloads_Insert_Input;
 };
 
 
@@ -16591,6 +16617,13 @@ export type Mutation_RootUpdate_Mv_All_Year_GroupsArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Mv_DownloadsArgs = {
+  _set?: InputMaybe<Mv_Downloads_Set_Input>;
+  where: Mv_Downloads_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Mv_Key_StagesArgs = {
   _set?: InputMaybe<Mv_Key_Stages_Set_Input>;
   where: Mv_Key_Stages_Bool_Exp;
@@ -17209,6 +17242,230 @@ export type Mv_All_Year_Groups_Set_Input = {
   key_stage_slug?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "mv_downloads" */
+export type Mv_Downloads = {
+  __typename?: 'mv_downloads';
+  downloads?: Maybe<Scalars['json']>;
+  has_downloadable_resources?: Maybe<Scalars['Boolean']>;
+  key_stage_slug?: Maybe<Scalars['String']>;
+  key_stage_title?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  subject_slug?: Maybe<Scalars['String']>;
+  subject_title?: Maybe<Scalars['String']>;
+  theme_slug?: Maybe<Scalars['String']>;
+  theme_title?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  unit_slug?: Maybe<Scalars['String']>;
+  unit_title?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "mv_downloads" */
+export type Mv_DownloadsDownloadsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregated selection of "mv_downloads" */
+export type Mv_Downloads_Aggregate = {
+  __typename?: 'mv_downloads_aggregate';
+  aggregate?: Maybe<Mv_Downloads_Aggregate_Fields>;
+  nodes: Array<Mv_Downloads>;
+};
+
+/** aggregate fields of "mv_downloads" */
+export type Mv_Downloads_Aggregate_Fields = {
+  __typename?: 'mv_downloads_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Mv_Downloads_Max_Fields>;
+  min?: Maybe<Mv_Downloads_Min_Fields>;
+};
+
+
+/** aggregate fields of "mv_downloads" */
+export type Mv_Downloads_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Mv_Downloads_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "mv_downloads" */
+export type Mv_Downloads_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Mv_Downloads_Max_Order_By>;
+  min?: InputMaybe<Mv_Downloads_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "mv_downloads" */
+export type Mv_Downloads_Arr_Rel_Insert_Input = {
+  data: Array<Mv_Downloads_Insert_Input>;
+};
+
+/** Boolean expression to filter rows from the table "mv_downloads". All fields are combined with a logical 'AND'. */
+export type Mv_Downloads_Bool_Exp = {
+  _and?: InputMaybe<Array<InputMaybe<Mv_Downloads_Bool_Exp>>>;
+  _not?: InputMaybe<Mv_Downloads_Bool_Exp>;
+  _or?: InputMaybe<Array<InputMaybe<Mv_Downloads_Bool_Exp>>>;
+  downloads?: InputMaybe<Json_Comparison_Exp>;
+  has_downloadable_resources?: InputMaybe<Boolean_Comparison_Exp>;
+  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
+  key_stage_title?: InputMaybe<String_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_title?: InputMaybe<String_Comparison_Exp>;
+  theme_slug?: InputMaybe<String_Comparison_Exp>;
+  theme_title?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+  unit_title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** input type for inserting data into table "mv_downloads" */
+export type Mv_Downloads_Insert_Input = {
+  downloads?: InputMaybe<Scalars['json']>;
+  has_downloadable_resources?: InputMaybe<Scalars['Boolean']>;
+  key_stage_slug?: InputMaybe<Scalars['String']>;
+  key_stage_title?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  subject_slug?: InputMaybe<Scalars['String']>;
+  subject_title?: InputMaybe<Scalars['String']>;
+  theme_slug?: InputMaybe<Scalars['String']>;
+  theme_title?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  unit_slug?: InputMaybe<Scalars['String']>;
+  unit_title?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Mv_Downloads_Max_Fields = {
+  __typename?: 'mv_downloads_max_fields';
+  key_stage_slug?: Maybe<Scalars['String']>;
+  key_stage_title?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  subject_slug?: Maybe<Scalars['String']>;
+  subject_title?: Maybe<Scalars['String']>;
+  theme_slug?: Maybe<Scalars['String']>;
+  theme_title?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  unit_slug?: Maybe<Scalars['String']>;
+  unit_title?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "mv_downloads" */
+export type Mv_Downloads_Max_Order_By = {
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  theme_slug?: InputMaybe<Order_By>;
+  theme_title?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unit_title?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Mv_Downloads_Min_Fields = {
+  __typename?: 'mv_downloads_min_fields';
+  key_stage_slug?: Maybe<Scalars['String']>;
+  key_stage_title?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  subject_slug?: Maybe<Scalars['String']>;
+  subject_title?: Maybe<Scalars['String']>;
+  theme_slug?: Maybe<Scalars['String']>;
+  theme_title?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  unit_slug?: Maybe<Scalars['String']>;
+  unit_title?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "mv_downloads" */
+export type Mv_Downloads_Min_Order_By = {
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  theme_slug?: InputMaybe<Order_By>;
+  theme_title?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unit_title?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "mv_downloads" */
+export type Mv_Downloads_Mutation_Response = {
+  __typename?: 'mv_downloads_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Mv_Downloads>;
+};
+
+/** input type for inserting object relation for remote table "mv_downloads" */
+export type Mv_Downloads_Obj_Rel_Insert_Input = {
+  data: Mv_Downloads_Insert_Input;
+};
+
+/** ordering options when selecting data from "mv_downloads" */
+export type Mv_Downloads_Order_By = {
+  downloads?: InputMaybe<Order_By>;
+  has_downloadable_resources?: InputMaybe<Order_By>;
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  theme_slug?: InputMaybe<Order_By>;
+  theme_title?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unit_title?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "mv_downloads" */
+export enum Mv_Downloads_Select_Column {
+  /** column name */
+  Downloads = 'downloads',
+  /** column name */
+  HasDownloadableResources = 'has_downloadable_resources',
+  /** column name */
+  KeyStageSlug = 'key_stage_slug',
+  /** column name */
+  KeyStageTitle = 'key_stage_title',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  SubjectTitle = 'subject_title',
+  /** column name */
+  ThemeSlug = 'theme_slug',
+  /** column name */
+  ThemeTitle = 'theme_title',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UnitSlug = 'unit_slug',
+  /** column name */
+  UnitTitle = 'unit_title'
+}
+
+/** input type for updating data in table "mv_downloads" */
+export type Mv_Downloads_Set_Input = {
+  downloads?: InputMaybe<Scalars['json']>;
+  has_downloadable_resources?: InputMaybe<Scalars['Boolean']>;
+  key_stage_slug?: InputMaybe<Scalars['String']>;
+  key_stage_title?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  subject_slug?: InputMaybe<Scalars['String']>;
+  subject_title?: InputMaybe<Scalars['String']>;
+  theme_slug?: InputMaybe<Scalars['String']>;
+  theme_title?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  unit_slug?: InputMaybe<Scalars['String']>;
+  unit_title?: InputMaybe<Scalars['String']>;
 };
 
 /** columns and relationships of "mv_key_stages" */
@@ -18209,6 +18466,7 @@ export type Mv_Questions = {
   answer?: Maybe<Scalars['json']>;
   choice_images?: Maybe<Scalars['json']>;
   choices?: Maybe<Scalars['json']>;
+  display_number?: Maybe<Scalars['String']>;
   feedback_correct?: Maybe<Scalars['String']>;
   feedback_incorrect?: Maybe<Scalars['String']>;
   images?: Maybe<Scalars['json']>;
@@ -18218,6 +18476,7 @@ export type Mv_Questions = {
   lesson_title?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
+  question_id?: Maybe<Scalars['Int']>;
   quiz_type?: Maybe<Scalars['String']>;
   required?: Maybe<Scalars['Boolean']>;
   subject_slug?: Maybe<Scalars['String']>;
@@ -18307,12 +18566,14 @@ export type Mv_Questions_Avg_Fields = {
   __typename?: 'mv_questions_avg_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "mv_questions" */
 export type Mv_Questions_Avg_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "mv_questions". All fields are combined with a logical 'AND'. */
@@ -18324,6 +18585,7 @@ export type Mv_Questions_Bool_Exp = {
   answer?: InputMaybe<Json_Comparison_Exp>;
   choice_images?: InputMaybe<Json_Comparison_Exp>;
   choices?: InputMaybe<Json_Comparison_Exp>;
+  display_number?: InputMaybe<String_Comparison_Exp>;
   feedback_correct?: InputMaybe<String_Comparison_Exp>;
   feedback_incorrect?: InputMaybe<String_Comparison_Exp>;
   images?: InputMaybe<Json_Comparison_Exp>;
@@ -18333,6 +18595,7 @@ export type Mv_Questions_Bool_Exp = {
   lesson_title?: InputMaybe<String_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   points?: InputMaybe<Int_Comparison_Exp>;
+  question_id?: InputMaybe<Int_Comparison_Exp>;
   quiz_type?: InputMaybe<String_Comparison_Exp>;
   required?: InputMaybe<Boolean_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
@@ -18347,6 +18610,7 @@ export type Mv_Questions_Bool_Exp = {
 export type Mv_Questions_Inc_Input = {
   order?: InputMaybe<Scalars['Int']>;
   points?: InputMaybe<Scalars['Int']>;
+  question_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "mv_questions" */
@@ -18355,6 +18619,7 @@ export type Mv_Questions_Insert_Input = {
   answer?: InputMaybe<Scalars['json']>;
   choice_images?: InputMaybe<Scalars['json']>;
   choices?: InputMaybe<Scalars['json']>;
+  display_number?: InputMaybe<Scalars['String']>;
   feedback_correct?: InputMaybe<Scalars['String']>;
   feedback_incorrect?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<Scalars['json']>;
@@ -18364,6 +18629,7 @@ export type Mv_Questions_Insert_Input = {
   lesson_title?: InputMaybe<Scalars['String']>;
   order?: InputMaybe<Scalars['Int']>;
   points?: InputMaybe<Scalars['Int']>;
+  question_id?: InputMaybe<Scalars['Int']>;
   quiz_type?: InputMaybe<Scalars['String']>;
   required?: InputMaybe<Scalars['Boolean']>;
   subject_slug?: InputMaybe<Scalars['String']>;
@@ -18377,6 +18643,7 @@ export type Mv_Questions_Insert_Input = {
 /** aggregate max on columns */
 export type Mv_Questions_Max_Fields = {
   __typename?: 'mv_questions_max_fields';
+  display_number?: Maybe<Scalars['String']>;
   feedback_correct?: Maybe<Scalars['String']>;
   feedback_incorrect?: Maybe<Scalars['String']>;
   key_stage_slug?: Maybe<Scalars['String']>;
@@ -18385,6 +18652,7 @@ export type Mv_Questions_Max_Fields = {
   lesson_title?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
+  question_id?: Maybe<Scalars['Int']>;
   quiz_type?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -18396,6 +18664,7 @@ export type Mv_Questions_Max_Fields = {
 
 /** order by max() on columns of table "mv_questions" */
 export type Mv_Questions_Max_Order_By = {
+  display_number?: InputMaybe<Order_By>;
   feedback_correct?: InputMaybe<Order_By>;
   feedback_incorrect?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
@@ -18404,6 +18673,7 @@ export type Mv_Questions_Max_Order_By = {
   lesson_title?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -18416,6 +18686,7 @@ export type Mv_Questions_Max_Order_By = {
 /** aggregate min on columns */
 export type Mv_Questions_Min_Fields = {
   __typename?: 'mv_questions_min_fields';
+  display_number?: Maybe<Scalars['String']>;
   feedback_correct?: Maybe<Scalars['String']>;
   feedback_incorrect?: Maybe<Scalars['String']>;
   key_stage_slug?: Maybe<Scalars['String']>;
@@ -18424,6 +18695,7 @@ export type Mv_Questions_Min_Fields = {
   lesson_title?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
+  question_id?: Maybe<Scalars['Int']>;
   quiz_type?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -18435,6 +18707,7 @@ export type Mv_Questions_Min_Fields = {
 
 /** order by min() on columns of table "mv_questions" */
 export type Mv_Questions_Min_Order_By = {
+  display_number?: InputMaybe<Order_By>;
   feedback_correct?: InputMaybe<Order_By>;
   feedback_incorrect?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
@@ -18443,6 +18716,7 @@ export type Mv_Questions_Min_Order_By = {
   lesson_title?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -18472,6 +18746,7 @@ export type Mv_Questions_Order_By = {
   answer?: InputMaybe<Order_By>;
   choice_images?: InputMaybe<Order_By>;
   choices?: InputMaybe<Order_By>;
+  display_number?: InputMaybe<Order_By>;
   feedback_correct?: InputMaybe<Order_By>;
   feedback_incorrect?: InputMaybe<Order_By>;
   images?: InputMaybe<Order_By>;
@@ -18481,6 +18756,7 @@ export type Mv_Questions_Order_By = {
   lesson_title?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   required?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
@@ -18502,6 +18778,8 @@ export enum Mv_Questions_Select_Column {
   /** column name */
   Choices = 'choices',
   /** column name */
+  DisplayNumber = 'display_number',
+  /** column name */
   FeedbackCorrect = 'feedback_correct',
   /** column name */
   FeedbackIncorrect = 'feedback_incorrect',
@@ -18519,6 +18797,8 @@ export enum Mv_Questions_Select_Column {
   Order = 'order',
   /** column name */
   Points = 'points',
+  /** column name */
+  QuestionId = 'question_id',
   /** column name */
   QuizType = 'quiz_type',
   /** column name */
@@ -18543,6 +18823,7 @@ export type Mv_Questions_Set_Input = {
   answer?: InputMaybe<Scalars['json']>;
   choice_images?: InputMaybe<Scalars['json']>;
   choices?: InputMaybe<Scalars['json']>;
+  display_number?: InputMaybe<Scalars['String']>;
   feedback_correct?: InputMaybe<Scalars['String']>;
   feedback_incorrect?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<Scalars['json']>;
@@ -18552,6 +18833,7 @@ export type Mv_Questions_Set_Input = {
   lesson_title?: InputMaybe<Scalars['String']>;
   order?: InputMaybe<Scalars['Int']>;
   points?: InputMaybe<Scalars['Int']>;
+  question_id?: InputMaybe<Scalars['Int']>;
   quiz_type?: InputMaybe<Scalars['String']>;
   required?: InputMaybe<Scalars['Boolean']>;
   subject_slug?: InputMaybe<Scalars['String']>;
@@ -18567,12 +18849,14 @@ export type Mv_Questions_Stddev_Fields = {
   __typename?: 'mv_questions_stddev_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "mv_questions" */
 export type Mv_Questions_Stddev_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -18580,12 +18864,14 @@ export type Mv_Questions_Stddev_Pop_Fields = {
   __typename?: 'mv_questions_stddev_pop_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_questions" */
 export type Mv_Questions_Stddev_Pop_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -18593,12 +18879,14 @@ export type Mv_Questions_Stddev_Samp_Fields = {
   __typename?: 'mv_questions_stddev_samp_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_questions" */
 export type Mv_Questions_Stddev_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -18606,12 +18894,14 @@ export type Mv_Questions_Sum_Fields = {
   __typename?: 'mv_questions_sum_fields';
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
+  question_id?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "mv_questions" */
 export type Mv_Questions_Sum_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_pop on columns */
@@ -18619,12 +18909,14 @@ export type Mv_Questions_Var_Pop_Fields = {
   __typename?: 'mv_questions_var_pop_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "mv_questions" */
 export type Mv_Questions_Var_Pop_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -18632,12 +18924,14 @@ export type Mv_Questions_Var_Samp_Fields = {
   __typename?: 'mv_questions_var_samp_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "mv_questions" */
 export type Mv_Questions_Var_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -18645,12 +18939,14 @@ export type Mv_Questions_Variance_Fields = {
   __typename?: 'mv_questions_variance_fields';
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
+  question_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "mv_questions" */
 export type Mv_Questions_Variance_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
+  question_id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "mv_quizzes" */
@@ -18662,6 +18958,7 @@ export type Mv_Quizzes = {
   lesson_slug?: Maybe<Scalars['String']>;
   lesson_title?: Maybe<Scalars['String']>;
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -18724,11 +19021,13 @@ export type Mv_Quizzes_Arr_Rel_Insert_Input = {
 export type Mv_Quizzes_Avg_Fields = {
   __typename?: 'mv_quizzes_avg_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Avg_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "mv_quizzes". All fields are combined with a logical 'AND'. */
@@ -18742,6 +19041,7 @@ export type Mv_Quizzes_Bool_Exp = {
   lesson_slug?: InputMaybe<String_Comparison_Exp>;
   lesson_title?: InputMaybe<String_Comparison_Exp>;
   max_points?: InputMaybe<Int_Comparison_Exp>;
+  question_count?: InputMaybe<Bigint_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
   subject_title?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
@@ -18753,6 +19053,7 @@ export type Mv_Quizzes_Bool_Exp = {
 /** input type for incrementing integer column in table "mv_quizzes" */
 export type Mv_Quizzes_Inc_Input = {
   max_points?: InputMaybe<Scalars['Int']>;
+  question_count?: InputMaybe<Scalars['bigint']>;
 };
 
 /** input type for inserting data into table "mv_quizzes" */
@@ -18763,6 +19064,7 @@ export type Mv_Quizzes_Insert_Input = {
   lesson_slug?: InputMaybe<Scalars['String']>;
   lesson_title?: InputMaybe<Scalars['String']>;
   max_points?: InputMaybe<Scalars['Int']>;
+  question_count?: InputMaybe<Scalars['bigint']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -18780,6 +19082,7 @@ export type Mv_Quizzes_Max_Fields = {
   lesson_slug?: Maybe<Scalars['String']>;
   lesson_title?: Maybe<Scalars['String']>;
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -18796,6 +19099,7 @@ export type Mv_Quizzes_Max_Order_By = {
   lesson_slug?: InputMaybe<Order_By>;
   lesson_title?: InputMaybe<Order_By>;
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
@@ -18813,6 +19117,7 @@ export type Mv_Quizzes_Min_Fields = {
   lesson_slug?: Maybe<Scalars['String']>;
   lesson_title?: Maybe<Scalars['String']>;
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -18829,6 +19134,7 @@ export type Mv_Quizzes_Min_Order_By = {
   lesson_slug?: InputMaybe<Order_By>;
   lesson_title?: InputMaybe<Order_By>;
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
@@ -18859,6 +19165,7 @@ export type Mv_Quizzes_Order_By = {
   lesson_slug?: InputMaybe<Order_By>;
   lesson_title?: InputMaybe<Order_By>;
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
@@ -18882,6 +19189,8 @@ export enum Mv_Quizzes_Select_Column {
   /** column name */
   MaxPoints = 'max_points',
   /** column name */
+  QuestionCount = 'question_count',
+  /** column name */
   SubjectSlug = 'subject_slug',
   /** column name */
   SubjectTitle = 'subject_title',
@@ -18903,6 +19212,7 @@ export type Mv_Quizzes_Set_Input = {
   lesson_slug?: InputMaybe<Scalars['String']>;
   lesson_title?: InputMaybe<Scalars['String']>;
   max_points?: InputMaybe<Scalars['Int']>;
+  question_count?: InputMaybe<Scalars['bigint']>;
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -18915,77 +19225,91 @@ export type Mv_Quizzes_Set_Input = {
 export type Mv_Quizzes_Stddev_Fields = {
   __typename?: 'mv_quizzes_stddev_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Stddev_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Mv_Quizzes_Stddev_Pop_Fields = {
   __typename?: 'mv_quizzes_stddev_pop_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Stddev_Pop_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Mv_Quizzes_Stddev_Samp_Fields = {
   __typename?: 'mv_quizzes_stddev_samp_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Stddev_Samp_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
 export type Mv_Quizzes_Sum_Fields = {
   __typename?: 'mv_quizzes_sum_fields';
   max_points?: Maybe<Scalars['Int']>;
+  question_count?: Maybe<Scalars['bigint']>;
 };
 
 /** order by sum() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Sum_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_pop on columns */
 export type Mv_Quizzes_Var_Pop_Fields = {
   __typename?: 'mv_quizzes_var_pop_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Var_Pop_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Mv_Quizzes_Var_Samp_Fields = {
   __typename?: 'mv_quizzes_var_samp_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Var_Samp_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Mv_Quizzes_Variance_Fields = {
   __typename?: 'mv_quizzes_variance_fields';
   max_points?: Maybe<Scalars['Float']>;
+  question_count?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "mv_quizzes" */
 export type Mv_Quizzes_Variance_Order_By = {
   max_points?: InputMaybe<Order_By>;
+  question_count?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "mv_subjects" */
@@ -21873,6 +22197,10 @@ export type Query_Root = {
   mv_all_year_groups: Array<Mv_All_Year_Groups>;
   /** fetch aggregated fields from the table: "mv_all_year_groups" */
   mv_all_year_groups_aggregate: Mv_All_Year_Groups_Aggregate;
+  /** fetch data from the table: "mv_downloads" */
+  mv_downloads: Array<Mv_Downloads>;
+  /** fetch aggregated fields from the table: "mv_downloads" */
+  mv_downloads_aggregate: Mv_Downloads_Aggregate;
   /** fetch data from the table: "mv_key_stages" */
   mv_key_stages: Array<Mv_Key_Stages>;
   /** fetch aggregated fields from the table: "mv_key_stages" */
@@ -22975,6 +23303,26 @@ export type Query_RootMv_All_Year_Groups_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Mv_All_Year_Groups_Order_By>>;
   where?: InputMaybe<Mv_All_Year_Groups_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootMv_DownloadsArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootMv_Downloads_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_Bool_Exp>;
 };
 
 
@@ -26294,6 +26642,10 @@ export type Subscription_Root = {
   mv_all_year_groups: Array<Mv_All_Year_Groups>;
   /** fetch aggregated fields from the table: "mv_all_year_groups" */
   mv_all_year_groups_aggregate: Mv_All_Year_Groups_Aggregate;
+  /** fetch data from the table: "mv_downloads" */
+  mv_downloads: Array<Mv_Downloads>;
+  /** fetch aggregated fields from the table: "mv_downloads" */
+  mv_downloads_aggregate: Mv_Downloads_Aggregate;
   /** fetch data from the table: "mv_key_stages" */
   mv_key_stages: Array<Mv_Key_Stages>;
   /** fetch aggregated fields from the table: "mv_key_stages" */
@@ -27396,6 +27748,26 @@ export type Subscription_RootMv_All_Year_Groups_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Mv_All_Year_Groups_Order_By>>;
   where?: InputMaybe<Mv_All_Year_Groups_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootMv_DownloadsArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootMv_Downloads_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_Bool_Exp>;
 };
 
 
@@ -35818,6 +36190,16 @@ export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
 
 export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units', slug?: string | null, title?: string | null, year?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null }>, mv_learning_themes: Array<{ __typename?: 'mv_learning_themes', slug?: string | null, label?: string | null, tierSlug?: string | null, tierName?: string | null, subjectTitle?: string | null, subjectSlug?: string | null, keyStageTitle?: string | null, keyStageSlug?: string | null }> };
 
+export type TeachersKeyStageSubjectUnitLessonsDownloadsQueryVariables = Exact<{
+  lessonSlug: Scalars['String'];
+  keyStageSlug: Scalars['String'];
+  subjectSlug: Scalars['String'];
+  unitSlug: Scalars['String'];
+}>;
+
+
+export type TeachersKeyStageSubjectUnitLessonsDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads', downloads?: any | null, slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+
 export type TeachersKeyStageSubjectUnitsPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -35969,6 +36351,25 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
   }
 }
     `;
+export const TeachersKeyStageSubjectUnitLessonsDownloadsDocument = gql`
+    query teachersKeyStageSubjectUnitLessonsDownloads($lessonSlug: String!, $keyStageSlug: String!, $subjectSlug: String!, $unitSlug: String!) {
+  mv_downloads(
+    where: {slug: {_eq: $lessonSlug}, key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}}
+  ) {
+    downloads
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    slug
+    title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    themeSlug: theme_slug
+    themeTitle: theme_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+  }
+}
+    `;
 export const TeachersKeyStageSubjectUnitsPathsDocument = gql`
     query teachersKeyStageSubjectUnitsPaths {
   mv_subjects {
@@ -36106,6 +36507,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersKeyStageSubjectUnits(variables: TeachersKeyStageSubjectUnitsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitsQuery>(TeachersKeyStageSubjectUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnits', 'query');
+    },
+    teachersKeyStageSubjectUnitLessonsDownloads(variables: TeachersKeyStageSubjectUnitLessonsDownloadsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitLessonsDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitLessonsDownloadsQuery>(TeachersKeyStageSubjectUnitLessonsDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnitLessonsDownloads', 'query');
     },
     teachersKeyStageSubjectUnitsPaths(variables?: TeachersKeyStageSubjectUnitsPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsPathsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitsPathsQuery>(TeachersKeyStageSubjectUnitsPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnitsPaths', 'query');
