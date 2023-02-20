@@ -22,7 +22,7 @@ const RadioGroup: FC<AriaRadioGroupProps & { children: React.ReactNode }> = (
   radioGroupProps.id = useId();
 
   return (
-    <div {...radioGroupProps} aria-describedby="undefined">
+    <div {...radioGroupProps} aria-describedby={undefined}>
       <span {...labelProps}>{label}</span>
       <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
       {description && (

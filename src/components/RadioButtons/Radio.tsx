@@ -23,8 +23,6 @@ const Radio: FC<AriaRadioProps> = (props) => {
   inputProps.name = useId();
   inputProps.id = useId();
 
-  inputProps["aria-labelledby"] = useId();
-
   const StyledRadio = styled.span<{
     isSelected: boolean;
     isFocusVisible: boolean;
@@ -81,7 +79,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
 
   return (
     <label
-      aria-describedby="undefined"
+      aria-describedby={undefined}
       style={{
         display: "flex",
         alignItems: "center",
@@ -94,14 +92,14 @@ const Radio: FC<AriaRadioProps> = (props) => {
           {...inputProps}
           {...focusProps}
           ref={ref}
-          aria-describedby="undefined"
+          aria-describedby={undefined}
         />
       </VisuallyHidden>
 
       <StyledRadio
         isSelected={isSelected}
         isFocusVisible={isFocusVisible}
-        aria-describedby="undefined"
+        aria-describedby={undefined}
       />
 
       {children}
