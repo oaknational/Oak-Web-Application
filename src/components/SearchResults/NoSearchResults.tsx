@@ -15,7 +15,7 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
       </Heading>
       <Flex $flexDirection="column">
         <P $font={"body-1"} $mb={12}>
-          Sorry, we could not find any results for "{searchTerm}".
+          Sorry, we could not find any results for “{searchTerm}”.
           <br /> <br /> Please enter a topic you wish to explore in the search
           bar above.
         </P>
