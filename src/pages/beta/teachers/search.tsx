@@ -64,7 +64,7 @@ export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
 
 const Search = () => {
   const { text: searchTerm } = useSearchQuery();
-  const { fetchSearchResults, loading, error, results } =
+  const { fetchSearchResults, loading, error, results, showMessage } =
     useFetchSearchResults();
 
   useEffect(() => {
@@ -140,9 +140,10 @@ const Search = () => {
           <GridArea $colSpan={[12, 9]} $pr={16}>
             {error && <p>{error}</p>}
             {loading && <p>Loading...</p>}
-            {!loading && !results.length && searchTerm ? (
+            {!loading && !results.length && showMessage && (
               <NoSearchResults searchTerm={searchTerm} />
-            ) : (
+            )}
+            {!loading && results.length > 0 && searchTerm && (
               <SearchResults hits={results} />
             )}
           </GridArea>
