@@ -24,6 +24,7 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
           height="100%"
           // We know the google slides aren't accessible.
           className="pa11y-ignore"
+          data-testid="overview-presentation"
         />
       </AspectRatio>
     </OverviewAssetWrap>

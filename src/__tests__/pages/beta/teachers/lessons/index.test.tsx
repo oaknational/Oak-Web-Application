@@ -57,10 +57,10 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("renders an iframe for a presentation and worksheet", async () => {
-    const { getAllByRole } = renderWithProviders(
+    const { getAllByTestId } = renderWithProviders(
       <LessonOverviewPage {...props} />
     );
-    const iframeElement = getAllByRole("iframe");
+    const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
 
