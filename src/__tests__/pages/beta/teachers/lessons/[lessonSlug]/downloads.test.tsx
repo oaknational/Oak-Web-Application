@@ -56,7 +56,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         screen.getByLabelText("I accept terms and conditions (required)")
       ).toBeInTheDocument();
 
-      // Terms and condtions link
+      // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
         name: "terms & conditions",
       });
