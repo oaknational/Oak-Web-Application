@@ -21,7 +21,8 @@
     "curriculumApiUrl": "https://example.com/v1/graphql",
     "curriculumApiAuthType": "abc",
     "searchApiUrl": "https://example.com",
-    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"]
+    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"],
+    "vercelApiUrl": "https://api.thenational.academy"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",

@@ -11,6 +11,7 @@ import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
 export type DownloadResourceType =
+  // @todo delete once updated in Data Tools
   | "slideDeck"
   | "presentation"
   | "intro-quiz-questions"

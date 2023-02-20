@@ -29,6 +29,7 @@ import Grid, {
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import downloadSelectedLessonResources from "../../../../../../../../../../../helpers/downloadLessonResources";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -58,21 +59,6 @@ export type DownloadFormProps = {
   terms: boolean;
 };
 
-type ResourceTypes = {
-  [key: string]: boolean;
-};
-
-export const createAndClickHiddenDownloadLink = (url: string) => {
-  const a = document.createElement("a");
-  a.style.display = "none";
-  a.href = url;
-  a.setAttribute("download", "test.pdf");
-  document.body.appendChild(a);
-  a.click();
-  window.URL.revokeObjectURL(url);
-  return;
-};
-
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
@@ -94,66 +80,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
-  const checkExistenceOfSelectedResources = async (
-    lessonSlug: string,
-    resourceTypesString: string
-  ) => {
-    if (!process.env.VERCEL_API_URL) {
-      throw new TypeError("process.env.VERCEL_API_URL must be defined");
-    }
-
-    const checkResourcesExistEndpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
-    const res = await fetch(checkResourcesExistEndpoint);
-    const { data, error } = await res.json();
-
-    if (!res.ok && error) {
-      console.log("checkResourcesExist error", error);
-      throw new Error(error);
-    } else if (!res.ok) {
-      throw new Error("API error");
-    }
-    console.log("all resources exist");
-    return data;
-  };
-
-  const downloadSelectedResources = async (
-    lessonSlug: string,
-    resourceTypes: ResourceTypes
-  ) => {
-    if (Object.keys(resourceTypes)?.length === 0) {
-      console.log("no resources to download");
-      return;
-    }
-
-    const resourceTypesAsArray = Object.entries(resourceTypes);
-    const selectedResourceTypesAsArray = resourceTypesAsArray
-      .filter(([, value]) => value === true)
-      .map(([key]) => key);
-
-    const selection = selectedResourceTypesAsArray.join(",");
-
-    if (!process.env.VERCEL_API_URL) {
-      throw new TypeError("process.env.VERCEL_API_URL must be defined");
-    }
-
-    const downloadEnpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`;
-
-    const doSelectedResourcesExist = await checkExistenceOfSelectedResources(
-      lessonSlug,
-      selection
-    );
-    const res = doSelectedResourcesExist && (await fetch(downloadEnpoint));
-    const { data, error } = await res.json();
-
-    if (!res.ok && error) {
-      throw new Error(error);
-    } else if (!res.ok) {
-      throw new Error("API error");
-    }
-
-    createAndClickHiddenDownloadLink(data.url);
-    return data;
-  };
   const getInitialResourcesToDownloadState = () => {
     const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
 
@@ -348,7 +274,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               <Button
                 label="Download .zip"
                 onClick={() => {
-                  downloadSelectedResources(slug, resourcesToDownload);
+                  downloadSelectedLessonResources(slug, resourcesToDownload);
                 }}
                 background={"teachersHighlight"}
                 icon="Download"

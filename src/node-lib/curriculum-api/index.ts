@@ -262,6 +262,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
       exists: z.boolean(),
       type: z.enum([
         "presentation",
+        // @todo delete once updated in Data Tools
         "slideDeck",
         "intro-quiz-questions",
         "intro-quiz-answers",
