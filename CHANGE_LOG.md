@@ -1,3 +1,11 @@
+## [1.133.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.133.0...v1.133.1) (2023-02-20)
+
+
+### Bug Fixes
+
+* 1224 remove green box ([55f7e38](https://github.com/oaknational/Oak-Web-Application/commit/55f7e38c488efbab3330e36e47913e15453905ae))
+* 1224 remove green box from individual subject page ([8077a6b](https://github.com/oaknational/Oak-Web-Application/commit/8077a6b33a6de84248822c61445f119cf9cd62ce))
+
 # [1.133.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.132.0...v1.133.0) (2023-02-17)
 
 
