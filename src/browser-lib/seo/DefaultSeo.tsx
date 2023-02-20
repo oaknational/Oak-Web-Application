@@ -6,6 +6,9 @@ import config from "../../config/browser";
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
+      // Disable indexing and follow on this branch.
+      dangerouslySetAllPagesToNoFollow={true}
+      dangerouslySetAllPagesToNoIndex={true}
       title={config.get("seoAppName")}
       description={config.get("seoAppDescription")}
       openGraph={{

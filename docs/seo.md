@@ -2,11 +2,11 @@
 
 ## Sitemaps and robots.txt
 
-The config for generating the sitemaps and robots.txt at build time are here [next-sitemap.config.js](../next-seo.config.ts).
+The config for generating the sitemaps and robots.txt at build time are here [next-sitemap.config.js](../next-sitemap.config.js).
 
 ## Meta tags
 
-Each page is currently given a no-index metatag from config here [src/browser-lib/seo/DefaultSeo.tsx](../src/browser-lib/seo/DefaultSeo.tsx)
+Noindex and nofollow metatags can be set globally from config here [src/browser-lib/seo/DefaultSeo.tsx](../src/browser-lib/seo/DefaultSeo.tsx)
 
 ## Title, Description, OpenGraph Data
 
