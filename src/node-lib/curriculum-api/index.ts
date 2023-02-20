@@ -260,7 +260,15 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   downloads: z.array(
     z.object({
       exists: z.boolean(),
-      type: z.string(),
+      type: z.enum([
+        "slideDeck",
+        "intro-quiz-questions",
+        "intro-quiz-answers",
+        "exit-quiz-questions",
+        "exit-quiz-answers",
+        "worksheet-pdf",
+        "worksheet-pptx",
+      ]),
       label: z.string(),
       ext: z.string(),
       forbidden: z.boolean().optional(),

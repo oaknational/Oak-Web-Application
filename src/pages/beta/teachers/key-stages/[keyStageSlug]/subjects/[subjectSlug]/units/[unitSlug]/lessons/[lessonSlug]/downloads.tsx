@@ -15,6 +15,7 @@ import {
   P,
 } from "../../../../../../../../../../../components/Typography";
 import OakLink from "../../../../../../../../../../../components/OakLink";
+import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
 import DownloadCard, {
@@ -31,6 +32,10 @@ import curriculumApi, {
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
+};
+
+export type ResourcesToDownloadType = {
+  [key in DownloadResourceType]: boolean;
 };
 
 const schema = z.object({
@@ -73,16 +78,58 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
-  const [resourcesToDownload, setResourcesToDownload] = useState<{
-    [key: string]: boolean;
-  }>({});
+  const getInitialResourcesToDownloadState = () => {
+    const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
 
-  const onResourceToDownloadToggle = (toggledResource: string) => {
+    downloads?.forEach((download) => {
+      if (download.exists) {
+        initialResourcesToDownloadState[download.type as DownloadResourceType] =
+          false;
+      }
+    });
+
+    return initialResourcesToDownloadState;
+  };
+
+  const [resourcesToDownload, setResourcesToDownload] = useState<{
+    [key in DownloadResourceType]: boolean;
+  }>(getInitialResourcesToDownloadState());
+
+  const onResourceToDownloadToggle = (
+    toggledResource: DownloadResourceType
+  ) => {
     setResourcesToDownload({
       ...resourcesToDownload,
       [toggledResource]: resourcesToDownload[toggledResource] ? false : true,
     });
   };
+
+  const onSelectAllClick = () => {
+    const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
+    const updatedResourcesToDownload = {} as ResourcesToDownloadType;
+    allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
+      updatedResourcesToDownload[resourceToDownload as DownloadResourceType] =
+        true;
+    });
+    setResourcesToDownload(updatedResourcesToDownload);
+  };
+
+  const onDeselectAllClick = () => {
+    const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
+    const updatedResourcesToDownload = {} as ResourcesToDownloadType;
+    allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
+      updatedResourcesToDownload[resourceToDownload as DownloadResourceType] =
+        false;
+    });
+    setResourcesToDownload(updatedResourcesToDownload);
+  };
+
+  const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
+  const selectedResourcesToDownloadCount = Object.keys(
+    resourcesToDownload
+  ).filter(
+    (resource) => resourcesToDownload[resource as DownloadResourceType] === true
+  ).length;
 
   return (
     <AppLayout
@@ -165,31 +212,64 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
         <Grid $mt={32}>
           <GridArea $colSpan={[12]}>
-            <Flex>
-              <Heading tag="h2" $font={"heading-5"}>
+            <Flex
+              $alignItems={["left", "center"]}
+              $flexDirection={["column", "row"]}
+            >
+              <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
                 Lesson resources
               </Heading>
+              <Box $ml={[0, 48]}>
+                <Button
+                  label="Select all"
+                  variant="minimal"
+                  onClick={() => onSelectAllClick()}
+                />
+                <Button
+                  label="Deselect all"
+                  variant="minimal"
+                  onClick={() => onDeselectAllClick()}
+                  $ml={24}
+                />
+              </Box>
             </Flex>
-            <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
+            <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
           </GridArea>
-          {downloads?.map((download, index) => {
+          {downloads?.map((download) => {
             if (download.exists && !download.forbidden) {
               return (
-                <GridArea $colSpan={[6, 3, 2]} key={index}>
+                <GridArea
+                  $colSpan={[6, 3, 2]}
+                  key={download.type}
+                  data-testid={"lessonResourcesToDownload"}
+                >
                   <DownloadCard
-                    key={index}
                     id={download.type}
                     name={"lessonResourcesToDownload"}
                     label={download.label}
                     extension={download.ext}
                     resourceType={download.type as DownloadResourceType}
-                    checked={resourcesToDownload[index] || false}
-                    onChange={() => onResourceToDownloadToggle(`${index}`)}
+                    checked={resourcesToDownload[download.type] || false}
+                    onChange={() =>
+                      onResourceToDownloadToggle(`${download.type}`)
+                    }
                   />
                 </GridArea>
               );
             }
           })}
+          <GridArea $colSpan={[12]}>
+            <Hr $color={"oakGrey3"} $mt={48} $mb={96} />
+            <Flex $justifyContent={"right"}>
+              <P
+                $color={"oakGrey4"}
+                $font={"body-2"}
+                data-testid="selectedResourcesCount"
+              >
+                {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
+              </P>
+            </Flex>
+          </GridArea>
         </Grid>
       </MaxWidth>
     </AppLayout>
