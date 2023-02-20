@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
@@ -9,6 +10,7 @@ import TitleCard from "../../../../../../../components/Card/TitleCard";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
+  TeachersKeyStageSubjectTiersData,
   TeachersKeyStageSubjectUnitsData,
 } from "../../../../../../../node-lib/curriculum-api";
 import UnitList from "../../../../../../../components/UnitAndLessonLists/UnitList";
@@ -18,15 +20,18 @@ import LearningThemeFilters from "../../../../../../../components/Filters/Learni
 import MobileFilters from "../../../../../../../components/MobileFilters";
 import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
+import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
   learningThemeSlug: string | null;
+  tieredCurriculumData: TeachersKeyStageSubjectTiersData;
 };
 
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   curriculumData,
   learningThemeSlug,
+  tieredCurriculumData,
 }) => {
   const {
     keyStageTitle,
@@ -39,6 +44,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
     tiers,
   } = curriculumData;
 
+  const { tier: tierQuery } = useRouter().query;
+
   const paginationProps = usePagination({
     totalResults: curriculumData.units.length,
     pageSize: 20,
@@ -48,16 +55,20 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   const { currentPageItems } = paginationProps;
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
-  return (
-    <AppLayout
-      seoProps={getSeoProps({
-        title: "Units", // @todo add real data
-        description: "Subject units",
-      })}
-    >
-      <MaxWidth $ph={16}>
-        {/* not part of mvp page, add later */}
-        {/* <Box $mv={[24, 48]}>
+
+  if (tiers.length && !tierQuery) {
+    return <SubjectTierListing curriculumData={tieredCurriculumData} />;
+  } else {
+    return (
+      <AppLayout
+        seoProps={getSeoProps({
+          title: "Units", // @todo add real data
+          description: "Subject units",
+        })}
+      >
+        <MaxWidth $ph={16}>
+          {/* not part of mvp page, add later */}
+          {/* <Box $mv={[24, 48]}>
           <Breadcrumbs
             breadcrumbs={[
               { href: "/", label: "Home" },
@@ -66,6 +77,18 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             ]}
           />
         </Box> */}
+
+          <TitleCard
+            page={"subject"}
+            keyStage={keyStageTitle}
+            keyStageSlug={keyStageSlug}
+            title={subjectTitle}
+            iconName={"Rocket"}
+            $mb={24}
+            $alignSelf={"flex-start"}
+          />
+          {/* not part of mvp page, add later */}
+          {/* <Flex $mb={64} $display={"inline-flex"}>
 
         <TitleCard
           page={"subject"}
@@ -78,7 +101,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
           $alignSelf={"flex-start"}
         />
         {/* not part of mvp page, add later */}
-        {/* <Flex $mb={64} $display={"inline-flex"}>
+          {/* <Flex $mb={64} $display={"inline-flex"}>
           <ButtonAsLink
             variant="minimal"
             page={null}
@@ -90,56 +113,22 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
           />
         </Flex> */}
 
-        <Grid>
-          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
-            <Box
-              $display={["none", "block"]}
-              $position={[null, "sticky"]}
-              $top={[null, HEADER_HEIGHT]}
-              $mt={[0, 24]}
-              $pt={[48]}
-            >
-              {learningThemes.length > 1 && (
-                <Flex $flexDirection={"column"}>
-                  <Heading tag="h3" $font="body-3" $mb={16}>
-                    Learning themes
-                  </Heading>
-                  <LearningThemeFilters
-                    labelledBy={"Learning themes"}
-                    learningThemes={learningThemes}
-                    selectedThemeSlug={
-                      learningThemeSlug ? learningThemeSlug : "all"
-                    }
-                    linkProps={{
-                      page: "unit-index",
-                      keyStage: keyStageSlug,
-                      subject: subjectSlug,
-                      search: { ["tier"]: tierSlug },
-                    }}
-                  />
-                </Flex>
-              )}
-            </Box>
-          </GridArea>
-          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 72]}>
-            <Flex $flexDirection={["column-reverse", "column"]}>
-              <Flex
-                $flexDirection={"row"}
-                $minWidth={"100%"}
-                $justifyContent={"space-between"}
-                $position={"relative"}
-                $alignItems={"center"}
-                $mb={16}
+          <Grid>
+            <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
+              <Box
+                $display={["none", "block"]}
+                $position={[null, "sticky"]}
+                $top={[null, HEADER_HEIGHT]}
+                $mt={[0, 24]}
+                $pt={[48]}
               >
-                <Flex $position={["absolute", "relative"]}>
-                  <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
-                    Units
-                  </Heading>
-                </Flex>
                 {learningThemes.length > 1 && (
-                  <MobileFilters label="Learning themes" $mt={0}>
+                  <Flex $flexDirection={"column"}>
+                    <Heading tag="h3" $font="body-3" $mb={16}>
+                      Learning themes
+                    </Heading>
                     <LearningThemeFilters
-                      labelledBy={"Learning themes filter"}
+                      labelledBy={"Learning themes"}
                       learningThemes={learningThemes}
                       selectedThemeSlug={
                         learningThemeSlug ? learningThemeSlug : "all"
@@ -151,37 +140,72 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                         search: { ["tier"]: tierSlug },
                       }}
                     />
-                  </MobileFilters>
+                  </Flex>
+                )}
+              </Box>
+            </GridArea>
+            <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 72]}>
+              <Flex $flexDirection={["column-reverse", "column"]}>
+                <Flex
+                  $flexDirection={"row"}
+                  $minWidth={"100%"}
+                  $justifyContent={"space-between"}
+                  $position={"relative"}
+                  $alignItems={"center"}
+                  $mb={16}
+                >
+                  <Flex $position={["absolute", "relative"]}>
+                    <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
+                      Units
+                    </Heading>
+                  </Flex>
+                  {learningThemes.length > 1 && (
+                    <MobileFilters label="Learning themes" $mt={0}>
+                      <LearningThemeFilters
+                        labelledBy={"Learning themes filter"}
+                        learningThemes={learningThemes}
+                        selectedThemeSlug={
+                          learningThemeSlug ? learningThemeSlug : "all"
+                        }
+                        linkProps={{
+                          page: "unit-index",
+                          keyStage: keyStageSlug,
+                          subject: subjectSlug,
+                          search: { ["tier"]: tierSlug },
+                        }}
+                      />
+                    </MobileFilters>
+                  )}
+                </Flex>
+
+                {tiers.length > 0 && (
+                  <nav aria-label="tiers">
+                    <TabularNav
+                      $mb={[10, 16]}
+                      label="tiers"
+                      links={tiers.map(({ title, slug, unitCount }) => ({
+                        label: `${title} (${unitCount})`,
+                        keyStage: keyStageSlug,
+                        subject: subjectSlug,
+                        search: { tier: slug },
+                        page: "unit-index",
+                        isCurrent: slug === tierSlug,
+                      }))}
+                    />
+                  </nav>
                 )}
               </Flex>
-
-              {tiers.length > 0 && (
-                <nav aria-label="tiers">
-                  <TabularNav
-                    $mb={[10, 16]}
-                    label="tiers"
-                    links={tiers.map(({ title, slug, unitCount }) => ({
-                      label: `${title} (${unitCount})`,
-                      keyStage: keyStageSlug,
-                      subject: subjectSlug,
-                      search: { tier: slug },
-                      page: "unit-index",
-                      isCurrent: slug === tierSlug,
-                    }))}
-                  />
-                </nav>
-              )}
-            </Flex>
-            <UnitList
-              {...curriculumData}
-              currentPageItems={currentPageItems}
-              paginationProps={paginationProps}
-            />
-          </GridArea>
-        </Grid>
-      </MaxWidth>
-    </AppLayout>
-  );
+              <UnitList
+                {...curriculumData}
+                currentPageItems={currentPageItems}
+                paginationProps={paginationProps}
+              />
+            </GridArea>
+          </Grid>
+        </MaxWidth>
+      </AppLayout>
+    );
+  }
 };
 
 export type URLParams = {
@@ -201,13 +225,23 @@ export const getServerSideProps: GetServerSideProps<
   const learningTheme = context.query["learning-theme"]
     ? context.query["learning-theme"]
     : null;
-
   const learningThemeSlug = Array.isArray(learningTheme)
     ? learningTheme[0]
       ? learningTheme[0]
       : null
     : learningTheme;
   const tierSlug = Array.isArray(tier) ? tier[0] : tier;
+  /**
+   * ! - curriculumData query to be refactored so this can be done in one req
+   * ! - Zod Schema - index.ts file and Units GQL query to be amended
+   * ! - Fix test for the schema fixtures
+   */
+  const tieredCurriculumData = await curriculumApi.teachersKeyStageSubjectTiers(
+    {
+      subjectSlug,
+      keyStageSlug,
+    }
+  );
 
   const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
     subjectSlug,
@@ -220,6 +254,7 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       curriculumData,
       learningThemeSlug,
+      tieredCurriculumData,
     },
   };
   return results;
