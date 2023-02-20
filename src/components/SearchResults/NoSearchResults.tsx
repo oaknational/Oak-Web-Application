@@ -1,5 +1,5 @@
 import Flex from "../Flex";
-import { Heading, P } from "../Typography";
+import { Heading, P, Span } from "../Typography";
 
 interface NoSearchResultsProps {
   searchTerm: string;
@@ -15,7 +15,8 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
       </Heading>
       <Flex $flexDirection="column">
         <P $font={"body-1"} $mb={12}>
-          Sorry, we could not find any results for “{searchTerm}”.
+          Sorry, we could not find any results for{" "}
+          <Span $wordWrap={"break-word"}>“{searchTerm}”</Span>.
           <br /> <br /> Please enter a topic you wish to explore in the search
           bar above.
         </P>

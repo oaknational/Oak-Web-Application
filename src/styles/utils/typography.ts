@@ -98,6 +98,7 @@ export type TypographyProps = FontProps & {
   $whiteSpace?: ResponsiveValues<
     "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line" | "break-space"
   >;
+  $wordWrap?: ResponsiveValues<"normal" | "break-word" | "initial" | "inherit">;
 };
 
 const typography = css<TypographyProps>`
@@ -105,6 +106,7 @@ const typography = css<TypographyProps>`
   ${responsive("text-align", (props) => props.$textAlign)}
   ${responsive("text-decoration", (props) => props.$textDecoration)}
   ${responsive("white-space", (props) => props.$whiteSpace)}
+  ${responsive("word-wrap", (props) => props.$wordWrap)}
 `;
 
 export default typography;
