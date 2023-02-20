@@ -1,5 +1,5 @@
 [[plugins]]
-  package = "./netlify/plugins/github-deployments"
+package = "./netlify/plugins/github-deployments"
 
 # Force all access through a managed TLD.
 [[redirects]]
@@ -15,19 +15,27 @@ to = 'https://owa.thenational.academy/:splat'
 status = 302
 force = true
 
+# Don't bundle some giant Next.js files with lambda functions
+[functions]
+included_files = [
+  "!./node_modules/sharp/vendor/**",
+  "!node_modules/sharp/**",
+  "!node_modules/sharp/vendor/8.12.2/linux-x64/lib/libvips-cpp.so.42",
+]
+
 # Cancel production builds which are not versioning commits.
 [context.production]
-  ignore = "node scripts/build/cancel_netlify_build.js"
+ignore = "node scripts/build/cancel_netlify_build.js"
 
-  # Report production builds into Slack using custom plugin.
-  [[context.production.plugins]]
-    package = "./netlify/plugins/slack-reporting"
+# Report production builds into Slack using custom plugin.
+[[context.production.plugins]]
+package = "./netlify/plugins/slack-reporting"
 
 # On preview and branch deploys, use the subdomain redirect edge function
 # to force all access through our managed TLD.
 [[context.deploy-preview.edge_functions]]
-  path = '/*'
-  function = 'subdomain-redirect'
+path = '/*'
+function = 'subdomain-redirect'
 [[context.branch-deploy.edge_functions]]
-  path = '/*'
-  function = 'subdomain-redirect'
+path = '/*'
+function = 'subdomain-redirect'
