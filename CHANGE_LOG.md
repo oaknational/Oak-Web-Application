@@ -1,3 +1,22 @@
+# [1.134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.133.1...v1.134.0) (2023-02-20)
+
+
+### Features
+
+* 1112 curriculum api zod types ([fcf3a41](https://github.com/oaknational/Oak-Web-Application/commit/fcf3a41a4e794fca1126e209263bbe9e95a4a9b7))
+* 1112 fix mobile alignment ([fbdf2ab](https://github.com/oaknational/Oak-Web-Application/commit/fbdf2abb0fa3036d8fb6dd0ef980abf6197d656e))
+* 1112 fix sonar cloud issues ([560107a](https://github.com/oaknational/Oak-Web-Application/commit/560107aeb14e3f65a1b94ce08d26668633283f42))
+* 1112 fix styles ([66004b1](https://github.com/oaknational/Oak-Web-Application/commit/66004b1c62221e5257880f0ff3a4531ff04dc65c))
+* 1112 select or deselect all resources and add counter ([208d06a](https://github.com/oaknational/Oak-Web-Application/commit/208d06a497c7bb3809595ed3957eed20a6ab6ded))
+
+## [1.133.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.133.0...v1.133.1) (2023-02-20)
+
+
+### Bug Fixes
+
+* 1224 remove green box ([55f7e38](https://github.com/oaknational/Oak-Web-Application/commit/55f7e38c488efbab3330e36e47913e15453905ae))
+* 1224 remove green box from individual subject page ([8077a6b](https://github.com/oaknational/Oak-Web-Application/commit/8077a6b33a6de84248822c61445f119cf9cd62ce))
+
 # [1.133.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.132.0...v1.133.0) (2023-02-17)
 
 

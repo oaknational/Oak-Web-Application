@@ -18,7 +18,13 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsFixtures = (
       {
         type: "exit-quiz-questions",
         exists: true,
-        label: "Exit quiz",
+        label: "Exit quiz questions",
+        ext: "PDF",
+      },
+      {
+        type: "exit-quiz-answers",
+        exists: true,
+        label: "Exit quiz answers",
         ext: "PDF",
       },
     ],
