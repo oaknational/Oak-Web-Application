@@ -264,6 +264,9 @@ describe("School picker and radio buttons", () => {
     expect(setInputValue).toBeCalledWith("");
     expect(radio).toBeChecked();
   });
+  /**
+   * @todo find a way to test that the radio is cleared when school is selected
+   */
   it.skip("clears clicked radio if school is selected", async () => {
     useSchoolPickerReturnData = {
       data: items,

@@ -190,16 +190,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <P $mb={12} $font={"body-2"}>
               Or select one of the following:
             </P>
-            <RadioGroup
-              aria-label={"home school or my school isn't listed"}
-              value={selectedRadio}
-              onChange={onRadioChange}
-            >
-              <Radio data-testid={"radio-download"} value={"homeschool"}>
-                Homeschool
-              </Radio>
-              <Radio value={"notListed"}>My school isn’t listed</Radio>
-            </RadioGroup>
+            <Flex>
+              <RadioGroup
+                aria-label={"home school or my school isn't listed"}
+                value={selectedRadio}
+                onChange={onRadioChange}
+              >
+                <Radio data-testid={"radio-download"} value={"homeschool"}>
+                  Homeschool
+                </Radio>
+                <Radio value={"notListed"}>My school isn’t listed</Radio>
+              </RadioGroup>
+            </Flex>
           </Box>
           <Heading
             tag="h3"
