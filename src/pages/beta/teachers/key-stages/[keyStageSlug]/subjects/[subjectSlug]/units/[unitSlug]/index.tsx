@@ -7,8 +7,6 @@ import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
 import curriculumApi, {
   TeachersKeyStageSubjectUnitsLessonsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
-import SubjectErrorCard from "../../../../../../../../../components/Card/SubjectErrorCard";
-import Flex from "../../../../../../../../../components/Flex";
 import TitleCard from "../../../../../../../../../components/Card/TitleCard";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
@@ -45,18 +43,6 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
       $background="white"
     >
       <MaxWidth $ph={16}>
-        <Flex $mt={24} $mb={32}>
-          <SubjectErrorCard
-            buttonProps={{
-              label: "Find out why",
-              page: null,
-              href: "/",
-            }}
-            headingTag={"h3"}
-            heading={"Some subjects unavailable"}
-            text={"Unfortunately some subjects are now unavailable."}
-          />
-        </Flex>
         <TitleCard
           page={"lessons"}
           keyStage={keyStageTitle}
@@ -65,6 +51,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           subject={subjectTitle}
           title={unitTitle}
           iconName={"Rocket"}
+          $mt={48}
           $mb={24}
           $alignSelf={"flex-start"}
         />
