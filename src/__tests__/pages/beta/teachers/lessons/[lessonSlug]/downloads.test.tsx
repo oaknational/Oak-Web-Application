@@ -76,6 +76,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         "lessonResourcesToDownload"
       );
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
+
+      // Download button
+      const downloadButton = screen.getByText("Download .zip");
+      expect(downloadButton).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {

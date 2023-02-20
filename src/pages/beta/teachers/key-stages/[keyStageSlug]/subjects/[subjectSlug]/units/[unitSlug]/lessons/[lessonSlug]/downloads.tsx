@@ -62,6 +62,17 @@ type ResourceTypes = {
   [key: string]: boolean;
 };
 
+export const createAndClickHiddenDownloadLink = (url: string) => {
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = url;
+  a.setAttribute("download", "test.pdf");
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
+  return;
+};
+
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
@@ -83,17 +94,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
-  const createAndClickHiddenDownloadLink = (url: string) => {
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.setAttribute("download", "test.pdf");
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    return;
-  };
-
   const checkExistenceOfSelectedResources = async (
     lessonSlug: string,
     resourceTypesString: string
@@ -102,12 +102,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       throw new TypeError("process.env.VERCEL_API_URL must be defined");
     }
 
-    const endpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
-
-    const res = await fetch(endpoint);
+    const checkResourcesExistEndpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+    const res = await fetch(checkResourcesExistEndpoint);
     const { data, error } = await res.json();
 
     if (!res.ok && error) {
+      console.log("checkResourcesExist error", error);
       throw new Error(error);
     } else if (!res.ok) {
       throw new Error("API error");
@@ -335,18 +335,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             }
           })}
           <GridArea $colSpan={[12]}>
-            <Hr $color={"oakGrey3"} $mt={48} $mb={96} />
-            <Flex
-              $justifyContent={"right"}
-              $alignItems={"center"}
-              $pt={30}
-              $pb={30}
-            >
+            <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
+            <Flex $justifyContent={"right"} $alignItems={"center"}>
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
                 data-testid="selectedResourcesCount"
-                $mr={30}
+                $mr={24}
               >
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
@@ -356,6 +351,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   downloadSelectedResources(slug, resourcesToDownload);
                 }}
                 background={"teachersHighlight"}
+                icon="Download"
+                $iconPosition="trailing"
+                iconBackground="teachersYellow"
+                $mt={8}
+                $mb={8}
+                $mr={8}
+                $ml={8}
               />
             </Flex>
           </GridArea>

@@ -261,6 +261,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
     z.object({
       exists: z.boolean(),
       type: z.enum([
+        "presentation",
         "slideDeck",
         "intro-quiz-questions",
         "intro-quiz-answers",

@@ -12,6 +12,7 @@ import { IconName } from "../Icon";
 
 export type DownloadResourceType =
   | "slideDeck"
+  | "presentation"
   | "intro-quiz-questions"
   | "intro-quiz-answers"
   | "exit-quiz-questions"
@@ -35,6 +36,7 @@ type DownloadCardLabelProps = DownloadCardProps & {
 
 export const RESOURCE_TYPE_ICON_MAP = {
   slideDeck: "Slidedeck",
+  presentation: "Slidedeck",
   "intro-quiz-questions": "Quiz",
   "intro-quiz-answers": "Quiz",
   "exit-quiz-questions": "Quiz",
