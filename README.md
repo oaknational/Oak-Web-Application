@@ -2,18 +2,21 @@
 
 The Oak National Academy web application code base.
 
-- [Getting started](#Getting-started)
-- [Automatic Checks](#Automatic-Checks)
-  - [Unit tests](#Unit-tests)
-  - [End-to-End Browser Tests](#End-to-End-Browser-Tests)
-  - [Pre-commit and Commit Message Hooks](#Pre-commit-and-Commit-Message-Hooks)
-    - [Pre-commit](#Pre-commit)
-    - [Commit Message Validation](#Commit-Message-Validation)
-- [CI/CD](#CICD)
-  - [Pull Requests and Automated Checks](#Pull-Requests-and-Automated-Checks)
-  - [Builds and Deployments](#Builds-and-Deployments)
-  - [Release Mechanism](#Release-Mechanism)
-- [Npm dependencies](#Npm-dependencies)
+- [Getting started](#getting-started)
+- [Automatic Checks](#automatic-checks)
+  - [Unit tests](#unit-tests)
+  - [End-to-End Browser Tests](#end-to-end-browser-tests)
+  - [Pre-commit and Commit Message Hooks](#pre-commit-and-commit-message-hooks)
+    - [Pre-commit](#pre-commit)
+    - [Commit Message Validation](#commit-message-validation)
+- [CI/CD](#cicd)
+  - [Pull Requests and Automated Checks](#pull-requests-and-automated-checks)
+  - [Builds and Deployments](#builds-and-deployments)
+  - [Release Mechanism](#release-mechanism)
+- [External Contributions](#external-contributions)
+  - [Security and Bug Bounty](#security-and-bug-bounty)
+  - [Contributing to the Code](#contributing-to-the-code)
+- [Open Source Acknowledgements](#open-source-acknowledgements)
 
 Other documentation can be found in standalone READMEs:
 
@@ -108,3 +111,17 @@ Oak preview and production builds are on Netlify.
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
 - All commits on `main` will trigger a Vercel deploy, but non-release commits ([according to the commit message structure](scripts/build/cancel_vercel_build.js)), will be cancelled.
 - The Vercel deployment will trigger the `deployment_checks` Github workflow.
+
+## External Contributions
+
+### Security and Bug Bounty
+
+Please see our [security.txt](public/.well-known/security.txt) file.
+
+### Contributing to the Code
+
+We don't currently accept external contributions to the code base, but this is under review and we hope to find an approach the works for us and the community.
+
+## Open Source Acknowledgements
+
+As will all web projects we are dependent on open source libraries maintained by others. While it is not practical to acknowledge them all, we would nevertheless like to express our gratitude for the contributions and efforts of the OSS community. Our dependency list can be found in our [package.json](package.json) file.

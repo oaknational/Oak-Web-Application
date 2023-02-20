@@ -42,5 +42,7 @@ query teachersKeyStageSubjectUnitLessons(
     presentationCount: presentation_count
     worksheetCount: worksheet_count
     hasCopyrightMaterial: has_copyright_material
+    hasDownloadableResources: has_downloadable_resources
+    quizCount: quiz_count
   }
 }

@@ -22,6 +22,34 @@ const teachersLessonOverviewFixture = (
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcript: null,
+    hasDownloadableResources: true,
+    introQuiz: [
+      {
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitSlug: "maths",
+        unitTitle: "Maths",
+        title: "what is a question",
+        points: 3,
+        required: true,
+        choices: ["this one", "that one"],
+        active: true,
+        answer: "this one",
+        type: "multiple choice",
+        quizType: "intro",
+        images: [
+          "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
+        ],
+        feedbackCorrect: "weldone",
+        feedbackIncorrect: "unluckey",
+        choiceImages: [
+          "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
+        ],
+      },
+    ],
+    exitQuiz: [],
     ...partial,
   };
 };

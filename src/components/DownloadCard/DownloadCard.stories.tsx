@@ -4,23 +4,23 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Form Fields/Checkbox",
+  title: "DownloadCard",
   component: Component,
   argTypes: {
-    labelText: {
+    title: {
       defaultValue: "Click me",
     },
     id: {
       defaultValue: "1",
-    },
-    name: {
-      defaultValue: "checkbox-group",
     },
     checked: {
       defaultValue: false,
     },
     onChange: {
       action: "changed",
+    },
+    resourceType: {
+      defaultValue: "presentation",
     },
   },
 } as ComponentMeta<typeof Component>;

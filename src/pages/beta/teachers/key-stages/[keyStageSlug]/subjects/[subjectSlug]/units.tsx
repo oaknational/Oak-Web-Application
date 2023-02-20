@@ -6,7 +6,6 @@ import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../components/Card/TitleCard";
-import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
@@ -67,24 +66,14 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             ]}
           />
         </Box> */}
-        <Flex $mt={24} $mb={32}>
-          <SubjectErrorCard
-            buttonProps={{
-              label: "Find out why",
-              page: null,
-              href: "/",
-            }}
-            headingTag={"h3"}
-            heading={"Some subjects unavailable"}
-            text={"Unfortunately some subjects are now unavailable."}
-          />
-        </Flex>
+
         <TitleCard
           page={"subject"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
           title={subjectTitle}
           iconName={"Rocket"}
+          $mt={48}
           $mb={24}
           $alignSelf={"flex-start"}
         />
@@ -148,7 +137,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                   </Heading>
                 </Flex>
                 {learningThemes.length > 1 && (
-                  <MobileFilters title="Learning themes" $mt={0}>
+                  <MobileFilters label="Learning themes" $mt={0}>
                     <LearningThemeFilters
                       labelledBy={"Learning themes filter"}
                       learningThemes={learningThemes}
