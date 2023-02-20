@@ -26,6 +26,7 @@ export type MobileFiltersProps = {
   iconClosed?: IconName;
   label: string;
   labelOpened?: string;
+  providedId?: string;
 } & FlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,10 +56,17 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     iconClosed = "ChevronDown",
     label,
     labelOpened = label,
+    providedId,
     ...flexProps
   } = props;
+
   const menuId = useId();
-  const triggerId = useId();
+
+  let triggerId = providedId;
+  const definiteId = useId();
+  if (triggerId === undefined) {
+    triggerId = definiteId;
+  }
 
   const close = useCallback(() => {
     setIsOpen(false);

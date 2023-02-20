@@ -47,6 +47,9 @@ const config = {
 // URLs should end with a `/` to avoid redirects from
 // e.g. `/unit` to `/unit/index.html` during tests.
 const relativeUrls = [
+  // Error pages
+  "/404",
+  // Public pages
   "/",
   "/lesson-planning",
   "/develop-your-curriculum",
@@ -62,10 +65,15 @@ const relativeUrls = [
   "/blog/join-the-childrens-mental-health-week-assembly-2022",
   "/legal/accessibility-statement",
   "/lp/download-our-lesson-and-resource-directory",
-  // Ignore beta pages for now.
-  // "/beta/lessons/physics-only-review-chj3cd/",
-  // "/beta/sign-in",
-  // "/beta/teachers/search",
+  // Beta pages
+  "/beta",
+  "/beta/teachers",
+  "/beta/teachers/key-stages/ks1/subjects",
+  "/beta/teachers/key-stages/ks4/subjects/maths",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units?tier=foundation",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads",
 ];
 
 // Add the base URL to the relative URLs.

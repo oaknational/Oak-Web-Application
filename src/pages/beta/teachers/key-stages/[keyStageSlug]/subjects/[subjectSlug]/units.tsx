@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 
@@ -48,6 +48,10 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   const { currentPageItems } = paginationProps;
   const theme = useTheme();
   const HEADER_HEIGHT = theme.header.height;
+
+  const learningThemesId = useId();
+  const learningThemesFilterId = useId();
+
   return (
     <AppLayout
       seoProps={getSeoProps({
@@ -101,11 +105,16 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             >
               {learningThemes.length > 1 && (
                 <Flex $flexDirection={"column"}>
-                  <Heading tag="h3" $font="body-3" $mb={16}>
+                  <Heading
+                    id={learningThemesId}
+                    tag="h3"
+                    $font="body-3"
+                    $mb={16}
+                  >
                     Learning themes
                   </Heading>
                   <LearningThemeFilters
-                    labelledBy={"Learning themes"}
+                    labelledBy={learningThemesId}
                     learningThemes={learningThemes}
                     selectedThemeSlug={
                       learningThemeSlug ? learningThemeSlug : "all"
@@ -137,9 +146,13 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                   </Heading>
                 </Flex>
                 {learningThemes.length > 1 && (
-                  <MobileFilters label="Learning themes" $mt={0}>
+                  <MobileFilters
+                    providedId={learningThemesFilterId}
+                    label="Learning themes"
+                    $mt={0}
+                  >
                     <LearningThemeFilters
-                      labelledBy={"Learning themes filter"}
+                      labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
                       selectedThemeSlug={
                         learningThemeSlug ? learningThemeSlug : "all"

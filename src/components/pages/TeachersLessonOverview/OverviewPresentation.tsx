@@ -18,11 +18,12 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
     <OverviewAssetWrap>
       <AspectRatio ratio={"16:9"}>
         <iframe
-          role="iframe"
           src={`https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`}
-          title={title}
+          title={`slide deck: ${title}`}
           width="100%"
           height="100%"
+          // We know the google slides aren't accessible.
+          className="pa11y-ignore"
         />
       </AspectRatio>
     </OverviewAssetWrap>
