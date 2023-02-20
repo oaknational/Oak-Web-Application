@@ -233,7 +233,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 />
               </Box>
             </Flex>
-            <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
+            <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
           </GridArea>
           {downloads?.map((download) => {
             if (download.exists && !download.forbidden) {
