@@ -15,6 +15,7 @@ import {
   P,
 } from "../../../../../../../../../../../components/Typography";
 import OakLink from "../../../../../../../../../../../components/OakLink";
+import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
 import DownloadCard, {
@@ -53,6 +54,10 @@ export type DownloadFormProps = {
   terms: boolean;
 };
 
+type ResourceTypes = {
+  [key: string]: boolean;
+};
+
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
@@ -62,6 +67,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     keyStageSlug,
     subjectSlug,
     subjectTitle,
+    slug,
     downloads,
   } = curriculumData;
   const { register, formState } = useForm<DownloadFormProps>({
@@ -73,9 +79,81 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
-  const [resourcesToDownload, setResourcesToDownload] = useState<{
-    [key: string]: boolean;
-  }>({});
+  const [resourcesToDownload, setResourcesToDownload] = useState<ResourceTypes>(
+    {}
+  );
+
+  const createAndClickHiddenDownloadLink = (url: string) => {
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.setAttribute("download", "test.pdf");
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    return;
+  };
+
+  const checkExistenceOfSelectedResources = async (
+    lessonSlug: string,
+    resourceTypesString: string
+  ) => {
+    if (!process.env.VERCEL_API_URL) {
+      throw new TypeError("process.env.VERCEL_API_URL must be defined");
+    }
+
+    const endpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+
+    const res = await fetch(endpoint);
+    const { data, error } = await res.json();
+
+    if (!res.ok && error) {
+      throw new Error(error);
+    } else if (!res.ok) {
+      throw new Error("API error");
+    }
+    console.log("all resources exist");
+    return data;
+  };
+
+  const downloadSelectedResources = async (
+    lessonSlug: string,
+    resourceTypes: ResourceTypes
+  ) => {
+    if (Object.keys(resourceTypes)?.length === 0) {
+      console.log("no resources to download");
+      return;
+    }
+
+    const resourceTypesAsArray = Object.entries(resourceTypes);
+    const selectedResourceTypesAsArray = resourceTypesAsArray
+      .filter(([value]) => value === true)
+      .map(([key]) => key);
+
+    const selection = selectedResourceTypesAsArray.join(",");
+
+    if (!process.env.VERCEL_API_URL) {
+      throw new TypeError("process.env.VERCEL_API_URL must be defined");
+    }
+
+    const downloadEnpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`;
+
+    const doSelectedResourcesExist = await checkExistenceOfSelectedResources(
+      lessonSlug,
+      selection
+    );
+    const res = doSelectedResourcesExist && (await fetch(downloadEnpoint));
+    const { data, error } = await res.json();
+
+    if (!res.ok && error) {
+      throw new Error(error);
+    } else if (!res.ok) {
+      throw new Error("API error");
+    }
+
+    createAndClickHiddenDownloadLink(data.url);
+    return data;
+  };
 
   const onResourceToDownloadToggle = (toggledResource: string) => {
     setResourcesToDownload({
@@ -183,13 +261,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     label={download.label}
                     extension={download.ext}
                     resourceType={download.type as DownloadResourceType}
-                    checked={resourcesToDownload[index] || false}
-                    onChange={() => onResourceToDownloadToggle(`${index}`)}
+                    checked={resourcesToDownload[download.type] || false}
+                    onChange={() =>
+                      onResourceToDownloadToggle(`${download.type}`)
+                    }
                   />
                 </GridArea>
               );
             }
           })}
+          <GridArea $colSpan={[12]}>
+            <Flex $mb={32} $mt={32} $justifyContent={"right"}>
+              <Button
+                label="Download .zip"
+                onClick={() => {
+                  downloadSelectedResources(slug, resourcesToDownload);
+                }}
+                background={"teachersHighlight"}
+              />
+            </Flex>
+          </GridArea>
         </Grid>
       </MaxWidth>
     </AppLayout>
