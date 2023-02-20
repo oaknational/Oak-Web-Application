@@ -6,9 +6,10 @@ import spacing, { SpacingProps } from "../../styles/utils/spacing";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import Icon from "../Icon";
 import FocusUnderline from "../OakLink/FocusUnderline";
 import FieldError from "../FormFields/FieldError";
+
+import VisualCheckbox from "./VisualCheckbox";
 
 export type CheckboxConfig = {
   default: {
@@ -19,23 +20,45 @@ export type CheckboxConfig = {
   };
 };
 
+export type CheckboxVariant = "cardCheckbox";
+
 type CheckboxProps = {
-  labelText: string;
+  labelText?: string;
   id: string;
+  name: string;
   checked: boolean;
   disabled?: boolean;
   ariaLabel?: string;
   required?: boolean;
   error?: string;
   onChange: () => void;
+  children?: React.ReactNode;
+  variant?: CheckboxVariant;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
   disabled: boolean;
   checked: boolean;
+  variant?: CheckboxVariant;
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
+  input[type="checkbox"]:focus + span,
+  input[type="checkbox"]:active + span {
+    border-color: ${getColorByName("black")};
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      left: -5px;
+      right: 0;
+      border: solid 3px ${getColorByName("teachersYellow")};
+      border-radius: 3px;
+    }
+  }
+
   ${FocusUnderline} {
     display: none;
     position: absolute;
@@ -49,6 +72,15 @@ const checkboxFocusStyles = css`
 
   input[type="checkbox"]:focus ~ ${FocusUnderline} {
     display: block;
+  }
+
+  input[type="checkbox"]:active ~ ${FocusUnderline} {
+    display: block;
+  }
+
+  input[type="checkbox"]:focus ~ div,
+  input[type="checkbox"]:active ~ div {
+    border: solid 4px ${getColorByName("teachersYellow")};
   }
 `;
 
@@ -71,12 +103,14 @@ const checkboxHoverStyles = css`
 
 const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
+  display: ${(props) =>
+    props.variant !== "cardCheckbox" ? "flex" : "initial"};
+  align-items: center;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
-  display: flex;
-  align-items: center;
   font-family: ${getFontFamily("ui")};
   color: ${getColorByLocation(({ theme }) => theme.checkbox.default.color)};
+  width: 100%;
   ${(props) =>
     props.disabled &&
     css`
@@ -100,26 +134,6 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
   opacity: 0;
 `;
 
-const VisualCheckbox = styled.span<{ checked: boolean }>`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 2px;
-  border-color: ${(props) =>
-    props.checked
-      ? getColorByName("teachersHighlight")
-      : getColorByName("oakGrey3")};
-  background-color: ${(props) =>
-    props.checked
-      ? getColorByName("teachersHighlight")
-      : getColorByName("white")};
-`;
-
 const CheckboxLabelText = styled.span`
   margin-left: 8px;
   margin-right: 16px;
@@ -133,9 +147,12 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     disabled = false,
     onChange,
     id,
+    name,
     ariaLabel,
     required = false,
     error,
+    children,
+    variant,
     ...spacingProps
   } = props;
 
@@ -152,11 +169,14 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         onClick={() => select}
         checked={checked}
         disabled={disabled}
+        variant={variant}
         {...spacingProps}
       >
         <ScreenReaderCheckbox
           type="checkbox"
           id={id}
+          value={id}
+          name={name}
           onChange={select}
           checked={checked}
           disabled={disabled}
@@ -165,11 +185,17 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
         />
-        <VisualCheckbox checked={checked}>
-          {checked && <Icon name={"Tick"} $color={"white"} size={20} />}
-        </VisualCheckbox>
-        {labelText && <CheckboxLabelText>{labelText}</CheckboxLabelText>}
-        <FocusUnderline $color={"teachersYellow"} />
+        <VisualCheckbox checked={checked} variant={variant} />
+        {/* card checkbox */}
+        {!labelText && variant === "cardCheckbox" && children}
+        {/* basic label checkbox */}
+
+        {labelText && variant !== "cardCheckbox" && (
+          <>
+            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
+            <FocusUnderline $color={"teachersYellow"} />
+          </>
+        )}
       </CheckboxLabel>
       <FieldError id={errorId}>{error}</FieldError>
     </>

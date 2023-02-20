@@ -6,6 +6,7 @@ import teachersKeyStageSubjectUnitsLessonsFixture from "./fixtures/teachersKeySt
 import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStageSubjectTiersPaths.fixture";
 import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fixture";
 import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
+import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 
 import curriculumApi from ".";
 
@@ -59,6 +60,9 @@ const teachersKeyStageSubjectUnits = jest.fn(() => ({
   mv_units: teachersKeyStageSubjectUnitsFixture().units,
   mv_learning_themes: teachersKeyStageSubjectUnitsFixture().learningThemes,
 }));
+const teachersKeyStageSubjectUnitLessonsDownloads = jest.fn(() => ({
+  mv_downloads: [teachersKeyStageSubjectUnitsLessonsDownloadsFixtures()],
+}));
 const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
   mv_units: [
     {
@@ -93,6 +97,8 @@ const teachersLessonOverview = jest.fn(() => ({
       videoWithSignLanguageMuxPlaybackId:
         teachersLessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
       transcript: teachersLessonOverviewFixture().transcript,
+      hasDownloadableResources:
+        teachersLessonOverviewFixture().hasDownloadableResources,
     },
   ],
   introQuiz: teachersLessonOverviewFixture().introQuiz,
@@ -118,6 +124,8 @@ jest.mock("./generated/sdk", () => ({
       teachersKeyStageSubjectUnitsPaths(...args),
     teachersKeyStageSubjectUnitLessons: (...args: []) =>
       teachersKeyStageSubjectUnitLessons(...args),
+    teachersKeyStageSubjectUnitLessonsDownloads: (...args: []) =>
+      teachersKeyStageSubjectUnitLessonsDownloads(...args),
     teachersLessonOverview: (...args: []) => teachersLessonOverview(...args),
     teachersLessonOverviewPaths: (...args: []) =>
       teachersLessonOverviewPaths(...args),
@@ -174,6 +182,20 @@ describe("curriculum-api", () => {
       keyStageSlug: "ks123",
       subjectSlug: "english-9",
       unitSlug: "macbeth-1",
+    });
+  });
+  test("teachersKeyStageSubjectUnitLessonsDownloads", async () => {
+    await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
+      keyStageSlug: "ks123",
+      subjectSlug: "english-9",
+      unitSlug: "macbeth-1",
+      lessonSlug: "islamic-geometry",
+    });
+    expect(teachersKeyStageSubjectUnitLessonsDownloads).toHaveBeenCalledWith({
+      keyStageSlug: "ks123",
+      subjectSlug: "english-9",
+      unitSlug: "macbeth-1",
+      lessonSlug: "islamic-geometry",
     });
   });
   test("teachersLessonOverview", async () => {

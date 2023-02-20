@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,19 +9,28 @@ import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
 import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../../../../../components/Card/TitleCard";
-import Heading from "../../../../../../../../../../../components/Typography/Heading";
-import P from "../../../../../../../../../../../components/Typography/P";
+import {
+  Heading,
+  Hr,
+  P,
+} from "../../../../../../../../../../../components/Typography";
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
+import DownloadCard, {
+  type DownloadResourceType,
+} from "../../../../../../../../../../../components/DownloadCard";
 import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
+import Grid, {
+  GridArea,
+} from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
-  TeachersLessonOverviewData,
+  type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 
 export type LessonDownloadsPageProps = {
-  curriculumData: TeachersLessonOverviewData;
+  curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
 const schema = z.object({
@@ -47,16 +56,33 @@ export type DownloadFormProps = {
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
-  const { title, keyStageTitle, keyStageSlug, subjectSlug, subjectTitle } =
-    curriculumData;
-
+  const {
+    title,
+    keyStageTitle,
+    keyStageSlug,
+    subjectSlug,
+    subjectTitle,
+    downloads,
+  } = curriculumData;
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
   const { errors } = formState;
+
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+
+  const [resourcesToDownload, setResourcesToDownload] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const onResourceToDownloadToggle = (toggledResource: string) => {
+    setResourcesToDownload({
+      ...resourcesToDownload,
+      [toggledResource]: resourcesToDownload[toggledResource] ? false : true,
+    });
+  };
 
   return (
     <AppLayout
@@ -65,7 +91,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         description: "Lesson downloads",
       })}
     >
-      <MaxWidth $ph={16}>
+      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Flex $mb={8} $display={"inline-flex"} $mt={50}>
           <TitleCard
             page={"lesson"}
@@ -77,7 +103,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             iconName={"Rocket"}
           />
         </Flex>
-        <Box $maxWidth={[null, 420, 420]}>
+        <Box $maxWidth={[null, 420, 420]} $mb={96}>
           <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
             Your details
           </Heading>
@@ -120,6 +146,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <Checkbox
               labelText={"I accept terms and conditions (required)"}
               id={"terms"}
+              name={"termsAndConditions"}
               checked={acceptedTCs}
               onChange={() => setAcceptedTCs(!acceptedTCs)}
               $mb={0}
@@ -135,6 +162,35 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             .
           </P>
         </Box>
+
+        <Grid $mt={32}>
+          <GridArea $colSpan={[12]}>
+            <Flex>
+              <Heading tag="h2" $font={"heading-5"}>
+                Lesson resources
+              </Heading>
+            </Flex>
+            <Hr $color={"oakGrey3"} $mt={30} $mb={48} />
+          </GridArea>
+          {downloads?.map((download, index) => {
+            if (download.exists && !download.forbidden) {
+              return (
+                <GridArea $colSpan={[6, 3, 2]} key={index}>
+                  <DownloadCard
+                    key={index}
+                    id={download.type}
+                    name={"lessonResourcesToDownload"}
+                    label={download.label}
+                    extension={download.ext}
+                    resourceType={download.type as DownloadResourceType}
+                    checked={resourcesToDownload[index] || false}
+                    onChange={() => onResourceToDownloadToggle(`${index}`)}
+                  />
+                </GridArea>
+              );
+            }
+          })}
+        </Grid>
       </MaxWidth>
     </AppLayout>
   );
@@ -156,12 +212,13 @@ export const getServerSideProps: GetServerSideProps<
   }
   const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
 
-  const curriculumData = await curriculumApi.teachersLessonOverview({
-    lessonSlug,
-    keyStageSlug,
-    subjectSlug,
-    unitSlug,
-  });
+  const curriculumData =
+    await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
+      lessonSlug,
+      keyStageSlug,
+      subjectSlug,
+      unitSlug,
+    });
 
   if (!curriculumData) {
     return {

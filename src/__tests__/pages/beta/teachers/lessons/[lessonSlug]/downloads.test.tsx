@@ -7,18 +7,15 @@ import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
-import teachersLessonOverviewFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
 import LessonDownloadsPage, {
   getServerSideProps,
   LessonDownloadsPageProps,
   URLParams,
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 
 const props = {
-  curriculumData: teachersLessonOverviewFixture({
-    videoMuxPlaybackId: "pid-001",
-    videoWithSignLanguageMuxPlaybackId: "pid-002",
-  }),
+  curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
 };
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
@@ -44,6 +41,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         screen.getByPlaceholderText("Enter email address here")
       ).toBeInTheDocument();
 
+      // Privacy policy link
       const privacyPolicyLink = screen.getByRole("link", {
         name: "privacy policy",
       });
@@ -52,14 +50,31 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         "href",
         "/legal/privacy-policy"
       );
+
+      // Terms and conditions checkbox
       expect(
         screen.getByLabelText("I accept terms and conditions (required)")
       ).toBeInTheDocument();
+
+      // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
         name: "terms & conditions",
       });
       expect(tcsLink).toBeInTheDocument();
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
+
+      // Lesson resources to download
+      const lessonResources = screen.getByLabelText("Exit quiz");
+      expect(lessonResources).toBeInTheDocument();
+      expect(lessonResources).toHaveAttribute(
+        "name",
+        "lessonResourcesToDownload"
+      );
+      expect(lessonResources).toHaveAttribute(
+        "name",
+        "lessonResourcesToDownload"
+      );
+      expect(lessonResources).toHaveAttribute("value", "exit-quiz-questions");
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {

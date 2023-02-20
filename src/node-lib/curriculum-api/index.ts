@@ -46,15 +46,14 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L, V>(res: {
+const transformMVCase = <K, S, T, U, L, V, W>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
   mv_units?: U;
   mv_lessons?: L;
   mv_learning_themes?: V;
-  // introQuiz?: W;
-  // exitQuiz?: W;
+  mv_downloads?: W;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -63,8 +62,7 @@ const transformMVCase = <K, S, T, U, L, V>(res: {
     units: res.mv_units,
     lessons: res.mv_lessons,
     learningThemes: res.mv_learning_themes,
-    // introQuiz: res.introQuiz,
-    // exitQuiz: res.exitQuiz,
+    downloads: res.mv_downloads,
   };
 };
 
@@ -253,8 +251,31 @@ const teachersLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcript: z.string().nullable(),
+  hasDownloadableResources: z.boolean().nullable(),
   introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+});
+
+const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
+  downloads: z.array(
+    z.object({
+      exists: z.boolean(),
+      type: z.string(),
+      label: z.string(),
+      ext: z.string(),
+      forbidden: z.boolean().optional(),
+    })
+  ),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
@@ -279,6 +300,10 @@ export type TeachersLessonOverviewPaths = z.infer<
 >;
 export type TeachersLessonOverviewData = z.infer<
   typeof teachersLessonOverviewData
+>;
+
+export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
+  typeof teachersKeyStageSubjectUnitsLessonsDownloadsData
 >;
 
 const sdk = getSdk(graphqlClient);
@@ -436,6 +461,20 @@ const curriculumApi = {
       ...lesson,
       introQuiz,
       exitQuiz,
+    });
+  },
+  teachersKeyStageSubjectUnitLessonsDownloads: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnitLessonsDownloads>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectUnitLessonsDownloads(...args);
+    const { downloads = [] } = transformMVCase(res);
+
+    const download = getFirstResultOrWarnOrFail()({
+      results: downloads,
+    });
+
+    return teachersKeyStageSubjectUnitsLessonsDownloadsData.parse({
+      ...download,
     });
   },
 };
