@@ -16,7 +16,6 @@ const checkIfDownloadResourcesExist = async (
   } else if (!res.ok) {
     throw new Error("API error");
   }
-  console.log("all resources exist");
   return data;
 };
 
