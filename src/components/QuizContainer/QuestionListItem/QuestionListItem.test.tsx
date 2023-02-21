@@ -75,4 +75,22 @@ describe("QuestionListItem", () => {
 
     expect(images.length).toEqual(3);
   });
+
+  it("renders when image is an object", () => {
+    testProps.images = [
+      {
+        title: "image title",
+        images: [
+          "https://lh4.googleusercontent.com/VDXakctFcw9Y4_46OEihGuTdkcDmcvgYVM45Qz6VdqChgD4xwnZ72-uBE8X1fDo4Pd11T2Sgzo_hE4JMZVMeGKuiRcNmHa3tGfy8dgtRitByWb8hKN2HKkQiy8oSyKk8=w596",
+        ],
+      },
+    ];
+    const { getAllByRole } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+
+    const images = getAllByRole("img");
+
+    expect(images.length).toEqual(3);
+  });
 });
