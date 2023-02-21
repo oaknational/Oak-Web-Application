@@ -1,3 +1,17 @@
+# [1.139.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.138.0...v1.139.0) (2023-02-21)
+
+
+### Features
+
+* 1205 add test for heading and passed down searchTerm for NoSearchResults component ([ffb4292](https://github.com/oaknational/Oak-Web-Application/commit/ffb429291334d7a66b64c3601966ddfe1e3c4688))
+* 1205 add test for inital showMessage state, useFetchSearchResults hook ([5802c5a](https://github.com/oaknational/Oak-Web-Application/commit/5802c5a9c7ca22cf06bc11726ba4997e9258b589))
+* 1205 amend fetch test for useFetchSearchResults hooks ([535e5a3](https://github.com/oaknational/Oak-Web-Application/commit/535e5a3e636efaae1cb1512f103301ba9dc4e446))
+* 1205 copy changed on search page, base styling and functionality complete ([29cb4b9](https://github.com/oaknational/Oak-Web-Application/commit/29cb4b908f581e69b713b8a63a12ac37fff72c9b))
+* 1205 extraploate no search result into own component ([68de477](https://github.com/oaknational/Oak-Web-Application/commit/68de47707568995bf81e088afe98397d7337157c))
+* 1205 fix the wrapping of text on the NoSearchResult comonent ([aa1acb8](https://github.com/oaknational/Oak-Web-Application/commit/aa1acb81f3377f326b6775366b2fa96bda902d76))
+* 1205 no search message displays when there are no results ([d7314af](https://github.com/oaknational/Oak-Web-Application/commit/d7314af444e1faffdbcba383c192f8b85bfdd421))
+* 1205 updated qoute marks ([6b4045e](https://github.com/oaknational/Oak-Web-Application/commit/6b4045e42ebfb60eaf233f9312d002550052bf91))
+
 # [1.138.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.137.0...v1.138.0) (2023-02-21)
 
 
