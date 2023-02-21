@@ -1,20 +1,111 @@
-import { FC } from "react";
+import { FC, useState, ReactNode } from "react";
 
 import Box from "../../Box";
 import Flex from "../../Flex";
 import Icon from "../../Icon";
+import ImageBox from "../../ImageBox/ImageBox";
 import OakImage from "../../OakImage";
-import Typography, { Heading, LI, UL } from "../../Typography";
+import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
 export type QuestionListItemProps = QuizQuestionListProps["questions"][0];
+
+type ImageProps = { src: string; alt?: string };
+
+const QuizImage: FC<ImageProps> = ({ src, alt }) => {
+  const [dims, setDims] = useState({ height: 0, width: 0 });
+  return (
+    <ImageBox
+      $position={"relative"}
+      $imageHeight={dims.height}
+      $imageWidth={dims.width}
+      $maxWidth={"100%"}
+      $maxHeight={200}
+      $minHeight={96}
+      $ba={8}
+      $borderColor={"white"}
+      $borderRadius={3}
+    >
+      {" "}
+      <OakImage
+        objectFit="contain"
+        $objectPosition={["center", "left"]}
+        src={src}
+        alt={alt ? alt : "quiz image"}
+        fill
+        onLoad={({ target }) => {
+          const { naturalWidth, naturalHeight } = target as HTMLImageElement;
+          setDims({ height: naturalHeight, width: naturalWidth });
+        }}
+      />
+    </ImageBox>
+  );
+};
+type AnswerProps = {
+  choice: string;
+  type: string;
+  index: number;
+  answer?: string[] | undefined;
+};
+
+const CorrectAnswer: FC<AnswerProps> = ({ choice, type, index, answer }) => {
+  return (
+    <Flex>
+      {" "}
+      <Flex
+        $display={"inline-flex"}
+        $background={"teachersPastelYellow"}
+        $borderRadius={8}
+        $mb={6}
+        $ph={10}
+        $alignItems={"center"}
+      >
+        {" "}
+        <Icon name={"Tick"} $mr={16} />
+        {type === "order" && (
+          <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
+            {index + 1} -
+          </Heading>
+        )}
+        {type === "match" && (
+          <Flex $flexWrap={"wrap"} $alignItems={"center"}>
+            {" "}
+            <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
+              {answer ? answer[index] + "  -" : ""}
+            </Heading>
+            <Typography $font={["body-1"]}> {choice}</Typography>
+          </Flex>
+        )}
+        {type !== "match" && (
+          <Typography $font={["body-1"]}> {choice}</Typography>
+        )}
+      </Flex>
+    </Flex>
+  );
+};
+
+const AnswerBox: FC<{ children: ReactNode }> = ({ children }) => {
+  return (
+    <Box
+      $ba={1}
+      $borderRadius={3}
+      $borderStyle={"solid"}
+      $borderColor={"oakGrey3"}
+      $mb={32}
+      $ph={8}
+      $pb={2}
+    >
+      {children}
+    </Box>
+  );
+};
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choiceImages, choices, answer, type, displayNumber } =
     props;
   return (
-    <LI $mb={32}>
-      <Flex $mb={12}>
+    <Flex $flexDirection={"column"} $mb={[0, 16]}>
+      <Flex $mb={16}>
         {displayNumber && (
           <Typography $font={["body-1-bold"]} $mr={12}>
             {displayNumber}
@@ -30,213 +121,145 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           if (image) {
             if (typeof image === "string") {
               return (
-                <Box
-                  $position="relative"
-                  $minHeight={200}
-                  $ml={[0, 48]}
-                  $mb={24}
-                  $mt={24}
-                >
-                  {" "}
-                  <OakImage
-                    fill
-                    objectFit="contain"
-                    $objectPosition={["center", "left"]}
-                    src={image}
-                    alt={"quiz image"}
-                  />
-                </Box>
+                <Flex $mb={32}>
+                  <QuizImage src={image} />
+                </Flex>
               );
             } else {
               const { title, images } = image;
               return (
-                <>
+                <Flex $mb={32}>
                   {images.map((image) => {
-                    return (
-                      <Box
-                        $position="relative"
-                        $minHeight={200}
-                        $ml={[0, 48]}
-                        $mb={24}
-                        $mt={24}
-                      >
-                        {" "}
-                        <OakImage
-                          fill
-                          $objectFit="contain"
-                          $objectPosition={["center", "left"]}
-                          src={image}
-                          alt={title}
-                        />
-                      </Box>
-                    );
+                    return <QuizImage src={image} alt={title} />;
                   })}
-                </>
+                </Flex>
               );
             }
           }
         })}
+
       {choices && choices.length > 0 ? (
-        <UL $pl={0}>
-          {choices.map((choice, index) => {
-            if (typeof answer === "string") {
-              if (answer === choice) {
-                if (choiceImages && choiceImages.length > 0) {
+        choiceImages && choiceImages.length > 0 ? (
+          <Flex
+            $flexDirection={"column"}
+            $width={"max-content"}
+            $maxWidth={"100%"}
+          >
+            {choices.map((choice, index) => {
+              if (typeof answer === "string") {
+                if (answer === choice) {
                   const choiceImagesString: string = choiceImages[
                     index
                   ] as string;
                   return (
-                    <>
+                    <AnswerBox>
                       {" "}
-                      <Box
-                        $position="relative"
-                        $minHeight={200}
-                        $ml={[0, 50]}
-                        $mb={24}
-                        $mt={24}
-                      >
-                        {" "}
-                        <OakImage
-                          fill
-                          $objectFit="contain"
-                          $objectPosition={["center", "left"]}
+                      <>
+                        <QuizImage
                           src={choiceImagesString}
                           alt={"quiz image"}
                         />
-                      </Box>
-                      <Flex>
+                        <CorrectAnswer
+                          choice={choice}
+                          type={type}
+                          index={index}
+                        />
+                      </>
+                    </AnswerBox>
+                  );
+                } else {
+                  const choiceImagesString: string = choiceImages[
+                    index
+                  ] as string;
+                  return (
+                    <AnswerBox>
+                      {" "}
+                      <>
+                        <QuizImage
+                          src={choiceImagesString}
+                          alt={"quiz image"}
+                        />
                         <Typography
-                          $font={["body-1"]}
-                          $background={"teachersPastelYellow"}
-                          $borderRadius={8}
-                          $mb={6}
+                          $ml={40}
                           $ph={10}
-                          $display={"flex"}
+                          $mb={6}
+                          $font={["body-1"]}
                         >
-                          <Icon name={"Tick"} $mr={16} />
-
                           {choice}
                         </Typography>
-                      </Flex>
-                    </>
-                  );
-                } else {
-                  return (
-                    <Flex>
-                      <Typography
-                        $font={["body-1"]}
-                        $background={"teachersPastelYellow"}
-                        $borderRadius={8}
-                        $mb={6}
-                        $ph={10}
-                        $display={"flex"}
-                      >
-                        <Icon name={"Tick"} $mr={16} />
-
-                        {choice}
-                      </Typography>
-                    </Flex>
+                      </>
+                    </AnswerBox>
                   );
                 }
+              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+                return (
+                  <CorrectAnswer
+                    type={type}
+                    choice={choice}
+                    index={index}
+                    answer={answer}
+                  />
+                );
               } else {
-                if (choiceImages && choiceImages.length > 0) {
-                  const choiceImagesString: string = choiceImages[
-                    index
-                  ] as string;
+                return (
+                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
+                    {choice}
+                  </Typography>
+                );
+              }
+            })}
+          </Flex>
+        ) : (
+          <Flex
+            $flexDirection={"column"}
+            $width={"max-content"}
+            $maxWidth={"100%"}
+            $mb={26}
+          >
+            {choices.map((choice, index) => {
+              if (typeof answer === "string") {
+                if (answer === choice) {
                   return (
-                    <>
-                      <Box
-                        $position="relative"
-                        $minHeight={200}
-                        $ml={[0, 50]}
-                        $mb={24}
-                        $mt={24}
-                      >
-                        {" "}
-                        <OakImage
-                          fill
-                          $objectFit="contain"
-                          $objectPosition={["center", "left"]}
-                          src={choiceImagesString}
-                          alt={"quiz image"}
-                        />
-                      </Box>
-                      <Typography $mb={6} $font={["body-1"]} $ml={40} $ph={10}>
-                        {choice}
-                      </Typography>
-                    </>
+                    <CorrectAnswer choice={choice} index={index} type={type} />
                   );
                 } else {
                   return (
-                    <Typography $mb={6} $font={["body-1"]} $ml={40} $ph={10}>
+                    <Typography $font={["body-1"]} $ml={40} $ph={10} $mb={6}>
                       {choice}
                     </Typography>
                   );
                 }
+              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+                return (
+                  <CorrectAnswer
+                    type={type}
+                    choice={choice}
+                    index={index}
+                    answer={answer}
+                  />
+                );
+              } else {
+                return (
+                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
+                    {choice}
+                  </Typography>
+                );
               }
-            } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
-              return (
-                <>
-                  {" "}
-                  <Flex>
-                    <Flex
-                      $display={"inline-flex"}
-                      $background={"teachersPastelYellow"}
-                      $borderRadius={8}
-                      $mb={6}
-                      $ph={10}
-                      $alignItems={"center"}
-                    >
-                      {" "}
-                      <Icon name={"Tick"} $mr={16} />
-                      {type === "order" && (
-                        <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-                          {index + 1} -
-                        </Heading>
-                      )}
-                      {type === "match" && (
-                        <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-                          {answer[index]} -
-                        </Heading>
-                      )}
-                      <Typography $font={["body-1"]}>{choice}</Typography>
-                    </Flex>
-                  </Flex>
-                </>
-              );
-            } else {
-              return (
-                <Typography $mb={6} $ml={40} $font={["body-1"]} $ph={10}>
-                  {choice}
-                </Typography>
-              );
-            }
-          })}
-        </UL>
+            })}
+          </Flex>
+        )
       ) : (
-        <Flex $display={"flex"} $flexDirection={"column"}>
-          {[...answer].map((ans) => {
-            return (
-              <Flex>
-                {" "}
-                <Flex
-                  $display={"inline-flex"}
-                  $background={"teachersPastelYellow"}
-                  $borderRadius={8}
-                  $mb={6}
-                  $ph={10}
-                  $alignItems={"center"}
-                >
-                  {" "}
-                  <Icon name={"Tick"} $mr={16} />
-                  <Typography $font={["body-1"]}>{ans}</Typography>
-                </Flex>
-              </Flex>
-            );
+        <Flex
+          $flexDirection={"column"}
+          $width={"max-content"}
+          $maxWidth={"100%"}
+        >
+          {[...answer].map((ans, index) => {
+            return <CorrectAnswer choice={ans} index={index} type={type} />;
           })}
         </Flex>
       )}
-    </LI>
+    </Flex>
   );
 };
 

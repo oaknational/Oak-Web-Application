@@ -9,9 +9,7 @@ import {
 import TierList from "../../../../../../components/TierList";
 import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
-import SubjectErrorCard from "../../../../../../components/Card/SubjectErrorCard";
 import TitleCard from "../../../../../../components/Card/TitleCard";
-import Flex from "../../../../../../components/Flex";
 import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
 import curriculumApi, {
   TeachersKeyStageSubjectTiersData,
@@ -39,23 +37,13 @@ const SubjectTierListingPage: NextPage<SubjectTierListingPageProps> = ({
       })}
     >
       <MaxWidth $ph={16}>
-        <Flex $mt={24} $mb={32}>
-          <SubjectErrorCard
-            buttonProps={{
-              label: "Find out why",
-              page: "home",
-            }}
-            headingTag={"h3"}
-            heading={"Some subjects unavailable"}
-            text={"Unfortunately some subjects are now unavailable."}
-          />
-        </Flex>
         <TitleCard
           page={"subject"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
           title={subjectTitle}
           iconName={"Rocket"}
+          $mt={48}
           $mb={64}
           $alignSelf={"flex-start"}
         />
