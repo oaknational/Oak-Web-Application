@@ -5,11 +5,14 @@ import Flex from "../Flex";
 
 import QuestionsList from "./QuestionsList";
 
-export type QuizProps = { questions: TeachersLessonOverviewData["exitQuiz"] };
+export type QuizProps = {
+  questions: TeachersLessonOverviewData["exitQuiz"];
+  info: TeachersLessonOverviewData["exitQuizInfo"];
+};
 
 const QuizContainer: FC<QuizProps> = (props) => {
   return (
-    <Flex $flexDirection={"column"}>
+    <Flex $flexDirection={"column"} $justifyContent={"center"} $width={"100%"}>
       <QuestionsList {...props} />
     </Flex>
   );
