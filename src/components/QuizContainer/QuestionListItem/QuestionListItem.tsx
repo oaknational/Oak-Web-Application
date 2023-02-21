@@ -48,7 +48,12 @@ type AnswerProps = {
   answer?: string[] | undefined;
 };
 
-const CorrectAnswer: FC<AnswerProps> = ({ choice, type, index, answer }) => {
+export const CorrectAnswer: FC<AnswerProps> = ({
+  choice,
+  type,
+  index,
+  answer,
+}) => {
   return (
     <Flex>
       {" "}

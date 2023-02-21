@@ -1,10 +1,48 @@
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 import teachersLessonOverviewFixture from "../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
 
+import { CorrectAnswer } from "./QuestionListItem";
+
 import QuestionListItem, { QuestionListItemProps } from ".";
 
 const testProps = teachersLessonOverviewFixture()
   .introQuiz[0] as QuestionListItemProps;
+
+describe("CorrectAnswer", () => {
+  const mockProps = {
+    choice: "A",
+    type: "order",
+    index: 0,
+    answer: ["A", "B", "C"],
+  };
+
+  it("renders without crashing", () => {
+    renderWithTheme(<CorrectAnswer {...mockProps} />);
+  });
+
+  it("renders the correct choice for non-match type", () => {
+    const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
+    expect(getByText("A")).toBeInTheDocument();
+  });
+
+  it("renders the correct index for order type", () => {
+    const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
+    expect(getByText("1 -")).toBeInTheDocument();
+  });
+
+  it("renders the correct choice and answer for match type", () => {
+    const { getByText } = renderWithTheme(
+      <CorrectAnswer
+        choice="A"
+        type="match"
+        index={0}
+        answer={["X", "Y", "Z"]}
+      />
+    );
+    expect(getByText("X -")).toBeInTheDocument();
+    expect(getByText("A")).toBeInTheDocument();
+  });
+});
 
 describe("QuestionListItem", () => {
   it("renders the correct heading tag", () => {
