@@ -54,6 +54,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
   const { currentPageItems } = paginationProps;
   const theme = useTheme();
+  const { tier } = useRouter().query; // added useRouter to get the query value instead of tierSlug
   const HEADER_HEIGHT = theme.header.height;
 
   if (tiers.length && !tierQuery) {
@@ -101,6 +102,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
           $alignSelf={"flex-start"}
         />
         {/* not part of mvp page, add later */}
+
           {/* <Flex $mb={64} $display={"inline-flex"}>
           <ButtonAsLink
             variant="minimal"
@@ -189,7 +191,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                         subject: subjectSlug,
                         search: { tier: slug },
                         page: "unit-index",
-                        isCurrent: slug === tierSlug,
+                        isCurrent: slug === tier,
+                        currentStyles: ["color", "text-underline"],
                       }))}
                     />
                   </nav>
@@ -221,6 +224,10 @@ export const getServerSideProps: GetServerSideProps<
     throw new Error("No context.params");
   }
   const { subjectSlug, keyStageSlug } = context.params;
+  // QUESTION: should we fetch the data for all tiers and handle the
+  // filtering client side, so that we can use getStaticProps here?
+  // It's a bigger initial download for the user, but changing tier
+  // won't require a new network call.
   const { tier } = context.query;
   const learningTheme = context.query["learning-theme"]
     ? context.query["learning-theme"]
@@ -230,6 +237,7 @@ export const getServerSideProps: GetServerSideProps<
       ? learningTheme[0]
       : null
     : learningTheme;
+
   const tierSlug = Array.isArray(tier) ? tier[0] : tier;
   /**
    * ! - curriculumData query to be refactored so this can be done in one req
