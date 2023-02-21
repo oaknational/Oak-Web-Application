@@ -25,6 +25,7 @@ const ERROR_CODES = [
   "cms/invalid-hubspot-form",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
+  "school-picker/fetch-suggestions",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -134,6 +135,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "curriculum-api/uniqueness-assumption-violated": {
     message: "Multiple resources were found when maximum 1 was expected",
+    shouldNotify: true,
+  },
+  "school-picker/fetch-suggestions": {
+    message: "Error fetching suggested schools list",
     shouldNotify: true,
   },
 };
