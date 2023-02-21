@@ -1,3 +1,24 @@
+# [1.136.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.135.0...v1.136.0) (2023-02-21)
+
+
+### Bug Fixes
+
+* allow custom value ([05bb825](https://github.com/oaknational/Oak-Web-Application/commit/05bb825a5a4263aecf5f2022ff2e1db66d716a45))
+* aria described by error ([b00d6ab](https://github.com/oaknational/Oak-Web-Application/commit/b00d6ab89d5f589c21b0b19aa3850af05ac9ce72))
+* listbox staying open on selection ([34338cd](https://github.com/oaknational/Oak-Web-Application/commit/34338cd7b3d48686c5961fb26b39c853c352ae53))
+* popover closes if selected and not focused ([5793f2b](https://github.com/oaknational/Oak-Web-Application/commit/5793f2bd1a15a99851b7a209b5475be34fbe917d))
+* remove custom option ([0a2530a](https://github.com/oaknational/Oak-Web-Application/commit/0a2530a8bc677879ef48b68fdc70fbe0e55fcf39))
+* server client react aria error on radio group ([ae947e9](https://github.com/oaknational/Oak-Web-Application/commit/ae947e90fe7bf90da5f6afff326993afdb498437))
+
+
+### Features
+
+* add  search auto complete ([2677224](https://github.com/oaknational/Oak-Web-Application/commit/267722456ad9f07a6d431d08e74f70c7039c68b2))
+* add school picker ([ca32f29](https://github.com/oaknational/Oak-Web-Application/commit/ca32f29178e8719f342f03896aea4a3fb43774f9))
+* add school picker and radio buttons to downloads page ([14c4980](https://github.com/oaknational/Oak-Web-Application/commit/14c4980cb517163e35497f4aee544561713959a2))
+* add school picker to download page ([f3ab866](https://github.com/oaknational/Oak-Web-Application/commit/f3ab866dfa7d34f71c09d0d5dd38a99392b849c2))
+* add use school picker hook ([2759b6b](https://github.com/oaknational/Oak-Web-Application/commit/2759b6baed2b01ff33ca4a4d33fba9ff9e3897f2))
+
 # [1.135.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.134.1...v1.135.0) (2023-02-21)
 
 
