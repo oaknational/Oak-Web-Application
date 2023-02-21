@@ -58,7 +58,7 @@ export const InputFieldWrap = styled(Flex)`
   }
 `;
 
-const StyledInput = styled(UnstyledInput)<StyledInputProps>`
+export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
@@ -81,6 +81,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 
   ::placeholder {
+    font-size: 14px;
     font-family: ${getFontFamily("ui")};
     color: ${getColorByLocation(
       ({ theme }) => theme.input.states.default.placeholder
