@@ -1,5 +1,3 @@
-import fetch from "jest-fetch-mock";
-
 import checkIfDownloadResourcesExist from "./checkIfDownloadResourcesExist";
 
 const response = {
@@ -9,26 +7,36 @@ const response = {
   },
 };
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve({ data: response }),
-  })
-) as jest.Mock;
-
 describe("checkIfDownloadResourcesExist()", () => {
-  beforeEach(() => {
-    fetch.mockClear();
-  });
-
   let downloadResourcesExist;
 
   it("should return correct data if fetch is successful", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(response),
+      })
+    ) as jest.Mock;
+
     downloadResourcesExist = await checkIfDownloadResourcesExist(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf"
     );
 
     expect(downloadResourcesExist).toEqual(response);
+  });
+
+  it("should return null if fetch is not successful", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.reject(),
+      })
+    ) as jest.Mock;
+
+    downloadResourcesExist = await checkIfDownloadResourcesExist(
+      "lesson-slug",
+      "exit-quiz-answers,worksheet-pdf"
+    );
+
+    expect(downloadResourcesExist).toEqual(null);
   });
 });
