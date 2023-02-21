@@ -5,7 +5,7 @@ const createAndClickHiddenDownloadLink = (url: string) => {
   a.setAttribute("download", "test.pdf");
   document.body.appendChild(a);
   a.click();
-  window.URL.revokeObjectURL(url);
+  if (typeof window !== "undefined") window.URL.revokeObjectURL(url);
 
   return {
     url,
