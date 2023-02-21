@@ -6,8 +6,8 @@ import QuestionListItem, { QuestionListItemProps } from ".";
 const testProps = teachersLessonOverviewFixture()
   .introQuiz[0] as QuestionListItemProps;
 
-describe("components/QuestionListItem", () => {
-  test("renders the correct heading tag", () => {
+describe("QuestionListItem", () => {
+  it("renders the correct heading tag", () => {
     const { getByTestId } = renderWithTheme(
       <QuestionListItem {...testProps} />
     );
@@ -16,7 +16,19 @@ describe("components/QuestionListItem", () => {
     expect(questionItemTitle).toHaveTextContent("what is a question");
   });
 
-  test("renders the provided image", () => {
+  it("renders the question number", () => {
+    const { getByText } = renderWithTheme(<QuestionListItem {...testProps} />);
+    expect(getByText("Q1.")).toBeInTheDocument();
+  });
+
+  it("renders the choices", () => {
+    const { getByText } = renderWithTheme(<QuestionListItem {...testProps} />);
+    testProps.choices.forEach((choice) => {
+      expect(getByText(choice)).toBeInTheDocument();
+    });
+  });
+
+  it("renders the provided image", () => {
     const { getAllByRole } = renderWithTheme(
       <QuestionListItem {...testProps} />
     );
