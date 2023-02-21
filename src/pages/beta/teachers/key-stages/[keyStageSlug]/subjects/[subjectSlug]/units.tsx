@@ -7,7 +7,6 @@ import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../components/Card/TitleCard";
-import SubjectErrorCard from "../../../../../../../components/Card/SubjectErrorCard";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
@@ -69,24 +68,14 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             ]}
           />
         </Box> */}
-        <Flex $mt={24} $mb={32}>
-          <SubjectErrorCard
-            buttonProps={{
-              label: "Find out why",
-              page: null,
-              href: "/",
-            }}
-            headingTag={"h3"}
-            heading={"Some subjects unavailable"}
-            text={"Unfortunately some subjects are now unavailable."}
-          />
-        </Flex>
+
         <TitleCard
           page={"subject"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
           title={subjectTitle}
           iconName={"Rocket"}
+          $mt={48}
           $mb={24}
           $alignSelf={"flex-start"}
         />
@@ -211,6 +200,10 @@ export const getServerSideProps: GetServerSideProps<
     throw new Error("No context.params");
   }
   const { subjectSlug, keyStageSlug } = context.params;
+  // QUESTION: should we fetch the data for all tiers and handle the
+  // filtering client side, so that we can use getStaticProps here?
+  // It's a bigger initial download for the user, but changing tier
+  // won't require a new network call.
   const { tier } = context.query;
   const learningTheme = context.query["learning-theme"]
     ? context.query["learning-theme"]

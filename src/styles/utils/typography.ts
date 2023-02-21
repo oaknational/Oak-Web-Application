@@ -19,13 +19,14 @@ export type FontVariant =
   | "heading-light-6"
   | "heading-light-7"
   | "body-1"
+  | "body-1-bold"
   | "body-2"
   | "body-3"
   | "body-4"
   | "list-item-1"
   | "list-item-2";
 
-type FontWeight = 300 | 400 | 600;
+type FontWeight = 300 | 400 | 600 | 700;
 export type FontSize = 12 | 14 | 16 | 18 | 20 | 24 | 32 | 40 | 48 | 56;
 type LineHeight = 16 | 20 | 24 | 28 | 32 | 40 | 48 | 56 | 64;
 type LetterSpacing = "0.0115em" | "-0.005em";
@@ -49,6 +50,7 @@ export const FONT_VARIANTS: Record<FontVariant, Font> = {
   "body-2": [16, 24, 300, "-0.005em"],
   "body-3": [14, 20, 300, "-0.005em"],
   "body-4": [12, 16, 300, "-0.005em"],
+  "body-1-bold": [18, 28, 700, "-0.005em"],
   "list-item-1": [18, 32, 300, "-0.005em"],
   "list-item-2": [16, 24, 300, "-0.005em"],
 } as const;

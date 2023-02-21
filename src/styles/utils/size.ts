@@ -4,7 +4,12 @@ import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
 
-type SizeValue = PercentSpacing | "auto" | "none" | NullablePixelSpacing;
+type SizeValue =
+  | PercentSpacing
+  | "auto"
+  | "none"
+  | NullablePixelSpacing
+  | "max-content";
 export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {

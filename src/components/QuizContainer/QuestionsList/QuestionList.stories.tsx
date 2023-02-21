@@ -10,6 +10,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const questions: QuizQuestionListProps = {
+  info: { title: "question title", questionCount: 2 },
   questions: [
     {
       keyStageSlug: "ks3",
@@ -31,6 +32,7 @@ const questions: QuizQuestionListProps = {
       ],
       feedbackCorrect: "weldone",
       feedbackIncorrect: "unluckey",
+      displayNumber: "Q1.",
       choiceImages: [
         "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
       ],
