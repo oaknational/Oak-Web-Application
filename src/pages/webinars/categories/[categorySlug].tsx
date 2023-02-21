@@ -1,22 +1,31 @@
-import { GetStaticPaths } from "next";
+import { GetStaticPathsResult } from "next";
 
 import CMSClient from "../../../node-lib/cms";
+import {
+  shouldSkipInitialBuild,
+  getFallbackBlockingConfig,
+} from "../../../node-lib/isr";
 import { getStaticProps } from "../index";
 
 type URLParams = { categorySlug: string };
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-  const blogResults = await CMSClient.webinars();
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
 
-  const paths = blogResults.map((blogResult) => ({
+  const webinarResults = await CMSClient.webinars();
+
+  const paths = webinarResults.map((webinarResult) => ({
     params: {
-      categorySlug: blogResult.category.slug,
+      categorySlug: webinarResult.category.slug,
     },
   }));
 
-  return {
-    paths,
+  const config: GetStaticPathsResult<URLParams> = {
     fallback: "blocking",
+    paths,
   };
+  return config;
 };
 
 export { getStaticProps };
