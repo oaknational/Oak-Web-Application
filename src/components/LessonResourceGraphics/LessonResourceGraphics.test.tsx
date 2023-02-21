@@ -9,7 +9,7 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "presentation", resourceCount: 1 },
+          { title: "slidedeck", resourceCount: 1 },
           { title: "worksheet", resourceCount: 1 },
           { title: "quiz", resourceCount: 1 },
           { title: "video", resourceCount: 1 },
@@ -17,7 +17,7 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("1 Presentation")).toBeInTheDocument();
+    expect(screen.getByText("1 Slide deck")).toBeInTheDocument();
     expect(screen.getByText("1 Worksheet")).toBeInTheDocument();
     expect(screen.getByText("1 Quiz")).toBeInTheDocument();
     expect(screen.getByText("1 Video")).toBeInTheDocument();
@@ -26,13 +26,13 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "presentation", resourceCount: 1 },
+          { title: "slidedeck", resourceCount: 1 },
           { title: "video", resourceCount: 1 },
         ]}
       />
     );
 
-    expect(screen.getByText("1 Presentation")).toBeInTheDocument();
+    expect(screen.getByText("1 Slide deck")).toBeInTheDocument();
     expect(screen.queryByText("1 Worksheet")).toBeNull();
     expect(screen.queryByText("1 Quiz")).toBeNull();
     expect(screen.getByText("1 Video")).toBeInTheDocument();
@@ -41,7 +41,7 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "presentation", resourceCount: 4 },
+          { title: "slidedeck", resourceCount: 4 },
           { title: "worksheet", resourceCount: 5 },
           { title: "quiz", resourceCount: 3 },
           { title: "video", resourceCount: 3 },
@@ -49,7 +49,7 @@ describe("LessonResourceGraphics", () => {
       />
     );
 
-    expect(screen.getByText("4 Presentations")).toBeInTheDocument();
+    expect(screen.getByText("4 Slide decks")).toBeInTheDocument();
     expect(screen.queryByText("5 Worksheets")).toBeInTheDocument();
     expect(screen.queryByText("3 Quizzes")).toBeInTheDocument();
     expect(screen.getByText("3 Videos")).toBeInTheDocument();

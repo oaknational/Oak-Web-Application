@@ -11,7 +11,7 @@ describe("CollapsibleSection", () => {
   it("renders a CollapsibleSection", () => {
     renderWithTheme(
       <CollapsibleSection
-        title={"Presentation"}
+        title={"Slide deck"}
         headingTag={"h2"}
         startOpen={false}
         buttons={[
@@ -31,13 +31,13 @@ describe("CollapsibleSection", () => {
 
     const heading = screen.getByRole("heading", { level: 2 });
 
-    expect(heading).toHaveTextContent("Presentation");
+    expect(heading).toHaveTextContent("Slide deck");
   });
 
   it("Opens section on click of button", async () => {
     renderWithTheme(
       <CollapsibleSection
-        title={"Presentation"}
+        title={"Slide deck"}
         headingTag={"h2"}
         startOpen={false}
       >
@@ -63,7 +63,7 @@ describe("CollapsibleSection", () => {
 
     renderWithTheme(
       <CollapsibleSection
-        title={"Presentation"}
+        title={"Slide deck"}
         headingTag={"h2"}
         startOpen={false}
         buttons={[
