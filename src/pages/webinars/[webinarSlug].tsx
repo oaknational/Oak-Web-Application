@@ -1,5 +1,5 @@
 import {
-  GetStaticPaths,
+  GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
@@ -13,7 +13,11 @@ import CMSClient from "../../node-lib/cms";
 import { TeamMemberPreview, Webinar } from "../../common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
 import Box from "../../components/Box";
-import { decorateWithIsr } from "../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../node-lib/isr";
 import BlogPortableText from "../../components/Posts/PostPortableText/PostPortableText";
 import Flex from "../../components/Flex";
 import WebinarVideo from "../../components/Posts/WebinarVideo";
@@ -78,17 +82,22 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
 
 type URLParams = { webinarSlug: string };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   const webinarResults = await CMSClient.webinars();
 
   const paths = webinarResults.map((webinar) => ({
     params: { webinarSlug: webinar.slug },
   }));
 
-  return {
+  const config: GetStaticPathsResult<URLParams> = {
     fallback: "blocking",
     paths,
   };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<
