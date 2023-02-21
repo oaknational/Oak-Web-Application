@@ -94,7 +94,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           </Flex>
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
-              Slide decks or video
+              Slide deck or video
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
