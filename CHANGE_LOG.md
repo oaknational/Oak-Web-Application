@@ -1,3 +1,13 @@
+# [1.140.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.139.0...v1.140.0) (2023-02-21)
+
+
+### Features
+
+* 1205 text underlining added ([e9b09c2](https://github.com/oaknational/Oak-Web-Application/commit/e9b09c2ec340643fa3a51a88a0da5a759d5802f6))
+* 1205 viewing info for teacher lesson browsing ([d8c4b6c](https://github.com/oaknational/Oak-Web-Application/commit/d8c4b6c9c4b3f68a4c235081270436adcad3ffdd))
+* 1205 viewing info for teacher lesson browsing updated ([24ba36f](https://github.com/oaknational/Oak-Web-Application/commit/24ba36f557fb1456f56dfdc352b1a62904dcfff0))
+* 1234 remerging main into branch ([a206ce1](https://github.com/oaknational/Oak-Web-Application/commit/a206ce181e3c6256b3783ad0242cbb63f8d23f43))
+
 # [1.139.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.138.0...v1.139.0) (2023-02-21)
 
 
