@@ -94,7 +94,12 @@ const Search = () => {
           <GridArea $colSpan={[12, 12, 12]} $mt={24} $mb={24}>
             <Flex $flexDirection={["column"]}>
               {(searchTerm && (
-                <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
+                <Heading
+                  tag={"h1"}
+                  $font={["heading-5", "heading-4"]}
+                  $mt={24}
+                  $wordWrap={"break-word"}
+                >
                   &ldquo;{searchTerm}&rdquo;
                 </Heading>
               )) || (
