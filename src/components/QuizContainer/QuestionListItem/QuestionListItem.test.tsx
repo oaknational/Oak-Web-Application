@@ -93,4 +93,23 @@ describe("QuestionListItem", () => {
 
     expect(images.length).toEqual(3);
   });
+  it("renders correctly without choice images ", () => {
+    testProps.choiceImages = [];
+    const { getAllByRole } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+
+    const images = getAllByRole("img");
+
+    expect(images.length).toEqual(1);
+  });
+  it("renders correctly when there are no choices", () => {
+    testProps.choices = [];
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+    const questionItemTitle = getByTestId("title-div");
+
+    expect(questionItemTitle).toHaveTextContent("what is a question");
+  });
 });
