@@ -1,3 +1,21 @@
+# [1.135.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.134.1...v1.135.0) (2023-02-21)
+
+
+### Bug Fixes
+
+* **test:** changed type def on getStaticPaths ([63e840e](https://github.com/oaknational/Oak-Web-Application/commit/63e840ee7ca2a3846e84234d78d8a138ee77397e))
+* **test:** handle change to static gen with ISR ([a4e2d14](https://github.com/oaknational/Oak-Web-Application/commit/a4e2d148aeb9f64e6314319ec940261e13d38020))
+
+
+### Features
+
+* **build:** fast builds with empty static paths ([2c23fa4](https://github.com/oaknational/Oak-Web-Application/commit/2c23fa41999e421350a90a1ff949487977193bdc))
+* **dynamic sitemaps:** for blogs ([e69b1ee](https://github.com/oaknational/Oak-Web-Application/commit/e69b1ee480d5e23174ca2a2353f65e3795d0932c))
+* **sitemaps:** add more server side sitemaps ([41397a8](https://github.com/oaknational/Oak-Web-Application/commit/41397a82ab355f61f2b28284c50c8117a5b6b7e1))
+* **sitemaps:** add sitemap entries for all beta/teachers/keystage... urls ([de50361](https://github.com/oaknational/Oak-Web-Application/commit/de50361a152b324cc6a70ee7df7af7e4478dc9f7))
+* **sitemaps:** standardise approach for each level of the curriculum sitemaps ([e13538e](https://github.com/oaknational/Oak-Web-Application/commit/e13538ea68c30c909140ae36bcc770b3501a7604))
+* **sitemaps:** webinars server side sitemaps ([9b3e776](https://github.com/oaknational/Oak-Web-Application/commit/9b3e776a3e04757121f37037ab7eaa24675106cd))
+
 ## [1.134.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.134.0...v1.134.1) (2023-02-20)
 
 # [1.134.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.133.1...v1.134.0) (2023-02-20)
