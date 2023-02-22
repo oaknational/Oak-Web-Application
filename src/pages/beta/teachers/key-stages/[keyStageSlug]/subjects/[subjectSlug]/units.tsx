@@ -20,6 +20,7 @@ import MobileFilters from "../../../../../../../components/MobileFilters";
 import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
+import { TierListItemProps } from "../../../../../../../components/TierList/TierListItem";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
@@ -53,6 +54,27 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   const theme = useTheme();
 
   const HEADER_HEIGHT = theme.header.height;
+
+  const reorganisedTiers: Omit<
+    TierListItemProps,
+    "subjectSlug" | "keyStageSlug"
+  >[] = [];
+
+  tiers.forEach((tier) => {
+    switch (tier.title) {
+      case "Foundation":
+        reorganisedTiers[0] = { ...tier };
+        break;
+      case "Core":
+        reorganisedTiers[1] = { ...tier };
+        break;
+      case "Higher":
+        reorganisedTiers[2] = { ...tier };
+        break;
+    }
+  });
+  // FE changes to  the order of tiers. - may need to
+  curriculumData.tiers = reorganisedTiers;
 
   const tiersSEO = getSeoProps({
     title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
