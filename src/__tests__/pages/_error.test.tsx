@@ -31,7 +31,7 @@ describe("pages/_error.tsx", () => {
       "/"
     );
   });
-  describe("getStaticProps", () => {
+  describe("getInitialProps", () => {
     it("Should return 404 with no props", async () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

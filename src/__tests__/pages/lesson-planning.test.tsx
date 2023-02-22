@@ -18,7 +18,7 @@ const testPlanningPageData: PlanningPage = {
   summaryPortableText: portableTextFromString("Planning summary"),
   lessonElements: {
     introQuiz: {
-      title: "Intro quiz title",
+      title: "Starter quiz title",
       bodyPortableText: portableTextFromString("Intro quiz body"),
     },
     video: {
