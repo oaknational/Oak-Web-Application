@@ -192,8 +192,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
        */
       const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units`;
       /**
-       * ! - re-routed so that regardless of tiers, still goes to the same endpoint
-       * ? - may need taking out completely so anyway
+       * ! - re-routed so that tiers is directed to units url
        */
       return path;
     }
