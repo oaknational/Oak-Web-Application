@@ -10,7 +10,6 @@ import TitleCard from "../../../../../../../components/Card/TitleCard";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
-  TeachersKeyStageSubjectTiersData,
   TeachersKeyStageSubjectUnitsData,
 } from "../../../../../../../node-lib/curriculum-api";
 import UnitList from "../../../../../../../components/UnitAndLessonLists/UnitList";
@@ -25,13 +24,11 @@ import SubjectTierListing from "../../../../../../../components/SubjectTierListi
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
   learningThemeSlug: string | null;
-  tieredCurriculumData: TeachersKeyStageSubjectTiersData;
 };
 
 const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   curriculumData,
   learningThemeSlug,
-  tieredCurriculumData,
 }) => {
   const {
     keyStageTitle,
@@ -54,19 +51,26 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
   const { currentPageItems } = paginationProps;
   const theme = useTheme();
-  const { tier } = useRouter().query; // added useRouter to get the query value instead of tierSlug
+
   const HEADER_HEIGHT = theme.header.height;
 
-  if (tiers.length && !tierQuery) {
-    return <SubjectTierListing curriculumData={tieredCurriculumData} />;
-  } else {
-    return (
-      <AppLayout
-        seoProps={getSeoProps({
-          title: "Units", // @todo add real data
-          description: "Subject units",
-        })}
-      >
+  const tiersSEO = getSeoProps({
+    title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
+    description: `We have resources for tiers: ${tiers
+      .map((tier) => tier.title)
+      .join(", ")}`,
+  });
+
+  const unitsSEO = getSeoProps({
+    title: "Units", // @todo add real data
+    description: "Subject units",
+  });
+
+  return (
+    <AppLayout seoProps={tiers.length && !tierQuery ? tiersSEO : unitsSEO}>
+      {tiers.length && !tierQuery ? (
+        <SubjectTierListing curriculumData={curriculumData} />
+      ) : (
         <MaxWidth $ph={16}>
           {/* not part of mvp page, add later */}
           {/* <Box $mv={[24, 48]}>
@@ -191,7 +195,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                         subject: subjectSlug,
                         search: { tier: slug },
                         page: "unit-index",
-                        isCurrent: slug === tier,
+                        isCurrent: slug === tierQuery,
                         currentStyles: ["color", "text-underline"],
                       }))}
                     />
@@ -206,9 +210,9 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             </GridArea>
           </Grid>
         </MaxWidth>
-      </AppLayout>
-    );
-  }
+      )}
+    </AppLayout>
+  );
 };
 
 export type URLParams = {
@@ -239,17 +243,6 @@ export const getServerSideProps: GetServerSideProps<
     : learningTheme;
 
   const tierSlug = Array.isArray(tier) ? tier[0] : tier;
-  /**
-   * ! - curriculumData query to be refactored so this can be done in one req
-   * ! - Zod Schema - index.ts file and Units GQL query to be amended
-   * ! - Fix test for the schema fixtures
-   */
-  const tieredCurriculumData = await curriculumApi.teachersKeyStageSubjectTiers(
-    {
-      subjectSlug,
-      keyStageSlug,
-    }
-  );
 
   const curriculumData = await curriculumApi.teachersKeyStageSubjectUnits({
     subjectSlug,
@@ -262,7 +255,6 @@ export const getServerSideProps: GetServerSideProps<
     props: {
       curriculumData,
       learningThemeSlug,
-      tieredCurriculumData,
     },
   };
   return results;
