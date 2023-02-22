@@ -5,6 +5,7 @@
   "gleap": {
     "apiKey": "gleap-api-key",
     "apiUrl": "gleap-api-url",
+    "widgetUrl": "gleap-widget-url",
     "frameUrl": "gleap-frame-url"
   },
   "hubspot": {
@@ -16,10 +17,8 @@
   "oak": {
     "appBaseUrl": "http://localhost:3000",
     "appName": "Oak Web Application",
-    "curriculumApiUrl": "https://example.com/v1/graphql",
-    "curriculumApiAuthType": "abc",
     "webinarSignUpUrl": "https://example.com/webinar-sign-up",
-    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"]
+    "vercelApiUrl": "https://api.thenational.academy"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",

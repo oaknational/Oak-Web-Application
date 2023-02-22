@@ -85,7 +85,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
   describe("getStaticPaths", () => {
     it("Should return the paths of all landing pages", async () => {
-      const pathsResult = await getStaticPaths({});
+      const pathsResult = await getStaticPaths();
 
       expect(pathsResult.paths).toEqual([
         { params: { landingPageSlug: "some-landing-page" } },

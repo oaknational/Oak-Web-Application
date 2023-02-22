@@ -17,6 +17,7 @@ const useFetchSearchResults = () => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const requestOptions: RequestInit = useMemo(
     () => ({
@@ -34,6 +35,7 @@ const useFetchSearchResults = () => {
     async ({ isCancelled }: { isCancelled: boolean }) => {
       setLoading(true);
       setError("");
+      setShowMessage(false);
       try {
         const response = await fetch(
           config.get("searchApiUrl"),
@@ -42,14 +44,15 @@ const useFetchSearchResults = () => {
 
         handleFetchError(response);
         const data = await response.json();
-
         if (data) {
           const { hits } = data;
           const hitList: SearchHit[] = hits.hits;
-
           if (!isCancelled) {
             setResults(hitList);
             setLoading(false);
+            if (!hitList.length && text) {
+              setShowMessage(true);
+            }
           }
         }
       } catch (error) {
@@ -64,7 +67,7 @@ const useFetchSearchResults = () => {
         setLoading(false);
       }
     },
-    [requestOptions]
+    [requestOptions, text]
   );
 
   return {
@@ -72,6 +75,7 @@ const useFetchSearchResults = () => {
     results,
     error,
     fetchSearchResults,
+    showMessage,
   };
 };
 

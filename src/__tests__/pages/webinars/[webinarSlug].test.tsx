@@ -155,7 +155,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
         "../../../pages/webinars/[webinarSlug]"
       );
 
-      const pathsResult = await getStaticPaths({});
+      const pathsResult = await getStaticPaths();
 
       expect(pathsResult.paths).toEqual([
         { params: { webinarSlug: "an-upcoming-webinar" } },
