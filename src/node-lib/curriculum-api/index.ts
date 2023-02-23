@@ -140,6 +140,8 @@ const teachersKeyStageSubjectUnitsData = z.object({
       quizCount: z.number().nullable(),
       unitStudyOrder: z.number(),
       year: z.string(),
+      expired: z.boolean().nullable(),
+      expiredLessonCount: z.number().nullable(),
     })
   ),
   learningThemes: z.array(
@@ -176,6 +178,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   unitTitle: z.string(),
   lessons: z.array(
     z.object({
+      expired: z.boolean().nullable(),
       slug: z.string(),
       title: z.string(),
       description: z.string(),
