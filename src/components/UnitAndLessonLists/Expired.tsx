@@ -20,7 +20,8 @@ const Expired: FC<ExpiredProps> = (props) => {
         <ButtonAsLink
           icon={"ArrowRight"}
           $iconPosition={"trailing"}
-          page={"help-home"}
+          page={null}
+          href={"https://support.thenational.academy/lesson-unavailable"}
           label={"Find out why"}
           variant="minimal"
           iconBackground={"black"}
