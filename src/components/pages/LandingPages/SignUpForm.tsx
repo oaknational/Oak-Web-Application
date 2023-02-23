@@ -22,7 +22,11 @@ export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
     >
       <AnchorTarget id={anchorMap["formBlock"]} />
 
-      <CardTitle icon="MagicCarpet" $font={["heading-5", "heading-6"]} tag="h3">
+      <CardTitle
+        icon="magic-carpet"
+        $font={["heading-5", "heading-6"]}
+        tag="h3"
+      >
         {formTitle}
       </CardTitle>
       <Box $mt={12}>

@@ -34,8 +34,8 @@ const defaultImageBuilder =
   ({ width, height }: { width?: number | string; height?: number | string }) =>
   (builder: ImageUrlBuilder) =>
     typeof width === "number" && typeof height === "number"
-      ? builder.width(width).height(height)
-      : builder;
+      ? builder.format("webp").width(width).height(height)
+      : builder.format("webp");
 
 const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const [loaded, setLoaded] = useState(false);

@@ -1,10 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ICON_NAMES } from "../SpriteSheet/IconSvgs";
-import { GRAPHIC_NAMES } from "../SpriteSheet/GraphicSvgs";
-import { LESSON_ELEMENT_NAMES } from "../SpriteSheet/LessonElementSvgs";
 import { Heading } from "../Typography";
+import { GRAPHIC_NAMES, ICON_NAMES } from "../../image-data/types";
 
 import Component from "./Icon";
 
@@ -29,18 +27,12 @@ const Template: ComponentStory<typeof Component> = (args) => (
     {GRAPHIC_NAMES.map((name) => {
       return <Component {...args} name={name} />;
     })}
-    <Heading $font={"heading-5"} $mv={24} tag="h2">
-      Lesson Elements
-    </Heading>
-    {LESSON_ELEMENT_NAMES.map((name) => {
-      return <Component {...args} name={name} />;
-    })}
   </>
 );
 
 export const Icon = Template.bind({});
 
 Icon.args = {
-  name: "Back10",
+  name: "bell",
   size: 48,
 };

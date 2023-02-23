@@ -1,9 +1,9 @@
 import { FC } from "react";
 
 import Flex from "../Flex";
-import Icon, { IconName } from "../Icon";
+import Icon from "../Icon";
+import { isIconName } from "../Icon/Icon";
 import { Span } from "../Typography";
-import lessonElementSvgSymbols from "../SpriteSheet/LessonElementSvgs/index";
 
 const getResourceTitle = (resourceTitle: string, resourceCount: number) => {
   if (resourceCount > 1) {
@@ -18,10 +18,6 @@ const getResourceTitle = (resourceTitle: string, resourceCount: number) => {
 
 const capitalizedTitle = (title: string) => {
   return title.charAt(0).toUpperCase() + title.slice(1);
-};
-
-const isIconName = (title: string): title is IconName => {
-  return Object.keys(lessonElementSvgSymbols).includes(title);
 };
 
 export type LessonResourceGraphicsItemProps = {
@@ -43,7 +39,7 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = ({
     >
       <Icon
         size={32}
-        name={isIconName(resourceTitle) ? resourceTitle : "Download"}
+        name={isIconName(resourceTitle) ? resourceTitle : "download"}
         $mr={[0, 6]}
         $mb={[8, 0]}
       />

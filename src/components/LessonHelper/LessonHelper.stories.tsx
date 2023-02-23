@@ -15,6 +15,6 @@ export const LessonHelper = Template.bind({});
 
 LessonHelper.args = {
   helperDescription: "this is the helper description",
-  helperIcon: "ContentGuidance",
+  helperIcon: "content-guidance",
   helperTitle: "this is the helper title",
 };

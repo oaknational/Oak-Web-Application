@@ -9,6 +9,7 @@ import Checkbox from "../Checkbox";
 import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
+import { UiIconName } from "../../image-data/types";
 
 export type DownloadResourceType =
   | "slideDeck"
@@ -33,20 +34,20 @@ type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-export const RESOURCE_TYPE_ICON_MAP = {
-  slideDeck: "Slidedeck",
-  "intro-quiz-questions": "Quiz",
-  "intro-quiz-answers": "Quiz",
-  "exit-quiz-questions": "Quiz",
-  "exit-quiz-answers": "Quiz",
-  "worksheet-pdf": "Worksheet",
-  "worksheet-pptx": "Worksheet",
+export const RESOURCE_TYPE_ICON_MAP: Record<string, UiIconName> = {
+  slideDeck: "slide-deck",
+  "intro-quiz-questions": "quiz",
+  "intro-quiz-answers": "quiz",
+  "exit-quiz-questions": "quiz",
+  "exit-quiz-answers": "quiz",
+  "worksheet-pdf": "worksheet",
+  "worksheet-pptx": "worksheet",
 };
 
 export const getResourceIconByType = (resourceType: DownloadResourceType) =>
   RESOURCE_TYPE_ICON_MAP[resourceType]
     ? RESOURCE_TYPE_ICON_MAP[resourceType]
-    : "Download";
+    : "download";
 
 const BoxWithFocusState = styled.div`
   position: relative;

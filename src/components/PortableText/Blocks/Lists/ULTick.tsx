@@ -26,7 +26,7 @@ export const ULTick: PortableTextComponents = {
           $alignItems={"center"}
         >
           <Circle $mr={24} size={36} $background={"white"}>
-            <Icon size={28} name={"Tick"} />
+            <Icon size={28} name={"tick"} />
           </Circle>
           <Span $font={"heading-7"}>{listItemText}</Span>
         </LI>

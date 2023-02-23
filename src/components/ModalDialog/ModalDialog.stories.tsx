@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
     <OverlayProvider>
       <Button
         label="Open modal"
-        icon="ArrowRight"
+        icon="arrow-right"
         $iconPosition="trailing"
         onClick={() => setIsOpen(true)}
       />
@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
           <Component {...args}>
             <Box $position={"absolute"} $top={32} $right={32}>
               <IconButton
-                icon="Cross"
+                icon="cross"
                 onClick={() => setIsOpen(false)}
                 aria-label="close modal"
                 background="teachersHighlight"

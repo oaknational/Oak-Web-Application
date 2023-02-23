@@ -1,1 +1,1 @@
-export { default, svgSymbols } from "./BoxBorders";
+export { default } from "./BoxBorders";

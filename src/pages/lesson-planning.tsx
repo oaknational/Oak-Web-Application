@@ -49,31 +49,31 @@ const getLessonElementCards = (
 }[] => [
   {
     id: lessonElementIds.introQuiz,
-    icon: "Quiz",
+    icon: "quiz",
     title: planningPage.lessonElements.introQuiz.title,
     portableText: planningPage.lessonElements.introQuiz.bodyPortableText,
   },
   {
     id: lessonElementIds.video,
-    icon: "Video",
+    icon: "video",
     title: planningPage.lessonElements.video.title,
     portableText: planningPage.lessonElements.video.bodyPortableText,
   },
   {
     id: lessonElementIds.slides,
-    icon: "Presentation",
+    icon: "slide-deck",
     title: planningPage.lessonElements.slides.title,
     portableText: planningPage.lessonElements.slides.bodyPortableText,
   },
   {
     id: lessonElementIds.worksheet,
-    icon: "Worksheet",
+    icon: "worksheet",
     title: planningPage.lessonElements.worksheet.title,
     portableText: planningPage.lessonElements.worksheet.bodyPortableText,
   },
   {
     id: lessonElementIds.exitQuiz,
-    icon: "Quiz",
+    icon: "quiz",
     title: planningPage.lessonElements.exitQuiz.title,
     portableText: planningPage.lessonElements.exitQuiz.bodyPortableText,
   },
@@ -254,7 +254,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   />
                 </Cover>
                 <ButtonAsLink
-                  icon="Search"
+                  icon="search"
                   $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
                   page="teachers-home"
@@ -324,7 +324,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                         {withSearchCTA && (
                           <Flex $justifyContent={["center", "flex-start"]}>
                             <ButtonAsLink
-                              icon="Search"
+                              icon="search"
                               $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
@@ -448,7 +448,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               </Cover>
 
               <ButtonAsLink
-                icon="Search"
+                icon="search"
                 $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
                 page="teachers-home"

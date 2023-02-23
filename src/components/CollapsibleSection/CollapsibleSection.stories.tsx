@@ -20,12 +20,12 @@ const Template: ComponentStory<typeof Component> = () => {
       startOpen={false}
       buttons={[
         {
-          icon: "Download",
+          icon: "download",
           onClick: () => console.log("downloads"),
           ariaLabel: "Download lesson presentation",
         },
         {
-          icon: "Share",
+          icon: "share",
           onClick: () => console.log("share"),
           ariaLabel: "Share lesson presentation",
         },
