@@ -61,7 +61,7 @@ describe("Lesson List Item", () => {
 
     expect(getByText("Find out why").closest("a")).toHaveAttribute(
       "href",
-      "https://support.thenational.academy"
+      "https://support.thenational.academy/lesson-unavailable"
     );
   });
 });
