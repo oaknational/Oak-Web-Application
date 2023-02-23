@@ -18,6 +18,7 @@ const props = {
   themeSlug: "circles",
   themeTitle: "Circles",
   hasCopyrightMaterial: false,
+  expired: false,
 };
 
 describe("Lesson List Item", () => {
@@ -44,9 +45,23 @@ describe("Lesson List Item", () => {
       "/beta/teachers/key-stages/4/subjects/english/units/foo/lessons/macbeth-lesson-1"
     );
   });
+  test("It renders expired message is expired lesson", () => {
+    const { getByText } = renderWithProviders(
+      <LessonListItem {...{ ...props, expired: true }} />
+    );
 
-  //   test("It doesn't presentations if none", () => {});
-  //   test("It doesn't worksheets if none", () => {});
-  //   test("It doesn't videos if none", () => {});
-  //   test("It doesn't quizzes if none", () => {});
+    expect(
+      getByText("Unfortunately this lesson is now unavailable.")
+    ).toBeInTheDocument();
+  });
+  test("It renders a button if expired with link to help", () => {
+    const { getByText } = renderWithProviders(
+      <LessonListItem {...{ ...props, expired: true }} />
+    );
+
+    expect(getByText("Find out why").closest("a")).toHaveAttribute(
+      "href",
+      "https://support.thenational.academy"
+    );
+  });
 });
