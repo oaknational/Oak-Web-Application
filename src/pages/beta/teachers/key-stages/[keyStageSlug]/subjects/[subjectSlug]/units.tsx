@@ -60,27 +60,6 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
   const HEADER_HEIGHT = theme.header.height;
 
-  const reorganisedTiers: Omit<
-    TierListItemProps,
-    "subjectSlug" | "keyStageSlug"
-  >[] = [];
-
-  tiers.forEach((tier) => {
-    switch (tier.title) {
-      case "Foundation":
-        reorganisedTiers[0] = { ...tier };
-        break;
-      case "Core":
-        reorganisedTiers[1] = { ...tier };
-        break;
-      case "Higher":
-        reorganisedTiers[2] = { ...tier };
-        break;
-    }
-  });
-  // FE changes to  the order of tiers. - change needed on BE
-  curriculumData.tiers = reorganisedTiers;
-
   const tiersSEO = getSeoProps({
     title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
     description: `We have resources for tiers: ${tiers
@@ -278,6 +257,26 @@ export const getServerSideProps: GetServerSideProps<
     tierSlug,
     learningThemeSlug,
   });
+
+  const reorganisedTiers: Omit<
+    TierListItemProps,
+    "subjectSlug" | "keyStageSlug"
+  >[] = [];
+
+  curriculumData.tiers.forEach((tier) => {
+    switch (tier.title) {
+      case "Foundation":
+        reorganisedTiers[0] = { ...tier };
+        break;
+      case "Core":
+        reorganisedTiers[1] = { ...tier };
+        break;
+      case "Higher":
+        reorganisedTiers[2] = { ...tier };
+        break;
+    }
+  });
+  curriculumData.tiers = reorganisedTiers;
 
   const results: GetServerSidePropsResult<SubjectUnitsListPageProps> = {
     props: {
