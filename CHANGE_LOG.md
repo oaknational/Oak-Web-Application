@@ -1,3 +1,12 @@
+## [1.141.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.141.0...v1.141.1) (2023-02-22)
+
+# [1.141.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.140.0...v1.141.0) (2023-02-22)
+
+
+### Features
+
+* 1113 add new config value to .env files ([07d931f](https://github.com/oaknational/Oak-Web-Application/commit/07d931fc1d2ba6adcfc29e90db0e6efb1f37f641))
+
 # [1.140.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.139.0...v1.140.0) (2023-02-21)
 
 
