@@ -38,11 +38,16 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
     subjectSlug,
     units,
     learningThemes,
-    tierSlug,
     tiers,
   } = curriculumData;
 
-  const { tier: tierQuery } = useRouter().query;
+  const { tier } = useRouter().query;
+
+  function isString(x: unknown): x is string {
+    return typeof x === "string";
+  }
+
+  const tierQuery = isString(tier) ? tier : null;
 
   const paginationProps = usePagination({
     totalResults: curriculumData.units.length,
@@ -73,7 +78,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
         break;
     }
   });
-  // FE changes to  the order of tiers. - may need to
+  // FE changes to  the order of tiers. - change needed on BE
   curriculumData.tiers = reorganisedTiers;
 
   const tiersSEO = getSeoProps({
@@ -111,6 +116,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             keyStageSlug={keyStageSlug}
             title={subjectTitle}
             iconName={"Rocket"}
+            $mt={48}
             $mb={24}
             $alignSelf={"flex-start"}
           />
@@ -165,7 +171,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                         page: "unit-index",
                         keyStage: keyStageSlug,
                         subject: subjectSlug,
-                        search: { ["tier"]: tierSlug },
+                        search: { tier: tierQuery },
                       }}
                     />
                   </Flex>
@@ -199,7 +205,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                           page: "unit-index",
                           keyStage: keyStageSlug,
                           subject: subjectSlug,
-                          search: { ["tier"]: tierSlug },
+                          search: { tier: tierQuery },
                         }}
                       />
                     </MobileFilters>
