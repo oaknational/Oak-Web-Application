@@ -86,59 +86,8 @@ class MyDocument extends Document {
            * This is strictly for testing with the company UXTweak and must
            * NOT be merged into main.
            */}
-          <Script id="UXTweak-test" strategy="afterInteractive">{`
-(function (u, x, t, w, e, a, k, s) {
-  console.log("calling UXTweak snippet")
-  a = function (v) {
-    console.log("UXTweak: calling function that adds elements to <head>")
-    try {
-      u.setItem(t + e, v);
-    } catch (e) {
-      console.error("session storage set failure");
-    }
-    v = JSON.parse(v);
-    console.log("UXTweak: found in session storage:", v)
-    for (k = 0; k < v.length; k++) {
-      s = x.createElement("script");
-      s.text =
-        "(function(u,x,t,w,e,a,k){a=u[e]=function(){a.q.push(arguments)};a.q=[];a.t=+new Date;a.c=w;k=x.createElement('script');k.async=1;k.src=t;x.getElementsByTagName('head')[0].appendChild(k)})(window,document,'" +
-        v[k].u +
-        "'," +
-        JSON.stringify(v[k].c) +
-        ",'" +
-        v[k].g +
-        "')";
-      x.getElementsByTagName("head")[0].appendChild(s);
-    }
-  };
-  try {
-    k = u.getItem(t + e);
-  } catch (e) {
-    console.error("session storage get failure")
-  }
-  if (k) {
-    return a(k);
-  } else {
-    console.warn("UXTweak: nothing in session storage to parse")
-  }
-  k = new XMLHttpRequest();
-  k.onreadystatechange = function () {
-    if (k.readyState == 4 && k.status == 200) a(k.responseText);
-  };
-  k.open("POST", w + e);
-  k.send(x.URL);
-  k.addEventListener('error', (e) => console.log(e));
-  console.log("sent UXTweak request")
-})(
-  sessionStorage,
-  document,
-  "uxt:",
-  "https://api.uxtweak.com/snippet/",
-  "df95c105-9336-4898-af98-bc9a20589c87"
-);
-console.log("loaded UXTweak snippet")
-
-          `}</Script>
+          <Script id="UXTweak-test" strategy="beforeInteractive">{`
+<script type="text/javascript">(function(u,x,t,w,e,a,k,s){a=function(v){try{u.setItem(t+e,v)}catch(e){}v=JSON.parse(v);for(k=0;k<v.length;k++){s=x.createElement("script");s.text="(function(u,x,t,w,e,a,k){a=u[e]=function(){a.q.push(arguments)};a.q=[];a.t=+new Date;a.c=w;k=x.createElement('script');k.async=1;k.src=t;x.getElementsByTagName('head')[0].appendChild(k)})(window,document,'"+v[k].u+"',"+JSON.stringify(v[k].c)+",'"+v[k].g+"')";x.getElementsByTagName("head")[0].appendChild(s)}};try{k=u.getItem(t+e)}catch(e){}if(k){return a(k)}k=new XMLHttpRequest;k.onreadystatechange=function(){if(k.readyState==4&&k.status==200)a(k.responseText)};k.open("POST",w+e);k.send(x.URL)})(sessionStorage,document,"uxt:","https://api.uxtweak.com/snippet/","df95c105-9336-4898-af98-bc9a20589c87");</script>          `}</Script>
         </body>
       </Html>
     );
