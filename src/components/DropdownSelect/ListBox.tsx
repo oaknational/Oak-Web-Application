@@ -123,7 +123,7 @@ function Option({ item, state }: OptionProps) {
         </OptionContext.Provider>
         <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
       </Flex>
-      <BoxBorders color="black" hideTop />
+      <BoxBorders $color="black" hideTop />
     </ListItem>
   );
 }
