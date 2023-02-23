@@ -174,18 +174,7 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
           event.severity = severity;
         }
 
-        if (originalError && originalError instanceof Error) {
-          /**
-           * Previously we were using https://github.com/sindresorhus/serialize-error
-           * but jest won't run with it, or will storybook
-           * @see https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c#im-having-problems-with-esm-and-jest
-           **/
-          // event.addMetadata("Original error", serializeError(originalError));
-          metaFields.originalError = originalError;
-        } else {
-          // If originalError is not an Error, append it to metaFields
-          metaFields.originalError = originalError;
-        }
+        metaFields.originalError = originalError;
         // @todo ensure metaFields are serializable otherwise data is lost
         event.addMetadata("Meta", metaFields);
       });

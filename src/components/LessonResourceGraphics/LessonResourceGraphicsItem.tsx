@@ -9,10 +9,15 @@ const getResourceTitle = (resourceTitle: string, resourceCount: number) => {
   if (resourceCount > 1) {
     if (resourceTitle === "Quiz") {
       return "Quizzes";
+    } else if (resourceTitle === "Slidedeck") {
+      return "Slide decks";
     } else {
       return resourceTitle + "s";
     }
   }
+
+  if (resourceTitle === "Slidedeck") return "Slide deck";
+
   return resourceTitle;
 };
 

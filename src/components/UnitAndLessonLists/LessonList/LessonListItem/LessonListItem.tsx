@@ -37,7 +37,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   presentationCount &&
     !hasCopyrightMaterial &&
     resources.push({
-      title: "presentation",
+      title: "slidedeck",
       resourceCount: presentationCount,
     });
   worksheetCount &&
