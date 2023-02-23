@@ -56,7 +56,10 @@ async function main() {
   const subjectIconsRes = await client.fetch(`*[_type == "subjectIcon"] {
     slug,
     image {
-      asset->
+      asset->{
+        _id,
+        url
+      }
     }
   }`);
 

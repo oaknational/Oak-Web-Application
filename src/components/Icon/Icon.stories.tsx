@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Heading } from "../Typography";
-import { GRAPHIC_NAMES, ICON_NAMES } from "../../image-data/types";
+import { ICON_NAMES } from "../../image-data/types";
 
 import Component from "./Icon";
 
@@ -18,13 +18,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
       Icons
     </Heading>
     {ICON_NAMES.map((name) => {
-      return <Component {...args} name={name} />;
-    })}
-
-    <Heading $font={"heading-5"} $mv={24} tag="h2">
-      Graphics
-    </Heading>
-    {GRAPHIC_NAMES.map((name) => {
       return <Component {...args} name={name} />;
     })}
   </>
