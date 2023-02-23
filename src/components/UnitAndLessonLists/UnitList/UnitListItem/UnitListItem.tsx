@@ -7,6 +7,7 @@ import IconMobile from "../../IconMobile";
 import ListItemHeading from "../../ListItemHeading";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
+import Expired from "../../Expired";
 
 export type UnitListItemProps = Omit<
   TeachersKeyStageSubjectUnitsData["units"][number],
@@ -23,7 +24,15 @@ export type UnitListItemProps = Omit<
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const { title, themeTitle, lessonCount, quizCount, index } = props;
+  const {
+    title,
+    themeTitle,
+    lessonCount,
+    quizCount,
+    index,
+    expired,
+    expiredLessonCount,
+  } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -31,9 +40,10 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
-      isHovered={isHovered}
+      isHovered={expired ? false : isHovered}
       containerProps={containerProps}
       background={"teachersLilac"}
+      expired={expired}
     >
       <Flex
         $ml={[16, 24]}
@@ -52,30 +62,38 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           <IconMobile background={"teachersLilac"} title={title} />
         </Flex>
 
-        <Flex $flexDirection={["column", "row"]}>
-          {themeTitle && (
-            <Span
-              dangerouslySetInnerHTML={{
-                __html: themeTitle,
-              }}
-              $mr={16}
-              $mb={[4, 0]}
-              $font={["body-3", "heading-light-7"]}
-            />
-          )}
-          <Flex>
-            {lessonCount && (
-              <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                {`${lessonCount} lessons`}
-              </Span>
+        {expired ? (
+          <Expired page={"unit"} />
+        ) : (
+          <Flex $flexDirection={["column", "row"]}>
+            {themeTitle && (
+              <Span
+                dangerouslySetInnerHTML={{
+                  __html: themeTitle,
+                }}
+                $mr={16}
+                $mb={[4, 0]}
+                $font={["body-3", "heading-light-7"]}
+              />
             )}
-            {quizCount && (
-              <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                Unit quiz
-              </Span>
-            )}
+            <Flex>
+              {lessonCount && expiredLessonCount ? (
+                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                  {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
+                </Span>
+              ) : (
+                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                  {`${lessonCount} lessons`}
+                </Span>
+              )}
+              {quizCount && (
+                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                  Unit quiz
+                </Span>
+              )}
+            </Flex>
           </Flex>
-        </Flex>
+        )}
       </Flex>
     </ListItemCard>
   );

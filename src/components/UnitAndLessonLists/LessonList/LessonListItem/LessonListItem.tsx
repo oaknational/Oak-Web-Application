@@ -9,6 +9,7 @@ import IconMobile from "../../IconMobile";
 import ListItemHeading from "../../ListItemHeading";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
+import Expired from "../../Expired";
 
 export type LessonListItemProps =
   TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
@@ -28,6 +29,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     presentationCount,
     worksheetCount,
     hasCopyrightMaterial,
+    expired,
   } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -48,9 +50,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
-      isHovered={isHovered}
+      isHovered={expired ? false : isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}
+      expired={expired}
     >
       <Flex
         $ml={[16, 24]}
@@ -69,19 +72,25 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           <IconMobile background={"pupilsPink"} title={title} />
         </Flex>
 
-        <Flex $mt={[8, 0]} $mr={[16, 0]}>
-          <Span
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
-            $font={["body-3", "body-2"]}
-            $color={"oakGrey5"}
-          />
-        </Flex>
-        {resources.length > 0 && (
-          <Box $mt={16}>
-            <LessonResourceGraphics items={resources} />
-          </Box>
+        {expired ? (
+          <Expired page={"lesson"} />
+        ) : (
+          <>
+            <Flex $mt={[8, 0]} $mr={[16, 0]}>
+              <Span
+                dangerouslySetInnerHTML={{
+                  __html: description,
+                }}
+                $font={["body-3", "body-2"]}
+                $color={"oakGrey5"}
+              />
+            </Flex>
+            {resources.length > 0 && (
+              <Box $mt={16}>
+                <LessonResourceGraphics items={resources} />
+              </Box>
+            )}
+          </>
         )}
       </Flex>
     </ListItemCard>

@@ -17,6 +17,7 @@ interface CommonProps {
   hideTopHeading?: boolean;
   primaryTargetProps: PrimaryTargetProps;
   page: "Unit" | "Lesson";
+  expired: boolean | null;
 }
 
 type ListItemHeadingProps = CommonProps &
@@ -42,7 +43,16 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
     primaryTargetProps,
     page,
     index,
+    expired,
   } = props;
+
+  if (expired) {
+    return (
+      <Flex $mt={24} $flexDirection={"column"}>
+        <ListTitle>{title}</ListTitle>
+      </Flex>
+    );
+  }
 
   return (
     <Flex $mt={24} $flexDirection={"column"}>

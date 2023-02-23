@@ -13,6 +13,7 @@ export type ListItemCardProps = {
   isHovered: boolean;
   children: React.ReactNode;
   background: OakColorName;
+  expired: boolean | null;
   containerProps: {
     onClick: MouseEventHandler<HTMLDivElement>;
   } & Pick<DOMAttributes<FocusableElement>, "onClick">;
@@ -23,8 +24,8 @@ export type ListItemCardProps = {
  * Links to a lesson-index page
  */
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const { title, children, isHovered, containerProps, background } = props;
-  //   const { containerProps, isHovered } = useClickableCard<HTMLAnchorElement>();
+  const { title, children, isHovered, containerProps, background, expired } =
+    props;
 
   return (
     <Card
@@ -32,8 +33,8 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       $flexDirection={"row"}
       $mb={16}
       $overflow={"hidden"}
-      {...containerProps}
       $pa={0}
+      {...(!expired ? containerProps : null)}
     >
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
@@ -42,7 +43,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         $position={"relative"}
         $flexDirection={"row"}
         $justifyContent={"space-between"}
-        $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
+        $dropShadow={isHovered && !expired ? "subjectCardHover" : "subjectCard"}
         $alignItems={"center"}
       >
         {children}
@@ -52,7 +53,10 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         background={background}
         isHovered={isHovered}
       />
-      <BoxBorders gapPosition="bottomRightCorner" />
+      <BoxBorders
+        $color={expired ? "oakGrey3" : "black"}
+        gapPosition="bottomRightCorner"
+      />
     </Card>
   );
 };
