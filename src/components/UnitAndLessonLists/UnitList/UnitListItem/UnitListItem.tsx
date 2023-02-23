@@ -83,7 +83,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
                 </Span>
               ) : (
                 <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                  {`${lessonCount} lessons`}
+                  {lessonCount && `${lessonCount} lessons`}
                 </Span>
               )}
               {quizCount && (
