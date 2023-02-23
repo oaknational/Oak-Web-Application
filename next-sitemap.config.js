@@ -49,17 +49,7 @@ module.exports = {
       },
     ],
   },
-<<<<<<< HEAD
 
-  // Ignore server-side sitemap config for static version of site.
-  // https://github.com/iamvishnusankar/next-sitemap#generating-dynamicserver-side-sitemaps
-  // robotsTxtOptions: {
-  //   additionalSitemaps: [
-  //     "https://example.com/server-sitemap-index.xml", // <==== Add here
-  //   ],
-  // },
-  // ...other options
-=======
   exclude: [
     // Don't add beta pages to the sitemap for now.
     "/beta",
@@ -83,5 +73,4 @@ module.exports = {
     // Exclude dynamically created sitemaps
     shouldSkipInitialBuild ? serversideSitemapPaths : []
   ),
->>>>>>> origin/main
 };
