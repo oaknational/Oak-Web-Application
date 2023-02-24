@@ -3,7 +3,6 @@ import { FC } from "react";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
-import IconMobile from "../../IconMobile";
 import ListItemHeading from "../../ListItemHeading";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
@@ -52,16 +51,12 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $width={"100%"}
         $pb={24}
       >
-        <Flex>
-          <ListItemHeading
-            {...props}
-            primaryTargetProps={primaryTargetProps}
-            page={"Unit"}
-            index={index}
-          />
-          <IconMobile background={"teachersLilac"} title={title} />
-        </Flex>
-
+        <ListItemHeading
+          {...props}
+          primaryTargetProps={primaryTargetProps}
+          page={"Unit"}
+          index={index}
+        />
         {expired ? (
           <Expired page={"unit"} />
         ) : (

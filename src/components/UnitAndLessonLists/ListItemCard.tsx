@@ -48,13 +48,15 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       >
         {children}
       </Flex>
-      <IconDesktop
-        title={title}
-        background={background}
-        isHovered={isHovered}
-      />
+      {!expired && (
+        <IconDesktop
+          title={title}
+          background={background}
+          isHovered={isHovered}
+        />
+      )}
       <BoxBorders
-        $color={expired ? "oakGrey3" : "black"}
+        $color={expired ? "oakGrey2" : "black"}
         gapPosition="bottomRightCorner"
       />
     </Card>

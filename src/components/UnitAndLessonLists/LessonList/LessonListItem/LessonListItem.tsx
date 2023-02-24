@@ -5,7 +5,6 @@ import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
-import IconMobile from "../../IconMobile";
 import ListItemHeading from "../../ListItemHeading";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
@@ -62,16 +61,12 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $width={"100%"}
         $pb={24}
       >
-        <Flex>
-          <ListItemHeading
-            {...props}
-            primaryTargetProps={primaryTargetProps}
-            page="Lesson"
-            index={null}
-          />
-          <IconMobile background={"pupilsPink"} title={title} />
-        </Flex>
-
+        <ListItemHeading
+          {...props}
+          primaryTargetProps={primaryTargetProps}
+          page="Lesson"
+          index={null}
+        />
         {expired ? (
           <Expired page={"lesson"} />
         ) : (
