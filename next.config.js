@@ -156,9 +156,6 @@ module.exports = async (phase) => {
         2048, 3840,
       ],
     },
-    env: {
-      VERCEL_API_URL: process.env.VERCEL_API_URL,
-    },
   };
 
   // Stick the deployment URL in an env so the site map generation can use it.

@@ -21,11 +21,13 @@ const downloadLessonResources = async (
 
   const selection = selectedResourceTypesAsArray.join(",");
 
-  if (!process.env.VERCEL_API_URL) {
-    throw new TypeError("process.env.VERCEL_API_URL must be defined");
+  if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
+    throw new TypeError(
+      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"
+    );
   }
 
-  const downloadEnpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`;
+  const downloadEnpoint = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`;
 
   const downloadResourcesExist = await checkIfDownloadResourcesExist(
     lessonSlug,

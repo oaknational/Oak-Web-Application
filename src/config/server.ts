@@ -129,13 +129,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  vercelApiUrl: {
-    value: process.env.VERCEL_API_URL,
-    envName: "VERCEL_API_URL",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

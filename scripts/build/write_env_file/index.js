@@ -176,9 +176,6 @@ async function main() {
     NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE:
       process.env.NEXT_PUBLIC_SEO_APP_TWITTER_HANDLE ||
       oakConfig.seo?.appTwitterHandle,
-
-    // Vercel
-    VERCEL_API_URL: process.env.VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

@@ -2,11 +2,13 @@ const checkIfDownloadResourcesExist = async (
   lessonSlug: string,
   resourceTypesString: string
 ) => {
-  if (!process.env.VERCEL_API_URL) {
-    throw new TypeError("process.env.VERCEL_API_URL must be defined");
+  if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
+    throw new TypeError(
+      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"
+    );
   }
 
-  const checkResourcesExistEndpoint = `${process.env.VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+  const checkResourcesExistEndpoint = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
 
   try {
     const result = await fetch(checkResourcesExistEndpoint);
