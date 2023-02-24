@@ -43,6 +43,7 @@ jest.mock(
 );
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock(".././../../../../../helpers/getDownloadResourcesExistence");
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {

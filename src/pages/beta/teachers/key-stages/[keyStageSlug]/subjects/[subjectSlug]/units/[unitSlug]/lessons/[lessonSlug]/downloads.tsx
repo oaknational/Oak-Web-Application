@@ -171,9 +171,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         const { resources: resourceExistence } =
           await getDownloadResourcesExistence(slug, resourceTypesAsString);
 
-        const resourcesExistenceAsArray = Object.entries(
-          resourceExistence as ResourcesToDownloadType
-        );
+        const resourcesExistenceAsArray = resourceExistence
+          ? Object.entries(resourceExistence as ResourcesToDownloadType)
+          : [];
         const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
           .filter(([, value]) => value === true)
           .map(([key]) => [key, false]);
