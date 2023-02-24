@@ -21,6 +21,7 @@ query teachersKeyStageSubjectUnits(
     slug
     title
     unitCount: unit_count
+    lessonCount: lesson_count
   }
   mv_units(
     where: {

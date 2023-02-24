@@ -30,9 +30,9 @@ export const UnitList = Template.bind({});
 UnitList.args = currentPageItems;
 
 const tiers = [
-  { title: "Foundation", slug: "foundation", unitCount: 14 },
-  { title: "Core", slug: "core", unitCount: 14 },
-  { title: "Higher", slug: "higher", unitCount: 14 },
+  { title: "Foundation", slug: "foundation", unitCount: 14, lessonCount: 16 },
+  { title: "Core", slug: "core", unitCount: 14, lessonCount: 16 },
+  { title: "Higher", slug: "higher", unitCount: 14, lessonCount: 16 },
 ];
 export const UnitListTiers = Template.bind({});
 

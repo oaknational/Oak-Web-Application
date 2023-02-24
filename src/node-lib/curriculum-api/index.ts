@@ -124,6 +124,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       slug: z.string(),
       title: z.string(),
       unitCount: z.number().nullable(),
+      lessonCount: z.number().nullable(),
     })
   ),
   units: z.array(
@@ -427,7 +428,6 @@ const curriculumApi = {
       units,
       learningThemes,
     } = transformMVCase(res);
-
     const getFirstResult = getFirstResultOrWarnOrFail();
 
     const keyStage = getFirstResult({ results: keyStages });

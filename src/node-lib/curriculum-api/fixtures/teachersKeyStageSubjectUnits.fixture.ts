@@ -14,16 +14,19 @@ const teachersKeyStageSubjectUnitsFixture = (
         title: "Foundation",
         slug: "foundation",
         unitCount: 3,
+        lessonCount: 34,
       },
       {
         title: "Core",
         slug: "core",
         unitCount: 3,
+        lessonCount: 34,
       },
       {
         title: "Higher",
         slug: "higher",
         unitCount: 3,
+        lessonCount: 34,
       },
     ],
     units: [

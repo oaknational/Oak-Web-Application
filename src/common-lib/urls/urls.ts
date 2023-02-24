@@ -190,8 +190,10 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
        * Though longer term it might be better to name these urls:
        * "/key-stages/{}/subjects/{}" etc.
        */
-      const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}`;
-
+      const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units`;
+      /**
+       * ! - re-routed so that tiers is directed to units url
+       */
       return path;
     }
     case "unit-index": {
