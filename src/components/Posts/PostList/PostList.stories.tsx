@@ -8,7 +8,7 @@ const currentPageItems: PostListProps["currentPageItems"] = [
   {
     titleTag: "h2",
     title: "The Long and Winding Road",
-    summary:
+    summaryPortableText:
       "The long and winding road  That leads to your door  Will never disappear  I've seen that road before  It always leads me here  Lead me to you door  The wild and windy night  That the rain washed away  Has left a pool of tears  Crying for the day  Why leave me standing here?  Let me know the way",
     slug: "long-road",
     contentType: "blog-post",
@@ -19,7 +19,7 @@ const currentPageItems: PostListProps["currentPageItems"] = [
   {
     titleTag: "h2",
     title: "Penny Lane",
-    summary:
+    summaryPortableText:
       'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
     slug: "long-road",
     contentType: "webinar",
@@ -30,7 +30,7 @@ const currentPageItems: PostListProps["currentPageItems"] = [
   {
     titleTag: "h2",
     title: "Strawberry Fields Forever",
-    summary:
+    summaryPortableText:
       "No one I think is in my tree I mean, it must be high or low That is, you can't, you know, tune in but it's all right That is, I think it's not too bad",
     slug: "long-road",
     contentType: "blog-post",
@@ -59,7 +59,7 @@ PostListWithUpcomingWebinar.args = {
   upcomingItem: {
     titleTag: "h2",
     title: "She came in through the bathroom window",
-    summary:
+    summaryPortableText:
       'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
     slug: "long-road",
     contentType: "webinar",

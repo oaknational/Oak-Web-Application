@@ -7,7 +7,7 @@ export const blogListingPageSchema = z
   .object({
     title: z.string(),
     heading: z.string(),
-    summary: portableTextSchema,
+    summaryPortableText: portableTextSchema,
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);

@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { cardSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
 
@@ -8,6 +8,8 @@ export const homePageSchema = z
   .object({
     heading: z.string(),
     summaryPortableText: portableTextSchema,
+    pupilsImage: imageSchema,
+    teachersImage: imageSchema,
     sidebarCard1: cardSchema,
     sidebarCard2: cardSchema,
     sidebarForm: z

@@ -6,6 +6,9 @@ query aboutLeadershipPage($isDraftFilter: Sanity_DocumentFilter) {
   ) {
     title
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     contactSection {
       infoPortableText: infoRaw
     }

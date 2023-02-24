@@ -51,7 +51,7 @@ const getItemCategoryLinkProps = (
 export type PostListItemProps = {
   titleTag: HeadingTag;
   title: string;
-  summary: string;
+  summaryPortableText: string;
   slug: string;
   contentType: PostListItemContentType;
   category: BlogWebinarCategory;

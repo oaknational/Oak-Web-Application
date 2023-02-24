@@ -6,7 +6,7 @@ import PostListItem, { PostListItemProps } from ".";
 const testProps: PostListItemProps = {
   title: "Item title",
   titleTag: "h3",
-  summary: "Item summary",
+  summaryPortableText: "Item summary",
   slug: "item-slug",
   contentType: "blog-post",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },
@@ -17,7 +17,7 @@ const testProps: PostListItemProps = {
 const testPropsWebinar: PostListItemProps = {
   title: "Item title",
   titleTag: "h3",
-  summary: "Item snippet",
+  summaryPortableText: "Item snippet",
   slug: "item-slug",
   contentType: "webinar",
   category: { title: "Curriculum Planning", slug: "curriculum-planning" },

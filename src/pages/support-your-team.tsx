@@ -27,13 +27,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $ph={[0, 16]} $pt={[64, 80]}>
         <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/illustrations/work-with-us-500.png",
-            alt: "planning illustration",
-          }}
+          {...pageData}
+          // title={pageData.title}
+          // heading={pageData.heading}
+          // summary={pageData.summaryPortableText}
+          // imageProps={{
+          //   src: "/images/illustrations/work-with-us-500.png",
+          //   alt: "planning illustration",
+          // }}
         />
         <Flex
           $justifyContent="center"

@@ -7,7 +7,7 @@ query webinarsListingPage($isDraftFilter: Sanity_DocumentFilter) {
     id: _id
     title
     heading
-    summary: summaryRaw
+    summaryPortableText: summaryRaw
     seo {
       ...Seo
     }
