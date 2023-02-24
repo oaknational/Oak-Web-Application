@@ -17,6 +17,7 @@ import { Heading } from "../../../components/Typography";
 import Card from "../../../components/Card";
 import SearchForm from "../../../components/SearchForm";
 import BrushBorders from "../../../components/SpriteSheet/BrushSvgs/BrushBorders";
+import NoSearchResults from "../../../components/SearchResults/NoSearchResults";
 
 interface CommonProps {
   id: number;
@@ -64,7 +65,7 @@ export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
 
 const Search = () => {
   const { text: searchTerm } = useSearchQuery();
-  const { fetchSearchResults, loading, error, results } =
+  const { fetchSearchResults, loading, error, results, showMessage } =
     useFetchSearchResults();
 
   useEffect(() => {
@@ -94,7 +95,12 @@ const Search = () => {
           <GridArea $colSpan={[12, 12, 12]} $mt={24} $mb={24}>
             <Flex $flexDirection={["column"]}>
               {(searchTerm && (
-                <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
+                <Heading
+                  tag={"h1"}
+                  $font={["heading-5", "heading-4"]}
+                  $mt={24}
+                  $wordWrap={"break-word"}
+                >
                   &ldquo;{searchTerm}&rdquo;
                 </Heading>
               )) || (
@@ -105,7 +111,7 @@ const Search = () => {
 
               <Heading tag="h2" $font={"heading-light-6"} $mt={24}>
                 Search for topics and key words to explore thousands of lessons
-                and adaptable resources
+                with adaptable teaching resources
               </Heading>
               <Card
                 $background={"teachersPastelYellow"}
@@ -138,9 +144,14 @@ const Search = () => {
             </Box>
           </GridArea>
           <GridArea $colSpan={[12, 9]} $pr={16}>
-            {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
-            <SearchResults hits={results} />
+            {loading && <p>Loading...</p>}
+            {!loading && !results.length && showMessage && (
+              <NoSearchResults searchTerm={searchTerm} />
+            )}
+            {!loading && results.length > 0 && searchTerm && (
+              <SearchResults hits={results} />
+            )}
           </GridArea>
         </Grid>
       </MaxWidth>

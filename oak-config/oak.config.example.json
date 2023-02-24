@@ -2,13 +2,31 @@
   "bugsnag": {
     "apiKey": "123abc"
   },
+  "firebase": {
+    "apiHost": "example.com",
+    "apiKey": "123abc",
+    "appId": "12345",
+    "authDomain": "https://example.com",
+    "messagingSenderId": "abc123",
+    "projectId": "my_project",
+    "requiredSecrets": [
+      "FIREBASE_SERVICE_ACCOUNT",
+      "FIREBASE_ADMIN_DATABASE_URL"
+    ],
+    "storageBucket": "bucket_uri",
+    "tokenHost": "example.com"
+  },
   "gleap": {
     "apiKey": "gleap-api-key",
     "apiUrl": "gleap-api-url",
-    "frameUrl": "gleap-frame-url"
+    "widgetUrl": "gleap-widget-url"
   },
   "googleSecretManager": {
     "projectId": "test-project-584399384539"
+  },
+  "hasura": {
+    "graphqlApiUrl": "https://example.com",
+    "requiredSecrets": ["HASURA_ADMIN_SECRET"]
   },
   "hubspot": {
     "portalId": "12345",
@@ -18,10 +36,8 @@
   },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
-    "curriculumApiUrl": "https://example.com/v1/graphql",
-    "curriculumApiAuthType": "abc",
     "searchApiUrl": "https://example.com",
-    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"]
+    "vercelApiUrl": "https://api.thenational.academy"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",

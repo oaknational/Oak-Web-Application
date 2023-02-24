@@ -210,7 +210,7 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     title: z.string().nullable().optional(),
     points: z.number().nullable().optional(),
     required: z.boolean().nullable(),
-    choices: z.array(z.string().nullable()),
+    choices: z.array(z.string()),
     active: z.boolean(),
     answer: z.union([z.array(z.string()), z.string()]),
     type: z.string(),
@@ -224,8 +224,16 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     feedbackCorrect: z.string().nullable(),
     feedbackIncorrect: z.string().nullable(),
     choiceImages: z.array(z.string()).nullable(),
+    displayNumber: z.string().nullable(),
   })
 );
+
+const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z
+  .object({
+    title: z.string(),
+    questionCount: z.number(),
+  })
+  .nullable();
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
@@ -257,6 +265,8 @@ const teachersLessonOverviewData = z.object({
   hasDownloadableResources: z.boolean().nullable(),
   introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
 });
 
 const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
@@ -340,6 +350,17 @@ const getFirstResultOrWarnOrFail =
     const [firstResult] = results;
     if (!firstResult) {
       throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    return firstResult;
+  };
+
+const getFirstResultOrNull =
+  () =>
+  <T>({ results }: { results: T[] }) => {
+    const [firstResult] = results;
+    if (!firstResult) {
+      return null;
     }
 
     return firstResult;
@@ -462,14 +483,23 @@ const curriculumApi = {
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
-    const { introQuiz, exitQuiz } = res;
+    const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
 
+    const exitQuizInfoSingle = getFirstResultOrNull()({
+      results: exitQuizInfo,
+    });
+
+    const introQuizInfoSingle = getFirstResultOrNull()({
+      results: introQuizInfo,
+    });
     return teachersLessonOverviewData.parse({
       ...lesson,
+      introQuizInfo: introQuizInfoSingle,
+      exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
     });

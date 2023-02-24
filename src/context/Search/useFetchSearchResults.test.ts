@@ -45,7 +45,14 @@ describe("useFetchSearchResults()", () => {
   test("results should be returned if fetch succeeds", async () => {
     const hits = [""];
     const jsonMock = jest.fn(
-      async () => ({ ok: true, hits: { hits } } as unknown as Response)
+      async () =>
+        ({
+          ok: true,
+          hits: { hits },
+          json: async () => {
+            return { hits: { hits: [] } };
+          },
+        } as unknown as Response)
     );
     window.fetch = jsonMock;
 
@@ -63,5 +70,14 @@ describe("useFetchSearchResults()", () => {
      * @todo fix this. it should be .toBe(hits)
      */
     expect(results).toEqual([]);
+  });
+
+  test("'showMessage' should default to false", () => {
+    const { result } = renderHook(() => useFetchSearchResults(), {
+      wrapper: SearchProvider,
+    });
+    const { showMessage } = result.current;
+
+    expect(showMessage).toBe(false);
   });
 });

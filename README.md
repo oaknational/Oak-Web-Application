@@ -94,8 +94,14 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 ### Builds and Deployments
 
-- Preview builds on Vercel
-- Production builds on Vercel
+The app is built statically, with two caveats.
+
+- On dynamic routes, an empty array and `fallback: "blocking"` is returned from `getStaticPaths`. This means that those pages are built on first request, then stored as if they had been built at build time. This allows us to build an app with tens of thousands of pages in a few minutes.
+- All pages that use `getStaticProps` have incremental static regeneration turned on, which re-runs `getStaticProps` periodically on the server in order to rebuild the page with the latest data.
+
+The upshot of these two pieces of config is that new pages become available automatically when the underlying data is updated, and existing pages get updated data when it is available, all without having to rebuild the app.
+
+Oak preview and production builds are on Netlify.
 
 #### Required Environment Variables for Builds
 
