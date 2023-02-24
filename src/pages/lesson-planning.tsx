@@ -61,7 +61,7 @@ const getLessonElementCards = (
   },
   {
     id: lessonElementIds.slides,
-    icon: "Presentation",
+    icon: "Slidedeck",
     title: planningPage.lessonElements.slides.title,
     portableText: planningPage.lessonElements.slides.bodyPortableText,
   },

@@ -1,7 +1,8 @@
-import { screen } from "@testing-library/react";
+import { act, renderHook, screen } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
+import React from "react";
 
 import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
@@ -12,11 +13,36 @@ import LessonDownloadsPage, {
   LessonDownloadsPageProps,
   URLParams,
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import { items } from "../../../../../../components/SchoolPicker/SchoolPicker.test";
+import useSchoolPicker from "../../../../../../components/SchoolPicker/useSchoolPicker";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 
 const props = {
   curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
 };
+
+const setInputValue = jest.fn();
+const setSelectedValue = jest.fn();
+const setSelectedRadio = jest.fn();
+
+let useSchoolPickerReturnData = {
+  data: items,
+  error: null,
+  setInputValue: setInputValue,
+  inputValue: "dor",
+  setSelectedValue: setSelectedValue,
+  selectedValue: "dor",
+};
+
+jest.mock(
+  "../../../../../../components/SchoolPicker/useSchoolPicker.tsx",
+  () => ({
+    __esModule: true,
+    default: () => useSchoolPickerReturnData,
+  })
+);
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {
@@ -218,5 +244,89 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         )
       ).rejects.toThrowError("No context.params");
     });
+  });
+});
+
+describe("School picker and radio buttons", () => {
+  it("clears school picker inputValue if radio button is clicked", async () => {
+    const { getByTestId } = renderWithProviders(
+      <LessonDownloadsPage {...props} />
+    );
+    const input = screen.getByTestId("search-autocomplete-input");
+
+    // initial value from mocked hook
+    expect(input).toHaveValue("dor");
+
+    const radio = getByTestId("radio-download");
+    const user = userEvent.setup();
+    await user.click(radio);
+    await user.tab();
+
+    // HACK: wait for next tick
+    await waitForNextTick();
+
+    expect(setInputValue).toBeCalledWith("");
+    expect(radio).toBeChecked();
+  });
+  /**
+   * @todo find a way to test that the radio is cleared when school is selected
+   */
+  it.skip("clears clicked radio if school is selected", async () => {
+    useSchoolPickerReturnData = {
+      data: items,
+      error: null,
+      setInputValue: setInputValue,
+      inputValue: "d",
+      setSelectedValue: setSelectedValue,
+      selectedValue: "",
+    };
+    const { getByTestId, rerender } = renderWithProviders(
+      <LessonDownloadsPage {...props} />
+    );
+
+    const radio = getByTestId("radio-download");
+    const user = userEvent.setup();
+    await user.click(radio);
+    await user.tab();
+
+    // HACK: wait for next tick
+    await waitForNextTick();
+
+    const input = screen.getByTestId("search-autocomplete-input");
+    await userEvent.type(input, "Dorothy");
+    await userEvent.type(input, "Dorot");
+
+    rerender(<LessonDownloadsPage {...props} />);
+
+    expect(setSelectedRadio).toBeCalledWith("");
+    // expect(radio).not.toBeChecked();
+  });
+  it.skip("clears clicked radio if school is selected", async () => {
+    const { getByTestId, rerender } = renderWithProviders(
+      <LessonDownloadsPage {...props} />
+    );
+
+    const radio = getByTestId("radio-download");
+    const user = userEvent.setup();
+    await user.click(radio);
+    await user.tab();
+
+    rerender(<LessonDownloadsPage {...props} />);
+
+    const useSchoolPickerHook = renderHook(() => useSchoolPicker());
+    const { setSelectedValue, setInputValue } =
+      useSchoolPickerHook.result.current;
+    act(() => {
+      setSelectedValue("anything");
+      setInputValue("anything");
+    });
+
+    const input = screen.getByTestId("search-autocomplete-input");
+    await userEvent.type(input, "Dorothy");
+    await userEvent.type(input, "Dorot");
+
+    rerender(<LessonDownloadsPage {...props} />);
+
+    expect(radio).not.toBeChecked();
   });
 });

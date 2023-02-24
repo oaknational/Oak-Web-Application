@@ -123,6 +123,8 @@ async function main() {
     CURRICULUM_API_AUTH_KEY:
       process.env.CURRICULUM_API_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_AUTH_KEY,
+    NEXT_PUBLIC_VERCEL_API_URL:
+      process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:

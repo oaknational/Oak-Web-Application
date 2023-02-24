@@ -1,4 +1,4 @@
-import React, { createContext, FC } from "react";
+import React, { createContext, FC, useId } from "react";
 import { useRadioGroup, AriaRadioGroupProps } from "react-aria";
 import { RadioGroupState, useRadioGroupState } from "react-stately";
 
@@ -19,8 +19,10 @@ const RadioGroup: FC<AriaRadioGroupProps & { children: React.ReactNode }> = (
   const { radioGroupProps, labelProps, descriptionProps, errorMessageProps } =
     useRadioGroup(props, state);
 
+  radioGroupProps.id = useId();
+
   return (
-    <div {...radioGroupProps}>
+    <div {...radioGroupProps} aria-describedby={undefined}>
       <span {...labelProps}>{label}</span>
       <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
       {description && (
