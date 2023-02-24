@@ -62,6 +62,8 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
 
   const menuId = useId();
 
+  // Allow the ID to passed in from that parent component
+  // for labelling of nested child components.
   let triggerId = providedId;
   const definiteId = useId();
   if (triggerId === undefined) {

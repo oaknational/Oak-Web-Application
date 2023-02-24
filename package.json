@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "NODE_ENV=production node scripts/build/write_env_file",
     "build": "next build",
+    "build:analyse-bundle": "ANALYSE_BUNDLE=on next build",
     "postbuild": "next-sitemap",
     "cc": "commit",
     "cca": "git add . && commit",
@@ -97,6 +98,7 @@
     "@graphql-codegen/typescript": "^2.8.1",
     "@graphql-codegen/typescript-graphql-request": "^4.5.8",
     "@graphql-codegen/typescript-operations": "^2.5.6",
+    "@next/bundle-analyzer": "^13.0.7",
     "@next/eslint-plugin-next": "^13.1.6",
     "@percy/cli": "^1.20.0",
     "@playwright/test": "1.27.1",
