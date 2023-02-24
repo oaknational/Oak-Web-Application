@@ -21,13 +21,14 @@ query teachersKeyStageSubjectUnits(
     slug
     title
     unitCount: unit_count
+    lessonCount: lesson_count
   }
   mv_units(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
       tier_slug: { _eq: $tierSlug }
-      theme_slug: {_eq: $learningThemeSlug}
+      theme_slug: { _eq: $learningThemeSlug }
     }
     order_by: { year: asc, unit_study_order: asc }
   ) {
@@ -51,7 +52,7 @@ query teachersKeyStageSubjectUnits(
       tier_slug: { _eq: $tierSlug }
     }
   ) {
-    label:title
+    label: title
     tierSlug: tier_slug
     tierName: tier_name
     subjectTitle: subject_title
