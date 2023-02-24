@@ -36,7 +36,6 @@ type DownloadCardLabelProps = DownloadCardProps & {
 export const RESOURCE_TYPE_ICON_MAP = {
   presentation: "Slidedeck",
   slideDeck: "Slidedeck",
-  presentation: "Slidedeck",
   "intro-quiz-questions": "Quiz",
   "intro-quiz-answers": "Quiz",
   "exit-quiz-questions": "Quiz",

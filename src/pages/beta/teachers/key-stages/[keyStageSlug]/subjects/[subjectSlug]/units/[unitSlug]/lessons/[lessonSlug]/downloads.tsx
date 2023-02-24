@@ -120,6 +120,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     [key in DownloadResourceType]: boolean;
   }>(getInitialResourcesToDownloadState());
 
+  const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
+
   const onResourceToDownloadToggle = (
     toggledResource: DownloadResourceType
   ) => {
@@ -161,25 +163,34 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const resourceTypesAsString = Object.keys(resourcesToDownload).join(",");
 
     (async () => {
-      const downloadResourcesExistence = await getDownloadResourcesExistence(
-        slug,
-        resourceTypesAsString
-      );
+      if (hasCheckedFiles) {
+        return;
+      }
+      setHasCheckedFiles(true);
+      try {
+        const { resources: resourceExistence } =
+          await getDownloadResourcesExistence(slug, resourceTypesAsString);
 
-      const downloadResourcesExistenceAsArray = Object.entries(
-        downloadResourcesExistence?.resources as ResourcesToDownloadType
-      );
-      const filteredDownloadResourcesExistenceAsArray =
-        downloadResourcesExistenceAsArray.filter(([, value]) => value === true);
-      const filteredDownloadResourcesExistence = Object.fromEntries(
-        filteredDownloadResourcesExistenceAsArray
-      );
+        const resourcesExistenceAsArray = Object.entries(
+          resourceExistence as ResourcesToDownloadType
+        );
+        const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
+          .filter(([, value]) => value === true)
+          .map(([key]) => [key, false]);
+        const filteredResourcesExistence = Object.fromEntries(
+          filteredResourcesExistenceAsArray
+        );
 
-      setResourcesToDownload(
-        filteredDownloadResourcesExistence as ResourcesToDownloadType
-      );
+        setResourcesToDownload(
+          filteredResourcesExistence as ResourcesToDownloadType
+        );
+      } catch (error) {
+        console.log(error);
+        // @todo: add Bugsnag reporting
+        // Bugsnag.notify(error);
+      }
     })();
-  }, [resourcesToDownload, slug]);
+  }, [slug, hasCheckedFiles, resourcesToDownload]);
 
   return (
     <AppLayout
