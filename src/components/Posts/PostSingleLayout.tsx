@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useId } from "react";
 
 import { WebinarSinglePageProps } from "../../pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "../../pages/blog/[blogSlug]";
@@ -6,7 +6,7 @@ import theme from "../../styles/theme";
 import Box from "../Box";
 import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileBlogFilters from "../MobileBlogFilters";
+import MobileFilters from "../MobileFilters";
 import { Heading } from "../Typography";
 
 import PostCategoryList from "./PostCategoryList";
@@ -22,7 +22,7 @@ type PostSingleLayoutProps = {
 const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   const { content, children } = props;
   const { categories } = content;
-
+  const triggerId = useId();
   const post = "blog" in content ? content.blog : content.webinar;
   const page: PostCategoryPage =
     "blog" in content ? "blog-index" : "webinars-index";
@@ -36,11 +36,15 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
       <MaxWidth>
         <Grid $ph={[12, 0]}>
           <GridArea $colSpan={[12]}>
-            <MobileBlogFilters
-              page={page}
-              categoryListProps={{ categories }}
-              withBackButton
-            />
+            <MobileFilters page={page} withBackButton label={"Categories"}>
+              <PostCategoryList
+                labelledBy={triggerId}
+                $pv={28}
+                $ph={16}
+                categories={categories}
+                page={page}
+              />
+            </MobileFilters>
           </GridArea>
           <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
             <Box

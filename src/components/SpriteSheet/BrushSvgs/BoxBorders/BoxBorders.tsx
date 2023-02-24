@@ -7,7 +7,7 @@ import { OakColorName } from "../../../../styles/theme/types";
 
 export const gapPositionMap = {
   rightTop: "90%",
-  bottomRight: "85%",
+  bottomRight: "90%",
   bottomRightCorner: "99%",
 } as const;
 

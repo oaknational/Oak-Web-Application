@@ -46,12 +46,14 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L>(res: {
+const transformMVCase = <K, S, T, U, L, V, W>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
   mv_units?: U;
   mv_lessons?: L;
+  mv_learning_themes?: V;
+  mv_downloads?: W;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -59,6 +61,8 @@ const transformMVCase = <K, S, T, U, L>(res: {
     tiers: res.mv_tiers,
     units: res.mv_units,
     lessons: res.mv_lessons,
+    learningThemes: res.mv_learning_themes,
+    downloads: res.mv_downloads,
   };
 };
 
@@ -120,6 +124,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       slug: z.string(),
       title: z.string(),
       unitCount: z.number().nullable(),
+      lessonCount: z.number().nullable(),
     })
   ),
   units: z.array(
@@ -134,7 +139,24 @@ const teachersKeyStageSubjectUnitsData = z.object({
       themeTitle: z.string().nullable(),
       lessonCount: z.number().nullable(),
       quizCount: z.number().nullable(),
+      unitStudyOrder: z.number(),
+      year: z.string(),
     })
+  ),
+  learningThemes: z.array(
+    z
+      .object({
+        label: z.string(),
+        tierSlug: z.string().nullable(),
+        tierName: z.string().nullable(),
+        subjectTitle: z.string(),
+        subjectSlug: z.string(),
+        slug: z.string(),
+        keyStageTitle: z.string(),
+        keyStageSlug: z.string(),
+      })
+      .nullable()
+      .optional()
   ),
 });
 const teachersKeyStageSubjectUnitsPathsSchema = z.object({
@@ -165,7 +187,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
       unitSlug: z.string(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable().optional(), // @todo add quiz_count to MV mv_lessons
+      quizCount: z.number().nullable(),
       videoCount: z.number().nullable(),
       presentationCount: z.number().nullable(),
       worksheetCount: z.number().nullable(),
@@ -173,6 +195,43 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
     })
   ),
 });
+
+const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
+  z.object({
+    keyStageSlug: z.string(),
+    keyStageTitle: z.string(),
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    unitSlug: z.string(),
+    unitTitle: z.string(),
+    order: z.number().nullable().optional(),
+    title: z.string().nullable().optional(),
+    points: z.number().nullable().optional(),
+    required: z.boolean().nullable(),
+    choices: z.array(z.string()),
+    active: z.boolean(),
+    answer: z.union([z.array(z.string()), z.string()]),
+    type: z.string(),
+    quizType: z.string(),
+    images: z
+      .union([
+        z.array(z.object({ title: z.string(), images: z.array(z.string()) })),
+        z.array(z.string()),
+      ])
+      .nullable(),
+    feedbackCorrect: z.string().nullable(),
+    feedbackIncorrect: z.string().nullable(),
+    choiceImages: z.array(z.string()).nullable(),
+    displayNumber: z.string().nullable(),
+  })
+);
+
+const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z
+  .object({
+    title: z.string(),
+    questionCount: z.number(),
+  })
+  .nullable();
 
 const teachersLessonOverviewPaths = z.object({
   lessons: z.array(
@@ -201,6 +260,41 @@ const teachersLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcript: z.string().nullable(),
+  hasDownloadableResources: z.boolean().nullable(),
+  introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+});
+
+const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
+  downloads: z.array(
+    z.object({
+      exists: z.boolean(),
+      type: z.enum([
+        "presentation",
+        "intro-quiz-questions",
+        "intro-quiz-answers",
+        "exit-quiz-questions",
+        "exit-quiz-answers",
+        "worksheet-pdf",
+        "worksheet-pptx",
+      ]),
+      label: z.string(),
+      ext: z.string(),
+      forbidden: z.boolean().optional(),
+    })
+  ),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
 });
 
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
@@ -227,6 +321,10 @@ export type TeachersLessonOverviewData = z.infer<
   typeof teachersLessonOverviewData
 >;
 
+export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
+  typeof teachersKeyStageSubjectUnitsLessonsDownloadsData
+>;
+
 const sdk = getSdk(graphqlClient);
 
 const getFirstResultOrWarnOrFail =
@@ -250,6 +348,17 @@ const getFirstResultOrWarnOrFail =
     const [firstResult] = results;
     if (!firstResult) {
       throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    return firstResult;
+  };
+
+const getFirstResultOrNull =
+  () =>
+  <T>({ results }: { results: T[] }) => {
+    const [firstResult] = results;
+    if (!firstResult) {
+      return null;
     }
 
     return firstResult;
@@ -314,8 +423,8 @@ const curriculumApi = {
       subjects = [],
       tiers = [],
       units,
+      learningThemes,
     } = transformMVCase(res);
-
     const getFirstResult = getFirstResultOrWarnOrFail();
 
     const keyStage = getFirstResult({ results: keyStages });
@@ -330,6 +439,7 @@ const curriculumApi = {
       tierSlug: tier?.slug || null,
       tiers,
       units,
+      learningThemes,
     });
   },
   teachersKeyStageSubjectUnitsPaths: async () => {
@@ -370,12 +480,40 @@ const curriculumApi = {
   ) => {
     const res = await sdk.teachersLessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
+    const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
 
-    return teachersLessonOverviewData.parse(lesson);
+    const exitQuizInfoSingle = getFirstResultOrNull()({
+      results: exitQuizInfo,
+    });
+
+    const introQuizInfoSingle = getFirstResultOrNull()({
+      results: introQuizInfo,
+    });
+    return teachersLessonOverviewData.parse({
+      ...lesson,
+      introQuizInfo: introQuizInfoSingle,
+      exitQuizInfo: exitQuizInfoSingle,
+      introQuiz,
+      exitQuiz,
+    });
+  },
+  teachersKeyStageSubjectUnitLessonsDownloads: async (
+    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnitLessonsDownloads>
+  ) => {
+    const res = await sdk.teachersKeyStageSubjectUnitLessonsDownloads(...args);
+    const { downloads = [] } = transformMVCase(res);
+
+    const download = getFirstResultOrWarnOrFail()({
+      results: downloads,
+    });
+
+    return teachersKeyStageSubjectUnitsLessonsDownloadsData.parse({
+      ...download,
+    });
   },
 };
 

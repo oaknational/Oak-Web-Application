@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "../../../../styles/themeHelpers/getColorByName";

@@ -45,7 +45,7 @@ describe("components/PostList", () => {
               title: "Curriculum Planning",
               slug: "curriculum-planning",
             },
-            date: new Date(2022, 7, 22).toISOString(),
+            date: new Date(2022, 7, 22, 14).toISOString(),
           },
         ]}
       />

@@ -6,12 +6,15 @@ import Card from "../Card";
 
 import ExpandingContainer from ".";
 
+const downloadLink = "/downloads";
+
 it("component renders with the title", () => {
   const { getAllByRole } = renderWithTheme(
     <ExpandingContainer
       external={true}
       projectable={true}
       downloadable={true}
+      downloadLink={downloadLink}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -20,7 +23,8 @@ it("component renders with the title", () => {
     </ExpandingContainer>
   );
 
-  expect(getAllByRole("button")).toHaveLength(4);
+  expect(getAllByRole("button")).toHaveLength(3);
+  expect(getAllByRole("link")).toHaveLength(1);
 });
 it("component renders with the title only", () => {
   const { getAllByRole } = renderWithTheme(
@@ -39,7 +43,6 @@ it("component renders with the title only", () => {
   expect(getAllByRole("button")).toHaveLength(1);
 });
 it("renders top right icons", async () => {
-  const log = jest.spyOn(console, "log");
   const log1 = jest.spyOn(console, "log");
   const log2 = jest.spyOn(console, "log");
   const user = userEvent.setup();
@@ -48,6 +51,7 @@ it("renders top right icons", async () => {
       external={true}
       projectable={true}
       downloadable={true}
+      downloadLink={downloadLink}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -56,9 +60,8 @@ it("renders top right icons", async () => {
     </ExpandingContainer>
   );
 
-  const downloadButton = screen.getByTestId("download-button");
-  await user.click(downloadButton);
-  expect(log).toHaveBeenCalled();
+  const downloadLinkButton = screen.getByTestId("download-button");
+  expect(downloadLinkButton).toHaveAttribute("href", downloadLink);
 
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -75,6 +78,7 @@ it("component expands and contract on click", async () => {
       external={true}
       projectable={true}
       downloadable={true}
+      downloadLink={downloadLink}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -86,6 +90,6 @@ it("component expands and contract on click", async () => {
   const downloadButton = screen.getByTestId("expand-button");
   await user.click(downloadButton);
   expect(screen.getByTestId("expanded-container")).toHaveStyle(
-    "max-height: 1600px"
+    "max-height: 9600px"
   );
 });

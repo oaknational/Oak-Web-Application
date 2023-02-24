@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  GetStaticPaths,
+  GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
@@ -11,7 +11,11 @@ import { uniqBy } from "lodash/fp";
 import Layout from "../../components/Layout";
 import CMSClient from "../../node-lib/cms";
 import { BlogPost } from "../../common-lib/cms-types";
-import { decorateWithIsr } from "../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../node-lib/isr";
 import Box from "../../components/Box";
 import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
 import BlogPortableText from "../../components/Posts/PostPortableText/PostPortableText";
@@ -74,17 +78,22 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
 
 type URLParams = { blogSlug: string };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   const blogResults = await CMSClient.blogPosts();
 
   const paths = blogResults.map((blog) => ({
     params: { blogSlug: blog.slug },
   }));
 
-  return {
-    fallback: false,
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
     paths,
   };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<

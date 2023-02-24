@@ -1,23 +1,33 @@
-import { FC, useState, useRef, useEffect, useId, useCallback } from "react";
+import {
+  FC,
+  useState,
+  useRef,
+  useEffect,
+  useId,
+  useCallback,
+  ReactNode,
+} from "react";
 
 import Box from "../Box";
 import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import useEventListener from "../../hooks/useEventListener";
 import Cover from "../Cover";
-import PostCategoryList, {
-  PostCategoryListProps,
-  PostCategoryPage,
-} from "../Posts/PostCategoryList/PostCategoryList";
+import { IconName } from "../Icon";
 import { useMenuContext } from "../../context/Menu";
+import { PostCategoryPage } from "../Posts/PostCategoryList/PostCategoryList";
 
-export type MobileBlogFiltersProps = {
-  categoryListProps: Omit<PostCategoryListProps, "labelledBy" | "page">;
+export type MobileFiltersProps = {
   withBackButton?: boolean;
-  page: PostCategoryPage;
-};
-const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
+  page?: PostCategoryPage;
+  children: ReactNode;
+  iconOpened?: IconName;
+  iconClosed?: IconName;
+  label: string;
+  labelOpened?: string;
+} & FlexProps;
+const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
 
@@ -37,7 +47,16 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
     checkAndSetHeight();
   }, [categoryListRef]);
 
-  const { categoryListProps, withBackButton, page } = props;
+  const {
+    withBackButton,
+    page,
+    children,
+    iconOpened = "ChevronUp",
+    iconClosed = "ChevronDown",
+    label,
+    labelOpened = label,
+    ...flexProps
+  } = props;
   const menuId = useId();
   const triggerId = useId();
 
@@ -58,35 +77,37 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
       $display={["flex", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
+      {...flexProps}
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
       <Flex>
-        {withBackButton && (
-          <Box
-            $transition="all 0.5s ease"
-            $visibility={isOpen ? "hidden" : "visible"}
-            $opacity={isOpen ? 0 : 1}
-            aria-hidden={isOpen ? "true" : false}
-          >
-            <ButtonAsLink
-              variant="minimal"
-              icon="ArrowLeft"
-              iconBackground="teachersHighlight"
-              size="large"
-              label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
-              page={page}
-            />
-          </Box>
-        )}
+        {withBackButton &&
+          (page === "blog-index" || page === "webinars-index") && (
+            <Box
+              $transition="all 0.5s ease"
+              $visibility={isOpen ? "hidden" : "visible"}
+              $opacity={isOpen ? 0 : 1}
+              aria-hidden={isOpen ? "true" : false}
+            >
+              <ButtonAsLink
+                variant="minimal"
+                icon="ArrowLeft"
+                iconBackground="teachersHighlight"
+                size="large"
+                label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
+                page={page}
+              />
+            </Box>
+          )}
         <Button
           id={triggerId}
           $ml="auto"
           variant="minimal"
-          icon={isOpen ? "ChevronUp" : "ChevronDown"}
+          icon={isOpen ? iconOpened : iconClosed}
           iconBackground="teachersHighlight"
           $iconPosition="trailing"
           size="large"
-          label="Categories"
+          label={isOpen ? labelOpened : label}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           aria-expanded={isOpen}
           aria-controls={menuId}
@@ -102,7 +123,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
           $position="absolute"
           $transition="all 0.5s ease"
           $width="100%"
-          $zIndex="mobileBlogFilters"
+          $zIndex="mobileFilters"
           $background={isOpen ? "white" : "transparent"}
           $dropShadow={"grey20"}
         >
@@ -117,13 +138,7 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
             aria-labelledby={triggerId}
             $visibility={isOpen ? "visible" : "hidden"}
           >
-            <PostCategoryList
-              labelledBy={triggerId}
-              $pv={28}
-              $ph={16}
-              {...categoryListProps}
-              page={page}
-            />
+            {children}
           </Box>
         </Box>
       </Box>
@@ -131,4 +146,4 @@ const MobileBlogFilters: FC<MobileBlogFiltersProps> = (props) => {
   );
 };
 
-export default MobileBlogFilters;
+export default MobileFilters;

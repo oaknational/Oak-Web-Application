@@ -2,7 +2,6 @@ import { createContext, FC, useContext, useState } from "react";
 import { useRouter } from "next/router";
 
 export enum KeyStages {
-  foundation = "foundation",
   keystage1 = "1",
   keystage2 = "2",
   keystage3 = "3",
@@ -30,11 +29,29 @@ export const SearchProvider: FC<SearchProviderProps> = ({
   value: propsValue,
 }) => {
   const {
-    query: { term },
+    query: { term, keystages: keystagesFromURL },
   } = useRouter();
   const initialTerm = term && typeof term === "string" ? term : "";
   const [searchText, setSearchText] = useState(initialTerm);
-  const [keyStages, setKeyStages] = useState(new Set<KeyStage>());
+
+  const initialKeyStagesArrayFromURL = keystagesFromURL
+    ? keystagesFromURL.toString().split(",")
+    : [];
+
+  const isValueKeyStage = (stage: string): stage is KeyStage => {
+    const STRING_KEY_STAGES: string[] = ALL_KEY_STAGES;
+    return STRING_KEY_STAGES.includes(stage);
+  };
+
+  const initialKeyStagesArray = initialKeyStagesArrayFromURL.filter(
+    (ks: string): ks is KeyStage => isValueKeyStage(ks)
+  );
+
+  const initialKeyStage = initialKeyStagesArray
+    ? new Set<KeyStage>(initialKeyStagesArray)
+    : new Set<KeyStage>();
+  const [keyStages, setKeyStages] = useState(initialKeyStage);
+
   const searchQuery: SearchQuery = {
     text: searchText,
     setText: setSearchText,

@@ -28,5 +28,96 @@ query teachersLessonOverview(
     videoMuxPlaybackId: video_mux_playback_id
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
     transcript
+    hasDownloadableResources: has_downloadable_resources
+  }
+  exitQuizInfo: mv_quizzes(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+      unit_slug: { _eq: $unitSlug }
+      type: { _eq: "exit" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+  ) {
+    title
+    questionCount: question_count
+  }
+  exitQuiz: mv_questions(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+      unit_slug: { _eq: $unitSlug }
+      quiz_type: { _eq: "exit" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+    order_by: { order: asc }
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    active
+    answer
+    choiceImages: choice_images
+    choices
+    feedbackCorrect: feedback_correct
+    feedbackIncorrect: feedback_incorrect
+    images
+    points
+    quizType: quiz_type
+    required
+    title
+    type
+    order
+    displayNumber: display_number
+  }
+  introQuizInfo: mv_quizzes(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+      unit_slug: { _eq: $unitSlug }
+      type: { _eq: "intro" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+  ) {
+    title
+    questionCount: question_count
+  }
+  introQuiz: mv_questions(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+      unit_slug: { _eq: $unitSlug }
+      quiz_type: { _eq: "intro" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+    order_by: { order: asc }
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    active
+    answer
+    choiceImages: choice_images
+    choices
+    feedbackCorrect: feedback_correct
+    feedbackIncorrect: feedback_incorrect
+    images
+    points
+    quizType: quiz_type
+    required
+    title
+    type
+    order
+    displayNumber: display_number
   }
 }

@@ -21,6 +21,7 @@ const OAK_PAGES = {
   home: "/",
   "lesson-planning": "/lesson-planning",
   "privacy-policy": "/legal/privacy-policy",
+  "terms-and-conditions": "/legal/terms-and-conditions",
   "pupils-home": "https://classroom.thenational.academy",
   "support-your-team": "/support-your-team",
   "our-teachers": "https://classroom.thenational.academy/teachers",
@@ -106,6 +107,13 @@ export type LessonOverviewLinkProps = {
   unit: string;
   slug: string;
 };
+export type DownloadsLinkProps = {
+  page: "downloads";
+  keyStage: string;
+  subject: string;
+  unit: string;
+  slug: string;
+};
 
 export type ResolveOakHrefProps =
   | {
@@ -126,7 +134,8 @@ export type ResolveOakHrefProps =
   | TierSelectionLinkProps
   | UnitIndexLinkProps
   | LessonIndexLinkProps
-  | LessonOverviewLinkProps;
+  | LessonOverviewLinkProps
+  | DownloadsLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -181,8 +190,10 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
        * Though longer term it might be better to name these urls:
        * "/key-stages/{}/subjects/{}" etc.
        */
-      const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}`;
-
+      const path = `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units`;
+      /**
+       * ! - re-routed so that tiers is directed to units url
+       */
       return path;
     }
     case "unit-index": {
@@ -209,6 +220,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return props.term
         ? `/beta/teachers/search?term=${props.term}`
         : "/beta/teachers/search";
+    }
+    case "downloads": {
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}/downloads`;
     }
     default:
       return OAK_PAGES[props.page];

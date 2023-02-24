@@ -1,14 +1,18 @@
 import React from "react";
+import { useRouter } from "next/router";
 import {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  //GetStaticPaths,
-  // GetStaticProps,
-  // GetStaticPropsResult,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
   NextPage,
 } from "next";
 
-//import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../../../../node-lib/isr";
+import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -20,8 +24,7 @@ import {
   LI,
   UL,
 } from "../../../../../../../../../../components/Typography";
-import Button from "../../../../../../../../../../components/Button";
-import Box from "../../../../../../../../../../components/Box";
+import ButtonAsLink from "../../../../../../../../../../components/Button/ButtonAsLink";
 import Grid from "../../../../../../../../../../components/Grid";
 import curriculumApi, {
   TeachersLessonOverviewData,
@@ -31,6 +34,7 @@ import OverviewPresentation from "../../../../../../../../../../components/pages
 import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
 import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
+import QuizContainer from "../../../../../../../../../../components/QuizContainer";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -55,7 +59,23 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     worksheetUrl,
     transcript,
     hasCopyrightMaterial,
+    hasDownloadableResources,
+    introQuiz,
+    exitQuiz,
+    introQuizInfo,
+    exitQuizInfo,
   } = curriculumData;
+
+  const router = useRouter();
+  const { lessonSlug, unitSlug } = router.query;
+
+  const downLoadLink = resolveOakHref({
+    page: "downloads",
+    keyStage: keyStageSlug,
+    subject: subjectSlug,
+    unit: `${unitSlug}`,
+    slug: `${lessonSlug}`,
+  });
 
   return (
     <AppLayout
@@ -94,17 +114,21 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </UL>
         </Flex>
         <Flex $mt={12} $flexWrap={"wrap"}>
-          <Button
-            $mr={24}
-            icon="Save"
-            iconBackground="teachersHighlight"
-            label="All lesson resources"
-            onClick={() => null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-            $mt={16}
-          />
+          {hasDownloadableResources && (
+            <ButtonAsLink
+              $mr={24}
+              icon="Save"
+              iconBackground="teachersHighlight"
+              label="All lesson resources"
+              href={downLoadLink}
+              page={null}
+              size="large"
+              variant="minimal"
+              $iconPosition={"trailing"}
+              $mt={16}
+              data-testid={"download-all-button"}
+            />
+          )}
           {/*
           todo
            <Button
@@ -122,15 +146,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Hr $color={"oakGrey3"} />
         {presentationUrl && !hasCopyrightMaterial && (
           <ExpandingContainer
-            title={"Presentation"}
+            title={"Slide deck"}
             downloadable={true}
+            downloadLink={downLoadLink}
             toggleClosed={false}
           >
             <OverviewPresentation asset={presentationUrl} title={title} />
           </ExpandingContainer>
         )}
         {videoMuxPlaybackId && (
-          <ExpandingContainer title={"Video"} downloadable={true}>
+          <ExpandingContainer title={"Video"}>
             <OverviewVideo
               video={videoMuxPlaybackId}
               signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
@@ -140,22 +165,40 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </ExpandingContainer>
         )}
         {worksheetUrl && (
-          <ExpandingContainer title={"Worksheet"} downloadable={true}>
+          <ExpandingContainer
+            title={"Worksheet"}
+            downloadable={true}
+            downloadLink={downLoadLink}
+          >
             <OverviewPresentation asset={worksheetUrl} title={title} />
           </ExpandingContainer>
         )}
-        <ExpandingContainer title={"Starter quiz"} downloadable={true}>
-          <Box>quiz element</Box>
-        </ExpandingContainer>
-        <ExpandingContainer title={"Exit quiz"} downloadable={true}>
-          <Box>quiz element</Box>
-        </ExpandingContainer>
+        {introQuiz.length > 0 ? (
+          <ExpandingContainer
+            title={"Starter quiz"}
+            downloadable={true}
+            downloadLink={downLoadLink}
+          >
+            <QuizContainer questions={introQuiz} info={introQuizInfo} />
+          </ExpandingContainer>
+        ) : (
+          ""
+        )}
+        {exitQuiz.length > 0 && (
+          <ExpandingContainer
+            title={"Exit quiz"}
+            downloadable={true}
+            downloadLink={downLoadLink}
+          >
+            <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+          </ExpandingContainer>
+        )}
+
         {transcript && (
           <ExpandingContainer title={"Transcript"}>
             <OverviewTranscript transcript={transcript} />
           </ExpandingContainer>
         )}
-        <Hr $color={"oakGrey3"} />
       </MaxWidth>
       <MaxWidth $ph={[0, 16, 16]}>
         {(equipmentRequired || supervisionLevel || contentGuidance) && (
@@ -193,17 +236,22 @@ export type URLParams = {
   unitSlug: string;
 };
 
-// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-//   const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
-//   const paths = lessons.map((params) => ({ params: params }));
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
 
-//   return {
-//     fallback: false,
-//     paths,
-//   };
-// };
+  const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+  const paths = lessons.map((params) => ({ params: params }));
 
-export const getServerSideProps: GetServerSideProps<
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
@@ -225,14 +273,13 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const results: GetServerSidePropsResult<LessonOverviewPageProps> = {
+  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
     },
   };
-  // const resultsWithIsr = decorateWithIsr(results);
-  // return resultsWithIsr;
-  return results;
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default LessonOverviewPage;

@@ -9,10 +9,15 @@ const getResourceTitle = (resourceTitle: string, resourceCount: number) => {
   if (resourceCount > 1) {
     if (resourceTitle === "Quiz") {
       return "Quizzes";
+    } else if (resourceTitle === "Slidedeck") {
+      return "Slide decks";
     } else {
       return resourceTitle + "s";
     }
   }
+
+  if (resourceTitle === "Slidedeck") return "Slide deck";
+
   return resourceTitle;
 };
 
@@ -47,12 +52,9 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = ({
         $mr={[0, 6]}
         $mb={[8, 0]}
       />
-      <Span $font={"body-3"} $mr={[0, 4]}>
-        {resourceCount}
-      </Span>
       <Flex $display={["none", "flex"]}>
         <Span $font={"body-3"}>
-          {getResourceTitle(resourceTitle, resourceCount)}
+          {resourceCount} {getResourceTitle(resourceTitle, resourceCount)}
         </Span>
       </Flex>
     </Flex>

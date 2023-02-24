@@ -20,7 +20,7 @@ interface CommonProps {
 }
 
 type ListItemHeadingProps = CommonProps &
-  (LessonListItemProps | UnitListItemProps);
+  (LessonListItemProps | UnitListItemProps) & { index: number | null };
 
 const ListTitle: FC<{ children?: React.ReactNode }> = ({ children }) => {
   return (
@@ -41,6 +41,7 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
     keyStageTitle,
     primaryTargetProps,
     page,
+    index,
   } = props;
 
   return (
@@ -73,7 +74,9 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
           page={"lesson-index"}
           {...primaryTargetProps}
         >
-          <ListTitle>{title}</ListTitle>
+          <ListTitle>
+            {index !== null ? `${index + 1}.` : ""} {title}
+          </ListTitle>
         </OakLink>
       )}
     </Flex>

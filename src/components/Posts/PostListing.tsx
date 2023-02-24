@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useId } from "react";
 
 import { PostListJsonLd } from "../../browser-lib/seo/getJsonLd";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
@@ -16,7 +16,7 @@ import {
 import SummaryCard from "../Card/SummaryCard";
 import Layout from "../Layout";
 import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileBlogFilters from "../MobileBlogFilters";
+import MobileFilters from "../MobileFilters";
 import {
   PostListingPageProps,
   blogToPostListItem,
@@ -28,7 +28,9 @@ import {
   webinarToPostListItem,
 } from "../pages/WebinarsIndex.page";
 
-import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
+import PostCategoryList, {
+  PostCategoryPage,
+} from "./PostCategoryList/PostCategoryList";
 
 type PostListingProps = {
   seo: SeoProps;
@@ -54,6 +56,7 @@ const PostListing: FC<PostListingProps> = ({
   variant,
   page,
 }) => {
+  const triggerId = useId();
   const cardImage = {
     src: "/images/illustrations/idea-explosion.png",
     alt: "",
@@ -84,13 +87,16 @@ const PostListing: FC<PostListingProps> = ({
           heading={categoryHeading || pageData.heading}
           imageProps={cardImage}
         />
-        <MobileBlogFilters
-          page={page}
-          categoryListProps={{
-            categories,
-            selectedCategorySlug: categorySlug,
-          }}
-        />
+        <MobileFilters page={page} label={"Categories"}>
+          <PostCategoryList
+            labelledBy={triggerId}
+            $pv={28}
+            $ph={16}
+            categories={categories}
+            selectedCategorySlug={categorySlug}
+            page={page}
+          />
+        </MobileFilters>
 
         <PostListAndCategories
           {...postsWithCategories}

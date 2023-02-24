@@ -2,6 +2,7 @@ query teachersKeyStageSubjectUnits(
   $keyStageSlug: String!
   $subjectSlug: String!
   $tierSlug: String
+  $learningThemeSlug: String
 ) {
   mv_key_stages(where: { slug: { _eq: $keyStageSlug } }) {
     slug
@@ -19,14 +20,17 @@ query teachersKeyStageSubjectUnits(
   ) {
     slug
     title
-    unitCount: unit_count 
+    unitCount: unit_count
+    lessonCount: lesson_count
   }
   mv_units(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
       tier_slug: { _eq: $tierSlug }
+      theme_slug: { _eq: $learningThemeSlug }
     }
+    order_by: { year: asc, unit_study_order: asc }
   ) {
     slug
     title
@@ -38,5 +42,23 @@ query teachersKeyStageSubjectUnits(
     themeTitle: theme_title
     lessonCount: lesson_count
     quizCount: quiz_count
+    unitStudyOrder: unit_study_order
+    year
+  }
+  mv_learning_themes(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      subject_slug: { _eq: $subjectSlug }
+      tier_slug: { _eq: $tierSlug }
+    }
+  ) {
+    label: title
+    tierSlug: tier_slug
+    tierName: tier_name
+    subjectTitle: subject_title
+    subjectSlug: subject_slug
+    slug
+    keyStageTitle: key_stage_title
+    keyStageSlug: key_stage_slug
   }
 }

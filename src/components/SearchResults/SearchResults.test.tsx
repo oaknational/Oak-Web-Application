@@ -3,10 +3,10 @@
  */
 import React from "react";
 
-import { SearchHit } from "../../pages/beta/teachers/search";
+import { SearchHit, UnitSearchHit } from "../../pages/beta/teachers/search";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import SearchResults from "./SearchResults";
+import SearchResults, { getLessonObject, getUnitObject } from "./SearchResults";
 
 export const searchResults: Array<SearchHit> = [
   {
@@ -105,6 +105,18 @@ describe("The <SearchForm> Component", () => {
     const searchElement = getAllByRole("listitem");
 
     expect(searchElement.length).toEqual(2);
+  });
+
+  test("getLessonObject maps to new key stage slug", () => {
+    const lessonListObject = getLessonObject(searchResult);
+
+    expect(lessonListObject.keyStageSlug).toEqual("ks3");
+  });
+
+  test("getUnitObject maps to new key stage slug", () => {
+    const unitListObject = getUnitObject(searchResults[1] as UnitSearchHit);
+
+    expect(unitListObject.keyStageSlug).toEqual("ks3");
   });
 
   test("it renders pagination if there are more results than set in RESULTS_PER_PAGE", () => {

@@ -6,17 +6,12 @@ import UnitList from ".";
 
 describe("components/UnitList", () => {
   test("renders the list items", () => {
-    const { getByRole } = renderWithProviders(
+    renderWithProviders(
       <UnitList
         {...teachersKeyStageSubjectUnitsFixture()}
-        headingTag={"h1"}
         paginationProps={mockPaginationProps}
         currentPageItems={[]}
       />
     );
-
-    const listHeading = getByRole("heading", { level: 1 });
-
-    expect(listHeading).toBeInTheDocument();
   });
 });

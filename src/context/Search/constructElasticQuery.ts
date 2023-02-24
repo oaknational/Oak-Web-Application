@@ -5,16 +5,31 @@ type ConstructQueryParams = {
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
   const { term, keyStages } = query;
-  const filter =
+  const keyStageFilter =
     keyStages.size > 0
       ? {
           terms: {
             key_stage_slug: Array.from(keyStages),
           },
         }
-      : null;
+      : {
+          terms: {
+            key_stage_slug: ["1", "2", "3", "4"],
+          },
+        };
 
-  return {
+  const highlight = {
+    number_of_fragments: 0,
+    pre_tags: ["<b>"],
+    post_tags: ["</b>"],
+    fields: {
+      topic_title: {},
+      theme_title: {},
+      lesson_description: {},
+    },
+  };
+
+  const result = {
     from: 0, // index first result shown
     size: 10000, // how many per page
     query: {
@@ -27,6 +42,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
             multi_match: {
               query: term,
               type: "phrase",
+              analyzer: "stop",
               // boost title highest, then other titles, then intro text
               fields: ["title^10", "*_title^6", "lesson_description^3"],
             },
@@ -37,6 +53,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
               query: term,
               fields: ["*"],
               type: "most_fields",
+              analyzer: "stop",
               /* Search terms <=4 characters have to be an exact match
                   terms >4 and <7 can have 1 error >=7 can have 2 errors */
               fuzziness: "AUTO:4,7",
@@ -45,14 +62,29 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
             },
           },
         ],
-        // keystage filter
-        filter,
+        // filter
+        filter: [
+          {
+            term: {
+              expired: false,
+            },
+          },
+          {
+            term: {
+              is_specialist: false,
+            },
+          },
+          { ...keyStageFilter },
+        ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */
         minimum_should_match: 1,
       },
     },
+    highlight,
   };
+
+  return result;
 };
 
 export default constructElasticQuery;

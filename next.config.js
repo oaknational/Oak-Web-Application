@@ -138,6 +138,12 @@ module.exports = async (phase) => {
     // Make sure production source maps exist for e.g. Bugsnag
     productionBrowserSourceMaps: true,
     images: {
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "**.googleusercontent.com",
+        },
+      ],
       // Allow static builds with the default image loader.
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
       // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it

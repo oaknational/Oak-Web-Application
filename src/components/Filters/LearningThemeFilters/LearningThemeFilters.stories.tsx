@@ -14,14 +14,5 @@ const Template: ComponentStory<typeof Component> = (args) => {
 export const LearningThemeFilters = Template.bind({});
 LearningThemeFilters.args = {
   selectedThemeSlug: "some-theme",
-  learningThemes: [
-    {
-      label: "Some theme",
-      slug: "some-theme",
-    },
-    {
-      label: "No theme",
-      slug: null,
-    },
-  ],
+  learningThemes: [],
 };

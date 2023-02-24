@@ -1,5 +1,5 @@
 import {
-  GetStaticPaths,
+  GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
@@ -11,7 +11,11 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../common-lib/cms-types/landingPage";
-import { decorateWithIsr } from "../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../node-lib/isr";
 import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
 import { Quote } from "../../components/pages/LandingPages/Quote";
 import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
@@ -78,17 +82,22 @@ type URLParams = {
   landingPageSlug: string;
 };
 
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   const landingResults = await CMSClient.landingPages();
 
   const paths = landingResults.map((landingPage) => ({
     params: { landingPageSlug: landingPage.slug },
   }));
 
-  return {
-    fallback: false,
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
     paths,
   };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<

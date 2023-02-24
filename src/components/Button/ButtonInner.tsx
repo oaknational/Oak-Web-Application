@@ -35,6 +35,12 @@ export const ButtonMinimalFocusUnderline = styled(Svg)<{
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
+export const ButtonStyledAsLinkFocusUnderline = styled(Svg)<{
+  $color: OakColorName;
+}>`
+  color: ${(props) => getColorByName(props.$color)};
+  position: absolute;
+`;
 
 export type ButtonInnerProps = {
   label: string;
@@ -77,7 +83,10 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 
   const defactoBackground =
-    variant === "minimal" && iconBackground ? iconBackground : background;
+    (variant === "minimal" || variant === "buttonStyledAsLink") &&
+    iconBackground
+      ? iconBackground
+      : background;
 
   const underlineColor =
     theme.buttonFocusUnderlineColors[defactoBackground] || "black";
@@ -139,13 +148,18 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             )}
           </ButtonLabel>
         </Box>
-        <ButtonMinimalFocusUnderline
-          $color={underlineColor}
-          name="Underline1"
-        />
+        {variant === "minimal" && (
+          <ButtonMinimalFocusUnderline
+            $color={underlineColor}
+            name="Underline1"
+          />
+        )}
       </Box>
       {variant === "brush" && <ButtonBorders background={background} />}
       <ButtonFocusUnderline $color={underlineColor} name="Underline1" />
+      {variant === "buttonStyledAsLink" && (
+        <ButtonStyledAsLinkFocusUnderline $color={"black"} name="Underline1" />
+      )}
     </>
   );
 };

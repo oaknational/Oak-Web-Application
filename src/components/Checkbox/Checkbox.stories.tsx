@@ -11,7 +11,10 @@ export default {
       defaultValue: "Click me",
     },
     id: {
-      defaultValue: "Click me",
+      defaultValue: "1",
+    },
+    name: {
+      defaultValue: "checkbox-group",
     },
     checked: {
       defaultValue: false,

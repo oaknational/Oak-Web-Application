@@ -37,7 +37,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   presentationCount &&
     !hasCopyrightMaterial &&
     resources.push({
-      title: "presentation",
+      title: "slidedeck",
       resourceCount: presentationCount,
     });
   worksheetCount &&
@@ -64,14 +64,19 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             {...props}
             primaryTargetProps={primaryTargetProps}
             page="Lesson"
+            index={null}
           />
           <IconMobile background={"pupilsPink"} title={title} />
         </Flex>
 
         <Flex $mt={[8, 0]} $mr={[16, 0]}>
-          <Span $font={["body-3", "body-2"]} $color={"oakGrey5"}>
-            {description}
-          </Span>
+          <Span
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+            $font={["body-3", "body-2"]}
+            $color={"oakGrey5"}
+          />
         </Flex>
         {resources.length > 0 && (
           <Box $mt={16}>

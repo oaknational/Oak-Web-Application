@@ -6,6 +6,7 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
 import Button from "../Button";
 import IconButton from "../Button/IconButton";
+import IconButtonAsLink from "../Button/IconButtonAsLink";
 import Icon from "../Icon";
 
 type ExpandingContainerProps = CardProps & {
@@ -13,6 +14,7 @@ type ExpandingContainerProps = CardProps & {
   external?: boolean;
   projectable?: boolean;
   downloadable?: boolean;
+  downloadLink?: string;
   toggleClosed?: boolean;
 };
 
@@ -22,6 +24,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   external,
   projectable,
   downloadable,
+  downloadLink,
   toggleClosed = true,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
@@ -55,15 +58,14 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             </Flex>
           </Card>
           <Flex>
-            {downloadable === true && (
-              <IconButton
+            {downloadable === true && downloadLink && (
+              <IconButtonAsLink
                 data-testid={"download-button"}
-                aria-label="download click me"
+                href={downloadLink}
+                page={null}
+                aria-label="download resource"
                 background={"teachersHighlight"}
                 icon="Download"
-                onClick={() => {
-                  console.log("Download Clicked!");
-                }}
                 variant="brush"
               />
             )}
@@ -99,7 +101,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
       </Flex>
       <Flex
         data-testid={"expanded-container"}
-        $maxHeight={toggleOpen ? 0 : 1600}
+        $maxHeight={toggleOpen ? 0 : 9600}
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}
       >

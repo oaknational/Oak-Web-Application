@@ -38,8 +38,8 @@ export const OverviewTranscript: FC<OverviewTranscriptProps> = ({
           tabIndex={0}
         >
           {splitTextIntoSentences(transcript).map(
-            (transcriptSentence: string) => (
-              <P $mb={[24, 16]} $font={"body-1"}>
+            (transcriptSentence: string, index: number) => (
+              <P $mb={[24, 16]} $font={"body-1"} key={index}>
                 {transcriptSentence}
               </P>
             )
