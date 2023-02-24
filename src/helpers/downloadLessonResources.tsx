@@ -1,5 +1,5 @@
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
-import checkIfDownloadResourcesExist from "./checkIfDownloadResourcesExist";
+import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
 type ResourceTypes = {
   [key: string]: boolean;
@@ -21,29 +21,16 @@ const downloadLessonResources = async (
 
   const selection = selectedResourceTypesAsArray.join(",");
 
-  if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
-    throw new TypeError(
-      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"
-    );
-  }
-
-  const downloadEnpoint = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`;
-
-  const downloadResourcesExist = await checkIfDownloadResourcesExist(
+  const downloadResourcesLink = await createDownloadResourcesLink(
     lessonSlug,
     selection
   );
-  const res = downloadResourcesExist && (await fetch(downloadEnpoint));
-  const { data, error } = await res.json();
 
-  if (!res.ok && error) {
-    throw new Error(error);
-  } else if (!res.ok) {
-    throw new Error("API error");
+  if (downloadResourcesLink) {
+    createAndClickHiddenDownloadLink(downloadResourcesLink);
   }
 
-  createAndClickHiddenDownloadLink(data.url);
-  return data;
+  return;
 };
 
 export default downloadLessonResources;

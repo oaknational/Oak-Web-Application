@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,6 +30,7 @@ import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 import downloadSelectedLessonResources from "../../../../../../../../../../../helpers/downloadLessonResources";
+import getDownloadResourcesExistence from "../../../../../../../../../../../helpers/getDownloadResourcesExistence";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
@@ -154,6 +155,31 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   ).filter(
     (resource) => resourcesToDownload[resource as DownloadResourceType] === true
   ).length;
+
+  useEffect(() => {
+    // check if lesson download resources exist and if not update the state
+    const resourceTypesAsString = Object.keys(resourcesToDownload).join(",");
+
+    (async () => {
+      const downloadResourcesExistence = await getDownloadResourcesExistence(
+        slug,
+        resourceTypesAsString
+      );
+
+      const downloadResourcesExistenceAsArray = Object.entries(
+        downloadResourcesExistence?.resources as ResourcesToDownloadType
+      );
+      const filteredDownloadResourcesExistenceAsArray =
+        downloadResourcesExistenceAsArray.filter(([, value]) => value === true);
+      const filteredDownloadResourcesExistence = Object.fromEntries(
+        filteredDownloadResourcesExistenceAsArray
+      );
+
+      setResourcesToDownload(
+        filteredDownloadResourcesExistence as ResourcesToDownloadType
+      );
+    })();
+  }, [resourcesToDownload, slug]);
 
   return (
     <AppLayout

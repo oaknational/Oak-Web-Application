@@ -1,15 +1,21 @@
-const createAndClickHiddenDownloadLink = (url: string) => {
+export const createLink = () => {
   const a = document.createElement("a");
+  return a;
+};
+
+export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.style.display = "none";
   a.href = url;
-  a.setAttribute("download", "test.pdf");
+  a.setAttribute("download", "download.zip");
   document.body.appendChild(a);
   a.click();
-  if (typeof window !== "undefined") window.URL.revokeObjectURL(url);
 
-  return {
-    url,
-  };
+  return;
+};
+
+const createAndClickHiddenDownloadLink = (url: string) => {
+  const link = createLink();
+  hideAndClickDownloadLink(url, link);
 };
 
 export default createAndClickHiddenDownloadLink;
