@@ -124,6 +124,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       slug: z.string(),
       title: z.string(),
       unitCount: z.number().nullable(),
+      lessonCount: z.number().nullable(),
     })
   ),
   units: z.array(
@@ -272,8 +273,6 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
       exists: z.boolean(),
       type: z.enum([
         "presentation",
-        // @todo delete once updated in Data Tools
-        "slideDeck",
         "intro-quiz-questions",
         "intro-quiz-answers",
         "exit-quiz-questions",
@@ -426,7 +425,6 @@ const curriculumApi = {
       units,
       learningThemes,
     } = transformMVCase(res);
-
     const getFirstResult = getFirstResultOrWarnOrFail();
 
     const keyStage = getFirstResult({ results: keyStages });

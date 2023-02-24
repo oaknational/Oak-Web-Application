@@ -11,8 +11,6 @@ import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
 export type DownloadResourceType =
-  // @todo delete once updated in Data Tools
-  | "slideDeck"
   | "presentation"
   | "intro-quiz-questions"
   | "intro-quiz-answers"
@@ -36,6 +34,7 @@ type DownloadCardLabelProps = DownloadCardProps & {
 };
 
 export const RESOURCE_TYPE_ICON_MAP = {
+  presentation: "Slidedeck",
   slideDeck: "Slidedeck",
   presentation: "Slidedeck",
   "intro-quiz-questions": "Quiz",
