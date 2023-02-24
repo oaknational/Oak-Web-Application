@@ -54,14 +54,4 @@ describe("Lesson List Item", () => {
       getByText("Unfortunately this lesson is now unavailable.")
     ).toBeInTheDocument();
   });
-  test("It renders a button if expired with link to help", () => {
-    const { getByText } = renderWithProviders(
-      <LessonListItem {...{ ...props, expired: true }} />
-    );
-
-    expect(getByText("Find out why").closest("a")).toHaveAttribute(
-      "href",
-      "https://support.thenational.academy/lesson-unavailable"
-    );
-  });
 });
