@@ -21,15 +21,26 @@ const config = {
   defaults: {
     runners: ["axe"],
     hideElements:
+      /**
+       * Elements we hide from Pa11y.
+       *
+       * Metomic
+       * Avo
+       * Anything labelled with .pa11y-ignore (doesn't work if element has shadow-dom children for some reason)
+       */
       "#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore",
     ignore: [
-      // Pa11y using Axe is looking for videos with track elements of type=captions, but the
-      // Mux player is rendering type=subtitles, so Pa11y is complaining, not sure who is wrong
-      // hiding for now
-      "video-caption",
-      // This is something to do with the video controls in the Shadow DOM, they appear white on black,
-      // but Pa11y isn't picking that up.
+      // We have multiple instances of high-contrast text being detected as low-contrast
+      // because of low-contrast text shadows.
       "color-contrast",
+
+      //   Pa11y using Axe is looking for videos with track elements of type=captions, but the
+      //   Mux player is rendering type=subtitles, so Pa11y is complaining, not sure who is wrong
+      "video-caption",
+
+      // There are also problems with the video controls being a <ul> with <slot> rather than <li> children.
+      // Eslint should prevent us doing this in components we control.
+      "list",
     ],
     headers: {
       "CF-Access-Client-Id": CfAccessClientId,
