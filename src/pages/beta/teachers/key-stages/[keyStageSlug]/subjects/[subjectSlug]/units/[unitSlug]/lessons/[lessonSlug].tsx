@@ -62,6 +62,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     hasDownloadableResources,
     introQuiz,
     exitQuiz,
+    introQuizInfo,
+    exitQuizInfo,
   } = curriculumData;
 
   const router = useRouter();
@@ -144,7 +146,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Hr $color={"oakGrey3"} />
         {presentationUrl && !hasCopyrightMaterial && (
           <ExpandingContainer
-            title={"Presentation"}
+            title={"Slide deck"}
             downloadable={true}
             downloadLink={downLoadLink}
             toggleClosed={false}
@@ -177,7 +179,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer questions={introQuiz} />
+            <QuizContainer questions={introQuiz} info={introQuizInfo} />
           </ExpandingContainer>
         ) : (
           ""
@@ -188,7 +190,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer questions={exitQuiz} />
+            <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
           </ExpandingContainer>
         )}
 

@@ -29,6 +29,10 @@ import Grid, {
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
+import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
+import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
+import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -69,6 +73,24 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     subjectTitle,
     downloads,
   } = curriculumData;
+  const [selectedRadio, setSelectedRadio] = useState("");
+  const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
+    useSchoolPicker();
+
+  const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
+    if (selectedRadio && selectedValue) {
+      setSelectedRadio("");
+    }
+    setInputValue(value);
+  };
+
+  const onRadioChange = (e: string) => {
+    if (selectedValue) {
+      setInputValue("");
+    }
+    setSelectedRadio(e);
+  };
+
   const { register, formState } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
@@ -154,10 +176,37 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
             Your details
           </Heading>
+          <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
+            Find your school in the field below (required)
+          </Heading>
+          <SchoolPicker
+            inputValue={inputValue}
+            setInputValue={onSchoolPickerInputChange}
+            schools={data}
+            label={"Name of school:"}
+            setSelectedValue={setSelectedValue}
+          />
+          <Box $mt={12} $ml={24} $mb={32}>
+            <P $mb={12} $font={"body-2"}>
+              Or select one of the following:
+            </P>
+            <Flex>
+              <RadioGroup
+                aria-label={"home school or my school isn't listed"}
+                value={selectedRadio}
+                onChange={onRadioChange}
+              >
+                <Radio data-testid={"radio-download"} value={"homeschool"}>
+                  Homeschool
+                </Radio>
+                <Radio value={"notListed"}>My school isn’t listed</Radio>
+              </RadioGroup>
+            </Flex>
+          </Box>
           <Heading
             tag="h3"
             $font={"heading-7"}
-            $mt={0}
+            $mt={16}
             $mb={24}
             data-testid="email-heading"
           >

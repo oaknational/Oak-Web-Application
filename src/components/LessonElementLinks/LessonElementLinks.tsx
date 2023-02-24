@@ -77,7 +77,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           <GraphiCircleIcon icon="quiz" />
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.introQuiz}`}>
-              Intro quiz
+              Starter quiz
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -94,7 +94,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           </Flex>
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
-              Lesson slides or video
+              Slide deck or video
             </AnchorLink>
           </LinkText>
         </GraphicContainer>

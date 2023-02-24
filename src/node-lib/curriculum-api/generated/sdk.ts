@@ -5167,7 +5167,6 @@ export type Ingest_Video_Ingest = {
   ingest_provider_caption_status?: Maybe<Scalars['String']>;
   ingest_provider_error?: Maybe<Scalars['String']>;
   ingest_provider_playback_id?: Maybe<Scalars['String']>;
-  ingest_provider_public_playback_id?: Maybe<Scalars['String']>;
   ingest_provider_status?: Maybe<Scalars['String']>;
   ingest_provider_text_track_id?: Maybe<Scalars['String']>;
   ingest_submitted_at?: Maybe<Scalars['timestamptz']>;
@@ -5311,7 +5310,6 @@ export type Ingest_Video_Ingest_Bool_Exp = {
   ingest_provider_caption_status?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_error?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_playback_id?: InputMaybe<String_Comparison_Exp>;
-  ingest_provider_public_playback_id?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_status?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_text_track_id?: InputMaybe<String_Comparison_Exp>;
   ingest_submitted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -5408,7 +5406,6 @@ export type Ingest_Video_Ingest_Insert_Input = {
   ingest_provider_caption_status?: InputMaybe<Scalars['String']>;
   ingest_provider_error?: InputMaybe<Scalars['String']>;
   ingest_provider_playback_id?: InputMaybe<Scalars['String']>;
-  ingest_provider_public_playback_id?: InputMaybe<Scalars['String']>;
   ingest_provider_status?: InputMaybe<Scalars['String']>;
   ingest_provider_text_track_id?: InputMaybe<Scalars['String']>;
   ingest_submitted_at?: InputMaybe<Scalars['timestamptz']>;
@@ -5467,7 +5464,6 @@ export type Ingest_Video_Ingest_Max_Fields = {
   ingest_provider_caption_status?: Maybe<Scalars['String']>;
   ingest_provider_error?: Maybe<Scalars['String']>;
   ingest_provider_playback_id?: Maybe<Scalars['String']>;
-  ingest_provider_public_playback_id?: Maybe<Scalars['String']>;
   ingest_provider_status?: Maybe<Scalars['String']>;
   ingest_provider_text_track_id?: Maybe<Scalars['String']>;
   ingest_submitted_at?: Maybe<Scalars['timestamptz']>;
@@ -5522,7 +5518,6 @@ export type Ingest_Video_Ingest_Max_Order_By = {
   ingest_provider_caption_status?: InputMaybe<Order_By>;
   ingest_provider_error?: InputMaybe<Order_By>;
   ingest_provider_playback_id?: InputMaybe<Order_By>;
-  ingest_provider_public_playback_id?: InputMaybe<Order_By>;
   ingest_provider_status?: InputMaybe<Order_By>;
   ingest_provider_text_track_id?: InputMaybe<Order_By>;
   ingest_submitted_at?: InputMaybe<Order_By>;
@@ -5578,7 +5573,6 @@ export type Ingest_Video_Ingest_Min_Fields = {
   ingest_provider_caption_status?: Maybe<Scalars['String']>;
   ingest_provider_error?: Maybe<Scalars['String']>;
   ingest_provider_playback_id?: Maybe<Scalars['String']>;
-  ingest_provider_public_playback_id?: Maybe<Scalars['String']>;
   ingest_provider_status?: Maybe<Scalars['String']>;
   ingest_provider_text_track_id?: Maybe<Scalars['String']>;
   ingest_submitted_at?: Maybe<Scalars['timestamptz']>;
@@ -5633,7 +5627,6 @@ export type Ingest_Video_Ingest_Min_Order_By = {
   ingest_provider_caption_status?: InputMaybe<Order_By>;
   ingest_provider_error?: InputMaybe<Order_By>;
   ingest_provider_playback_id?: InputMaybe<Order_By>;
-  ingest_provider_public_playback_id?: InputMaybe<Order_By>;
   ingest_provider_status?: InputMaybe<Order_By>;
   ingest_provider_text_track_id?: InputMaybe<Order_By>;
   ingest_submitted_at?: InputMaybe<Order_By>;
@@ -5714,7 +5707,6 @@ export type Ingest_Video_Ingest_Order_By = {
   ingest_provider_caption_status?: InputMaybe<Order_By>;
   ingest_provider_error?: InputMaybe<Order_By>;
   ingest_provider_playback_id?: InputMaybe<Order_By>;
-  ingest_provider_public_playback_id?: InputMaybe<Order_By>;
   ingest_provider_status?: InputMaybe<Order_By>;
   ingest_provider_text_track_id?: InputMaybe<Order_By>;
   ingest_submitted_at?: InputMaybe<Order_By>;
@@ -5821,8 +5813,6 @@ export enum Ingest_Video_Ingest_Select_Column {
   /** column name */
   IngestProviderPlaybackId = 'ingest_provider_playback_id',
   /** column name */
-  IngestProviderPublicPlaybackId = 'ingest_provider_public_playback_id',
-  /** column name */
   IngestProviderStatus = 'ingest_provider_status',
   /** column name */
   IngestProviderTextTrackId = 'ingest_provider_text_track_id',
@@ -5906,7 +5896,6 @@ export type Ingest_Video_Ingest_Set_Input = {
   ingest_provider_caption_status?: InputMaybe<Scalars['String']>;
   ingest_provider_error?: InputMaybe<Scalars['String']>;
   ingest_provider_playback_id?: InputMaybe<Scalars['String']>;
-  ingest_provider_public_playback_id?: InputMaybe<Scalars['String']>;
   ingest_provider_status?: InputMaybe<Scalars['String']>;
   ingest_provider_text_track_id?: InputMaybe<Scalars['String']>;
   ingest_submitted_at?: InputMaybe<Scalars['timestamptz']>;
@@ -6070,8 +6059,6 @@ export enum Ingest_Video_Ingest_Update_Column {
   IngestProviderError = 'ingest_provider_error',
   /** column name */
   IngestProviderPlaybackId = 'ingest_provider_playback_id',
-  /** column name */
-  IngestProviderPublicPlaybackId = 'ingest_provider_public_playback_id',
   /** column name */
   IngestProviderStatus = 'ingest_provider_status',
   /** column name */
@@ -36188,7 +36175,7 @@ export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units', slug?: string | null, title?: string | null, year?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null }>, mv_learning_themes: Array<{ __typename?: 'mv_learning_themes', slug?: string | null, label?: string | null, tierSlug?: string | null, tierName?: string | null, subjectTitle?: string | null, subjectSlug?: string | null, keyStageTitle?: string | null, keyStageSlug?: string | null }> };
+export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units', slug?: string | null, title?: string | null, year?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null }>, mv_learning_themes: Array<{ __typename?: 'mv_learning_themes', slug?: string | null, label?: string | null, tierSlug?: string | null, tierName?: string | null, subjectTitle?: string | null, subjectSlug?: string | null, keyStageTitle?: string | null, keyStageSlug?: string | null }> };
 
 export type TeachersKeyStageSubjectUnitLessonsDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String'];
@@ -36220,7 +36207,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
 
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -36319,6 +36306,7 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
     slug
     title
     unitCount: unit_count
+    lessonCount: lesson_count
   }
   mv_units(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, tier_slug: {_eq: $tierSlug}, theme_slug: {_eq: $learningThemeSlug}}
@@ -36421,6 +36409,12 @@ export const TeachersLessonOverviewDocument = gql`
     transcript
     hasDownloadableResources: has_downloadable_resources
   }
+  exitQuizInfo: mv_quizzes(
+    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    title
+    questionCount: question_count
+  }
   exitQuiz: mv_questions(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}
     order_by: {order: asc}
@@ -36446,6 +36440,13 @@ export const TeachersLessonOverviewDocument = gql`
     title
     type
     order
+    displayNumber: display_number
+  }
+  introQuizInfo: mv_quizzes(
+    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    title
+    questionCount: question_count
   }
   introQuiz: mv_questions(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
@@ -36472,6 +36473,7 @@ export const TeachersLessonOverviewDocument = gql`
     title
     type
     order
+    displayNumber: display_number
   }
 }
     `;
