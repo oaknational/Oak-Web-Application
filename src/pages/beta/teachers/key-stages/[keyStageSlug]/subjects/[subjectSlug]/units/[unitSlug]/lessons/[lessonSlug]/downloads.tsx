@@ -184,6 +184,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         const { resources: resourceExistence } =
           await getDownloadResourcesExistence(slug, resourceTypesAsString);
 
+        console.log(">>>>>>", resourceExistence);
+
         const resourcesExistenceAsArray = resourceExistence
           ? Object.entries(resourceExistence as ResourcesToDownloadType)
           : [];
@@ -354,6 +356,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     onChange={() =>
                       onResourceToDownloadToggle(`${download.type}`)
                     }
+                    data-testid={`download-card-${download.type}`}
                   />
                 </GridArea>
               );
@@ -371,23 +374,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
 
-              <Button
-                label={"Download .zip"}
-                onClick={() => {
-                  onFormSubmit();
-                }}
-                background={"teachersHighlight"}
-                icon="Download"
-                $iconPosition="trailing"
-                iconBackground="teachersYellow"
-                disabled={
-                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
-                }
-                $mt={8}
-                $mb={16}
-                $mr={8}
-                $ml={8}
-              />
+              {isAttemptingDownload && <p>Loading...</p>}
+              {!isAttemptingDownload && selectedResourcesToDownloadCount > 0 && (
+                <Button
+                  label={"Download .zip"}
+                  onClick={() => {
+                    onFormSubmit();
+                  }}
+                  background={"teachersHighlight"}
+                  icon="Download"
+                  $iconPosition="trailing"
+                  iconBackground="teachersYellow"
+                  $mt={8}
+                  $mb={16}
+                  $mr={8}
+                  $ml={8}
+                />
+              )}
             </Flex>
           </GridArea>
         </Grid>
