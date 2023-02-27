@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
@@ -52,9 +53,17 @@ export const getButtonStylesProps = (
     background = DEFAULT_BUTTON_BACKGROUND,
     $fullWidth,
     $focusStyles,
+    disabled,
   } = props;
 
-  return { size, $iconPosition, variant, $fullWidth, background, $focusStyles };
+  return {
+    size,
+    $iconPosition,
+    variant,
+    $fullWidth,
+    background: disabled ? "grey6" : background,
+    $focusStyles,
+  };
 };
 const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
@@ -69,7 +78,9 @@ const buttonStyles = css<ButtonStylesProps>`
     flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
     height: ${getButtonHeight(props.size, props.variant)}px;
     padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
-    background-color: ${getButtonBackground(props.background, props.variant)};
+    background-color: ${props.disabled
+      ? getColorByName("grey6")
+      : getButtonBackground(props.background, props.variant)};
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
