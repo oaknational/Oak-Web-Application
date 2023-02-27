@@ -65,6 +65,7 @@ export const getButtonStylesProps = (
     $focusStyles,
   };
 };
+
 const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
   justify-content: center;
@@ -110,7 +111,9 @@ const buttonStyles = css<ButtonStylesProps>`
     props.variant === "brush" &&
     css`
       :hover {
-        box-shadow: ${getButtonDropShadowColor(props.background)};
+        box-shadow: ${props.disabled
+          ? getButtonDropShadowColor("grey6")
+          : getButtonDropShadowColor(props.background)};
       }
 
       :focus ${ButtonFocusUnderline} {
