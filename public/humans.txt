@@ -28,20 +28,20 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: London, UK
 
 
-  John Roberts (Director of Product and Technology)
+  John Roberts (Director of Product and Engineering)
   Site: https://johnroberts.me
   LinkedIn: https://linkedin.com/in/johnrobertsuk
   Twitter: @johnrobeds
   From: Manchester, UK
 
 
-  Matt Gregory (Developer)
-  Site: https://mantagen.org
-
-
   Lionel Jingles (Developer)
   LinkedIn: https://www.linkedin.com/in/lionel-jingles/
   From: San Francisco, US
+
+
+  Matt Gregory (Developer)
+  Site: https://mantagen.org
 
 
   Ross Mackay (Developer)
@@ -69,15 +69,15 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Verity Roberts (Product Manager)
   From: Cambridge, UK
   
-  
-  Will Gayne (Head of Product Strategy)
-  LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
-  From: Macclesfield, UK
-
 
   Weronika Szalas (Developer)
   LinkedIn: https://www.linkedin.com/in/szalasw/
   From: Katowice, Poland
+  
+  
+  Will Gayne (Head of Product Strategy)
+  LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
+  From: Macclesfield, UK
 
 
 /* THANKS */
@@ -135,8 +135,6 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Site: https://putty.studio
   LinkedIn: https://www.linkedin.com/in/tom-wise1234/
   From: Brighton, UK
-
-
 
 
 There are many other humans and organisations that have supported Oak National Academy. We've listed out a number of the key partner organisations at https://www.thenational.academy/about-us/partners
