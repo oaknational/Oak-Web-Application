@@ -102,6 +102,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { errors } = formState;
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+  const [isAttemptingDownload, setIsAttemptingDownload] =
+    useState<boolean>(false);
 
   const getInitialResourcesToDownloadState = () => {
     const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
@@ -149,6 +151,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         false;
     });
     setResourcesToDownload(updatedResourcesToDownload);
+  };
+
+  const onFormSubmit = async () => {
+    setIsAttemptingDownload(true);
+    const downloadResources = await downloadSelectedLessonResources(
+      slug,
+      resourcesToDownload
+    );
+    if (downloadResources?.success) {
+      setIsAttemptingDownload(false);
+    }
   };
 
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
@@ -357,20 +370,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               >
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
-              <Button
-                label="Download .zip"
-                onClick={() => {
-                  downloadSelectedLessonResources(slug, resourcesToDownload);
-                }}
-                background={"teachersHighlight"}
-                icon="Download"
-                $iconPosition="trailing"
-                iconBackground="teachersYellow"
-                $mt={8}
-                $mb={8}
-                $mr={8}
-                $ml={8}
-              />
+              {isAttemptingDownload && <p>Loading...</p>}
+              {!isAttemptingDownload && (
+                <Button
+                  label="Download .zip"
+                  onClick={() => {
+                    onFormSubmit();
+                  }}
+                  background={"teachersHighlight"}
+                  icon="Download"
+                  $iconPosition="trailing"
+                  iconBackground="teachersYellow"
+                  $mt={8}
+                  $mb={8}
+                  $mr={8}
+                  $ml={8}
+                />
+              )}
             </Flex>
           </GridArea>
         </Grid>
