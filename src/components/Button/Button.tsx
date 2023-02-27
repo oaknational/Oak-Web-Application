@@ -42,6 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     iconBackground,
     $font,
     disabled,
+    ariaDisabled,
     ...spacingProps
   } = props;
 
@@ -62,7 +63,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       variant={variant}
       $iconPosition={$iconPosition}
       background={background}
-      disabled={disabled}
       aria-disabled={disabled}
       {...spacingProps}
     >
