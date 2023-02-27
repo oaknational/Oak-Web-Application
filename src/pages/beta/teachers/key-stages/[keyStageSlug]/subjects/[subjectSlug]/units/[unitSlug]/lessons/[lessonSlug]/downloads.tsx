@@ -109,7 +109,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
 
     downloads?.forEach((download) => {
-      if (download.exists) {
+      if (download.exists && !download.forbidden) {
         initialResourcesToDownloadState[download.type as DownloadResourceType] =
           false;
       }
