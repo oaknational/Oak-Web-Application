@@ -17,6 +17,9 @@
  * app less frequently) are not added to the spritesheet. Instead their Sanity
  * asset data is stored (at `src/image-data/subject-icons.json`) ready to be
  * consumed by @sanity/image-url
+ * 
+ * The Sanity queries use GROQ, find documentation here:
+ * https://www.sanity.io/docs/how-queries-work
  */
 
 require("dotenv").config();
@@ -26,30 +29,11 @@ const path = require("path");
 const sanityClient = require("@sanity/client");
 const SVGSpriter = require("svg-sprite");
 
-const fetchConfig = require("../fetch_config");
-const fetchSecrets = require("../fetch_secrets");
-
 async function main() {
-  const configLocation = process.env.OAK_CONFIG_LOCATION;
-
-  const oakConfig = await fetchConfig(configLocation);
-  const secretsFromNetwork = process.env.USE_ONLY_LOCAL_SECRETS
-    ? {}
-    : await fetchSecrets(oakConfig);
-
-  const env = {
-    NEXT_PUBLIC_SANITY_PROJECT_ID:
-      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || oakConfig.sanity?.projectId,
-    NEXT_PUBLIC_SANITY_DATASET:
-      process.env.NEXT_PUBLIC_SANITY_DATASET || oakConfig.sanity?.dataset,
-    SANITY_AUTH_SECRET:
-      process.env.SANITY_AUTH_SECRET || secretsFromNetwork.SANITY_AUTH_SECRET,
-  };
-
   const sanityConfig = {
-    projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: env.NEXT_PUBLIC_SANITY_DATASET,
-    token: env.SANITY_AUTH_SECRET,
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    token: process.env.SANITY_AUTH_SECRET,
   };
   const client = sanityClient(sanityConfig);
 

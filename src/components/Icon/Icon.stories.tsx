@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Heading } from "../Typography";
-import { ICON_NAMES } from "../../image-data/types";
+import { ICON_NAMES } from "../../image-data";
 
 import Component from "./Icon";
 

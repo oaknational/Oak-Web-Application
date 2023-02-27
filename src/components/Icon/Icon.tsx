@@ -7,16 +7,9 @@ import Svg, { SvgProps } from "../Svg/Svg";
 import size, { SizeProps } from "../../styles/utils/size";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { box, BoxProps } from "../Box";
-import uiIcons from "../../image-data/ui-icons.json";
-import { UiIconName } from "../../image-data/types";
+import { UiIconName } from "../../image-data";
 
 import useIconAnimation from "./useIconAnimation";
-
-export const isIconName = (
-  maybeIconName: string
-): maybeIconName is IconName => {
-  return Boolean((uiIcons as Record<string, unknown>)[maybeIconName]);
-};
 
 export type IconName = UiIconName;
 type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";

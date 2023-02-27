@@ -1,26 +1,12 @@
 import { FC } from "react";
 
 import CMSImage from "../CMSImage";
-import subjectIcons from "../../image-data/subject-icons.json";
 import { CMSImageProps } from "../CMSImage/CMSImage";
 import Box from "../Box";
-
-type AvailableSubjectIcons = typeof subjectIcons;
-type SubjectIconSlug = keyof AvailableSubjectIcons;
-type SubjectIconAsset = AvailableSubjectIcons[SubjectIconSlug];
-const subjectIconsByString = subjectIcons as Record<
-  string,
-  SubjectIconAsset | undefined
->;
+import { getSubjectIconAsset } from "../../image-data";
 
 type SubjectIconProps = Omit<CMSImageProps, "image"> & {
   subjectSlug: string;
-};
-
-const getSubjectIconAsset = (
-  maybeSlug: string
-): SubjectIconAsset | undefined => {
-  return subjectIconsByString[maybeSlug];
 };
 
 const SubjectIcon: FC<SubjectIconProps> = ({

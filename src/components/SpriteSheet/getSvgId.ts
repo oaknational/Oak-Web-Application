@@ -1,4 +1,4 @@
-import { UiGraphicName, UiIconName } from "../../image-data/types";
+import { UiGraphicName, UiIconName } from "../../image-data";
 
 export type SvgProps = {
   id: string;

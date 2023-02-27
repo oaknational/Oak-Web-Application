@@ -9,7 +9,7 @@ import Checkbox from "../Checkbox";
 import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
-import { UiIconName } from "../../image-data/types";
+import { UiIconName } from "../../image-data";
 
 export type DownloadResourceType =
   | "slideDeck"
