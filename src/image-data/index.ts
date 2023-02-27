@@ -20,9 +20,3 @@ export const getSubjectIconAsset = (
 ): SubjectIconAsset | undefined => {
   return subjectIconsByString[maybeSlug];
 };
-
-export const isIconName = (
-  maybeIconName: string
-): maybeIconName is UiIconName => {
-  return Boolean((uiIcons as Record<string, unknown>)[maybeIconName]);
-};

@@ -24,13 +24,21 @@ async function main() {
   }`);
 
   /**
+   * This reducer function outputs an object keyed by slug.
+   * Although this is currently only used to derive types for the slug, an
+   * array of slugs cannot be used cannot be used
+   * @see https://github.com/microsoft/TypeScript/issues/32063
+   */
+  const objectBySlug = (acc, cur) => {
+    acc[cur.slug.current] = {};
+    return acc;
+  };
+
+  /**
    * uiIconsBySlug -> image-data/ui-icons.json
    * This will enable static types for ui-icons.
    */
-  const uiIconsBySlug = uiIconsRes.reduce((acc, cur) => {
-    acc[cur.slug.current] = {};
-    return acc;
-  }, {});
+  const uiIconsBySlug = uiIconsRes.reduce(objectBySlug, {});
   const uiIconNames = "src/image-data/generated/ui-icons.json";
   writeFileSync(uiIconNames, JSON.stringify(uiIconsBySlug));
   console.log(`✅ UI icon names written to ${uiIconNames}`);
@@ -39,10 +47,7 @@ async function main() {
    * uiGraphicsBySlug -> image-data/ui-graphics.json
    * This will enable static types for ui-graphics.
    */
-  const uiGraphicsBySlug = uiGraphicsRes.reduce((acc, cur) => {
-    acc[cur.slug.current] = {};
-    return acc;
-  }, {});
+  const uiGraphicsBySlug = uiGraphicsRes.reduce(objectBySlug, {});
   const uiGraphicsPath = "src/image-data/generated/ui-graphics.json";
   writeFileSync(uiGraphicsPath, JSON.stringify(uiGraphicsBySlug));
   console.log(`✅ UI graphic names written to ${uiGraphicsPath}`);
