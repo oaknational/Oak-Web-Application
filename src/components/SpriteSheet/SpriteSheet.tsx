@@ -4,7 +4,7 @@ const SpriteSheet: FC = () => {
   return (
     <object
       type="image/svg+xml"
-      data="/images/sprite.svg"
+      data="/images/sprite/sprite.svg"
       width="0"
       height="0"
     />

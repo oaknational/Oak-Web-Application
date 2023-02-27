@@ -10,7 +10,7 @@ type GetSvgIdProps = {
   name: SvgName;
 };
 const getSvgId = ({ name }: GetSvgIdProps) => {
-  return `svg-sprite-${name}`;
+  return `${name}`;
 };
 
 export default getSvgId;

@@ -25,7 +25,7 @@ const Svg: FC<SvgProps> = (props) => {
       height="100%"
       {...props}
     >
-      <use xlinkHref={`/images/sprite.svg#${getSvgId(props)}`} />
+      <use xlinkHref={`/images/sprite/sprite.svg#${getSvgId(props)}`} />
     </StyledSvg>
   );
 };
