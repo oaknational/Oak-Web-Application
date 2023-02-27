@@ -85,7 +85,7 @@ const buttonStyles = css<ButtonStylesProps>`
       flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
       height: ${getButtonHeight(props.size, props.variant)}px;
       padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
-      background-color: ${props.disabled
+      background-color: ${props["aria-disabled"]
         ? getColorByName("grey6")
         : getButtonBackground(props.background, props.variant)};
       color: ${getButtonColor(props.background, props.variant)};
