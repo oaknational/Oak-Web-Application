@@ -1,3 +1,17 @@
+## [1.142.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.142.4...v1.142.5) (2023-02-27)
+
+
+### Bug Fixes
+
+* **storybook:** spelling ([2b40cf5](https://github.com/oaknational/Oak-Web-Application/commit/2b40cf5a0a40d3e92e8e1cc5627e0670bf5159f8))
+
+## [1.142.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.142.3...v1.142.4) (2023-02-27)
+
+
+### Bug Fixes
+
+* **humans:** reorder alphabetically correctly ([de32755](https://github.com/oaknational/Oak-Web-Application/commit/de32755c30284bfd5c58b5c07953124cf7a14ec8))
+
 ## [1.142.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.142.2...v1.142.3) (2023-02-27)
 
 ## [1.142.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.142.1...v1.142.2) (2023-02-24)
