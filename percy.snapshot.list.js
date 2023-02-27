@@ -11,6 +11,9 @@ console.log("Percy base url:", baseUrl);
 // Support single string relative URLs, or objects with a `url` key.
 // https://docs.percy.io/docs/percy-snapshot#configuration
 const snapshotRelativeUrls = [
+  // Error pages
+  "/404",
+  // Public pages
   "/",
   "/lesson-planning",
   "/develop-your-curriculum",
@@ -26,6 +29,15 @@ const snapshotRelativeUrls = [
   "/blog/join-the-childrens-mental-health-week-assembly-2022",
   "/legal/accessibility-statement",
   "/lp/lesson-and-resource-directory",
+  // Beta pages
+  "/beta",
+  "/beta/teachers",
+  "/beta/teachers/key-stages/ks1/subjects",
+  "/beta/teachers/key-stages/ks4/subjects/maths",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units?tier=foundation",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t",
+  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads",
 ];
 
 const urls = snapshotRelativeUrls.map((relUrl) => {

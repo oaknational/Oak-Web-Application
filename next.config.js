@@ -5,6 +5,9 @@ const {
   BugsnagSourceMapUploaderPlugin,
 } = require("webpack-bugsnag-plugins");
 const { PHASE_TEST, PHASE_PRODUCTION_BUILD } = require("next/constants");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYSE_BUNDLE === "on",
+});
 
 const {
   getAppVersion,
@@ -190,5 +193,5 @@ module.exports = async (phase) => {
     throw err;
   }
 
-  return nextConfig;
+  return withBundleAnalyzer(nextConfig);
 };

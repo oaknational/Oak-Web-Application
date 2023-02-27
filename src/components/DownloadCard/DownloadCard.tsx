@@ -12,7 +12,7 @@ import { IconName } from "../Icon";
 import { UiIconName } from "../../image-data";
 
 export type DownloadResourceType =
-  | "slideDeck"
+  | "presentation"
   | "intro-quiz-questions"
   | "intro-quiz-answers"
   | "exit-quiz-questions"
