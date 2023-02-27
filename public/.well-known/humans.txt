@@ -50,6 +50,11 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: London, UK
 
 
+  Shaquille Hobbs-Daley (Developer)
+  LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
+  From: London, UK
+
+
   Stuart G Wilson (Product Designer)
   Site: qegadesign.myportfolio.com
   Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
@@ -113,11 +118,6 @@ Oak National Academy’s tech platform has been created by a team of human devel
   LinkedIn: https://linkedin.com/in/shaunorpen
   Twitter: https://twitter.com/shaunorpen
   From: UK
-
-
-  Shaquille Hobbs-Daley (Developer)
-  LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
-  From: London, UK
 
 
   Stef Lewandowski (Lead Developer)
