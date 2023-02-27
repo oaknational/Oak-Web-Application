@@ -55,7 +55,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
-          <OakLink slug={keyStageSlug} page={"subject-index"}>
+          <OakLink $isInline={true} slug={keyStageSlug} page={"subject-index"}>
             <Span $font={"heading-7"}>{keyStage}</Span>
           </OakLink>
         </Box>

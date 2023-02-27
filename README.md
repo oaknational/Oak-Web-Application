@@ -53,7 +53,11 @@ npm run dev
 
 For more detail please see the [test documentation](docs/testing.md).
 
-### Unit tests
+### Pa11y Tests
+
+We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa11y locally start the dev server with `npm run dev`, then in another process run Pa11y with `npm run pa11y`.
+
+### Unit Tests
 
 Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
@@ -94,8 +98,14 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 ### Builds and Deployments
 
-- Preview builds on Vercel
-- Production builds on Vercel
+The app is built statically, with two caveats.
+
+- On dynamic routes, an empty array and `fallback: "blocking"` is returned from `getStaticPaths`. This means that those pages are built on first request, then stored as if they had been built at build time. This allows us to build an app with tens of thousands of pages in a few minutes.
+- All pages that use `getStaticProps` have incremental static regeneration turned on, which re-runs `getStaticProps` periodically on the server in order to rebuild the page with the latest data.
+
+The upshot of these two pieces of config is that new pages become available automatically when the underlying data is updated, and existing pages get updated data when it is available, all without having to rebuild the app.
+
+Oak preview and production builds are on Netlify.
 
 #### Required Environment Variables for Builds
 

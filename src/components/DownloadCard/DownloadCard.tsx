@@ -11,7 +11,7 @@ import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 
 export type DownloadResourceType =
-  | "slideDeck"
+  | "presentation"
   | "intro-quiz-questions"
   | "intro-quiz-answers"
   | "exit-quiz-questions"
@@ -34,6 +34,7 @@ type DownloadCardLabelProps = DownloadCardProps & {
 };
 
 export const RESOURCE_TYPE_ICON_MAP = {
+  presentation: "Slidedeck",
   slideDeck: "Slidedeck",
   "intro-quiz-questions": "Quiz",
   "intro-quiz-answers": "Quiz",

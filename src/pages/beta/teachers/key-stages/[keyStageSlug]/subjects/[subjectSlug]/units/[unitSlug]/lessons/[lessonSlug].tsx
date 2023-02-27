@@ -1,16 +1,18 @@
 import React from "react";
 import { useRouter } from "next/router";
 import {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  //GetStaticPaths,
-  // GetStaticProps,
-  // GetStaticPropsResult,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
   NextPage,
 } from "next";
 
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../../../../node-lib/isr";
 import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
-//import { decorateWithIsr } from "../../../../../../../../../../node-lib/isr";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -60,6 +62,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     hasDownloadableResources,
     introQuiz,
     exitQuiz,
+    introQuizInfo,
+    exitQuizInfo,
   } = curriculumData;
 
   const router = useRouter();
@@ -142,7 +146,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Hr $color={"oakGrey3"} />
         {presentationUrl && !hasCopyrightMaterial && (
           <ExpandingContainer
-            title={"Presentation"}
+            title={"Slide deck"}
             downloadable={true}
             downloadLink={downLoadLink}
             toggleClosed={false}
@@ -175,7 +179,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer questions={introQuiz} />
+            <QuizContainer questions={introQuiz} info={introQuizInfo} />
           </ExpandingContainer>
         ) : (
           ""
@@ -186,7 +190,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             downloadable={true}
             downloadLink={downLoadLink}
           >
-            <QuizContainer questions={exitQuiz} />
+            <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
           </ExpandingContainer>
         )}
 
@@ -232,17 +236,22 @@ export type URLParams = {
   unitSlug: string;
 };
 
-// export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
-//   const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
-//   const paths = lessons.map((params) => ({ params: params }));
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
 
-//   return {
-//     fallback: false,
-//     paths,
-//   };
-// };
+  const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+  const paths = lessons.map((params) => ({ params: params }));
 
-export const getServerSideProps: GetServerSideProps<
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
@@ -264,14 +273,13 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const results: GetServerSidePropsResult<LessonOverviewPageProps> = {
+  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
     },
   };
-  // const resultsWithIsr = decorateWithIsr(results);
-  // return resultsWithIsr;
-  return results;
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default LessonOverviewPage;

@@ -1,10 +1,18 @@
-import { GetStaticPaths } from "next";
+import { GetStaticPathsResult } from "next";
 
 import CMSClient from "../../../node-lib/cms";
+import {
+  shouldSkipInitialBuild,
+  getFallbackBlockingConfig,
+} from "../../../node-lib/isr";
 import { getStaticProps } from "../index";
 
 type URLParams = { categorySlug: string };
-export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
   const blogResults = await CMSClient.blogPosts();
 
   const paths = blogResults.map((blogResult) => ({
@@ -13,10 +21,11 @@ export const getStaticPaths: GetStaticPaths<URLParams> = async () => {
     },
   }));
 
-  return {
-    paths,
+  const config: GetStaticPathsResult<URLParams> = {
     fallback: "blocking",
+    paths,
   };
+  return config;
 };
 
 export { getStaticProps };

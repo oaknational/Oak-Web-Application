@@ -1,12 +1,12 @@
 import { act, screen } from "@testing-library/react";
-import { GetServerSidePropsContext, PreviewData } from "next";
+import { GetStaticPropsContext, PreviewData } from "next";
 
 import renderWithSeo from "../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../__helpers__/cms";
 import renderWithProviders from "../../../../__helpers__/renderWithProviders";
 import teachersLessonOverviewFixture from "../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
 import LessonOverviewPage, {
-  getServerSideProps,
+  getStaticProps,
   LessonOverviewPageProps,
   URLParams,
 } from "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
@@ -57,10 +57,10 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("renders an iframe for a presentation and worksheet", async () => {
-    const { getAllByRole } = renderWithProviders(
+    const { getAllByTestId } = renderWithProviders(
       <LessonOverviewPage {...props} />
     );
-    const iframeElement = getAllByRole("iframe");
+    const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
 
@@ -82,7 +82,7 @@ describe("pages/beta/teachers/lessons", () => {
   });
   describe("getServerSideProps", () => {
     it("Should fetch the correct data", async () => {
-      const propsResult = (await getServerSideProps({
+      const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
           keyStageSlug: "ks2",
@@ -90,7 +90,7 @@ describe("pages/beta/teachers/lessons", () => {
           unitSlug: "shakespeare",
         },
         query: {},
-      } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
+      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
         props: LessonOverviewPageProps;
       };
 
@@ -98,9 +98,7 @@ describe("pages/beta/teachers/lessons", () => {
     });
     it("should throw error", async () => {
       await expect(
-        getServerSideProps(
-          {} as GetServerSidePropsContext<URLParams, PreviewData>
-        )
+        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("No context.params");
     });
   });
