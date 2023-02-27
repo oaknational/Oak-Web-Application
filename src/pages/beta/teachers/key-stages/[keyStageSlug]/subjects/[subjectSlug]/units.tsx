@@ -21,6 +21,7 @@ import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
 import { TierListItemProps } from "../../../../../../../components/TierList/TierListItem";
+import ButtonAsLink from "../../../../../../../components/Button/ButtonAsLink";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
@@ -42,6 +43,11 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   } = curriculumData;
 
   const { tier } = useRouter().query;
+  const keyStageNum = keyStageSlug.slice(-1);
+  let downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&extension=pdf`;
+  if (tier) {
+    downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}-${tier}&extension=pdf`;
+  }
 
   function isString(x: unknown): x is string {
     return typeof x === "string";
@@ -102,6 +108,18 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             $mb={24}
             $alignSelf={"flex-start"}
           />
+          <div>
+            <ButtonAsLink
+              icon="Download"
+              iconBackground="teachersHighlight"
+              label="Curriculum download (PDF)"
+              href={downloadLink}
+              page={null}
+              size="large"
+              variant="minimal"
+              $iconPosition={"trailing"}
+            />
+          </div>
           {/* not part of mvp page, add later */}
           {/* <Flex $mb={64} $display={"inline-flex"}>
 
@@ -165,6 +183,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                 )}
               </Box>
             </GridArea>
+
             <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 72]}>
               <Flex $flexDirection={["column-reverse", "column"]}>
                 <Flex
