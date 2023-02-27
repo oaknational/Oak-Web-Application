@@ -17,7 +17,7 @@
  * app less frequently) are not added to the spritesheet. Instead their Sanity
  * asset data is stored (at `src/image-data/subject-icons.json`) ready to be
  * consumed by @sanity/image-url
- * 
+ *
  * The Sanity queries use GROQ, find documentation here:
  * https://www.sanity.io/docs/how-queries-work
  */
@@ -115,12 +115,12 @@ async function main() {
   };
   const spriter = new SVGSpriter(spriterConfig);
 
-  for (const uiIcon of [...uiIconsRes, ...uiGraphicsRes]) {
+  for (const spriteIcon of [...uiIconsRes, ...uiGraphicsRes]) {
     /**
      * @todo promise.all
      */
-    const slug = uiIcon.slug.current;
-    const url = uiIcon.image.asset.url;
+    const slug = spriteIcon.slug.current;
+    const url = spriteIcon.image.asset.url;
     const svg = (await (await fetch(url)).text()).replace(
       `fill="#000"`,
       `fill="currentColor"`
@@ -137,6 +137,10 @@ async function main() {
 
   let sprite = "";
   spriter.compile((error, result) => {
+    if (error) {
+      throw error;
+    }
+
     for (const mode in result) {
       for (const resource in result[mode]) {
         sprite += result[mode][resource].contents.toString();
