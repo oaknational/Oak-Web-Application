@@ -370,23 +370,24 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               >
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
-              {isAttemptingDownload && <p>Loading...</p>}
-              {!isAttemptingDownload && (
-                <Button
-                  label="Download .zip"
-                  onClick={() => {
-                    onFormSubmit();
-                  }}
-                  background={"teachersHighlight"}
-                  icon="Download"
-                  $iconPosition="trailing"
-                  iconBackground="teachersYellow"
-                  $mt={8}
-                  $mb={8}
-                  $mr={8}
-                  $ml={8}
-                />
-              )}
+
+              <Button
+                label={"Download .zip"}
+                onClick={() => {
+                  onFormSubmit();
+                }}
+                background={"teachersHighlight"}
+                icon="Download"
+                $iconPosition="trailing"
+                iconBackground="teachersYellow"
+                disabled={
+                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
+                }
+                $mt={8}
+                $mb={16}
+                $mr={8}
+                $ml={8}
+              />
             </Flex>
           </GridArea>
         </Grid>
