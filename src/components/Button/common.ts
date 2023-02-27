@@ -209,6 +209,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];
+    disabled?: boolean;
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
   variant: DEFAULT_BUTTON_VARIANT,
