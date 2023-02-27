@@ -2,6 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
 import { Heading } from "../Typography";
 
 import CollapsibleSection from "./CollapsibleSection";
@@ -10,7 +11,7 @@ describe("CollapsibleSection", () => {
   it("renders a CollapsibleSection", () => {
     renderWithTheme(
       <CollapsibleSection
-        title={"Presentation"}
+        title={"Slide deck"}
         headingTag={"h2"}
         startOpen={false}
         buttons={[
@@ -30,13 +31,13 @@ describe("CollapsibleSection", () => {
 
     const heading = screen.getByRole("heading", { level: 2 });
 
-    expect(heading).toHaveTextContent("Presentation");
+    expect(heading).toHaveTextContent("Slide deck");
   });
 
   it("Opens section on click of button", async () => {
     renderWithTheme(
       <CollapsibleSection
-        title={"Presentation"}
+        title={"Slide deck"}
         headingTag={"h2"}
         startOpen={false}
       >
@@ -50,6 +51,8 @@ describe("CollapsibleSection", () => {
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
 
+    await waitForNextTick();
+
     const label = screen.getByText("Use Oak in Beta");
 
     expect(label).toBeInTheDocument();
@@ -60,7 +63,7 @@ describe("CollapsibleSection", () => {
 
     renderWithTheme(
       <CollapsibleSection
-        title={"Presentation"}
+        title={"Slide deck"}
         headingTag={"h2"}
         startOpen={false}
         buttons={[

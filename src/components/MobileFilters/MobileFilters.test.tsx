@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
 
 import MobileFilters, { MobileFiltersProps } from "./MobileFilters";
 
@@ -8,7 +9,7 @@ const testProps: MobileFiltersProps = {
   page: "webinars-index",
   withBackButton: true,
   children: "",
-  title: "Categories",
+  label: "Categories",
 };
 
 describe("components/MobileFilters", () => {
@@ -31,6 +32,9 @@ describe("components/MobileFilters", () => {
     await user.tab();
     await user.tab();
     await user.keyboard("{Enter}");
+
+    await waitForNextTick();
+
     expect(allBlogsContainer).toHaveStyle(`visibility: hidden`);
   });
 });

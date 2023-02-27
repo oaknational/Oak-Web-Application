@@ -22,6 +22,7 @@ const teachersLessonOverviewFixture = (
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcript: null,
+    hasDownloadableResources: true,
     introQuiz: [
       {
         keyStageSlug: "ks3",
@@ -38,6 +39,7 @@ const teachersLessonOverviewFixture = (
         answer: "this one",
         type: "multiple choice",
         quizType: "intro",
+        displayNumber: "Q1.",
         images: [
           "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
         ],
@@ -49,6 +51,8 @@ const teachersLessonOverviewFixture = (
       },
     ],
     exitQuiz: [],
+    exitQuizInfo: { title: "this quiz", questionCount: 4 },
+    introQuizInfo: { title: "this quiz", questionCount: 4 },
     ...partial,
   };
 };

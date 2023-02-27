@@ -2,18 +2,21 @@
 
 The Oak National Academy web application code base.
 
-- [Getting started](#Getting-started)
-- [Automatic Checks](#Automatic-Checks)
-  - [Unit tests](#Unit-tests)
-  - [End-to-End Browser Tests](#End-to-End-Browser-Tests)
-  - [Pre-commit and Commit Message Hooks](#Pre-commit-and-Commit-Message-Hooks)
-    - [Pre-commit](#Pre-commit)
-    - [Commit Message Validation](#Commit-Message-Validation)
-- [CI/CD](#CICD)
-  - [Pull Requests and Automated Checks](#Pull-Requests-and-Automated-Checks)
-  - [Builds and Deployments](#Builds-and-Deployments)
-  - [Release Mechanism](#Release-Mechanism)
-- [Npm dependencies](#Npm-dependencies)
+- [Getting started](#getting-started)
+- [Automatic Checks](#automatic-checks)
+  - [Unit tests](#unit-tests)
+  - [End-to-End Browser Tests](#end-to-end-browser-tests)
+  - [Pre-commit and Commit Message Hooks](#pre-commit-and-commit-message-hooks)
+    - [Pre-commit](#pre-commit)
+    - [Commit Message Validation](#commit-message-validation)
+- [CI/CD](#cicd)
+  - [Pull Requests and Automated Checks](#pull-requests-and-automated-checks)
+  - [Builds and Deployments](#builds-and-deployments)
+  - [Release Mechanism](#release-mechanism)
+- [External Contributions](#external-contributions)
+  - [Security and Bug Bounty](#security-and-bug-bounty)
+  - [Contributing to the Code](#contributing-to-the-code)
+- [Open Source Acknowledgements](#open-source-acknowledgements)
 
 Other documentation can be found in standalone READMEs:
 
@@ -50,7 +53,11 @@ npm run dev
 
 For more detail please see the [test documentation](docs/testing.md).
 
-### Unit tests
+### Pa11y Tests
+
+We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa11y locally start the dev server with `npm run dev`, then in another process run Pa11y with `npm run pa11y`.
+
+### Unit Tests
 
 Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
@@ -91,8 +98,14 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 
 ### Builds and Deployments
 
-- Preview builds on Vercel
-- Production builds on Vercel
+The app is built statically, with two caveats.
+
+- On dynamic routes, an empty array and `fallback: "blocking"` is returned from `getStaticPaths`. This means that those pages are built on first request, then stored as if they had been built at build time. This allows us to build an app with tens of thousands of pages in a few minutes.
+- All pages that use `getStaticProps` have incremental static regeneration turned on, which re-runs `getStaticProps` periodically on the server in order to rebuild the page with the latest data.
+
+The upshot of these two pieces of config is that new pages become available automatically when the underlying data is updated, and existing pages get updated data when it is available, all without having to rebuild the app.
+
+Oak preview and production builds are on Netlify.
 
 #### Required Environment Variables for Builds
 
@@ -102,3 +115,17 @@ We use [Commitlint](https://commitlint.js.org/#/) to validate that commit messag
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
 - All commits on `main` will trigger a Vercel deploy, but non-release commits ([according to the commit message structure](scripts/build/cancel_vercel_build.js)), will be cancelled.
 - The Vercel deployment will trigger the `deployment_checks` Github workflow.
+
+## External Contributions
+
+### Security and Bug Bounty
+
+Please see our [security.txt](public/.well-known/security.txt) file.
+
+### Contributing to the Code
+
+We don't currently accept external contributions to the code base, but this is under review and we hope to find an approach the works for us and the community.
+
+## Open Source Acknowledgements
+
+As will all web projects we are dependent on open source libraries maintained by others. While it is not practical to acknowledge them all, we would nevertheless like to express our gratitude for the contributions and efforts of the OSS community. Our dependency list can be found in our [package.json](package.json) file.

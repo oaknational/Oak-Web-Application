@@ -7,14 +7,14 @@ import { P } from "../Typography";
 
 const SearchFilters: FC = () => {
   return (
-    <div>
+    <>
       <P $mb={16}>Key stage</P>
       <Flex $flexDirection={"row"} $flexWrap={"wrap"}>
         {ALL_KEY_STAGES.map((ks) => (
           <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
         ))}
       </Flex>
-    </div>
+    </>
   );
 };
 

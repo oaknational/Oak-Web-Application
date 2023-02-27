@@ -2,12 +2,10 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import Flex, { FlexProps } from "../Flex";
-import Icon, { IconName } from "../Icon";
-import Circle from "../Circle";
-import { OakColorName } from "../../styles/theme";
 import Typography from "../Typography";
 import CardLink from "../Card/CardLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
+import GraphiCircleIcon from "../Icon/GraphicCircleIcon";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex
@@ -49,18 +47,6 @@ const LinkText: FC<{ children?: React.ReactNode }> = (props) => (
     {...props}
   />
 );
-type GraphicCircleProps = FlexProps & {
-  icon: IconName;
-  $background?: OakColorName;
-};
-const GraphicCircle: FC<GraphicCircleProps> = ({
-  icon,
-  $background = "teachersPastelYellow",
-}) => (
-  <Circle size={72} $background={$background} $dropShadow="grey20">
-    <Icon $pa={0} size={48} name={icon} />
-  </Circle>
-);
 
 type LessonProgressionGraphicProps = {
   linkTargetIds: {
@@ -88,27 +74,27 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         $justifyContent={["space-between", "initial"]}
       >
         <GraphicContainer>
-          <GraphicCircle icon="Quiz" />
+          <GraphiCircleIcon icon="Quiz" />
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.introQuiz}`}>
-              Intro quiz
+              Starter quiz
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
         <GraphicContainer $zIndex="neutral" $mr={[0, 40]}>
           <Flex $mr={-16}>
-            <GraphicCircle
+            <GraphiCircleIcon
               $zIndex="neutral"
-              icon="Presentation"
+              icon="Slidedeck"
               $background="pastelTurquoise"
             />
             <OverlapBehind>
-              <GraphicCircle icon="Video" />
+              <GraphiCircleIcon icon="Video" />
             </OverlapBehind>
           </Flex>
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
-              Lesson slides or video
+              Slide deck or video
             </AnchorLink>
           </LinkText>
         </GraphicContainer>
@@ -118,7 +104,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         $justifyContent={["space-between", "initial"]}
       >
         <GraphicContainer>
-          <GraphicCircle icon="Worksheet" />
+          <GraphiCircleIcon icon="Worksheet" />
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.worksheet}`}>
               Worksheet
@@ -127,7 +113,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
         </GraphicContainer>
 
         <GraphicContainer $mr={0}>
-          <GraphicCircle icon="Quiz" />
+          <GraphiCircleIcon icon="Quiz" />
           <LinkText>
             <AnchorLink page={null} href={`#${linkTargetIds.exitQuiz}`}>
               Exit quiz

@@ -15,7 +15,7 @@ export default {
 const Template: ComponentStory<typeof Component> = () => {
   return (
     <Component
-      title={"Presentation"}
+      title={"Slide deck"}
       headingTag={"h2"}
       startOpen={false}
       buttons={[
