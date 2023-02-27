@@ -1,3 +1,16 @@
+## [1.142.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.142.1...v1.142.2) (2023-02-24)
+
+## [1.142.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.142.0...v1.142.1) (2023-02-24)
+
+# [1.142.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.141.2...v1.142.0) (2023-02-24)
+
+
+### Features
+
+* 1113 update zod type to align with Data Tools ([7d8d92e](https://github.com/oaknational/Oak-Web-Application/commit/7d8d92e7c150a16e3bf036c024cb6f74742faef3))
+
+## [1.141.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.141.1...v1.141.2) (2023-02-24)
+
 ## [1.141.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.141.0...v1.141.1) (2023-02-22)
 
 # [1.141.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.140.0...v1.141.0) (2023-02-22)
