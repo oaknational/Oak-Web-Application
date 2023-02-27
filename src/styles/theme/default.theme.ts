@@ -105,7 +105,6 @@ const theme: OakTheme = {
   buttonDropShadows: {
     teachersHighlight: "5px 3px 16px 0px #2332a3",
     pupilsHighlight: "8px 5px 13px 1px #0b4413",
-    grey6: "8px 5px 13px 1px #808080",
   },
   buttonFocusUnderlineColors: {
     teachersHighlight: "teachersYellow",
