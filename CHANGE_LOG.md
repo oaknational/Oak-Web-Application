@@ -1,3 +1,17 @@
+# [1.146.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.145.0...v1.146.0) (2023-02-28)
+
+
+### Bug Fixes
+
+* add expired for search type ([590809c](https://github.com/oaknational/Oak-Web-Application/commit/590809c01ebd57a61ca69e7104bbf6f5dbac2764))
+* only show coming soon when there are unavailable subjects ([b51fdb6](https://github.com/oaknational/Oak-Web-Application/commit/b51fdb6c32562b7e782c10f506feb69003abe9db))
+
+
+### Features
+
+* add expired and expired lesson count to gql and zod ([d93b1da](https://github.com/oaknational/Oak-Web-Application/commit/d93b1da7ddd8cad61f9ccbe1656d52df074e6c04))
+* add expired lesson and unit card ([6aefdf2](https://github.com/oaknational/Oak-Web-Application/commit/6aefdf225ab7361b78ba9e11e13dd386800fda57))
+
 # [1.145.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.144.4...v1.145.0) (2023-02-28)
 
 
