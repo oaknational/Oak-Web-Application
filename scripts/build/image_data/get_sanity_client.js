@@ -1,5 +1,5 @@
 const nextenv = require("@next/env");
-nextenv.loadEnvConfig(".");
+nextenv.loadEnvConfig(".", process.env.NODE_ENV === "development");
 const sanityClient = require("@sanity/client");
 
 function getSanityClient() {

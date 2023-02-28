@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prebuild": "NODE_ENV=production node scripts/build/write_env_file && npm run image-data:all",
+    "prebuild": "NODE_ENV=production node scripts/build/write_env_file && NODE_ENV=production npm run image-data:all",
     "build": "next build",
     "build:analyse-bundle": "ANALYSE_BUNDLE=on next build",
     "postbuild": "next-sitemap",
@@ -15,7 +15,7 @@
     "config:push:dev": "node ./scripts/build/push_config --environment development",
     "config:push:prod": "node ./scripts/build/push_config --environment production",
     "config:push:test": "node ./scripts/build/push_config --environment test",
-    "predev": "node scripts/build/write_env_file && npm run image-data:all",
+    "predev": "node scripts/build/write_env_file && NODE_ENV=development npm run image-data:all",
     "dev": "next dev",
     "export": "next export",
     "format": "prettier '**/*.{j,t}{s,sx}' --write",
