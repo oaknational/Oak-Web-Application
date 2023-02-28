@@ -28,6 +28,8 @@ module.exports = function githubDeploymentPlugin() {
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const originalDeploymentUrl = process.env.DEPLOY_PRIME_URL;
       const defaultProductionUrl = process.env.URL;
+      // E.g. in case you have a non-public version of the production site for some reason.
+      const overrideProductionUrl = process.env.OVERRIDE_PRODUCTION_URL;
       const headBranchRef = process.env.HEAD;
       const sha = process.env.COMMIT_REF;
       const repoUrlString = process.env.REPOSITORY_URL;
@@ -53,7 +55,7 @@ module.exports = function githubDeploymentPlugin() {
       let deploymentUrl;
       if (isProduction) {
         // If it's production, use the default website URL as the URL.
-        deploymentUrl = defaultProductionUrl;
+        deploymentUrl = overrideProductionUrl || defaultProductionUrl;
       } else {
         // Else use the branch or preview URL.
         deploymentUrl = originalDeploymentUrl.replace(

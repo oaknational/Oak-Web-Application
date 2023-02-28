@@ -1,6 +1,6 @@
 # Oak Web Application
 
-The Oak National Academy web application code base.
+The Oak National Academy Web Application code base.
 
 - [Getting started](#getting-started)
 - [Automatic Checks](#automatic-checks)
