@@ -58,7 +58,7 @@ const TextBlockCardImageCta: FC<
               href={getCTAHref(cta)}
               page={null}
               label={cta.label}
-              icon={"ArrowRight"}
+              icon={"arrow-right"}
               $iconPosition={"trailing"}
               // @TODO: This link is dynamic, not always a support link
               // so we may not always want to open it in a new tab

@@ -24,14 +24,14 @@ const NavigationButtons = (props: NavigationButtonsProps) => {
   return (
     <ButtonGroup {...buttonGroupProps}>
       <IconButton
-        icon="ArrowLeft"
+        icon="arrow-left"
         aria-label="previous board member"
         onClick={prevBio}
         size="small"
         disabled={!prevBio}
       />
       <IconButton
-        icon="ArrowRight"
+        icon="arrow-right"
         aria-label="next board member"
         onClick={nextBio}
         size="small"

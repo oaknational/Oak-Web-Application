@@ -8,13 +8,12 @@ describe("SubjectCardListItem", () => {
   test("render a Card with the Name of the Subject", () => {
     renderWithTheme(
       <SubjectCardListItem
-        svgName="SubjectArtAndDesign"
         titleTag={"h3"}
         title={"Art and Design"}
         lessonCount={130}
         unitCount={14}
         keyStageSlug={"keyStage"}
-        slug={"subject"}
+        slug={"art"}
         tierCount={null}
       />
     );
@@ -23,13 +22,12 @@ describe("SubjectCardListItem", () => {
   test("if available has a link to take you to the corresponding subject page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
-        svgName="SubjectArtAndDesign"
         titleTag={"h3"}
         title={"Art and Design"}
         lessonCount={130}
         unitCount={14}
         keyStageSlug={"keyStage"}
-        slug={"subject"}
+        slug={"art"}
         tierCount={null}
       />
     );

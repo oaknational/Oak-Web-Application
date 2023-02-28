@@ -1,3 +1,21 @@
+# [1.145.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.144.4...v1.145.0) (2023-02-28)
+
+
+### Bug Fixes
+
+* adds sprite dir and readme ([462ead6](https://github.com/oaknational/Oak-Web-Application/commit/462ead6dbce61d5ace6e31fe2d457606f2cf4c9b))
+* icon resource map ([1367838](https://github.com/oaknational/Oak-Web-Application/commit/136783806bb729bcf36513009133edbbea48b21c))
+* move image-data generated files into generated dir ([48d4238](https://github.com/oaknational/Oak-Web-Application/commit/48d4238ec929f34992f489f9adb8baab28af37bf))
+* remove blue background from loading CMS images ([fc4964a](https://github.com/oaknational/Oak-Web-Application/commit/fc4964a53e8c2495ef86577131c63727bc7bba45))
+* types ([f242a1d](https://github.com/oaknational/Oak-Web-Application/commit/f242a1d3f11c84cb8cfc714ab336722e2daff0f9))
+
+
+### Features
+
+* fetch icons and graphics from Sanity ([7f82de5](https://github.com/oaknational/Oak-Web-Application/commit/7f82de57a3cdec7eb0b8670ee5a08e8189d66e59))
+
+## [1.144.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.144.3...v1.144.4) (2023-02-28)
+
 ## [1.144.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.144.2...v1.144.3) (2023-02-28)
 
 ## [1.144.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.144.1...v1.144.2) (2023-02-28)

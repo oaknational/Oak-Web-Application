@@ -53,7 +53,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
               />
               <Icon
                 $color="black"
-                name={toggleOpen ? "ChevronDown" : "ChevronUp"}
+                name={toggleOpen ? "chevron-down" : "chevron-up"}
               />
             </Flex>
           </Card>
@@ -65,7 +65,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 page={null}
                 aria-label="download resource"
                 background={"teachersHighlight"}
-                icon="Download"
+                icon="download"
                 variant="brush"
               />
             )}
@@ -75,7 +75,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 $ml={24}
                 aria-label="External click me"
                 background={"teachersPastelBlue"}
-                icon="External"
+                icon="external"
                 onClick={() => {
                   console.log("External Clicked!");
                 }}
@@ -88,7 +88,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 data-testid={"project-button"}
                 aria-label="Project Click me"
                 background={"teachersPastelBlue"}
-                icon="Project"
+                icon="project"
                 onClick={() => {
                   console.log("Project Clicked!");
                 }}

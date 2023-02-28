@@ -74,7 +74,7 @@ const Toast: FC = () => {
           <BrushBorders color="teachersPastelYellow" />
           <Flex $alignItems={"center"}>
             <Icon
-              name="Tick"
+              name="tick"
               size={36}
               variant={"brush"}
               $background={"white"}
