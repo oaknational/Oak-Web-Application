@@ -9,7 +9,6 @@ import Checkbox from "../Checkbox";
 import Box from "../Box";
 import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
-import { UiIconName } from "../../image-data";
 
 export type DownloadResourceType =
   | "presentation"
@@ -34,8 +33,8 @@ type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-export const RESOURCE_TYPE_ICON_MAP: Record<string, UiIconName> = {
-  slideDeck: "slide-deck",
+export const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
+  presentation: "slide-deck",
   "intro-quiz-questions": "quiz",
   "intro-quiz-answers": "quiz",
   "exit-quiz-questions": "quiz",
@@ -43,11 +42,6 @@ export const RESOURCE_TYPE_ICON_MAP: Record<string, UiIconName> = {
   "worksheet-pdf": "worksheet",
   "worksheet-pptx": "worksheet",
 };
-
-export const getResourceIconByType = (resourceType: DownloadResourceType) =>
-  RESOURCE_TYPE_ICON_MAP[resourceType]
-    ? RESOURCE_TYPE_ICON_MAP[resourceType]
-    : "download";
 
 const BoxWithFocusState = styled.div`
   position: relative;
@@ -71,7 +65,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
     >
       <Flex $minHeight={110} $pv={16}>
         <GraphicCircleIcon
-          icon={getResourceIconByType(resourceType) as IconName}
+          icon={RESOURCE_TYPE_ICON_MAP[resourceType]}
           hasDropShadow={false}
           isHovered={isHovered}
         />

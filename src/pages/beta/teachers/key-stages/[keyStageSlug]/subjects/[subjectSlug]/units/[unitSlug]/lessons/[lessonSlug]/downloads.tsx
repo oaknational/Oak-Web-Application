@@ -297,7 +297,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     name={"lessonResourcesToDownload"}
                     label={download.label}
                     extension={download.ext}
-                    resourceType={download.type as DownloadResourceType}
+                    resourceType={download.type}
                     checked={resourcesToDownload[download.type] || false}
                     onChange={() =>
                       onResourceToDownloadToggle(`${download.type}`)
