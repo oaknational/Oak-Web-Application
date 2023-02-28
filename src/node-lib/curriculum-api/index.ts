@@ -246,6 +246,8 @@ const teachersLessonOverviewPaths = z.object({
 const teachersLessonOverviewData = z.object({
   slug: z.string(),
   title: z.string(),
+  unitTitle: z.string(),
+  unitSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   subjectSlug: z.string(),

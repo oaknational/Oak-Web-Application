@@ -33,6 +33,7 @@ import SchoolPicker from "../../../../../../../../../../../components/SchoolPick
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
+import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -67,11 +68,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const {
     title,
+    slug,
     keyStageTitle,
     keyStageSlug,
     subjectSlug,
     subjectTitle,
     downloads,
+    unitSlug,
+    unitTitle,
   } = curriculumData;
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
@@ -161,6 +165,34 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       })}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
+        <Box $mv={[24, 48]}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                label: subjectTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                label: unitTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}`,
+                label: title,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}/downloads`,
+                label: "Downloads",
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
         <Flex $mb={8} $display={"inline-flex"} $mt={50}>
           <TitleCard
             page={"lesson"}

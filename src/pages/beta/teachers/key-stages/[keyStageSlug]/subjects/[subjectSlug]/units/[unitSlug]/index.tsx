@@ -11,6 +11,7 @@ import TitleCard from "../../../../../../../../../components/Card/TitleCard";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
+import Breadcrumbs from "../../../../../../../../../components/Breadcrumbs";
 
 export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
@@ -18,6 +19,7 @@ export type LessonListPageProps = {
 
 const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
   const {
+    unitSlug,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -43,6 +45,26 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
       $background="white"
     >
       <MaxWidth $ph={16}>
+        <Box $mv={[24, 48]}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                label: subjectTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                label: unitTitle,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
         <TitleCard
           page={"lessons"}
           keyStage={keyStageTitle}

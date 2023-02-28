@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -35,6 +34,8 @@ import OverviewVideo from "../../../../../../../../../../components/pages/Teache
 import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 import QuizContainer from "../../../../../../../../../../components/QuizContainer";
+import Box from "../../../../../../../../../../components/Box";
+import Breadcrumbs from "../../../../../../../../../../components/Breadcrumbs";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -45,6 +46,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 }) => {
   const {
     title,
+    slug,
     keyStageTitle,
     keyStageSlug,
     coreContent,
@@ -64,17 +66,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     exitQuiz,
     introQuizInfo,
     exitQuizInfo,
+    unitTitle,
+    unitSlug,
   } = curriculumData;
-
-  const router = useRouter();
-  const { lessonSlug, unitSlug } = router.query;
 
   const downLoadLink = resolveOakHref({
     page: "downloads",
     keyStage: keyStageSlug,
     subject: subjectSlug,
     unit: `${unitSlug}`,
-    slug: `${lessonSlug}`,
+    slug: `${slug}`,
   });
 
   return (
@@ -85,6 +86,30 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       })}
     >
       <MaxWidth $ph={16}>
+        <Box $mv={[24, 48]}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                label: subjectTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                label: unitTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}`,
+                label: title,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
         <Flex $mb={36} $display={"inline-flex"} $mt={50}>
           <TitleCard
             page={"lesson"}

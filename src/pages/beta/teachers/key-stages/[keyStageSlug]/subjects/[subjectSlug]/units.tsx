@@ -21,6 +21,7 @@ import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
 import { TierListItemProps } from "../../../../../../../components/TierList/TierListItem";
+import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
@@ -81,16 +82,22 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
         <SubjectTierListing curriculumData={curriculumData} />
       ) : (
         <MaxWidth $ph={16}>
-          {/* not part of mvp page, add later */}
-          {/* <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              { href: "/", label: "Home" },
-              { href: keyStageSlug, label: keyStageTitle },
-              { href: subjectSlug, label: subjectTitle, disabled: true },
-            ]}
-          />
-        </Box> */}
+          <Box $mv={[24, 48]}>
+            <Breadcrumbs
+              breadcrumbs={[
+                { href: "/beta/teachers/", label: "Home" },
+                {
+                  href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                  label: keyStageTitle,
+                },
+                {
+                  href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                  label: subjectTitle,
+                  disabled: true,
+                },
+              ]}
+            />
+          </Box>
 
           <TitleCard
             page={"subject"}

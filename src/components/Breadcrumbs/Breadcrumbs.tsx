@@ -14,7 +14,7 @@ const BreadcrumbsNav = styled.nav`
 
 const BreadcrumbUL = styled(UL)`
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 `;
 
 const BreadcrumbsLi = styled.li`
@@ -22,6 +22,7 @@ const BreadcrumbsLi = styled.li`
   align-items: center;
   min-width: 0;
   flex-shrink: 0;
+  max-width: 100%;
 
   &:last-of-type {
     flex-shrink: 2;
@@ -29,6 +30,7 @@ const BreadcrumbsLi = styled.li`
 `;
 
 const BreadcrumbConstrainer = styled.div`
+  margin-right: 12px;
   ${ellipsis}
 `;
 
@@ -55,7 +57,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     name="ChevronRight"
                     size={20}
                     $color={"teachersHighlight"}
-                    $mh={12}
+                    $mr={12}
                   />
                 )}
                 <BreadcrumbConstrainer>

@@ -14,6 +14,8 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../node-lib/isr";
+import Box from "../../../../../../components/Box";
+import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 
 export type KeyStagePageProps = {
   curriculumData: TeachersKeyStageSubjectsData;
@@ -21,6 +23,7 @@ export type KeyStagePageProps = {
 
 const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
   const { curriculumData } = props;
+  const { keyStageSlug, keyStageTitle } = curriculumData;
   return (
     <AppLayout
       seoProps={getSeoProps({
@@ -30,6 +33,18 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
       $background="white"
     >
       <MaxWidth $ph={12} $pt={48} $maxWidth={[480, 840, 1280]}>
+        <Box $mv={[24, 48]}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
         <Heading tag={"h1"} $font={"heading-4"}>
           {curriculumData.keyStageTitle}
         </Heading>
