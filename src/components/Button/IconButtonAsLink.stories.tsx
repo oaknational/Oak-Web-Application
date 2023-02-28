@@ -14,7 +14,7 @@ export default {
       defaultValue: "brush",
     },
     icon: {
-      defaultValue: "Download",
+      defaultValue: "download",
     },
     href: {
       defaultValue: "/",

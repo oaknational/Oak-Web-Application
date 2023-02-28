@@ -202,7 +202,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
                   page="teachers-oak-curriculum"
-                  icon={"ArrowRight"}
+                  icon={"arrow-right"}
                   label={pageData.ourApproach.cta?.label}
                 />
               </Flex>

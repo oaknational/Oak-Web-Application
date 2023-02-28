@@ -131,7 +131,7 @@ export function Select<T extends object>(
       <DropdownFocusUnderline
         isFocusVisible={isFocusVisible}
         aria-hidden="true"
-        name={"Underline1"}
+        name={"underline-1"}
         $font={"body-3"}
       />
       <Flex $position={"absolute"}>
@@ -171,7 +171,7 @@ export function Select<T extends object>(
           </SelectInner>
           <Icon
             $color="black"
-            name={state.isOpen ? "ChevronUp" : "ChevronDown"}
+            name={state.isOpen ? "chevron-up" : "chevron-down"}
           />
         </SelectButton>
         {state.isOpen && (

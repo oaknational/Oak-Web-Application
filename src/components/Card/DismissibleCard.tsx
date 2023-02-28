@@ -28,7 +28,7 @@ const DismissibleCard: FC<DismissibleCardProps> = ({ children, title }) => {
           <CloseButtonWrapper>
             <IconButton
               aria-label={`Dismiss ${title}`}
-              icon={"Cross"}
+              icon={"cross"}
               onClick={() => {
                 setDismissed(true);
               }}

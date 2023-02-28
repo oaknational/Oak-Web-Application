@@ -20,7 +20,7 @@ const UnderlinedHeading: FC<HeadingProps> = (props) => {
   return (
     <HeadingWrapper>
       <Heading {...props} />
-      <BrushUnderline name="hr" />
+      <BrushUnderline name="horizontal-rule" />
     </HeadingWrapper>
   );
 };

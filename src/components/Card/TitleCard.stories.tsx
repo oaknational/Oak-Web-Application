@@ -21,7 +21,7 @@ TitleCardLesson.args = {
   keyStageSlug: "key-stage-4",
   subject: "Computing",
   subjectSlug: "computing",
-  iconName: "Rocket",
+  iconName: "rocket",
 };
 
 export const TitleCardUnit = Template.bind({});
@@ -31,7 +31,7 @@ TitleCardUnit.args = {
   page: "unit",
   keyStage: "Key stage 4",
   keyStageSlug: "key-stage-4",
-  iconName: "Rocket",
+  iconName: "rocket",
 };
 
 export const TitleCardSubject = Template.bind({});
@@ -41,5 +41,5 @@ TitleCardSubject.args = {
   page: "subject",
   keyStage: "Key stage 4",
   keyStageSlug: "key-stage-4",
-  iconName: "Rocket",
+  iconName: "rocket",
 };

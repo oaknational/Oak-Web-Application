@@ -40,7 +40,7 @@ export const LandingPageTitle: FC<{
       )}
       {cta && (
         <ButtonAsLink
-          icon="ArrowRight"
+          icon="arrow-right"
           $iconPosition={"trailing"}
           $mt={[48, 32]}
           label={cta.label}
