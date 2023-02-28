@@ -8,21 +8,21 @@ describe("LessonHelper", () => {
   it("renders a LessonHelper", () => {
     renderWithTheme(
       <LessonHelper
-        helperTitle={"EquipmentRequired"}
-        helperIcon={"EquipmentRequired"}
+        helperTitle={"equipment-required"}
+        helperIcon={"equipment-required"}
         helperDescription={"equipment description"}
       />
     );
 
     const heading = screen.getByRole("heading", { level: 3 });
 
-    expect(heading).toHaveTextContent("EquipmentRequired");
+    expect(heading).toHaveTextContent("equipment-required");
   });
   it("render null when there is no equipment description", () => {
     const { container } = renderWithTheme(
       <LessonHelper
-        helperTitle={"EquipmentRequired"}
-        helperIcon={"EquipmentRequired"}
+        helperTitle={"equipment-required"}
+        helperIcon={"equipment-required"}
         helperDescription={null}
       />
     );

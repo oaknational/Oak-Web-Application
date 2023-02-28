@@ -1,1 +1,1 @@
-export { default, svgSymbols } from "./ButtonBorders";
+export { default } from "./ButtonBorders";

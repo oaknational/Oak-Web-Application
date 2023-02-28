@@ -57,7 +57,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           href={buttonHref}
           label={buttonText}
           labelSuffixA11y={buttonSuffixA11y}
-          icon="ChevronRight"
+          icon="chevron-right"
           $iconPosition="trailing"
         />
       </Box>

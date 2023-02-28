@@ -17,7 +17,7 @@ export const SubjectCardListItem = Template.bind({});
 SubjectCardListItem.args = {
   titleTag: "h3",
   title: "Art and Design",
-  svgName: "SubjectArtAndDesign",
+  slug: "art",
   lessonCount: 130,
   unitCount: 14,
 };
@@ -27,7 +27,7 @@ export const SubjectCardListItemUnavailable = Template.bind({});
 SubjectCardListItemUnavailable.args = {
   titleTag: "h3",
   title: "Art and Design",
-  svgName: "SubjectArtAndDesign",
+  slug: "art",
   lessonCount: 0,
   unitCount: 14,
 };

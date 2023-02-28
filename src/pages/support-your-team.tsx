@@ -55,14 +55,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <Flex $flexDirection={["column", "row", "row"]}>
             <BubbleMessage
               background={"pastelTurquoise"}
-              variant="Bubble"
+              variant="bubble-1"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
             />
             <BubbleMessage
               background={"twilight"}
-              variant="Bubble2"
+              variant="bubble-2"
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
@@ -76,7 +76,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             $mb={92}
             page={"teachers-home"}
             label={"Search our lessons"}
-            icon={"ArrowRight"}
+            icon={"arrow-right"}
             $iconPosition={"trailing"}
           />
         </Flex>
@@ -134,7 +134,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               $mb={92}
               page={"teachers-home"}
               label={"Search our lessons"}
-              icon={"ArrowRight"}
+              icon={"arrow-right"}
               $iconPosition={"trailing"}
             />
           </Flex>

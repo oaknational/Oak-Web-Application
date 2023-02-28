@@ -79,7 +79,7 @@ const BioModal: FC<BioModalProps> = (props) => {
           $zIndex={"modalCloseButton"}
         >
           <IconButton
-            icon="Cross"
+            icon="cross"
             onClick={closeModal}
             aria-label="close modal"
             background="teachersHighlight"

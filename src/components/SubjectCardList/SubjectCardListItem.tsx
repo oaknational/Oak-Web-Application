@@ -5,10 +5,10 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
 import Flex from "../Flex";
 import OakLink from "../OakLink";
-import Svg from "../Svg";
 import { SvgName } from "../SpriteSheet/getSvgId";
 import Card, { CardProps } from "../Card";
 import { ResolveOakHrefProps } from "../../common-lib/urls";
+import SubjectIcon from "../SubjectIcon";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   title: string;
@@ -29,7 +29,6 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   lessonCount,
   tierCount,
   unitCount,
-  svgName = "SubjectArtAndDesign",
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -56,12 +55,12 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         $width={"100%"}
         $pv={16}
       >
-        <Svg
-          name={svgName}
-          $height={80}
-          $width={80}
+        <SubjectIcon
+          subjectSlug={slug}
+          height={96}
+          width={96}
           $ma={"auto"}
-          $transform={isHovered ? "scale(1.2)" : null}
+          $transform={isHovered ? "scale(1)" : "scale(0.8)"}
         />
       </Flex>
       <Flex

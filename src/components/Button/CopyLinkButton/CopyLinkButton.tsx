@@ -31,11 +31,11 @@ const CopyLinkButton: FC = () => {
 
   return (
     <IconButton
-      icon={"Share"}
+      icon={"share"}
       aria-label={label}
       onClick={copyLink}
       background={"teachersHighlight"}
-      iconAnimateTo={active ? "Tick" : undefined}
+      iconAnimateTo={active ? "tick" : undefined}
     />
   );
 };

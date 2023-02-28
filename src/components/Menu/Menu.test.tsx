@@ -112,7 +112,7 @@ describe("Menu", () => {
       <menuContext.Provider value={menuValue}>
         <IconButton
           aria-label="Open Menu"
-          icon={"Hamburger"}
+          icon={"hamburger"}
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
@@ -128,7 +128,7 @@ describe("Menu", () => {
       <menuContext.Provider value={menuValue}>
         <IconButton
           aria-label="Open Menu"
-          icon={"Hamburger"}
+          icon={"hamburger"}
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}

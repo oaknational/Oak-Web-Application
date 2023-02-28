@@ -54,7 +54,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
               <BreadcrumbsLi key={`${i}-${href}`}>
                 {i !== 0 && (
                   <Icon
-                    name="ChevronRight"
+                    name="chevron-right"
                     size={20}
                     $color={"teachersHighlight"}
                     $mr={12}

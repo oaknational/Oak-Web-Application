@@ -135,8 +135,8 @@ const Search = () => {
               <MobileFilters
                 label="Filters"
                 labelOpened="Close"
-                iconOpened="Cross"
-                iconClosed="Hamburger"
+                iconOpened="cross"
+                iconClosed="hamburger"
               >
                 <SearchFilters />
               </MobileFilters>

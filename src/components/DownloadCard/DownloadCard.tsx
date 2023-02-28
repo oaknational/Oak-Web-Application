@@ -33,21 +33,15 @@ type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-export const RESOURCE_TYPE_ICON_MAP = {
-  presentation: "Slidedeck",
-  slideDeck: "Slidedeck",
-  "intro-quiz-questions": "Quiz",
-  "intro-quiz-answers": "Quiz",
-  "exit-quiz-questions": "Quiz",
-  "exit-quiz-answers": "Quiz",
-  "worksheet-pdf": "Worksheet",
-  "worksheet-pptx": "Worksheet",
+export const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
+  presentation: "slide-deck",
+  "intro-quiz-questions": "quiz",
+  "intro-quiz-answers": "quiz",
+  "exit-quiz-questions": "quiz",
+  "exit-quiz-answers": "quiz",
+  "worksheet-pdf": "worksheet",
+  "worksheet-pptx": "worksheet",
 };
-
-export const getResourceIconByType = (resourceType: DownloadResourceType) =>
-  RESOURCE_TYPE_ICON_MAP[resourceType]
-    ? RESOURCE_TYPE_ICON_MAP[resourceType]
-    : "Download";
 
 const BoxWithFocusState = styled.div`
   position: relative;
@@ -71,7 +65,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
     >
       <Flex $minHeight={110} $pv={16}>
         <GraphicCircleIcon
-          icon={getResourceIconByType(resourceType) as IconName}
+          icon={RESOURCE_TYPE_ICON_MAP[resourceType]}
           hasDropShadow={false}
           isHovered={isHovered}
         />
