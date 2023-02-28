@@ -37,7 +37,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       {...(!expired ? containerProps : null)}
     >
       <Flex
-        $transform={isHovered ? "translateY(-4px)" : null}
+        $transform={isHovered && !expired ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
         $width={"100%"}
         $position={"relative"}
