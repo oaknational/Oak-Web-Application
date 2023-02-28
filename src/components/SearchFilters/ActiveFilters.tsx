@@ -38,7 +38,7 @@ const ActiveFilters: FC = () => {
             key={`active-filter-ks-${keyStage}`}
             onClick={() => onRemoveFilterClick(keyStage)}
             variant="buttonStyledAsLink"
-            icon="Cross"
+            icon="cross"
             $iconPosition="trailing"
             $mr={16}
           />

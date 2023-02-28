@@ -17,5 +17,5 @@ TextBadge.args = {
 };
 export const IconBadge = Template.bind({});
 IconBadge.args = {
-  icon: "Star",
+  icon: "share",
 };

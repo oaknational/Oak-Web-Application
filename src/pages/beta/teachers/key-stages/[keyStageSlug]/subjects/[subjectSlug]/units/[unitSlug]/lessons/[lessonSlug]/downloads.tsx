@@ -193,7 +193,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={`Downloads: ${title}`}
-            iconName={"Rocket"}
+            iconName={"rocket"}
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
@@ -321,7 +321,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     name={"lessonResourcesToDownload"}
                     label={download.label}
                     extension={download.ext}
-                    resourceType={download.type as DownloadResourceType}
+                    resourceType={download.type}
                     checked={resourcesToDownload[download.type] || false}
                     onChange={() =>
                       onResourceToDownloadToggle(`${download.type}`)

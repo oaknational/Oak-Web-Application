@@ -16,7 +16,7 @@ const HomeAboutCard: FC<HomeSidebarTextCard> = (props) => {
 
   return (
     <Card $ph={[16, 24]} $borderRadius={0} $background="white">
-      <CardTitle icon="Search" $iconPosition="leading" iconSize={32} tag="h2">
+      <CardTitle icon="search" $iconPosition="leading" iconSize={32} tag="h2">
         {props.title}
       </CardTitle>
 

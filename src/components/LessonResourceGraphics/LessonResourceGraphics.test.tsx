@@ -9,10 +9,30 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "slidedeck", resourceCount: 1 },
-          { title: "worksheet", resourceCount: 1 },
-          { title: "quiz", resourceCount: 1 },
-          { title: "video", resourceCount: 1 },
+          {
+            titleSingular: "Slide deck",
+            titlePlural: "Slide decks",
+            icon: "slide-deck",
+            resourceCount: 1,
+          },
+          {
+            titleSingular: "Worksheet",
+            titlePlural: "Worksheets",
+            icon: "worksheet",
+            resourceCount: 1,
+          },
+          {
+            titleSingular: "Quiz",
+            titlePlural: "Quizzes",
+            icon: "quiz",
+            resourceCount: 1,
+          },
+          {
+            titleSingular: "Video",
+            titlePlural: "Videos",
+            icon: "video",
+            resourceCount: 1,
+          },
         ]}
       />
     );
@@ -26,8 +46,18 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "slidedeck", resourceCount: 1 },
-          { title: "video", resourceCount: 1 },
+          {
+            titleSingular: "Slide deck",
+            titlePlural: "Slide decks",
+            icon: "slide-deck",
+            resourceCount: 1,
+          },
+          {
+            titleSingular: "Video",
+            titlePlural: "Videos",
+            icon: "video",
+            resourceCount: 1,
+          },
         ]}
       />
     );
@@ -41,10 +71,30 @@ describe("LessonResourceGraphics", () => {
     renderWithTheme(
       <LessonResourceGraphics
         items={[
-          { title: "slidedeck", resourceCount: 4 },
-          { title: "worksheet", resourceCount: 5 },
-          { title: "quiz", resourceCount: 3 },
-          { title: "video", resourceCount: 3 },
+          {
+            titleSingular: "Slide deck",
+            titlePlural: "Slide decks",
+            icon: "slide-deck",
+            resourceCount: 4,
+          },
+          {
+            titleSingular: "Worksheet",
+            titlePlural: "Worksheets",
+            icon: "worksheet",
+            resourceCount: 5,
+          },
+          {
+            titleSingular: "Quiz",
+            titlePlural: "Quizzes",
+            icon: "quiz",
+            resourceCount: 3,
+          },
+          {
+            titleSingular: "Video",
+            titlePlural: "Videos",
+            icon: "video",
+            resourceCount: 3,
+          },
         ]}
       />
     );

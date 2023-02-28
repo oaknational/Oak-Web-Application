@@ -64,7 +64,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
       </Flex>
       <IconButton
         aria-label="Menu"
-        icon={"Hamburger"}
+        icon={"hamburger"}
         variant={"minimal"}
         size={"large"}
         ref={menuButtonRef}

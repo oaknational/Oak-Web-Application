@@ -65,7 +65,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               <Button
                 onClick={onBackClick}
                 variant="minimal"
-                icon="ArrowLeft"
+                icon="arrow-left"
                 $iconPosition="trailing"
                 iconBackground={"teachersHighlight"}
                 size="large"
@@ -75,7 +75,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             <ButtonAsLink
               data-testid="homeButton"
               variant="minimal"
-              icon="Home"
+              icon="home"
               $iconPosition="trailing"
               iconBackground={"teachersHighlight"}
               size="large"

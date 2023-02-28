@@ -23,7 +23,7 @@ export type UnitListItemProps = Omit<
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const { title, themeTitle, lessonCount, quizCount, index } = props;
+  const { title, themeTitle, lessonCount, index } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -67,11 +67,6 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
             {lessonCount && (
               <Span $mr={16} $font={["body-3", "heading-light-7"]}>
                 {`${lessonCount} lessons`}
-              </Span>
-            )}
-            {quizCount && (
-              <Span $mr={16} $font={["body-3", "heading-light-7"]}>
-                Unit quiz
               </Span>
             )}
           </Flex>

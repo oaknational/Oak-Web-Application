@@ -9,7 +9,7 @@ export default {
   argTypes: {
     onClick: { action: "clicked" },
     label: {
-      defaultValue: "Download",
+      defaultValue: "download",
     },
     variant: {
       defaultValue: "brush",
@@ -29,7 +29,7 @@ export const Button = Template.bind({});
 
 export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
-  icon: "Save",
+  icon: "save",
   size: "large",
 };
 
@@ -46,6 +46,6 @@ const MinimalButtonWithIconTemplate: ComponentStory<typeof Component> = (
 export const MinimalButtonWithIcon = MinimalButtonWithIconTemplate.bind({});
 MinimalButtonWithIcon.args = {
   variant: "minimal",
-  icon: "Save",
+  icon: "save",
   size: "large",
 };

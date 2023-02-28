@@ -26,7 +26,7 @@ const MenuLinkActiveIcon: FC<MenuLinkActiveIconProps> = (props) => {
   return (
     <Icon
       variant="minimal"
-      name="ArrowRight"
+      name="arrow-right"
       size={ICON_SIZE[size]}
       $opacity={0.6}
       $mr={MARGIN_RIGHT[size]}

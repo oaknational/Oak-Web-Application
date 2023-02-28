@@ -6,14 +6,12 @@ import color, { ColorProps } from "../../styles/utils/color";
 import Svg, { SvgProps } from "../Svg/Svg";
 import size, { SizeProps } from "../../styles/utils/size";
 import { ResponsiveValues } from "../../styles/utils/responsive";
-import { IconSvgName } from "../SpriteSheet/IconSvgs";
-import { GraphicSvgName } from "../SpriteSheet/GraphicSvgs";
-import { LessonElementSvgName } from "../SpriteSheet/LessonElementSvgs";
 import { box, BoxProps } from "../Box";
+import { UiIconName } from "../../image-data";
 
 import useIconAnimation from "./useIconAnimation";
 
-export type IconName = IconSvgName | GraphicSvgName | LessonElementSvgName;
+export type IconName = UiIconName;
 type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
 
 type RotateValue = 0 | 180;
@@ -56,8 +54,8 @@ export const BackgroundIcon = styled(Svg)<ColorProps>`
 `;
 
 const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, SvgProps>> = {
-  ChevronDown: {
-    name: "ChevronUp",
+  "chevron-down": {
+    name: "chevron-up",
     $transform: "rotate(-180deg)",
   },
 };
@@ -133,7 +131,7 @@ const Icon: FC<IconProps> = (props) => {
       {...rootProps}
     >
       {variant === "brush" && (
-        <BackgroundIcon name="icon-brush-background" $color={$background} />
+        <BackgroundIcon name="icon-background" $color={$background} />
       )}
       <IconWrapper
         $pa={$pa}
