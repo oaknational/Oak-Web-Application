@@ -58,7 +58,9 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
   if (expired) {
     return (
       <Flex $mt={24} $flexDirection={"column"}>
-        <ListTitle expired={expired}>{title}</ListTitle>
+        <ListTitle expired={expired}>
+          {index !== null ? `${index + 1}.` : ""} {title}
+        </ListTitle>
       </Flex>
     );
   }
