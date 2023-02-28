@@ -1,6 +1,5 @@
 import { css } from "styled-components";
 
-import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
@@ -67,11 +66,6 @@ export const getButtonStylesProps = (
   };
 };
 
-const getBackgroundColor = (props: ButtonStylesProps) =>
-  props["aria-disabled"] && props.variant === "brush"
-    ? getColorByName("grey6")
-    : getButtonBackground(props.background, props.variant);
-
 const disabledStyles = css`
   cursor: not-allowed;
 `;
@@ -90,7 +84,11 @@ const buttonStyles = css<ButtonStylesProps>`
       flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
       height: ${getButtonHeight(props.size, props.variant)}px;
       padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
-      background-color: ${getBackgroundColor(props)};
+      background-color: ${getButtonBackground(
+        props.background,
+        props.variant,
+        props["aria-disabled"]
+      )};
       color: ${getButtonColor(props.background, props.variant)};
     `;
   }}

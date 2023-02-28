@@ -143,11 +143,17 @@ export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
 };
 export const getButtonBackground = (
   background: ButtonBackground,
-  variant: ButtonVariant
-) =>
-  variant === "minimal" || variant === "buttonStyledAsLink"
-    ? "transparent"
-    : getColorByName(background);
+  variant: ButtonVariant,
+  disabled?: boolean
+) => {
+  if (variant === "minimal" || variant === "buttonStyledAsLink") {
+    return "tranparent";
+  } else if (variant === "brush" && disabled) {
+    return getColorByName("grey6");
+  } else {
+    return getColorByName(background);
+  }
+};
 export const getButtonColor = (
   background: ButtonBackground,
   variant: ButtonVariant

@@ -10,7 +10,7 @@ describe("Button", () => {
       <Button
         label="Click me"
         variant="minimal"
-        icon="ArrowRight"
+        icon="arrow-right"
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
         onClick={spy}
@@ -28,7 +28,7 @@ describe("Button", () => {
       <Button
         label="Click me"
         variant="minimal"
-        icon="ArrowRight"
+        icon="arrow-right"
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
         onClick={spy}
@@ -48,7 +48,7 @@ describe("Button", () => {
       <Button
         label="Click me"
         variant="minimal"
-        icon="ArrowRight"
+        icon="arrow-right"
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
         disabled={true}
