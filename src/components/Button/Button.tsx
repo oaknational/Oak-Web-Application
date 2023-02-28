@@ -75,6 +75,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         size={size}
         variant={variant}
         background={background}
+        disabled={disabled}
         $font={$font}
       />
     </StyledButton>

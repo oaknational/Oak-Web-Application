@@ -80,12 +80,13 @@ const buttonStyles = css<ButtonStylesProps>`
   text-decoration: none;
   ${opacity}
   ${(props) => {
+    console.log("props", props);
     return css`
       width: ${props.$fullWidth && "100%"};
       flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
       height: ${getButtonHeight(props.size, props.variant)}px;
       padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
-      background-color: ${props["aria-disabled"]
+      background-color: ${props["aria-disabled"] && props.variant === "brush"
         ? getColorByName("grey6")
         : getButtonBackground(props.background, props.variant)};
       color: ${getButtonColor(props.background, props.variant)};

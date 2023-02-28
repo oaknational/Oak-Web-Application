@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 
 import getColorByName from "../../../../styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "../../../Button/common";
+import { HOVER_SHADOW_TRANSITION } from "../../../../styles/transitions";
 import Svg from "../../../Svg";
 
 const buttonBorder = css<{ background: ButtonBackground }>`
@@ -71,6 +72,7 @@ const buttonBorderTop = css`
   height: ${TOP_THICKNESS}px;
   left: 0;
   bottom: calc(100% - 1px);
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const buttonBorderRight = css`
@@ -79,6 +81,7 @@ const buttonBorderRight = css`
   top: -${TOP_THICKNESS - 1}px;
   left: calc(100% - 1px);
   height: calc(100% - 2px + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const buttonBorderBottom = css`
@@ -87,6 +90,7 @@ const buttonBorderBottom = css`
   height: 6px;
   top: calc(100% - 1px);
   left: 0;
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const buttonBorderLeft = css`
@@ -95,6 +99,7 @@ const buttonBorderLeft = css`
   top: -${TOP_THICKNESS - 1}px;
   right: calc(100% - 1px);
   height: calc(100% - 2px + ${TOP_THICKNESS + BOTTOM_THICKNESS}px);
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const ButtonBorderTop = styled(Svg)`
