@@ -356,7 +356,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     onFormSubmit();
                   }}
                   background={"teachersHighlight"}
-                  icon="Download"
+                  icon="download"
                   $iconPosition="trailing"
                   iconBackground="teachersYellow"
                   $mt={8}
