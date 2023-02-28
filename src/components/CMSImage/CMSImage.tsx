@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import {
   ImageUrlBuilder,
   useNextSanityImage,
@@ -38,8 +38,6 @@ const defaultImageBuilder =
       : builder.format("webp");
 
 const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
-  const [loaded, setLoaded] = useState(false);
-
   imageBuilder = imageBuilder || defaultImageBuilder(rest);
 
   const { width, height, ...imageProps } = useNextSanityImage(
@@ -69,9 +67,8 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const dimensions = rest.fill ? {} : { width, height };
 
   return (
-    <Box $background={loaded ? undefined : "pastelTurquoise"} $width="100%">
+    <Box $width="100%">
       <OakImage
-        onLoadingComplete={() => setLoaded(true)}
         {...imageProps}
         {...dimensions}
         {...rest}
