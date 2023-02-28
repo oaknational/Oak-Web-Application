@@ -11,7 +11,7 @@ type BubbleMessageProps = {
   outlineHeading: string;
   heading: string;
   subHeading: string;
-  variant: "Bubble" | "Bubble2";
+  variant: "bubble-1" | "bubble-2";
   background: OakColorName;
 };
 

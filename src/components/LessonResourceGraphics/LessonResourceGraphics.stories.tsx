@@ -15,17 +15,48 @@ export const LessonResourceGraphic = Template.bind({});
 
 LessonResourceGraphic.args = {
   items: [
-    { title: "presentation", resourceCount: 1 },
-    { title: "worksheet", resourceCount: 2 },
-    { title: "quiz", resourceCount: 3 },
-    { title: "video", resourceCount: 2 },
+    {
+      titleSingular: "Slide deck",
+      titlePlural: "Slide decks",
+      icon: "slide-deck",
+      resourceCount: 1,
+    },
+    {
+      titleSingular: "Worksheet",
+      titlePlural: "Worksheets",
+      icon: "worksheet",
+      resourceCount: 2,
+    },
+    {
+      titleSingular: "Quiz",
+      titlePlural: "Quizzes",
+      icon: "quiz",
+      resourceCount: 3,
+    },
+    {
+      titleSingular: "Video",
+      titlePlural: "Videos",
+      icon: "video",
+      resourceCount: 2,
+    },
   ],
 };
 export const LessonResourceGraphicMissing = Template.bind({});
 
 LessonResourceGraphicMissing.args = {
   items: [
-    { title: "presentation", resourceCount: 2 },
-    { title: "quiz", resourceCount: 1 },
+    {
+      titleSingular: "Slide deck",
+      titlePlural: "Slide decks",
+      icon: "slide-deck",
+      resourceCount: 1,
+    },
+
+    {
+      titleSingular: "Quiz",
+      titlePlural: "Quizzes",
+      icon: "quiz",
+      resourceCount: 2,
+    },
   ],
 };

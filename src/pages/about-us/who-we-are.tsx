@@ -54,7 +54,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
           <Flex>
             <ButtonAsLink
               $mt={[36]}
-              icon={"ArrowRight"}
+              icon={"arrow-right"}
               $iconPosition={"trailing"}
               label={cta.label}
               page={null}
@@ -100,7 +100,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             <Flex $justifyContent={"flex-start"}>
               {pageData.intro.cta && (
                 <ButtonAsLink
-                  icon={"ArrowRight"}
+                  icon={"arrow-right"}
                   $iconPosition="trailing"
                   label={pageData.intro.cta.label}
                   page={null}

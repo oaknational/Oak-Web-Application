@@ -23,7 +23,7 @@ const IconMobile: FC<IconMobileProps> = (props) => {
       $position={"relative"}
       $ml={"auto"}
     >
-      <Icon size={[50, 92]} name={"Rocket"}>
+      <Icon size={[50, 92]} name={"rocket"}>
         {title}
       </Icon>
     </Flex>

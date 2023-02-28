@@ -27,7 +27,6 @@ export type ButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
-  disabled?: boolean;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -41,7 +40,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     htmlButtonProps = {},
     iconBackground,
     $font,
-    disabled,
     ...spacingProps
   } = props;
 
@@ -57,12 +55,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       {...htmlButtonProps}
       title={htmlButtonProps.title || defaultTitle}
       aria-label={ariaLabel}
-      onClick={disabled ? (e) => e.preventDefault() : onClick}
+      onClick={onClick}
       size={size}
       variant={variant}
       $iconPosition={$iconPosition}
       background={background}
-      aria-disabled={disabled}
       {...spacingProps}
     >
       <ButtonInner

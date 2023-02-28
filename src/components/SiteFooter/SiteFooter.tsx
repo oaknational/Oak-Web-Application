@@ -153,7 +153,7 @@ const SiteFooter: FC = () => {
         </MaxWidth>
       </nav>
       <Svg
-        name="LoopingLine3"
+        name="looping-line-3"
         $color={"pupilsPink"}
         $zIndex={"behind"}
         $display={["none", "block"]}
@@ -165,7 +165,7 @@ const SiteFooter: FC = () => {
         $cover
       />
       <Svg
-        name="LoopingLine4"
+        name="looping-line-4"
         $color={"twilight"}
         $display={["block", "none"]}
         $zIndex={"behind"}

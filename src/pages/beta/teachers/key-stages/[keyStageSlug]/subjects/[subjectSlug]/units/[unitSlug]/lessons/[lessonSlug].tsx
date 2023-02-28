@@ -118,7 +118,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={title}
-            iconName={"Rocket"}
+            iconName={"rocket"}
           />
         </Flex>
         <Flex $flexDirection="column">
@@ -142,7 +142,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           {hasDownloadableResources && (
             <ButtonAsLink
               $mr={24}
-              icon="Save"
+              icon="save"
               iconBackground="teachersHighlight"
               label="All lesson resources"
               href={downLoadLink}
@@ -158,7 +158,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           todo
            <Button
             $mr={24}
-            icon="SendToPupil"
+            icon="send"
             iconBackground="teachersHighlight"
             label="Send to pupil"
             onClick={() => null}
@@ -232,17 +232,17 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Grid $rg={32} $cg={32} $mv={16}>
           <LessonHelper
             helperTitle={"Equipment required"}
-            helperIcon={"EquipmentRequired"}
+            helperIcon={"equipment-required"}
             helperDescription={equipmentRequired}
           />
           <LessonHelper
             helperTitle={"Supervision level"}
-            helperIcon={"SupervisionLevel"}
+            helperIcon={"supervision-level"}
             helperDescription={supervisionLevel}
           />
           <LessonHelper
             helperTitle={"Content guidance"}
-            helperIcon={"ContentGuidance"}
+            helperIcon={"content-guidance"}
             helperDescription={contentGuidance}
           />
         </Grid>

@@ -83,7 +83,7 @@ const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}
           aria-hidden="true"
-          name={"Underline1"}
+          name={"underline-1"}
           $font={"body-3"}
         />
       </Flex>
