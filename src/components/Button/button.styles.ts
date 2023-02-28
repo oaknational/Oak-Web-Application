@@ -67,6 +67,11 @@ export const getButtonStylesProps = (
   };
 };
 
+const getBackgroundColor = (props: ButtonStylesProps) =>
+  props["aria-disabled"] && props.variant === "brush"
+    ? getColorByName("grey6")
+    : getButtonBackground(props.background, props.variant);
+
 const disabledStyles = css`
   cursor: not-allowed;
 `;
@@ -86,8 +91,7 @@ const buttonStyles = css<ButtonStylesProps>`
       flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
       height: ${getButtonHeight(props.size, props.variant)}px;
       padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
-      background-color: ${props["aria-disabled"] && props.variant === "brush"
-        ? getColorByName("grey6")
+      background-color: ${getBackgroundColor(props)};
         : getButtonBackground(props.background, props.variant)};
       color: ${getButtonColor(props.background, props.variant)};
     `;
