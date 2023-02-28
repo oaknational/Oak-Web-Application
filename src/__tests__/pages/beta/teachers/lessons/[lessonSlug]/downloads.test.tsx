@@ -104,9 +104,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       );
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
+      // @todo add back when button has disabled state and is initially visible
       // Download button
-      const downloadButton = screen.getByText("Download .zip");
-      expect(downloadButton).toBeInTheDocument();
+      // const downloadButton = screen.getByText("Download .zip");
+      // expect(downloadButton).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { debounce } from "lodash";
 import { z } from "zod";
 
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
@@ -153,15 +154,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setResourcesToDownload(updatedResourcesToDownload);
   };
 
+  const debouncedDownloadResources = debounce(
+    () => {
+      setIsAttemptingDownload(true);
+      downloadSelectedLessonResources(slug, resourcesToDownload);
+    },
+    4000,
+    { leading: true }
+  );
+
   const onFormSubmit = async () => {
-    setIsAttemptingDownload(true);
-    const downloadResources = await downloadSelectedLessonResources(
-      slug,
-      resourcesToDownload
-    );
-    if (downloadResources?.success) {
-      setIsAttemptingDownload(false);
-    }
+    await debouncedDownloadResources();
+    setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
 
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
@@ -183,8 +187,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       try {
         const { resources: resourceExistence } =
           await getDownloadResourcesExistence(slug, resourceTypesAsString);
-
-        console.log(">>>>>>", resourceExistence);
 
         const resourcesExistenceAsArray = resourceExistence
           ? Object.entries(resourceExistence as ResourcesToDownloadType)
@@ -374,7 +376,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
 
-              {isAttemptingDownload && <p>Loading...</p>}
+              {isAttemptingDownload && (
+                <P $mt={22} $mb={22}>
+                  Loading...
+                </P>
+              )}
               {!isAttemptingDownload && selectedResourcesToDownloadCount > 0 && (
                 <Button
                   label={"Download .zip"}

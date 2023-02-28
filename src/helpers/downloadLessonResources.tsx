@@ -30,9 +30,7 @@ const downloadLessonResources = async (
     createAndClickHiddenDownloadLink(downloadResourcesLink);
   }
 
-  return {
-    success: true,
-  };
+  return;
 };
 
 export default downloadLessonResources;
