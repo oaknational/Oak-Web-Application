@@ -79,7 +79,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
-      isHovered={expired ? false : isHovered}
+      isHovered={isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}
       expired={expired}

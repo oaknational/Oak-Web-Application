@@ -27,6 +27,8 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
   const { title, children, isHovered, containerProps, background, expired } =
     props;
 
+  const applyHoverStyles = isHovered && !expired;
+
   return (
     <Card
       $justifyContent={"space-between"}
@@ -37,13 +39,13 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       {...(!expired ? containerProps : null)}
     >
       <Flex
-        $transform={isHovered && !expired ? "translateY(-4px)" : null}
+        $transform={applyHoverStyles ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
         $width={"100%"}
         $position={"relative"}
         $flexDirection={"row"}
         $justifyContent={"space-between"}
-        $dropShadow={isHovered && !expired ? "subjectCardHover" : "subjectCard"}
+        $dropShadow={applyHoverStyles ? "subjectCardHover" : "subjectCard"}
         $alignItems={"center"}
       >
         {children}
