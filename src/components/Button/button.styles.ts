@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 
+import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
@@ -128,6 +129,7 @@ const buttonStyles = css<ButtonStylesProps>`
           ? "none"
           : getButtonDropShadowColor(props.background)};
       }
+
       :focus ${ButtonFocusUnderline} {
         display: block;
         bottom: -4px;
@@ -136,19 +138,30 @@ const buttonStyles = css<ButtonStylesProps>`
         height: 10px;
         transform: rotate(-1deg);
       }
+
+      :disabled {
+        background-color: ${getColorByLocation(
+          ({ theme }) => theme.button.disabled.background
+        )};
+        cursor: not-allowed;
+      }
+
       :hover ${ButtonLabel} {
         text-decoration: underline;
       }
     `}
+
   ${(props) =>
     props.variant === "minimal" &&
     css`
       & ${BackgroundIcon} {
         transition: filter 0.3s ease-in-out;
       }
+
       :hover ${BackgroundIcon} {
         filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
       }
+
       :focus ${ButtonMinimalFocusUnderline} {
         display: block;
         bottom: -4px;
@@ -161,6 +174,7 @@ const buttonStyles = css<ButtonStylesProps>`
       }
       ${iconFocusUnderline}
     `}
+
   ${(props) =>
     props.variant === "buttonStyledAsLink" &&
     css`
@@ -170,12 +184,14 @@ const buttonStyles = css<ButtonStylesProps>`
           display: block;
         }
       }
+
       @media (max-width: ${getBreakpoint("small")}px) {
         & ${ButtonStyledAsLinkFocusUnderline} {
           display: block;
         }
       }
     `}
+
   ${margin}
 `;
 
