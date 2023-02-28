@@ -43,6 +43,8 @@ const teachersKeyStageSubjectUnitsFixture = (
         quizCount: 1,
         unitStudyOrder: 1,
         year: "Year 7",
+        expired: false,
+        expiredLessonCount: null,
       },
     ],
     learningThemes: [],

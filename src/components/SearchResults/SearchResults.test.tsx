@@ -28,6 +28,7 @@ export const searchResults: Array<SearchHit> = [
       year_slug: "year-7",
       is_sensitive: false,
       is_specialist: null,
+      expired: false,
     },
   },
   {
@@ -44,6 +45,7 @@ export const searchResults: Array<SearchHit> = [
       year_slug: "year-8",
       is_specialist: false,
       is_sensitive: false,
+      expired: false,
     },
   },
 ];
@@ -67,6 +69,7 @@ export const searchResult: SearchHit = {
     year_slug: "year-7",
     is_sensitive: false,
     is_specialist: null,
+    expired: false,
   },
 };
 
@@ -142,6 +145,7 @@ describe("The <SearchForm> Component", () => {
         year_slug: "year-7",
         is_sensitive: false,
         is_specialist: null,
+        expired: false,
       },
     };
 
