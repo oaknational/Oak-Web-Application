@@ -16,7 +16,6 @@ import LessonDownloadsPage, {
 import { items } from "../../../../../../components/SchoolPicker/SchoolPicker.test";
 import useSchoolPicker from "../../../../../../components/SchoolPicker/useSchoolPicker";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
-
 const props = {
   curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
 };
@@ -34,6 +33,13 @@ let useSchoolPickerReturnData = {
   selectedValue: "dor",
 };
 
+const getDownloadResourcesExistenceData = {
+  resources: {
+    "exit-quiz-answers": true,
+    "worksheet-pdf": true,
+  },
+};
+
 jest.mock(
   "../../../../../../components/SchoolPicker/useSchoolPicker.tsx",
   () => ({
@@ -43,7 +49,20 @@ jest.mock(
 );
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock(".././../../../../../helpers/getDownloadResourcesExistence");
+jest.mock(
+  "../../../../../../components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  () => ({
+    __esModule: true,
+    default: () => getDownloadResourcesExistenceData,
+  })
+);
+
+jest.mock(
+  "../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  () => {
+    return jest.fn();
+  }
+);
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {

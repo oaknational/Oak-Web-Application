@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,9 +19,7 @@ import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
-import DownloadCard, {
-  type DownloadResourceType,
-} from "../../../../../../../../../../../components/DownloadCard";
+import DownloadCard from "../../../../../../../../../../../components/DownloadComponents/DownloadCard";
 import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
@@ -30,8 +28,12 @@ import Grid, {
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
-import downloadSelectedLessonResources from "../../../../../../../../../../../helpers/downloadLessonResources";
-import getDownloadResourcesExistence from "../../../../../../../../../../../helpers/getDownloadResourcesExistence";
+import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
+import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
+import type {
+  ResourcesToDownloadType,
+  DownloadResourceType,
+} from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
@@ -39,10 +41,6 @@ import Radio from "../../../../../../../../../../../components/RadioButtons/Radi
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
-};
-
-export type ResourcesToDownloadType = {
-  [key in DownloadResourceType]: boolean;
 };
 
 const schema = z.object({
@@ -77,6 +75,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     slug,
     downloads,
   } = curriculumData;
+
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
@@ -119,11 +118,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     return initialResourcesToDownloadState;
   };
 
-  const [resourcesToDownload, setResourcesToDownload] = useState<{
-    [key in DownloadResourceType]: boolean;
-  }>(getInitialResourcesToDownloadState());
-
-  const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
+  const [resourcesToDownload, setResourcesToDownload] =
+    useState<ResourcesToDownloadType>(getInitialResourcesToDownloadState());
 
   const onResourceToDownloadToggle = (
     toggledResource: DownloadResourceType
@@ -175,39 +171,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     (resource) => resourcesToDownload[resource as DownloadResourceType] === true
   ).length;
 
-  useEffect(() => {
-    // check if lesson download resources exist and if not update the state
-    const resourceTypesAsString = Object.keys(resourcesToDownload).join(",");
-
-    (async () => {
-      if (hasCheckedFiles) {
-        return;
-      }
-      setHasCheckedFiles(true);
-      try {
-        const { resources: resourceExistence } =
-          await getDownloadResourcesExistence(slug, resourceTypesAsString);
-
-        const resourcesExistenceAsArray = resourceExistence
-          ? Object.entries(resourceExistence as ResourcesToDownloadType)
-          : [];
-        const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
-          .filter(([, value]) => value === true)
-          .map(([key]) => [key, false]);
-        const filteredResourcesExistence = Object.fromEntries(
-          filteredResourcesExistenceAsArray
-        );
-
-        setResourcesToDownload(
-          filteredResourcesExistence as ResourcesToDownloadType
-        );
-      } catch (error) {
-        console.log(error);
-        // @todo: add Bugsnag reporting
-        // Bugsnag.notify(error);
-      }
-    })();
-  }, [slug, hasCheckedFiles, resourcesToDownload]);
+  useDownloadExistenceCheck({
+    lessonSlug: slug,
+    resourcesToCheck: resourcesToDownload,
+    onComplete: setResourcesToDownload,
+  });
 
   return (
     <AppLayout
