@@ -79,22 +79,21 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   return (
     <AppLayout seoProps={tiers.length && !tierQuery ? tiersSEO : unitsSEO}>
       <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              { href: "/beta/teachers/", label: "Home" },
-              {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
-                label: keyStageTitle,
-              },
-              {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
-                label: subjectTitle,
-                disabled: true,
-              },
-            ]}
-          />
-        </Box>
+        <Breadcrumbs
+          breadcrumbs={[
+            { href: "/beta/teachers/", label: "Home" },
+            {
+              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+              label: keyStageTitle,
+            },
+            {
+              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+              label: subjectTitle,
+              disabled: true,
+            },
+          ]}
+        />
+
         {tiers.length && !tierQuery ? (
           <SubjectTierListing curriculumData={curriculumData} />
         ) : (
