@@ -81,9 +81,12 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             <Typography $font={["body-1"]}> {choice}</Typography>
           </Flex>
         )}
-        {type !== "match" && (
+        {type !== "match" && !Array.isArray(answer) ? (
           <Typography $font={["body-1"]}> {choice}</Typography>
-        )}
+        ) : null}
+        {type !== "match" && Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}> {answer[index]}</Typography>
+        ) : null}
       </Flex>
     </Flex>
   );
