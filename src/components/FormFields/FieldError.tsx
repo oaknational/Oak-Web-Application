@@ -6,11 +6,11 @@ import { Span } from "../Typography";
 type FieldErrorProps = {
   id: string;
   children: ReactNode;
-  withoutMargin?: boolean;
+  withoutMarginBottom?: boolean;
 };
 
 const FieldError = (props: FieldErrorProps) => {
-  const { id, children, withoutMargin = false } = props;
+  const { id, children, withoutMarginBottom = false } = props;
   if (!children) {
     /**
      * Return early to avoid unwanted whitespace when there's no error
@@ -18,7 +18,7 @@ const FieldError = (props: FieldErrorProps) => {
     return null;
   }
   return (
-    <Box $mt={4} $mb={withoutMargin ? 0 : 24}>
+    <Box $mt={4} $mb={withoutMarginBottom ? 0 : 24}>
       <Span $color="failure" $font={"body-3"} id={id}>
         {children}
       </Span>

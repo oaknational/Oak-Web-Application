@@ -20,7 +20,7 @@ export type CheckboxConfig = {
   };
 };
 
-export type CheckboxVariant = "cardCheckbox";
+export type CheckboxVariant = "cardCheckbox" | "terms";
 
 type CheckboxProps = {
   labelText?: string;
@@ -203,9 +203,11 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           </>
         )}
       </CheckboxLabel>
-      <FieldError id={errorId} withoutMargin>
-        {error}
-      </FieldError>
+      {variant !== "terms" && (
+        <FieldError id={errorId} withoutMarginBottom>
+          {error}
+        </FieldError>
+      )}
     </>
   );
 };
