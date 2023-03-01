@@ -1,3 +1,10 @@
+## [1.147.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.0...v1.147.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* **get-sanity-client:** loadEnvConfig depending on NODE_ENV ([d44e2e6](https://github.com/oaknational/Oak-Web-Application/commit/d44e2e62e3062157354110ef7a0b92d71d6be189))
+
 # [1.147.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.146.0...v1.147.0) (2023-03-01)
 
 
