@@ -11,7 +11,7 @@ import TitleCard from "../../../../../../../../../components/Card/TitleCard";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
-import ButtonAsLink from "../../../../../../../../../components/Button/ButtonAsLink";
+import CurriruculmDownloadButton from "../../../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
@@ -25,9 +25,6 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     subjectSlug,
     subjectTitle,
   } = curriculumData;
-
-  const keyStageNum = keyStageSlug.slice(-1);
-  const downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&extension=pdf`;
 
   const paginationProps = usePagination({
     totalResults: lessons.length,
@@ -58,18 +55,12 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           $mb={24}
           $alignSelf={"flex-start"}
         />
-        <div>
-          <ButtonAsLink
-            icon="Download"
-            iconBackground="teachersHighlight"
-            label="Curriculum download (PDF)"
-            href={downloadLink}
-            page={null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-          />
-        </div>
+
+        <CurriruculmDownloadButton
+          keyStage={keyStageSlug}
+          subject={subjectSlug}
+        />
+
         <Box $mt={56}>
           <LessonList
             {...curriculumData}
