@@ -16,7 +16,6 @@ import LessonDownloadsPage, {
 import { items } from "../../../../../../components/SchoolPicker/SchoolPicker.test";
 import useSchoolPicker from "../../../../../../components/SchoolPicker/useSchoolPicker";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
-
 const props = {
   curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
 };
@@ -34,6 +33,13 @@ let useSchoolPickerReturnData = {
   selectedValue: "dor",
 };
 
+const getDownloadResourcesExistenceData = {
+  resources: {
+    "exit-quiz-answers": true,
+    "worksheet-pdf": true,
+  },
+};
+
 jest.mock(
   "../../../../../../components/SchoolPicker/useSchoolPicker.tsx",
   () => ({
@@ -43,6 +49,20 @@ jest.mock(
 );
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock(
+  "../../../../../../components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  () => ({
+    __esModule: true,
+    default: () => getDownloadResourcesExistenceData,
+  })
+);
+
+jest.mock(
+  "../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  () => {
+    return jest.fn();
+  }
+);
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {
@@ -102,6 +122,11 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         "lessonResourcesToDownload"
       );
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
+
+      // @todo add back when button has disabled state and is initially visible
+      // Download button
+      // const downloadButton = screen.getByText("Download .zip");
+      // expect(downloadButton).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {

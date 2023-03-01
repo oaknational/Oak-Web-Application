@@ -1,3 +1,53 @@
+# [1.148.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.2...v1.148.0) (2023-03-01)
+
+
+### Features
+
+* 1315 add :disabled styles and spacing back in ([96ef5dd](https://github.com/oaknational/Oak-Web-Application/commit/96ef5dd87fed80f4ac8210205a97dd39d4e74a69))
+* 1315 add disabled props to the button on downloads page ([49753a3](https://github.com/oaknational/Oak-Web-Application/commit/49753a39643afbb3ff83bfe14d6ca3779d7aecb4))
+* 1315 remove loading text ([ad09db9](https://github.com/oaknational/Oak-Web-Application/commit/ad09db9155fd6bbae86670b2dd1995cfb05591cb))
+* 1315 update icon names in test ([86910ed](https://github.com/oaknational/Oak-Web-Application/commit/86910ed08ff0aa7fbbd70d11cf939fb6502c4e40))
+* 1325 add disabled styles to button with brush borders ([bb7b8df](https://github.com/oaknational/Oak-Web-Application/commit/bb7b8dfec688da5b736a2e328127b8b2abe1c264))
+
+## [1.147.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.1...v1.147.2) (2023-03-01)
+
+
+### Bug Fixes
+
+* **answer-order:**  render correct  order in the CorrectAnswer component ([ade0bcf](https://github.com/oaknational/Oak-Web-Application/commit/ade0bcf391265725522c9d592ce4fe4a9c0ea15e))
+
+## [1.147.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.0...v1.147.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* **get-sanity-client:** loadEnvConfig depending on NODE_ENV ([d44e2e6](https://github.com/oaknational/Oak-Web-Application/commit/d44e2e62e3062157354110ef7a0b92d71d6be189))
+
+# [1.147.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.146.0...v1.147.0) (2023-03-01)
+
+
+### Features
+
+* 1113 Add debounce functionality ([737824d](https://github.com/oaknational/Oak-Web-Application/commit/737824dd404cb2c6b07f9e71f378862e44d8fad7))
+* 1113 add disabled download button if loading or no resources to download ([b26de72](https://github.com/oaknational/Oak-Web-Application/commit/b26de7223dc4e70f3d4e93566dbf27a144d78cb8))
+* 1113 add disabled state to the button when loading ([833cd62](https://github.com/oaknational/Oak-Web-Application/commit/833cd625385f841ab94a1ad0209e55f32c09b44e))
+* 1113 add functionality to download all resources ([f36cf46](https://github.com/oaknational/Oak-Web-Application/commit/f36cf461813139444df600cbf5740bec157f43ee))
+* 1113 add tests ([164ded2](https://github.com/oaknational/Oak-Web-Application/commit/164ded23e4d727327a370b9f73b10ababdfedbef))
+* 1113 add tests ([1869b8c](https://github.com/oaknational/Oak-Web-Application/commit/1869b8c6282896cad4e7eebdfd4fbb1efd57c9f8))
+* 1113 add tests ([8307dad](https://github.com/oaknational/Oak-Web-Application/commit/8307dad8181d9a2a2ec17643bb262b880121ea7e))
+* 1113 add tests and small refactor ([2893016](https://github.com/oaknational/Oak-Web-Application/commit/2893016b7a16212ea876bffad8cf1ce512b9018c))
+* 1113 align new .env variable names ([8631c93](https://github.com/oaknational/Oak-Web-Application/commit/8631c93d53131fc42d9338389bc2333d3a18680a))
+* 1113 download all selected resources functionality ([33924ee](https://github.com/oaknational/Oak-Web-Application/commit/33924ee9ebda690d01eb8a7af76d8daf0d64a817))
+* 1113 exclude copyrighted resources from initital state ([dd94903](https://github.com/oaknational/Oak-Web-Application/commit/dd949030137f4f19e8373d721bf8a7b958374ceb))
+* 1113 make sure getDownloadResourcesExistence is mocked in downloads page test ([848b96f](https://github.com/oaknational/Oak-Web-Application/commit/848b96fb88213e1d89cea1758480c1ae10a9c7a9))
+* 1113 more tests ([eadfe65](https://github.com/oaknational/Oak-Web-Application/commit/eadfe65279b8d9e99c03a743501e4d4a511e5985))
+* 1113 refactor ([e5ce77d](https://github.com/oaknational/Oak-Web-Application/commit/e5ce77def18758ff7cc39a21030e938ec12a04c5))
+* 1113 remove button styling update ([19eb5eb](https://github.com/oaknational/Oak-Web-Application/commit/19eb5eb200517e3590a2336dc86e98fdb19afef0))
+* 1113 remove disabled prop from button ([be5f905](https://github.com/oaknational/Oak-Web-Application/commit/be5f9052453c574a8f05a08da51bf61e768841f8))
+* 1113 update icon name ([819c784](https://github.com/oaknational/Oak-Web-Application/commit/819c784a291bb3873f32663ca9d87e860f380e6d))
+* 1113 update test .env ([1dc18d9](https://github.com/oaknational/Oak-Web-Application/commit/1dc18d9533fa61c685add3cfaa1ca36c84b5927a))
+* 1113 update vercel api url in configs ([0fe47fe](https://github.com/oaknational/Oak-Web-Application/commit/0fe47fe8b1df8ce7212b11455351115b2cfe0393))
+
 # [1.146.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.145.0...v1.146.0) (2023-02-28)
 
 
