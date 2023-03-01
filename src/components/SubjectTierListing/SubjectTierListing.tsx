@@ -20,7 +20,7 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
         keyStage={keyStageTitle}
         keyStageSlug={keyStageSlug}
         title={subjectTitle}
-        iconName={"rocket"}
+        slug={subjectSlug}
         $mt={48}
         $mb={64}
         $alignSelf={"flex-start"}

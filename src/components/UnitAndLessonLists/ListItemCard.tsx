@@ -10,6 +10,7 @@ import IconDesktop from "./IconDesktop";
 
 export type ListItemCardProps = {
   title: string;
+  icon: string;
   isHovered: boolean;
   children: React.ReactNode;
   background: OakColorName;
@@ -24,8 +25,15 @@ export type ListItemCardProps = {
  * Links to a lesson-index page
  */
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const { title, children, isHovered, containerProps, background, expired } =
-    props;
+  const {
+    title,
+    children,
+    isHovered,
+    containerProps,
+    background,
+    expired,
+    icon,
+  } = props;
 
   const applyHoverStyles = isHovered && !expired;
 
@@ -53,6 +61,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       {!expired && (
         <IconDesktop
           title={title}
+          icon={icon}
           background={background}
           isHovered={isHovered}
         />

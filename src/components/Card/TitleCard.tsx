@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import Flex, { FlexProps } from "../Flex";
 import { Heading, Span } from "../Typography";
-import Icon, { IconName } from "../Icon";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import OakLink from "../OakLink";
 import Box from "../Box";
+import SubjectIcon from "../SubjectIcon";
 
 export const titleCardIconBackground = {
   subject: "teachersPastelYellow",
@@ -19,6 +19,7 @@ export type TitlePageType =
       page: "subject";
       keyStage: string;
       keyStageSlug: string;
+      slug: string;
     }
   | {
       page: "unit" | "lessons" | "lesson";
@@ -30,7 +31,6 @@ export type TitlePageType =
 
 type TitleCardProps = FlexProps & {
   title: string;
-  iconName: IconName;
 } & TitlePageType;
 
 /**
@@ -40,7 +40,8 @@ type TitleCardProps = FlexProps & {
  * Used on subject by keystage, tier, unit and lesson pages.
  */
 const TitleCard: FC<TitleCardProps> = (props) => {
-  const { title, keyStage, keyStageSlug, iconName, page, ...flexProps } = props;
+  const { title, keyStage, keyStageSlug, page, ...flexProps } = props;
+  const icon = page === "subject" ? props.slug : props.subjectSlug;
 
   return (
     <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
@@ -67,7 +68,8 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           $height={"100%"}
           $background={titleCardIconBackground[page]}
         >
-          <Icon size={[44, 120]} name={iconName} />
+          {/* <Icon size={[44, 120]} name={iconName} /> */}
+          <SubjectIcon subjectSlug={icon} height={96} width={96} $ma={"auto"} />
         </Flex>
       </Flex>
       <BoxBorders gapPosition="bottomRight" />
