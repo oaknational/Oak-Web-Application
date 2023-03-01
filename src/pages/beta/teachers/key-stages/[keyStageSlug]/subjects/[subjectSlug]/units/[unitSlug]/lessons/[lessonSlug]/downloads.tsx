@@ -74,7 +74,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     keyStageSlug,
     subjectSlug,
     subjectTitle,
-    slug,
     downloads,
     unitSlug,
     unitTitle,
