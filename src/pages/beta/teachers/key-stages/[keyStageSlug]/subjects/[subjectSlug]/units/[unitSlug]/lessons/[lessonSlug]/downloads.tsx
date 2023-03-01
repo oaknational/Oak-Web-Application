@@ -75,7 +75,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     slug,
     downloads,
   } = curriculumData;
-  const [validationError, setValidationError] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
@@ -85,7 +84,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       setSelectedRadio("");
     }
     setInputValue(value);
-    schoolDetailsValidation();
   };
 
   const onRadioChange = (e: string) => {
@@ -93,7 +91,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       setInputValue("");
     }
     setSelectedRadio(e);
-    schoolDetailsValidation();
   };
 
   const { register, formState } = useForm<DownloadFormProps>({
@@ -161,17 +158,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
-  const schoolDetailsValidation = () => {
-    if (!selectedValue && !selectedRadio) {
-      setValidationError(true);
-      // schoolPickerRef.current.focus();
-    } else {
-      setValidationError(false);
-    }
-  };
-
   const onFormSubmit = async () => {
-    schoolDetailsValidation();
     if (!validationError) {
       await debouncedDownloadResources();
       setTimeout(() => setIsAttemptingDownload(false), 4000);
