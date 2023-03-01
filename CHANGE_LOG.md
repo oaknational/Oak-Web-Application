@@ -1,3 +1,10 @@
+## [1.147.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.1...v1.147.2) (2023-03-01)
+
+
+### Bug Fixes
+
+* **answer-order:**  render correct  order in the CorrectAnswer component ([ade0bcf](https://github.com/oaknational/Oak-Web-Application/commit/ade0bcf391265725522c9d592ce4fe4a9c0ea15e))
+
 ## [1.147.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.0...v1.147.1) (2023-03-01)
 
 
