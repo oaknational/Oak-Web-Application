@@ -44,5 +44,6 @@ query teachersKeyStageSubjectUnitLessons(
     hasCopyrightMaterial: has_copyright_material
     hasDownloadableResources: has_downloadable_resources
     quizCount: quiz_count
+    expired
   }
 }

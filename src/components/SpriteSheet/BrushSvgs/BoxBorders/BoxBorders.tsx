@@ -32,7 +32,7 @@ export type BoxBordersProps = {
   $zIndex?: ZIndex;
   hideTop?: boolean;
   hideBottom?: boolean;
-  color?: OakColorName;
+  $color?: OakColorName;
 };
 
 /**

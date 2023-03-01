@@ -54,12 +54,16 @@ export const getLessonObject = (
     slug: highlightedHit.slug,
     hasCopyrightMaterial: false, // this will need to be added to elastic search
     quizCount: null,
+    expired: highlightedHit.expired,
   };
 };
 
 export const getUnitObject = (
   hit: UnitSearchHit
-): Omit<UnitListItemProps, "hideTopHeading" | "index"> => {
+): Omit<
+  UnitListItemProps,
+  "hideTopHeading" | "index" | "expiredLessonCount"
+> => {
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
   return {
@@ -73,6 +77,7 @@ export const getUnitObject = (
     subjectTitle: highlightedHit.subject_title,
     keyStageSlug: keyStageSlugMap[highlightedHit.key_stage_slug] || "",
     keyStageTitle: keyStageTitleMap[highlightedHit.key_stage_title] || "",
+    expired: highlightedHit.expired,
   };
 };
 
@@ -100,7 +105,11 @@ const SearchResults = (props: SearchResultsProps) => {
                   {isLessonSearchHit(hit) ? (
                     <LessonListItem {...getLessonObject(hit)} />
                   ) : (
-                    <UnitListItem {...getUnitObject(hit)} index={null} />
+                    <UnitListItem
+                      expiredLessonCount={null}
+                      {...getUnitObject(hit)}
+                      index={null}
+                    />
                   )}
                 </LI>
               );

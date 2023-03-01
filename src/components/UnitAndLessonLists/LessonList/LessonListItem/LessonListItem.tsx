@@ -5,10 +5,10 @@ import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
-import IconMobile from "../../IconMobile";
 import ListItemHeading from "../../ListItemHeading";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
+import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 
 export type LessonListItemProps =
@@ -69,7 +69,7 @@ function getAvailableResourceList({
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, description } = props;
+  const { title, description, expired } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -82,6 +82,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       isHovered={isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}
+      expired={expired}
     >
       <Flex
         $ml={[16, 24]}
@@ -90,29 +91,31 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $width={"100%"}
         $pb={24}
       >
-        <Flex>
-          <ListItemHeading
-            {...props}
-            primaryTargetProps={primaryTargetProps}
-            page="Lesson"
-            index={null}
-          />
-          <IconMobile background={"pupilsPink"} title={title} />
-        </Flex>
-
-        <Flex $mt={[8, 0]} $mr={[16, 0]}>
-          <Span
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
-            $font={["body-3", "body-2"]}
-            $color={"oakGrey5"}
-          />
-        </Flex>
-        {resources.length > 0 && (
-          <Box $mt={16}>
-            <LessonResourceGraphics items={resources} />
-          </Box>
+        <ListItemHeading
+          {...props}
+          primaryTargetProps={primaryTargetProps}
+          page="Lesson"
+          index={null}
+        />
+        {expired ? (
+          <Expired page={"lesson"} />
+        ) : (
+          <>
+            <Flex $mt={[8, 0]} $mr={[16, 0]}>
+              <Span
+                dangerouslySetInnerHTML={{
+                  __html: description,
+                }}
+                $font={["body-3", "body-2"]}
+                $color={"oakGrey5"}
+              />
+            </Flex>
+            {resources.length > 0 && (
+              <Box $mt={16}>
+                <LessonResourceGraphics items={resources} />
+              </Box>
+            )}
+          </>
         )}
       </Flex>
     </ListItemCard>

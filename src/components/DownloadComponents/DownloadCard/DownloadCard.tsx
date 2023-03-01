@@ -2,22 +2,14 @@ import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
 
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import P from "../Typography/P";
-import Flex from "../Flex";
-import Checkbox from "../Checkbox";
-import Box from "../Box";
-import GraphicCircleIcon from "../Icon/GraphicCircleIcon";
-import { IconName } from "../Icon";
-
-export type DownloadResourceType =
-  | "presentation"
-  | "intro-quiz-questions"
-  | "intro-quiz-answers"
-  | "exit-quiz-questions"
-  | "exit-quiz-answers"
-  | "worksheet-pdf"
-  | "worksheet-pptx";
+import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
+import P from "../../Typography/P";
+import Flex from "../../Flex";
+import Checkbox from "../../Checkbox";
+import Box from "../../Box";
+import GraphicCircleIcon from "../../Icon/GraphicCircleIcon";
+import { IconName } from "../../Icon";
+import type { DownloadResourceType } from "../downloads.types";
 
 export type DownloadCardProps = {
   id: string;
