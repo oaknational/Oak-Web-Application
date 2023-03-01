@@ -39,6 +39,7 @@ import useSchoolPicker from "../../../../../../../../../../../components/SchoolP
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
+import { lessonBreadcrumbArray } from "../[lessonSlug]";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -192,28 +193,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
-              {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
-                label: keyStageTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "unit-index",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                },
-                label: subjectTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "lesson-index",
-                  slug: unitSlug,
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                },
-                label: unitTitle,
-              },
+              ...lessonBreadcrumbArray(
+                keyStageTitle,
+                keyStageSlug,
+                subjectSlug,
+                subjectTitle,
+                unitSlug,
+                unitTitle
+              ),
               {
                 oakLinkProps: {
                   page: "lesson-overview",

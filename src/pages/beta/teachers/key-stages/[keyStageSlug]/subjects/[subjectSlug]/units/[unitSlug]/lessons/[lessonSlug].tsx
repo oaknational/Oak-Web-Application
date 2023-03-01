@@ -34,13 +34,48 @@ import OverviewVideo from "../../../../../../../../../../components/pages/Teache
 import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 import QuizContainer from "../../../../../../../../../../components/QuizContainer";
-import Breadcrumbs from "../../../../../../../../../../components/Breadcrumbs";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "../../../../../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../../../../../components/Box";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
 };
 
+export const lessonBreadcrumbArray = (
+  keyStageTitle: string,
+  keyStageSlug: string,
+  subjectSlug: string,
+  subjectTitle: string,
+  unitSlug: string,
+  unitTitle: string
+): Breadcrumb[] => {
+  return [
+    { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+    {
+      oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+      label: keyStageTitle,
+    },
+    {
+      oakLinkProps: {
+        page: "unit-index",
+        keyStage: keyStageSlug,
+        subject: subjectSlug,
+      },
+      label: subjectTitle,
+    },
+    {
+      oakLinkProps: {
+        page: "lesson-index",
+        slug: unitSlug,
+        keyStage: keyStageSlug,
+        subject: subjectSlug,
+      },
+      label: unitTitle,
+    },
+  ];
+};
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
@@ -90,28 +125,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
-              {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
-                label: keyStageTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "unit-index",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                },
-                label: subjectTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "lesson-index",
-                  slug: unitSlug,
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                },
-                label: unitTitle,
-              },
+              ...lessonBreadcrumbArray(
+                keyStageTitle,
+                keyStageSlug,
+                subjectSlug,
+                subjectTitle,
+                unitSlug,
+                unitTitle
+              ),
               {
                 oakLinkProps: {
                   page: "lesson-overview",
