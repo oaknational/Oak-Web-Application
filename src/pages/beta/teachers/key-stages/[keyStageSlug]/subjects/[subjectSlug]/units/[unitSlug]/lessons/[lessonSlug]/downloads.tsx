@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,7 +79,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
-  const schoolPickerRef = useRef();
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (selectedRadio && selectedValue) {
@@ -219,7 +218,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
-            ref={schoolPickerRef}
             error={validationError}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
