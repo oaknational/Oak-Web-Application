@@ -27,7 +27,12 @@ const IconDesktopContainer: FC<IconDesktopProps> = (props) => {
       $transform={isHovered ? "translateY(-4px)" : null}
       $transition={"all 0.4s ease-out"}
     >
-      <SubjectIcon subjectSlug={subjectSlug} height={96} width={96} $ma={"auto"} />
+      <SubjectIcon
+        subjectSlug={subjectSlug}
+        height={96}
+        width={96}
+        $ma={"auto"}
+      />
     </Flex>
   );
 };

@@ -10,7 +10,7 @@ export type IconMobileProps = {
 };
 
 const IconMobileContainer: FC<IconMobileProps> = (props) => {
-  const {  background, subjectSlug } = props;
+  const { background, subjectSlug } = props;
 
   return (
     <Flex
@@ -23,7 +23,12 @@ const IconMobileContainer: FC<IconMobileProps> = (props) => {
       $position={"relative"}
       $ml={"auto"}
     >
-      <SubjectIcon subjectSlug={subjectSlug} height={96} width={96} $ma={"auto"} />
+      <SubjectIcon
+        subjectSlug={subjectSlug}
+        height={96}
+        width={96}
+        $ma={"auto"}
+      />
     </Flex>
   );
 };
