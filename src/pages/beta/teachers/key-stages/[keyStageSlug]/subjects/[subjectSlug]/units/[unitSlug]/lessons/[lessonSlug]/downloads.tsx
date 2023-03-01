@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,9 +50,6 @@ const schema = z.object({
     })
     .optional()
     .or(z.literal("")),
-  terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept terms and conditions" }),
-  }),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -101,6 +98,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { errors } = formState;
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+  const [acceptedTCsError, setAcceptedTCsError] = useState<boolean>(false);
+
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -158,9 +157,31 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
+  // remove accepted T&Cs error when selected
+  useEffect(() => {
+    if (acceptedTCs) {
+      setAcceptedTCsError(false);
+    }
+  }, [acceptedTCs]);
+
+  const validateFormOnSubmit = () => {
+    let isFormValid = true;
+    // here we can add all validation conditions
+    if (!acceptedTCs) {
+      setAcceptedTCsError(true);
+      isFormValid = false;
+    }
+
+    return isFormValid;
+  };
+
   const onFormSubmit = async () => {
-    await debouncedDownloadResources();
-    setTimeout(() => setIsAttemptingDownload(false), 4000);
+    const isFormValid = validateFormOnSubmit();
+
+    if (isFormValid) {
+      await debouncedDownloadResources();
+      setTimeout(() => setIsAttemptingDownload(false), 4000);
+    }
   };
 
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
@@ -253,7 +274,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <TermsAndConditionsCheckbox
             checked={acceptedTCs}
             onChange={() => setAcceptedTCs(!acceptedTCs)}
-            errorMessage={errors.terms?.message}
+            errorMessage={
+              acceptedTCsError ? "You must accept terms and conditions" : ""
+            }
           />
         </Box>
 
