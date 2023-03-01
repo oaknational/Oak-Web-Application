@@ -13,14 +13,17 @@ import Flex from "../Flex";
 import { RotatedInputLabel, StyledInput } from "../Input/Input";
 import { DropdownFocusUnderline } from "../DropdownSelect/Select";
 import { School } from "../SchoolPicker/SchoolPicker";
+import { OakColorName } from "../../styles/theme/types";
 
 // Reuse the ListBox and Popover from your component library. See below for details.
 
-const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
+const SearchComboBox = <T extends School>(
+  props: ComboBoxStateOptions<T> & { error: boolean }
+) => {
   // Setup filter function and state.
   const { contains } = useFilter({ sensitivity: "base" });
   const state = useComboBoxState({ ...props, defaultFilter: contains });
-
+  const { error } = props;
   // Setup refs and get props for child elements.
   const inputRef = useRef(null);
   const listBoxRef = useRef(null);
@@ -47,6 +50,15 @@ const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
   const id = useId();
   const labelId = useId();
 
+  let labelBackground: OakColorName;
+  if (state.isFocused) {
+    labelBackground = "teachersHighlight";
+  } else if (error) {
+    labelBackground = "failure";
+  } else {
+    labelBackground = "pastelTurquoise";
+  }
+
   return (
     <Flex $width={"100%"} $position={"relative"} $display={"inline-block"}>
       <Flex $width={"100%"} $position={"relative"}>
@@ -62,9 +74,7 @@ const SearchComboBox = <T extends School>(props: ComboBoxStateOptions<T>) => {
             htmlFor={id}
             id={labelId}
             $font={"body-3"}
-            background={
-              state.isFocused ? "teachersHighlight" : "pastelTurquoise"
-            }
+            background={labelBackground}
           >
             {props.label}
           </RotatedInputLabel>
