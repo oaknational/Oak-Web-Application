@@ -92,7 +92,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     theme.buttonFocusUnderlineColors[defactoBackground] || "black";
 
   icon =
-    isCurrent && currentStyles?.includes("arrow-icon") ? "ArrowRight" : icon;
+    isCurrent && currentStyles?.includes("arrow-icon") ? "arrow-right" : icon;
 
   /**
    * currentColor is the text/icon color when the button has state "current"
@@ -151,14 +151,14 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         {variant === "minimal" && (
           <ButtonMinimalFocusUnderline
             $color={underlineColor}
-            name="Underline1"
+            name="underline-1"
           />
         )}
       </Box>
       {variant === "brush" && <ButtonBorders background={background} />}
-      <ButtonFocusUnderline $color={underlineColor} name="Underline1" />
+      <ButtonFocusUnderline $color={underlineColor} name="underline-1" />
       {variant === "buttonStyledAsLink" && (
-        <ButtonStyledAsLinkFocusUnderline $color={"black"} name="Underline1" />
+        <ButtonStyledAsLinkFocusUnderline $color={"black"} name="underline-1" />
       )}
     </>
   );

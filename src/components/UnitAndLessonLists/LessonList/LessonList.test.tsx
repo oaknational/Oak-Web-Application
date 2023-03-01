@@ -31,6 +31,7 @@ describe("components/ Lesson List", () => {
             themeSlug: "circles",
             themeTitle: "Circles",
             hasCopyrightMaterial: false,
+            expired: false,
           },
         ]}
       />

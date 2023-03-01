@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { debounce } from "lodash";
 import { z } from "zod";
 
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
@@ -18,9 +19,7 @@ import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import Checkbox from "../../../../../../../../../../../components/Checkbox";
-import DownloadCard, {
-  type DownloadResourceType,
-} from "../../../../../../../../../../../components/DownloadCard";
+import DownloadCard from "../../../../../../../../../../../components/DownloadComponents/DownloadCard";
 import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
@@ -29,6 +28,12 @@ import Grid, {
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
+import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
+import type {
+  ResourcesToDownloadType,
+  DownloadResourceType,
+} from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
@@ -36,10 +41,6 @@ import Radio from "../../../../../../../../../../../components/RadioButtons/Radi
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
-};
-
-export type ResourcesToDownloadType = {
-  [key in DownloadResourceType]: boolean;
 };
 
 const schema = z.object({
@@ -71,8 +72,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     keyStageSlug,
     subjectSlug,
     subjectTitle,
+    slug,
     downloads,
   } = curriculumData;
+
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
@@ -99,12 +102,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { errors } = formState;
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+  const [isAttemptingDownload, setIsAttemptingDownload] =
+    useState<boolean>(false);
 
   const getInitialResourcesToDownloadState = () => {
     const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
 
     downloads?.forEach((download) => {
-      if (download.exists) {
+      if (download.exists && !download.forbidden) {
         initialResourcesToDownloadState[download.type as DownloadResourceType] =
           false;
       }
@@ -113,9 +118,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     return initialResourcesToDownloadState;
   };
 
-  const [resourcesToDownload, setResourcesToDownload] = useState<{
-    [key in DownloadResourceType]: boolean;
-  }>(getInitialResourcesToDownloadState());
+  const [resourcesToDownload, setResourcesToDownload] =
+    useState<ResourcesToDownloadType>(getInitialResourcesToDownloadState());
 
   const onResourceToDownloadToggle = (
     toggledResource: DownloadResourceType
@@ -146,12 +150,32 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setResourcesToDownload(updatedResourcesToDownload);
   };
 
+  const debouncedDownloadResources = debounce(
+    () => {
+      setIsAttemptingDownload(true);
+      downloadSelectedLessonResources(slug, resourcesToDownload);
+    },
+    4000,
+    { leading: true }
+  );
+
+  const onFormSubmit = async () => {
+    await debouncedDownloadResources();
+    setTimeout(() => setIsAttemptingDownload(false), 4000);
+  };
+
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
   const selectedResourcesToDownloadCount = Object.keys(
     resourcesToDownload
   ).filter(
     (resource) => resourcesToDownload[resource as DownloadResourceType] === true
   ).length;
+
+  useDownloadExistenceCheck({
+    lessonSlug: slug,
+    resourcesToCheck: resourcesToDownload,
+    onComplete: setResourcesToDownload,
+  });
 
   return (
     <AppLayout
@@ -169,7 +193,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={`Downloads: ${title}`}
-            iconName={"Rocket"}
+            iconName={"rocket"}
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
@@ -297,26 +321,50 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     name={"lessonResourcesToDownload"}
                     label={download.label}
                     extension={download.ext}
-                    resourceType={download.type as DownloadResourceType}
+                    resourceType={download.type}
                     checked={resourcesToDownload[download.type] || false}
                     onChange={() =>
                       onResourceToDownloadToggle(`${download.type}`)
                     }
+                    data-testid={`download-card-${download.type}`}
                   />
                 </GridArea>
               );
             }
           })}
           <GridArea $colSpan={[12]}>
-            <Hr $color={"oakGrey3"} $mt={48} $mb={96} />
-            <Flex $justifyContent={"right"}>
+            <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
+            <Flex $justifyContent={"right"} $alignItems={"center"}>
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
                 data-testid="selectedResourcesCount"
+                $mr={24}
               >
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
+
+              {isAttemptingDownload && (
+                <P $mt={22} $mb={22}>
+                  Loading...
+                </P>
+              )}
+              {!isAttemptingDownload && selectedResourcesToDownloadCount > 0 && (
+                <Button
+                  label={"Download .zip"}
+                  onClick={() => {
+                    onFormSubmit();
+                  }}
+                  background={"teachersHighlight"}
+                  icon="download"
+                  $iconPosition="trailing"
+                  iconBackground="teachersYellow"
+                  $mt={8}
+                  $mb={16}
+                  $mr={8}
+                  $ml={8}
+                />
+              )}
             </Flex>
           </GridArea>
         </Grid>

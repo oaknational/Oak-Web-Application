@@ -14,7 +14,7 @@ describe("Subject title card", () => {
         keyStageSlug="key-stage-1"
         subject="Computing"
         subjectSlug="computing"
-        iconName="Twitter"
+        iconName="twitter"
       />
     );
 

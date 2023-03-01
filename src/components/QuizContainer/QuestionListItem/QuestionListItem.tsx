@@ -66,7 +66,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         $alignItems={"center"}
       >
         {" "}
-        <Icon name={"Tick"} $mr={16} />
+        <Icon name={"tick"} $mr={16} />
         {type === "order" && (
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
             {index + 1} -

@@ -54,7 +54,7 @@ const Notification: FC = () => {
         $transform="translate(-40%,-40%)"
       >
         <Icon
-          name="Bell"
+          name="bell"
           $background="pupilsHighlight"
           variant="brush"
           size={30}
@@ -165,6 +165,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $overflow="hidden"
                   >
                     <Box
+                      $position="relative"
                       $height={["90%", "100%"]}
                       $transform={[
                         "translate(-30%,30%)",
@@ -204,7 +205,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $right={0}
                     $left={0}
                   >
-                    <Svg name="Underline2" $color="pupilsHighlight" />
+                    <Svg name="underline-2" $color="pupilsHighlight" />
                   </Box>
                 </Card>
               </GridArea>
@@ -228,6 +229,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $overflow="hidden"
                   >
                     <Box
+                      $position="relative"
                       $height={["90%"]}
                       $transform={[
                         "translate(0,40%)",
@@ -269,7 +271,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $right={0}
                     $left={0}
                   >
-                    <Svg name="Underline2" $color="teachersHighlight" />
+                    <Svg name="underline-2" $color="teachersHighlight" />
                   </Box>
                 </Card>
               </GridArea>

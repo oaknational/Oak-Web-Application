@@ -53,7 +53,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
             variant="brush"
             size={30}
             $background={"teachersHighlight"}
-            name="ArrowRight"
+            name="arrow-right"
           />
         </OakLink>
       </Flex>
