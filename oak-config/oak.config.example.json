@@ -37,6 +37,7 @@
   "oak": {
     "appBaseUrl": "http://localhost:3000",
     "searchApiUrl": "https://example.com",
+    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"],
     "vercelApiUrl": "https://api.thenational.academy"
   },
   "posthog": {
