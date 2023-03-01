@@ -2,6 +2,8 @@ import React, { createContext, FC, useId } from "react";
 import { useRadioGroup, AriaRadioGroupProps } from "react-aria";
 import { RadioGroupState, useRadioGroupState } from "react-stately";
 
+import { Span } from "../Typography";
+
 export const RadioContext = createContext<RadioGroupState | null>(null);
 
 /**
@@ -31,9 +33,9 @@ const RadioGroup: FC<AriaRadioGroupProps & { children: React.ReactNode }> = (
         </div>
       )}
       {errorMessage && validationState === "invalid" && (
-        <div {...errorMessageProps} style={{ color: "red", fontSize: 12 }}>
+        <Span $font={"body-3"} {...errorMessageProps}>
           {errorMessage}
-        </div>
+        </Span>
       )}
     </div>
   );
