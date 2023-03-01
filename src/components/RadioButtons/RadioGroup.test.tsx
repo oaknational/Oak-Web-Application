@@ -130,4 +130,31 @@ describe("RadioGroup", () => {
     expect(radio1).not.toBeChecked();
     expect(radio2).toBeChecked();
   });
+  it("changes shows error validation message ", async () => {
+    let selected;
+
+    const setSelected = (value: string) => {
+      selected = value;
+    };
+
+    const { getByText } = renderWithTheme(
+      <RadioGroup
+        value={selected}
+        onChange={setSelected}
+        label="Select one of the following:"
+        validationState={"invalid"}
+        errorMessage={"error"}
+      >
+        <Radio data-testid={"radio-1"} value="home">
+          Home schooled
+        </Radio>
+        <Radio data-testid={"radio-2"} value="notListed">
+          My school isn't listed
+        </Radio>
+      </RadioGroup>
+    );
+    const label = getByText("error");
+
+    expect(label).toBeInTheDocument();
+  });
 });
