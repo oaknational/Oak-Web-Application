@@ -79,20 +79,23 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   return (
     <AppLayout seoProps={tiers.length && !tierQuery ? tiersSEO : unitsSEO}>
       <MaxWidth $ph={16}>
-        <Breadcrumbs
-          breadcrumbs={[
-            { href: "/beta/teachers/", label: "Home" },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
-              label: keyStageTitle,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
-              label: subjectTitle,
-              disabled: true,
-            },
-          ]}
-        />
+        <Box $mv={[24, 48]}>
+          {" "}
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                label: subjectTitle,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
 
         {tiers.length && !tierQuery ? (
           <SubjectTierListing curriculumData={curriculumData} />
@@ -104,7 +107,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               keyStageSlug={keyStageSlug}
               title={subjectTitle}
               iconName={"rocket"}
-              $mt={48}
+              $mt={0}
               $mb={24}
               $alignSelf={"flex-start"}
             />

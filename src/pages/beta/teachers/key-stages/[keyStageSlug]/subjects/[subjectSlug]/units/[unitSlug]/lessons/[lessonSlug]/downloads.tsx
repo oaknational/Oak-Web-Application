@@ -165,34 +165,37 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       })}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Breadcrumbs
-          breadcrumbs={[
-            { href: "/beta/teachers/", label: "Home" },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
-              label: keyStageTitle,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
-              label: subjectTitle,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
-              label: unitTitle,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}`,
-              label: title,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}/downloads`,
-              label: "Downloads",
-              disabled: true,
-            },
-          ]}
-        />
+        <Box $mv={[24, 48]}>
+          {" "}
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                label: subjectTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                label: unitTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}`,
+                label: title,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}/downloads`,
+                label: "Downloads",
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
 
-        <Flex $mb={8} $display={"inline-flex"} $mt={50}>
+        <Flex $mb={8} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
             keyStage={keyStageTitle}

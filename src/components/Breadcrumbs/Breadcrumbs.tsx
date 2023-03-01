@@ -6,7 +6,6 @@ import { BreadcrumbJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Icon from "../Icon";
 import UL from "../Typography/UL";
 import ellipsis from "../../styles/ellipsis";
-import Box from "../Box";
 
 const BreadcrumbsNav = styled.nav`
   display: flex;
@@ -43,9 +42,10 @@ export type Breadcrumb = {
 export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[];
 };
+
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
-    <Box $mv={[24, 48]}>
+    <>
       {" "}
       <BreadcrumbJsonLd itemListElements={breadcrumbs} />
       <BreadcrumbsNav aria-label="Breadcrumb">
@@ -70,7 +70,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
           })}
         </BreadcrumbUL>
       </BreadcrumbsNav>
-    </Box>
+    </>
   );
 };
 

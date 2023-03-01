@@ -45,24 +45,26 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
       $background="white"
     >
       <MaxWidth $ph={16}>
-        <Breadcrumbs
-          breadcrumbs={[
-            { href: "/beta/teachers/", label: "Home" },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
-              label: keyStageTitle,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
-              label: subjectTitle,
-            },
-            {
-              href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
-              label: unitTitle,
-              disabled: true,
-            },
-          ]}
-        />
+        <Box $mv={[24, 48]}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { href: "/beta/teachers/", label: "Home" },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                label: keyStageTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                label: subjectTitle,
+              },
+              {
+                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                label: unitTitle,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
 
         <TitleCard
           page={"lessons"}
@@ -72,7 +74,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           subject={subjectTitle}
           title={unitTitle}
           iconName={"rocket"}
-          $mt={48}
+          $mt={0}
           $mb={24}
           $alignSelf={"flex-start"}
         />
