@@ -1,1 +1,1 @@
-export { default, svgSymbols } from "./BrushBorders";
+export { default } from "./BrushBorders";

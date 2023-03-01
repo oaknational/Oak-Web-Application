@@ -28,6 +28,7 @@ const lessons = [
     presentationCount: 1,
     worksheetCount: 1,
     hasCopyrightMaterial: false,
+    expired: false,
   },
   {
     slug: "macbeth-lesson-1",
@@ -46,6 +47,7 @@ const lessons = [
     presentationCount: 1,
     worksheetCount: 2,
     hasCopyrightMaterial: false,
+    expired: false,
   },
 ];
 

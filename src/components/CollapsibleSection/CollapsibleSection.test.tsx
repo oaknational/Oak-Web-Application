@@ -16,12 +16,12 @@ describe("CollapsibleSection", () => {
         startOpen={false}
         buttons={[
           {
-            icon: "Download",
+            icon: "download",
             onClick: jest.fn(),
             ariaLabel: "Download button",
           },
           {
-            icon: "Share",
+            icon: "share",
             onClick: jest.fn(),
             ariaLabel: "Share button",
           },
@@ -68,7 +68,7 @@ describe("CollapsibleSection", () => {
         startOpen={false}
         buttons={[
           {
-            icon: "Download",
+            icon: "download",
             onClick: handleClick,
             ariaLabel: "Download button",
           },

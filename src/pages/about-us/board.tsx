@@ -98,7 +98,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       >
                         <P>{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</P>
                         <IconButtonAsLink
-                          icon={"Download"}
+                          icon={"download"}
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
                           page={null}
                           href={`${doc.file.asset.url}?dl`}

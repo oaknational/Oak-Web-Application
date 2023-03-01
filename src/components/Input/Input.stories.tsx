@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const Input = Template.bind({});
 export const WithIcon = Template.bind({});
-WithIcon.args = { icon: "Search" };
+WithIcon.args = { icon: "search" };
 export const WithLabel = Template.bind({});
 WithLabel.args = { label: "Password" };
 export const WithError = Template.bind({});

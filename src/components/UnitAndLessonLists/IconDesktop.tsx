@@ -26,7 +26,7 @@ const IconDesktop: FC<IconDesktopProps> = (props) => {
       $transform={isHovered ? "translateY(-4px)" : null}
       $transition={"all 0.4s ease-out"}
     >
-      <Icon size={[50, 92]} name={"Rocket"}>
+      <Icon size={[50, 92]} name={"rocket"}>
         {title}
       </Icon>
     </Flex>

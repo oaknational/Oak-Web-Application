@@ -33,7 +33,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       {...containerProps}
     >
       <AnchorTarget id={anchorTargetId} />
-      <CardTitle tag="h2" icon="MagicCarpet" iconSize={56}>
+      <CardTitle tag="h2" icon="magic-carpet" iconSize={56}>
         Don’t miss out
       </CardTitle>
       <P $mb={24} color={"black"} id={descriptionId}>

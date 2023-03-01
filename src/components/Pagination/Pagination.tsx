@@ -34,7 +34,7 @@ const Pagination: FC<PaginationProps> = ({
           aria-label="previous page"
           page={null}
           href={prevHref}
-          icon={"ChevronLeft"}
+          icon={"chevron-left"}
           background={"teachersHighlight"}
           scroll={false}
           disabled={currentPage === 1}
@@ -47,7 +47,7 @@ const Pagination: FC<PaginationProps> = ({
           aria-label="next page"
           page={null}
           href={nextHref}
-          icon={"ChevronRight"}
+          icon={"chevron-right"}
           background={"teachersHighlight"}
           scroll={false}
           disabled={currentPage >= totalPages}

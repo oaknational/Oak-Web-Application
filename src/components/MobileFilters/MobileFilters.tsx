@@ -52,8 +52,8 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
     withBackButton,
     page,
     children,
-    iconOpened = "ChevronUp",
-    iconClosed = "ChevronDown",
+    iconOpened = "chevron-up",
+    iconClosed = "chevron-down",
     label,
     labelOpened = label,
     providedId,
@@ -101,7 +101,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
             >
               <ButtonAsLink
                 variant="minimal"
-                icon="ArrowLeft"
+                icon="arrow-left"
                 iconBackground="teachersHighlight"
                 size="large"
                 label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}

@@ -37,7 +37,7 @@ const KeyStagesNav: FC<KeyStageNavProps> = ({ keyStages }) => {
             $flexDirection={"column"}
           >
             <ButtonAsLink
-              icon={"ArrowRight"}
+              icon={"arrow-right"}
               $iconPosition="trailing"
               label={keyStage.name}
               href={keyStage.url}

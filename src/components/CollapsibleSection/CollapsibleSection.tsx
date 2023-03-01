@@ -101,7 +101,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
             <IconButton
               $ml={12}
               aria-label={"Open collapsible section"}
-              icon={"ChevronDown"}
+              icon={"chevron-down"}
               onClick={(e) => handleClick(e)}
               rotate={open ? 180 : 0}
               aria-expanded={open}

@@ -78,3 +78,7 @@ public/sitemap*.xml
 
 # Local Netlify folder
 .netlify
+
+# Images/graphics protected by IP
+public/images/sprite/*
+!public/images/sprite/README.md

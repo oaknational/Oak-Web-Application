@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const BubbleMessage = Template.bind({});
 BubbleMessage.args = {
-  variant: "Bubble",
+  variant: "bubble-1",
   outlineHeading: "3 hrs",
   heading: "per week saved on lesson planning",
   subHeading: "by nearly half of teachers using Oak",
@@ -23,7 +23,7 @@ BubbleMessage.args = {
 
 export const BubbleMessage2 = Template.bind({});
 BubbleMessage2.args = {
-  variant: "Bubble2",
+  variant: "bubble-2",
   outlineHeading: "3 hrs",
   heading: "per week saved on lesson planning",
   subHeading: "by nearly half of teachers using Oak",
