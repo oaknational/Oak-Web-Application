@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import getColorByName from "../../../../styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "../../../Button/common";
 import Svg from "../../../Svg";
+import { HOVER_SHADOW_TRANSITION } from "../../../../styles/transitions";
 
 const buttonBorder = css<{ background: ButtonBackground }>`
   position: absolute;
@@ -16,6 +17,7 @@ const buttonBorderTop = css`
   height: 4px;
   left: 0;
   bottom: calc(100% - 1px);
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const buttonBorderRight = css`
@@ -24,6 +26,7 @@ const buttonBorderRight = css`
   top: -2px;
   left: calc(100% - 1px);
   height: calc(100% + 3px);
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const buttonBorderBottom = css`
@@ -31,6 +34,7 @@ const buttonBorderBottom = css`
   height: 6px;
   top: calc(100% - 1px);
   left: 0;
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const buttonBorderLeft = css`
@@ -39,6 +43,7 @@ const buttonBorderLeft = css`
   top: -1px;
   right: calc(100% - 1px);
   height: calc(100% + 5px);
+  transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
 const ButtonBorderTop = styled(Svg)`

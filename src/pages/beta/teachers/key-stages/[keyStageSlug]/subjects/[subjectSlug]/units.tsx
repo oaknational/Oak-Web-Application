@@ -82,13 +82,17 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
           {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { href: "/beta/teachers/", label: "Home" },
+              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                oakLinkProps: {
+                  page: "unit-index",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
                 label: subjectTitle,
                 disabled: true,
               },

@@ -90,21 +90,36 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { href: "/beta/teachers/", label: "Home" },
+              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                oakLinkProps: {
+                  page: "unit-index",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
                 label: subjectTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                oakLinkProps: {
+                  page: "lesson-index",
+                  slug: unitSlug,
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
                 label: unitTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}`,
+                oakLinkProps: {
+                  page: "lesson-overview",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
                 label: title,
                 disabled: true,
               },

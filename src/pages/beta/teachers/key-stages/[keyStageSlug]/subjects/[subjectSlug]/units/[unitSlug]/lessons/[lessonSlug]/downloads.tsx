@@ -192,25 +192,46 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { href: "/beta/teachers/", label: "Home" },
+              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                oakLinkProps: {
+                  page: "unit-index",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
                 label: subjectTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                oakLinkProps: {
+                  page: "lesson-index",
+                  slug: unitSlug,
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
                 label: unitTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}`,
+                oakLinkProps: {
+                  page: "lesson-overview",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
                 label: title,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}/lessons/${slug}/downloads`,
+                oakLinkProps: {
+                  page: "downloads",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
                 label: "Downloads",
                 disabled: true,
               },
@@ -376,27 +397,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
 
-              {isAttemptingDownload && (
-                <P $mt={22} $mb={22}>
-                  Loading...
-                </P>
-              )}
-              {!isAttemptingDownload && selectedResourcesToDownloadCount > 0 && (
-                <Button
-                  label={"Download .zip"}
-                  onClick={() => {
-                    onFormSubmit();
-                  }}
-                  background={"teachersHighlight"}
-                  icon="download"
-                  $iconPosition="trailing"
-                  iconBackground="teachersYellow"
-                  $mt={8}
-                  $mb={16}
-                  $mr={8}
-                  $ml={8}
-                />
-              )}
+              <Button
+                label={"Download .zip"}
+                onClick={() => {
+                  onFormSubmit();
+                }}
+                background={"teachersHighlight"}
+                icon="download"
+                $iconPosition="trailing"
+                iconBackground="teachersYellow"
+                disabled={
+                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
+                }
+                $mt={8}
+                $mb={16}
+                $mr={8}
+                $ml={8}
+              />
             </Flex>
           </GridArea>
         </Grid>
