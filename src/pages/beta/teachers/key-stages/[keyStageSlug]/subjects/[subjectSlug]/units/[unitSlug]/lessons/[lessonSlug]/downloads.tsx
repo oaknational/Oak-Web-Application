@@ -335,6 +335,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>
+              {isAttemptingDownload && (
+                <P $mt={22} $mb={22} $mr={16}>
+                  Loading...
+                </P>
+              )}
+
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
@@ -344,27 +350,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
 
-              {isAttemptingDownload && (
-                <P $mt={22} $mb={22}>
-                  Loading...
-                </P>
-              )}
-              {!isAttemptingDownload && selectedResourcesToDownloadCount > 0 && (
-                <Button
-                  label={"Download .zip"}
-                  onClick={() => {
-                    onFormSubmit();
-                  }}
-                  background={"teachersHighlight"}
-                  icon="download"
-                  $iconPosition="trailing"
-                  iconBackground="teachersYellow"
-                  $mt={8}
-                  $mb={16}
-                  $mr={8}
-                  $ml={8}
-                />
-              )}
+              <Button
+                label={"Download .zip"}
+                onClick={() => {
+                  onFormSubmit();
+                }}
+                background={"teachersHighlight"}
+                icon="download"
+                $iconPosition="trailing"
+                iconBackground="teachersYellow"
+                disabled={
+                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
+                }
+                $mt={8}
+                $mb={16}
+                $mr={8}
+                $ml={8}
+              />
             </Flex>
           </GridArea>
         </Grid>
