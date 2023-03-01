@@ -159,10 +159,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   );
 
   const onFormSubmit = async () => {
-    if (!validationError) {
-      await debouncedDownloadResources();
-      setTimeout(() => setIsAttemptingDownload(false), 4000);
-    }
+    await debouncedDownloadResources();
+    setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
 
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
@@ -205,7 +203,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
-            error={validationError}
+            error={false}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}
@@ -218,7 +216,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </P>
             <Flex>
               <RadioGroup
-                validationState={validationError ? "invalid" : "valid"}
+                validationState={"valid"}
                 errorMessage={
                   "Please select/search a school or an option from above"
                 }
