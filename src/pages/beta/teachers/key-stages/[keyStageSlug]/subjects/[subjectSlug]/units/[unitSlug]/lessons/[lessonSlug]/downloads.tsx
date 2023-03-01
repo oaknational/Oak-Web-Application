@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -75,16 +75,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     slug,
     downloads,
   } = curriculumData;
-
+  const [validationError, setValidationError] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
+  const schoolPickerRef = useRef();
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (selectedRadio && selectedValue) {
       setSelectedRadio("");
     }
     setInputValue(value);
+    schoolDetailsValidation();
   };
 
   const onRadioChange = (e: string) => {
@@ -92,6 +94,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       setInputValue("");
     }
     setSelectedRadio(e);
+    schoolDetailsValidation();
   };
 
   const { register, formState } = useForm<DownloadFormProps>({
@@ -159,9 +162,21 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
+  const schoolDetailsValidation = () => {
+    if (!selectedValue && !selectedRadio) {
+      setValidationError(true);
+      // schoolPickerRef.current.focus();
+    } else {
+      setValidationError(false);
+    }
+  };
+
   const onFormSubmit = async () => {
-    await debouncedDownloadResources();
-    setTimeout(() => setIsAttemptingDownload(false), 4000);
+    schoolDetailsValidation();
+    if (!validationError) {
+      await debouncedDownloadResources();
+      setTimeout(() => setIsAttemptingDownload(false), 4000);
+    }
   };
 
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
@@ -204,6 +219,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
+            ref={schoolPickerRef}
+            error={validationError}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}
@@ -216,6 +233,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </P>
             <Flex>
               <RadioGroup
+                validationState={validationError ? "invalid" : "valid"}
+                errorMessage={
+                  "Please select/search a school or an option from above"
+                }
                 aria-label={"home school or my school isn't listed"}
                 value={selectedRadio}
                 onChange={onRadioChange}
