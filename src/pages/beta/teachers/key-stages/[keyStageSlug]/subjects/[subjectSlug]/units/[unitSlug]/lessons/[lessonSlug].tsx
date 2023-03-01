@@ -43,7 +43,7 @@ export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
 };
 
-
+// Array to be used in downlaods as well to avoid duplication
 export const lessonBreadcrumbArray = (
   keyStageTitle: string,
   keyStageSlug: string,
