@@ -25,6 +25,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
       $pv={8}
       $ph={8}
       $mb={24}
+      data-testid="termsCheckbox"
     >
       <BrushBorders hideOnMobileH hideOnMobileV color={"pastelTurquoise"} />
       <Checkbox
