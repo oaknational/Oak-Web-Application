@@ -48,17 +48,28 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
         <Box $mv={[24, 48]}>
           <Breadcrumbs
             breadcrumbs={[
-              { href: "/beta/teachers/", label: "Home" },
+              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
               },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units`,
+                oakLinkProps: {
+                  page: "unit-index",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
                 label: subjectTitle,
               },
+
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/units/${unitSlug}`,
+                oakLinkProps: {
+                  page: "lesson-index",
+                  slug: unitSlug,
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
+
                 label: unitTitle,
                 disabled: true,
               },

@@ -37,9 +37,9 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
           {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { href: "/beta/teachers/", label: "Home" },
+              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
               {
-                href: `/beta/teachers/key-stages/${keyStageSlug}/subjects`,
+                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
                 disabled: true,
               },
