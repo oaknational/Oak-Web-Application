@@ -56,6 +56,7 @@ const Template: ComponentStory<typeof Component> = () => {
   return (
     <Box $width={400} $height={400}>
       <Component
+        error={false}
         label={"School picker"}
         inputValue={inputValue}
         setInputValue={setInputValue}
