@@ -335,12 +335,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>
-              {isAttemptingDownload && (
-                <P $mt={22} $mb={22} $mr={16}>
-                  Loading...
-                </P>
-              )}
-
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
