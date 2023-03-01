@@ -120,7 +120,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={title}
-            iconName={"rocket"}
           />
         </Flex>
         <Flex $flexDirection="column">

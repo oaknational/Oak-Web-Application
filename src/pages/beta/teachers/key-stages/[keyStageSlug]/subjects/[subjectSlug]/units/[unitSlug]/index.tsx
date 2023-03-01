@@ -73,7 +73,6 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           subjectSlug={subjectSlug}
           subject={subjectTitle}
           title={unitTitle}
-          iconName={"rocket"}
           $mt={0}
           $mb={24}
           $alignSelf={"flex-start"}
