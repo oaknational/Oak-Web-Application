@@ -18,6 +18,7 @@
     "appBaseUrl": "http://localhost:3000",
     "appName": "Oak Web Application",
     "webinarSignUpUrl": "https://example.com/webinar-sign-up",
+    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"],
     "vercelApiUrl": "https://api.thenational.academy"
   },
   "posthog": {
