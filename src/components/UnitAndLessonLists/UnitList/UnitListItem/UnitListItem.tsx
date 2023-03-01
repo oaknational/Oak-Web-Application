@@ -39,7 +39,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
-      icon={subjectSlug}
+      subjectSlug={subjectSlug}
       isHovered={isHovered}
       containerProps={containerProps}
       background={"teachersLilac"}

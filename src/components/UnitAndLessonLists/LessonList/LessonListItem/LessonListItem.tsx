@@ -79,7 +79,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
-      icon={subjectSlug}
+      subjectSlug={subjectSlug}
       isHovered={isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}

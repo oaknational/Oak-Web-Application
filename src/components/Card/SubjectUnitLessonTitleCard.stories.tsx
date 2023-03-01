@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./TitleCard";
+import Component from "./SubjectUnitLessonTitleCard";
 
 export default {
   title: "Cards/Title card",

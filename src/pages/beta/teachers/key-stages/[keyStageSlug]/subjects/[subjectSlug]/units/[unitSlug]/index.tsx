@@ -7,7 +7,7 @@ import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
 import curriculumApi, {
   TeachersKeyStageSubjectUnitsLessonsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
-import TitleCard from "../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";

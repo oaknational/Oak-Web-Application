@@ -6,13 +6,13 @@ import SubjectIcon from "../SubjectIcon";
 
 export type IconDesktopProps = {
   title: string;
-  icon: string;
+  subjectSlug: string;
   background: OakColorName;
   isHovered: boolean;
 };
 
-const IconDesktop: FC<IconDesktopProps> = (props) => {
-  const { background, isHovered, icon } = props;
+const IconDesktopContainer: FC<IconDesktopProps> = (props) => {
+  const { background, isHovered, subjectSlug } = props;
 
   return (
     <Flex
@@ -27,9 +27,9 @@ const IconDesktop: FC<IconDesktopProps> = (props) => {
       $transform={isHovered ? "translateY(-4px)" : null}
       $transition={"all 0.4s ease-out"}
     >
-      <SubjectIcon subjectSlug={icon} height={96} width={96} $ma={"auto"} />
+      <SubjectIcon subjectSlug={subjectSlug} height={96} width={96} $ma={"auto"} />
     </Flex>
   );
 };
 
-export default IconDesktop;
+export default IconDesktopContainer;

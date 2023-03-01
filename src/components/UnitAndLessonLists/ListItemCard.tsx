@@ -6,11 +6,11 @@ import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { OakColorName } from "../../styles/theme/types";
 
-import IconDesktop from "./IconDesktop";
+import IconDesktopContainer from "./IconDesktopContainer";
 
 export type ListItemCardProps = {
   title: string;
-  icon: string;
+  subjectSlug: string;
   isHovered: boolean;
   children: React.ReactNode;
   background: OakColorName;
@@ -32,7 +32,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
     containerProps,
     background,
     expired,
-    icon,
+    subjectSlug,
   } = props;
 
   const applyHoverStyles = isHovered && !expired;
@@ -59,9 +59,9 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         {children}
       </Flex>
       {!expired && (
-        <IconDesktop
+        <IconDesktopContainer
           title={title}
-          icon={icon}
+          subjectSlug={subjectSlug}
           background={background}
           isHovered={isHovered}
         />

@@ -2,15 +2,15 @@ import { FC } from "react";
 
 import { OakColorName } from "../../styles/theme/types";
 import Flex from "../Flex";
-import Icon from "../Icon";
+import SubjectIcon from "../SubjectIcon";
 
 export type IconMobileProps = {
-  title: string;
+  subjectSlug: string;
   background: OakColorName;
 };
 
-const IconMobile: FC<IconMobileProps> = (props) => {
-  const { title, background } = props;
+const IconMobileContainer: FC<IconMobileProps> = (props) => {
+  const {  background, subjectSlug } = props;
 
   return (
     <Flex
@@ -23,11 +23,9 @@ const IconMobile: FC<IconMobileProps> = (props) => {
       $position={"relative"}
       $ml={"auto"}
     >
-      <Icon size={[50, 92]} name={"rocket"}>
-        {title}
-      </Icon>
+      <SubjectIcon subjectSlug={subjectSlug} height={96} width={96} $ma={"auto"} />
     </Flex>
   );
 };
 
-export default IconMobile;
+export default IconMobileContainer;

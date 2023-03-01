@@ -41,7 +41,7 @@ type TitleCardProps = FlexProps & {
  */
 const TitleCard: FC<TitleCardProps> = (props) => {
   const { title, keyStage, keyStageSlug, page, ...flexProps } = props;
-  const icon = page === "subject" ? props.slug : props.subjectSlug;
+  const subjectSlug = page === "subject" ? props.slug : props.subjectSlug;
 
   return (
     <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
@@ -68,8 +68,12 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           $height={"100%"}
           $background={titleCardIconBackground[page]}
         >
-          {/* <Icon size={[44, 120]} name={iconName} /> */}
-          <SubjectIcon subjectSlug={icon} height={96} width={96} $ma={"auto"} />
+          <SubjectIcon
+            subjectSlug={subjectSlug}
+            height={96}
+            width={96}
+            $ma={"auto"}
+          />
         </Flex>
       </Flex>
       <BoxBorders gapPosition="bottomRight" />

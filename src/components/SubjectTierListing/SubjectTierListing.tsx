@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import TierList from "../TierList";
-import TitleCard from "../Card/TitleCard";
+import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
 import { TeachersKeyStageSubjectTiersData } from "../../node-lib/curriculum-api";
 

@@ -15,7 +15,7 @@ import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
 import {
   Heading,

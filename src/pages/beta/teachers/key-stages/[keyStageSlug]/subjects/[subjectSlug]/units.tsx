@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
