@@ -10,6 +10,8 @@ const teachersLessonOverviewFixture = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    unitTitle: "Maths unit",
+    unitSlug: "maths-unit",
     coreContent: ["Lesson", "core", "content"],
     equipmentRequired: null,
     supervisionLevel: null,

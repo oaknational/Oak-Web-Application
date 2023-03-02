@@ -83,9 +83,8 @@ export type OakLinkPropsWithoutChildren = OmitKeepDiscriminated<
   "children"
 >;
 
-const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
+export const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
   const href = "href" in props ? props.href : resolveOakHref(props);
-
   return href;
 };
 
