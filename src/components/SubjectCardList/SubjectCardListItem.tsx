@@ -14,7 +14,7 @@ export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   title: string;
   slug: string;
   keyStageSlug: string;
-  unitCount: number | null;
+  unitCountActive: number | null;
   lessonCount: number | null;
   tierCount: number | null;
   titleTag?: HeadingTag;
@@ -28,7 +28,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   keyStageSlug,
   lessonCount,
   tierCount,
-  unitCount,
+  unitCountActive,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -86,7 +86,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${unitCount} units`}</Typography>
+            >{`${unitCountActive} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
