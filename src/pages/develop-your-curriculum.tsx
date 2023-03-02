@@ -22,6 +22,7 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "../components/Illustration";
+import { getSizes } from "../components/CMSImage/getSizes";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -62,7 +63,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
               $ph={32}
             >
               <Illustration
-                sizes={"(min-width: 750px) 800px, 500px"}
+                sizes={getSizes([500, 800])}
                 slug="jigsaw-desk"
                 $maxWidth={480}
               />
@@ -171,7 +172,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           >
             <Cover>
               <Illustration
-                sizes={"(min-width: 750px) 800px, 500px"}
+                sizes={getSizes([500, 800])}
                 slug="jigsaw-desk"
                 $objectFit="contain"
                 $objectPosition={"center"}

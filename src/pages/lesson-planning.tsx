@@ -26,6 +26,7 @@ import CMSVideo from "../components/CMSVideo";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "../components/Illustration";
 import { IllustrationSlug } from "../image-data";
+import { getSizes } from "../components/CMSImage/getSizes";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -246,7 +247,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   $bottom={[92, 92, 20]}
                 >
                   <Illustration
-                    sizes="(min-width: 1280px) 173px, (min-width) 110px, 210px"
+                    sizes={getSizes([210, 110, 173])}
                     slug="teacher-carrying-stuff"
                     fill
                     $width="auto"
@@ -438,7 +439,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $bottom={[92, 92, 20]}
               >
                 <Illustration
-                  sizes="(min-width: 1280px) 173px, (min-width) 110px, 210px"
+                  sizes={getSizes([210, 110, 173])}
                   slug="teacher-carrying-stuff"
                   fill
                   $width="auto"

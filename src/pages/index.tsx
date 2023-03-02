@@ -32,6 +32,7 @@ import { serializeDate } from "../utils/serializeDate";
 import usePostList from "../components/Posts/PostList/usePostList";
 import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 import Illustration from "../components/Illustration";
+import { getSizes } from "../components/CMSImage/getSizes";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -175,7 +176,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     >
                       <Illustration
                         slug="magic-carpet"
-                        sizes="(min-width: 750px) 500px, 300px"
+                        sizes={getSizes([300, 500])}
                         width={500}
                         height={274}
                         priority
@@ -241,7 +242,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     >
                       <Illustration
                         slug="teacher-carrying-stuff"
-                        sizes="(min-width: 750px) 180px, 110px"
+                        sizes={getSizes([110, 180])}
                         $objectFit="contain"
                         $cover
                         priority

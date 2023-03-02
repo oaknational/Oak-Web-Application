@@ -18,6 +18,7 @@ import CMSImage from "../../components/CMSImage";
 import { CMSImageProps } from "../../components/CMSImage/CMSImage";
 import { SpacingProps } from "../../styles/utils/spacing";
 import Illustration from "../../components/Illustration";
+import { getSizes } from "../../components/CMSImage/getSizes";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -69,7 +70,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $position={"relative"}
         >
           <Illustration
-            sizes={"(min-width: 750px) 178px, 95px"}
+            sizes={getSizes([95, 178])}
             slug="teacher-carrying-more-stuff"
             $objectPosition={"center center"}
             fill
