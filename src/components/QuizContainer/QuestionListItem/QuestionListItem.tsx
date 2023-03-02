@@ -81,11 +81,20 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             <Typography $font={["body-1"]}> {choice}</Typography>
           </Flex>
         )}
-        {type !== "match" && !Array.isArray(answer) ? (
+        {type === "checkbox" && !Array.isArray(answer) ? (
           <Typography $font={["body-1"]}> {choice}</Typography>
         ) : null}
-        {type !== "match" && Array.isArray(answer) ? (
-          <Typography $font={["body-1"]}> {answer[index - 1]}</Typography>
+        {type === "checkbox" && Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {answer[answer.indexOf(choice)]}
+          </Typography>
+        ) : null}
+        {type !== "match" && type !== "checkbox" && !Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}> {choice}</Typography>
+        ) : null}
+        {type !== "match" && type !== "checkbox" && Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}> {answer[index]}</Typography>
         ) : null}
       </Flex>
     </Flex>
