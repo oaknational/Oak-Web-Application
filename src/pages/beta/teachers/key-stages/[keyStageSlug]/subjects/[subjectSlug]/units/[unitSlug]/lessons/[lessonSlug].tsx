@@ -66,6 +66,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     exitQuizInfo,
   } = curriculumData;
 
+  console.log(title, "<<<<<<<<<title<<<<<<<< render");
+
   const router = useRouter();
   const { lessonSlug, unitSlug } = router.query;
 
@@ -278,6 +280,9 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
+
+  console.log(results.props.curriculumData.title, "getStaticProps");
+
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;
 };

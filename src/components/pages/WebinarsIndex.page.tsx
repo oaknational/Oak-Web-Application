@@ -57,7 +57,7 @@ export const webinarToPostListItem = (
   ...webinar,
   contentType: "webinar",
   title: webinar.title,
-  summaryPortableText: toPlainText(webinar.summaryPortableText)
+  summary: toPlainText(webinar.summaryPortableText)
     .trim()
     .replaceAll(/\s+/g, " "),
   titleTag: "h3",

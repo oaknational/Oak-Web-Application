@@ -11,6 +11,7 @@ function getSanityClient() {
     useCdn: false,
     apiVersion: "2023-02-27",
   };
+  console.log(sanityConfig);
 
   const envPresent = Object.values(sanityConfig).reduce(
     (acc, cur) => acc && typeof cur !== "undefined",

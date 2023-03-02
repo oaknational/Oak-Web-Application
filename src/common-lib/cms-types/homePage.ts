@@ -8,8 +8,8 @@ export const homePageSchema = z
   .object({
     heading: z.string(),
     summaryPortableText: portableTextSchema,
-    pupilsImage: imageSchema,
-    teachersImage: imageSchema,
+    pupilsImage: imageSchema.nullish(),
+    teachersImage: imageSchema.nullish(),
     sidebarCard1: cardSchema,
     sidebarCard2: cardSchema,
     sidebarForm: z

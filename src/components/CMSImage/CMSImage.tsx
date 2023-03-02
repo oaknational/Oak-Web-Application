@@ -1,52 +1,98 @@
-import { FC } from "react";
-import {
-  ImageUrlBuilder,
-  useNextSanityImage,
-  UseNextSanityImageBuilder,
-} from "next-sanity-image";
-import { SanityClientLike } from "@sanity/image-url/lib/types/types";
+import { FC, useCallback, useMemo } from "react";
+import { ImageLoader } from "next/image";
 
-import config from "../../config/browser";
-import Box from "../Box";
 import { Image } from "../../common-lib/cms-types";
 import OakImage, { OakImageProps } from "../OakImage";
+import { SizeValues } from "../../styles/utils/size";
+
+import { getImageDimensions, imageBuilder } from "./sanityImageBuilder";
 
 export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
-  children?: React.ReactNode;
+  /**
+   * Sanity image asset
+   */
   image: Image;
+  /**
+   * width for transform
+   */
+  width?: number;
+  /**
+   * height for transform
+   */
+  height?: number;
+  children?: React.ReactNode;
   alt?: string;
-  imageBuilder?: UseNextSanityImageBuilder;
+  /**
+   * @next/image loader to override the default
+   */
+  loader?: ImageLoader;
+  /**
+   * In the case when we want to fetch an image from Sanity with specific dimensions,
+   * but we don't want sanity to crop the original image, pass `noCrop`.
+   * For example, passing width: 400, height:400, noCrop: true; will mean ask
+   * the CDN for an image that fits within a 400 by 400 square. F.i. the image
+   * returned might be 400x320 or 126x400
+   * If noCrop is not passed, then a crop will be applied. This crop is applied
+   * by @sanity/url-builder
+   */
+  noCrop?: boolean;
 };
 
-/**
- * Provide a "client like" object instead of using the
- * actual sanity client to cut down on dependency size
- */
-export const sanityClientLike: SanityClientLike = {
-  clientConfig: {
-    projectId: config.get("sanityProjectId"),
-    dataset: config.get("sanityDataset"),
-    apiHost: `https://${config.get("sanityAssetCDNHost")}`,
-  },
-};
+const CMSImage: FC<CMSImageProps> = (props) => {
+  const { image, loader: propsLoader, noCrop, ...rest } = props;
+  /**
+   * @todo check source format. If SVG and source size under 10kb, render SVG?
+   */
 
-const defaultImageBuilder =
-  ({ width, height }: { width?: number | string; height?: number | string }) =>
-  (builder: ImageUrlBuilder) =>
-    typeof width === "number" && typeof height === "number"
-      ? builder.format("webp").width(width).height(height)
-      : builder.format("webp");
+  const originalUrl = image?.asset?.url;
+  const id = image?.asset?._id;
 
-const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
-  imageBuilder = imageBuilder || defaultImageBuilder(rest);
+  const originalDimensions = getImageDimensions(id, { fill: rest.fill });
 
-  const { width, height, ...imageProps } = useNextSanityImage(
-    sanityClientLike,
-    image,
-    {
-      imageBuilder,
-    }
+  const defaultLoader = useCallback(
+    ({ width: srcWidth }: { width: number }) => {
+      let builtImage = imageBuilder
+        .image(image)
+        .width(srcWidth)
+        .format("webp")
+        .auto("format")
+        .quality(80)
+        .fit("clip");
+
+      const aspectRatio =
+        props.width && props.height
+          ? props.width / props.height
+          : originalDimensions.aspectRatio;
+
+      if (aspectRatio) {
+        builtImage = builtImage.height(Math.floor(srcWidth / aspectRatio));
+      }
+
+      if (noCrop && originalDimensions.width && originalDimensions.height) {
+        builtImage = builtImage.rect(
+          0,
+          0,
+          originalDimensions.width,
+          originalDimensions.height
+        );
+      }
+
+      return builtImage.url();
+    },
+    [
+      image,
+      noCrop,
+      originalDimensions.height,
+      originalDimensions.width,
+      originalDimensions.aspectRatio,
+      props.height,
+      props.width,
+    ]
   );
+  /**
+   * @todo useMemo this
+   */
+  const loader: ImageLoader = propsLoader || defaultLoader;
 
   // If alt is explicitly provided, use it even if it's empty
   // otherwise attempt the one from the CMS, or fall back to empty
@@ -62,22 +108,44 @@ const CMSImage: FC<CMSImageProps> = ({ image, imageBuilder, ...rest }) => {
   const finalAltText = image.isPresentational ? "" : altTextString;
 
   /**
-   * If `width` and `fill` are both passed, next/image throws an error
+   * finalUrl is the proxied url
    */
-  const dimensions = rest.fill ? {} : { width, height };
+  const finalUrl = useMemo(
+    () =>
+      originalUrl ? imageBuilder.image(originalUrl).url()?.toString() : null,
+    [originalUrl]
+  );
+
+  if (!finalUrl) {
+    return null;
+  }
+
+  /**
+   * $width/$height to be passed to css
+   */
+  const styleDimensions: { $width?: SizeValues; $height?: SizeValues } = {
+    $width: rest.$width || rest.$cover ? undefined : "100%",
+    $height: rest.$height || rest.$cover ? undefined : "auto",
+  };
+  /**
+   * width/height to be passed to @next/image, so that it can apply appropriate
+   * optimisations
+   */
+  const nextImageDimensions = {
+    width: props.width || originalDimensions.width,
+    height: props.height || originalDimensions.height,
+  };
 
   return (
-    <Box $width="100%">
-      <OakImage
-        {...imageProps}
-        {...dimensions}
-        {...rest}
-        alt={finalAltText}
-        // $height: auto to keep original aspect ratio of image
-        $height={rest.$height || rest.$cover ? undefined : "auto"}
-        aria-hidden={image.isPresentational ? true : undefined}
-      />
-    </Box>
+    <OakImage
+      {...rest}
+      {...styleDimensions}
+      {...nextImageDimensions}
+      alt={finalAltText}
+      aria-hidden={image.isPresentational ? true : undefined}
+      src={finalUrl}
+      loader={loader}
+    />
   );
 };
 

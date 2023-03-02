@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
 export const blogListingPageSchema = z
@@ -8,6 +8,7 @@ export const blogListingPageSchema = z
     title: z.string(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);

@@ -3066,7 +3066,7 @@ export type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-export type BlogPostBySlugQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: string | null, contentPortableText?: any | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, role?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type BlogPostBySlugQuery = { __typename?: 'RootQuery', allNewsPost: Array<{ __typename?: 'NewsPost', title?: string | null, date?: any | null, summary?: string | null, id?: string | null, contentPortableText?: any | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, role?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, slug?: { __typename?: 'Slug', current?: string | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type BlogPreviewFieldsFragment = { __typename?: 'NewsPost', title?: string | null, date?: any | null, id?: string | null, summaryPortableText?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, author?: { __typename?: 'TeamMember', _key?: string | null, name?: string | null, role?: string | null, id?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, mainImage?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, category?: { __typename?: 'BlogWebinarCategory', title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | null };
 
@@ -3170,7 +3170,7 @@ export type NewsListingPageQueryVariables = Exact<{
 }>;
 
 
-export type NewsListingPageQuery = { __typename?: 'RootQuery', allNewsListingPage: Array<{ __typename?: 'NewsListingPage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type NewsListingPageQuery = { __typename?: 'RootQuery', allNewsListingPage: Array<{ __typename?: 'NewsListingPage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type PlanningCorePageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -3230,7 +3230,7 @@ export type WebinarsListingPageQueryVariables = Exact<{
 }>;
 
 
-export type WebinarsListingPageQuery = { __typename?: 'RootQuery', allWebinarListingPage: Array<{ __typename?: 'WebinarListingPage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type WebinarsListingPageQuery = { __typename?: 'RootQuery', allWebinarListingPage: Array<{ __typename?: 'WebinarListingPage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export const ImageFragmentDoc = gql`
     fragment Image on Image {
@@ -3784,7 +3784,7 @@ export const BlogPostBySlugDocument = gql`
         current
       }
     }
-    summaryPortableText: summary
+    summary
     contentPortableText: contentRaw
     seo {
       ...Seo
@@ -3948,12 +3948,16 @@ export const NewsListingPageDocument = gql`
     title
     heading
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     seo {
       ...Seo
     }
   }
 }
-    ${SeoFragmentDoc}`;
+    ${ImageFragmentDoc}
+${SeoFragmentDoc}`;
 export const PlanningCorePageDocument = gql`
     query planningCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allPlanningCorePage(
@@ -4156,12 +4160,16 @@ export const WebinarsListingPageDocument = gql`
     title
     heading
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     seo {
       ...Seo
     }
   }
 }
-    ${SeoFragmentDoc}`;
+    ${ImageFragmentDoc}
+${SeoFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 

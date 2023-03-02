@@ -20,7 +20,6 @@ import Icon from "../components/Icon";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
-import OakImage from "../components/OakImage";
 import {
   blogToPostListItem,
   SerializedBlogPostPreview,
@@ -32,6 +31,7 @@ import {
 import { serializeDate } from "../utils/serializeDate";
 import usePostList from "../components/Posts/PostList/usePostList";
 import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
+import Illustration from "../components/Illustration";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -173,14 +173,16 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(0,0)",
                       ]}
                     >
-                      <OakImage
-                        alt={""}
-                        src={"/images/illustrations/magic-carpet.png"}
-                        $objectFit="cover"
-                        $objectPosition={"right center"}
-                        sizes={"(min-width: 750px) 500px, 100vw"}
-                        fill
+                      <Illustration
+                        slug="magic-carpet"
+                        sizes="(min-width: 750px) 500px, 300px"
+                        width={500}
+                        height={274}
                         priority
+                        $position={["absolute"]}
+                        $objectFit="cover"
+                        $objectPosition="right"
+                        $cover
                       />
                     </Box>
                   </Box>
@@ -237,15 +239,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(-10%,30%)",
                       ]}
                     >
-                      <OakImage
-                        alt=""
-                        src={
-                          "/images/illustrations/teacher-carrying-stuff-165-200.png"
-                        }
-                        fill
-                        sizes="(min-width: 750px) 256px, 100vw"
+                      <Illustration
+                        slug="teacher-carrying-stuff"
+                        sizes="(min-width: 750px) 180px, 110px"
                         $objectFit="contain"
+                        $cover
                         priority
+                        noCrop
                       />
                     </Box>
                   </Box>

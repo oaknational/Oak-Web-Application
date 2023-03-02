@@ -17,7 +17,12 @@ export const blogPostSchema = z
     slug: slugSchema,
     date: dateSchema,
     author: teamMemberPreviewSchema,
-    summaryPortableText: z.string().min(1),
+    /**
+     * Blogs are the one entity that doesn't use portable text for its Summary.
+     * However, it is named portable text for ease of interface with the
+     * <SummaryCard /> component.
+     */
+    summaryPortableText: z.string().min(1).nullish(),
     contentPortableText: portableTextSchema,
     category: blogWebinarCategorySchema,
     mainImage: imageSchema,

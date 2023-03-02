@@ -26,16 +26,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $ph={[0, 16]} $pt={[64, 80]}>
-        <SummaryCard
-          {...pageData}
-          // title={pageData.title}
-          // heading={pageData.heading}
-          // summary={pageData.summaryPortableText}
-          // imageProps={{
-          //   src: "/images/illustrations/work-with-us-500.png",
-          //   alt: "planning illustration",
-          // }}
-        />
+        <SummaryCard {...pageData} />
         <Flex
           $justifyContent="center"
           $maxWidth={["100%", 450]}
@@ -99,16 +90,16 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           {...pageData.curriculum}
           background={"pastelTurquoise"}
           image={{
-            imageSrc: "/images/illustrations/curriculum-371.png",
-            alt: "develop your curriculum illustration",
+            illustration: "jigsaw-desk-with-extra-piece",
+            sizes: "(min-width: 750px) 720px, 100vw",
           }}
         />
         <TextBlockCardImageCta
           {...pageData.development}
           background={"twilight"}
           image={{
-            imageSrc: "/images/illustrations/work-with-us-500.png",
-            alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
+            illustration: "supporting",
+            sizes: "(min-width: 750px) 720px, 100vw",
           }}
           imageContainerProps={{
             $maxHeight: [null, null, 150],

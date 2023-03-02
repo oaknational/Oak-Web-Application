@@ -11,11 +11,6 @@ import CMSImage from "../CMSImage";
 
 import Card from "./Card";
 
-type ImageProps = {
-  src: string;
-  alt: string;
-};
-
 export type SummaryCardProps = {
   children?: React.ReactNode;
   title: string;
@@ -23,7 +18,6 @@ export type SummaryCardProps = {
   summaryPortableText: PortableTextJSON | string;
   summaryCardImage?: Image | null;
   background?: OakColorName;
-  imageProps?: ImageProps;
   imageContainerProps?: FlexProps;
 };
 
@@ -41,12 +35,9 @@ const SummaryCard: FC<SummaryCardProps> = ({
   summaryPortableText,
   summaryCardImage,
   background,
-  // imageProps,
   imageContainerProps,
   children,
 }) => {
-  console.log(summaryCardImage);
-
   return (
     <Card
       $pa={0}
@@ -92,11 +83,14 @@ const SummaryCard: FC<SummaryCardProps> = ({
             >
               <Cover>
                 <CMSImage
+                  width={400}
+                  height={400}
+                  noCrop
+                  $ml={"auto"}
                   aria-hidden={true}
                   $objectFit="contain"
                   $objectPosition={"right"}
                   image={summaryCardImage}
-                  fill
                   priority
                 />
               </Cover>
@@ -105,7 +99,6 @@ const SummaryCard: FC<SummaryCardProps> = ({
         </Flex>
         {children}
       </Flex>
-
       <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );

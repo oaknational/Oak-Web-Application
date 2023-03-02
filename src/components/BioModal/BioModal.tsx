@@ -69,6 +69,7 @@ const BioModal: FC<BioModalProps> = (props) => {
 
   const { name, role, socials, image, bioPortableText } = bio;
 
+
   return (
     <ModalDialog {...modalDialogProps}>
       <Flex $width={"100%"} $ph={[0, 72]}>

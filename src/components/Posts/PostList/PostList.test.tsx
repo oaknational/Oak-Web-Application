@@ -12,7 +12,7 @@ describe("components/PostList", () => {
           {
             title: "Item title",
             titleTag: "h3",
-            summaryPortableText: "Item summary",
+            summary: "Item summary",
             slug: "item-slug",
             contentType: "blog-post",
             category: {
@@ -38,7 +38,7 @@ describe("components/PostList", () => {
           {
             title: "Item title",
             titleTag: "h3",
-            summaryPortableText: "Item summary",
+            summary: "Item summary",
             slug: "item-slug",
             contentType: "blog-post",
             category: {

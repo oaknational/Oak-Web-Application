@@ -7,12 +7,6 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     id: _id
     heading
     summaryPortableText: summaryRaw
-    pupilsImage {
-      ...Image
-    }
-    teachersImage {
-      ...Image
-    }
     sidebarCard1 {
       ...Card
     }

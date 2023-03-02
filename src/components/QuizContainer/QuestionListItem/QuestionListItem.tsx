@@ -26,7 +26,6 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
       $borderColor={"white"}
       $borderRadius={3}
     >
-      {" "}
       <OakImage
         objectFit="contain"
         $objectPosition={["center", "left"]}
