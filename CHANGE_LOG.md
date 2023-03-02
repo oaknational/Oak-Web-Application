@@ -1,3 +1,28 @@
+# [1.149.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.148.0...v1.149.0) (2023-03-02)
+
+
+### Bug Fixes
+
+* **breadcrumb:** duplication fix ([67659a1](https://github.com/oaknational/Oak-Web-Application/commit/67659a16e0d38e8db421a1a0392f364d8eaf5e28))
+* **breadcrumb:** margin and percy fix ([f3e2ba7](https://github.com/oaknational/Oak-Web-Application/commit/f3e2ba77c3698842da58aa8dfc20e5764d90d8ad))
+* **breadcrumb:** merge fix ([b9c822b](https://github.com/oaknational/Oak-Web-Application/commit/b9c822b2eb0252a042db8e2158ccb9c28584232a))
+* **breadcrumb:** merge from main ([150d3f0](https://github.com/oaknational/Oak-Web-Application/commit/150d3f0d59e714332d5c59737b608d6e9ca576de))
+* **breadcrumb:** test update ([a173391](https://github.com/oaknational/Oak-Web-Application/commit/a173391b0430087f8a930812ea8214c0213edc75))
+* **breadcrumb:** top margin fix andicon color ([b9979f7](https://github.com/oaknational/Oak-Web-Application/commit/b9979f71693943910c6abb051f29d8b1d0b8ff9c))
+* **breadcrumb:** update fixture fields ([651c4d4](https://github.com/oaknational/Oak-Web-Application/commit/651c4d4e86484de089202622a77b95d39ce2ed37))
+
+
+### Features
+
+* **breadcrumb:** add breadcrumb to teacher view ([bbb159e](https://github.com/oaknational/Oak-Web-Application/commit/bbb159ecc222a09a39ededccacdddf7a0bb6c32d))
+* **breadcrumbs:** fix duplications ([96376df](https://github.com/oaknational/Oak-Web-Application/commit/96376df58556daf170df06a0fe4141ff9887db28))
+* **breadcrumbs:** test fix ([9a4a01e](https://github.com/oaknational/Oak-Web-Application/commit/9a4a01e62c31672009957c467963862b78e271a9))
+* **breadcrumbs:** trigger rebuild ([95080d6](https://github.com/oaknational/Oak-Web-Application/commit/95080d6788fee04449bb5dd14a0c970d404356d0))
+* **breadcrumbs:** trigger rebuild ([46552d9](https://github.com/oaknational/Oak-Web-Application/commit/46552d94700d4807fadd39d914633e4ce856de45))
+* **breadcrumbs:** update breadcrumb story ([91d2e97](https://github.com/oaknational/Oak-Web-Application/commit/91d2e9750fae3e7f1606a1a8a9b5188705e5f0fb))
+* **breadcrumbs:** update getJSONLd ([13f2f29](https://github.com/oaknational/Oak-Web-Application/commit/13f2f29d23e44637e76a93ccb7c9cf8c6dbb07a8))
+* **subject-icons:** change href inbreadcrumbs to adapt to changing urls ([9d46480](https://github.com/oaknational/Oak-Web-Application/commit/9d464806d8f67ef8897c36a0744cac6b28f4604c))
+
 # [1.148.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.2...v1.148.0) (2023-03-01)
 
 
