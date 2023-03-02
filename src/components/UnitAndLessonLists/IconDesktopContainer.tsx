@@ -29,8 +29,8 @@ const IconDesktopContainer: FC<IconDesktopProps> = (props) => {
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
-        height={96}
-        width={96}
+        $maxHeight={[50, 92]}
+        $maxWidth={[50, 92]}
         $ma={"auto"}
       />
     </Flex>

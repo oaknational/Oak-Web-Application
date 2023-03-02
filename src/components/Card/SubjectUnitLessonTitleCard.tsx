@@ -72,6 +72,7 @@ const TitleCard: FC<TitleCardProps> = (props) => {
             subjectSlug={subjectSlug}
             height={96}
             width={96}
+            $minWidth={44}
             $ma={"auto"}
           />
         </Flex>
