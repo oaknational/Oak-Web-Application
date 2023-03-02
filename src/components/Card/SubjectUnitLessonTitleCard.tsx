@@ -1,9 +1,8 @@
 import { FC } from "react";
 
 import Flex, { FlexProps } from "../Flex";
-import { Heading, Span } from "../Typography";
+import { Heading } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import OakLink from "../OakLink";
 import Box from "../Box";
 import SubjectIcon from "../SubjectIcon";
 
@@ -56,9 +55,6 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
-          <OakLink $isInline={true} slug={keyStageSlug} page={"subject-index"}>
-            <Span $font={"heading-7"}>{keyStage}</Span>
-          </OakLink>
         </Box>
         <Flex
           $justifyContent={"center"}

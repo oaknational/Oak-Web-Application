@@ -85,7 +85,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
           <Typography $font={["body-1"]}> {choice}</Typography>
         ) : null}
         {type !== "match" && Array.isArray(answer) ? (
-          <Typography $font={["body-1"]}> {answer[index]}</Typography>
+          <Typography $font={["body-1"]}> {answer[index - 1]}</Typography>
         ) : null}
       </Flex>
     </Flex>
