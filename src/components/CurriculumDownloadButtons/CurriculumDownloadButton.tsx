@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
+import Flex from "../Flex";
 
 type CurriculumDownloadProps = {
   keyStage: string;
@@ -24,16 +25,16 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   if (tier) {
     //change download link to access only tiered curriculum
     downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subject}-${tier}&extension=pdf`;
-    // download label amendments for tiers
+    // change download label amendments for tiers
     const tierStr = isString(tier) ? tier : "";
     const upperCase = tierStr.charAt(0).toUpperCase() + tierStr.slice(1);
     downloadLabel = upperCase + ` curriculum download (PDF)`;
   }
 
   return (
-    <div>
+    <Flex $mb={[20, 0]}>
       <ButtonAsLink
-        icon="Download"
+        icon="download"
         iconBackground="teachersHighlight"
         label={downloadLabel}
         href={downloadLink}
@@ -42,7 +43,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
         variant="minimal"
         $iconPosition={"trailing"}
       />
-    </div>
+    </Flex>
   );
 };
 

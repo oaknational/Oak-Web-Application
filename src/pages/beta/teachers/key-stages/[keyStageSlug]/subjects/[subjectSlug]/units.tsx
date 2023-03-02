@@ -21,7 +21,7 @@ import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
 import { TierListItemProps } from "../../../../../../../components/TierList/TierListItem";
-import CurriruculmDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
+import CurriculumDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
@@ -103,7 +103,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
             $mb={24}
             $alignSelf={"flex-start"}
           />
-          <CurriruculmDownloadButton
+          <CurriculumDownloadButton
             keyStage={keyStageSlug}
             subject={subjectSlug}
             tier={tierQuery}
@@ -172,7 +172,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               </Box>
             </GridArea>
 
-            <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 72]}>
+            <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 64]}>
               <Flex $flexDirection={["column-reverse", "column"]}>
                 <Flex
                   $flexDirection={"row"}
