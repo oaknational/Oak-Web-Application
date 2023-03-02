@@ -41,6 +41,7 @@ export type ButtonStylesProps = OpacityProps &
     $fullWidth?: boolean;
     disabled?: boolean;
     $focusStyles?: [];
+    "aria-disabled"?: boolean;
   };
 export const getButtonStylesProps = (
   props: CommonButtonProps
@@ -52,10 +53,24 @@ export const getButtonStylesProps = (
     background = DEFAULT_BUTTON_BACKGROUND,
     $fullWidth,
     $focusStyles,
+    disabled,
   } = props;
 
-  return { size, $iconPosition, variant, $fullWidth, background, $focusStyles };
+  return {
+    size,
+    $iconPosition,
+    variant,
+    $fullWidth,
+    background: disabled ? "grey6" : background,
+    $focusStyles,
+    disabled,
+  };
 };
+
+const disabledStyles = css`
+  cursor: not-allowed;
+`;
+
 const buttonStyles = css<ButtonStylesProps>`
   display: inline-flex;
   justify-content: center;
@@ -64,20 +79,31 @@ const buttonStyles = css<ButtonStylesProps>`
   position: relative;
   text-decoration: none;
   ${opacity}
-  ${(props) => css`
-    width: ${props.$fullWidth && "100%"};
-    flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
-    height: ${getButtonHeight(props.size, props.variant)}px;
-    padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
-    background-color: ${getButtonBackground(props.background, props.variant)};
-    color: ${getButtonColor(props.background, props.variant)};
-  `}
-
+  ${(props) => {
+    return css`
+      width: ${props.$fullWidth && "100%"};
+      flex-direction: ${getButtonFlexDirection(props.$iconPosition)};
+      height: ${getButtonHeight(props.size, props.variant)}px;
+      padding: 0 ${getButtonPadding(props.size, props.variant, "button")}px;
+      background-color: ${getButtonBackground(
+        props.background,
+        props.variant,
+        props["aria-disabled"]
+      )};
+      color: ${getButtonColor(props.background, props.variant)};
+    `;
+  }}
   transition: ${HOVER_SHADOW_TRANSITION};
 
   :focus {
     outline: none;
   }
+
+  :disabled {
+    ${disabledStyles}
+  }
+
+  ${(props) => props["aria-disabled"] && disabledStyles}
 
   ${ButtonFocusUnderline} {
     display: none;
@@ -99,7 +125,9 @@ const buttonStyles = css<ButtonStylesProps>`
     props.variant === "brush" &&
     css`
       :hover {
-        box-shadow: ${getButtonDropShadowColor(props.background)};
+        box-shadow: ${props["aria-disabled"]
+          ? "none"
+          : getButtonDropShadowColor(props.background)};
       }
 
       :focus ${ButtonFocusUnderline} {
@@ -141,11 +169,9 @@ const buttonStyles = css<ButtonStylesProps>`
         width: 100%;
         height: 7px;
       }
-
       ${ButtonMinimalFocusUnderline} {
         filter: drop-shadow(1px 4px 0px rgb(0 0 0));
       }
-
       ${iconFocusUnderline}
     `}
 

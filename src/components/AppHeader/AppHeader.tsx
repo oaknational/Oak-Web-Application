@@ -34,7 +34,7 @@ const AppHeader: FC<HeaderProps> = () => {
         </OakLink>
         <IconButton
           aria-label="Menu"
-          icon={"Hamburger"}
+          icon={"hamburger"}
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
@@ -52,7 +52,7 @@ const AppHeader: FC<HeaderProps> = () => {
         $right={0}
         $left={0}
       >
-        <Svg name="HeaderUnderline" $color="teachersHighlight" />
+        <Svg name="header-underline" $color="teachersHighlight" />
       </Box>
     </FixedHeader>
   );

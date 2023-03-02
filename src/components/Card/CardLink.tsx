@@ -11,7 +11,7 @@ import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 
 export const CardLinkFocusUnderline = styled(Svg).attrs((props) => ({
   ...props,
-  name: "Underline1",
+  name: "underline-1",
 }))`
   display: none;
   position: absolute;

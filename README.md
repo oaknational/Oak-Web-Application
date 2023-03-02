@@ -1,6 +1,6 @@
 # Oak Web Application
 
-The Oak National Academy web application code base.
+The Oak National Academy Web Application code base.
 
 - [Getting started](#getting-started)
 - [Automatic Checks](#automatic-checks)
@@ -53,7 +53,11 @@ npm run dev
 
 For more detail please see the [test documentation](docs/testing.md).
 
-### Unit tests
+### Pa11y Tests
+
+We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa11y locally start the dev server with `npm run dev`, then in another process run Pa11y with `npm run pa11y`.
+
+### Unit Tests
 
 Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 

@@ -28,10 +28,14 @@ const SubjectListingPage: FC<SubjectListingProps> = (props) => {
           All subjects
         </Heading>
         <SubjectCardList subjects={availableSubjects} />
-        <Heading $font={"heading-7"} tag={"h6"} $mv={16}>
-          Coming soon
-        </Heading>
-        <SubjectCardList subjects={unavailableSubjects} />
+        {unavailableSubjects.length > 0 && (
+          <>
+            <Heading $font={"heading-7"} tag={"h6"} $mv={16}>
+              Coming soon
+            </Heading>
+            <SubjectCardList subjects={unavailableSubjects} />
+          </>
+        )}
       </MaxWidth>
     </Flex>
   );

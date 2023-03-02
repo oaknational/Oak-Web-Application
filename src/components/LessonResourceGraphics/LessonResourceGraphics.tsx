@@ -20,7 +20,7 @@ const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
     <Flex>
       {items.map((item, index) => (
         <LessonResourceGraphicsItem
-          key={`graphics-item-${item.title}-${index}`}
+          key={`graphics-item-${item.titleSingular}-${index}`}
           {...item}
         />
       ))}
