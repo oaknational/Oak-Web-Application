@@ -83,6 +83,8 @@ const teachersLessonOverview = jest.fn(() => ({
       title: teachersLessonOverviewFixture().title,
       keyStageSlug: teachersLessonOverviewFixture().keyStageSlug,
       keyStageTitle: teachersLessonOverviewFixture().keyStageTitle,
+      unitSlug: teachersLessonOverviewFixture().unitSlug,
+      unitTitle: teachersLessonOverviewFixture().unitTitle,
       subjectSlug: teachersLessonOverviewFixture().subjectSlug,
       subjectTitle: teachersLessonOverviewFixture().subjectTitle,
       coreContent: teachersLessonOverviewFixture().coreContent,

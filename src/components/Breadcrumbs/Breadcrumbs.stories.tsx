@@ -16,9 +16,15 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const Breadcrumbs = Template.bind({});
 Breadcrumbs.args = {
   breadcrumbs: [
-    { href: "/", label: "Unit Quiz" },
-    { href: "/", label: "View In Classroom" },
-    { href: "/", label: "Foundation Curriculum (PDF)" },
-    { href: "/", label: "Higher Curriculum (PDF)" },
+    { oakLinkProps: { href: "/", page: null }, label: "Unit Quiz" },
+    { oakLinkProps: { href: "/", page: null }, label: "View In Classroom" },
+    {
+      oakLinkProps: { href: "/", page: null },
+      label: "Foundation Curriculum (PDF)",
+    },
+    {
+      oakLinkProps: { href: "/", page: null },
+      label: "Higher Curriculum (PDF)",
+    },
   ],
 };
