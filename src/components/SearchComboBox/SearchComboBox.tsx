@@ -77,6 +77,7 @@ const SearchComboBox = <T extends School>(
             background={labelBackground}
           >
             {props.label}
+            {error ? ": *" : ""}
           </RotatedInputLabel>
         </Flex>
 
@@ -89,6 +90,7 @@ const SearchComboBox = <T extends School>(
           data-testid={"search-autocomplete-input"}
           placeholder={"Search by name or postcode"}
           aria-describedby={undefined}
+          required
         />
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}
