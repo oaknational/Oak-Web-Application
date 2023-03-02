@@ -33,7 +33,7 @@ const RadioGroup: FC<AriaRadioGroupProps & { children: React.ReactNode }> = (
         </div>
       )}
       {errorMessage && validationState === "invalid" && (
-        <Span $font={"body-3"} {...errorMessageProps}>
+        <Span $color={"failure"} $font={"body-3"} {...errorMessageProps}>
           {errorMessage}
         </Span>
       )}

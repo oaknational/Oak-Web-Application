@@ -130,7 +130,7 @@ describe("RadioGroup", () => {
     expect(radio1).not.toBeChecked();
     expect(radio2).toBeChecked();
   });
-  it("changes shows error validation message ", async () => {
+  it("can show an error validation message ", async () => {
     let selected;
 
     const setSelected = (value: string) => {
