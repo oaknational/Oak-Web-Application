@@ -25,8 +25,8 @@ const IconMobileContainer: FC<IconMobileProps> = (props) => {
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
-        $maxHeight={[50, 92]}
-        $maxWidth={[50, 92]}
+        $maxHeight={[72, 92]}
+        $maxWidth={[72, 92]}
         $ma={"auto"}
       />
     </Flex>
