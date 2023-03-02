@@ -76,8 +76,7 @@ const SearchComboBox = <T extends School>(
             $font={"body-3"}
             background={labelBackground}
           >
-            {props.label}
-            {error ? ": *" : ""}
+            {error ? `${props.label}: *` : props.label}
           </RotatedInputLabel>
         </Flex>
 

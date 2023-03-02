@@ -152,7 +152,7 @@ describe("search autocomplete", () => {
 
     const { getByText } = renderWithTheme(<Wrapper />);
 
-    expect(getByText("School picker")).toHaveStyle(
+    expect(getByText("School picker: *")).toHaveStyle(
       `background: rgb(229, 29, 77) `
     );
   });
