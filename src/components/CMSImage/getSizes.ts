@@ -15,7 +15,11 @@ export function getSizes(
     return "";
   }
   const widthsSliced = widths.slice(0, breakpoints.length + 1);
-  const sizes = widthsSliced.reduceRight((acc, cur, i) => {
+  /**
+   * `acc: string` annotation required
+   * @see https://github.com/microsoft/TypeScript/issues/36554#issuecomment-650267069
+   */
+  const sizes = widthsSliced.reduceRight((acc: string, cur, i) => {
     const isLast = i === 0;
     const valueWithUnits = typeof cur === "number" ? `${cur}px` : `${cur}`;
 

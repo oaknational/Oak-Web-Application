@@ -95,7 +95,8 @@ const getLessonPlanningCards = (planningPage: PlanningPage) => {
     id: string;
     imageSlug: IllustrationSlug;
     title: string;
-    portableText: unknown[];
+    portableText?: PortableTextJSON;
+    withSearchCTA?: boolean;
   }[] = [
     {
       id: "find",

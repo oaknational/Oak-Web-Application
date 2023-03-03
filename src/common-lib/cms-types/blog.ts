@@ -22,7 +22,7 @@ export const blogPostSchema = z
      * However, it is named portable text for ease of interface with the
      * <SummaryCard /> component.
      */
-    summaryPortableText: z.string().min(1).nullish(),
+    summaryPortableText: z.string().min(1),
     contentPortableText: portableTextSchema,
     category: blogWebinarCategorySchema,
     mainImage: imageSchema,

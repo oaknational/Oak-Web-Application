@@ -7,7 +7,7 @@ import config from "../../config/browser";
  * Provide a "client like" object instead of using the
  * actual sanity client to cut down on dependency size
  */
-const sanityClientLike: SanityClientLike = {
+export const sanityClientLike: SanityClientLike = {
   clientConfig: {
     projectId: config.get("sanityProjectId"),
     dataset: config.get("sanityDataset"),
