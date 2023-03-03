@@ -13,6 +13,7 @@ type SchoolPickerProps = Omit<
   defaultSchools?: School[];
   label: string;
   error: boolean;
+  required?: boolean;
 };
 
 export type School = {
@@ -41,6 +42,7 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       onInputChange={props.setInputValue}
       defaultItems={props.schools || []}
       onSelectionChange={(value) => props.setSelectedValue(value)}
+      isRequired={props.required}
     >
       {(item) => (
         <Item

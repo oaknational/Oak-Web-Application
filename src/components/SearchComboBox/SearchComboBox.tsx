@@ -51,6 +51,7 @@ const SearchComboBox = <T extends School>(
   const labelId = useId();
 
   let labelBackground: OakColorName;
+
   if (state.isFocused) {
     labelBackground = "teachersHighlight";
   } else if (error) {
@@ -70,13 +71,13 @@ const SearchComboBox = <T extends School>(
           <RotatedInputLabel
             {...labelProps}
             aria-hidden="true"
-            color={state.isFocused ? "white" : "black"}
+            color={state.isFocused || error ? "white" : "black"}
             htmlFor={id}
             id={labelId}
             $font={"body-3"}
             background={labelBackground}
           >
-            {error ? `${props.label}: *` : props.label}
+            {inputProps.required ? `${props.label} *` : props.label}
           </RotatedInputLabel>
         </Flex>
 
@@ -89,7 +90,6 @@ const SearchComboBox = <T extends School>(
           data-testid={"search-autocomplete-input"}
           placeholder={"Search by name or postcode"}
           aria-describedby={undefined}
-          required
         />
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}
