@@ -1,3 +1,25 @@
+# [1.150.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.1...v1.150.0) (2023-03-03)
+
+
+### Bug Fixes
+
+* **quiz questions:** fix quiz bug ([3fbb908](https://github.com/oaknational/Oak-Web-Application/commit/3fbb90865237ad49b3e935a3bb7b1824f46f218e))
+* **subject-icons:** maintain same icon width ([9c7b59b](https://github.com/oaknational/Oak-Web-Application/commit/9c7b59b7269d6fb0158869a01c5a4cb6ef3dc740))
+* **subject-icons:** mobile make icons same width ([cb099e3](https://github.com/oaknational/Oak-Web-Application/commit/cb099e3c5735e8e18c89a78bf1a76de1ce847d9e))
+* **subject-icons:** pull commit ([3210921](https://github.com/oaknational/Oak-Web-Application/commit/3210921144e54f0adb3aaf054289ebda4a8f4892))
+* **subject-icons:** renamingcode for clarity ([721434d](https://github.com/oaknational/Oak-Web-Application/commit/721434dbb2afc041e274b561ec9be1c0fff2ee29))
+* **subject-icons:** renamingcode for clarity ([5794108](https://github.com/oaknational/Oak-Web-Application/commit/579410855e4926e3adca8cb3cad5413a39d7c0ec))
+* **title-cards:** remove key stage linkfrom title card ([2a3042c](https://github.com/oaknational/Oak-Web-Application/commit/2a3042c9293e9899e72f6002b86d28ccb658d7b8))
+
+
+### Features
+
+* **breadcrumbs:** merge ([7728357](https://github.com/oaknational/Oak-Web-Application/commit/77283576f1fa2934c3778e9dd2c91d952c944aa2))
+* **breadcrumbs:** merge ([fdb28f8](https://github.com/oaknational/Oak-Web-Application/commit/fdb28f8e76b04725e6688c8dbd71574ca8ca3671))
+* **subject-icons:** add subject icons throughout lesson experience ([ccaf9be](https://github.com/oaknational/Oak-Web-Application/commit/ccaf9be68c1903d85fc70f52fdfef61b69590981))
+* **subject-icons:** test fixes ([381a76e](https://github.com/oaknational/Oak-Web-Application/commit/381a76e4fd1d3dc3f69ab23a2dac8bab907f84c0))
+* **subject-icons:** title card story fix ([51729fa](https://github.com/oaknational/Oak-Web-Application/commit/51729fa4976e8a29e5299a985759c542eb61fa86))
+
 ## [1.149.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.0...v1.149.1) (2023-03-02)
 
 # [1.149.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.148.0...v1.149.0) (2023-03-02)
