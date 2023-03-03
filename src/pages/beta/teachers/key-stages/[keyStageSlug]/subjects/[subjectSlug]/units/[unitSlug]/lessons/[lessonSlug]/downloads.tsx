@@ -9,7 +9,7 @@ import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
 import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import {
   Heading,
   Hr,
@@ -234,7 +234,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={`Downloads: ${title}`}
-            iconName={"rocket"}
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
