@@ -80,4 +80,5 @@ export const SchoolPickerError = Template.bind({});
 
 SchoolPickerError.args = {
   error: true,
+  required: true,
 };

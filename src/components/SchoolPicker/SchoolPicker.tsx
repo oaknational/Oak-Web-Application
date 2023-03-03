@@ -42,7 +42,7 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       onInputChange={props.setInputValue}
       defaultItems={props.schools || []}
       onSelectionChange={(value) => props.setSelectedValue(value)}
-      isRequired={props.required}
+      required={props.required}
     >
       {(item) => (
         <Item

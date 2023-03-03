@@ -18,12 +18,12 @@ import { OakColorName } from "../../styles/theme/types";
 // Reuse the ListBox and Popover from your component library. See below for details.
 
 const SearchComboBox = <T extends School>(
-  props: ComboBoxStateOptions<T> & { error: boolean }
+  props: ComboBoxStateOptions<T> & { error: boolean; required?: boolean }
 ) => {
   // Setup filter function and state.
   const { contains } = useFilter({ sensitivity: "base" });
   const state = useComboBoxState({ ...props, defaultFilter: contains });
-  const { error } = props;
+  const { error, required } = props;
   // Setup refs and get props for child elements.
   const inputRef = useRef(null);
   const listBoxRef = useRef(null);
@@ -77,7 +77,7 @@ const SearchComboBox = <T extends School>(
             $font={"body-3"}
             background={labelBackground}
           >
-            {inputProps.required ? `${props.label} *` : props.label}
+            {required ? `${props.label} *` : props.label}
           </RotatedInputLabel>
         </Flex>
 
@@ -90,6 +90,7 @@ const SearchComboBox = <T extends School>(
           data-testid={"search-autocomplete-input"}
           placeholder={"Search by name or postcode"}
           aria-describedby={undefined}
+          required={required}
         />
         <DropdownFocusUnderline
           isFocusVisible={state.isFocused}
