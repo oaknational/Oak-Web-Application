@@ -19,7 +19,7 @@ SubjectCardListItem.args = {
   title: "Art and Design",
   slug: "art",
   lessonCount: 130,
-  unitCount: 14,
+  activeUnitCount: 14,
 };
 
 export const SubjectCardListItemUnavailable = Template.bind({});
@@ -29,5 +29,5 @@ SubjectCardListItemUnavailable.args = {
   title: "Art and Design",
   slug: "art",
   lessonCount: 0,
-  unitCount: 14,
+  activeUnitCount: 14,
 };
