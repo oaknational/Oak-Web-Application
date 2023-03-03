@@ -44,8 +44,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
    * @todo check source format. If SVG and source size under 10kb, render SVG?
    */
 
-  const originalUrl = image?.asset?.url;
-  const id = image?.asset?._id;
+  const id = image.asset?._id;
 
   const originalDimensions = getImageDimensions(id, { fill: rest.fill });
 
@@ -111,9 +110,8 @@ const CMSImage: FC<CMSImageProps> = (props) => {
    * finalUrl is the proxied url
    */
   const finalUrl = useMemo(
-    () =>
-      originalUrl ? imageBuilder.image(originalUrl).url()?.toString() : null,
-    [originalUrl]
+    () => (image ? imageBuilder.image(image).url()?.toString() : null),
+    [image]
   );
 
   if (!finalUrl) {
