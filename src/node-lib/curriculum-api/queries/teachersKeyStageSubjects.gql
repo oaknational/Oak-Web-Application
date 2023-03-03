@@ -14,6 +14,6 @@ query teachersKeyStageSubjects($keyStageSlug: String!) {
     lessonCount: lesson_count
     unitCount: unit_count
     tierCount: tier_count
-    unitCountActive: unit_count_active
+    activeUnitCount: active_unit_count
   }
 }

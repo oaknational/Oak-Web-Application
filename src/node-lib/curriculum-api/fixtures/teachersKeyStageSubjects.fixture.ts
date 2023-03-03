@@ -15,7 +15,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 71,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -25,7 +25,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 117,
         unitCount: 9,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -35,7 +35,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 67,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -45,7 +45,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 230,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -55,7 +55,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: null,
         unitCount: 28,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -65,7 +65,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 228,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -75,7 +75,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 116,
         unitCount: 10,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -85,7 +85,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 432,
         unitCount: 53,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: 6,
       },
       {
@@ -95,7 +95,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 90,
         unitCount: 15,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -105,7 +105,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 472,
         unitCount: 69,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -115,7 +115,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 106,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -125,7 +125,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 232,
         unitCount: 51,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -135,7 +135,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 108,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -145,7 +145,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 111,
         unitCount: 25,
-        unitCountActive: 18,
+        activeUnitCount: 18,
 
         tierCount: null,
       },
@@ -156,7 +156,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: null,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -166,7 +166,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 51,
         unitCount: 11,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -176,7 +176,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 228,
         unitCount: 18,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
       {
@@ -186,7 +186,7 @@ const teachersKeyStageSubjectsFixture = (
         keyStageTitle: "Key Stage 4",
         lessonCount: 8,
         unitCount: 8,
-        unitCountActive: 18,
+        activeUnitCount: 18,
         tierCount: null,
       },
     ],

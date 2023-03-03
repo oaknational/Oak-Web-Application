@@ -85,7 +85,7 @@ const teachersKeyStageSubjectsData = z.object({
       keyStageSlug: z.string(),
       keyStageTitle: z.string(),
       unitCount: z.number().nullable(),
-      unitCountActive: z.number().nullable(),
+      activeUnitCount: z.number().nullable(),
       lessonCount: z.number().nullable(),
       tierCount: z.number().nullable(),
     })
