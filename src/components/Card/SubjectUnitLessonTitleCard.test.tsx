@@ -2,7 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import TitleCard from "./TitleCard";
+import TitleCard from "./SubjectUnitLessonTitleCard";
 
 describe("Subject title card", () => {
   it("Renders correct title ", () => {
@@ -14,7 +14,6 @@ describe("Subject title card", () => {
         keyStageSlug="key-stage-1"
         subject="Computing"
         subjectSlug="computing"
-        iconName="twitter"
       />
     );
 

@@ -23,8 +23,15 @@ export type UnitListItemProps = Omit<
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const { title, themeTitle, lessonCount, index, expired, expiredLessonCount } =
-    props;
+  const {
+    title,
+    themeTitle,
+    lessonCount,
+    index,
+    expired,
+    expiredLessonCount,
+    subjectSlug,
+  } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -32,6 +39,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
+      subjectSlug={subjectSlug}
       isHovered={isHovered}
       containerProps={containerProps}
       background={"teachersLilac"}

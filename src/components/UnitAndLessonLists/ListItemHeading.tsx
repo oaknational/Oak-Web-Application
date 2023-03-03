@@ -5,7 +5,7 @@ import OakLink from "../OakLink";
 import { Heading } from "../Typography";
 
 import CategoryHeading from "./CategoryHeading";
-import IconMobile from "./IconMobile";
+import IconMobileContainer from "./IconMobileContainer";
 import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
@@ -103,9 +103,9 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
         )}
       </Flex>
 
-      <IconMobile
+      <IconMobileContainer
         background={page == "Unit" ? "teachersLilac" : "pupilsPink"}
-        title={title}
+        subjectSlug={subjectSlug}
       />
     </Flex>
   );

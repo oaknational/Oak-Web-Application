@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import curriculumApi, {
@@ -20,7 +20,6 @@ import MobileFilters from "../../../../../../../components/MobileFilters";
 import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
-import { TierListItemProps } from "../../../../../../../components/TierList/TierListItem";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
 
 export type SubjectUnitsListPageProps = {
@@ -110,7 +109,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               keyStage={keyStageTitle}
               keyStageSlug={keyStageSlug}
               title={subjectTitle}
-              iconName={"rocket"}
+              slug={subjectSlug}
               $mt={0}
               $mb={24}
               $alignSelf={"flex-start"}
@@ -283,26 +282,6 @@ export const getServerSideProps: GetServerSideProps<
     tierSlug,
     learningThemeSlug,
   });
-
-  const reorganisedTiers: Omit<
-    TierListItemProps,
-    "subjectSlug" | "keyStageSlug"
-  >[] = [];
-
-  curriculumData.tiers.forEach((tier) => {
-    switch (tier.title) {
-      case "Foundation":
-        reorganisedTiers[0] = { ...tier };
-        break;
-      case "Core":
-        reorganisedTiers[1] = { ...tier };
-        break;
-      case "Higher":
-        reorganisedTiers[2] = { ...tier };
-        break;
-    }
-  });
-  curriculumData.tiers = reorganisedTiers;
 
   const results: GetServerSidePropsResult<SubjectUnitsListPageProps> = {
     props: {
