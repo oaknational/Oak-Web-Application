@@ -26,7 +26,6 @@ SummaryCardImage.args = {
   title: "Title",
   summaryPortableText: "A summary section.......",
   background: "teachersPastelYellow",
-
 };
 
 export const SummaryCardCustomImageContainer = Template.bind({});

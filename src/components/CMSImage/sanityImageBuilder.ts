@@ -1,5 +1,8 @@
 import sanityImage from "@sanity/image-url";
-import { SanityClientLike } from "@sanity/image-url/lib/types/types";
+import {
+  SanityClientLike,
+  SanityImageSource,
+} from "@sanity/image-url/lib/types/types";
 
 import config from "../../config/browser";
 
@@ -15,6 +18,26 @@ export const sanityClientLike: SanityClientLike = {
   },
 };
 export const imageBuilder = sanityImage(sanityClientLike);
+
+export function getSanityRefId(imageSource: SanityImageSource): string {
+  if (typeof imageSource === "string") {
+    return imageSource;
+  }
+
+  if (typeof imageSource === "string") {
+    return imageSource;
+  }
+
+  if ("asset" in imageSource) {
+    return imageSource.asset._ref || imageSource.asset._id;
+  }
+
+  if ("_ref" in imageSource) {
+    return imageSource._ref;
+  }
+
+  return imageSource._id || "";
+}
 
 export function getImageDimensions(
   id: string | undefined,

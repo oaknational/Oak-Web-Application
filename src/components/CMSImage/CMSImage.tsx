@@ -1,17 +1,22 @@
 import { FC, useCallback, useMemo } from "react";
 import { ImageLoader } from "next/image";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 import { Image } from "../../common-lib/cms-types";
 import OakImage, { OakImageProps } from "../OakImage";
 import { SizeValues } from "../../styles/utils/size";
 
-import { getImageDimensions, imageBuilder } from "./sanityImageBuilder";
+import {
+  getImageDimensions,
+  getSanityRefId,
+  imageBuilder,
+} from "./sanityImageBuilder";
 
 export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
   /**
    * Sanity image asset
    */
-  image: Image;
+  image: Omit<SanityImageSource, "string"> | Image;
   /**
    * width for transform
    */
@@ -40,12 +45,9 @@ export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
 
 const CMSImage: FC<CMSImageProps> = (props) => {
   const { image, loader: propsLoader, noCrop, ...rest } = props;
-  /**
-   * @todo check source format. If SVG and source size under 10kb, render SVG?
-   */
 
-  const id = image.asset?._id;
-
+  // const id = image.asset?._id;
+  const id = getSanityRefId(image);
   const originalDimensions = getImageDimensions(id, { fill: rest.fill });
 
   const defaultLoader = useCallback(
@@ -93,18 +95,22 @@ const CMSImage: FC<CMSImageProps> = (props) => {
    */
   const loader: ImageLoader = propsLoader || defaultLoader;
 
-  // If alt is explicitly provided, use it even if it's empty
-  // otherwise attempt the one from the CMS, or fall back to empty
+  /**
+   * If alt is explicitly provided, use it even if it's empty otherwise attempt
+   * the one from the CMS, or fall back to empty
+   */
+  const altTextFromCMS = "altText" in image ? image.altText : undefined;
   const altTextString =
-    typeof rest.alt === "string" ? rest.alt : image.altText || "";
-
+    typeof rest.alt === "string" ? rest.alt : altTextFromCMS || "";
+  const isPresentational =
+    "isPresentational" in image ? image.isPresentational : false;
   /**
    * alt="" as per:
    * https://www.w3.org/WAI/tutorials/images/decorative/
    * > In these cases, a null (empty) alt text should be provided (alt="")
    * > so that they can be ignored by assistive technologies, such as screen readers.
    */
-  const finalAltText = image.isPresentational ? "" : altTextString;
+  const finalAltText = isPresentational ? "" : altTextString;
 
   /**
    * finalUrl is the proxied url
@@ -140,7 +146,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
       {...styleDimensions}
       {...nextImageDimensions}
       alt={finalAltText}
-      aria-hidden={image.isPresentational ? true : undefined}
+      aria-hidden={isPresentational ? true : undefined}
       src={finalUrl}
       loader={loader}
     />

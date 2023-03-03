@@ -21,7 +21,7 @@ const Illustration: FC<IllustrationProps> = ({ slug, ...cmsImageProps }) => {
     );
   }
 
-  return <CMSImage image={{ asset }}  {...cmsImageProps} />;
+  return <CMSImage image={{ asset }} {...cmsImageProps} />;
 };
 
 export default Illustration;

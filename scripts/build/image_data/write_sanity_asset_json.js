@@ -48,8 +48,6 @@ async function main() {
     }
   }`);
 
-  console.log(illustrationsRes);
-
   writeAssetJson({
     assetTypeName: "Illustrations",
     fileName: "illustrations",
