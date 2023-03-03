@@ -26,6 +26,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
   const StyledRadio = styled.span<{
     isSelected: boolean;
     isFocusVisible: boolean;
+    validationState: "valid" | "invalid";
   }>`
     height: 24px;
     width: 24px;
@@ -34,6 +35,11 @@ const Radio: FC<AriaRadioProps> = (props) => {
         props.isFocusVisible
           ? getColorByName("black")
           : getColorByName("oakGrey3")};
+    ${(props) =>
+      props.validationState === "invalid" &&
+      css`
+        border: 2px solid ${getColorByName("failure")};
+      `}
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -100,6 +106,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
         isSelected={isSelected}
         isFocusVisible={isFocusVisible}
         aria-describedby={undefined}
+        validationState={state.validationState}
       />
 
       {children}
