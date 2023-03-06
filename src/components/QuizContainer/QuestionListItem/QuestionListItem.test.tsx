@@ -112,12 +112,16 @@ describe("QuestionListItem", () => {
     expect(questionItemTitle).toHaveTextContent("what is a question");
   });
   it("renders correctly where correct answer doesnt have an image and incorrect choice does have image", () => {
-    testProps.choices =  [
+    testProps.choices = [
       {
         choice: "this one",
-        image:null,
+        image: null,
       },
-      { choice: "that one", image: "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287" },
+      {
+        choice: "that one",
+        image:
+          "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
+      },
     ];
     const { getByTestId } = renderWithTheme(
       <QuestionListItem {...testProps} />
