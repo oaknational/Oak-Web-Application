@@ -212,14 +212,12 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     title: z.string().nullable().optional(),
     points: z.number().nullable().optional(),
     required: z.boolean().nullable(),
-    choices: z
-      .array(
-        z.object({
-          choice: z.string(),
-          image: z.string().nullable(),
-        })
-      )
-      .nullable(),
+    choices: z.array(
+      z.object({
+        choice: z.string(),
+        image: z.string().nullable(),
+      })
+    ),
     active: z.boolean(),
     answer: z.union([z.array(z.string()), z.string()]),
     type: z.string(),

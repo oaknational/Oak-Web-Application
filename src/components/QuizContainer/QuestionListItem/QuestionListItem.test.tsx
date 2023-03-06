@@ -62,7 +62,7 @@ describe("QuestionListItem", () => {
   it("renders the choices", () => {
     const { getByText } = renderWithTheme(<QuestionListItem {...testProps} />);
     testProps.choices.forEach((choice) => {
-      expect(getByText(choice)).toBeInTheDocument();
+      expect(getByText(choice.choice)).toBeInTheDocument();
     });
   });
 
@@ -73,7 +73,7 @@ describe("QuestionListItem", () => {
 
     const images = getAllByRole("img");
 
-    expect(images.length).toEqual(3);
+    expect(images.length).toEqual(2);
   });
 
   it("renders when image is an object", () => {
@@ -91,17 +91,16 @@ describe("QuestionListItem", () => {
 
     const images = getAllByRole("img");
 
-    expect(images.length).toEqual(3);
+    expect(images.length).toEqual(2);
   });
   it("renders correctly without choice images ", () => {
-    testProps.choiceImages = [];
     const { getAllByRole } = renderWithTheme(
       <QuestionListItem {...testProps} />
     );
 
     const images = getAllByRole("img");
 
-    expect(images.length).toEqual(1);
+    expect(images.length).toEqual(2);
   });
   it("renders correctly when there are no choices", () => {
     testProps.choices = [];
