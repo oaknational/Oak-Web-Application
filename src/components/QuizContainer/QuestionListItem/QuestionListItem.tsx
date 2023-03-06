@@ -118,8 +118,7 @@ const AnswerBox: FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
-  const { title, images, choiceImages, choices, answer, type, displayNumber } =
-    props;
+  const { title, images, choices, answer, type, displayNumber } = props;
   return (
     <Flex $flexDirection={"column"} $mb={[0, 16]}>
       <Flex $mb={16}>
@@ -156,115 +155,81 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
         })}
 
       {choices && choices.length > 0 ? (
-        choiceImages && choiceImages.length > 0 ? (
-          <Flex
-            $flexDirection={"column"}
-            $width={"max-content"}
-            $maxWidth={"100%"}
-          >
-            {choices.map((choice, index) => {
-              if (typeof answer === "string") {
-                if (answer === choice) {
-                  const choiceImagesString: string = choiceImages[
-                    index
-                  ] as string;
-                  return (
-                    <AnswerBox>
-                      {" "}
-                      <>
-                        <QuizImage
-                          src={choiceImagesString}
-                          alt={"quiz image"}
-                        />
-                        <CorrectAnswer
-                          choice={choice}
-                          type={type}
-                          index={index}
-                        />
-                      </>
-                    </AnswerBox>
-                  );
-                } else {
-                  const choiceImagesString: string = choiceImages[
-                    index
-                  ] as string;
-                  return (
-                    <AnswerBox>
-                      {" "}
-                      <>
-                        <QuizImage
-                          src={choiceImagesString}
-                          alt={"quiz image"}
-                        />
-                        <Typography
-                          $ml={40}
-                          $ph={10}
-                          $mb={6}
-                          $font={["body-1"]}
-                        >
-                          {choice}
-                        </Typography>
-                      </>
-                    </AnswerBox>
-                  );
-                }
-              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+        <Flex
+          $flexDirection={"column"}
+          $width={"max-content"}
+          $maxWidth={"100%"}
+        >
+          {choices.map((choiceObj, index) => {
+            const { choice, image } = choiceObj;
+            if (typeof answer === "string") {
+              if (answer === choice) {
                 return (
-                  <CorrectAnswer
-                    type={type}
-                    choice={choice}
-                    index={index}
-                    answer={answer}
-                  />
+                  <>
+                    {image ? (
+                      <AnswerBox>
+                        <>
+                          <QuizImage src={image} alt={"quiz image"} />
+                          <CorrectAnswer
+                            choice={choice}
+                            type={type}
+                            index={index}
+                          />
+                        </>
+                      </AnswerBox>
+                    ) : (
+                      <CorrectAnswer
+                        choice={choice}
+                        type={type}
+                        index={index}
+                      />
+                    )}
+                  </>
                 );
               } else {
                 return (
-                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
-                    {choice}
-                  </Typography>
+                  <>
+                    {image ? (
+                      <AnswerBox>
+                        {" "}
+                        <>
+                          <QuizImage src={image} alt={"quiz image"} />
+                          <Typography
+                            $ml={40}
+                            $ph={10}
+                            $mb={6}
+                            $font={["body-1"]}
+                          >
+                            {choice}
+                          </Typography>
+                        </>
+                      </AnswerBox>
+                    ) : (
+                      <Typography $ml={40} $ph={10} $mb={6} $font={["body-1"]}>
+                        {choice}
+                      </Typography>
+                    )}
+                  </>
                 );
               }
-            })}
-          </Flex>
-        ) : (
-          <Flex
-            $flexDirection={"column"}
-            $width={"max-content"}
-            $maxWidth={"100%"}
-            $mb={26}
-          >
-            {choices.map((choice, index) => {
-              if (typeof answer === "string") {
-                if (answer === choice) {
-                  return (
-                    <CorrectAnswer choice={choice} index={index} type={type} />
-                  );
-                } else {
-                  return (
-                    <Typography $font={["body-1"]} $ml={40} $ph={10} $mb={6}>
-                      {choice}
-                    </Typography>
-                  );
-                }
-              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
-                return (
-                  <CorrectAnswer
-                    type={type}
-                    choice={choice}
-                    index={index}
-                    answer={answer}
-                  />
-                );
-              } else {
-                return (
-                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
-                    {choice}
-                  </Typography>
-                );
-              }
-            })}
-          </Flex>
-        )
+            } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+              return (
+                <CorrectAnswer
+                  type={type}
+                  choice={choice}
+                  index={index}
+                  answer={answer}
+                />
+              );
+            } else {
+              return (
+                <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
+                  {choice}
+                </Typography>
+              );
+            }
+          })}
+        </Flex>
       ) : (
         <Flex
           $flexDirection={"column"}
