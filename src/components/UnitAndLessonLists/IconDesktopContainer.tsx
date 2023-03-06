@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { OakColorName } from "../../styles/theme/types";
+import { getSizes } from "../CMSImage/getSizes";
 import Flex from "../Flex";
 import SubjectIcon from "../SubjectIcon";
 
@@ -29,6 +30,8 @@ const IconDesktopContainer: FC<IconDesktopProps> = (props) => {
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
+        sizes={getSizes([50, 92])}
+        $height="auto"
         $maxHeight={[50, 92]}
         $maxWidth={[50, 92]}
         $ma={"auto"}

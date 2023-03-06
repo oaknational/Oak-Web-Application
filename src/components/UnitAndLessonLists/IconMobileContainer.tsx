@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { OakColorName } from "../../styles/theme/types";
+import { getSizes } from "../CMSImage/getSizes";
 import Flex from "../Flex";
 import SubjectIcon from "../SubjectIcon";
 
@@ -25,6 +26,8 @@ const IconMobileContainer: FC<IconMobileProps> = (props) => {
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
+        sizes={getSizes([72, 92])}
+        $height="auto"
         $maxHeight={[72, 92]}
         $maxWidth={[72, 92]}
         $ma={"auto"}

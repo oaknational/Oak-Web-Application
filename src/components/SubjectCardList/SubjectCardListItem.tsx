@@ -60,7 +60,6 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           height={96}
           width={96}
           $width={96}
-          $height={96}
           $ma={"auto"}
           $transform={isHovered ? "scale(1)" : "scale(0.8)"}
         />
