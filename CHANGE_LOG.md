@@ -1,3 +1,54 @@
+## [1.150.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.0...v1.150.1) (2023-03-03)
+
+# [1.150.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.1...v1.150.0) (2023-03-03)
+
+
+### Bug Fixes
+
+* **quiz questions:** fix quiz bug ([3fbb908](https://github.com/oaknational/Oak-Web-Application/commit/3fbb90865237ad49b3e935a3bb7b1824f46f218e))
+* **subject-icons:** maintain same icon width ([9c7b59b](https://github.com/oaknational/Oak-Web-Application/commit/9c7b59b7269d6fb0158869a01c5a4cb6ef3dc740))
+* **subject-icons:** mobile make icons same width ([cb099e3](https://github.com/oaknational/Oak-Web-Application/commit/cb099e3c5735e8e18c89a78bf1a76de1ce847d9e))
+* **subject-icons:** pull commit ([3210921](https://github.com/oaknational/Oak-Web-Application/commit/3210921144e54f0adb3aaf054289ebda4a8f4892))
+* **subject-icons:** renamingcode for clarity ([721434d](https://github.com/oaknational/Oak-Web-Application/commit/721434dbb2afc041e274b561ec9be1c0fff2ee29))
+* **subject-icons:** renamingcode for clarity ([5794108](https://github.com/oaknational/Oak-Web-Application/commit/579410855e4926e3adca8cb3cad5413a39d7c0ec))
+* **title-cards:** remove key stage linkfrom title card ([2a3042c](https://github.com/oaknational/Oak-Web-Application/commit/2a3042c9293e9899e72f6002b86d28ccb658d7b8))
+
+
+### Features
+
+* **breadcrumbs:** merge ([7728357](https://github.com/oaknational/Oak-Web-Application/commit/77283576f1fa2934c3778e9dd2c91d952c944aa2))
+* **breadcrumbs:** merge ([fdb28f8](https://github.com/oaknational/Oak-Web-Application/commit/fdb28f8e76b04725e6688c8dbd71574ca8ca3671))
+* **subject-icons:** add subject icons throughout lesson experience ([ccaf9be](https://github.com/oaknational/Oak-Web-Application/commit/ccaf9be68c1903d85fc70f52fdfef61b69590981))
+* **subject-icons:** test fixes ([381a76e](https://github.com/oaknational/Oak-Web-Application/commit/381a76e4fd1d3dc3f69ab23a2dac8bab907f84c0))
+* **subject-icons:** title card story fix ([51729fa](https://github.com/oaknational/Oak-Web-Application/commit/51729fa4976e8a29e5299a985759c542eb61fa86))
+
+## [1.149.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.0...v1.149.1) (2023-03-02)
+
+# [1.149.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.148.0...v1.149.0) (2023-03-02)
+
+
+### Bug Fixes
+
+* **breadcrumb:** duplication fix ([67659a1](https://github.com/oaknational/Oak-Web-Application/commit/67659a16e0d38e8db421a1a0392f364d8eaf5e28))
+* **breadcrumb:** margin and percy fix ([f3e2ba7](https://github.com/oaknational/Oak-Web-Application/commit/f3e2ba77c3698842da58aa8dfc20e5764d90d8ad))
+* **breadcrumb:** merge fix ([b9c822b](https://github.com/oaknational/Oak-Web-Application/commit/b9c822b2eb0252a042db8e2158ccb9c28584232a))
+* **breadcrumb:** merge from main ([150d3f0](https://github.com/oaknational/Oak-Web-Application/commit/150d3f0d59e714332d5c59737b608d6e9ca576de))
+* **breadcrumb:** test update ([a173391](https://github.com/oaknational/Oak-Web-Application/commit/a173391b0430087f8a930812ea8214c0213edc75))
+* **breadcrumb:** top margin fix andicon color ([b9979f7](https://github.com/oaknational/Oak-Web-Application/commit/b9979f71693943910c6abb051f29d8b1d0b8ff9c))
+* **breadcrumb:** update fixture fields ([651c4d4](https://github.com/oaknational/Oak-Web-Application/commit/651c4d4e86484de089202622a77b95d39ce2ed37))
+
+
+### Features
+
+* **breadcrumb:** add breadcrumb to teacher view ([bbb159e](https://github.com/oaknational/Oak-Web-Application/commit/bbb159ecc222a09a39ededccacdddf7a0bb6c32d))
+* **breadcrumbs:** fix duplications ([96376df](https://github.com/oaknational/Oak-Web-Application/commit/96376df58556daf170df06a0fe4141ff9887db28))
+* **breadcrumbs:** test fix ([9a4a01e](https://github.com/oaknational/Oak-Web-Application/commit/9a4a01e62c31672009957c467963862b78e271a9))
+* **breadcrumbs:** trigger rebuild ([95080d6](https://github.com/oaknational/Oak-Web-Application/commit/95080d6788fee04449bb5dd14a0c970d404356d0))
+* **breadcrumbs:** trigger rebuild ([46552d9](https://github.com/oaknational/Oak-Web-Application/commit/46552d94700d4807fadd39d914633e4ce856de45))
+* **breadcrumbs:** update breadcrumb story ([91d2e97](https://github.com/oaknational/Oak-Web-Application/commit/91d2e9750fae3e7f1606a1a8a9b5188705e5f0fb))
+* **breadcrumbs:** update getJSONLd ([13f2f29](https://github.com/oaknational/Oak-Web-Application/commit/13f2f29d23e44637e76a93ccb7c9cf8c6dbb07a8))
+* **subject-icons:** change href inbreadcrumbs to adapt to changing urls ([9d46480](https://github.com/oaknational/Oak-Web-Application/commit/9d464806d8f67ef8897c36a0744cac6b28f4604c))
+
 # [1.148.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.147.2...v1.148.0) (2023-03-01)
 
 

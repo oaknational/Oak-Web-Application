@@ -19322,6 +19322,7 @@ export type Mv_Quizzes_Variance_Order_By = {
 /** columns and relationships of "mv_subjects" */
 export type Mv_Subjects = {
   __typename?: 'mv_subjects';
+  active_unit_count?: Maybe<Scalars['bigint']>;
   key_stage_short_code?: Maybe<Scalars['String']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
@@ -19385,6 +19386,7 @@ export type Mv_Subjects_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Mv_Subjects_Avg_Fields = {
   __typename?: 'mv_subjects_avg_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19392,6 +19394,7 @@ export type Mv_Subjects_Avg_Fields = {
 
 /** order by avg() on columns of table "mv_subjects" */
 export type Mv_Subjects_Avg_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19402,6 +19405,7 @@ export type Mv_Subjects_Bool_Exp = {
   _and?: InputMaybe<Array<InputMaybe<Mv_Subjects_Bool_Exp>>>;
   _not?: InputMaybe<Mv_Subjects_Bool_Exp>;
   _or?: InputMaybe<Array<InputMaybe<Mv_Subjects_Bool_Exp>>>;
+  active_unit_count?: InputMaybe<Bigint_Comparison_Exp>;
   key_stage_short_code?: InputMaybe<String_Comparison_Exp>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
   key_stage_title?: InputMaybe<String_Comparison_Exp>;
@@ -19414,6 +19418,7 @@ export type Mv_Subjects_Bool_Exp = {
 
 /** input type for incrementing integer column in table "mv_subjects" */
 export type Mv_Subjects_Inc_Input = {
+  active_unit_count?: InputMaybe<Scalars['bigint']>;
   lesson_count?: InputMaybe<Scalars['numeric']>;
   tier_count?: InputMaybe<Scalars['bigint']>;
   unit_count?: InputMaybe<Scalars['bigint']>;
@@ -19421,6 +19426,7 @@ export type Mv_Subjects_Inc_Input = {
 
 /** input type for inserting data into table "mv_subjects" */
 export type Mv_Subjects_Insert_Input = {
+  active_unit_count?: InputMaybe<Scalars['bigint']>;
   key_stage_short_code?: InputMaybe<Scalars['String']>;
   key_stage_slug?: InputMaybe<Scalars['String']>;
   key_stage_title?: InputMaybe<Scalars['String']>;
@@ -19434,6 +19440,7 @@ export type Mv_Subjects_Insert_Input = {
 /** aggregate max on columns */
 export type Mv_Subjects_Max_Fields = {
   __typename?: 'mv_subjects_max_fields';
+  active_unit_count?: Maybe<Scalars['bigint']>;
   key_stage_short_code?: Maybe<Scalars['String']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
@@ -19446,6 +19453,7 @@ export type Mv_Subjects_Max_Fields = {
 
 /** order by max() on columns of table "mv_subjects" */
 export type Mv_Subjects_Max_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   key_stage_short_code?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
@@ -19459,6 +19467,7 @@ export type Mv_Subjects_Max_Order_By = {
 /** aggregate min on columns */
 export type Mv_Subjects_Min_Fields = {
   __typename?: 'mv_subjects_min_fields';
+  active_unit_count?: Maybe<Scalars['bigint']>;
   key_stage_short_code?: Maybe<Scalars['String']>;
   key_stage_slug?: Maybe<Scalars['String']>;
   key_stage_title?: Maybe<Scalars['String']>;
@@ -19471,6 +19480,7 @@ export type Mv_Subjects_Min_Fields = {
 
 /** order by min() on columns of table "mv_subjects" */
 export type Mv_Subjects_Min_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   key_stage_short_code?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
@@ -19497,6 +19507,7 @@ export type Mv_Subjects_Obj_Rel_Insert_Input = {
 
 /** ordering options when selecting data from "mv_subjects" */
 export type Mv_Subjects_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   key_stage_short_code?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
@@ -19509,6 +19520,8 @@ export type Mv_Subjects_Order_By = {
 
 /** select columns of table "mv_subjects" */
 export enum Mv_Subjects_Select_Column {
+  /** column name */
+  ActiveUnitCount = 'active_unit_count',
   /** column name */
   KeyStageShortCode = 'key_stage_short_code',
   /** column name */
@@ -19529,6 +19542,7 @@ export enum Mv_Subjects_Select_Column {
 
 /** input type for updating data in table "mv_subjects" */
 export type Mv_Subjects_Set_Input = {
+  active_unit_count?: InputMaybe<Scalars['bigint']>;
   key_stage_short_code?: InputMaybe<Scalars['String']>;
   key_stage_slug?: InputMaybe<Scalars['String']>;
   key_stage_title?: InputMaybe<Scalars['String']>;
@@ -19542,6 +19556,7 @@ export type Mv_Subjects_Set_Input = {
 /** aggregate stddev on columns */
 export type Mv_Subjects_Stddev_Fields = {
   __typename?: 'mv_subjects_stddev_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19549,6 +19564,7 @@ export type Mv_Subjects_Stddev_Fields = {
 
 /** order by stddev() on columns of table "mv_subjects" */
 export type Mv_Subjects_Stddev_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19557,6 +19573,7 @@ export type Mv_Subjects_Stddev_Order_By = {
 /** aggregate stddev_pop on columns */
 export type Mv_Subjects_Stddev_Pop_Fields = {
   __typename?: 'mv_subjects_stddev_pop_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19564,6 +19581,7 @@ export type Mv_Subjects_Stddev_Pop_Fields = {
 
 /** order by stddev_pop() on columns of table "mv_subjects" */
 export type Mv_Subjects_Stddev_Pop_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19572,6 +19590,7 @@ export type Mv_Subjects_Stddev_Pop_Order_By = {
 /** aggregate stddev_samp on columns */
 export type Mv_Subjects_Stddev_Samp_Fields = {
   __typename?: 'mv_subjects_stddev_samp_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19579,6 +19598,7 @@ export type Mv_Subjects_Stddev_Samp_Fields = {
 
 /** order by stddev_samp() on columns of table "mv_subjects" */
 export type Mv_Subjects_Stddev_Samp_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19587,6 +19607,7 @@ export type Mv_Subjects_Stddev_Samp_Order_By = {
 /** aggregate sum on columns */
 export type Mv_Subjects_Sum_Fields = {
   __typename?: 'mv_subjects_sum_fields';
+  active_unit_count?: Maybe<Scalars['bigint']>;
   lesson_count?: Maybe<Scalars['numeric']>;
   tier_count?: Maybe<Scalars['bigint']>;
   unit_count?: Maybe<Scalars['bigint']>;
@@ -19594,6 +19615,7 @@ export type Mv_Subjects_Sum_Fields = {
 
 /** order by sum() on columns of table "mv_subjects" */
 export type Mv_Subjects_Sum_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19602,6 +19624,7 @@ export type Mv_Subjects_Sum_Order_By = {
 /** aggregate var_pop on columns */
 export type Mv_Subjects_Var_Pop_Fields = {
   __typename?: 'mv_subjects_var_pop_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19609,6 +19632,7 @@ export type Mv_Subjects_Var_Pop_Fields = {
 
 /** order by var_pop() on columns of table "mv_subjects" */
 export type Mv_Subjects_Var_Pop_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19617,6 +19641,7 @@ export type Mv_Subjects_Var_Pop_Order_By = {
 /** aggregate var_samp on columns */
 export type Mv_Subjects_Var_Samp_Fields = {
   __typename?: 'mv_subjects_var_samp_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19624,6 +19649,7 @@ export type Mv_Subjects_Var_Samp_Fields = {
 
 /** order by var_samp() on columns of table "mv_subjects" */
 export type Mv_Subjects_Var_Samp_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -19632,6 +19658,7 @@ export type Mv_Subjects_Var_Samp_Order_By = {
 /** aggregate variance on columns */
 export type Mv_Subjects_Variance_Fields = {
   __typename?: 'mv_subjects_variance_fields';
+  active_unit_count?: Maybe<Scalars['Float']>;
   lesson_count?: Maybe<Scalars['Float']>;
   tier_count?: Maybe<Scalars['Float']>;
   unit_count?: Maybe<Scalars['Float']>;
@@ -19639,6 +19666,7 @@ export type Mv_Subjects_Variance_Fields = {
 
 /** order by variance() on columns of table "mv_subjects" */
 export type Mv_Subjects_Variance_Order_By = {
+  active_unit_count?: InputMaybe<Order_By>;
   lesson_count?: InputMaybe<Order_By>;
   tier_count?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
@@ -36252,7 +36280,7 @@ export type TeachersKeyStageSubjectsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonCount?: any | null, unitCount?: any | null, tierCount?: any | null }> };
+export type TeachersKeyStageSubjectsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonCount?: any | null, unitCount?: any | null, tierCount?: any | null, activeUnitCount?: any | null }> };
 
 export type TeachersLessonOverviewQueryVariables = Exact<{
   lessonSlug: Scalars['String'];
@@ -36262,7 +36290,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
 
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -36441,6 +36469,7 @@ export const TeachersKeyStageSubjectsDocument = gql`
     lessonCount: lesson_count
     unitCount: unit_count
     tierCount: tier_count
+    activeUnitCount: active_unit_count
   }
 }
     `;
@@ -36451,6 +36480,8 @@ export const TeachersLessonOverviewDocument = gql`
   ) {
     slug
     title
+    unitSlug: unit_slug
+    unitTitle: unit_title
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug

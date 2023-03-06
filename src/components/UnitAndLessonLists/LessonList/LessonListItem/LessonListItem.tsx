@@ -69,7 +69,7 @@ function getAvailableResourceList({
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, description, expired } = props;
+  const { title, description, expired, subjectSlug } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -79,6 +79,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
+      subjectSlug={subjectSlug}
       isHovered={isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}

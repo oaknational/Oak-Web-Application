@@ -9,7 +9,7 @@ import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
 import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import {
   Heading,
   Hr,
@@ -38,6 +38,8 @@ import SchoolPicker from "../../../../../../../../../../../components/SchoolPick
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
+import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
+import { lessonBreadcrumbArray } from "../[lessonSlug]";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -68,12 +70,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const {
     title,
+    slug,
     keyStageTitle,
     keyStageSlug,
     subjectSlug,
     subjectTitle,
-    slug,
     downloads,
+    unitSlug,
+    unitTitle,
   } = curriculumData;
 
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -185,7 +189,44 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       })}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $mb={8} $display={"inline-flex"} $mt={50}>
+        <Box $mv={[24, 48]}>
+          {" "}
+          <Breadcrumbs
+            breadcrumbs={[
+              ...lessonBreadcrumbArray(
+                keyStageTitle,
+                keyStageSlug,
+                subjectSlug,
+                subjectTitle,
+                unitSlug,
+                unitTitle
+              ),
+              {
+                oakLinkProps: {
+                  page: "lesson-overview",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: title,
+              },
+              {
+                oakLinkProps: {
+                  page: "downloads",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: "Downloads",
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
+
+        <Flex $mb={8} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
             keyStage={keyStageTitle}
@@ -193,7 +234,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={`Downloads: ${title}`}
-            iconName={"rocket"}
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>

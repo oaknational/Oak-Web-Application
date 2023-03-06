@@ -16,6 +16,7 @@ import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page
 import { SerializedWebinarPreview } from "../../components/pages/WebinarsIndex.page";
 import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
+import { getOakLinkHref } from "../../components/OakLink/OakLink";
 
 const courseProvider = {
   name: config.get("seoAppName"),
@@ -55,7 +56,7 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
   const breadcrumbsForJsonLd = props.itemListElements.map((i, index) => ({
     position: index + 1,
     name: i.label,
-    item: i.href,
+    item: getOakLinkHref(i.oakLinkProps),
   }));
 
   return BreadcrumbsJsonLdNextSeo({
