@@ -36,7 +36,14 @@ const teachersLessonOverviewFixture = (
         title: "what is a question",
         points: 3,
         required: true,
-        choices: ["this one", "that one"],
+        choices: [
+          {
+            choice: "this one",
+            image:
+              "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
+          },
+          { choice: "that one", image: null },
+        ],
         active: true,
         answer: "this one",
         type: "multiple choice",
@@ -47,9 +54,6 @@ const teachersLessonOverviewFixture = (
         ],
         feedbackCorrect: "weldone",
         feedbackIncorrect: "unluckey",
-        choiceImages: [
-          "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
-        ],
       },
     ],
     exitQuiz: [],
