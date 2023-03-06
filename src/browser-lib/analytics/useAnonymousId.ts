@@ -1,5 +1,7 @@
+import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
 
 import { LS_KEY_ANONYMOUS_ID } from "../../config/localStorageKeys";
 import useLocalStorage, { parseJSON } from "../../hooks/useLocalStorage";
@@ -12,8 +14,12 @@ const generateAnonymousId = (): AnonymousUserId => {
 };
 
 /**
- * If there is already an anonymous id (using the old key), then use that,
- * otherwise generate a new one.
+ * In order for sessions to persist from the Acorn apps, this hook checks
+ * cookies for an anonymous id. If none is found it checks local storage
+ * using the old key.
+ *
+ * If an anonymous id is found we store that using the new key, otherwise we
+ * generate a new one, and store it in local storage.
  */
 const getOrGenerateAnonymousId = (): AnonymousUserId => {
   if (typeof window === "undefined") {
@@ -21,6 +27,15 @@ const getOrGenerateAnonymousId = (): AnonymousUserId => {
   }
 
   try {
+    const oakData = Cookies.get("oakData");
+
+    if (oakData) {
+      const parsedJSON = parseJSON(oakData);
+
+      if (parsedJSON) {
+        return z.object({ userId: z.string() }).parse(parsedJSON).userId;
+      }
+    }
     const newValue = window.localStorage.getItem(LS_KEY_ANONYMOUS_ID);
     if (newValue) {
       const parsed = parseJSON(newValue);

@@ -2,30 +2,67 @@ import { renderHook } from "@testing-library/react";
 
 import "../../__tests__/__helpers__/LocalStorageMock";
 
+import useAnonymousId from "./useAnonymousId";
+
+const setAnonymousId = jest.fn();
+const mockUseLocalStorage = jest.fn(() => ["", setAnonymousId]);
+jest.mock("../../hooks/useLocalStorage", () => ({
+  __esModule: true,
+  default: (...args: []) => mockUseLocalStorage(...args),
+  parseJSON: jest.requireActual("../../hooks/useLocalStorage").parseJSON,
+}));
 jest.mock("uuid", () => ({
   __esModule: true,
   v4: () => "new-uuid",
 }));
 
+const getCookies = jest.fn();
+jest.mock("js-cookie", () => ({
+  __esModule: true,
+  default: {
+    get: () => getCookies(),
+  },
+}));
+
 describe("useAnonymousId", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.clearAllMocks();
-    // resetting modules should fix the skipped test, but breaks it in other ways
-    // jest.resetModules();
   });
-  test("returns a uuid() if no id exists", async () => {
-    const useAnonymousId = (await import("./useAnonymousId")).default;
+  test("sets new id if no id exists", async () => {
+    renderHook(() => useAnonymousId());
+
+    expect(setAnonymousId).toHaveBeenCalledTimes(1);
+    expect(setAnonymousId).toHaveBeenCalledWith("new-uuid");
+  });
+  test("hook does not change id if already exists", async () => {
+    mockUseLocalStorage.mockImplementationOnce(() => [
+      "already existing id",
+      setAnonymousId,
+    ]);
+
+    renderHook(() => useAnonymousId());
+
+    expect(setAnonymousId).not.toHaveBeenCalled();
+  });
+  test("hook returns local storage value", async () => {
+    mockUseLocalStorage.mockImplementationOnce(() => [
+      "ls-value",
+      setAnonymousId,
+    ]);
 
     const { result } = renderHook(() => useAnonymousId());
 
-    expect(result.current).toBe("new-uuid");
+    expect(result.current).toBe("ls-value");
   });
+  test.skip("uses the id from cookies->oakData->userId if present", async () => {
+    getCookies.mockReturnValueOnce(
+      JSON.stringify({
+        userId: "old-anon-id-from-cookies",
+      })
+    );
+    renderHook(() => useAnonymousId());
 
-  test.skip("returns the old anonymous id if present in local storage", async () => {
-    window.localStorage.setItem("anonymousID", JSON.stringify("old-anon-id"));
-    const useAnonymousId = (await import("./useAnonymousId")).default;
-    const { result } = renderHook(() => useAnonymousId());
-
-    expect(result.current).toBe("old-anon-id");
+    expect(setAnonymousId).toHaveBeenCalledTimes(1);
+    expect(setAnonymousId).toHaveBeenCalledWith("old-anon-id-from-cookies");
   });
 });
