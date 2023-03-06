@@ -173,7 +173,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             <Cover>
               <Illustration
                 sizes={getSizes([500, 800])}
-                slug="jigsaw-desk"
+                slug="curriculum-approach"
                 $objectFit="contain"
                 $objectPosition={"center"}
                 fill

@@ -84,5 +84,5 @@ describe("CMSImage", () => {
     );
   });
 
-  it.todo("fails gracefully (returns null) when invalid asset provided")
+  it.todo("fails gracefully (returns null) when invalid asset provided");
 });

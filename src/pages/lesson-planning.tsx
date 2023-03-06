@@ -299,7 +299,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     >
                       <Box
                         $position="relative"
-                        $height={80}
                         $width={[120, "100%"]}
                         $mb={24}
                         $mh={["auto", null]}
@@ -309,6 +308,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                           $objectPosition="left bottom"
                           slug={imageSlug}
                           height={80}
+                          $height={80}
                           noCrop
                         />
                       </Box>
