@@ -1,13 +1,14 @@
 import * as z from "zod";
 
-import { documentSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
 export const webinarsListingPageSchema = z
   .object({
     title: z.string(),
     heading: z.string(),
-    summary: portableTextSchema,
+    summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);

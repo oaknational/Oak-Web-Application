@@ -23,5 +23,5 @@ fragment BlogPreviewFields on NewsPost {
       current
     }
   }
-  summary
+  summaryPortableText: summary
 }

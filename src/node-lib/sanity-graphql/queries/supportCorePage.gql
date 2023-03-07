@@ -8,6 +8,9 @@ query supportCorePage($isDraftFilter: Sanity_DocumentFilter) {
     title
     heading
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     cover {
       title
       bodyPortableText: bodyRaw

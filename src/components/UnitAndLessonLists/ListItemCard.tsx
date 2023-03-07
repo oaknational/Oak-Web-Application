@@ -6,7 +6,7 @@ import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { OakColorName } from "../../styles/theme/types";
 
-import IconDesktopContainer from "./IconDesktopContainer";
+import ListItemIconDesktop from "./ListItemIconDesktop";
 
 export type ListItemCardProps = {
   title: string;
@@ -59,7 +59,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         {children}
       </Flex>
       {!expired && (
-        <IconDesktopContainer
+        <ListItemIconDesktop
           title={title}
           subjectSlug={subjectSlug}
           background={background}

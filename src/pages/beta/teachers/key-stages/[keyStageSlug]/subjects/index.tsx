@@ -34,7 +34,6 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
     >
       <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
         <Box $mv={[24, 48]}>
-          {" "}
           <Breadcrumbs
             breadcrumbs={[
               { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
@@ -46,7 +45,6 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
             ]}
           />
         </Box>
-
         <Heading tag={"h1"} $font={"heading-4"}>
           {curriculumData.keyStageTitle}
         </Heading>
