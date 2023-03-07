@@ -59,6 +59,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
         <CurriruculmDownloadButton
           keyStage={keyStageSlug}
           subject={subjectSlug}
+          lessonPage={true}
         />
 
         <Box $mt={56}>

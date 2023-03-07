@@ -1,3 +1,5 @@
+import { screen } from "@testing-library/react";
+
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import CurriculumDownloadButton from "./CurriculumDownloadButton";
@@ -14,7 +16,7 @@ describe("CurriculumDownloadButton", () => {
 
     expect(downloadLink).toHaveAttribute(
       "href",
-      `/${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-english&extension=pdf`
+      `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-english&extension=pdf`
     );
   });
 
@@ -33,7 +35,20 @@ describe("CurriculumDownloadButton", () => {
 
     expect(downloadLink).toHaveAttribute(
       "href",
-      `/${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-maths-core&extension=pdf`
+      `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-maths-core&extension=pdf`
     );
+  });
+
+  test("renders a link to a zip file when on a tiered lesson page", () => {
+    renderWithProviders(
+      <CurriculumDownloadButton
+        keyStage={"ks4"}
+        subject={"maths"}
+        lessonPage={true}
+      />
+    );
+
+    const buttonTitle = screen.getByText("Curriculum download (.zip)");
+    expect(buttonTitle).toBeInTheDocument();
   });
 });
