@@ -9,7 +9,7 @@ import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
 import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import {
   Heading,
   Hr,
@@ -37,6 +37,8 @@ import useSchoolPicker from "../../../../../../../../../../../components/SchoolP
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
+import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
+import { lessonBreadcrumbArray } from "../[lessonSlug]";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -64,12 +66,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const {
     title,
+    slug,
     keyStageTitle,
     keyStageSlug,
     subjectSlug,
     subjectTitle,
-    slug,
     downloads,
+    unitSlug,
+    unitTitle,
   } = curriculumData;
 
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -205,7 +209,44 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       })}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $mb={8} $display={"inline-flex"} $mt={50}>
+        <Box $mv={[24, 48]}>
+          {" "}
+          <Breadcrumbs
+            breadcrumbs={[
+              ...lessonBreadcrumbArray(
+                keyStageTitle,
+                keyStageSlug,
+                subjectSlug,
+                subjectTitle,
+                unitSlug,
+                unitTitle
+              ),
+              {
+                oakLinkProps: {
+                  page: "lesson-overview",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: title,
+              },
+              {
+                oakLinkProps: {
+                  page: "downloads",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: "Downloads",
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
+
+        <Flex $mb={8} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
             keyStage={keyStageTitle}
@@ -213,7 +254,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={`Downloads: ${title}`}
-            iconName={"rocket"}
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
@@ -341,27 +381,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
               </P>
 
-              {isAttemptingDownload && (
-                <P $mt={22} $mb={22}>
-                  Loading...
-                </P>
-              )}
-              {!isAttemptingDownload && selectedResourcesToDownloadCount > 0 && (
-                <Button
-                  label={"Download .zip"}
-                  onClick={() => {
-                    onFormSubmit();
-                  }}
-                  background={"teachersHighlight"}
-                  icon="download"
-                  $iconPosition="trailing"
-                  iconBackground="teachersYellow"
-                  $mt={8}
-                  $mb={16}
-                  $mr={8}
-                  $ml={8}
-                />
-              )}
+              <Button
+                label={"Download .zip"}
+                onClick={() => {
+                  onFormSubmit();
+                }}
+                background={"teachersHighlight"}
+                icon="download"
+                $iconPosition="trailing"
+                iconBackground="teachersYellow"
+                disabled={
+                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
+                }
+                $mt={8}
+                $mb={16}
+                $mr={8}
+                $ml={8}
+              />
             </Flex>
           </GridArea>
         </Grid>

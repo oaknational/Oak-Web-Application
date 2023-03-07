@@ -14,6 +14,8 @@ query teachersLessonOverview(
   ) {
     slug
     title
+    unitSlug: unit_slug
+    unitTitle: unit_title
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug
