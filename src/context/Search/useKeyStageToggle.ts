@@ -8,7 +8,7 @@ const useKeyStageToggle = (ks: KeyStage) => {
 
   const checked = keyStages.has(ks);
 
-  const onChange = () => {
+  const onChange = (checked: boolean) => {
     const newKeyStages = new Set(keyStages);
     if (checked) {
       newKeyStages.delete(ks);

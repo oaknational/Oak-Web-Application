@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -40,6 +40,7 @@ import RadioGroup from "../../../../../../../../../../../components/RadioButtons
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
+import FormCheckbox from "../../../../../../../../../../../components/Checkbox/FormCheckbox";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -56,6 +57,7 @@ const schema = z.object({
   terms: z.literal(true, {
     errorMap: () => ({ message: "You must accept terms and conditions" }),
   }),
+  downloads: z.array(z.string()),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -63,6 +65,7 @@ export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
   terms: boolean;
+  downloads: DownloadResourceType[];
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -98,12 +101,21 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState } = useForm<DownloadFormProps>({
+  const {
+    register,
+    formState,
+    watch,
+    handleSubmit,
+    getValues,
+    setValue,
+    control,
+  } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
   const { errors } = formState;
+  console.log(watch());
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
   const [isAttemptingDownload, setIsAttemptingDownload] =
@@ -135,6 +147,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   };
 
   const onSelectAllClick = () => {
+    console.log("click");
+    const values = getValues("downloads");
+    console.log("values", values);
+    setValue(
+      "downloads",
+      downloads?.map((download) => download.type)
+    );
+
+    // Array.isArray(values) ? values.filter((value) => value !== color) : false
+
     const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
     const updatedResourcesToDownload = {} as ResourcesToDownloadType;
     allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
@@ -180,6 +202,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
   });
+
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
+
+  const atLeastOne = () =>
+    getValues("test").length ? true : "Please tell me if this is too hard.";
 
   return (
     <AppLayout
@@ -236,174 +265,199 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
-        <Box $maxWidth={[null, 420, 420]} $mb={96}>
-          <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
-            Your details
-          </Heading>
-          <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
-            Find your school in the field below (required)
-          </Heading>
-          <SchoolPicker
-            inputValue={inputValue}
-            setInputValue={onSchoolPickerInputChange}
-            schools={data}
-            label={"Name of school:"}
-            setSelectedValue={setSelectedValue}
-          />
-          <Box $mt={12} $ml={24} $mb={32}>
-            <P $mb={12} $font={"body-2"}>
-              Or select one of the following:
-            </P>
-            <Flex>
-              <RadioGroup
-                aria-label={"home school or my school isn't listed"}
-                value={selectedRadio}
-                onChange={onRadioChange}
-              >
-                <Radio data-testid={"radio-download"} value={"homeschool"}>
-                  Homeschool
-                </Radio>
-                <Radio value={"notListed"}>My school isn’t listed</Radio>
-              </RadioGroup>
-            </Flex>
-          </Box>
-          <Heading
-            tag="h3"
-            $font={"heading-7"}
-            $mt={16}
-            $mb={24}
-            data-testid="email-heading"
-          >
-            For regular updates from Oak (optional)
-          </Heading>
-          <Input
-            id={"email"}
-            label="Email address:"
-            placeholder="Enter email address here"
-            {...register("email")}
-            error={errors.email?.message}
-          />
-          <P $font="body-3" $mt={-24} $mb={40}>
-            Join our community to get free lessons, resources and other helpful
-            content. Unsubscribe at any time. Our{" "}
-            <OakLink page={"privacy-policy"} $isInline>
-              privacy policy
-            </OakLink>
-            .
-          </P>
-          <Box
-            $position={"relative"}
-            $background={"pastelTurquoise"}
-            $pv={8}
-            $ph={8}
-            $mb={24}
-          >
-            <BrushBorders
-              hideOnMobileH
-              hideOnMobileV
-              color={"pastelTurquoise"}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box $maxWidth={[null, 420, 420]} $mb={96}>
+            <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
+              Your details
+            </Heading>
+            <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
+              Find your school in the field below (required)
+            </Heading>
+            <SchoolPicker
+              inputValue={inputValue}
+              setInputValue={onSchoolPickerInputChange}
+              schools={data}
+              label={"Name of school:"}
+              setSelectedValue={setSelectedValue}
             />
-            <Checkbox
-              labelText={"I accept terms and conditions (required)"}
-              id={"terms"}
-              name={"termsAndConditions"}
-              checked={acceptedTCs}
-              onChange={() => setAcceptedTCs(!acceptedTCs)}
-              $mb={0}
-              required
-              error={errors.terms?.message}
-            />
-          </Box>
-          <P $font="body-3">
-            Read our{" "}
-            <OakLink page={"terms-and-conditions"} $isInline>
-              terms &amp; conditions
-            </OakLink>
-            .
-          </P>
-        </Box>
-
-        <Grid $mt={32}>
-          <GridArea $colSpan={[12]}>
-            <Flex
-              $alignItems={["left", "center"]}
-              $flexDirection={["column", "row"]}
-            >
-              <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
-                Lesson resources
-              </Heading>
-              <Box $ml={[0, 48]}>
-                <Button
-                  label="Select all"
-                  variant="minimal"
-                  onClick={() => onSelectAllClick()}
-                />
-                <Button
-                  label="Deselect all"
-                  variant="minimal"
-                  onClick={() => onDeselectAllClick()}
-                  $ml={24}
-                />
-              </Box>
-            </Flex>
-            <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
-          </GridArea>
-          {downloads?.map((download) => {
-            if (download.exists && !download.forbidden) {
-              return (
-                <GridArea
-                  $colSpan={[6, 3, 2]}
-                  key={download.type}
-                  data-testid={"lessonResourcesToDownload"}
-                >
-                  <DownloadCard
-                    id={download.type}
-                    name={"lessonResourcesToDownload"}
-                    label={download.label}
-                    extension={download.ext}
-                    resourceType={download.type}
-                    checked={resourcesToDownload[download.type] || false}
-                    onChange={() =>
-                      onResourceToDownloadToggle(`${download.type}`)
-                    }
-                    data-testid={`download-card-${download.type}`}
-                  />
-                </GridArea>
-              );
-            }
-          })}
-          <GridArea $colSpan={[12]}>
-            <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
-            <Flex $justifyContent={"right"} $alignItems={"center"}>
-              <P
-                $color={"oakGrey4"}
-                $font={"body-2"}
-                data-testid="selectedResourcesCount"
-                $mr={24}
-              >
-                {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
+            <Box $mt={12} $ml={24} $mb={32}>
+              <P $mb={12} $font={"body-2"}>
+                Or select one of the following:
               </P>
-
-              <Button
-                label={"Download .zip"}
-                onClick={() => {
-                  onFormSubmit();
-                }}
-                background={"teachersHighlight"}
-                icon="download"
-                $iconPosition="trailing"
-                iconBackground="teachersYellow"
-                disabled={
-                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
-                }
-                $mt={8}
-                $mb={16}
-                $mr={8}
-                $ml={8}
+              <Flex>
+                <RadioGroup
+                  aria-label={"home school or my school isn't listed"}
+                  value={selectedRadio}
+                  onChange={onRadioChange}
+                >
+                  <Radio data-testid={"radio-download"} value={"homeschool"}>
+                    Homeschool
+                  </Radio>
+                  <Radio value={"notListed"}>My school isn’t listed</Radio>
+                </RadioGroup>
+              </Flex>
+            </Box>
+            <Heading
+              tag="h3"
+              $font={"heading-7"}
+              $mt={16}
+              $mb={24}
+              data-testid="email-heading"
+            >
+              For regular updates from Oak (optional)
+            </Heading>
+            <Input
+              id={"email"}
+              label="Email address:"
+              placeholder="Enter email address here"
+              {...register("email")}
+              error={errors.email?.message}
+            />
+            <P $font="body-3" $mt={-24} $mb={40}>
+              Join our community to get free lessons, resources and other
+              helpful content. Unsubscribe at any time. Our{" "}
+              <OakLink page={"privacy-policy"} $isInline>
+                privacy policy
+              </OakLink>
+              .
+            </P>
+            <Box
+              $position={"relative"}
+              $background={"pastelTurquoise"}
+              $pv={8}
+              $ph={8}
+              $mb={24}
+            >
+              <BrushBorders
+                hideOnMobileH
+                hideOnMobileV
+                color={"pastelTurquoise"}
               />
-            </Flex>
-          </GridArea>
-        </Grid>
+              {/* <FormCheckbox
+                labelText={"I accept terms and conditions (required)"}
+                required
+                control={control}
+                register={register}
+                // {...register("termsz")}
+                // error={errors.terms?.message}
+                // checked={acceptedTCs}
+                // onChange={() => setAcceptedTCs(!acceptedTCs)}
+              /> */}
+              <Controller
+                control={control}
+                name="terms"
+                render={({ field: { value, onChange, name } }) => (
+                  <Checkbox
+                    id={"downloads-terms"}
+                    name={name}
+                    checked={value}
+                    onChange={onChange}
+                  />
+                )}
+              />
+            </Box>
+            <P $font="body-3">
+              Read our{" "}
+              <OakLink page={"terms-and-conditions"} $isInline>
+                terms &amp; conditions
+              </OakLink>
+              .
+            </P>
+          </Box>
+
+          <Grid $mt={32}>
+            <GridArea $colSpan={[12]}>
+              <Flex
+                $alignItems={["left", "center"]}
+                $flexDirection={["column", "row"]}
+              >
+                <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
+                  Lesson resources
+                </Heading>
+                <Box $ml={[0, 48]}>
+                  <Button
+                    label="Select all"
+                    variant="minimal"
+                    onClick={() => onSelectAllClick()}
+                  />
+                  <Button
+                    label="Deselect all"
+                    variant="minimal"
+                    onClick={() => onDeselectAllClick()}
+                    $ml={24}
+                  />
+                </Box>
+              </Flex>
+              <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
+            </GridArea>
+            {downloads?.map((download, index) => {
+              if (download.exists && !download.forbidden) {
+                return (
+                  <GridArea
+                    $colSpan={[6, 3, 2]}
+                    key={download.type}
+                    data-testid={"lessonResourcesToDownload"}
+                  >
+                    {/* <input
+                      key={download.type}
+                      type="checkbox"
+                      value={download.type}
+                      {...register("test", {
+                        validate: atLeastOne,
+                      })}
+                    /> */}
+                    <DownloadCard
+                      id={download.type}
+                      name={"lessonResourcesToDownload"}
+                      label={download.label}
+                      extension={download.ext}
+                      resourceType={download.type}
+                      register={register("downloads")}
+                      // index={index}
+                      // checked={resourcesToDownload[download.type] || false}
+                      // onChange={() =>
+                      //   onResourceToDownloadToggle(`${download.type}`)
+                      // }
+                      // data-testid={`download-card-${download.type}`}
+                    />
+                  </GridArea>
+                );
+              }
+            })}
+            <GridArea $colSpan={[12]}>
+              <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
+              <Flex $justifyContent={"right"} $alignItems={"center"}>
+                <P
+                  $color={"oakGrey4"}
+                  $font={"body-2"}
+                  data-testid="selectedResourcesCount"
+                  $mr={24}
+                >
+                  {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
+                </P>
+
+                <Button
+                  label={"Download .zip"}
+                  // onClick={() => {
+                  //   onFormSubmit();
+                  // }}
+                  background={"teachersHighlight"}
+                  icon="download"
+                  $iconPosition="trailing"
+                  iconBackground="teachersYellow"
+                  // disabled={
+                  //   isAttemptingDownload ||
+                  //   selectedResourcesToDownloadCount === 0
+                  // }
+                  $mt={8}
+                  $mb={16}
+                  $mr={8}
+                  $ml={8}
+                />
+              </Flex>
+            </GridArea>
+          </Grid>
+        </form>
       </MaxWidth>
     </AppLayout>
   );

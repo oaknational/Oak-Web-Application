@@ -18,7 +18,7 @@ const KeyStageFilter: FC<KeyStageFilterProps> = (props) => {
         id={`custom-checkbox-${ks}`}
         name={"keyStageFilters"}
         checked={checked}
-        onChange={onChange}
+        onChange={(checked) => onChange(checked)}
         ariaLabel={`Filter for KS${ks}`}
       />
     </Box>

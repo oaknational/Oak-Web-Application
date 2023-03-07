@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, forwardRef } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
 
@@ -19,6 +19,7 @@ export type DownloadCardProps = {
   onChange: () => void;
   resourceType: DownloadResourceType;
   extension: string;
+  index: number;
 };
 
 type DownloadCardLabelProps = DownloadCardProps & {
@@ -85,19 +86,20 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, name, label } = props;
+  const { checked = false, id, name, label, index, register } = props;
 
   const { hoverProps, isHovered } = useHover({});
+
+  // console.log(inputProps);
 
   return (
     <Box $maxWidth={200} {...hoverProps}>
       <Checkbox
         id={id}
-        name={name}
-        checked={checked}
-        onChange={() => onChange()}
+        value={props.resourceType}
         variant={"cardCheckbox"}
         ariaLabel={label}
+        {...register}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>
