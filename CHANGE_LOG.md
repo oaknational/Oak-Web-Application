@@ -1,3 +1,10 @@
+# [1.153.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.152.0...v1.153.0) (2023-03-07)
+
+
+### Features
+
+* 1381 handle plurals correctly ([a55b303](https://github.com/oaknational/Oak-Web-Application/commit/a55b3037b9ca8fb476307a677558a9b55595ad81))
+
 # [1.152.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.151.0...v1.152.0) (2023-03-07)
 
 
