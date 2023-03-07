@@ -6,10 +6,9 @@ import Checkbox from "../../Checkbox";
 import Box from "../../Box";
 import OakLink from "../../OakLink";
 import FieldError from "../../FormFields/FieldError";
+import { CheckboxProps } from "../../Checkbox/Checkbox";
 
-export type TermsAndConditionsCheckboxProps = {
-  checked: boolean;
-  onChange: () => void;
+export type TermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;
 };
 
@@ -17,6 +16,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   checked,
   onChange,
   errorMessage,
+  ...props
 }) => (
   <>
     <Box
@@ -38,6 +38,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         required
         error={errorMessage}
         variant="terms"
+        {...props}
       />
     </Box>
     {errorMessage && (
