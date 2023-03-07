@@ -3,7 +3,7 @@ import { FC } from "react";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
-import ListItemHeading from "../../ListItemHeading";
+import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
@@ -52,7 +52,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $width={"100%"}
         $pb={24}
       >
-        <ListItemHeading
+        <ListItemHeader
           {...props}
           primaryTargetProps={primaryTargetProps}
           page={"Unit"}

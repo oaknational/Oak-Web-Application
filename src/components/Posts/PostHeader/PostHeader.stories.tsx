@@ -29,7 +29,7 @@ PostHeader.args = {
         url: "",
       },
     },
-    summary: "Lorem ipsum",
+    summaryPortableText: "Lorem ipsum",
     contentPortableText: [],
     category: {
       title: "Lesson Plabning",

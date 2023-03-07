@@ -1,3 +1,22 @@
+# [1.151.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.2...v1.151.0) (2023-03-07)
+
+
+### Bug Fixes
+
+* adjust image sizes ([6e58592](https://github.com/oaknational/Oak-Web-Application/commit/6e58592edb2fc5256c5941eb057dd7622d11a298))
+* ensure image url is generated from image asset ([237fd89](https://github.com/oaknational/Oak-Web-Application/commit/237fd893b99d8ded74ebf4ecfe6741f9631eede0))
+* make CMSImage more robust and add tests ([7e76c0b](https://github.com/oaknational/Oak-Web-Application/commit/7e76c0bb24d1e7f20e1541a106006e64ef52d3ea))
+* sizes for subject icons ([ca0f6ea](https://github.com/oaknational/Oak-Web-Application/commit/ca0f6ea16da130d08bb0e81e0eaceb4cf1f142f4))
+
+
+### Features
+
+* add getSizes helper function ([ad1ed0b](https://github.com/oaknational/Oak-Web-Application/commit/ad1ed0bc7bdb053ec28caa157efb4a1624e6a03f))
+* add sanity illustration assets and remove image files ([bb87814](https://github.com/oaknational/Oak-Web-Application/commit/bb87814a43725102c931747f13e1f844cea92ebe))
+* ensure illustrations come from CMS ([09e1e14](https://github.com/oaknational/Oak-Web-Application/commit/09e1e14119682c76bacce31ced237a57744a4326))
+
+## [1.150.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.1...v1.150.2) (2023-03-06)
+
 ## [1.150.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.0...v1.150.1) (2023-03-03)
 
 # [1.150.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.1...v1.150.0) (2023-03-03)

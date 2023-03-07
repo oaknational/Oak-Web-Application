@@ -1,11 +1,13 @@
-import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
-import {
-  AboutBoardPage,
-  AboutWhoWeArePage,
-} from "../../../common-lib/cms-types";
-import ButtonLinkNav from "../../ButtonLinkNav/ButtonLinkNav";
-import SummaryCard from "../../Card/SummaryCard";
+import { FC } from "react";
 
+import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
+import ButtonLinkNav from "../../ButtonLinkNav/ButtonLinkNav";
+import SummaryCard, { SummaryCardProps } from "../../Card/SummaryCard";
+
+type AboutUsSummaryCardProps = Pick<
+  SummaryCardProps,
+  "title" | "heading" | "summaryPortableText" | "summaryCardImage"
+>;
 /**
  * Extension of SummaryCard which includes navigation for "About Us" subpages
  *
@@ -13,23 +15,10 @@ import SummaryCard from "../../Card/SummaryCard";
  *
  * Belongs at the top of each "About Us" sub-page
  */
-const AboutUsSummaryCard = ({
-  title,
-  heading,
-  summaryPortableText,
-}: Pick<
-  AboutWhoWeArePage | AboutBoardPage,
-  "title" | "heading" | "summaryPortableText"
->) => {
+const AboutUsSummaryCard: FC<AboutUsSummaryCardProps> = (props) => {
   return (
     <SummaryCard
-      title={title}
-      heading={heading}
-      summary={summaryPortableText}
-      imageProps={{
-        src: "/images/oak-logo.svg",
-        alt: "",
-      }}
+      {...props}
       imageContainerProps={{
         $minHeight: 220,
         $mr: 32,

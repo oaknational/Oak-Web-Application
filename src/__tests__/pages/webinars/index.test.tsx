@@ -14,7 +14,7 @@ const testPageData = {
   id: "123",
   title: "page title",
   heading: "page heading",
-  summary: [],
+  summaryPortableText: [],
 };
 
 const testWebinarPreview: WebinarPreview = {
