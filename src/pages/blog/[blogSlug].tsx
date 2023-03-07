@@ -55,7 +55,8 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
       seoProps={getSeoProps({
         ...props.blog.seo,
         title: props.blog.seo?.title || props.blog.title,
-        description: props.blog.seo?.description || props.blog.summary,
+        description:
+          props.blog.seo?.description || props.blog.summaryPortableText,
         imageUrl: sharingImage.src,
       })}
       $background="white"

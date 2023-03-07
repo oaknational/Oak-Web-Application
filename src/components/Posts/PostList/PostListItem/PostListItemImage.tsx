@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import CMSImage from "../../../CMSImage";
+import { getSizes } from "../../../CMSImage/getSizes";
 import OakImage from "../../../OakImage";
 
 import { PostListItemProps } from ".";
@@ -28,7 +29,7 @@ const PostListItemImage: FC<PostListItemProps> = (props) => {
           $objectFit="cover"
           $objectPosition="center center"
           image={props.mainImage}
-          sizes="(min-width: 750px) 256px, 100vw"
+          sizes={getSizes(["100vw", 256])}
           // Explicitly set an empty string for missing alt text in thumbnails
           // pending a a11y decision on alt for thumbs
           alt={props.mainImage.altText || ""}

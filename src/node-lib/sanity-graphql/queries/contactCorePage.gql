@@ -8,6 +8,9 @@ query contactCorePage($isDraftFilter: Sanity_DocumentFilter) {
     title
     heading
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     bodyPortableText: bodyRaw
     seo {
       ...Seo

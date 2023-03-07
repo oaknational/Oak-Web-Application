@@ -38,7 +38,7 @@ const testBlog: BlogPost = {
       url: "",
     },
   },
-  summary: "Lorem ipsum",
+  summaryPortableText: "Lorem ipsum",
   contentPortableText: [],
   category: {
     title: "Lesson Plabning",
@@ -58,7 +58,7 @@ const testBlog2: BlogPost = {
       url: "",
     },
   },
-  summary: "Lorem ipsum",
+  summaryPortableText: "Lorem ipsum",
   contentPortableText: [],
   category: {
     title: "Lesson Plabning",
