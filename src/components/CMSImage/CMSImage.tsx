@@ -46,7 +46,6 @@ export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
 const CMSImage: FC<CMSImageProps> = (props) => {
   const { image, loader: propsLoader, noCrop, ...rest } = props;
 
-  // const id = image.asset?._id;
   const id = getSanityRefId(image);
   const originalDimensions = getImageDimensions(id, { fill: rest.fill });
 
@@ -90,9 +89,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
       props.width,
     ]
   );
-  /**
-   * @todo useMemo this
-   */
+
   const loader: ImageLoader = propsLoader || defaultLoader;
 
   /**
