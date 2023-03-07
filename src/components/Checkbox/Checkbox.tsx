@@ -20,7 +20,7 @@ export type CheckboxConfig = {
   };
 };
 
-export type CheckboxVariant = "cardCheckbox";
+export type CheckboxVariant = "cardCheckbox" | "terms";
 
 type CheckboxProps = {
   labelText?: string;
@@ -40,6 +40,7 @@ type CheckboxLabelProps = {
   disabled: boolean;
   checked: boolean;
   variant?: CheckboxVariant;
+  hasError?: boolean;
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
@@ -170,6 +171,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
         checked={checked}
         disabled={disabled}
         variant={variant}
+        hasError={Boolean(error)}
         {...spacingProps}
       >
         <ScreenReaderCheckbox
@@ -185,7 +187,11 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
         />
-        <VisualCheckbox checked={checked} variant={variant} />
+        <VisualCheckbox
+          checked={checked}
+          variant={variant}
+          hasError={Boolean(error)}
+        />
         {/* card checkbox */}
         {!labelText && variant === "cardCheckbox" && children}
         {/* basic label checkbox */}
@@ -197,7 +203,11 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           </>
         )}
       </CheckboxLabel>
-      <FieldError id={errorId}>{error}</FieldError>
+      {variant !== "terms" && (
+        <FieldError id={errorId} withoutMarginBottom>
+          {error}
+        </FieldError>
+      )}
     </>
   );
 };
