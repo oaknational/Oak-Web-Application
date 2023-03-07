@@ -23,8 +23,10 @@ import AnchorTarget from "../components/AnchorTarget";
 import Cover from "../components/Cover";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import CMSVideo from "../components/CMSVideo";
-import OakImage from "../components/OakImage";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
+import Illustration from "../components/Illustration";
+import { IllustrationSlug } from "../image-data";
+import { getSizes } from "../components/CMSImage/getSizes";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -89,33 +91,41 @@ const getLessonPlanningCards = (planningPage: PlanningPage) => {
   const getPortableText = (i: number) =>
     planningPage.steps[i]?.bodyPortableText;
 
-  return [
+  const planningSteps: {
+    id: string;
+    imageSlug: IllustrationSlug;
+    title: string;
+    portableText?: PortableTextJSON;
+    withSearchCTA?: boolean;
+  }[] = [
     {
       id: "find",
-      imageSrc: "/images/illustrations/calendar.png",
+      imageSlug: "calendar",
       title: getTitle(0),
       portableText: getPortableText(0),
     },
     {
       id: "personalise",
-      imageSrc: "/images/illustrations/atoms.png",
+      imageSlug: "atoms",
       title: getTitle(1),
       portableText: getPortableText(1),
     },
     {
       id: "tailor",
-      imageSrc: "/images/illustrations/test-tubes.png",
+      imageSlug: "test-tubes",
       title: getTitle(2),
       portableText: getPortableText(2),
     },
     {
       id: "teach",
-      imageSrc: "/images/illustrations/pupils-at-desk.png",
+      imageSlug: "pupils-at-desk",
       title: getTitle(3),
       portableText: getPortableText(3),
       withSearchCTA: true,
     },
   ];
+
+  return planningSteps;
 };
 
 const SectionHeader: FC<{ children?: React.ReactNode }> = (props) => {
@@ -158,13 +168,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
         <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/illustrations/planning.png",
-            alt: "planning illustration",
-          }}
+          {...pageData}
           imageContainerProps={{
             $minHeight: 160,
           }}
@@ -243,14 +247,13 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   $top={48}
                   $bottom={[92, 92, 20]}
                 >
-                  <OakImage
+                  <Illustration
+                    sizes={getSizes([210, 110, 173])}
+                    slug="teacher-carrying-stuff"
                     fill
+                    $width="auto"
                     $objectFit="contain"
                     $objectPosition="center bottom"
-                    alt=""
-                    src={
-                      "/images/illustrations/teacher-carrying-stuff-237-286.png"
-                    }
                   />
                 </Cover>
                 <ButtonAsLink
@@ -277,7 +280,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           </SectionHeader>
           <Grid $cg={24} $rg={0}>
             {getLessonPlanningCards(pageData).map(
-              ({ title, portableText, imageSrc, withSearchCTA }, i, arr) => {
+              ({ title, portableText, imageSlug, withSearchCTA }, i, arr) => {
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
                 return (
                   <GridArea
@@ -296,17 +299,17 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     >
                       <Box
                         $position="relative"
-                        $height={80}
                         $width={[120, "100%"]}
                         $mb={24}
                         $mh={["auto", null]}
                       >
-                        <OakImage
-                          alt=""
+                        <Illustration
                           $objectFit="contain"
                           $objectPosition="left bottom"
-                          src={imageSrc}
-                          fill
+                          slug={imageSlug}
+                          height={80}
+                          $height={80}
+                          noCrop
                         />
                       </Box>
 
@@ -436,14 +439,13 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $top={16}
                 $bottom={[92, 92, 20]}
               >
-                <OakImage
+                <Illustration
+                  sizes={getSizes([210, 110, 173])}
+                  slug="teacher-carrying-stuff"
                   fill
+                  $width="auto"
                   $objectFit="contain"
                   $objectPosition="center bottom"
-                  alt=""
-                  src={
-                    "/images/illustrations/teacher-carrying-stuff-237-286.png"
-                  }
                 />
               </Cover>
 

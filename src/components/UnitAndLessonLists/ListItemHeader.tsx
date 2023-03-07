@@ -5,7 +5,7 @@ import OakLink from "../OakLink";
 import { Heading } from "../Typography";
 
 import CategoryHeading from "./CategoryHeading";
-import IconMobileContainer from "./IconMobileContainer";
+import ListItemIconMobile from "./ListItemIconMobile";
 import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
@@ -40,7 +40,7 @@ const ListTitle: FC<{ children?: React.ReactNode; expired?: boolean }> = ({
   );
 };
 
-const LessonListItem: FC<ListItemHeadingProps> = (props) => {
+const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   const {
     title,
     slug,
@@ -103,7 +103,7 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
         )}
       </Flex>
 
-      <IconMobileContainer
+      <ListItemIconMobile
         background={page == "Unit" ? "teachersLilac" : "pupilsPink"}
         subjectSlug={subjectSlug}
       />
@@ -111,4 +111,4 @@ const LessonListItem: FC<ListItemHeadingProps> = (props) => {
   );
 };
 
-export default LessonListItem;
+export default ListItemHeader;

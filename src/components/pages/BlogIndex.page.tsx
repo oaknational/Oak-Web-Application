@@ -48,7 +48,7 @@ export const blogToPostListItem = (
   blog: SerializedBlogPostPreview
 ): PostListItemProps => ({
   ...blog,
-  summary: blog.summary?.trim(),
+  summary: blog.summaryPortableText?.trim(),
   contentType: "blog-post",
   titleTag: "h3",
   category: blog.category,

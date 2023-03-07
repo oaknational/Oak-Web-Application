@@ -10,11 +10,7 @@ describe("CardLinkIcon", () => {
       <SummaryCard
         title={"title"}
         heading={"heading"}
-        summary={"text"}
-        imageProps={{
-          src: "/images/illustrations/planning.png",
-          alt: "planning illustration",
-        }}
+        summaryPortableText={"text"}
       />
     );
 

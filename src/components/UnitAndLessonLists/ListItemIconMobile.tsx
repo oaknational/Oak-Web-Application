@@ -4,12 +4,12 @@ import { OakColorName } from "../../styles/theme/types";
 import Flex from "../Flex";
 import SubjectIcon from "../SubjectIcon";
 
-export type IconMobileProps = {
+export type ListItemIconMobileProps = {
   subjectSlug: string;
   background: OakColorName;
 };
 
-const IconMobileContainer: FC<IconMobileProps> = (props) => {
+const ListItemIconMobile: FC<ListItemIconMobileProps> = (props) => {
   const { background, subjectSlug } = props;
 
   return (
@@ -25,12 +25,15 @@ const IconMobileContainer: FC<IconMobileProps> = (props) => {
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
-        $maxHeight={[72, 92]}
-        $maxWidth={[72, 92]}
+        height={96}
+        width={96}
+        $height="auto"
+        $maxHeight={72}
+        $maxWidth={72}
         $ma={"auto"}
       />
     </Flex>
   );
 };
 
-export default IconMobileContainer;
+export default ListItemIconMobile;

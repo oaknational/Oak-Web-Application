@@ -24,7 +24,7 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
       $pv={32}
     >
       <Flex $minWidth={240} $alignItems="center" $mr={[0, 72]}>
-        <CardImage imageSrc={image.imageSrc} alt={image.alt} />
+        <CardImage {...image} />
       </Flex>
       <Flex $alignItems="center" $font={["body-2", "body-1"]}>
         <PortableText value={bodyPortableText} />

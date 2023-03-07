@@ -9,6 +9,7 @@ const PostImageWithAltText = (
   if (!props.value) {
     return null;
   }
+
   return <CMSImage image={props.value} $mt={80} $mb={64} />;
 };
 

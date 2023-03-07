@@ -8,6 +8,9 @@ query curriculumCorePage($isDraftFilter: Sanity_DocumentFilter) {
     title
     heading
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     info {
       ...TextBlock
     }

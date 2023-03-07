@@ -1,28 +1,23 @@
 import { FC } from "react";
 import { PortableText } from "@portabletext/react";
 
-import { PortableTextJSON } from "../../common-lib/cms-types";
+import { PortableTextJSON, Image } from "../../common-lib/cms-types";
 import Flex, { FlexProps } from "../Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
-import OakImage from "../OakImage/OakImage";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
+import CMSImage from "../CMSImage";
 
 import Card from "./Card";
 
-type ImageProps = {
-  src: string;
-  alt: string;
-};
-
-type SummaryCardProps = {
+export type SummaryCardProps = {
   children?: React.ReactNode;
   title: string;
   heading: string;
-  summary: PortableTextJSON | string;
+  summaryPortableText: PortableTextJSON | string;
+  summaryCardImage?: Image | null;
   background?: OakColorName;
-  imageProps?: ImageProps;
   imageContainerProps?: FlexProps;
 };
 
@@ -37,9 +32,9 @@ type SummaryCardProps = {
 const SummaryCard: FC<SummaryCardProps> = ({
   title,
   heading,
-  summary,
+  summaryPortableText,
+  summaryCardImage,
   background,
-  imageProps,
   imageContainerProps,
   children,
 }) => {
@@ -68,14 +63,14 @@ const SummaryCard: FC<SummaryCardProps> = ({
               {heading}
             </Heading>
             <Typography $font={["body-2", "body-1"]}>
-              {typeof summary === "string" ? (
-                <p>{summary}</p>
+              {typeof summaryPortableText === "string" ? (
+                <p>{summaryPortableText}</p>
               ) : (
-                <PortableText value={summary} />
+                <PortableText value={summaryPortableText} />
               )}
             </Typography>
           </Flex>
-          {imageProps && (
+          {summaryCardImage && (
             <Flex
               $display={["none", "flex"]}
               $position="relative"
@@ -87,13 +82,15 @@ const SummaryCard: FC<SummaryCardProps> = ({
               {...imageContainerProps}
             >
               <Cover>
-                <OakImage
+                <CMSImage
+                  width={400}
+                  height={400}
+                  noCrop
+                  $ml={"auto"}
                   aria-hidden={true}
                   $objectFit="contain"
                   $objectPosition={"right"}
-                  alt={imageProps.alt}
-                  src={imageProps.src}
-                  fill
+                  image={summaryCardImage}
                   priority
                 />
               </Cover>
@@ -102,7 +99,6 @@ const SummaryCard: FC<SummaryCardProps> = ({
         </Flex>
         {children}
       </Flex>
-
       <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );
