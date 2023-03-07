@@ -30,8 +30,6 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
       <BrushBorders hideOnMobileH hideOnMobileV color={"pastelTurquoise"} />
       <Checkbox
         labelText={"I accept terms and conditions (required)"}
-        id={"terms"}
-        name={"termsAndConditions"}
         checked={checked}
         onChange={onChange}
         $mb={0}
