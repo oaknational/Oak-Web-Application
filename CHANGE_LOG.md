@@ -1,3 +1,14 @@
+# [1.152.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.151.0...v1.152.0) (2023-03-07)
+
+
+### Features
+
+* 1342 add arror on submit on TCs if not selected ([1fc6d92](https://github.com/oaknational/Oak-Web-Application/commit/1fc6d924adbfa1da5e8b14c6c186e5f3a0815654))
+* 1342 add error messaging to checkbox ([a915a19](https://github.com/oaknational/Oak-Web-Application/commit/a915a1982b4a5f9fe74717c72148cb3380de91be))
+* 1342 add test ([0d84e51](https://github.com/oaknational/Oak-Web-Application/commit/0d84e51d42da2d0b83621b07466f35ef0825d2ea))
+* 1342 move Terms and Conditions checkbox into its own component ([19c9194](https://github.com/oaknational/Oak-Web-Application/commit/19c9194f518775e2b73147c7619efcaded3eae5b))
+* 1342 remove manual form validation ([75854ee](https://github.com/oaknational/Oak-Web-Application/commit/75854eefc05ddf89fb65ba918b0df6b9a4e7b5da))
+
 # [1.151.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.2...v1.151.0) (2023-03-07)
 
 
