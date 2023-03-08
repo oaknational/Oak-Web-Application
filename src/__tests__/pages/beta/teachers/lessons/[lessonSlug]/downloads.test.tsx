@@ -1,5 +1,6 @@
 import { act, renderHook, screen } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
+import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
@@ -64,21 +65,9 @@ jest.mock(
   }
 );
 
-// jest.mock("react-hook-form", () => ({
-//   ...jest.requireActual("react-hook-form"),
-//   Controller: () => <></>,
-//   useForm: () => ({
-//     register: () => jest.fn(),
-//     control: () => ({}),
-//     handleSubmit: () => jest.fn(),
-//     watch: () => ({
-//       downloads: ["exit-quiz-questions"],
-//     }),
-//     formState: {
-//       errors: {},
-//     },
-//   }),
-// }));
+beforeEach(() => {
+  renderHook(() => useForm());
+});
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {
