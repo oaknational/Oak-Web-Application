@@ -18,12 +18,12 @@ import { OakColorName } from "../../styles/theme/types";
 // Reuse the ListBox and Popover from your component library. See below for details.
 
 const SearchComboBox = <T extends School>(
-  props: ComboBoxStateOptions<T> & { error: boolean; required?: boolean }
+  props: ComboBoxStateOptions<T> & { hasError?: boolean; required?: boolean }
 ) => {
   // Setup filter function and state.
   const { contains } = useFilter({ sensitivity: "base" });
   const state = useComboBoxState({ ...props, defaultFilter: contains });
-  const { error, required } = props;
+  const { hasError = false, required } = props;
   // Setup refs and get props for child elements.
   const inputRef = useRef(null);
   const listBoxRef = useRef(null);
@@ -54,7 +54,7 @@ const SearchComboBox = <T extends School>(
 
   if (state.isFocused) {
     labelBackground = "teachersHighlight";
-  } else if (error) {
+  } else if (hasError) {
     labelBackground = "failure";
   } else {
     labelBackground = "pastelTurquoise";
@@ -71,7 +71,7 @@ const SearchComboBox = <T extends School>(
           <RotatedInputLabel
             {...labelProps}
             aria-hidden="true"
-            color={state.isFocused || error ? "white" : "black"}
+            color={state.isFocused || hasError ? "white" : "black"}
             htmlFor={id}
             id={labelId}
             $font={"body-3"}

@@ -25,6 +25,6 @@ export const RadioGroup = Template.bind({});
 export const RadioGroupError = Template.bind({});
 
 RadioGroupError.args = {
-  validationState: "invalid",
+  hasError: true,
   errorMessage: "Please select/search a school or an option from above",
 };

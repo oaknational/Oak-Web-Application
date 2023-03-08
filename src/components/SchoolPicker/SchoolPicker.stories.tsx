@@ -73,12 +73,12 @@ const Template: ComponentStory<typeof Component> = (args) => {
 export const SchoolPicker = Template.bind({});
 
 SchoolPicker.args = {
-  error: false,
+  hasError: false,
 };
 
 export const SchoolPickerError = Template.bind({});
 
 SchoolPickerError.args = {
-  error: true,
+  hasError: true,
   required: true,
 };

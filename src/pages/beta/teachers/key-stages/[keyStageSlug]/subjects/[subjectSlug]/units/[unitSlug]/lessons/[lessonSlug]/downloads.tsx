@@ -243,7 +243,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
-            error={false}
+            hasError={false}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}

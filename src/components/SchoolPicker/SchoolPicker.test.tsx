@@ -54,7 +54,7 @@ jest.mock("./useSchoolPicker", () => {
     return {
       items: items,
       loadingState: "idle",
-      error: null,
+      hasError: null,
       FilterText: "Dorothy Stringer School",
       setFilterText,
     };
@@ -68,7 +68,7 @@ describe("search autocomplete", () => {
   it("renders a SearchAutocomplete", () => {
     renderWithTheme(
       <SchoolPicker
-        error={false}
+        hasError={false}
         schools={[]}
         setInputValue={setInputValue}
         inputValue={"Dor"}
@@ -88,7 +88,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
-          error={false}
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -117,7 +117,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
-          error={false}
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -133,13 +133,13 @@ describe("search autocomplete", () => {
     expect(getByText("School picker")).toBeInTheDocument();
   });
 
-  it("renders a label with red background if validation error", async () => {
+  it("renders a label with red background if validation hasError", async () => {
     const Wrapper = () => {
       const [inputValue, setInputValue] = useState("");
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
-          error={true}
+          hasError={true}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -163,7 +163,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
-          error={true}
+          hasError={true}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -186,7 +186,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
-          error={false}
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -215,7 +215,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
-          error={false}
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
