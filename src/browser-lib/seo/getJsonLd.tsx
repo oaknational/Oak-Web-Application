@@ -79,7 +79,7 @@ const blogToArticle = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
     datePublished: blog.date,
     dateModified: blog.date,
     authorName: blog.author.name,
-    description: blog.seo?.description || blog.summary,
+    description: blog.seo?.description || blog.summaryPortableText,
   };
 };
 

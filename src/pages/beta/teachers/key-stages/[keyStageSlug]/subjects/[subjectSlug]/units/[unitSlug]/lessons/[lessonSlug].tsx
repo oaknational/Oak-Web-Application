@@ -341,6 +341,9 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
+
+  console.log(results.props.curriculumData.title, "getStaticProps");
+
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;
 };

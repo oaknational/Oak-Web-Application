@@ -15,12 +15,15 @@ const aboutPageBaseSchema = z
   .object({
     title: z.string(),
     summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     contactSection: z.object({
       infoPortableText: portableTextSchema,
     }),
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
+
+export type AboutPageBase = z.infer<typeof aboutPageBaseSchema>;
 
 export const aboutPageSchema = aboutPageBaseSchema;
 

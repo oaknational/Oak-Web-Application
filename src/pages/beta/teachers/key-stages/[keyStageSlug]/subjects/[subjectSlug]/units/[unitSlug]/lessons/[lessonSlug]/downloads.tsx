@@ -18,9 +18,7 @@ import {
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
-import Checkbox from "../../../../../../../../../../../components/Checkbox";
 import DownloadCard from "../../../../../../../../../../../components/DownloadComponents/DownloadCard";
-import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
   GridArea,
@@ -38,6 +36,7 @@ import SchoolPicker from "../../../../../../../../../../../components/SchoolPick
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
+import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
 
@@ -114,6 +113,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { errors } = formState;
 
   const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -299,36 +299,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </OakLink>
             .
           </P>
-          <Box
-            $position={"relative"}
-            $background={"pastelTurquoise"}
-            $pv={8}
-            $ph={8}
-            $mb={24}
-          >
-            <BrushBorders
-              hideOnMobileH
-              hideOnMobileV
-              color={"pastelTurquoise"}
-            />
-            <Checkbox
-              labelText={"I accept terms and conditions (required)"}
-              id={"terms"}
-              name={"termsAndConditions"}
-              checked={acceptedTCs}
-              onChange={() => setAcceptedTCs(!acceptedTCs)}
-              $mb={0}
-              required
-              error={errors.terms?.message}
-            />
-          </Box>
-          <P $font="body-3">
-            Read our{" "}
-            <OakLink page={"terms-and-conditions"} $isInline>
-              terms &amp; conditions
-            </OakLink>
-            .
-          </P>
+          <TermsAndConditionsCheckbox
+            checked={acceptedTCs}
+            onChange={() => setAcceptedTCs(!acceptedTCs)}
+            errorMessage={errors.terms?.message}
+          />
         </Box>
 
         <Grid $mt={32}>

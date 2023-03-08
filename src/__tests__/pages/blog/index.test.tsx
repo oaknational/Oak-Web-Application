@@ -14,7 +14,7 @@ const testPageData = {
   id: "123",
   title: "page title",
   heading: "page heading",
-  summary: [],
+  summaryPortableText: [],
 };
 
 const testBlogPreview: BlogPostPreview = {
@@ -23,7 +23,7 @@ const testBlogPreview: BlogPostPreview = {
   slug: "a-blog",
   date: new Date("2021-12-01"),
   category: { title: "Some category", slug: "some-category" },
-  summary: "A blog summary",
+  summaryPortableText: "A blog summary",
   mainImage: mockImageAsset(),
   author: {
     id: "1",
@@ -42,7 +42,7 @@ const testBlogPreview2: BlogPostPreview = {
   slug: "another-blog",
   date: new Date("2021-12-31"),
   category: { title: "Some category", slug: "some-category" },
-  summary: "Another blog summary",
+  summaryPortableText: "Another blog summary",
   mainImage: mockImageAsset(),
   author: {
     id: "1",

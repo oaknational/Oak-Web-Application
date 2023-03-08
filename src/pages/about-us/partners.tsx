@@ -17,7 +17,8 @@ import AspectRatio from "../../components/AspectRatio";
 import CMSImage from "../../components/CMSImage";
 import { CMSImageProps } from "../../components/CMSImage/CMSImage";
 import { SpacingProps } from "../../styles/utils/spacing";
-import OakImage from "../../components/OakImage";
+import Illustration from "../../components/Illustration";
+import { getSizes } from "../../components/CMSImage/getSizes";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -31,10 +32,12 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
       <AspectRatio ratio={["3:2", "16:9"]}>
         <CMSImage
           {...props}
+          width={440}
+          height={220}
+          noCrop
           alt={props.name}
           $objectFit="contain"
           $objectPosition={"center center"}
-          fill
         />
       </AspectRatio>
     </Flex>
@@ -48,8 +51,8 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         <AboutUsSummaryCard {...pageData} />
         <AboutIntroCard
           image={{
-            imageSrc: "/images/illustrations/work-with-us-500.png",
-            alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
+            illustration: "supporting",
+            sizes: "(min-width: 750px) 720px, 100vw",
             priority: true,
           }}
           bodyPortableText={pageData.introPortableText}
@@ -66,13 +69,12 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $mb={48}
           $position={"relative"}
         >
-          <OakImage
-            alt={"curriculum design illustration"}
+          <Illustration
+            sizes={getSizes([95, 178])}
+            slug="teacher-carrying-more-stuff"
             $objectPosition={"center center"}
-            src={"/images/illustrations/teacher-carrying-more-stuff.png"}
             fill
             $objectFit="contain"
-            aria-hidden={true}
           />
         </Flex>
         <ButtonAsLink

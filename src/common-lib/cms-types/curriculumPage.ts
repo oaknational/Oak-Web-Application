@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { textBlockSchema } from "./blocks";
 import { blogPostPreviewSchema } from "./blog";
 import { portableTextSchema } from "./portableText";
@@ -10,6 +10,7 @@ export const curriculumPageSchema = z
     title: z.string(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     info: textBlockSchema,
     gettingStarted: textBlockSchema,
     elements: z.object({
