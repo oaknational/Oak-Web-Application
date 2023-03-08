@@ -38,7 +38,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
     downloadLabel = `Curriculum download (.zip)`;
   }
 
-  async function downloadZip() {
+  const downloadZip = async () => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subject}&tiers=core,higher,foundation`
@@ -53,7 +53,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
     } catch (error) {
       setDownloadResourceError(true);
     }
-  }
+  };
 
   return (
     <Flex $mb={[20, 0]}>
