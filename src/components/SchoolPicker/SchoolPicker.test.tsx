@@ -54,7 +54,7 @@ jest.mock("./useSchoolPicker", () => {
     return {
       items: items,
       loadingState: "idle",
-      hasError: null,
+      error: null,
       FilterText: "Dorothy Stringer School",
       setFilterText,
     };
