@@ -3,7 +3,7 @@ import { FC } from "react";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
-import ListItemHeading from "../../ListItemHeading";
+import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
@@ -23,8 +23,15 @@ export type UnitListItemProps = Omit<
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  const { title, themeTitle, lessonCount, index, expired, expiredLessonCount } =
-    props;
+  const {
+    title,
+    themeTitle,
+    lessonCount,
+    index,
+    expired,
+    expiredLessonCount,
+    subjectSlug,
+  } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -32,6 +39,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
+      subjectSlug={subjectSlug}
       isHovered={isHovered}
       containerProps={containerProps}
       background={"teachersLilac"}
@@ -44,7 +52,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $width={"100%"}
         $pb={24}
       >
-        <ListItemHeading
+        <ListItemHeader
           {...props}
           primaryTargetProps={primaryTargetProps}
           page={"Unit"}

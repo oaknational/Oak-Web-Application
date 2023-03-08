@@ -55,7 +55,7 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
 //         .map((webinar) => {
 //           return {
 //             ...webinar,
-//             summary: webinar.summaryPortableText.slice(0, 3),
+//             summaryPortableText: webinar.summaryPortableText.slice(0, 3),
 //           };
 //         }),
 //     };

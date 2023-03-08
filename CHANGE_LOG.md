@@ -1,3 +1,64 @@
+# [1.153.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.152.0...v1.153.0) (2023-03-07)
+
+
+### Features
+
+* 1381 handle plurals correctly ([a55b303](https://github.com/oaknational/Oak-Web-Application/commit/a55b3037b9ca8fb476307a677558a9b55595ad81))
+
+# [1.152.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.151.0...v1.152.0) (2023-03-07)
+
+
+### Features
+
+* 1342 add arror on submit on TCs if not selected ([1fc6d92](https://github.com/oaknational/Oak-Web-Application/commit/1fc6d924adbfa1da5e8b14c6c186e5f3a0815654))
+* 1342 add error messaging to checkbox ([a915a19](https://github.com/oaknational/Oak-Web-Application/commit/a915a1982b4a5f9fe74717c72148cb3380de91be))
+* 1342 add test ([0d84e51](https://github.com/oaknational/Oak-Web-Application/commit/0d84e51d42da2d0b83621b07466f35ef0825d2ea))
+* 1342 move Terms and Conditions checkbox into its own component ([19c9194](https://github.com/oaknational/Oak-Web-Application/commit/19c9194f518775e2b73147c7619efcaded3eae5b))
+* 1342 remove manual form validation ([75854ee](https://github.com/oaknational/Oak-Web-Application/commit/75854eefc05ddf89fb65ba918b0df6b9a4e7b5da))
+
+# [1.151.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.2...v1.151.0) (2023-03-07)
+
+
+### Bug Fixes
+
+* adjust image sizes ([6e58592](https://github.com/oaknational/Oak-Web-Application/commit/6e58592edb2fc5256c5941eb057dd7622d11a298))
+* ensure image url is generated from image asset ([237fd89](https://github.com/oaknational/Oak-Web-Application/commit/237fd893b99d8ded74ebf4ecfe6741f9631eede0))
+* make CMSImage more robust and add tests ([7e76c0b](https://github.com/oaknational/Oak-Web-Application/commit/7e76c0bb24d1e7f20e1541a106006e64ef52d3ea))
+* sizes for subject icons ([ca0f6ea](https://github.com/oaknational/Oak-Web-Application/commit/ca0f6ea16da130d08bb0e81e0eaceb4cf1f142f4))
+
+
+### Features
+
+* add getSizes helper function ([ad1ed0b](https://github.com/oaknational/Oak-Web-Application/commit/ad1ed0bc7bdb053ec28caa157efb4a1624e6a03f))
+* add sanity illustration assets and remove image files ([bb87814](https://github.com/oaknational/Oak-Web-Application/commit/bb87814a43725102c931747f13e1f844cea92ebe))
+* ensure illustrations come from CMS ([09e1e14](https://github.com/oaknational/Oak-Web-Application/commit/09e1e14119682c76bacce31ced237a57744a4326))
+
+## [1.150.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.1...v1.150.2) (2023-03-06)
+
+## [1.150.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.0...v1.150.1) (2023-03-03)
+
+# [1.150.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.1...v1.150.0) (2023-03-03)
+
+
+### Bug Fixes
+
+* **quiz questions:** fix quiz bug ([3fbb908](https://github.com/oaknational/Oak-Web-Application/commit/3fbb90865237ad49b3e935a3bb7b1824f46f218e))
+* **subject-icons:** maintain same icon width ([9c7b59b](https://github.com/oaknational/Oak-Web-Application/commit/9c7b59b7269d6fb0158869a01c5a4cb6ef3dc740))
+* **subject-icons:** mobile make icons same width ([cb099e3](https://github.com/oaknational/Oak-Web-Application/commit/cb099e3c5735e8e18c89a78bf1a76de1ce847d9e))
+* **subject-icons:** pull commit ([3210921](https://github.com/oaknational/Oak-Web-Application/commit/3210921144e54f0adb3aaf054289ebda4a8f4892))
+* **subject-icons:** renamingcode for clarity ([721434d](https://github.com/oaknational/Oak-Web-Application/commit/721434dbb2afc041e274b561ec9be1c0fff2ee29))
+* **subject-icons:** renamingcode for clarity ([5794108](https://github.com/oaknational/Oak-Web-Application/commit/579410855e4926e3adca8cb3cad5413a39d7c0ec))
+* **title-cards:** remove key stage linkfrom title card ([2a3042c](https://github.com/oaknational/Oak-Web-Application/commit/2a3042c9293e9899e72f6002b86d28ccb658d7b8))
+
+
+### Features
+
+* **breadcrumbs:** merge ([7728357](https://github.com/oaknational/Oak-Web-Application/commit/77283576f1fa2934c3778e9dd2c91d952c944aa2))
+* **breadcrumbs:** merge ([fdb28f8](https://github.com/oaknational/Oak-Web-Application/commit/fdb28f8e76b04725e6688c8dbd71574ca8ca3671))
+* **subject-icons:** add subject icons throughout lesson experience ([ccaf9be](https://github.com/oaknational/Oak-Web-Application/commit/ccaf9be68c1903d85fc70f52fdfef61b69590981))
+* **subject-icons:** test fixes ([381a76e](https://github.com/oaknational/Oak-Web-Application/commit/381a76e4fd1d3dc3f69ab23a2dac8bab907f84c0))
+* **subject-icons:** title card story fix ([51729fa](https://github.com/oaknational/Oak-Web-Application/commit/51729fa4976e8a29e5299a985759c542eb61fa86))
+
 ## [1.149.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.149.0...v1.149.1) (2023-03-02)
 
 # [1.149.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.148.0...v1.149.0) (2023-03-02)

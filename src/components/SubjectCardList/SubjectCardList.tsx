@@ -18,7 +18,7 @@ const SubjectCardList: FC<SubjectCardListProps> = ({ subjects }) => {
             key={`subject-list-item-${subject.slug}`}
             $colSpan={[6, 3, 2]}
           >
-            <SubjectCardListItem {...subject} />{" "}
+            <SubjectCardListItem {...subject} />
           </GridArea>
         );
       })}

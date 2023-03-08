@@ -15,7 +15,7 @@ import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
 import {
   Heading,
@@ -157,7 +157,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={title}
-            iconName={"rocket"}
           />
         </Flex>
         <Flex $flexDirection="column">
@@ -342,6 +341,9 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
+
+  console.log(results.props.curriculumData.title, "getStaticProps");
+
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;
 };

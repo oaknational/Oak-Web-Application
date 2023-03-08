@@ -31,7 +31,7 @@ query blogPostBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
     # See resolveSanityReferences and portableTextReferences.gql
     # to see how the content is transformed to add
     # referenced entities
-    summary
+    summaryPortableText: summary
     contentPortableText: contentRaw
     seo {
       ...Seo

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { documentSchema, quoteSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, quoteSchema, seoSchema } from "./base";
 import { textBlockSchema } from "./blocks";
 import { portableTextSchema } from "./portableText";
 
@@ -9,6 +9,7 @@ export const supportPageSchema = z
     title: z.string(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     cover: z.object({
       title: z.string(),
       bodyPortableText: portableTextSchema,

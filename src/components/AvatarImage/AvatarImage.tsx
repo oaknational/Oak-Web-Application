@@ -17,8 +17,6 @@ type AvatarImageProps = FlexProps & {
 const AvatarImage: FC<AvatarImageProps> = (props) => {
   const { size = DEFAULT_AVATAR_SIZE, image, ...flexProps } = props;
   const largestSize = (Array.isArray(size) ? max(size) : size) || 0;
-  // for 'retina' screens
-  const fetchImageSize = largestSize * 2;
 
   return (
     <Circle
@@ -28,14 +26,12 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
       $position={"relative"}
       {...flexProps}
     >
-      {image && fetchImageSize ? (
+      {image && largestSize ? (
         <CMSImage
           image={image}
           $objectFit={"cover"}
-          fill
-          imageBuilder={(builder) =>
-            builder.width(fetchImageSize).height(fetchImageSize)
-          }
+          width={largestSize}
+          height={largestSize}
         />
       ) : null}
     </Circle>

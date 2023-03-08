@@ -1,37 +1,33 @@
-import { StaticImageData } from "next/image";
 import { CSSProperties, FC } from "react";
 
+import { IllustrationSlug } from "../../../image-data";
 import AspectRatio, { AspectRatios } from "../../AspectRatio";
-import OakImage, { OakImageProps } from "../../OakImage";
+import { CMSImageProps } from "../../CMSImage/CMSImage";
+import Illustration from "../../Illustration";
 
 const DEFAULT_ASPECT_RATIO: AspectRatios = ["3:2", "16:9"];
 
 export type CardImageProps = {
-  imageSrc: string | StaticImageData;
-  alt: string;
+  illustration: IllustrationSlug;
   position?: CSSProperties["objectPosition"];
   aspectRatio?: AspectRatios;
   priority?: boolean;
   ariaHidden?: boolean;
-} & Partial<OakImageProps>;
+} & Partial<CMSImageProps>;
 
 const CardImage: FC<CardImageProps> = ({
-  imageSrc,
-  alt,
   position = "center center",
   aspectRatio = DEFAULT_ASPECT_RATIO,
   priority,
-  ariaHidden = false,
+  illustration,
   ...imageProps
 }) => {
   return (
     <AspectRatio ratio={aspectRatio}>
-      <OakImage
-        aria-hidden={ariaHidden}
+      <Illustration
+        slug={illustration}
         $objectFit="contain"
         $objectPosition={position}
-        src={imageSrc}
-        alt={alt}
         priority={priority}
         fill
         {...imageProps}
