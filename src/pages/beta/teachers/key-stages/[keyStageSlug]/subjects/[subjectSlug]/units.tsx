@@ -172,7 +172,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               </Box>
             </GridArea>
 
-            <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 64]}>
+            <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 56]}>
               <Flex $flexDirection={["column-reverse", "column"]}>
                 <Flex
                   $flexDirection={"row"}

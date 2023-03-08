@@ -11,7 +11,7 @@ import TitleCard from "../../../../../../../../../components/Card/TitleCard";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
-import CurriruculmDownloadButton from "../../../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
+import CurriculumDownloadButton from "../../../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
@@ -56,7 +56,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           $alignSelf={"flex-start"}
         />
 
-        <CurriruculmDownloadButton
+        <CurriculumDownloadButton
           keyStage={keyStageSlug}
           subject={subjectSlug}
           lessonPage={true}
