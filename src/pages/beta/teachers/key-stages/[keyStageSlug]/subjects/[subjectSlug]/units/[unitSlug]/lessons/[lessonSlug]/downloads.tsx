@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -96,14 +96,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState } = useForm<DownloadFormProps>({
+  const { register, formState, control } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
   const { errors } = formState;
-
-  const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
@@ -296,10 +294,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </OakLink>
             .
           </P>
-          <TermsAndConditionsCheckbox
-            checked={acceptedTCs}
-            onChange={() => setAcceptedTCs(!acceptedTCs)}
-            errorMessage={errors.terms?.message}
+          <Controller
+            control={control}
+            name="terms"
+            render={({ field: { value, onChange, name, onBlur } }) => (
+              <TermsAndConditionsCheckbox
+                name={name}
+                checked={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                id={"terms"}
+              />
+            )}
           />
         </Box>
 
