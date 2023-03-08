@@ -1,6 +1,22 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { Controller, useForm } from "react-hook-form";
+import {
+  ArrayPath,
+  Controller,
+  DeepPartial,
+  FieldArray,
+  FieldError,
+  FieldErrorsImpl,
+  FieldValues,
+  FormState,
+  Path,
+  PathValue,
+  useController,
+  useForm,
+  UseFormRegisterReturn,
+  Validate,
+  ValidationRule,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -39,6 +55,7 @@ import Radio from "../../../../../../../../../../../components/RadioButtons/Radi
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
+import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -55,6 +72,8 @@ const schema = z.object({
   terms: z.literal(true, {
     errorMap: () => ({ message: "You must accept terms and conditions" }),
   }),
+  downloads: z.array(z.string()),
+  checkedItems: z.array(z.boolean()),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -62,6 +81,8 @@ export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
   terms: boolean;
+  downloads: DownloadResourceType[];
+  checkedItems: boolean[];
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -97,12 +118,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState, control } = useForm<DownloadFormProps>({
+  const { register, formState, control, watch } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
   const { errors } = formState;
+
+  console.log(watch());
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
@@ -292,15 +315,20 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <Controller
             control={control}
             name="terms"
-            render={({ field: { value, onChange, name, onBlur } }) => (
-              <TermsAndConditionsCheckbox
-                name={name}
-                checked={value}
-                onChange={onChange}
-                onBlur={onBlur}
-                id={"terms"}
-              />
-            )}
+            render={({ field: { value, onChange, name, onBlur } }) => {
+              const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                return onChange(e.target.checked);
+              };
+              return (
+                <TermsAndConditionsCheckbox
+                  name={name}
+                  checked={value}
+                  onChange={onChangeHandler}
+                  onBlur={onBlur}
+                  id={"terms"}
+                />
+              );
+            }}
           />
         </Box>
 
@@ -329,30 +357,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </Flex>
             <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
           </GridArea>
-          {downloads?.map((download) => {
-            if (download.exists && !download.forbidden) {
-              return (
-                <GridArea
-                  $colSpan={[6, 3, 2]}
-                  key={download.type}
-                  data-testid={"lessonResourcesToDownload"}
-                >
-                  <DownloadCard
-                    id={download.type}
-                    name={"lessonResourcesToDownload"}
-                    label={download.label}
-                    extension={download.ext}
-                    resourceType={download.type}
-                    checked={resourcesToDownload[download.type] || false}
-                    onChange={() =>
-                      onResourceToDownloadToggle(`${download.type}`)
-                    }
-                    data-testid={`download-card-${download.type}`}
-                  />
-                </GridArea>
-              );
-            }
-          })}
+          <DownloadCardGroup control={control} downloads={downloads} />
+
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>

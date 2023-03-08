@@ -32,7 +32,7 @@ export type CheckboxProps = {
   ariaLabel?: string;
   required?: boolean;
   error?: string;
-  onChange: (checked: boolean) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
   variant?: CheckboxVariant;
   inputRef?: RefCallBack;
@@ -166,7 +166,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
     const errorId = `${id}-error`;
 
     const select = (e: ChangeEvent<HTMLInputElement>) => {
-      if (!disabled) onChange(e.target.checked);
+      if (!disabled) onChange(e);
     };
 
     return (
