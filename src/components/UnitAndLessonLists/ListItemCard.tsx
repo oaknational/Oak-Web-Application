@@ -6,10 +6,11 @@ import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { OakColorName } from "../../styles/theme/types";
 
-import IconDesktop from "./IconDesktop";
+import ListItemIconDesktop from "./ListItemIconDesktop";
 
 export type ListItemCardProps = {
   title: string;
+  subjectSlug: string;
   isHovered: boolean;
   children: React.ReactNode;
   background: OakColorName;
@@ -24,8 +25,15 @@ export type ListItemCardProps = {
  * Links to a lesson-index page
  */
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const { title, children, isHovered, containerProps, background, expired } =
-    props;
+  const {
+    title,
+    children,
+    isHovered,
+    containerProps,
+    background,
+    expired,
+    subjectSlug,
+  } = props;
 
   const applyHoverStyles = isHovered && !expired;
 
@@ -51,8 +59,9 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         {children}
       </Flex>
       {!expired && (
-        <IconDesktop
+        <ListItemIconDesktop
           title={title}
+          subjectSlug={subjectSlug}
           background={background}
           isHovered={isHovered}
         />

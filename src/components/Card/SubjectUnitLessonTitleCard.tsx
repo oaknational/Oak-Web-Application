@@ -1,11 +1,10 @@
 import { FC } from "react";
 
 import Flex, { FlexProps } from "../Flex";
-import { Heading, Span } from "../Typography";
-import Icon, { IconName } from "../Icon";
+import { Heading } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import OakLink from "../OakLink";
 import Box from "../Box";
+import SubjectIcon from "../SubjectIcon";
 
 export const titleCardIconBackground = {
   subject: "teachersPastelYellow",
@@ -19,6 +18,7 @@ export type TitlePageType =
       page: "subject";
       keyStage: string;
       keyStageSlug: string;
+      slug: string;
     }
   | {
       page: "unit" | "lessons" | "lesson";
@@ -30,7 +30,6 @@ export type TitlePageType =
 
 type TitleCardProps = FlexProps & {
   title: string;
-  iconName: IconName;
 } & TitlePageType;
 
 /**
@@ -40,7 +39,8 @@ type TitleCardProps = FlexProps & {
  * Used on subject by keystage, tier, unit and lesson pages.
  */
 const TitleCard: FC<TitleCardProps> = (props) => {
-  const { title, keyStage, keyStageSlug, iconName, page, ...flexProps } = props;
+  const { title, keyStage, keyStageSlug, page, ...flexProps } = props;
+  const subjectSlug = page === "subject" ? props.slug : props.subjectSlug;
 
   return (
     <Flex $width={["100%", "auto"]} $position={"relative"} {...flexProps}>
@@ -55,9 +55,6 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           <Heading $mb={8} $font={["heading-5", "heading-4"]} tag={"h1"}>
             {title}
           </Heading>
-          <OakLink $isInline={true} slug={keyStageSlug} page={"subject-index"}>
-            <Span $font={"heading-7"}>{keyStage}</Span>
-          </OakLink>
         </Box>
         <Flex
           $justifyContent={"center"}
@@ -67,7 +64,14 @@ const TitleCard: FC<TitleCardProps> = (props) => {
           $height={"100%"}
           $background={titleCardIconBackground[page]}
         >
-          <Icon size={[44, 120]} name={iconName} />
+          <SubjectIcon
+            subjectSlug={subjectSlug}
+            height={96}
+            width={96}
+            $width={[72, 96]}
+            $minWidth={72}
+            $ma={"auto"}
+          />
         </Flex>
       </Flex>
       <BoxBorders gapPosition="bottomRight" />

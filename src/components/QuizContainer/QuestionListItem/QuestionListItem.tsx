@@ -26,7 +26,6 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
       $borderColor={"white"}
       $borderRadius={3}
     >
-      {" "}
       <OakImage
         objectFit="contain"
         $objectPosition={["center", "left"]}
@@ -81,10 +80,19 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             <Typography $font={["body-1"]}> {choice}</Typography>
           </Flex>
         )}
-        {type !== "match" && !Array.isArray(answer) ? (
+        {type === "checkbox" && !Array.isArray(answer) ? (
           <Typography $font={["body-1"]}> {choice}</Typography>
         ) : null}
-        {type !== "match" && Array.isArray(answer) ? (
+        {type === "checkbox" && Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {answer[answer.indexOf(choice)]}
+          </Typography>
+        ) : null}
+        {type !== "match" && type !== "checkbox" && !Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}> {choice}</Typography>
+        ) : null}
+        {type !== "match" && type !== "checkbox" && Array.isArray(answer) ? (
           <Typography $font={["body-1"]}> {answer[index]}</Typography>
         ) : null}
       </Flex>

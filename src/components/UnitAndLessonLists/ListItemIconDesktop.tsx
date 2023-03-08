@@ -2,16 +2,17 @@ import { FC } from "react";
 
 import { OakColorName } from "../../styles/theme/types";
 import Flex from "../Flex";
-import Icon from "../Icon";
+import SubjectIcon from "../SubjectIcon";
 
-export type IconDesktopProps = {
+export type ListItemIconDesktopProps = {
   title: string;
+  subjectSlug: string;
   background: OakColorName;
   isHovered: boolean;
 };
 
-const IconDesktop: FC<IconDesktopProps> = (props) => {
-  const { title, background, isHovered } = props;
+const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
+  const { background, isHovered, subjectSlug } = props;
 
   return (
     <Flex
@@ -26,11 +27,16 @@ const IconDesktop: FC<IconDesktopProps> = (props) => {
       $transform={isHovered ? "translateY(-4px)" : null}
       $transition={"all 0.4s ease-out"}
     >
-      <Icon size={[50, 92]} name={"rocket"}>
-        {title}
-      </Icon>
+      <SubjectIcon
+        subjectSlug={subjectSlug}
+        height={96}
+        width={96}
+        $maxHeight={96}
+        $maxWidth={96}
+        $ma={"auto"}
+      />
     </Flex>
   );
 };
 
-export default IconDesktop;
+export default ListItemIconDesktop;

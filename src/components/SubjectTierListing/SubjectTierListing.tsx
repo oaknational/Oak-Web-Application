@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 
 import TierList from "../TierList";
-import TitleCard from "../Card/TitleCard";
+import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
-import MaxWidth from "../MaxWidth/MaxWidth";
 import { TeachersKeyStageSubjectTiersData } from "../../node-lib/curriculum-api";
 
 type SubjectTierListingProps = {
@@ -15,13 +14,13 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
     props.curriculumData;
 
   return (
-    <MaxWidth $ph={16}>
+    <>
       <TitleCard
         page={"subject"}
         keyStage={keyStageTitle}
         keyStageSlug={keyStageSlug}
         title={subjectTitle}
-        iconName={"rocket"}
+        slug={subjectSlug}
         $mt={48}
         $mb={64}
         $alignSelf={"flex-start"}
@@ -35,7 +34,7 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
         keyStageSlug={keyStageSlug}
         subjectSlug={subjectSlug}
       />
-    </MaxWidth>
+    </>
   );
 };
 

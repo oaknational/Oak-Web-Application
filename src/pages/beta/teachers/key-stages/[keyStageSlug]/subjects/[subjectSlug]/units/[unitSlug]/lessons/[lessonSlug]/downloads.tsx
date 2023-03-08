@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -9,7 +9,7 @@ import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
 import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import {
   Heading,
   Hr,
@@ -18,9 +18,7 @@ import {
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
-import Checkbox from "../../../../../../../../../../../components/Checkbox";
 import DownloadCard from "../../../../../../../../../../../components/DownloadComponents/DownloadCard";
-import BrushBorders from "../../../../../../../../../../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
   GridArea,
@@ -38,6 +36,9 @@ import SchoolPicker from "../../../../../../../../../../../components/SchoolPick
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
 import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
 import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
+import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
+import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
+import { lessonBreadcrumbArray } from "../[lessonSlug]";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -68,12 +69,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 }) => {
   const {
     title,
+    slug,
     keyStageTitle,
     keyStageSlug,
     subjectSlug,
     subjectTitle,
-    slug,
     downloads,
+    unitSlug,
+    unitTitle,
   } = curriculumData;
 
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -94,14 +97,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState } = useForm<DownloadFormProps>({
+  const { register, formState, control } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
   const { errors } = formState;
 
-  const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -185,7 +187,44 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       })}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $mb={8} $display={"inline-flex"} $mt={50}>
+        <Box $mv={[24, 48]}>
+          {" "}
+          <Breadcrumbs
+            breadcrumbs={[
+              ...lessonBreadcrumbArray(
+                keyStageTitle,
+                keyStageSlug,
+                subjectSlug,
+                subjectTitle,
+                unitSlug,
+                unitTitle
+              ),
+              {
+                oakLinkProps: {
+                  page: "lesson-overview",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: title,
+              },
+              {
+                oakLinkProps: {
+                  page: "downloads",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: "Downloads",
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
+
+        <Flex $mb={8} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
             keyStage={keyStageTitle}
@@ -193,7 +232,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={`Downloads: ${title}`}
-            iconName={"rocket"}
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
@@ -251,36 +289,19 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </OakLink>
             .
           </P>
-          <Box
-            $position={"relative"}
-            $background={"pastelTurquoise"}
-            $pv={8}
-            $ph={8}
-            $mb={24}
-          >
-            <BrushBorders
-              hideOnMobileH
-              hideOnMobileV
-              color={"pastelTurquoise"}
-            />
-            <Checkbox
-              labelText={"I accept terms and conditions (required)"}
-              id={"terms"}
-              name={"termsAndConditions"}
-              checked={acceptedTCs}
-              onChange={() => setAcceptedTCs(!acceptedTCs)}
-              $mb={0}
-              required
-              error={errors.terms?.message}
-            />
-          </Box>
-          <P $font="body-3">
-            Read our{" "}
-            <OakLink page={"terms-and-conditions"} $isInline>
-              terms &amp; conditions
-            </OakLink>
-            .
-          </P>
+          <Controller
+            control={control}
+            name="terms"
+            render={({ field: { value, onChange, name, onBlur } }) => (
+              <TermsAndConditionsCheckbox
+                name={name}
+                checked={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                id={"terms"}
+              />
+            )}
+          />
         </Box>
 
         <Grid $mt={32}>

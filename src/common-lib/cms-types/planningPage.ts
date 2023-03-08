@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { cardSchema, textAndMediaSchema } from "./blocks";
 import { CTASchema } from "./cta";
 import { portableTextSchema } from "./portableText";
@@ -10,6 +10,7 @@ export const planningPageSchema = z
     title: z.string(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     lessonElements: z.object({
       introQuiz: cardSchema,
       video: cardSchema,

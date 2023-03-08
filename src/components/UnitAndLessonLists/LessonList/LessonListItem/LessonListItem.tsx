@@ -5,7 +5,7 @@ import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
-import ListItemHeading from "../../ListItemHeading";
+import ListItemHeader from "../../ListItemHeader";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
@@ -27,8 +27,8 @@ function getAvailableResourceList({
 
   if (presentationCount && !hasCopyrightMaterial) {
     resources.push({
-      titleSingular: "Slide decks",
-      titlePlural: "Slide deck",
+      titleSingular: "Slide deck",
+      titlePlural: "Slide decks",
       icon: "slide-deck",
       resourceCount: presentationCount,
     });
@@ -36,7 +36,7 @@ function getAvailableResourceList({
 
   if (worksheetCount) {
     resources.push({
-      titleSingular: "Worksheets",
+      titleSingular: "Worksheet",
       titlePlural: "Worksheets",
       icon: "worksheet",
       resourceCount: worksheetCount,
@@ -69,7 +69,7 @@ function getAvailableResourceList({
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, description, expired } = props;
+  const { title, description, expired, subjectSlug } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -79,6 +79,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   return (
     <ListItemCard
       title={title}
+      subjectSlug={subjectSlug}
       isHovered={isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}
@@ -91,7 +92,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $width={"100%"}
         $pb={24}
       >
-        <ListItemHeading
+        <ListItemHeader
           {...props}
           primaryTargetProps={primaryTargetProps}
           page="Lesson"
