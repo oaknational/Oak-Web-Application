@@ -1,3 +1,17 @@
+# [1.154.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.1...v1.154.0) (2023-03-08)
+
+
+### Bug Fixes
+
+* react aria required prop undefined ([d67b7bd](https://github.com/oaknational/Oak-Web-Application/commit/d67b7bd459eab157db8d5641deb6291a636b7364))
+
+
+### Features
+
+* add error label background to school picker ([1487c47](https://github.com/oaknational/Oak-Web-Application/commit/1487c4749d10955e36faa94024c9c2e96648f2f8))
+* add school picker and radio validation to downloads ([89d7ba1](https://github.com/oaknational/Oak-Web-Application/commit/89d7ba13204611b10ca6eb292115696ba685151f))
+* radio group validation ([f2151fe](https://github.com/oaknational/Oak-Web-Application/commit/f2151fe7865a7838ab1a5ce7f01049d928d11bcd))
+
 ## [1.153.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.0...v1.153.1) (2023-03-08)
 
 # [1.153.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.152.0...v1.153.0) (2023-03-07)
