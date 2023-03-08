@@ -12,6 +12,8 @@ type SchoolPickerProps = Omit<
   schools: School[];
   defaultSchools?: School[];
   label: string;
+  hasError: boolean;
+  required?: boolean;
 };
 
 export type School = {
@@ -34,11 +36,13 @@ export type School = {
 const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   return (
     <SearchComboBox
+      hasError={props.hasError}
       label={props.label}
       inputValue={props.inputValue}
       onInputChange={props.setInputValue}
       defaultItems={props.schools || []}
       onSelectionChange={(value) => props.setSelectedValue(value)}
+      required={props.required}
     >
       {(item) => (
         <Item
