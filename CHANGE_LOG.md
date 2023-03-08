@@ -1,3 +1,10 @@
+# [1.155.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.154.0...v1.155.0) (2023-03-08)
+
+
+### Features
+
+* 1225 curriculum download button added to unit and lesson pages ([13e0082](https://github.com/oaknational/Oak-Web-Application/commit/13e00827f1a4d3ed8e0f0b20b9751e961ea3d514))
+
 # [1.154.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.1...v1.154.0) (2023-03-08)
 
 
