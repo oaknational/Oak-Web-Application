@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
-import type { ResourcesToDownloadType } from "../downloads.types";
+import type {
+  ResourcesToDownloadType,
+  DownloadResourceType,
+} from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
 type UseDownloadExistenceCheckProps = {
@@ -15,7 +18,8 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
-    const resourceTypesAsString = Object.keys(resourcesToCheck).join(",");
+    // const resourceTypesAsString = Object.keys(resourcesToCheck).join(",");
+    const resourceTypesAsString = resourcesToCheck.join(",");
 
     (async () => {
       if (hasCheckedFiles) {
@@ -30,18 +34,22 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           );
 
         const resourcesExistenceAsArray = resourceExistence
-          ? Object.entries(resourceExistence as ResourcesToDownloadType)
+          ? Object.entries(
+              resourceExistence as Partial<
+                Record<DownloadResourceType, boolean>
+              >
+            )
           : [];
 
-        const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
-          .filter(([, value]) => value === true)
-          .map(([key]) => [key, false]);
-
-        const filteredResourcesExistence = Object.fromEntries(
-          filteredResourcesExistenceAsArray
+        const filteredResourcesExistenceAsArray = resourcesExistenceAsArray.map(
+          ([key, value]) => {
+            if (value === true) return key;
+          }
         );
 
-        onComplete(filteredResourcesExistence as ResourcesToDownloadType);
+        onComplete(
+          filteredResourcesExistenceAsArray as ResourcesToDownloadType
+        );
       } catch (error) {
         console.log(error);
         // @todo: add Bugsnag reporting

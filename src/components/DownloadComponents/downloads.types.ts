@@ -7,6 +7,4 @@ export type DownloadResourceType =
   | "worksheet-pdf"
   | "worksheet-pptx";
 
-export type ResourcesToDownloadType = Partial<
-  Record<DownloadResourceType, boolean>
->;
+export type ResourcesToDownloadType = Array<DownloadResourceType>;

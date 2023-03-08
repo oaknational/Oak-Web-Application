@@ -1,22 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import {
-  ArrayPath,
-  Controller,
-  DeepPartial,
-  FieldArray,
-  FieldError,
-  FieldErrorsImpl,
-  FieldValues,
-  FormState,
-  Path,
-  PathValue,
-  useController,
-  useForm,
-  UseFormRegisterReturn,
-  Validate,
-  ValidationRule,
-} from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -34,7 +18,6 @@ import {
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
-import DownloadCard from "../../../../../../../../../../../components/DownloadComponents/DownloadCard";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
   GridArea,
@@ -73,7 +56,6 @@ const schema = z.object({
     errorMap: () => ({ message: "You must accept terms and conditions" }),
   }),
   downloads: z.array(z.string()),
-  checkedItems: z.array(z.boolean()),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -82,7 +64,6 @@ export type DownloadFormProps = {
   email: string;
   terms: boolean;
   downloads: DownloadResourceType[];
-  checkedItems: boolean[];
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -118,25 +99,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState, control, watch } = useForm<DownloadFormProps>({
-    resolver: zodResolver(schema),
-    mode: "onBlur",
-  });
+  const { register, formState, control, watch, setValue } =
+    useForm<DownloadFormProps>({
+      resolver: zodResolver(schema),
+      mode: "onBlur",
+    });
 
   const { errors } = formState;
+  const selectedResources = watch().downloads;
 
-  console.log(watch());
+  console.log(selectedResources);
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
   const getInitialResourcesToDownloadState = () => {
-    const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
+    const initialResourcesToDownloadState: ResourcesToDownloadType = [];
 
     downloads?.forEach((download) => {
       if (download.exists && !download.forbidden) {
-        initialResourcesToDownloadState[download.type as DownloadResourceType] =
-          false;
+        initialResourcesToDownloadState.push(download.type);
       }
     });
 
@@ -146,39 +128,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadType>(getInitialResourcesToDownloadState());
 
-  const onResourceToDownloadToggle = (
-    toggledResource: DownloadResourceType
-  ) => {
-    setResourcesToDownload({
-      ...resourcesToDownload,
-      [toggledResource]: resourcesToDownload[toggledResource] ? false : true,
-    });
-  };
+  const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
+  const onDeselectAllClick = () => setValue("downloads", []);
 
-  const onSelectAllClick = () => {
-    const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
-    const updatedResourcesToDownload = {} as ResourcesToDownloadType;
-    allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
-      updatedResourcesToDownload[resourceToDownload as DownloadResourceType] =
-        true;
-    });
-    setResourcesToDownload(updatedResourcesToDownload);
-  };
-
-  const onDeselectAllClick = () => {
-    const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
-    const updatedResourcesToDownload = {} as ResourcesToDownloadType;
-    allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
-      updatedResourcesToDownload[resourceToDownload as DownloadResourceType] =
-        false;
-    });
-    setResourcesToDownload(updatedResourcesToDownload);
-  };
+  const allResourcesToDownloadCount = resourcesToDownload.length;
+  const selectedResourcesToDownloadCount = selectedResources?.length;
 
   const debouncedDownloadResources = debounce(
     () => {
       setIsAttemptingDownload(true);
-      downloadSelectedLessonResources(slug, resourcesToDownload);
+      downloadSelectedLessonResources(slug, selectedResources);
     },
     4000,
     { leading: true }
@@ -188,13 +147,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     await debouncedDownloadResources();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
-
-  const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
-  const selectedResourcesToDownloadCount = Object.keys(
-    resourcesToDownload
-  ).filter(
-    (resource) => resourcesToDownload[resource as DownloadResourceType] === true
-  ).length;
 
   useDownloadExistenceCheck({
     lessonSlug: slug,
