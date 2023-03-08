@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -46,6 +46,7 @@ export type LessonDownloadsPageProps = {
 };
 
 const schema = z.object({
+  school: z.string().min(1, { message: "Name can't be empty" }),
   option: z.string().min(1, "Please select an option"),
   email: z
     .string()
@@ -65,6 +66,7 @@ export type DownloadFormProps = {
   email: string;
   terms: boolean;
   option: string;
+  school: string;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -86,14 +88,25 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
 
+  const onRadioChange = (e: string) => {
+    if (selectedValue) {
+      setInputValue("");
+      setValue("school", "");
+    }
+    setSelectedRadio(e);
+    setValue("option", e.toString());
+  };
+
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (selectedRadio && selectedValue) {
       setSelectedRadio("");
+      setValue("option", "");
     }
     setInputValue(value);
+    setValue("school", value.toString());
   };
 
-  const { register, formState, control } = useForm<DownloadFormProps>({
+  const { register, formState, setValue } = useForm<DownloadFormProps>({
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
@@ -250,21 +263,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               Or select one of the following:
             </P>
             <Flex>
-              <Controller
-                name="option"
-                control={control}
-                render={({ field }) => (
-                  <RadioGroup
-                    aria-label={"home school or my school isn't listed"}
-                    {...field}
-                  >
-                    <Radio data-testid={"radio-download"} value={"homeschool"}>
-                      Homeschool
-                    </Radio>
-                    <Radio value={"notListed"}>My school isn’t listed</Radio>
-                  </RadioGroup>
-                )}
-              />
+              <RadioGroup
+                aria-label={"home school or my school isn't listed"}
+                value={selectedRadio}
+                onChange={onRadioChange}
+              >
+                <Radio data-testid={"radio-download"} value={"homeschool"}>
+                  Homeschool
+                </Radio>
+                <Radio value={"notListed"}>My school isn’t listed</Radio>
+              </RadioGroup>
             </Flex>
           </Box>
           <Heading
