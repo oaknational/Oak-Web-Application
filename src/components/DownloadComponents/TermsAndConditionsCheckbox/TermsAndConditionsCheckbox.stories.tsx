@@ -6,23 +6,6 @@ import Component from ".";
 export default {
   title: "Form Fields/Checkbox/Terms and Conditions Checkbox",
   component: Component,
-  argTypes: {
-    labelText: {
-      defaultValue: "Click me",
-    },
-    id: {
-      defaultValue: "1",
-    },
-    name: {
-      defaultValue: "checkbox-group",
-    },
-    checked: {
-      defaultValue: false,
-    },
-    onChange: {
-      action: "changed",
-    },
-  },
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
