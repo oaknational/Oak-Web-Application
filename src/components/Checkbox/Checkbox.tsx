@@ -32,9 +32,7 @@ export type CheckboxProps = {
   ariaLabel?: string;
   required?: boolean;
   error?: string;
-  onChange:
-    | ((checked: boolean) => void)
-    | ((e: ChangeEvent<HTMLInputElement>) => void);
+  onChange: (checked: ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
   variant?: CheckboxVariant;
   inputRef?: RefCallBack;
@@ -182,7 +180,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
             id={id}
             value={id}
             name={name}
-            onChange={(e) => onChange(e.target.checked)}
+            onChange={(e) => onChange(e)}
             checked={checked}
             disabled={disabled}
             aria-label={ariaLabel ? ariaLabel : labelText}
