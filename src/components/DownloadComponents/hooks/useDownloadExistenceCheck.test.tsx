@@ -1,8 +1,13 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
+import type {
+  DownloadResourceType,
+  ResourcesToDownloadArrayType,
+} from "../downloads.types";
+
 import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
 
-const resources = {
+const resources: Partial<Record<DownloadResourceType, boolean>> = {
   "exit-quiz-answers": true,
   "worksheet-pdf": true,
 };
@@ -27,7 +32,10 @@ describe("useDownloadExistenceCheck", () => {
 
   test("it calls onComplete with correct argument when all resources are available", async () => {
     const lessonSlug = "sampleLesson";
-    const resourcesToCheck = ["exit-quiz-answers", "worksheet-pdf"];
+    const resourcesToCheck: ResourcesToDownloadArrayType = [
+      "exit-quiz-answers",
+      "worksheet-pdf",
+    ];
     const onComplete = jest.fn();
 
     renderHook(() =>
@@ -48,7 +56,10 @@ describe("useDownloadExistenceCheck", () => {
 
   test("it calls onComplete with correct argument when resource is not available", async () => {
     const lessonSlug = "sampleLesson";
-    const resourcesToCheck = ["exit-quiz-answers", "worksheet-pdf"];
+    const resourcesToCheck: ResourcesToDownloadArrayType = [
+      "exit-quiz-answers",
+      "worksheet-pdf",
+    ];
     const onComplete = jest.fn();
 
     getDownloadResourcesExistenceMock.mockImplementationOnce(() => ({

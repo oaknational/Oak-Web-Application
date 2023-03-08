@@ -7,4 +7,4 @@ export type DownloadResourceType =
   | "worksheet-pdf"
   | "worksheet-pptx";
 
-export type ResourcesToDownloadType = Array<DownloadResourceType>;
+export type ResourcesToDownloadArrayType = DownloadResourceType[];

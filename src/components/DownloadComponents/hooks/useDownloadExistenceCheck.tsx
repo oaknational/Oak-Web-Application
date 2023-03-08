@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
 import type {
-  ResourcesToDownloadType,
+  ResourcesToDownloadArrayType,
   DownloadResourceType,
 } from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
 type UseDownloadExistenceCheckProps = {
   lessonSlug: string;
-  resourcesToCheck: ResourcesToDownloadType;
-  onComplete: (existenceResources: ResourcesToDownloadType) => void;
+  resourcesToCheck: ResourcesToDownloadArrayType;
+  onComplete: (existenceResources: ResourcesToDownloadArrayType) => void;
 };
 
 const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
@@ -47,7 +47,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           .filter((resource) => resource !== undefined);
 
         onComplete(
-          filteredResourcesExistenceAsArray as ResourcesToDownloadType
+          filteredResourcesExistenceAsArray as ResourcesToDownloadArrayType
         );
       } catch (error) {
         console.log(error);

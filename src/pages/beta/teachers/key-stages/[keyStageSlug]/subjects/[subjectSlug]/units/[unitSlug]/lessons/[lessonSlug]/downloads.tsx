@@ -28,7 +28,7 @@ import curriculumApi, {
 import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import type {
-  ResourcesToDownloadType,
+  ResourcesToDownloadArrayType,
   DownloadResourceType,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
@@ -112,7 +112,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     useState<boolean>(false);
 
   const getInitialResourcesToDownloadState = () => {
-    const initialResourcesToDownloadState: ResourcesToDownloadType = [];
+    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
 
     downloads?.forEach((download) => {
       if (download.exists && !download.forbidden) {
@@ -124,7 +124,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   };
 
   const [resourcesToDownload, setResourcesToDownload] =
-    useState<ResourcesToDownloadType>(getInitialResourcesToDownloadState());
+    useState<ResourcesToDownloadArrayType>(
+      getInitialResourcesToDownloadState()
+    );
 
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);

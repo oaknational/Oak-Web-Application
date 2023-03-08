@@ -4,12 +4,13 @@ import { Control, Controller } from "react-hook-form";
 import { TeachersKeyStageSubjectUnitsLessonsDownloadsData } from "../../../node-lib/curriculum-api";
 import { GridArea } from "../../Grid";
 import { DownloadResourceType } from "../downloads.types";
+import type { DownloadFormProps } from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 
 import DownloadCard from "./DownloadCard";
 
 type DownloadCardGroupProps = {
   downloads?: TeachersKeyStageSubjectUnitsLessonsDownloadsData["downloads"];
-  control: Control;
+  control: Control<DownloadFormProps>;
 };
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({

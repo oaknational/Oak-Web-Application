@@ -1,3 +1,5 @@
+import type { ResourcesToDownloadArrayType } from "../downloads.types";
+
 import downloadLessonResources from "./downloadLessonResources";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
@@ -16,7 +18,10 @@ const successResponse = {
   ok: true,
 };
 
-const resourcesToDownload = ["exit-quiz-answers", "worksheet-pdf"];
+const resourcesToDownload: ResourcesToDownloadArrayType = [
+  "exit-quiz-answers",
+  "worksheet-pdf",
+];
 const resourcesToDownloadAsSelection = "exit-quiz-answers,worksheet-pdf";
 
 describe("downloadLessonResources", () => {

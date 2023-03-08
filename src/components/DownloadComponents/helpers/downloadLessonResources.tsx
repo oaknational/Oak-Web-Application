@@ -1,11 +1,11 @@
-import type { ResourcesToDownloadType } from "../downloads.types";
+import type { ResourcesToDownloadArrayType } from "../downloads.types";
 
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
 const downloadLessonResources = async (
   lessonSlug: string,
-  selectedResourceTypes: ResourcesToDownloadType
+  selectedResourceTypes: ResourcesToDownloadArrayType
 ) => {
   if (selectedResourceTypes?.length === 0) {
     console.log("no resources to download");
