@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, forwardRef } from "react";
+import { FC, forwardRef } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
 
@@ -165,10 +165,6 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
 
     const errorId = `${id}-error`;
 
-    const select = (e: ChangeEvent<HTMLInputElement>) => {
-      if (!disabled) onChange(e.target.checked);
-    };
-
     return (
       <>
         <CheckboxLabel
@@ -184,7 +180,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
             id={id}
             value={id}
             name={name}
-            onChange={select}
+            onChange={(e) => onChange(e.target.checked)}
             checked={checked}
             disabled={disabled}
             aria-label={ariaLabel ? ariaLabel : labelText}
