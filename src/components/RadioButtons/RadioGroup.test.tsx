@@ -142,7 +142,7 @@ describe("RadioGroup", () => {
         value={selected}
         onChange={setSelected}
         label="Select one of the following:"
-        validationState={"invalid"}
+        hasError={true}
         errorMessage={"error"}
       >
         <Radio data-testid={"radio-1"} value="home">
