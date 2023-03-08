@@ -72,7 +72,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
           />
           {downloadResourceError && (
             <FieldError id={"download-resource-error"}>
-              Resource does not exist
+              Sorry, we're having technical problems. Please try again later.
             </FieldError>
           )}
         </Flex>
