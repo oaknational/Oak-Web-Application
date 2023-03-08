@@ -18,7 +18,6 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
-    // const resourceTypesAsString = Object.keys(resourcesToCheck).join(",");
     const resourceTypesAsString = resourcesToCheck.join(",");
 
     (async () => {
@@ -41,11 +40,11 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
             )
           : [];
 
-        const filteredResourcesExistenceAsArray = resourcesExistenceAsArray.map(
-          ([key, value]) => {
+        const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
+          .map(([key, value]) => {
             if (value === true) return key;
-          }
-        );
+          })
+          .filter((resource) => resource !== undefined);
 
         onComplete(
           filteredResourcesExistenceAsArray as ResourcesToDownloadType

@@ -106,9 +106,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     });
 
   const { errors } = formState;
-  const selectedResources = watch().downloads;
-
-  console.log(selectedResources);
+  const selectedResources = watch().downloads || [];
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);

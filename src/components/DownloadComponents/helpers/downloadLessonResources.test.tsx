@@ -16,11 +16,7 @@ const successResponse = {
   ok: true,
 };
 
-const resourcesToDownload = {
-  "exit-quiz-answers": true,
-  "worksheet-pdf": true,
-};
-
+const resourcesToDownload = ["exit-quiz-answers", "worksheet-pdf"];
 const resourcesToDownloadAsSelection = "exit-quiz-answers,worksheet-pdf";
 
 describe("downloadLessonResources", () => {
@@ -30,7 +26,7 @@ describe("downloadLessonResources", () => {
 
   it("should return when no resource types are passed", async () => {
     console.log = jest.fn();
-    await downloadLessonResources("lesson-slug", {});
+    await downloadLessonResources("lesson-slug", []);
 
     expect(console.log).toHaveBeenCalledWith("no resources to download");
   });
