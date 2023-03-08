@@ -120,44 +120,6 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               subject={subjectSlug}
               tier={tierQuery}
             />
-            {/* not part of mvp page, add later */}
-            {/* <Flex $mb={64} $display={"inline-flex"}>
-          <TitleCard
-            page={"subject"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            title={subjectTitle}
-            iconName={"rocket"}
-            $mt={48}
-            $mb={24}
-            $alignSelf={"flex-start"}
-          />
-          {/* not part of mvp page, add later */}
-            {/* <Flex $mb={64} $display={"inline-flex"}>
-
-        <TitleCard
-          page={"subject"}
-          keyStage={keyStageTitle}
-          keyStageSlug={keyStageSlug}
-          title={subjectTitle}
-          iconName={"rocket"}
-          $mt={48}
-          $mb={24}
-          $alignSelf={"flex-start"}
-        />
-        {/* not part of mvp page, add later */}
-
-            {/* <Flex $mb={64} $display={"inline-flex"}>
-          <ButtonAsLink
-            variant="minimal"
-            page={null}
-            href={"/"}
-            icon={"download"}
-            $iconPosition={"trailing"}
-            label="Curriculum download (PDF)"
-            iconBackground="teachersHighlight"
-          />
-        </Flex> */}
 
             <Grid>
               <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>

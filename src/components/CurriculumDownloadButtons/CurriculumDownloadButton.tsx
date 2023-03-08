@@ -3,9 +3,10 @@ import { capitalize } from "lodash";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
-import createAndClickHiddenDownloadLink from "../DownloadComponents/helpers/createAndClickHiddenDownloadLink";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
+
+import downloadZip from "./helpers/downloadZip";
 
 type CurriculumDownloadProps = {
   keyStage: string;
@@ -38,18 +39,10 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
     downloadLabel = `Curriculum download (.zip)`;
   }
 
-  const downloadZip = async () => {
+  const handleZipDownloadClick = async () => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subject}&tiers=core,higher,foundation`
-      );
-      if (res.status >= 200 && res.status < 300) {
-        downloadLink = (await res.json()).data.url;
-        createAndClickHiddenDownloadLink(downloadLink);
-        setDownloadResourceError(false);
-      } else {
-        throw new Error("Resource does not exist");
-      }
+      await downloadZip(keyStageNum, subject);
+      setDownloadResourceError(false);
     } catch (error) {
       setDownloadResourceError(true);
     }
@@ -66,9 +59,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
             $iconPosition={"trailing"}
             iconBackground="teachersHighlight"
             label={downloadLabel}
-            onClick={() => {
-              downloadZip();
-            }}
+            onClick={handleZipDownloadClick}
           />
           {downloadResourceError && (
             <FieldError id={"download-resource-error"}>
