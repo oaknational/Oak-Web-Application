@@ -27,7 +27,6 @@ const Radio: FC<AriaRadioProps> = (props) => {
     isSelected: boolean;
     isFocusVisible: boolean;
     hasError?: boolean;
-    // validationState: "valid" | "invalid";
   }>`
     height: 24px;
     width: 24px;
