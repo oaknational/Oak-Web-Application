@@ -45,15 +45,20 @@ export type LessonDownloadsPageProps = {
 };
 
 const schema = z.object({
-  email: z
-    .string()
-    .email({
-      message: "Email not valid",
-    })
-    .optional()
-    .or(z.literal("")),
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
+  // .optional()
+  // .or(z.literal("")),
   terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept terms and conditions" }),
+    errorMap: () => ({
+      message: "You must accept our terms of use to download the content",
+    }),
+  }),
+  school: z.literal(true, {
+    errorMap: () => ({
+      message: "Please select a school",
+    }),
   }),
 });
 
@@ -97,10 +102,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState } = useForm<DownloadFormProps>({
-    resolver: zodResolver(schema),
-    mode: "onBlur",
-  });
+  const { register, formState, control, handleSubmit } =
+    useForm<DownloadFormProps>({
+      resolver: zodResolver(schema),
+      mode: "onBlur",
+    });
 
   const { errors } = formState;
 
@@ -163,10 +169,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
-  const onFormSubmit = async () => {
-    await debouncedDownloadResources();
-    setTimeout(() => setIsAttemptingDownload(false), 4000);
+  const onFormSubmit = async (data, e) => {
+    console.log(data, e);
+    // await debouncedDownloadResources();
+    // setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
+  const onFormError = (errors, e) => console.log(errors, e);
 
   const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
   const selectedResourcesToDownloadCount = Object.keys(
@@ -350,6 +358,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>
+              <P $color={"failure"} $mr={24} $font={"body-3-bold"}>
+                Error
+              </P>
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
@@ -361,9 +372,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
               <Button
                 label={"Download .zip"}
-                onClick={() => {
-                  onFormSubmit();
-                }}
+                onClick={handleSubmit(onFormSubmit, onFormError)}
+                // onClick={() => {
+                //   onFormSubmit();
+                // }}
                 background={"teachersHighlight"}
                 icon="download"
                 $iconPosition="trailing"
