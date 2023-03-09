@@ -158,16 +158,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
-  const onFormSubmit = async (data) => {
-    console.log(data);
-
+  const onFormSubmit = async () => {
     await debouncedDownloadResources();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
 
   const onFormError = (errors: FieldErrors) => {
-    setFormErrorMessage(getDownloadFormErrorMessage(errors));
-    // console.log(">> errors:", errors);
+    const errorKeyArray = Object.keys(errors);
+    setFormErrorMessage(getDownloadFormErrorMessage(errorKeyArray));
   };
 
   useDownloadExistenceCheck({

@@ -1,6 +1,4 @@
-import { FieldErrors } from "react-hook-form";
-
-const getDownloadFormErrorMessage = (errors: FieldErrors) => {
+const getDownloadFormErrorMessage = (errorsArray: string[]) => {
   let formErrorMessage = "Please";
 
   const errorMessages: Record<string, string> = {
@@ -10,9 +8,11 @@ const getDownloadFormErrorMessage = (errors: FieldErrors) => {
     downloads: "pick at least one resource",
   };
 
-  const errorMessagesArray = Object.keys(errors).map(
-    (errorKey: string) => errorMessages[errorKey]
-  );
+  const errorMessagesArray = errorsArray
+    .map((errorKey: string) =>
+      errorMessages[errorKey] ? errorMessages[errorKey] : undefined
+    )
+    .filter(Boolean);
 
   const errorCount = errorMessagesArray?.length;
 
