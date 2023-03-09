@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { LS_KEY_ANONYMOUS_ID } from "../../config/localStorageKeys";
 import useLocalStorage, { parseJSON } from "../../hooks/useLocalStorage";
+import cookieOptions from "../cookie-consent/confirmic/cookieOptions";
 
 const OLD_ANONYMOUS_ID_KEY = "anonymousID";
 
@@ -33,7 +34,11 @@ const getOrGenerateAnonymousId = (): AnonymousUserId => {
       const parsedJSON = parseJSON(oakData);
 
       if (parsedJSON) {
-        return z.object({ userId: z.string() }).parse(parsedJSON).userId;
+        try {
+          return z.object({ userId: z.string() }).parse(parsedJSON).userId;
+        } catch (error) {
+          // oakData malformed, continue to localStorage
+        }
       }
     }
     const newValue = window.localStorage.getItem(LS_KEY_ANONYMOUS_ID);
@@ -61,6 +66,33 @@ const getOrGenerateAnonymousId = (): AnonymousUserId => {
   }
 };
 
+/**
+ * If there is no `oakData` cookie present, set cookie containing userId.
+ * This is to keep userId (aka anonymous id) consistent between legacy and beta
+ * applications.
+ * @todo remove this and unset cookie as part of legacy apps decommissioned
+ */
+const setLegacyCookieIfNotPresent = ({
+  anonymousId,
+}: {
+  anonymousId: string;
+}) => {
+  const oakDataCookie = Cookies.get("oakData");
+  if (!oakDataCookie) {
+    Cookies.set(
+      "oakData",
+      JSON.stringify({ userId: anonymousId }),
+      /**
+       * Using assertion as cookieOptions are typed originally as CookieSetOptions
+       * from "universal-cookie". These are basically identical, but subtly different.
+       * Choosing to assert here rather than elsewhere since this code has an
+       * assumed short lifetime.
+       */
+      cookieOptions as Cookies.CookieAttributes 
+    );
+  }
+};
+
 const initialValue = getOrGenerateAnonymousId();
 
 const useAnonymousId = (): AnonymousUserId => {
@@ -70,6 +102,9 @@ const useAnonymousId = (): AnonymousUserId => {
   );
 
   useEffect(() => {
+    if (anonymousId) {
+      setLegacyCookieIfNotPresent({ anonymousId });
+    }
     if (!anonymousId) {
       setAnonymousId(initialValue);
     }

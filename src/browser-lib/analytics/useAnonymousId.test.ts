@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import "../../__tests__/__helpers__/LocalStorageMock";
 
@@ -17,10 +17,12 @@ jest.mock("uuid", () => ({
 }));
 
 const getCookies = jest.fn();
+const setCookies = jest.fn();
 jest.mock("js-cookie", () => ({
   __esModule: true,
   default: {
     get: () => getCookies(),
+    set: (...args: []) => setCookies(...args),
   },
 }));
 
@@ -33,6 +35,28 @@ describe("useAnonymousId", () => {
 
     expect(setAnonymousId).toHaveBeenCalledTimes(1);
     expect(setAnonymousId).toHaveBeenCalledWith("new-uuid");
+  });
+  test("sets legacy cookie if not present", async () => {
+    mockUseLocalStorage.mockImplementationOnce(() => [
+      "ls-value",
+      setAnonymousId,
+    ]);
+    renderHook(() => useAnonymousId());
+    await waitFor(() => {
+      expect(setCookies).toHaveBeenCalledTimes(1);
+      expect(setCookies).toHaveBeenCalledWith(
+        "oakData",
+        '{"userId":"ls-value"}',
+        expect.objectContaining({ sameSite: "lax" })
+      );
+    });
+  });
+  test("does not set legacy cookie if present", async () => {
+    renderHook(() => useAnonymousId());
+
+    getCookies.mockReturnValueOnce("some cookie value");
+
+    expect(setCookies).not.toHaveBeenCalled();
   });
   test("hook does not change id if already exists", async () => {
     mockUseLocalStorage.mockImplementationOnce(() => [
