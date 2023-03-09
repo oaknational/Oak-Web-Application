@@ -10,13 +10,10 @@ import Box from "../../Box";
 import GraphicCircleIcon from "../../Icon/GraphicCircleIcon";
 import { IconName } from "../../Icon";
 import type { DownloadResourceType } from "../downloads.types";
+import { CheckboxProps } from "../../Checkbox/Checkbox";
 
-export type DownloadCardProps = {
-  id: string;
-  name: string;
+export type DownloadCardProps = CheckboxProps & {
   label: string;
-  checked: boolean;
-  onChange: () => void;
   resourceType: DownloadResourceType;
   extension: string;
 };
@@ -85,7 +82,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, name, label } = props;
+  const { checked = false, onChange, id, name, label, onBlur } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
@@ -95,9 +92,10 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         id={id}
         name={name}
         checked={checked}
-        onChange={() => onChange()}
+        onChange={onChange}
         variant={"cardCheckbox"}
         ariaLabel={label}
+        onBlur={onBlur}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>

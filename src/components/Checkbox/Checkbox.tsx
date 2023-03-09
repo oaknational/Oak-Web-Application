@@ -1,4 +1,4 @@
-import { FC, forwardRef } from "react";
+import { FC, forwardRef, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
 
@@ -32,7 +32,7 @@ export type CheckboxProps = {
   ariaLabel?: string;
   required?: boolean;
   error?: string;
-  onChange: (checked: boolean) => void;
+  onChange: (checked: ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
   variant?: CheckboxVariant;
   inputRef?: RefCallBack;
@@ -180,7 +180,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
             id={id}
             value={id}
             name={name}
-            onChange={(e) => onChange(e.target.checked)}
+            onChange={(e) => onChange(e)}
             checked={checked}
             disabled={disabled}
             aria-label={ariaLabel ? ariaLabel : labelText}
