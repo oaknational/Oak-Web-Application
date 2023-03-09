@@ -26,6 +26,11 @@ jest.mock("js-cookie", () => ({
   },
 }));
 
+jest.mock("../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({ identify: jest.fn() }),
+}));
+
 describe("useAnonymousId", () => {
   beforeEach(async () => {
     jest.clearAllMocks();
