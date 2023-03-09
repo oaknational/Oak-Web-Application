@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -18,7 +18,6 @@ import {
 import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
-import DownloadCard from "../../../../../../../../../../../components/DownloadComponents/DownloadCard";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
 import Grid, {
   GridArea,
@@ -29,7 +28,7 @@ import curriculumApi, {
 import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import type {
-  ResourcesToDownloadType,
+  ResourcesToDownloadArrayType,
   DownloadResourceType,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
@@ -39,6 +38,7 @@ import Radio from "../../../../../../../../../../../components/RadioButtons/Radi
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
+import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -60,6 +60,7 @@ const schema = z.object({
       message: "Please select a school",
     }),
   }),
+  downloads: z.array(z.string()),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -67,6 +68,7 @@ export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
   terms: boolean;
+  downloads: DownloadResourceType[];
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -83,7 +85,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitSlug,
     unitTitle,
   } = curriculumData;
-
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
@@ -102,26 +103,24 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setSelectedRadio(e);
   };
 
-  const { register, formState, control, handleSubmit } =
+  const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
 
   const { errors } = formState;
-
-  const [acceptedTCs, setAcceptedTCs] = useState<boolean>(false);
+  const selectedResources = watch().downloads || [];
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
   const getInitialResourcesToDownloadState = () => {
-    const initialResourcesToDownloadState = {} as ResourcesToDownloadType;
+    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
 
     downloads?.forEach((download) => {
       if (download.exists && !download.forbidden) {
-        initialResourcesToDownloadState[download.type as DownloadResourceType] =
-          false;
+        initialResourcesToDownloadState.push(download.type);
       }
     });
 
@@ -129,41 +128,20 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   };
 
   const [resourcesToDownload, setResourcesToDownload] =
-    useState<ResourcesToDownloadType>(getInitialResourcesToDownloadState());
+    useState<ResourcesToDownloadArrayType>(
+      getInitialResourcesToDownloadState()
+    );
 
-  const onResourceToDownloadToggle = (
-    toggledResource: DownloadResourceType
-  ) => {
-    setResourcesToDownload({
-      ...resourcesToDownload,
-      [toggledResource]: resourcesToDownload[toggledResource] ? false : true,
-    });
-  };
+  const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
+  const onDeselectAllClick = () => setValue("downloads", []);
 
-  const onSelectAllClick = () => {
-    const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
-    const updatedResourcesToDownload = {} as ResourcesToDownloadType;
-    allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
-      updatedResourcesToDownload[resourceToDownload as DownloadResourceType] =
-        true;
-    });
-    setResourcesToDownload(updatedResourcesToDownload);
-  };
-
-  const onDeselectAllClick = () => {
-    const allResourcesToDownloadKeys = Object.keys(resourcesToDownload);
-    const updatedResourcesToDownload = {} as ResourcesToDownloadType;
-    allResourcesToDownloadKeys?.forEach((resourceToDownload) => {
-      updatedResourcesToDownload[resourceToDownload as DownloadResourceType] =
-        false;
-    });
-    setResourcesToDownload(updatedResourcesToDownload);
-  };
+  const allResourcesToDownloadCount = resourcesToDownload.length;
+  const selectedResourcesToDownloadCount = selectedResources?.length;
 
   const debouncedDownloadResources = debounce(
     () => {
       setIsAttemptingDownload(true);
-      downloadSelectedLessonResources(slug, resourcesToDownload);
+      downloadSelectedLessonResources(slug, selectedResources);
     },
     4000,
     { leading: true }
@@ -171,17 +149,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const onFormSubmit = async (data, e) => {
     console.log(data, e);
-    // await debouncedDownloadResources();
-    // setTimeout(() => setIsAttemptingDownload(false), 4000);
+    await debouncedDownloadResources();
+    setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
   const onFormError = (errors, e) => console.log(errors, e);
-
-  const allResourcesToDownloadCount = Object.keys(resourcesToDownload).length;
-  const selectedResourcesToDownloadCount = Object.keys(
-    resourcesToDownload
-  ).filter(
-    (resource) => resourcesToDownload[resource as DownloadResourceType] === true
-  ).length;
 
   useDownloadExistenceCheck({
     lessonSlug: slug,
@@ -252,11 +223,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
+            hasError={false}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}
-            label={"Name of school:"}
+            label={"Name of school"}
             setSelectedValue={setSelectedValue}
+            required={true}
           />
           <Box $mt={12} $ml={24} $mb={32}>
             <P $mb={12} $font={"body-2"}>
@@ -264,6 +237,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </P>
             <Flex>
               <RadioGroup
+                validationState={"valid"}
+                errorMessage={
+                  "Please select/search a school or an option from above"
+                }
                 aria-label={"home school or my school isn't listed"}
                 value={selectedRadio}
                 onChange={onRadioChange}
@@ -286,7 +263,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           </Heading>
           <Input
             id={"email"}
-            label="Email address:"
+            label="Email address"
             placeholder="Enter email address here"
             {...register("email")}
             error={errors.email?.message}
@@ -299,10 +276,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </OakLink>
             .
           </P>
-          <TermsAndConditionsCheckbox
-            checked={acceptedTCs}
-            onChange={() => setAcceptedTCs(!acceptedTCs)}
-            errorMessage={errors.terms?.message}
+          <Controller
+            control={control}
+            name="terms"
+            render={({ field: { value, onChange, name, onBlur } }) => {
+              const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                return onChange(e.target.checked);
+              };
+              return (
+                <TermsAndConditionsCheckbox
+                  name={name}
+                  checked={value}
+                  onChange={onChangeHandler}
+                  onBlur={onBlur}
+                  id={"terms"}
+                />
+              );
+            }}
           />
         </Box>
 
@@ -331,30 +321,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </Flex>
             <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
           </GridArea>
-          {downloads?.map((download) => {
-            if (download.exists && !download.forbidden) {
-              return (
-                <GridArea
-                  $colSpan={[6, 3, 2]}
-                  key={download.type}
-                  data-testid={"lessonResourcesToDownload"}
-                >
-                  <DownloadCard
-                    id={download.type}
-                    name={"lessonResourcesToDownload"}
-                    label={download.label}
-                    extension={download.ext}
-                    resourceType={download.type}
-                    checked={resourcesToDownload[download.type] || false}
-                    onChange={() =>
-                      onResourceToDownloadToggle(`${download.type}`)
-                    }
-                    data-testid={`download-card-${download.type}`}
-                  />
-                </GridArea>
-              );
-            }
-          })}
+          <DownloadCardGroup control={control} downloads={downloads} />
+
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>

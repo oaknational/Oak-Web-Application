@@ -1,3 +1,38 @@
+# [1.156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.155.0...v1.156.0) (2023-03-09)
+
+
+### Features
+
+* 1391 fix more types ([2fddfe4](https://github.com/oaknational/Oak-Web-Application/commit/2fddfe403b5fd81a18aa93b0b22821c95321e8a6))
+* 1391 fix tests ([b5eb624](https://github.com/oaknational/Oak-Web-Application/commit/b5eb624c9dfbcb1f7d1d0191087fef205d2f37db))
+* 1391 fix types ([8618caf](https://github.com/oaknational/Oak-Web-Application/commit/8618caf591f048454725933add9d7d41f9255b63))
+* 1391 fix types ([0eb6ffe](https://github.com/oaknational/Oak-Web-Application/commit/0eb6ffe356a5fc841220e2d7ef4b42c1f73479ce))
+* 1391 refactor Download Card to use react hook form ([d7e767e](https://github.com/oaknational/Oak-Web-Application/commit/d7e767e720a16e917084828117227251826bcd41))
+* 1391 update tests ([3c463fb](https://github.com/oaknational/Oak-Web-Application/commit/3c463fb95cbf79ea6ece930c8c076f2306738876))
+
+# [1.155.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.154.0...v1.155.0) (2023-03-08)
+
+
+### Features
+
+* 1225 curriculum download button added to unit and lesson pages ([13e0082](https://github.com/oaknational/Oak-Web-Application/commit/13e00827f1a4d3ed8e0f0b20b9751e961ea3d514))
+
+# [1.154.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.1...v1.154.0) (2023-03-08)
+
+
+### Bug Fixes
+
+* react aria required prop undefined ([d67b7bd](https://github.com/oaknational/Oak-Web-Application/commit/d67b7bd459eab157db8d5641deb6291a636b7364))
+
+
+### Features
+
+* add error label background to school picker ([1487c47](https://github.com/oaknational/Oak-Web-Application/commit/1487c4749d10955e36faa94024c9c2e96648f2f8))
+* add school picker and radio validation to downloads ([89d7ba1](https://github.com/oaknational/Oak-Web-Application/commit/89d7ba13204611b10ca6eb292115696ba685151f))
+* radio group validation ([f2151fe](https://github.com/oaknational/Oak-Web-Application/commit/f2151fe7865a7838ab1a5ce7f01049d928d11bcd))
+
+## [1.153.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.0...v1.153.1) (2023-03-08)
+
 # [1.153.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.152.0...v1.153.0) (2023-03-07)
 
 
