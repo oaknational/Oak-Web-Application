@@ -46,6 +46,8 @@ export type LessonDownloadsPageProps = {
 };
 
 const schema = z.object({
+  school: z.string().min(1, { message: "Name can't be empty" }),
+  schoolRadio: z.string().min(1, "Please select an option"),
   email: z
     .string()
     .email({
@@ -77,6 +79,8 @@ export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
   terms: boolean;
+  schoolRadio: string;
+  school: string;
   downloads: DownloadResourceType[];
 };
 
@@ -98,18 +102,22 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
 
-  const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (selectedRadio && selectedValue) {
-      setSelectedRadio("");
-    }
-    setInputValue(value);
-  };
-
   const onRadioChange = (e: string) => {
     if (selectedValue) {
       setInputValue("");
+      setValue("school", "");
     }
     setSelectedRadio(e);
+    setValue("schoolRadio", e);
+  };
+
+  const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
+    if (selectedRadio && selectedValue) {
+      setSelectedRadio("");
+      setValue("schoolRadio", "");
+    }
+    setInputValue(value);
+    setValue("school", value.toString());
   };
 
   const { register, formState, control, watch, setValue, handleSubmit } =
