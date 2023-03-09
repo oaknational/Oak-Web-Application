@@ -103,12 +103,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setInputValue(value);
     setValue("school", value.toString());
   };
-  
-  const { register, formState, setValue, control } = useForm<DownloadFormProps>({
 
-    resolver: zodResolver(schema),
-    mode: "onBlur",
-  });
+  const { register, formState, setValue, control } = useForm<DownloadFormProps>(
+    {
+      resolver: zodResolver(schema),
+      mode: "onBlur",
+    }
+  );
 
   const { errors } = formState;
 
