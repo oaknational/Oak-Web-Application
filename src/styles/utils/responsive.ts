@@ -12,7 +12,9 @@ const breakpointsByName = {
   small: 750,
   large: 1280,
 };
-const breakpoints = Object.values(breakpointsByName);
+export const breakpoints = Object.values(breakpointsByName).sort((a, b) =>
+  a > b ? 1 : -1
+);
 export type BreakpointName = keyof typeof breakpointsByName;
 export const getBreakpoint = (
   breakpointName: keyof typeof breakpointsByName

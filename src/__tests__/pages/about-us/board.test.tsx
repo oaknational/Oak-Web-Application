@@ -35,9 +35,10 @@ const testAboutBoardPageData: AboutBoardPage = {
       id: "1",
       image: {
         asset: {
-          _id: "",
-          url: "",
+          _id: "image-5270e91716484e744583b19fb06b8123f5c03dab-1566x1908-jpg",
+          url: "https://cdn.sanity.io/images/cuvjke51/production/5270e91716484e744583b19fb06b8123f5c03dab-1566x1908.jpg",
         },
+        hotspot: null,
       },
       bioPortableText: portableTextFromString(
         "This person started out here, ended up there."

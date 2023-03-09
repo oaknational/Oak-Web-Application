@@ -76,7 +76,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         href={signUpHref}
         label="Save my place"
         labelSuffixA11y={`on the webinar: ${title}`}
-        icon="ChevronRight"
+        icon="chevron-right"
         $iconPosition="trailing"
       />
     </Flex>

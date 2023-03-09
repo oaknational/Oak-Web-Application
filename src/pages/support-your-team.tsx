@@ -26,15 +26,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $ph={[0, 16]} $pt={[64, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/illustrations/work-with-us-500.png",
-            alt: "planning illustration",
-          }}
-        />
+        <SummaryCard {...pageData} />
         <Flex
           $justifyContent="center"
           $maxWidth={["100%", 450]}
@@ -55,14 +47,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <Flex $flexDirection={["column", "row", "row"]}>
             <BubbleMessage
               background={"pastelTurquoise"}
-              variant="Bubble"
+              variant="bubble-1"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
             />
             <BubbleMessage
               background={"twilight"}
-              variant="Bubble2"
+              variant="bubble-2"
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
@@ -76,7 +68,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             $mb={92}
             page={"teachers-home"}
             label={"Search our lessons"}
-            icon={"ArrowRight"}
+            icon={"arrow-right"}
             $iconPosition={"trailing"}
           />
         </Flex>
@@ -98,16 +90,16 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           {...pageData.curriculum}
           background={"pastelTurquoise"}
           image={{
-            imageSrc: "/images/illustrations/curriculum-371.png",
-            alt: "develop your curriculum illustration",
+            illustration: "jigsaw-desk-with-extra-piece",
+            sizes: "(min-width: 750px) 720px, 100vw",
           }}
         />
         <TextBlockCardImageCta
           {...pageData.development}
           background={"twilight"}
           image={{
-            imageSrc: "/images/illustrations/work-with-us-500.png",
-            alt: "illustration of four people carrying a floor, on which people are working at desks, and one person is painting at an easel",
+            illustration: "supporting",
+            sizes: "(min-width: 750px) 720px, 100vw",
           }}
           imageContainerProps={{
             $maxHeight: [null, null, 150],
@@ -134,7 +126,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               $mb={92}
               page={"teachers-home"}
               label={"Search our lessons"}
-              icon={"ArrowRight"}
+              icon={"arrow-right"}
               $iconPosition={"trailing"}
             />
           </Flex>

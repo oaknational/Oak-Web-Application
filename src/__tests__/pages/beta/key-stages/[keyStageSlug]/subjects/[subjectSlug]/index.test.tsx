@@ -2,16 +2,43 @@ import { screen, waitFor } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
 
 import teachersKeyStageSubjectUnitsFixture from "../../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnits.fixture";
-import { URLParams } from "../../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]";
 import SubjectUnitsListPage, {
   getServerSideProps,
   SubjectUnitsListPageProps,
+  URLParams,
 } from "../../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
 
 const curriculumData = teachersKeyStageSubjectUnitsFixture();
+const emptyTieredCurriculumData = {
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key stage 4",
+  subjectSlug: "maths",
+  subjectTitle: "Maths",
+  tierSlug: "core",
+  tiers: [],
+  units: [
+    {
+      slug: "some-unit-slug",
+      title: "Unit title",
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+      themeSlug: "some-theme-slug",
+      themeTitle: "Some theme title",
+      lessonCount: 18,
+      quizCount: 1,
+      unitStudyOrder: 1,
+      year: "Year 7",
+      expired: false,
+      expiredLessonCount: null,
+    },
+  ],
+  learningThemes: [],
+};
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
@@ -35,7 +62,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo(
         <SubjectUnitsListPage
-          curriculumData={curriculumData}
+          curriculumData={emptyTieredCurriculumData}
           learningThemeSlug={null}
         />
       );
@@ -49,6 +76,28 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
         ogDescription: "Subject units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
+      });
+    });
+
+    it("renders the correct SEO details when passed tiered data", () => {
+      const { seo } = renderWithSeo(
+        <SubjectUnitsListPage
+          curriculumData={curriculumData}
+          learningThemeSlug={null}
+        />
+      );
+
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "We have resources for tiers: Foundation, Core, Higher",
+        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "We have resources for tiers: Foundation, Core, Higher",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        ogImage:
+          "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
       });
     });
   });
@@ -68,6 +117,29 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
       expect(propsResult.props.curriculumData).toEqual(
         teachersKeyStageSubjectUnitsFixture()
       );
+    });
+  });
+
+  describe("conditional SubjectTierListing component rendering", () => {
+    it("when tiered data array is not empty SubjectTierListing component rendered", () => {
+      renderWithProviders(
+        <SubjectUnitsListPage
+          curriculumData={curriculumData}
+          learningThemeSlug={null}
+        />
+      );
+
+      expect(screen.getByText("Learning tiers")).toBeInTheDocument();
+    });
+    it("when tiered data array is not empty SubjectTierListing component rendered", () => {
+      renderWithProviders(
+        <SubjectUnitsListPage
+          curriculumData={emptyTieredCurriculumData}
+          learningThemeSlug={null}
+        />
+      );
+
+      expect(screen.getByText("Units")).toBeInTheDocument();
     });
   });
 });

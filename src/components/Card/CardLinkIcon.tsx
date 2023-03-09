@@ -21,7 +21,7 @@ type CardLinkIconProps = RemoveField<CardLinkProps, "children"> & {
 const CardLinkIcon: FC<CardLinkIconProps> = ({
   title,
   titleTag,
-  icon = "ArrowRight",
+  icon = "arrow-right",
   background,
   ...cardLinkProps
 }) => {

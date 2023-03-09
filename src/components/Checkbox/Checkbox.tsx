@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, forwardRef, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
+import { RefCallBack } from "react-hook-form";
 
 import { OakColorName } from "../../styles/theme";
 import spacing, { SpacingProps } from "../../styles/utils/spacing";
@@ -20,9 +21,9 @@ export type CheckboxConfig = {
   };
 };
 
-export type CheckboxVariant = "cardCheckbox";
+export type CheckboxVariant = "cardCheckbox" | "terms";
 
-type CheckboxProps = {
+export type CheckboxProps = {
   labelText?: string;
   id: string;
   name: string;
@@ -31,15 +32,18 @@ type CheckboxProps = {
   ariaLabel?: string;
   required?: boolean;
   error?: string;
-  onChange: () => void;
+  onChange: (checked: ChangeEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
   variant?: CheckboxVariant;
+  inputRef?: RefCallBack;
+  onBlur?: () => void;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
   disabled: boolean;
   checked: boolean;
   variant?: CheckboxVariant;
+  hasError?: boolean;
 } & SpacingProps;
 
 const checkboxFocusStyles = css`
@@ -140,66 +144,76 @@ const CheckboxLabelText = styled.span`
   font-weight: 400;
 `;
 
-const Checkbox: FC<CheckboxProps> = (props) => {
-  const {
-    labelText,
-    checked = false,
-    disabled = false,
-    onChange,
-    id,
-    name,
-    ariaLabel,
-    required = false,
-    error,
-    children,
-    variant,
-    ...spacingProps
-  } = props;
+const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
+  (props) => {
+    const {
+      labelText,
+      checked = false,
+      disabled = false,
+      onChange,
+      id,
+      name,
+      ariaLabel,
+      required = false,
+      error,
+      children,
+      variant,
+      inputRef,
+      onBlur,
+      ...spacingProps
+    } = props;
 
-  const errorId = `${id}-error`;
+    const errorId = `${id}-error`;
 
-  const select = () => {
-    if (!disabled) onChange();
-  };
-
-  return (
-    <>
-      <CheckboxLabel
-        htmlFor={id}
-        onClick={() => select}
-        checked={checked}
-        disabled={disabled}
-        variant={variant}
-        {...spacingProps}
-      >
-        <ScreenReaderCheckbox
-          type="checkbox"
-          id={id}
-          value={id}
-          name={name}
-          onChange={select}
+    return (
+      <>
+        <CheckboxLabel
+          htmlFor={id}
           checked={checked}
           disabled={disabled}
-          aria-label={ariaLabel ? ariaLabel : labelText}
-          required={required}
-          aria-invalid={Boolean(error)}
-          aria-describedby={error ? errorId : undefined}
-        />
-        <VisualCheckbox checked={checked} variant={variant} />
-        {/* card checkbox */}
-        {!labelText && variant === "cardCheckbox" && children}
-        {/* basic label checkbox */}
+          variant={variant}
+          hasError={Boolean(error)}
+          {...spacingProps}
+        >
+          <ScreenReaderCheckbox
+            type="checkbox"
+            id={id}
+            value={id}
+            name={name}
+            onChange={(e) => onChange(e)}
+            checked={checked}
+            disabled={disabled}
+            aria-label={ariaLabel ? ariaLabel : labelText}
+            required={required}
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? errorId : undefined}
+            ref={inputRef}
+            onBlur={onBlur}
+          />
+          <VisualCheckbox
+            checked={checked}
+            variant={variant}
+            hasError={Boolean(error)}
+          />
+          {/* card checkbox */}
+          {!labelText && variant === "cardCheckbox" && children}
+          {/* basic label checkbox */}
 
-        {labelText && variant !== "cardCheckbox" && (
-          <>
-            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
-            <FocusUnderline $color={"teachersYellow"} />
-          </>
+          {labelText && variant !== "cardCheckbox" && (
+            <>
+              <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
+              <FocusUnderline $color={"teachersYellow"} />
+            </>
+          )}
+        </CheckboxLabel>
+        {variant !== "terms" && (
+          <FieldError id={errorId} withoutMarginBottom>
+            {error}
+          </FieldError>
         )}
-      </CheckboxLabel>
-      <FieldError id={errorId}>{error}</FieldError>
-    </>
-  );
-};
+      </>
+    );
+  }
+);
 
 export default Checkbox;

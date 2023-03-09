@@ -41,19 +41,19 @@ type SocialButtonConfig = {
 const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
   instagram: {
     label: "instagram",
-    icon: "Instagram",
+    icon: "instagram",
   },
   facebook: {
     label: "facebook",
-    icon: "Facebook",
+    icon: "facebook",
   },
   twitter: {
     label: "twitter",
-    icon: "Twitter",
+    icon: "twitter",
   },
   linkedIn: {
     label: "linkedIn",
-    icon: "LinkedIn",
+    icon: "linkedin",
   },
 } as const;
 

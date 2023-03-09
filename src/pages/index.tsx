@@ -20,7 +20,6 @@ import Icon from "../components/Icon";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
-import OakImage from "../components/OakImage";
 import {
   blogToPostListItem,
   SerializedBlogPostPreview,
@@ -32,6 +31,8 @@ import {
 import { serializeDate } from "../utils/serializeDate";
 import usePostList from "../components/Posts/PostList/usePostList";
 import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
+import Illustration from "../components/Illustration";
+import { getSizes } from "../components/CMSImage/getSizes";
 
 const Notification: FC = () => {
   const { track } = useAnalytics();
@@ -54,7 +55,7 @@ const Notification: FC = () => {
         $transform="translate(-40%,-40%)"
       >
         <Icon
-          name="Bell"
+          name="bell"
           $background="pupilsHighlight"
           variant="brush"
           size={30}
@@ -165,6 +166,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $overflow="hidden"
                   >
                     <Box
+                      $position="relative"
                       $height={["90%", "100%"]}
                       $transform={[
                         "translate(-30%,30%)",
@@ -172,14 +174,16 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(0,0)",
                       ]}
                     >
-                      <OakImage
-                        alt={""}
-                        src={"/images/illustrations/magic-carpet.png"}
-                        $objectFit="cover"
-                        $objectPosition={"right center"}
-                        sizes={"(min-width: 750px) 500px, 100vw"}
-                        fill
+                      <Illustration
+                        slug="magic-carpet"
+                        sizes={getSizes([300, 500])}
+                        width={500}
+                        height={274}
                         priority
+                        $position={["absolute"]}
+                        $objectFit="cover"
+                        $objectPosition="right"
+                        $cover
                       />
                     </Box>
                   </Box>
@@ -204,7 +208,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $right={0}
                     $left={0}
                   >
-                    <Svg name="Underline2" $color="pupilsHighlight" />
+                    <Svg name="underline-2" $color="pupilsHighlight" />
                   </Box>
                 </Card>
               </GridArea>
@@ -228,6 +232,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $overflow="hidden"
                   >
                     <Box
+                      $position="relative"
                       $height={["90%"]}
                       $transform={[
                         "translate(0,40%)",
@@ -235,15 +240,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                         "translate(-10%,30%)",
                       ]}
                     >
-                      <OakImage
-                        alt=""
-                        src={
-                          "/images/illustrations/teacher-carrying-stuff-165-200.png"
-                        }
-                        fill
-                        sizes="(min-width: 750px) 256px, 100vw"
+                      <Illustration
+                        slug="teacher-carrying-stuff"
+                        sizes={getSizes([110, 180])}
                         $objectFit="contain"
+                        $cover
                         priority
+                        noCrop
                       />
                     </Box>
                   </Box>
@@ -269,7 +272,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     $right={0}
                     $left={0}
                   >
-                    <Svg name="Underline2" $color="teachersHighlight" />
+                    <Svg name="underline-2" $color="teachersHighlight" />
                   </Box>
                 </Card>
               </GridArea>

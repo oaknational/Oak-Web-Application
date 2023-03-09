@@ -26,7 +26,6 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
       $borderColor={"white"}
       $borderRadius={3}
     >
-      {" "}
       <OakImage
         objectFit="contain"
         $objectPosition={["center", "left"]}
@@ -66,7 +65,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         $alignItems={"center"}
       >
         {" "}
-        <Icon name={"Tick"} $mr={16} />
+        <Icon name={"tick"} $mr={16} />
         {type === "order" && (
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
             {index + 1} -
@@ -81,9 +80,21 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             <Typography $font={["body-1"]}> {choice}</Typography>
           </Flex>
         )}
-        {type !== "match" && (
+        {type === "checkbox" && !Array.isArray(answer) ? (
           <Typography $font={["body-1"]}> {choice}</Typography>
-        )}
+        ) : null}
+        {type === "checkbox" && Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {answer[answer.indexOf(choice)]}
+          </Typography>
+        ) : null}
+        {type !== "match" && type !== "checkbox" && !Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}> {choice}</Typography>
+        ) : null}
+        {type !== "match" && type !== "checkbox" && Array.isArray(answer) ? (
+          <Typography $font={["body-1"]}> {answer[index]}</Typography>
+        ) : null}
       </Flex>
     </Flex>
   );

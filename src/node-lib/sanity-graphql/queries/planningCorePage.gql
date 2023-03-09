@@ -2,12 +2,15 @@ query planningCorePage($isDraftFilter: Sanity_DocumentFilter) {
   allPlanningCorePage(
     sort: { _updatedAt: DESC }
     limit: 1
-    where: {  _: $isDraftFilter, _id: { matches: "*planningCorePage" } }
+    where: { _: $isDraftFilter, _id: { matches: "*planningCorePage" } }
   ) {
     id: _id
     title
     heading
     summaryPortableText: summaryRaw
+    summaryCardImage {
+      ...Image
+    }
     lessonElements {
       _type
       introQuiz {

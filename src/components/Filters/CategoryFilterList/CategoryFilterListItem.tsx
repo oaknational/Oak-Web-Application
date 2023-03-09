@@ -54,7 +54,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         }}
       >
         <Icon
-          name="ArrowRight"
+          name="arrow-right"
           size={ICON_SIZE}
           $mr={ICON_MARGIN_RIGHT}
           $opacity={arrowHidden ? 0 : 1}

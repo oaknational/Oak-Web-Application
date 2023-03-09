@@ -105,13 +105,13 @@ const SearchForm: FC = () => {
             onChange={onTextChange}
             placeholder="Search"
           />
-          <InputFocusUnderline aria-hidden="true" name={"Underline1"} />
+          <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
           <ButtonBorders background={"white"} />
         </InputFieldWrap>
       </Flex>
       <IconButton
         onClick={handleSubmit}
-        icon="Go"
+        icon="go"
         aria-label="Submit"
         htmlButtonProps={{ type: "submit" }}
         size={"large"}

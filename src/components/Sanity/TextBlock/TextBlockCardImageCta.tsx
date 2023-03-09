@@ -44,7 +44,7 @@ const TextBlockCardImageCta: FC<
         $ph={[16, 0]}
         {...imageContainerProps}
       >
-        <CardImage imageSrc={image.imageSrc} alt={image.alt} />
+        <CardImage {...image} />
       </Flex>
       <Flex $flexDirection={"column"} $font={["body-2", "body-1"]}>
         <Heading $mb={32} $font={["heading-5", "heading-4"]} tag={"h2"}>
@@ -58,7 +58,7 @@ const TextBlockCardImageCta: FC<
               href={getCTAHref(cta)}
               page={null}
               label={cta.label}
-              icon={"ArrowRight"}
+              icon={"arrow-right"}
               $iconPosition={"trailing"}
               // @TODO: This link is dynamic, not always a support link
               // so we may not always want to open it in a new tab

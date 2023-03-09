@@ -85,6 +85,7 @@ const teachersKeyStageSubjectsData = z.object({
       keyStageSlug: z.string(),
       keyStageTitle: z.string(),
       unitCount: z.number().nullable(),
+      activeUnitCount: z.number().nullable(),
       lessonCount: z.number().nullable(),
       tierCount: z.number().nullable(),
     })
@@ -124,6 +125,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       slug: z.string(),
       title: z.string(),
       unitCount: z.number().nullable(),
+      lessonCount: z.number().nullable(),
     })
   ),
   units: z.array(
@@ -140,6 +142,8 @@ const teachersKeyStageSubjectUnitsData = z.object({
       quizCount: z.number().nullable(),
       unitStudyOrder: z.number(),
       year: z.string(),
+      expired: z.boolean().nullable(),
+      expiredLessonCount: z.number().nullable(),
     })
   ),
   learningThemes: z.array(
@@ -176,6 +180,7 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   unitTitle: z.string(),
   lessons: z.array(
     z.object({
+      expired: z.boolean().nullable(),
       slug: z.string(),
       title: z.string(),
       description: z.string(),
@@ -245,6 +250,8 @@ const teachersLessonOverviewPaths = z.object({
 const teachersLessonOverviewData = z.object({
   slug: z.string(),
   title: z.string(),
+  unitTitle: z.string(),
+  unitSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
@@ -271,7 +278,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
     z.object({
       exists: z.boolean(),
       type: z.enum([
-        "slideDeck",
+        "presentation",
         "intro-quiz-questions",
         "intro-quiz-answers",
         "exit-quiz-questions",
@@ -424,7 +431,6 @@ const curriculumApi = {
       units,
       learningThemes,
     } = transformMVCase(res);
-
     const getFirstResult = getFirstResultOrWarnOrFail();
 
     const keyStage = getFirstResult({ results: keyStages });

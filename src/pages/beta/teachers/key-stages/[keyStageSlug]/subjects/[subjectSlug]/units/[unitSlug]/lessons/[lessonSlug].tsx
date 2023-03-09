@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -16,7 +15,7 @@ import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
 import {
   Heading,
@@ -35,16 +34,55 @@ import OverviewVideo from "../../../../../../../../../../components/pages/Teache
 import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
 import QuizContainer from "../../../../../../../../../../components/QuizContainer";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "../../../../../../../../../../components/Breadcrumbs";
+import Box from "../../../../../../../../../../components/Box";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
 };
 
+// Array to be used in downlaods as well to avoid duplication
+export const lessonBreadcrumbArray = (
+  keyStageTitle: string,
+  keyStageSlug: string,
+  subjectSlug: string,
+  subjectTitle: string,
+  unitSlug: string,
+  unitTitle: string
+): Breadcrumb[] => {
+  return [
+    { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+    {
+      oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+      label: keyStageTitle,
+    },
+    {
+      oakLinkProps: {
+        page: "unit-index",
+        keyStage: keyStageSlug,
+        subject: subjectSlug,
+      },
+      label: subjectTitle,
+    },
+    {
+      oakLinkProps: {
+        page: "lesson-index",
+        slug: unitSlug,
+        keyStage: keyStageSlug,
+        subject: subjectSlug,
+      },
+      label: unitTitle,
+    },
+  ];
+};
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
   const {
     title,
+    slug,
     keyStageTitle,
     keyStageSlug,
     coreContent,
@@ -64,17 +102,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     exitQuiz,
     introQuizInfo,
     exitQuizInfo,
+    unitTitle,
+    unitSlug,
   } = curriculumData;
-
-  const router = useRouter();
-  const { lessonSlug, unitSlug } = router.query;
 
   const downLoadLink = resolveOakHref({
     page: "downloads",
     keyStage: keyStageSlug,
     subject: subjectSlug,
     unit: `${unitSlug}`,
-    slug: `${lessonSlug}`,
+    slug: `${slug}`,
   });
 
   return (
@@ -85,7 +122,34 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       })}
     >
       <MaxWidth $ph={16}>
-        <Flex $mb={36} $display={"inline-flex"} $mt={50}>
+        <Box $mv={[24, 48]}>
+          {" "}
+          <Breadcrumbs
+            breadcrumbs={[
+              ...lessonBreadcrumbArray(
+                keyStageTitle,
+                keyStageSlug,
+                subjectSlug,
+                subjectTitle,
+                unitSlug,
+                unitTitle
+              ),
+              {
+                oakLinkProps: {
+                  page: "lesson-overview",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                  unit: unitSlug,
+                  slug: slug,
+                },
+                label: title,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
+
+        <Flex $mb={36} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
             keyStage={keyStageTitle}
@@ -93,7 +157,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             subject={subjectTitle}
             subjectSlug={subjectSlug}
             title={title}
-            iconName={"Rocket"}
           />
         </Flex>
         <Flex $flexDirection="column">
@@ -117,7 +180,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           {hasDownloadableResources && (
             <ButtonAsLink
               $mr={24}
-              icon="Save"
+              icon="save"
               iconBackground="teachersHighlight"
               label="All lesson resources"
               href={downLoadLink}
@@ -133,7 +196,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           todo
            <Button
             $mr={24}
-            icon="SendToPupil"
+            icon="send"
             iconBackground="teachersHighlight"
             label="Send to pupil"
             onClick={() => null}
@@ -207,17 +270,17 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Grid $rg={32} $cg={32} $mv={16}>
           <LessonHelper
             helperTitle={"Equipment required"}
-            helperIcon={"EquipmentRequired"}
+            helperIcon={"equipment-required"}
             helperDescription={equipmentRequired}
           />
           <LessonHelper
             helperTitle={"Supervision level"}
-            helperIcon={"SupervisionLevel"}
+            helperIcon={"supervision-level"}
             helperDescription={supervisionLevel}
           />
           <LessonHelper
             helperTitle={"Content guidance"}
-            helperIcon={"ContentGuidance"}
+            helperIcon={"content-guidance"}
             helperDescription={contentGuidance}
           />
         </Grid>
@@ -278,6 +341,9 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
+
+  console.log(results.props.curriculumData.title, "getStaticProps");
+
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;
 };

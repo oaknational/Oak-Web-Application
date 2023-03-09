@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 
 export const contactPageSchema = z
@@ -8,6 +8,7 @@ export const contactPageSchema = z
     title: z.string(),
     heading: z.string(),
     summaryPortableText: portableTextSchema,
+    summaryCardImage: imageSchema.nullish(),
     bodyPortableText: portableTextSchema,
     seo: seoSchema.nullish(),
   })

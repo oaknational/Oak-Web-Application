@@ -4,7 +4,7 @@ import { OakColorName } from "../../styles/theme";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
 import Svg from "../Svg";
 
-export const IconFocusUnderline = styled(Svg).attrs({ name: "Underline1" })<{
+export const IconFocusUnderline = styled(Svg).attrs({ name: "underline-1" })<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};

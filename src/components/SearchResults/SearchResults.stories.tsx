@@ -30,6 +30,7 @@ SearchResults.args = {
         year_slug: "year-10",
         is_specialist: false,
         is_sensitive: false,
+        expired: false,
       },
     },
     {
@@ -51,6 +52,7 @@ SearchResults.args = {
         year_slug: "year-10",
         is_sensitive: false,
         is_specialist: null,
+        expired: false,
       },
     },
   ],

@@ -108,14 +108,14 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               $zIndex={"neutral"}
             >
               <Svg
-                name="LoopingLine"
+                name="looping-line-1"
                 $display={["none", "block"]}
                 $color={"pupilsPink"}
                 $zIndex={"behind"}
                 $cover
               />
               <Svg
-                name="LoopingLine2"
+                name="looping-line-2"
                 $display={["block", "none"]}
                 $color={"pupilsPink"}
                 $zIndex={"behind"}
@@ -124,7 +124,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               <Box $position={"fixed"} $top={20} $right={16}>
                 <IconButton
                   aria-label="Close Menu"
-                  icon={"Cross"}
+                  icon={"cross"}
                   variant={"minimal"}
                   size={"large"}
                   onClick={closeMenu}

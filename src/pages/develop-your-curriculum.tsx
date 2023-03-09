@@ -10,7 +10,6 @@ import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
 import { Heading, P } from "../components/Typography";
 import Flex from "../components/Flex";
-import CardImage from "../components/Card/CardComponents/CardImage";
 import Typography from "../components/Typography/Typography";
 import Card from "../components/Card";
 import Box from "../components/Box";
@@ -22,7 +21,8 @@ import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Cover from "../components/Cover";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
-import OakImage from "../components/OakImage";
+import Illustration from "../components/Illustration";
+import { getSizes } from "../components/CMSImage/getSizes";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -38,15 +38,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-          imageProps={{
-            src: "/images/illustrations/curriculum-371.png",
-            alt: "Develop Your Curriculum illustration",
-          }}
-        />
+        <SummaryCard {...pageData} />
         <Card
           $alignItems={["center", "flex-start"]}
           $mt={[56, 64]}
@@ -63,15 +55,17 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
               <PortableText value={pageData.info.bodyPortableText} />
             </Typography>
             <Flex
+              $position="relative"
               $alignItems={"center"}
               $justifyContent={"center"}
               $minWidth={"50%"}
               $pb={[48, 0]}
+              $ph={32}
             >
-              <CardImage
-                alt={"curriculum design illustration"}
-                imageSrc={"/images/illustrations/curriculum-design-800.png"}
-                position={"center center"}
+              <Illustration
+                sizes={getSizes([500, 800])}
+                slug="jigsaw-desk"
+                $maxWidth={480}
               />
             </Flex>
           </Flex>
@@ -177,13 +171,12 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             $mr={[0, 64]}
           >
             <Cover>
-              <OakImage
+              <Illustration
+                sizes={getSizes([500, 800])}
+                slug="curriculum-approach"
                 $objectFit="contain"
                 $objectPosition={"center"}
-                aria-hidden={true}
                 fill
-                alt={"curriculum design illustration"}
-                src={"/images/illustrations/curriculum-approach.svg"}
               />
             </Cover>
           </Flex>
@@ -202,7 +195,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
                   page="teachers-oak-curriculum"
-                  icon={"ArrowRight"}
+                  icon={"arrow-right"}
                   label={pageData.ourApproach.cta?.label}
                 />
               </Flex>

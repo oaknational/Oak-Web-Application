@@ -70,11 +70,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
-        <SummaryCard
-          title={pageData.title}
-          heading={pageData.heading}
-          summary={pageData.summaryPortableText}
-        />
+        <SummaryCard {...pageData} />
         <Card
           $justifyContent={"space-between"}
           $background={"twilight"}

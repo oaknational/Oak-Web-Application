@@ -9,13 +9,25 @@ import type { CheckboxVariant } from "./Checkbox";
 
 type VisualCheckboxProps = {
   checked: boolean;
+  hasError?: boolean;
   variant?: CheckboxVariant;
 };
 
 type VisualCheckboxWrapper = {
   checked: boolean;
+  hasError?: boolean;
   variant?: CheckboxVariant;
 } & PositionProps;
+
+const getBorderColor = (props: VisualCheckboxProps) => {
+  if (props.hasError) {
+    return getColorByName("failure");
+  } else if (props.checked) {
+    return getColorByName("teachersHighlight");
+  } else {
+    return getColorByName("oakGrey3");
+  }
+};
 
 const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   position: ${(props) =>
@@ -31,10 +43,7 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   border-style: solid;
   border-width: 2px;
   border-radius: 2px;
-  border-color: ${(props) =>
-    props.checked
-      ? getColorByName("teachersHighlight")
-      : getColorByName("oakGrey3")};
+  border-color: ${(props) => getBorderColor(props)};
   background-color: ${(props) =>
     props.checked
       ? getColorByName("teachersHighlight")
@@ -48,10 +57,11 @@ const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
       checked={props.checked}
       variant={props.variant}
       data-testid="visual-checkbox"
+      hasError={props.hasError}
     >
       {props.checked && (
         <Icon
-          name={"Tick"}
+          name={"tick"}
           $color={"white"}
           size={20}
           data-testid="tick-icon"

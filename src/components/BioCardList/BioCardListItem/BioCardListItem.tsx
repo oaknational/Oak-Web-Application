@@ -64,7 +64,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             label="See bio"
             labelSuffixA11y={`for ${name}`}
             variant="minimal"
-            icon="ArrowRight"
+            icon="arrow-right"
             $iconPosition="trailing"
             iconBackground="teachersHighlight"
             $ml="auto"

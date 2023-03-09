@@ -41,7 +41,7 @@ const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
         $ph={0}
         {...buttonProps}
         variant={"minimal"}
-        icon={"ArrowRight"}
+        icon={"arrow-right"}
         $iconPosition={"trailing"}
         iconBackground="black"
       />

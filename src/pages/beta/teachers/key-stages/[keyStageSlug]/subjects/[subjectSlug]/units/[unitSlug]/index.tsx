@@ -7,17 +7,19 @@ import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
 import curriculumApi, {
   TeachersKeyStageSubjectUnitsLessonsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
-import TitleCard from "../../../../../../../../../components/Card/TitleCard";
+import TitleCard from "../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import usePagination from "../../../../../../../../../components/Pagination/usePagination";
 import Box from "../../../../../../../../../components/Box";
 import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
-
+import Breadcrumbs from "../../../../../../../../../components/Breadcrumbs";
+import CurriculumDownloadButton from "../../../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
 
 const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
   const {
+    unitSlug,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -43,6 +45,38 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
       $background="white"
     >
       <MaxWidth $ph={16}>
+        <Box $mv={[24, 48]}>
+          <Breadcrumbs
+            breadcrumbs={[
+              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+              {
+                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                label: keyStageTitle,
+              },
+              {
+                oakLinkProps: {
+                  page: "unit-index",
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
+                label: subjectTitle,
+              },
+
+              {
+                oakLinkProps: {
+                  page: "lesson-index",
+                  slug: unitSlug,
+                  keyStage: keyStageSlug,
+                  subject: subjectSlug,
+                },
+
+                label: unitTitle,
+                disabled: true,
+              },
+            ]}
+          />
+        </Box>
+
         <TitleCard
           page={"lessons"}
           keyStage={keyStageTitle}
@@ -50,11 +84,17 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           subjectSlug={subjectSlug}
           subject={subjectTitle}
           title={unitTitle}
-          iconName={"Rocket"}
-          $mt={48}
+          $mt={0}
           $mb={24}
           $alignSelf={"flex-start"}
         />
+
+        <CurriculumDownloadButton
+          keyStage={keyStageSlug}
+          subject={subjectSlug}
+          lessonPage={true}
+        />
+
         <Box $mt={56}>
           <LessonList
             {...curriculumData}

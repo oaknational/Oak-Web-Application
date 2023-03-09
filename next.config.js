@@ -5,6 +5,9 @@ const {
   BugsnagSourceMapUploaderPlugin,
 } = require("webpack-bugsnag-plugins");
 const { PHASE_TEST, PHASE_PRODUCTION_BUILD } = require("next/constants");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYSE_BUNDLE === "on",
+});
 
 const {
   getAppVersion,
@@ -145,16 +148,7 @@ module.exports = async (phase) => {
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
       // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
       unoptimized: isStaticBuild,
-
       domains: imageDomains,
-      /**
-       * deviceSizes
-       * @see https://github.com/vercel/next.js/issues/18413#issuecomment-775591999
-       */
-      deviceSizes: [
-        16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920,
-        2048, 3840,
-      ],
     },
   };
 
@@ -199,5 +193,5 @@ module.exports = async (phase) => {
     throw err;
   }
 
-  return nextConfig;
+  return withBundleAnalyzer(nextConfig);
 };

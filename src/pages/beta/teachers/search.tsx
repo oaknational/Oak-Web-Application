@@ -30,6 +30,7 @@ interface CommonProps {
   is_specialist: boolean | null;
   is_sensitive: boolean;
   theme_title: string;
+  expired: boolean | null;
 }
 
 type LessonSource = {
@@ -135,8 +136,8 @@ const Search = () => {
               <MobileFilters
                 label="Filters"
                 labelOpened="Close"
-                iconOpened="Cross"
-                iconClosed="Hamburger"
+                iconOpened="cross"
+                iconClosed="hamburger"
               >
                 <SearchFilters />
               </MobileFilters>
