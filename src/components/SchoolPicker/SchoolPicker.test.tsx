@@ -68,6 +68,7 @@ describe("search autocomplete", () => {
   it("renders a SearchAutocomplete", () => {
     renderWithTheme(
       <SchoolPicker
+        hasError={false}
         schools={[]}
         setInputValue={setInputValue}
         inputValue={"Dor"}
@@ -87,6 +88,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -115,6 +117,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -130,12 +133,60 @@ describe("search autocomplete", () => {
     expect(getByText("School picker")).toBeInTheDocument();
   });
 
+  it("renders a label with red background if validation hasError", async () => {
+    const Wrapper = () => {
+      const [inputValue, setInputValue] = useState("");
+      const [, setSelectedValue] = useState<Key | undefined>("");
+      return (
+        <SchoolPicker
+          hasError={true}
+          schools={items}
+          defaultSchools={items}
+          setInputValue={setInputValue}
+          inputValue={inputValue}
+          label={"School picker"}
+          setSelectedValue={setSelectedValue}
+        />
+      );
+    };
+
+    const { getByText } = renderWithTheme(<Wrapper />);
+
+    expect(getByText("School picker")).toHaveStyle(
+      `background: rgb(229, 29, 77) `
+    );
+  });
+
+  it("renders a label with '*' if required prop is passed", async () => {
+    const Wrapper = () => {
+      const [inputValue, setInputValue] = useState("");
+      const [, setSelectedValue] = useState<Key | undefined>("");
+      return (
+        <SchoolPicker
+          hasError={true}
+          schools={items}
+          defaultSchools={items}
+          setInputValue={setInputValue}
+          inputValue={inputValue}
+          label={"School picker"}
+          setSelectedValue={setSelectedValue}
+          required={true}
+        />
+      );
+    };
+
+    const { getByText } = renderWithTheme(<Wrapper />);
+
+    expect(getByText("School picker *")).toBeInTheDocument();
+  });
+
   it("renders a listbox of items", async () => {
     const Wrapper = () => {
       const [inputValue, setInputValue] = useState("dorothy");
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}
@@ -164,6 +215,7 @@ describe("search autocomplete", () => {
       const [, setSelectedValue] = useState<Key | undefined>("");
       return (
         <SchoolPicker
+          hasError={false}
           schools={items}
           defaultSchools={items}
           setInputValue={setInputValue}

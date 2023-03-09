@@ -80,7 +80,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitSlug,
     unitTitle,
   } = curriculumData;
-
   const [selectedRadio, setSelectedRadio] = useState("");
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
@@ -217,11 +216,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
+            hasError={false}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}
-            label={"Name of school:"}
+            label={"Name of school"}
             setSelectedValue={setSelectedValue}
+            required={true}
           />
           <Box $mt={12} $ml={24} $mb={32}>
             <P $mb={12} $font={"body-2"}>
@@ -229,6 +230,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             </P>
             <Flex>
               <RadioGroup
+                validationState={"valid"}
+                errorMessage={
+                  "Please select/search a school or an option from above"
+                }
                 aria-label={"home school or my school isn't listed"}
                 value={selectedRadio}
                 onChange={onRadioChange}
@@ -251,7 +256,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           </Heading>
           <Input
             id={"email"}
-            label="Email address:"
+            label="Email address"
             placeholder="Enter email address here"
             {...register("email")}
             error={errors.email?.message}
