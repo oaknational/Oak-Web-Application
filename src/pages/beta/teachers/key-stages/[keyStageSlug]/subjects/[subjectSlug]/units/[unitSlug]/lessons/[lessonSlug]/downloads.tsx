@@ -26,6 +26,7 @@ import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
+import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import type {
   ResourcesToDownloadArrayType,
@@ -45,22 +46,30 @@ export type LessonDownloadsPageProps = {
 };
 
 const schema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address",
-  }),
-  // .optional()
-  // .or(z.literal("")),
+  email: z
+    .string()
+    .email({
+      message: "Please enter a valid email address",
+    })
+    .optional()
+    .or(z.literal("")),
   terms: z.literal(true, {
     errorMap: () => ({
       message: "You must accept our terms of use to download the content",
     }),
   }),
-  school: z.literal(true, {
-    errorMap: () => ({
-      message: "Please select a school",
-    }),
-  }),
-  downloads: z.array(z.string()),
+  // school: z.literal(true, {
+  //   errorMap: () => ({
+  //     message: "Please select a school",
+  //   }),
+  // }),
+  downloads: z
+    .array(z.string(), {
+      errorMap: () => ({
+        message: "Pick at least one resource",
+      }),
+    })
+    .min(1),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -110,8 +119,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     });
 
   const { errors } = formState;
+  const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = watch().downloads || [];
 
+  const [formErrorMessage, setFormErrorMessage] = useState("");
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -147,12 +158,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
-  const onFormSubmit = async (data, e) => {
-    console.log(data, e);
+  const onFormSubmit = async (data) => {
+    console.log(data);
+
     await debouncedDownloadResources();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
-  const onFormError = (errors, e) => console.log(errors, e);
+
+  const onFormError = (errors) => {
+    setFormErrorMessage(getDownloadFormErrorMessage(errors));
+    // console.log(">> errors:", errors);
+  };
 
   useDownloadExistenceCheck({
     lessonSlug: slug,
@@ -290,6 +306,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   onChange={onChangeHandler}
                   onBlur={onBlur}
                   id={"terms"}
+                  errorMessage={errors?.terms?.message}
                 />
               );
             }}
@@ -326,9 +343,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>
-              <P $color={"failure"} $mr={24} $font={"body-3-bold"}>
-                Error
-              </P>
+              {hasFormErrors && (
+                <P $color={"failure"} $mr={24} $font={"body-3-bold"}>
+                  {formErrorMessage}
+                </P>
+              )}
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
@@ -341,16 +360,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               <Button
                 label={"Download .zip"}
                 onClick={handleSubmit(onFormSubmit, onFormError)}
-                // onClick={() => {
-                //   onFormSubmit();
-                // }}
                 background={"teachersHighlight"}
                 icon="download"
                 $iconPosition="trailing"
                 iconBackground="teachersYellow"
-                disabled={
-                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
-                }
+                disabled={isAttemptingDownload}
                 $mt={8}
                 $mb={16}
                 $mr={8}
