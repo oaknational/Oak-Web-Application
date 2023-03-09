@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 
-import type { ResourcesToDownloadType } from "../downloads.types";
+import type {
+  ResourcesToDownloadArrayType,
+  DownloadResourceType,
+} from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
 type UseDownloadExistenceCheckProps = {
   lessonSlug: string;
-  resourcesToCheck: ResourcesToDownloadType;
-  onComplete: (existenceResources: ResourcesToDownloadType) => void;
+  resourcesToCheck: ResourcesToDownloadArrayType;
+  onComplete: (existenceResources: ResourcesToDownloadArrayType) => void;
 };
 
 const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
@@ -15,7 +18,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
-    const resourceTypesAsString = Object.keys(resourcesToCheck).join(",");
+    const resourceTypesAsString = resourcesToCheck.join(",");
 
     (async () => {
       if (hasCheckedFiles) {
@@ -30,18 +33,22 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           );
 
         const resourcesExistenceAsArray = resourceExistence
-          ? Object.entries(resourceExistence as ResourcesToDownloadType)
+          ? Object.entries(
+              resourceExistence as Partial<
+                Record<DownloadResourceType, boolean>
+              >
+            )
           : [];
 
         const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
-          .filter(([, value]) => value === true)
-          .map(([key]) => [key, false]);
+          .map(([key, value]) => {
+            if (value === true) return key;
+          })
+          .filter((resource) => resource !== undefined);
 
-        const filteredResourcesExistence = Object.fromEntries(
-          filteredResourcesExistenceAsArray
+        onComplete(
+          filteredResourcesExistenceAsArray as ResourcesToDownloadArrayType
         );
-
-        onComplete(filteredResourcesExistence as ResourcesToDownloadType);
       } catch (error) {
         console.log(error);
         // @todo: add Bugsnag reporting
