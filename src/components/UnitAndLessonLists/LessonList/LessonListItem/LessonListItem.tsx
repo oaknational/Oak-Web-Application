@@ -27,8 +27,8 @@ function getAvailableResourceList({
 
   if (presentationCount && !hasCopyrightMaterial) {
     resources.push({
-      titleSingular: "Slide decks",
-      titlePlural: "Slide deck",
+      titleSingular: "Slide deck",
+      titlePlural: "Slide decks",
       icon: "slide-deck",
       resourceCount: presentationCount,
     });
@@ -36,7 +36,7 @@ function getAvailableResourceList({
 
   if (worksheetCount) {
     resources.push({
-      titleSingular: "Worksheets",
+      titleSingular: "Worksheet",
       titlePlural: "Worksheets",
       icon: "worksheet",
       resourceCount: worksheetCount,
