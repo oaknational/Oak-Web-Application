@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import MuxPlayer from "@mux/mux-player-react";
+import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 
