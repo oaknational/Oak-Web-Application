@@ -53,6 +53,9 @@ export const CorrectAnswer: FC<AnswerProps> = ({
   index,
   answer,
 }) => {
+  const typeIsMatch = type === "match";
+  const typeIsCheckbox = type === "checkbox";
+  const answerIsArray = Array.isArray(answer);
   return (
     <Flex>
       {" "}
@@ -71,7 +74,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             {index + 1} -
           </Heading>
         )}
-        {type === "match" && (
+        {typeIsMatch && (
           <Flex $flexWrap={"wrap"} $alignItems={"center"}>
             {" "}
             <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
@@ -80,19 +83,19 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             <Typography $font={["body-1"]}> {choice}</Typography>
           </Flex>
         )}
-        {type === "checkbox" && !Array.isArray(answer) ? (
+        {typeIsCheckbox && !answerIsArray ? (
           <Typography $font={["body-1"]}> {choice}</Typography>
         ) : null}
-        {type === "checkbox" && Array.isArray(answer) ? (
+        {typeIsCheckbox && answerIsArray ? (
           <Typography $font={["body-1"]}>
             {" "}
             {answer[answer.indexOf(choice)]}
           </Typography>
         ) : null}
-        {type !== "match" && type !== "checkbox" && !Array.isArray(answer) ? (
+        {!typeIsMatch && !typeIsCheckbox && !answerIsArray ? (
           <Typography $font={["body-1"]}> {choice}</Typography>
         ) : null}
-        {type !== "match" && type !== "checkbox" && Array.isArray(answer) ? (
+        {!typeIsMatch && !typeIsCheckbox && answerIsArray ? (
           <Typography $font={["body-1"]}> {answer[index]}</Typography>
         ) : null}
       </Flex>
@@ -114,6 +117,14 @@ const AnswerBox: FC<{ children: ReactNode }> = ({ children }) => {
       {children}
     </Box>
   );
+};
+
+const choiceIsInAnswerArray = (
+  answer: string[],
+  choice: string,
+  type: string
+): boolean => {
+  return [...answer].indexOf(choice) >= 0 || type === "match";
 };
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
@@ -161,8 +172,10 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
         >
           {choices.map((choiceObj, index) => {
             const { choice, image } = choiceObj;
+
             if (typeof answer === "string") {
-              if (answer === choice) {
+              const correctAnswer = answer === choice;
+              if (correctAnswer) {
                 return (
                   <>
                     {image ? (
@@ -211,7 +224,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   </>
                 );
               }
-            } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
+            } else if (choiceIsInAnswerArray(answer, choice, type)) {
               return (
                 <CorrectAnswer
                   type={type}
