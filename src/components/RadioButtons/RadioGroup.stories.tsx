@@ -10,10 +10,10 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => {
+const Template: ComponentStory<typeof Component> = (args) => {
   const [selected, setSelected] = useState("");
   return (
-    <Component value={selected} onChange={setSelected}>
+    <Component value={selected} onChange={setSelected} {...args}>
       <Radio value="home">Home schooled</Radio>
       <Radio value="notListed">My school isn't listed</Radio>
     </Component>
@@ -21,3 +21,10 @@ const Template: ComponentStory<typeof Component> = () => {
 };
 
 export const RadioGroup = Template.bind({});
+
+export const RadioGroupError = Template.bind({});
+
+RadioGroupError.args = {
+  hasError: true,
+  errorMessage: "Please select/search a school or an option from above",
+};

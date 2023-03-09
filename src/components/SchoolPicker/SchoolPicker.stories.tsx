@@ -50,12 +50,13 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => {
+const Template: ComponentStory<typeof Component> = (args) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
     <Box $width={400} $height={400}>
       <Component
+        {...args}
         label={"School picker"}
         inputValue={inputValue}
         setInputValue={setInputValue}
@@ -70,3 +71,14 @@ const Template: ComponentStory<typeof Component> = () => {
 };
 
 export const SchoolPicker = Template.bind({});
+
+SchoolPicker.args = {
+  hasError: false,
+};
+
+export const SchoolPickerError = Template.bind({});
+
+SchoolPickerError.args = {
+  hasError: true,
+  required: true,
+};

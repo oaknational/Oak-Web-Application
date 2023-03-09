@@ -7,7 +7,12 @@ import TermsAndConditionsCheckbox from "./TermsAndConditionsCheckbox";
 describe("TermsAndConditionsCheckbox", () => {
   it("renders TermsAndConditionsCheckbox", () => {
     renderWithTheme(
-      <TermsAndConditionsCheckbox checked={false} onChange={jest.fn()} />
+      <TermsAndConditionsCheckbox
+        checked={false}
+        onChange={jest.fn()}
+        id={"123"}
+        name={"terms"}
+      />
     );
 
     const termsCheckbox = screen.getByTestId("termsCheckbox");
@@ -20,6 +25,8 @@ describe("TermsAndConditionsCheckbox", () => {
         checked={false}
         onChange={jest.fn()}
         errorMessage="Please select the checkbox"
+        id={"123"}
+        name={"terms"}
       />
     );
 
