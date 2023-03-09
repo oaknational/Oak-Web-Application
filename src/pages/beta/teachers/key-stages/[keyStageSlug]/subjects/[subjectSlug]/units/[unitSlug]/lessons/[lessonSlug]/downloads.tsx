@@ -348,7 +348,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           <DownloadCardGroup
             control={control}
             downloads={downloads}
-            hasError={errors?.downloads}
+            hasError={errors?.downloads ? true : false}
           />
 
           <GridArea $colSpan={[12]}>
