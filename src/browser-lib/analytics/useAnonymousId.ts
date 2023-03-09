@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
 import { LS_KEY_ANONYMOUS_ID } from "../../config/localStorageKeys";
+import useAnalytics from "../../context/Analytics/useAnalytics";
 import useLocalStorage, { parseJSON } from "../../hooks/useLocalStorage";
 import cookieOptions from "../cookie-consent/confirmic/cookieOptions";
 
@@ -88,7 +89,7 @@ const setLegacyCookieIfNotPresent = ({
        * Choosing to assert here rather than elsewhere since this code has an
        * assumed short lifetime.
        */
-      cookieOptions as Cookies.CookieAttributes 
+      cookieOptions as Cookies.CookieAttributes
     );
   }
 };
@@ -96,6 +97,7 @@ const setLegacyCookieIfNotPresent = ({
 const initialValue = getOrGenerateAnonymousId();
 
 const useAnonymousId = (): AnonymousUserId => {
+  const { identify } = useAnalytics();
   const [anonymousId, setAnonymousId] = useLocalStorage(
     LS_KEY_ANONYMOUS_ID,
     initialValue
@@ -104,11 +106,12 @@ const useAnonymousId = (): AnonymousUserId => {
   useEffect(() => {
     if (anonymousId) {
       setLegacyCookieIfNotPresent({ anonymousId });
+      identify(anonymousId, {}, ["posthog"]);
     }
     if (!anonymousId) {
       setAnonymousId(initialValue);
     }
-  }, [anonymousId, setAnonymousId]);
+  }, [anonymousId, setAnonymousId, identify]);
 
   useEffect(() => {
     // Clean up old local storage key

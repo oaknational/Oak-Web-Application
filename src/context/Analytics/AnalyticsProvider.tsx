@@ -36,7 +36,11 @@ export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
   userId: UserId,
-  properties: IdentifyProperties
+  properties: IdentifyProperties,
+  /**
+   * if services not specifed, then all services called
+   */
+  services?: ServiceType[]
 ) => void;
 
 export type TrackEventName = Extract<
@@ -162,10 +166,16 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Currently we're only sending identify calls to hubspot.
    */
   const identify: IdentifyFn = useCallback(
-    (id, props) => {
-      hubspot.identify(id, props);
+    (id, props, services) => {
+      const allServices = !services;
+      if (allServices || services?.includes("hubspot")) {
+        hubspot.identify(id, props);
+      }
+      if (allServices || services?.includes("posthog")) {
+        posthog.identify(id, props);
+      }
     },
-    [hubspot]
+    [hubspot, posthog]
   );
 
   /**
