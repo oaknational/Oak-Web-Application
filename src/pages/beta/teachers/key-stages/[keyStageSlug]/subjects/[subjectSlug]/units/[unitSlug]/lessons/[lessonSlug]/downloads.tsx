@@ -40,14 +40,17 @@ import TermsAndConditionsCheckbox from "../../../../../../../../../../../compone
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
 const schema = z.object({
-  school: z.string().min(1, { message: "Name can't be empty" }),
-  schoolRadio: z.string().min(1, "Please select an option"),
+  school: z.string().min(1, { message: "Please select a school" }),
+  schoolRadio: z
+    .string()
+    .min(1, "Please select a school or one of the alternative options"),
   email: z
     .string()
     .email({
@@ -60,15 +63,10 @@ const schema = z.object({
       message: "You must accept our terms of use to download the content",
     }),
   }),
-  // school: z.literal(true, {
-  //   errorMap: () => ({
-  //     message: "Please select a school",
-  //   }),
-  // }),
   downloads: z
     .array(z.string(), {
       errorMap: () => ({
-        message: "Pick at least one resource",
+        message: "Please select at least one lesson resource to download",
       }),
     })
     .min(1),
@@ -342,9 +340,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 />
               </Box>
             </Flex>
-            <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
+            <FieldError id={"downloads-error"}>
+              {errors?.downloads?.message}
+            </FieldError>
+            <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
           </GridArea>
-          <DownloadCardGroup control={control} downloads={downloads} />
+          <DownloadCardGroup
+            control={control}
+            downloads={downloads}
+            hasError={errors?.downloads}
+          />
 
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
