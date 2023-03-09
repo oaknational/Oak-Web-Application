@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -165,7 +165,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
 
-  const onFormError = (errors) => {
+  const onFormError = (errors: FieldErrors) => {
     setFormErrorMessage(getDownloadFormErrorMessage(errors));
     // console.log(">> errors:", errors);
   };

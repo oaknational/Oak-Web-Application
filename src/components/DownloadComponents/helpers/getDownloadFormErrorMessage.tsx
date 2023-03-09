@@ -3,15 +3,15 @@ import { FieldErrors } from "react-hook-form";
 const getDownloadFormErrorMessage = (errors: FieldErrors) => {
   let formErrorMessage = "Please";
 
-  const errorMessages = {
+  const errorMessages: Record<string, string> = {
     school: "select a school",
     email: "enter a valid email address",
     terms: "accept terms and conditions",
     downloads: "pick at least one resource",
   };
 
-  const errorMessagesArray = Object.keys(errors).map((errorKey: string) =>
-    errorMessages[errorKey] ? errorMessages[errorKey] : ""
+  const errorMessagesArray = Object.keys(errors).map(
+    (errorKey: string) => errorMessages[errorKey]
   );
 
   const errorCount = errorMessagesArray?.length;
