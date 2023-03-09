@@ -94,7 +94,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       setValue("school", "");
     }
     setSelectedRadio(e);
-    setValue("schoolRadio", e.toString());
+    setValue("schoolRadio", e);
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
@@ -106,12 +106,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setValue("school", value.toString());
   };
 
-  const { register, formState, setValue, watch, control } = useForm<DownloadFormProps>(
-    {
+  const { register, formState, setValue, watch, control } =
+    useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
-    }
-  );
+    });
 
   const { errors } = formState;
   const selectedResources = watch().downloads || [];
