@@ -54,9 +54,13 @@ const schema = z.object({
       }),
     })
     .min(1, "Please select a school or one of the alternative options"),
-  email: z.string().email({
-    message: "Please enter a valid email address",
-  }),
+  email: z
+    .string()
+    .email({
+      message: "Please enter a valid email address",
+    })
+    .optional()
+    .or(z.literal("")),
   terms: z.literal(true, {
     errorMap: () => ({
       message: "You must accept our terms of use to download the content",

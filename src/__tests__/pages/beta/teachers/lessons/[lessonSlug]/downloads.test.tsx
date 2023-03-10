@@ -162,7 +162,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       await waitForNextTick();
 
       const description = computeAccessibleDescription(input);
-      expect(description).toBe("Please enter a valid email address");
+      expect(description).toBe("");
     });
   });
 
