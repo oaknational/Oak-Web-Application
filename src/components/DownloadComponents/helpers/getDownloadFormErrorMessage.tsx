@@ -2,7 +2,7 @@ const getDownloadFormErrorMessage = (errorsArray: string[]) => {
   let formErrorMessage = "Please";
 
   const errorMessages: Record<string, string> = {
-    school: "select a school",
+    schoolRadio: "select a school, or one of the alternative options",
     email: "enter a valid email address",
     terms: "accept terms and conditions",
     downloads: "pick at least one resource",

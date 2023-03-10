@@ -47,17 +47,16 @@ export type LessonDownloadsPageProps = {
 };
 
 const schema = z.object({
-  school: z.string().min(1, { message: "Please select a school" }),
   schoolRadio: z
-    .string()
-    .min(1, "Please select a school or one of the alternative options"),
-  email: z
-    .string()
-    .email({
-      message: "Please enter a valid email address",
+    .string({
+      errorMap: () => ({
+        message: "Please select a school or one of the alternative options",
+      }),
     })
-    .optional()
-    .or(z.literal("")),
+    .min(1, "Please select a school or one of the alternative options"),
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
   terms: z.literal(true, {
     errorMap: () => ({
       message: "You must accept our terms of use to download the content",
@@ -78,7 +77,6 @@ export type DownloadFormProps = {
   email: string;
   terms: boolean;
   schoolRadio: string;
-  school: string;
   downloads: DownloadResourceType[];
 };
 
@@ -103,19 +101,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const onRadioChange = (e: string) => {
     if (selectedValue) {
       setInputValue("");
-      setValue("school", "");
     }
     setSelectedRadio(e);
-    setValue("schoolRadio", e);
+    setValue("schoolRadio", e, { shouldValidate: true });
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (selectedRadio && selectedValue) {
       setSelectedRadio("");
-      setValue("schoolRadio", "");
     }
     setInputValue(value);
-    setValue("school", value.toString());
+    setValue("schoolRadio", value.toString(), { shouldValidate: true });
   };
 
   const { register, formState, control, watch, setValue, handleSubmit } =
@@ -243,7 +239,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
-            hasError={false}
+            hasError={errors.schoolRadio !== undefined}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}
@@ -258,12 +254,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <Flex>
               <RadioGroup
                 validationState={"valid"}
-                errorMessage={
-                  "Please select/search a school or an option from above"
-                }
+                errorMessage={errors.schoolRadio?.message}
                 aria-label={"home school or my school isn't listed"}
                 value={selectedRadio}
                 onChange={onRadioChange}
+                hasError={errors.schoolRadio !== undefined}
               >
                 <Radio data-testid={"radio-download"} value={"homeschool"}>
                   Homeschool

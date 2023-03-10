@@ -16,19 +16,12 @@ export const RadioContext = createContext<RadioGroupState | null>(null);
 const RadioGroup: FC<
   AriaRadioGroupProps & { children: React.ReactNode; hasError?: boolean }
 > = (props) => {
-  const {
-    children,
-    label,
-    description,
-    errorMessage,
-    hasError = false,
-  } = props;
+  const { children, label, description, errorMessage, hasError } = props;
   const state = useRadioGroupState(props);
   const { radioGroupProps, labelProps, descriptionProps, errorMessageProps } =
     useRadioGroup(props, state);
 
   radioGroupProps.id = useId();
-
   return (
     <div {...radioGroupProps} aria-describedby={undefined}>
       <span {...labelProps}>{label}</span>
