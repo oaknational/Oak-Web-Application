@@ -130,4 +130,13 @@ describe("QuestionListItem", () => {
 
     expect(questionItemTitle).toHaveTextContent("what is a question");
   });
+  it("renders correctly where correct answer is an array", () => {
+    testProps.answer = ["this one", "that one"];
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+    const questionItemTitle = getByTestId("title-div");
+
+    expect(questionItemTitle).toHaveTextContent("what is a question");
+  });
 });
