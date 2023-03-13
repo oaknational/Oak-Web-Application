@@ -1,3 +1,44 @@
+## [1.158.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.0...v1.158.1) (2023-03-13)
+
+# [1.158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.157.0...v1.158.0) (2023-03-13)
+
+
+### Bug Fixes
+
+* type errors on get download form error ([258e96f](https://github.com/oaknational/Oak-Web-Application/commit/258e96f2d1de223262e136c93d14e2cc3afcab74))
+
+
+### Features
+
+* 1114 add correct errors for download resources ([7dd49de](https://github.com/oaknational/Oak-Web-Application/commit/7dd49de1016b59e42108cedb397b152d8c729921))
+* 1114 add test for getDownloadFormErrorMessage ([5520fdb](https://github.com/oaknational/Oak-Web-Application/commit/5520fdbb66437096f362c1cd00a731f2199e8aab))
+* 1114 add validation to download form ([26b835f](https://github.com/oaknational/Oak-Web-Application/commit/26b835f469e1a163e3e787660eff75817769fe54))
+* 1114 amend download test ([df3d039](https://github.com/oaknational/Oak-Web-Application/commit/df3d039af06644c9d86792124d6b70b4c501e8f1))
+* 1114 error handling on downloads ([c177f06](https://github.com/oaknational/Oak-Web-Application/commit/c177f06ba6dfba6eb789a4ff744ae85912fd83d7))
+* 1114 fix type error ([25b47e0](https://github.com/oaknational/Oak-Web-Application/commit/25b47e0e6a6dc4761c550025fc8f6725de3e539e))
+* **downloads-errors:** add schoolpickerand email to error handling ([54576af](https://github.com/oaknational/Oak-Web-Application/commit/54576af5850f7cff63bbbca919be989fae15234d))
+* **downloads-errors:** empty email fix and remove comma ([2fbf6bf](https://github.com/oaknational/Oak-Web-Application/commit/2fbf6bf9c3a7b34a6d5145d59521d3ae9a3c84fe))
+* **downloads-errors:** test fix ([64eedf7](https://github.com/oaknational/Oak-Web-Application/commit/64eedf7cef0363a2f288dd906474699842a0f372))
+
+# [1.157.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.156.1...v1.157.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* **downlaods:** give school radio buttons meaningful schema name ([fafdb4f](https://github.com/oaknational/Oak-Web-Application/commit/fafdb4f64940343b7fe206c0ca37fa632b7a1df1))
+* **downlaods:** merge commit ([b469620](https://github.com/oaknational/Oak-Web-Application/commit/b469620e418eeb3e7b6912221ee3e08230f61ed1))
+* **downlaods:** styling ([6304431](https://github.com/oaknational/Oak-Web-Application/commit/63044310c36da74dcfc528c395c78cf5e5e2b326))
+* **questions:** remove unnecessary tostring method ([5f91831](https://github.com/oaknational/Oak-Web-Application/commit/5f91831c323965062570f55d58dce1c337e20614))
+
+
+### Features
+
+* **downlaods:** merge ([1ad2947](https://github.com/oaknational/Oak-Web-Application/commit/1ad29473ab36e5782a9269218f2fe7b77a4b72f0))
+* **downlaods:** update options and schoolpicker valuewith setValue ([cc98bb2](https://github.com/oaknational/Oak-Web-Application/commit/cc98bb2eeec67093c8c362fb20be55d21e9c4ce0))
+* **downloads:** add react-hook-form to radio buttons on downloads page ([dedb3df](https://github.com/oaknational/Oak-Web-Application/commit/dedb3df7afdcc1006d2107f799af07e999cc14cd))
+
+## [1.156.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.156.0...v1.156.1) (2023-03-09)
+
 # [1.156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.155.0...v1.156.0) (2023-03-09)
 
 

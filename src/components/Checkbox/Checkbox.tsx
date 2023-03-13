@@ -37,6 +37,7 @@ export type CheckboxProps = {
   variant?: CheckboxVariant;
   inputRef?: RefCallBack;
   onBlur?: () => void;
+  hasError?: boolean;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -156,6 +157,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
       ariaLabel,
       required = false,
       error,
+      hasError = false,
       children,
       variant,
       inputRef,
@@ -172,7 +174,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           checked={checked}
           disabled={disabled}
           variant={variant}
-          hasError={Boolean(error)}
+          hasError={hasError}
           {...spacingProps}
         >
           <ScreenReaderCheckbox
@@ -185,7 +187,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
             disabled={disabled}
             aria-label={ariaLabel ? ariaLabel : labelText}
             required={required}
-            aria-invalid={Boolean(error)}
+            aria-invalid={hasError}
             aria-describedby={error ? errorId : undefined}
             ref={inputRef}
             onBlur={onBlur}
@@ -193,7 +195,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           <VisualCheckbox
             checked={checked}
             variant={variant}
-            hasError={Boolean(error)}
+            hasError={hasError}
           />
           {/* card checkbox */}
           {!labelText && variant === "cardCheckbox" && children}
