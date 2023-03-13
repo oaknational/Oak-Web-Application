@@ -15,6 +15,7 @@ export type DownloadCardProps = CheckboxProps & {
   label: string;
   resourceType: DownloadResourceType;
   extension: string;
+  hasError?: boolean;
 };
 
 type DownloadCardLabelProps = DownloadCardProps & {
@@ -81,7 +82,15 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, name, label, onBlur } = props;
+  const {
+    checked = false,
+    onChange,
+    id,
+    name,
+    label,
+    onBlur,
+    hasError = false,
+  } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
@@ -95,6 +104,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         variant={"cardCheckbox"}
         ariaLabel={label}
         onBlur={onBlur}
+        hasError={hasError}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>
