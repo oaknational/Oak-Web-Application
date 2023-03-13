@@ -48,3 +48,9 @@ jest.mock("posthog-js", () => ({
     capture: jest.fn(),
   },
 }));
+
+jest.mock("@mux/mux-player-react/lazy", () => ({
+  __esModule: true,
+  // noop component
+  default: () => null,
+}));

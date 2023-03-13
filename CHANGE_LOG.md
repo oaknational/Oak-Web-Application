@@ -1,3 +1,32 @@
+# [1.159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.1...v1.159.0) (2023-03-13)
+
+
+### Features
+
+* lazily load mux player to save on blocking js ([eb82e12](https://github.com/oaknational/Oak-Web-Application/commit/eb82e1279738df699614603297f9477e326c2918))
+
+## [1.158.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.0...v1.158.1) (2023-03-13)
+
+# [1.158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.157.0...v1.158.0) (2023-03-13)
+
+
+### Bug Fixes
+
+* type errors on get download form error ([258e96f](https://github.com/oaknational/Oak-Web-Application/commit/258e96f2d1de223262e136c93d14e2cc3afcab74))
+
+
+### Features
+
+* 1114 add correct errors for download resources ([7dd49de](https://github.com/oaknational/Oak-Web-Application/commit/7dd49de1016b59e42108cedb397b152d8c729921))
+* 1114 add test for getDownloadFormErrorMessage ([5520fdb](https://github.com/oaknational/Oak-Web-Application/commit/5520fdbb66437096f362c1cd00a731f2199e8aab))
+* 1114 add validation to download form ([26b835f](https://github.com/oaknational/Oak-Web-Application/commit/26b835f469e1a163e3e787660eff75817769fe54))
+* 1114 amend download test ([df3d039](https://github.com/oaknational/Oak-Web-Application/commit/df3d039af06644c9d86792124d6b70b4c501e8f1))
+* 1114 error handling on downloads ([c177f06](https://github.com/oaknational/Oak-Web-Application/commit/c177f06ba6dfba6eb789a4ff744ae85912fd83d7))
+* 1114 fix type error ([25b47e0](https://github.com/oaknational/Oak-Web-Application/commit/25b47e0e6a6dc4761c550025fc8f6725de3e539e))
+* **downloads-errors:** add schoolpickerand email to error handling ([54576af](https://github.com/oaknational/Oak-Web-Application/commit/54576af5850f7cff63bbbca919be989fae15234d))
+* **downloads-errors:** empty email fix and remove comma ([2fbf6bf](https://github.com/oaknational/Oak-Web-Application/commit/2fbf6bf9c3a7b34a6d5145d59521d3ae9a3c84fe))
+* **downloads-errors:** test fix ([64eedf7](https://github.com/oaknational/Oak-Web-Application/commit/64eedf7cef0363a2f288dd906474699842a0f372))
+
 # [1.157.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.156.1...v1.157.0) (2023-03-09)
 
 

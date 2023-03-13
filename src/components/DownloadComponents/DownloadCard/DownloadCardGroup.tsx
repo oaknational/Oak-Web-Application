@@ -11,11 +11,13 @@ import DownloadCard from "./DownloadCard";
 type DownloadCardGroupProps = {
   downloads?: TeachersKeyStageSubjectUnitsLessonsDownloadsData["downloads"];
   control: Control<DownloadFormProps>;
+  hasError?: boolean;
 };
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
   control,
+  hasError = false,
 }) => {
   return (
     <>
@@ -57,6 +59,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                       onChange={onChangeHandler}
                       checked={fieldValue.includes(download.type)}
                       onBlur={onBlur}
+                      hasError={hasError}
                       data-testid={`download-card-${download.type}`}
                     />
                   );
