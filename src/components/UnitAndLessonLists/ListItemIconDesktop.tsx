@@ -4,14 +4,14 @@ import { OakColorName } from "../../styles/theme/types";
 import Flex from "../Flex";
 import SubjectIcon from "../SubjectIcon";
 
-export type IconDesktopProps = {
+export type ListItemIconDesktopProps = {
   title: string;
   subjectSlug: string;
   background: OakColorName;
   isHovered: boolean;
 };
 
-const IconDesktopContainer: FC<IconDesktopProps> = (props) => {
+const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
   const { background, isHovered, subjectSlug } = props;
 
   return (
@@ -29,12 +29,14 @@ const IconDesktopContainer: FC<IconDesktopProps> = (props) => {
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
-        $maxHeight={[50, 92]}
-        $maxWidth={[50, 92]}
+        height={96}
+        width={96}
+        $maxHeight={96}
+        $maxWidth={96}
         $ma={"auto"}
       />
     </Flex>
   );
 };
 
-export default IconDesktopContainer;
+export default ListItemIconDesktop;

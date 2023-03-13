@@ -12,7 +12,7 @@ import usePagination from "../../../../../../../../../components/Pagination/useP
 import Box from "../../../../../../../../../components/Box";
 import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
 import Breadcrumbs from "../../../../../../../../../components/Breadcrumbs";
-
+import CurriculumDownloadButton from "../../../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 export type LessonListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
 };
@@ -88,6 +88,13 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           $mb={24}
           $alignSelf={"flex-start"}
         />
+
+        <CurriculumDownloadButton
+          keyStage={keyStageSlug}
+          subject={subjectSlug}
+          lessonPage={true}
+        />
+
         <Box $mt={56}>
           <LessonList
             {...curriculumData}

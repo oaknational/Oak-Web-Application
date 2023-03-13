@@ -57,10 +57,6 @@ const PostListing: FC<PostListingProps> = ({
   page,
 }) => {
   const triggerId = useId();
-  const cardImage = {
-    src: "/images/illustrations/idea-explosion.png",
-    alt: "",
-  };
 
   const categoryHeading = categories.find(
     (cat) => cat.slug === categorySlug
@@ -85,7 +81,6 @@ const PostListing: FC<PostListingProps> = ({
         <SummaryCard
           {...pageData}
           heading={categoryHeading || pageData.heading}
-          imageProps={cardImage}
         />
         <MobileFilters page={page} label={"Categories"}>
           <PostCategoryList

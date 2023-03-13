@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { P } from "../Typography";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import image from "../../../public/images/books.png";
 import Flex from "../Flex";
 
 import CardTitle from "./CardComponents/CardTitle";
@@ -54,10 +53,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
 export const CardImageButton: ComponentStory<typeof Component> = (args) => (
   <div style={{ width: "300px" }}>
     <Component {...args}>
-      <CardImage
-        imageSrc={image}
-        alt="black and white photo of books stacked to show their spines"
-      />
+      <CardImage illustration="magic-carpet" />
       <Flex $pa={24} $flexDirection={"column"}>
         <CardTitle tag={"h4"}>Title</CardTitle>
         <P $font={"body-2"} $mb={24} $color={"grey6"}>
