@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -26,6 +26,7 @@ import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
+import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import type {
   ResourcesToDownloadArrayType,
@@ -39,25 +40,39 @@ import TermsAndConditionsCheckbox from "../../../../../../../../../../../compone
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
 const schema = z.object({
-  school: z.string().min(1, { message: "Name can't be empty" }),
-  schoolRadio: z.string().min(1, "Please select an option"),
+  schoolRadio: z
+    .string({
+      errorMap: () => ({
+        message: "Please select a school or one of the alternative options",
+      }),
+    })
+    .min(1, "Please select a school or one of the alternative options"),
   email: z
     .string()
     .email({
-      message: "Email not valid",
+      message: "Please enter a valid email address",
     })
     .optional()
     .or(z.literal("")),
   terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept terms and conditions" }),
+    errorMap: () => ({
+      message: "You must accept our terms of use to download the content",
+    }),
   }),
-  downloads: z.array(z.string()),
+  downloads: z
+    .array(z.string(), {
+      errorMap: () => ({
+        message: "Please select at least one lesson resource to download",
+      }),
+    })
+    .min(1),
 });
 
 type DownloadFormValues = z.infer<typeof schema>;
@@ -66,7 +81,6 @@ export type DownloadFormProps = {
   email: string;
   terms: boolean;
   schoolRadio: string;
-  school: string;
   downloads: DownloadResourceType[];
 };
 
@@ -91,30 +105,30 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const onRadioChange = (e: string) => {
     if (selectedValue) {
       setInputValue("");
-      setValue("school", "");
     }
     setSelectedRadio(e);
-    setValue("schoolRadio", e);
+    setValue("schoolRadio", e, { shouldValidate: true });
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
     if (selectedRadio && selectedValue) {
       setSelectedRadio("");
-      setValue("schoolRadio", "");
     }
     setInputValue(value);
-    setValue("school", value.toString());
+    setValue("schoolRadio", value.toString(), { shouldValidate: true });
   };
 
-  const { register, formState, setValue, watch, control } =
+  const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
 
   const { errors } = formState;
+  const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = watch().downloads || [];
 
+  const [formErrorMessage, setFormErrorMessage] = useState("");
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -153,6 +167,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const onFormSubmit = async () => {
     await debouncedDownloadResources();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
+  };
+
+  const onFormError = (errors: FieldErrors) => {
+    const errorKeyArray = Object.keys(errors);
+    setFormErrorMessage(getDownloadFormErrorMessage(errorKeyArray));
   };
 
   useDownloadExistenceCheck({
@@ -224,7 +243,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             Find your school in the field below (required)
           </Heading>
           <SchoolPicker
-            hasError={false}
+            hasError={errors.schoolRadio !== undefined}
             inputValue={inputValue}
             setInputValue={onSchoolPickerInputChange}
             schools={data}
@@ -239,12 +258,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             <Flex>
               <RadioGroup
                 validationState={"valid"}
-                errorMessage={
-                  "Please select/search a school or an option from above"
-                }
+                errorMessage={errors.schoolRadio?.message}
                 aria-label={"home school or my school isn't listed"}
                 value={selectedRadio}
                 onChange={onRadioChange}
+                hasError={errors.schoolRadio !== undefined}
               >
                 <Radio data-testid={"radio-download"} value={"homeschool"}>
                   Homeschool
@@ -291,6 +309,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   onChange={onChangeHandler}
                   onBlur={onBlur}
                   id={"terms"}
+                  errorMessage={errors?.terms?.message}
                 />
               );
             }}
@@ -320,13 +339,25 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 />
               </Box>
             </Flex>
-            <Hr $color={"oakGrey3"} $mt={[18, 30]} $mb={48} />
+            <FieldError id={"downloads-error"}>
+              {errors?.downloads?.message}
+            </FieldError>
+            <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
           </GridArea>
-          <DownloadCardGroup control={control} downloads={downloads} />
+          <DownloadCardGroup
+            control={control}
+            downloads={downloads}
+            hasError={errors?.downloads ? true : false}
+          />
 
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
             <Flex $justifyContent={"right"} $alignItems={"center"}>
+              {hasFormErrors && (
+                <P $color={"failure"} $mr={24} $font={"body-3-bold"}>
+                  {formErrorMessage}
+                </P>
+              )}
               <P
                 $color={"oakGrey4"}
                 $font={"body-2"}
@@ -338,16 +369,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
               <Button
                 label={"Download .zip"}
-                onClick={() => {
-                  onFormSubmit();
-                }}
+                onClick={handleSubmit(onFormSubmit, onFormError)}
                 background={"teachersHighlight"}
                 icon="download"
                 $iconPosition="trailing"
                 iconBackground="teachersYellow"
-                disabled={
-                  isAttemptingDownload || selectedResourcesToDownloadCount === 0
-                }
+                disabled={isAttemptingDownload}
                 $mt={8}
                 $mb={16}
                 $mr={8}
