@@ -227,18 +227,53 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
               }
             } else if (choiceIsInAnswerArray(answer, choice, type)) {
               return (
-                <CorrectAnswer
-                  type={type}
-                  choice={choice}
-                  index={index}
-                  answer={answer}
-                />
+                <>
+                  {image ? (
+                    <AnswerBox>
+                      <>
+                        <QuizImage src={image} alt={"quiz image"} />
+                        <CorrectAnswer
+                          type={type}
+                          choice={choice}
+                          index={index}
+                          answer={answer}
+                        />
+                      </>
+                    </AnswerBox>
+                  ) : (
+                    <CorrectAnswer
+                      type={type}
+                      choice={choice}
+                      index={index}
+                      answer={answer}
+                    />
+                  )}
+                </>
               );
             } else {
               return (
-                <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
-                  {choice}
-                </Typography>
+                <>
+                  {image ? (
+                    <AnswerBox>
+                      {" "}
+                      <>
+                        <QuizImage src={image} alt={"quiz image"} />
+                        <Typography
+                          $ml={40}
+                          $ph={10}
+                          $mb={6}
+                          $font={["body-1"]}
+                        >
+                          {choice}
+                        </Typography>
+                      </>
+                    </AnswerBox>
+                  ) : (
+                    <Typography $ml={40} $ph={10} $mb={6} $font={["body-1"]}>
+                      {choice}
+                    </Typography>
+                  )}
+                </>
               );
             }
           })}
