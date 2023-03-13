@@ -80,6 +80,9 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
     // @todo do we need to snakecase properties like DavidWells/analytics
     _hsq.push(["identify", { id: userId, ...properties }]);
   },
+  setAnonymousId: () => {
+    // Not implemented for hubspot
+  },
   page: (properties) => {
     const { _hsq } = getHubspot();
 

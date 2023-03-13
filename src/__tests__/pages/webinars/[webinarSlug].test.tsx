@@ -18,6 +18,7 @@ jest.mock("../../../context/Analytics/useAnalytics", () => ({
       webinarPageViewed: (...args: unknown[]) => webinarPageViewed(...args),
     },
     identify: noop,
+    posthogSetAnonymousId: noop,
   }),
 }));
 

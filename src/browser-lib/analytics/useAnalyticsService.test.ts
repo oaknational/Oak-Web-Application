@@ -15,6 +15,7 @@ const service: AnalyticsService<unknown> = {
   identify: jest.fn(),
   optOut: jest.fn(),
   optIn: jest.fn(),
+  setAnonymousId: jest.fn(),
 };
 
 describe("useAnalyticsService", () => {

@@ -16,7 +16,9 @@ const MockedAnalyticsProvider: FC<{
     return acc;
   }, {} as typeof Avo);
   return (
-    <analyticsContext.Provider value={{ track: noopTrack, identify: noop }}>
+    <analyticsContext.Provider
+      value={{ track: noopTrack, identify: noop, posthogSetAnonymousId: noop }}
+    >
       {children}
     </analyticsContext.Provider>
   );

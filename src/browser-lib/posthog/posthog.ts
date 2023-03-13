@@ -26,6 +26,14 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   identify: (userId, properties) => {
     client.identify(userId, properties);
   },
+  setAnonymousId: (id) => {
+    // the following imperative call caused an error to be thrown deep inside
+    // posthog, so instead we are props on an event capture call
+    // client.people.set("oak_anonymous_id", id);
+    client.capture("Setting oak anonymous id", {
+      $set: { oak_anonymous_id: id },
+    });
+  },
   page: () => {
     client.capture("$pageview");
   },

@@ -57,6 +57,7 @@ type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
 type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
+  posthogSetAnonymousId: (id: string) => void;
 };
 
 export type AnalyticsService<ServiceConfig> = {
@@ -66,6 +67,10 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
+  /**
+   * setAnonymousId associates
+   */
+  setAnonymousId: (id: string) => void;
   optOut: () => void;
   optIn: () => void;
 };
@@ -177,7 +182,6 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     },
     [hubspot, posthog]
   );
-
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
@@ -197,8 +201,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
+      posthogSetAnonymousId: posthog.setAnonymousId,
     };
-  }, [track, identify]);
+  }, [track, identify, posthog]);
 
   return (
     <analyticsContext.Provider value={analytics}>
