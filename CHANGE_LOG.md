@@ -1,3 +1,10 @@
+# [1.159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.1...v1.159.0) (2023-03-13)
+
+
+### Features
+
+* lazily load mux player to save on blocking js ([eb82e12](https://github.com/oaknational/Oak-Web-Application/commit/eb82e1279738df699614603297f9477e326c2918))
+
 ## [1.158.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.0...v1.158.1) (2023-03-13)
 
 # [1.158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.157.0...v1.158.0) (2023-03-13)
