@@ -105,11 +105,9 @@ const useAnonymousId = (): AnonymousUserId => {
 
   useEffect(() => {
     if (anonymousId) {
+      setAnonymousId(initialValue);
       setLegacyCookieIfNotPresent({ anonymousId });
       identify(anonymousId, {}, ["posthog"]);
-    }
-    if (!anonymousId) {
-      setAnonymousId(initialValue);
     }
   }, [anonymousId, setAnonymousId, identify]);
 
