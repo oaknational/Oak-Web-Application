@@ -7,8 +7,7 @@ import noop from "./noop";
 
 const MockedAnalyticsProvider: FC<{
   children?: React.ReactNode;
-  identify?: () => void;
-}> = ({ children, identify }) => {
+}> = ({ children }) => {
   const noopTrack = Object.entries(Avo).reduce((acc, [trackName]) => {
     // eslint-disable-next-line
     // @ts-ignore
@@ -17,9 +16,7 @@ const MockedAnalyticsProvider: FC<{
     return acc;
   }, {} as typeof Avo);
   return (
-    <analyticsContext.Provider
-      value={{ track: noopTrack, identify: identify || noop }}
-    >
+    <analyticsContext.Provider value={{ track: noopTrack, identify: noop }}>
       {children}
     </analyticsContext.Provider>
   );
