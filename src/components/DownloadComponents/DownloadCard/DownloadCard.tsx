@@ -6,7 +6,6 @@ import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import P from "../../Typography/P";
 import Flex from "../../Flex";
 import Checkbox from "../../Checkbox";
-import Box from "../../Box";
 import GraphicCircleIcon from "../../Icon/GraphicCircleIcon";
 import { IconName } from "../../Icon";
 import type { DownloadResourceType } from "../downloads.types";
@@ -96,7 +95,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
   const { hoverProps, isHovered } = useHover({});
 
   return (
-    <Box $maxWidth={200} {...hoverProps}>
+    <Flex $maxWidth={200} {...hoverProps}>
       <Checkbox
         id={id}
         name={name}
@@ -109,7 +108,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>
-    </Box>
+    </Flex>
   );
 };
 
