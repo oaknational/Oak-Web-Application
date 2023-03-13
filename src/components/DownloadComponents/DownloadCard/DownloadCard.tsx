@@ -6,19 +6,16 @@ import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import P from "../../Typography/P";
 import Flex from "../../Flex";
 import Checkbox from "../../Checkbox";
-import Box from "../../Box";
 import GraphicCircleIcon from "../../Icon/GraphicCircleIcon";
 import { IconName } from "../../Icon";
 import type { DownloadResourceType } from "../downloads.types";
+import { CheckboxProps } from "../../Checkbox/Checkbox";
 
-export type DownloadCardProps = {
-  id: string;
-  name: string;
+export type DownloadCardProps = CheckboxProps & {
   label: string;
-  checked: boolean;
-  onChange: () => void;
   resourceType: DownloadResourceType;
   extension: string;
+  hasError?: boolean;
 };
 
 type DownloadCardLabelProps = DownloadCardProps & {
@@ -85,23 +82,33 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
 );
 
 const DownloadCard: FC<DownloadCardProps> = (props) => {
-  const { checked = false, onChange, id, name, label } = props;
+  const {
+    checked = false,
+    onChange,
+    id,
+    name,
+    label,
+    onBlur,
+    hasError = false,
+  } = props;
 
   const { hoverProps, isHovered } = useHover({});
 
   return (
-    <Box $maxWidth={200} {...hoverProps}>
+    <Flex $maxWidth={200} {...hoverProps}>
       <Checkbox
         id={id}
         name={name}
         checked={checked}
-        onChange={() => onChange()}
+        onChange={onChange}
         variant={"cardCheckbox"}
         ariaLabel={label}
+        onBlur={onBlur}
+        hasError={hasError}
       >
         <DownloadCardLabel isHovered={isHovered} {...props} />
       </Checkbox>
-    </Box>
+    </Flex>
   );
 };
 

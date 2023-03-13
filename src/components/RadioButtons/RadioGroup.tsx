@@ -2,6 +2,8 @@ import React, { createContext, FC, useId } from "react";
 import { useRadioGroup, AriaRadioGroupProps } from "react-aria";
 import { RadioGroupState, useRadioGroupState } from "react-stately";
 
+import FieldError from "../FormFields/FieldError";
+
 export const RadioContext = createContext<RadioGroupState | null>(null);
 
 /**
@@ -11,16 +13,15 @@ export const RadioContext = createContext<RadioGroupState | null>(null);
  *
  * Add value={selected} onChange={setSelected} to radio group and 'Radio' component as children for each button.
  */
-const RadioGroup: FC<AriaRadioGroupProps & { children: React.ReactNode }> = (
-  props
-) => {
-  const { children, label, description, errorMessage, validationState } = props;
+const RadioGroup: FC<
+  AriaRadioGroupProps & { children: React.ReactNode; hasError?: boolean }
+> = (props) => {
+  const { children, label, description, errorMessage, hasError } = props;
   const state = useRadioGroupState(props);
   const { radioGroupProps, labelProps, descriptionProps, errorMessageProps } =
     useRadioGroup(props, state);
 
   radioGroupProps.id = useId();
-
   return (
     <div {...radioGroupProps} aria-describedby={undefined}>
       <span {...labelProps}>{label}</span>
@@ -30,10 +31,10 @@ const RadioGroup: FC<AriaRadioGroupProps & { children: React.ReactNode }> = (
           {description}
         </div>
       )}
-      {errorMessage && validationState === "invalid" && (
-        <div {...errorMessageProps} style={{ color: "red", fontSize: 12 }}>
+      {errorMessage && hasError && (
+        <FieldError id={"radio-group-error"} {...errorMessageProps}>
           {errorMessage}
-        </div>
+        </FieldError>
       )}
     </div>
   );

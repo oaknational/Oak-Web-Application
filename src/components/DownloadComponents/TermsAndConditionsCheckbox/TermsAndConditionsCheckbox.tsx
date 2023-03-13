@@ -6,10 +6,9 @@ import Checkbox from "../../Checkbox";
 import Box from "../../Box";
 import OakLink from "../../OakLink";
 import FieldError from "../../FormFields/FieldError";
+import { CheckboxProps } from "../../Checkbox/Checkbox";
 
-export type TermsAndConditionsCheckboxProps = {
-  checked: boolean;
-  onChange: () => void;
+export type TermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;
 };
 
@@ -17,6 +16,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   checked,
   onChange,
   errorMessage,
+  ...props
 }) => (
   <>
     <Box
@@ -30,14 +30,14 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
       <BrushBorders hideOnMobileH hideOnMobileV color={"pastelTurquoise"} />
       <Checkbox
         labelText={"I accept terms and conditions (required)"}
-        id={"terms"}
-        name={"termsAndConditions"}
         checked={checked}
         onChange={onChange}
         $mb={0}
         required
         error={errorMessage}
+        hasError={Boolean(errorMessage)}
         variant="terms"
+        {...props}
       />
     </Box>
     {errorMessage && (
