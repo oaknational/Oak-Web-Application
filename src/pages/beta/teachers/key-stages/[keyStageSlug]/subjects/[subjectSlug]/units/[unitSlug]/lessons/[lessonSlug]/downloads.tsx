@@ -102,6 +102,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
     useSchoolPicker();
 
+  const { register, formState, control, watch, setValue, handleSubmit } =
+    useForm<DownloadFormProps>({
+      resolver: zodResolver(schema),
+      mode: "onBlur",
+    });
+
   const onRadioChange = (e: string) => {
     if (selectedValue) {
       setInputValue("");
@@ -114,19 +120,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     if (selectedRadio && selectedValue) {
       setSelectedRadio("");
     }
-    if (value === "") {
+
+    if (value === "" && !selectedRadio) {
       setValue("schoolRadio", "", {
         shouldValidate: true,
       });
     }
     setInputValue(value);
   };
-
-  const { register, formState, control, watch, setValue, handleSubmit } =
-    useForm<DownloadFormProps>({
-      resolver: zodResolver(schema),
-      mode: "onBlur",
-    });
 
   useEffect(() => {
     if (selectedValue) {
