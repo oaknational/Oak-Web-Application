@@ -114,6 +114,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     if (selectedRadio && selectedValue) {
       setSelectedRadio("");
     }
+    if (value === "") {
+      setValue("schoolRadio", "", {
+        shouldValidate: true,
+      });
+    }
     setInputValue(value);
   };
 
