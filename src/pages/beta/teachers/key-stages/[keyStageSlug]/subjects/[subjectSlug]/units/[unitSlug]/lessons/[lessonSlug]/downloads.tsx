@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -115,7 +115,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       setSelectedRadio("");
     }
     setInputValue(value);
-    setValue("schoolRadio", value.toString(), { shouldValidate: true });
   };
 
   const { register, formState, control, watch, setValue, handleSubmit } =
@@ -123,6 +122,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
+
+  useEffect(() => {
+    if (selectedValue) {
+      setValue("schoolRadio", selectedValue.toString(), {
+        shouldValidate: true,
+      });
+    }
+  }, [selectedValue, setValue]);
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
