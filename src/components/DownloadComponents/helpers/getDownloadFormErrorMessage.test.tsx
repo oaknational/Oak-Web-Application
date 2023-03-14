@@ -1,6 +1,6 @@
-import getDownloadFormErrorMessage, {
-  ErrorKeysType,
-} from "./getDownloadFormErrorMessage";
+import type { ErrorKeysType } from "../downloads.types";
+
+import getDownloadFormErrorMessage from "./getDownloadFormErrorMessage";
 
 describe("getDownloadFormErrorMessage", () => {
   it("should return correct error message for one error", () => {

@@ -31,6 +31,7 @@ import useDownloadExistenceCheck from "../../../../../../../../../../../componen
 import type {
   ResourcesToDownloadArrayType,
   DownloadResourceType,
+  ErrorKeysType,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
 import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
@@ -169,7 +170,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   };
 
   const getFormErrorMessage = () => {
-    const errorKeyArray = Object.keys(errors);
+    const errorKeyArray: ErrorKeysType[] = Object.keys(errors);
     const errrorMessage = getDownloadFormErrorMessage(errorKeyArray);
 
     return errrorMessage;

@@ -1,4 +1,5 @@
-export type ErrorKeysType = "schoolRadio" | "email" | "terms" | "downloads";
+import type { ErrorKeysType } from "../downloads.types";
+
 type ErrorMessagesAndOrderType = {
   order: number;
   message: string;
