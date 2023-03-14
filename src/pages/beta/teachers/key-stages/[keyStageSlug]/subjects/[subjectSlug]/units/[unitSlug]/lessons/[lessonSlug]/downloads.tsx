@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
-import { Controller, FieldErrors, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
@@ -128,7 +128,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const hasFormErrors = Object.keys(errors)?.length > 0;
   const selectedResources = watch().downloads || [];
 
-  const [formErrorMessage, setFormErrorMessage] = useState("");
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
@@ -169,9 +168,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
 
-  const onFormError = (errors: FieldErrors) => {
+  const getFormErrorMessage = () => {
     const errorKeyArray = Object.keys(errors);
-    setFormErrorMessage(getDownloadFormErrorMessage(errorKeyArray));
+    const errrorMessage = getDownloadFormErrorMessage(errorKeyArray);
+
+    return errrorMessage;
   };
 
   useDownloadExistenceCheck({
@@ -352,34 +353,47 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
           <GridArea $colSpan={[12]}>
             <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
-            <Flex $justifyContent={"right"} $alignItems={"center"}>
+            <Flex
+              $flexDirection={["column", "row"]}
+              $justifyContent={"right"}
+              $alignItems={"center"}
+            >
               {hasFormErrors && (
-                <P $color={"failure"} $mr={24} $font={"body-3-bold"}>
-                  {formErrorMessage}
-                </P>
+                <Box $mr={24} $textAlign={"left"}>
+                  <FieldError
+                    id="download-form-error"
+                    variant={"large"}
+                    withoutMarginBottom
+                  >
+                    {getFormErrorMessage()}
+                  </FieldError>
+                </Box>
               )}
-              <P
-                $color={"oakGrey4"}
-                $font={"body-2"}
-                data-testid="selectedResourcesCount"
-                $mr={24}
-              >
-                {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
-              </P>
+              <Flex $justifyContent={"right"} $alignItems={"center"}>
+                <Box $minWidth={130} $mr={24}>
+                  <P
+                    $color={"oakGrey4"}
+                    $font={"body-2"}
+                    data-testid="selectedResourcesCount"
+                  >
+                    {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
+                  </P>
+                </Box>
 
-              <Button
-                label={"Download .zip"}
-                onClick={handleSubmit(onFormSubmit, onFormError)}
-                background={"teachersHighlight"}
-                icon="download"
-                $iconPosition="trailing"
-                iconBackground="teachersYellow"
-                disabled={isAttemptingDownload}
-                $mt={8}
-                $mb={16}
-                $mr={8}
-                $ml={8}
-              />
+                <Button
+                  label={"Download .zip"}
+                  onClick={handleSubmit(onFormSubmit)}
+                  background={"teachersHighlight"}
+                  icon="download"
+                  $iconPosition="trailing"
+                  iconBackground="teachersYellow"
+                  disabled={isAttemptingDownload}
+                  $mt={8}
+                  $mb={16}
+                  $mr={8}
+                  $ml={8}
+                />
+              </Flex>
             </Flex>
           </GridArea>
         </Grid>

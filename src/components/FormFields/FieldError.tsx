@@ -7,10 +7,11 @@ type FieldErrorProps = {
   id: string;
   children: ReactNode;
   withoutMarginBottom?: boolean;
+  variant?: string;
 };
 
 const FieldError = (props: FieldErrorProps) => {
-  const { id, children, withoutMarginBottom = false } = props;
+  const { id, children, withoutMarginBottom = false, variant } = props;
   if (!children) {
     /**
      * Return early to avoid unwanted whitespace when there's no error
@@ -19,7 +20,11 @@ const FieldError = (props: FieldErrorProps) => {
   }
   return (
     <Box $mt={4} $mb={withoutMarginBottom ? 0 : 24}>
-      <Span $color="failure" $font={"body-3"} id={id}>
+      <Span
+        $color="failure"
+        $font={variant === "large" ? "body-5" : "body-3"}
+        id={id}
+      >
         {children}
       </Span>
     </Box>
