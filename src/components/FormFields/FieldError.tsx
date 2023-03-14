@@ -24,7 +24,7 @@ const FieldError = (props: FieldErrorProps) => {
     <Box $mt={4} $mb={withoutMarginBottom ? 0 : 24}>
       <Span
         $color="failure"
-        $font={variant === "large" ? "body-5" : "body-3"}
+        $font={variant === "large" ? "body-2-bold" : "body-1-bold"}
         id={id}
       >
         {children}
