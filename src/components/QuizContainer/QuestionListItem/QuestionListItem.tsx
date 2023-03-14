@@ -53,9 +53,42 @@ export const CorrectAnswer: FC<AnswerProps> = ({
   index,
   answer,
 }) => {
-  const typeIsMatch = type === "match";
-  const typeIsCheckbox = type === "checkbox";
-  const answerIsArray = Array.isArray(answer);
+  const getTypeAnswers = (
+    choiceType: AnswerProps["type"],
+    answer: AnswerProps["answer"]
+  ) => {
+    const typeIsMatch = choiceType === "match";
+    const typeIsCheckbox = choiceType === "checkbox";
+    const answerIsArray = Array.isArray(answer);
+    if (typeIsMatch) {
+      return (
+        <Flex $flexWrap={"wrap"} $alignItems={"center"}>
+          {" "}
+          <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
+            {answer ? answer[index] + "  -" : ""}
+          </Heading>
+          <Typography $font={["body-1"]}> {choice}</Typography>
+        </Flex>
+      );
+    } else if (typeIsCheckbox) {
+      if (answerIsArray) {
+        return (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {answer[answer.indexOf(choice)]}
+          </Typography>
+        );
+      } else {
+        return <Typography $font={["body-1"]}> {choice}</Typography>;
+      }
+    } else {
+      if (answerIsArray) {
+        return <Typography $font={["body-1"]}> {answer[index]}</Typography>;
+      } else {
+        return <Typography $font={["body-1"]}> {choice}</Typography>;
+      }
+    }
+  };
   return (
     <Flex>
       {" "}
@@ -74,30 +107,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             {index + 1} -
           </Heading>
         )}
-        {typeIsMatch && (
-          <Flex $flexWrap={"wrap"} $alignItems={"center"}>
-            {" "}
-            <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-              {answer ? answer[index] + "  -" : ""}
-            </Heading>
-            <Typography $font={["body-1"]}> {choice}</Typography>
-          </Flex>
-        )}
-        {typeIsCheckbox && !answerIsArray ? (
-          <Typography $font={["body-1"]}> {choice}</Typography>
-        ) : null}
-        {typeIsCheckbox && answerIsArray ? (
-          <Typography $font={["body-1"]}>
-            {" "}
-            {answer[answer.indexOf(choice)]}
-          </Typography>
-        ) : null}
-        {!typeIsMatch && !typeIsCheckbox && !answerIsArray ? (
-          <Typography $font={["body-1"]}> {choice}</Typography>
-        ) : null}
-        {!typeIsMatch && !typeIsCheckbox && answerIsArray ? (
-          <Typography $font={["body-1"]}> {answer[index]}</Typography>
-        ) : null}
+        {getTypeAnswers(type, answer)}
       </Flex>
     </Flex>
   );
