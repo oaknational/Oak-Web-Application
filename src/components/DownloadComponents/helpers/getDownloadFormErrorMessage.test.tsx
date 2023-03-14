@@ -1,8 +1,10 @@
-import getDownloadFormErrorMessage from "./getDownloadFormErrorMessage";
+import getDownloadFormErrorMessage, {
+  ErrorKeysType,
+} from "./getDownloadFormErrorMessage";
 
 describe("getDownloadFormErrorMessage", () => {
   it("should return correct error message for one error", () => {
-    const errorKeysArray = ["terms"];
+    const errorKeysArray: ErrorKeysType[] = ["terms"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual(
       "Please accept terms and conditions"
@@ -10,26 +12,26 @@ describe("getDownloadFormErrorMessage", () => {
   });
 
   it("should return correct error message for two error messages", () => {
-    const errorKeysArray = ["terms", "email"];
+    const errorKeysArray: ErrorKeysType[] = ["terms", "email"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual(
-      "Please accept terms and conditions and enter a valid email address"
+      "Please enter a valid email address and accept terms and conditions"
     );
   });
 
   it("should return correct error message for more than two error messages", () => {
-    const errorKeysArray = ["terms", "email", "downloads"];
+    const errorKeysArray: ErrorKeysType[] = ["terms", "email", "downloads"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual(
-      "Please accept terms and conditions, enter a valid email address and pick at least one resource"
+      "Please enter a valid email address, accept terms and conditions and pick at least one resource"
     );
   });
 
-  it("should return correct error message if error keys that don't have messages are passed", () => {
-    const errorKeysArray = ["terms", "downloads", "unknown-key"];
+  it("should return error message in correct order", () => {
+    const errorKeysArray: ErrorKeysType[] = ["email", "downloads", "terms"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual(
-      "Please accept terms and conditions and pick at least one resource"
+      "Please enter a valid email address, accept terms and conditions and pick at least one resource"
     );
   });
 });
