@@ -8,3 +8,5 @@ export type DownloadResourceType =
   | "worksheet-pptx";
 
 export type ResourcesToDownloadArrayType = DownloadResourceType[];
+
+export type ErrorKeysType = "schoolRadio" | "email" | "terms" | "downloads";

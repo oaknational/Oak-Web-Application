@@ -1,16 +1,35 @@
-const getDownloadFormErrorMessage = (errorsArray: string[]) => {
+import type { ErrorKeysType } from "../downloads.types";
+
+type ErrorMessagesAndOrderType = {
+  order: number;
+  message: string;
+};
+
+const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
   let formErrorMessage = "Please";
 
-  const errorMessages: Record<string, string> = {
-    schoolRadio: "select a school or one of the alternative options",
-    email: "enter a valid email address",
-    terms: "accept terms and conditions",
-    downloads: "pick at least one resource",
+  const errorMessagesAndOrder: Record<
+    ErrorKeysType,
+    ErrorMessagesAndOrderType
+  > = {
+    schoolRadio: {
+      order: 1,
+      message: "select a school or one of the alternative options",
+    },
+    email: { order: 2, message: "enter a valid email address" },
+    terms: { order: 3, message: "accept terms and conditions" },
+    downloads: { order: 4, message: "pick at least one resource" },
   };
 
-  const errorMessagesArray = errorsArray
-    .map((errorKey: string) =>
-      errorMessages[errorKey] ? errorMessages[errorKey] : undefined
+  const sortedErrorsArray = errorsArray.sort(
+    (a, b) => errorMessagesAndOrder[a]?.order - errorMessagesAndOrder[b]?.order
+  );
+
+  const errorMessagesArray = sortedErrorsArray
+    .map((errorKey: ErrorKeysType) =>
+      errorMessagesAndOrder[errorKey]
+        ? errorMessagesAndOrder[errorKey]?.message
+        : undefined
     )
     .filter(Boolean);
 
