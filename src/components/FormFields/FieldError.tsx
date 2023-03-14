@@ -3,11 +3,13 @@ import { ReactNode } from "react";
 import Box from "../Box";
 import { Span } from "../Typography";
 
+type FieldErrorVariant = "large";
+
 type FieldErrorProps = {
   id: string;
   children: ReactNode;
   withoutMarginBottom?: boolean;
-  variant?: string;
+  variant?: FieldErrorVariant | null;
 };
 
 const FieldError = (props: FieldErrorProps) => {
