@@ -173,59 +173,30 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
         >
           {choices.map((choiceObj, index) => {
             const { choice, image } = choiceObj;
-
-            if (typeof answer === "string") {
-              const correctAnswer = answer === choice;
-              if (correctAnswer) {
-                return (
-                  <>
-                    {image ? (
-                      <AnswerBox>
-                        <>
-                          <QuizImage src={image} alt={"quiz image"} />
-                          <CorrectAnswer
-                            choice={choice}
-                            type={type}
-                            index={index}
-                          />
-                        </>
-                      </AnswerBox>
-                    ) : (
-                      <CorrectAnswer
-                        choice={choice}
-                        type={type}
-                        index={index}
-                      />
-                    )}
-                  </>
-                );
-              } else {
-                return (
-                  <>
-                    {image ? (
-                      <AnswerBox>
-                        {" "}
-                        <>
-                          <QuizImage src={image} alt={"quiz image"} />
-                          <Typography
-                            $ml={40}
-                            $ph={10}
-                            $mb={6}
-                            $font={["body-1"]}
-                          >
-                            {choice}
-                          </Typography>
-                        </>
-                      </AnswerBox>
-                    ) : (
-                      <Typography $ml={40} $ph={10} $mb={6} $font={["body-1"]}>
-                        {choice}
-                      </Typography>
-                    )}
-                  </>
-                );
-              }
-            } else if (choiceIsInAnswerArray(answer, choice, type)) {
+            const choiceIsCorrectAnswer = answer === choice;
+            if (typeof answer === "string" && choiceIsCorrectAnswer) {
+              return (
+                <>
+                  {image ? (
+                    <AnswerBox>
+                      <>
+                        <QuizImage src={image} alt={"quiz image"} />
+                        <CorrectAnswer
+                          choice={choice}
+                          type={type}
+                          index={index}
+                        />
+                      </>
+                    </AnswerBox>
+                  ) : (
+                    <CorrectAnswer choice={choice} type={type} index={index} />
+                  )}
+                </>
+              );
+            } else if (
+              typeof answer !== "string" &&
+              choiceIsInAnswerArray(answer, choice, type)
+            ) {
               return (
                 <>
                   {image ? (
