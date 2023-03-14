@@ -170,8 +170,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   };
 
   const getFormErrorMessage = () => {
-    const errorKeyArray: ErrorKeysType[] = Object.keys(errors);
-    const errrorMessage = getDownloadFormErrorMessage(errorKeyArray);
+    const errorKeyArray = Object.keys(errors);
+    const errrorMessage = getDownloadFormErrorMessage(
+      errorKeyArray as ErrorKeysType[]
+    );
 
     return errrorMessage;
   };
