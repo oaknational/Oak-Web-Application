@@ -7,12 +7,14 @@ import useGleap from "../../browser-lib/gleap";
 import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 import useAnalytics from "../../context/Analytics/useAnalytics";
+import removeDecommissionedKeys from "../../config/removeDecommissionedKeys";
 
 /**
  * Anything code that should run once in the browser should be placed here
  */
 if (isBrowser) {
   watchModals();
+  removeDecommissionedKeys();
 }
 
 /**
