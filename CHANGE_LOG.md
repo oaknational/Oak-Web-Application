@@ -1,3 +1,15 @@
+## [1.159.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.0...v1.159.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* 1406 Add FieldError to storybook ([09722d3](https://github.com/oaknational/Oak-Web-Application/commit/09722d32b26bc899852232dcdd4513f978e42369))
+* 1406 Display errors on blur and correct mobile styling ([c1d1f94](https://github.com/oaknational/Oak-Web-Application/commit/c1d1f940db3f03b38224a56b23e1897364e4c167))
+* 1406 Fix errors type ([0d9a56f](https://github.com/oaknational/Oak-Web-Application/commit/0d9a56febd25c0922e09d49431e3eda3f0ba7102))
+* 1406 Fix types ([9e7d573](https://github.com/oaknational/Oak-Web-Application/commit/9e7d5732f0aa832336ae2128d90b18d0bcefc75e))
+* 1406 Make sure errors order is always the same ([6462812](https://github.com/oaknational/Oak-Web-Application/commit/6462812c11ef7123eda0867afb39657b86c6a327))
+* 1406 Update field error typography styles ([e390649](https://github.com/oaknational/Oak-Web-Application/commit/e39064927e505d7465df43dc05df18c4a0fc4ba6))
+
 # [1.159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.1...v1.159.0) (2023-03-13)
 
 
