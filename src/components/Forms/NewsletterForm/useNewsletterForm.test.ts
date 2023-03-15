@@ -6,17 +6,14 @@ import useNewsletterForm from "./useNewsletterForm";
 
 const identify = jest.fn();
 
-const testAnonymousId = "test-anonymous-id";
+const testPosthogDistinctId = "test-anonymous-id";
 
 jest.mock("../../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     identify: (...args: []) => identify(...args),
+    posthogDistinctId: testPosthogDistinctId,
   }),
-}));
-jest.mock("../../../browser-lib/analytics/useAnonymousId", () => ({
-  __esModule: true,
-  default: () => testAnonymousId,
 }));
 const hubspotSubmitForm = jest.fn();
 jest.mock("../../../browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
@@ -53,7 +50,13 @@ describe("useNewsletterForm", () => {
     const { result } = renderHook(() => useNewsletterForm());
     result.current.onSubmit({ email: "test", name: "", userRole: "" });
 
-    expect(identify).toHaveBeenCalledWith(testAnonymousId, { email: "test" });
+    expect(identify).toHaveBeenCalledWith(
+      testPosthogDistinctId,
+      {
+        email: "test",
+      },
+      ["hubspot"]
+    );
   });
   test("should call analytics.identify() with rejected email", () => {
     /**
@@ -63,6 +66,12 @@ describe("useNewsletterForm", () => {
     const { result } = renderHook(() => useNewsletterForm());
     result.current.onSubmit({ emailTextOnly: "test", name: "", userRole: "" });
 
-    expect(identify).toHaveBeenCalledWith(testAnonymousId, { email: "test" });
+    expect(identify).toHaveBeenCalledWith(
+      testPosthogDistinctId,
+      {
+        email: "test",
+      },
+      ["hubspot"]
+    );
   });
 });

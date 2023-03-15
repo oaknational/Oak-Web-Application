@@ -4,6 +4,10 @@ import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
 import config from "../../config/browser";
+import getLegacyAnonymousId from "../analytics/getLegacyAnonymousId";
+
+export type PosthogDistinctId = string;
+export type MaybeDistinctId = string | null;
 
 export type PosthogConfig = {
   apiKey: string;
@@ -19,26 +23,25 @@ export const posthogToAnalyticsServiceWithoutQueue = (
       client.init(apiKey, {
         api_host: apiHost,
         debug: config.get("releaseStage") !== "production",
-        loaded: () => resolve(),
+        loaded: () => {
+          resolve(client.get_distinct_id());
+        },
         disable_session_recording: true,
       });
     }),
   identify: (userId, properties) => {
     client.identify(userId, properties);
   },
-  setAnonymousId: (id) => {
-    // the following imperative call caused an error to be thrown deep inside
-    // posthog, so instead we are props on an event capture call
-    // client.people.set("oak_anonymous_id", id);
-    client.capture("Setting oak anonymous id", {
-      $set: { oak_anonymous_id: id },
+  setLegacyAnonymousId: () => {
+    client.identify(client.get_distinct_id(), {
+      legacy_oak_anonymous_id: getLegacyAnonymousId(),
     });
   },
   page: () => {
     client.capture("$pageview");
   },
   track: (name, properties) => {
-    client.capture(name, properties);
+    client.capture(name, { ...properties });
   },
   optIn: () => {
     if (client.has_opted_out_capturing()) {

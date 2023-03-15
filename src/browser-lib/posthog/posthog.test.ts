@@ -10,6 +10,7 @@ const optOutCapturing = jest.fn();
 const getHasConsentedTo = jest.fn(() => "pending");
 
 const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
+const textDistinctId = "test-distinct-id";
 
 jest.mock("../cookie-consent/getHasConsentedTo", () => ({
   __esModule: true,
@@ -22,6 +23,7 @@ jest.mock("posthog-js", () => ({
   opt_in_capturing: (...args: unknown[]) => optInCapturing(...args),
   opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
   has_opted_out_capturing: () => true,
+  get_distinct_id: () => textDistinctId,
 }));
 describe("posthog.ts", () => {
   beforeEach(() => {
@@ -34,6 +36,14 @@ describe("posthog.ts", () => {
     };
     await posthog.init(config);
     expect(init).toHaveBeenCalledWith(config.apiKey, expect.any(Object));
+  });
+  test("init return distinct id", async () => {
+    const config = {
+      apiKey: "12",
+      apiHost: "https://test.thenational.academy",
+    };
+    const distinctId = await posthog.init(config);
+    expect(distinctId).toBe(textDistinctId);
   });
   test("identify", () => {
     posthog.identify("123", { email: "abc" });
