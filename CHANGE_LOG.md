@@ -1,3 +1,23 @@
+## [1.159.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.1...v1.159.2) (2023-03-16)
+
+
+### Bug Fixes
+
+* **questions-type-assertion:** increase test coverage ([ec93b92](https://github.com/oaknational/Oak-Web-Application/commit/ec93b92ea9ff48378f66eaab19d06cde25c94419))
+* **questions:** fixture fix ([7548e7c](https://github.com/oaknational/Oak-Web-Application/commit/7548e7ca7fe9d32738fc8d35a54f0ad03027b0fc))
+* **questions:** increase test coverage ([8eb3225](https://github.com/oaknational/Oak-Web-Application/commit/8eb3225bcb5892f830095bc9d2001c357f4c3758))
+* **questions:** increase test coverage ([ed88529](https://github.com/oaknational/Oak-Web-Application/commit/ed885291cb729135ec088198f85dbc64de28960a))
+* **questions:** merge commit ([d774fb6](https://github.com/oaknational/Oak-Web-Application/commit/d774fb6ef4188c83ce53466617f0d46f4b20fa05))
+* **questions:** point query at choices_combined ([94ef257](https://github.com/oaknational/Oak-Web-Application/commit/94ef257e37490c93c5b93df071cc65a28198aa08))
+* **questions:** readability ([d76bb95](https://github.com/oaknational/Oak-Web-Application/commit/d76bb95debb390f268f843eed744ab14601b2354))
+* **questions:** rmove type assertions from question list item ([13f6174](https://github.com/oaknational/Oak-Web-Application/commit/13f61744dbe0dd21f3c26d45f3c60c21d5e16c6c))
+* **questions:** story fix ([ab19ffe](https://github.com/oaknational/Oak-Web-Application/commit/ab19ffebb93fef55732e27301e5e21cfcab66706))
+* **questions:** test fixes ([bb9ae73](https://github.com/oaknational/Oak-Web-Application/commit/bb9ae732d08f69386cab88c0b92c9ba69a58db4a))
+* **questions:** useful comment ([76718d3](https://github.com/oaknational/Oak-Web-Application/commit/76718d38270e515544944ce518f7ab92684f0deb))
+* **quiz:** add choice images to questions with multiple answers ([9d123a7](https://github.com/oaknational/Oak-Web-Application/commit/9d123a7759f7440bbca8def5b3de94756903dce7))
+* **quiz:** add image title underneath image ([98d3c59](https://github.com/oaknational/Oak-Web-Application/commit/98d3c598fad6bc2c22fb5649a44f10af66bdfd9c))
+* **quiz:** remove duplicate code ([a024b2a](https://github.com/oaknational/Oak-Web-Application/commit/a024b2af62a5a61c74e6bdb181a3266527bee0b6))
+
 ## [1.159.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.0...v1.159.1) (2023-03-14)
 
 

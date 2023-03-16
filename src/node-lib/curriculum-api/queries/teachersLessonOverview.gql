@@ -64,8 +64,7 @@ query teachersLessonOverview(
     unitTitle: unit_title
     active
     answer
-    choiceImages: choice_images
-    choices
+    choices: choices_combined
     feedbackCorrect: feedback_correct
     feedbackIncorrect: feedback_incorrect
     images
@@ -109,8 +108,7 @@ query teachersLessonOverview(
     unitTitle: unit_title
     active
     answer
-    choiceImages: choice_images
-    choices
+    choices: choices_combined
     feedbackCorrect: feedback_correct
     feedbackIncorrect: feedback_incorrect
     images

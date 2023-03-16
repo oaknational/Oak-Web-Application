@@ -13,6 +13,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  _jsonb: any;
   _text: any;
   bigint: any;
   bpchar: any;
@@ -67,6 +68,19 @@ export type String_Comparison_Exp = {
   _nlike?: InputMaybe<Scalars['String']>;
   _nsimilar?: InputMaybe<Scalars['String']>;
   _similar?: InputMaybe<Scalars['String']>;
+};
+
+/** expression to compare columns of type _jsonb. All fields are combined with logical 'AND'. */
+export type _Jsonb_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['_jsonb']>;
+  _gt?: InputMaybe<Scalars['_jsonb']>;
+  _gte?: InputMaybe<Scalars['_jsonb']>;
+  _in?: InputMaybe<Array<Scalars['_jsonb']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['_jsonb']>;
+  _lte?: InputMaybe<Scalars['_jsonb']>;
+  _neq?: InputMaybe<Scalars['_jsonb']>;
+  _nin?: InputMaybe<Array<Scalars['_jsonb']>>;
 };
 
 /** expression to compare columns of type _text. All fields are combined with logical 'AND'. */
@@ -18473,6 +18487,7 @@ export type Mv_Questions = {
   answer?: Maybe<Scalars['json']>;
   choice_images?: Maybe<Scalars['json']>;
   choices?: Maybe<Scalars['json']>;
+  choices_combined?: Maybe<Scalars['_jsonb']>;
   display_number?: Maybe<Scalars['String']>;
   feedback_correct?: Maybe<Scalars['String']>;
   feedback_incorrect?: Maybe<Scalars['String']>;
@@ -18489,6 +18504,7 @@ export type Mv_Questions = {
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  title1?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
@@ -18592,6 +18608,7 @@ export type Mv_Questions_Bool_Exp = {
   answer?: InputMaybe<Json_Comparison_Exp>;
   choice_images?: InputMaybe<Json_Comparison_Exp>;
   choices?: InputMaybe<Json_Comparison_Exp>;
+  choices_combined?: InputMaybe<_Jsonb_Comparison_Exp>;
   display_number?: InputMaybe<String_Comparison_Exp>;
   feedback_correct?: InputMaybe<String_Comparison_Exp>;
   feedback_incorrect?: InputMaybe<String_Comparison_Exp>;
@@ -18608,6 +18625,7 @@ export type Mv_Questions_Bool_Exp = {
   subject_slug?: InputMaybe<String_Comparison_Exp>;
   subject_title?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  title1?: InputMaybe<String_Comparison_Exp>;
   type?: InputMaybe<String_Comparison_Exp>;
   unit_slug?: InputMaybe<String_Comparison_Exp>;
   unit_title?: InputMaybe<String_Comparison_Exp>;
@@ -18626,6 +18644,7 @@ export type Mv_Questions_Insert_Input = {
   answer?: InputMaybe<Scalars['json']>;
   choice_images?: InputMaybe<Scalars['json']>;
   choices?: InputMaybe<Scalars['json']>;
+  choices_combined?: InputMaybe<Scalars['_jsonb']>;
   display_number?: InputMaybe<Scalars['String']>;
   feedback_correct?: InputMaybe<Scalars['String']>;
   feedback_incorrect?: InputMaybe<Scalars['String']>;
@@ -18642,6 +18661,7 @@ export type Mv_Questions_Insert_Input = {
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+  title1?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
@@ -18664,6 +18684,7 @@ export type Mv_Questions_Max_Fields = {
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  title1?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
@@ -18685,6 +18706,7 @@ export type Mv_Questions_Max_Order_By = {
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  title1?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
@@ -18707,6 +18729,7 @@ export type Mv_Questions_Min_Fields = {
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  title1?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
@@ -18728,6 +18751,7 @@ export type Mv_Questions_Min_Order_By = {
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  title1?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
@@ -18753,6 +18777,7 @@ export type Mv_Questions_Order_By = {
   answer?: InputMaybe<Order_By>;
   choice_images?: InputMaybe<Order_By>;
   choices?: InputMaybe<Order_By>;
+  choices_combined?: InputMaybe<Order_By>;
   display_number?: InputMaybe<Order_By>;
   feedback_correct?: InputMaybe<Order_By>;
   feedback_incorrect?: InputMaybe<Order_By>;
@@ -18769,6 +18794,7 @@ export type Mv_Questions_Order_By = {
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  title1?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
@@ -18784,6 +18810,8 @@ export enum Mv_Questions_Select_Column {
   ChoiceImages = 'choice_images',
   /** column name */
   Choices = 'choices',
+  /** column name */
+  ChoicesCombined = 'choices_combined',
   /** column name */
   DisplayNumber = 'display_number',
   /** column name */
@@ -18817,6 +18845,8 @@ export enum Mv_Questions_Select_Column {
   /** column name */
   Title = 'title',
   /** column name */
+  Title1 = 'title1',
+  /** column name */
   Type = 'type',
   /** column name */
   UnitSlug = 'unit_slug',
@@ -18830,6 +18860,7 @@ export type Mv_Questions_Set_Input = {
   answer?: InputMaybe<Scalars['json']>;
   choice_images?: InputMaybe<Scalars['json']>;
   choices?: InputMaybe<Scalars['json']>;
+  choices_combined?: InputMaybe<Scalars['_jsonb']>;
   display_number?: InputMaybe<Scalars['String']>;
   feedback_correct?: InputMaybe<Scalars['String']>;
   feedback_incorrect?: InputMaybe<Scalars['String']>;
@@ -18846,6 +18877,7 @@ export type Mv_Questions_Set_Input = {
   subject_slug?: InputMaybe<Scalars['String']>;
   subject_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+  title1?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
@@ -36290,7 +36322,7 @@ export type TeachersLessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, choices?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choiceImages?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
+export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', slug?: string | null, title?: string | null, transcript?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
 
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -36518,8 +36550,7 @@ export const TeachersLessonOverviewDocument = gql`
     unitTitle: unit_title
     active
     answer
-    choiceImages: choice_images
-    choices
+    choices: choices_combined
     feedbackCorrect: feedback_correct
     feedbackIncorrect: feedback_incorrect
     images
@@ -36551,8 +36582,7 @@ export const TeachersLessonOverviewDocument = gql`
     unitTitle: unit_title
     active
     answer
-    choiceImages: choice_images
-    choices
+    choices: choices_combined
     feedbackCorrect: feedback_correct
     feedbackIncorrect: feedback_incorrect
     images
