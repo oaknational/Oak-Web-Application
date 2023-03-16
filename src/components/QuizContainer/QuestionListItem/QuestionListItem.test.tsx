@@ -42,6 +42,12 @@ describe("CorrectAnswer", () => {
     expect(getByText("X -")).toBeInTheDocument();
     expect(getByText("A")).toBeInTheDocument();
   });
+  it("renders empty string for match type when there is no answer ", () => {
+    const { getByRole } = renderWithTheme(
+      <CorrectAnswer choice="A" type="match" index={0} />
+    );
+    expect(getByRole("heading")).toHaveTextContent("");
+  });
 });
 
 describe("QuestionListItem", () => {
