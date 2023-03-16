@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
@@ -51,7 +51,7 @@ describe("useAnalyticsService", () => {
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
   });
-  test("should set posthog distinct if callback passed", () => {
+  test("should set posthog distinct if callback passed", async () => {
     renderHook(() =>
       useAnalyticsService({
         service,
@@ -60,8 +60,10 @@ describe("useAnalyticsService", () => {
         setPosthogDistinctId,
       })
     );
-    expect(setPosthogDistinctId).toHaveBeenCalledWith(
-      "test-posthog-distinct-id"
-    );
+    await waitFor(() => {
+      expect(setPosthogDistinctId).toHaveBeenCalledWith(
+        "test-posthog-distinct-id"
+      );
+    });
   });
 });
