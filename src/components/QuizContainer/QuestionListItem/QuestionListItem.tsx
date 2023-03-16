@@ -40,6 +40,7 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
     </ImageBox>
   );
 };
+
 type AnswerProps = {
   choice: string;
   type: string;
@@ -47,12 +48,50 @@ type AnswerProps = {
   answer?: string[] | undefined;
 };
 
+// commponent for handling the format of the choice when choice === answer
+
 export const CorrectAnswer: FC<AnswerProps> = ({
   choice,
   type,
   index,
   answer,
 }) => {
+  const getTypeAnswers = (
+    choiceType: AnswerProps["type"],
+    answer: AnswerProps["answer"]
+  ) => {
+    const typeIsMatch = choiceType === "match";
+    const typeIsCheckbox = choiceType === "checkbox";
+    const answerIsArray = Array.isArray(answer);
+    if (typeIsMatch) {
+      return (
+        <Flex $flexWrap={"wrap"} $alignItems={"center"}>
+          {" "}
+          <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
+            {answer ? answer[index] + "  -" : ""}
+          </Heading>
+          <Typography $font={["body-1"]}> {choice}</Typography>
+        </Flex>
+      );
+    } else if (typeIsCheckbox) {
+      if (answerIsArray) {
+        return (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {answer[answer.indexOf(choice)]}
+          </Typography>
+        );
+      } else {
+        return <Typography $font={["body-1"]}> {choice}</Typography>;
+      }
+    } else {
+      if (answerIsArray) {
+        return <Typography $font={["body-1"]}> {answer[index]}</Typography>;
+      } else {
+        return <Typography $font={["body-1"]}> {choice}</Typography>;
+      }
+    }
+  };
   return (
     <Flex>
       {" "}
@@ -71,30 +110,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
             {index + 1} -
           </Heading>
         )}
-        {type === "match" && (
-          <Flex $flexWrap={"wrap"} $alignItems={"center"}>
-            {" "}
-            <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-              {answer ? answer[index] + "  -" : ""}
-            </Heading>
-            <Typography $font={["body-1"]}> {choice}</Typography>
-          </Flex>
-        )}
-        {type === "checkbox" && !Array.isArray(answer) ? (
-          <Typography $font={["body-1"]}> {choice}</Typography>
-        ) : null}
-        {type === "checkbox" && Array.isArray(answer) ? (
-          <Typography $font={["body-1"]}>
-            {" "}
-            {answer[answer.indexOf(choice)]}
-          </Typography>
-        ) : null}
-        {type !== "match" && type !== "checkbox" && !Array.isArray(answer) ? (
-          <Typography $font={["body-1"]}> {choice}</Typography>
-        ) : null}
-        {type !== "match" && type !== "checkbox" && Array.isArray(answer) ? (
-          <Typography $font={["body-1"]}> {answer[index]}</Typography>
-        ) : null}
+        {getTypeAnswers(type, answer)}
       </Flex>
     </Flex>
   );
@@ -116,9 +132,16 @@ const AnswerBox: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
+const choiceIsInAnswerArray = (
+  answer: string[],
+  choice: string,
+  type: string
+): boolean => {
+  return [...answer].indexOf(choice) >= 0 || type === "match";
+};
+
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
-  const { title, images, choiceImages, choices, answer, type, displayNumber } =
-    props;
+  const { title, images, choices, answer, type, displayNumber } = props;
   return (
     <Flex $flexDirection={"column"} $mb={[0, 16]}>
       <Flex $mb={16}>
@@ -144,10 +167,11 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
             } else {
               const { title, images } = image;
               return (
-                <Flex $mb={32}>
+                <Flex $mb={32} $flexDirection={"column"}>
                   {images.map((image) => {
                     return <QuizImage src={image} alt={title} />;
                   })}
+                  <Typography $font={["body-1"]}>{title}</Typography>
                 </Flex>
               );
             }
@@ -155,26 +179,21 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
         })}
 
       {choices && choices.length > 0 ? (
-        choiceImages && choiceImages.length > 0 ? (
-          <Flex
-            $flexDirection={"column"}
-            $width={"max-content"}
-            $maxWidth={"100%"}
-          >
-            {choices.map((choice, index) => {
-              if (typeof answer === "string") {
-                if (answer === choice) {
-                  const choiceImagesString: string = choiceImages[
-                    index
-                  ] as string;
-                  return (
+        <Flex
+          $flexDirection={"column"}
+          $width={"max-content"}
+          $maxWidth={"100%"}
+        >
+          {choices.map((choiceObj, index) => {
+            const { choice, image } = choiceObj;
+            const choiceIsCorrectAnswer = answer === choice;
+            if (typeof answer === "string" && choiceIsCorrectAnswer) {
+              return (
+                <>
+                  {image ? (
                     <AnswerBox>
-                      {" "}
                       <>
-                        <QuizImage
-                          src={choiceImagesString}
-                          alt={"quiz image"}
-                        />
+                        <QuizImage src={image} alt={"quiz image"} />
                         <CorrectAnswer
                           choice={choice}
                           type={type}
@@ -182,19 +201,47 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                         />
                       </>
                     </AnswerBox>
-                  );
-                } else {
-                  const choiceImagesString: string = choiceImages[
-                    index
-                  ] as string;
-                  return (
+                  ) : (
+                    <CorrectAnswer choice={choice} type={type} index={index} />
+                  )}
+                </>
+              );
+            } else if (
+              typeof answer !== "string" &&
+              choiceIsInAnswerArray(answer, choice, type)
+            ) {
+              return (
+                <>
+                  {image ? (
+                    <AnswerBox>
+                      <>
+                        <QuizImage src={image} alt={"quiz image"} />
+                        <CorrectAnswer
+                          type={type}
+                          choice={choice}
+                          index={index}
+                          answer={answer}
+                        />
+                      </>
+                    </AnswerBox>
+                  ) : (
+                    <CorrectAnswer
+                      type={type}
+                      choice={choice}
+                      index={index}
+                      answer={answer}
+                    />
+                  )}
+                </>
+              );
+            } else {
+              return (
+                <>
+                  {image ? (
                     <AnswerBox>
                       {" "}
                       <>
-                        <QuizImage
-                          src={choiceImagesString}
-                          alt={"quiz image"}
-                        />
+                        <QuizImage src={image} alt={"quiz image"} />
                         <Typography
                           $ml={40}
                           $ph={10}
@@ -205,65 +252,16 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                         </Typography>
                       </>
                     </AnswerBox>
-                  );
-                }
-              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
-                return (
-                  <CorrectAnswer
-                    type={type}
-                    choice={choice}
-                    index={index}
-                    answer={answer}
-                  />
-                );
-              } else {
-                return (
-                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
-                    {choice}
-                  </Typography>
-                );
-              }
-            })}
-          </Flex>
-        ) : (
-          <Flex
-            $flexDirection={"column"}
-            $width={"max-content"}
-            $maxWidth={"100%"}
-            $mb={26}
-          >
-            {choices.map((choice, index) => {
-              if (typeof answer === "string") {
-                if (answer === choice) {
-                  return (
-                    <CorrectAnswer choice={choice} index={index} type={type} />
-                  );
-                } else {
-                  return (
-                    <Typography $font={["body-1"]} $ml={40} $ph={10} $mb={6}>
+                  ) : (
+                    <Typography $ml={40} $ph={10} $mb={6} $font={["body-1"]}>
                       {choice}
                     </Typography>
-                  );
-                }
-              } else if ([...answer].indexOf(choice) >= 0 || type === "match") {
-                return (
-                  <CorrectAnswer
-                    type={type}
-                    choice={choice}
-                    index={index}
-                    answer={answer}
-                  />
-                );
-              } else {
-                return (
-                  <Typography $ml={40} $font={["body-1"]} $ph={10} $mb={6}>
-                    {choice}
-                  </Typography>
-                );
-              }
-            })}
-          </Flex>
-        )
+                  )}
+                </>
+              );
+            }
+          })}
+        </Flex>
       ) : (
         <Flex
           $flexDirection={"column"}
