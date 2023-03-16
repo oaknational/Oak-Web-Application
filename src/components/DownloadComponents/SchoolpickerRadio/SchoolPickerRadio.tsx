@@ -47,9 +47,6 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (selectedRadio && selectedSchool) {
-      setSelectedRadio("");
-    }
     if (value === "" && !selectedRadio) {
       setSchool("");
     }
