@@ -6,7 +6,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SchoolPicker from ".";
 
-export const items = [
+export const schools = [
   {
     urn: "101105",
     la: "Westminster",
@@ -52,7 +52,7 @@ describe("search autocomplete", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it("renders a SearchAutocomplete", () => {
+  it("renders a SearchCombobox input", () => {
     renderWithTheme(
       <SchoolPicker
         hasError={false}
@@ -64,7 +64,7 @@ describe("search autocomplete", () => {
       />
     );
 
-    const searchAutoComplete = screen.getByTestId("search-autocomplete-input");
+    const searchAutoComplete = screen.getByTestId("search-combobox-input");
 
     expect(searchAutoComplete).toBeInTheDocument();
   });
@@ -77,8 +77,8 @@ describe("search autocomplete", () => {
       return (
         <SchoolPicker
           hasError={false}
-          schools={items}
-          defaultSchools={items}
+          schools={schools}
+          defaultSchools={schools}
           setSchoolPickerInputValue={setSchoolPickerInputValue}
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
@@ -88,7 +88,7 @@ describe("search autocomplete", () => {
     };
 
     renderWithTheme(<Wrapper />);
-    const input = screen.getByTestId("search-autocomplete-input");
+    const input = screen.getByTestId("search-combobox-input");
 
     const user = userEvent.setup();
 
@@ -106,8 +106,8 @@ describe("search autocomplete", () => {
       return (
         <SchoolPicker
           hasError={false}
-          schools={items}
-          defaultSchools={items}
+          schools={schools}
+          defaultSchools={schools}
           setSchoolPickerInputValue={setSchoolPickerInputValue}
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
@@ -128,8 +128,8 @@ describe("search autocomplete", () => {
       return (
         <SchoolPicker
           hasError={true}
-          schools={items}
-          defaultSchools={items}
+          schools={schools}
+          defaultSchools={schools}
           setSchoolPickerInputValue={setSchoolPickerInputValue}
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
@@ -152,8 +152,8 @@ describe("search autocomplete", () => {
       return (
         <SchoolPicker
           hasError={true}
-          schools={items}
-          defaultSchools={items}
+          schools={schools}
+          defaultSchools={schools}
           setSchoolPickerInputValue={setSchoolPickerInputValue}
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
@@ -168,7 +168,7 @@ describe("search autocomplete", () => {
     expect(getByText("School picker *")).toBeInTheDocument();
   });
 
-  it("renders a listbox of items", async () => {
+  it("renders a listbox of schools", async () => {
     const Wrapper = () => {
       const [schoolPickerInputValue, setSchoolPickerInputValue] =
         useState("dorothy");
@@ -176,8 +176,8 @@ describe("search autocomplete", () => {
       return (
         <SchoolPicker
           hasError={false}
-          schools={items}
-          defaultSchools={items}
+          schools={schools}
+          defaultSchools={schools}
           setSchoolPickerInputValue={setSchoolPickerInputValue}
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
@@ -206,8 +206,8 @@ describe("search autocomplete", () => {
       return (
         <SchoolPicker
           hasError={false}
-          schools={items}
-          defaultSchools={items}
+          schools={schools}
+          defaultSchools={schools}
           setSchoolPickerInputValue={setSchoolPickerInputValue}
           schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
@@ -217,7 +217,7 @@ describe("search autocomplete", () => {
     };
 
     renderWithTheme(<Wrapper />);
-    const input = screen.getByTestId("search-autocomplete-input");
+    const input = screen.getByTestId("search-combobox-input");
 
     const user = userEvent.setup();
 
