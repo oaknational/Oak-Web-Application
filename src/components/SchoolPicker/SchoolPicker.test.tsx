@@ -45,21 +45,8 @@ export const items = [
   },
 ];
 
-const setFilterText = jest.fn();
-const setInputValue = jest.fn();
-const setSelectedValue = jest.fn();
-
-jest.mock("./useSchoolPicker", () => {
-  return jest.fn(() => {
-    return {
-      items: items,
-      loadingState: "idle",
-      error: null,
-      FilterText: "Dorothy Stringer School",
-      setFilterText,
-    };
-  });
-});
+const setSchoolPickerInputValue = jest.fn();
+const setSelectedSchool = jest.fn();
 
 describe("search autocomplete", () => {
   beforeEach(() => {
@@ -70,10 +57,10 @@ describe("search autocomplete", () => {
       <SchoolPicker
         hasError={false}
         schools={[]}
-        setInputValue={setInputValue}
-        inputValue={"Dor"}
+        setSchoolPickerInputValue={setSchoolPickerInputValue}
+        schoolPickerInputValue={"Dor"}
         label={"School picker"}
-        setSelectedValue={setSelectedValue}
+        setSelectedSchool={setSelectedSchool}
       />
     );
 
@@ -84,17 +71,18 @@ describe("search autocomplete", () => {
 
   it("renders a input with search", async () => {
     const Wrapper = () => {
-      const [inputValue, setInputValue] = useState("dor");
-      const [, setSelectedValue] = useState<Key | undefined>("");
+      const [schoolPickerInputValue, setSchoolPickerInputValue] =
+        useState("dor");
+      const [, setSelectedSchool] = useState<Key | undefined>("");
       return (
         <SchoolPicker
           hasError={false}
           schools={items}
           defaultSchools={items}
-          setInputValue={setInputValue}
-          inputValue={inputValue}
+          setSchoolPickerInputValue={setSchoolPickerInputValue}
+          schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
-          setSelectedValue={setSelectedValue}
+          setSelectedSchool={setSelectedSchool}
         />
       );
     };
@@ -113,17 +101,17 @@ describe("search autocomplete", () => {
 
   it("renders a label", async () => {
     const Wrapper = () => {
-      const [inputValue, setInputValue] = useState("");
-      const [, setSelectedValue] = useState<Key | undefined>("");
+      const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
+      const [, setSelectedSchool] = useState<Key | undefined>("");
       return (
         <SchoolPicker
           hasError={false}
           schools={items}
           defaultSchools={items}
-          setInputValue={setInputValue}
-          inputValue={inputValue}
+          setSchoolPickerInputValue={setSchoolPickerInputValue}
+          schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
-          setSelectedValue={setSelectedValue}
+          setSelectedSchool={setSelectedSchool}
         />
       );
     };
@@ -135,17 +123,17 @@ describe("search autocomplete", () => {
 
   it("renders a label with red background if validation hasError", async () => {
     const Wrapper = () => {
-      const [inputValue, setInputValue] = useState("");
-      const [, setSelectedValue] = useState<Key | undefined>("");
+      const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
+      const [, setSelectedSchool] = useState<Key | undefined>("");
       return (
         <SchoolPicker
           hasError={true}
           schools={items}
           defaultSchools={items}
-          setInputValue={setInputValue}
-          inputValue={inputValue}
+          setSchoolPickerInputValue={setSchoolPickerInputValue}
+          schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
-          setSelectedValue={setSelectedValue}
+          setSelectedSchool={setSelectedSchool}
         />
       );
     };
@@ -159,17 +147,17 @@ describe("search autocomplete", () => {
 
   it("renders a label with '*' if required prop is passed", async () => {
     const Wrapper = () => {
-      const [inputValue, setInputValue] = useState("");
-      const [, setSelectedValue] = useState<Key | undefined>("");
+      const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
+      const [, setSelectedSchool] = useState<Key | undefined>("");
       return (
         <SchoolPicker
           hasError={true}
           schools={items}
           defaultSchools={items}
-          setInputValue={setInputValue}
-          inputValue={inputValue}
+          setSchoolPickerInputValue={setSchoolPickerInputValue}
+          schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
-          setSelectedValue={setSelectedValue}
+          setSelectedSchool={setSelectedSchool}
           required={true}
         />
       );
@@ -182,17 +170,18 @@ describe("search autocomplete", () => {
 
   it("renders a listbox of items", async () => {
     const Wrapper = () => {
-      const [inputValue, setInputValue] = useState("dorothy");
-      const [, setSelectedValue] = useState<Key | undefined>("");
+      const [schoolPickerInputValue, setSchoolPickerInputValue] =
+        useState("dorothy");
+      const [, setSelectedSchool] = useState<Key | undefined>("");
       return (
         <SchoolPicker
           hasError={false}
           schools={items}
           defaultSchools={items}
-          setInputValue={setInputValue}
-          inputValue={inputValue}
+          setSchoolPickerInputValue={setSchoolPickerInputValue}
+          schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
-          setSelectedValue={setSelectedValue}
+          setSelectedSchool={setSelectedSchool}
         />
       );
     };
@@ -211,17 +200,18 @@ describe("search autocomplete", () => {
 
   it("allows an item to be selected from list ", async () => {
     const Wrapper = () => {
-      const [inputValue, setInputValue] = useState("bal");
-      const [, setSelectedValue] = useState<Key | undefined>("");
+      const [schoolPickerInputValue, setSchoolPickerInputValue] =
+        useState("bal");
+      const [, setSelectedSchool] = useState<Key | undefined>("");
       return (
         <SchoolPicker
           hasError={false}
           schools={items}
           defaultSchools={items}
-          setInputValue={setInputValue}
-          inputValue={inputValue}
+          setSchoolPickerInputValue={setSchoolPickerInputValue}
+          schoolPickerInputValue={schoolPickerInputValue}
           label={"School picker"}
-          setSelectedValue={setSelectedValue}
+          setSelectedSchool={setSelectedSchool}
         />
       );
     };

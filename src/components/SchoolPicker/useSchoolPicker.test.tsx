@@ -4,12 +4,12 @@ import OakError from "../../errors/OakError";
 
 import useSchoolPicker, { fetcher } from "./useSchoolPicker";
 
-const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
-  data: null,
+const mockUseSWR = jest.fn<{ schools: unknown; error: unknown }, []>(() => ({
+  schools: null,
   error: null,
 }));
 
-const data = [
+const schools = [
   {
     urn: "101105",
     la: "Westminster",
@@ -48,12 +48,12 @@ describe("useSchoolPicker", () => {
   });
   test("Schools should be returned if fetch succeeds", async () => {
     mockUseSWR.mockImplementationOnce(() => ({
-      data: data,
+      schools: schools,
       error: null,
     }));
     const { result } = renderHook(() => useSchoolPicker());
 
-    expect(result.current.data).toEqual(data);
+    expect(result.current.schools).toEqual(schools);
   });
 
   test("should throw an error if failed to fetch school ", async () => {
@@ -70,7 +70,7 @@ describe("useSchoolPicker", () => {
     );
     expect(reportError).toBeCalled();
   });
-  test("should return and empty array with no data ", async () => {
+  test("should return and empty array with no schools ", async () => {
     fetch.mockResolvedValue({
       json: jest.fn().mockResolvedValue({ res: undefined }),
       ok: true,
@@ -80,6 +80,6 @@ describe("useSchoolPicker", () => {
 
     const { result } = renderHook(() => useSchoolPicker());
 
-    expect(result.current.data).toEqual([]);
+    expect(result.current.schools).toEqual([]);
   });
 });
