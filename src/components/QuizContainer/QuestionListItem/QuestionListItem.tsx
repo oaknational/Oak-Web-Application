@@ -40,12 +40,15 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
     </ImageBox>
   );
 };
+
 type AnswerProps = {
   choice: string;
   type: string;
   index: number;
   answer?: string[] | undefined;
 };
+
+// commponent for handling the format of the choice when choice === answer
 
 export const CorrectAnswer: FC<AnswerProps> = ({
   choice,
