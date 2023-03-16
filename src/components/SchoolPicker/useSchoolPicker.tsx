@@ -28,28 +28,28 @@ export const fetcher = (queryUrl: string) =>
   });
 
 export type UseSchoolPickerReturnProps = {
-  data: School[];
+  schools: School[];
   error: Error | null;
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  selectedValue: Key | undefined;
-  setSelectedValue: React.Dispatch<React.SetStateAction<Key | undefined>>;
+  schoolPickerInputValue: string;
+  setSchoolPickerInputValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedSchool: Key | undefined;
+  setSelectedSchool: React.Dispatch<React.SetStateAction<Key | undefined>>;
 };
 
 export default function useSchoolPicker(): UseSchoolPickerReturnProps {
-  const [inputValue, setInputValue] = useState("");
-  const [selectedValue, setSelectedValue] = useState<Key | undefined>();
+  const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
+  const [selectedSchool, setSelectedSchool] = useState<Key | undefined>();
 
-  const queryUrl = `https://school-picker.thenational.academy/${inputValue}`;
+  const queryUrl = `https://school-picker.thenational.academy/${schoolPickerInputValue}`;
 
   const { data, error } = useSWR(queryUrl, fetcher);
 
   return {
-    data: data || [],
+    schools: data || [],
     error,
-    setInputValue,
-    inputValue,
-    selectedValue,
-    setSelectedValue,
+    setSchoolPickerInputValue,
+    schoolPickerInputValue,
+    selectedSchool,
+    setSelectedSchool,
   };
 }
