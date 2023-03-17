@@ -1,3 +1,12 @@
+## [1.159.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.2...v1.159.3) (2023-03-17)
+
+
+### Bug Fixes
+
+* dynamic errors if no input and radio ([82d4f66](https://github.com/oaknational/Oak-Web-Application/commit/82d4f66fdcf1db058f605fba4d36f0acf9292f6d))
+* revalidate if input value is empty string and no selected radio ([09f7144](https://github.com/oaknational/Oak-Web-Application/commit/09f7144ee6240b72b5d6ae7dcb68a9c99bb5aae6))
+* school value from school picker on selection change not input ([3eb0ea3](https://github.com/oaknational/Oak-Web-Application/commit/3eb0ea358732ca283bbb0898fa4ca9c2338c4426))
+
 ## [1.159.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.1...v1.159.2) (2023-03-16)
 
 
