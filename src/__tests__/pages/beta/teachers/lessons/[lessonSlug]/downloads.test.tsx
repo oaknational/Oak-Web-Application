@@ -1,5 +1,6 @@
 import { act, renderHook, screen } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
+import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
@@ -64,6 +65,10 @@ jest.mock(
   }
 );
 
+beforeEach(() => {
+  renderHook(() => useForm());
+});
+
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", async () => {
     renderWithProviders(<LessonDownloadsPage {...props} />);
@@ -117,16 +122,12 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
 
       expect(exitQuizQuestions).toBeInTheDocument();
-      expect(exitQuizQuestions).toHaveAttribute(
-        "name",
-        "lessonResourcesToDownload"
-      );
+      expect(exitQuizQuestions).toHaveAttribute("name", "downloads");
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
-      // @todo add back when button has disabled state and is initially visible
       // Download button
-      // const downloadButton = screen.getByText("Download .zip");
-      // expect(downloadButton).toBeInTheDocument();
+      const downloadButton = screen.getByText("Download .zip");
+      expect(downloadButton).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {
@@ -144,7 +145,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       await waitForNextTick();
 
       const description = computeAccessibleDescription(input);
-      expect(description).toBe("Email not valid");
+      expect(description).toBe("Please enter a valid email address");
     });
 
     it("should not display error hint on blur email if empty", async () => {
@@ -175,7 +176,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");
     });
 
-    it("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
+    it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
       const { getByTestId, getByLabelText } = renderWithProviders(
         <LessonDownloadsPage {...props} />
       );

@@ -40,7 +40,7 @@ describe("pages/beta/teachers/lessons", () => {
     renderWithProviders(<LessonOverviewPage {...props} />);
 
     expect(screen.getByTestId("download-all-button")).toHaveTextContent(
-      "All lesson resources"
+      "Download all resources"
     );
   });
 

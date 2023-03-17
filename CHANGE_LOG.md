@@ -1,3 +1,153 @@
+## [1.159.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.1...v1.159.2) (2023-03-16)
+
+
+### Bug Fixes
+
+* **questions-type-assertion:** increase test coverage ([ec93b92](https://github.com/oaknational/Oak-Web-Application/commit/ec93b92ea9ff48378f66eaab19d06cde25c94419))
+* **questions:** fixture fix ([7548e7c](https://github.com/oaknational/Oak-Web-Application/commit/7548e7ca7fe9d32738fc8d35a54f0ad03027b0fc))
+* **questions:** increase test coverage ([8eb3225](https://github.com/oaknational/Oak-Web-Application/commit/8eb3225bcb5892f830095bc9d2001c357f4c3758))
+* **questions:** increase test coverage ([ed88529](https://github.com/oaknational/Oak-Web-Application/commit/ed885291cb729135ec088198f85dbc64de28960a))
+* **questions:** merge commit ([d774fb6](https://github.com/oaknational/Oak-Web-Application/commit/d774fb6ef4188c83ce53466617f0d46f4b20fa05))
+* **questions:** point query at choices_combined ([94ef257](https://github.com/oaknational/Oak-Web-Application/commit/94ef257e37490c93c5b93df071cc65a28198aa08))
+* **questions:** readability ([d76bb95](https://github.com/oaknational/Oak-Web-Application/commit/d76bb95debb390f268f843eed744ab14601b2354))
+* **questions:** rmove type assertions from question list item ([13f6174](https://github.com/oaknational/Oak-Web-Application/commit/13f61744dbe0dd21f3c26d45f3c60c21d5e16c6c))
+* **questions:** story fix ([ab19ffe](https://github.com/oaknational/Oak-Web-Application/commit/ab19ffebb93fef55732e27301e5e21cfcab66706))
+* **questions:** test fixes ([bb9ae73](https://github.com/oaknational/Oak-Web-Application/commit/bb9ae732d08f69386cab88c0b92c9ba69a58db4a))
+* **questions:** useful comment ([76718d3](https://github.com/oaknational/Oak-Web-Application/commit/76718d38270e515544944ce518f7ab92684f0deb))
+* **quiz:** add choice images to questions with multiple answers ([9d123a7](https://github.com/oaknational/Oak-Web-Application/commit/9d123a7759f7440bbca8def5b3de94756903dce7))
+* **quiz:** add image title underneath image ([98d3c59](https://github.com/oaknational/Oak-Web-Application/commit/98d3c598fad6bc2c22fb5649a44f10af66bdfd9c))
+* **quiz:** remove duplicate code ([a024b2a](https://github.com/oaknational/Oak-Web-Application/commit/a024b2af62a5a61c74e6bdb181a3266527bee0b6))
+
+## [1.159.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.0...v1.159.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* 1406 Add FieldError to storybook ([09722d3](https://github.com/oaknational/Oak-Web-Application/commit/09722d32b26bc899852232dcdd4513f978e42369))
+* 1406 Display errors on blur and correct mobile styling ([c1d1f94](https://github.com/oaknational/Oak-Web-Application/commit/c1d1f940db3f03b38224a56b23e1897364e4c167))
+* 1406 Fix errors type ([0d9a56f](https://github.com/oaknational/Oak-Web-Application/commit/0d9a56febd25c0922e09d49431e3eda3f0ba7102))
+* 1406 Fix types ([9e7d573](https://github.com/oaknational/Oak-Web-Application/commit/9e7d5732f0aa832336ae2128d90b18d0bcefc75e))
+* 1406 Make sure errors order is always the same ([6462812](https://github.com/oaknational/Oak-Web-Application/commit/6462812c11ef7123eda0867afb39657b86c6a327))
+* 1406 Update field error typography styles ([e390649](https://github.com/oaknational/Oak-Web-Application/commit/e39064927e505d7465df43dc05df18c4a0fc4ba6))
+
+# [1.159.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.1...v1.159.0) (2023-03-13)
+
+
+### Features
+
+* lazily load mux player to save on blocking js ([eb82e12](https://github.com/oaknational/Oak-Web-Application/commit/eb82e1279738df699614603297f9477e326c2918))
+
+## [1.158.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.158.0...v1.158.1) (2023-03-13)
+
+# [1.158.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.157.0...v1.158.0) (2023-03-13)
+
+
+### Bug Fixes
+
+* type errors on get download form error ([258e96f](https://github.com/oaknational/Oak-Web-Application/commit/258e96f2d1de223262e136c93d14e2cc3afcab74))
+
+
+### Features
+
+* 1114 add correct errors for download resources ([7dd49de](https://github.com/oaknational/Oak-Web-Application/commit/7dd49de1016b59e42108cedb397b152d8c729921))
+* 1114 add test for getDownloadFormErrorMessage ([5520fdb](https://github.com/oaknational/Oak-Web-Application/commit/5520fdbb66437096f362c1cd00a731f2199e8aab))
+* 1114 add validation to download form ([26b835f](https://github.com/oaknational/Oak-Web-Application/commit/26b835f469e1a163e3e787660eff75817769fe54))
+* 1114 amend download test ([df3d039](https://github.com/oaknational/Oak-Web-Application/commit/df3d039af06644c9d86792124d6b70b4c501e8f1))
+* 1114 error handling on downloads ([c177f06](https://github.com/oaknational/Oak-Web-Application/commit/c177f06ba6dfba6eb789a4ff744ae85912fd83d7))
+* 1114 fix type error ([25b47e0](https://github.com/oaknational/Oak-Web-Application/commit/25b47e0e6a6dc4761c550025fc8f6725de3e539e))
+* **downloads-errors:** add schoolpickerand email to error handling ([54576af](https://github.com/oaknational/Oak-Web-Application/commit/54576af5850f7cff63bbbca919be989fae15234d))
+* **downloads-errors:** empty email fix and remove comma ([2fbf6bf](https://github.com/oaknational/Oak-Web-Application/commit/2fbf6bf9c3a7b34a6d5145d59521d3ae9a3c84fe))
+* **downloads-errors:** test fix ([64eedf7](https://github.com/oaknational/Oak-Web-Application/commit/64eedf7cef0363a2f288dd906474699842a0f372))
+
+# [1.157.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.156.1...v1.157.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* **downlaods:** give school radio buttons meaningful schema name ([fafdb4f](https://github.com/oaknational/Oak-Web-Application/commit/fafdb4f64940343b7fe206c0ca37fa632b7a1df1))
+* **downlaods:** merge commit ([b469620](https://github.com/oaknational/Oak-Web-Application/commit/b469620e418eeb3e7b6912221ee3e08230f61ed1))
+* **downlaods:** styling ([6304431](https://github.com/oaknational/Oak-Web-Application/commit/63044310c36da74dcfc528c395c78cf5e5e2b326))
+* **questions:** remove unnecessary tostring method ([5f91831](https://github.com/oaknational/Oak-Web-Application/commit/5f91831c323965062570f55d58dce1c337e20614))
+
+
+### Features
+
+* **downlaods:** merge ([1ad2947](https://github.com/oaknational/Oak-Web-Application/commit/1ad29473ab36e5782a9269218f2fe7b77a4b72f0))
+* **downlaods:** update options and schoolpicker valuewith setValue ([cc98bb2](https://github.com/oaknational/Oak-Web-Application/commit/cc98bb2eeec67093c8c362fb20be55d21e9c4ce0))
+* **downloads:** add react-hook-form to radio buttons on downloads page ([dedb3df](https://github.com/oaknational/Oak-Web-Application/commit/dedb3df7afdcc1006d2107f799af07e999cc14cd))
+
+## [1.156.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.156.0...v1.156.1) (2023-03-09)
+
+# [1.156.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.155.0...v1.156.0) (2023-03-09)
+
+
+### Features
+
+* 1391 fix more types ([2fddfe4](https://github.com/oaknational/Oak-Web-Application/commit/2fddfe403b5fd81a18aa93b0b22821c95321e8a6))
+* 1391 fix tests ([b5eb624](https://github.com/oaknational/Oak-Web-Application/commit/b5eb624c9dfbcb1f7d1d0191087fef205d2f37db))
+* 1391 fix types ([8618caf](https://github.com/oaknational/Oak-Web-Application/commit/8618caf591f048454725933add9d7d41f9255b63))
+* 1391 fix types ([0eb6ffe](https://github.com/oaknational/Oak-Web-Application/commit/0eb6ffe356a5fc841220e2d7ef4b42c1f73479ce))
+* 1391 refactor Download Card to use react hook form ([d7e767e](https://github.com/oaknational/Oak-Web-Application/commit/d7e767e720a16e917084828117227251826bcd41))
+* 1391 update tests ([3c463fb](https://github.com/oaknational/Oak-Web-Application/commit/3c463fb95cbf79ea6ece930c8c076f2306738876))
+
+# [1.155.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.154.0...v1.155.0) (2023-03-08)
+
+
+### Features
+
+* 1225 curriculum download button added to unit and lesson pages ([13e0082](https://github.com/oaknational/Oak-Web-Application/commit/13e00827f1a4d3ed8e0f0b20b9751e961ea3d514))
+
+# [1.154.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.1...v1.154.0) (2023-03-08)
+
+
+### Bug Fixes
+
+* react aria required prop undefined ([d67b7bd](https://github.com/oaknational/Oak-Web-Application/commit/d67b7bd459eab157db8d5641deb6291a636b7364))
+
+
+### Features
+
+* add error label background to school picker ([1487c47](https://github.com/oaknational/Oak-Web-Application/commit/1487c4749d10955e36faa94024c9c2e96648f2f8))
+* add school picker and radio validation to downloads ([89d7ba1](https://github.com/oaknational/Oak-Web-Application/commit/89d7ba13204611b10ca6eb292115696ba685151f))
+* radio group validation ([f2151fe](https://github.com/oaknational/Oak-Web-Application/commit/f2151fe7865a7838ab1a5ce7f01049d928d11bcd))
+
+## [1.153.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.153.0...v1.153.1) (2023-03-08)
+
+# [1.153.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.152.0...v1.153.0) (2023-03-07)
+
+
+### Features
+
+* 1381 handle plurals correctly ([a55b303](https://github.com/oaknational/Oak-Web-Application/commit/a55b3037b9ca8fb476307a677558a9b55595ad81))
+
+# [1.152.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.151.0...v1.152.0) (2023-03-07)
+
+
+### Features
+
+* 1342 add arror on submit on TCs if not selected ([1fc6d92](https://github.com/oaknational/Oak-Web-Application/commit/1fc6d924adbfa1da5e8b14c6c186e5f3a0815654))
+* 1342 add error messaging to checkbox ([a915a19](https://github.com/oaknational/Oak-Web-Application/commit/a915a1982b4a5f9fe74717c72148cb3380de91be))
+* 1342 add test ([0d84e51](https://github.com/oaknational/Oak-Web-Application/commit/0d84e51d42da2d0b83621b07466f35ef0825d2ea))
+* 1342 move Terms and Conditions checkbox into its own component ([19c9194](https://github.com/oaknational/Oak-Web-Application/commit/19c9194f518775e2b73147c7619efcaded3eae5b))
+* 1342 remove manual form validation ([75854ee](https://github.com/oaknational/Oak-Web-Application/commit/75854eefc05ddf89fb65ba918b0df6b9a4e7b5da))
+
+# [1.151.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.2...v1.151.0) (2023-03-07)
+
+
+### Bug Fixes
+
+* adjust image sizes ([6e58592](https://github.com/oaknational/Oak-Web-Application/commit/6e58592edb2fc5256c5941eb057dd7622d11a298))
+* ensure image url is generated from image asset ([237fd89](https://github.com/oaknational/Oak-Web-Application/commit/237fd893b99d8ded74ebf4ecfe6741f9631eede0))
+* make CMSImage more robust and add tests ([7e76c0b](https://github.com/oaknational/Oak-Web-Application/commit/7e76c0bb24d1e7f20e1541a106006e64ef52d3ea))
+* sizes for subject icons ([ca0f6ea](https://github.com/oaknational/Oak-Web-Application/commit/ca0f6ea16da130d08bb0e81e0eaceb4cf1f142f4))
+
+
+### Features
+
+* add getSizes helper function ([ad1ed0b](https://github.com/oaknational/Oak-Web-Application/commit/ad1ed0bc7bdb053ec28caa157efb4a1624e6a03f))
+* add sanity illustration assets and remove image files ([bb87814](https://github.com/oaknational/Oak-Web-Application/commit/bb87814a43725102c931747f13e1f844cea92ebe))
+* ensure illustrations come from CMS ([09e1e14](https://github.com/oaknational/Oak-Web-Application/commit/09e1e14119682c76bacce31ced237a57744a4326))
+
 ## [1.150.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.1...v1.150.2) (2023-03-06)
 
 ## [1.150.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.150.0...v1.150.1) (2023-03-03)

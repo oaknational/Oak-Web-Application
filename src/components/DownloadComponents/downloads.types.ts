@@ -7,6 +7,6 @@ export type DownloadResourceType =
   | "worksheet-pdf"
   | "worksheet-pptx";
 
-export type ResourcesToDownloadType = Partial<
-  Record<DownloadResourceType, boolean>
->;
+export type ResourcesToDownloadArrayType = DownloadResourceType[];
+
+export type ErrorKeysType = "schoolRadio" | "email" | "terms" | "downloads";

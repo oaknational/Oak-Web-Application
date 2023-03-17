@@ -21,6 +21,7 @@ export type FontVariant =
   | "body-1"
   | "body-1-bold"
   | "body-2"
+  | "body-2-bold"
   | "body-3"
   | "body-4"
   | "list-item-1"
@@ -51,6 +52,7 @@ export const FONT_VARIANTS: Record<FontVariant, Font> = {
   "body-3": [14, 20, 300, "-0.005em"],
   "body-4": [12, 16, 300, "-0.005em"],
   "body-1-bold": [18, 28, 700, "-0.005em"],
+  "body-2-bold": [16, 24, 700, "-0.005em"],
   "list-item-1": [18, 32, 300, "-0.005em"],
   "list-item-2": [16, 24, 300, "-0.005em"],
 } as const;

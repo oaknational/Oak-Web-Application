@@ -21,6 +21,7 @@ import { Heading } from "../../../../../../../components/Typography";
 import TabularNav from "../../../../../../../components/TabularNav";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
+import CurriculumDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 
 export type SubjectUnitsListPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsData;
@@ -114,32 +115,11 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               $mb={24}
               $alignSelf={"flex-start"}
             />
-            {/* not part of mvp page, add later */}
-            {/* <Flex $mb={64} $display={"inline-flex"}>
-
-        <TitleCard
-          page={"subject"}
-          keyStage={keyStageTitle}
-          keyStageSlug={keyStageSlug}
-          title={subjectTitle}
-          iconName={"rocket"}
-          $mt={48}
-          $mb={24}
-          $alignSelf={"flex-start"}
-        />
-        {/* not part of mvp page, add later */}
-
-            {/* <Flex $mb={64} $display={"inline-flex"}>
-          <ButtonAsLink
-            variant="minimal"
-            page={null}
-            href={"/"}
-            icon={"download"}
-            $iconPosition={"trailing"}
-            label="Curriculum download (PDF)"
-            iconBackground="teachersHighlight"
-          />
-        </Flex> */}
+            <CurriculumDownloadButton
+              keyStage={keyStageSlug}
+              subject={subjectSlug}
+              tier={tierQuery}
+            />
 
             <Grid>
               <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
@@ -177,7 +157,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                   )}
                 </Box>
               </GridArea>
-              <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 72]}>
+
+              <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 56]}>
                 <Flex $flexDirection={["column-reverse", "column"]}>
                   <Flex
                     $flexDirection={"row"}

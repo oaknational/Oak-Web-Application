@@ -180,12 +180,12 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           {hasDownloadableResources && (
             <ButtonAsLink
               $mr={24}
-              icon="save"
+              icon="download"
               iconBackground="teachersHighlight"
-              label="All lesson resources"
+              label="Download all resources"
               href={downLoadLink}
               page={null}
-              size="large"
+              size="small"
               variant="minimal"
               $iconPosition={"trailing"}
               $mt={16}
@@ -341,6 +341,9 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
+
+  console.log(results.props.curriculumData.title, "getStaticProps");
+
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;
 };

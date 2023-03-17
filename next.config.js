@@ -143,6 +143,10 @@ module.exports = async (phase) => {
           protocol: "https",
           hostname: "**.googleusercontent.com",
         },
+        {
+          protocol: "https",
+          hostname: "storage.googleapis.com",
+        },
       ],
       // Allow static builds with the default image loader.
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
