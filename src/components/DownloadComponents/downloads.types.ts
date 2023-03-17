@@ -1,3 +1,5 @@
+import { DownloadFormProps } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+
 export type DownloadResourceType =
   | "presentation"
   | "intro-quiz-questions"
@@ -9,4 +11,4 @@ export type DownloadResourceType =
 
 export type ResourcesToDownloadArrayType = DownloadResourceType[];
 
-export type ErrorKeysType = "schoolRadio" | "email" | "terms" | "downloads";
+export type ErrorKeysType = keyof Omit<DownloadFormProps, "onSubmit">;

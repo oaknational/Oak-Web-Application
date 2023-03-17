@@ -12,7 +12,7 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     ErrorKeysType,
     ErrorMessagesAndOrderType
   > = {
-    schoolRadio: {
+    school: {
       order: 1,
       message: "select a school or one of the alternative options",
     },
