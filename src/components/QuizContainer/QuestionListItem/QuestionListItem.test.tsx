@@ -42,6 +42,12 @@ describe("CorrectAnswer", () => {
     expect(getByText("X -")).toBeInTheDocument();
     expect(getByText("A")).toBeInTheDocument();
   });
+  it("renders empty string for match type when there is no answer ", () => {
+    const { getByRole } = renderWithTheme(
+      <CorrectAnswer choice="A" type="match" index={0} />
+    );
+    expect(getByRole("heading")).toHaveTextContent("");
+  });
 });
 
 describe("QuestionListItem", () => {
@@ -62,7 +68,7 @@ describe("QuestionListItem", () => {
   it("renders the choices", () => {
     const { getByText } = renderWithTheme(<QuestionListItem {...testProps} />);
     testProps.choices.forEach((choice) => {
-      expect(getByText(choice)).toBeInTheDocument();
+      expect(getByText(choice.choice)).toBeInTheDocument();
     });
   });
 
@@ -73,7 +79,7 @@ describe("QuestionListItem", () => {
 
     const images = getAllByRole("img");
 
-    expect(images.length).toEqual(3);
+    expect(images.length).toEqual(2);
   });
 
   it("renders when image is an object", () => {
@@ -91,20 +97,47 @@ describe("QuestionListItem", () => {
 
     const images = getAllByRole("img");
 
-    expect(images.length).toEqual(3);
+    expect(images.length).toEqual(2);
   });
   it("renders correctly without choice images ", () => {
-    testProps.choiceImages = [];
     const { getAllByRole } = renderWithTheme(
       <QuestionListItem {...testProps} />
     );
 
     const images = getAllByRole("img");
 
-    expect(images.length).toEqual(1);
+    expect(images.length).toEqual(2);
   });
   it("renders correctly when there are no choices", () => {
     testProps.choices = [];
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+    const questionItemTitle = getByTestId("title-div");
+
+    expect(questionItemTitle).toHaveTextContent("what is a question");
+  });
+  it("renders correctly where correct answer doesnt have an image and incorrect choice does have image", () => {
+    testProps.choices = [
+      {
+        choice: "this one",
+        image: null,
+      },
+      {
+        choice: "that one",
+        image:
+          "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
+      },
+    ];
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+    const questionItemTitle = getByTestId("title-div");
+
+    expect(questionItemTitle).toHaveTextContent("what is a question");
+  });
+  it("renders correctly where correct answer is an array", () => {
+    testProps.answer = ["this one", "that one"];
     const { getByTestId } = renderWithTheme(
       <QuestionListItem {...testProps} />
     );

@@ -45,7 +45,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
   return (
     <nav aria-label="key stages and year groups">
       <Heading $color={"oakGrey5"} $mb={20} tag="h3" $font={"heading-light-7"}>
-        Key Stage
+        Key stage
       </Heading>
       <Grid $mb={years ? 48 : 24} $cg={24} $ph={8}>
         {keyStages.map((keyStage) => (

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,22 +33,19 @@ import type {
   DownloadResourceType,
   ErrorKeysType,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
-import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
-import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
-import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
-import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
+import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
 };
 
 const schema = z.object({
-  schoolRadio: z
+  school: z
     .string({
       errorMap: () => ({
         message: "Please select a school or one of the alternative options",
@@ -81,7 +78,7 @@ export type DownloadFormProps = {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
   email: string;
   terms: boolean;
-  schoolRadio: string;
+  school: string;
   downloads: DownloadResourceType[];
 };
 
@@ -99,31 +96,19 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitSlug,
     unitTitle,
   } = curriculumData;
-  const [selectedRadio, setSelectedRadio] = useState("");
-  const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
-    useSchoolPicker();
-
-  const onRadioChange = (e: string) => {
-    if (selectedValue) {
-      setInputValue("");
-    }
-    setSelectedRadio(e);
-    setValue("schoolRadio", e, { shouldValidate: true });
-  };
-
-  const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (selectedRadio && selectedValue) {
-      setSelectedRadio("");
-    }
-    setInputValue(value);
-    setValue("schoolRadio", value.toString(), { shouldValidate: true });
-  };
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
+
+  const setSchool = useCallback(
+    (value: string) => {
+      setValue("school", value, { shouldValidate: true });
+    },
+    [setValue]
+  );
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
@@ -171,11 +156,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const getFormErrorMessage = () => {
     const errorKeyArray = Object.keys(errors);
-    const errrorMessage = getDownloadFormErrorMessage(
+    const errorMessage = getDownloadFormErrorMessage(
       errorKeyArray as ErrorKeysType[]
     );
 
-    return errrorMessage;
+    return errorMessage;
   };
 
   useDownloadExistenceCheck({
@@ -240,41 +225,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
-          <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
-            Your details
-          </Heading>
-          <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
-            Find your school in the field below (required)
-          </Heading>
-          <SchoolPicker
-            hasError={errors.schoolRadio !== undefined}
-            inputValue={inputValue}
-            setInputValue={onSchoolPickerInputChange}
-            schools={data}
-            label={"Name of school"}
-            setSelectedValue={setSelectedValue}
-            required={true}
-          />
-          <Box $mt={12} $ml={24} $mb={32}>
-            <P $mb={12} $font={"body-2"}>
-              Or select one of the following:
-            </P>
-            <Flex>
-              <RadioGroup
-                validationState={"valid"}
-                errorMessage={errors.schoolRadio?.message}
-                aria-label={"home school or my school isn't listed"}
-                value={selectedRadio}
-                onChange={onRadioChange}
-                hasError={errors.schoolRadio !== undefined}
-              >
-                <Radio data-testid={"radio-download"} value={"homeschool"}>
-                  Homeschool
-                </Radio>
-                <Radio value={"notListed"}>My school isn’t listed</Radio>
-              </RadioGroup>
-            </Flex>
-          </Box>
+          <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+
           <Heading
             tag="h3"
             $font={"heading-7"}
