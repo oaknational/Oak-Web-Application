@@ -279,7 +279,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               $flexDirection={["column", "row"]}
             >
               <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
-                Teacher resources
+                Lesson resources
               </Heading>
               <Box $ml={[0, 48]}>
                 <Button
