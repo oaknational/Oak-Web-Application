@@ -16,7 +16,6 @@ const originalService: AnalyticsService<unknown> = {
   identify: jest.fn(),
   optOut: jest.fn(),
   optIn: jest.fn(),
-  setLegacyAnonymousId: jest.fn(),
 };
 
 describe("withQueue", () => {

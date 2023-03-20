@@ -19,20 +19,8 @@ const noopTrackingFns = Object.entries(trackingFns).reduce(
 export default function AnalyticsDecorator(Story: Story) {
   const value = {
     identify: noop,
-    posthogSetLegacyAnonymousId: noop,
     posthogDistinctId: testPosthogDistinctId,
     track: {
-      // planALessonSelected: noop,
-      // classroomSelected: noop,
-      // teacherHubSelected: noop,
-      // developYourCurriculumSelected: noop,
-      // notificationSelected: noop,
-      // aboutSelected: noop,
-      // newsletterSignUpCompleted: noop,
-      // videoStarted: noop,
-      // videoPaused: noop,
-      // videoPlayed: noop,
-      // videoFinished: noop,
       ...noopTrackingFns,
       NavigatedFrom,
     },

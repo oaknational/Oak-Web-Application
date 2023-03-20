@@ -22,7 +22,6 @@ const MockedAnalyticsProvider: FC<{
       value={{
         track: noopTrack,
         identify: noop,
-        posthogSetLegacyAnonymousId: noop,
         posthogDistinctId: testPosthogDistinctId,
       }}
     >

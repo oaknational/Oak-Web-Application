@@ -12,7 +12,6 @@ jest.mock("../../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     identify: jest.fn(),
-    posthogSetLegacyAnonymousId: jest.fn(),
   }),
 }));
 

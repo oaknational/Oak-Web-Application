@@ -79,9 +79,6 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
 
     _hsq.push(["identify", { id: userId, ...properties }]);
   },
-  setLegacyAnonymousId: () => {
-    // Not implemented for hubspot
-  },
   page: (properties) => {
     const { _hsq } = getHubspot();
 

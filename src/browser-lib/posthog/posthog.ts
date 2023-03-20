@@ -32,11 +32,6 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   identify: (userId, properties) => {
     client.identify(userId, properties);
   },
-  setLegacyAnonymousId: () => {
-    client.identify(client.get_distinct_id(), {
-      legacy_oak_anonymous_id: getLegacyAnonymousId(),
-    });
-  },
   page: () => {
     client.capture("$pageview");
   },

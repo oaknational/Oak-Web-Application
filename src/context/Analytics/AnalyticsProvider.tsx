@@ -61,7 +61,6 @@ type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
   posthogDistinctId: PosthogDistinctId | null;
-  posthogSetLegacyAnonymousId?: () => void;
 };
 
 export type AnalyticsService<ServiceConfig> = {
@@ -71,12 +70,6 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
-  /**
-   * setLegacyAnonymousId associates the legacy oak id (from oakData cookie
-   * from Acorn apps) with the current Posthog session.
-   * For non posthog services this will be a noop.
-   */
-  setLegacyAnonymousId: () => void;
   optOut: () => void;
   optIn: () => void;
 };
@@ -210,10 +203,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
-      posthogSetLegacyAnonymousId: posthog.setLegacyAnonymousId,
       posthogDistinctId,
     };
-  }, [track, identify, posthog, posthogDistinctId]);
+  }, [track, identify, posthogDistinctId]);
 
   return (
     <analyticsContext.Provider value={analytics}>

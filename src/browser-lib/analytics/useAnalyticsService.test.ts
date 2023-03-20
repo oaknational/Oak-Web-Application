@@ -15,7 +15,6 @@ const service: AnalyticsService<unknown> = {
   identify: jest.fn(),
   optOut: jest.fn(),
   optIn: jest.fn(),
-  setLegacyAnonymousId: jest.fn(),
 };
 
 const setPosthogDistinctId = jest.fn();
