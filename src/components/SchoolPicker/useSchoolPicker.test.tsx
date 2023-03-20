@@ -53,7 +53,7 @@ describe("useSchoolPicker", () => {
     }));
     const { result } = renderHook(() => useSchoolPicker());
 
-    expect(result.current.data).toEqual(data);
+    expect(result.current.schools).toEqual(data);
   });
 
   test("should throw an error if failed to fetch school ", async () => {
@@ -80,6 +80,6 @@ describe("useSchoolPicker", () => {
 
     const { result } = renderHook(() => useSchoolPicker());
 
-    expect(result.current.data).toEqual([]);
+    expect(result.current.schools).toEqual([]);
   });
 });
