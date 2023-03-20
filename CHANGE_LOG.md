@@ -1,3 +1,10 @@
+## [1.159.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.3...v1.159.4) (2023-03-20)
+
+
+### Bug Fixes
+
+* **downloads-page:** change Lesson to Teacher ([546f6b2](https://github.com/oaknational/Oak-Web-Application/commit/546f6b2678999dfc1cc5c98c1a979781b25fbe5e))
+
 ## [1.159.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.2...v1.159.3) (2023-03-17)
 
 
