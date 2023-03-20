@@ -2,6 +2,12 @@ import posthogJs from "posthog-js";
 
 import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";
 
+const getLegacyAnonymousId = jest.fn();
+jest.mock("../analytics/getLegacyAnonymousId", () => ({
+  __esModule: true,
+  default: (...args: []) => getLegacyAnonymousId(...args),
+}));
+
 const init = jest.fn((key, config) => config.loaded());
 const identify = jest.fn();
 const capture = jest.fn();
@@ -51,7 +57,22 @@ describe("posthog.ts", () => {
   });
   test("track", () => {
     posthog.track("foo", { bar: "baz" });
-    expect(capture).toHaveBeenCalledWith("foo", { bar: "baz" });
+    expect(capture).toHaveBeenCalledWith("foo", {
+      bar: "baz",
+      $set_once: {},
+    });
+  });
+  test("track sets legacy_anonymous_id", () => {
+    getLegacyAnonymousId.mockImplementationOnce(
+      () => "test legacy anonymous id"
+    );
+    posthog.track("foo", { bar: "baz" });
+    expect(capture).toHaveBeenCalledWith("foo", {
+      $set_once: {
+        legacy_anonymous_id: "test legacy anonymous id",
+      },
+      bar: "baz",
+    });
   });
   test("page", () => {
     posthog.page({ path: "/foo/ban" });

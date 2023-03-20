@@ -36,11 +36,15 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     client.capture("$pageview");
   },
   track: (name, properties) => {
+    const legacyAnonymousId = getLegacyAnonymousId();
+    const $set_once = legacyAnonymousId
+      ? {
+          legacy_anonymous_id: legacyAnonymousId,
+        }
+      : {};
     client.capture(name, {
       ...properties,
-      $set_once: {
-        legacy_oak_anonymous_id: getLegacyAnonymousId(),
-      },
+      $set_once,
     });
   },
   optIn: () => {
