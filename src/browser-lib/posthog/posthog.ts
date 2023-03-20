@@ -41,7 +41,12 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     client.capture("$pageview");
   },
   track: (name, properties) => {
-    client.capture(name, { ...properties });
+    client.capture(name, {
+      ...properties,
+      $set_once: {
+        legacy_oak_anonymous_id: getLegacyAnonymousId(),
+      },
+    });
   },
   optIn: () => {
     if (client.has_opted_out_capturing()) {
