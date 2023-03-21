@@ -14,27 +14,6 @@ export type PosthogConfig = {
   apiHost: string;
 };
 
-const withLegacyAnonymousId = (
-  properties?: Record<string, unknown> & {
-    $set_once?: Record<string, unknown>;
-  }
-) => {
-  const legacyAnonymousId = getLegacyAnonymousId();
-  const $set_once = legacyAnonymousId
-    ? {
-        ...properties?.$set_once,
-        legacy_anonymous_id: legacyAnonymousId,
-      }
-    : properties?.$set_once || {};
-
-  const propsWithLegacyAnonymousId = {
-    ...properties,
-    $set_once,
-  };
-
-  return propsWithLegacyAnonymousId;
-};
-
 export const posthogToAnalyticsServiceWithoutQueue = (
   client: PostHog
 ): AnalyticsService<PosthogConfig> => ({
@@ -45,6 +24,12 @@ export const posthogToAnalyticsServiceWithoutQueue = (
         api_host: apiHost,
         debug: config.get("releaseStage") !== "production",
         loaded: () => {
+          const legacyAnonymousId = getLegacyAnonymousId();
+          if (legacyAnonymousId) {
+            client.register({
+              legacy_anonymous_id: legacyAnonymousId,
+            });
+          }
           resolve(client.get_distinct_id());
         },
         disable_session_recording: true,
@@ -54,10 +39,10 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     client.identify(userId, properties);
   },
   page: () => {
-    client.capture("$pageview", withLegacyAnonymousId());
+    client.capture("$pageview");
   },
   track: (name, properties) => {
-    client.capture(name, withLegacyAnonymousId(properties));
+    client.capture(name, properties);
   },
   optIn: () => {
     if (client.has_opted_out_capturing()) {

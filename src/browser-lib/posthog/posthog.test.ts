@@ -11,6 +11,7 @@ jest.mock("../analytics/getLegacyAnonymousId", () => ({
 const init = jest.fn((key, config) => config.loaded());
 const identify = jest.fn();
 const capture = jest.fn();
+const register = jest.fn();
 const optInCapturing = jest.fn();
 const optOutCapturing = jest.fn();
 const getHasConsentedTo = jest.fn(() => "pending");
@@ -30,6 +31,7 @@ jest.mock("posthog-js", () => ({
   opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
   has_opted_out_capturing: () => true,
   get_distinct_id: () => textDistinctId,
+  register: (...args: []) => register(...args),
 }));
 describe("posthog.ts", () => {
   beforeEach(() => {
@@ -51,6 +53,18 @@ describe("posthog.ts", () => {
     const distinctId = await posthog.init(config);
     expect(distinctId).toBe(textDistinctId);
   });
+  test("init calls register() with legacy anonymous id", async () => {
+    getLegacyAnonymousId.mockImplementationOnce(
+      () => "test legacy anonymous id"
+    );
+    const config = { apiKey: "12", apiHost: "https://..." };
+    const distinctId = await posthog.init(config);
+    expect(distinctId).toBe(textDistinctId);
+    expect(register).toHaveBeenCalledWith({
+      legacy_anonymous_id: "test legacy anonymous id",
+    });
+  });
+
   test("identify", () => {
     posthog.identify("123", { email: "abc" });
     expect(identify).toHaveBeenCalledWith("123", { email: "abc" });
@@ -59,36 +73,13 @@ describe("posthog.ts", () => {
     posthog.track("foo", { bar: "baz" });
     expect(capture).toHaveBeenCalledWith("foo", {
       bar: "baz",
-      $set_once: {},
-    });
-  });
-  test("track sets legacy_anonymous_id", () => {
-    getLegacyAnonymousId.mockImplementationOnce(
-      () => "test legacy anonymous id"
-    );
-    posthog.track("foo", { bar: "baz" });
-    expect(capture).toHaveBeenCalledWith("foo", {
-      $set_once: {
-        legacy_anonymous_id: "test legacy anonymous id",
-      },
-      bar: "baz",
     });
   });
   test("page", () => {
     posthog.page({ path: "/foo/ban" });
-    expect(capture).toHaveBeenCalledWith("$pageview", { $set_once: {} });
+    expect(capture).toHaveBeenCalledWith("$pageview");
   });
-  test("page sets legacy_anonymous_id", () => {
-    getLegacyAnonymousId.mockImplementationOnce(
-      () => "test legacy anonymous id"
-    );
-    posthog.page({ path: "?" });
-    expect(capture).toHaveBeenCalledWith("$pageview", {
-      $set_once: {
-        legacy_anonymous_id: "test legacy anonymous id",
-      },
-    });
-  });
+
   test("optIn", () => {
     posthog.optIn();
     expect(optInCapturing).toHaveBeenCalled();
