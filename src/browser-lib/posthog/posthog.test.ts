@@ -76,7 +76,18 @@ describe("posthog.ts", () => {
   });
   test("page", () => {
     posthog.page({ path: "/foo/ban" });
-    expect(capture).toHaveBeenCalledWith("$pageview");
+    expect(capture).toHaveBeenCalledWith("$pageview", { $set_once: {} });
+  });
+  test("page sets legacy_anonymous_id", () => {
+    getLegacyAnonymousId.mockImplementationOnce(
+      () => "test legacy anonymous id"
+    );
+    posthog.page({ path: "?" });
+    expect(capture).toHaveBeenCalledWith("$pageview", {
+      $set_once: {
+        legacy_anonymous_id: "test legacy anonymous id",
+      },
+    });
   });
   test("optIn", () => {
     posthog.optIn();
