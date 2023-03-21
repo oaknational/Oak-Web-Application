@@ -1,3 +1,10 @@
+## [1.159.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.4...v1.159.5) (2023-03-21)
+
+
+### Bug Fixes
+
+* remove redundant SVGs, add webinar image from CMS ([7c846c1](https://github.com/oaknational/Oak-Web-Application/commit/7c846c1f3b4df9aa7a526a58b10429f2f0ba4a52))
+
 ## [1.159.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.3...v1.159.4) (2023-03-20)
 
 
