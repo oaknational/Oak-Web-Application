@@ -1,3 +1,20 @@
+# [1.160.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.5...v1.160.0) (2023-03-22)
+
+
+### Features
+
+* 1414 Check if updating storybook config will fix rendering icons ([c901ec7](https://github.com/oaknational/Oak-Web-Application/commit/c901ec763778808ee55a5bcaf2031e3e24b28aba))
+* 1414 Create DetailsCompleted component ([25098a1](https://github.com/oaknational/Oak-Web-Application/commit/25098a1718fe2a7656f9cb91ae1ce0ff0226303e))
+* 1414 Force builds to re-run ([af1944b](https://github.com/oaknational/Oak-Web-Application/commit/af1944b78b415ebb368ddbb90b2f385927098484))
+* 1414 Generate sprites before bulding storybook ([99d016a](https://github.com/oaknational/Oak-Web-Application/commit/99d016a187604085082eeba0176f3c712c322806))
+
+## [1.159.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.4...v1.159.5) (2023-03-21)
+
+
+### Bug Fixes
+
+* remove redundant SVGs, add webinar image from CMS ([7c846c1](https://github.com/oaknational/Oak-Web-Application/commit/7c846c1f3b4df9aa7a526a58b10429f2f0ba4a52))
+
 ## [1.159.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.3...v1.159.4) (2023-03-20)
 
 

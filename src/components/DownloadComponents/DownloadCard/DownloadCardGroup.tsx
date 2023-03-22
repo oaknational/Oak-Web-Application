@@ -3,6 +3,11 @@ import { Control, Controller } from "react-hook-form";
 
 import { TeachersKeyStageSubjectUnitsLessonsDownloadsData } from "../../../node-lib/curriculum-api";
 import { GridArea } from "../../Grid";
+import Flex from "../../Flex";
+import { Heading, Hr } from "../../Typography";
+import Box from "../../Box";
+import Button from "../../Button";
+import FieldError from "../../FormFields/FieldError";
 import { DownloadResourceType } from "../downloads.types";
 import type { DownloadFormProps } from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 
@@ -12,15 +17,46 @@ type DownloadCardGroupProps = {
   downloads?: TeachersKeyStageSubjectUnitsLessonsDownloadsData["downloads"];
   control: Control<DownloadFormProps>;
   hasError?: boolean;
+  errorMessage?: string;
+  onSelectAllClick: () => void;
+  onDeselectAllClick: () => void;
 };
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
   control,
   hasError = false,
+  errorMessage,
+  onSelectAllClick,
+  onDeselectAllClick,
 }) => {
   return (
     <>
+      <GridArea $colSpan={[12]}>
+        <Flex
+          $alignItems={["left", "center"]}
+          $flexDirection={["column", "row"]}
+        >
+          <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
+            Lesson resources
+          </Heading>
+          <Box $ml={[0, 48]}>
+            <Button
+              label="Select all"
+              variant="minimal"
+              onClick={() => onSelectAllClick()}
+            />
+            <Button
+              label="Deselect all"
+              variant="minimal"
+              onClick={() => onDeselectAllClick()}
+              $ml={24}
+            />
+          </Box>
+        </Flex>
+        <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
+        <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
+      </GridArea>
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {
           return (
