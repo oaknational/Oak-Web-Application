@@ -39,12 +39,18 @@ export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
    * returned might be 400x320 or 126x400
    * If noCrop is not passed, then a crop will be applied. This crop is applied
    * by @sanity/url-builder
+   * Is nullified if `cropRect` prop is passed
    */
   noCrop?: boolean;
+  /**
+   * Crop rectangle in pixels (left, top, width, height)
+   * @see https://www.sanity.io/docs/image-urls#rect-b9848ab43728
+   */
+  cropRect?: [number, number, number, number];
 };
 
 const CMSImage: FC<CMSImageProps> = (props) => {
-  const { image, loader: propsLoader, noCrop, ...rest } = props;
+  const { image, loader: propsLoader, noCrop, cropRect, ...rest } = props;
 
   const id = getSanityRefId(image);
   const originalDimensions = getImageDimensions(id, { fill: rest.fill });
@@ -68,7 +74,16 @@ const CMSImage: FC<CMSImageProps> = (props) => {
         builtImage = builtImage.height(Math.floor(srcWidth / aspectRatio));
       }
 
-      if (noCrop && originalDimensions.width && originalDimensions.height) {
+      if (cropRect) {
+        builtImage = builtImage.rect(...cropRect);
+      }
+
+      if (
+        !cropRect &&
+        noCrop &&
+        originalDimensions.width &&
+        originalDimensions.height
+      ) {
         builtImage = builtImage.rect(
           0,
           0,
@@ -87,6 +102,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
       originalDimensions.aspectRatio,
       props.height,
       props.width,
+      cropRect,
     ]
   );
 

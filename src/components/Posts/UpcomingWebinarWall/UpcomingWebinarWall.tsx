@@ -3,8 +3,8 @@ import { FC } from "react";
 import Flex from "../../Flex";
 import { Heading, HeadingTag } from "../../Typography";
 import Box from "../../Box";
-import OakImage from "../../OakImage";
 import ButtonAsLink from "../../Button/ButtonAsLink";
+import Illustration from "../../Illustration";
 
 export type UpcomingWebinarWallProps = {
   headingTag?: HeadingTag;
@@ -61,18 +61,22 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           $iconPosition="trailing"
         />
       </Box>
-      <OakImage
-        alt=""
-        src={"/images/illustrations/webinar-wall-bg.png"}
+      <Box
+        $width={"50%"}
         $position="absolute"
         $right={0}
         $bottom={0}
-        $width={"50%"}
-        $height={"auto"}
-        width={401}
-        height={289}
-        $opacity={0.2}
-      />
+        $height={"100%"}
+      >
+        <Illustration
+          slug={"magic-carpet"}
+          $objectFit="contain"
+          $objectPosition={"bottom right"}
+          $opacity={0.2}
+          cropRect={[0, 0, 401, 289]}
+          fill
+        />
+      </Box>
     </Flex>
   );
 };
