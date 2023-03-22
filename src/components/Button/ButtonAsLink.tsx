@@ -24,6 +24,7 @@ export type ButtonAsLinkProps = CommonButtonProps &
   OakLinkPropsWithoutChildren &
   Pick<ButtonInnerProps, "currentStyles"> & {
     disabled?: boolean;
+    hrefQuery?: Record<string, string>;
   };
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const { nextLinkProps, ...transformedProps } = transformOakLinkProps(props);
@@ -37,6 +38,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     disabled,
     isCurrent,
     currentStyles,
+    hrefQuery,
     ...linkProps
   } = transformedProps;
 
@@ -46,8 +48,15 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const defaultTitle =
     ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
 
+  const nextListPropsHrefQuery = hrefQuery
+    ? {
+        ...nextLinkProps,
+        href: { pathname: linkProps.href, query: { ...hrefQuery } },
+      }
+    : nextLinkProps;
+
   return (
-    <Link {...nextLinkProps} passHref legacyBehavior>
+    <Link {...nextListPropsHrefQuery} passHref legacyBehavior>
       <StyledNextLink
         {...linkProps}
         onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
