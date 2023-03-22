@@ -61,8 +61,10 @@ it("renders top right icons", async () => {
   );
 
   const downloadLinkButton = screen.getByTestId("download-button");
-  expect(downloadLinkButton).toHaveAttribute("href", downloadLink);
-
+  expect(downloadLinkButton).toHaveAttribute(
+    "href",
+    downloadLink + "?selected=video"
+  );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
   expect(log1).toHaveBeenCalled();
@@ -71,6 +73,29 @@ it("renders top right icons", async () => {
   await user.click(externalButton);
   expect(log2).toHaveBeenCalled();
 });
+
+it("adds selected+[title] to query string", async () => {
+  renderWithTheme(
+    <ExpandingContainer
+      external={true}
+      projectable={true}
+      downloadable={true}
+      downloadLink={downloadLink}
+      title={"Worksheet"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  const downloadLinkButton = screen.getByTestId("download-button");
+  expect(downloadLinkButton).toHaveAttribute(
+    "href",
+    downloadLink + "?selected=worksheet"
+  );
+});
+
 it("component expands and contract on click", async () => {
   const user = userEvent.setup();
   renderWithTheme(
