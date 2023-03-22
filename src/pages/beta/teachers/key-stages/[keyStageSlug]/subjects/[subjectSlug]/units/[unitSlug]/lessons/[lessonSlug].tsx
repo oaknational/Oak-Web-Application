@@ -191,7 +191,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               $mt={16}
               data-testid={"download-all-button"}
               hrefQuery={{
-                selected: "all",
+                preselected: "all",
               }}
             />
           )}
