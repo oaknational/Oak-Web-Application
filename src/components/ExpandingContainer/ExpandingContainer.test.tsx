@@ -63,7 +63,7 @@ it("renders top right icons", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    downloadLink + "?selected=video"
+    downloadLink + "?preselected=video"
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -92,7 +92,7 @@ it("adds selected+[title] to query string", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    downloadLink + "?selected=worksheet"
+    downloadLink + "?preselected=worksheet"
   );
 });
 
