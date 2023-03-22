@@ -1,3 +1,3 @@
-import exampleConfig from "../../../oak-config/oak.config.example.json";
+import exampleConfig from "../../../oak-config/oak.config.test.json";
 
 export type OakConfig = typeof exampleConfig;
