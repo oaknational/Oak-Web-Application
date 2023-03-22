@@ -66,7 +66,6 @@ export type HubspotFormData = {
   // when sending email to 'fallback' form
   emailTextOnly?: string;
   email?: string;
-  // @todo oakUserId
   oakUserId?: string;
   name: string;
   /**
