@@ -12,3 +12,5 @@ export const LS_KEY_BOOKMARKS = "oak-bookmarks";
 export const LS_KEY_ANONYMOUS_ID = "oak-anonymous-id";
 export const LS_KEY_UTM_PARAMS = "oak-utm-params";
 export const LS_KEY_PAST_WEBINARS_UNLOCKED = "oak-past-webinars-unlocked";
+export const LS_KEY_EMAIL = "oak-downloads-email";
+export const LS_KEY_SCHOOL = "oak-downloads-school";

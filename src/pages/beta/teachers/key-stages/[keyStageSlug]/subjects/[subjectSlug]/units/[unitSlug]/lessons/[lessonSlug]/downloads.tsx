@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,6 +28,7 @@ import curriculumApi, {
 import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
+import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import type {
   ResourcesToDownloadArrayType,
   DownloadResourceType,
@@ -103,6 +104,24 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       mode: "onBlur",
     });
 
+  const {
+    schoolFromLocaleStorage,
+    setSchoolInLocaleStorage,
+    emailFromLocaleStorage,
+    setEmailInLocaleStorage,
+  } = useLocalStorageForDownloads();
+
+  // use values from local storage if available
+  useEffect(() => {
+    if (emailFromLocaleStorage) {
+      setValue("email", emailFromLocaleStorage);
+    }
+
+    if (schoolFromLocaleStorage) {
+      setValue("school", schoolFromLocaleStorage);
+    }
+  }, [setValue, emailFromLocaleStorage, schoolFromLocaleStorage]);
+
   const setSchool = useCallback(
     (value: string) => {
       setValue("school", value, { shouldValidate: true });
@@ -149,7 +168,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
-  const onFormSubmit = async () => {
+  const onFormSubmit = async (data: DownloadFormValues) => {
+    const emailFromForm = data?.email;
+    const schoolFromForm = data?.school;
+
+    if (emailFromForm) {
+      setEmailInLocaleStorage(emailFromForm);
+    }
+
+    if (schoolFromForm) {
+      setSchoolInLocaleStorage(schoolFromForm);
+    }
+
     await debouncedDownloadResources();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
@@ -225,7 +255,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
-          <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+          <SchoolPickerRadio
+            errors={errors}
+            setSchool={setSchool}
+            preSelectedSchool={schoolFromLocaleStorage}
+          />
 
           <Heading
             tag="h3"
