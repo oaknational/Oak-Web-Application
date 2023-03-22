@@ -4,7 +4,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prebuild": "NODE_ENV=production node scripts/build/write_env_file && NODE_ENV=production npm run image-data:all",
+    "generate-sprites": "NODE_ENV=production node scripts/build/write_env_file && NODE_ENV=production npm run image-data:all",
+    "prebuild": "npm run generate-sprites",
     "build": "next build",
     "build:analyse-bundle": "ANALYSE_BUNDLE=on next build",
     "postbuild": "next-sitemap",
@@ -38,6 +39,7 @@
     "semantic-release": "semantic-release",
     "serve:test-config": "http-server -p 4444 oak-config",
     "start": "next start",
+    "prestorybook:build": "npm run generate-sprites",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "storybook:static-serve": "build-storybook --quiet && http-server ./storybook-static --port=6006",
