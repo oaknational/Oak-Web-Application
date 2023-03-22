@@ -3,8 +3,7 @@ import { Control, Controller } from "react-hook-form";
 
 import { TeachersKeyStageSubjectUnitsLessonsDownloadsData } from "../../../node-lib/curriculum-api";
 import { GridArea } from "../../Grid";
-import { DownloadResourceType } from "../downloads.types";
-import type { DownloadFormProps } from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import { DownloadResourceType, DownloadFormProps } from "../downloads.types";
 
 import DownloadCard from "./DownloadCard";
 

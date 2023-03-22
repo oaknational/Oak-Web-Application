@@ -211,7 +211,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
-        result.current.setEmailInLocaleStorage("test@test.com");
+        result.current.setEmailInLocalStorage("test@test.com");
       });
 
       const { getByLabelText, getByDisplayValue } = renderWithProviders(
@@ -226,7 +226,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
-        result.current.setSchoolInLocaleStorage("Primary School");
+        result.current.setSchoolInLocalStorage("Primary School");
       });
 
       const { getByDisplayValue } = renderWithProviders(
