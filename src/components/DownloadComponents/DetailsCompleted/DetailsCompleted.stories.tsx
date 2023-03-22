@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
     <Component
       {...args}
       onEditClick={() => {
-        console.log("edit clicked");
+        console.log("edit details clicked");
       }}
     />
   );
