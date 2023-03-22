@@ -1,4 +1,4 @@
-import { preselectedDownloadTitleTypeMap } from "../downloads.types";
+import { preselectedDownloadTypeMap } from "../downloads.types";
 
 import { getPreselectedDownloadResourceTypes } from "./getDownloadResourceType";
 
@@ -13,15 +13,13 @@ describe("getDownloadResourceType", () => {
 
     expect(resourceType).toBe(undefined);
   });
-  it("should return an array of download types for each title key in the preselectedDownloadTitleTypeMap object", async () => {
-    const resourceTypes = Object.keys(preselectedDownloadTitleTypeMap).map(
+  it("should return an array of download types for each title key in the preselectedDownloadTypeMap object", async () => {
+    const resourceTypes = Object.keys(preselectedDownloadTypeMap).map(
       (title) => {
         return getPreselectedDownloadResourceTypes(title);
       }
     );
 
-    expect(resourceTypes).toEqual(
-      Object.values(preselectedDownloadTitleTypeMap)
-    );
+    expect(resourceTypes).toEqual(Object.values(preselectedDownloadTypeMap));
   });
 });
