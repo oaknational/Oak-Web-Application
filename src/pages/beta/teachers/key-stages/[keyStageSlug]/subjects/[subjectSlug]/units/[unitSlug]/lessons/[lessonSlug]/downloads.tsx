@@ -109,15 +109,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     });
 
   const getInitialResourcesToDownloadState = useCallback(() => {
-    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
-
-    downloads?.forEach((download) => {
-      if (download.exists && !download.forbidden) {
-        initialResourcesToDownloadState.push(download.type);
-      }
-    });
-
-    return initialResourcesToDownloadState;
+    return downloads
+      .filter((download) => download.exists && !download.forbidden)
+      .map((download) => download.type);
   }, [downloads]);
 
   useEffect(() => {
