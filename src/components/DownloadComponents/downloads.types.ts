@@ -10,7 +10,7 @@ const DOWNLOAD_RESOURCE_TYPES = [
   "worksheet-pptx",
 ] as const;
 
-export const preselectedDownloadTitleTypeMap: Record<
+export const preselectedDownloadTypeMap: Record<
   string,
   DownloadResourceType[] | "all"
 > = {
