@@ -4,6 +4,10 @@ import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
 import config from "../../config/browser";
+import getLegacyAnonymousId from "../analytics/getLegacyAnonymousId";
+
+export type PosthogDistinctId = string;
+export type MaybeDistinctId = string | null;
 
 export type PosthogConfig = {
   apiKey: string;
@@ -19,7 +23,15 @@ export const posthogToAnalyticsServiceWithoutQueue = (
       client.init(apiKey, {
         api_host: apiHost,
         debug: config.get("releaseStage") !== "production",
-        loaded: () => resolve(),
+        loaded: () => {
+          const legacyAnonymousId = getLegacyAnonymousId();
+          if (legacyAnonymousId) {
+            client.register({
+              legacy_anonymous_id: legacyAnonymousId,
+            });
+          }
+          resolve(client.get_distinct_id());
+        },
         disable_session_recording: true,
       });
     }),

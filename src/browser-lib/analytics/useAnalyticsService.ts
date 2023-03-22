@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import { CookieConsentState } from "../cookie-consent/types";
+import { MaybeDistinctId } from "../posthog/posthog";
 
 const useAnalyticsService = <T>({
   service,
   config,
   consentState,
+  setPosthogDistinctId,
 }: {
   service: AnalyticsService<T>;
   config: T;
@@ -15,6 +17,7 @@ const useAnalyticsService = <T>({
    * we'd be reading from local-storage every render
    */
   consentState: CookieConsentState;
+  setPosthogDistinctId?: (id: MaybeDistinctId) => void;
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [hasAttemptedInit, setHasAttemptedInit] = useState(false);
@@ -23,7 +26,10 @@ const useAnalyticsService = <T>({
     let isUnmounted = false;
     const attemptInit = async () => {
       setHasAttemptedInit(true);
-      await service.init(config);
+      const distinctId = await service.init(config);
+      if (distinctId && setPosthogDistinctId) {
+        setPosthogDistinctId(distinctId);
+      }
       if (!isUnmounted) {
         setLoaded(true);
       }
@@ -35,7 +41,7 @@ const useAnalyticsService = <T>({
     return () => {
       isUnmounted = true;
     };
-  }, [consentState, hasAttemptedInit, config, service]);
+  }, [consentState, hasAttemptedInit, config, service, setPosthogDistinctId]);
 
   useEffect(() => {
     // do not track
@@ -45,9 +51,12 @@ const useAnalyticsService = <T>({
       }
       if (consentState === "disabled") {
         service.optOut();
+        if (setPosthogDistinctId) {
+          setPosthogDistinctId(null);
+        }
       }
     }
-  }, [consentState, service, loaded]);
+  }, [consentState, service, loaded, setPosthogDistinctId]);
 
   return service;
 };

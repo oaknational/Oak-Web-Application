@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "DownloadCard",
+  title: "Download Components/Download Card",
   component: Component,
   argTypes: {
     title: {

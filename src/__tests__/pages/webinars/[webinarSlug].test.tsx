@@ -6,6 +6,7 @@ import WebinarDetailPage, {
   WebinarSinglePageProps,
 } from "../../../pages/webinars/[webinarSlug]";
 import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
+import noop from "../../__helpers__/noop";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -16,6 +17,7 @@ jest.mock("../../../context/Analytics/useAnalytics", () => ({
     track: {
       webinarPageViewed: (...args: unknown[]) => webinarPageViewed(...args),
     },
+    identify: noop,
   }),
 }));
 

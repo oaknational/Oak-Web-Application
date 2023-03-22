@@ -5,6 +5,7 @@ import {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import router from "next/router";
 import { usePostHogContext } from "posthog-js/react";
@@ -15,7 +16,9 @@ import getAvoBridge from "../../browser-lib/avo/getAvoBridge";
 import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
 import posthogToAnalyticsService, {
+  MaybeDistinctId,
   PosthogConfig,
+  PosthogDistinctId,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
 import config from "../../config/browser";
@@ -36,7 +39,11 @@ export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
   userId: UserId,
-  properties: IdentifyProperties
+  properties: IdentifyProperties,
+  /**
+   * if services not specifed, then all services called
+   */
+  services?: ServiceType[]
 ) => void;
 
 export type TrackEventName = Extract<
@@ -53,11 +60,12 @@ type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
 type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
+  posthogDistinctId: PosthogDistinctId | null;
 };
 
 export type AnalyticsService<ServiceConfig> = {
   name: ServiceType;
-  init: (config: ServiceConfig) => Promise<void>;
+  init: (config: ServiceConfig) => Promise<MaybeDistinctId>;
   state: () => "enabled" | "disabled" | "pending";
   track: EventFn;
   page: PageFn;
@@ -87,6 +95,8 @@ const getPathAndQuery = () => {
 
 const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const { children, avoOptions = {} } = props;
+  const [posthogDistinctId, setPosthogDistinctId] =
+    useState<PosthogDistinctId | null>(null);
 
   /**
    * Posthog
@@ -109,6 +119,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       apiKey: config.get("posthogApiKey"),
     },
     consentState: posthogConsent,
+    setPosthogDistinctId,
   });
 
   /**
@@ -162,12 +173,17 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Currently we're only sending identify calls to hubspot.
    */
   const identify: IdentifyFn = useCallback(
-    (id, props) => {
-      hubspot.identify(id, props);
+    (id, props, services) => {
+      const allServices = !services;
+      if (allServices || services?.includes("hubspot")) {
+        hubspot.identify(id, props);
+      }
+      if (allServices || services?.includes("posthog")) {
+        posthog.identify(id, props);
+      }
     },
-    [hubspot]
+    [hubspot, posthog]
   );
-
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
@@ -187,8 +203,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
+      posthogDistinctId,
     };
-  }, [track, identify]);
+  }, [track, identify, posthogDistinctId]);
 
   return (
     <analyticsContext.Provider value={analytics}>

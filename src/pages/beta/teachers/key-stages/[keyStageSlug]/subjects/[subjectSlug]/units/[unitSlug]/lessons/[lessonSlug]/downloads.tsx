@@ -41,6 +41,7 @@ import DownloadCardGroup from "../../../../../../../../../../../components/Downl
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
+import DetailsCompleted from "../../../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -145,6 +146,15 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+
+  {
+    /* @todo replace once local storage piece of work is done for this page */
+  }
+  const hasDetailsFromLocaleStorage = false;
+  const shouldDisplayDetailsCompleted =
+    hasDetailsFromLocaleStorage && !editDetailsClicked;
+
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
       getInitialResourcesToDownloadState()
@@ -240,86 +250,72 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
-        <Box $maxWidth={[null, 420, 420]} $mb={96}>
-          <SchoolPickerRadio errors={errors} setSchool={setSchool} />
 
-          <Heading
-            tag="h3"
-            $font={"heading-7"}
-            $mt={16}
-            $mb={24}
-            data-testid="email-heading"
-          >
-            For regular updates from Oak (optional)
-          </Heading>
-          <Input
-            id={"email"}
-            label="Email address"
-            placeholder="Enter email address here"
-            {...register("email")}
-            error={errors.email?.message}
+        {/* @todo replace email and school with values from local storage */}
+        {shouldDisplayDetailsCompleted ? (
+          <DetailsCompleted
+            email={"replace with email from local storage"}
+            school={"replace with school from local storage"}
+            onEditClick={() => setEditDetailsClicked(true)}
           />
-          <P $font="body-3" $mt={-24} $mb={40}>
-            Join our community to get free lessons, resources and other helpful
-            content. Unsubscribe at any time. Our{" "}
-            <OakLink page={"privacy-policy"} $isInline>
-              privacy policy
-            </OakLink>
-            .
-          </P>
-          <Controller
-            control={control}
-            name="terms"
-            render={({ field: { value, onChange, name, onBlur } }) => {
-              const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                return onChange(e.target.checked);
-              };
-              return (
-                <TermsAndConditionsCheckbox
-                  name={name}
-                  checked={value}
-                  onChange={onChangeHandler}
-                  onBlur={onBlur}
-                  id={"terms"}
-                  errorMessage={errors?.terms?.message}
-                />
-              );
-            }}
-          />
-        </Box>
+        ) : (
+          <Box $maxWidth={[null, 420, 420]} $mb={96}>
+            <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+
+            <Heading
+              tag="h3"
+              $font={"heading-7"}
+              $mt={16}
+              $mb={24}
+              data-testid="email-heading"
+            >
+              For regular updates from Oak (optional)
+            </Heading>
+            <Input
+              id={"email"}
+              label="Email address"
+              placeholder="Enter email address here"
+              {...register("email")}
+              error={errors.email?.message}
+            />
+            <P $font="body-3" $mt={-24} $mb={40}>
+              Join our community to get free lessons, resources and other
+              helpful content. Unsubscribe at any time. Our{" "}
+              <OakLink page={"privacy-policy"} $isInline>
+                privacy policy
+              </OakLink>
+              .
+            </P>
+            <Controller
+              control={control}
+              name="terms"
+              render={({ field: { value, onChange, name, onBlur } }) => {
+                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                  return onChange(e.target.checked);
+                };
+                return (
+                  <TermsAndConditionsCheckbox
+                    name={name}
+                    checked={value}
+                    onChange={onChangeHandler}
+                    onBlur={onBlur}
+                    id={"terms"}
+                    errorMessage={errors?.terms?.message}
+                  />
+                );
+              }}
+            />
+          </Box>
+        )}
 
         <Grid $mt={32}>
-          <GridArea $colSpan={[12]}>
-            <Flex
-              $alignItems={["left", "center"]}
-              $flexDirection={["column", "row"]}
-            >
-              <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
-                Lesson resources
-              </Heading>
-              <Box $ml={[0, 48]}>
-                <Button
-                  label="Select all"
-                  variant="minimal"
-                  onClick={() => onSelectAllClick()}
-                />
-                <Button
-                  label="Deselect all"
-                  variant="minimal"
-                  onClick={() => onDeselectAllClick()}
-                  $ml={24}
-                />
-              </Box>
-            </Flex>
-            <FieldError id={"downloads-error"}>
-              {errors?.downloads?.message}
-            </FieldError>
-            <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
-          </GridArea>
           <DownloadCardGroup
             control={control}
             downloads={downloads}
             hasError={errors?.downloads ? true : false}
+            errorMessage={errors?.downloads?.message}
+            onSelectAllClick={() => onSelectAllClick()}
+            onDeselectAllClick={() => onDeselectAllClick()}
           />
 
           <GridArea $colSpan={[12]}>
