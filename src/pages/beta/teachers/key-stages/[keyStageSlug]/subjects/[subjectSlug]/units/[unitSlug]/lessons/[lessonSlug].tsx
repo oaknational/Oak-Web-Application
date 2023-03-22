@@ -190,6 +190,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               $iconPosition={"trailing"}
               $mt={16}
               data-testid={"download-all-button"}
+              hrefQuery={{
+                selected: "all",
+              }}
             />
           )}
           {/*

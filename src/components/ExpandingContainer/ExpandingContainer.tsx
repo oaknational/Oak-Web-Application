@@ -6,8 +6,8 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
 import Button from "../Button";
 import IconButton from "../Button/IconButton";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
 import Icon from "../Icon";
+import ButtonAsLink from "../Button/ButtonAsLink";
 
 type ExpandingContainerProps = CardProps & {
   title: string;
@@ -30,6 +30,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
+  const lowerCaseTitle = title.toLowerCase();
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
       <Flex
@@ -59,14 +60,19 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
           </Card>
           <Flex>
             {downloadable === true && downloadLink && (
-              <IconButtonAsLink
+              <ButtonAsLink
                 data-testid={"download-button"}
                 href={downloadLink}
+                variant={"minimal"}
                 page={null}
                 aria-label="download resource"
-                background={"teachersHighlight"}
+                iconBackground="teachersHighlight"
                 icon="download"
-                variant="brush"
+                $iconPosition="trailing"
+                label={`Download ${lowerCaseTitle}`}
+                hrefQuery={{
+                  preselected: lowerCaseTitle,
+                }}
               />
             )}
             {external === true && (

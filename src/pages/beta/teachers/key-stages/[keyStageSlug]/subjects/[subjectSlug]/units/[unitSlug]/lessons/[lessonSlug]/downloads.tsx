@@ -1,9 +1,10 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { z } from "zod";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
@@ -28,7 +29,7 @@ import curriculumApi, {
 import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
-import type {
+import {
   ResourcesToDownloadArrayType,
   DownloadResourceType,
   ErrorKeysType,
@@ -39,6 +40,7 @@ import { lessonBreadcrumbArray } from "../[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
+import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -97,11 +99,37 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitTitle,
   } = curriculumData;
 
+  const router = useRouter();
+
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
+
+  const getInitialResourcesToDownloadState = useCallback(() => {
+    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
+
+    downloads?.forEach((download) => {
+      if (download.exists && !download.forbidden) {
+        initialResourcesToDownloadState.push(download.type);
+      }
+    });
+
+    return initialResourcesToDownloadState;
+  }, [downloads]);
+
+  useEffect(() => {
+    const preselected = getPreselectedDownloadResourceTypes(
+      router.query.preselected
+    );
+
+    if (preselected) {
+      preselected === "all"
+        ? setValue("downloads", getInitialResourcesToDownloadState())
+        : setValue("downloads", preselected);
+    }
+  }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
 
   const setSchool = useCallback(
     (value: string) => {
@@ -116,18 +144,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
-
-  const getInitialResourcesToDownloadState = () => {
-    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
-
-    downloads?.forEach((download) => {
-      if (download.exists && !download.forbidden) {
-        initialResourcesToDownloadState.push(download.type);
-      }
-    });
-
-    return initialResourcesToDownloadState;
-  };
 
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
