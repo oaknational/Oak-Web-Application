@@ -1,4 +1,4 @@
-import { renderHook, screen } from "@testing-library/react";
+import { renderHook, screen, act } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
 import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
@@ -9,11 +9,13 @@ import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
+import "../../../../../__helpers__/LocalStorageMock";
 import LessonDownloadsPage, {
   getServerSideProps,
   LessonDownloadsPageProps,
   URLParams,
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import useLocalStorageForDownloads from "../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 const props = {
   curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
@@ -201,6 +203,37 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
       expect(exitQuizQuestions).not.toBeChecked();
       expect(exitQuizAnswers).not.toBeChecked();
+    });
+  });
+
+  describe("initial form values", () => {
+    it("gets email from local storage if available", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setEmailInLocaleStorage("test@test.com");
+      });
+
+      const { getByLabelText, getByDisplayValue } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      expect(getByLabelText("Email address")).toBeInTheDocument();
+      expect(getByDisplayValue("test@test.com")).toBeInTheDocument();
+    });
+
+    it.skip("gets school from local storage if available", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setSchoolInLocaleStorage("Primary School");
+      });
+
+      const { getByDisplayValue } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      expect(getByDisplayValue("Primary School")).toBeInTheDocument();
     });
   });
 
