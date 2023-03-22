@@ -63,7 +63,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
           <Flex>
             {downloadable === true && downloadLink && (
               <>
-                <Box $display={["none", "flex"]}>
+                <Box $display={["none", "block"]}>
                   <ButtonAsLink
                     data-testid={"download-button"}
                     href={downloadLink}
@@ -81,13 +81,16 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 </Box>
                 <Box $display={["block", "none"]}>
                   <IconButtonAsLink
-                    data-testid={"download-button"}
+                    data-testid={"download-button-mobile"}
                     href={downloadLink}
                     page={null}
                     aria-label={`download ${lowerCaseTitle}`}
                     background={"teachersHighlight"}
                     icon="download"
                     variant="brush"
+                    hrefQuery={{
+                      preselected: lowerCaseTitle,
+                    }}
                   />
                 </Box>
               </>
