@@ -3,8 +3,13 @@ import { preselectedDownloadTitleTypeMap } from "../downloads.types";
 import { getPreselectedDownloadResourceTypes } from "./getDownloadResourceType";
 
 describe("getDownloadResourceType", () => {
-  it("should return undefined if the resource title is not matched", async () => {
+  it("should return undefined for an empty string", async () => {
     const resourceType = getPreselectedDownloadResourceTypes("");
+
+    expect(resourceType).toBe(undefined);
+  });
+  it("should return undefined for an title that does not match", async () => {
+    const resourceType = getPreselectedDownloadResourceTypes("not correct");
 
     expect(resourceType).toBe(undefined);
   });
@@ -15,12 +20,8 @@ describe("getDownloadResourceType", () => {
       }
     );
 
-    expect(resourceTypes).toEqual([
-      ["presentation"],
-      ["intro-quiz-questions", "intro-quiz-answers"],
-      ["exit-quiz-questions", "exit-quiz-answers"],
-      ["worksheet-pdf", "worksheet-pptx"],
-      "all",
-    ]);
+    expect(resourceTypes).toEqual(
+      Object.values(preselectedDownloadTitleTypeMap)
+    );
   });
 });
