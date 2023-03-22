@@ -168,7 +168,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     { leading: true }
   );
 
-  const onFormSubmit = async (data: DownloadFormValues) => {
+  const onFormSubmit = async (data: DownloadFormProps) => {
     const emailFromForm = data?.email;
     const schoolFromForm = data?.school;
 
@@ -255,11 +255,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
         <Box $maxWidth={[null, 420, 420]} $mb={96}>
-          <SchoolPickerRadio
-            errors={errors}
-            setSchool={setSchool}
-            preSelectedSchool={schoolFromLocaleStorage}
-          />
+          <SchoolPickerRadio errors={errors} setSchool={setSchool} />
 
           <Heading
             tag="h3"
