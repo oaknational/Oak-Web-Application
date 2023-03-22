@@ -8,6 +8,8 @@ import Button from "../Button";
 import IconButton from "../Button/IconButton";
 import Icon from "../Icon";
 import ButtonAsLink from "../Button/ButtonAsLink";
+import Box from "../Box";
+import IconButtonAsLink from "../Button/IconButtonAsLink";
 
 type ExpandingContainerProps = CardProps & {
   title: string;
@@ -60,20 +62,35 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
           </Card>
           <Flex>
             {downloadable === true && downloadLink && (
-              <ButtonAsLink
-                data-testid={"download-button"}
-                href={downloadLink}
-                variant={"minimal"}
-                page={null}
-                aria-label="download resource"
-                iconBackground="teachersHighlight"
-                icon="download"
-                $iconPosition="trailing"
-                label={`Download ${lowerCaseTitle}`}
-                hrefQuery={{
-                  preselected: lowerCaseTitle,
-                }}
-              />
+              <>
+                <Box $display={["none", "flex"]}>
+                  <ButtonAsLink
+                    data-testid={"download-button"}
+                    href={downloadLink}
+                    variant={"minimal"}
+                    page={null}
+                    aria-label="download resource"
+                    iconBackground="teachersHighlight"
+                    icon="download"
+                    $iconPosition="trailing"
+                    label={`Download ${lowerCaseTitle}`}
+                    hrefQuery={{
+                      preselected: lowerCaseTitle,
+                    }}
+                  />
+                </Box>
+                <Box $display={["block", "none"]}>
+                  <IconButtonAsLink
+                    data-testid={"download-button"}
+                    href={downloadLink}
+                    page={null}
+                    aria-label={`download ${lowerCaseTitle}`}
+                    background={"teachersHighlight"}
+                    icon="download"
+                    variant="brush"
+                  />
+                </Box>
+              </>
             )}
             {external === true && (
               <IconButton
