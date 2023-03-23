@@ -240,7 +240,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
-        result.current.setTermsInLocalStorage(true);
+        result.current.setTermsInLocalStorage("true");
       });
 
       const { getByLabelText } = renderWithProviders(
