@@ -21,7 +21,7 @@ describe("useLocalStorageForDownloads", () => {
 
   test("termsFromLocalSotrage should default to false", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
-    expect(result.current.termsFromLocalStorage).toBe("false");
+    expect(result.current.termsFromLocalStorage).toBe(false);
   });
 
   test("calling setSchoolInLocalStorage should set schoolFromLocalStorage to correct value", () => {
@@ -43,8 +43,8 @@ describe("useLocalStorageForDownloads", () => {
   test("calling setTermsInLocalSotrage should set termsFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
-      result.current.setTermsInLocalStorage("true");
+      result.current.setTermsInLocalStorage(true);
     });
-    expect(result.current.termsFromLocalStorage).toBe("true");
+    expect(result.current.termsFromLocalStorage).toBe(true);
   });
 });

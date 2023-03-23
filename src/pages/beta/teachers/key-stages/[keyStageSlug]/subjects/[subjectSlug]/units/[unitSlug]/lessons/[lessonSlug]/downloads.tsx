@@ -80,7 +80,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     }
 
     if (termsFromLocalStorage) {
-      setValue("terms", JSON.parse(termsFromLocalStorage));
+      setValue("terms", termsFromLocalStorage);
     }
   }, [setValue, emailFromLocalStorage, termsFromLocalStorage]);
 

@@ -18,7 +18,7 @@ const useLocalStorageForDownloads = () => {
 
   const [termsFromLocalStorage, setTermsInLocalStorage] = useLocalStorage(
     LS_KEY_TERMS,
-    "false"
+    false
   );
 
   return {

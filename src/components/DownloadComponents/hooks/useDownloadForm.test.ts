@@ -58,7 +58,7 @@ describe("useDownloadForm", () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson", resourcesToDownload);
 
-    expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith("true");
+    expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {
