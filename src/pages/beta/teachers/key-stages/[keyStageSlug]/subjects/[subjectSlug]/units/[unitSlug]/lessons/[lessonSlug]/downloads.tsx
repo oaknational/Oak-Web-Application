@@ -69,7 +69,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     });
 
   const {
-    schoolFromLocalStorage,
+    schoolIdFromLocalStorage,
+    schoolNameFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
   } = useLocalStorageForDownloads();
@@ -86,15 +87,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   }, [setValue, emailFromLocalStorage, termsFromLocalStorage]);
 
   const setSchool = useCallback(
-    (value: string) => {
+    (value: string, name?: string) => {
       setValue("school", value, { shouldValidate: true });
+      setValue("schoolName", name || schoolNameFromLocalStorage, {
+        shouldValidate: true,
+      });
     },
-    [setValue]
+    [setValue, schoolNameFromLocalStorage]
   );
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = watch().downloads || [];
+  const selectedResources = (watch().downloads || []) as DownloadResourceType[];
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
@@ -102,7 +106,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
   const hasDetailsFromLocaleStorage =
-    schoolFromLocalStorage.length || emailFromLocalStorage.length;
+    schoolIdFromLocalStorage.length || emailFromLocalStorage.length;
   const shouldDisplayDetailsCompleted =
     hasDetailsFromLocaleStorage && !editDetailsClicked;
 
@@ -220,7 +224,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         {shouldDisplayDetailsCompleted ? (
           <DetailsCompleted
             email={emailFromLocalStorage}
-            school={schoolFromLocalStorage}
+            school={schoolNameFromLocalStorage}
             onEditClick={() => setEditDetailsClicked(true)}
           />
         ) : (
@@ -229,10 +233,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               errors={errors}
               setSchool={setSchool}
               initialValue={
-                schoolFromLocalStorage?.length > 0
-                  ? schoolFromLocalStorage
+                schoolIdFromLocalStorage?.length > 0
+                  ? schoolIdFromLocalStorage
                   : undefined
               }
+              initialSchoolName={schoolNameFromLocalStorage}
             />
 
             <Heading

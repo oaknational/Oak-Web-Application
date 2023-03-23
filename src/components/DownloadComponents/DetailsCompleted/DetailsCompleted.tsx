@@ -7,8 +7,8 @@ import Flex from "../../Flex";
 import Icon from "../../Icon";
 
 export type DetailsCompletedProps = {
-  email: string;
-  school: string;
+  email?: string;
+  school?: string;
   onEditClick: () => void;
 };
 
@@ -43,12 +43,12 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
       </Flex>
       <P $mb={8}>We have your details saved already.</P>
       {school && (
-        <P $font={"body-3"} $color={"oakGrey4"} $mb={4}>
+        <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="school">
           school: {getSchoolName(school)}
         </P>
       )}
       {email && (
-        <P $font={"body-3"} $color={"oakGrey4"} $mb={4}>
+        <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="email">
           email: {email}
         </P>
       )}

@@ -7,7 +7,8 @@ export const LS_KEY_THEME = "oak-theme";
 export const LS_KEY_UTM_PARAMS = "oak-utm-params";
 export const LS_KEY_PAST_WEBINARS_UNLOCKED = "oak-past-webinars-unlocked";
 export const LS_KEY_EMAIL = "oak-downloads-email";
-export const LS_KEY_SCHOOL = "oak-downloads-school";
+export const LS_KEY_SCHOOL_ID = "oak-downloads-school";
+export const LS_KEY_SCHOOL_NAME = "oak-downloads-school-name";
 export const LS_KEY_TERMS = "oak-downloads-terms";
 
 /**

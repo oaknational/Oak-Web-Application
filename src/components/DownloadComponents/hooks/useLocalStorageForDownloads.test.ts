@@ -9,9 +9,14 @@ describe("useLocalStorageForDownloads", () => {
     window.localStorage.clear();
   });
 
-  test("schoolFromLocalStorage should default to empty string", () => {
+  test("schoolIdFromLocalStorage should default to empty string", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
-    expect(result.current.schoolFromLocalStorage).toBe("");
+    expect(result.current.schoolIdFromLocalStorage).toBe("");
+  });
+
+  test("schoolNameFromLocalStorage should default to empty string", () => {
+    const { result } = renderHook(useLocalStorageForDownloads);
+    expect(result.current.schoolNameFromLocalStorage).toBe("");
   });
 
   test("emailFromLocalStorage should default to empty string", () => {
@@ -24,12 +29,20 @@ describe("useLocalStorageForDownloads", () => {
     expect(result.current.termsFromLocalStorage).toBe(false);
   });
 
-  test("calling setSchoolInLocalStorage should set schoolFromLocalStorage to correct value", () => {
+  test("calling setSchoolIdInLocalStorage should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
-      result.current.setSchoolInLocalStorage("Sample school");
+      result.current.setSchoolIdInLocalStorage("222-Sample school");
     });
-    expect(result.current.schoolFromLocalStorage).toBe("Sample school");
+    expect(result.current.schoolIdFromLocalStorage).toBe("222-Sample school");
+  });
+
+  test("calling setSchoolNameInLocalStorage should set schoolNameFromLocalStorage to correct value", () => {
+    const { result } = renderHook(useLocalStorageForDownloads);
+    act(() => {
+      result.current.setSchoolNameInLocalStorage("Sample school");
+    });
+    expect(result.current.schoolNameFromLocalStorage).toBe("Sample school");
   });
 
   test("calling setEmailInLocalStorage should set emailFromLocalStorage to correct value", () => {

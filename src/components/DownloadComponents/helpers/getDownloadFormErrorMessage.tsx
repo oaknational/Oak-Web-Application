@@ -19,6 +19,7 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     email: { order: 2, message: "enter a valid email address" },
     terms: { order: 3, message: "accept terms and conditions" },
     downloads: { order: 4, message: "pick at least one resource" },
+    schoolName: { order: 5, message: "" },
   };
 
   const sortedErrorsArray = errorsArray.sort(

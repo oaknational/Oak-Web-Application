@@ -1,6 +1,7 @@
 import {
   LS_KEY_EMAIL,
-  LS_KEY_SCHOOL,
+  LS_KEY_SCHOOL_ID,
+  LS_KEY_SCHOOL_NAME,
   LS_KEY_TERMS,
 } from "../../../config/localStorageKeys";
 import useLocalStorage from "../../../hooks/useLocalStorage";
@@ -11,10 +12,13 @@ const useLocalStorageForDownloads = () => {
     ""
   );
 
-  const [schoolFromLocalStorage, setSchoolInLocalStorage] = useLocalStorage(
-    LS_KEY_SCHOOL,
+  const [schoolIdFromLocalStorage, setSchoolIdInLocalStorage] = useLocalStorage(
+    LS_KEY_SCHOOL_ID,
     ""
   );
+
+  const [schoolNameFromLocalStorage, setSchoolNameInLocalStorage] =
+    useLocalStorage(LS_KEY_SCHOOL_NAME, "");
 
   const [termsFromLocalStorage, setTermsInLocalStorage] = useLocalStorage(
     LS_KEY_TERMS,
@@ -22,8 +26,10 @@ const useLocalStorageForDownloads = () => {
   );
 
   return {
-    schoolFromLocalStorage,
-    setSchoolInLocalStorage,
+    schoolIdFromLocalStorage,
+    setSchoolIdInLocalStorage,
+    schoolNameFromLocalStorage,
+    setSchoolNameInLocalStorage,
     emailFromLocalStorage,
     setEmailInLocalStorage,
     termsFromLocalStorage,

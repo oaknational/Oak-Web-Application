@@ -30,6 +30,28 @@ describe("DetailsCompleted", () => {
     expect(detailsSaved).toBeInTheDocument();
   });
 
+  it("does not render email if not passed", async () => {
+    const spy = jest.fn();
+
+    const { queryByTestId } = renderWithTheme(
+      <DetailsCompleted school={"sample school"} onEditClick={() => spy()} />
+    );
+
+    const email = queryByTestId("email");
+    expect(email).toBeNull();
+  });
+
+  it("does not render school if not passed", async () => {
+    const spy = jest.fn();
+
+    const { queryByTestId } = renderWithTheme(
+      <DetailsCompleted email={"test@test.com"} onEditClick={() => spy()} />
+    );
+
+    const school = queryByTestId("school");
+    expect(school).toBeNull();
+  });
+
   it("calls correct function on Edit button click", async () => {
     const spy = jest.fn();
 

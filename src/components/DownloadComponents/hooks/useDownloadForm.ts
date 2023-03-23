@@ -12,7 +12,8 @@ type UseDownloadFormProps = {
 
 const useDownloadForm = (props: UseDownloadFormProps = {}) => {
   const {
-    setSchoolInLocalStorage,
+    setSchoolIdInLocalStorage,
+    setSchoolNameInLocalStorage,
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
@@ -26,20 +27,25 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       props.onSubmit();
     }
 
-    const emailFromForm = data?.email;
-    const schoolFromForm = data?.school;
-    const termsFromForm = data?.terms;
+    const email = data?.email;
+    const schoolId = data?.school;
+    const schoolName = data?.schoolName;
+    const terms = data?.terms;
 
-    if (emailFromForm) {
-      setEmailInLocalStorage(emailFromForm);
+    if (email) {
+      setEmailInLocalStorage(email);
     }
 
-    if (schoolFromForm) {
-      setSchoolInLocalStorage(schoolFromForm);
+    if (schoolId) {
+      setSchoolIdInLocalStorage(schoolId);
     }
 
-    if (termsFromForm) {
-      setTermsInLocalStorage(termsFromForm);
+    if (schoolName) {
+      setSchoolNameInLocalStorage(schoolName);
+    }
+
+    if (terms) {
+      setTermsInLocalStorage(terms);
     }
 
     await downloadLessonResources(slug, selectedResources);

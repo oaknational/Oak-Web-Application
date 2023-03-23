@@ -10,8 +10,9 @@ import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
 import { Heading, P } from "../../Typography";
 
 export type SchoolPickerRadioProps = {
-  setSchool: (value: string) => void;
+  setSchool: (value: string, name?: string) => void;
   initialValue?: string;
+  initialSchoolName?: string;
   errors?: Partial<
     FieldErrorsImpl<{
       school: string;
@@ -22,6 +23,7 @@ export type SchoolPickerRadioProps = {
 const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   setSchool,
   initialValue,
+  initialSchoolName,
   errors,
 }) => {
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -43,7 +45,9 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
       } else {
         setSelectedRadio("");
         setSchool(initialValue);
-        setSchoolPickerInputValue(initialValue);
+        if (initialSchoolName) {
+          setSchoolPickerInputValue(initialSchoolName);
+        }
       }
     }
   }, [initialValue, setSchool, setSchoolPickerInputValue]);
@@ -51,9 +55,9 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   useEffect(() => {
     if (selectedSchool) {
       setSelectedRadio("");
-      setSchool(selectedSchool.toString());
+      setSchool(selectedSchool.toString(), schoolPickerInputValue);
     }
-  }, [selectedSchool, setSchool]);
+  }, [selectedSchool, setSchool, schoolPickerInputValue]);
 
   const onRadioChange = (value: string) => {
     if (selectedSchool) {
