@@ -32,6 +32,7 @@ import type {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
   DownloadFormProps,
+  DownloadResourceType,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import { schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
@@ -134,7 +135,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug, selectedResources);
+        onSubmit(data, slug, selectedResources as DownloadResourceType[]);
       },
       4000,
       { leading: true }

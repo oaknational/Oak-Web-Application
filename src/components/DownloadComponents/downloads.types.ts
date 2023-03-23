@@ -42,12 +42,8 @@ export const schema = z.object({
 
 export type DownloadFormValues = z.infer<typeof schema>;
 
-export type DownloadFormProps = {
+export type DownloadFormProps = DownloadFormValues & {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
-  email: string;
-  terms: boolean;
-  school: string;
-  downloads: DownloadResourceType[];
 };
 
 export type ErrorKeysType = keyof Omit<DownloadFormProps, "onSubmit">;
