@@ -45,6 +45,6 @@ describe("useLocalStorageForDownloads", () => {
     act(() => {
       result.current.setTermsInLocalStorage(true);
     });
-    expect(result.current.setTermsInLocalStorage).toBe(true);
+    expect(result.current.termsFromLocalStorage).toBe(true);
   });
 });

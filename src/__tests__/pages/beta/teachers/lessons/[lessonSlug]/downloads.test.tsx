@@ -235,6 +235,21 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       expect(getByDisplayValue("Primary School")).toBeInTheDocument();
     });
+
+    it("gets terms from local storage if available", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setTermsInLocalStorage(true);
+      });
+
+      const { getByLabelText } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      const terms = getByLabelText("I accept terms and conditions (required)");
+      expect(terms).toBeChecked();
+    });
   });
 
   describe("SEO", () => {

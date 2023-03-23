@@ -67,8 +67,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       mode: "onBlur",
     });
 
-  const { schoolFromLocalStorage, emailFromLocalStorage } =
-    useLocalStorageForDownloads();
+  const {
+    schoolFromLocalStorage,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+  } = useLocalStorageForDownloads();
 
   // use values from local storage if available
   useEffect(() => {
@@ -79,7 +82,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     if (schoolFromLocalStorage) {
       setValue("school", schoolFromLocalStorage);
     }
-  }, [setValue, emailFromLocalStorage, schoolFromLocalStorage]);
+
+    if (termsFromLocalStorage) {
+      setValue("terms", termsFromLocalStorage);
+    }
+  }, [
+    setValue,
+    emailFromLocalStorage,
+    schoolFromLocalStorage,
+    termsFromLocalStorage,
+  ]);
 
   const setSchool = useCallback(
     (value: string) => {
