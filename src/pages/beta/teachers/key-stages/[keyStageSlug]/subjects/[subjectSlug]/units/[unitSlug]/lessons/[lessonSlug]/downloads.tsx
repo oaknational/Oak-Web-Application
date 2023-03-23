@@ -73,25 +73,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     termsFromLocalStorage,
   } = useLocalStorageForDownloads();
 
-  // use values from local storage if available
+  // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
     if (emailFromLocalStorage) {
       setValue("email", emailFromLocalStorage);
     }
 
-    if (schoolFromLocalStorage) {
-      setValue("school", schoolFromLocalStorage);
-    }
-
     if (termsFromLocalStorage) {
       setValue("terms", JSON.parse(termsFromLocalStorage));
     }
-  }, [
-    setValue,
-    emailFromLocalStorage,
-    schoolFromLocalStorage,
-    termsFromLocalStorage,
-  ]);
+  }, [setValue, emailFromLocalStorage, termsFromLocalStorage]);
 
   const setSchool = useCallback(
     (value: string) => {
@@ -109,10 +100,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
-  {
-    /* @todo replace once local storage piece of work is done for this page */
-  }
-  const hasDetailsFromLocaleStorage = false;
+  const hasDetailsFromLocaleStorage =
+    schoolFromLocalStorage.length || emailFromLocalStorage.length;
   const shouldDisplayDetailsCompleted =
     hasDetailsFromLocaleStorage && !editDetailsClicked;
 
@@ -229,13 +218,21 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         {/* @todo replace email and school with values from local storage */}
         {shouldDisplayDetailsCompleted ? (
           <DetailsCompleted
-            email={"replace with email from local storage"}
-            school={"replace with school from local storage"}
+            email={emailFromLocalStorage}
+            school={schoolFromLocalStorage}
             onEditClick={() => setEditDetailsClicked(true)}
           />
         ) : (
           <Box $maxWidth={[null, 420, 420]} $mb={96}>
-            <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+            <SchoolPickerRadio
+              errors={errors}
+              setSchool={setSchool}
+              initialValue={
+                schoolFromLocalStorage?.length > 0
+                  ? schoolFromLocalStorage
+                  : undefined
+              }
+            />
 
             <Heading
               tag="h3"

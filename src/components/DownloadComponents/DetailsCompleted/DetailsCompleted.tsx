@@ -17,6 +17,16 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
   school,
   onEditClick,
 }) => {
+  const getSchoolName = (school: string) => {
+    if (school === "notListed") {
+      return "My school isn’t listed";
+    } else if (school === "homeschool") {
+      return "Homeschool";
+    } else {
+      return school;
+    }
+  };
+
   return (
     <Box $mt={56} $mb={96}>
       <Flex $mb={12}>
@@ -32,12 +42,16 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         />
       </Flex>
       <P $mb={8}>We have your details saved already.</P>
-      <P $font={"body-3"} $color={"oakGrey4"} $mb={4}>
-        school: {school}
-      </P>
-      <P $font={"body-3"} $color={"oakGrey4"} $mb={12}>
-        email: {email}
-      </P>
+      {school && (
+        <P $font={"body-3"} $color={"oakGrey4"} $mb={4}>
+          school: {getSchoolName(school)}
+        </P>
+      )}
+      {email && (
+        <P $font={"body-3"} $color={"oakGrey4"} $mb={4}>
+          email: {email}
+        </P>
+      )}
       <Button
         label="Edit"
         variant="minimal"
@@ -45,6 +59,7 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
         onClick={onEditClick}
+        $mt={8}
       />
     </Box>
   );

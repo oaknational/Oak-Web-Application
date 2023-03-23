@@ -11,6 +11,7 @@ import { Heading, P } from "../../Typography";
 
 export type SchoolPickerRadioProps = {
   setSchool: (value: string) => void;
+  initialValue?: string;
   errors?: Partial<
     FieldErrorsImpl<{
       school: string;
@@ -20,6 +21,7 @@ export type SchoolPickerRadioProps = {
 
 const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   setSchool,
+  initialValue,
   errors,
 }) => {
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -30,6 +32,21 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
     setSchoolPickerInputValue,
     schools,
   } = useSchoolPicker();
+
+  // initial values
+  useEffect(() => {
+    if (initialValue) {
+      if (initialValue === "homeschool" || initialValue === "notListed") {
+        setSelectedRadio(initialValue);
+        setSchool(initialValue);
+        setSchoolPickerInputValue("");
+      } else {
+        setSelectedRadio("");
+        setSchool(initialValue);
+        setSchoolPickerInputValue(initialValue);
+      }
+    }
+  }, [initialValue, setSchool, setSchoolPickerInputValue]);
 
   useEffect(() => {
     if (selectedSchool) {

@@ -206,8 +206,8 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
   });
 
-  describe("initial form values", () => {
-    it("gets email from local storage if available", async () => {
+  describe("details saved in local storage", () => {
+    it("displays DetailsCompleted component with email filled from local storage if available", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
@@ -222,7 +222,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(getByDisplayValue("test@test.com")).toBeInTheDocument();
     });
 
-    it.skip("gets school from local storage if available", async () => {
+    it.skip("displays DetailsCompleted component with school filled from local storage if available", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
@@ -250,6 +250,18 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const terms = getByLabelText("I accept terms and conditions (required)");
       expect(terms).toBeChecked();
     });
+  });
+
+  describe("details on the form prefilled correctly when user clicks 'Edit' button on DetailsComplete component", () => {
+    it("marks Terms and Conditions as checked");
+    it("prefills email if saved in local storage");
+    it("prefills school if saved in local storage");
+    it(
+      "marks 'Homeschool' if value saved in local storage for school is set to 'homeschool'"
+    );
+    it(
+      "marks 'My school isn’t listed' if value saved in local storage for school is set to 'notListed'"
+    );
   });
 
   describe("SEO", () => {

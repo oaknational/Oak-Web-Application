@@ -28,7 +28,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
 
     const emailFromForm = data?.email;
     const schoolFromForm = data?.school;
-    const terms = data?.terms;
+    const termsFromForm = data?.terms;
 
     if (emailFromForm) {
       setEmailInLocalStorage(emailFromForm);
@@ -38,8 +38,8 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       setSchoolInLocalStorage(schoolFromForm);
     }
 
-    if (terms) {
-      setTermsInLocalStorage(terms.toString());
+    if (termsFromForm) {
+      setTermsInLocalStorage(termsFromForm.toString());
     }
 
     await downloadLessonResources(slug, selectedResources);
