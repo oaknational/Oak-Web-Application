@@ -15,11 +15,13 @@ jest.mock("../helpers/downloadLessonResources", () => ({
 
 const mockSetEmailInLocalStorageFn = jest.fn();
 const mockSetSchoolInLocalStorageFn = jest.fn();
+const mockSetTermsInLocalStorageFn = jest.fn();
 
 jest.mock("./useLocalStorageForDownloads", () => {
   return jest.fn(() => ({
     setEmailInLocalStorage: mockSetEmailInLocalStorageFn,
     setSchoolInLocalStorage: mockSetSchoolInLocalStorageFn,
+    setTermsInLocalStorage: mockSetTermsInLocalStorageFn,
   }));
 });
 
@@ -50,6 +52,13 @@ describe("useDownloadForm", () => {
     result.current.onSubmit(data, "lesson", resourcesToDownload);
 
     expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith("Sample school");
+  });
+
+  it("should set terms in local storage if passed in props", () => {
+    const { result } = renderHook(() => useDownloadForm());
+    result.current.onSubmit(data, "lesson", resourcesToDownload);
+
+    expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith("true");
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {
