@@ -38,6 +38,10 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
 
     if (schoolId) {
       setSchoolIdInLocalStorage(schoolId);
+
+      if (schoolId === "homeschool" || schoolId === "notListed") {
+        setSchoolNameInLocalStorage(schoolId);
+      }
     }
 
     if (schoolName) {
