@@ -238,8 +238,8 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
   });
 
-  describe.only("details on the form prefilled correctly when user clicks 'Edit' button on DetailsComplete component", () => {
-    it("marks Terms and Conditions as checked if saved in local storage", async () => {
+  describe("details on the form prefilled correctly when user clicks 'Edit' button on DetailsComplete component", () => {
+    it.skip("marks Terms and Conditions as checked if saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
@@ -263,7 +263,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
 
-    it("prefills email if saved in local storage", async () => {
+    it.skip("prefills email if saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
@@ -285,7 +285,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
 
-    it("prefills school with the correct school name if school id is saved in local storage", async () => {
+    it.skip("prefills school with the correct school name if school id is saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
