@@ -293,7 +293,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setSchoolNameInLocalStorage("Primary School");
       });
 
-      const { getByText, getByLabelText, getByTestId } = renderWithProviders(
+      const { getByText, getByTestId } = renderWithProviders(
         <LessonDownloadsPage {...props} />
       );
 
