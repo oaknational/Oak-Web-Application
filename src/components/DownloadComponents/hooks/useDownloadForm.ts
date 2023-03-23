@@ -39,7 +39,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     }
 
     if (terms) {
-      setTermsInLocalStorage(terms);
+      setTermsInLocalStorage(terms.toString());
     }
 
     await downloadLessonResources(slug, selectedResources);
