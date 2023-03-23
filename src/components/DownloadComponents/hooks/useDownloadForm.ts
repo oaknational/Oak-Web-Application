@@ -11,8 +11,11 @@ type UseDownloadFormProps = {
 };
 
 const useDownloadForm = (props: UseDownloadFormProps = {}) => {
-  const { setSchoolInLocalStorage, setEmailInLocalStorage } =
-    useLocalStorageForDownloads();
+  const {
+    setSchoolInLocalStorage,
+    setEmailInLocalStorage,
+    setTermsInLocalStorage,
+  } = useLocalStorageForDownloads();
 
   const onSubmit = async (
     data: DownloadFormProps,
@@ -25,6 +28,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
 
     const emailFromForm = data?.email;
     const schoolFromForm = data?.school;
+    const terms = data?.terms;
 
     if (emailFromForm) {
       setEmailInLocalStorage(emailFromForm);
@@ -32,6 +36,10 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
 
     if (schoolFromForm) {
       setSchoolInLocalStorage(schoolFromForm);
+    }
+
+    if (terms) {
+      setTermsInLocalStorage(terms);
     }
 
     await downloadLessonResources(slug, selectedResources);

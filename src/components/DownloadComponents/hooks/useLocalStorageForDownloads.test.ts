@@ -19,6 +19,11 @@ describe("useLocalStorageForDownloads", () => {
     expect(result.current.emailFromLocalStorage).toBe("");
   });
 
+  test("termsFromLocalSotrage should default to false", () => {
+    const { result } = renderHook(useLocalStorageForDownloads);
+    expect(result.current.termsFromLocalStorage).toBe(false);
+  });
+
   test("calling setSchoolInLocalStorage should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
@@ -33,5 +38,13 @@ describe("useLocalStorageForDownloads", () => {
       result.current.setEmailInLocalStorage("test@test.com");
     });
     expect(result.current.emailFromLocalStorage).toBe("test@test.com");
+  });
+
+  test("calling setTermsInLocalSotrage should set termsFromLocalStorage to correct value", () => {
+    const { result } = renderHook(useLocalStorageForDownloads);
+    act(() => {
+      result.current.setTermsInLocalStorage(true);
+    });
+    expect(result.current.setTermsInLocalStorage).toBe(true);
   });
 });
