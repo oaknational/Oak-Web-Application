@@ -20,7 +20,6 @@ type IconButtonAsLinkProps = OakLinkPropsWithoutChildren &
   CommonIconButtonProps & {
     "aria-label": string;
     disabled?: boolean;
-    hrefQuery?: Record<string, string>;
   };
 
 const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
@@ -31,21 +30,13 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
     "aria-label": ariaLabel,
     disabled,
     iconAnimateTo,
-    hrefQuery,
     ...linkProps
   } = transformedProps;
 
   const { size, variant, background } = getIconButtonStylesProps(props);
 
-  const nextListPropsHrefQuery = hrefQuery
-    ? {
-        ...nextLinkProps,
-        href: { pathname: linkProps.href, query: { ...hrefQuery } },
-      }
-    : nextLinkProps;
-
   return (
-    <Link {...nextListPropsHrefQuery} passHref legacyBehavior>
+    <Link {...nextLinkProps} passHref legacyBehavior>
       <StyledNextLink
         {...useButtonAsLinkProps()}
         {...linkProps}

@@ -1,3 +1,4 @@
+import { ExpandingContainerTitle } from "../../components/ExpandingContainer/ExpandingContainer";
 import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
@@ -107,12 +108,16 @@ export type LessonOverviewLinkProps = {
   unit: string;
   slug: string;
 };
-export type DownloadsLinkProps = {
-  page: "downloads";
-  keyStage: string;
-  subject: string;
-  unit: string;
+
+type LessonDownloadsLinkProps = {
+  page: "lesson-downloads";
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitSlug: string;
   slug: string;
+  query?: {
+    preselected: ExpandingContainerTitle | "all";
+  };
 };
 
 export type ResolveOakHrefProps =
@@ -135,7 +140,7 @@ export type ResolveOakHrefProps =
   | UnitIndexLinkProps
   | LessonIndexLinkProps
   | LessonOverviewLinkProps
-  | DownloadsLinkProps;
+  | LessonDownloadsLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -216,13 +221,18 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
     case "lesson-overview": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
     }
+    case "lesson-downloads": {
+      let path = `/beta/teachers/key-stages/${props.keyStageSlug}/subjects/${props.subjectSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;
+      if (props.query) {
+        const queryString = createQueryStringFromObject(props.query);
+        path += `?${queryString.toLowerCase()}`;
+      }
+      return path;
+    }
     case "beta-search": {
       return props.term
         ? `/beta/teachers/search?term=${props.term}`
         : "/beta/teachers/search";
-    }
-    case "downloads": {
-      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}/downloads`;
     }
     default:
       return OAK_PAGES[props.page];

@@ -11,13 +11,24 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
 
+export type ExpandingContainerTitle =
+  | "Slide deck"
+  | "Exit quiz"
+  | "Starter quiz"
+  | "Worksheet"
+  | "Video"
+  | "Transcript";
+
 type ExpandingContainerProps = CardProps & {
-  title: string;
+  title: ExpandingContainerTitle;
   external?: boolean;
   projectable?: boolean;
   downloadable?: boolean;
-  downloadLink?: string;
   toggleClosed?: boolean;
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitSlug: string;
+  slug: string;
 };
 
 const ExpandingContainer: FC<ExpandingContainerProps> = ({
@@ -26,8 +37,8 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   external,
   projectable,
   downloadable,
-  downloadLink,
   toggleClosed = true,
+  ...props
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
@@ -61,36 +72,36 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             </Flex>
           </Card>
           <Flex>
-            {downloadable === true && downloadLink && (
+            {downloadable === true && (
               <>
                 <Box $display={["none", "block"]}>
                   <ButtonAsLink
                     data-testid={"download-button"}
-                    href={downloadLink}
                     variant={"minimal"}
-                    page={null}
+                    page={"lesson-downloads"}
                     aria-label={`download ${lowerCaseTitle}`}
                     iconBackground="teachersHighlight"
                     icon="download"
                     $iconPosition="trailing"
                     label={`Download ${lowerCaseTitle}`}
-                    hrefQuery={{
-                      preselected: lowerCaseTitle,
+                    query={{
+                      preselected: title,
                     }}
+                    {...props}
                   />
                 </Box>
                 <Box $display={["block", "none"]}>
                   <IconButtonAsLink
                     data-testid={"download-button-mobile"}
-                    href={downloadLink}
-                    page={null}
+                    page={"lesson-downloads"}
                     aria-label={`download ${lowerCaseTitle}`}
                     background={"teachersHighlight"}
                     icon="download"
                     variant="brush"
-                    hrefQuery={{
-                      preselected: lowerCaseTitle,
+                    query={{
+                      preselected: title,
                     }}
+                    {...props}
                   />
                 </Box>
               </>

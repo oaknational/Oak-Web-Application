@@ -14,8 +14,11 @@ it("component renders with the title", () => {
       external={true}
       projectable={true}
       downloadable={true}
-      downloadLink={downloadLink}
       title={"Video"}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -33,6 +36,10 @@ it("component renders with the title only", () => {
       projectable={false}
       downloadable={false}
       title={"Video"}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -51,7 +58,10 @@ it("renders top right icons", async () => {
       external={true}
       projectable={true}
       downloadable={true}
-      downloadLink={downloadLink}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -80,8 +90,11 @@ it("adds selected+[title] to query string", async () => {
       external={true}
       projectable={true}
       downloadable={true}
-      downloadLink={downloadLink}
       title={"Worksheet"}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -103,7 +116,10 @@ it("component expands and contract on click", async () => {
       external={true}
       projectable={true}
       downloadable={true}
-      downloadLink={downloadLink}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>

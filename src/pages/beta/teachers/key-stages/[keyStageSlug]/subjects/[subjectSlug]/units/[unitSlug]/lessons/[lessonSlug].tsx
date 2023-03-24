@@ -11,7 +11,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../../../node-lib/isr";
-import { resolveOakHref } from "../../../../../../../../../../common-lib/urls";
 import AppLayout from "../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -43,7 +42,7 @@ export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
 };
 
-// Array to be used in downlaods as well to avoid duplication
+// Array to be used in downloads as well to avoid duplication
 export const lessonBreadcrumbArray = (
   keyStageTitle: string,
   keyStageSlug: string,
@@ -105,14 +104,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitTitle,
     unitSlug,
   } = curriculumData;
-
-  const downLoadLink = resolveOakHref({
-    page: "downloads",
-    keyStage: keyStageSlug,
-    subject: subjectSlug,
-    unit: `${unitSlug}`,
-    slug: `${slug}`,
-  });
 
   return (
     <AppLayout
@@ -183,16 +174,19 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               icon="download"
               iconBackground="teachersHighlight"
               label="Download all resources"
-              href={downLoadLink}
-              page={null}
+              page={"lesson-downloads"}
               size="small"
               variant="minimal"
               $iconPosition={"trailing"}
               $mt={16}
               data-testid={"download-all-button"}
-              hrefQuery={{
+              query={{
                 preselected: "all",
               }}
+              keyStageSlug={keyStageSlug}
+              slug={slug}
+              subjectSlug={subjectSlug}
+              unitSlug={unitSlug}
             />
           )}
           {/*
@@ -212,16 +206,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         <Hr $color={"oakGrey3"} />
         {presentationUrl && !hasCopyrightMaterial && (
           <ExpandingContainer
-            title={"Slide deck"}
             downloadable={true}
-            downloadLink={downLoadLink}
             toggleClosed={false}
+            {...curriculumData}
+            title={"Slide deck"}
           >
             <OverviewPresentation asset={presentationUrl} title={title} />
           </ExpandingContainer>
         )}
         {videoMuxPlaybackId && (
-          <ExpandingContainer title={"Video"}>
+          <ExpandingContainer {...curriculumData} title={"Video"}>
             <OverviewVideo
               video={videoMuxPlaybackId}
               signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
@@ -232,18 +226,18 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         )}
         {worksheetUrl && (
           <ExpandingContainer
-            title={"Worksheet"}
             downloadable={true}
-            downloadLink={downLoadLink}
+            {...curriculumData}
+            title={"Worksheet"}
           >
             <OverviewPresentation asset={worksheetUrl} title={title} />
           </ExpandingContainer>
         )}
         {introQuiz.length > 0 ? (
           <ExpandingContainer
-            title={"Starter quiz"}
             downloadable={true}
-            downloadLink={downLoadLink}
+            {...curriculumData}
+            title={"Starter quiz"}
           >
             <QuizContainer questions={introQuiz} info={introQuizInfo} />
           </ExpandingContainer>
@@ -252,16 +246,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         )}
         {exitQuiz.length > 0 && (
           <ExpandingContainer
-            title={"Exit quiz"}
             downloadable={true}
-            downloadLink={downLoadLink}
+            {...curriculumData}
+            title={"Exit quiz"}
           >
             <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
           </ExpandingContainer>
         )}
 
         {transcript && (
-          <ExpandingContainer title={"Transcript"}>
+          <ExpandingContainer {...curriculumData} title={"Transcript"}>
             <OverviewTranscript transcript={transcript} />
           </ExpandingContainer>
         )}
