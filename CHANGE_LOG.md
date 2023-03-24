@@ -1,3 +1,18 @@
+# [1.162.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.161.0...v1.162.0) (2023-03-23)
+
+
+### Features
+
+* 1152 Add email and shool to locale storage on form submit ([98be0a0](https://github.com/oaknational/Oak-Web-Application/commit/98be0a06f356cc126e926e56dc9ce17cfac33703))
+* 1152 Add test for initial values from local storage ([5255dfa](https://github.com/oaknational/Oak-Web-Application/commit/5255dfa2b5c130b7a41b364bca21368e1bc0153a))
+* 1152 Add test for setting terms in local storage ([e294df4](https://github.com/oaknational/Oak-Web-Application/commit/e294df431a09012b4e18da755be88293ffc0b51d))
+* 1152 add tests for useDownloadForm and fix typo ([c172d7f](https://github.com/oaknational/Oak-Web-Application/commit/c172d7f8470ee40a3dc16042bf62d0d9abacde07))
+* 1152 Convert terms boolean to string ([ec34307](https://github.com/oaknational/Oak-Web-Application/commit/ec3430710a7ed20b3dfae20d875eb9ae844251fd))
+* 1152 Fix type ([62e1473](https://github.com/oaknational/Oak-Web-Application/commit/62e147372caeeff9ca3338930274919403e35e58))
+* 1152 Set terms in local storage ([69e903b](https://github.com/oaknational/Oak-Web-Application/commit/69e903b1f9b892d3ca4e5e389773fc167f44380e))
+* 1152 Update terms value in local storage to be a string rather than boolean ([7462ee8](https://github.com/oaknational/Oak-Web-Application/commit/7462ee8b37f6d0709f3b0b28d4b461bcf0bb3661))
+* 1152 Update useDownloadForm test ([e9fb037](https://github.com/oaknational/Oak-Web-Application/commit/e9fb037fd8c04f035034e7644bdc85c3daccf7cc))
+
 # [1.161.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.160.0...v1.161.0) (2023-03-22)
 
 
