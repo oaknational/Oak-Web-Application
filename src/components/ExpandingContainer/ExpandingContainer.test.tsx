@@ -6,8 +6,6 @@ import Card from "../Card";
 
 import ExpandingContainer from ".";
 
-const downloadLink = "/downloads";
-
 it("component renders with the title", () => {
   const { getAllByRole } = renderWithTheme(
     <ExpandingContainer
@@ -73,7 +71,7 @@ it("renders top right icons", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    downloadLink + "?preselected=video"
+    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=video"
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -105,7 +103,7 @@ it("adds selected+[title] to query string", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    downloadLink + "?preselected=worksheet"
+    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
   );
 });
 
