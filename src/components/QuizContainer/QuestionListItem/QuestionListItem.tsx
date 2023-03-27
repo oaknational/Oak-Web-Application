@@ -30,7 +30,7 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
         objectFit="contain"
         $objectPosition={["center", "left"]}
         src={src}
-        alt={alt ? alt : "quiz image"}
+        alt={alt ? alt : ""}
         fill
         onLoad={({ target }) => {
           const { naturalWidth, naturalHeight } = target as HTMLImageElement;
@@ -169,12 +169,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
               return (
                 <Flex $mb={32} $flexDirection={"column"}>
                   {images.map((image) => {
-                    return (
-                      <QuizImage
-                        src={image}
-                        alt={title ? title : "quiz image"}
-                      />
-                    );
+                    return <QuizImage src={image} alt={title ? title : ""} />;
                   })}
                   <Typography $font={["body-1"]}>{title}</Typography>
                 </Flex>
@@ -198,7 +193,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   {image ? (
                     <AnswerBox>
                       <>
-                        <QuizImage src={image} alt={"quiz image"} />
+                        <QuizImage src={image} alt={""} />
                         <CorrectAnswer
                           choice={choice}
                           type={type}
@@ -220,7 +215,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                   {image ? (
                     <AnswerBox>
                       <>
-                        <QuizImage src={image} alt={"quiz image"} />
+                        <QuizImage src={image} alt={""} />
                         <CorrectAnswer
                           type={type}
                           choice={choice}
@@ -246,7 +241,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
                     <AnswerBox>
                       {" "}
                       <>
-                        <QuizImage src={image} alt={"quiz image"} />
+                        <QuizImage src={image} alt={""} />
                         <Typography
                           $ml={40}
                           $ph={10}
