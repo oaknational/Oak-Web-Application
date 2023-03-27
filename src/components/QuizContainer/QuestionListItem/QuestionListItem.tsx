@@ -169,7 +169,12 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
               return (
                 <Flex $mb={32} $flexDirection={"column"}>
                   {images.map((image) => {
-                    return <QuizImage src={image} alt={title} />;
+                    return (
+                      <QuizImage
+                        src={image}
+                        alt={title ? title : "quiz image"}
+                      />
+                    );
                   })}
                   <Typography $font={["body-1"]}>{title}</Typography>
                 </Flex>
