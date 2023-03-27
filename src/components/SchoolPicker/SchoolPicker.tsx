@@ -7,7 +7,7 @@ import { UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
 type SchoolPickerProps = Omit<
   UseSchoolPickerReturnProps,
-  "data" | "error" | "selectedValue"
+  "data" | "error" | "selectedSchool"
 > & {
   schools: School[];
   defaultSchools?: School[];
@@ -38,10 +38,10 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
     <SearchComboBox
       hasError={props.hasError}
       label={props.label}
-      inputValue={props.inputValue}
-      onInputChange={props.setInputValue}
+      inputValue={props.schoolPickerInputValue}
+      onInputChange={props.setSchoolPickerInputValue}
       defaultItems={props.schools || []}
-      onSelectionChange={(value) => props.setSelectedValue(value)}
+      onSelectionChange={(value) => props.setSelectedSchool(value)}
       required={props.required}
     >
       {(item) => (

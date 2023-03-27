@@ -19,10 +19,12 @@ describe("useBugSnag", () => {
     jest.resetModules();
   });
 
-  test("should call startGleap() with the correct gleap config", () => {
+  test("should call initialiseBugsnag() with the correct gleap config", () => {
     const initialArgs = { enabled: true, userId: "not_a_user" };
     renderHook(() => useBugSnag(initialArgs));
 
     expect(initialiseBugsnag).toHaveBeenCalledWith(initialArgs.userId);
   });
+  test.todo("should set userId on Bugsnag");
+  test.todo("should get paused if consent revoked");
 });

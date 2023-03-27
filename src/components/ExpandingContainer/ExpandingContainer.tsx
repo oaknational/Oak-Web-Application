@@ -6,16 +6,29 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
 import Button from "../Button";
 import IconButton from "../Button/IconButton";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
 import Icon from "../Icon";
+import ButtonAsLink from "../Button/ButtonAsLink";
+import Box from "../Box";
+import IconButtonAsLink from "../Button/IconButtonAsLink";
+
+export type ExpandingContainerTitle =
+  | "Slide deck"
+  | "Exit quiz"
+  | "Starter quiz"
+  | "Worksheet"
+  | "Video"
+  | "Transcript";
 
 type ExpandingContainerProps = CardProps & {
-  title: string;
+  title: ExpandingContainerTitle;
   external?: boolean;
   projectable?: boolean;
   downloadable?: boolean;
-  downloadLink?: string;
   toggleClosed?: boolean;
+  keyStageSlug: string;
+  subjectSlug: string;
+  unitSlug: string;
+  slug: string;
 };
 
 const ExpandingContainer: FC<ExpandingContainerProps> = ({
@@ -24,12 +37,13 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   external,
   projectable,
   downloadable,
-  downloadLink,
   toggleClosed = true,
+  ...props
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
+  const lowerCaseTitle = title.toLowerCase();
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
       <Flex
@@ -58,16 +72,39 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
             </Flex>
           </Card>
           <Flex>
-            {downloadable === true && downloadLink && (
-              <IconButtonAsLink
-                data-testid={"download-button"}
-                href={downloadLink}
-                page={null}
-                aria-label="download resource"
-                background={"teachersHighlight"}
-                icon="download"
-                variant="brush"
-              />
+            {downloadable === true && (
+              <>
+                <Box $display={["none", "block"]}>
+                  <ButtonAsLink
+                    data-testid={"download-button"}
+                    variant={"minimal"}
+                    page={"lesson-downloads"}
+                    aria-label={`download ${lowerCaseTitle}`}
+                    iconBackground="teachersHighlight"
+                    icon="download"
+                    $iconPosition="trailing"
+                    label={`Download ${lowerCaseTitle}`}
+                    query={{
+                      preselected: title,
+                    }}
+                    {...props}
+                  />
+                </Box>
+                <Box $display={["block", "none"]}>
+                  <IconButtonAsLink
+                    data-testid={"download-button-mobile"}
+                    page={"lesson-downloads"}
+                    aria-label={`download ${lowerCaseTitle}`}
+                    background={"teachersHighlight"}
+                    icon="download"
+                    variant="brush"
+                    query={{
+                      preselected: title,
+                    }}
+                    {...props}
+                  />
+                </Box>
+              </>
             )}
             {external === true && (
               <IconButton
