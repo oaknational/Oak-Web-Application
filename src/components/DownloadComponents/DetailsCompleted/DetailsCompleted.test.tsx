@@ -71,4 +71,42 @@ describe("DetailsCompleted", () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe("renders correct message dependent on input", () => {
+    it.only("should render homeschool message when user selects homeschool option", () => {
+      const spy = jest.fn();
+
+      const { getByText } = renderWithTheme(
+        <DetailsCompleted
+          email={"test@test.com"}
+          school={"homeschool"}
+          onEditClick={() => spy()}
+        />
+      );
+
+      const email = getByText("email: test@test.com");
+      expect(email).toBeInTheDocument();
+
+      const school = getByText("school: Homeschool");
+      expect(school).toBeInTheDocument();
+    });
+
+    it("should render not listed message when users school is not listed", () => {
+      const spy = jest.fn();
+
+      const { getByText } = renderWithTheme(
+        <DetailsCompleted
+          email={"test@test.com"}
+          school={"notListed"}
+          onEditClick={() => spy()}
+        />
+      );
+
+      const email = getByText("email: test@test.com");
+      expect(email).toBeInTheDocument();
+
+      const school = getByText("school: My school isn’t listed");
+      expect(school).toBeInTheDocument();
+    });
+  });
 });

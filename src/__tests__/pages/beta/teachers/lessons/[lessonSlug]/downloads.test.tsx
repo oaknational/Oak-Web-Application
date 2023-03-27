@@ -239,7 +239,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("details on the form prefilled correctly when user clicks 'Edit' button on DetailsComplete component", () => {
-    it.skip("marks Terms and Conditions as checked if saved in local storage", async () => {
+    it("marks Terms and Conditions as checked if saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
@@ -258,34 +258,35 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       await user.click(editButton);
 
       const terms = getByLabelText("I accept terms and conditions (required)");
+
       await waitFor(() => {
         expect(terms).toBeChecked();
       });
     });
 
-    it.skip("prefills email if saved in local storage", async () => {
+    it("prefills email from saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
         result.current.setEmailInLocalStorage("test@test.com");
       });
 
-      const { getByText } = renderWithProviders(
-        <LessonDownloadsPage {...props} />
-      );
+      const { getByText, getByLabelText, getByDisplayValue } =
+        renderWithProviders(<LessonDownloadsPage {...props} />);
 
       // user click Edit button
       const editButton = getByText("Edit");
       const user = userEvent.setup();
       await user.click(editButton);
 
-      await waitFor(() => {
-        expect(getByText("Email address")).toBeInTheDocument();
-        expect(getByText("test@test.com")).toBeInTheDocument();
-      });
+      const emailAddress = result.current.emailFromLocalStorage;
+      expect(getByLabelText("Email address")).toBeInTheDocument();
+      const emailValue = getByDisplayValue(emailAddress);
+      expect(emailValue).toBeInTheDocument();
+      expect(emailAddress).toBe("test@test.com");
     });
 
-    it.skip("prefills school with the correct school name if school id is saved in local storage", async () => {
+    it("prefills school with the correct school name if school id is saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
@@ -302,11 +303,17 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const user = userEvent.setup();
       await user.click(editButton);
 
+      const schoolId = result.current.schoolIdFromLocalStorage;
+      const schoolName = result.current.schoolNameFromLocalStorage;
+
       const schoolPicker = getByTestId("search-combobox-input");
       await waitFor(() => {
         expect(schoolPicker).toBeInTheDocument();
         expect(schoolPicker).toHaveValue("Primary School");
       });
+
+      expect(schoolId).toBe("222-Primary-School");
+      expect(schoolName).toBe("Primary School");
     });
   });
 
@@ -326,6 +333,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
   });
+
   describe("getServerSideProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getServerSideProps({

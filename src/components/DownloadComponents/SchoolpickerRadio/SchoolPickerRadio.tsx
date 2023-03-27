@@ -61,10 +61,7 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   const onRadioChange = (value: string) => {
     setSelectedRadio(value);
     setSelectedSchool("");
-    if (selectedSchool) {
-      setSelectedSchool("");
-      setSchoolPickerInputValue("");
-    }
+    setSchoolPickerInputValue("");
     setSchool(value);
   };
 

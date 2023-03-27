@@ -73,9 +73,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolNameFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
-    setEmailInLocalStorage,
-    setSchoolIdInLocalStorage,
-    setSchoolNameInLocalStorage,
   } = useLocalStorageForDownloads();
 
   // use values from local storage if available (initial value on School Picker is set within that component)
@@ -112,8 +109,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     useState<boolean>(false);
 
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+
   const hasDetailsFromLocaleStorage =
     schoolIdFromLocalStorage.length || emailFromLocalStorage.length;
+
   const shouldDisplayDetailsCompleted =
     hasDetailsFromLocaleStorage && !editDetailsClicked;
 
@@ -196,12 +195,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
     // local storage clear
-    setEmailInLocalStorage("");
-    setSchoolIdInLocalStorage("");
-    setSchoolNameInLocalStorage("");
+    // setEmailInLocalStorage("");
+    // setSchoolIdInLocalStorage("");
+    // setSchoolNameInLocalStorage("");
     //clear current input react hook form
-    setValue("school", "");
-    setValue("schoolName", "");
+    // setValue("school", "");
+    // setValue("schoolName", "");
     // keep email value as is?
     // setValue("email", "");
   }
