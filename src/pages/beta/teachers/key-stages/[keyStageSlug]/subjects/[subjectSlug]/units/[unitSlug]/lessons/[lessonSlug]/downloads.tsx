@@ -73,6 +73,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolNameFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
+    setEmailInLocalStorage,
+    setSchoolIdInLocalStorage,
+    setSchoolNameInLocalStorage,
   } = useLocalStorageForDownloads();
 
   // use values from local storage if available (initial value on School Picker is set within that component)
@@ -84,7 +87,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     if (termsFromLocalStorage) {
       setValue("terms", termsFromLocalStorage);
     }
-  }, [setValue, emailFromLocalStorage, termsFromLocalStorage]);
+  }, [
+    setValue,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+    schoolIdFromLocalStorage,
+  ]);
 
   const setSchool = useCallback(
     (value: string, name?: string) => {
@@ -104,11 +112,30 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     useState<boolean>(false);
 
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
   const hasDetailsFromLocaleStorage =
     schoolIdFromLocalStorage.length || emailFromLocalStorage.length;
   const shouldDisplayDetailsCompleted =
     hasDetailsFromLocaleStorage && !editDetailsClicked;
+
+  const [localStorageDetails, setLocalStorageDetails] = useState(false);
+
+  useEffect(() => {
+    if (hasDetailsFromLocaleStorage) {
+      setLocalStorageDetails(true);
+    }
+    if (editDetailsClicked) {
+      setLocalStorageDetails(false);
+    }
+
+    if (shouldDisplayDetailsCompleted) {
+      setLocalStorageDetails(true);
+    }
+  }, [
+    hasDetailsFromLocaleStorage,
+    localStorageDetails,
+    editDetailsClicked,
+    shouldDisplayDetailsCompleted,
+  ]);
 
   const getInitialResourcesToDownloadState = () => {
     const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
@@ -147,6 +174,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
     await debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
+    setEditDetailsClicked(false);
   };
 
   const getFormErrorMessage = () => {
@@ -163,6 +191,20 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
   });
+
+  function handleEditClick() {
+    setEditDetailsClicked(true);
+    setLocalStorageDetails(false);
+    // local storage clear
+    setEmailInLocalStorage("");
+    setSchoolIdInLocalStorage("");
+    setSchoolNameInLocalStorage("");
+    //clear current input react hook form
+    setValue("school", "");
+    setValue("schoolName", "");
+    // keep email value as is?
+    // setValue("email", "");
+  }
 
   return (
     <AppLayout
@@ -208,7 +250,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             ]}
           />
         </Box>
-
         <Flex $mb={8} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
@@ -219,13 +260,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
-
         {/* @todo replace email and school with values from local storage */}
-        {shouldDisplayDetailsCompleted ? (
+        {localStorageDetails ? (
           <DetailsCompleted
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
-            onEditClick={() => setEditDetailsClicked(true)}
+            onEditClick={handleEditClick}
           />
         ) : (
           <Box $maxWidth={[null, 420, 420]} $mb={96}>
@@ -239,7 +279,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               }
               initialSchoolName={schoolNameFromLocalStorage}
             />
-
             <Heading
               tag="h3"
               $font={"heading-7"}
@@ -324,7 +363,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
                   </P>
                 </Box>
-
                 <Button
                   label={"Download .zip"}
                   onClick={handleSubmit(onFormSubmit)}

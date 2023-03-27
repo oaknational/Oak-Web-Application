@@ -54,16 +54,17 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
 
   useEffect(() => {
     if (selectedSchool) {
-      setSelectedRadio("");
       setSchool(selectedSchool.toString(), schoolPickerInputValue);
     }
-  }, [selectedSchool, setSchool, schoolPickerInputValue]);
+  }, [selectedSchool, setSchool, schoolPickerInputValue, selectedRadio]);
 
   const onRadioChange = (value: string) => {
+    setSelectedRadio(value);
+    setSelectedSchool("");
     if (selectedSchool) {
+      setSelectedSchool("");
       setSchoolPickerInputValue("");
     }
-    setSelectedRadio(value);
     setSchool(value);
   };
 
@@ -71,6 +72,7 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
     if (value === "" && !selectedRadio) {
       setSchool("");
     }
+    setSelectedRadio("");
     setSchoolPickerInputValue(value);
   };
   return (
