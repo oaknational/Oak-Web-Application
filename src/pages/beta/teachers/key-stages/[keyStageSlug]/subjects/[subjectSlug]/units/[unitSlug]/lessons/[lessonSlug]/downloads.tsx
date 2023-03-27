@@ -194,15 +194,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   function handleEditClick() {
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
-    // local storage clear
-    // setEmailInLocalStorage("");
-    // setSchoolIdInLocalStorage("");
-    // setSchoolNameInLocalStorage("");
-    //clear current input react hook form
-    // setValue("school", "");
-    // setValue("schoolName", "");
-    // keep email value as is?
-    // setValue("email", "");
   }
 
   return (
