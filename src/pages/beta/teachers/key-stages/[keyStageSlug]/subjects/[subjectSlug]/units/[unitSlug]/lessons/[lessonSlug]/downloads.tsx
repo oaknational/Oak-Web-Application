@@ -1,9 +1,9 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
-import { z } from "zod";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
@@ -25,64 +25,27 @@ import Grid, {
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
-import downloadSelectedLessonResources from "../../../../../../../../../../../components/DownloadComponents/helpers/downloadLessonResources";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
+import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import useDownloadForm from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
 import type {
   ResourcesToDownloadArrayType,
-  DownloadResourceType,
   ErrorKeysType,
+  DownloadFormProps,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
-import SchoolPicker from "../../../../../../../../../../../components/SchoolPicker";
-import useSchoolPicker from "../../../../../../../../../../../components/SchoolPicker/useSchoolPicker";
-import RadioGroup from "../../../../../../../../../../../components/RadioButtons/RadioGroup";
-import Radio from "../../../../../../../../../../../components/RadioButtons/Radio";
+import { schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
+import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
+import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
+import DetailsCompleted from "../../../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
-};
-
-const schema = z.object({
-  schoolRadio: z
-    .string({
-      errorMap: () => ({
-        message: "Please select a school or one of the alternative options",
-      }),
-    })
-    .min(1, "Please select a school or one of the alternative options"),
-  email: z
-    .string()
-    .email({
-      message: "Please enter a valid email address",
-    })
-    .optional()
-    .or(z.literal("")),
-  terms: z.literal(true, {
-    errorMap: () => ({
-      message: "You must accept our terms of use to download the content",
-    }),
-  }),
-  downloads: z
-    .array(z.string(), {
-      errorMap: () => ({
-        message: "Please select at least one lesson resource to download",
-      }),
-    })
-    .min(1),
-});
-
-type DownloadFormValues = z.infer<typeof schema>;
-export type DownloadFormProps = {
-  onSubmit: (values: DownloadFormValues) => Promise<string | void>;
-  email: string;
-  terms: boolean;
-  schoolRadio: string;
-  downloads: DownloadResourceType[];
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -99,31 +62,64 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitSlug,
     unitTitle,
   } = curriculumData;
-  const [selectedRadio, setSelectedRadio] = useState("");
-  const { inputValue, setInputValue, selectedValue, setSelectedValue, data } =
-    useSchoolPicker();
 
-  const onRadioChange = (e: string) => {
-    if (selectedValue) {
-      setInputValue("");
-    }
-    setSelectedRadio(e);
-    setValue("schoolRadio", e, { shouldValidate: true });
-  };
-
-  const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (selectedRadio && selectedValue) {
-      setSelectedRadio("");
-    }
-    setInputValue(value);
-    setValue("schoolRadio", value.toString(), { shouldValidate: true });
-  };
+  const router = useRouter();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
+
+  const getInitialResourcesToDownloadState = useCallback(() => {
+    return downloads
+      .filter((download) => download.exists && !download.forbidden)
+      .map((download) => download.type);
+  }, [downloads]);
+
+  useEffect(() => {
+    const preselected = getPreselectedDownloadResourceTypes(
+      router.query.preselected
+    );
+
+    if (preselected) {
+      preselected === "all"
+        ? setValue("downloads", getInitialResourcesToDownloadState())
+        : setValue("downloads", preselected);
+    }
+  }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
+  const {
+    schoolFromLocalStorage,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+  } = useLocalStorageForDownloads();
+
+  // use values from local storage if available
+  useEffect(() => {
+    if (emailFromLocalStorage) {
+      setValue("email", emailFromLocalStorage);
+    }
+
+    if (schoolFromLocalStorage) {
+      setValue("school", schoolFromLocalStorage);
+    }
+
+    if (termsFromLocalStorage) {
+      setValue("terms", JSON.parse(termsFromLocalStorage));
+    }
+  }, [
+    setValue,
+    emailFromLocalStorage,
+    schoolFromLocalStorage,
+    termsFromLocalStorage,
+  ]);
+
+  const setSchool = useCallback(
+    (value: string) => {
+      setValue("school", value, { shouldValidate: true });
+    },
+    [setValue]
+  );
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
@@ -132,17 +128,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
-  const getInitialResourcesToDownloadState = () => {
-    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
-    downloads?.forEach((download) => {
-      if (download.exists && !download.forbidden) {
-        initialResourcesToDownloadState.push(download.type);
-      }
-    });
-
-    return initialResourcesToDownloadState;
-  };
+  {
+    /* @todo replace once local storage piece of work is done for this page */
+  }
+  const hasDetailsFromLocaleStorage = false;
+  const shouldDisplayDetailsCompleted =
+    hasDetailsFromLocaleStorage && !editDetailsClicked;
 
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
@@ -155,27 +148,29 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const allResourcesToDownloadCount = resourcesToDownload.length;
   const selectedResourcesToDownloadCount = selectedResources?.length;
 
-  const debouncedDownloadResources = debounce(
-    () => {
-      setIsAttemptingDownload(true);
-      downloadSelectedLessonResources(slug, selectedResources);
-    },
-    4000,
-    { leading: true }
-  );
+  const { onSubmit } = useDownloadForm();
 
-  const onFormSubmit = async () => {
-    await debouncedDownloadResources();
+  const onFormSubmit = async (data: DownloadFormProps) => {
+    const debouncedOnSubmit = debounce(
+      () => {
+        setIsAttemptingDownload(true);
+        onSubmit(data, slug, selectedResources);
+      },
+      4000,
+      { leading: true }
+    );
+
+    await debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
   };
 
   const getFormErrorMessage = () => {
     const errorKeyArray = Object.keys(errors);
-    const errrorMessage = getDownloadFormErrorMessage(
+    const errorMessage = getDownloadFormErrorMessage(
       errorKeyArray as ErrorKeysType[]
     );
 
-    return errrorMessage;
+    return errorMessage;
   };
 
   useDownloadExistenceCheck({
@@ -216,10 +211,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               },
               {
                 oakLinkProps: {
-                  page: "downloads",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                  unit: unitSlug,
+                  page: "lesson-downloads",
+                  keyStageSlug: keyStageSlug,
+                  subjectSlug: subjectSlug,
+                  unitSlug: unitSlug,
                   slug: slug,
                 },
                 label: "Downloads",
@@ -239,119 +234,72 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
-        <Box $maxWidth={[null, 420, 420]} $mb={96}>
-          <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
-            Your details
-          </Heading>
-          <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
-            Find your school in the field below (required)
-          </Heading>
-          <SchoolPicker
-            hasError={errors.schoolRadio !== undefined}
-            inputValue={inputValue}
-            setInputValue={onSchoolPickerInputChange}
-            schools={data}
-            label={"Name of school"}
-            setSelectedValue={setSelectedValue}
-            required={true}
+
+        {/* @todo replace email and school with values from local storage */}
+        {shouldDisplayDetailsCompleted ? (
+          <DetailsCompleted
+            email={"replace with email from local storage"}
+            school={"replace with school from local storage"}
+            onEditClick={() => setEditDetailsClicked(true)}
           />
-          <Box $mt={12} $ml={24} $mb={32}>
-            <P $mb={12} $font={"body-2"}>
-              Or select one of the following:
+        ) : (
+          <Box $maxWidth={[null, 420, 420]} $mb={96}>
+            <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+
+            <Heading
+              tag="h3"
+              $font={"heading-7"}
+              $mt={16}
+              $mb={24}
+              data-testid="email-heading"
+            >
+              For regular updates from Oak (optional)
+            </Heading>
+            <Input
+              id={"email"}
+              label="Email address"
+              placeholder="Enter email address here"
+              {...register("email")}
+              error={errors.email?.message}
+            />
+            <P $font="body-3" $mt={-24} $mb={40}>
+              Join our community to get free lessons, resources and other
+              helpful content. Unsubscribe at any time. Our{" "}
+              <OakLink page={"privacy-policy"} $isInline>
+                privacy policy
+              </OakLink>
+              .
             </P>
-            <Flex>
-              <RadioGroup
-                validationState={"valid"}
-                errorMessage={errors.schoolRadio?.message}
-                aria-label={"home school or my school isn't listed"}
-                value={selectedRadio}
-                onChange={onRadioChange}
-                hasError={errors.schoolRadio !== undefined}
-              >
-                <Radio data-testid={"radio-download"} value={"homeschool"}>
-                  Homeschool
-                </Radio>
-                <Radio value={"notListed"}>My school isn’t listed</Radio>
-              </RadioGroup>
-            </Flex>
+            <Controller
+              control={control}
+              name="terms"
+              render={({ field: { value, onChange, name, onBlur } }) => {
+                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                  return onChange(e.target.checked);
+                };
+                return (
+                  <TermsAndConditionsCheckbox
+                    name={name}
+                    checked={value}
+                    onChange={onChangeHandler}
+                    onBlur={onBlur}
+                    id={"terms"}
+                    errorMessage={errors?.terms?.message}
+                  />
+                );
+              }}
+            />
           </Box>
-          <Heading
-            tag="h3"
-            $font={"heading-7"}
-            $mt={16}
-            $mb={24}
-            data-testid="email-heading"
-          >
-            For regular updates from Oak (optional)
-          </Heading>
-          <Input
-            id={"email"}
-            label="Email address"
-            placeholder="Enter email address here"
-            {...register("email")}
-            error={errors.email?.message}
-          />
-          <P $font="body-3" $mt={-24} $mb={40}>
-            Join our community to get free lessons, resources and other helpful
-            content. Unsubscribe at any time. Our{" "}
-            <OakLink page={"privacy-policy"} $isInline>
-              privacy policy
-            </OakLink>
-            .
-          </P>
-          <Controller
-            control={control}
-            name="terms"
-            render={({ field: { value, onChange, name, onBlur } }) => {
-              const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                return onChange(e.target.checked);
-              };
-              return (
-                <TermsAndConditionsCheckbox
-                  name={name}
-                  checked={value}
-                  onChange={onChangeHandler}
-                  onBlur={onBlur}
-                  id={"terms"}
-                  errorMessage={errors?.terms?.message}
-                />
-              );
-            }}
-          />
-        </Box>
+        )}
 
         <Grid $mt={32}>
-          <GridArea $colSpan={[12]}>
-            <Flex
-              $alignItems={["left", "center"]}
-              $flexDirection={["column", "row"]}
-            >
-              <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
-                Lesson resources
-              </Heading>
-              <Box $ml={[0, 48]}>
-                <Button
-                  label="Select all"
-                  variant="minimal"
-                  onClick={() => onSelectAllClick()}
-                />
-                <Button
-                  label="Deselect all"
-                  variant="minimal"
-                  onClick={() => onDeselectAllClick()}
-                  $ml={24}
-                />
-              </Box>
-            </Flex>
-            <FieldError id={"downloads-error"}>
-              {errors?.downloads?.message}
-            </FieldError>
-            <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
-          </GridArea>
           <DownloadCardGroup
             control={control}
             downloads={downloads}
             hasError={errors?.downloads ? true : false}
+            errorMessage={errors?.downloads?.message}
+            onSelectAllClick={() => onSelectAllClick()}
+            onDeselectAllClick={() => onDeselectAllClick()}
           />
 
           <GridArea $colSpan={[12]}>

@@ -16,6 +16,9 @@ jest.mock("posthog-js", () => ({
 }));
 
 describe("useAnalytics", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("track should not work if statistics consent not given", () => {
     const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
 

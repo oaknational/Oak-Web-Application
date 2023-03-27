@@ -1,3 +1,72 @@
+# [1.162.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.161.0...v1.162.0) (2023-03-23)
+
+
+### Features
+
+* 1152 Add email and shool to locale storage on form submit ([98be0a0](https://github.com/oaknational/Oak-Web-Application/commit/98be0a06f356cc126e926e56dc9ce17cfac33703))
+* 1152 Add test for initial values from local storage ([5255dfa](https://github.com/oaknational/Oak-Web-Application/commit/5255dfa2b5c130b7a41b364bca21368e1bc0153a))
+* 1152 Add test for setting terms in local storage ([e294df4](https://github.com/oaknational/Oak-Web-Application/commit/e294df431a09012b4e18da755be88293ffc0b51d))
+* 1152 add tests for useDownloadForm and fix typo ([c172d7f](https://github.com/oaknational/Oak-Web-Application/commit/c172d7f8470ee40a3dc16042bf62d0d9abacde07))
+* 1152 Convert terms boolean to string ([ec34307](https://github.com/oaknational/Oak-Web-Application/commit/ec3430710a7ed20b3dfae20d875eb9ae844251fd))
+* 1152 Fix type ([62e1473](https://github.com/oaknational/Oak-Web-Application/commit/62e147372caeeff9ca3338930274919403e35e58))
+* 1152 Set terms in local storage ([69e903b](https://github.com/oaknational/Oak-Web-Application/commit/69e903b1f9b892d3ca4e5e389773fc167f44380e))
+* 1152 Update terms value in local storage to be a string rather than boolean ([7462ee8](https://github.com/oaknational/Oak-Web-Application/commit/7462ee8b37f6d0709f3b0b28d4b461bcf0bb3661))
+* 1152 Update useDownloadForm test ([e9fb037](https://github.com/oaknational/Oak-Web-Application/commit/e9fb037fd8c04f035034e7644bdc85c3daccf7cc))
+
+# [1.161.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.160.0...v1.161.0) (2023-03-22)
+
+
+### Bug Fixes
+
+* add legacy_oak_anonymous_id to all posthog track events ([3172ae1](https://github.com/oaknational/Oak-Web-Application/commit/3172ae1c1c809790610a756639d8343205bed857))
+* remove explicity posthogSetLegacyAnonymousId function ([514e551](https://github.com/oaknational/Oak-Web-Application/commit/514e551b44825fda675b1a89476e4840da6a660b))
+* set LS anon id when setting cookie ([2256076](https://github.com/oaknational/Oak-Web-Application/commit/22560761eb43c80fc1af72bea02420048f68543e))
+
+
+### Features
+
+* add analytics.posthogSetAnonymousId() ([831a150](https://github.com/oaknational/Oak-Web-Application/commit/831a150de27eb1e0fefa2820c183540252b5fc94))
+* add legacy anon id to pageview events ([f149e79](https://github.com/oaknational/Oak-Web-Application/commit/f149e797b68af45324b784f033f3300ef0fcec7d))
+* add posthog.identify() call with anon-id, add tests for AnalyticsProvider ([0b4dd72](https://github.com/oaknational/Oak-Web-Application/commit/0b4dd7273d178349668583cd3a781b06c75b0e61))
+* **anonymous-id:** attempt get anon-id from cookies first ([12c2e93](https://github.com/oaknational/Oak-Web-Application/commit/12c2e93cf995eea149ad2bbed936cc55fe7e87f4))
+* call posthog.register({ legacy_anonymous_id }) on load ([d2d40be](https://github.com/oaknational/Oak-Web-Application/commit/d2d40be3547656938d0ed0fd3181bc3d2a9d68b1))
+* remove anonymous id generation, use posthog distinct id ([e566b3a](https://github.com/oaknational/Oak-Web-Application/commit/e566b3a8eb302abf1960e5d76183326eb47a9f16))
+* remove decommissioned keys ([2f2bf42](https://github.com/oaknational/Oak-Web-Application/commit/2f2bf4219b7c91be578fa93d633524c0f8c41722))
+* set cookie to keep in sync with Teacher Hub et al ([917c5c2](https://github.com/oaknational/Oak-Web-Application/commit/917c5c2e545783f923c4939ebba9f919768cb100))
+
+# [1.160.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.5...v1.160.0) (2023-03-22)
+
+
+### Features
+
+* 1414 Check if updating storybook config will fix rendering icons ([c901ec7](https://github.com/oaknational/Oak-Web-Application/commit/c901ec763778808ee55a5bcaf2031e3e24b28aba))
+* 1414 Create DetailsCompleted component ([25098a1](https://github.com/oaknational/Oak-Web-Application/commit/25098a1718fe2a7656f9cb91ae1ce0ff0226303e))
+* 1414 Force builds to re-run ([af1944b](https://github.com/oaknational/Oak-Web-Application/commit/af1944b78b415ebb368ddbb90b2f385927098484))
+* 1414 Generate sprites before bulding storybook ([99d016a](https://github.com/oaknational/Oak-Web-Application/commit/99d016a187604085082eeba0176f3c712c322806))
+
+## [1.159.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.4...v1.159.5) (2023-03-21)
+
+
+### Bug Fixes
+
+* remove redundant SVGs, add webinar image from CMS ([7c846c1](https://github.com/oaknational/Oak-Web-Application/commit/7c846c1f3b4df9aa7a526a58b10429f2f0ba4a52))
+
+## [1.159.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.3...v1.159.4) (2023-03-20)
+
+
+### Bug Fixes
+
+* **downloads-page:** change Lesson to Teacher ([546f6b2](https://github.com/oaknational/Oak-Web-Application/commit/546f6b2678999dfc1cc5c98c1a979781b25fbe5e))
+
+## [1.159.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.2...v1.159.3) (2023-03-17)
+
+
+### Bug Fixes
+
+* dynamic errors if no input and radio ([82d4f66](https://github.com/oaknational/Oak-Web-Application/commit/82d4f66fdcf1db058f605fba4d36f0acf9292f6d))
+* revalidate if input value is empty string and no selected radio ([09f7144](https://github.com/oaknational/Oak-Web-Application/commit/09f7144ee6240b72b5d6ae7dcb68a9c99bb5aae6))
+* school value from school picker on selection change not input ([3eb0ea3](https://github.com/oaknational/Oak-Web-Application/commit/3eb0ea358732ca283bbb0898fa4ca9c2338c4426))
+
 ## [1.159.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.159.1...v1.159.2) (2023-03-16)
 
 

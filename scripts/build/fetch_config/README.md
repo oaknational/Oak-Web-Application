@@ -14,7 +14,7 @@ If no value is specified it will default to the file system path `oak-config/oak
 
 ## Example Values
 
-Examples values can be found in [oak.config.example.json](../../../oak-config/oak.config.example.json).
+Examples values can be found in [oak.config.test.json](../../../oak-config/oak.config.test.json).
 
 ## Values for Test Environments
 
@@ -22,7 +22,7 @@ Fake values for use in unit testing are provided by the file [oak.config.test.js
 
 ## Schema [TO DO]
 
-Types are generated from [oak.config.example.json](../../../oak-config/oak.config.example.json), but we should also use a schema to validate the read values.
+Types are generated from [oak.config.test.json](../../../oak-config/oak.config.test.json), but we should also use a schema to validate the read values.
 
 Use JSON schema?
 

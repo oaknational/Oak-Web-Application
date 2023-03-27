@@ -51,18 +51,18 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  const [inputValue, setInputValue] = useState("");
+  const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
 
   return (
     <Box $width={400} $height={400}>
       <Component
         {...args}
         label={"School picker"}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
+        schoolPickerInputValue={schoolPickerInputValue}
+        setSchoolPickerInputValue={setSchoolPickerInputValue}
         schools={items}
         defaultSchools={items}
-        setSelectedValue={function (): void {
+        setSelectedSchool={function (): void {
           throw new Error("Function not implemented.");
         }}
       />
