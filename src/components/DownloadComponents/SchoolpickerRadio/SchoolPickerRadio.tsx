@@ -53,7 +53,7 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   }, [initialValue, setSchool, setSchoolPickerInputValue, initialSchoolName]);
 
   useEffect(() => {
-    if (selectedSchool) {
+    if (selectedSchool && schoolPickerInputValue !== "") {
       setSchool(selectedSchool.toString(), schoolPickerInputValue);
     }
   }, [selectedSchool, setSchool, schoolPickerInputValue, selectedRadio]);
