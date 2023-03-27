@@ -73,7 +73,7 @@ describe("DetailsCompleted", () => {
   });
 
   describe("renders correct message dependent on input", () => {
-    it.only("should render homeschool message when user selects homeschool option", () => {
+    it("should render homeschool message when user selects homeschool option", () => {
       const spy = jest.fn();
 
       const { getByText } = renderWithTheme(
