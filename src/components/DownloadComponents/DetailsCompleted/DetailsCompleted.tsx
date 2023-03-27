@@ -17,7 +17,7 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
   school,
   onEditClick,
 }) => {
-  const getSchoolName = (school: string) => {
+  const getSchoolName = (school: string | undefined) => {
     if (school === "notListed") {
       return "My school isn’t listed";
     } else if (school === "homeschool") {
